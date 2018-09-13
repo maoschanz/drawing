@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="draw">
+	<schema id="com.github.maoschanz.Draw" path="/com/github/maoschanz/Draw/">
+		<key type="b" name="direct-color-edit">
+			<default>false</default>
+			<summary>Don't use a color palette</summary>
+			<description>If a click on the color button should display directly the complete color selector.</description>
+		</key>
+		<key type="b" name="experimental">
+			<default>false</default>
+			<summary>Experimental features</summary>
+			<description>Turn on experimental features (not recommended).</description>
+		</key>
+		<key type="as" name="default-rgba">
+			<default>['1.0', '1.0', '1.0', '0.0']</default>
+			<summary>Default color background</summary>
+			<description>The default color background of a new image.</description>
+		</key>
+	</schema>
+</schemalist>

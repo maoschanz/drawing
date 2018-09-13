@@ -1,0 +1,270 @@
+# French translation of org.gnome.Draw
+# Copyright (C) 1998-2017 Free Software Foundation, Inc.
+# This file is under the same GPLv3.
+#
+# Romain F. T. 2018
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: org.gnome.Draw 0.1\n"
+"POT-Creation-Date: 2018-06-21 21:35+0000\n"
+"PO-Revision-Date: 2018-06-21 22:01+0000\n"
+"Last-Translator: Romain F. T.>\n"
+"Language-Team: français\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#:data/org.gnome.Draw.desktop.in, data/window.ui
+msgid "Draw"
+msgstr "Dessin"
+
+#:data/org.gnome.Draw.desktop.in
+msgid "Simple drawing utility"
+msgstr "Utilitaire simple pour le dessin"
+
+#:data/appmenu.ui
+msgid "New window"
+msgstr "Nouvelle fenêtre"
+
+#:data/appmenu.ui
+msgid "Preferences"
+msgstr "Préférences"
+
+#:data/appmenu.ui
+msgid "Shortcuts"
+msgstr "Raccourcis clavier"
+
+#:data/appmenu.ui
+msgid "About"
+msgstr "À propos"
+
+#:data/appmenu.ui
+msgid "Quit"
+msgstr "Quitter"
+
+#:src/main.py
+msgid "Report bugs or ideas"
+msgstr "Rapporter des bugs ou des idées"
+
+#:src/main.py
+msgid "A drawing application for the GNOME desktop."
+msgstr "Une application de dessin pour le bureau GNOME."
+
+#:data/window.ui, src/window.py
+msgid "Open"
+msgstr "Ouvrir"
+
+#:data/window.ui
+msgid "Undo"
+msgstr "Annuler"
+
+#:data/window.ui
+msgid "Redo"
+msgstr "Rétablir"
+
+#:data/window.ui, src/window.py
+msgid "Save"
+msgstr "Enregistrer"
+
+#:src/window.py
+msgid "Import"
+msgstr "Importer"
+
+#:src/window.py
+msgid "Paste"
+msgstr "Coller"
+
+#:src/window.py
+msgid "Select all"
+msgstr "Sélectionner tout"
+
+#:src/window.py
+msgid "Properties"
+msgstr "Propriétés"
+
+#:src/window.py
+msgid "Export"
+msgstr "Exporter"
+
+#:src/window.py
+msgid "Export as PNG"
+msgstr "Exporter en PNG"
+
+#:src/window.py
+msgid "Export as JPEG"
+msgstr "Exporter en JPEG"
+
+#:src/window.py
+msgid "Export as BMP"
+msgstr "Exporter en BMP"
+
+#:src/window.py
+msgid "Close"
+msgstr "Fermer"
+
+#:data/window.ui, src/window.py
+msgid "No options"
+msgstr "Pas d'options"
+
+#:src/window.py, src/image.py
+msgid "Cancel"
+msgstr "Annuler"
+
+#:src/window.py
+msgid "Discard"
+msgstr "Abandonner"
+
+#:
+msgid "There are unsaved modifications to\n"
+msgstr "Il y a des modifications non-enregistrées à\n"
+
+#:
+msgid "Your masterful artwork has not been saved."
+msgstr "Votre chef-d'œuvre n'a pas été enregistré."
+
+#:src/image.py
+msgid "Apply"
+msgstr "Appliquer"
+
+#:src/image.py
+msgid "Image properties"
+msgstr "Propriétés de l'image"
+
+#:src/image.py
+msgid "Unsaved file"
+msgstr "Fichier non-enregistré"
+
+#:src/image.py
+msgid "Path"
+msgstr "Chemin"
+
+#:src/image.py
+msgid "Format"
+msgstr "Format"
+
+#:src/image.py
+msgid "Width"
+msgstr "Largeur"
+
+#:src/image.py
+msgid "Height"
+msgstr "Hauteur"
+
+#:src/image.py
+msgid "Save as"
+msgstr "Enregistrer sous"
+
+#:tools/*.py
+msgid "Eraser"
+msgstr "Effaceur"
+
+#:tools/*.py
+msgid "Line"
+msgstr "Trait"
+
+#:tools/*.py
+msgid "Paint"
+msgstr "Peinture"
+
+#:tools/*.py
+msgid "Pencil"
+msgstr "Crayon"
+
+#:tools/*.py
+msgid "Picker"
+msgstr "Couleur"
+
+#:tools/*.py
+msgid "Selection"
+msgstr "Sélection"
+
+#:tools/*.py
+msgid "Shape"
+msgstr "Forme"
+
+#:tools/*.py
+msgid "Text"
+msgstr "Texte"
+
+#:tools/line.py
+msgid "Line type:"
+msgstr "Type de ligne :"
+
+#:tools/line.py
+msgid "Straight"
+msgstr "Droite"
+
+#:tools/line.py
+msgid "Arc"
+msgstr "Arc"
+
+#:tools/line.py
+msgid "Arrow"
+msgstr "Flèche"
+
+#:tools/line.py
+msgid "Line end shape:"
+msgstr "Forme de fin de ligne :"
+
+#:tools/line.py
+msgid "None"
+msgstr "Aucune"
+
+#:tools/line.py tools/pencil.py
+msgid "Round"
+msgstr "Ronde"
+
+#:tools/line.py tools/pencil.py
+msgid "Square"
+msgstr "Carrée"
+
+#:tools/pencil.py
+msgid "Lead shape:"
+msgstr "Forme de mine :"
+
+#:tools/pencil.py
+msgid "Thin"
+msgstr "Fine"
+
+#:tools/text.py
+msgid "Opaque background"
+msgstr "Arrière-plan opaque"
+
+#:tools/select.py
+msgid "Cut"
+msgstr "Couper"
+
+#:tools/select.py
+msgid "Copy"
+msgstr "Copier"
+
+#:tools/select.py
+msgid "Delete"
+msgstr "Supprimer"
+
+#:tools/select.py
+msgid "Resize"
+msgstr "Redimensionner"
+
+#:tools/select.py
+msgid "Rotate"
+msgstr "Pivoter"
+
+#:tools/select.py
+msgid "Selection type:"
+msgstr ""
+
+#:tools/select.py
+msgid "Rectangle"
+msgstr "Rectangle"
+
+#:tools/select.py
+msgid "Freehand"
+msgstr "À main levée"
+
+#:tools/select.py
+msgid "Same color"
+msgstr "Même couleur"

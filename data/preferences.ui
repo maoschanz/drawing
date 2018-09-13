@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="draw">
+    <template class="DrawPrefsWindow" parent="GtkWindow">
+        <property name="default-width">350</property>
+        <!-- <property name="default-height">400</property> -->
+        <property name="default-height">50</property>
+        <child type="titlebar">
+            <object class="GtkHeaderBar" id="header_bar">
+                <property name="visible">True</property>
+                <property name="show-close-button">True</property>
+                <property name="title" translatable="yes">Draw</property>
+                <property name="subtitle" translatable="yes">Preferences</property>
+
+                <child>
+                    <object class="GtkButton" id="reset_button">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Reset</property>
+
+                        <style>
+                            <class name="destructive-action"/>
+                        </style>
+                    </object>
+                    <packing>
+                        <property name="pack-type">GTK_PACK_START</property>
+                    </packing>
+                </child>
+
+            </object>
+        </child>
+            
+        <child>
+            <object class="GtkListBox" id="list_box">
+                <property name="visible">True</property>
+            
+                <child>
+                    <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+
+                        <child>
+                            <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="expand">True</property>
+                                <property name="margin">10</property>
+                                <property name="spacing">10</property>
+                                <property name="orientation">horizontal</property>
+
+                                <child>
+                                    <object class="GtkLabel">
+                                        <property name="label" translatable="yes">Use a color palette</property>
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">GTK_PACK_START</property>
+                                    </packing>
+                                </child>
+
+                                <child>
+                                    <object class="GtkSwitch" id="color_edit_switch">
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">GTK_PACK_END</property>
+                                    </packing>
+                                </child>
+
+                            </object>
+                        </child>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+
+                        <child>
+                            <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="expand">True</property>
+                                <property name="margin">10</property>
+                                <property name="spacing">10</property>
+                                <property name="orientation">horizontal</property>
+
+                                <child>
+                                    <object class="GtkLabel">
+                                        <property name="label" translatable="yes">New image default color</property>
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">GTK_PACK_START</property>
+                                    </packing>
+                                </child>
+
+                                <child>
+                                    <object class="GtkColorButton" id="default_backg_button">
+                                        <property name="visible">True</property>
+                                        <property name="use-alpha">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">GTK_PACK_END</property>
+                                    </packing>
+                                </child>
+
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            
+                <child>
+                    <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+
+                        <child>
+                            <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="expand">True</property>
+                                <property name="margin">10</property>
+                                <property name="spacing">10</property>
+                                <property name="orientation">horizontal</property>
+
+                                <child>
+                                    <object class="GtkLabel">
+                                        <property name="label" translatable="yes">Experimental features (not recommended)</property>
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">GTK_PACK_START</property>
+                                    </packing>
+                                </child>
+
+                                <child>
+                                    <object class="GtkSwitch" id="experimental_switch">
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">GTK_PACK_END</property>
+                                    </packing>
+                                </child>
+
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                
+            </object>
+        </child>
+
+
+    </template>
+</interface>

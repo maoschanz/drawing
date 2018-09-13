@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="draw">
+
+  <object class="GtkAdjustment" id="adjustment_zoom">
+    <property name="lower">25</property>
+    <property name="upper">400</property>
+    <property name="step_increment">25</property>
+    <property name="page_increment">100</property>
+    <property name="value">100</property>
+  </object>
+
+  <object class="GtkAdjustment" id="adjustment_size">
+    <property name="lower">0</property>
+    <property name="upper">200</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <property name="value">10</property>
+  </object>  
+  
+  <template class="DrawWindow" parent="GtkApplicationWindow">
+    <property name="default-width">900</property>
+    <property name="default-height">500</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <property name="visible">True</property>
+        <property name="show-close-button">True</property>
+        <property name="title" translatable="yes">Draw</property>
+
+        <child>
+          <object class="GtkButton" id="open_btn">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Open</property>
+          </object>
+          <packing>
+            <property name="pack-type">GTK_PACK_START</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+          <property name="visible">True</property>
+            <child>
+              <object class="GtkButton" id="undo_btn">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Undo</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">edit-undo-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="redo_btn">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Redo</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">edit-redo-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <style>
+              <class name="linked"/>
+            </style>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkMenuButton" id="menu_btn">
+          <!-- <object class="GtkToggleButton" id="menu_btn"> -->
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage" id="menu_btn_img">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">GTK_PACK_END</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="save_btn">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Save</property>
+          </object>
+          <packing>
+            <property name="pack-type">GTK_PACK_END</property>
+          </packing>
+        </child>
+
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="orientation">vertical</property>
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkPaned" id="paned_area">
+            <!-- <property name="wide-handle">True</property> -->
+            <property name="visible">True</property>
+            <property name="orientation">horizontal</property>
+            <property name="position">120</property>
+            <child>
+              <object class="GtkBox" id="tools_panel">
+                <property name="visible">True</property>
+                <property name="margin">5</property>
+                <property name="orientation">vertical</property>
+                <style>
+                  <class name="linked"/>
+                </style>
+              </object>
+              <packing>
+                <property name="shrink">False</property>
+              </packing>
+            </child>
+
+            <!-- FIXME make it scrollable -->
+            <!-- <child> -->
+            <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
+            <!--     <property name="visible">True</property> -->
+            <!--   </object> -->
+            <!--   <packing> -->
+            <!--     <property name="expand">True</property> -->
+            <!--   </packing> -->
+            <!-- </child>   -->
+
+
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="visible">True</property>
+                <property name="margin">5</property>
+
+                <child>
+                  <!-- FIXME à retirer à la fin, osef de cette frame -->
+                  <object class="GtkFrame">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkLayout" id="drawing_area">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+              </object>
+            </child>
+
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <!-- weird warning ?? -->
+          </packing>
+        </child>
+
+        <!-- ... -->
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="bottom_panel">
+            <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <property name="margin">5</property>
+            <property name="orientation">horizontal</property>
+            <property name="expand">False</property>
+
+            <child>
+              <object class="GtkBox" id="color_box">
+              <property name="visible">True</property>
+                <child>
+                  <object class="GtkColorButton" id="color_btn_l">
+                    <property name="visible">True</property>
+                    <property name="use-alpha">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="color_btn_exc">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">network-transmit-receive-symbolic</property>
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkColorButton" id="color_btn_r">
+                    <property name="visible">True</property>
+                    <property name="use-alpha">True</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="linked"/>
+                </style>
+              </object>
+              <packing>
+                <property name="pack-type">GTK_PACK_START</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkSpinButton" id="size_setter">
+                <property name="tooltip_text" translatable="yes">Tool size</property>
+                <property name="visible">True</property>
+                <property name="adjustment">adjustment_size</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkToggleButton" id="options_btn">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">10</property>
+                    <child>
+                      <object class="GtkBox" id="options_long_box">
+                        <property name="visible">True</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkLabel" id="options_label">
+                            <property name="label" translatable="yes">No options</property>
+                            <property name="visible">True</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">pan-down-symbolic</property>
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="pack-type">GTK_PACK_END</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="options_short_box">
+                        <property name="visible">False</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">view-more-symbolic</property>
+                            <property name="visible">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkSpinButton" id="zoom_setter">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Zoom</property>
+                <property name="adjustment">adjustment_zoom</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="pack-type">GTK_PACK_END</property>
+              </packing>
+            </child>
+
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
