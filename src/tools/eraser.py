@@ -3,26 +3,21 @@
 from gi.repository import Gtk, Gdk, Gio
 import cairo
 
-from .tools import build_row
+from .tools import ToolTemplate
 
-class ToolEraser():
+class ToolEraser(ToolTemplate):
     __gtype_name__ = 'ToolEraser'
 
     id = 'eraser'
     icon_name = 'edit-delete-symbolic'
     label = _("Eraser")
-    use_options = False
-    window_can_take_back_control = True
     use_size = True
-    set_clip = False
 
     def __init__(self, window, **kwargs):
-        self.tool_width = 20
+        super().__init__(window)
         self.past_x = -1
         self.past_y = -1
         self.w_context = None
-        build_row(self)
-        self._window = window
 
     def give_back_control(self):
         pass

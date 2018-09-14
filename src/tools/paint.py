@@ -3,27 +3,22 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
 
-from .tools import build_row
+from .tools import ToolTemplate
 from .tools import get_rgb_for_xy
 
-class ToolPaint():
+class ToolPaint(ToolTemplate):
     __gtype_name__ = 'ToolPaint'
 
     id = 'paint'
     icon_name = 'edit-clear-all-symbolic'
     label = _("Paint")
-    use_options = False
-    window_can_take_back_control = True # toujours je suppose ?
-    use_size = False
-    set_clip = False
 
     new_color = None
     old_color = None
     surface = None
 
     def __init__(self, window, **kwargs):
-        build_row(self)
-        self._window = window
+        super().__init__(window)
 
     def give_back_control(self):
         pass

@@ -4,9 +4,11 @@ from gi.repository import Gtk, Gdk, Gio
 import cairo
 import math
 
-from .tools import build_row
+from .tools import ToolTemplate
 
-class ToolShape():
+# FIXME le polygon filled merdoie
+
+class ToolShape(ToolTemplate):
     __gtype_name__ = 'ToolShape'
 
     id = 'shape'
@@ -18,10 +20,8 @@ class ToolShape():
     set_clip = False
 
     def __init__(self, window, **kwargs):
-        build_row(self)
-        self._window = window
+        super().__init__(window)
         
-        self.tool_width = 20
         self.past_x = -1.0
         self.past_y = -1.0
 
@@ -31,41 +31,38 @@ class ToolShape():
         shape_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         shape_box.get_style_context().add_class('linked')
 
-        shape_radio_btn = Gtk.RadioButton(draw_indicator=False, label=_("Rectangle"))
-        shape_radio_btn2 = Gtk.RadioButton(group=shape_radio_btn, draw_indicator=False, label=_("Rounded rectangle"))
-        shape_radio_btn3 = Gtk.RadioButton(group=shape_radio_btn, draw_indicator=False, label=_("Ellipsis"))
-        shape_radio_btn4 = Gtk.RadioButton(group=shape_radio_btn, draw_indicator=False, label=_("Circle"))
-        shape_radio_btn5 = Gtk.RadioButton(group=shape_radio_btn, draw_indicator=False, label=_("Cartoon bubble"))
-        shape_radio_btn6 = Gtk.RadioButton(group=shape_radio_btn, draw_indicator=False, label=_("Polygon"))
+        self.shape_btn = Gtk.RadioButton(draw_indicator=False, label=_("Rectangle"))
+        self.rounded_btn = Gtk.RadioButton(group=self.shape_btn, draw_indicator=False, label=_("Rounded rectangle"))
+        self.ellipsis_btn = Gtk.RadioButton(group=self.shape_btn, draw_indicator=False, label=_("Ellipsis"))
+        self.circle_btn = Gtk.RadioButton(group=self.shape_btn, draw_indicator=False, label=_("Circle"))
+        self.polygon_btn = Gtk.RadioButton(group=self.shape_btn, draw_indicator=False, label=_("Polygon"))
 
-        shape_radio_btn.connect('clicked', self.on_shape_changed)
-        shape_radio_btn2.connect('clicked', self.on_shape_changed)
-        shape_radio_btn3.connect('clicked', self.on_shape_changed)
-        shape_radio_btn4.connect('clicked', self.on_shape_changed)
-        shape_radio_btn5.connect('clicked', self.on_shape_changed)
-        shape_radio_btn6.connect('clicked', self.on_shape_changed)
+        self.shape_btn.connect('clicked', self.on_shape_changed)
+        self.rounded_btn.connect('clicked', self.on_shape_changed)
+        self.ellipsis_btn.connect('clicked', self.on_shape_changed)
+        self.circle_btn.connect('clicked', self.on_shape_changed)
+        self.polygon_btn.connect('clicked', self.on_shape_changed)
 
-        shape_box.add(shape_radio_btn)
-        # shape_box.add(shape_radio_btn2)
-        # shape_box.add(shape_radio_btn3)
-        shape_box.add(shape_radio_btn4)
-        # shape_box.add(shape_radio_btn5)
-        shape_box.add(shape_radio_btn6)
+        shape_box.add(self.shape_btn)
+        shape_box.add(self.rounded_btn)
+        # shape_box.add(self.ellipsis_btn)
+        shape_box.add(self.circle_btn)
+        shape_box.add(self.polygon_btn)
 
         style_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         style_box.get_style_context().add_class('linked')
 
-        style_radio_btn = Gtk.RadioButton(draw_indicator=False, label=_("Empty"))
-        style_radio_btn2 = Gtk.RadioButton(group=style_radio_btn, draw_indicator=False, label=_("Filled"))
-        style_radio_btn3 = Gtk.RadioButton(group=style_radio_btn, draw_indicator=False, label=_("Filled (secondary color)"))
+        self.style_empty_btn = Gtk.RadioButton(draw_indicator=False, label=_("Empty"))
+        self.style_filled_btn = Gtk.RadioButton(group=self.style_empty_btn, draw_indicator=False, label=_("Filled"))
+        self.style_secondary_btn = Gtk.RadioButton(group=self.style_empty_btn, draw_indicator=False, label=_("Filled (secondary color)"))
 
-        style_radio_btn.connect('clicked', self.on_style_changed)
-        style_radio_btn2.connect('clicked', self.on_style_changed)
-        style_radio_btn3.connect('clicked', self.on_style_changed)
+        self.style_empty_btn.connect('clicked', self.on_style_changed)
+        self.style_filled_btn.connect('clicked', self.on_style_changed)
+        self.style_secondary_btn.connect('clicked', self.on_style_changed)
 
-        style_box.add(style_radio_btn)
-        style_box.add(style_radio_btn2)
-        style_box.add(style_radio_btn3)
+        style_box.add(self.style_empty_btn)
+        style_box.add(self.style_filled_btn)
+        style_box.add(self.style_secondary_btn)
 
         self.options_box.add(Gtk.Label(label=_("Shape:")))
         self.options_box.add(shape_box)
@@ -73,11 +70,11 @@ class ToolShape():
         self.options_box.add(Gtk.Label(label=_("Style:")))
         self.options_box.add(style_box)
 
-        shape_radio_btn.set_active(True)
-        style_radio_btn3.set_active(True)
+        self.shape_btn.set_active(True)
+        self.style_secondary_btn.set_active(True)
 
-        self.selected_shape = shape_radio_btn.get_label()
-        self.selected_style = style_radio_btn3.get_label()
+        self.selected_shape = self.shape_btn.get_label()
+        self.selected_style = self.style_secondary_btn.get_label()
 
     def on_shape_changed(self, b):
         self.selected_shape = b.get_label()

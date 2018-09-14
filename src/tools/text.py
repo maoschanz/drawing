@@ -3,24 +3,20 @@
 from gi.repository import Gtk, Gdk, Gio
 import cairo
 
-from .tools import build_row
+from .tools import ToolTemplate
 
-class ToolText():
+class ToolText(ToolTemplate):
     __gtype_name__ = 'ToolText'
 
     id = 'text'
     icon_name = 'font-x-generic-symbolic'
     label = _("Text")
     use_options = True
-    window_can_take_back_control = True
     use_size = True
-    set_clip = False
 
     def __init__(self, window, **kwargs):
-        build_row(self)
-        self._window = window
+        super().__init__(window)
 
-        self.tool_width = 20
         self.primary_color = None
         self.secondary_color = None
         (self.x_begin, self.y_begin) = (0, 0)

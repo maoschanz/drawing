@@ -1,13 +1,13 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 moduledir = join_paths(pkgdatadir, 'draw')
-#gnome = import('gnome')
+gnome = import('gnome')
 
-#gnome.compile_resources('draw',
-#  'draw.gresource.xml',
-#  gresource_bundle: true,
-#  install: true,
-#  install_dir: pkgdatadir,
-#)
+gnome.compile_resources('draw',
+  'draw.gresource.xml',
+  gresource_bundle: true,
+  install: true,
+  install_dir: pkgdatadir,
+)
 
 python3 = import('python3')
 
@@ -33,6 +33,7 @@ draw_sources = [
   'tools.py',
   'image.py',
   'preferences.py',
+  'tools/crop.py',
   'tools/line.py',
   'tools/paint.py',
   'tools/pencil.py',

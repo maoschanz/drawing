@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<interface domain="draw">
+  <menu id="app-menu">
+    <section id="new">
+      <item>
+        <attribute name="action">app.new_window</attribute>
+        <attribute name="label" translatable="yes">New window</attribute>
+      </item>
+    </section>
+
+    <section id="main">
+      <item>
+        <attribute name="action">app.settings</attribute>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+      </item>
+    </section>
+
+    <section id="other">
+      <item>
+        <attribute name="action">app.shortcuts</attribute>
+        <attribute name="label" translatable="yes">Shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.help</attribute>
+        <attribute name="label" translatable="yes">Help</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.about</attribute>
+        <attribute name="label" translatable="yes">About</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.quit</attribute>
+        <attribute name="label" translatable="yes">Quit</attribute>
+      </item>
+    </section>
+  </menu>
+
+<!-- Hamburger menu -->
+
+  <menu id="window-menu">
+    <section>
+        <item>
+            <attribute name="action">app.new_window</attribute>
+            <attribute name="label" translatable="yes">New window</attribute>
+            <attribute name="verb-icon">document-new-symbolic</attribute>
+        </item>
+    </section>
+    <section>
+        <submenu>
+            <attribute name="label" translatable="yes">Export</attribute>
+            <item>
+                <attribute name="label" translatable="yes">Export as PNG</attribute>
+                <attribute name="action">win.exp_png</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Export as JPEG</attribute>
+                <attribute name="action">win.exp_jpeg</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Export as BMP</attribute>
+                <attribute name="action">win.exp_bmp</attribute>
+            </item>
+        </submenu>
+        <submenu>
+            <attribute name="label" translatable="yes">Selection</attribute>
+            <item>
+                <attribute name="label" translatable="yes">Import</attribute>
+                <attribute name="action">win.import</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Paste</attribute>
+                <attribute name="action">win.paste</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Select all</attribute>
+                <attribute name="action">win.select_all</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Unselect</attribute>
+                <attribute name="action">win.unselect</attribute>
+            </item>
+        </submenu>
+        <item>
+            <attribute name="label" translatable="yes">Properties</attribute>
+            <attribute name="action">win.properties</attribute>
+        </item>
+    </section>
+    <section>
+        <attribute name="display-hint">horizontal-buttons</attribute>
+        <item>
+            <attribute name="label" translatable="yes">Preferences</attribute>
+            <attribute name="action">app.settings</attribute>
+            <attribute name="verb-icon">preferences-system-symbolic</attribute>
+        </item>
+
+        <item>
+            <attribute name="label" translatable="yes">Shortcuts</attribute>
+            <attribute name="action">app.shortcuts</attribute>
+            <attribute name="verb-icon">input-keyboard-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="action">app.help</attribute>
+          <attribute name="label" translatable="yes">Help</attribute>
+          <attribute name="verb-icon">help-faq-symbolic</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">About</attribute>
+            <attribute name="action">app.about</attribute>
+            <attribute name="verb-icon">help-about-symbolic</attribute>
+        </item>
+    </section>
+  </menu>
+</interface>
+

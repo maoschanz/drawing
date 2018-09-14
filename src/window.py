@@ -23,6 +23,7 @@ from gettext import gettext as _
 from .gi_composites import GtkTemplate
 
 from .pencil import ToolPencil
+from .crop import ToolCrop
 from .select import ToolSelect
 from .line import ToolLine
 from .paint import ToolPaint
@@ -37,7 +38,7 @@ from .image import DrawImage
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
 
-@GtkTemplate(ui='/com/github/maoschanz/Draw/window.ui')
+@GtkTemplate(ui='/com/github/maoschanz/Draw/ui/window.ui')
 class DrawWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawWindow'
 
@@ -72,7 +73,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	handlers = []
 
-	def __init__(self, file_path, appmenu, **kwargs):
+	def __init__(self, file_path, **kwargs):
 		super().__init__(**kwargs)
 		self.init_template()
 		
@@ -101,6 +102,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		if DEV_VERSION:
 			self.tools['select'] = ToolSelect(self)
+			self.tools['crop'] = ToolCrop(self)
 		self.tools['pencil'] = ToolPencil(self)
 		self.tools['eraser'] = ToolEraser(self)
 		self.tools['text'] = ToolText(self)
@@ -116,13 +118,11 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		self.options_popover = None
 		self.build_options_popover()
-		self.update_slider_state(self.active_tool().use_size)
-		self.update_slider_value(None, None, 10)
+		self.update_size_spinbtn_state(self.active_tool().use_size)
+		self.update_size_spinbtn_value(None, None, 10)
 
-		self.build_menu(not appmenu)
-
+		self.build_menu()
 		self.add_actions()
-
 		self.connect_signals()
 
 		if self._file_path is not None:
@@ -165,7 +165,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		self.handlers.append( self.open_btn.connect('clicked', self.action_open) )
 		self.handlers.append( self.save_btn.connect('clicked', self.on_save_document) )
-
 		self.handlers.append( self.undo_btn.connect('clicked', self.on_undo) )
 		self.handlers.append( self.redo_btn.connect('clicked', self.on_redo) )
 
@@ -173,8 +172,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.menu_popover.connect('closed', self.on_menu_popover_closed, self.menu_btn) )
 
 		self.handlers.append( self.color_btn_exc.connect('clicked', self.on_exchange_color) )
-
-		self.handlers.append( self.size_setter.connect('change-value', self.update_slider_value) )
+		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
 
 		self.handlers.append( self.options_btn.connect('toggled', self.on_options_open) )
 		self.handlers.append( self.options_popover.connect('closed', self.on_options_popover_closed, self.options_btn) )
@@ -191,11 +189,11 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.drawing_area.connect('key-press-event', self.on_key_on_area) )
 
 		self.handlers.append( self.tools_panel.connect('size-allocate', self.update_tools_visibility) )
-
 		self.handlers.append( self.connect('size-allocate', self.update_options_box) )
 
 		# Settings
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
+		# TODO...
 
 	def add_actions(self):
 		action = Gio.SimpleAction.new("import", None)
@@ -249,7 +247,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def update_tools_visibility(self, listbox, gdkrectangle):
-		if gdkrectangle.width < 100:
+		if gdkrectangle.width < 120:
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
 		else:
@@ -272,13 +270,10 @@ class DrawWindow(Gtk.ApplicationWindow):
 		b.set_active(False) # illogique mais bon
 		self.update_option_label()
 
-	def build_menu(self, merged):
+	def build_menu(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/menus.ui")
-		if merged:
-			menu = builder.get_object("merged-menu")
-		else:
-			menu = builder.get_object("window-menu")
+		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
+		menu = builder.get_object("window-menu")
 		self.menu_popover = Gtk.Popover.new_from_model(self.menu_btn, menu)
 		self.menu_btn.set_popover(self.menu_popover)
 
@@ -290,10 +285,10 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.color_btn_l.set_rgba(self.color_btn_r.get_rgba())
 		self.color_btn_r.set_rgba(left_c)
 
-	def update_slider_state(self, sensitivity):
+	def update_size_spinbtn_state(self, sensitivity):
 		self.size_setter.set_sensitive(sensitivity)
 
-	def update_slider_value(self, a, b, c):
+	def update_size_spinbtn_value(self, a, b, c):
 		value = int(c)
 		self.tool_width = value
 
@@ -315,6 +310,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.options_popover.add(self.options_box)
 		self.options_popover.set_relative_to(self.options_btn)
 
+		self.update_option_label()
+
 	def on_options_popover_closed(self, popover, button): # FIXME jamais appelée ?
 		button.set_active(False)
 		self.update_option_label()
@@ -331,7 +328,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.former_tool = self.active_tool()
 		self.build_options_popover()
 		self.update_option_label()
-		self.update_slider_state(self.active_tool().use_size)
+		self.update_size_spinbtn_state(self.active_tool().use_size)
 
 	def active_tool(self):
 		for tool_id in self.tools:

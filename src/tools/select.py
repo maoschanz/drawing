@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk, Gio
 import cairo
 
-from .tools import build_row
+from .tools import ToolTemplate
 
 MENU_XML = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -39,20 +39,17 @@ MENU_XML = """
 </interface>
 """
 
-class ToolSelect():
+class ToolSelect(ToolTemplate):
     __gtype_name__ = 'ToolSelect'
 
     id = 'select'
     icon_name = 'edit-select-symbolic'
     label = _("Selection")
     use_options = False # TODO
-    window_can_take_back_control = True
-    use_size = False
     set_clip = True
 
     def __init__(self, window, **kwargs):
-        build_row(self)
-        self._window = window
+        super().__init__(window)
 
         self.x_press = 0.0
         self.y_press = 0.0
@@ -97,7 +94,7 @@ class ToolSelect():
 
         builder = Gtk.Builder.new_from_string(MENU_XML, -1)
         menu = builder.get_object("right-click-menu")
-        self.rightc_popover = Gtk.Popover.new_from_model(self._window.drawing_area, menu)
+        self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu)
 
         #############################
 
@@ -246,9 +243,9 @@ class ToolSelect():
 
     def delete_selection(self, b):
         self.selection_popover.popdown()
-        self._window.pre_modification()
+        self.window.pre_modification()
 
-        w_context = cairo.Context(self._window._surface)
+        w_context = cairo.Context(self.window._surface)
         w_context.move_to(self.past_x[0], self.past_y[0])
         w_context.line_to(self.past_x[0], self.past_y[1])
         w_context.line_to(self.past_x[1], self.past_y[1])
@@ -260,7 +257,7 @@ class ToolSelect():
         w_context.set_operator(cairo.Operator.OVER)
 
         self.window_can_take_back_control = True
-        self._window.post_modification()
+        self.window.post_modification()
 
         self.x_press = 0.0
         self.y_press = 0.0
@@ -269,14 +266,14 @@ class ToolSelect():
 
     def copy_selection(self, b):
         self.selection_popover.popdown()
-        self._window.pre_modification()
+        self.window.pre_modification()
 
         print('copy') # TODO
 
         # on peut faire cairo.Region.copy() ?
 
         self.window_can_take_back_control = True
-        # self._window.post_modification()
+        # self.window.post_modification()
 
         self.x_press = 0.0
         self.y_press = 0.0
@@ -285,7 +282,7 @@ class ToolSelect():
 
     def cancel_selection(self, b):
         self.selection_popover.popdown()
-        self._window.pre_modification()
+        self.window.pre_modification()
 
         print('cancel')
 
@@ -298,13 +295,13 @@ class ToolSelect():
 
     def drag_to(self):
         print('dragging')
-        self._window.pre_modification()
+        self.window.pre_modification()
 
         # TODO copier le truc en interne dans DrawImage
 
 
         # facile à faire : supprimer l'ancien truc
-        w_context = cairo.Context(self._window._surface)
+        w_context = cairo.Context(self.window._surface)
         w_context.move_to(self.past_x[0], self.past_y[0])
         w_context.line_to(self.past_x[0], self.past_y[1])
         w_context.line_to(self.past_x[1], self.past_y[1])
@@ -320,12 +317,12 @@ class ToolSelect():
 
 
 
-        # self._window.post_modification()
+        # self.window.post_modification()
 
         self.x_press = 0.0
         self.y_press = 0.0
         self.past_x = [-2, -2] # TODO remettre des coordonnées
-        self.past_y = [-2, -2] # TODO remettre des coordonnées        
+        self.past_y = [-2, -2] # TODO remettre des coordonnées
                 
-    def get_clip_path():    
+    def get_clip_path():
         print('todo')

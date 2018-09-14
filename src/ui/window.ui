@@ -15,8 +15,8 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
     <property name="value">10</property>
-  </object>  
-  
+  </object>
+
   <template class="DrawWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
@@ -108,7 +108,7 @@
             <!-- <property name="wide-handle">True</property> -->
             <property name="visible">True</property>
             <property name="orientation">horizontal</property>
-            <property name="position">120</property>
+            <property name="position">150</property>
             <child>
               <object class="GtkBox" id="tools_panel">
                 <property name="visible">True</property>
@@ -295,3 +295,4 @@
     </child>
   </template>
 </interface>
+

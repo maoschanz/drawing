@@ -36,18 +36,17 @@ class Application(Gtk.Application):
 
 		self.register(None) # ?
 
-		self.appmenu = self.prefers_app_menu()
 		menu = self.build_app_menu()
-		if self.appmenu:
+		if self.prefers_app_menu():
 			self.set_app_menu(menu)
 
-		self.version = 'beta-2018-09-11'
+		self.version = 'beta-2018-09-14'
 
 		self.connect('open', self.on_open)
 
 	def on_open(self, a, b, c, d):
 		for f in b:
-			win = DrawWindow(f.get_path(), self.appmenu, application=self)
+			win = DrawWindow(f.get_path(), application=self)
 			win.present()
 		return 0
 
@@ -63,13 +62,13 @@ class Application(Gtk.Application):
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))
 
 	def build_shortcuts_dialog(self):
-		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Draw/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Draw/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
 	def build_app_menu(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/menus.ui")
+		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
 		menu = builder.get_object("app-menu")
 
 		new_window_action = Gio.SimpleAction.new("new_window", None) # FIXME
@@ -121,7 +120,7 @@ class Application(Gtk.Application):
 		self.quit()
 
 	def on_new_window_activate(self, *args):
-		win = DrawWindow(None, self.appmenu, application=self)
+		win = DrawWindow(None, application=self)
 		win.present()
 
 	def on_shortcuts_activate(self, *args):
@@ -138,7 +137,7 @@ class Application(Gtk.Application):
 	def do_activate(self):
 		win = self.props.active_window
 		if not win:
-			win = DrawWindow(None, self.appmenu, application=self)
+			win = DrawWindow(None, application=self)
 		win.present()
 
 def main(version):

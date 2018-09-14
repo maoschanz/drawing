@@ -3,23 +3,18 @@
 from gi.repository import Gtk, Gdk, Gio
 import cairo
 
-from .tools import build_row
+from .tools import ToolTemplate
 from .tools import get_rgb_for_xy
 
-class ToolPicker():
+class ToolPicker(ToolTemplate):
     __gtype_name__ = 'ToolPicker'
 
     id = 'picker'
     icon_name = 'color-select-symbolic'
     label = _("Picker")
-    use_options = False
-    window_can_take_back_control = True
-    use_size = False
-    set_clip = False
 
     def __init__(self, window, **kwargs):
-        build_row(self)
-        self.window = window
+        super().__init__(window)
 
     def give_back_control(self):
         pass

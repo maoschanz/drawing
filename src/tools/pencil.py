@@ -3,26 +3,22 @@
 from gi.repository import Gtk, Gdk, Gio
 import cairo
 
-from .tools import build_row
+from .tools import ToolTemplate
 
-class ToolPencil():
+class ToolPencil(ToolTemplate):
     __gtype_name__ = 'ToolPencil'
 
     id = 'pencil'
     icon_name = 'document-edit-symbolic'
     label = _("Pencil")
     use_options = True
-    window_can_take_back_control = True
     use_size = True
-    set_clip = False
 
     def __init__(self, window, **kwargs):
-        self.tool_width = 20
+        super().__init__(window)
         self.past_x = -1
         self.past_y = -1
         self.w_context = None
-        build_row(self)
-        self._window = window
 
         # Building the widget containing options
         self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=10)
