@@ -101,13 +101,13 @@ class ToolSelect(ToolTemplate):
         # Building the widget containing options
         self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=10)
 
-        self.options_box.add(Gtk.Label(_("Selection type:")))
+        self.options_box.add(Gtk.Label(label=_("Selection type:")))
         btn_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         btn_box.get_style_context().add_class('linked')
 
-        radio_btn = Gtk.RadioButton(None, draw_indicator=False, label=_("Rectangle"))
-        radio_btn2 = Gtk.RadioButton(None, group=radio_btn, draw_indicator=False, label=_("Freehand"))
-        radio_btn3 = Gtk.RadioButton(None, group=radio_btn, draw_indicator=False, label=_("Same color"))
+        radio_btn = Gtk.RadioButton(draw_indicator=False, label=_("Rectangle"))
+        radio_btn2 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Freehand"))
+        radio_btn3 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Same color"))
 
         radio_btn.connect('clicked', self.on_option_changed)
         radio_btn2.connect('clicked', self.on_option_changed)

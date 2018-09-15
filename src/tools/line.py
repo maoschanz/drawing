@@ -22,41 +22,28 @@ class ToolLine(ToolTemplate):
 		super().__init__(window)
 
 		# Building the widget containing options
-		self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=10)
+		builder = Gtk.Builder()
+		builder.add_from_resource("/com/github/maoschanz/Draw/tools/ui/line.ui")
+		self.options_box = builder.get_object("options_box")
 
-		self.options_box.add(Gtk.Label(label=_("Line type:")))
-		curv_btn_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-		curv_btn_box.get_style_context().add_class('linked')
-
-		self.type_btns['line'] = Gtk.RadioButton(draw_indicator=False, label=_("Straight"))
-		self.type_btns['arc'] = Gtk.RadioButton(group=self.type_btns['line'], draw_indicator=False, label=_("Arc"))
-		self.type_btns['arrow'] = Gtk.RadioButton(group=self.type_btns['line'], draw_indicator=False, label=_("Arrow"))
+		self.type_btns['line'] = builder.get_object("type_btn_1")
+		self.type_btns['arc'] = builder.get_object("type_btn_2")
 
 		for type_id in self.type_btns:
 			self.type_btns[type_id].connect('clicked', self.on_type_changed)
-			curv_btn_box.add(self.type_btns[type_id])
 
-		self.options_box.add(curv_btn_box)
+		self.end_btns['none'] = builder.get_object("end_btn_1")
+		self.end_btns['round'] = builder.get_object("end_btn_2")
+		# self.end_btns['square'] = builder.get_object("end_btn_3")
 
-		self.options_box.add(Gtk.Label(label=_("Line end shape:")))
-		end_btn_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-		end_btn_box.get_style_context().add_class('linked')
-
-		self.end_btns['none'] = Gtk.RadioButton(draw_indicator=False, label=_("None"))
-		self.end_btns['round'] = Gtk.RadioButton(group=self.end_btns['none'], draw_indicator=False, label=_("Round"))
-		self.end_btns['square'] = Gtk.RadioButton(group=self.end_btns['none'], draw_indicator=False, label=_("Square"))
+		self.arrow_switch = builder.get_object("arrow_switch")
 
 		for type_id in self.end_btns:
 			self.end_btns[type_id].connect('clicked', self.on_end_changed)
-			end_btn_box.add(self.end_btns[type_id])
-
-		self.options_box.add(end_btn_box)
 
 		# Default values
-		self.type_btns['line'].set_active(True)
-		self.end_btns['round'].set_active(True)
-		self.selected_shape_label = _("Round")
-		self.selected_curv_label = _("Straight")
+		self.selected_shape_label = _("Round") # FIXME
+		self.selected_curv_label = _("Straight") # FIXME
 		self.selected_end_id = cairo.LineCap.ROUND
 		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
@@ -98,10 +85,36 @@ class ToolLine(ToolTemplate):
 		self.y_press = 0.0
 
 	def on_key_on_area(self, area, event, surface):
-		print("key")
+		pass
 
 	def on_motion_on_area(self, area, event, surface):
-		pass
+		self.window.pre_modification()
+		w_context = cairo.Context(self.window._surface)
+		w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
+			self.wanted_color.blue, self.wanted_color.alpha)
+
+		if self.active_type() == 'line':
+			w_context.set_line_cap(self.selected_end_id)
+			w_context.set_line_width(self.tool_width)
+			w_context.move_to(self.x_press, self.y_press)
+			w_context.line_to(event.x, event.y)
+			w_context.stroke()
+
+		elif self.active_type() == 'arc':
+			w_context.set_line_cap(self.selected_end_id)
+			w_context.set_line_width(self.tool_width)
+
+			if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
+				w_context.move_to(self.x_press, self.y_press)
+				w_context.line_to(event.x, event.y)
+				w_context.stroke()
+			else:
+				w_context.move_to(self.wait_points[0], self.wait_points[1])
+				w_context.set_line_width(self.tool_width)
+				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
+				w_context.stroke()
+
+		self.window.drawing_area.queue_draw()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		print("press")
@@ -109,20 +122,17 @@ class ToolLine(ToolTemplate):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
-		self.left_color = left_color
-		self.right_color = right_color
+		if event.button == 1:
+			self.wanted_color = left_color
+		if event.button == 3:
+			self.wanted_color = right_color
 
 	def on_release_on_area(self, area, event, surface):
-
-		w_context = cairo.Context(surface)
-		if event.button == 1:
-			w_context.set_source_rgba(self.left_color.red, self.left_color.green, \
-				 self.left_color.blue, self.left_color.alpha)
-		if event.button == 3:
-			w_context.set_source_rgba(self.right_color.red, self.right_color.green, \
-				self.right_color.blue, self.right_color.alpha)
-
 		if self.active_type() == 'line':
+			self.window.pre_modification()
+			w_context = cairo.Context(self.window._surface)
+			w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
+				self.wanted_color.blue, self.wanted_color.alpha)
 
 			w_context.set_line_cap(self.selected_end_id)
 			w_context.set_line_width(self.tool_width)
@@ -133,28 +143,25 @@ class ToolLine(ToolTemplate):
 			self.window_can_take_back_control = True
 
 		elif self.active_type() == 'arc':
-
-			w_context.set_line_cap(self.selected_end_id)
-
-			# FIXME si self.x_press, self.y_press est trop proche de event.x, event.y
-			# il va falloir gérer autrement pour avoir un bézier à un point de contrôle
-			# (sans le move_to donc, comme le prévoit la doc)
-
 			if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
 				self.wait_points = (self.x_press, self.y_press, event.x, event.y)
 			else:
+				self.window.pre_modification()
+				w_context = cairo.Context(self.window._surface)
+				w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
+					self.wanted_color.blue, self.wanted_color.alpha)
+
 				w_context.move_to(self.wait_points[0], self.wait_points[1])
 				w_context.set_line_width(self.tool_width)
+				w_context.set_line_cap(self.selected_end_id)
 				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
 				w_context.stroke()
 				self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
 				self.window_can_take_back_control = True
 
-		elif sself.active_type() == 'arrow':
-
+		if self.arrow_switch.get_active():
 			print("arrow") # TODO
-			self.window_can_take_back_control = True
 
 		self.x_press = 0.0
 		self.y_press = 0.0

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="draw">
+	<object class="GtkBox" id="options_box">
+		<property name="visible">True</property>
+		<property name="margin">10</property>
+		<property name="spacing">10</property>
+		<property name="orientation">vertical</property>
+
+		<child>
+			<object class="GtkLabel">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">Line type:</property>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="orientation">vertical</property>
+				<style>
+					<class name="linked"/>
+				</style>
+				<child>
+					<object class="GtkRadioButton" id="type_btn_1">
+						<property name="draw-indicator">False</property>
+						<property name="visible">True</property>
+						<property name="label" translatable="yes">Straight</property>
+						<property name="active">True</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkRadioButton" id="type_btn_2">
+						<property name="group">type_btn_1</property>
+						<property name="draw-indicator">False</property>
+						<property name="visible">True</property>
+						<property name="label" translatable="yes">Arc</property>
+					</object>
+				</child>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkLabel">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">Line end shape:</property>
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="orientation">vertical</property>
+				<style>
+					<class name="linked"/>
+				</style>
+				<child>
+					<object class="GtkRadioButton" id="end_btn_1">
+						<property name="draw-indicator">False</property>
+						<property name="visible">True</property>
+						<property name="label" translatable="yes">Square</property>
+						<!-- <property name="label" translatable="yes">None</property> -->
+					</object>
+				</child>
+				<child>
+					<object class="GtkRadioButton" id="end_btn_2">
+						<property name="group">end_btn_1</property>
+						<property name="draw-indicator">False</property>
+						<property name="visible">True</property>
+						<property name="label" translatable="yes">Round</property>
+						<property name="active">True</property>
+					</object>
+				</child>
+				<!-- <child> -->
+				<!-- 	<object class="GtkRadioButton" id="end_btn_3"> -->
+				<!-- 		<property name="group">end_btn_1</property> -->
+				<!-- 		<property name="draw-indicator">False</property> -->
+				<!-- 		<property name="visible">True</property> -->
+				<!-- 		<property name="label" translatable="yes">Square</property> -->
+				<!-- 	</object> -->
+				<!-- </child> -->
+			</object>
+		</child>
+
+		<child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="spacing">5</property>
+				<property name="orientation">horizontal</property>
+				<child>
+					<object class="GtkLabel">
+						<property name="visible">True</property>
+						<property name="label" translatable="yes">Arrow</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkSwitch" id="arrow_switch">
+						<property name="visible">True</property>
+					</object>
+				</child>
+			</object>
+		</child>
+
+	</object>
+</interface>
+
+

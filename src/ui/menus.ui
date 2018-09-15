@@ -46,6 +46,14 @@
         </item>
     </section>
     <section>
+        <item>
+            <attribute name="label" translatable="yes">Paste</attribute>
+            <attribute name="action">win.paste</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Import</attribute>
+            <attribute name="action">win.import</attribute>
+        </item>
         <submenu>
             <attribute name="label" translatable="yes">Export</attribute>
             <item>
@@ -59,25 +67,6 @@
             <item>
                 <attribute name="label" translatable="yes">Export as BMP</attribute>
                 <attribute name="action">win.exp_bmp</attribute>
-            </item>
-        </submenu>
-        <submenu>
-            <attribute name="label" translatable="yes">Selection</attribute>
-            <item>
-                <attribute name="label" translatable="yes">Import</attribute>
-                <attribute name="action">win.import</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Paste</attribute>
-                <attribute name="action">win.paste</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Select all</attribute>
-                <attribute name="action">win.select_all</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Unselect</attribute>
-                <attribute name="action">win.unselect</attribute>
             </item>
         </submenu>
         <item>
@@ -111,4 +100,5 @@
     </section>
   </menu>
 </interface>
+
 

@@ -423,7 +423,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.on_redo(None)
 
 	def on_undo(self, b):
-		print("undo")
 		self.redo_history.append(self._image.pixbuf.copy())
 		self._image.pixbuf = self.undo_history.pop()
 		self.pre_modification()
@@ -432,7 +431,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.update_history_sensitivity()
 
 	def on_redo(self, b):
-		print("redo")
 		self.undo_history.append(self._image.pixbuf.copy())
 		self._image.pixbuf = self.redo_history.pop()
 		self.pre_modification()
