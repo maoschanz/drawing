@@ -34,7 +34,8 @@ from .eraser import ToolEraser
 
 DEV_VERSION = False
 
-from .image import DrawImage
+from .properties import DrawPropertiesDialog
+from .crop_dialog import DrawCropDialog
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
 
@@ -66,7 +67,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 	options_short_box = GtkTemplate.Child()
 
 	size_setter = GtkTemplate.Child()
-	zoom_setter = GtkTemplate.Child()
+
+	tool_info_label = GtkTemplate.Child()
 
 	undo_history = []
 	redo_history = []
@@ -76,11 +78,10 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def __init__(self, file_path, **kwargs):
 		super().__init__(**kwargs)
 		self.init_template()
+		self.maximize()
 		
 		self._file_path = file_path
 		self._is_saved = True
-
-		self._image = DrawImage(self)
 
 		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
 		DEV_VERSION = self._settings.get_boolean('experimental')
@@ -89,8 +90,10 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
 		self.set_palette_setting(None, None)
 
+		# FIXME dimensions ??
+		self.pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1000, 600) # 8 ??? les autres plantent
 		self._surface = cairo.ImageSurface(cairo.Format.ARGB32, 1000, 600)
-		self.drawing_area.set_size(1000, 600)
+		# self.drawing_area.set_size(1000, 600) # osef
 
 		self.drawing_area.show()
 
@@ -126,7 +129,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.connect_signals()
 
 		if self._file_path is not None:
-			self._image.load_self_file()
+			self.try_load_file(self._file_path)
 		else:
 			self.init_background()
 
@@ -140,7 +143,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		w_context.paint()
 
 		# equivalent for self.post_modification()
-		self._image.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
+		self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 			self._surface.get_width(), self._surface.get_height())
 
 	# UI BUILDING
@@ -164,7 +167,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 
 		self.handlers.append( self.open_btn.connect('clicked', self.action_open) )
-		self.handlers.append( self.save_btn.connect('clicked', self.on_save_document) )
+		self.handlers.append( self.save_btn.connect('clicked', self.action_save) )
 		self.handlers.append( self.undo_btn.connect('clicked', self.on_undo) )
 		self.handlers.append( self.redo_btn.connect('clicked', self.on_redo) )
 
@@ -193,7 +196,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		# Settings
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
-		# TODO...
+		# TODO..
 
 	def add_actions(self):
 		action = Gio.SimpleAction.new("import", None)
@@ -213,17 +216,17 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("properties", None)
-		action.connect("activate", self._image.edit_properties)
+		action.connect("activate", self.edit_properties)
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("exp_png", None)
-		action.connect("activate", self._image.export_as_png)
+		action.connect("activate", self.export_as_png)
 		self.add_action(action)
 		action = Gio.SimpleAction.new("exp_jpeg", None)
-		action.connect("activate", self._image.export_as_jpeg)
+		action.connect("activate", self.export_as_jpeg)
 		self.add_action(action)
 		action = Gio.SimpleAction.new("exp_bmp", None)
-		action.connect("activate", self._image.export_as_bmp)
+		action.connect("activate", self.export_as_bmp)
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("close", None)
@@ -338,23 +341,25 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	# FILE MANAGEMENT
 
-	def on_save_document(self, b):
+	def action_save(self, *args):
 		if self._file_path is None:
-			self._file_path = self._image.invoke_file_chooser()
+			self._file_path = self.invoke_file_chooser()
 			self.header_bar.set_subtitle(self._file_path)
 
 		if self._file_path is not None:
 			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._file_path)
 
-			self._image.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
+			self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 				self._surface.get_width(), self._surface.get_height())
-			self._image.pixbuf.savev(self._file_path, pb_format.get_name(), [None], [])
+			self.pixbuf.savev(self._file_path, pb_format.get_name(), [None], [])
 
 			self._is_saved = True
 
 	def action_open(self, *args):
+		# Asking what to do before overwriting the picture in the window
 		if not self.confirm_save_modifs():
-			return		
+			return
+
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
 			Gtk.FileChooserAction.OPEN,
 			_("Open"),
@@ -364,14 +369,64 @@ class DrawWindow(Gtk.ApplicationWindow):
 		onlyPictures.add_mime_type('image/png')
 		onlyPictures.add_mime_type('image/jpeg')
 		onlyPictures.add_mime_type('image/bmp')
-		file_chooser.set_filter(onlyPictures)
+		file_chooser.add_filter(onlyPictures)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			self._file_path = file_chooser.get_filename()
-			self._image.load_self_file()
+			self.try_load_file(file_chooser.get_filename())
+		file_chooser.destroy()
+
+	def try_load_file(self, fn):
+		# We don't want to load too big images, because the technical
+		# limitations of cairo make impossible to zoom out, or to scroll.
+		if True: # TODO
+			title_label = _("Sorry, this picture is too big for this app!")
+			dialog = Gtk.MessageDialog(modal=True, title=title_label, parent=self)
+			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+			dialog.add_button(_("Edit it anyway"), Gtk.ResponseType.NO)
+			dialog.add_button(_("Resize it"), Gtk.ResponseType.APPLY)
+			dialog.add_button(_("Crop it"), Gtk.ResponseType.YES)
+			dialog.get_message_area().add(Gtk.Label(label=_("What would you prefer?")))
+			dialog.show_all()
+			result = dialog.run()
+
+			if result == Gtk.ResponseType.NO: # Edit it anyway
+				self._file_path = fn
+				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
+				self.header_bar.set_subtitle(fn)
+				self._is_saved = True
+				self.pre_modification()
+			elif result == Gtk.ResponseType.APPLY: # Resize it
+				self._file_path = fn
+				w = self.drawing_area.get_allocated_width()
+				h = self.drawing_area.get_allocated_height()
+				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
+				self.header_bar.set_subtitle(fn)
+				self._is_saved = True
+				self.pre_modification()
+			elif result == Gtk.ResponseType.YES: # Crop it
+				crop_dialog = DrawCropDialog(self, fn)
+				result = crop_dialog.run()
+				if result == -10:
+					print('apply') # TODO ?????
+
+
+
+
+
+
+					self.header_bar.set_subtitle(fn)
+					self._is_saved = True
+					self.pre_modification()
+				crop_dialog.destroy()
+			else: # Cancel
+				pass
+			dialog.destroy()
+		else:
+			self._file_path = fn
+			self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
+			self.header_bar.set_subtitle(fn)
 			self._is_saved = True
 			self.pre_modification()
-		file_chooser.destroy()
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
@@ -405,34 +460,31 @@ class DrawWindow(Gtk.ApplicationWindow):
 		else:
 			return True
 
-	def action_save(self, a, b):
-		self.on_save_document(None)
-
 	# HISTORY MANAGEMENT
 
-	def action_undo(self, a, b):
+	def action_undo(self, *args):
 		if len(self.undo_history) == 0:
 			return
 		else:
 			self.on_undo(None)
 
-	def action_redo(self, a, b):
+	def action_redo(self, *args):
 		if len(self.redo_history) == 0:
 			return
 		else:
 			self.on_redo(None)
 
 	def on_undo(self, b):
-		self.redo_history.append(self._image.pixbuf.copy())
-		self._image.pixbuf = self.undo_history.pop()
+		self.redo_history.append(self.pixbuf.copy())
+		self.pixbuf = self.undo_history.pop()
 		self.pre_modification()
 
 		self.drawing_area.queue_draw()
 		self.update_history_sensitivity()
 
 	def on_redo(self, b):
-		self.undo_history.append(self._image.pixbuf.copy())
-		self._image.pixbuf = self.redo_history.pop()
+		self.undo_history.append(self.pixbuf.copy())
+		self.pixbuf = self.redo_history.pop()
 		self.pre_modification()
 
 		self.drawing_area.queue_draw()
@@ -451,26 +503,26 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def pre_modification(self):
 		# on restaure depuis le pixbuf la surface enregistrée précédemment
-		self._surface = Gdk.cairo_surface_create_from_pixbuf(self._image.pixbuf, 0, None)
+		self._surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		# return self._surface
 
 	def post_modification(self):
-		self.undo_history.append(self._image.pixbuf.copy())
+		self.undo_history.append(self.pixbuf.copy())
 		self.redo_history = []
 		self.update_history_sensitivity()
 
 		# on enregistre la surface dans le pixbuf
-		self._image.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
+		self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 			self._surface.get_width(), self._surface.get_height())
 
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
 		# Ça marche mais je ne sais pas si avoir une surface ne serait pas mieux.
-		# Gdk.cairo_set_source_pixbuf(cairo_context, self._image.pixbuf, 0, 0)
+		# Gdk.cairo_set_source_pixbuf(cairo_context, self.pixbuf, 0, 0)
 
 		# Ça marche aussi mais c'est moins idéal complexitivement.
-		# surface = Gdk.cairo_surface_create_from_pixbuf(self._image.pixbuf, 0, None)
+		# surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		cairo_context.set_source_surface(self._surface, 0, 0)
 
 		cairo_context.paint()
@@ -523,14 +575,76 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	# OTHER UNIMPLEMENTED OPERATIONS TODO
 
-	def import_png(self, a, b):
+	def import_png(self, *args):
 		print("import")
 
-	def paste(self, a, b):
+	def paste(self, *args):
 		print("paste")
 
-	def select_all(self, a, b):
+	def select_all(self, *args):
 		print("select_all")
 
-	def unselect(self, a, b):
+	def unselect(self, *args):
 		print("unselect")
+
+	def edit_properties(self, *args):
+		DrawPropertiesDialog(self)
+
+###########################
+
+	def invoke_file_chooser(self):
+		file_path = None
+		file_chooser = Gtk.FileChooserNative.new(_("Save as"), self,
+			Gtk.FileChooserAction.SAVE,
+			_("Save"),
+			_("Cancel"))
+		onlyPictures = Gtk.FileFilter()
+		onlyPictures.set_name(_("Pictures"))
+		onlyPictures.add_mime_type('image/png')
+		onlyPictures.add_mime_type('image/jpeg')
+		onlyPictures.add_mime_type('image/bmp')
+		file_chooser.add_filter(onlyPictures)
+		response = file_chooser.run()
+		if response == Gtk.ResponseType.ACCEPT:
+			file_path = file_chooser.get_filename()
+		file_chooser.destroy()
+		return file_path
+
+	def export_as_png(self, *args):
+		file_path = self.invoke_file_chooser()
+		self.post_modification()
+		self.pixbuf.savev(file_path, "png", [None], [])
+
+	def export_as_jpeg(self, *args):
+		file_path = self.invoke_file_chooser()
+		self.post_modification()
+		self.pixbuf.savev(file_path, "jpeg", [None], [])
+
+	def export_as_bmp(self, *args):
+		file_path = self.invoke_file_chooser()
+		self.post_modification()
+		self.pixbuf.savev(file_path, "bmp", [None], [])
+
+	def resize_surface(self, x, y, width, height):
+		x = int(x)
+		y = int(y)
+		width = int(width)
+		height = int(height)
+
+		# The GdkPixbuf.Pixbuf.copy_area method works only when expanding the size
+		max_width = max(width, self._surface.get_width())
+		max_height = max(height, self._surface.get_height())
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, max_width, max_height)
+		self.pixbuf.copy_area(0, 0, self._surface.get_width(), self._surface.get_height(), new_pixbuf, 0, 0)
+		self.pixbuf = new_pixbuf
+
+		# The cairo.Surface.map_to_image method works only when reducing the size
+		self._surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
+		self._surface = self._surface.map_to_image(cairo.RectangleInt(x, y, width, height))
+		self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
+			self._surface.get_width(), self._surface.get_height())
+
+		self.drawing_area.set_size(width, height)
+
+		if x != 0 or y != 0:
+			self.resize_surface(0, 0, width, height)

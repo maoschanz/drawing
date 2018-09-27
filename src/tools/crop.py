@@ -25,7 +25,14 @@ class ToolCrop(ToolTemplate):
 		pass
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-		pass
+		self.window_can_take_back_control = False
+		self.x_press = event.x
+		self.y_press = event.y
 
 	def on_release_on_area(self, area, event, surface):
-		print("crop")
+		x0 = min(self.x_press, event.x)
+		y0 = min(self.y_press, event.y)
+		w = abs(self.x_press - event.x)
+		h = abs(self.y_press - event.y)
+		self.window.resize_surface(x0, y0, w, h)
+		self.window_can_take_back_control = True

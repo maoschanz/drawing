@@ -17,7 +17,7 @@ class ToolTemplate():
 
 	id = 'template'
 	icon_name = 'folder-templates-symbolic'
-	label = _("To do")
+	label = "Not implemented"
 	use_options = False
 	window_can_take_back_control = True
 	tool_width = 10

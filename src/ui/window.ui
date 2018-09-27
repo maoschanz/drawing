@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="draw">
 
-  <object class="GtkAdjustment" id="adjustment_zoom">
-    <property name="lower">25</property>
-    <property name="upper">400</property>
-    <property name="step_increment">25</property>
-    <property name="page_increment">100</property>
-    <property name="value">100</property>
-  </object>
-
   <object class="GtkAdjustment" id="adjustment_size">
     <property name="lower">0</property>
     <property name="upper">200</property>
@@ -123,35 +115,11 @@
               </packing>
             </child>
 
-            <!-- FIXME make it scrollable -->
-            <!-- <child> -->
-            <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
-            <!--     <property name="visible">True</property> -->
-            <!--   </object> -->
-            <!--   <packing> -->
-            <!--     <property name="expand">True</property> -->
-            <!--   </packing> -->
-            <!-- </child>   -->
-
-
             <child>
-              <object class="GtkScrolledWindow">
+            <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
+              <object class="GtkLayout" id="drawing_area">
                 <property name="visible">True</property>
-                <property name="margin">5</property>
-
-                <child>
-                  <!-- FIXME à retirer à la fin, osef de cette frame -->
-                  <object class="GtkFrame">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkLayout" id="drawing_area">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
+                <property name="can_focus">True</property>
               </object>
             </child>
 
@@ -161,8 +129,6 @@
             <!-- weird warning ?? -->
           </packing>
         </child>
-
-        <!-- ... -->
 
         <child>
           <object class="GtkSeparator">
@@ -278,10 +244,9 @@
             </child>
 
             <child>
-              <object class="GtkSpinButton" id="zoom_setter">
+              <object class="GtkLabel" id="tool_info_label">
                 <property name="visible">True</property>
-                <property name="tooltip_text" translatable="yes">Zoom</property>
-                <property name="adjustment">adjustment_zoom</property>
+                <!-- TODO -->
               </object>
               <packing>
                 <property name="expand">False</property>

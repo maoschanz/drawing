@@ -27,11 +27,12 @@ configure_file(
 
 draw_sources = [
   '__init__.py',
+  'crop_dialog.py',
   'gi_composites.py',
   'main.py',
   'window.py',
   'tools.py',
-  'image.py',
+  'properties.py',
   'preferences.py',
   'tools/crop.py',
   'tools/line.py',
