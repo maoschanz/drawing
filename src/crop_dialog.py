@@ -46,6 +46,22 @@ class DrawCropDialog(Gtk.Dialog):
 		self.get_content_area().add(preview)
 		self.show_all()
 
+		result = self.run()
+		if result == -10:
+			print('apply') # TODO ?????
+
+			# load normal de l'image avant une première coupe
+
+
+			# x = ( coin gauche / width du pixbuf ) * width disponible
+			# y = ( coin supérieur / height du pixbuf ) * height disponible
+			# ...
+
+			# window.resize_surface(self, x, y, width, height)
+
+			window.initial_save()
+		self.destroy()
+
 	def on_draw(self, area, cairo_context):
 		cairo_context.set_source_surface(self.surface, 0, 0)
 		cairo_context.paint()

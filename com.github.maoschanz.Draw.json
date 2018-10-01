@@ -1,11 +1,10 @@
 {
     "app-id" : "com.github.maoschanz.Draw",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.28",
+    "runtime-version" : "3.30",
     "sdk" : "org.gnome.Sdk",
     "command" : "draw",
     "finish-args" : [
-        "--share=network",
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
@@ -22,24 +21,10 @@
             "V" : "1"
         }
     },
-    "cleanup" : [
-        "/include",
-        "/lib/pkgconfig",
-        "/man",
-        "/share/doc",
-        "/share/gtk-doc",
-        "/share/man",
-        "/share/pkgconfig",
-        "*.la",
-        "*.a"
-    ],
     "modules" : [
         {
             "name" : "draw",
             "buildsystem" : "meson",
-            "config-opts" : [
-                "--libdir=lib"
-            ],
             "builddir" : true,
             "sources" : [
                 {

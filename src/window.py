@@ -105,7 +105,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		if DEV_VERSION:
 			self.tools['select'] = ToolSelect(self)
-			self.tools['crop'] = ToolCrop(self)
 		self.tools['pencil'] = ToolPencil(self)
 		self.tools['eraser'] = ToolEraser(self)
 		self.tools['text'] = ToolText(self)
@@ -113,6 +112,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
+		self.tools['crop'] = ToolCrop(self)
 		self.build_tool_rows()
 		self.tools_panel.show_all()
 
@@ -378,12 +378,17 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def try_load_file(self, fn):
 		# We don't want to load too big images, because the technical
 		# limitations of cairo make impossible to zoom out, or to scroll.
-		if True: # TODO
+		w = self.drawing_area.get_allocated_width()
+		h = self.drawing_area.get_allocated_height()
+		temp = GdkPixbuf.Pixbuf.new_from_file(fn)
+		pic_w = temp.get_width()
+		pic_h = temp.get_height()
+		if (w < pic_w) or (h < pic_h):
 			title_label = _("Sorry, this picture is too big for this app!")
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, parent=self)
 			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 			dialog.add_button(_("Edit it anyway"), Gtk.ResponseType.NO)
-			dialog.add_button(_("Resize it"), Gtk.ResponseType.APPLY)
+			dialog.add_button(_("Scale it"), Gtk.ResponseType.APPLY)
 			dialog.add_button(_("Crop it"), Gtk.ResponseType.YES)
 			dialog.get_message_area().add(Gtk.Label(label=_("What would you prefer?")))
 			dialog.show_all()
@@ -392,41 +397,25 @@ class DrawWindow(Gtk.ApplicationWindow):
 			if result == Gtk.ResponseType.NO: # Edit it anyway
 				self._file_path = fn
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-				self.header_bar.set_subtitle(fn)
-				self._is_saved = True
-				self.pre_modification()
+				self.initial_save()
 			elif result == Gtk.ResponseType.APPLY: # Resize it
 				self._file_path = fn
-				w = self.drawing_area.get_allocated_width()
-				h = self.drawing_area.get_allocated_height()
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
-				self.header_bar.set_subtitle(fn)
-				self._is_saved = True
-				self.pre_modification()
+				self.initial_save()
 			elif result == Gtk.ResponseType.YES: # Crop it
 				crop_dialog = DrawCropDialog(self, fn)
-				result = crop_dialog.run()
-				if result == -10:
-					print('apply') # TODO ?????
-
-
-
-
-
-
-					self.header_bar.set_subtitle(fn)
-					self._is_saved = True
-					self.pre_modification()
-				crop_dialog.destroy()
 			else: # Cancel
 				pass
 			dialog.destroy()
 		else:
 			self._file_path = fn
 			self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-			self.header_bar.set_subtitle(fn)
-			self._is_saved = True
-			self.pre_modification()
+			self.initial_save()
+
+	def initial_save(self):
+		self.header_bar.set_subtitle(self._file_path)
+		self._is_saved = True
+		self.pre_modification()
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
