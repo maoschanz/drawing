@@ -46,36 +46,21 @@
         </item>
     </section>
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Import</attribute>
-            <attribute name="action">win.import</attribute>
-        </item>
-        <submenu>
-            <attribute name="label" translatable="yes">Export</attribute>
-            <item>
-                <attribute name="label" translatable="yes">Export as PNG</attribute>
-                <attribute name="action">win.exp_png</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Export as JPEG</attribute>
-                <attribute name="action">win.exp_jpeg</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Export as BMP</attribute>
-                <attribute name="action">win.exp_bmp</attribute>
-            </item>
-        </submenu>
+        <!-- <item> -->
+        <!--     <attribute name="label" translatable="yes">Paste</attribute> -->
+        <!--     <attribute name="action">win.paste</attribute> -->
+        <!-- </item> -->
+        <!-- <item> -->
+        <!--     <attribute name="label" translatable="yes">Import</attribute> -->
+        <!--     <attribute name="action">win.import</attribute> -->
+        <!-- </item> -->
         <item>
             <attribute name="label" translatable="yes">Properties</attribute>
             <attribute name="action">win.properties</attribute>
         </item>
     </section>
     <section>
-        <attribute name="display-hint">horizontal-buttons</attribute>
+        <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
         <item>
             <attribute name="label" translatable="yes">Preferences</attribute>
             <attribute name="action">app.settings</attribute>
@@ -99,7 +84,25 @@
         </item>
     </section>
   </menu>
+
+  <menu id="save-as-menu">
+    <item>
+        <attribute name="label" translatable="yes">Export as PNG</attribute>
+        <attribute name="action">win.exp_png</attribute>
+    </item>
+    <item>
+        <attribute name="label" translatable="yes">Export as JPEG</attribute>
+        <attribute name="action">win.exp_jpeg</attribute>
+    </item>
+    <item>
+        <attribute name="label" translatable="yes">Export as BMP</attribute>
+        <attribute name="action">win.exp_bmp</attribute>
+    </item>
+  </menu>
+
+
+
+
+
+
 </interface>
-
-
-

@@ -6,8 +6,6 @@ import math
 
 from .tools import ToolTemplate
 
-# FIXME le polygon filled merdoie
-
 class ToolShape(ToolTemplate):
 	__gtype_name__ = 'ToolShape'
 
@@ -54,6 +52,19 @@ class ToolShape(ToolTemplate):
 		self.selected_shape = _("Rectangle") # FIXME
 		self.selected_style = _("Filled (secondary color)") # FIXME
 
+
+	def active_shape(self):
+		for type_id in self.shape_btns:
+			if self.shape_btns[type_id].get_active():
+				return type_id
+		return 'rectangle'
+
+	def active_style(self):
+		for type_id in self.style_btns:
+			if self.style_btns[type_id].get_active():
+				return type_id
+		return 'empty'
+
 	def on_shape_changed(self, b):
 		self.selected_shape = b.get_label()
 
@@ -69,11 +80,173 @@ class ToolShape(ToolTemplate):
 	def give_back_control(self):
 		pass
 
+	def draw_rectangle(self, event):
+		w_context = cairo.Context(self.window._surface)
+		w_context.set_line_width(self.tool_width)
+
+		if self.active_style() == 'secondary':
+			w_context.move_to(self.x_press, self.y_press)
+			w_context.line_to(self.x_press, event.y)
+			w_context.line_to(event.x, event.y)
+			w_context.line_to(event.x, self.y_press)
+			w_context.close_path()
+			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
+				self.secondary_color.blue, self.secondary_color.alpha)
+			w_context.fill()
+			w_context.stroke()
+		w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
+			self.primary_color.blue, self.primary_color.alpha)
+		w_context.move_to(self.x_press, self.y_press)
+		w_context.line_to(self.x_press, event.y)
+		w_context.line_to(event.x, event.y)
+		w_context.line_to(event.x, self.y_press)
+		w_context.close_path()
+
+		if self.active_style() == 'filled':
+			w_context.fill()
+		w_context.stroke()
+
+	def draw_rounded(self, event):
+		w_context = cairo.Context(self.window._surface)
+		w_context.set_line_width(self.tool_width)
+
+		if self.active_style() == 'secondary':
+			w_context.curve_to(self.x_press, (self.y_press+event.y)/2, \
+				self.x_press, event.y, \
+				(self.x_press+event.x)/2, event.y)
+			w_context.curve_to((self.x_press+event.x)/2, event.y, \
+				event.x, event.y, \
+				event.x, (self.y_press+event.y)/2)
+			w_context.curve_to(event.x, (self.y_press+event.y)/2, \
+				event.x, self.y_press, \
+				(self.x_press+event.x)/2, self.y_press)
+			w_context.curve_to((self.x_press+event.x)/2, self.y_press, \
+				self.x_press, self.y_press, \
+				self.x_press, (self.y_press+event.y)/2)
+			w_context.close_path()
+			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
+				self.secondary_color.blue, self.secondary_color.alpha)
+			w_context.fill()
+			w_context.stroke()
+		w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
+			self.primary_color.blue, self.primary_color.alpha)
+		w_context.curve_to(self.x_press, (self.y_press+event.y)/2, \
+			self.x_press, event.y, \
+			(self.x_press+event.x)/2, event.y)
+		w_context.curve_to((self.x_press+event.x)/2, event.y, \
+			event.x, event.y, \
+			event.x, (self.y_press+event.y)/2)
+		w_context.curve_to(event.x, (self.y_press+event.y)/2, \
+			event.x, self.y_press, \
+			(self.x_press+event.x)/2, self.y_press)
+		w_context.curve_to((self.x_press+event.x)/2, self.y_press, \
+			self.x_press, self.y_press, \
+			self.x_press, (self.y_press+event.y)/2)
+		w_context.close_path()
+
+		if self.active_style() == 'filled':
+			w_context.fill()
+		w_context.stroke()
+
+	def draw_ellipsis(self, event): # TODO
+		pass
+
+	def draw_circle(self, event):
+		w_context = cairo.Context(self.window._surface)
+		w_context.set_line_width(self.tool_width)
+
+		rayon = math.sqrt((self.x_press - event.x)*(self.x_press - event.x) \
+			+ (self.y_press - event.y)*(self.y_press - event.y))
+
+		if self.active_style() == 'secondary':
+			w_context.new_sub_path()
+			w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
+			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
+				self.secondary_color.blue, self.secondary_color.alpha)
+			w_context.fill()
+			w_context.stroke()
+		w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
+			self.primary_color.blue, self.primary_color.alpha)
+
+		w_context.new_sub_path()
+		w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
+		if self.active_style() == 'filled':
+			w_context.fill()
+		w_context.stroke()
+
+	def draw_polygon(self, event):
+		self.draw_polygon_temp(event)
+		# TODO particulier lui
+
 	def on_key_on_area(self, area, event, surface):
 		print("key")
 
 	def on_motion_on_area(self, area, event, surface):
-		pass
+		self.window.use_stable_pixbuf()
+		w_context = cairo.Context(self.window._surface)
+
+		if self.active_shape() == 'rectangle':
+			self.draw_rectangle(event)
+
+		elif self.active_shape() == 'rounded':
+			self.draw_rounded(event)
+
+		elif self.active_shape() == 'ellipsis': # FIXME
+
+			######################################"
+
+			w_context.set_line_width(self.tool_width)
+
+			rayon = math.sqrt((self.x_press - event.x)*(self.x_press - event.x) \
+				+ (self.y_press - event.y)*(self.y_press - event.y))
+
+			w_context.save()
+			width = abs(self.x_press - event.x)
+			height = abs(self.y_press - event.y)
+			if width > height:
+				scale_x = 1
+				scale_y = height/width
+			else:
+				scale_x = width/height
+				scale_y = 1
+			scale_x = scale_x/2
+			scale_y = scale_y/2
+			# w_context.translate(-1 * min(self.x_press, event.x) * scale_x + width, -1 * min(self.y_press, event.y) * scale_y + self.y_press + height)
+			w_context.scale(scale_x, scale_y)
+
+			center_x = (self.x_press + event.x)/2
+			center_y = (self.y_press + event.y)/2
+
+			if self.active_style() == 'secondary':
+				w_context.new_sub_path()
+				w_context.arc(center_x, center_y, rayon, 0.0, 2*math.pi)
+				w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
+					self.secondary_color.blue, self.secondary_color.alpha)
+				w_context.fill()
+				w_context.stroke()
+			w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
+				self.primary_color.blue, self.primary_color.alpha)
+
+			w_context.restore()
+
+			w_context.new_sub_path()
+			w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
+			if self.active_style() == 'filled':
+				w_context.fill()
+			w_context.stroke()
+
+			# w_context.restore()
+
+			############################################
+
+		elif self.active_shape() == 'circle':
+			self.draw_circle(event)
+
+		elif self.active_shape() == 'polygon': # TODO
+			# self.draw_polygon(event)
+			pass
+
+		self.window.drawing_area.queue_draw()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		print("press")
@@ -82,185 +255,78 @@ class ToolShape(ToolTemplate):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
-		self.left_color = left_color
-		self.right_color = right_color
+		if event.button == 3:
+			self.primary_color = right_color
+			self.secondary_color = left_color
+		else:
+			self.primary_color = left_color
+			self.secondary_color = right_color
 
 	def on_release_on_area(self, area, event, surface):
-		print("release")
-		primary_color = ''
-		secondary_color = ''
-		if event.button == 3:
-			primary_color = self.right_color
-			secondary_color = self.left_color
-		else:
-			primary_color = self.left_color
-			secondary_color = self.right_color
+		if self.active_shape() == 'rectangle':
+			self.window.use_stable_pixbuf()
+			self.draw_rectangle(event)
+			self.window_can_take_back_control = True
 
-		w_context = cairo.Context(surface)
+		elif self.active_shape() == 'rounded':
+			self.window.use_stable_pixbuf()
+			self.draw_rounded(event)
+			self.window_can_take_back_control = True
 
-		if self.selected_shape == _("Rounded rectangle"):
+		elif self.active_shape() == 'ellipsis':
+			self.window.use_stable_pixbuf()
+			# self.draw_ellipsis(event)
+			self.window_can_take_back_control = True
 
-			# FIXME l'alpha du bon event svp
-			pattern = cairo.MeshPattern() # carré arrondi parfait mais refaire les signes
-			pattern.begin_patch()
-			height = (self.y_press - event.y)/2
-			width = -(self.x_press - event.x)/2
-			pattern.move_to(event.x-width, event.y)
-			pattern.curve_to(event.x-width-width, event.y, event.x-width-width, event.y, event.x-width-width, event.y+height)
-			pattern.curve_to(event.x-width-width, event.y+2*height, event.x-width-width, event.y+2*height, event.x-width, event.y+2*height)
-			pattern.curve_to(event.x-width+width, event.y+2*height, event.x-width+width, event.y+2*height, event.x-width+width, event.y+height)
-			pattern.curve_to(event.x-width+width, event.y, event.x-width+width, event.y, event.x-width, event.y)
-			pattern.set_corner_color_rgba(0, self.left_color.red, self.left_color.green, self.left_color.blue, self.left_color.alpha)
-			pattern.set_corner_color_rgba(1, 1, 1, 1, self.left_color.alpha) # seul l'alpha semble compter ??
-			pattern.set_corner_color_rgba(2, 1, 0, 0, self.left_color.alpha)
-			pattern.set_corner_color_rgba(3, 1, 1, 1, self.left_color.alpha)
-			pattern.end_patch()
+		elif self.active_shape() == 'circle':
+			self.window.use_stable_pixbuf()
+			self.draw_circle(event)
+			self.window_can_take_back_control = True
 
-			w_context.mask(pattern)
-
+		elif self.active_shape() == 'polygon':
+			self.window.use_stable_pixbuf()
+			self.draw_polygon(event)
 			self.window_can_take_back_control = True
 
 
-		elif self.selected_shape == _("Polygon"):
-
-			w_context.set_line_width(self.tool_width)
-
-			if self.past_x == -1.0:
-				(self.past_x, self.past_y) = (self.x_press, self.y_press)
-				w_context.move_to(self.x_press, self.y_press)
-				self.path = w_context.copy_path()
-			else:
-				w_context.append_path(self.path)
-
-			if (event.x - self.past_x < self.tool_width) and (event.y - self.past_y < self.tool_width):
-				print("stroke")
-				w_context.close_path()
-				if self.selected_style == _("Filled"):
-					w_context.fill()
-				elif self.selected_style == _("Filled (secondary color)"):
-					w_context.set_source_rgba(secondary_color.red, secondary_color.green, \
-						secondary_color.blue, secondary_color.alpha)
-					w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
-					w_context.set_source_rgba(primary_color.red, primary_color.green, \
-						primary_color.blue, primary_color.alpha)
-					w_context.stroke()
-				else:
-					w_context.stroke()
-				(self.past_x, self.past_y) = (-1.0, -1.0)
-
-				self.window_can_take_back_control = True
-
-			else:
-				w_context.line_to(event.x, event.y)
-				w_context.stroke_preserve() # draw the line without closing the path
-				self.path = w_context.copy_path()
-
-		elif self.selected_shape == _("Ellipsis"):
-		# FIXME pas de pattern c'est trop moche go tracer à l'ancienne
-
-			print('ellipsis')
-
-			self.window_can_take_back_control = True
-
-		elif self.selected_shape == _("Circle"):
-
-			rayon = math.sqrt((self.x_press - event.x)*(self.x_press - event.x) \
-				+ (self.y_press - event.y)*(self.y_press - event.y))
-
-			w_context.set_line_width(self.tool_width)
-
-			if self.selected_style == _("Filled (secondary color)"):
-				w_context.new_sub_path()
-				w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
-				w_context.set_source_rgba(secondary_color.red, secondary_color.green, \
-					secondary_color.blue, secondary_color.alpha)
-				w_context.fill()
-				w_context.stroke()
-			w_context.set_source_rgba(primary_color.red, primary_color.green, \
-				primary_color.blue, primary_color.alpha)
-
-			w_context.new_sub_path()
-			w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
-			if self.selected_style == _("Filled"):
-				w_context.fill()
-			w_context.stroke()
-
-			self.window_can_take_back_control = True
-
-		elif self.selected_shape == _("Rectangle"):
-
-			w_context.set_line_width(self.tool_width)
-
-			if self.selected_style == _("Filled (secondary color)"):
-				w_context.move_to(self.x_press, self.y_press)
-				w_context.line_to(self.x_press, event.y)
-				w_context.line_to(event.x, event.y)
-				w_context.line_to(event.x, self.y_press)
-				w_context.close_path()
-				w_context.set_source_rgba(secondary_color.red, secondary_color.green, \
-					secondary_color.blue, secondary_color.alpha)
-				w_context.fill()
-				w_context.stroke()
-			w_context.set_source_rgba(primary_color.red, primary_color.green, \
-				primary_color.blue, primary_color.alpha)
-
-			w_context.move_to(self.x_press, self.y_press)
-			w_context.line_to(self.x_press, event.y)
-			w_context.line_to(event.x, event.y)
-			w_context.line_to(event.x, self.y_press)
-			w_context.close_path()
-
-			if self.selected_style == _("Filled"):
-				w_context.fill()
-			w_context.stroke()
-
-			self.window_can_take_back_control = True
-
-		############################################
-
-		# pattern = cairo.MeshPattern()
-		# pattern.begin_patch()
-		# pattern.move_to(event.x, event.y)
-		# pattern.curve_to(event.x+30, event.y-30, event.x+60, event.y+30, event.x+100, event.y+0)
-		# pattern.curve_to(event.x+60, event.y+30, event.x+130, event.y+60, event.x+100, event.y+100)
-		# pattern.curve_to(event.x+60, event.y+70, event.x+30, event.y+130, event.x+0, event.y+100)
-		# pattern.curve_to(event.x+30, event.y+70, event.x-30, event.y+30, event.x+0, event.y+0)
-		# pattern.set_corner_color_rgba(0, self.left_color.red, self.left_color.green, self.left_color.blue, self.left_color.alpha)
-		# pattern.set_corner_color_rgba(1, 1, 1, 1, self.left_color.alpha) # seul l'alpha semble compter ??
-		# pattern.set_corner_color_rgba(2, 1, 1, 1, self.left_color.alpha)
-		# pattern.set_corner_color_rgba(3, 1, 1, 1, self.left_color.alpha)
-		# pattern.end_patch()
-
-
-		# pattern = cairo.MeshPattern() # losange fixe (vers le haut)
-		# pattern.begin_patch()
-		# pattern.move_to(event.x, event.y)
-		# pattern.line_to(event.x+30, event.y-30)
-		# pattern.line_to(event.x, event.y-60)
-		# pattern.line_to(event.x-30, event.y-30)
-		# pattern.line_to(event.x, event.y)
-		# pattern.set_corner_color_rgba(0, self.left_color.red, self.left_color.green, self.left_color.blue, self.left_color.alpha)
-		# pattern.set_corner_color_rgba(1, 1, 1, 1, self.left_color.alpha) # seul l'alpha semble compter ??
-		# pattern.set_corner_color_rgba(2, 1, 0, 0, self.left_color.alpha)
-		# pattern.set_corner_color_rgba(3, 1, 1, 1, self.left_color.alpha)
-		# pattern.end_patch()
-
-		# pattern = cairo.MeshPattern()
-		# pattern.begin_patch()
-		# pattern.move_to(self.x_press, self.y_press)
-		# pattern.line_to(event.x, event.y)
-		# # length = sqrt((-)*(-))
-		# pattern.line_to((self.x_press+event.x)/3, (self.y_press+event.y)/3) # FIXME
-		# pattern.set_corner_color_rgba(0, self.left_color.red, self.left_color.green, self.left_color.blue, self.left_color.alpha)
-		# pattern.set_corner_color_rgba(1, 1, 1, 1, self.left_color.alpha) # seul l'alpha semble compter ??
-		# pattern.set_corner_color_rgba(2, 1, 1, 1, self.left_color.alpha)
-		# pattern.end_patch()
-
-		# TODO d'autres formes?
-
-		# w_context.mask(pattern)
 
 		self.x_press = 0.0
 		self.y_press = 0.0
 		# self.past_x = -1.0
 		# self.past_y = -1.0
+
+
+	def draw_polygon_temp(self, event):
+		w_context = cairo.Context(self.window._surface)
+		w_context.set_line_width(self.tool_width)
+
+		if self.past_x == -1.0:
+			(self.past_x, self.past_y) = (self.x_press, self.y_press)
+			w_context.move_to(self.x_press, self.y_press)
+			self.path = w_context.copy_path()
+		else:
+			w_context.append_path(self.path)
+
+		if (event.x - self.past_x < self.tool_width) and (event.y - self.past_y < self.tool_width):
+			print("stroke")
+			w_context.close_path()
+			if self.active_style() == 'filled':
+				w_context.fill()
+			elif self.active_style() == 'secondary':
+				w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
+					self.secondary_color.blue, self.secondary_color.alpha)
+				w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
+				w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
+					self.primary_color.blue, self.primary_color.alpha)
+				w_context.stroke()
+			else:
+				w_context.stroke()
+			(self.past_x, self.past_y) = (-1.0, -1.0)
+
+			self.window_can_take_back_control = True
+
+		else:
+			w_context.line_to(event.x, event.y)
+			w_context.stroke_preserve() # draw the line without closing the path
+			self.path = w_context.copy_path()
+

@@ -5,40 +5,6 @@ import cairo
 
 from .tools import ToolTemplate
 
-MENU_XML = """
-<?xml version="1.0" encoding="UTF-8"?>
-<interface domain="draw">
-  <menu id="right-click-menu">
-    <section>
-        <item>
-            <attribute name="label" translatable="yes">Properties</attribute>
-            <attribute name="action">win.properties</attribute>
-        </item>
-    </section>
-    <section>
-        <item>
-            <attribute name="label" translatable="yes">Select all</attribute>
-            <attribute name="action">win.select_all</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Unselect</attribute>
-            <attribute name="action">win.unselect</attribute>
-        </item>
-    </section>
-    <section>
-        <item>
-            <attribute name="label" translatable="yes">Import</attribute>
-            <attribute name="action">win.import</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-        </item>
-    </section>
-  </menu>
-</interface>
-"""
-
 class ToolSelect(ToolTemplate):
     __gtype_name__ = 'ToolSelect'
 
@@ -92,7 +58,7 @@ class ToolSelect(ToolTemplate):
 
         self.selection_popover.add(box)
 
-        builder = Gtk.Builder.new_from_string(MENU_XML, -1)
+        builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Draw/tools/ui/select.ui")
         menu = builder.get_object("right-click-menu")
         self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu)
 
@@ -243,7 +209,7 @@ class ToolSelect(ToolTemplate):
 
     def delete_selection(self, b):
         self.selection_popover.popdown()
-        self.window.pre_modification()
+        self.window.use_stable_pixbuf()
 
         w_context = cairo.Context(self.window._surface)
         w_context.move_to(self.past_x[0], self.past_y[0])
@@ -257,7 +223,7 @@ class ToolSelect(ToolTemplate):
         w_context.set_operator(cairo.Operator.OVER)
 
         self.window_can_take_back_control = True
-        self.window.post_modification()
+        self.window.set_stable_pixbuf()
 
         self.x_press = 0.0
         self.y_press = 0.0
@@ -266,14 +232,14 @@ class ToolSelect(ToolTemplate):
 
     def copy_selection(self, b):
         self.selection_popover.popdown()
-        self.window.pre_modification()
+        self.window.use_stable_pixbuf()
 
         print('copy') # TODO
 
         # on peut faire cairo.Region.copy() ?
 
         self.window_can_take_back_control = True
-        # self.window.post_modification()
+        # self.window.set_stable_pixbuf()
 
         self.x_press = 0.0
         self.y_press = 0.0
@@ -282,7 +248,7 @@ class ToolSelect(ToolTemplate):
 
     def cancel_selection(self, b):
         self.selection_popover.popdown()
-        self.window.pre_modification()
+        self.window.use_stable_pixbuf()
 
         print('cancel')
 
@@ -295,7 +261,7 @@ class ToolSelect(ToolTemplate):
 
     def drag_to(self):
         print('dragging')
-        self.window.pre_modification()
+        self.window.use_stable_pixbuf()
 
         # TODO copier le truc en interne dans DrawImage
 
@@ -317,7 +283,7 @@ class ToolSelect(ToolTemplate):
 
 
 
-        # self.window.post_modification()
+        # self.window.set_stable_pixbuf()
 
         self.x_press = 0.0
         self.y_press = 0.0

@@ -88,7 +88,7 @@ class ToolLine(ToolTemplate):
 		pass
 
 	def on_motion_on_area(self, area, event, surface):
-		self.window.pre_modification()
+		self.window.use_stable_pixbuf()
 		w_context = cairo.Context(self.window._surface)
 		w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
 			self.wanted_color.blue, self.wanted_color.alpha)
@@ -129,7 +129,7 @@ class ToolLine(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface):
 		if self.active_type() == 'line':
-			self.window.pre_modification()
+			self.window.use_stable_pixbuf()
 			w_context = cairo.Context(self.window._surface)
 			w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
 				self.wanted_color.blue, self.wanted_color.alpha)
@@ -146,7 +146,7 @@ class ToolLine(ToolTemplate):
 			if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
 				self.wait_points = (self.x_press, self.y_press, event.x, event.y)
 			else:
-				self.window.pre_modification()
+				self.window.use_stable_pixbuf()
 				w_context = cairo.Context(self.window._surface)
 				w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
 					self.wanted_color.blue, self.wanted_color.alpha)

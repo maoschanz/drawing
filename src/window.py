@@ -48,8 +48,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 	save_btn = GtkTemplate.Child()
 	undo_btn = GtkTemplate.Child()
 	redo_btn = GtkTemplate.Child()
+	save_as_btn = GtkTemplate.Child()
 	menu_btn = GtkTemplate.Child()
-	menu_btn_img = GtkTemplate.Child()
 
 	tools_panel = GtkTemplate.Child()
 	tools = {}
@@ -124,7 +124,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 		self.update_size_spinbtn_value(None, None, 10)
 
-		self.build_menu()
+		self.build_menus()
 		self.add_actions()
 		self.connect_signals()
 
@@ -142,7 +142,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		w_context.set_source_rgba(r, g, b, a)
 		w_context.paint()
 
-		# equivalent for self.post_modification()
+		# equivalent for self.set_stable_pixbuf()
 		self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 			self._surface.get_width(), self._surface.get_height())
 
@@ -273,12 +273,15 @@ class DrawWindow(Gtk.ApplicationWindow):
 		b.set_active(False) # illogique mais bon
 		self.update_option_label()
 
-	def build_menu(self):
+	def build_menus(self):
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
-		menu = builder.get_object("window-menu")
-		self.menu_popover = Gtk.Popover.new_from_model(self.menu_btn, menu)
+		primary_menu = builder.get_object("window-menu")
+		self.menu_popover = Gtk.Popover.new_from_model(self.menu_btn, primary_menu)
 		self.menu_btn.set_popover(self.menu_popover)
+		save_as_menu = builder.get_object("save-as-menu")
+		self.save_as_popover = Gtk.Popover.new_from_model(self.save_as_btn, save_as_menu)
+		self.save_as_btn.set_popover(self.save_as_popover)
 
 	def on_menu_popover_closed(self, popover, button):
 		button.set_active(False)
@@ -344,16 +347,18 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def action_save(self, *args):
 		if self._file_path is None:
 			self._file_path = self.invoke_file_chooser()
-			self.header_bar.set_subtitle(self._file_path)
 
 		if self._file_path is not None:
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._file_path)
-
 			self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 				self._surface.get_width(), self._surface.get_height())
-			self.pixbuf.savev(self._file_path, pb_format.get_name(), [None], [])
+			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._file_path)
+			if pb_format is None:
+				self.pixbuf.savev(self._file_path, self._file_path.split('.')[-1], [None], [])
+			else:
+				self.pixbuf.savev(self._file_path, pb_format.get_name(), [None], [])
 
 			self._is_saved = True
+			self.header_bar.set_subtitle(self._file_path)
 
 	def action_open(self, *args):
 		# Asking what to do before overwriting the picture in the window
@@ -415,7 +420,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def initial_save(self):
 		self.header_bar.set_subtitle(self._file_path)
 		self._is_saved = True
-		self.pre_modification()
+		self.use_stable_pixbuf()
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
@@ -466,7 +471,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def on_undo(self, b):
 		self.redo_history.append(self.pixbuf.copy())
 		self.pixbuf = self.undo_history.pop()
-		self.pre_modification()
+		self.use_stable_pixbuf()
 
 		self.drawing_area.queue_draw()
 		self.update_history_sensitivity()
@@ -474,7 +479,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def on_redo(self, b):
 		self.undo_history.append(self.pixbuf.copy())
 		self.pixbuf = self.redo_history.pop()
-		self.pre_modification()
+		self.use_stable_pixbuf()
 
 		self.drawing_area.queue_draw()
 		self.update_history_sensitivity()
@@ -490,12 +495,12 @@ class DrawWindow(Gtk.ApplicationWindow):
 		else:
 			self.redo_btn.set_sensitive(True)
 
-	def pre_modification(self):
+	def use_stable_pixbuf(self):
 		# on restaure depuis le pixbuf la surface enregistrée précédemment
 		self._surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		# return self._surface
 
-	def post_modification(self):
+	def set_stable_pixbuf(self):
 		self.undo_history.append(self.pixbuf.copy())
 		self.redo_history = []
 		self.update_history_sensitivity()
@@ -560,7 +565,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		if self.window_has_control:
 			print('release où la fenêtre a récupéré le contrôle')
-			self.post_modification()
+			self.set_stable_pixbuf()
 
 	# OTHER UNIMPLEMENTED OPERATIONS TODO
 
@@ -601,17 +606,17 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def export_as_png(self, *args):
 		file_path = self.invoke_file_chooser()
-		self.post_modification()
+		self.set_stable_pixbuf()
 		self.pixbuf.savev(file_path, "png", [None], [])
 
 	def export_as_jpeg(self, *args):
 		file_path = self.invoke_file_chooser()
-		self.post_modification()
+		self.set_stable_pixbuf()
 		self.pixbuf.savev(file_path, "jpeg", [None], [])
 
 	def export_as_bmp(self, *args):
 		file_path = self.invoke_file_chooser()
-		self.post_modification()
+		self.set_stable_pixbuf()
 		self.pixbuf.savev(file_path, "bmp", [None], [])
 
 	def resize_surface(self, x, y, width, height):

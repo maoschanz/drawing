@@ -1,0 +1,45 @@
+API for Draw's tools	TOOLS-API.md	/^# API for Draw's tools$/;"	c
+The main class of the tool must have the following attributes:	TOOLS-API.md	/^## The main class of the tool must have the following attributes:$/;"	s
+The main class of the tool must implement the following methods:	TOOLS-API.md	/^## The main class of the tool must implement the following methods:$/;"	s
+If `use_options` is set to `True`	TOOLS-API.md	/^## If `use_options` is set to `True`$/;"	s
+the main class of the tool should implement the following methods:	TOOLS-API.md	/^#### the main class of the tool should implement the following methods:$/;"	t
+If `set_clip` is set to `True`	TOOLS-API.md	/^## If `set_clip` is set to `True`$/;"	s
+the main class of the tool should implement the following methods:	TOOLS-API.md	/^#### the main class of the tool should implement the following methods:$/;"	t
+Draw	README.md	/^# Draw$/;"	c
+A drawing application for the GNOME desktop.	README.md	/^## A drawing application for the GNOME desktop.$/;"	s
+Currently available tools	README.md	/^### Currently available tools$/;"	S
+Beta	README.md	/^#### Beta$/;"	t
+Alpha	README.md	/^#### Alpha$/;"	t
+Roadmap	ROADMAP.md	/^# Roadmap$/;"	c
+Beta versions	ROADMAP.md	/^## Beta versions$/;"	s
+Version 0.1	ROADMAP.md	/^## Version 0.1$/;"	s
+Version 0.2	ROADMAP.md	/^## Version 0.2$/;"	s
+Undefined future version	ROADMAP.md	/^## Undefined future version$/;"	s
+app-id	com.github.maoschanz.Draw.json	/^    "app-id" : "com.github.maoschanz.Draw",$/;"	s
+runtime	com.github.maoschanz.Draw.json	/^    "runtime" : "org.gnome.Platform",$/;"	s
+runtime-version	com.github.maoschanz.Draw.json	/^    "runtime-version" : "3.28",$/;"	s
+sdk	com.github.maoschanz.Draw.json	/^    "sdk" : "org.gnome.Sdk",$/;"	s
+command	com.github.maoschanz.Draw.json	/^    "command" : "draw",$/;"	s
+0	com.github.maoschanz.Draw.json	/^        "--share=ipc",$/;"	s	array:finish-args
+1	com.github.maoschanz.Draw.json	/^        "--socket=x11",$/;"	s	array:finish-args
+2	com.github.maoschanz.Draw.json	/^        "--socket=wayland",$/;"	s	array:finish-args
+3	com.github.maoschanz.Draw.json	/^        "--filesystem=xdg-run\/dconf",$/;"	s	array:finish-args
+4	com.github.maoschanz.Draw.json	/^        "--filesystem=~\/.config\/dconf:ro",$/;"	s	array:finish-args
+5	com.github.maoschanz.Draw.json	/^        "--filesystem=home:rw",$/;"	s	array:finish-args
+6	com.github.maoschanz.Draw.json	/^        "--talk-name=ca.desrt.dconf",$/;"	s	array:finish-args
+7	com.github.maoschanz.Draw.json	/^        "--env=DCONF_USER_CONFIG_DIR=.config\/dconf"$/;"	s	array:finish-args
+finish-args	com.github.maoschanz.Draw.json	/^    "finish-args" : [$/;"	a
+cflags	com.github.maoschanz.Draw.json	/^        "cflags" : "-O2 -g",$/;"	s	object:build-options
+cxxflags	com.github.maoschanz.Draw.json	/^        "cxxflags" : "-O2 -g",$/;"	s	object:build-options
+V	com.github.maoschanz.Draw.json	/^            "V" : "1"$/;"	s	object:build-options.env
+env	com.github.maoschanz.Draw.json	/^        "env" : {$/;"	o	object:build-options
+build-options	com.github.maoschanz.Draw.json	/^    "build-options" : {$/;"	o
+0	com.github.maoschanz.Draw.json	/^        {$/;"	o	array:modules
+name	com.github.maoschanz.Draw.json	/^            "name" : "draw",$/;"	s	object:modules.0
+buildsystem	com.github.maoschanz.Draw.json	/^            "buildsystem" : "meson",$/;"	s	object:modules.0
+builddir	com.github.maoschanz.Draw.json	/^            "builddir" : true,$/;"	b	object:modules.0
+0	com.github.maoschanz.Draw.json	/^                {$/;"	o	array:modules.0.sources
+type	com.github.maoschanz.Draw.json	/^                    "type" : "git",$/;"	s	object:modules.0.sources.0
+url	com.github.maoschanz.Draw.json	/^                    "url" : "https:\/\/github.com\/maoschanz\/draw"$/;"	s	object:modules.0.sources.0
+sources	com.github.maoschanz.Draw.json	/^            "sources" : [$/;"	a	object:modules.0
+modules	com.github.maoschanz.Draw.json	/^    "modules" : [$/;"	a

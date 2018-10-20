@@ -65,27 +65,46 @@
 
         <child>
           <object class="GtkMenuButton" id="menu_btn">
-          <!-- <object class="GtkToggleButton" id="menu_btn"> -->
             <property name="visible">True</property>
             <child>
-              <object class="GtkImage" id="menu_btn_img">
+              <object class="GtkImage">
                 <property name="icon-name">open-menu-symbolic</property>
                 <property name="visible">True</property>
               </object>
             </child>
           </object>
           <packing>
-            <property name="pack-type">GTK_PACK_END</property>
+            <property name="pack-type">end</property>
           </packing>
         </child>
 
         <child>
-          <object class="GtkButton" id="save_btn">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="label" translatable="yes">Save</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkButton" id="save_btn">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Save</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="save_as_btn">
+                <property name="visible">True</property>
+                <!-- <property name="direction">down</property> -->
+                <!-- <child> -->
+                <!--   <object class="GtkImage"> -->
+                <!--     <property name="icon-name">document-save-as-symbolic</property> -->
+                <!--     <property name="visible">True</property> -->
+                <!--   </object> -->
+                <!-- </child> -->
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="pack-type">GTK_PACK_END</property>
+            <property name="pack-type">end</property>
           </packing>
         </child>
 
@@ -260,4 +279,5 @@
     </child>
   </template>
 </interface>
+
 

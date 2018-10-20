@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="draw">
+  <menu id="right-click-menu">
+    <section>
+        <item>
+            <attribute name="label" translatable="yes">Properties</attribute>
+            <attribute name="action">win.properties</attribute>
+        </item>
+    </section>
+    <section>
+        <item>
+            <attribute name="label" translatable="yes">Select all</attribute>
+            <attribute name="action">win.select_all</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Unselect</attribute>
+            <attribute name="action">win.unselect</attribute>
+        </item>
+    </section>
+    <section>
+        <item>
+            <attribute name="label" translatable="yes">Import</attribute>
+            <attribute name="action">win.import</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Paste</attribute>
+            <attribute name="action">win.paste</attribute>
+        </item>
+    </section>
+  </menu>
+</interface>
