@@ -49,5 +49,6 @@ class ToolTemplate():
 		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
 		box.add(image)
 		self.label_widget = Gtk.Label(label=self.label)
+		box.set_tooltip_text(self.label)
 		box.add(self.label_widget)
 		self.row.add(box)

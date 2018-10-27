@@ -40,7 +40,7 @@ class Application(Gtk.Application):
 		if self.prefers_app_menu():
 			self.set_app_menu(menu)
 
-		self.version = 'beta-2018-09-14'
+		self.version = 'beta-2018-10-21' # TODO
 
 		self.connect('open', self.on_open)
 
@@ -58,7 +58,7 @@ class Application(Gtk.Application):
 		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
 		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Draw')
 		self.about_dialog.set_version(str(self.version))
-		self.about_dialog.set_website('github.com/maoschanz/draw') # FIXME
+		self.about_dialog.set_website('github.com/maoschanz/draw')
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))
 
 	def build_shortcuts_dialog(self):

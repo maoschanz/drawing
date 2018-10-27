@@ -46,6 +46,14 @@
         </item>
     </section>
     <section>
+        <item>
+            <attribute name="label" translatable="yes">Print</attribute>
+            <attribute name="action">win.print</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Open with…</attribute>
+            <attribute name="action">win.open_with</attribute>
+        </item>
         <!-- <item> -->
         <!--     <attribute name="label" translatable="yes">Paste</attribute> -->
         <!--     <attribute name="action">win.paste</attribute> -->
@@ -78,7 +86,7 @@
           <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">About</attribute>
+            <attribute name="label" translatable="yes">About Draw</attribute>
             <attribute name="action">app.about</attribute>
             <attribute name="verb-icon">help-about-symbolic</attribute>
         </item>
@@ -86,23 +94,27 @@
   </menu>
 
   <menu id="save-as-menu">
-    <item>
-        <attribute name="label" translatable="yes">Export as PNG</attribute>
-        <attribute name="action">win.exp_png</attribute>
-    </item>
-    <item>
-        <attribute name="label" translatable="yes">Export as JPEG</attribute>
-        <attribute name="action">win.exp_jpeg</attribute>
-    </item>
-    <item>
-        <attribute name="label" translatable="yes">Export as BMP</attribute>
-        <attribute name="action">win.exp_bmp</attribute>
-    </item>
+    <section>
+      <item>
+          <attribute name="label" translatable="yes">Save as…</attribute>
+          <attribute name="action">win.save_as</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+          <attribute name="label" translatable="yes">Export as PNG</attribute>
+          <attribute name="action">win.exp_png</attribute>
+      </item>
+      <item>
+          <attribute name="label" translatable="yes">Export as JPEG</attribute>
+          <attribute name="action">win.exp_jpeg</attribute>
+      </item>
+      <item>
+          <attribute name="label" translatable="yes">Export as BMP</attribute>
+          <attribute name="action">win.exp_bmp</attribute>
+      </item>
+    </section>
   </menu>
 
-
-
-
-
-
 </interface>
+
