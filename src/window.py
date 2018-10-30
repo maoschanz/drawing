@@ -90,9 +90,10 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
 		self.set_palette_setting(None, None)
 
-		# FIXME dimensions ??
-		self.pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1000, 600) # 8 ??? les autres plantent
-		self._surface = cairo.ImageSurface(cairo.Format.ARGB32, 1000, 600)
+		width = self._settings.get_int('default-width')
+		height = self._settings.get_int('default-height')
+		self.pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
+		self._surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		# self.drawing_area.set_size(1000, 600) # osef
 
 		self.drawing_area.show()

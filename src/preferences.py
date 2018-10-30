@@ -12,10 +12,10 @@ class DrawPrefsWindow(Gtk.Window):
     list_box = GtkTemplate.Child()
 
     color_edit_switch = GtkTemplate.Child()
-
     default_backg_button = GtkTemplate.Child()
-
     experimental_switch = GtkTemplate.Child()
+    width_btn = GtkTemplate.Child()
+    height_btn = GtkTemplate.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -38,11 +38,14 @@ class DrawPrefsWindow(Gtk.Window):
         self.experimental_switch.set_active(self._settings.get_boolean('experimental'))
         self.experimental_switch.connect('notify::active', self.on_experimental_changed)
 
+        self.width_btn.set_value(self._settings.get_int('default-width'))
+        self.height_btn.set_value(self._settings.get_int('default-height'))
+        self.width_btn.connect('value-changed', self.on_width_changed)
+        self.height_btn.connect('value-changed', self.on_height_changed)
 
 # TODO :
 # le reset
 # idées de paramètres :
-# - taille par défaut des nouveau trucs ? (int, int)
 # -
 # -
 
@@ -55,6 +58,10 @@ class DrawPrefsWindow(Gtk.Window):
     def on_default_backg_changed(self, w):
         color = self.default_backg_button.get_rgba()
         self._settings.set_strv('default-rgba', [str(color.red), str(color.green), \
-            str(color.blue), str(color.alpha)])                                
-                
+            str(color.blue), str(color.alpha)])
+
+    def on_width_changed(self, w):
+        self._settings.set_int('default-width', self.width_btn.get_value())
         
+    def on_height_changed(self, w):
+        self._settings.set_int('default-height', self.height_btn.get_value())
