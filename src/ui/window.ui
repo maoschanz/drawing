@@ -93,13 +93,13 @@
             <child>
               <object class="GtkMenuButton" id="save_as_btn">
                 <property name="visible">True</property>
-                <!-- <property name="direction">down</property> -->
-                <!-- <child> -->
-                <!--   <object class="GtkImage"> -->
-                <!--     <property name="icon-name">document-save-as-symbolic</property> -->
-                <!--     <property name="visible">True</property> -->
-                <!--   </object> -->
-                <!-- </child> -->
+                <property name="direction">down</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">document-save-as-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -268,8 +268,8 @@
                 <!-- TODO -->
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="pack-type">GTK_PACK_END</property>
+                <property name="expand">True</property>
+                <property name="pack-type">end</property>
               </packing>
             </child>
 
@@ -279,6 +279,7 @@
     </child>
   </template>
 </interface>
+
 
 
 

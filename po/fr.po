@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: org.gnome.Draw 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 16:51+0200\n"
+"POT-Creation-Date: 2018-11-01 18:02+0100\n"
 "PO-Revision-Date: 2018-06-21 22:01+0000\n"
 "Last-Translator: Romain F. T.>\n"
 "Language-Team: français\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: data/com.github.maoschanz.Draw.desktop.in:3 src/ui/window.ui:19
-#: src/ui/preferences.ui:11
+#: src/ui/preferences.ui:28 src/ui/crop_dialog.ui:26
 msgid "Draw"
 msgstr "Dessin"
 
@@ -31,33 +31,7 @@ msgstr "Utilitaire simple pour le dessin"
 msgid "com.github.maoschanz.Draw"
 msgstr ""
 
-#: data/com.github.maoschanz.Draw.gschema.xml:6
-msgid "Don't use a color palette"
-msgstr "Ne pas utiliser une palette de couleurs"
-
-#: data/com.github.maoschanz.Draw.gschema.xml:7
-msgid ""
-"If a click on the color button should display directly the complete color "
-"selector."
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:11
-msgid "Experimental features"
-msgstr "Fonctionnalités expérimentales"
-
-#: data/com.github.maoschanz.Draw.gschema.xml:12
-msgid "Turn on experimental features (not recommended)."
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:16
-msgid "Default color background"
-msgstr "Coleur d'arrière-plan par défaut"
-
-#: data/com.github.maoschanz.Draw.gschema.xml:17
-msgid "The default color background of a new image."
-msgstr ""
-
-#: src/ui/window.ui:24 src/ui/shortcuts.ui:36 src/window.py:370
+#: src/ui/window.ui:24 src/ui/shortcuts.ui:36 src/window.py:371
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -69,8 +43,8 @@ msgstr "Annuler"
 msgid "Redo"
 msgstr "Rétablir"
 
-#: src/ui/window.ui:90 src/ui/shortcuts.ui:43 src/window.py:434
-#: src/window.py:593
+#: src/ui/window.ui:90 src/ui/shortcuts.ui:43 src/window.py:436
+#: src/window.py:595
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -78,29 +52,59 @@ msgstr "Enregistrer"
 msgid "Tool size"
 msgstr "Taille de l'outil"
 
-#: src/ui/window.ui:231 src/window.py:329
+#: src/ui/window.ui:231 src/window.py:330
 msgid "No options"
 msgstr "Pas d'options"
 
-#: src/ui/preferences.ui:12 src/ui/menus.ui:14 src/ui/menus.ui:73
+#: src/ui/preferences.ui:29 src/ui/menus.ui:14 src/ui/menus.ui:73
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/ui/preferences.ui:17
+#: src/ui/preferences.ui:34
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: src/ui/preferences.ui:49
+#: src/ui/preferences.ui:66
 msgid "Use a color palette"
-msgstr ""
+msgstr "Utiliser une palette de couleur"
 
-#: src/ui/preferences.ui:85
+#: src/ui/preferences.ui:102
 msgid "New image default color"
-msgstr ""
+msgstr "Couleur par défaut d'une nouvelle image"
 
-#: src/ui/preferences.ui:122
+#: src/ui/preferences.ui:139
+msgid "Default size"
+msgstr "Taille par défaut"
+
+#: src/ui/preferences.ui:151 src/ui/crop_dialog.ui:86 src/properties.py:68
+msgid "Height"
+msgstr "Hauteur"
+
+#: src/ui/preferences.ui:170 src/ui/crop_dialog.ui:105 src/properties.py:61
+msgid "Width"
+msgstr "Largeur"
+
+#: src/ui/preferences.ui:196
 msgid "Experimental features (not recommended)"
 msgstr ""
+
+#: src/ui/crop_dialog.ui:27
+msgid "Crop image"
+msgstr "Recadrer l'image"
+
+#: src/ui/crop_dialog.ui:32 src/window.py:372 src/window.py:395
+#: src/window.py:434 src/window.py:596 src/properties.py:27
+#: src/tools/text.py:30
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/ui/crop_dialog.ui:42 src/properties.py:26
+msgid "Apply"
+msgstr "Appliquer"
+
+#: src/ui/crop_dialog.ui:74
+msgid "Size:"
+msgstr "Taille :"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
@@ -194,90 +198,69 @@ msgstr "Une application de dessin pour le bureau GNOME."
 msgid "Report bugs or ideas"
 msgstr "Rapporter des bugs ou des idées"
 
-#: src/window.py:368
+#: src/window.py:369
 msgid "Open a picture"
-msgstr ""
+msgstr "Ouvrir une image"
 
-#: src/window.py:371 src/window.py:394 src/window.py:432 src/window.py:594
-#: src/properties.py:30 src/crop_dialog.py:30 src/tools/text.py:30
-msgid "Cancel"
-msgstr "Annuler"
-
-#: src/window.py:373 src/window.py:596
+#: src/window.py:374 src/window.py:598
 msgid "Pictures"
 msgstr "Images"
 
-#: src/window.py:392
+#: src/window.py:393
 msgid "Sorry, this picture is too big for this app!"
-msgstr ""
+msgstr "Désolé, cette image est trop grande pour cette application !"
 
-#: src/window.py:395
+#: src/window.py:396
 msgid "Edit it anyway"
 msgstr "Éditer quand même"
 
-#: src/window.py:396
+#: src/window.py:397
 msgid "Scale it"
 msgstr "Redimensionner"
 
-#: src/window.py:397
+#: src/window.py:398
 msgid "Crop it"
 msgstr "Recadrer"
 
-#: src/window.py:398
+#: src/window.py:399
 msgid "What would you prefer?"
-msgstr ""
+msgstr "Que préférez-vous ?"
 
-#: src/window.py:428
+#: src/window.py:430
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: src/window.py:433
+#: src/window.py:435
 msgid "Discard"
 msgstr "Abandonner"
 
-#: src/window.py:435
+#: src/window.py:437
 msgid "There are unsaved modifications to your drawing."
 msgstr "Il y a des modifications non-enregistrées à votre dessin."
 
-#: src/window.py:591
+#: src/window.py:593
 msgid "Save as"
 msgstr "Enregistrer sous"
 
-#: src/properties.py:29 src/crop_dialog.py:29
-msgid "Apply"
-msgstr "Appliquer"
-
-#: src/properties.py:31
+#: src/properties.py:28
 msgid "Image properties"
 msgstr "Propriétés de l'image"
 
-#: src/properties.py:40 src/properties.py:41
+#: src/properties.py:37 src/properties.py:38
 msgid "Unsaved file"
 msgstr "Fichier non-enregistré"
 
-#: src/properties.py:43
+#: src/properties.py:40
 msgid "Path"
 msgstr "Chemin"
 
-#: src/properties.py:47
+#: src/properties.py:44
 msgid "Format"
 msgstr "Format"
 
-#: src/properties.py:58
+#: src/properties.py:55
 msgid "Invalid format"
-msgstr ""
-
-#: src/properties.py:64
-msgid "Width"
-msgstr "Largeur"
-
-#: src/properties.py:71
-msgid "Height"
-msgstr "Hauteur"
-
-#: src/crop_dialog.py:31
-msgid "Crop image"
-msgstr "Recadrer l'image"
+msgstr "Format invalide"
 
 #: src/tools/ui/line.ui:12
 msgid "Line type:"
@@ -353,6 +336,10 @@ msgstr "Plein"
 msgid "Filled (secondary color)"
 msgstr "Plein (couleur secondaire)"
 
+#: src/tools/crop.py:13
+msgid "Crop"
+msgstr "Recadrer"
+
 #: src/tools/eraser.py:13
 msgid "Eraser"
 msgstr "Effaceur"
@@ -424,7 +411,7 @@ msgstr "Pivoter"
 
 #: src/tools/select.py:70
 msgid "Selection type:"
-msgstr ""
+msgstr "Type de sélection :"
 
 #: src/tools/select.py:75
 msgid "Freehand"
@@ -444,7 +431,7 @@ msgstr "Texte"
 
 #: src/tools/text.py:32
 msgid "Insert text here"
-msgstr ""
+msgstr "Insérer le texte ici"
 
 #: src/tools/text.py:52
 msgid "Opaque background"

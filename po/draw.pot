@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 16:51+0200\n"
+"POT-Creation-Date: 2018-11-01 18:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/com.github.maoschanz.Draw.desktop.in:3 src/ui/window.ui:19
-#: src/ui/preferences.ui:11
+#: src/ui/preferences.ui:28 src/ui/crop_dialog.ui:26
 msgid "Draw"
 msgstr ""
 
@@ -30,33 +30,7 @@ msgstr ""
 msgid "com.github.maoschanz.Draw"
 msgstr ""
 
-#: data/com.github.maoschanz.Draw.gschema.xml:6
-msgid "Don't use a color palette"
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:7
-msgid ""
-"If a click on the color button should display directly the complete color "
-"selector."
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:11
-msgid "Experimental features"
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:12
-msgid "Turn on experimental features (not recommended)."
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:16
-msgid "Default color background"
-msgstr ""
-
-#: data/com.github.maoschanz.Draw.gschema.xml:17
-msgid "The default color background of a new image."
-msgstr ""
-
-#: src/ui/window.ui:24 src/ui/shortcuts.ui:36 src/window.py:370
+#: src/ui/window.ui:24 src/ui/shortcuts.ui:36 src/window.py:371
 msgid "Open"
 msgstr ""
 
@@ -68,8 +42,8 @@ msgstr ""
 msgid "Redo"
 msgstr ""
 
-#: src/ui/window.ui:90 src/ui/shortcuts.ui:43 src/window.py:434
-#: src/window.py:593
+#: src/ui/window.ui:90 src/ui/shortcuts.ui:43 src/window.py:436
+#: src/window.py:595
 msgid "Save"
 msgstr ""
 
@@ -77,28 +51,58 @@ msgstr ""
 msgid "Tool size"
 msgstr ""
 
-#: src/ui/window.ui:231 src/window.py:329
+#: src/ui/window.ui:231 src/window.py:330
 msgid "No options"
 msgstr ""
 
-#: src/ui/preferences.ui:12 src/ui/menus.ui:14 src/ui/menus.ui:73
+#: src/ui/preferences.ui:29 src/ui/menus.ui:14 src/ui/menus.ui:73
 msgid "Preferences"
 msgstr ""
 
-#: src/ui/preferences.ui:17
+#: src/ui/preferences.ui:34
 msgid "Reset"
 msgstr ""
 
-#: src/ui/preferences.ui:49
+#: src/ui/preferences.ui:66
 msgid "Use a color palette"
 msgstr ""
 
-#: src/ui/preferences.ui:85
+#: src/ui/preferences.ui:102
 msgid "New image default color"
 msgstr ""
 
-#: src/ui/preferences.ui:122
+#: src/ui/preferences.ui:139
+msgid "Default size"
+msgstr ""
+
+#: src/ui/preferences.ui:151 src/ui/crop_dialog.ui:86 src/properties.py:68
+msgid "Height"
+msgstr ""
+
+#: src/ui/preferences.ui:170 src/ui/crop_dialog.ui:105 src/properties.py:61
+msgid "Width"
+msgstr ""
+
+#: src/ui/preferences.ui:196
 msgid "Experimental features (not recommended)"
+msgstr ""
+
+#: src/ui/crop_dialog.ui:27
+msgid "Crop image"
+msgstr ""
+
+#: src/ui/crop_dialog.ui:32 src/window.py:372 src/window.py:395
+#: src/window.py:434 src/window.py:596 src/properties.py:27
+#: src/tools/text.py:30
+msgid "Cancel"
+msgstr ""
+
+#: src/ui/crop_dialog.ui:42 src/properties.py:26
+msgid "Apply"
+msgstr ""
+
+#: src/ui/crop_dialog.ui:74
+msgid "Size:"
 msgstr ""
 
 #: src/ui/shortcuts.ui:12
@@ -193,89 +197,68 @@ msgstr ""
 msgid "Report bugs or ideas"
 msgstr ""
 
-#: src/window.py:368
+#: src/window.py:369
 msgid "Open a picture"
 msgstr ""
 
-#: src/window.py:371 src/window.py:394 src/window.py:432 src/window.py:594
-#: src/properties.py:30 src/crop_dialog.py:30 src/tools/text.py:30
-msgid "Cancel"
-msgstr ""
-
-#: src/window.py:373 src/window.py:596
+#: src/window.py:374 src/window.py:598
 msgid "Pictures"
 msgstr ""
 
-#: src/window.py:392
+#: src/window.py:393
 msgid "Sorry, this picture is too big for this app!"
 msgstr ""
 
-#: src/window.py:395
+#: src/window.py:396
 msgid "Edit it anyway"
 msgstr ""
 
-#: src/window.py:396
+#: src/window.py:397
 msgid "Scale it"
 msgstr ""
 
-#: src/window.py:397
+#: src/window.py:398
 msgid "Crop it"
 msgstr ""
 
-#: src/window.py:398
+#: src/window.py:399
 msgid "What would you prefer?"
 msgstr ""
 
-#: src/window.py:428
+#: src/window.py:430
 msgid "Untitled"
 msgstr ""
 
-#: src/window.py:433
+#: src/window.py:435
 msgid "Discard"
 msgstr ""
 
-#: src/window.py:435
+#: src/window.py:437
 msgid "There are unsaved modifications to your drawing."
 msgstr ""
 
-#: src/window.py:591
+#: src/window.py:593
 msgid "Save as"
 msgstr ""
 
-#: src/properties.py:29 src/crop_dialog.py:29
-msgid "Apply"
-msgstr ""
-
-#: src/properties.py:31
+#: src/properties.py:28
 msgid "Image properties"
 msgstr ""
 
-#: src/properties.py:40 src/properties.py:41
+#: src/properties.py:37 src/properties.py:38
 msgid "Unsaved file"
 msgstr ""
 
-#: src/properties.py:43
+#: src/properties.py:40
 msgid "Path"
 msgstr ""
 
-#: src/properties.py:47
+#: src/properties.py:44
 msgid "Format"
 msgstr ""
 
-#: src/properties.py:58
+#: src/properties.py:55
 msgid "Invalid format"
-msgstr ""
-
-#: src/properties.py:64
-msgid "Width"
-msgstr ""
-
-#: src/properties.py:71
-msgid "Height"
-msgstr ""
-
-#: src/crop_dialog.py:31
-msgid "Crop image"
 msgstr ""
 
 #: src/tools/ui/line.ui:12
@@ -350,6 +333,10 @@ msgstr ""
 
 #: src/tools/ui/shape.ui:101 src/tools/shape.py:53
 msgid "Filled (secondary color)"
+msgstr ""
+
+#: src/tools/crop.py:13
+msgid "Crop"
 msgstr ""
 
 #: src/tools/eraser.py:13

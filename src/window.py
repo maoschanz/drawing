@@ -158,6 +158,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
 			self.tools_buttons[tool_id] = self.tools[tool_id].row
+		self.full_panel_width = 0
 
 	def set_palette_setting(self, a, b):
 		color_btn_show_editor = self._settings.get_boolean('direct-color-edit')
@@ -251,7 +252,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def update_tools_visibility(self, listbox, gdkrectangle):
-		if gdkrectangle.width < 120:
+		self.full_panel_width = max(self.full_panel_width, listbox.get_preferred_width()[0])
+		if (gdkrectangle.width < self.full_panel_width + 5):
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
 		else:
@@ -259,7 +261,14 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.tools[label].label_widget.set_visible(True)
 
 	def update_options_box(self, window, gdkrectangle):
-		if gdkrectangle.width < 800:
+		available_width = self.options_long_box.get_preferred_width()[0] + \
+			self.options_short_box.get_preferred_width()[0] + \
+			self.tool_info_label.get_allocated_width()
+
+		used_width = self.options_long_box.get_allocated_width() + \
+			self.options_short_box.get_allocated_width()
+
+		if used_width > 0.9*available_width:
 			self.options_long_box.set_visible(False)
 			self.options_short_box.set_visible(True)
 		else:
