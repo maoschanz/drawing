@@ -1,4 +1,4 @@
-# image.py
+# properties.py
 #
 # Copyright 2018 Romain F. T.
 #
@@ -18,9 +18,6 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
 
-# Cette classe représente une image et les méthodes qui lui sont associées.
-# Cela concerne le chargement, l'exportation et le dimensionnement
-# du GdkPixbuf.Pixbuf utilisé, mais aucune fonction d'édition ni de dessin.
 class DrawPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawPropertiesDialog'
 
