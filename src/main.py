@@ -40,7 +40,7 @@ class Application(Gtk.Application):
 		if self.prefers_app_menu():
 			self.set_app_menu(menu)
 
-		self.version = 'beta-2018-10-21' # TODO
+		self.version = 'beta-2018-11-01' # TODO
 
 		self.connect('open', self.on_open)
 

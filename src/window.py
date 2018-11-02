@@ -202,19 +202,26 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def add_actions(self):
 		action = Gio.SimpleAction.new("import", None)
-		action.connect("activate", self.import_png)
+		action.connect("activate", self.action_import_png)
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("paste", None)
-		action.connect("activate", self.paste)
+		action.connect("activate", self.action_paste)
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("select_all", None)
-		action.connect("activate", self.select_all)
+		action.connect("activate", self.action_select_all)
+		self.add_action(action)
+		action = Gio.SimpleAction.new("unselect", None)
+		action.connect("activate", self.action_unselect)
 		self.add_action(action)
 
-		action = Gio.SimpleAction.new("unselect", None)
-		action.connect("activate", self.unselect)
+		action = Gio.SimpleAction.new("open_with", None)
+		action.connect("activate", self.action_open_with)
+		self.add_action(action)
+
+		action = Gio.SimpleAction.new("print", None)
+		action.connect("activate", self.action_print)
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("properties", None)
@@ -231,6 +238,9 @@ class DrawWindow(Gtk.ApplicationWindow):
 		action.connect("activate", self.export_as_bmp)
 		self.add_action(action)
 
+		action = Gio.SimpleAction.new("open", None)
+		action.connect("activate", self.action_open)
+		self.add_action(action)
 		action = Gio.SimpleAction.new("close", None)
 		action.connect("activate", self.on_close)
 		self.add_action(action)
@@ -238,15 +248,13 @@ class DrawWindow(Gtk.ApplicationWindow):
 		action = Gio.SimpleAction.new("save", None)
 		action.connect("activate", self.action_save)
 		self.add_action(action)
-
-		action = Gio.SimpleAction.new("open", None)
-		action.connect("activate", self.action_open)
+		action = Gio.SimpleAction.new("save_as", None)
+		action.connect("activate", self.action_save_as)
 		self.add_action(action)
 
 		action = Gio.SimpleAction.new("undo", None)
 		action.connect("activate", self.action_undo)
 		self.add_action(action)
-
 		action = Gio.SimpleAction.new("redo", None)
 		action.connect("activate", self.action_redo)
 		self.add_action(action)
@@ -357,18 +365,24 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def action_save(self, *args):
 		if self._file_path is None:
 			self._file_path = self.invoke_file_chooser()
+		self.load_fn_to_pixbuf()
 
+	def load_fn_to_pixbuf(self, *args):
 		if self._file_path is not None:
 			self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 				self._surface.get_width(), self._surface.get_height())
 			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._file_path)
-			if pb_format is None:
+			if pb_format is None: # "jpeg", "png", "tiff", "ico" or "bmp"
 				self.pixbuf.savev(self._file_path, self._file_path.split('.')[-1], [None], [])
 			else:
 				self.pixbuf.savev(self._file_path, pb_format.get_name(), [None], [])
-
+			# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
 			self._is_saved = True
 			self.header_bar.set_subtitle(self._file_path)
+
+	def action_save_as(self, *args):
+		self._file_path = self.invoke_file_chooser()
+		self.load_fn_to_pixbuf()
 
 	def action_open(self, *args):
 		# Asking what to do before overwriting the picture in the window
@@ -580,16 +594,22 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	# OTHER UNIMPLEMENTED OPERATIONS TODO
 
-	def import_png(self, *args):
+	def action_open_with(self, *args):
+		print("open_with")
+
+	def action_print(self, *args):
+		print("print")
+
+	def action_import_png(self, *args):
 		print("import")
 
-	def paste(self, *args):
+	def action_paste(self, *args):
 		print("paste")
 
-	def select_all(self, *args):
+	def action_select_all(self, *args):
 		print("select_all")
 
-	def unselect(self, *args):
+	def action_unselect(self, *args):
 		print("unselect")
 
 	def edit_properties(self, *args):
