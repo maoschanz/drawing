@@ -22,11 +22,12 @@ import cairo
 class DrawCropDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawCropDialog'
 
-	def __init__(self, window, o_width, o_height):
+	def __init__(self, window, o_width, o_height, forbid_growth):
 		super().__init__(modal=True, use_header_bar=True, title=_("Crop the picture"), parent=window)
 		self._window = window
 		self.original_width = o_width
 		self.original_height = o_height
+		self.forbid_growth = forbid_growth
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Draw/ui/crop_dialog.ui')
@@ -55,10 +56,11 @@ class DrawCropDialog(Gtk.Dialog):
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		self._x = 0
 		self._y = 0
-		self.width_btn.set_range(0, self.original_width)
-		self.height_btn.set_range(0, self.original_height)
-		self.width_btn.set_value(self._window.drawing_area.get_allocated_width())
-		self.height_btn.set_value(self._window.drawing_area.get_allocated_height())
+		if self.forbid_growth:
+			self.width_btn.set_range(1, self.original_width)
+			self.height_btn.set_range(1, self.original_height)
+		self.width_btn.set_value(self._window.pixbuf.get_width())
+		self.height_btn.set_value(self._window.pixbuf.get_height())
 
 	def on_apply(self, *args):
 		x = self._x
@@ -78,11 +80,13 @@ class DrawCropDialog(Gtk.Dialog):
 		cairo_context.paint()
 
 	def on_width_changed(self, *args):
-		self.check_coord()
+		if self.forbid_growth:
+			self.check_coord()
 		self.draw_overlay()
 
 	def on_height_changed(self, *args):
-		self.check_coord()
+		if self.forbid_growth:
+			self.check_coord()
 		self.draw_overlay()
 
 	def get_width(self):

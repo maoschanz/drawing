@@ -432,7 +432,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
 				self.initial_save()
 			elif result == Gtk.ResponseType.YES: # Crop it
-				crop_dialog = DrawCropDialog(self, pic_w, pic_h)
+				crop_dialog = DrawCropDialog(self, pic_w, pic_h, True)
 				result2 = crop_dialog.run()
 				if result2 == Gtk.ResponseType.APPLY:
 					self._file_path = fn
