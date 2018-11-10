@@ -122,13 +122,19 @@
             <property name="orientation">horizontal</property>
             <property name="position">150</property>
             <child>
-              <object class="GtkBox" id="tools_panel">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="margin">5</property>
-                <property name="orientation">vertical</property>
-                <style>
-                  <class name="linked"/>
-                </style>
+                <property name="hscrollbar-policy">never</property>
+                <child>
+                  <object class="GtkBox" id="tools_panel">
+                    <property name="visible">True</property>
+                    <property name="margin">5</property>
+                    <property name="orientation">vertical</property>
+                    <style>
+                      <class name="linked"/>
+                    </style>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="shrink">False</property>

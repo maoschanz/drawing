@@ -35,7 +35,7 @@ from .eraser import ToolEraser
 DEV_VERSION = False
 
 from .properties import DrawPropertiesDialog
-from .crop_dialog import DrawCropWindow
+from .crop_dialog import DrawCropDialog
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
 
@@ -432,8 +432,15 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
 				self.initial_save()
 			elif result == Gtk.ResponseType.YES: # Crop it
-				crop_dialog = DrawCropWindow(self, fn)
-				crop_dialog.present()
+				crop_dialog = DrawCropDialog(self, fn, pic_w, pic_h)
+				result2 = crop_dialog.run()
+				if result2 == Gtk.ResponseType.APPLY:
+					self._file_path = fn
+					self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
+					self.initial_save()
+					crop_dialog.on_apply()
+				else:
+					crop_dialog.on_cancel()
 			else: # Cancel
 				pass
 			dialog.destroy()

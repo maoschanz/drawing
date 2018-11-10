@@ -5,7 +5,7 @@
         <property name="lower">1</property>
         <property name="upper">4096</property>
         <property name="step_increment">1</property>
-        <property name="page_increment">10</property>
+        <property name="page_increment">20</property>
         <property name="value">10</property>
     </object>
 
@@ -13,23 +13,30 @@
         <property name="lower">1</property>
         <property name="upper">4096</property>
         <property name="step_increment">1</property>
-        <property name="page_increment">10</property>
+        <property name="page_increment">20</property>
         <property name="value">10</property>
     </object>
 
-    <template class="DrawCropWindow" parent="GtkWindow">
-        <property name="modal">True</property>
-        <child type="titlebar">
-            <object class="GtkHeaderBar">
+    <object class="GtkBox" id="crop_content_area">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+            <object class="GtkLayout" id="preview">
                 <property name="visible">True</property>
-                <property name="show-close-button">False</property>
-                <property name="title" translatable="yes">Draw</property>
-                <property name="subtitle" translatable="yes">Crop image</property>
+
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkActionBar">
+                <property name="visible">True</property>
+                <property name="expand">False</property>
 
                 <child>
-                    <object class="GtkButton" id="cancel_btn">
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Size:</property>
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Cancel</property>
                     </object>
                     <packing>
                         <property name="pack-type">start</property>
@@ -37,84 +44,40 @@
                 </child>
 
                 <child>
-                    <object class="GtkButton" id="apply_btn">
+                    <object class="GtkSpinButton" id="height_btn">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Apply</property>
-                        <style>
-                            <class name="suggested-action"/>
-                        </style>
+                        <property name="adjustment">adj_height</property>
+                        <property name="tooltip_text" translatable="yes">Height</property>
                     </object>
                     <packing>
                         <property name="pack-type">end</property>
                     </packing>
                 </child>
-
+                <child>
+                    <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">×</property>
+                    </object>
+                    <packing>
+                        <property name="pack-type">end</property>
+                    </packing>
+                </child>
+                <child>
+                    <object class="GtkSpinButton" id="width_btn">
+                        <property name="visible">True</property>
+                        <property name="adjustment">adj_width</property>
+                        <property name="tooltip_text" translatable="yes">Width</property>
+                    </object>
+                    <packing>
+                        <property name="pack-type">end</property>
+                    </packing>
+                </child>
             </object>
         </child>
 
-        <child>
-            <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-
-                <child>
-                    <object class="GtkLayout" id="preview">
-                        <property name="visible">True</property>
-
-                    </object>
-                </child>
-
-                <child>
-                    <object class="GtkActionBar">
-                        <property name="visible">True</property>
-                        <property name="expand">False</property>
-
-                        <child>
-                            <object class="GtkLabel">
-                                <property name="label" translatable="yes">Size:</property>
-                                <property name="visible">True</property>
-                            </object>
-                            <packing>
-                                <property name="pack-type">start</property>
-                            </packing>
-                        </child>
-
-                        <child>
-                            <object class="GtkSpinButton" id="height_btn">
-                                <property name="visible">True</property>
-                                <property name="adjustment">adj_height</property>
-                                <property name="tooltip_text" translatable="yes">Height</property>
-                            </object>
-                            <packing>
-                                <property name="pack-type">end</property>
-                            </packing>
-                        </child>
-                        <child>
-                            <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="label">×</property>
-                            </object>
-                            <packing>
-                                <property name="pack-type">end</property>
-                            </packing>
-                        </child>
-                        <child>
-                            <object class="GtkSpinButton" id="width_btn">
-                                <property name="visible">True</property>
-                                <property name="adjustment">adj_width</property>
-                                <property name="tooltip_text" translatable="yes">Width</property>
-                            </object>
-                            <packing>
-                                <property name="pack-type">end</property>
-                            </packing>
-                        </child>
-                    </object>
-                </child>
-
-            </object>
-        </child>
-
-    </template>
+    </object>
 </interface>
+
+
 
 

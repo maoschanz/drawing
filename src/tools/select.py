@@ -263,7 +263,7 @@ class ToolSelect(ToolTemplate):
         print('dragging')
         self.window.use_stable_pixbuf()
 
-        # TODO copier le truc en interne dans DrawImage
+        # TODO copier le truc
 
 
         # facile à faire : supprimer l'ancien truc
