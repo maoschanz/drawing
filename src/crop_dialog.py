@@ -22,7 +22,7 @@ import cairo
 class DrawCropDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawCropDialog'
 
-	def __init__(self, window, fn, o_width, o_height):
+	def __init__(self, window, o_width, o_height):
 		super().__init__(modal=True, use_header_bar=True, title=_("Crop the picture"), parent=window)
 		self._window = window
 		self.original_width = o_width
@@ -40,7 +40,13 @@ class DrawCropDialog(Gtk.Dialog):
 		self.preview.connect('draw', self.on_draw)
 		self.preview.connect('button-press-event', self.on_press)
 		self.preview.connect('button-release-event', self.on_release)
-		self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, 500, 500, True)
+		if self._window.pixbuf.get_width() > self._window.pixbuf.get_height():
+			w = 500
+			h = 500*(self._window.pixbuf.get_height()/self._window.pixbuf.get_width())
+		else:
+			w = 500*(self._window.pixbuf.get_width()/self._window.pixbuf.get_height())
+			h = 500
+		self.pixbuf = self._window.pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		self.preview.set_size_request(self.surface.get_width(), self.surface.get_height())
 		self.set_resizable(False)

@@ -18,11 +18,14 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
 
+from .crop_dialog import DrawCropDialog
+
 class DrawPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawPropertiesDialog'
 
 	def __init__(self, window):
 		super().__init__(use_header_bar=True, destroy_with_parent=True, parent=window, title=_("Image properties"))
+		self._window = window
 		# self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		# self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 
@@ -52,11 +55,25 @@ class DrawPropertiesDialog(Gtk.Dialog):
 		label_format_surface.set_label(enum.get(window._surface.get_format(), _("Invalid format")))
 
 		label_width.set_label(str(window._surface.get_width()) + ' px')
-
 		label_height.set_label(str(window._surface.get_height()) + ' px')
+
+		btn_crop = builder.get_object('btn_crop')
+		btn_crop.connect('clicked', self.on_crop)
+
+		btn_scale = builder.get_object('btn_scale')
+		btn_scale.connect('clicked', self.on_scale)
 
 		self.set_default_size(400, 100)
 		self.show_all()
 
-		result = self.run()
-		self.destroy()
+	def on_scale(self, b):
+		print('todo') # TODO
+
+	def on_crop(self, b):
+		crop_dialog = DrawCropDialog(self._window, self._window._surface.get_width(), \
+			self._window._surface.get_height())
+		result2 = crop_dialog.run()
+		if result2 == Gtk.ResponseType.APPLY:
+			crop_dialog.on_apply()
+		else:
+			crop_dialog.on_cancel()
