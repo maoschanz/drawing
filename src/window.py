@@ -43,13 +43,13 @@ SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
 class DrawWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawWindow'
 
-	header_bar = GtkTemplate.Child()
-	open_btn = GtkTemplate.Child()
-	save_btn = GtkTemplate.Child()
-	undo_btn = GtkTemplate.Child()
-	redo_btn = GtkTemplate.Child()
-	save_as_btn = GtkTemplate.Child()
-	menu_btn = GtkTemplate.Child()
+	# header_bar = GtkTemplate.Child()
+	# open_btn = GtkTemplate.Child()
+	# save_btn = GtkTemplate.Child()
+	# undo_btn = GtkTemplate.Child()
+	# redo_btn = GtkTemplate.Child()
+	# save_as_btn = GtkTemplate.Child()
+	# menu_btn = GtkTemplate.Child()
 
 	tools_panel = GtkTemplate.Child()
 	tools = {}
@@ -76,15 +76,18 @@ class DrawWindow(Gtk.ApplicationWindow):
 	handlers = []
 
 	def __init__(self, file_path, **kwargs):
-		super().__init__(**kwargs)
+		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
+		DEV_VERSION = self._settings.get_boolean('experimental')
+		decorations = self._settings.get_string('decorations')
+		super().__init__(show_menubar=(decorations == 'ssd'), **kwargs)
 		self.init_template()
+		self.build_headerbar()
+		if decorations == 'csd':
+			self.set_titlebar(self.header_bar)
 		self.maximize()
 		
 		self._file_path = file_path
 		self._is_saved = True
-
-		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
-		DEV_VERSION = self._settings.get_boolean('experimental')
 
 		self.color_btn_l.set_rgba(Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0))
 		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
@@ -301,6 +304,17 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.save_as_popover = Gtk.Popover.new_from_model(self.save_as_btn, save_as_menu)
 		self.save_as_btn.set_popover(self.save_as_popover)
 
+	def build_headerbar(self):
+		builder = Gtk.Builder()
+		builder.add_from_resource("/com/github/maoschanz/Draw/ui/headerbar.ui")
+		self.header_bar = builder.get_object("header_bar")
+		self.open_btn = builder.get_object("open_btn")
+		self.undo_btn = builder.get_object("undo_btn")
+		self.redo_btn = builder.get_object("redo_btn")
+		self.save_as_btn = builder.get_object("save_as_btn")
+		self.save_btn = builder.get_object("save_btn")
+		self.menu_btn = builder.get_object("menu_btn")
+
 	def on_menu_popover_closed(self, popover, button):
 		button.set_active(False)
 
@@ -432,11 +446,11 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
 				self.initial_save()
 			elif result == Gtk.ResponseType.YES: # Crop it
+				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
 				crop_dialog = DrawCropDialog(self, pic_w, pic_h, True)
 				result2 = crop_dialog.run()
 				if result2 == Gtk.ResponseType.APPLY:
 					self._file_path = fn
-					self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
 					self.initial_save()
 					crop_dialog.on_apply()
 				else:

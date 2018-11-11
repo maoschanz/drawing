@@ -32,6 +32,7 @@ class DrawPrefsWindow(Gtk.Window):
     experimental_switch = GtkTemplate.Child()
     width_btn = GtkTemplate.Child()
     height_btn = GtkTemplate.Child()
+    layout_combobox = GtkTemplate.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -59,11 +60,13 @@ class DrawPrefsWindow(Gtk.Window):
         self.width_btn.connect('value-changed', self.on_width_changed)
         self.height_btn.connect('value-changed', self.on_height_changed)
 
+        self.layout_combobox.append('csd', _("Modern"))
+        self.layout_combobox.append('ssd', _("Legacy"))
+        self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
+        self.layout_combobox.connect('changed', self.on_layout_changed)
+
 # TODO :
 # le reset
-# idées de paramètres :
-# -
-# -
 
     def on_color_edit_changed(self, w, a):
         self._settings.set_boolean('direct-color-edit', not w.get_active())
@@ -81,3 +84,6 @@ class DrawPrefsWindow(Gtk.Window):
         
     def on_height_changed(self, w):
         self._settings.set_int('default-height', self.height_btn.get_value())
+
+    def on_layout_changed(self, w):
+        self._settings.set_string('decorations', w.get_active_id())

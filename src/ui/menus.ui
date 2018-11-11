@@ -1,21 +1,19 @@
 <?xml version="1.0"?>
 <interface domain="draw">
   <menu id="app-menu">
-    <section id="new">
+    <section>
       <item>
         <attribute name="action">app.new_window</attribute>
         <attribute name="label" translatable="yes">New window</attribute>
       </item>
     </section>
-
-    <section id="main">
+    <section>
       <item>
         <attribute name="action">app.settings</attribute>
         <attribute name="label" translatable="yes">Preferences</attribute>
       </item>
     </section>
-
-    <section id="other">
+    <section>
       <item>
         <attribute name="action">app.shortcuts</attribute>
         <attribute name="label" translatable="yes">Shortcuts</attribute>
@@ -114,6 +112,114 @@
           <attribute name="action">win.exp_bmp</attribute>
       </item>
     </section>
+  </menu>
+
+  <menu id="menu-bar">
+    <submenu>
+      <attribute name="label" translatable="yes">File</attribute>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">New window</attribute>
+            <attribute name="action">app.new_window</attribute>
+            <attribute name="verb-icon">document-new-symbolic</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Open</attribute>
+            <attribute name="action">win.open</attribute>
+            <attribute name="verb-icon">document-open-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Save</attribute>
+            <attribute name="action">win.save</attribute>
+            <attribute name="verb-icon">document-save-symbolic</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Save as…</attribute>
+            <attribute name="action">win.save_as</attribute>
+            <attribute name="verb-icon">document-save-as-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Print</attribute>
+            <attribute name="action">win.print</attribute>
+            <attribute name="verb-icon">document-print-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Export as PNG</attribute>
+            <attribute name="action">win.exp_png</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Export as JPEG</attribute>
+            <attribute name="action">win.exp_jpeg</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Export as BMP</attribute>
+            <attribute name="action">win.exp_bmp</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Close</attribute>
+            <attribute name="action">win.close</attribute>
+        </item>
+      </section>
+    </submenu>
+
+    <submenu>
+      <attribute name="label" translatable="yes">Edit</attribute>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Undo</attribute>
+            <attribute name="action">win.undo</attribute>
+            <attribute name="verb-icon">edit-undo-symbolic</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Redo</attribute>
+            <attribute name="action">win.redo</attribute>
+            <attribute name="verb-icon">edit-redo-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Properties</attribute>
+            <attribute name="action">win.properties</attribute>
+            <attribute name="verb-icon">document-properties-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Preferences</attribute>
+            <attribute name="action">app.settings</attribute>
+            <attribute name="verb-icon">preferences-system-symbolic</attribute>
+        </item>
+      </section>
+    </submenu>
+
+    <submenu>
+      <attribute name="label" translatable="yes">Help</attribute>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Shortcuts</attribute>
+            <attribute name="action">app.shortcuts</attribute>
+            <attribute name="verb-icon">input-keyboard-symbolic</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Help</attribute>
+            <attribute name="action">app.help</attribute>
+            <attribute name="verb-icon">help-faq-symbolic</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">About Draw</attribute>
+            <attribute name="action">app.about</attribute>
+            <attribute name="verb-icon">help-about-symbolic</attribute>
+        </item>
+      </section>
+    </submenu>
   </menu>
 
 </interface>

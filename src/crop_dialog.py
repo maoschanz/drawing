@@ -105,7 +105,7 @@ class DrawCropDialog(Gtk.Dialog):
 		preview_y = (y / self.pixbuf.get_height()) * self.original_height
 		return [preview_x, preview_y]
 
-	def draw_overlay(self):
+	def draw_overlay(self): # XXX même si on grandit ??
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		w_context = cairo.Context(self.surface)
 

@@ -33,14 +33,16 @@ class Application(Gtk.Application):
 
 		GLib.set_application_name('Draw')
 		GLib.set_prgname('com.github.maoschanz.Draw')
-
 		self.register(None) # ?
 
-		menu = self.build_app_menu()
+		self.build_actions()
+		menubar_model = self.build_menubar()
+		self.set_menubar(menubar_model)
 		if self.prefers_app_menu():
-			self.set_app_menu(menu)
+			appmenu_model = self.build_app_menu()
+			self.set_app_menu(appmenu_model)
 
-		self.version = 'beta-2018-11-10' # TODO
+		self.version = 'beta-2018-11-11' # TODO
 
 		self.connect('open', self.on_open)
 
@@ -69,9 +71,17 @@ class Application(Gtk.Application):
 	def build_app_menu(self):
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
-		menu = builder.get_object("app-menu")
+		appmenu = builder.get_object("app-menu")
+		return appmenu
 
-		new_window_action = Gio.SimpleAction.new("new_window", None) # FIXME
+	def build_menubar(self):
+		builder = Gtk.Builder()
+		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
+		menubar = builder.get_object("menu-bar")
+		return menubar
+
+	def build_actions(self):
+		new_window_action = Gio.SimpleAction.new("new_window", None)
 		new_window_action.connect("activate", self.on_new_window_activate)
 		self.add_action(new_window_action)
 
@@ -109,8 +119,6 @@ class Application(Gtk.Application):
 
 		self.set_accels_for_action("win.undo", ["<Ctrl>z"])
 		self.set_accels_for_action("win.redo", ["<Ctrl><Shift>z"])
-
-		return menu
 
 	def on_about_activate(self, *args):
 		self.build_about_dialog()

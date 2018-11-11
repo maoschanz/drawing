@@ -12,7 +12,7 @@
   <template class="DrawWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
-    <child type="titlebar">
+    <!--child type="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <property name="visible">True</property>
         <property name="show-close-button">True</property>
@@ -110,7 +110,7 @@
         </child>
 
       </object>
-    </child>
+    </child-->
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
@@ -286,6 +286,7 @@
     </child>
   </template>
 </interface>
+
 
 
 
