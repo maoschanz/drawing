@@ -20,6 +20,8 @@
     <object class="GtkBox" id="scale_content_area">
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
+        <property name="margin">20</property>
+        <property name="spacing">20</property>
 
         <child>
             <object class="GtkBox">
@@ -39,6 +41,7 @@
                 <child>
                     <object class="GtkSwitch" id="proportions_switch">
                         <property name="visible">True</property>
+                        <property name="active">False</property>
                     </object>
                     <packing>
                         <property name="pack-type">end</property>
@@ -103,5 +106,6 @@
 
     </object>
 </interface>
+
 
 

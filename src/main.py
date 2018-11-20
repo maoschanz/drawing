@@ -26,6 +26,9 @@ from .window import DrawWindow
 from .preferences import DrawPrefsWindow
 
 class Application(Gtk.Application):
+	about_dialog = None
+	shortcuts_window = None
+	prefs_window = None
 
 	def __init__(self):
 		super().__init__(application_id='com.github.maoschanz.Draw',
@@ -35,6 +38,20 @@ class Application(Gtk.Application):
 		GLib.set_prgname('com.github.maoschanz.Draw')
 		self.register(None) # ?
 
+		self.version = 'beta-2018-11-21' # TODO
+
+		if not self.get_is_remote():
+			self.on_startup()
+
+		# self.add_main_option("new-window", b"n", GLib.OptionFlags.NONE,
+		# 					GLib.OptionArg.NONE, "New window", None)
+		self.add_main_option("version", b"v", GLib.OptionFlags.NONE,
+							GLib.OptionArg.NONE, "Version", None)
+
+		self.connect('open', self.on_open)
+		self.connect("handle-local-options", self.on_local_options)
+
+	def on_startup(self):
 		self.build_actions()
 		menubar_model = self.build_menubar()
 		self.set_menubar(menubar_model)
@@ -42,15 +59,19 @@ class Application(Gtk.Application):
 			appmenu_model = self.build_app_menu()
 			self.set_app_menu(appmenu_model)
 
-		self.version = 'beta-2018-11-11' # TODO
-
-		self.connect('open', self.on_open)
-
 	def on_open(self, a, b, c, d):
 		for f in b:
-			win = DrawWindow(f.get_path(), application=self)
-			win.present()
+			self.new_window_with_path(f.get_path())
 		return 0
+
+	def on_local_options(self, app, options):
+		if options.contains("version"):
+			print("Draw %s" % self.version)
+			exit(0)
+		# elif options.contains("new-window"):
+			# self.new_window_with_path(None)
+			# return 0
+		return -1
 
 	def build_about_dialog(self):
 		self.about_dialog = Gtk.AboutDialog.new()
@@ -66,7 +87,6 @@ class Application(Gtk.Application):
 	def build_shortcuts_dialog(self):
 		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Draw/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
-		self.shortcuts_window.present()
 
 	def build_app_menu(self):
 		builder = Gtk.Builder()
@@ -89,7 +109,7 @@ class Application(Gtk.Application):
 		self.add_action_like_a_boss("new_window", self.on_new_window_activate)
 		self.add_action_like_a_boss("settings", self.on_prefs_activate)
 		self.add_action_like_a_boss("shortcuts", self.on_shortcuts_activate)
-		self.add_action_like_a_boss("help", self.on_help_activate)
+		# self.add_action_like_a_boss("help", self.on_help_activate)
 		self.add_action_like_a_boss("about", self.on_about_activate)
 		self.add_action_like_a_boss("quit", self.on_quit)
 
@@ -109,32 +129,40 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("win.redo", ["<Ctrl><Shift>z"])
 
 	def on_about_activate(self, *args):
-		self.build_about_dialog()
+		if self.about_dialog is None:
+			self.build_about_dialog()
 		self.about_dialog.show()
 
 	def on_quit(self, *args):
 		self.quit()
 
 	def on_new_window_activate(self, *args):
-		win = DrawWindow(None, application=self)
+		self.new_window_with_path(None)
+
+	def new_window_with_path(self, file_path):
+		win = DrawWindow(file_path, application=self)
 		win.present()
 
 	def on_shortcuts_activate(self, *args):
-		self.build_shortcuts_dialog()
-		self.shortcuts_dialog.show_all()
+		if self.shortcuts_window is None:
+			self.build_shortcuts_dialog()
+		self.shortcuts_window.present()
 
 	def on_prefs_activate(self, *args):
-		self.prefs_window = DrawPrefsWindow()
+		if self.prefs_window is None:
+			self.prefs_window = DrawPrefsWindow()
 		self.prefs_window.present()
 
-	def on_help_activate(self, *args):
-		Gtk.show_uri(None, "help:draw", Gdk.CURRENT_TIME)
+	# def on_help_activate(self, *args):
+	# 	Gtk.show_uri(None, "help:draw", Gdk.CURRENT_TIME)
 
 	def do_activate(self):
 		win = self.props.active_window
 		if not win:
-			win = DrawWindow(None, application=self)
-		win.present()
+			self.on_startup()
+			self.new_window_with_path(None)
+		else:
+			win.present()
 
 def main(version):
 	app = Application()

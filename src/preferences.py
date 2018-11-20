@@ -24,7 +24,6 @@ SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
 class DrawPrefsWindow(Gtk.Window):
     __gtype_name__ = 'DrawPrefsWindow'
 
-    reset_button = GtkTemplate.Child()
     list_box = GtkTemplate.Child()
 
     color_edit_switch = GtkTemplate.Child()
@@ -62,11 +61,10 @@ class DrawPrefsWindow(Gtk.Window):
 
         self.layout_combobox.append('csd', _("Modern"))
         self.layout_combobox.append('ssd', _("Legacy"))
+        self.layout_combobox.append('csd-menubar', _("Abomination"))
+        # self.layout_combobox.append('ssd-globalmenu', _("Legacy, for global-menu"))
         self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
         self.layout_combobox.connect('changed', self.on_layout_changed)
-
-# TODO :
-# le reset
 
     def on_color_edit_changed(self, w, a):
         self._settings.set_boolean('direct-color-edit', not w.get_active())

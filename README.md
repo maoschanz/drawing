@@ -1,7 +1,7 @@
 # Draw
 ## A drawing application for the GNOME desktop.
 
-This application is a simple image editor using Cairo for basic drawing operations.
+This application is a simple image editor using Cairo for basic drawing operations, and following GNOME interface guidelines.
 
 PNG, JPEG and BMP files should be supported.
 
@@ -9,15 +9,11 @@ PNG, JPEG and BMP files should be supported.
 
 - Pencil
 - Shape
-- Color picker
 - Line & arc
 - Text
-
-#### Beta
-
-- Paint
 - Eraser
 
-#### Alpha
+#### Future tools ?
 
+- Painting
 - Selection

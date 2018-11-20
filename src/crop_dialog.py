@@ -23,7 +23,9 @@ class DrawCropDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawCropDialog'
 
 	def __init__(self, window, o_width, o_height, forbid_growth):
-		super().__init__(modal=True, use_header_bar=True, title=_("Crop the picture"), parent=window)
+		wants_csd = ( window._settings.get_string('decorations') == 'csd' \
+			or window._settings.get_string('decorations') == 'csd-menubar' )
+		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Crop the picture"), parent=window)
 		self._window = window
 		self.original_width = o_width
 		self.original_height = o_height

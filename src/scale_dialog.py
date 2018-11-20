@@ -22,39 +22,38 @@ import cairo
 class DrawScaleDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawScaleDialog'
 
-	def __init__(self, window, o_width, o_height, forbid_growth):
-		super().__init__(modal=True, use_header_bar=True, title=_("Scale the picture"), parent=window)
+	keep_proportions = True
+	proportion = None
+
+	def __init__(self, window):
+		wants_csd = ( window._settings.get_string('decorations') == 'csd' \
+			or window._settings.get_string('decorations') == 'csd-menubar' )
+		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Scale the picture"), parent=window)
 		self._window = window
-		self.original_width = o_width
-		self.original_height = o_height
-		self.forbid_growth = forbid_growth
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Draw/ui/scale_dialog.ui')
 		scale_content_area = builder.get_object('scale_content_area')
 		self.get_content_area().add(scale_content_area)
+		self.proportions_switch = builder.get_object('proportions_switch')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 		self.set_resizable(False)
 
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
-		self._x = 0
-		self._y = 0
-		if self.forbid_growth:
-			self.width_btn.set_range(1, self.original_width)
-			self.height_btn.set_range(1, self.original_height)
+		self.proportions_switch.connect('notify::active', self.on_proportions_changed)
 		self.width_btn.set_value(self._window.pixbuf.get_width())
 		self.height_btn.set_value(self._window.pixbuf.get_height())
 
-	def on_apply(self, *args): # TODO
-#		x = self._x
-#		y = self._y
-#		width = self.get_width()
-#		height = self.get_height()
+		self.proportions_switch.set_active(True)
+		self.on_proportions_changed()
 
-#		self._window.resize_surface(x, y, width, height)
-#		self._window.initial_save()
+	def on_apply(self, *args):
+		w = self.get_width()
+		h = self.get_height()
+		self._window.pixbuf = self._window.pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+		self._window.initial_save()
 		self.destroy()
 
 	def on_cancel(self, *args):
@@ -64,11 +63,20 @@ class DrawScaleDialog(Gtk.Dialog):
 		cairo_context.set_source_surface(self.surface, 0, 0)
 		cairo_context.paint()
 
+	def on_proportions_changed(self, *args):
+		self.keep_proportions = self.proportions_switch.get_active()
+		if self.keep_proportions:
+			self.proportion = self.get_width()/self.get_height()
+
 	def on_width_changed(self, *args):
-		self.draw_overlay()
+		if self.keep_proportions and self.proportion is not None:
+			if self.proportion != self.get_width()/self.get_height():
+				self.height_btn.set_value(self.get_width()/self.proportion)
 
 	def on_height_changed(self, *args):
-		self.draw_overlay()
+		if self.keep_proportions and self.proportion is not None:
+			if self.proportion != self.get_width()/self.get_height():
+				self.width_btn.set_value(self.get_height()*self.proportion)
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()

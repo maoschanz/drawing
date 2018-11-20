@@ -5,6 +5,7 @@
       <item>
         <attribute name="action">app.new_window</attribute>
         <attribute name="label" translatable="yes">New window</attribute>
+            <attribute name="verb-icon">document-new-symbolic</attribute>
       </item>
     </section>
     <section>
@@ -40,7 +41,6 @@
         <item>
             <attribute name="action">app.new_window</attribute>
             <attribute name="label" translatable="yes">New window</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
         </item>
     </section>
     <section>
@@ -190,6 +190,7 @@
         <item>
             <attribute name="label" translatable="yes">Paste</attribute>
             <attribute name="action">win.paste</attribute>
+            <attribute name="verb-icon">edit-paste-symbolic</attribute>
         </item>
         <item>
             <attribute name="label" translatable="yes">Import</attribute>
@@ -253,5 +254,4 @@
   </menu>
 
 </interface>
-
 

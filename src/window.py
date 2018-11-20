@@ -75,7 +75,15 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.init_template()
 		self.build_headerbar()
 		if decorations == 'csd':
-			self.set_titlebar(self.header_bar) # FIXME set the correct title even if SSD TODO
+			self.set_titlebar(self.header_bar)
+		elif decorations == 'csd-menubar':
+			menu_bar = Gtk.MenuBar().new_from_model(self.get_application().build_menubar())
+			self.header_bar.set_custom_title(menu_bar)
+			self.set_titlebar(self.header_bar)
+			self.header_bar.show_all()
+			self.menu_btn.set_visible(False)
+		else:
+			self.set_title('Draw') # FIXME set the correct title
 		self.maximize()
 		
 		self._file_path = file_path
@@ -123,23 +131,23 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_all_win_actions()
 		self.connect_signals()
 
+	def init_background(self, *args):
+		if not self._is_saved:
+			return
 		if self._file_path is not None:
 			self.try_load_file(self._file_path)
 		else:
-			self.init_background()
+			w_context = cairo.Context(self._surface)
+			r = float(self._settings.get_strv('default-rgba')[0])
+			g = float(self._settings.get_strv('default-rgba')[1])
+			b = float(self._settings.get_strv('default-rgba')[2])
+			a = float(self._settings.get_strv('default-rgba')[3])
+			w_context.set_source_rgba(r, g, b, a)
+			w_context.paint()
 
-	def init_background(self):
-		w_context = cairo.Context(self._surface)
-		r = float(self._settings.get_strv('default-rgba')[0])
-		g = float(self._settings.get_strv('default-rgba')[1])
-		b = float(self._settings.get_strv('default-rgba')[2])
-		a = float(self._settings.get_strv('default-rgba')[3])
-		w_context.set_source_rgba(r, g, b, a)
-		w_context.paint()
-
-		# equivalent for self.set_stable_pixbuf()
-		self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
-			self._surface.get_width(), self._surface.get_height())
+			# equivalent for self.set_stable_pixbuf()
+			self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
+				self._surface.get_width(), self._surface.get_height())
 
 	# UI BUILDING
 
@@ -194,6 +202,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
 		# TODO..
 
+
+		self.handlers.append( self.connect('notify::visible', self.init_background) ) # FIXME ??
 
 	def add_action_like_a_boss(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -390,7 +400,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		if (w < pic_w) or (h < pic_h):
 			title_label = _("Sorry, this picture is too big for this app!")
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, parent=self)
-			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+			# dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 			dialog.add_button(_("Edit it anyway"), Gtk.ResponseType.NO)
 			dialog.add_button(_("Scale it"), Gtk.ResponseType.APPLY)
 			dialog.add_button(_("Crop it"), Gtk.ResponseType.YES)
@@ -416,8 +426,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 					crop_dialog.on_apply()
 				else:
 					crop_dialog.on_cancel()
-			else: # Cancel
-				pass
 			dialog.destroy()
 		else:
 			self._file_path = fn
@@ -533,9 +541,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def on_key_on_area(self, area, event):
 		print("key") # TODO les touches sont des constantes Gdk
-
 		self.active_tool().on_key_on_area(area, event, self._surface)
-
 		self.drawing_area.queue_draw()
 
 	def on_motion_on_area(self, area, event):
@@ -577,13 +583,18 @@ class DrawWindow(Gtk.ApplicationWindow):
 	# OTHER UNIMPLEMENTED OPERATIONS TODO
 
 	def action_open_with(self, *args):
-		print("open_with")
+		if self._file_path is None:
+			return
+		# f = Gio.File.new_for_path(self._file_path)
+		# if f.query_exists():
+		# 	Gtk.show_uri(None, f.get_uri(), Gdk.CURRENT_TIME)
 
 	def action_print(self, *args):
 		print("print")
 
 	def action_import_png(self, *args):
 		print("import")
+		# TODO
 
 	def action_paste(self, *args):
 		print("paste")
@@ -666,8 +677,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 			crop_dialog.on_cancel()
 
 	def action_scale(self, *args):
-		scale_dialog = DrawScaleDialog(self, self._surface.get_width(), \
-			self._surface.get_height(), False)
+		scale_dialog = DrawScaleDialog(self)
 		result = scale_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
 			scale_dialog.on_apply()
