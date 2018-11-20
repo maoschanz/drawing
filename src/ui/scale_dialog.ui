@@ -22,20 +22,13 @@
         <property name="orientation">vertical</property>
 
         <child>
-            <object class="GtkLayout" id="preview">
-                <property name="visible">True</property>
-
-            </object>
-        </child>
-
-        <child>
-            <object class="GtkActionBar">
+            <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="expand">False</property>
 
                 <child>
                     <object class="GtkLabel">
-                        <property name="label" translatable="yes">Size:</property>
+                        <property name="label" translatable="yes">Keep proportions</property>
                         <property name="visible">True</property>
                     </object>
                     <packing>
@@ -43,6 +36,31 @@
                     </packing>
                 </child>
 
+                <child>
+                    <object class="GtkSwitch" id="proportions_switch">
+                        <property name="visible">True</property>
+                    </object>
+                    <packing>
+                        <property name="pack-type">end</property>
+                    </packing>
+                </child>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="expand">False</property>
+
+                <child>
+                    <object class="GtkLabel">
+                        <property name="label" translatable="yes">Height</property>
+                        <property name="visible">True</property>
+                    </object>
+                    <packing>
+                        <property name="pack-type">start</property>
+                    </packing>
+                </child>
                 <child>
                     <object class="GtkSpinButton" id="height_btn">
                         <property name="visible">True</property>
@@ -53,13 +71,21 @@
                         <property name="pack-type">end</property>
                     </packing>
                 </child>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="expand">False</property>
+
                 <child>
                     <object class="GtkLabel">
+                        <property name="label" translatable="yes">Width</property>
                         <property name="visible">True</property>
-                        <property name="label">×</property>
                     </object>
                     <packing>
-                        <property name="pack-type">end</property>
+                        <property name="pack-type">start</property>
                     </packing>
                 </child>
                 <child>
@@ -77,8 +103,5 @@
 
     </object>
 </interface>
-
-
-
 
 

@@ -47,7 +47,6 @@ class ToolPencil(ToolTemplate):
 
     def on_option_changed(self, b):
         self.selected_shape_label = b.get_label()
-        print(self.selected_shape_label)
         if self.selected_shape_label == _("Thin"):
             self.selected_shape_id = cairo.LineCap.BUTT
         elif self.selected_shape_label == _("Round"):
@@ -78,7 +77,6 @@ class ToolPencil(ToolTemplate):
         self.w_context.stroke()
 
     def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-        print("press")
         self.window_can_take_back_control = False
         self.x_press = event.x
         self.y_press = event.y
@@ -90,8 +88,6 @@ class ToolPencil(ToolTemplate):
             self.w_context.set_source_rgba(right_color.red, right_color.green, right_color.blue, right_color.alpha)
 
     def on_release_on_area(self, area, event, surface):
-        print("release")
-
         self.x_press = 0.0
         self.y_press = 0.0
         self.past_x = -1

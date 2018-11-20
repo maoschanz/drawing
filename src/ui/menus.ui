@@ -55,14 +55,6 @@
     </section>
     <section>
         <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Import</attribute>
-            <attribute name="action">win.import</attribute>
-        </item>
-        <item>
             <attribute name="label" translatable="yes">Crop</attribute>
             <attribute name="action">win.crop</attribute>
         </item>
@@ -230,6 +222,12 @@
 
     <submenu>
       <attribute name="label" translatable="yes">Tools</attribute>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Not implemented yet</attribute>
+            <attribute name="action">app.not_implemented</attribute>
+        </item>
+      </section>
     </submenu>
 
     <submenu>
