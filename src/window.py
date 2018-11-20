@@ -23,7 +23,6 @@ from gettext import gettext as _
 from .gi_composites import GtkTemplate
 
 from .pencil import ToolPencil
-from .crop import ToolCrop
 from .select import ToolSelect
 from .line import ToolLine
 from .paint import ToolPaint
@@ -36,20 +35,13 @@ DEV_VERSION = False
 
 from .properties import DrawPropertiesDialog
 from .crop_dialog import DrawCropDialog
+from .scale_dialog import DrawScaleDialog
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
 
 @GtkTemplate(ui='/com/github/maoschanz/Draw/ui/window.ui')
 class DrawWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawWindow'
-
-	# header_bar = GtkTemplate.Child()
-	# open_btn = GtkTemplate.Child()
-	# save_btn = GtkTemplate.Child()
-	# undo_btn = GtkTemplate.Child()
-	# redo_btn = GtkTemplate.Child()
-	# save_as_btn = GtkTemplate.Child()
-	# menu_btn = GtkTemplate.Child()
 
 	tools_panel = GtkTemplate.Child()
 	tools = {}
@@ -83,7 +75,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.init_template()
 		self.build_headerbar()
 		if decorations == 'csd':
-			self.set_titlebar(self.header_bar)
+			self.set_titlebar(self.header_bar) # FIXME set the correct title even if SSD TODO
 		self.maximize()
 		
 		self._file_path = file_path
@@ -116,7 +108,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
-		self.tools['crop'] = ToolCrop(self)
 		self.build_tool_rows()
 		self.tools_panel.show_all()
 
@@ -129,7 +120,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.update_size_spinbtn_value(None, None, 10)
 
 		self.build_menus()
-		self.add_actions()
+		self.add_all_win_actions()
 		self.connect_signals()
 
 		if self._file_path is not None:
@@ -203,64 +194,34 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
 		# TODO..
 
-	def add_actions(self):
-		action = Gio.SimpleAction.new("import", None)
-		action.connect("activate", self.action_import_png)
+
+	def add_action_like_a_boss(self, action_name, callback):
+		action = Gio.SimpleAction.new(action_name, None)
+		action.connect("activate", callback)
 		self.add_action(action)
 
-		action = Gio.SimpleAction.new("paste", None)
-		action.connect("activate", self.action_paste)
-		self.add_action(action)
+	def add_all_win_actions(self):
+		# self.add_action_like_a_boss("import", self.action_import_png)
+		# self.add_action_like_a_boss("paste", self.action_paste)
+		# self.add_action_like_a_boss("select_all", self.action_select_all)
+		# self.add_action_like_a_boss("unselect", self.action_unselect)
 
-		action = Gio.SimpleAction.new("select_all", None)
-		action.connect("activate", self.action_select_all)
-		self.add_action(action)
-		action = Gio.SimpleAction.new("unselect", None)
-		action.connect("activate", self.action_unselect)
-		self.add_action(action)
+		self.add_action_like_a_boss("open_with", self.action_open_with)
+		self.add_action_like_a_boss("print", self.action_print)
+		self.add_action_like_a_boss("crop", self.action_crop)
+		self.add_action_like_a_boss("scale", self.action_scale)
+		self.add_action_like_a_boss("properties", self.edit_properties)
 
-		action = Gio.SimpleAction.new("open_with", None)
-		action.connect("activate", self.action_open_with)
-		self.add_action(action)
+		self.add_action_like_a_boss("open", self.action_open)
+		self.add_action_like_a_boss("close", self.on_close)
+		self.add_action_like_a_boss("save", self.action_save)
+		self.add_action_like_a_boss("undo", self.action_undo)
+		self.add_action_like_a_boss("redo", self.action_redo)
 
-		action = Gio.SimpleAction.new("print", None)
-		action.connect("activate", self.action_print)
-		self.add_action(action)
-
-		action = Gio.SimpleAction.new("properties", None)
-		action.connect("activate", self.edit_properties)
-		self.add_action(action)
-
-		action = Gio.SimpleAction.new("exp_png", None)
-		action.connect("activate", self.export_as_png)
-		self.add_action(action)
-		action = Gio.SimpleAction.new("exp_jpeg", None)
-		action.connect("activate", self.export_as_jpeg)
-		self.add_action(action)
-		action = Gio.SimpleAction.new("exp_bmp", None)
-		action.connect("activate", self.export_as_bmp)
-		self.add_action(action)
-
-		action = Gio.SimpleAction.new("open", None)
-		action.connect("activate", self.action_open)
-		self.add_action(action)
-		action = Gio.SimpleAction.new("close", None)
-		action.connect("activate", self.on_close)
-		self.add_action(action)
-
-		action = Gio.SimpleAction.new("save", None)
-		action.connect("activate", self.action_save)
-		self.add_action(action)
-		action = Gio.SimpleAction.new("save_as", None)
-		action.connect("activate", self.action_save_as)
-		self.add_action(action)
-
-		action = Gio.SimpleAction.new("undo", None)
-		action.connect("activate", self.action_undo)
-		self.add_action(action)
-		action = Gio.SimpleAction.new("redo", None)
-		action.connect("activate", self.action_redo)
-		self.add_action(action)
+		self.add_action_like_a_boss("save_as", self.action_save_as)
+		self.add_action_like_a_boss("exp_png", self.export_as_png)
+		self.add_action_like_a_boss("exp_jpeg", self.export_as_jpeg)
+		self.add_action_like_a_boss("exp_bmp", self.export_as_bmp)
 
 	def update_tools_visibility(self, listbox, gdkrectangle):
 		self.full_panel_width = max(self.full_panel_width, listbox.get_preferred_width()[0])
@@ -441,7 +402,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self._file_path = fn
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
 				self.initial_save()
-			elif result == Gtk.ResponseType.APPLY: # Resize it
+			elif result == Gtk.ResponseType.APPLY: # Scale it
 				self._file_path = fn
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
 				self.initial_save()
@@ -694,3 +655,21 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 		if x != 0 or y != 0:
 			self.resize_surface(0, 0, width, height)
+
+	def action_crop(self, *args):
+		crop_dialog = DrawCropDialog(self, self._surface.get_width(), \
+			self._surface.get_height(), False)
+		result = crop_dialog.run()
+		if result == Gtk.ResponseType.APPLY:
+			crop_dialog.on_apply()
+		else:
+			crop_dialog.on_cancel()
+
+	def action_scale(self, *args):
+		scale_dialog = DrawScaleDialog(self, self._surface.get_width(), \
+			self._surface.get_height(), False)
+		result = scale_dialog.run()
+		if result == Gtk.ResponseType.APPLY:
+			scale_dialog.on_apply()
+		else:
+			scale_dialog.on_cancel()

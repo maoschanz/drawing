@@ -52,21 +52,31 @@
             <attribute name="label" translatable="yes">Open with…</attribute>
             <attribute name="action">win.open_with</attribute>
         </item>
-        <!-- <item> -->
-        <!--     <attribute name="label" translatable="yes">Paste</attribute> -->
-        <!--     <attribute name="action">win.paste</attribute> -->
-        <!-- </item> -->
-        <!-- <item> -->
-        <!--     <attribute name="label" translatable="yes">Import</attribute> -->
-        <!--     <attribute name="action">win.import</attribute> -->
-        <!-- </item> -->
+    </section>
+    <section>
+        <item>
+            <attribute name="label" translatable="yes">Paste</attribute>
+            <attribute name="action">win.paste</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Import</attribute>
+            <attribute name="action">win.import</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Crop</attribute>
+            <attribute name="action">win.crop</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Scale</attribute>
+            <attribute name="action">win.scale</attribute>
+        </item>
         <item>
             <attribute name="label" translatable="yes">Properties</attribute>
             <attribute name="action">win.properties</attribute>
         </item>
     </section>
     <section>
-        <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+        <attribute name="display-hint">horizontal-buttons</attribute>
         <item>
             <attribute name="label" translatable="yes">Preferences</attribute>
             <attribute name="action">app.settings</attribute>
@@ -186,6 +196,24 @@
       </section>
       <section>
         <item>
+            <attribute name="label" translatable="yes">Paste</attribute>
+            <attribute name="action">win.paste</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Import</attribute>
+            <attribute name="action">win.import</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Crop</attribute>
+            <attribute name="action">win.crop</attribute>
+        </item>
+        <item>
+            <attribute name="label" translatable="yes">Scale</attribute>
+            <attribute name="action">win.scale</attribute>
+        </item>
+        <item>
             <attribute name="label" translatable="yes">Properties</attribute>
             <attribute name="action">win.properties</attribute>
             <attribute name="verb-icon">document-properties-symbolic</attribute>
@@ -198,6 +226,10 @@
             <attribute name="verb-icon">preferences-system-symbolic</attribute>
         </item>
       </section>
+    </submenu>
+
+    <submenu>
+      <attribute name="label" translatable="yes">Tools</attribute>
     </submenu>
 
     <submenu>
@@ -223,4 +255,5 @@
   </menu>
 
 </interface>
+
 

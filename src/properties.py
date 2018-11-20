@@ -67,15 +67,9 @@ class DrawPropertiesDialog(Gtk.Dialog):
 		self.show_all()
 
 	def on_scale(self, b):
-		print('todo') # TODO
+		self._window.action_scale()
+	# TODO : update labels where size is written
 
 	def on_crop(self, b):
-		crop_dialog = DrawCropDialog(self._window, self._window._surface.get_width(), \
-			self._window._surface.get_height(), False)
-		result2 = crop_dialog.run()
-		if result2 == Gtk.ResponseType.APPLY:
-			crop_dialog.on_apply()
-		else:
-			crop_dialog.on_cancel()
-
-		# TODO : update labels where size is written
+		self._window.action_crop()
+	# TODO : update labels where size is written

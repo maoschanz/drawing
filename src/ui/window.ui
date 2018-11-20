@@ -12,105 +12,6 @@
   <template class="DrawWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
-    <!--child type="titlebar">
-      <object class="GtkHeaderBar" id="header_bar">
-        <property name="visible">True</property>
-        <property name="show-close-button">True</property>
-        <property name="title" translatable="yes">Draw</property>
-
-        <child>
-          <object class="GtkButton" id="open_btn">
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">Open</property>
-          </object>
-          <packing>
-            <property name="pack-type">GTK_PACK_START</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-          <property name="visible">True</property>
-            <child>
-              <object class="GtkButton" id="undo_btn">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="tooltip_text" translatable="yes">Undo</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">edit-undo-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="redo_btn">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="tooltip_text" translatable="yes">Redo</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">edit-redo-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkMenuButton" id="menu_btn">
-            <property name="visible">True</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <style>
-              <class name="linked"/>
-            </style>
-            <child>
-              <object class="GtkButton" id="save_btn">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Save</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="save_as_btn">
-                <property name="visible">True</property>
-                <property name="direction">down</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">document-save-as-symbolic</property>
-                    <property name="visible">True</property>
-                    <property name="tooltip_text" translatable="yes">Save as…</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
-        </child>
-
-      </object>
-    </child-->
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
@@ -286,6 +187,7 @@
     </child>
   </template>
 </interface>
+
 
 
 

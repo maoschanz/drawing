@@ -80,30 +80,18 @@ class Application(Gtk.Application):
 		menubar = builder.get_object("menu-bar")
 		return menubar
 
+	def add_action_like_a_boss(self, action_name, callback):
+		action = Gio.SimpleAction.new(action_name, None)
+		action.connect("activate", callback)
+		self.add_action(action)
+
 	def build_actions(self):
-		new_window_action = Gio.SimpleAction.new("new_window", None)
-		new_window_action.connect("activate", self.on_new_window_activate)
-		self.add_action(new_window_action)
-
-		prefs_action = Gio.SimpleAction.new("settings", None)
-		prefs_action.connect("activate", self.on_prefs_activate)
-		self.add_action(prefs_action)
-
-		shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
-		shortcuts_action.connect("activate", self.on_shortcuts_activate)
-		self.add_action(shortcuts_action)
-
-		help_action = Gio.SimpleAction.new("help", None)
-		help_action.connect("activate", self.on_help_activate)
-		self.add_action(help_action)
-
-		about_action = Gio.SimpleAction.new("about", None)
-		about_action.connect("activate", self.on_about_activate)
-		self.add_action(about_action)
-
-		quit_action = Gio.SimpleAction.new("quit", None)
-		quit_action.connect("activate", self.on_quit)
-		self.add_action(quit_action)
+		self.add_action_like_a_boss("new_window", self.on_new_window_activate)
+		self.add_action_like_a_boss("settings", self.on_prefs_activate)
+		self.add_action_like_a_boss("shortcuts", self.on_shortcuts_activate)
+		self.add_action_like_a_boss("help", self.on_help_activate)
+		self.add_action_like_a_boss("about", self.on_about_activate)
+		self.add_action_like_a_boss("quit", self.on_quit)
 
 		self.set_accels_for_action("app.new_window", ["<Ctrl>n"])
 		self.set_accels_for_action("app.quit", ["<Ctrl>q"])
