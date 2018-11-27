@@ -31,11 +31,11 @@ class Application(Gtk.Application):
 	prefs_window = None
 
 	def __init__(self):
-		super().__init__(application_id='com.github.maoschanz.Draw',
+		super().__init__(application_id='com.github.maoschanz.Drawing',
 						flags=Gio.ApplicationFlags.HANDLES_OPEN)
 
-		GLib.set_application_name('Draw')
-		GLib.set_prgname('com.github.maoschanz.Draw')
+		GLib.set_application_name('Drawing')
+		GLib.set_prgname('com.github.maoschanz.Drawing')
 		self.register(None) # ?
 
 		self.version = 'beta-2018-11-21' # TODO
@@ -43,8 +43,6 @@ class Application(Gtk.Application):
 		if not self.get_is_remote():
 			self.on_startup()
 
-		# self.add_main_option("new-window", b"n", GLib.OptionFlags.NONE,
-		# 					GLib.OptionArg.NONE, "New window", None)
 		self.add_main_option("version", b"v", GLib.OptionFlags.NONE,
 							GLib.OptionArg.NONE, "Version", None)
 
@@ -55,6 +53,7 @@ class Application(Gtk.Application):
 		self.build_actions()
 		menubar_model = self.build_menubar()
 		self.set_menubar(menubar_model)
+		self.has_tools_in_menubar = False
 		if self.prefers_app_menu():
 			appmenu_model = self.build_app_menu()
 			self.set_app_menu(appmenu_model)
@@ -66,11 +65,8 @@ class Application(Gtk.Application):
 
 	def on_local_options(self, app, options):
 		if options.contains("version"):
-			print("Draw %s" % self.version)
+			print("Drawing %s" % self.version)
 			exit(0)
-		# elif options.contains("new-window"):
-			# self.new_window_with_path(None)
-			# return 0
 		return -1
 
 	def build_about_dialog(self):
@@ -79,26 +75,32 @@ class Application(Gtk.Application):
 		self.about_dialog.set_authors(['Romain F. T.'])
 		self.about_dialog.set_copyright('© 2018 Romain F. T.')
 		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
-		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Draw')
+		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
 		self.about_dialog.set_version(str(self.version))
-		self.about_dialog.set_website('github.com/maoschanz/draw')
+		self.about_dialog.set_website('github.com/maoschanz/drawing')
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))
 
 	def build_shortcuts_dialog(self):
-		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Draw/ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 
 	def build_app_menu(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
 		appmenu = builder.get_object("app-menu")
 		return appmenu
 
 	def build_menubar(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
 		menubar = builder.get_object("menu-bar")
 		return menubar
+
+	def add_tools_to_menubar(self, gio_menu):
+		if self.has_tools_in_menubar:
+			return
+		self.get_menubar().insert_submenu(2, _("Tools"), gio_menu)
+		self.has_tools_in_menubar = True
 
 	def add_action_like_a_boss(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -109,11 +111,12 @@ class Application(Gtk.Application):
 		self.add_action_like_a_boss("new_window", self.on_new_window_activate)
 		self.add_action_like_a_boss("settings", self.on_prefs_activate)
 		self.add_action_like_a_boss("shortcuts", self.on_shortcuts_activate)
-		# self.add_action_like_a_boss("help", self.on_help_activate)
+		self.add_action_like_a_boss("help", self.on_help_activate)
 		self.add_action_like_a_boss("about", self.on_about_activate)
 		self.add_action_like_a_boss("quit", self.on_quit)
 
 		self.set_accels_for_action("app.new_window", ["<Ctrl>n"])
+		self.set_accels_for_action("app.help", ["F1"])
 		self.set_accels_for_action("app.quit", ["<Ctrl>q"])
 
 		self.set_accels_for_action("win.paste", ["<Ctrl>v"])
@@ -131,6 +134,9 @@ class Application(Gtk.Application):
 	def on_about_activate(self, *args):
 		if self.about_dialog is None:
 			self.build_about_dialog()
+		else:
+			self.about_dialog.destroy()
+			self.build_about_dialog()
 		self.about_dialog.show()
 
 	def on_quit(self, *args):
@@ -146,15 +152,21 @@ class Application(Gtk.Application):
 	def on_shortcuts_activate(self, *args):
 		if self.shortcuts_window is None:
 			self.build_shortcuts_dialog()
+		else:
+			self.shortcuts_window.destroy()
+			self.build_shortcuts_dialog()
 		self.shortcuts_window.present()
 
 	def on_prefs_activate(self, *args):
 		if self.prefs_window is None:
 			self.prefs_window = DrawPrefsWindow()
+		else:
+			self.prefs_window.destroy()
+			self.prefs_window = DrawPrefsWindow()
 		self.prefs_window.present()
 
-	# def on_help_activate(self, *args):
-	# 	Gtk.show_uri(None, "help:draw", Gdk.CURRENT_TIME)
+	def on_help_activate(self, *args):
+		Gtk.show_uri(None, "help:drawing", Gdk.CURRENT_TIME)
 
 	def do_activate(self):
 		win = self.props.active_window

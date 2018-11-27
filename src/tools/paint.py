@@ -9,16 +9,12 @@ from .tools import get_rgb_for_xy
 class ToolPaint(ToolTemplate):
     __gtype_name__ = 'ToolPaint'
 
-    id = 'paint'
-    icon_name = 'edit-clear-all-symbolic'
-    label = _("Paint")
-
     new_color = None
     old_color = None
     surface = None
 
     def __init__(self, window, **kwargs):
-        super().__init__(window)
+        super().__init__('paint', _("Paint"), 'edit-clear-all-symbolic', window)
 
     def give_back_control(self):
         pass

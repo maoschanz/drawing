@@ -8,14 +8,11 @@ from .tools import ToolTemplate
 class ToolText(ToolTemplate):
     __gtype_name__ = 'ToolText'
 
-    id = 'text'
-    icon_name = 'font-x-generic-symbolic'
-    label = _("Text")
     use_options = True
     use_size = True
 
     def __init__(self, window, **kwargs):
-        super().__init__(window)
+        super().__init__('text', _("Text"), 'font-x-generic-symbolic', window)
 
         self.primary_color = None
         self.secondary_color = None

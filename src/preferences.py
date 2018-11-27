@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .gi_composites import GtkTemplate
 
-SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
+SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 
-@GtkTemplate(ui='/com/github/maoschanz/Draw/ui/preferences.ui')
+@GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/preferences.ui')
 class DrawPrefsWindow(Gtk.Window):
     __gtype_name__ = 'DrawPrefsWindow'
 

@@ -1,9 +1,9 @@
 {
-    "app-id" : "com.github.maoschanz.Draw",
+    "app-id" : "com.github.maoschanz.Drawing",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "3.30",
     "sdk" : "org.gnome.Sdk",
-    "command" : "draw",
+    "command" : "drawing",
     "finish-args" : [
         "--share=ipc",
         "--socket=x11",
@@ -14,22 +14,14 @@
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
-    "build-options" : {
-        "cflags" : "-O2 -g",
-        "cxxflags" : "-O2 -g",
-        "env" : {
-            "V" : "1"
-        }
-    },
     "modules" : [
         {
-            "name" : "draw",
+            "name" : "drawing",
             "buildsystem" : "meson",
-            "builddir" : true,
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/maoschanz/draw"
+                    "url" : "https://github.com/maoschanz/drawing"
                 }
             ]
         }

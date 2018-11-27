@@ -9,12 +9,8 @@ from .tools import get_rgb_for_xy
 class ToolPicker(ToolTemplate):
     __gtype_name__ = 'ToolPicker'
 
-    id = 'picker'
-    icon_name = 'color-select-symbolic'
-    label = _("Picker")
-
     def __init__(self, window, **kwargs):
-        super().__init__(window)
+        super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
 
     def give_back_control(self):
         pass

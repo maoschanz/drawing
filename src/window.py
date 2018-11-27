@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
 from gettext import gettext as _
@@ -37,9 +37,9 @@ from .properties import DrawPropertiesDialog
 from .crop_dialog import DrawCropDialog
 from .scale_dialog import DrawScaleDialog
 
-SETTINGS_SCHEMA = 'com.github.maoschanz.Draw'
+SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 
-@GtkTemplate(ui='/com/github/maoschanz/Draw/ui/window.ui')
+@GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawWindow'
 
@@ -77,13 +77,13 @@ class DrawWindow(Gtk.ApplicationWindow):
 		if decorations == 'csd':
 			self.set_titlebar(self.header_bar)
 		elif decorations == 'csd-menubar':
-			menu_bar = Gtk.MenuBar().new_from_model(self.get_application().build_menubar())
+			menu_bar = Gtk.MenuBar().new_from_model(self.get_application().get_menubar())
 			self.header_bar.set_custom_title(menu_bar)
 			self.set_titlebar(self.header_bar)
 			self.header_bar.show_all()
 			self.menu_btn.set_visible(False)
 		else:
-			self.set_title('Draw') # FIXME set the correct title
+			self.set_title('Drawing') # FIXME set the correct title
 		self.maximize()
 		
 		self._file_path = file_path
@@ -107,9 +107,9 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.is_clicked = False
 		self.window_has_control = True
 
+		self.tools['pencil'] = ToolPencil(self)
 		if DEV_VERSION:
 			self.tools['select'] = ToolSelect(self)
-		self.tools['pencil'] = ToolPencil(self)
 		self.tools['eraser'] = ToolEraser(self)
 		self.tools['text'] = ToolText(self)
 		self.tools['picker'] = ToolPicker(self)
@@ -119,8 +119,14 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.build_tool_rows()
 		self.tools_panel.show_all()
 
-		self.tools_buttons['pencil'].set_active(True)
-		self.former_tool = self.tools['pencil']
+		if not kwargs['application'].has_tools_in_menubar:
+			tools_menu = Gio.Menu()
+			for tool_id in self.tools:
+				self.tools[tool_id].add_item_to_menu(tools_menu)
+			kwargs['application'].add_tools_to_menubar(tools_menu)
+
+		self.active_tool_id = 'pencil'
+		self.former_tool_id = 'pencil'
 
 		self.options_popover = None
 		self.build_options_popover()
@@ -170,22 +176,11 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 
-		self.handlers.append( self.open_btn.connect('clicked', self.action_open) )
-		self.handlers.append( self.save_btn.connect('clicked', self.action_save) )
-		self.handlers.append( self.undo_btn.connect('clicked', self.on_undo) )
-		self.handlers.append( self.redo_btn.connect('clicked', self.on_redo) )
-
-		self.handlers.append( self.menu_btn.connect('toggled', self.on_menu_open) )
-		self.handlers.append( self.menu_popover.connect('closed', self.on_menu_popover_closed, self.menu_btn) )
-
 		self.handlers.append( self.color_btn_exc.connect('clicked', self.on_exchange_color) )
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
 
 		self.handlers.append( self.options_btn.connect('toggled', self.on_options_open) )
 		self.handlers.append( self.options_popover.connect('closed', self.on_options_popover_closed, self.options_btn) )
-
-		for id_name in self.tools:
-			self.handlers.append( self.tools_buttons[id_name].connect('toggled', self.on_tool_change) )
 
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
 		self.handlers.append( self.drawing_area.connect('configure-event', self.on_configure) )
@@ -201,7 +196,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		# Settings
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
 		# TODO..
-
 
 		self.handlers.append( self.connect('notify::visible', self.init_background) ) # FIXME ??
 
@@ -227,11 +221,17 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_action_like_a_boss("save", self.action_save)
 		self.add_action_like_a_boss("undo", self.action_undo)
 		self.add_action_like_a_boss("redo", self.action_redo)
+		self.update_history_sensitivity()
 
 		self.add_action_like_a_boss("save_as", self.action_save_as)
 		self.add_action_like_a_boss("exp_png", self.export_as_png)
 		self.add_action_like_a_boss("exp_jpeg", self.export_as_jpeg)
 		self.add_action_like_a_boss("exp_bmp", self.export_as_bmp)
+
+		action_active_tool = Gio.SimpleAction().new_stateful('active_tool', \
+			GLib.VariantType.new('s'), GLib.Variant.new_string('pencil'))
+		action_active_tool.connect('change-state', self.on_change_active_tool)
+		self.add_action(action_active_tool)
 
 	def update_tools_visibility(self, listbox, gdkrectangle):
 		self.full_panel_width = max(self.full_panel_width, listbox.get_preferred_width()[0])
@@ -257,9 +257,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.options_short_box.set_visible(False)
 			self.options_long_box.set_visible(True)
 
-	def on_menu_open(self, b):
-		self.menu_popover.show_all()
-
 	def on_options_open(self, b):
 		self.options_popover.show_all()
 		b.set_active(False) # illogique mais bon
@@ -267,7 +264,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def build_menus(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/ui/menus.ui")
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
 		primary_menu = builder.get_object("window-menu")
 		self.menu_popover = Gtk.Popover.new_from_model(self.menu_btn, primary_menu)
 		self.menu_btn.set_popover(self.menu_popover)
@@ -277,7 +274,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def build_headerbar(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/ui/headerbar.ui")
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
 		self.open_btn = builder.get_object("open_btn")
 		self.undo_btn = builder.get_object("undo_btn")
@@ -285,9 +282,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.save_as_btn = builder.get_object("save_as_btn")
 		self.save_btn = builder.get_object("save_btn")
 		self.menu_btn = builder.get_object("menu_btn")
-
-	def on_menu_popover_closed(self, popover, button):
-		button.set_active(False)
 
 	def on_exchange_color(self, b):
 		left_c = self.color_btn_l.get_rgba()
@@ -331,19 +325,27 @@ class DrawWindow(Gtk.ApplicationWindow):
 		else:
 			self.options_label.set_label(_("No options"))
 
-	def on_tool_change(self, *args):
-		self.former_tool.give_back_control()
+	def on_change_active_tool(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		if self.tools[state_as_string].row.get_active():
+			args[0].set_state(GLib.Variant.new_string(state_as_string))
+		else:
+			self.tools[state_as_string].row.set_active(True)
+		self.former_tool().give_back_control()
 		self.drawing_area.queue_draw()
-		self.former_tool = self.active_tool()
+		self.former_tool_id = self.active_tool_id
+		self.active_tool_id = state_as_string
 		self.build_options_popover()
 		self.update_option_label()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 
 	def active_tool(self):
-		for tool_id in self.tools:
-			if self.tools_buttons[tool_id].get_active():
-				return self.tools[tool_id]
-		return self.tools['pencil']
+		return self.tools[self.active_tool_id]
+
+	def former_tool(self):
+		return self.tools[self.former_tool_id]
 
 	# FILE MANAGEMENT
 
@@ -501,14 +503,14 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def update_history_sensitivity(self):
 		if len(self.undo_history) == 0:
-			self.undo_btn.set_sensitive(False)
+			self.lookup_action('undo').set_enabled(False)
 		else:
-			self.undo_btn.set_sensitive(True)
+			self.lookup_action('undo').set_enabled(True)
 
 		if len(self.redo_history) == 0:
-			self.redo_btn.set_sensitive(False)
+			self.lookup_action('redo').set_enabled(False)
 		else:
-			self.redo_btn.set_sensitive(True)
+			self.lookup_action('redo').set_enabled(True)
 
 	def use_stable_pixbuf(self):
 		# on restaure depuis le pixbuf la surface enregistrée précédemment
@@ -540,7 +542,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		print("ceci est appelé quand ça dimensionne la zone")
 
 	def on_key_on_area(self, area, event):
-		print("key") # TODO les touches sont des constantes Gdk
+		print("key") # TODO les touches sont des constantes Gdk https://github.com/GNOME/gtk/blob/master/gdk/keynames.txt
 		self.active_tool().on_key_on_area(area, event, self._surface)
 		self.drawing_area.queue_draw()
 

@@ -1,16 +1,16 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 #gnome = import('gnome')
 
-#gnome.compile_resources('draw',
-#  'draw.gresource.xml',
+#gnome.compile_resources('drawing',
+#  'drawing.gresource.xml',
 #  gresource_bundle: true,
 #  install: true,
 #  install_dir: pkgdatadir,
 #)
 
 desktop_file = i18n.merge_file(
-  input: 'com.github.maoschanz.Draw.desktop.in',
-  output: 'com.github.maoschanz.Draw.desktop',
+  input: 'com.github.maoschanz.Drawing.desktop.in',
+  output: 'com.github.maoschanz.Drawing.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -25,8 +25,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.github.maoschanz.Draw.appdata.xml.in',
-  output: 'com.github.maoschanz.Draw.appdata.xml',
+  input: 'com.github.maoschanz.Drawing.appdata.xml.in',
+  output: 'com.github.maoschanz.Drawing.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -39,7 +39,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('com.github.maoschanz.Draw.gschema.xml',
+install_data('com.github.maoschanz.Drawing.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

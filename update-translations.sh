@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Generating .pot file..."
-xgettext --from-code=UTF-8 --files-from=po/POTFILES --output=po/draw.pot
+xgettext --from-code=UTF-8 --files-from=po/POTFILES --output=po/drawing.pot
 #cd build
 #ninja marker-pot
 #cd ..
@@ -20,7 +20,7 @@ if [ $1 = "--all" ]; then
 	for fichier in $liste
 	do
 		echo "Updating translation for: $fichier"
-		msgmerge $fichier ./po/draw.pot > $fichier.temp.po
+		msgmerge $fichier ./po/drawing.pot > $fichier.temp.po
 		mv $fichier.temp.po $fichier
 	done
 
@@ -28,7 +28,7 @@ else
 	for fichier in $@
 	do
 		echo "Updating translation for: $fichier"
-		msgmerge ./po/$fichier.po ./po/draw.pot > ./po/$fichier.temp.po
+		msgmerge ./po/$fichier.po ./po/drawing.pot > ./po/$fichier.temp.po
 		mv ./po/$fichier.temp.po ./po/$fichier.po
 	done
 fi

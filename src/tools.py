@@ -1,6 +1,6 @@
 # methods that i don't want to implement in each tool
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Gio
 
 def get_rgb_for_xy(surface, x, y):
 	# Guard clause: we can't perform color picking outside of the surface
@@ -24,9 +24,15 @@ class ToolTemplate():
 	use_size = False
 	set_clip = False
 
-	def __init__(self, window, **kwargs):
+	def __init__(self, tool_id, label, icon_name, window, **kwargs):
+		self.id = tool_id
+		self.label = label
+		self.icon_name = icon_name
 		self.build_row()
 		self.window = window
+
+	def add_item_to_menu(self, tools_menu):
+		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def give_back_control(self):
 		pass
@@ -45,10 +51,15 @@ class ToolTemplate():
 
 	def build_row(self):
 		self.row = Gtk.RadioButton(draw_indicator=False)
-		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, margin=2, spacing=8)
+		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
-		box.add(image)
 		self.label_widget = Gtk.Label(label=self.label)
-		box.set_tooltip_text(self.label)
+		box = Gtk.Box(
+			orientation=Gtk.Orientation.HORIZONTAL,
+			margin=2,
+			spacing=8,
+			tooltip_text=self.label
+		)
+		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)

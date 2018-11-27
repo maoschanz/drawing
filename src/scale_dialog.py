@@ -32,7 +32,7 @@ class DrawScaleDialog(Gtk.Dialog):
 		self._window = window
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Draw/ui/scale_dialog.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/scale_dialog.ui')
 		scale_content_area = builder.get_object('scale_content_area')
 		self.get_content_area().add(scale_content_area)
 		self.proportions_switch = builder.get_object('proportions_switch')

@@ -8,9 +8,6 @@ from .tools import ToolTemplate
 class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
 
-	id = 'line'
-	icon_name = 'list-remove-symbolic'
-	label = _("Line")
 	use_options = True
 	window_can_take_back_control = True
 	use_size = True
@@ -19,11 +16,11 @@ class ToolLine(ToolTemplate):
 	end_btns = {}
 
 	def __init__(self, window, **kwargs):
-		super().__init__(window)
+		super().__init__('line', _("Line"), 'list-remove-symbolic', window)
 
 		# Building the widget containing options
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/tools/ui/line.ui")
+		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/line.ui")
 		self.options_box = builder.get_object("options_box")
 
 		self.type_btns['line'] = builder.get_object("type_btn_1")

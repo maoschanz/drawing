@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<interface domain="draw">
+<interface domain="drawing">
   <menu id="app-menu">
     <section>
       <item>
         <attribute name="action">app.new_window</attribute>
         <attribute name="label" translatable="yes">New window</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
       </item>
     </section>
     <section>
@@ -86,7 +85,7 @@
           <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">About Draw</attribute>
+            <attribute name="label" translatable="yes">About Drawing</attribute>
             <attribute name="action">app.about</attribute>
             <attribute name="verb-icon">help-about-symbolic</attribute>
         </item>
@@ -221,15 +220,9 @@
       </section>
     </submenu>
 
-    <submenu>
-      <attribute name="label" translatable="yes">Tools</attribute>
-      <section>
-        <item>
-            <attribute name="label" translatable="yes">Not implemented yet</attribute>
-            <attribute name="action">app.not_implemented</attribute>
-        </item>
-      </section>
-    </submenu>
+    <!-- <submenu> -->
+    <!--   <attribute name="label" translatable="yes">Tools</attribute> -->
+    <!-- </submenu> -->
 
     <submenu>
       <attribute name="label" translatable="yes">Help</attribute>
@@ -245,7 +238,7 @@
             <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">About Draw</attribute>
+            <attribute name="label" translatable="yes">About Drawing</attribute>
             <attribute name="action">app.about</attribute>
             <attribute name="verb-icon">help-about-symbolic</attribute>
         </item>
@@ -254,4 +247,5 @@
   </menu>
 
 </interface>
+
 

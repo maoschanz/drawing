@@ -29,7 +29,7 @@ class DrawPropertiesDialog(Gtk.Dialog):
 		# self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		# self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Draw/ui/properties_dialog.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties_dialog.ui')
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 

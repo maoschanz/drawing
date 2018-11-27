@@ -32,7 +32,7 @@ class DrawCropDialog(Gtk.Dialog):
 		self.forbid_growth = forbid_growth
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Draw/ui/crop_dialog.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/crop_dialog.ui')
 		crop_content_area = builder.get_object('crop_content_area')
 		self.get_content_area().add(crop_content_area)
 		self.preview = builder.get_object('preview')

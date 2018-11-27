@@ -1,9 +1,9 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-moduledir = join_paths(pkgdatadir, 'draw')
+moduledir = join_paths(pkgdatadir, 'drawing')
 gnome = import('gnome')
 
-gnome.compile_resources('draw',
-  'draw.gresource.xml',
+gnome.compile_resources('drawing',
+  'drawing.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
@@ -18,14 +18,14 @@ conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-  input: 'draw.in',
-  output: 'draw',
+  input: 'drawing.in',
+  output: 'drawing',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir')
 )
 
-draw_sources = [
+drawing_sources = [
   '__init__.py',
   'crop_dialog.py',
   'scale_dialog.py',
@@ -45,4 +45,4 @@ draw_sources = [
   'tools/eraser.py'
 ]
 
-install_data(draw_sources, install_dir: moduledir)
+install_data(drawing_sources, install_dir: moduledir)

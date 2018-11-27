@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface domain="draw">
+<interface domain="drawing">
 
     <object class="GtkAdjustment" id="adj_width">
         <property name="lower">1</property>
@@ -43,7 +43,7 @@
                                         <property name="visible">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_START</property>
+                                        <property name="pack-type">start</property>
                                     </packing>
                                 </child>
                                 <child>
@@ -51,7 +51,7 @@
                                         <property name="visible">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
+                                        <property name="pack-type">end</property>
                                     </packing>
                                 </child>
                             </object>
@@ -75,7 +75,7 @@
                                         <property name="visible">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_START</property>
+                                        <property name="pack-type">start</property>
                                     </packing>
                                 </child>
                                 <child>
@@ -84,7 +84,7 @@
                                         <property name="use-alpha">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
+                                        <property name="pack-type">end</property>
                                     </packing>
                                 </child>
                             </object>
@@ -108,7 +108,7 @@
                                         <property name="visible">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_START</property>
+                                        <property name="pack-type">start</property>
                                     </packing>
                                 </child>
                                 <child>
@@ -118,7 +118,7 @@
                                         <property name="tooltip_text" translatable="yes">Height</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
+                                        <property name="pack-type">end</property>
                                     </packing>
                                 </child>
                                 <child>
@@ -127,7 +127,7 @@
                                         <property name="label">×</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
+                                        <property name="pack-type">end</property>
                                     </packing>
                                 </child>
                                 <child>
@@ -137,39 +137,7 @@
                                         <property name="tooltip_text" translatable="yes">Width</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
-                                    </packing>
-                                </child>
-                            </object>
-                        </child>
-                    </object>
-                </child>
-
-                <child>
-                    <object class="GtkListBoxRow">
-                        <property name="visible">True</property>
-                        <child>
-                            <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="expand">True</property>
-                                <property name="margin">10</property>
-                                <property name="spacing">10</property>
-                                <property name="orientation">horizontal</property>
-                                <child>
-                                    <object class="GtkLabel">
-                                        <property name="label" translatable="yes">Interface layout:</property>
-                                        <property name="visible">True</property>
-                                    </object>
-                                    <packing>
-                                        <property name="pack-type">GTK_PACK_START</property>
-                                    </packing>
-                                </child>
-                                <child>
-                                    <object class="GtkComboBoxText" id="layout_combobox">
-                                        <property name="visible">True</property>
-                                    </object>
-                                    <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
+                                        <property name="pack-type">end</property>
                                     </packing>
                                 </child>
                             </object>
@@ -193,7 +161,7 @@
                                         <property name="visible">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_START</property>
+                                        <property name="pack-type">start</property>
                                     </packing>
                                 </child>
                                 <child>
@@ -201,7 +169,39 @@
                                         <property name="visible">True</property>
                                     </object>
                                     <packing>
-                                        <property name="pack-type">GTK_PACK_END</property>
+                                        <property name="pack-type">end</property>
+                                    </packing>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+
+                <child>
+                    <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                            <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="expand">True</property>
+                                <property name="margin">10</property>
+                                <property name="spacing">10</property>
+                                <property name="orientation">horizontal</property>
+                                <child>
+                                    <object class="GtkLabel">
+                                        <property name="label" translatable="yes">Interface layout:</property>
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">start</property>
+                                    </packing>
+                                </child>
+                                <child>
+                                    <object class="GtkComboBoxText" id="layout_combobox">
+                                        <property name="visible">True</property>
+                                    </object>
+                                    <packing>
+                                        <property name="pack-type">end</property>
                                     </packing>
                                 </child>
                             </object>
@@ -215,6 +215,7 @@
 
     </template>
 </interface>
+
 
 
 

@@ -9,9 +9,6 @@ from .tools import ToolTemplate
 class ToolShape(ToolTemplate):
 	__gtype_name__ = 'ToolShape'
 
-	id = 'shape'
-	icon_name = 'non-starred-symbolic'
-	label = _("Shape")
 	use_options = True
 	window_can_take_back_control = True
 	use_size = True
@@ -20,14 +17,14 @@ class ToolShape(ToolTemplate):
 	style_btns = {}
 
 	def __init__(self, window, **kwargs):
-		super().__init__(window)
+		super().__init__('shape', _("Shape"), 'non-starred-symbolic', window)
 
 		self.past_x = -1.0
 		self.past_y = -1.0
 
 		# Building the widget containing options
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Draw/tools/ui/shape.ui")
+		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/shape.ui")
 		self.options_box = builder.get_object("options_box")
 
 		self.shape_btns['rectangle'] = builder.get_object("type_btn_1")

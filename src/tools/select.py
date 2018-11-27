@@ -8,14 +8,11 @@ from .tools import ToolTemplate
 class ToolSelect(ToolTemplate):
     __gtype_name__ = 'ToolSelect'
 
-    id = 'select'
-    icon_name = 'edit-select-symbolic'
-    label = _("Selection")
     use_options = False # TODO
     set_clip = True
 
     def __init__(self, window, **kwargs):
-        super().__init__(window)
+        super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
 
         self.x_press = 0.0
         self.y_press = 0.0
@@ -58,7 +55,7 @@ class ToolSelect(ToolTemplate):
 
         self.selection_popover.add(box)
 
-        builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Draw/tools/ui/select.ui")
+        builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
         menu = builder.get_object("right-click-menu")
         self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu)
 
