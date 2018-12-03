@@ -45,7 +45,9 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	tools_panel = GtkTemplate.Child()
 	tools = {}
-	tools_buttons = {}
+
+	active_tool_id = 'pencil'
+	former_tool_id = 'pencil'
 
 	drawing_area = GtkTemplate.Child()
 
@@ -126,9 +128,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.tools[tool_id].add_item_to_menu(tools_menu)
 			self.app.add_tools_to_menubar(tools_menu)
 
-		self.active_tool_id = 'pencil'
-		self.former_tool_id = 'pencil'
-
 		self.options_popover = None
 		self.build_options_popover()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
@@ -140,6 +139,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def init_background(self, *args):
 		if not self._is_saved:
+			return
+		if not self.props.visible:
 			return
 		if self._file_path is not None:
 			self.try_load_file(self._file_path)
@@ -156,6 +157,12 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
 				self._surface.get_width(), self._surface.get_height())
 
+	def is_empty_picture(self):
+		if self._file_path is None and len(self.undo_history) == 0:
+			return True
+		else:
+			return False
+
 	# UI BUILDING
 
 	def build_tool_rows(self):
@@ -166,7 +173,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 			else:
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
-			self.tools_buttons[tool_id] = self.tools[tool_id].row
 		self.full_panel_width = 0
 
 	def set_palette_setting(self, a, b):
@@ -177,9 +183,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 
-		self.handlers.append( self.color_btn_exc.connect('clicked', self.on_exchange_color) )
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
-
 		self.handlers.append( self.options_btn.connect('toggled', self.on_options_open) )
 		self.handlers.append( self.options_popover.connect('closed', self.on_options_popover_closed, self.options_btn) )
 
@@ -211,12 +215,16 @@ class DrawWindow(Gtk.ApplicationWindow):
 		# self.add_action_like_a_boss("select_all", self.action_select_all)
 		# self.add_action_like_a_boss("unselect", self.action_unselect)
 
-		self.add_action_like_a_boss("print", self.action_print)
+		self.add_action_like_a_boss("primary_color", self.action_primary_color)
+		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
+		self.add_action_like_a_boss("exchange_color", self.action_exchange_color)
+
+		# self.add_action_like_a_boss("print", self.action_print)
 		self.add_action_like_a_boss("crop", self.action_crop)
 		self.add_action_like_a_boss("scale", self.action_scale)
 		self.add_action_like_a_boss("properties", self.edit_properties)
 
-		self.add_action_like_a_boss("close", self.on_close)
+		self.add_action_like_a_boss("close", self.action_close)
 		self.add_action_like_a_boss("save", self.action_save)
 		self.add_action_like_a_boss("undo", self.action_undo)
 		self.add_action_like_a_boss("redo", self.action_redo)
@@ -282,7 +290,13 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.save_btn = builder.get_object("save_btn")
 		self.menu_btn = builder.get_object("menu_btn")
 
-	def on_exchange_color(self, b):
+	def action_primary_color(self, *args):
+		self.color_btn_l.activate()
+
+	def action_secondary_color(self, *args):
+		self.color_btn_r.activate()
+
+	def action_exchange_color(self, *args):
 		left_c = self.color_btn_l.get_rgba()
 		self.color_btn_l.set_rgba(self.color_btn_r.get_rgba())
 		self.color_btn_r.set_rgba(left_c)
@@ -444,11 +458,11 @@ class DrawWindow(Gtk.ApplicationWindow):
 		else:
 			return True
 
+	def action_close(self, *args):
+		self.close()
+
 	def on_close(self, *args):
-		if self.confirm_save_modifs():
-			return False
-		else:
-			return True
+		return not self.confirm_save_modifs()
 
 	# HISTORY MANAGEMENT
 
@@ -650,7 +664,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		else:
 			crop_dialog.on_cancel()
 
-	def action_scale(self, *args):
+	def action_scale(self, *args): # FIXME ça scale beaucoup trop fort
 		scale_dialog = DrawScaleDialog(self)
 		result = scale_dialog.run()
 		if result == Gtk.ResponseType.APPLY:

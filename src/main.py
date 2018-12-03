@@ -119,17 +119,26 @@ class Application(Gtk.Application):
 
 	def add_accels(self):
 		self.set_accels_for_action("app.new_window", ["<Ctrl>n"])
+		self.set_accels_for_action("app.open", ["<Ctrl>o"])
 		self.set_accels_for_action("app.help", ["F1"])
 		self.set_accels_for_action("app.quit", ["<Ctrl>q"])
+
+		# TODO mettre à jour la fentre qui résume ça
+		self.set_accels_for_action("win.primary_color", ["<Ctrl>l"])
+		self.set_accels_for_action("win.secondary_color", ["<Ctrl>r"])
+		self.set_accels_for_action("win.exchange_color", ["<Ctrl>e"])
 
 		self.set_accels_for_action("win.paste", ["<Ctrl>v"])
 		self.set_accels_for_action("win.select_all", ["<Ctrl>a"])
 		self.set_accels_for_action("win.unselect", ["<Ctrl>u"])
 
 		self.set_accels_for_action("win.properties", ["<Ctrl>p"])
+		# self.set_accels_for_action("win.scale", [""])
+		# self.set_accels_for_action("win.crop", [""])
+
 		self.set_accels_for_action("win.close", ["<Ctrl>w"])
 		self.set_accels_for_action("win.save", ["<Ctrl>s"])
-		self.set_accels_for_action("win.open", ["<Ctrl>o"])
+		self.set_accels_for_action("win.save_as", ["<Ctrl><Shift>s"])
 
 		self.set_accels_for_action("win.undo", ["<Ctrl>z"])
 		self.set_accels_for_action("win.redo", ["<Ctrl><Shift>z"])
@@ -162,9 +171,11 @@ class Application(Gtk.Application):
 		file_chooser.add_filter(onlyPictures)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			# FIXME ne pas ouvrir de nouvelle fentre si celle déjà ouverte n'a qu'un fichier vierge
-			self.new_window_with_path(file_chooser.get_filename())
-			# FIXME ça demande l'edit/crop/scale mme avec des ptites images
+			fn = file_chooser.get_filename()
+			if self.props.active_window.is_empty_picture():
+				self.props.active_window.try_load_file(fn)
+			else:
+				self.new_window_with_path(fn)
 		file_chooser.destroy()
 
 	def new_window_with_path(self, file_path):

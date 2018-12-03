@@ -88,6 +88,7 @@
                 <child>
                   <object class="GtkButton" id="color_btn_exc">
                     <property name="visible">True</property>
+                    <property name="action_name">win.exchange_color</property>
                     <child>
                       <object class="GtkImage">
                         <property name="icon-name">network-transmit-receive-symbolic</property>
