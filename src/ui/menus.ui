@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <interface domain="drawing">
+
+<!-- Application menu -->
   <menu id="app-menu">
     <section>
       <item>
@@ -34,22 +36,23 @@
   </menu>
 
 <!-- Hamburger menu -->
-
   <menu id="window-menu">
     <section>
+        <attribute name="display-hint">horizontal-buttons</attribute>
         <item>
             <attribute name="action">app.new_window</attribute>
             <attribute name="label" translatable="yes">New window</attribute>
+            <attribute name="verb-icon">document-new-symbolic</attribute>
         </item>
-    </section>
-    <section>
+        <item>
+            <attribute name="label" translatable="yes">Properties</attribute>
+            <attribute name="action">win.properties</attribute>
+            <attribute name="verb-icon">document-properties-symbolic</attribute>
+        </item>
         <item>
             <attribute name="label" translatable="yes">Print</attribute>
             <attribute name="action">win.print</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Open with…</attribute>
-            <attribute name="action">win.open_with</attribute>
+            <attribute name="verb-icon">document-print-symbolic</attribute>
         </item>
     </section>
     <section>
@@ -61,13 +64,8 @@
             <attribute name="label" translatable="yes">Scale</attribute>
             <attribute name="action">win.scale</attribute>
         </item>
-        <item>
-            <attribute name="label" translatable="yes">Properties</attribute>
-            <attribute name="action">win.properties</attribute>
-        </item>
     </section>
     <section>
-        <attribute name="display-hint">horizontal-buttons</attribute>
         <item>
             <attribute name="label" translatable="yes">Preferences</attribute>
             <attribute name="action">app.settings</attribute>
@@ -92,6 +90,7 @@
     </section>
   </menu>
 
+<!-- "Save as" menu -->
   <menu id="save-as-menu">
     <section>
       <item>
@@ -115,6 +114,7 @@
     </section>
   </menu>
 
+<!-- Menubar -->
   <menu id="menu-bar">
     <submenu>
       <attribute name="label" translatable="yes">File</attribute>
@@ -126,7 +126,7 @@
         </item>
         <item>
             <attribute name="label" translatable="yes">Open</attribute>
-            <attribute name="action">win.open</attribute>
+            <attribute name="action">app.open</attribute>
             <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
       </section>
@@ -247,5 +247,4 @@
   </menu>
 
 </interface>
-
 

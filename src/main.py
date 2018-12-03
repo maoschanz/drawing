@@ -30,7 +30,7 @@ class Application(Gtk.Application):
 	shortcuts_window = None
 	prefs_window = None
 
-	def __init__(self):
+	def __init__(self, version):
 		super().__init__(application_id='com.github.maoschanz.Drawing',
 						flags=Gio.ApplicationFlags.HANDLES_OPEN)
 
@@ -38,7 +38,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname('com.github.maoschanz.Drawing')
 		self.register(None) # ?
 
-		self.version = 'beta-2018-11-21' # TODO
+		self.version = version #'beta-2018-11-29' # XXX
 
 		if not self.get_is_remote():
 			self.on_startup()
@@ -51,6 +51,7 @@ class Application(Gtk.Application):
 
 	def on_startup(self):
 		self.build_actions()
+		self.add_accels()
 		menubar_model = self.build_menubar()
 		self.set_menubar(menubar_model)
 		self.has_tools_in_menubar = False
@@ -109,12 +110,14 @@ class Application(Gtk.Application):
 
 	def build_actions(self):
 		self.add_action_like_a_boss("new_window", self.on_new_window_activate)
+		self.add_action_like_a_boss("open", self.on_open_activate)
 		self.add_action_like_a_boss("settings", self.on_prefs_activate)
 		self.add_action_like_a_boss("shortcuts", self.on_shortcuts_activate)
 		self.add_action_like_a_boss("help", self.on_help_activate)
 		self.add_action_like_a_boss("about", self.on_about_activate)
 		self.add_action_like_a_boss("quit", self.on_quit)
 
+	def add_accels(self):
 		self.set_accels_for_action("app.new_window", ["<Ctrl>n"])
 		self.set_accels_for_action("app.help", ["F1"])
 		self.set_accels_for_action("app.quit", ["<Ctrl>q"])
@@ -144,6 +147,25 @@ class Application(Gtk.Application):
 
 	def on_new_window_activate(self, *args):
 		self.new_window_with_path(None)
+
+	def on_open_activate(self, *args):
+		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"),
+		self.props.active_window,
+			Gtk.FileChooserAction.OPEN,
+			_("Open"),
+			_("Cancel"))
+		onlyPictures = Gtk.FileFilter()
+		onlyPictures.set_name(_("Pictures"))
+		onlyPictures.add_mime_type('image/png')
+		onlyPictures.add_mime_type('image/jpeg')
+		onlyPictures.add_mime_type('image/bmp')
+		file_chooser.add_filter(onlyPictures)
+		response = file_chooser.run()
+		if response == Gtk.ResponseType.ACCEPT:
+			# FIXME ne pas ouvrir de nouvelle fentre si celle déjà ouverte n'a qu'un fichier vierge
+			self.new_window_with_path(file_chooser.get_filename())
+			# FIXME ça demande l'edit/crop/scale mme avec des ptites images
+		file_chooser.destroy()
 
 	def new_window_with_path(self, file_path):
 		win = DrawWindow(file_path, application=self)
@@ -177,5 +199,5 @@ class Application(Gtk.Application):
 			win.present()
 
 def main(version):
-	app = Application()
+	app = Application(version)
 	return app.run(sys.argv)

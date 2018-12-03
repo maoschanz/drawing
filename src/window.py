@@ -50,7 +50,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 	drawing_area = GtkTemplate.Child()
 
 	color_btn_l = GtkTemplate.Child()
-	color_btn_exc = GtkTemplate.Child()
+	color_btn_exc = GtkTemplate.Child() # as actions
 	color_btn_r = GtkTemplate.Child()
 
 	options_btn = GtkTemplate.Child()
@@ -119,11 +119,12 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.build_tool_rows()
 		self.tools_panel.show_all()
 
-		if not kwargs['application'].has_tools_in_menubar:
+		self.app = kwargs['application']
+		if not self.app.has_tools_in_menubar:
 			tools_menu = Gio.Menu()
 			for tool_id in self.tools:
 				self.tools[tool_id].add_item_to_menu(tools_menu)
-			kwargs['application'].add_tools_to_menubar(tools_menu)
+			self.app.add_tools_to_menubar(tools_menu)
 
 		self.active_tool_id = 'pencil'
 		self.former_tool_id = 'pencil'
@@ -210,13 +211,11 @@ class DrawWindow(Gtk.ApplicationWindow):
 		# self.add_action_like_a_boss("select_all", self.action_select_all)
 		# self.add_action_like_a_boss("unselect", self.action_unselect)
 
-		self.add_action_like_a_boss("open_with", self.action_open_with)
 		self.add_action_like_a_boss("print", self.action_print)
 		self.add_action_like_a_boss("crop", self.action_crop)
 		self.add_action_like_a_boss("scale", self.action_scale)
 		self.add_action_like_a_boss("properties", self.edit_properties)
 
-		self.add_action_like_a_boss("open", self.action_open)
 		self.add_action_like_a_boss("close", self.on_close)
 		self.add_action_like_a_boss("save", self.action_save)
 		self.add_action_like_a_boss("undo", self.action_undo)
@@ -370,26 +369,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def action_save_as(self, *args):
 		self._file_path = self.invoke_file_chooser()
 		self.load_fn_to_pixbuf()
-
-	def action_open(self, *args):
-		# Asking what to do before overwriting the picture in the window
-		if not self.confirm_save_modifs():
-			return
-
-		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
-			Gtk.FileChooserAction.OPEN,
-			_("Open"),
-			_("Cancel"))
-		onlyPictures = Gtk.FileFilter()
-		onlyPictures.set_name(_("Pictures"))
-		onlyPictures.add_mime_type('image/png')
-		onlyPictures.add_mime_type('image/jpeg')
-		onlyPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(onlyPictures)
-		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT:
-			self.try_load_file(file_chooser.get_filename())
-		file_chooser.destroy()
 
 	def try_load_file(self, fn):
 		# We don't want to load too big images, because the technical
@@ -583,13 +562,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.set_stable_pixbuf()
 
 	# OTHER UNIMPLEMENTED OPERATIONS TODO
-
-	def action_open_with(self, *args):
-		if self._file_path is None:
-			return
-		# f = Gio.File.new_for_path(self._file_path)
-		# if f.query_exists():
-		# 	Gtk.show_uri(None, f.get_uri(), Gdk.CURRENT_TIME)
 
 	def action_print(self, *args):
 		print("print")
