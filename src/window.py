@@ -43,71 +43,57 @@ SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 class DrawWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawWindow'
 
+	_file_path = None
+	_is_saved = True
+	active_tool_id = 'pencil'
+	former_tool_id = 'pencil'
+	is_clicked = False
+	window_has_control = True
+	options_popover = None
+
 	tools_panel = GtkTemplate.Child()
 	tools = {}
 
-	active_tool_id = 'pencil'
-	former_tool_id = 'pencil'
+	toolbar_box = GtkTemplate.Child()
+	header_bar = None
 
 	drawing_area = GtkTemplate.Child()
 
 	color_btn_l = GtkTemplate.Child()
-	color_btn_exc = GtkTemplate.Child() # as actions
 	color_btn_r = GtkTemplate.Child()
-
 	options_btn = GtkTemplate.Child()
 	options_label = GtkTemplate.Child()
 	options_long_box = GtkTemplate.Child()
 	options_short_box = GtkTemplate.Child()
-
 	size_setter = GtkTemplate.Child()
-
-	tool_info_label = GtkTemplate.Child()
+	tool_info_label = GtkTemplate.Child() # TODO
 
 	undo_history = []
 	redo_history = []
-
 	handlers = []
 
-	def __init__(self, file_path, **kwargs):
-		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
-		DEV_VERSION = self._settings.get_boolean('experimental')
-		decorations = self._settings.get_string('decorations')
-		super().__init__(show_menubar=(decorations == 'ssd'), **kwargs)
+	def __init__(self, **kwargs):
+		super().__init__(**kwargs)
 		self.init_template()
-		self.build_headerbar()
-		if decorations == 'csd':
-			self.set_titlebar(self.header_bar)
-		elif decorations == 'csd-menubar':
-			menu_bar = Gtk.MenuBar().new_from_model(self.get_application().get_menubar())
-			self.header_bar.set_custom_title(menu_bar)
-			self.set_titlebar(self.header_bar)
-			self.header_bar.show_all()
-			self.menu_btn.set_visible(False)
-		else:
-			self.set_title('Drawing') # FIXME set the correct title
+
+		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
+		decorations = self._settings.get_string('decorations')
+		DEV_VERSION = self._settings.get_boolean('experimental')
+		self.set_ui_bars(decorations)
+		self.set_picture_title(_("Unsaved file"))
 		self.maximize()
-		
-		self._file_path = file_path
-		self._is_saved = True
 
 		self.color_btn_l.set_rgba(Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0))
 		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
-		self.set_palette_setting(None, None)
+		self.set_palette_setting()
 
 		width = self._settings.get_int('default-width')
 		height = self._settings.get_int('default-height')
 		self.pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
 		self._surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		# self.drawing_area.set_size(1000, 600) # osef
-
-		self.drawing_area.show()
-
 		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
-
-		self.is_clicked = False
-		self.window_has_control = True
 
 		self.tools['pencil'] = ToolPencil(self)
 		if DEV_VERSION:
@@ -128,40 +114,50 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.tools[tool_id].add_item_to_menu(tools_menu)
 			self.app.add_tools_to_menubar(tools_menu)
 
-		self.options_popover = None
 		self.build_options_popover()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 		self.update_size_spinbtn_value(None, None, 10)
 
-		self.build_menus()
 		self.add_all_win_actions()
 		self.connect_signals()
+		self.init_background()
 
 	def init_background(self, *args):
-		if not self._is_saved:
-			return
-		if not self.props.visible:
-			return
-		if self._file_path is not None:
-			self.try_load_file(self._file_path)
-		else:
-			w_context = cairo.Context(self._surface)
-			r = float(self._settings.get_strv('default-rgba')[0])
-			g = float(self._settings.get_strv('default-rgba')[1])
-			b = float(self._settings.get_strv('default-rgba')[2])
-			a = float(self._settings.get_strv('default-rgba')[3])
-			w_context.set_source_rgba(r, g, b, a)
-			w_context.paint()
+		w_context = cairo.Context(self._surface)
+		r = float(self._settings.get_strv('default-rgba')[0])
+		g = float(self._settings.get_strv('default-rgba')[1])
+		b = float(self._settings.get_strv('default-rgba')[2])
+		a = float(self._settings.get_strv('default-rgba')[3])
+		w_context.set_source_rgba(r, g, b, a)
+		w_context.paint()
 
-			# equivalent for self.set_stable_pixbuf()
-			self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
-				self._surface.get_width(), self._surface.get_height())
+		# equivalent for self.set_stable_pixbuf()
+		self.pixbuf = Gdk.pixbuf_get_from_surface(self._surface, 0, 0, \
+			self._surface.get_width(), self._surface.get_height())
 
 	def is_empty_picture(self):
 		if self._file_path is None and len(self.undo_history) == 0:
 			return True
 		else:
 			return False
+
+	def set_picture_title(self, fn):
+		self.set_title(_("Drawing") + ' - ' + fn)
+		if self.header_bar is not None:
+			self.header_bar.set_subtitle(fn)
+			self.header_bar.set_title(_("Drawing"))
+
+	def set_ui_bars(self, decorations):
+		if decorations == 'csd':
+			self.build_headerbar()
+			self.set_titlebar(self.header_bar)
+			self.set_show_menubar(False)
+		elif decorations == 'csd-menubar':
+			self.build_headerbar()
+			self.set_titlebar(self.header_bar)
+			self.set_show_menubar(True)
+		else:
+			self.build_toolbar()
 
 	# UI BUILDING
 
@@ -175,7 +171,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.tools_panel.add(self.tools[tool_id].row)
 		self.full_panel_width = 0
 
-	def set_palette_setting(self, a, b):
+	def set_palette_setting(self, *args):
 		color_btn_show_editor = self._settings.get_boolean('direct-color-edit')
 		self.color_btn_l.props.show_editor = color_btn_show_editor
 		self.color_btn_r.props.show_editor = color_btn_show_editor
@@ -201,8 +197,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		# Settings
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
 		# TODO..
-
-		self.handlers.append( self.connect('notify::visible', self.init_background) ) # FIXME ??
 
 	def add_action_like_a_boss(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -266,29 +260,30 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def on_options_open(self, b):
 		self.options_popover.show_all()
-		b.set_active(False) # illogique mais bon
+		b.set_active(False) # illogique mais bon # TODO un menubutton au pire non ?
 		self.update_option_label()
 
-	def build_menus(self):
+	def build_toolbar(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
-		primary_menu = builder.get_object("window-menu")
-		self.menu_popover = Gtk.Popover.new_from_model(self.menu_btn, primary_menu)
-		self.menu_btn.set_popover(self.menu_popover)
-		save_as_menu = builder.get_object("save-as-menu")
-		self.save_as_popover = Gtk.Popover.new_from_model(self.save_as_btn, save_as_menu)
-		self.save_as_btn.set_popover(self.save_as_popover)
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/toolbar.ui")
+		toolbar = builder.get_object("toolbar")
+		self.toolbar_box.add(toolbar)
+		self.toolbar_box.show_all()
 
 	def build_headerbar(self):
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
-		self.open_btn = builder.get_object("open_btn")
-		self.undo_btn = builder.get_object("undo_btn")
-		self.redo_btn = builder.get_object("redo_btn")
-		self.save_as_btn = builder.get_object("save_as_btn")
-		self.save_btn = builder.get_object("save_btn")
-		self.menu_btn = builder.get_object("menu_btn")
+		save_as_btn = builder.get_object("save_as_btn")
+		menu_btn = builder.get_object("menu_btn")
+
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
+		primary_menu = builder.get_object("window-menu")
+		menu_popover = Gtk.Popover.new_from_model(menu_btn, primary_menu)
+		menu_btn.set_popover(menu_popover)
+		save_as_menu = builder.get_object("save-as-menu")
+		save_as_popover = Gtk.Popover.new_from_model(save_as_btn, save_as_menu)
+		save_as_btn.set_popover(save_as_popover)
 
 	def action_primary_color(self, *args):
 		self.color_btn_l.activate()
@@ -378,7 +373,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.pixbuf.savev(self._file_path, pb_format.get_name(), [None], [])
 			# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
 			self._is_saved = True
-			self.header_bar.set_subtitle(self._file_path)
+			self.set_picture_title(self._file_path)
 
 	def action_save_as(self, *args):
 		self._file_path = self.invoke_file_chooser()
@@ -428,7 +423,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.initial_save()
 
 	def initial_save(self):
-		self.header_bar.set_subtitle(self._file_path)
+		self.set_picture_title(self._file_path)
 		self._is_saved = True
 		self.use_stable_pixbuf()
 
@@ -655,7 +650,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		if x != 0 or y != 0:
 			self.resize_surface(0, 0, width, height)
 
-	def action_crop(self, *args):
+	def action_crop(self, *args): # FIXME ça envoie pas les bonnes valeurs ?
 		crop_dialog = DrawCropDialog(self, self._surface.get_width(), \
 			self._surface.get_height(), False)
 		result = crop_dialog.run()

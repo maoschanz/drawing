@@ -46,7 +46,7 @@ class Application(Gtk.Application):
 		self.add_main_option("version", b"v", GLib.OptionFlags.NONE,
 							GLib.OptionArg.NONE, "Version", None)
 
-		self.connect('open', self.on_open)
+		self.connect('open', self.on_open_from_cli)
 		self.connect("handle-local-options", self.on_local_options)
 
 	def on_startup(self):
@@ -59,9 +59,10 @@ class Application(Gtk.Application):
 			appmenu_model = self.build_app_menu()
 			self.set_app_menu(appmenu_model)
 
-	def on_open(self, a, b, c, d):
+	def on_open_from_cli(self, a, b, c, d):
 		for f in b:
-			self.new_window_with_path(f.get_path())
+			win = self.on_new_window_activate()
+			win.try_load_file(f.get_path())
 		return 0
 
 	def on_local_options(self, app, options):
@@ -155,7 +156,9 @@ class Application(Gtk.Application):
 		self.quit()
 
 	def on_new_window_activate(self, *args):
-		self.new_window_with_path(None)
+		win = DrawWindow(application=self)
+		win.present()
+		return win
 
 	def on_open_activate(self, *args):
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"),
@@ -175,12 +178,9 @@ class Application(Gtk.Application):
 			if self.props.active_window.is_empty_picture():
 				self.props.active_window.try_load_file(fn)
 			else:
-				self.new_window_with_path(fn)
+				win = self.on_new_window_activate()
+				win.try_load_file(fn)
 		file_chooser.destroy()
-
-	def new_window_with_path(self, file_path):
-		win = DrawWindow(file_path, application=self)
-		win.present()
 
 	def on_shortcuts_activate(self, *args):
 		if self.shortcuts_window is None:
@@ -205,7 +205,7 @@ class Application(Gtk.Application):
 		win = self.props.active_window
 		if not win:
 			self.on_startup()
-			self.new_window_with_path(None)
+			self.on_new_window_activate()
 		else:
 			win.present()
 

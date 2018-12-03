@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <object class="GtkBox" id="toolbar">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkToolbar">
+        <property name="visible">True</property>
+        <property name="show-arrow">True</property>
+        <property name="icon-size">small-toolbar</property>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">app.new_window</property>
+            <property name="icon_name">document-new-symbolic</property>
+            <property name="tooltip_text">New</property>
+            <property name="label">New</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="is-important">True</property>
+            <property name="action_name">app.open</property>
+            <property name="icon_name">document-open-symbolic</property>
+            <property name="tooltip_text">Open</property>
+            <property name="label">Open</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.print</property>
+            <property name="icon_name">document-print-symbolic</property>
+            <property name="label">Print</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="is-important">True</property>
+            <property name="action_name">win.save</property>
+            <property name="icon_name">document-save-symbolic</property>
+            <property name="tooltip_text">Save</property>
+            <property name="label">Save</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.save</property>
+            <property name="icon_name">document-save-as-symbolic</property>
+            <property name="tooltip_text">Save as</property>
+            <property name="label">Save as</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparatorToolItem">
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="is-important">True</property>
+            <property name="action_name">win.undo</property>
+            <property name="icon_name">edit-undo-symbolic</property>
+            <property name="tooltip_text">Undo</property>
+            <property name="label">Undo</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.redo</property>
+            <property name="icon_name">edit-redo-symbolic</property>
+            <property name="tooltip_text">Redo</property>
+            <property name="label">Redo</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparatorToolItem">
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.properties</property>
+            <property name="icon_name">document-properties-symbolic</property>
+            <property name="tooltip_text">Properties</property>
+            <property name="label">Properties</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator">
+        <property name="visible">True</property>
+      </object>
+    </child>
+  </object>
+</interface>

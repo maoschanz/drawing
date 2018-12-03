@@ -17,6 +17,12 @@
         <property name="orientation">vertical</property>
         <property name="visible">True</property>
         <child>
+          <object class="GtkBox" id="toolbar_box">
+            <property name="orientation">vertical</property>
+            <property name="visible">False</property>
+          </object>
+        </child>
+        <child>
           <object class="GtkPaned" id="paned_area">
             <!-- <property name="wide-handle">True</property> -->
             <property name="visible">True</property>
