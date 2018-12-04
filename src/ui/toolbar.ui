@@ -28,11 +28,8 @@
           </object>
         </child>
         <child>
-          <object class="GtkToolButton">
+          <object class="GtkSeparatorToolItem">
             <property name="visible">True</property>
-            <property name="action_name">win.print</property>
-            <property name="icon_name">document-print-symbolic</property>
-            <property name="label">Print</property>
           </object>
         </child>
         <child>
@@ -52,6 +49,14 @@
             <property name="icon_name">document-save-as-symbolic</property>
             <property name="tooltip_text">Save as</property>
             <property name="label">Save as</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.print</property>
+            <property name="icon_name">document-print-symbolic</property>
+            <property name="label">Print</property>
           </object>
         </child>
         <child>
@@ -101,3 +106,4 @@
     </child>
   </object>
 </interface>
+

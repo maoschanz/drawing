@@ -27,7 +27,7 @@
             <!-- <property name="wide-handle">True</property> -->
             <property name="visible">True</property>
             <property name="orientation">horizontal</property>
-            <property name="position">150</property>
+            <property name="position">0</property>
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
@@ -130,9 +130,8 @@
             </child>
 
             <child>
-              <object class="GtkToggleButton" id="options_btn">
+              <object class="GtkMenuButton" id="options_btn">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
@@ -194,6 +193,7 @@
     </child>
   </template>
 </interface>
+
 
 
 

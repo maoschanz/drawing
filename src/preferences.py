@@ -61,7 +61,8 @@ class DrawPrefsWindow(Gtk.Window):
 
         self.layout_combobox.append('csd', _("Modern"))
         self.layout_combobox.append('ssd', _("Legacy"))
-        self.layout_combobox.append('csd-menubar', _("Abomination"))
+        if self._settings.get_boolean('experimental'):
+            self.layout_combobox.append('csd-menubar', _("Both (testing only)"))
         # self.layout_combobox.append('ssd-globalmenu', _("Legacy, for global-menu"))
         self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
         self.layout_combobox.connect('changed', self.on_layout_changed)

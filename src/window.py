@@ -51,6 +51,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 	window_has_control = True
 	options_popover = None
 
+	paned_area = GtkTemplate.Child()
 	tools_panel = GtkTemplate.Child()
 	tools = {}
 
@@ -106,6 +107,8 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.tools['shape'] = ToolShape(self)
 		self.build_tool_rows()
 		self.tools_panel.show_all()
+		self.update_tools_visibility2(self.tools_panel, self._settings.get_int('panel-width'))
+		self.paned_area.set_position(self._settings.get_int('panel-width') + 10)
 
 		self.app = kwargs['application']
 		if not self.app.has_tools_in_menubar:
@@ -156,6 +159,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.build_headerbar()
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(True)
+			self.build_toolbar()
 		else:
 			self.build_toolbar()
 
@@ -180,8 +184,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
-		self.handlers.append( self.options_btn.connect('toggled', self.on_options_open) )
-		self.handlers.append( self.options_popover.connect('closed', self.on_options_popover_closed, self.options_btn) )
 
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
 		self.handlers.append( self.drawing_area.connect('configure-event', self.on_configure) )
@@ -235,13 +237,19 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_action(action_active_tool)
 
 	def update_tools_visibility(self, listbox, gdkrectangle):
+		self.update_tools_visibility2(listbox, gdkrectangle.width)
+
+	def update_tools_visibility2(self, listbox, width):
 		self.full_panel_width = max(self.full_panel_width, listbox.get_preferred_width()[0])
-		if (gdkrectangle.width < self.full_panel_width + 5):
-			for label in self.tools:
-				self.tools[label].label_widget.set_visible(False)
+		if (width < self.full_panel_width):
+			self.set_tools_labels_visibility(False)
 		else:
-			for label in self.tools:
-				self.tools[label].label_widget.set_visible(True)
+			self.set_tools_labels_visibility(True)
+		self._settings.set_int('panel-width', width)
+
+	def set_tools_labels_visibility(self, visible):
+		for label in self.tools:
+			self.tools[label].label_widget.set_visible(visible)
 
 	def update_options_box(self, window, gdkrectangle):
 		available_width = self.options_long_box.get_preferred_width()[0] + \
@@ -257,11 +265,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		else:
 			self.options_short_box.set_visible(False)
 			self.options_long_box.set_visible(True)
-
-	def on_options_open(self, b):
-		self.options_popover.show_all()
-		b.set_active(False) # illogique mais bon # TODO un menubutton au pire non ?
-		self.update_option_label()
 
 	def build_toolbar(self):
 		builder = Gtk.Builder()
@@ -307,24 +310,14 @@ class DrawWindow(Gtk.ApplicationWindow):
 
 	def build_options_popover(self):
 		if self.options_popover is not None:
-			self.options_popover.remove(self.options_box)
-		self.options_btn.set_sensitive(False)
-		self.options_popover = Gtk.Popover()
-		self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-
+			self.options_popover.destroy()
+			self.options_popover = None
 		if self.active_tool().use_options:
-			self.options_btn.set_sensitive(True)
+			self.options_popover = Gtk.Popover()
 			self.options_box = self.active_tool().get_options_widget()
-		else:
-			self.options_btn.set_sensitive(False)
-
-		self.options_popover.add(self.options_box)
-		self.options_popover.set_relative_to(self.options_btn)
-
-		self.update_option_label()
-
-	def on_options_popover_closed(self, popover, button): # FIXME jamais appelée ?
-		button.set_active(False)
+			self.options_box.show_all()
+			self.options_popover.add(self.options_box)
+			self.options_btn.set_popover(self.options_popover)
 		self.update_option_label()
 
 	def update_option_label(self):
@@ -346,7 +339,6 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.former_tool_id = self.active_tool_id
 		self.active_tool_id = state_as_string
 		self.build_options_popover()
-		self.update_option_label()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 
 	def active_tool(self):
