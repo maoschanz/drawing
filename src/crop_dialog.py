@@ -23,9 +23,8 @@ class DrawingCropDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingCropDialog'
 
 	def __init__(self, window, o_width, o_height, forbid_growth):
-		wants_csd = ( window._settings.get_string('decorations') == 'csd' \
-			or window._settings.get_string('decorations') == 'csd-menubar' )
-		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Crop the picture"), parent=window)
+		wants_csd = ( window._settings.get_string('decorations') != 'ssd' )
+		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Crop the picture"), transient_for=window)
 		self._window = window
 		self.original_width = o_width
 		self.original_height = o_height
@@ -43,13 +42,13 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.preview.connect('draw', self.on_draw)
 		self.preview.connect('button-press-event', self.on_press)
 		self.preview.connect('button-release-event', self.on_release)
-		if self._window.pixbuf.get_width() > self._window.pixbuf.get_height():
+		if self._window.get_pixbuf_width() > self._window.get_pixbuf_height():
 			w = 500
-			h = 500*(self._window.pixbuf.get_height()/self._window.pixbuf.get_width())
+			h = 500*(self._window.get_pixbuf_height()/self._window.get_pixbuf_width())
 		else:
-			w = 500*(self._window.pixbuf.get_width()/self._window.pixbuf.get_height())
+			w = 500*(self._window.get_pixbuf_width()/self._window.get_pixbuf_height())
 			h = 500
-		self.pixbuf = self._window.pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+		self.pixbuf = self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		self.preview.set_size_request(self.surface.get_width(), self.surface.get_height())
 		self.set_resizable(False)
@@ -61,8 +60,8 @@ class DrawingCropDialog(Gtk.Dialog):
 		if self.forbid_growth:
 			self.width_btn.set_range(1, self.original_width)
 			self.height_btn.set_range(1, self.original_height)
-		self.width_btn.set_value(self._window.pixbuf.get_width())
-		self.height_btn.set_value(self._window.pixbuf.get_height())
+		self.width_btn.set_value(self._window.get_pixbuf_width())
+		self.height_btn.set_value(self._window.get_pixbuf_height())
 
 	def on_apply(self, *args):
 		x = self._x
@@ -70,7 +69,7 @@ class DrawingCropDialog(Gtk.Dialog):
 		width = self.get_width()
 		height = self.get_height()
 
-		self._window.resize_surface(x, y, width, height)
+		self._window._pixbuf_manager.resize_surface(x, y, width, height)
 		self._window.initial_save()
 		self.destroy()
 

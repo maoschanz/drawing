@@ -130,8 +130,8 @@ class ToolText(ToolTemplate):
             self.entry.get_buffer().get_end_iter(), False)
         if text == '':
             return
-        self.window.use_stable_pixbuf()
-        self.w_context = cairo.Context(self.window._surface)
+        self.restore_pixbuf()
+        self.w_context = cairo.Context(self.window.get_surface())
 
         self.w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
             self.primary_color.blue, self.primary_color.alpha)
@@ -140,12 +140,12 @@ class ToolText(ToolTemplate):
     def on_insert_text(self, b):
         self.preview_text()
         self.popover.popdown()
-        self.window.set_stable_pixbuf()
+        self.window._pixbuf_manager.on_tool_finished()
         self.entry.get_buffer().set_text('', 0)
         self.window_can_take_back_control = True
 
     def add_text_from_buffer(self):
-        self.w_context = cairo.Context(self.window._surface)
+        self.w_context = cairo.Context(self.window.get_surface())
 
         self.w_context.select_font_face(self.font_fam, self.slant, self.weight)
         self.w_context.set_font_size(3*self.tool_width)
@@ -175,7 +175,7 @@ class ToolText(ToolTemplate):
         self.window.drawing_area.queue_draw()
 
     def on_cancel(self, b):
-        self.window.use_stable_pixbuf()
+        self.restore_pixbuf()
         self.popover.popdown()
         self.window_can_take_back_control = True
         self.entry.get_buffer().set_text('', 0)

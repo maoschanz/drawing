@@ -22,7 +22,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingPropertiesDialog'
 
 	def __init__(self, window):
-		super().__init__(use_header_bar=True, destroy_with_parent=True, parent=window, title=_("Image properties"))
+		wants_csd = ( window._settings.get_string('decorations') != 'ssd' )
+		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, transient_for=window, title=_("Image properties"))
 		self._window = window
 		# self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		# self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
@@ -50,10 +51,10 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			4: 'RGB16_565',
 			5: 'RGB30',
 		}
-		label_format_surface.set_label(enum.get(window._surface.get_format(), _("Invalid format")))
+		label_format_surface.set_label(enum.get(window.get_surface().get_format(), _("Invalid format")))
 
-		label_width.set_label(str(window._surface.get_width()) + ' px')
-		label_height.set_label(str(window._surface.get_height()) + ' px')
+		label_width.set_label(str(window.get_pixbuf_width()) + ' px')
+		label_height.set_label(str(window.get_pixbuf_height()) + ' px')
 
 		btn_crop = builder.get_object('btn_crop')
 		btn_crop.connect('clicked', self.on_crop)

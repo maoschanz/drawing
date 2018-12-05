@@ -78,7 +78,7 @@ class ToolShape(ToolTemplate):
 		pass
 
 	def draw_rectangle(self, event):
-		w_context = cairo.Context(self.window._surface)
+		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		if self.active_style() == 'secondary':
@@ -104,7 +104,7 @@ class ToolShape(ToolTemplate):
 		w_context.stroke()
 
 	def draw_rounded(self, event):
-		w_context = cairo.Context(self.window._surface)
+		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		if self.active_style() == 'secondary':
@@ -149,7 +149,7 @@ class ToolShape(ToolTemplate):
 		pass
 
 	def draw_circle(self, event):
-		w_context = cairo.Context(self.window._surface)
+		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		rayon = math.sqrt((self.x_press - event.x)*(self.x_press - event.x) \
@@ -179,8 +179,8 @@ class ToolShape(ToolTemplate):
 		print("key")
 
 	def on_motion_on_area(self, area, event, surface):
-		self.window.use_stable_pixbuf()
-		w_context = cairo.Context(self.window._surface)
+		self.restore_pixbuf()
+		w_context = cairo.Context(self.window.get_surface())
 
 		if self.active_shape() == 'rectangle':
 			self.draw_rectangle(event)
@@ -261,27 +261,27 @@ class ToolShape(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface):
 		if self.active_shape() == 'rectangle':
-			self.window.use_stable_pixbuf()
+			self.restore_pixbuf()
 			self.draw_rectangle(event)
 			self.window_can_take_back_control = True
 
 		elif self.active_shape() == 'rounded':
-			self.window.use_stable_pixbuf()
+			self.restore_pixbuf()
 			self.draw_rounded(event)
 			self.window_can_take_back_control = True
 
 		elif self.active_shape() == 'ellipsis':
-			self.window.use_stable_pixbuf()
+			self.restore_pixbuf()
 			# self.draw_ellipsis(event)
 			self.window_can_take_back_control = True
 
 		elif self.active_shape() == 'circle':
-			self.window.use_stable_pixbuf()
+			self.restore_pixbuf()
 			self.draw_circle(event)
 			self.window_can_take_back_control = True
 
 		elif self.active_shape() == 'polygon':
-			self.window.use_stable_pixbuf()
+			self.restore_pixbuf()
 			self.draw_polygon(event)
 			self.window_can_take_back_control = True
 
@@ -294,7 +294,7 @@ class ToolShape(ToolTemplate):
 
 
 	def draw_polygon_temp(self, event):
-		w_context = cairo.Context(self.window._surface)
+		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		if self.past_x == -1.0:

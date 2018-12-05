@@ -34,6 +34,9 @@ class ToolTemplate():
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
+	def restore_pixbuf(self):
+		self.window._pixbuf_manager.use_stable_pixbuf()
+
 	def give_back_control(self):
 		pass
 

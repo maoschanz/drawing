@@ -172,9 +172,9 @@ class ToolSelect(ToolTemplate):
 
     def delete_selection(self, b):
         self.selection_popover.popdown()
-        self.window.use_stable_pixbuf()
+        self.restore_pixbuf()
 
-        w_context = cairo.Context(self.window._surface)
+        w_context = cairo.Context(self.window.get_surface())
         w_context.move_to(self.past_x[0], self.past_y[0])
         w_context.line_to(self.past_x[0], self.past_y[1])
         w_context.line_to(self.past_x[1], self.past_y[1])
@@ -195,7 +195,7 @@ class ToolSelect(ToolTemplate):
 
     def copy_selection(self, b):
         self.selection_popover.popdown()
-        self.window.use_stable_pixbuf()
+        self.restore_pixbuf()
 
         print('copy') # TODO
 
@@ -211,7 +211,7 @@ class ToolSelect(ToolTemplate):
 
     def cancel_selection(self, b):
         self.selection_popover.popdown()
-        self.window.use_stable_pixbuf()
+        self.restore_pixbuf()
 
         print('cancel')
 
@@ -224,13 +224,13 @@ class ToolSelect(ToolTemplate):
 
     def drag_to(self):
         print('dragging')
-        self.window.use_stable_pixbuf()
+        self.restore_pixbuf()
 
         # TODO copier le truc
 
 
         # facile à faire : supprimer l'ancien truc
-        w_context = cairo.Context(self.window._surface)
+        w_context = cairo.Context(self.window.get_surface())
         w_context.move_to(self.past_x[0], self.past_y[0])
         w_context.line_to(self.past_x[0], self.past_y[1])
         w_context.line_to(self.past_x[1], self.past_y[1])

@@ -115,7 +115,7 @@ class ToolPaint(ToolTemplate):
             # print('----------')
 
             if i == 2000:
-                dialog = Gtk.Dialog(use_header_bar=True, modal=True, parent=None)
+                dialog = Gtk.Dialog(use_header_bar=True, modal=True, transient_for=self.window)
                 dialog.add_button(_("Continue"), Gtk.ResponseType.APPLY)
                 dialog.add_button(_("Abort"), Gtk.ResponseType.CANCEL)
                 dialog.get_content_area().add(Gtk.Label(_( \

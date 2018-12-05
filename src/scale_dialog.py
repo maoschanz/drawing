@@ -26,9 +26,8 @@ class DrawingScaleDialog(Gtk.Dialog):
 	proportion = None
 
 	def __init__(self, window):
-		wants_csd = ( window._settings.get_string('decorations') == 'csd' \
-			or window._settings.get_string('decorations') == 'csd-menubar' )
-		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Scale the picture"), parent=window)
+		wants_csd = ( window._settings.get_string('decorations') != 'ssd' )
+		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Scale the picture"), transient_for=window)
 		self._window = window
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
@@ -43,8 +42,8 @@ class DrawingScaleDialog(Gtk.Dialog):
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		self.proportions_switch.connect('notify::active', self.on_proportions_changed)
-		self.width_btn.set_value(self._window.pixbuf.get_width())
-		self.height_btn.set_value(self._window.pixbuf.get_height())
+		self.width_btn.set_value(self._window.get_pixbuf_width())
+		self.height_btn.set_value(self._window.get_pixbuf_height())
 
 		self.proportions_switch.set_active(True)
 		self.on_proportions_changed()
@@ -52,7 +51,8 @@ class DrawingScaleDialog(Gtk.Dialog):
 	def on_apply(self, *args):
 		w = self.get_width()
 		h = self.get_height()
-		self._window.pixbuf = self._window.pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+		self._window._pixbuf_manager.main_pixbuf = \
+			self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		self._window.initial_save()
 		self.destroy()
 
