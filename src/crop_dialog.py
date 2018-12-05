@@ -19,8 +19,8 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 from .gi_composites import GtkTemplate
 import cairo
 
-class DrawCropDialog(Gtk.Dialog):
-	__gtype_name__ = 'DrawCropDialog'
+class DrawingCropDialog(Gtk.Dialog):
+	__gtype_name__ = 'DrawingCropDialog'
 
 	def __init__(self, window, o_width, o_height, forbid_growth):
 		wants_csd = ( window._settings.get_string('decorations') == 'csd' \

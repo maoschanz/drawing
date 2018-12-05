@@ -19,8 +19,8 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 from .gi_composites import GtkTemplate
 import cairo
 
-class DrawScaleDialog(Gtk.Dialog):
-	__gtype_name__ = 'DrawScaleDialog'
+class DrawingScaleDialog(Gtk.Dialog):
+	__gtype_name__ = 'DrawingScaleDialog'
 
 	keep_proportions = True
 	proportion = None

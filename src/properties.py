@@ -18,10 +18,8 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
 
-from .crop_dialog import DrawCropDialog
-
-class DrawPropertiesDialog(Gtk.Dialog):
-	__gtype_name__ = 'DrawPropertiesDialog'
+class DrawingPropertiesDialog(Gtk.Dialog):
+	__gtype_name__ = 'DrawingPropertiesDialog'
 
 	def __init__(self, window):
 		super().__init__(use_header_bar=True, destroy_with_parent=True, parent=window, title=_("Image properties"))

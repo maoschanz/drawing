@@ -21,8 +21,8 @@ from .gi_composites import GtkTemplate
 SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/preferences.ui')
-class DrawPrefsWindow(Gtk.Window):
-    __gtype_name__ = 'DrawPrefsWindow'
+class DrawingPrefsWindow(Gtk.Window):
+    __gtype_name__ = 'DrawingPrefsWindow'
 
     list_box = GtkTemplate.Child()
 

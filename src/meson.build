@@ -27,14 +27,18 @@ configure_file(
 
 drawing_sources = [
   '__init__.py',
+  'gi_composites.py',
+
+  'main.py',
+  'preferences.py',
+  'window.py',
+  'pixbuf_manager.py',
+  'tools.py',
+
   'crop_dialog.py',
   'scale_dialog.py',
-  'gi_composites.py',
-  'main.py',
-  'window.py',
-  'tools.py',
   'properties.py',
-  'preferences.py',
+
   'tools/line.py',
   'tools/paint.py',
   'tools/pencil.py',

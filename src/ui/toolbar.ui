@@ -91,6 +91,29 @@
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
+            <property name="action_name">win.import</property>
+            <property name="icon_name">folder-download-symbolic</property>
+            <property name="tooltip_text">Import</property>
+            <property name="label">Import</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.paste</property>
+            <property name="icon_name">edit-paste-symbolic</property>
+            <property name="tooltip_text">Paste</property>
+            <property name="label">Paste</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparatorToolItem">
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
             <property name="action_name">win.properties</property>
             <property name="icon_name">document-properties-symbolic</property>
             <property name="tooltip_text">Properties</property>
@@ -106,4 +129,6 @@
     </child>
   </object>
 </interface>
+
+
 

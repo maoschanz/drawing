@@ -33,15 +33,15 @@ from .eraser import ToolEraser
 
 DEV_VERSION = False
 
-from .properties import DrawPropertiesDialog
-from .crop_dialog import DrawCropDialog
-from .scale_dialog import DrawScaleDialog
+from .properties import DrawingPropertiesDialog
+from .crop_dialog import DrawingCropDialog
+from .scale_dialog import DrawingScaleDialog
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
-class DrawWindow(Gtk.ApplicationWindow):
-	__gtype_name__ = 'DrawWindow'
+class DrawingWindow(Gtk.ApplicationWindow):
+	__gtype_name__ = 'DrawingWindow'
 
 	_file_path = None
 	_is_saved = True
@@ -97,12 +97,12 @@ class DrawWindow(Gtk.ApplicationWindow):
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
 		self.tools['pencil'] = ToolPencil(self)
-		if DEV_VERSION:
-			self.tools['select'] = ToolSelect(self)
+		self.tools['select'] = ToolSelect(self)
 		self.tools['eraser'] = ToolEraser(self)
 		self.tools['text'] = ToolText(self)
 		self.tools['picker'] = ToolPicker(self)
-		self.tools['paint'] = ToolPaint(self)
+		if DEV_VERSION:
+			self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
 		self.build_tool_rows()
@@ -206,6 +206,13 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
+		# self.add_action_like_a_boss("cut", self.action_cut)
+		# self.add_action_like_a_boss("copy", self.action_copy)
+		# self.add_action_like_a_boss("selection_delete", self.action_selection_delete)
+		# self.add_action_like_a_boss("selection_resize", self.action_selection_resize)
+		# self.add_action_like_a_boss("selection_rotate", self.action_selection_rotate)
+		# self.add_action_like_a_boss("selection_export", self.action_selection_export)
+
 		# self.add_action_like_a_boss("import", self.action_import_png)
 		# self.add_action_like_a_boss("paste", self.action_paste)
 		# self.add_action_like_a_boss("select_all", self.action_select_all)
@@ -240,7 +247,10 @@ class DrawWindow(Gtk.ApplicationWindow):
 		self.update_tools_visibility2(listbox, gdkrectangle.width)
 
 	def update_tools_visibility2(self, listbox, width):
-		self.full_panel_width = max(self.full_panel_width, listbox.get_preferred_width()[0])
+		temp = max(self.full_panel_width, listbox.get_preferred_width()[0])
+		if self.full_panel_width == temp:
+			return
+		self.full_panel_width = temp
 		if (width < self.full_panel_width):
 			self.set_tools_labels_visibility(False)
 		else:
@@ -400,7 +410,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 				self.initial_save()
 			elif result == Gtk.ResponseType.YES: # Crop it
 				self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-				crop_dialog = DrawCropDialog(self, pic_w, pic_h, True)
+				crop_dialog = DrawingCropDialog(self, pic_w, pic_h, True)
 				result2 = crop_dialog.run()
 				if result2 == Gtk.ResponseType.APPLY:
 					self._file_path = fn
@@ -519,7 +529,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 		cairo_context.paint()
 
 	def on_configure(self, area, cairo_context):
-		print("ceci est appelé quand ça dimensionne la zone")
+		print("ceci est appelé quand ça dimensionne la zone?")
 
 	def on_key_on_area(self, area, event):
 		print("key") # TODO les touches sont des constantes Gdk https://github.com/GNOME/gtk/blob/master/gdk/keynames.txt
@@ -571,6 +581,12 @@ class DrawWindow(Gtk.ApplicationWindow):
 		print("import")
 		# TODO
 
+	def action_cut(self, *args):
+		print("cut")
+
+	def action_copy(self, *args):
+		print("copy")
+
 	def action_paste(self, *args):
 		print("paste")
 
@@ -580,8 +596,20 @@ class DrawWindow(Gtk.ApplicationWindow):
 	def action_unselect(self, *args):
 		print("unselect")
 
+	def action_selection_delete(self, *args):
+		print("selection_delete")
+
+	def action_selection_resize(self, *args):
+		print("selection_resize")
+
+	def action_selection_rotate(self, *args):
+		print("selection_rotate")
+
+	def action_selection_export(self, *args):
+		print("selection_export")
+
 	def edit_properties(self, *args):
-		DrawPropertiesDialog(self)
+		DrawingPropertiesDialog(self)
 
 ###########################
 
@@ -643,7 +671,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 			self.resize_surface(0, 0, width, height)
 
 	def action_crop(self, *args): # FIXME ça envoie pas les bonnes valeurs ?
-		crop_dialog = DrawCropDialog(self, self._surface.get_width(), \
+		crop_dialog = DrawingCropDialog(self, self._surface.get_width(), \
 			self._surface.get_height(), False)
 		result = crop_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
@@ -652,7 +680,7 @@ class DrawWindow(Gtk.ApplicationWindow):
 			crop_dialog.on_cancel()
 
 	def action_scale(self, *args): # FIXME ça scale beaucoup trop fort
-		scale_dialog = DrawScaleDialog(self)
+		scale_dialog = DrawingScaleDialog(self)
 		result = scale_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
 			scale_dialog.on_apply()

@@ -22,8 +22,8 @@ gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk, Gio, GLib, Gdk
 
-from .window import DrawWindow
-from .preferences import DrawPrefsWindow
+from .window import DrawingWindow
+from .preferences import DrawingPrefsWindow
 
 class Application(Gtk.Application):
 	about_dialog = None
@@ -38,7 +38,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname('com.github.maoschanz.Drawing')
 		self.register(None) # ?
 
-		self.version = version #'beta-2018-11-29' # XXX
+		self.version = version
 
 		if not self.get_is_remote():
 			self.on_startup()
@@ -156,7 +156,7 @@ class Application(Gtk.Application):
 		self.quit()
 
 	def on_new_window_activate(self, *args):
-		win = DrawWindow(application=self)
+		win = DrawingWindow(application=self)
 		win.present()
 		return win
 
@@ -191,11 +191,9 @@ class Application(Gtk.Application):
 		self.shortcuts_window.present()
 
 	def on_prefs_activate(self, *args):
-		if self.prefs_window is None:
-			self.prefs_window = DrawPrefsWindow()
-		else:
+		if self.prefs_window is not None:
 			self.prefs_window.destroy()
-			self.prefs_window = DrawPrefsWindow()
+		self.prefs_window = DrawingPrefsWindow()
 		self.prefs_window.present()
 
 	def on_help_activate(self, *args):

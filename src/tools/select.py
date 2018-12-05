@@ -19,45 +19,11 @@ class ToolSelect(ToolTemplate):
         self.past_x = [-1, -1]
         self.past_y = [-1, -1]
 
-        self.selection_popover = Gtk.Popover()
-
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5, margin=5)
-        box1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        box1.get_style_context().add_class('linked')
-        box2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        box2.get_style_context().add_class('linked')
-
-        cut_btn = Gtk.Button(image=Gtk.Image(icon_name='edit-cut-symbolic', icon_size=Gtk.IconSize.BUTTON), \
-            tooltip_text=_("Cut"))
-        copy_btn = Gtk.Button(image=Gtk.Image(icon_name='edit-copy-symbolic', icon_size=Gtk.IconSize.BUTTON), \
-            tooltip_text=_("Copy"))
-        delete_btn = Gtk.Button(image=Gtk.Image(icon_name='edit-delete-symbolic', icon_size=Gtk.IconSize.BUTTON), \
-            tooltip_text=_("Delete"))
-        scale_btn = Gtk.Button(image=Gtk.Image(icon_name='view-restore-symbolic', icon_size=Gtk.IconSize.BUTTON), expand=True, \
-            tooltip_text=_("Resize"))
-        rotate_btn = Gtk.Button(image=Gtk.Image(icon_name='view-refresh-symbolic', icon_size=Gtk.IconSize.BUTTON), expand=True, \
-            tooltip_text=_("Rotate"))
-        # TODO exporter la sélection ?
-
-        cut_btn.connect('clicked', self.cancel_selection)
-        copy_btn.connect('clicked', self.copy_selection)
-        delete_btn.connect('clicked', self.delete_selection)
-        scale_btn.connect('clicked', self.cancel_selection)
-        rotate_btn.connect('clicked', self.cancel_selection)
-
-        box1.add(cut_btn)
-        box1.add(copy_btn)
-        box1.add(delete_btn)
-        box2.add(scale_btn)
-        box2.add(rotate_btn)
-        box.add(box1)
-        box.add(box2)
-
-        self.selection_popover.add(box)
-
         builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
-        menu = builder.get_object("right-click-menu")
-        self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu)
+        menu_r = builder.get_object("right-click-menu")
+        self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
+        menu_l = builder.get_object("left-click-menu")
+        self.selection_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_l)
 
         #############################
 
