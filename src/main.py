@@ -101,7 +101,7 @@ class Application(Gtk.Application):
 	def add_tools_to_menubar(self, gio_menu):
 		if self.has_tools_in_menubar:
 			return
-		self.get_menubar().insert_submenu(2, _("Tools"), gio_menu)
+		self.get_menubar().insert_submenu(4, _("_Tools"), gio_menu)
 		self.has_tools_in_menubar = True
 
 	def add_action_like_a_boss(self, action_name, callback):
@@ -132,6 +132,8 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("win.paste", ["<Ctrl>v"])
 		self.set_accels_for_action("win.select_all", ["<Ctrl>a"])
 		self.set_accels_for_action("win.unselect", ["<Ctrl>u"])
+
+		self.set_accels_for_action("win.primary_menu", ["F10"])
 
 		self.set_accels_for_action("win.properties", ["<Ctrl>p"])
 		# self.set_accels_for_action("win.scale", [""])
@@ -166,12 +168,12 @@ class Application(Gtk.Application):
 			Gtk.FileChooserAction.OPEN,
 			_("Open"),
 			_("Cancel"))
-		onlyPictures = Gtk.FileFilter()
-		onlyPictures.set_name(_("Pictures"))
-		onlyPictures.add_mime_type('image/png')
-		onlyPictures.add_mime_type('image/jpeg')
-		onlyPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(onlyPictures)
+		allPictures = Gtk.FileFilter()
+		allPictures.set_name(_("All pictures"))
+		allPictures.add_mime_type('image/png')
+		allPictures.add_mime_type('image/jpeg')
+		allPictures.add_mime_type('image/bmp')
+		file_chooser.add_filter(allPictures)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			fn = file_chooser.get_filename()

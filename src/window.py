@@ -60,6 +60,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	toolbar_box = GtkTemplate.Child()
 	header_bar = None
+	primary_menu_btn = None
 
 	drawing_area = GtkTemplate.Child()
 
@@ -193,10 +194,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
 		self.add_action_like_a_boss("exchange_color", self.action_exchange_color)
 
-		# self.add_action_like_a_boss("print", self.action_print)
+		# self.add_action_like_a_boss("send_to", self.action_send_to)
+		self.add_action_like_a_boss("print", self.action_print)
+
 		self.add_action_like_a_boss("crop", self.action_crop)
 		self.add_action_like_a_boss("scale", self.action_scale)
 		self.add_action_like_a_boss("properties", self.edit_properties)
+
+		if self.primary_menu_btn is not None:
+			self.add_action_like_a_boss("primary_menu", self.action_primary_menu)
 
 		self.add_action_like_a_boss("close", self.action_close)
 		self.add_action_like_a_boss("save", self.action_save)
@@ -249,15 +255,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
 		save_as_btn = builder.get_object("save_as_btn")
-		menu_btn = builder.get_object("menu_btn")
+		self.primary_menu_btn = builder.get_object("primary_menu_btn")
 
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
 		primary_menu = builder.get_object("window-menu")
-		menu_popover = Gtk.Popover.new_from_model(menu_btn, primary_menu)
-		menu_btn.set_popover(menu_popover)
+		menu_popover = Gtk.Popover.new_from_model(self.primary_menu_btn, primary_menu)
+		self.primary_menu_btn.set_popover(menu_popover)
 		save_as_menu = builder.get_object("save-as-menu")
 		save_as_popover = Gtk.Popover.new_from_model(save_as_btn, save_as_menu)
 		save_as_btn.set_popover(save_as_popover)
+
+	def action_primary_menu(self, *args):
+		self.primary_menu_btn.set_active(not self.primary_menu_btn.get_active())
 
 	# TOOLS
 
@@ -376,11 +385,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_save(self, *args):
 		fn = self._file_path
 		if fn is None:
-			fn = self.invoke_file_chooser()
+			fn = self.run_save_file_chooser('')
 		self.save_pixbuf_to_fn(fn)
 
 	def action_save_as(self, *args):
-		fn = self.invoke_file_chooser()
+		fn = self.run_save_file_chooser('')
 		self.save_pixbuf_to_fn(fn)
 
 	def load_fn_to_pixbuf(self, fn):
@@ -428,9 +437,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 					crop_dialog.on_apply()
 				else:
 					crop_dialog.on_cancel()
+			else:
+				self.load_fn_to_pixbuf(fn) # Edit it anyway
 			dialog.destroy()
 		else:
-			self.load_fn_to_pixbuf(fn) # Edit it anyway
+			self.load_fn_to_pixbuf(fn)
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
@@ -458,18 +469,50 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			return True
 
-	def invoke_file_chooser(self):
+	def run_save_file_chooser(self, file_type):
 		file_path = None
-		file_chooser = Gtk.FileChooserNative.new(_("Save as"), self,
+		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 			Gtk.FileChooserAction.SAVE,
 			_("Save"),
 			_("Cancel"))
-		onlyPictures = Gtk.FileFilter()
-		onlyPictures.set_name(_("Pictures"))
-		onlyPictures.add_mime_type('image/png')
-		onlyPictures.add_mime_type('image/jpeg')
-		onlyPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(onlyPictures)
+
+		allPictures = Gtk.FileFilter()
+		allPictures.set_name(_("All pictures"))
+		allPictures.add_mime_type('image/png')
+		allPictures.add_mime_type('image/jpeg')
+		allPictures.add_mime_type('image/bmp')
+
+		pngPictures = Gtk.FileFilter()
+		pngPictures.set_name(_("PNG images"))
+		pngPictures.add_mime_type('image/png')
+
+		jpegPictures = Gtk.FileFilter()
+		jpegPictures.set_name(_("JPEG images"))
+		jpegPictures.add_mime_type('image/jpeg')
+
+		bmpPictures = Gtk.FileFilter()
+		bmpPictures.set_name(_("BMP images"))
+		bmpPictures.add_mime_type('image/bmp')
+
+		if file_type == 'png':
+			file_chooser.add_filter(pngPictures)
+			file_chooser.add_filter(allPictures)
+		elif file_type == 'jpeg':
+			file_chooser.add_filter(jpegPictures)
+			file_chooser.add_filter(allPictures)
+		elif file_type == 'bmp':
+			file_chooser.add_filter(bmpPictures)
+			file_chooser.add_filter(allPictures)
+		else:
+			file_chooser.add_filter(allPictures)
+			file_chooser.add_filter(pngPictures)
+			file_chooser.add_filter(jpegPictures)
+			file_chooser.add_filter(bmpPictures)
+			file_type = 'png'
+
+		default_file_name = str(_("Untitled") + '.' + file_type)
+		file_chooser.set_current_name(default_file_name)
+
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			file_path = file_chooser.get_filename()
@@ -477,13 +520,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return file_path
 
 	def export_as_png(self, *args):
-		self._pixbuf_manager.export_main_as("png")
+		self._pixbuf_manager.export_main_as('png')
 
 	def export_as_jpeg(self, *args):
-		self._pixbuf_manager.export_main_as("png")
+		self._pixbuf_manager.export_main_as('jpeg')
 
 	def export_as_bmp(self, *args):
-		self._pixbuf_manager.export_main_as("bmp")
+		self._pixbuf_manager.export_main_as('bmp')
 
 	# HISTORY MANAGEMENT
 
@@ -591,10 +634,27 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_selection_export(self, *args):
 		print("selection_export")
 
-	# PRINTING TODO
+	# PRINTING
 
 	def action_print(self, *args):
-		print("print")
+		op = Gtk.PrintOperation()
+		op.connect('draw-page', self.do_draw_page)
+		op.connect('begin-print', self.do_begin_print)
+		op.connect('end-print', self.do_end_print)
+		res = op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self)
+
+	def do_end_print(self, *args):
+		pass
+
+	def do_draw_page(self, operation, print_ctx, page_num):
+		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self._pixbuf_manager.main_pixbuf, 0, 0)
+		print_ctx.get_cairo_context().paint()
+		op.set_n_pages(1)
+
+	def do_begin_print(self, op, print_ctx):
+		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self._pixbuf_manager.main_pixbuf, 0, 0)
+		print_ctx.get_cairo_context().paint()
+		op.set_n_pages(1)
 
 	# MAIN_PIXBUF-RELATED METHODS
 
@@ -626,4 +686,5 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def get_surface(self):
 		return self._pixbuf_manager.surface
+
 

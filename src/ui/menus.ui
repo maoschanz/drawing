@@ -54,6 +54,11 @@
             <attribute name="action">win.print</attribute>
             <attribute name="verb-icon">document-print-symbolic</attribute>
         </item>
+        <item>
+            <attribute name="label" translatable="yes">Send to</attribute>
+            <attribute name="action">win.send_to</attribute>
+            <attribute name="verb-icon">send-to-symbolic</attribute>
+        </item>
     </section>
     <section>
         <item>
@@ -75,7 +80,7 @@
             <attribute name="action">win.paste</attribute>
         </item>
         <submenu>
-          <attribute name="label" translatable="yes">Selection</attribute>
+          <attribute name="label" translatable="yes">_Selection</attribute>
           <section>
             <item>
                 <attribute name="label" translatable="yes">Select all</attribute>
@@ -125,6 +130,7 @@
         </submenu>
     </section>
     <section>
+        <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
         <item>
             <attribute name="label" translatable="yes">Preferences</attribute>
             <attribute name="action">app.settings</attribute>
@@ -176,7 +182,7 @@
 <!-- Menubar -->
   <menu id="menu-bar">
     <submenu>
-      <attribute name="label" translatable="yes">File</attribute>
+      <attribute name="label" translatable="yes">_File</attribute>
       <section>
         <item>
             <attribute name="label" translatable="yes">New window</attribute>
@@ -200,6 +206,23 @@
             <attribute name="action">win.save_as</attribute>
             <attribute name="verb-icon">document-save-as-symbolic</attribute>
         </item>
+        <submenu>
+          <attribute name="label" translatable="yes">Export</attribute>
+          <section>
+            <item>
+                <attribute name="label" translatable="yes">Export as PNG</attribute>
+                <attribute name="action">win.exp_png</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Export as JPEG</attribute>
+                <attribute name="action">win.exp_jpeg</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Export as BMP</attribute>
+                <attribute name="action">win.exp_bmp</attribute>
+            </item>
+          </section>
+        </submenu>
       </section>
       <section>
         <item>
@@ -207,19 +230,10 @@
             <attribute name="action">win.print</attribute>
             <attribute name="verb-icon">document-print-symbolic</attribute>
         </item>
-      </section>
-      <section>
         <item>
-            <attribute name="label" translatable="yes">Export as PNG</attribute>
-            <attribute name="action">win.exp_png</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Export as JPEG</attribute>
-            <attribute name="action">win.exp_jpeg</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Export as BMP</attribute>
-            <attribute name="action">win.exp_bmp</attribute>
+            <attribute name="label" translatable="yes">Send to</attribute>
+            <attribute name="action">win.send_to</attribute>
+            <attribute name="verb-icon">send-to-symbolic</attribute>
         </item>
       </section>
       <section>
@@ -231,7 +245,7 @@
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">Edit</attribute>
+      <attribute name="label" translatable="yes">_Edit</attribute>
       <section>
         <item>
             <attribute name="label" translatable="yes">Undo</attribute>
@@ -279,12 +293,8 @@
       </section>
     </submenu>
 
-    <!-- <submenu> -->
-    <!--   <attribute name="label" translatable="yes">Tools</attribute> -->
-    <!-- </submenu> -->
-
     <submenu>
-      <attribute name="label" translatable="yes">Selection</attribute>
+      <attribute name="label" translatable="yes">_Selection</attribute>
       <section>
         <item>
             <attribute name="label" translatable="yes">Select all</attribute>
@@ -336,7 +346,7 @@
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">Colors</attribute>
+      <attribute name="label" translatable="yes">_Colors</attribute>
       <section>
         <item>
             <attribute name="label" translatable="yes">Primary color</attribute>
@@ -356,8 +366,12 @@
       </section>
     </submenu>
 
+    <!-- <submenu> -->
+    <!--   <attribute name="label" translatable="yes">_Tools</attribute> -->
+    <!-- </submenu> -->
+
     <submenu>
-      <attribute name="label" translatable="yes">Help</attribute>
+      <attribute name="label" translatable="yes">_Help</attribute>
       <section>
         <item>
             <attribute name="label" translatable="yes">Shortcuts</attribute>
@@ -379,5 +393,6 @@
   </menu>
 
 </interface>
+
 
 

@@ -21,10 +21,8 @@ import cairo
 SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 
 # TODO
-# gestion du pixbuf principal
 # gestion du pixbuf de sélection
 # gestion du presse-papier
-# gestion de l'historique
 class DrawingPixbufManager():
 	main_pixbuf = None
 	selection_pixbuf = None
@@ -59,7 +57,7 @@ class DrawingPixbufManager():
 		# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
 
 	def export_main_as(self, file_format):
-		file_path = self.window.invoke_file_chooser()
+		file_path = self.window.run_save_file_chooser(file_format)
 		if file_path is not None:
 			self.set_stable_pixbuf()
 			self.main_pixbuf.savev(file_path, file_format, [None], [])
