@@ -64,6 +64,8 @@ class ToolSelect(ToolTemplate):
 
 	def give_back_control(self):
 		print('selection give back control')
+		self.restore_pixbuf()
+		self.window._pixbuf_manager.delete_temp()
 		self.window._pixbuf_manager.show_selection_content()
 		self.apply_to_pixbuf()
 		self.end_selection()
@@ -74,6 +76,8 @@ class ToolSelect(ToolTemplate):
 		if self.window._pixbuf_manager.selection_is_active and state:
 			self.selection_popover.popup()
 		elif state:
+			self.window._pixbuf_manager.selection_x = self.rightc_popover.get_pointing_to()[1].x
+			self.window._pixbuf_manager.selection_y = self.rightc_popover.get_pointing_to()[1].y
 			self.rightc_popover.popup()
 
 	def on_key_on_area(self, area, event, surface):
@@ -94,8 +98,6 @@ class ToolSelect(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface):
 		print("release") # TODO à main levée c'est juste un crayon avec close_path() après
-		primary_color = ''
-		secondary_color = ''
 		if event.button == 3:
 			rectangle = Gdk.Rectangle()
 			rectangle.x = int(event.x)
@@ -111,21 +113,19 @@ class ToolSelect(ToolTemplate):
 			# if something is already selected, the selection should be cancelled (the
 			# action is performed outside of the current selection), or stay the same
 			# (the user is moving the selection by dragging it).
-			if self.past_x[0] == -1:
+			if not self.window._pixbuf_manager.selection_is_active:
 				self.past_x[0] = event.x
 				self.past_x[1] = self.x_press
 				self.past_y[0] = event.y
 				self.past_y[1] = self.y_press
 				self.selection_popover.set_relative_to(area)
 				self.create_selection_from_coord()
-				self.draw_selection_area()
+				if self.window._pixbuf_manager.selection_is_active:
+					self.draw_selection_area(True)
 			elif self.point_is_in_selection(self.x_press, self.y_press):
 				self.drag_to(event.x, event.y)
-				return
 			else:
-				self.window._pixbuf_manager.show_selection_content()
-				self.apply_to_pixbuf()
-				self.end_selection()
+				self.give_back_control()
 				return
 
 	def point_is_in_selection(self, x, y):
@@ -162,10 +162,10 @@ class ToolSelect(ToolTemplate):
 			y1 = self.past_y[0]
 		self.window._pixbuf_manager.create_selection_from_main(x0, y0, x1, y1)
 
-	def draw_selection_area(self):
+	def draw_selection_area(self, show):
 		self.window._pixbuf_manager.show_selection_rectangle()
 		self.set_popover_position()
-		self.show_popover(True)
+		self.show_popover(show)
 
 	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()

@@ -136,6 +136,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		w_context.set_source_rgba(r, g, b, a)
 		w_context.paint()
 		self._pixbuf_manager.set_pixbuf_as_stable()
+		self._pixbuf_manager.update_minimap()
 
 	def is_empty_picture(self):
 		if self._file_path is None and not self._pixbuf_manager.can_undo():
@@ -186,15 +187,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		# self.add_action_like_a_boss("cut", self.action_cut)
-		# self.add_action_like_a_boss("copy", self.action_copy)
+		self.add_action_like_a_boss("cut", self.action_cut)
+		self.add_action_like_a_boss("copy", self.action_copy)
 		self.add_action_like_a_boss("selection_delete", self.action_selection_delete)
-		# self.add_action_like_a_boss("selection_resize", self.action_selection_resize)
+		self.add_action_like_a_boss("selection_resize", self.action_selection_resize)
 		# self.add_action_like_a_boss("selection_rotate", self.action_selection_rotate)
 		self.add_action_like_a_boss("selection_export", self.action_selection_export)
 
-		self.add_action_like_a_boss("import", self.action_import_png)
-		# self.add_action_like_a_boss("paste", self.action_paste)
+		self.add_action_like_a_boss("import", self.action_import)
+		self.add_action_like_a_boss("paste", self.action_paste)
 		self.add_action_like_a_boss("select_all", self.action_select_all)
 		self.add_action_like_a_boss("unselect", self.action_unselect)
 
@@ -211,7 +212,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self.primary_menu_btn is not None:
 			self.add_action_like_a_boss("primary_menu", self.action_primary_menu)
-		self.add_action_like_a_boss("toggle_preview", self.action_preview)
+
+		self.add_action_like_a_boss("toggle_preview", self.action_toggle_preview)
+		self.add_action_like_a_boss("bigger_preview", self.action_bigger_preview)
+		self.add_action_like_a_boss("smaller_preview", self.action_smaller_preview)
 
 		self.add_action_like_a_boss("close", self.action_close)
 		self.add_action_like_a_boss("save", self.action_save)
@@ -279,8 +283,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# MINIMAP
 
-	def action_preview(self, *args):
+	def action_toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
+
+	def action_smaller_preview(self, *args):
+		size = max(200, self._settings.get_int('preview-size') - 40)
+		self._settings.set_int('preview-size', size)
+		self._pixbuf_manager.preview_size = size
+		self._pixbuf_manager.update_minimap()
+
+	def action_bigger_preview(self, *args):
+		size = self._settings.get_int('preview-size') + 40
+		self._settings.set_int('preview-size', size)
+		self._pixbuf_manager.preview_size = size
+		self._pixbuf_manager.update_minimap()
 
 	def build_minimap(self):
 		builder = Gtk.Builder()
@@ -293,8 +309,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap_btn.set_popover(minimap_popover)
 
 	def on_minimap_draw(self, area, cairo_context):
-		print('292')
-		self._pixbuf_manager.update_minimap()
+		# self._pixbuf_manager.update_minimap()
 		cairo_context.set_source_surface(self._pixbuf_manager.mini_surface, 0, 0)
 		cairo_context.paint()
 
@@ -631,7 +646,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# SELECTION-RELATED ACTIONS
 
-	def action_import_png(self, *args):
+	def action_import(self, *args):
 		self.tools['select'].row.set_active(True)
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 			Gtk.FileChooserAction.OPEN,
@@ -647,40 +662,40 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if response == Gtk.ResponseType.ACCEPT:
 			fn = file_chooser.get_filename()
 			self._pixbuf_manager.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-			self.tools['select'].draw_selection_area()
+			self._pixbuf_manager.create_selection_from_selection()
+			self.tools['select'].draw_selection_area(False)
 		file_chooser.destroy()
 
 	def action_cut(self, *args):
-		self._pixbuf_manager.cut_operation()
-		self._pixbuf_manager.on_tool_finished()
-
-	def action_copy(self, *args): # FIXME
 		self._pixbuf_manager.copy_operation()
-		self._pixbuf_manager.on_tool_finished()
+		self.action_selection_delete()
 
-	def action_paste(self, *args): # FIXME
+	def action_copy(self, *args):
+		self._pixbuf_manager.copy_operation()
+
+	def action_paste(self, *args):
 		self.tools['select'].row.set_active(True)
 		self._pixbuf_manager.paste_operation()
-		self.tools['select'].draw_selection_area()
+		self._pixbuf_manager.create_selection_from_selection()
+		self.tools['select'].draw_selection_area(False)
 
 	def action_select_all(self, *args):
 		self.tools['select'].row.set_active(True)
 		self._pixbuf_manager.select_all()
-		self.tools['select'].draw_selection_area()
+		self.tools['select'].draw_selection_area(True)
 
 	def action_unselect(self, *args):
 		self._pixbuf_manager.reset_selection()
 		self.drawing_area.queue_draw()
 
 	def action_selection_delete(self, *args):
-		self._pixbuf_manager.use_stable_pixbuf()
 		self._pixbuf_manager.delete_operation()
-		self._pixbuf_manager.on_tool_finished()
 		self.tools['select'].end_selection()
+		self._pixbuf_manager.on_tool_finished()
 		self._pixbuf_manager.reset_selection()
 
-	def action_selection_resize(self, *args): # TODO
-		print("selection_resize")
+	def action_selection_resize(self, *args):
+		self.scale_pixbuf(True)
 
 	def action_selection_rotate(self, *args): # TODO
 		print("selection_rotate")
@@ -725,7 +740,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			crop_dialog.on_cancel()
 
 	def action_scale(self, *args):
-		scale_dialog = DrawingScaleDialog(self)
+		self.scale_pixbuf(False)
+
+	def scale_pixbuf(self, is_selection):
+		if is_selection:
+			w = self._pixbuf_manager.selection_pixbuf.get_width()
+			h = self._pixbuf_manager.selection_pixbuf.get_height()
+		else:
+			w = self.get_pixbuf_width()
+			h = self.get_pixbuf_height()
+		scale_dialog = DrawingScaleDialog(self, w, h, is_selection)
 		result = scale_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
 			scale_dialog.on_apply()

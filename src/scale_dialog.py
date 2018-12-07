@@ -25,10 +25,11 @@ class DrawingScaleDialog(Gtk.Dialog):
 	keep_proportions = True
 	proportion = None
 
-	def __init__(self, window):
+	def __init__(self, window, w, h, is_selection):
 		wants_csd = ( window._settings.get_string('decorations') != 'ssd' )
 		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Scale the picture"), transient_for=window)
 		self._window = window
+		self.is_selection = is_selection
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/scale_dialog.ui')
@@ -42,8 +43,8 @@ class DrawingScaleDialog(Gtk.Dialog):
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		self.proportions_switch.connect('notify::active', self.on_proportions_changed)
-		self.width_btn.set_value(self._window.get_pixbuf_width())
-		self.height_btn.set_value(self._window.get_pixbuf_height())
+		self.width_btn.set_value(w)
+		self.height_btn.set_value(h)
 
 		self.proportions_switch.set_active(True)
 		self.on_proportions_changed()
@@ -51,9 +52,14 @@ class DrawingScaleDialog(Gtk.Dialog):
 	def on_apply(self, *args):
 		w = self.get_width()
 		h = self.get_height()
-		self._window._pixbuf_manager.main_pixbuf = \
-			self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
-		self._window.initial_save()
+		if self.is_selection:
+			self._window._pixbuf_manager.selection_pixbuf = \
+				self._window._pixbuf_manager.selection_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+			self._window._pixbuf_manager.show_selection_rectangle()
+		else:
+			self._window._pixbuf_manager.main_pixbuf = \
+				self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+			self._window._pixbuf_manager.on_tool_finished()
 		self.destroy()
 
 	def on_cancel(self, *args):

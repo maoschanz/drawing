@@ -6,7 +6,6 @@
     <property name="spacing">5</property>
     <property name="margin">5</property>
     <child>
-    <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
       <object class="GtkLayout" id="minimap_area">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
@@ -27,6 +26,8 @@
             <child>
               <object class="GtkButton">
                 <property name="visible">True</property>
+                <property name="action-name">win.smaller_preview</property>
+                <property name="tooltip_text" translatable="yes">Smaller preview</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">zoom-out-symbolic</property>
@@ -38,6 +39,8 @@
             <child>
               <object class="GtkButton">
                 <property name="visible">True</property>
+                <property name="action-name">win.bigger_preview</property>
+                <property name="tooltip_text" translatable="yes">Bigger preview</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">zoom-in-symbolic</property>
@@ -48,7 +51,7 @@
             </child>
           </object>
           <packing>
-            <property name="pack-type">start</property>
+            <property name="pack-type">end</property>
           </packing>
         </child>
         <child>
@@ -58,7 +61,7 @@
             <property name="label" translatable="yes">Crop</property>
           </object>
           <packing>
-            <property name="pack-type">end</property>
+            <property name="pack-type">start</property>
           </packing>
         </child>
         <child>
@@ -68,7 +71,7 @@
             <property name="label" translatable="yes">Scale</property>
           </object>
           <packing>
-            <property name="pack-type">end</property>
+            <property name="pack-type">start</property>
           </packing>
         </child>
       </object>

@@ -69,7 +69,7 @@ class DrawingCropDialog(Gtk.Dialog):
 		width = self.get_width()
 		height = self.get_height()
 
-		self._window._pixbuf_manager.resize_surface(x, y, width, height)
+		self._window._pixbuf_manager.resize_main_surface(x, y, width, height)
 		self._window.initial_save()
 		self.destroy()
 

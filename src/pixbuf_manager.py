@@ -54,12 +54,9 @@ class DrawingPixbufManager():
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300) # 8 ??? les autres plantent
 
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 300, 300)
+		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
 		self.reset_selection()
-
-		# FIXME
-		self.clipboard = Gtk.Clipboard()
 
 	def load_main_from_filename(self, filename):
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
@@ -79,7 +76,7 @@ class DrawingPixbufManager():
 		if file_path is not None:
 			self.main_pixbuf.savev(file_path, file_format, [None], [])
 
-	def resize_surface(self, x, y, width, height):
+	def resize_main_surface(self, x, y, width, height):
 		x = int(x)
 		y = int(y)
 		width = int(width)
@@ -100,7 +97,7 @@ class DrawingPixbufManager():
 
 		self.window.drawing_area.set_size(width, height)
 		if x != 0 or y != 0:
-			self.resize_surface(0, 0, width, height)
+			self.resize_main_surface(0, 0, width, height)
 
 	def on_tool_finished(self):
 		self.undo_history.append(self.main_pixbuf.copy())
@@ -109,6 +106,7 @@ class DrawingPixbufManager():
 		self.window.drawing_area.queue_draw()
 		self.set_pixbuf_as_stable()
 		self.selection_is_active = False
+		self.update_minimap()
 
 	def can_undo(self):
 		if len(self.undo_history) == 0:
@@ -125,7 +123,6 @@ class DrawingPixbufManager():
 	def set_pixbuf_as_stable(self):
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 			self.surface.get_width(), self.surface.get_height())
-		self.update_minimap()
 
 	def update_minimap(self):
 		w = self.preview_size
@@ -136,6 +133,7 @@ class DrawingPixbufManager():
 			h = self.preview_size * (self.main_pixbuf.get_height()/self.main_pixbuf.get_width())
 		self.mini_pixbuf = self.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES) # full_pixbuf
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
+		self.window.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
 		self.window.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
 		self.window.minimap_area.queue_draw()
 
@@ -168,28 +166,31 @@ class DrawingPixbufManager():
 		w_context.paint()
 		w_context.set_operator(cairo.Operator.OVER)
 
-	def cut_operation(self):
-		self.copy_operation()
-		self.delete_operation()
-
 	def copy_operation(self):
-		self.clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		self.clipboard.set_image(self.selection_pixbuf)
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		cb.set_image(self.selection_pixbuf)
 
 	def paste_operation(self):
-		self.clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		self.selection_pixbuf = self.clipboard.wait_for_image()
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		self.selection_pixbuf = cb.wait_for_image()
 		self.show_selection_rectangle()
 
 	def create_selection_from_main(self, x0, y0, x1, y1):
-		assert(x0<x1 and y0<y1)
+		w = int(x1 - x0)
+		h = int(y1 - y0)
+		if w <= 0 or h <= 0:
+			return
 		self.selection_x = int(x0)
 		self.selection_y = int(y0)
 		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(int(x0), int(y0), \
-			int(x1 - x0), int(y1 - y0)))
+		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(int(x0), int(y0), w, h))
 		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(temp_surface, 0, 0, \
 			temp_surface.get_width(), temp_surface.get_height())
+		self.set_temp()
+
+	def create_selection_from_selection(self):
+		self.selection_is_active = True
+		self.temp_pixbuf = None
 
 	def set_temp(self):
 		self.temp_x = self.selection_x
@@ -198,6 +199,8 @@ class DrawingPixbufManager():
 		self.selection_is_active = True # TODO ce booléen c'est aussi pour gérer l'activation des actions
 
 	def delete_temp(self):
+		if self.temp_pixbuf is None:
+			return
 		x0 = self.temp_x
 		y0 = self.temp_y
 		x1 = x0 + self.temp_pixbuf.get_width()
@@ -214,10 +217,8 @@ class DrawingPixbufManager():
 		w_context.set_operator(cairo.Operator.OVER)
 
 	def show_selection_rectangle(self):
-		# XXX ici c'est mauvais mais ce sera positif que la seléction de base soit proprement effacée
-		if not self.selection_is_active:
-			self.set_temp()
-		else:
+		self.use_stable_pixbuf()
+		if self.selection_is_active:
 			self.delete_temp()
 		x0 = self.selection_x
 		y0 = self.selection_y
@@ -231,11 +232,13 @@ class DrawingPixbufManager():
 		w_context.line_to(x0+1, y1-1)
 		w_context.close_path()
 		w_context.clip_preserve()
-		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2) # FIXME cas où pixels transparents
+		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
 		w_context.paint()
 		w_context.stroke()
 
 	def show_selection_content(self):
+		if self.selection_pixbuf is None:
+			return
 		w_context = cairo.Context(self.surface)
 		Gdk.cairo_set_source_pixbuf(w_context, self.selection_pixbuf, self.selection_x, self.selection_y)
 		w_context.paint()
@@ -249,6 +252,7 @@ class DrawingPixbufManager():
 		self.selection_x = 0
 		self.selection_y = 0
 		self.selection_pixbuf = self.main_pixbuf.copy()
+		self.set_temp()
 		self.show_selection_rectangle()
 
 	def export_selection_as(self):
