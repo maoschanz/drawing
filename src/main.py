@@ -100,7 +100,7 @@ class Application(Gtk.Application):
 	def add_tools_to_menubar(self, gio_menu):
 		if self.has_tools_in_menubar:
 			return
-		self.get_menubar().insert_submenu(4, _("_Tools"), gio_menu)
+		self.get_menubar().insert_submenu(5, _("_Tools"), gio_menu)
 		self.has_tools_in_menubar = True
 
 	def add_action_like_a_boss(self, action_name, callback):
@@ -133,6 +133,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("win.unselect", ["<Ctrl>u"])
 
 		self.set_accels_for_action("win.primary_menu", ["F10"])
+		self.set_accels_for_action("win.toggle_preview", ["<Ctrl>m"])
 
 		self.set_accels_for_action("win.properties", ["<Ctrl>p"])
 		# self.set_accels_for_action("win.scale", [""])

@@ -211,6 +211,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self.primary_menu_btn is not None:
 			self.add_action_like_a_boss("primary_menu", self.action_primary_menu)
+		self.add_action_like_a_boss("toggle_preview", self.action_preview)
 
 		self.add_action_like_a_boss("close", self.action_close)
 		self.add_action_like_a_boss("save", self.action_save)
@@ -277,6 +278,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.primary_menu_btn.set_active(not self.primary_menu_btn.get_active())
 
 	# MINIMAP
+
+	def action_preview(self, *args):
+		self.minimap_btn.set_active(not self.minimap_btn.get_active())
 
 	def build_minimap(self):
 		builder = Gtk.Builder()

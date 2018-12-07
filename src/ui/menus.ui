@@ -62,16 +62,6 @@
     </section>
     <section>
         <item>
-            <attribute name="label" translatable="yes">Crop</attribute>
-            <attribute name="action">win.crop</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Scale</attribute>
-            <attribute name="action">win.scale</attribute>
-        </item>
-    </section>
-    <section>
-        <item>
             <attribute name="label" translatable="yes">Select all</attribute>
             <attribute name="action">win.select_all</attribute>
         </item>
@@ -277,6 +267,24 @@
       </section>
       <section>
         <item>
+            <attribute name="label" translatable="yes">Preferences</attribute>
+            <attribute name="action">app.settings</attribute>
+            <attribute name="verb-icon">preferences-system-symbolic</attribute>
+        </item>
+      </section>
+    </submenu>
+
+    <submenu>
+      <attribute name="label" translatable="yes">_Image</attribute>
+      <section>
+        <item>
+            <attribute name="label" translatable="yes">Show preview</attribute>
+            <attribute name="action">win.toggle_preview</attribute>
+            <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
             <attribute name="label" translatable="yes">Crop</attribute>
             <attribute name="action">win.crop</attribute>
         </item>
@@ -288,13 +296,6 @@
             <attribute name="label" translatable="yes">Properties</attribute>
             <attribute name="action">win.properties</attribute>
             <attribute name="verb-icon">document-properties-symbolic</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-            <attribute name="label" translatable="yes">Preferences</attribute>
-            <attribute name="action">app.settings</attribute>
-            <attribute name="verb-icon">preferences-system-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -394,6 +395,7 @@
   </menu>
 
 </interface>
+
 
 
 

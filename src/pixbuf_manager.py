@@ -47,6 +47,7 @@ class DrawingPixbufManager():
 
 		width = self.settings.get_int('default-width')
 		height = self.settings.get_int('default-height')
+		self.preview_size = self.settings.get_int('preview-size')
 
 		# self.full_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
@@ -127,7 +128,13 @@ class DrawingPixbufManager():
 		self.update_minimap()
 
 	def update_minimap(self):
-		self.mini_pixbuf = self.main_pixbuf.scale_simple(300, 300, GdkPixbuf.InterpType.TILES) # full_pixbuf
+		w = self.preview_size
+		h = self.preview_size
+		if self.main_pixbuf.get_height() > self.main_pixbuf.get_width(): # TODO comparer la taille de full_pixbuf plutôt
+			w = self.preview_size * (self.main_pixbuf.get_width()/self.main_pixbuf.get_height())
+		else:
+			h = self.preview_size * (self.main_pixbuf.get_height()/self.main_pixbuf.get_width())
+		self.mini_pixbuf = self.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES) # full_pixbuf
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
 		self.window.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
 		self.window.minimap_area.queue_draw()
