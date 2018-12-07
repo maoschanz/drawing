@@ -2,6 +2,12 @@
 <interface domain="drawing">
   <menu id="left-click-menu">
     <section>
+        <item>
+            <attribute name="label" translatable="yes">Unselect</attribute>
+            <attribute name="action">win.unselect</attribute>
+        </item>
+    </section>
+    <section>
         <attribute name="display-hint">horizontal-buttons</attribute>
         <item>
             <attribute name="label" translatable="yes">Cut</attribute>
@@ -13,11 +19,10 @@
             <attribute name="action">win.copy</attribute>
             <attribute name="verb-icon">edit-copy-symbolic</attribute>
         </item>
-    </section>
-    <section>
         <item>
             <attribute name="label" translatable="yes">Delete</attribute>
             <attribute name="action">win.selection_delete</attribute>
+            <attribute name="verb-icon">edit-delete-symbolic</attribute>
         </item>
     </section>
     <section>
@@ -43,10 +48,6 @@
         <item>
             <attribute name="label" translatable="yes">Select all</attribute>
             <attribute name="action">win.select_all</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Unselect</attribute>
-            <attribute name="action">win.unselect</attribute>
         </item>
     </section>
     <section>

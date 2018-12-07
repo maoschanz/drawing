@@ -37,7 +37,6 @@ class Application(Gtk.Application):
 		GLib.set_application_name('Drawing')
 		GLib.set_prgname('com.github.maoschanz.Drawing')
 		self.register(None) # ?
-
 		self.version = version
 
 		if not self.get_is_remote():
@@ -185,11 +184,9 @@ class Application(Gtk.Application):
 		file_chooser.destroy()
 
 	def on_shortcuts_activate(self, *args):
-		if self.shortcuts_window is None:
-			self.build_shortcuts_dialog()
-		else:
+		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-			self.build_shortcuts_dialog()
+		self.build_shortcuts_dialog()
 		self.shortcuts_window.present()
 
 	def on_prefs_activate(self, *args):

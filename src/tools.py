@@ -22,7 +22,6 @@ class ToolTemplate():
 	window_can_take_back_control = True
 	tool_width = 10
 	use_size = False
-	set_clip = False
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
@@ -36,6 +35,9 @@ class ToolTemplate():
 
 	def restore_pixbuf(self):
 		self.window._pixbuf_manager.use_stable_pixbuf()
+
+	def apply_to_pixbuf(self):
+		self.window._pixbuf_manager.on_tool_finished()
 
 	def give_back_control(self):
 		pass

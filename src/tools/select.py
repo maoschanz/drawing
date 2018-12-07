@@ -6,252 +6,191 @@ import cairo
 from .tools import ToolTemplate
 
 class ToolSelect(ToolTemplate):
-    __gtype_name__ = 'ToolSelect'
+	__gtype_name__ = 'ToolSelect'
 
-    use_options = False # TODO
-    set_clip = True
+	use_options = False # TODO
 
-    def __init__(self, window, **kwargs):
-        super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
+	def __init__(self, window, **kwargs):
+		super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
 
-        self.x_press = 0.0
-        self.y_press = 0.0
-        self.past_x = [-1, -1]
-        self.past_y = [-1, -1]
+		self.x_press = 0.0
+		self.y_press = 0.0
+		self.past_x = [-1, -1]
+		self.past_y = [-1, -1]
 
-        builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
-        menu_r = builder.get_object("right-click-menu")
-        self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
-        menu_l = builder.get_object("left-click-menu")
-        self.selection_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_l)
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
+		menu_r = builder.get_object("right-click-menu")
+		self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
+		menu_l = builder.get_object("left-click-menu")
+		self.selection_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_l)
 
-        #############################
+		#############################
 
-        # Building the widget containing options
-        self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=10)
+		# Building the widget containing options
+		self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=10)
 
-        self.options_box.add(Gtk.Label(label=_("Selection type:")))
-        btn_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        btn_box.get_style_context().add_class('linked')
+		self.options_box.add(Gtk.Label(label=_("Selection type:")))
+		btn_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+		btn_box.get_style_context().add_class('linked')
 
-        radio_btn = Gtk.RadioButton(draw_indicator=False, label=_("Rectangle"))
-        radio_btn2 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Freehand"))
-        radio_btn3 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Same color"))
+		radio_btn = Gtk.RadioButton(draw_indicator=False, label=_("Rectangle"))
+		radio_btn2 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Freehand"))
+		radio_btn3 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Same color"))
 
-        radio_btn.connect('clicked', self.on_option_changed)
-        radio_btn2.connect('clicked', self.on_option_changed)
-        radio_btn3.connect('clicked', self.on_option_changed)
+		radio_btn.connect('clicked', self.on_option_changed)
+		radio_btn2.connect('clicked', self.on_option_changed)
+		radio_btn3.connect('clicked', self.on_option_changed)
 
-        btn_box.add(radio_btn)
-        btn_box.add(radio_btn2)
-        btn_box.add(radio_btn3)
+		btn_box.add(radio_btn)
+		btn_box.add(radio_btn2)
+		btn_box.add(radio_btn3)
 
-        radio_btn.set_active(True)
+		radio_btn.set_active(True)
+		self.selected_type_label = _("Rectangle")
 
-        self.selected_type_label = _("Rectangle")
+		self.options_box.add(btn_box)
 
-        self.options_box.add(btn_box)
+	def get_row(self):
+		return self.row
 
-        self.w_context = None
+	def on_option_changed(self, b):
+		self.selected_type_label = b.get_label()
 
-    def get_row(self):
-        return self.row
+	def get_options_widget(self):
+		return self.options_box
 
-    def on_option_changed(self, b):
-        self.selected_type_label = b.get_label()
+	def get_options_label(self):
+		return self.selected_type_label
 
-    def get_options_widget(self):
-        return self.options_box
+	def give_back_control(self):
+		print('selection give back control')
+		self.window._pixbuf_manager.show_selection_content()
+		self.apply_to_pixbuf()
+		self.end_selection()
 
-    def get_options_label(self):
-        return self.selected_type_label
+	def show_popover(self, state):
+		self.selection_popover.popdown()
+		self.rightc_popover.popdown()
+		if self.window._pixbuf_manager.selection_is_active and state:
+			self.selection_popover.popup()
+		elif state:
+			self.rightc_popover.popup()
 
-    def give_back_control(self):
-        self.cancel_selection(None)
+	def on_key_on_area(self, area, event, surface):
+		print("key")
+		# TODO
 
-    def on_key_on_area(self, area, event, surface):
-        print("key")
-        # TODO
-        # secondary_color = self.right_color
-        # self.w_context.set_source_rgba(secondary_color.red, secondary_color.green, \
-        #     secondary_color.blue, secondary_color.alpha)
-        # self.w_context.paint()
+	def on_motion_on_area(self, area, event, surface):
+		pass
 
-    def on_motion_on_area(self, area, event, surface):
-        pass
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+		print("press")
+		self.window_can_take_back_control = False
+		area.grab_focus()
+		self.x_press = event.x
+		self.y_press = event.y
+		self.left_color = left_color
+		self.right_color = right_color
 
-    def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-        print("press")
-        self.window_can_take_back_control = False
-        area.grab_focus()
+	def on_release_on_area(self, area, event, surface):
+		print("release") # TODO à main levée c'est juste un crayon avec close_path() après
+		primary_color = ''
+		secondary_color = ''
+		if event.button == 3:
+			rectangle = Gdk.Rectangle()
+			rectangle.x = int(event.x)
+			rectangle.y = int(event.y)
+			rectangle.height = 1
+			rectangle.width = 1
+			self.rightc_popover.set_pointing_to(rectangle)
+			self.rightc_popover.set_relative_to(area)
+			self.show_popover(True)
+			return
+		else:
+			# If nothing is selected (only -1), coordinates should be memorized, but
+			# if something is already selected, the selection should be cancelled (the
+			# action is performed outside of the current selection), or stay the same
+			# (the user is moving the selection by dragging it).
+			if self.past_x[0] == -1:
+				self.past_x[0] = event.x
+				self.past_x[1] = self.x_press
+				self.past_y[0] = event.y
+				self.past_y[1] = self.y_press
+				print('cas mémorisation, on continue la fonction')
+				self.selection_popover.set_relative_to(area)
+				self.create_selection_from_coord()
+				self.draw_selection_area()
+			elif self.point_is_in_selection(self.x_press, self.y_press):
+				print('cas où faut bouger')
+				self.drag_to(event.x, event.y)
+				return
+			else:
+				print('cas autre')
+				self.window._pixbuf_manager.show_selection_content()
+				self.apply_to_pixbuf()
+				self.end_selection()
+				return
 
-        self.w_context = cairo.Context(surface)
-        self.w_context.reset_clip()
+	def point_is_in_selection(self, x, y):
+		if x < self.window._pixbuf_manager.selection_x:
+			return False
+		elif y < self.window._pixbuf_manager.selection_y:
+			return False
+		elif x > self.window._pixbuf_manager.selection_x + \
+		self.window._pixbuf_manager.selection_pixbuf.get_width():
+			return False
+		elif y > self.window._pixbuf_manager.selection_y + \
+		self.window._pixbuf_manager.selection_pixbuf.get_height():
+			return False
+		else:
+			return True
 
-        self.x_press = event.x
-        self.y_press = event.y
-        self.left_color = left_color
-        self.right_color = right_color
+	def get_center_of_selection(self):
+		x = self.window._pixbuf_manager.selection_x + \
+		self.window._pixbuf_manager.selection_pixbuf.get_width()/2
+		y = self.window._pixbuf_manager.selection_y + \
+		self.window._pixbuf_manager.selection_pixbuf.get_height()/2
+		return [x, y]
 
-    def on_release_on_area(self, area, event, surface):
-        print("release") # TODO à main levée c'est juste un crayon avec close_path() après
-        primary_color = ''
-        secondary_color = ''
-        if event.button == 3:
-            if ((self.x_press > self.past_x[0] and self.x_press < self.past_x[1]) \
-            or (self.x_press < self.past_x[0] and self.x_press > self.past_x[1])) \
-            and ((self.y_press > self.past_y[0] and self.y_press < self.past_y[1]) \
-            or (self.y_press < self.past_y[0] and self.y_press > self.past_y[1])):
-                self.selection_popover.show_all()
-            else:
-                rectangle = Gdk.Rectangle()
-                rectangle.x = int(event.x)
-                rectangle.y = int(event.y)
-                rectangle.height = 1
-                rectangle.width = 1
-                self.rightc_popover.set_pointing_to(rectangle)
-                self.rightc_popover.set_relative_to(area)
-                self.rightc_popover.show_all()
-            return
-        else:
-            # If nothing is selected (only -1), coordinates should be memorized, but
-            # if something is already selected, the selection should be canceled (the
-            # action is performed outside of the current selection), or stay the same
-            # (the user is moving the selection by dragging it).
-            if self.past_x[0] == -1:
-                self.past_x[0] = event.x
-                self.past_x[1] = self.x_press
-                self.past_y[0] = event.y
-                self.past_y[1] = self.y_press
-                print('cas -1, on continue la fonction')
+	def create_selection_from_coord(self):
+		x0 = self.past_x[0]
+		x1 = self.past_x[1]
+		y0 = self.past_y[0]
+		y1 = self.past_y[1]
+		if self.past_x[0] > self.past_x[1]:
+			x0 = self.past_x[1]
+			x1 = self.past_x[0]
+		if self.past_y[0] > self.past_y[1]:
+			y0 = self.past_y[1]
+			y1 = self.past_y[0]
+		self.window._pixbuf_manager.create_selection_from_main(x0, y0, x1, y1)
 
-                rectangle = Gdk.Rectangle()
-                rectangle.x = int((self.past_x[0] + self.past_x[1])/2)
-                rectangle.y = int((self.past_y[0] + self.past_y[1])/2)
-                rectangle.height = 1
-                rectangle.width = 1
-                self.selection_popover.set_pointing_to(rectangle)
-                self.selection_popover.set_relative_to(area)
+	def draw_selection_area(self):
+		self.window._pixbuf_manager.show_selection_rectangle()
+		rectangle = Gdk.Rectangle()
+		[rectangle.x, rectangle.y] = self.get_center_of_selection()
+		rectangle.height = 1
+		rectangle.width = 1
+		self.selection_popover.set_pointing_to(rectangle)
+		self.show_popover(True)
 
-                self.draw_selection_area()
+	def end_selection(self):
+		self.show_popover(False)
+		self.window_can_take_back_control = True
+		self.x_press = 0.0
+		self.y_press = 0.0
+		self.past_x = [-1, -1]
+		self.past_y = [-1, -1]
 
-            elif ((self.x_press > self.past_x[0] and self.x_press < self.past_x[1]) \
-            or (self.x_press < self.past_x[0] and self.x_press > self.past_x[1])) \
-            and ((self.y_press > self.past_y[0] and self.y_press < self.past_y[1]) \
-            or (self.y_press < self.past_y[0] and self.y_press > self.past_y[1])):
-                print('cas où faut bouger')
-                self.drag_to()
-                return
-            else:
-                print('cas autre')
-                self.cancel_selection(None)
-                return
+	def drag_to(self, final_x, final_y):
+		self.restore_pixbuf()
+		delta_x = final_x - self.x_press
+		delta_y = final_y - self.y_press
+		self.past_x[0] += delta_x
+		self.past_x[1] += delta_x
+		self.past_y[0] += delta_y
+		self.past_y[1] += delta_y
+		self.window._pixbuf_manager.selection_x += delta_x
+		self.window._pixbuf_manager.selection_y += delta_y
+		self.window._pixbuf_manager.show_selection_rectangle()
 
-    def draw_selection_area(self):
-
-        self.w_context.move_to(self.past_x[1], self.past_y[1])
-        self.w_context.line_to(self.past_x[1], self.past_y[0])
-        self.w_context.line_to(self.past_x[0], self.past_y[0])
-        self.w_context.line_to(self.past_x[0], self.past_y[1])
-        self.w_context.close_path()
-
-        self.w_context.clip_preserve()
-
-        self.w_context.set_source_rgba(0.1, 0.1, 0.2, 0.2)
-
-        self.w_context.paint()
-        self.w_context.stroke()
-
-        # w_context.scale(0.3, 0.5)
-        # w_context.stroke()
-        # w_context.rotate(2.0)
-        # self.w_context.paint()
-
-        # self.selection_popover.popup()
-        self.selection_popover.show_all()
-
-    def delete_selection(self, b):
-        self.selection_popover.popdown()
-        self.restore_pixbuf()
-
-        w_context = cairo.Context(self.window.get_surface())
-        w_context.move_to(self.past_x[0], self.past_y[0])
-        w_context.line_to(self.past_x[0], self.past_y[1])
-        w_context.line_to(self.past_x[1], self.past_y[1])
-        w_context.line_to(self.past_x[1], self.past_y[0])
-        w_context.close_path()
-        w_context.clip()
-        w_context.set_operator(cairo.Operator.CLEAR)
-        w_context.paint()
-        w_context.set_operator(cairo.Operator.OVER)
-
-        self.window_can_take_back_control = True
-        self.window.set_stable_pixbuf()
-
-        self.x_press = 0.0
-        self.y_press = 0.0
-        self.past_x = [-1, -1]
-        self.past_y = [-1, -1]
-
-    def copy_selection(self, b):
-        self.selection_popover.popdown()
-        self.restore_pixbuf()
-
-        print('copy') # TODO
-
-        # on peut faire cairo.Region.copy() ?
-
-        self.window_can_take_back_control = True
-        # self.window.set_stable_pixbuf()
-
-        self.x_press = 0.0
-        self.y_press = 0.0
-        self.past_x = [-1, -1]
-        self.past_y = [-1, -1]
-
-    def cancel_selection(self, b):
-        self.selection_popover.popdown()
-        self.restore_pixbuf()
-
-        print('cancel')
-
-        self.window_can_take_back_control = True
-
-        self.x_press = 0.0
-        self.y_press = 0.0
-        self.past_x = [-1, -1]
-        self.past_y = [-1, -1]
-
-    def drag_to(self):
-        print('dragging')
-        self.restore_pixbuf()
-
-        # TODO copier le truc
-
-
-        # facile à faire : supprimer l'ancien truc
-        w_context = cairo.Context(self.window.get_surface())
-        w_context.move_to(self.past_x[0], self.past_y[0])
-        w_context.line_to(self.past_x[0], self.past_y[1])
-        w_context.line_to(self.past_x[1], self.past_y[1])
-        w_context.line_to(self.past_x[1], self.past_y[0])
-        w_context.close_path()
-        w_context.clip()
-        w_context.set_operator(cairo.Operator.CLEAR)
-        w_context.paint()
-        w_context.set_operator(cairo.Operator.OVER)
-
-        # TODO mettre en place le truc
-
-
-
-
-        # self.window.set_stable_pixbuf()
-
-        self.x_press = 0.0
-        self.y_press = 0.0
-        self.past_x = [-2, -2] # TODO remettre des coordonnées
-        self.past_y = [-2, -2] # TODO remettre des coordonnées
-                
-    def get_clip_path():
-        print('todo')

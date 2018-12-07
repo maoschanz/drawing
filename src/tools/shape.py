@@ -12,7 +12,6 @@ class ToolShape(ToolTemplate):
 	use_options = True
 	window_can_take_back_control = True
 	use_size = True
-	set_clip = False
 	shape_btns = {}
 	style_btns = {}
 

@@ -180,15 +180,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def add_all_win_actions(self):
 		# self.add_action_like_a_boss("cut", self.action_cut)
 		# self.add_action_like_a_boss("copy", self.action_copy)
-		# self.add_action_like_a_boss("selection_delete", self.action_selection_delete)
+		self.add_action_like_a_boss("selection_delete", self.action_selection_delete)
 		# self.add_action_like_a_boss("selection_resize", self.action_selection_resize)
 		# self.add_action_like_a_boss("selection_rotate", self.action_selection_rotate)
-		# self.add_action_like_a_boss("selection_export", self.action_selection_export)
+		self.add_action_like_a_boss("selection_export", self.action_selection_export)
 
-		# self.add_action_like_a_boss("import", self.action_import_png)
+		self.add_action_like_a_boss("import", self.action_import_png)
 		# self.add_action_like_a_boss("paste", self.action_paste)
-		# self.add_action_like_a_boss("select_all", self.action_select_all)
-		# self.add_action_like_a_boss("unselect", self.action_unselect)
+		self.add_action_like_a_boss("select_all", self.action_select_all)
+		self.add_action_like_a_boss("unselect", self.action_unselect)
 
 		self.add_action_like_a_boss("primary_color", self.action_primary_color)
 		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
@@ -367,9 +367,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			args[0].set_state(GLib.Variant.new_string(state_as_string))
 		else:
 			self.tools[state_as_string].row.set_active(True)
+		self.former_tool_id = self.active_tool_id
 		self.former_tool().give_back_control()
 		self.drawing_area.queue_draw()
-		self.former_tool_id = self.active_tool_id
 		self.active_tool_id = state_as_string
 		self.build_options_popover()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
@@ -579,7 +579,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tool_width = int(self.size_setter.get_value())
 
 		if event.button is 2:
-			self.on_exchange_color(None)
+			self.action_exchange_color()
 			self.is_clicked = False
 			return
 
@@ -590,49 +590,69 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
-
 		self.active_tool().on_release_on_area(area, event, self._pixbuf_manager.surface)
 		self.window_has_control = self.active_tool().window_can_take_back_control
-
-		self.drawing_area.queue_draw()
-
 		if self.window_has_control:
 			print('release où la fenêtre a récupéré le contrôle')
 			self._pixbuf_manager.on_tool_finished()
+		else:
+			# redessiner la zone sans l'appliquer au pixbuf
+			self.drawing_area.queue_draw()
 
-	# SELECTION-RELATED ACTIONS # TODO
+	# SELECTION-RELATED ACTIONS
 
 	def action_import_png(self, *args):
 		self.tools['select'].row.set_active(True)
-		print("import")
+		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
+			Gtk.FileChooserAction.OPEN,
+			_("Import"),
+			_("Cancel"))
+		allPictures = Gtk.FileFilter()
+		allPictures.set_name(_("All pictures"))
+		allPictures.add_mime_type('image/png')
+		allPictures.add_mime_type('image/jpeg')
+		allPictures.add_mime_type('image/bmp')
+		file_chooser.add_filter(allPictures)
+		response = file_chooser.run()
+		if response == Gtk.ResponseType.ACCEPT:
+			fn = file_chooser.get_filename()
+			self._pixbuf_manager.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
+			self.tools['select'].draw_selection_area()
+		file_chooser.destroy()
 
 	def action_cut(self, *args):
-		print("cut")
+		self._pixbuf_manager.cut_operation()
+		self._pixbuf_manager.on_tool_finished()
 
-	def action_copy(self, *args):
-		print("copy")
+	def action_copy(self, *args): # FIXME
+		self._pixbuf_manager.copy_operation()
+		self._pixbuf_manager.on_tool_finished()
 
-	def action_paste(self, *args):
+	def action_paste(self, *args): # FIXME
 		self.tools['select'].row.set_active(True)
-		print("paste")
+		self._pixbuf_manager.paste_operation()
+		self.tools['select'].draw_selection_area()
 
 	def action_select_all(self, *args):
-		print("select_all")
+		self._pixbuf_manager.select_all()
+		self.drawing_area.queue_draw()
 
 	def action_unselect(self, *args):
-		print("unselect")
+		self._pixbuf_manager.reset_selection()
+		self.drawing_area.queue_draw()
 
 	def action_selection_delete(self, *args):
-		print("selection_delete")
+		self._pixbuf_manager.delete_operation()
+		self._pixbuf_manager.on_tool_finished()
 
-	def action_selection_resize(self, *args):
+	def action_selection_resize(self, *args): # TODO
 		print("selection_resize")
 
-	def action_selection_rotate(self, *args):
+	def action_selection_rotate(self, *args): # TODO
 		print("selection_rotate")
 
 	def action_selection_export(self, *args):
-		print("selection_export")
+		self._pixbuf_manager.export_selection_as()
 
 	# PRINTING
 
