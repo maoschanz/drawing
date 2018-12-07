@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <object class="GtkBox" id="minimap_box">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">5</property>
+    <property name="margin">5</property>
+    <child>
+    <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
+      <object class="GtkLayout" id="minimap_area">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <style>
+          <class name="linked"/>
+        </style>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">zoom-out-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">zoom-original-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">zoom-in-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
+
+
+

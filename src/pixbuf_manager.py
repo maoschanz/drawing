@@ -21,6 +21,10 @@ import cairo
 SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 
 class DrawingPixbufManager():
+	full_pixbuf = None
+	mini_pixbuf = None
+	mini_surface = None
+
 	main_pixbuf = None
 	surface = None
 
@@ -44,10 +48,16 @@ class DrawingPixbufManager():
 		width = self.settings.get_int('default-width')
 		height = self.settings.get_int('default-height')
 
+		# self.full_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
-		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		self.reset_selection() # 8 ??? les autres plantent
+		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300) # 8 ??? les autres plantent
 
+		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
+		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 300, 300)
+
+		self.reset_selection()
+
+		# FIXME
 		self.clipboard = Gtk.Clipboard()
 
 	def load_main_from_filename(self, filename):
@@ -114,6 +124,13 @@ class DrawingPixbufManager():
 	def set_pixbuf_as_stable(self):
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 			self.surface.get_width(), self.surface.get_height())
+		self.update_minimap()
+
+	def update_minimap(self):
+		self.mini_pixbuf = self.main_pixbuf.scale_simple(300, 300, GdkPixbuf.InterpType.TILES) # full_pixbuf
+		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
+		self.window.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
+		self.window.minimap_area.queue_draw()
 
 	def use_stable_pixbuf(self):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
@@ -133,27 +150,6 @@ class DrawingPixbufManager():
 		y0 = self.selection_y
 		x1 = x0 + self.selection_pixbuf.get_width()
 		y1 = y0 + self.selection_pixbuf.get_height()
-		w_context = cairo.Context(self.surface)
-		w_context.move_to(x1, y1)
-		w_context.line_to(x1, y0)
-		w_context.line_to(x0, y0)
-		w_context.line_to(x0, y1)
-		w_context.close_path()
-		w_context.clip()
-		w_context.set_operator(cairo.Operator.CLEAR)
-		w_context.paint()
-		w_context.set_operator(cairo.Operator.OVER)
-
-	def set_temp(self):
-		self.temp_x = self.selection_x
-		self.temp_y = self.selection_y
-		self.temp_pixbuf = self.selection_pixbuf
-
-	def delete_temp(self):
-		x0 = self.temp_x
-		y0 = self.temp_y
-		x1 = x0 + self.temp_pixbuf.get_width()
-		y1 = y0 + self.temp_pixbuf.get_height()
 		w_context = cairo.Context(self.surface)
 		w_context.move_to(x1, y1)
 		w_context.line_to(x1, y0)
@@ -188,13 +184,34 @@ class DrawingPixbufManager():
 		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(temp_surface, 0, 0, \
 			temp_surface.get_width(), temp_surface.get_height())
 
+	def set_temp(self):
+		self.temp_x = self.selection_x
+		self.temp_y = self.selection_y
+		self.temp_pixbuf = self.selection_pixbuf.copy()
+		self.selection_is_active = True # TODO ce booléen c'est aussi pour gérer l'activation des actions
+
+	def delete_temp(self):
+		x0 = self.temp_x
+		y0 = self.temp_y
+		x1 = x0 + self.temp_pixbuf.get_width()
+		y1 = y0 + self.temp_pixbuf.get_height()
+		w_context = cairo.Context(self.surface)
+		w_context.move_to(x1, y1)
+		w_context.line_to(x1, y0)
+		w_context.line_to(x0, y0)
+		w_context.line_to(x0, y1)
+		w_context.close_path()
+		w_context.clip()
+		w_context.set_operator(cairo.Operator.CLEAR)
+		w_context.paint()
+		w_context.set_operator(cairo.Operator.OVER)
+
 	def show_selection_rectangle(self):
 		# XXX ici c'est mauvais mais ce sera positif que la seléction de base soit proprement effacée
 		if not self.selection_is_active:
 			self.set_temp()
 		else:
 			self.delete_temp()
-		self.selection_is_active = True # TODO ce booléen c'est pour gérer l'activation des actions
 		x0 = self.selection_x
 		y0 = self.selection_y
 		x1 = x0 + self.selection_pixbuf.get_width()
@@ -231,3 +248,4 @@ class DrawingPixbufManager():
 		file_path = self.window.run_save_file_chooser('')
 		if file_path is not None:
 			self.selection_pixbuf.savev(file_path, file_path.split('.')[-1], [None], [])
+

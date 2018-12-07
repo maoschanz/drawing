@@ -72,6 +72,10 @@
     </section>
     <section>
         <item>
+            <attribute name="label" translatable="yes">Select all</attribute>
+            <attribute name="action">win.select_all</attribute>
+        </item>
+        <item>
             <attribute name="label" translatable="yes">Import</attribute>
             <attribute name="action">win.import</attribute>
         </item>
@@ -82,11 +86,6 @@
         <submenu>
           <attribute name="label" translatable="yes">_Selection</attribute>
           <section>
-            <item>
-                <attribute name="label" translatable="yes">Select all</attribute>
-                <attribute name="action">win.select_all</attribute>
-                <attribute name="verb-icon">edit-select-all-symbolic</attribute>
-            </item>
             <item>
                 <attribute name="label" translatable="yes">Unselect</attribute>
                 <attribute name="action">win.unselect</attribute>
@@ -260,6 +259,13 @@
       </section>
       <section>
         <item>
+            <attribute name="label" translatable="yes">Select all</attribute>
+            <attribute name="action">win.select_all</attribute>
+            <attribute name="verb-icon">edit-select-all-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
             <attribute name="label" translatable="yes">Paste</attribute>
             <attribute name="action">win.paste</attribute>
             <attribute name="verb-icon">edit-paste-symbolic</attribute>
@@ -296,11 +302,6 @@
     <submenu>
       <attribute name="label" translatable="yes">_Selection</attribute>
       <section>
-        <item>
-            <attribute name="label" translatable="yes">Select all</attribute>
-            <attribute name="action">win.select_all</attribute>
-            <attribute name="verb-icon">edit-select-all-symbolic</attribute>
-        </item>
         <item>
             <attribute name="label" translatable="yes">Unselect</attribute>
             <attribute name="action">win.unselect</attribute>
@@ -393,6 +394,7 @@
   </menu>
 
 </interface>
+
 
 
 

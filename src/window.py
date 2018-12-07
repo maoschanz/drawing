@@ -71,6 +71,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	options_long_box = GtkTemplate.Child()
 	options_short_box = GtkTemplate.Child()
 	size_setter = GtkTemplate.Child()
+	minimap_btn = GtkTemplate.Child()
+	minimap_area = None
 	tool_info_label = GtkTemplate.Child() # TODO
 
 	handlers = []
@@ -90,8 +92,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
 		self.set_palette_setting()
 
+		self.build_minimap()
 		self._pixbuf_manager = DrawingPixbufManager(self)
 
+		self.minimap_area.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
@@ -159,11 +163,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
 		self.handlers.append( self.drawing_area.connect('configure-event', self.on_configure) )
-
 		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-press-event', self.on_press_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
 		self.handlers.append( self.drawing_area.connect('key-press-event', self.on_key_on_area) )
+
+		self.handlers.append( self.minimap_area.connect('draw', self.on_minimap_draw) )
+		# self.handlers.append( self.minimap_area.connect('motion-notify-event', self.on_motion_on_area) )
+		# self.handlers.append( self.minimap_area.connect('button-press-event', self.on_press_on_area) )
+		# self.handlers.append( self.minimap_area.connect('button-release-event', self.on_release_on_area) )
 
 		self.handlers.append( self.tools_panel.connect('size-allocate', self.update_tools_visibility) )
 		self.handlers.append( self.connect('size-allocate', self.update_options_box) )
@@ -267,6 +275,24 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_primary_menu(self, *args):
 		self.primary_menu_btn.set_active(not self.primary_menu_btn.get_active())
+
+	# MINIMAP
+
+	def build_minimap(self):
+		builder = Gtk.Builder()
+		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/minimap.ui")
+		box = builder.get_object("minimap_box")
+		self.minimap_area = builder.get_object("minimap_area")
+		self.minimap_area.set_size(200, 200)
+		minimap_popover = Gtk.Popover()
+		minimap_popover.add(box)
+		self.minimap_btn.set_popover(minimap_popover)
+
+	def on_minimap_draw(self, area, cairo_context):
+		print('292')
+		self._pixbuf_manager.update_minimap()
+		cairo_context.set_source_surface(self._pixbuf_manager.mini_surface, 0, 0)
+		cairo_context.paint()
 
 	# TOOLS
 
@@ -634,16 +660,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['select'].draw_selection_area()
 
 	def action_select_all(self, *args):
+		self.tools['select'].row.set_active(True)
 		self._pixbuf_manager.select_all()
-		self.drawing_area.queue_draw()
+		self.tools['select'].draw_selection_area()
 
 	def action_unselect(self, *args):
 		self._pixbuf_manager.reset_selection()
 		self.drawing_area.queue_draw()
 
 	def action_selection_delete(self, *args):
+		self._pixbuf_manager.use_stable_pixbuf()
 		self._pixbuf_manager.delete_operation()
 		self._pixbuf_manager.on_tool_finished()
+		self.tools['select'].end_selection()
+		self._pixbuf_manager.reset_selection()
 
 	def action_selection_resize(self, *args): # TODO
 		print("selection_resize")

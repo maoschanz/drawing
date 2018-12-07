@@ -116,16 +116,13 @@ class ToolSelect(ToolTemplate):
 				self.past_x[1] = self.x_press
 				self.past_y[0] = event.y
 				self.past_y[1] = self.y_press
-				print('cas mémorisation, on continue la fonction')
 				self.selection_popover.set_relative_to(area)
 				self.create_selection_from_coord()
 				self.draw_selection_area()
 			elif self.point_is_in_selection(self.x_press, self.y_press):
-				print('cas où faut bouger')
 				self.drag_to(event.x, event.y)
 				return
 			else:
-				print('cas autre')
 				self.window._pixbuf_manager.show_selection_content()
 				self.apply_to_pixbuf()
 				self.end_selection()
@@ -167,12 +164,15 @@ class ToolSelect(ToolTemplate):
 
 	def draw_selection_area(self):
 		self.window._pixbuf_manager.show_selection_rectangle()
+		self.set_popover_position()
+		self.show_popover(True)
+
+	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()
 		[rectangle.x, rectangle.y] = self.get_center_of_selection()
 		rectangle.height = 1
 		rectangle.width = 1
 		self.selection_popover.set_pointing_to(rectangle)
-		self.show_popover(True)
 
 	def end_selection(self):
 		self.show_popover(False)
@@ -193,4 +193,5 @@ class ToolSelect(ToolTemplate):
 		self.window._pixbuf_manager.selection_x += delta_x
 		self.window._pixbuf_manager.selection_y += delta_y
 		self.window._pixbuf_manager.show_selection_rectangle()
+		self.set_popover_position()
 
