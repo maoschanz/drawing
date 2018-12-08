@@ -9,12 +9,32 @@ PNG, JPEG and BMP files should be supported.
 ### Currently available tools
 
 - Pencil
-- Shape (rectangle, circle, polygon)
+- Shape
+    - Rectangle
+    - Circle
+    - Ellipsis
 - Line & arc
 - Text
 - Eraser
+- Selection
+    - Drag
+    - Cut/copy
+    - Paste/import from
+    - Resize
+    - Export to
 
 #### Future tools ?
 
 - Painting
-- Selection
+
+## Screenshots
+
+GNOME/Budgie UI:
+!(GNOME/Budgie UI)[https://i.imgur.com/xPpfy7S.png]
+
+MATE/Cinnamon UI:
+!(MATE/Cinnamon UI)[https://i.imgur.com/Tlukzxw.png]
+
+## Installation
+
+Clone it, open it as a project with GNOME Builder, and run it.
