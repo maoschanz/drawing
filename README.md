@@ -30,10 +30,10 @@ PNG, JPEG and BMP files should be supported.
 ## Screenshots
 
 GNOME/Budgie UI:
-!(GNOME/Budgie UI)[https://i.imgur.com/xPpfy7S.png]
+![GNOME/Budgie UI](https://i.imgur.com/xPpfy7S.png)
 
 MATE/Cinnamon UI:
-!(MATE/Cinnamon UI)[https://i.imgur.com/Tlukzxw.png]
+![MATE/Cinnamon UI](https://i.imgur.com/Tlukzxw.png)
 
 ## Installation
 
