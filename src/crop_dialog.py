@@ -60,17 +60,21 @@ class DrawingCropDialog(Gtk.Dialog):
 		if self.forbid_growth:
 			self.width_btn.set_range(1, self.original_width)
 			self.height_btn.set_range(1, self.original_height)
-		self.width_btn.set_value(self._window.get_pixbuf_width())
-		self.height_btn.set_value(self._window.get_pixbuf_height())
+			w = self._window.drawing_area.get_allocated_width()
+			h = self._window.drawing_area.get_allocated_height()
+		else:
+			w = self._window.get_pixbuf_width()
+			h = self._window.get_pixbuf_height()
+		self.width_btn.set_value(w)
+		self.height_btn.set_value(h)
 
 	def on_apply(self, *args):
 		x = self._x
 		y = self._y
 		width = self.get_width()
 		height = self.get_height()
-
 		self._window._pixbuf_manager.resize_main_surface(x, y, width, height)
-		self._window.initial_save()
+		self._window._pixbuf_manager.on_tool_finished()
 		self.destroy()
 
 	def on_cancel(self, *args):

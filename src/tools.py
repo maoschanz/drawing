@@ -18,7 +18,6 @@ class ToolTemplate():
 	id = 'template'
 	icon_name = 'folder-templates-symbolic'
 	label = "Not implemented"
-	use_options = False
 	window_can_take_back_control = True
 	tool_width = 10
 	use_size = False
@@ -41,6 +40,12 @@ class ToolTemplate():
 
 	def give_back_control(self):
 		pass
+
+	def get_options_widget(self):
+		return None
+
+	def get_options_label(self):
+		return _("No options")
 
 	def on_key_on_area(self, area, event, surface):
 		pass

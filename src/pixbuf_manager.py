@@ -106,6 +106,7 @@ class DrawingPixbufManager():
 		self.window.drawing_area.queue_draw()
 		self.set_pixbuf_as_stable()
 		self.selection_is_active = False
+		self.update_selection_actions()
 		self.update_minimap()
 
 	def can_undo(self):
@@ -144,11 +145,13 @@ class DrawingPixbufManager():
 		self.redo_history.append(self.main_pixbuf.copy())
 		self.main_pixbuf = self.undo_history.pop()
 		self.use_stable_pixbuf()
+		self.update_minimap()
 
 	def redo_operation(self):
 		self.undo_history.append(self.main_pixbuf.copy())
 		self.main_pixbuf = self.redo_history.pop()
 		self.use_stable_pixbuf()
+		self.update_minimap()
 
 	def delete_operation(self):
 		x0 = self.selection_x
@@ -166,6 +169,12 @@ class DrawingPixbufManager():
 		w_context.paint()
 		w_context.set_operator(cairo.Operator.OVER)
 
+	def cut_operation(self):
+		self.copy_operation()
+		self.reset_selection()
+		self.delete_temp()
+		self.on_tool_finished()
+
 	def copy_operation(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.selection_pixbuf)
@@ -174,6 +183,7 @@ class DrawingPixbufManager():
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		self.selection_pixbuf = cb.wait_for_image()
 		self.show_selection_rectangle()
+		self.create_selection_from_selection()
 
 	def create_selection_from_main(self, x0, y0, x1, y1):
 		w = int(x1 - x0)
@@ -191,12 +201,14 @@ class DrawingPixbufManager():
 	def create_selection_from_selection(self):
 		self.selection_is_active = True
 		self.temp_pixbuf = None
+		self.update_selection_actions()
 
 	def set_temp(self):
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
 		self.temp_pixbuf = self.selection_pixbuf.copy()
-		self.selection_is_active = True # TODO ce booléen c'est aussi pour gérer l'activation des actions
+		self.selection_is_active = True
+		self.update_selection_actions()
 
 	def delete_temp(self):
 		if self.temp_pixbuf is None:
@@ -247,6 +259,7 @@ class DrawingPixbufManager():
 		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # 8 ??? les autres plantent
 		self.use_stable_pixbuf()
 		self.selection_is_active = False
+		self.update_selection_actions()
 
 	def select_all(self):
 		self.selection_x = 0
@@ -260,3 +273,5 @@ class DrawingPixbufManager():
 		if file_path is not None:
 			self.selection_pixbuf.savev(file_path, file_path.split('.')[-1], [None], [])
 
+	def update_selection_actions(self):
+		self.window.update_selection_actions(self.selection_is_active)

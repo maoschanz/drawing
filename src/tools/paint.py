@@ -1,4 +1,4 @@
-# TODO the api is still not 100% implemented
+# TODO still shit
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
@@ -15,15 +15,6 @@ class ToolPaint(ToolTemplate):
 
     def __init__(self, window, **kwargs):
         super().__init__('paint', _("Paint"), 'edit-clear-all-symbolic', window)
-
-    def give_back_control(self):
-        pass
-
-    def on_key_on_area(self, area, event, surface):
-        print("key")
-
-    def on_motion_on_area(self, area, event, surface):
-        print("motion")
 
     def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
         print("press")

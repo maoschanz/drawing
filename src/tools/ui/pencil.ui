@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <object class="GtkPopover" id="options-menu">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="spacing">10</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Lead shape:</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkRadioButton" id="radio_btn_1">
+                <property name="draw-indicator">False</property>
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Round</property>
+                <property name="active">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton" id="radio_btn_2">
+                <property name="group">radio_btn_1</property>
+                <property name="draw-indicator">False</property>
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Thin</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton" id="radio_btn_3">
+                <property name="group">radio_btn_1</property>
+                <property name="draw-indicator">False</property>
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Square</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </object>
+
+</interface>
+

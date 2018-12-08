@@ -9,7 +9,6 @@ from .tools import ToolTemplate
 class ToolShape(ToolTemplate):
 	__gtype_name__ = 'ToolShape'
 
-	use_options = True
 	window_can_take_back_control = True
 	use_size = True
 	shape_btns = {}

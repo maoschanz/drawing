@@ -8,8 +8,6 @@ from .tools import ToolTemplate
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
-	use_options = False # TODO
-
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
 
@@ -19,39 +17,27 @@ class ToolSelect(ToolTemplate):
 		self.past_y = [-1, -1]
 
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
-		menu_r = builder.get_object("right-click-menu")
+		menu_r = builder.get_object('right-click-menu')
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
-		menu_l = builder.get_object("left-click-menu")
+		menu_l = builder.get_object('left-click-menu')
 		self.selection_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_l)
 
 		#############################
 
 		# Building the widget containing options
-		self.options_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=10)
+		self.options_box = builder.get_object('options-menu')
 
-		self.options_box.add(Gtk.Label(label=_("Selection type:")))
-		btn_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-		btn_box.get_style_context().add_class('linked')
+		radio_btn1 = builder.get_object('type_btn_1')
+		radio_btn2 = builder.get_object('type_btn_2')
 
-		radio_btn = Gtk.RadioButton(draw_indicator=False, label=_("Rectangle"))
-		radio_btn2 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Freehand"))
-		radio_btn3 = Gtk.RadioButton(group=radio_btn, draw_indicator=False, label=_("Same color"))
+		radio_btn1.connect('clicked', self.on_option_changed, 'rectangle')
+		radio_btn2.connect('clicked', self.on_option_changed, 'freehand')
+		# radio_btn3.connect('clicked', self.on_option_changed, 'color')
 
-		radio_btn.connect('clicked', self.on_option_changed)
-		radio_btn2.connect('clicked', self.on_option_changed)
-		radio_btn3.connect('clicked', self.on_option_changed)
+		self.transp_switch = builder.get_object('transparency-switch')
 
-		btn_box.add(radio_btn)
-		btn_box.add(radio_btn2)
-		btn_box.add(radio_btn3)
-
-		radio_btn.set_active(True)
+		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
-
-		self.options_box.add(btn_box)
-
-	def get_row(self):
-		return self.row
 
 	def on_option_changed(self, b):
 		self.selected_type_label = b.get_label()
@@ -67,7 +53,6 @@ class ToolSelect(ToolTemplate):
 		self.restore_pixbuf()
 		self.window._pixbuf_manager.delete_temp()
 		self.window._pixbuf_manager.show_selection_content()
-		self.apply_to_pixbuf()
 		self.end_selection()
 
 	def show_popover(self, state):
@@ -163,6 +148,7 @@ class ToolSelect(ToolTemplate):
 		self.window._pixbuf_manager.create_selection_from_main(x0, y0, x1, y1)
 
 	def draw_selection_area(self, show):
+		self.row.set_active(True)
 		self.window._pixbuf_manager.show_selection_rectangle()
 		self.set_popover_position()
 		self.show_popover(show)
@@ -175,6 +161,7 @@ class ToolSelect(ToolTemplate):
 		self.selection_popover.set_pointing_to(rectangle)
 
 	def end_selection(self):
+		self.apply_to_pixbuf()
 		self.show_popover(False)
 		self.window_can_take_back_control = True
 		self.x_press = 0.0

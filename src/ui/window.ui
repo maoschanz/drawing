@@ -114,7 +114,7 @@
                 </style>
               </object>
               <packing>
-                <property name="pack-type">GTK_PACK_START</property>
+                <property name="pack-type">start</property>
               </packing>
             </child>
 
@@ -184,7 +184,7 @@
                     <property name="visible">True</property>
                     <property name="spacing">10</property>
                     <child>
-                      <object class="GtkImage">
+                      <object class="GtkImage" id="minimap_icon">
                         <property name="icon-name">zoom-fit-best-symbolic</property>
                         <property name="visible">True</property>
                       </object>
@@ -193,7 +193,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="minimap_label">
                         <property name="label" translatable="yes">Preview</property>
                         <property name="visible">True</property>
                       </object>
@@ -222,7 +222,7 @@
                 <!-- TODO -->
               </object>
               <packing>
-                <!-- <property name="expand">True</property> -->
+                <property name="expand">True</property>
                 <property name="pack-type">end</property>
               </packing>
             </child>
@@ -233,6 +233,7 @@
     </child>
   </template>
 </interface>
+
 
 
 
