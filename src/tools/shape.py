@@ -173,9 +173,6 @@ class ToolShape(ToolTemplate):
 		self.draw_polygon_temp(event)
 		# TODO particulier lui
 
-	def on_key_on_area(self, area, event, surface):
-		print("key")
-
 	def on_motion_on_area(self, area, event, surface):
 		self.restore_pixbuf()
 		w_context = cairo.Context(self.window.get_surface())
@@ -241,7 +238,7 @@ class ToolShape(ToolTemplate):
 			# self.draw_polygon(event)
 			pass
 
-		self.window.drawing_area.queue_draw()
+		self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		print("press")

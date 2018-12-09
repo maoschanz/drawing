@@ -45,7 +45,7 @@ SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
 
-	_file_path = None
+	gfile = None
 	_is_saved = True
 	active_tool_id = 'pencil'
 	former_tool_id = 'pencil'
@@ -99,7 +99,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.build_minimap()
 		self._pixbuf_manager = DrawingPixbufManager(self)
 
-		self.minimap_area.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
+		self.minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
+			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
@@ -132,6 +133,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.update_history_sensitivity()
 		self.connect_signals()
+
+		self._pixbuf_manager.reset_selection()
 		self.init_background()
 
 	def init_background(self, *args):
@@ -146,14 +149,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._pixbuf_manager.update_minimap()
 
 	def is_empty_picture(self):
-		if self._file_path is None and not self._pixbuf_manager.can_undo():
+		if self.gfile is None and not self._pixbuf_manager.can_undo():
 			return True
 		else:
 			return False
 
 	def initial_save(self, fn):
-		self._file_path = fn
-		self.set_picture_title(self._file_path)
+		self.gfile = Gio.File.new_for_path(fn)
+		self.set_picture_title(fn)
 		self._is_saved = True
 		self._pixbuf_manager.use_stable_pixbuf()
 		self._pixbuf_manager.update_minimap()
@@ -173,11 +176,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
 
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
-		self.handlers.append( self.drawing_area.connect('configure-event', self.on_configure) )
 		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-press-event', self.on_press_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
-		self.handlers.append( self.drawing_area.connect('key-press-event', self.on_key_on_area) )
 
 		self.handlers.append( self.minimap_area.connect('draw', self.on_minimap_draw) )
 		# self.handlers.append( self.minimap_area.connect('motion-notify-event', self.on_motion_on_area) )
@@ -199,18 +200,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_like_a_boss("unselect", self.action_unselect)
-		self.add_action_like_a_boss("cut", self.action_cut)
-		self.add_action_like_a_boss("copy", self.action_copy)
-		self.add_action_like_a_boss("selection_delete", self.action_selection_delete)
-		self.add_action_like_a_boss("selection_resize", self.action_selection_resize)
-		# self.add_action_like_a_boss("selection_rotate", self.action_selection_rotate)
-		self.add_action_like_a_boss("selection_export", self.action_selection_export)
-
-		self.add_action_like_a_boss("import", self.action_import)
-		self.add_action_like_a_boss("paste", self.action_paste)
-		self.add_action_like_a_boss("select_all", self.action_select_all)
-
 		self.add_action_like_a_boss("primary_color", self.action_primary_color)
 		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
 		self.add_action_like_a_boss("exchange_color", self.action_exchange_color)
@@ -245,6 +234,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			GLib.VariantType.new('s'), GLib.Variant.new_string('pencil'))
 		action_active_tool.connect('change-state', self.on_change_active_tool)
 		self.add_action(action_active_tool)
+
+	def update_selection_actions(self, state):
+		if not 'select' in self.tools:
+			return
+		self.lookup_action('unselect').set_enabled(state)
+		self.lookup_action('cut').set_enabled(state)
+		self.lookup_action('copy').set_enabled(state)
+		self.lookup_action('selection_delete').set_enabled(state)
+		self.lookup_action('selection_resize').set_enabled(state)
+		# self.lookup_action('selection_rotate').set_enabled(state)
+		self.lookup_action('selection_export').set_enabled(state)
 
 	def adapt_to_window_size(self,*args):
 		available_width = self.options_long_box.get_preferred_width()[0] + \
@@ -283,13 +283,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_headerbar()
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(False)
-		elif decorations == 'csd-menubar':
+		elif decorations == 'everything':
 			self.build_headerbar()
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(True)
 			self.build_toolbar()
-		else:
+		elif decorations == 'ssd-toolbar':
+			self.set_show_menubar(True)
 			self.build_toolbar()
+		else:
+			self.set_show_menubar(True)
 
 	def build_toolbar(self):
 		builder = Gtk.Builder()
@@ -436,9 +439,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# FILE MANAGEMENT
 
 	def action_save(self, *args):
-		fn = self._file_path
-		if fn is None:
+		if self.gfile is None:
 			fn = self.run_save_file_chooser('')
+		else:
+			fn = self.gfile.get_path()
 		self.save_pixbuf_to_fn(fn)
 
 	def action_save_as(self, *args):
@@ -494,10 +498,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
-			if self._file_path is None:
+			if self.gfile is None:
 				title_label = _("Untitled") + '.png'
 			else:
-				title_label = self._file_path.split('/')[-1]
+				title_label = self.gfile.get_path().split('/')[-1]
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
 			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 			dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
@@ -581,7 +585,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		pass
 
 	def action_open_with(self, *args):
-		os.system('xdg-open ' + self._file_path)
+		os.system('xdg-open ' + self.gfile.get_path())
 
 	# HISTORY MANAGEMENT
 
@@ -610,14 +614,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		cairo_context.set_source_surface(self._pixbuf_manager.surface, 0, 0)
 		cairo_context.paint()
-
-	def on_configure(self, area, cairo_context):
-		print("ceci est appelé quand ça dimensionne la zone?")
-
-	def on_key_on_area(self, area, event):
-		print("key") # TODO les touches sont des constantes Gdk https://github.com/GNOME/gtk/blob/master/gdk/keynames.txt
-		self.active_tool().on_key_on_area(area, event, self._pixbuf_manager.surface)
-		self.drawing_area.queue_draw()
 
 	def on_motion_on_area(self, area, event):
 		if (not self.is_clicked):
@@ -653,72 +649,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			# redessiner la zone sans l'appliquer au pixbuf
 			self.drawing_area.queue_draw()
-
-	# SELECTION-RELATED ACTIONS
-
-	def update_selection_actions(self, state):
-		self.lookup_action('unselect').set_enabled(state)
-		self.lookup_action('cut').set_enabled(state)
-		self.lookup_action('copy').set_enabled(state)
-		self.lookup_action('selection_delete').set_enabled(state)
-		self.lookup_action('selection_resize').set_enabled(state)
-		# self.lookup_action('selection_rotate').set_enabled(state)
-		self.lookup_action('selection_export').set_enabled(state)
-
-	def action_import(self, *args):
-		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
-			Gtk.FileChooserAction.OPEN,
-			_("Import"),
-			_("Cancel"))
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(allPictures)
-		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT:
-			fn = file_chooser.get_filename()
-			self._pixbuf_manager.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-			self._pixbuf_manager.create_selection_from_selection()
-			self.tools['select'].draw_selection_area(False)
-		file_chooser.destroy()
-
-	def action_cut(self, *args):
-		self._pixbuf_manager.cut_operation()
-
-	def action_copy(self, *args):
-		self._pixbuf_manager.copy_operation()
-
-	def action_paste(self, *args):
-		self._pixbuf_manager.paste_operation()
-		self.tools['select'].draw_selection_area(False)
-
-	def action_select_all(self, *args):
-		self._pixbuf_manager.select_all()
-		self.tools['select'].draw_selection_area(True)
-
-	def action_unselect(self, *args):
-		self.tools['select'].give_back_control()
-		self.drawing_area.queue_draw()
-
-	def action_cancel_select(self, *args): # TODO utile à connecter quelque part ?
-		self._pixbuf_manager.reset_selection()
-		self.drawing_area.queue_draw()
-
-	def action_selection_delete(self, *args):
-		self._pixbuf_manager.delete_operation()
-		self.tools['select'].end_selection()
-		self._pixbuf_manager.reset_selection()
-
-	def action_selection_resize(self, *args):
-		self.scale_pixbuf(True)
-
-	def action_selection_rotate(self, *args): # TODO
-		print("selection_rotate")
-
-	def action_selection_export(self, *args):
-		self._pixbuf_manager.export_selection_as()
 
 	# PRINTING
 
@@ -781,5 +711,4 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def get_surface(self):
 		return self._pixbuf_manager.surface
-
 

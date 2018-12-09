@@ -56,8 +56,6 @@ class DrawingPixbufManager():
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
-		self.reset_selection()
-
 	def load_main_from_filename(self, filename):
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
 
@@ -173,7 +171,6 @@ class DrawingPixbufManager():
 		self.copy_operation()
 		self.reset_selection()
 		self.delete_temp()
-		self.on_tool_finished()
 
 	def copy_operation(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)

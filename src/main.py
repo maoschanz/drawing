@@ -128,9 +128,14 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("win.secondary_color", ["<Ctrl>r"])
 		self.set_accels_for_action("win.exchange_color", ["<Ctrl>e"])
 
+		self.set_accels_for_action("win.import", ["<Ctrl>i"])
 		self.set_accels_for_action("win.paste", ["<Ctrl>v"])
 		self.set_accels_for_action("win.select_all", ["<Ctrl>a"])
 		self.set_accels_for_action("win.unselect", ["<Ctrl>u"])
+
+		self.set_accels_for_action("win.cut", ["<Ctrl>x"])
+		self.set_accels_for_action("win.copy", ["<Ctrl>c"])
+		self.set_accels_for_action("win.selection_delete", ["<Ctrl>Delete"])
 
 		self.set_accels_for_action("win.primary_menu", ["F10"])
 		self.set_accels_for_action("win.toggle_preview", ["<Ctrl>m"])

@@ -36,6 +36,33 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
+            <property name="title" translatable="yes">Colors</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Edit the primary color (left click)</property>
+                <property name="accelerator">&lt;Primary&gt;l</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Edit the secondary color (right click)</property>
+                <property name="accelerator">&lt;Primary&gt;l</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Exchange colors</property>
+                <property name="accelerator">&lt;Primary&gt;e</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="visible">True</property>
             <property name="title" translatable="yes">Image</property>
             <child>
               <object class="GtkShortcutsShortcut">
@@ -65,6 +92,13 @@
                 <property name="accelerator">&lt;Primary&gt;p</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Show the preview</property>
+                <property name="accelerator">&lt;Primary&gt;m</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -88,8 +122,22 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">Select all</property>
+                <property name="accelerator">&lt;Primary&gt;a</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Paste</property>
                 <property name="accelerator">&lt;Primary&gt;v</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Import</property>
+                <property name="accelerator">&lt;Primary&gt;i</property>
               </object>
             </child>
           </object>
@@ -97,26 +145,33 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
-            <property name="title" translatable="yes">Colors</property>
+            <property name="title" translatable="yes">Selection</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Edit the primary color (left click)</property>
-                <property name="accelerator">&lt;Primary&gt;l</property>
+                <property name="title" translatable="yes">Unselect</property>
+                <property name="accelerator">&lt;Primary&gt;u</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Edit the secondary color (right click)</property>
-                <property name="accelerator">&lt;Primary&gt;l</property>
+                <property name="title" translatable="yes">Cut</property>
+                <property name="accelerator">&lt;Primary&gt;x</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Exchange colors</property>
-                <property name="accelerator">&lt;Primary&gt;e</property>
+                <property name="title" translatable="yes">Copy</property>
+                <property name="accelerator">&lt;Primary&gt;c</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Delete</property>
+                <property name="accelerator">&lt;Primary&gt;Delete</property>
               </object>
             </child>
           </object>
@@ -125,4 +180,3 @@
     </child>
   </object>
 </interface>
-

@@ -133,7 +133,7 @@ class ToolText(ToolTemplate):
 			w_context.move_to(self.x_begin, self.y_begin + i*self.tool_width)
 			w_context.show_text( a_line )
 			i = i + 1
-		self.window.drawing_area.queue_draw()
+		self.non_destructive_show_modif()
 
 	def on_cancel(self, *args):
 		self.restore_pixbuf()

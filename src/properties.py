@@ -22,11 +22,9 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingPropertiesDialog'
 
 	def __init__(self, window):
-		wants_csd = ( window._settings.get_string('decorations') != 'ssd' )
+		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, transient_for=window, title=_("Image properties"))
 		self._window = window
-		# self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
-		# self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties_dialog.ui')
 		props_content_area = builder.get_object('props_content_area')
@@ -38,9 +36,9 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		label_width = builder.get_object('label_width')
 		label_height = builder.get_object('label_height')
 
-		if window._file_path is not None:
-			label_path.set_label(window._file_path)
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(window._file_path)
+		if window.gfile is not None:
+			label_path.set_label(window.gfile.get_path())
+			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(window.gfile.get_path())
 			label_format_file.set_label(pb_format.get_name())
 
 		enum = {

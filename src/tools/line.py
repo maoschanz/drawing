@@ -89,7 +89,7 @@ class ToolLine(ToolTemplate):
 				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
 				w_context.stroke()
 
-		self.window.drawing_area.queue_draw()
+		self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		self.window_can_take_back_control = False

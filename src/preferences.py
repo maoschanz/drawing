@@ -39,7 +39,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.list_box.set_selection_mode(Gtk.SelectionMode.NONE)
 
 		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
-		wants_csd = ( self._settings.get_string('decorations') != 'ssd' )
+		wants_csd = not ( 'ssd' in self._settings.get_string('decorations') )
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Drawing"), subtitle=_("Preferences"))
 			self.set_titlebar(header_bar)
@@ -63,10 +63,11 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
 
-		self.layout_combobox.append('csd', _("Modern"))
-		self.layout_combobox.append('ssd', _("Legacy"))
+		self.layout_combobox.append('csd', _("Compact (headerbar)"))
+		self.layout_combobox.append('ssd', _("Legacy (menubar only)"))
+		self.layout_combobox.append('ssd-toolbar', _("Legacy (menubar and toolbar)"))
 		if self._settings.get_boolean('experimental'):
-			self.layout_combobox.append('csd-menubar', _("Both (testing only)"))
+			self.layout_combobox.append('everything', _("Both (testing only)"))
 		self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
 		self.layout_combobox.connect('changed', self.on_layout_changed)
 

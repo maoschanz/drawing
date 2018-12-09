@@ -32,6 +32,12 @@ class ToolTemplate():
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
+	def add_tool_action(self, action_name, callback):
+		self.window.add_action_like_a_boss(action_name, callback)
+
+	def non_destructive_show_modif(self):
+		self.window.drawing_area.queue_draw()
+
 	def restore_pixbuf(self):
 		self.window._pixbuf_manager.use_stable_pixbuf()
 
@@ -46,9 +52,6 @@ class ToolTemplate():
 
 	def get_options_label(self):
 		return _("No options")
-
-	def on_key_on_area(self, area, event, surface):
-		pass
 
 	def on_motion_on_area(self, area, event, surface):
 		pass
