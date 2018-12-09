@@ -38,121 +38,122 @@
 <!-- Hamburger menu -->
   <menu id="window-menu">
     <section>
-        <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
-        <item>
-            <attribute name="action">app.new_window</attribute>
-            <attribute name="label" translatable="yes">New window</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
-        </item>
-    </section>
-    <section>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
       <item>
-          <attribute name="label" translatable="yes">Print</attribute>
-          <attribute name="action">win.print</attribute>
-      </item>
-      <item>
-          <attribute name="label" translatable="yes">Send to…</attribute>
-          <attribute name="action">win.send_to</attribute>
-      </item>
-      <item>
-          <attribute name="label" translatable="yes">Open this image with…</attribute>
-          <attribute name="action">win.open_with</attribute>
+        <attribute name="action">app.new_window</attribute>
+        <attribute name="label" translatable="yes">New window</attribute>
+        <attribute name="verb-icon">document-new-symbolic</attribute>
       </item>
     </section>
     <section>
-        <submenu>
-          <attribute name="label" translatable="yes">_Selection</attribute>
-          <section>
-            <item>
-                <attribute name="label" translatable="yes">Unselect</attribute>
-                <attribute name="action">win.unselect</attribute>
-            </item>
-          </section>
-          <section>
-            <attribute name="display-hint">horizontal-buttons</attribute>
-            <item>
-                <attribute name="label" translatable="yes">Cut</attribute>
-                <attribute name="action">win.cut</attribute>
-                <attribute name="verb-icon">edit-cut-symbolic</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Copy</attribute>
-                <attribute name="action">win.copy</attribute>
-                <attribute name="verb-icon">edit-copy-symbolic</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Delete</attribute>
-                <attribute name="action">win.selection_delete</attribute>
-                <attribute name="verb-icon">edit-delete-symbolic</attribute>
-            </item>
-          </section>
-          <section>
-            <item>
-                <attribute name="label" translatable="yes">Resize</attribute>
-                <attribute name="action">win.selection_resize</attribute>
-            </item>
-            <item>
-                <attribute name="label" translatable="yes">Rotate</attribute>
-                <attribute name="action">win.selection_rotate</attribute>
-            </item>
-          </section>
-          <section>
-            <item>
-                <attribute name="label" translatable="yes">Export as…</attribute>
-                <attribute name="action">win.selection_export</attribute>
-                <attribute name="verb-icon">edit-save-as-symbolic</attribute>
-            </item>
-          </section>
-        </submenu>
+      <item>
+        <attribute name="label" translatable="yes">Print</attribute>
+        <attribute name="action">win.print</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Send to…</attribute>
+        <attribute name="action">win.send_to</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Open this image with…</attribute>
+        <attribute name="action">win.open_with</attribute>
+      </item>
     </section>
     <section>
-        <attribute name="display-hint">horizontal-buttons</attribute>
-        <item>
-            <attribute name="label" translatable="yes">Select all</attribute>
-            <attribute name="action">win.select_all</attribute>
-            <attribute name="verb-icon">edit-select-all-symbolic</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Import</attribute>
-            <attribute name="action">win.import</attribute>
-            <attribute name="verb-icon">folder-download-symbolic</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-            <attribute name="verb-icon">edit-paste-symbolic</attribute>
-        </item>
+      <submenu>
+        <attribute name="label" translatable="yes">_Selection</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Unselect</attribute>
+            <attribute name="action">win.unselect</attribute>
+          </item>
+        </section>
+        <section>
+          <attribute name="display-hint">horizontal-buttons</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Cut</attribute>
+            <attribute name="action">win.cut</attribute>
+            <attribute name="verb-icon">edit-cut-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Copy</attribute>
+            <attribute name="action">win.copy</attribute>
+            <attribute name="verb-icon">edit-copy-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Delete</attribute>
+            <attribute name="action">win.selection_delete</attribute>
+            <attribute name="verb-icon">edit-delete-symbolic</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Resize</attribute>
+            <attribute name="action">win.selection_resize</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Rotate</attribute>
+            <attribute name="action">win.selection_rotate</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Export as…</attribute>
+            <attribute name="action">win.selection_export</attribute>
+            <attribute name="verb-icon">edit-save-as-symbolic</attribute>
+          </item>
+        </section>
+      </submenu>
     </section>
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Image properties</attribute>
-            <attribute name="action">win.properties</attribute>
-            <attribute name="verb-icon">document-properties-symbolic</attribute>
-        </item>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+        <attribute name="verb-icon">edit-select-all-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Import</attribute>
+        <attribute name="action">win.import</attribute>
+        <attribute name="verb-icon">folder-download-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
+        <attribute name="verb-icon">edit-paste-symbolic</attribute>
+      </item>
     </section>
     <section>
-        <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
-        <item>
-            <attribute name="label" translatable="yes">Preferences</attribute>
-            <attribute name="action">app.settings</attribute>
-            <attribute name="verb-icon">preferences-system-symbolic</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Image properties</attribute>
+        <attribute name="action">win.properties</attribute>
+        <attribute name="verb-icon">document-properties-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <item>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">app.settings</attribute>
+        <attribute name="verb-icon">preferences-system-symbolic</attribute>
+      </item>
 
-        <item>
-            <attribute name="label" translatable="yes">Shortcuts</attribute>
-            <attribute name="action">app.shortcuts</attribute>
-            <attribute name="verb-icon">input-keyboard-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="action">app.help</attribute>
-          <attribute name="label" translatable="yes">Help</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">About Drawing</attribute>
-            <attribute name="action">app.about</attribute>
-            <attribute name="verb-icon">help-about-symbolic</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Shortcuts</attribute>
+        <attribute name="action">app.shortcuts</attribute>
+        <attribute name="verb-icon">input-keyboard-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.help</attribute>
+        <attribute name="label" translatable="yes">Help</attribute>
+        <attribute name="verb-icon">help-faq-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">About Drawing</attribute>
+        <attribute name="action">app.about</attribute>
+        <attribute name="verb-icon">help-about-symbolic</attribute>
+      </item>
     </section>
   </menu>
 
@@ -160,22 +161,22 @@
   <menu id="save-as-menu">
     <section>
       <item>
-          <attribute name="label" translatable="yes">Save as…</attribute>
-          <attribute name="action">win.save_as</attribute>
+        <attribute name="label" translatable="yes">Save as…</attribute>
+        <attribute name="action">win.save_as</attribute>
       </item>
     </section>
     <section>
       <item>
-          <attribute name="label" translatable="yes">Export as PNG</attribute>
-          <attribute name="action">win.exp_png</attribute>
+        <attribute name="label" translatable="yes">Export as PNG</attribute>
+        <attribute name="action">win.exp_png</attribute>
       </item>
       <item>
-          <attribute name="label" translatable="yes">Export as JPEG</attribute>
-          <attribute name="action">win.exp_jpeg</attribute>
+        <attribute name="label" translatable="yes">Export as JPEG</attribute>
+        <attribute name="action">win.exp_jpeg</attribute>
       </item>
       <item>
-          <attribute name="label" translatable="yes">Export as BMP</attribute>
-          <attribute name="action">win.exp_bmp</attribute>
+        <attribute name="label" translatable="yes">Export as BMP</attribute>
+        <attribute name="action">win.exp_bmp</attribute>
       </item>
     </section>
   </menu>
@@ -186,67 +187,68 @@
       <attribute name="label" translatable="yes">_File</attribute>
       <section>
         <item>
-            <attribute name="label" translatable="yes">New window</attribute>
-            <attribute name="action">app.new_window</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
+          <attribute name="label" translatable="yes">New window</attribute>
+          <attribute name="action">app.new_window</attribute>
+          <attribute name="verb-icon">document-new-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Open</attribute>
-            <attribute name="action">app.open</attribute>
-            <attribute name="verb-icon">document-open-symbolic</attribute>
+          <attribute name="label" translatable="yes">Open</attribute>
+          <attribute name="action">app.open</attribute>
+          <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Save</attribute>
-            <attribute name="action">win.save</attribute>
-            <attribute name="verb-icon">document-save-symbolic</attribute>
+          <attribute name="label" translatable="yes">Save</attribute>
+          <attribute name="action">win.save</attribute>
+          <attribute name="verb-icon">document-save-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Save as…</attribute>
-            <attribute name="action">win.save_as</attribute>
-            <attribute name="verb-icon">document-save-as-symbolic</attribute>
+          <attribute name="label" translatable="yes">Save as…</attribute>
+          <attribute name="action">win.save_as</attribute>
+          <attribute name="verb-icon">document-save-as-symbolic</attribute>
         </item>
         <submenu>
           <attribute name="label" translatable="yes">Export</attribute>
           <section>
             <item>
-                <attribute name="label" translatable="yes">Export as PNG</attribute>
-                <attribute name="action">win.exp_png</attribute>
+              <attribute name="label" translatable="yes">Export as PNG</attribute>
+              <attribute name="action">win.exp_png</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">Export as JPEG</attribute>
-                <attribute name="action">win.exp_jpeg</attribute>
+              <attribute name="label" translatable="yes">Export as JPEG</attribute>
+              <attribute name="action">win.exp_jpeg</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">Export as BMP</attribute>
-                <attribute name="action">win.exp_bmp</attribute>
+              <attribute name="label" translatable="yes">Export as BMP</attribute>
+              <attribute name="action">win.exp_bmp</attribute>
             </item>
           </section>
         </submenu>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Print</attribute>
-            <attribute name="action">win.print</attribute>
-            <attribute name="verb-icon">document-print-symbolic</attribute>
+          <attribute name="label" translatable="yes">Print</attribute>
+          <attribute name="action">win.print</attribute>
+          <attribute name="verb-icon">document-print-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Send to…</attribute>
-            <attribute name="action">win.send_to</attribute>
-            <attribute name="verb-icon">send-to-symbolic</attribute>
+          <attribute name="label" translatable="yes">Send to…</attribute>
+          <attribute name="action">win.send_to</attribute>
+          <attribute name="verb-icon">send-to-symbolic</attribute>
+          <attribute name="hidden-when">action-disabled</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Open this image with…</attribute>
-            <attribute name="action">win.open_with</attribute>
-            <attribute name="verb-icon">applications-graphics-symbolic</attribute>
+          <attribute name="label" translatable="yes">Open this image with…</attribute>
+          <attribute name="action">win.open_with</attribute>
+          <attribute name="verb-icon">applications-graphics-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Close</attribute>
-            <attribute name="action">win.close</attribute>
-            <attribute name="verb-icon">application-exit-symbolic</attribute>
+          <attribute name="label" translatable="yes">Close</attribute>
+          <attribute name="action">win.close</attribute>
+          <attribute name="verb-icon">application-exit-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -255,39 +257,39 @@
       <attribute name="label" translatable="yes">_Edit</attribute>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Undo</attribute>
-            <attribute name="action">win.undo</attribute>
-            <attribute name="verb-icon">edit-undo-symbolic</attribute>
+          <attribute name="label" translatable="yes">Undo</attribute>
+          <attribute name="action">win.undo</attribute>
+          <attribute name="verb-icon">edit-undo-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Redo</attribute>
-            <attribute name="action">win.redo</attribute>
-            <attribute name="verb-icon">edit-redo-symbolic</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-            <attribute name="label" translatable="yes">Select all</attribute>
-            <attribute name="action">win.select_all</attribute>
-            <attribute name="verb-icon">edit-select-all-symbolic</attribute>
+          <attribute name="label" translatable="yes">Redo</attribute>
+          <attribute name="action">win.redo</attribute>
+          <attribute name="verb-icon">edit-redo-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-            <attribute name="verb-icon">edit-paste-symbolic</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Import</attribute>
-            <attribute name="action">win.import</attribute>
+          <attribute name="label" translatable="yes">Select all</attribute>
+          <attribute name="action">win.select_all</attribute>
+          <attribute name="verb-icon">edit-select-all-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Preferences</attribute>
-            <attribute name="action">app.settings</attribute>
-            <attribute name="verb-icon">preferences-system-symbolic</attribute>
+          <attribute name="label" translatable="yes">Paste</attribute>
+          <attribute name="action">win.paste</attribute>
+          <attribute name="verb-icon">edit-paste-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Import</attribute>
+          <attribute name="action">win.import</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Preferences</attribute>
+          <attribute name="action">app.settings</attribute>
+          <attribute name="verb-icon">preferences-system-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -296,24 +298,24 @@
       <attribute name="label" translatable="yes">_Image</attribute>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Show preview</attribute>
-            <attribute name="action">win.toggle_preview</attribute>
-            <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
+          <attribute name="label" translatable="yes">Show preview</attribute>
+          <attribute name="action">win.toggle_preview</attribute>
+          <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Crop</attribute>
-            <attribute name="action">win.crop</attribute>
+          <attribute name="label" translatable="yes">Crop</attribute>
+          <attribute name="action">win.crop</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Scale</attribute>
-            <attribute name="action">win.scale</attribute>
+          <attribute name="label" translatable="yes">Scale</attribute>
+          <attribute name="action">win.scale</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Image properties</attribute>
-            <attribute name="action">win.properties</attribute>
-            <attribute name="verb-icon">document-properties-symbolic</attribute>
+          <attribute name="label" translatable="yes">Image properties</attribute>
+          <attribute name="action">win.properties</attribute>
+          <attribute name="verb-icon">document-properties-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -322,45 +324,45 @@
       <attribute name="label" translatable="yes">_Selection</attribute>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Unselect</attribute>
-            <attribute name="action">win.unselect</attribute>
-            <attribute name="verb-icon">edit-delete-symbolic</attribute>
+          <attribute name="label" translatable="yes">Unselect</attribute>
+          <attribute name="action">win.unselect</attribute>
+          <attribute name="verb-icon">edit-delete-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Cut</attribute>
-            <attribute name="action">win.cut</attribute>
-            <attribute name="verb-icon">edit-cut-symbolic</attribute>
+          <attribute name="label" translatable="yes">Cut</attribute>
+          <attribute name="action">win.cut</attribute>
+          <attribute name="verb-icon">edit-cut-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Copy</attribute>
-            <attribute name="action">win.copy</attribute>
-            <attribute name="verb-icon">edit-copy-symbolic</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-            <attribute name="label" translatable="yes">Delete</attribute>
-            <attribute name="action">win.selection_delete</attribute>
-            <attribute name="verb-icon">edit-delete-symbolic</attribute>
+          <attribute name="label" translatable="yes">Copy</attribute>
+          <attribute name="action">win.copy</attribute>
+          <attribute name="verb-icon">edit-copy-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Resize</attribute>
-            <attribute name="action">win.selection_resize</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Rotate</attribute>
-            <attribute name="action">win.selection_rotate</attribute>
+          <attribute name="label" translatable="yes">Delete</attribute>
+          <attribute name="action">win.selection_delete</attribute>
+          <attribute name="verb-icon">edit-delete-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Export as…</attribute>
-            <attribute name="action">win.selection_export</attribute>
-            <attribute name="verb-icon">edit-save-as-symbolic</attribute>
+          <attribute name="label" translatable="yes">Resize</attribute>
+          <attribute name="action">win.selection_resize</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rotate</attribute>
+          <attribute name="action">win.selection_rotate</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Export as…</attribute>
+          <attribute name="action">win.selection_export</attribute>
+          <attribute name="verb-icon">edit-save-as-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -369,19 +371,19 @@
       <attribute name="label" translatable="yes">_Colors</attribute>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Primary color</attribute>
-            <attribute name="action">win.primary_color</attribute>
+          <attribute name="label" translatable="yes">Primary color</attribute>
+          <attribute name="action">win.primary_color</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Secondary color</attribute>
-            <attribute name="action">win.secondary_color</attribute>
+          <attribute name="label" translatable="yes">Secondary color</attribute>
+          <attribute name="action">win.secondary_color</attribute>
         </item>
       </section>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Exchange colors</attribute>
-            <attribute name="action">win.exchange_color</attribute>
-            <attribute name="verb-icon">network-transmit-receive-symbolic</attribute>
+          <attribute name="label" translatable="yes">Exchange colors</attribute>
+          <attribute name="action">win.exchange_color</attribute>
+          <attribute name="verb-icon">network-transmit-receive-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -394,28 +396,23 @@
       <attribute name="label" translatable="yes">_Help</attribute>
       <section>
         <item>
-            <attribute name="label" translatable="yes">Shortcuts</attribute>
-            <attribute name="action">app.shortcuts</attribute>
-            <attribute name="verb-icon">input-keyboard-symbolic</attribute>
+          <attribute name="label" translatable="yes">Shortcuts</attribute>
+          <attribute name="action">app.shortcuts</attribute>
+          <attribute name="verb-icon">input-keyboard-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">Help</attribute>
-            <attribute name="action">app.help</attribute>
-            <attribute name="verb-icon">help-faq-symbolic</attribute>
+          <attribute name="label" translatable="yes">Help</attribute>
+          <attribute name="action">app.help</attribute>
+          <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
         <item>
-            <attribute name="label" translatable="yes">About Drawing</attribute>
-            <attribute name="action">app.about</attribute>
-            <attribute name="verb-icon">help-about-symbolic</attribute>
+          <attribute name="label" translatable="yes">About Drawing</attribute>
+          <attribute name="action">app.about</attribute>
+          <attribute name="verb-icon">help-about-symbolic</attribute>
         </item>
       </section>
     </submenu>
   </menu>
 
 </interface>
-
-
-
-
-
 

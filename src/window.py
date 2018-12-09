@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
-import cairo
+import cairo, os
 
 from gettext import gettext as _
 
@@ -577,16 +577,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def export_as_bmp(self, *args):
 		self._pixbuf_manager.export_main_as('bmp')
 
-	def action_send_to(self, *args): # TODO
+	def action_send_to(self, *args): # TODO https://github.com/GNOME/nautilus-sendto
 		pass
 
 	def action_open_with(self, *args):
-		gfile = Gio.File.new_for_path(self._file_path)
-		dialog = Gtk.AppChooserDialog.new(self, Gtk.DialogFlags.DESTROY_WITH_PARENT, gfile)
-		res = dialog.run()
-		if res == Gtk.ResponseType.OK:
-			dialog.get_app_info().launch([gfile], None)
-		dialog.destroy()
+		os.system('xdg-open ' + self._file_path)
 
 	# HISTORY MANAGEMENT
 

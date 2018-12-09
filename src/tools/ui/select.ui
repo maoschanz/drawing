@@ -2,63 +2,63 @@
 <interface domain="drawing">
   <menu id="left-click-menu">
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Unselect</attribute>
-            <attribute name="action">win.unselect</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="action">win.unselect</attribute>
+      </item>
     </section>
     <section>
-        <attribute name="display-hint">horizontal-buttons</attribute>
-        <item>
-            <attribute name="label" translatable="yes">Cut</attribute>
-            <attribute name="action">win.cut</attribute>
-            <attribute name="verb-icon">edit-cut-symbolic</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Copy</attribute>
-            <attribute name="action">win.copy</attribute>
-            <attribute name="verb-icon">edit-copy-symbolic</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Delete</attribute>
-            <attribute name="action">win.selection_delete</attribute>
-            <attribute name="verb-icon">edit-delete-symbolic</attribute>
-        </item>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Cut</attribute>
+        <attribute name="action">win.cut</attribute>
+        <attribute name="verb-icon">edit-cut-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Copy</attribute>
+        <attribute name="action">win.copy</attribute>
+        <attribute name="verb-icon">edit-copy-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Delete</attribute>
+        <attribute name="action">win.selection_delete</attribute>
+        <attribute name="verb-icon">edit-delete-symbolic</attribute>
+      </item>
     </section>
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Resize</attribute>
-            <attribute name="action">win.selection_resize</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Rotate</attribute>
-            <attribute name="action">win.selection_rotate</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Resize</attribute>
+        <attribute name="action">win.selection_resize</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rotate</attribute>
+        <attribute name="action">win.selection_rotate</attribute>
+      </item>
     </section>
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Export as…</attribute>
-            <attribute name="action">win.selection_export</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Export as…</attribute>
+        <attribute name="action">win.selection_export</attribute>
+      </item>
     </section>
   </menu>
 
   <menu id="right-click-menu">
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Select all</attribute>
-            <attribute name="action">win.select_all</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+      </item>
     </section>
     <section>
-        <item>
-            <attribute name="label" translatable="yes">Import</attribute>
-            <attribute name="action">win.import</attribute>
-        </item>
-        <item>
-            <attribute name="label" translatable="yes">Paste</attribute>
-            <attribute name="action">win.paste</attribute>
-        </item>
+      <item>
+        <attribute name="label" translatable="yes">Import</attribute>
+        <attribute name="action">win.import</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
+      </item>
     </section>
   </menu>
 
@@ -142,6 +142,7 @@
   </object>
 
 </interface>
+
 
 
 
