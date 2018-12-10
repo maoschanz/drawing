@@ -27,7 +27,6 @@ class ToolEraser(ToolTemplate):
 		self.w_context.stroke()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-		self.window_can_take_back_control = False
 		self.tool_width = tool_width
 		self.w_context = cairo.Context(surface)
 		self.w_context.set_operator(cairo.Operator.CLEAR)
@@ -36,5 +35,5 @@ class ToolEraser(ToolTemplate):
 		self.past_x = -1
 		self.past_y = -1
 		self.w_context.set_operator(cairo.Operator.OVER)
-		self.window_can_take_back_control = True
+		self.apply_to_pixbuf()
 

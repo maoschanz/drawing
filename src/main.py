@@ -124,7 +124,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("app.quit", ["<Ctrl>q"])
 
 		# TODO mettre à jour la fentre qui résume ça
-		self.set_accels_for_action("win.primary_color", ["<Ctrl>l"])
+		self.set_accels_for_action("win.main_color", ["<Ctrl>l"])
 		self.set_accels_for_action("win.secondary_color", ["<Ctrl>r"])
 		self.set_accels_for_action("win.exchange_color", ["<Ctrl>e"])
 
@@ -137,7 +137,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("win.copy", ["<Ctrl>c"])
 		self.set_accels_for_action("win.selection_delete", ["<Ctrl>Delete"])
 
-		self.set_accels_for_action("win.primary_menu", ["F10"])
+		self.set_accels_for_action("win.main_menu", ["F10"])
 		self.set_accels_for_action("win.toggle_preview", ["<Ctrl>m"])
 
 		self.set_accels_for_action("win.properties", ["<Ctrl>p"])

@@ -49,7 +49,6 @@ class ToolPencil(ToolTemplate):
 		self.w_context.stroke()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-		self.window_can_take_back_control = False
 		self.tool_width = tool_width
 		self.w_context = cairo.Context(surface)
 		if event.button == 1:
@@ -60,4 +59,4 @@ class ToolPencil(ToolTemplate):
 	def on_release_on_area(self, area, event, surface):
 		self.past_x = -1
 		self.past_y = -1
-		self.window_can_take_back_control = True
+		self.apply_to_pixbuf()

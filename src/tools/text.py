@@ -11,7 +11,7 @@ class ToolText(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'font-x-generic-symbolic', window)
 
-		self.primary_color = None
+		self.main_color = None
 		self.secondary_color = None
 		(self.x_begin, self.y_begin) = (0, 0)
 
@@ -49,12 +49,11 @@ class ToolText(ToolTemplate):
 		self.on_cancel()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-		self.window_can_take_back_control = False
 		if event.button == 1:
-			self.primary_color = left_color
+			self.main_color = left_color
 			self.secondary_color = right_color
 		if event.button == 3:
-			self.primary_color = right_color
+			self.main_color = right_color
 			self.secondary_color = left_color
 
 	def on_release_on_area(self, area, event, surface):
@@ -96,7 +95,6 @@ class ToolText(ToolTemplate):
 		self.popover.popdown()
 		self.apply_to_pixbuf()
 		self.entry.get_buffer().set_text('', 0)
-		self.window_can_take_back_control = True
 
 	def preview_text(self, *args):
 		text = self.entry.get_buffer().get_text( self.entry.get_buffer().get_start_iter(), \
@@ -106,8 +104,8 @@ class ToolText(ToolTemplate):
 		self.restore_pixbuf()
 
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
-			self.primary_color.blue, self.primary_color.alpha)
+		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+			self.main_color.blue, self.main_color.alpha)
 		w_context.select_font_face(self.font_fam, self.slant, self.weight)
 		w_context.set_font_size(self.tool_width)
 
@@ -128,8 +126,8 @@ class ToolText(ToolTemplate):
 					self.secondary_color.blue, self.secondary_color.alpha)
 				w_context.fill()
 				w_context.stroke()
-			w_context.set_source_rgba(self.primary_color.red, self.primary_color.green, \
-				self.primary_color.blue, self.primary_color.alpha)
+			w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+				self.main_color.blue, self.main_color.alpha)
 			w_context.move_to(self.x_begin, self.y_begin + i*self.tool_width)
 			w_context.show_text( a_line )
 			i = i + 1
@@ -138,6 +136,5 @@ class ToolText(ToolTemplate):
 	def on_cancel(self, *args):
 		self.restore_pixbuf()
 		self.popover.popdown()
-		self.window_can_take_back_control = True
 		self.entry.get_buffer().set_text('', 0)
-		
+

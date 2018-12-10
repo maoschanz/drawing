@@ -18,7 +18,6 @@ class ToolTemplate():
 	id = 'template'
 	icon_name = 'folder-templates-symbolic'
 	label = "Not implemented"
-	window_can_take_back_control = True
 	tool_width = 10
 	use_size = False
 

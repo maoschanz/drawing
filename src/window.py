@@ -51,7 +51,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	former_tool_id = 'pencil'
 	tool_width = 10
 	is_clicked = False
-	window_has_control = True
 
 	paned_area = GtkTemplate.Child()
 	tools_panel = GtkTemplate.Child()
@@ -59,7 +58,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	toolbar_box = GtkTemplate.Child()
 	header_bar = None
-	primary_menu_btn = None
+	main_menu_btn = None
 
 	drawing_area = GtkTemplate.Child()
 
@@ -174,6 +173,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
+		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
 
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
 		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
@@ -200,7 +200,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_like_a_boss("primary_color", self.action_primary_color)
+		self.add_action_like_a_boss("main_color", self.action_main_color)
 		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
 		self.add_action_like_a_boss("exchange_color", self.action_exchange_color)
 
@@ -212,8 +212,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_like_a_boss("scale", self.action_scale)
 		self.add_action_like_a_boss("properties", self.edit_properties)
 
-		if self.primary_menu_btn is not None:
-			self.add_action_like_a_boss("primary_menu", self.action_primary_menu)
+		if self.main_menu_btn is not None:
+			self.add_action_like_a_boss("main_menu", self.action_main_menu)
 
 		self.add_action_like_a_boss("toggle_preview", self.action_toggle_preview)
 		self.add_action_like_a_boss("bigger_preview", self.action_bigger_preview)
@@ -305,18 +305,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
 		save_as_btn = builder.get_object("save_as_btn")
-		self.primary_menu_btn = builder.get_object("primary_menu_btn")
+		self.main_menu_btn = builder.get_object("main_menu_btn")
 
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
-		primary_menu = builder.get_object("window-menu")
-		menu_popover = Gtk.Popover.new_from_model(self.primary_menu_btn, primary_menu)
-		self.primary_menu_btn.set_popover(menu_popover)
+		main_menu = builder.get_object("window-menu")
+		menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, main_menu)
+		self.main_menu_btn.set_popover(menu_popover)
 		save_as_menu = builder.get_object("save-as-menu")
 		save_as_popover = Gtk.Popover.new_from_model(save_as_btn, save_as_menu)
 		save_as_btn.set_popover(save_as_popover)
 
-	def action_primary_menu(self, *args):
-		self.primary_menu_btn.set_active(not self.primary_menu_btn.get_active())
+	def action_main_menu(self, *args):
+		self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
 
 	# MINIMAP
 
@@ -387,7 +387,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.color_btn_l.props.show_editor = color_btn_show_editor
 		self.color_btn_r.props.show_editor = color_btn_show_editor
 
-	def action_primary_color(self, *args):
+	def action_main_color(self, *args):
 		self.color_btn_l.activate()
 
 	def action_secondary_color(self, *args):
@@ -410,7 +410,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_btn.set_popover(self.active_tool().get_options_widget())
 		self.update_option_label()
 
-	def update_option_label(self):
+	def update_option_label(self, *args):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
 	def on_change_active_tool(self, *args):
@@ -619,7 +619,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_press_on_area(self, area, event):
 		self._is_saved = False
-		self.window_has_control = False
 		self.is_clicked = True
 		self.x_press = event.x
 		self.y_press = event.y
@@ -638,13 +637,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return
 		self.is_clicked = False
 		self.active_tool().on_release_on_area(area, event, self._pixbuf_manager.surface)
-		self.window_has_control = self.active_tool().window_can_take_back_control
-		if self.window_has_control:
-			print('release où la fenêtre a récupéré le contrôle')
-			self._pixbuf_manager.on_tool_finished()
-		else:
-			# redessiner la zone sans l'appliquer au pixbuf
-			self.drawing_area.queue_draw()
 
 	# PRINTING
 

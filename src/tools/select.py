@@ -11,16 +11,16 @@ class ToolSelect(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
 
-		self.add_tool_action("unselect", self.action_unselect)
-		self.add_tool_action("cut", self.action_cut)
-		self.add_tool_action("copy", self.action_copy)
-		self.add_tool_action("selection_delete", self.action_selection_delete)
-		self.add_tool_action("selection_resize", self.action_selection_resize)
-		# self.add_tool_action("selection_rotate", self.action_selection_rotate)
-		self.add_tool_action("selection_export", self.action_selection_export)
-		self.add_tool_action("import", self.action_import)
-		self.add_tool_action("paste", self.action_paste)
-		self.add_tool_action("select_all", self.action_select_all)
+		self.add_tool_action('unselect', self.action_unselect) # pareil que give_back_control ?
+		self.add_tool_action('cut', self.action_cut)
+		self.add_tool_action('copy', self.action_copy)
+		self.add_tool_action('selection_delete', self.action_selection_delete)
+		self.add_tool_action('selection_resize', self.action_selection_resize)
+		# self.add_tool_action('selection_rotate', self.action_selection_rotate)
+		self.add_tool_action('selection_export', self.action_selection_export)
+		self.add_tool_action('import', self.action_import)
+		self.add_tool_action('paste', self.action_paste)
+		self.add_tool_action('select_all', self.action_select_all)
 
 		#############################
 
@@ -29,7 +29,7 @@ class ToolSelect(ToolTemplate):
 		self.past_x = [-1, -1]
 		self.past_y = [-1, -1]
 
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/select.ui')
 		menu_r = builder.get_object('right-click-menu')
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
 		menu_l = builder.get_object('left-click-menu')
@@ -83,7 +83,6 @@ class ToolSelect(ToolTemplate):
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		print("press")
-		self.window_can_take_back_control = False
 		area.grab_focus()
 		self.x_press = event.x
 		self.y_press = event.y
@@ -172,7 +171,6 @@ class ToolSelect(ToolTemplate):
 	def end_selection(self):
 		self.apply_to_pixbuf()
 		self.show_popover(False)
-		self.window_can_take_back_control = True
 		self.x_press = 0.0
 		self.y_press = 0.0
 		self.past_x = [-1, -1]

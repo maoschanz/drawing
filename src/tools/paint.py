@@ -129,6 +129,8 @@ Do you want to abort the operation, or to let the tool struggle ?""" \
         w_context.set_source_rgba(self.new_color.red, self.new_color.green, self.new_color.blue, self.new_color.alpha)
         w_context.fill()
 
+        self.apply_to_pixbuf()
+
     # def get_rgb_for_xy(self, x, y):
     #    # Guard clause: we can't perform color picking outside of the surface
     #     if x < 0 or x > self.surface.get_width() or y < 0 or y > self.surface.get_height():

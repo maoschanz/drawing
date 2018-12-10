@@ -8,7 +8,6 @@ from .tools import ToolTemplate
 class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
 
-	window_can_take_back_control = True
 	use_size = True
 	type_btns = {}
 	end_btns = {}
@@ -92,7 +91,6 @@ class ToolLine(ToolTemplate):
 		self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
-		self.window_can_take_back_control = False
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
@@ -112,7 +110,7 @@ class ToolLine(ToolTemplate):
 			w_context.move_to(self.x_press, self.y_press)
 			w_context.line_to(event.x, event.y)
 			w_context.stroke()
-			self.window_can_take_back_control = True
+			self.apply_to_pixbuf()
 
 		elif self.active_type == 'arc':
 			if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
@@ -129,7 +127,7 @@ class ToolLine(ToolTemplate):
 				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
 				w_context.stroke()
 				self.wait_points = (-1.0, -1.0, -1.0, -1.0)
-				self.window_can_take_back_control = True
+				self.apply_to_pixbuf()
 
 		if self.arrow_switch.get_active():
 			print("arrow") # TODO
