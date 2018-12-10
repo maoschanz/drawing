@@ -45,6 +45,7 @@ drawing_sources = [
   'tools/text.py',
   'tools/select.py',
   'tools/shape.py',
+  'tools/polygon.py',
   'tools/picker.py',
   'tools/eraser.py'
 ]

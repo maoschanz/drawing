@@ -30,6 +30,7 @@ from .text import ToolText
 from .picker import ToolPicker
 from .shape import ToolShape
 from .eraser import ToolEraser
+from .polygon import ToolPolygon
 
 DEV_VERSION = False
 
@@ -112,6 +113,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
+		self.tools['polygon'] = ToolPolygon(self)
 
 		self.build_tool_rows()
 		self.tools_panel.show_all()

@@ -12,40 +12,37 @@ class ToolShape(ToolTemplate):
 	use_size = True
 	shape_btns = {}
 	style_btns = {}
+	selected_shape_label = ''
+	selected_shape_id = 'rectangle'
+	selected_style_label = ''
+	selected_style_id = 'secondary'
 
 	def __init__(self, window, **kwargs):
-		super().__init__('shape', _("Shape"), 'non-starred-symbolic', window)
+		super().__init__('shape', _("Shape"), 'radio-symbolic', window)
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
-		(self.past_x, self.past_y) = (-1.0, -1.0)
 
 		# Building the widget containing options
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/shape.ui")
-		self.options_box = builder.get_object("options_box")
+		builder.add_from_resource('/com/github/maoschanz/Drawing/tools/ui/shape.ui')
+		self.options_box = builder.get_object('options_box')
 
-		self.shape_btns['rectangle'] = builder.get_object("type_btn_1")
-		self.shape_btns['oval'] = builder.get_object("type_btn_2")
-		self.shape_btns['circle'] = builder.get_object("type_btn_4")
-		self.shape_btns['polygon'] = builder.get_object("type_btn_5")
+		self.shape_btns['rectangle'] = builder.get_object('type_btn_1')
+		self.shape_btns['oval'] = builder.get_object('type_btn_2')
+		self.shape_btns['circle'] = builder.get_object('type_btn_4')
 
 		for type_id in self.shape_btns:
-			self.shape_btns[type_id].connect('clicked', self.on_shape_changed, type_id)
+			self.shape_btns[type_id].connect('toggled', self.on_shape_changed, type_id)
 
-		self.style_btns['empty'] = builder.get_object("style_btn_1")
-		self.style_btns['filled'] = builder.get_object("style_btn_2")
-		self.style_btns['secondary'] = builder.get_object("style_btn_3")
+		self.style_btns['empty'] = builder.get_object('style_btn_1')
+		self.style_btns['filled'] = builder.get_object('style_btn_2')
+		self.style_btns['secondary'] = builder.get_object('style_btn_3')
 
 		for type_id in self.style_btns:
-			self.style_btns[type_id].connect('clicked', self.on_style_changed, type_id)
+			self.style_btns[type_id].connect('toggled', self.on_style_changed, type_id)
 
 		self.shape_btns['rectangle'].set_active(True)
 		self.style_btns['secondary'].set_active(True)
-
-		self.selected_shape_label = _("Rectangle") # XXX
-		self.selected_style_label = _("Filled (secondary color)") # XXX
-		self.selected_shape_id = 'rectangle' # XXX
-		self.selected_style_id = 'secondary' # XXX
 
 	def on_shape_changed(self, *args):
 		self.selected_shape_label = args[0].get_label()
@@ -63,7 +60,6 @@ class ToolShape(ToolTemplate):
 
 	def give_back_control(self):
 		(self.x_press, self.y_press) = (-1.0, -1.0)
-		(self.past_x, self.past_y) = (-1.0, -1.0)
 		self.restore_pixbuf()
 
 	def draw_rectangle(self, event):
@@ -157,82 +153,14 @@ class ToolShape(ToolTemplate):
 			w_context.fill()
 		w_context.stroke()
 
-	def draw_polygon(self, event, is_preview):
-		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_width(self.tool_width)
-
-		if self.past_x == -1.0:
-			self.init_polygon(w_context)
-		else:
-			w_context.append_path(self.path)
-
-		if is_preview:
-			self.preview_polygon(w_context, event.x, event.y)
-			return False
-
-		if (event.x - self.past_x < self.tool_width) and (event.y - self.past_y < self.tool_width):
-			self.finish_polygon(w_context)
-			return True
-		else:
-			self.continue_polygon(w_context, event.x, event.y)
-			return False
-
-	def init_polygon(self, w_context):
-		(self.past_x, self.past_y) = (self.x_press, self.y_press)
-		w_context.move_to(self.x_press, self.y_press)
-		self.path = w_context.copy_path()
-
-	def continue_polygon(self, w_context, x, y):
-		w_context.line_to(x, y)
-		w_context.stroke_preserve() # draw the line without closing the path
-		self.path = w_context.copy_path()
-		self.non_destructive_show_modif()
-
-	def finish_polygon(self, w_context):
-		w_context.close_path()
-		if self.selected_style_id == 'filled':
-			w_context.fill()
-		elif self.selected_style_id == 'secondary':
-			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-				self.secondary_color.blue, self.secondary_color.alpha)
-			w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
-			w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-				self.main_color.blue, self.main_color.alpha)
-			w_context.stroke()
-		else:
-			w_context.stroke()
-		(self.past_x, self.past_y) = (-1.0, -1.0)
-
-	def preview_polygon(self, w_context, x, y):
-		w_context.line_to(x, y)
-		w_context.close_path()
-		if self.selected_style_id == 'filled':
-			w_context.fill()
-		elif self.selected_style_id == 'secondary':
-			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-				self.secondary_color.blue, self.secondary_color.alpha)
-			w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
-			w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-				self.main_color.blue, self.main_color.alpha)
-			w_context.stroke()
-		else:
-			w_context.stroke()
-
 	def on_motion_on_area(self, area, event, surface):
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
-
 		if self.selected_shape_id == 'rectangle':
 			self.draw_rectangle(event)
-
 		elif self.selected_shape_id == 'oval':
 			self.draw_oval(event)
-
 		elif self.selected_shape_id == 'circle':
 			self.draw_circle(event)
-
-		elif self.selected_shape_id == 'polygon':
-			self.draw_polygon(event, True)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		self.x_press = event.x
@@ -250,28 +178,14 @@ class ToolShape(ToolTemplate):
 			self.restore_pixbuf()
 			self.draw_rectangle(event)
 			self.apply_to_pixbuf()
-
 		elif self.selected_shape_id == 'oval':
 			self.restore_pixbuf()
 			self.draw_oval(event)
 			self.apply_to_pixbuf()
-
-		elif self.selected_shape_id == 'ellipsis':
-			self.restore_pixbuf()
-			# self.draw_ellipsis(event)
-			self.apply_to_pixbuf()
-
 		elif self.selected_shape_id == 'circle':
 			self.restore_pixbuf()
 			self.draw_circle(event)
 			self.apply_to_pixbuf()
-
-		elif self.selected_shape_id == 'polygon':
-			self.restore_pixbuf()
-			finished = self.draw_polygon(event, False)
-			if finished:
-				self.apply_to_pixbuf()
-
 		self.x_press = 0.0
 		self.y_press = 0.0
 
