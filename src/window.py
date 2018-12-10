@@ -204,7 +204,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
 		self.add_action_like_a_boss("exchange_color", self.action_exchange_color)
 
-		# self.add_action_like_a_boss("send_to", self.action_send_to)
 		self.add_action_like_a_boss("open_with", self.action_open_with)
 		self.lookup_action('open_with').set_enabled(False)
 		self.add_action_like_a_boss("print", self.action_print)
@@ -478,7 +477,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.show_all()
 			result = dialog.run()
 
-			if result == Gtk.ResponseType.APPLY: # Scale it # FIXME ça scale beaucoup trop fort
+			if result == Gtk.ResponseType.APPLY: # Scale it # XXX ça scale beaucoup trop fort ??
 				self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
 				self.initial_save(fn)
 			elif result == Gtk.ResponseType.YES: # Crop it
@@ -580,9 +579,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def export_as_bmp(self, *args):
 		self._pixbuf_manager.export_main_as('bmp')
-
-	def action_send_to(self, *args): # TODO https://github.com/GNOME/nautilus-sendto
-		pass
 
 	def action_open_with(self, *args):
 		os.system('xdg-open ' + self.gfile.get_path())

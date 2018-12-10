@@ -38,29 +38,42 @@
 <!-- Hamburger menu -->
   <menu id="window-menu">
     <section>
-      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="action">app.new_window</attribute>
         <attribute name="label" translatable="yes">New window</attribute>
         <attribute name="verb-icon">document-new-symbolic</attribute>
       </item>
-    </section>
-    <section>
+      <item>
+        <attribute name="label" translatable="yes">Image properties</attribute>
+        <attribute name="action">win.properties</attribute>
+        <attribute name="verb-icon">document-properties-symbolic</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes">Print</attribute>
         <attribute name="action">win.print</attribute>
+        <attribute name="verb-icon">document-print-symbolic</attribute>
       </item>
-      <item>
-        <attribute name="label" translatable="yes">Send to…</attribute>
-        <attribute name="action">win.send_to</attribute>
-        <attribute name="hidden-when">action-disabled</attribute>
-      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Open this image with…</attribute>
         <attribute name="action">win.open_with</attribute>
       </item>
     </section>
     <section>
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Import</attribute>
+        <attribute name="action">win.import</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
+      </item>
       <submenu>
         <attribute name="label" translatable="yes">_Selection</attribute>
         <section>
@@ -107,32 +120,6 @@
       </submenu>
     </section>
     <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-        <attribute name="verb-icon">edit-select-all-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Import</attribute>
-        <attribute name="action">win.import</attribute>
-        <attribute name="verb-icon">folder-download-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Paste</attribute>
-        <attribute name="action">win.paste</attribute>
-        <attribute name="verb-icon">edit-paste-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Image properties</attribute>
-        <attribute name="action">win.properties</attribute>
-        <attribute name="verb-icon">document-properties-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
       <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">app.settings</attribute>
@@ -231,12 +218,6 @@
           <attribute name="label" translatable="yes">Print</attribute>
           <attribute name="action">win.print</attribute>
           <attribute name="verb-icon">document-print-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Send to…</attribute>
-          <attribute name="action">win.send_to</attribute>
-          <attribute name="verb-icon">send-to-symbolic</attribute>
-          <attribute name="hidden-when">action-disabled</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Open this image with…</attribute>

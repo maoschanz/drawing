@@ -33,8 +33,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		label_path = builder.get_object('label_path')
 		label_format_file = builder.get_object('label_format_file')
 		label_format_surface = builder.get_object('label_format_surface')
-		label_width = builder.get_object('label_width')
-		label_height = builder.get_object('label_height')
+		self.label_width = builder.get_object('label_width')
+		self.label_height = builder.get_object('label_height')
 
 		if window.gfile is not None:
 			label_path.set_label(window.gfile.get_path())
@@ -50,9 +50,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			5: 'RGB30',
 		}
 		label_format_surface.set_label(enum.get(window.get_surface().get_format(), _("Invalid format")))
-
-		label_width.set_label(str(window.get_pixbuf_width()) + ' px')
-		label_height.set_label(str(window.get_pixbuf_height()) + ' px')
+		self.set_size_labels()
 
 		btn_crop = builder.get_object('btn_crop')
 		btn_crop.connect('clicked', self.on_crop)
@@ -65,8 +63,12 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 	def on_scale(self, b):
 		self._window.action_scale()
-	# TODO : update labels where size is written
+		self.set_size_labels()
 
 	def on_crop(self, b):
 		self._window.action_crop()
-	# TODO : update labels where size is written
+		self.set_size_labels()
+
+	def set_size_labels(self):
+		self.label_width.set_label(str(self._window.get_pixbuf_width()) + ' px')
+		self.label_height.set_label(str(self._window.get_pixbuf_height()) + ' px')
