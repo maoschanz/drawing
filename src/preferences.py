@@ -25,7 +25,6 @@ class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
 	list_box = GtkTemplate.Child()
-
 	color_edit_switch = GtkTemplate.Child()
 	default_backg_button = GtkTemplate.Child()
 	experimental_switch = GtkTemplate.Child()
@@ -33,12 +32,11 @@ class DrawingPrefsWindow(Gtk.Window):
 	height_btn = GtkTemplate.Child()
 	layout_combobox = GtkTemplate.Child()
 
+	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
+
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.init_template()
-		self.list_box.set_selection_mode(Gtk.SelectionMode.NONE)
-
-		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
 		wants_csd = not ( 'ssd' in self._settings.get_string('decorations') )
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Drawing"), subtitle=_("Preferences"))

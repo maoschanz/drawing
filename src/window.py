@@ -18,8 +18,6 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo, os
 
-from gettext import gettext as _
-
 from .gi_composites import GtkTemplate
 
 from .pencil import ToolPencil
@@ -32,37 +30,22 @@ from .shape import ToolShape
 from .eraser import ToolEraser
 from .polygon import ToolPolygon
 
-DEV_VERSION = False
-
 from .pixbuf_manager import DrawingPixbufManager
 
 from .properties import DrawingPropertiesDialog
 from .crop_dialog import DrawingCropDialog
 from .scale_dialog import DrawingScaleDialog
 
-SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
-
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
 
-	gfile = None
-	_is_saved = True
-	active_tool_id = 'pencil'
-	former_tool_id = 'pencil'
-	tool_width = 10
-	is_clicked = False
+	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
 
 	paned_area = GtkTemplate.Child()
 	tools_panel = GtkTemplate.Child()
-	tools = {}
-
 	toolbar_box = GtkTemplate.Child()
-	header_bar = None
-	main_menu_btn = None
-
 	drawing_area = GtkTemplate.Child()
-
 	bottom_panel = GtkTemplate.Child()
 	color_btn_l = GtkTemplate.Child()
 	color_btn_r = GtkTemplate.Child()
@@ -72,20 +55,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	options_short_box = GtkTemplate.Child()
 	size_setter = GtkTemplate.Child()
 	minimap_btn = GtkTemplate.Child()
-	minimap_area = None
 	minimap_icon = GtkTemplate.Child()
 	minimap_label = GtkTemplate.Child()
 	tool_info_label = GtkTemplate.Child() # TODO
 
-	handlers = []
-
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.init_template()
+		self.init_instance_attributes()
 
-		self._settings = Gio.Settings.new(SETTINGS_SCHEMA)
 		decorations = self._settings.get_string('decorations')
-		DEV_VERSION = self._settings.get_boolean('experimental')
 		self.set_ui_bars(decorations)
 		self.set_picture_title(None)
 		self.maximize()
@@ -104,30 +83,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
-		self.tools['pencil'] = ToolPencil(self)
-		self.tools['select'] = ToolSelect(self)
-		self.tools['eraser'] = ToolEraser(self)
-		self.tools['text'] = ToolText(self)
-		self.tools['picker'] = ToolPicker(self)
-		if DEV_VERSION:
-			self.tools['paint'] = ToolPaint(self)
-		self.tools['line'] = ToolLine(self)
-		self.tools['shape'] = ToolShape(self)
-		self.tools['polygon'] = ToolPolygon(self)
-
-		self.build_tool_rows()
-		self.tools_panel.show_all()
-		self.full_panel_width = self.tools_panel.get_preferred_width()[0]
-		self.set_tools_labels_visibility(False)
-		self.icon_panel_width = self.tools_panel.get_preferred_width()[0]
-		self.paned_area.set_position(0)
-
 		self.app = kwargs['application']
-		if not self.app.has_tools_in_menubar:
-			tools_menu = Gio.Menu()
-			for tool_id in self.tools:
-				self.tools[tool_id].add_item_to_menu(tools_menu)
-			self.app.add_tools_to_menubar(tools_menu)
+		self.init_tools()
 
 		self.build_options_popover()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
@@ -137,6 +94,46 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self._pixbuf_manager.reset_selection()
 		self.init_background()
+
+	def init_instance_attributes(self):
+		self.handlers = []
+		self.gfile = None
+		self._is_saved = True
+		self.active_tool_id = 'pencil'
+		self.former_tool_id = 'pencil'
+		self.tool_width = 10
+		self.is_clicked = False
+		self.minimap_area = None
+		self.header_bar = None
+		self.main_menu_btn = None
+
+	def init_tools(self):
+		self.tools = {}
+		self.tools['pencil'] = ToolPencil(self)
+		self.tools['select'] = ToolSelect(self)
+		self.tools['eraser'] = ToolEraser(self)
+		self.tools['text'] = ToolText(self)
+		self.tools['picker'] = ToolPicker(self)
+		if self._settings.get_boolean('experimental'):
+			self.tools['paint'] = ToolPaint(self)
+		self.tools['line'] = ToolLine(self)
+		self.tools['shape'] = ToolShape(self)
+		self.tools['polygon'] = ToolPolygon(self)
+
+		# Side panel
+		self.build_tool_rows()
+		self.tools_panel.show_all()
+		self.full_panel_width = self.tools_panel.get_preferred_width()[0]
+		self.set_tools_labels_visibility(False)
+		self.icon_panel_width = self.tools_panel.get_preferred_width()[0]
+		self.paned_area.set_position(0)
+
+		# Global menubar
+		if not self.app.has_tools_in_menubar:
+			tools_menu = Gio.Menu()
+			for tool_id in self.tools:
+				self.tools[tool_id].add_item_to_menu(tools_menu)
+			self.app.add_tools_to_menubar(tools_menu)
 
 	def init_background(self, *args):
 		w_context = cairo.Context(self._pixbuf_manager.surface)
@@ -416,6 +413,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
 	def on_change_active_tool(self, *args):
+		if self is not self.app.props.active_window:
+			print('cela merdoie') # FIXME FIXME FIXME
+			return
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return

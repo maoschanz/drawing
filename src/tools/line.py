@@ -9,8 +9,6 @@ class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
 
 	use_size = True
-	type_btns = {}
-	end_btns = {}
 
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'list-remove-symbolic', window)

@@ -22,14 +22,15 @@ import cairo
 class DrawingScaleDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingScaleDialog'
 
-	keep_proportions = True
-	proportion = None
-
 	def __init__(self, window, w, h, is_selection):
 		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
 		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Scale the picture"), transient_for=window)
 		self._window = window
 		self.is_selection = is_selection
+
+		self.keep_proportions = True
+		self.proportion = None
+
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/scale_dialog.ui')

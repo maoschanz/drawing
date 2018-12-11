@@ -141,8 +141,6 @@ class Application(Gtk.Application):
 		self.set_accels_for_action("win.toggle_preview", ["<Ctrl>m"])
 
 		self.set_accels_for_action("win.properties", ["<Ctrl>p"])
-		# self.set_accels_for_action("win.scale", [""])
-		# self.set_accels_for_action("win.crop", [""])
 
 		self.set_accels_for_action("win.close", ["<Ctrl>w"])
 		self.set_accels_for_action("win.save", ["<Ctrl>s"])

@@ -10,12 +10,6 @@ class ToolShape(ToolTemplate):
 	__gtype_name__ = 'ToolShape'
 
 	use_size = True
-	shape_btns = {}
-	style_btns = {}
-	selected_shape_label = ''
-	selected_shape_id = 'rectangle'
-	selected_style_label = ''
-	selected_style_id = 'secondary'
 
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Basic shape"), 'radio-symbolic', window)
@@ -27,6 +21,7 @@ class ToolShape(ToolTemplate):
 		builder.add_from_resource('/com/github/maoschanz/Drawing/tools/ui/shape.ui')
 		self.options_box = builder.get_object('options_box')
 
+		self.shape_btns = {}
 		self.shape_btns['rectangle'] = builder.get_object('type_btn_1')
 		self.shape_btns['oval'] = builder.get_object('type_btn_2')
 		self.shape_btns['circle'] = builder.get_object('type_btn_4')
@@ -34,12 +29,18 @@ class ToolShape(ToolTemplate):
 		for type_id in self.shape_btns:
 			self.shape_btns[type_id].connect('toggled', self.on_shape_changed, type_id)
 
+		self.style_btns = {}
 		self.style_btns['empty'] = builder.get_object('style_btn_1')
 		self.style_btns['filled'] = builder.get_object('style_btn_2')
 		self.style_btns['secondary'] = builder.get_object('style_btn_3')
 
 		for type_id in self.style_btns:
 			self.style_btns[type_id].connect('toggled', self.on_style_changed, type_id)
+
+		self.selected_shape_label = ''
+		self.selected_shape_id = 'rectangle'
+		self.selected_style_label = ''
+		self.selected_style_id = 'secondary'
 
 		self.shape_btns['rectangle'].set_active(True)
 		self.style_btns['secondary'].set_active(True)

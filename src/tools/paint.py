@@ -9,12 +9,10 @@ from .tools import get_rgb_for_xy
 class ToolPaint(ToolTemplate):
     __gtype_name__ = 'ToolPaint'
 
-    new_color = None
-    old_color = None
-    surface = None
-
     def __init__(self, window, **kwargs):
         super().__init__('paint', _("Paint"), 'edit-clear-all-symbolic', window)
+        self.new_color = None
+        self.old_color = None
 
     def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
         print("press")
@@ -22,7 +20,6 @@ class ToolPaint(ToolTemplate):
             self.new_color = left_color
         if event.button == 3:
             self.new_color = right_color
-        self.surface = surface
 
     def on_release_on_area(self, area, event, surface):
         # Guard clause: we can't paint outside of the surface

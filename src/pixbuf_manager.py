@@ -18,43 +18,38 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
-SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
-
 class DrawingPixbufManager():
-	full_pixbuf = None
-	mini_pixbuf = None
-	mini_surface = None
-
-	main_pixbuf = None
-	surface = None
-
-	selection_pixbuf = None
-	selection_x = 1
-	selection_y = 1
-	selection_is_active = False
-	temp_pixbuf = None
-	temp_x = 1
-	temp_y = 1
-
-	undo_history = []
-	redo_history = []
-
-	clipboard = None
 
 	def __init__(self, window):
 		self.window = window
-		self.settings = Gio.Settings.new(SETTINGS_SCHEMA)
 
-		width = self.settings.get_int('default-width')
-		height = self.settings.get_int('default-height')
-		self.preview_size = self.settings.get_int('preview-size')
+		width = self.window._settings.get_int('default-width')
+		height = self.window._settings.get_int('default-height')
+		self.preview_size = self.window._settings.get_int('preview-size')
+
+		self.clipboard = None
+
+		self.selection_x = 1
+		self.selection_y = 1
+		self.selection_is_active = False
+		self.temp_x = 1
+		self.temp_y = 1
+
+		# INIT PIXBUFS AND SURFACES
 
 		# self.full_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300) # 8 ??? les autres plantent
+		self.selection_pixbuf = None
+		self.temp_pixbuf = None
 
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
+
+		# INIT HISTORY
+
+		self.undo_history = []
+		self.redo_history = []
 
 	def load_main_from_filename(self, filename):
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)

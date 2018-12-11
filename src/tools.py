@@ -15,16 +15,13 @@ def get_rgb_for_xy(surface, x, y):
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
 
-	id = 'template'
-	icon_name = 'folder-templates-symbolic'
-	label = "Not implemented"
-	tool_width = 10
 	use_size = False
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
 		self.label = label
 		self.icon_name = icon_name
+		self.tool_width = 10
 		self.build_row()
 		self.window = window
 

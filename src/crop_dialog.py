@@ -29,6 +29,7 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.original_width = o_width
 		self.original_height = o_height
 		self.forbid_growth = forbid_growth
+
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/crop_dialog.ui')
@@ -37,6 +38,7 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.preview = builder.get_object('preview')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
+
 		self.preview.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 		self.preview.connect('draw', self.on_draw)

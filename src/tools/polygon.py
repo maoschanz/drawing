@@ -10,7 +10,6 @@ class ToolPolygon(ToolTemplate):
 	__gtype_name__ = 'ToolPolygon'
 
 	use_size = True
-	style_btns = {}
 
 	def __init__(self, window, **kwargs):
 		super().__init__('polygon', _("Polygon"), 'non-starred-symbolic', window)
@@ -22,8 +21,8 @@ class ToolPolygon(ToolTemplate):
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/polygon.ui")
 		self.options_box = builder.get_object("options_box")
-
 		self.freehand_switch = builder.get_object('freehand-switch')
+		self.style_btns = {}
 
 		self.style_btns['empty'] = builder.get_object("style_btn_1")
 		self.style_btns['filled'] = builder.get_object("style_btn_2")
