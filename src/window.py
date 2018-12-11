@@ -588,6 +588,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT
 
 	def action_undo(self, *args):
+		self.active_tool().give_back_control()
 		self._pixbuf_manager.undo_operation()
 		self.drawing_area.queue_draw()
 		self.update_history_sensitivity()

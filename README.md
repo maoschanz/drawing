@@ -4,15 +4,16 @@
 
 This application is a simple image editor using Cairo for basic drawing operations, and following GNOME interface guidelines.
 
-PNG, JPEG and BMP files should be supported.
+PNG, JPEG and BMP files are supported.
 
-### Currently available tools
+### Available tools
 
 - Pencil
 - Shape
     - Rectangle
     - Circle
     - Ellipsis
+- Polygon
 - Line & arc
 - Text
 - Eraser
@@ -27,14 +28,15 @@ PNG, JPEG and BMP files should be supported.
 
 - Painting
 
-## Screenshots
-
-GNOME/Budgie UI:
-![GNOME/Budgie UI](https://i.imgur.com/xPpfy7S.png)
-
-MATE/Cinnamon UI:
-![MATE/Cinnamon UI](https://i.imgur.com/Tlukzxw.png)
-
 ## Installation
 
-Clone it, open it as a project with GNOME Builder, and run it.
+Clone it, open it as a project with GNOME Builder, and run it (or export it as flatpak)
+
+## Screenshots
+
+GNOME/Budgie UI (in French here):
+
+![GNOME/Budgie UI](https://raw.githubusercontent.com/maoschanz/drawing/master/data/screenshots/screenshot_gnome_2.png)
+
+MATE/Cinnamon UI:
+![MATE/Cinnamon UI](https://raw.githubusercontent.com/maoschanz/drawing/master/data/screenshots/screenshot_mate_1.png)
