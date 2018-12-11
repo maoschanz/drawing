@@ -588,10 +588,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT
 
 	def action_undo(self, *args):
-		self.active_tool().give_back_control()
-		self._pixbuf_manager.undo_operation()
+		should_undo = not self.active_tool().give_back_control()
+		if should_undo and self._pixbuf_manager.can_undo():
+			self._pixbuf_manager.undo_operation()
+			self.update_history_sensitivity()
 		self.drawing_area.queue_draw()
-		self.update_history_sensitivity()
 
 	def action_redo(self, *args):
 		self._pixbuf_manager.redo_operation()
@@ -599,7 +600,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
-		self.lookup_action('undo').set_enabled(self._pixbuf_manager.can_undo())
+		# This line makes sense but it forbids undoing a non-finished operation
+		# self.lookup_action('undo').set_enabled(self._pixbuf_manager.can_undo())
 		self.lookup_action('redo').set_enabled(self._pixbuf_manager.can_redo())
 
 	# DRAWING OPERATIONS

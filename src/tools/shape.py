@@ -61,6 +61,7 @@ class ToolShape(ToolTemplate):
 	def give_back_control(self):
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		self.restore_pixbuf()
+		return False
 
 	def draw_rectangle(self, event):
 		w_context = cairo.Context(self.window.get_surface())

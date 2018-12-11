@@ -14,6 +14,7 @@ class ToolText(ToolTemplate):
 		self.main_color = None
 		self.secondary_color = None
 		(self.x_begin, self.y_begin) = (0, 0)
+		self.should_cancel = False
 
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/text.ui")
@@ -46,7 +47,11 @@ class ToolText(ToolTemplate):
 		return self.options_box
 
 	def give_back_control(self):
-		self.on_cancel()
+		if self.should_cancel:
+			self.on_cancel()
+			return True
+		else:
+			return False
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		if event.button == 1:
@@ -58,6 +63,7 @@ class ToolText(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface):
 		(self.x_begin, self.y_begin) = (event.x, event.y)
+		self.should_cancel = True
 
 		self.font_fam = self.font_btn.get_font()
 		self.slant = cairo.FontSlant.NORMAL
@@ -137,4 +143,5 @@ class ToolText(ToolTemplate):
 		self.restore_pixbuf()
 		self.popover.popdown()
 		self.entry.get_buffer().set_text('', 0)
+		self.should_cancel = False
 

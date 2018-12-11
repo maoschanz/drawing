@@ -67,6 +67,7 @@ class ToolSelect(ToolTemplate):
 		self.window._pixbuf_manager.delete_temp()
 		self.window._pixbuf_manager.show_selection_content()
 		self.end_selection()
+		return False
 
 	def show_popover(self, state):
 		self.selection_popover.popdown()
@@ -188,6 +189,7 @@ class ToolSelect(ToolTemplate):
 		self.window._pixbuf_manager.selection_y += delta_y
 		self.window._pixbuf_manager.show_selection_rectangle()
 		self.set_popover_position()
+		self.non_destructive_show_modif()
 
 	def action_import(self, *args):
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self.window,

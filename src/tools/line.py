@@ -57,9 +57,15 @@ class ToolLine(ToolTemplate):
 		return self.selected_curv_label + ' - ' + self.selected_shape_label
 
 	def give_back_control(self):
-		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
-		self.x_press = 0.0
-		self.y_press = 0.0
+		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
+			self.x_press = 0.0
+			self.y_press = 0.0
+			return False
+		else:
+			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
+			self.x_press = 0.0
+			self.y_press = 0.0
+			return True
 
 	def on_motion_on_area(self, area, event, surface):
 		self.restore_pixbuf()

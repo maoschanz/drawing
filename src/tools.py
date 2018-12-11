@@ -44,7 +44,7 @@ class ToolTemplate():
 		self.window._pixbuf_manager.on_tool_finished()
 
 	def give_back_control(self):
-		pass
+		return False
 
 	def get_options_widget(self):
 		return None

@@ -48,9 +48,13 @@ class ToolPolygon(ToolTemplate):
 			return _("Edges") + ' - ' + self.selected_style_label
 
 	def give_back_control(self):
-		(self.x_press, self.y_press) = (-1.0, -1.0)
-		(self.past_x, self.past_y) = (-1.0, -1.0)
 		self.restore_pixbuf()
+		if (self.x_press, self.y_press) == (-1.0, -1.0):
+			return False
+		else:
+			(self.x_press, self.y_press) = (-1.0, -1.0)
+			(self.past_x, self.past_y) = (-1.0, -1.0)
+			return True
 
 	def draw_polygon(self, event, is_preview):
 		w_context = cairo.Context(self.window.get_surface())
