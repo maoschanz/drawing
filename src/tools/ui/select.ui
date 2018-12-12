@@ -27,7 +27,11 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Resize</attribute>
+        <attribute name="label" translatable="yes">Crop</attribute>
+        <attribute name="action">win.selection_crop</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Scale</attribute>
         <attribute name="action">win.selection_resize</attribute>
       </item>
       <item>
@@ -58,6 +62,30 @@
       <item>
         <attribute name="label" translatable="yes">Paste</attribute>
         <attribute name="action">win.paste</attribute>
+      </item>
+    </section>
+    <!-- <section> -->
+    <!--   <attribute name="display-hint">horizontal-buttons</attribute> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Crop</attribute> -->
+    <!--     <attribute name="action">win.pic_crop</attribute> -->
+    <!--     <attribute name="verb-icon">view-restore-symbolic</attribute> -->
+    <!--   </item> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Scale</attribute> -->
+    <!--     <attribute name="action">win.pic_resize</attribute> -->
+    <!--     <attribute name="verb-icon">view-fullscreen-symbolic</attribute> -->
+    <!--   </item> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Rotate</attribute> -->
+    <!--     <attribute name="action">win.pic_rotate</attribute> -->
+    <!--     <attribute name="verb-icon">view-refresh-symbolic</attribute> -->
+    <!--   </item> -->
+    <!-- </section> -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Properties</attribute>
+        <attribute name="action">win.properties</attribute>
       </item>
     </section>
   </menu>

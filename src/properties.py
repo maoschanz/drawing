@@ -37,8 +37,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_height = builder.get_object('label_height')
 
 		if window.gfile is not None:
-			label_path.set_label(window.gfile.get_path())
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(window.gfile.get_path())
+			label_path.set_label(window.get_file_path())
+			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(window.get_file_path())
 			label_format_file.set_label(pb_format.get_name())
 
 		enum = {
@@ -58,17 +58,25 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		btn_scale = builder.get_object('btn_scale')
 		btn_scale.connect('clicked', self.on_scale)
 
+		btn_scale = builder.get_object('btn_rotate')
+		btn_scale.connect('clicked', self.on_rotate)
+
 		self.set_default_size(400, 100)
 		self.show_all()
 
-	def on_scale(self, b):
+	def on_rotate(self, *args):
+		self._window.action_rotate()
+		self.set_size_labels()
+
+	def on_scale(self, *args):
 		self._window.action_scale()
 		self.set_size_labels()
 
-	def on_crop(self, b):
+	def on_crop(self, *args):
 		self._window.action_crop()
 		self.set_size_labels()
 
 	def set_size_labels(self):
 		self.label_width.set_label(str(self._window.get_pixbuf_width()) + ' px')
 		self.label_height.set_label(str(self._window.get_pixbuf_height()) + ' px')
+

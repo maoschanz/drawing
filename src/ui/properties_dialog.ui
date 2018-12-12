@@ -167,13 +167,25 @@
         </child>
 
         <child>
+            <object class="GtkSeparator">
+                <property name="visible">True</property>
+            </object>
+            <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">5</property>
+                <property name="width">3</property>
+                <property name="height">1</property>
+            </packing>
+        </child>
+
+        <child>
             <object class="GtkButton" id="btn_scale">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Scale</property>
             </object>
             <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">5</property>
+                <property name="left-attach">0</property>
+                <property name="top-attach">6</property>
                 <property name="width">1</property>
                 <property name="height">1</property>
             </packing>
@@ -185,8 +197,21 @@
                 <property name="label" translatable="yes">Crop</property>
             </object>
             <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">6</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+            </packing>
+        </child>
+
+        <child>
+            <object class="GtkButton" id="btn_rotate">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Rotate</property>
+            </object>
+            <packing>
                 <property name="left-attach">2</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">6</property>
                 <property name="width">1</property>
                 <property name="height">1</property>
             </packing>

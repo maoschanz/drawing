@@ -37,6 +37,7 @@ drawing_sources = [
 
   'crop_dialog.py',
   'scale_dialog.py',
+  'rotate_dialog.py',
   'properties.py',
 
   'tools/line.py',

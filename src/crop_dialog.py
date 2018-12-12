@@ -53,7 +53,6 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.pixbuf = self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		self.preview.set_size_request(self.surface.get_width(), self.surface.get_height())
-		self.set_resizable(False)
 
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
@@ -69,6 +68,19 @@ class DrawingCropDialog(Gtk.Dialog):
 			h = self._window.get_pixbuf_height()
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
+
+		preview_btn = Gtk.Button(label=_("Preview"))
+		preview_btn.connect('clicked', self.on_preview)
+		if wants_csd:
+			self.get_header_bar().pack_end(preview_btn)
+		else:
+			self.get_action_area().add(preview_btn)
+
+		self.show_all()
+		self.set_resizable(False)
+
+	def on_preview(self, *args):
+		pass # TODO
 
 	def on_apply(self, *args):
 		x = self._x
@@ -114,21 +126,9 @@ class DrawingCropDialog(Gtk.Dialog):
 
 	def draw_overlay(self): # XXX même si on grandit ??
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
-		w_context = cairo.Context(self.surface)
-
 		x1, y1 = self.convert_to_preview_coord(self._x, self._y)
 		x2, y2 = self.convert_to_preview_coord(self._x + self.get_width(), self._y + self.get_height())
-
-		w_context.move_to(x1, y1)
-		w_context.line_to(x2, y1)
-		w_context.line_to(x2, y2)
-		w_context.line_to(x1, y2)
-		w_context.close_path()
-		w_context.clip_preserve()
-		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.3)
-		w_context.paint()
-		w_context.stroke()
-
+		self._window._pixbuf_manager.show_rectangle_on_surface_at(self.surface, x1, y1, x2, y2)
 		self.preview.queue_draw()
 
 	def on_press(self, area, event):

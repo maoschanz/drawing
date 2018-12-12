@@ -27,6 +27,8 @@ class DrawingPixbufManager():
 		height = self.window._settings.get_int('default-height')
 		self.preview_size = self.window._settings.get_int('preview-size')
 
+		self.gfile = None
+
 		self.clipboard = None
 
 		self.selection_x = 1
@@ -229,7 +231,10 @@ class DrawingPixbufManager():
 		x1 = x0 + self.selection_pixbuf.get_width()
 		y1 = y0 + self.selection_pixbuf.get_height()
 		self.show_selection_content()
-		w_context = cairo.Context(self.surface)
+		self.show_rectangle_on_surface_at(self.surface, x0, y0, x1, y1)
+
+	def show_rectangle_on_surface_at(self, surface, x0, y0, x1, y1):
+		w_context = cairo.Context(surface)
 		w_context.set_dash([3, 3])
 		w_context.move_to(x1-1, y1-1)
 		w_context.line_to(x1-1, y0+1)
@@ -239,6 +244,7 @@ class DrawingPixbufManager():
 		w_context.clip_preserve()
 		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
 		w_context.paint()
+		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.stroke()
 
 	def show_selection_content(self):
@@ -268,3 +274,15 @@ class DrawingPixbufManager():
 
 	def update_selection_actions(self):
 		self.window.update_selection_actions(self.selection_is_active)
+
+	def point_is_in_selection(self, x, y):
+		if x < self.selection_x:
+			return False
+		elif y < self.selection_y:
+			return False
+		elif x > self.selection_x + self.selection_pixbuf.get_width():
+			return False
+		elif y > self.selection_y + self.selection_pixbuf.get_height():
+			return False
+		else:
+			return True

@@ -35,6 +35,7 @@ from .pixbuf_manager import DrawingPixbufManager
 from .properties import DrawingPropertiesDialog
 from .crop_dialog import DrawingCropDialog
 from .scale_dialog import DrawingScaleDialog
+from .rotate_dialog import DrawingRotateDialog
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
@@ -207,8 +208,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.lookup_action('open_with').set_enabled(False)
 		self.add_action_like_a_boss("print", self.action_print)
 
-		self.add_action_like_a_boss("crop", self.action_crop)
-		self.add_action_like_a_boss("scale", self.action_scale)
+		self.add_action_like_a_boss("pic_crop", self.action_crop)
+		self.add_action_like_a_boss("pic_scale", self.action_scale)
+		# self.add_action_like_a_boss("pic_rotate", self.action_rotate)
 		self.add_action_like_a_boss("properties", self.edit_properties)
 
 		if self.main_menu_btn is not None:
@@ -240,6 +242,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.lookup_action('cut').set_enabled(state)
 		self.lookup_action('copy').set_enabled(state)
 		self.lookup_action('selection_delete').set_enabled(state)
+		# self.lookup_action('selection_crop').set_enabled(state)
 		self.lookup_action('selection_resize').set_enabled(state)
 		# self.lookup_action('selection_rotate').set_enabled(state)
 		self.lookup_action('selection_export').set_enabled(state)
@@ -439,11 +442,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# FILE MANAGEMENT
 
+	def get_file_path(self):
+		return self._pixbuf_manager.gfile.get_path()
+
 	def action_save(self, *args):
 		if self.gfile is None:
 			fn = self.run_save_file_chooser('')
 		else:
-			fn = self.gfile.get_path()
+			fn = self.get_file_path()
 		self.save_pixbuf_to_fn(fn)
 
 	def action_save_as(self, *args):
@@ -502,7 +508,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if self.gfile is None:
 				title_label = _("Untitled") + '.png'
 			else:
-				title_label = self.gfile.get_path().split('/')[-1]
+				title_label = self.get_file_path().split('/')[-1]
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
 			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 			dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
@@ -583,7 +589,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._pixbuf_manager.export_main_as('bmp')
 
 	def action_open_with(self, *args):
-		os.system('xdg-open ' + self.gfile.get_path())
+		os.system('xdg-open ' + self.get_file_path())
 
 	# HISTORY MANAGEMENT
 
@@ -681,6 +687,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_scale(self, *args):
 		self.scale_pixbuf(False)
+
+	def action_rotate(self, *args): # TODO
+		rotate_dialog = DrawingRotateDialog(self, 0, 0, False)
+		result = rotate_dialog.run()
+		if result == Gtk.ResponseType.APPLY:
+			rotate_dialog.on_apply()
+		else:
+			rotate_dialog.on_cancel()
+		pass
 
 	def scale_pixbuf(self, is_selection):
 		if is_selection:

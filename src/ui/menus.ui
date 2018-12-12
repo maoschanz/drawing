@@ -287,12 +287,18 @@
       <section>
         <item>
           <attribute name="label" translatable="yes">Crop</attribute>
-          <attribute name="action">win.crop</attribute>
+          <attribute name="action">win.pic_crop</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Scale</attribute>
-          <attribute name="action">win.scale</attribute>
+          <attribute name="action">win.pic_scale</attribute>
         </item>
+        <item>
+          <attribute name="label" translatable="yes">Rotate</attribute>
+          <attribute name="action">win.pic_rotate</attribute>
+        </item>
+      </section>
+      <section>
         <item>
           <attribute name="label" translatable="yes">Image properties</attribute>
           <attribute name="action">win.properties</attribute>
@@ -331,7 +337,11 @@
       </section>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Resize</attribute>
+          <attribute name="label" translatable="yes">Crop</attribute>
+          <attribute name="action">win.selection_crop</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Scale</attribute>
           <attribute name="action">win.selection_resize</attribute>
         </item>
         <item>

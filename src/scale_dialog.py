@@ -39,7 +39,6 @@ class DrawingScaleDialog(Gtk.Dialog):
 		self.proportions_switch = builder.get_object('proportions_switch')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
-		self.set_resizable(False)
 
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
@@ -49,6 +48,19 @@ class DrawingScaleDialog(Gtk.Dialog):
 
 		self.proportions_switch.set_active(True)
 		self.on_proportions_changed()
+
+		preview_btn = Gtk.Button(label=_("Preview"))
+		preview_btn.connect('clicked', self.on_preview)
+		if wants_csd:
+			self.get_header_bar().pack_end(preview_btn)
+		else:
+			self.get_action_area().add(preview_btn)
+
+		self.show_all()
+		self.set_resizable(False)
+
+	def on_preview(self, *args):
+		pass # TODO
 
 	def on_apply(self, *args):
 		w = self.get_width()
@@ -65,10 +77,6 @@ class DrawingScaleDialog(Gtk.Dialog):
 
 	def on_cancel(self, *args):
 		self.destroy()
-
-	def on_draw(self, area, cairo_context):
-		cairo_context.set_source_surface(self.surface, 0, 0)
-		cairo_context.paint()
 
 	def on_proportions_changed(self, *args):
 		self.keep_proportions = self.proportions_switch.get_active()

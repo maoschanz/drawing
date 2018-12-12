@@ -15,6 +15,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action('cut', self.action_cut)
 		self.add_tool_action('copy', self.action_copy)
 		self.add_tool_action('selection_delete', self.action_selection_delete)
+		# self.add_tool_action('selection_crop', self.action_selection_crop)
 		self.add_tool_action('selection_resize', self.action_selection_resize)
 		# self.add_tool_action('selection_rotate', self.action_selection_rotate)
 		self.add_tool_action('selection_export', self.action_selection_export)
@@ -116,25 +117,11 @@ class ToolSelect(ToolTemplate):
 				self.create_selection_from_coord()
 				if self.window._pixbuf_manager.selection_is_active:
 					self.draw_selection_area(True)
-			elif self.point_is_in_selection(self.x_press, self.y_press):
+			elif self.window._pixbuf_manager.point_is_in_selection(self.x_press, self.y_press):
 				self.drag_to(event.x, event.y)
 			else:
 				self.give_back_control()
 				return
-
-	def point_is_in_selection(self, x, y):
-		if x < self.window._pixbuf_manager.selection_x:
-			return False
-		elif y < self.window._pixbuf_manager.selection_y:
-			return False
-		elif x > self.window._pixbuf_manager.selection_x + \
-		self.window._pixbuf_manager.selection_pixbuf.get_width():
-			return False
-		elif y > self.window._pixbuf_manager.selection_y + \
-		self.window._pixbuf_manager.selection_pixbuf.get_height():
-			return False
-		else:
-			return True
 
 	def get_center_of_selection(self):
 		x = self.window._pixbuf_manager.selection_x + \
@@ -244,6 +231,9 @@ class ToolSelect(ToolTemplate):
 
 	def action_selection_resize(self, *args):
 		self.window.scale_pixbuf(True)
+
+	def action_selection_crop(self, *args): # TODO
+		print("selection_crop")
 
 	def action_selection_rotate(self, *args): # TODO
 		print("selection_rotate")
