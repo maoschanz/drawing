@@ -134,6 +134,31 @@
           </object>
         </child>
 
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">5</property>
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Dashes</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="dash_switch">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
       </object>
     </child>
   </object>

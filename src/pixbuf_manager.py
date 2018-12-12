@@ -230,6 +230,7 @@ class DrawingPixbufManager():
 		y1 = y0 + self.selection_pixbuf.get_height()
 		self.show_selection_content()
 		w_context = cairo.Context(self.surface)
+		w_context.set_dash([3, 3])
 		w_context.move_to(x1-1, y1-1)
 		w_context.line_to(x1-1, y0+1)
 		w_context.line_to(x0+1, y0+1)

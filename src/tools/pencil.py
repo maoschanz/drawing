@@ -5,7 +5,7 @@ import cairo
 
 from .tools import ToolTemplate
 
-class ToolPencil(ToolTemplate):
+class ToolPencil(ToolTemplate): # FIXME self.w_context = cancer, utiliser des paths c'est mieux
 	__gtype_name__ = 'ToolPencil'
 
 	use_size = True
