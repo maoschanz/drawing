@@ -1,6 +1,6 @@
 # shape.py
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo
 import math
 
@@ -16,32 +16,43 @@ class ToolPolygon(ToolTemplate):
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		(self.past_x, self.past_y) = (-1.0, -1.0)
+		self.selected_style_id = 'secondary'
+		self.selected_style_label = _("Filled (secondary color)")
+		self.use_freehand = False
 
 		# Building the widget containing options
-		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/polygon.ui")
-		self.options_box = builder.get_object("options_box")
-		self.freehand_switch = builder.get_object('freehand-switch')
-		self.style_btns = {}
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/polygon.ui")
+		model = builder.get_object('options-menu')
+		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.add_tool_action_enum('polygon_style', 'secondary', self.on_change_active_style)
+		self.add_tool_action_boolean('polygon_freehand', False, self.set_freehand)
 
-		self.style_btns['empty'] = builder.get_object("style_btn_1")
-		self.style_btns['filled'] = builder.get_object("style_btn_2")
-		self.style_btns['secondary'] = builder.get_object("style_btn_3")
+	def set_freehand(self, *args):
+		if not args[0].get_state():
+			self.use_freehand = True
+			args[0].set_state(GLib.Variant.new_boolean(True))
+		else:
+			self.use_freehand = False
+			args[0].set_state(GLib.Variant.new_boolean(False))
 
-		for type_id in self.style_btns:
-			self.style_btns[type_id].connect('toggled', self.on_style_changed, type_id)
-
-		self.style_btns['secondary'].set_active(True)
-
-	def on_style_changed(self, *args):
-		self.selected_style_label = args[0].get_label()
-		self.selected_style_id = args[1]
+	def on_change_active_style(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		self.selected_style_id = state_as_string
+		if state_as_string == 'empty':
+			self.selected_style_label = _("Empty")
+		elif state_as_string == 'filled':
+			self.selected_style_label = _("Filled (main color)")
+		else:
+			self.selected_style_label = _("Filled (secondary color)")
 
 	def get_options_widget(self):
-		return self.options_box
+		return self.options_menu
 
 	def get_options_label(self):
-		if self.freehand_switch.get_active():
+		if self.use_freehand:
 			return _("Freehand") + ' - ' + self.selected_style_label
 		else:
 			return _("Edges") + ' - ' + self.selected_style_label
@@ -108,7 +119,7 @@ class ToolPolygon(ToolTemplate):
 
 	def on_motion_on_area(self, area, event, surface):
 		self.restore_pixbuf()
-		if self.freehand_switch.get_active():
+		if self.use_freehand:
 			self.draw_polygon(event, False)
 		else:
 			self.draw_polygon(event, True)
@@ -127,7 +138,6 @@ class ToolPolygon(ToolTemplate):
 	def on_release_on_area(self, area, event, surface):
 		self.restore_pixbuf()
 		finished = self.draw_polygon(event, False)
-		print(finished)
 		if finished:
 			self.apply_to_pixbuf()
 			(self.x_press, self.y_press) = (-1.0, -1.0)

@@ -2,7 +2,7 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
-      <attribute name="label" translatable="yes">Lead shape:</attribute>
+      <attribute name="label" translatable="yes">Lead shape</attribute>
       <item>
         <attribute name="label" translatable="yes">Round</attribute>
         <attribute name="action">win.pencil_shape</attribute>
@@ -21,8 +21,14 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Dashes</attribute>
+        <attribute name="label" translatable="yes">Use dashes</attribute>
         <attribute name="action">win.pencil_dashes</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Smooth drawing</attribute>
+        <attribute name="action">win.pencil_smooth</attribute>
       </item>
     </section>
   </menu>

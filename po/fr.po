@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: org.gnome.Draw 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-11 15:02+0100\n"
+"POT-Creation-Date: 2018-12-22 18:26+0100\n"
 "PO-Revision-Date: 2018-11-21 01:32+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 3.30.1\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:277
-#: src/window.py:280 src/preferences.py:44
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:286
+#: src/window.py:289 src/preferences.py:42
 msgid "Drawing"
 msgstr "Dessin"
 
@@ -39,42 +39,42 @@ msgstr "Taille de l'outil"
 msgid "No options"
 msgstr "Pas d'options"
 
-#: src/ui/window.ui:197
+#: src/ui/window.ui:197 src/crop_dialog.py:72 src/scale_dialog.py:52
 msgid "Preview"
 msgstr "Aperçu"
 
 #: src/ui/preferences.ui:24 src/ui/menus.ui:15 src/ui/menus.ui:124
-#: src/ui/menus.ui:271 src/preferences.py:44
+#: src/ui/menus.ui:271 src/preferences.py:42
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/ui/preferences.ui:42
+#: src/ui/preferences.ui:43
 msgid "Use a color palette"
 msgstr "Utiliser une palette de couleur"
 
-#: src/ui/preferences.ui:74
+#: src/ui/preferences.ui:75
 msgid "New image default color"
 msgstr "Couleur par défaut d'une nouvelle image"
 
-#: src/ui/preferences.ui:107
+#: src/ui/preferences.ui:108
 msgid "Default size"
 msgstr "Taille par défaut"
 
-#: src/ui/preferences.ui:118 src/ui/crop_dialog.ui:43 src/ui/scale_dialog.ui:57
+#: src/ui/preferences.ui:119 src/ui/crop_dialog.ui:43 src/ui/scale_dialog.ui:57
 #: src/ui/scale_dialog.ui:68
 msgid "Height"
 msgstr "Hauteur"
 
-#: src/ui/preferences.ui:137 src/ui/crop_dialog.ui:62 src/ui/scale_dialog.ui:85
+#: src/ui/preferences.ui:138 src/ui/crop_dialog.ui:62 src/ui/scale_dialog.ui:85
 #: src/ui/scale_dialog.ui:96
 msgid "Width"
 msgstr "Largeur"
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:161
 msgid "Experimental features (not recommended)"
 msgstr ""
 
-#: src/ui/preferences.ui:192
+#: src/ui/preferences.ui:193
 msgid "Interface layout:"
 msgstr "Organisation de l'interface :"
 
@@ -111,7 +111,7 @@ msgstr "Modifier la couleur principale (clic gauche)"
 msgid "Edit the secondary color (right click)"
 msgstr "Modifier la couleur secondaire (clic droit)"
 
-#: src/ui/shortcuts.ui:57 src/ui/menus.ui:365
+#: src/ui/shortcuts.ui:57 src/ui/menus.ui:375
 msgid "Exchange colors"
 msgstr "Échanger les couleurs"
 
@@ -124,7 +124,7 @@ msgid "Open an image"
 msgstr "Ouvrir une image"
 
 #: src/ui/shortcuts.ui:77 src/ui/menus.ui:189 src/ui/toolbar.ui:42
-#: src/window.py:509 src/window.py:530
+#: src/window.py:521 src/window.py:542
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -132,7 +132,7 @@ msgstr "Enregistrer"
 msgid "Save as"
 msgstr "Enregistrer sous"
 
-#: src/ui/shortcuts.ui:91 src/ui/menus.ui:48 src/ui/menus.ui:297
+#: src/ui/shortcuts.ui:91 src/ui/menus.ui:48 src/ui/menus.ui:303
 #: src/ui/toolbar.ui:120 src/properties.py:26
 msgid "Image properties"
 msgstr "Propriétés de l'image"
@@ -154,17 +154,17 @@ msgid "Redo"
 msgstr "Rétablir"
 
 #: src/ui/shortcuts.ui:125 src/ui/menus.ui:66 src/ui/menus.ui:253
-#: src/tools/ui/select.ui:49
+#: src/tools/ui/select.ui:53
 msgid "Select all"
 msgstr "Sélectionner tout"
 
 #: src/ui/shortcuts.ui:132 src/ui/menus.ui:74 src/ui/menus.ui:260
-#: src/ui/toolbar.ui:106 src/tools/ui/select.ui:59
+#: src/ui/toolbar.ui:106 src/tools/ui/select.ui:63
 msgid "Paste"
 msgstr "Coller"
 
 #: src/ui/shortcuts.ui:139 src/ui/menus.ui:70 src/ui/menus.ui:265
-#: src/ui/toolbar.ui:97 src/tools/ui/select.ui:55 src/tools/select.py:195
+#: src/ui/toolbar.ui:97 src/tools/ui/select.ui:59 src/tools/select.py:179
 msgid "Import"
 msgstr "Importer"
 
@@ -172,31 +172,31 @@ msgstr "Importer"
 msgid "Selection"
 msgstr "Sélection"
 
-#: src/ui/shortcuts.ui:152 src/ui/menus.ui:81 src/ui/menus.ui:308
+#: src/ui/shortcuts.ui:152 src/ui/menus.ui:81 src/ui/menus.ui:314
 #: src/tools/ui/select.ui:6
 msgid "Unselect"
 msgstr "Déselectionner"
 
-#: src/ui/shortcuts.ui:159 src/ui/menus.ui:88 src/ui/menus.ui:315
+#: src/ui/shortcuts.ui:159 src/ui/menus.ui:88 src/ui/menus.ui:321
 #: src/tools/ui/select.ui:13
 msgid "Cut"
 msgstr "Couper"
 
-#: src/ui/shortcuts.ui:166 src/ui/menus.ui:93 src/ui/menus.ui:320
+#: src/ui/shortcuts.ui:166 src/ui/menus.ui:93 src/ui/menus.ui:326
 #: src/tools/ui/select.ui:18
 msgid "Copy"
 msgstr "Copier"
 
-#: src/ui/shortcuts.ui:173 src/ui/menus.ui:98 src/ui/menus.ui:327
+#: src/ui/shortcuts.ui:173 src/ui/menus.ui:98 src/ui/menus.ui:333
 #: src/tools/ui/select.ui:23
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/ui/menus.ui:21 src/ui/menus.ui:130 src/ui/menus.ui:380
+#: src/ui/menus.ui:21 src/ui/menus.ui:130 src/ui/menus.ui:390
 msgid "Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: src/ui/menus.ui:25 src/ui/menus.ui:136 src/ui/menus.ui:385
+#: src/ui/menus.ui:25 src/ui/menus.ui:136 src/ui/menus.ui:395
 msgid "Help"
 msgstr "Aide"
 
@@ -216,23 +216,24 @@ msgstr "Imprimer"
 msgid "Open this image with…"
 msgstr "Ouvrir cette image avec…"
 
-#: src/ui/menus.ui:78 src/ui/menus.ui:305
+#: src/ui/menus.ui:78 src/ui/menus.ui:311
 msgid "_Selection"
 msgstr "_Sélection"
 
-#: src/ui/menus.ui:105 src/ui/menus.ui:334 src/tools/ui/select.ui:30
+#: src/ui/menus.ui:105
 msgid "Resize"
 msgstr "Redimensionner"
 
-#: src/ui/menus.ui:109 src/ui/menus.ui:338 src/tools/ui/select.ui:34
+#: src/ui/menus.ui:109 src/ui/menus.ui:297 src/ui/menus.ui:348
+#: src/tools/ui/select.ui:38
 msgid "Rotate"
 msgstr "Pivoter"
 
-#: src/ui/menus.ui:115 src/ui/menus.ui:344 src/tools/ui/select.ui:40
+#: src/ui/menus.ui:115 src/ui/menus.ui:354 src/tools/ui/select.ui:44
 msgid "Export as…"
 msgstr "Exporter sous…"
 
-#: src/ui/menus.ui:140 src/ui/menus.ui:390
+#: src/ui/menus.ui:140 src/ui/menus.ui:400
 msgid "About Drawing"
 msgstr "À propos de Dessin"
 
@@ -256,7 +257,7 @@ msgstr "Exporter en BMP"
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/ui/menus.ui:182 src/ui/toolbar.ui:27 src/main.py:174
+#: src/ui/menus.ui:182 src/ui/toolbar.ui:27 src/main.py:172
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -272,27 +273,27 @@ msgstr "É_dition"
 msgid "_Image"
 msgstr "_Image"
 
-#: src/ui/menus.ui:289
+#: src/ui/menus.ui:289 src/ui/menus.ui:340 src/tools/ui/select.ui:30
 msgid "Crop"
 msgstr "Recadrer"
 
-#: src/ui/menus.ui:293
+#: src/ui/menus.ui:293 src/ui/menus.ui:344 src/tools/ui/select.ui:34
 msgid "Scale"
 msgstr "Redimensionner"
 
-#: src/ui/menus.ui:352
+#: src/ui/menus.ui:362
 msgid "_Colors"
 msgstr "_Couleurs"
 
-#: src/ui/menus.ui:355
+#: src/ui/menus.ui:365
 msgid "Main color"
 msgstr "Couleur principale"
 
-#: src/ui/menus.ui:359
+#: src/ui/menus.ui:369
 msgid "Secondary color"
 msgstr "Couleur secondaire"
 
-#: src/ui/menus.ui:377
+#: src/ui/menus.ui:387
 msgid "_Help"
 msgstr "_Aide"
 
@@ -316,84 +317,84 @@ msgstr "Rapporter des bugs ou des idées"
 msgid "_Tools"
 msgstr "_Outils"
 
-#: src/main.py:171
+#: src/main.py:169
 msgid "Open a picture"
 msgstr "Ouvrir une image"
 
-#: src/main.py:175 src/window.py:507 src/window.py:531 src/crop_dialog.py:32
-#: src/scale_dialog.py:33 src/tools/ui/text.ui:33 src/tools/select.py:196
+#: src/main.py:173 src/window.py:519 src/window.py:543 src/crop_dialog.py:33
+#: src/scale_dialog.py:34 src/tools/ui/text.ui:33 src/tools/select.py:180
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/main.py:177 src/window.py:534 src/tools/select.py:198
+#: src/main.py:175 src/window.py:546 src/tools/select.py:182
 msgid "All pictures"
 msgstr "Toutes les images"
 
-#: src/window.py:276
+#: src/window.py:285
 msgid "Unsaved file"
 msgstr "Fichier non enregistré"
 
-#: src/window.py:472
+#: src/window.py:484
 msgid "Sorry, this picture is too big for this app!"
 msgstr "Désolé, cette image est trop grande pour cette application !"
 
-#: src/window.py:475
+#: src/window.py:487
 msgid "Edit it anyway"
 msgstr "Éditer quand même"
 
-#: src/window.py:476
+#: src/window.py:488
 msgid "Scale it"
 msgstr "Redimensionner"
 
-#: src/window.py:477
+#: src/window.py:489
 msgid "Crop it"
 msgstr "Recadrer"
 
-#: src/window.py:478
+#: src/window.py:490
 msgid "What would you prefer?"
 msgstr "Que préférez-vous ?"
 
-#: src/window.py:503 src/window.py:567
+#: src/window.py:515 src/window.py:579
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: src/window.py:508
+#: src/window.py:520
 msgid "Discard"
 msgstr "Abandonner"
 
-#: src/window.py:510
+#: src/window.py:522
 msgid "There are unsaved modifications to your drawing."
 msgstr "Il y a des modifications non-enregistrées à votre dessin."
 
-#: src/window.py:528
+#: src/window.py:540
 msgid "Save picture as…"
 msgstr "Enregistrer l'image sous…"
 
-#: src/window.py:540
+#: src/window.py:552
 msgid "PNG images"
 msgstr "Images PNG"
 
-#: src/window.py:544
+#: src/window.py:556
 msgid "JPEG images"
 msgstr "Images JPEG"
 
-#: src/window.py:548
+#: src/window.py:560
 msgid "BMP images"
 msgstr "Images BMP"
 
-#: src/preferences.py:66
+#: src/preferences.py:64
 msgid "Compact (headerbar)"
 msgstr "Compacte (barre d'en-tête)"
 
-#: src/preferences.py:67
+#: src/preferences.py:65
 msgid "Legacy (menubar only)"
 msgstr "Traditionnelle (menus seulement)"
 
-#: src/preferences.py:68
+#: src/preferences.py:66
 msgid "Legacy (menubar and toolbar)"
 msgstr "Traditionnelle (menus et boutons)"
 
-#: src/preferences.py:70
+#: src/preferences.py:68
 msgid "Both (testing only)"
 msgstr ""
 
@@ -405,96 +406,114 @@ msgstr "Format invalide"
 msgid "Crop the picture"
 msgstr "Recadrer l'image"
 
-#: src/crop_dialog.py:33 src/scale_dialog.py:34
+#: src/crop_dialog.py:34 src/scale_dialog.py:35
 msgid "Apply"
 msgstr "Appliquer"
 
-#: src/scale_dialog.py:30
+#: src/scale_dialog.py:27
 msgid "Scale the picture"
 msgstr "Mettre à l'échelle l'image"
 
-#: src/tools/ui/line.ui:19
-msgid "Line type:"
-msgstr "Type de ligne :"
+#: src/tools/ui/line.ui:5
+msgid "Line type"
+msgstr "Type de ligne"
 
-#: src/tools/ui/line.ui:37 src/tools/line.py:39
+#: src/tools/ui/line.ui:7 src/tools/line.py:28 src/tools/line.py:71
 msgid "Straight"
 msgstr "Droite"
 
-#: src/tools/ui/line.ui:46
+#: src/tools/ui/line.ui:12 src/tools/line.py:74
 msgid "Arc"
 msgstr "Arc"
 
-#: src/tools/ui/line.ui:65
-msgid "Line end shape:"
-msgstr "Forme de fin de ligne :"
-
-#: src/tools/ui/line.ui:83 src/tools/ui/pencil.ui:46
-msgid "Square"
-msgstr "Carrée"
-
-#: src/tools/ui/line.ui:92 src/tools/ui/pencil.ui:29 src/tools/line.py:38
-#: src/tools/pencil.py:28
-msgid "Round"
-msgstr "Ronde"
-
-#: src/tools/ui/line.ui:120
+#: src/tools/ui/line.ui:19
 msgid "Arrow"
 msgstr "Flèche"
 
-#: src/tools/ui/pencil.ui:14
-msgid "Lead shape:"
-msgstr "Forme de mine :"
+#: src/tools/ui/line.ui:24 src/tools/ui/pencil.ui:5
+msgid "Lead shape"
+msgstr "Forme de mine"
 
-#: src/tools/ui/pencil.ui:38
+#: src/tools/ui/line.ui:26 src/tools/ui/pencil.ui:7 src/tools/line.py:27
+#: src/tools/line.py:61 src/tools/pencil.py:20 src/tools/pencil.py:52
+msgid "Round"
+msgstr "Ronde"
+
+#: src/tools/ui/line.ui:36 src/tools/ui/pencil.ui:17 src/tools/line.py:58
+#: src/tools/pencil.py:49
+msgid "Square"
+msgstr "Carrée"
+
+#: src/tools/ui/line.ui:43 src/tools/ui/pencil.ui:24
+msgid "Use dashes"
+msgstr "Utiliser des pointillés"
+
+#: src/tools/ui/pencil.ui:12 src/tools/pencil.py:46
 msgid "Thin"
 msgstr "Fine"
 
-#: src/tools/ui/select.ui:80
-msgid "Selection type:"
-msgstr "Type de sélection :"
+#: src/tools/ui/select.ui:87
+msgid "Properties"
+msgstr "Propriétés"
 
-#: src/tools/ui/select.ui:97 src/tools/ui/shape.ui:34 src/tools/select.py:53
+#: src/tools/ui/select.ui:95
+msgid "Selection type"
+msgstr "Type de sélection"
+
+#: src/tools/ui/select.ui:97 src/tools/ui/shape.ui:7 src/tools/select.py:49
+#: src/tools/shape.py:19 src/tools/shape.py:50
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: src/tools/ui/select.ui:106 src/tools/polygon.py:46
+#: src/tools/ui/select.ui:102 src/tools/polygon.py:56
 msgid "Freehand"
 msgstr "À main levée"
 
-#: src/tools/ui/select.ui:124
+#: src/tools/ui/select.ui:109
 msgid "Exclude secondary color"
 msgstr "Exclure la couleur secondaire"
 
-#: src/tools/ui/polygon.ui:20 src/tools/ui/shape.ui:67
-msgid "Style:"
-msgstr "Style:"
+#: src/tools/ui/polygon.ui:7 src/tools/ui/shape.ui:23
+msgid "Filling"
+msgstr "Remplissage"
 
-#: src/tools/ui/polygon.ui:34 src/tools/ui/shape.ui:81
+#: src/tools/ui/polygon.ui:9 src/tools/ui/polygon.ui:69
+#: src/tools/ui/shape.ui:25 src/tools/polygon.py:45 src/tools/shape.py:37
 msgid "Empty"
 msgstr "Vide"
 
-#: src/tools/ui/polygon.ui:42 src/tools/ui/shape.ui:89
+#: src/tools/ui/polygon.ui:14 src/tools/ui/polygon.ui:77
+#: src/tools/ui/shape.ui:30 src/tools/polygon.py:47 src/tools/shape.py:39
 msgid "Filled (main color)"
 msgstr "Plein (couleur principale)"
 
-#: src/tools/ui/polygon.ui:51 src/tools/ui/shape.ui:98
+#: src/tools/ui/polygon.ui:19 src/tools/ui/polygon.ui:86
+#: src/tools/ui/shape.ui:35 src/tools/polygon.py:20 src/tools/polygon.py:49
+#: src/tools/shape.py:18 src/tools/shape.py:41
 msgid "Filled (secondary color)"
 msgstr "Plein (couleur secondaire)"
 
-#: src/tools/ui/polygon.ui:65
+#: src/tools/ui/polygon.ui:26
+msgid "Allow freehand drawing"
+msgstr "Tracé à main levée"
+
+#: src/tools/ui/polygon.ui:55
+msgid "Style:"
+msgstr "Style:"
+
+#: src/tools/ui/polygon.ui:100
 msgid "Freehand drawing"
 msgstr "À main levée"
 
-#: src/tools/ui/shape.ui:20
-msgid "Shape:"
-msgstr "Forme:"
+#: src/tools/ui/shape.ui:5
+msgid "Shape"
+msgstr "Forme"
 
-#: src/tools/ui/shape.ui:42
+#: src/tools/ui/shape.ui:12 src/tools/shape.py:52
 msgid "Oval"
 msgstr "Ovale"
 
-#: src/tools/ui/shape.ui:50
+#: src/tools/ui/shape.ui:17 src/tools/shape.py:54
 msgid "Circle"
 msgstr "Cercle"
 
@@ -510,23 +529,23 @@ msgstr "Arrière-plan opaque"
 msgid "Eraser"
 msgstr "Effaceur"
 
-#: src/tools/line.py:16
+#: src/tools/line.py:14
 msgid "Line"
 msgstr "Trait"
 
-#: src/tools/paint.py:17
+#: src/tools/paint.py:13
 msgid "Paint"
 msgstr "Peinture"
 
-#: src/tools/paint.py:110
+#: src/tools/paint.py:107
 msgid "Continue"
 msgstr "Continuer"
 
-#: src/tools/paint.py:111
+#: src/tools/paint.py:108
 msgid "Abort"
 msgstr "Abandonner"
 
-#: src/tools/paint.py:112
+#: src/tools/paint.py:109
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
 "This tool is not seriously implemented, and may not be able to paint the "
@@ -535,11 +554,11 @@ msgid ""
 "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
 
-#: src/tools/polygon.py:16
+#: src/tools/polygon.py:15
 msgid "Polygon"
 msgstr "Polygone"
 
-#: src/tools/polygon.py:48
+#: src/tools/polygon.py:58
 msgid "Edges"
 msgstr "Arêtes"
 
@@ -551,11 +570,11 @@ msgstr "Crayon"
 msgid "Color Picker"
 msgstr "Couleur"
 
-#: src/tools/select.py:193
+#: src/tools/select.py:177
 msgid "Import a picture"
 msgstr "Importer une image"
 
-#: src/tools/shape.py:21
+#: src/tools/shape.py:15
 msgid "Basic shape"
 msgstr "Forme simple"
 

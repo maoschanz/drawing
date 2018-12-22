@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
+
+
+  <menu id="options-menu">
+    <section>
+      <attribute name="label" translatable="yes">Filling</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Empty</attribute>
+        <attribute name="action">win.polygon_style</attribute>
+        <attribute name="target">empty</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Filled (main color)</attribute>
+        <attribute name="action">win.polygon_style</attribute>
+        <attribute name="target">filled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Filled (secondary color)</attribute>
+        <attribute name="action">win.polygon_style</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Allow freehand drawing</attribute>
+        <attribute name="action">win.polygon_freehand</attribute>
+      </item>
+    </section>
+  </menu>
+
+
+
+
+
+
+
   <object class="GtkPopover" id="options_box">
     <!-- <property name="visible">True</property> -->
     <child>

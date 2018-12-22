@@ -1,6 +1,6 @@
 # line.py
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo, math
 
 from .tools import ToolTemplate
@@ -16,22 +16,12 @@ class ToolLine(ToolTemplate):
 		# Building the widget containing options
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/line.ui")
-		self.options_box = builder.get_object("options-menu")
-
-		type_btn_1 = builder.get_object('type_btn_1')
-		type_btn_2 = builder.get_object('type_btn_2')
-		type_btn_1.connect('clicked', self.on_type_changed, 'line')
-		type_btn_2.connect('clicked', self.on_type_changed, 'arc')
-
-		end_btn_1 = builder.get_object('end_btn_1')
-		end_btn_2 = builder.get_object('end_btn_2')
-		# end_btn_3 = builder.get_object('end_btn_3')
-		end_btn_1.connect('clicked', self.on_end_changed, cairo.LineCap.BUTT)
-		end_btn_2.connect('clicked', self.on_end_changed, cairo.LineCap.ROUND)
-		# end_btn_3.connect('clicked', self.on_end_changed, cairo.LineCap.SQUARE)
-
-		self.arrow_switch = builder.get_object("arrow_switch")
-		self.dash_switch = builder.get_object("dash_switch")
+		model = builder.get_object('options-menu')
+		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.add_tool_action_enum('line_type', 'straight', self.on_change_active_type)
+		self.add_tool_action_enum('line_shape', 'round', self.on_change_active_shape)
+		self.add_tool_action_boolean('line_dashes', False, self.set_dashes_state)
+		self.add_tool_action_boolean('line_arrow', False, self.set_arrow_state)
 
 		# Default values
 		self.selected_shape_label = _("Round")
@@ -39,18 +29,52 @@ class ToolLine(ToolTemplate):
 		self.active_type = 'line'
 		self.selected_end_id = cairo.LineCap.ROUND
 		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
+		self.use_dashes = False
+		self.use_arrow = False
 
-	def on_end_changed(self, *args):
-		self.selected_shape_label = args[0].get_label()
-		self.selected_end_id = args[1]
+	def set_dashes_state(self, *args):
+		if not args[0].get_state():
+			self.use_dashes = True
+			args[0].set_state(GLib.Variant.new_boolean(True))
+		else:
+			self.use_dashes = False
+			args[0].set_state(GLib.Variant.new_boolean(False))
 
-	def on_type_changed(self, *args):
-		self.selected_curv_label = args[0].get_label()
+	def set_arrow_state(self, *args):
+		if not args[0].get_state():
+			self.use_arrow = True
+			args[0].set_state(GLib.Variant.new_boolean(True))
+		else:
+			self.use_dashes = False
+			args[0].use_arrow(GLib.Variant.new_boolean(False))
+
+	def on_change_active_shape(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		if state_as_string == 'square':
+			self.selected_end_id = cairo.LineCap.BUTT
+			self.selected_shape_label = _("Square")
+		else:
+			self.selected_end_id = cairo.LineCap.ROUND
+			self.selected_shape_label = _("Round")
+
+	def on_change_active_type(self, *args):
 		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
-		self.active_type = args[1]
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		if state_as_string == 'straight':
+			self.active_type = 'line'
+			self.selected_curv_label = _("Straight")
+		else:
+			self.active_type = 'arc'
+			self.selected_curv_label = _("Arc")
 
 	def get_options_widget(self):
-		return self.options_box
+		return self.options_menu
 
 	def get_options_label(self):
 		return self.selected_curv_label + ' - ' + self.selected_shape_label
@@ -72,7 +96,7 @@ class ToolLine(ToolTemplate):
 		w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
 			self.wanted_color.blue, self.wanted_color.alpha)
 
-		if self.dash_switch.get_active():
+		if self.use_dashes:
 			w_context.set_dash([2*self.tool_width, 2*self.tool_width])
 
 		if self.active_type == 'line':
@@ -114,12 +138,12 @@ class ToolLine(ToolTemplate):
 				self.wanted_color.blue, self.wanted_color.alpha)
 			w_context.set_line_cap(self.selected_end_id)
 			w_context.set_line_width(self.tool_width)
-			if self.dash_switch.get_active():
+			if self.use_dashes:
 				w_context.set_dash([2*self.tool_width, 2*self.tool_width])
 
 			w_context.move_to(self.x_press, self.y_press)
 			w_context.line_to(event.x, event.y)
-			if self.arrow_switch.get_active():
+			if self.use_arrow:
 				self.add_arrow_triangle(w_context, event.x, event.y)
 			w_context.stroke()
 			self.apply_to_pixbuf()
@@ -132,14 +156,14 @@ class ToolLine(ToolTemplate):
 				w_context = cairo.Context(self.window.get_surface())
 				w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
 					self.wanted_color.blue, self.wanted_color.alpha)
-				if self.dash_switch.get_active():
+				if self.use_dashes:
 					w_context.set_dash([2*self.tool_width, 2*self.tool_width])
 
 				w_context.move_to(self.wait_points[0], self.wait_points[1])
 				w_context.set_line_width(self.tool_width)
 				w_context.set_line_cap(self.selected_end_id)
 				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
-				if self.arrow_switch.get_active():
+				if self.use_arrow:
 					self.add_arrow_triangle(w_context, event.x, event.y)
 				w_context.stroke()
 				self.wait_points = (-1.0, -1.0, -1.0, -1.0)

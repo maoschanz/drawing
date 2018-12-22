@@ -39,25 +39,20 @@ class ToolSelect(ToolTemplate):
 		#############################
 
 		# Building the widget containing options
-		self.options_box = builder.get_object('options-menu')
+		model = builder.get_object('options-menu')
+		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
 
-		radio_btn1 = builder.get_object('type_btn_1')
-		radio_btn2 = builder.get_object('type_btn_2')
-
-		radio_btn1.connect('clicked', self.on_option_changed, 'rectangle')
-		radio_btn2.connect('clicked', self.on_option_changed, 'freehand')
-		# radio_btn3.connect('clicked', self.on_option_changed, 'color')
-
-		self.transp_switch = builder.get_object('transparency-switch')
+		self.add_tool_action_enum('selection_type', 'rectangle', self.osef)
+		self.add_tool_action_boolean('selection_exclude', False, self.osef)
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
 
-	def on_option_changed(self, b):
-		self.selected_type_label = b.get_label()
+	def osef(self, *args): # TODO XXX
+		pass
 
 	def get_options_widget(self):
-		return self.options_box
+		return self.options_menu
 
 	def get_options_label(self):
 		return self.selected_type_label

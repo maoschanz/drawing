@@ -1,109 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <object class="GtkPopover" id="options_box">
-    <!-- <property name="visible">True</property> -->
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="margin">10</property>
-        <property name="spacing">10</property>
-        <property name="orientation">horizontal</property>
+  <menu id="options-menu">
+    <section>
+      <attribute name="label" translatable="yes">Shape</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Rectangle</attribute>
+        <attribute name="action">win.shape_shape</attribute>
+        <attribute name="target">rectangle</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Oval</attribute>
+        <attribute name="action">win.shape_shape</attribute>
+        <attribute name="target">oval</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Circle</attribute>
+        <attribute name="action">win.shape_shape</attribute>
+        <attribute name="target">circle</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label" translatable="yes">Filling</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Empty</attribute>
+        <attribute name="action">win.shape_style</attribute>
+        <attribute name="target">empty</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Filled (main color)</attribute>
+        <attribute name="action">win.shape_style</attribute>
+        <attribute name="target">filled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Filled (secondary color)</attribute>
+        <attribute name="action">win.shape_style</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+    </section>
+  </menu>
 
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">10</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Shape:</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <style>
-                  <class name="linked"/>
-                </style>
-                <child>
-                  <object class="GtkRadioButton" id="type_btn_1">
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Rectangle</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="type_btn_2">
-                    <property name="group">type_btn_1</property>
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Oval</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="type_btn_4">
-                    <property name="group">type_btn_1</property>
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Circle</property>
-                    <property name="active">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">10</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Style:</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <style>
-                  <class name="linked"/>
-                </style>
-                <child>
-                  <object class="GtkRadioButton" id="style_btn_1">
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Empty</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="style_btn_2">
-                    <property name="group">style_btn_1</property>
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Filled (main color)</property>
-                    <property name="active">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="style_btn_3">
-                    <property name="group">style_btn_1</property>
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Filled (secondary color)</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-
-      </object>
-    </child>
-  </object>
 </interface>

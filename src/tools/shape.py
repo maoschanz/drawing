@@ -1,6 +1,6 @@
 # shape.py
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo
 import math
 
@@ -15,46 +15,46 @@ class ToolShape(ToolTemplate):
 		super().__init__('shape', _("Basic shape"), 'radio-symbolic', window)
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
+		self.selected_style_label = _("Filled (secondary color)")
+		self.selected_shape_label = _("Rectangle")
+		self.selected_style_id = 'secondary'
+		self.selected_shape_id = 'rectangle'
 
 		# Building the widget containing options
-		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/tools/ui/shape.ui')
-		self.options_box = builder.get_object('options_box')
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/shape.ui")
+		model = builder.get_object('options-menu')
+		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.add_tool_action_enum('shape_shape', 'rectangle', self.on_change_active_shape)
+		self.add_tool_action_enum('shape_style', 'secondary', self.on_change_active_style)
 
-		self.shape_btns = {}
-		self.shape_btns['rectangle'] = builder.get_object('type_btn_1')
-		self.shape_btns['oval'] = builder.get_object('type_btn_2')
-		self.shape_btns['circle'] = builder.get_object('type_btn_4')
+	def on_change_active_style(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		self.selected_style_id = state_as_string
+		if state_as_string == 'empty':
+			self.selected_style_label = _("Empty")
+		elif state_as_string == 'filled':
+			self.selected_style_label = _("Filled (main color)")
+		else:
+			self.selected_style_label = _("Filled (secondary color)")
 
-		for type_id in self.shape_btns:
-			self.shape_btns[type_id].connect('toggled', self.on_shape_changed, type_id)
-
-		self.style_btns = {}
-		self.style_btns['empty'] = builder.get_object('style_btn_1')
-		self.style_btns['filled'] = builder.get_object('style_btn_2')
-		self.style_btns['secondary'] = builder.get_object('style_btn_3')
-
-		for type_id in self.style_btns:
-			self.style_btns[type_id].connect('toggled', self.on_style_changed, type_id)
-
-		self.selected_shape_label = ''
-		self.selected_shape_id = 'rectangle'
-		self.selected_style_label = ''
-		self.selected_style_id = 'secondary'
-
-		self.shape_btns['rectangle'].set_active(True)
-		self.style_btns['secondary'].set_active(True)
-
-	def on_shape_changed(self, *args):
-		self.selected_shape_label = args[0].get_label()
-		self.selected_shape_id = args[1]
-
-	def on_style_changed(self, *args):
-		self.selected_style_label = args[0].get_label()
-		self.selected_style_id = args[1]
+	def on_change_active_shape(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		self.selected_shape_id = state_as_string
+		if state_as_string == 'rectangle':
+			self.selected_shape_label = _("Rectangle")
+		elif state_as_string == 'oval':
+			self.selected_shape_label = _("Oval")
+		else:
+			self.selected_shape_label = _("Circle")
 
 	def get_options_widget(self):
-		return self.options_box
+		return self.options_menu
 
 	def get_options_label(self):
 		return self.selected_shape_label + ' - ' + self.selected_style_label

@@ -1,165 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <object class="GtkPopover" id="options-menu">
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="margin">10</property>
-        <property name="spacing">10</property>
-        <property name="orientation">vertical</property>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Line type:</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="homogeneous">True</property>
-                <property name="orientation">horizontal</property>
-                <style>
-                  <class name="linked"/>
-                </style>
-                <child>
-                  <object class="GtkRadioButton" id="type_btn_1">
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Straight</property>
-                    <property name="active">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="type_btn_2">
-                    <property name="group">type_btn_1</property>
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Arc</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Line end shape:</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="homogeneous">True</property>
-                <property name="orientation">horizontal</property>
-                <style>
-                  <class name="linked"/>
-                </style>
-                <child>
-                  <object class="GtkRadioButton" id="end_btn_1">
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Square</property>
-                    <!-- <property name="label" translatable="yes">None</property> -->
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="end_btn_2">
-                    <property name="group">end_btn_1</property>
-                    <property name="draw-indicator">False</property>
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Round</property>
-                    <property name="active">True</property>
-                  </object>
-                </child>
-                <!-- <child> -->
-                <!-- 	<object class="GtkRadioButton" id="end_btn_3"> -->
-                <!-- 		<property name="group">end_btn_1</property> -->
-                <!-- 		<property name="draw-indicator">False</property> -->
-                <!-- 		<property name="visible">True</property> -->
-                <!-- 		<property name="label" translatable="yes">Square</property> -->
-                <!-- 	</object> -->
-                <!-- </child> -->
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">5</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Arrow</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="arrow_switch">
-                <property name="visible">True</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">5</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Dashes</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="dash_switch">
-                <property name="visible">True</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-
-      </object>
-    </child>
-  </object>
+  <menu id="options-menu">
+    <section>
+      <attribute name="label" translatable="yes">Line type</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Straight</attribute>
+        <attribute name="action">win.line_type</attribute>
+        <attribute name="target">straight</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Arc</attribute>
+        <attribute name="action">win.line_type</attribute>
+        <attribute name="target">arc</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Arrow</attribute>
+        <attribute name="action">win.line_arrow</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label" translatable="yes">Lead shape</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Round</attribute>
+        <attribute name="action">win.line_shape</attribute>
+        <attribute name="target">round</attribute>
+      </item>
+      <!-- <item> -->
+      <!--   <attribute name="label" translatable="yes">Thin</attribute> -->
+      <!--   <attribute name="action">win.line_shape</attribute> -->
+      <!--   <attribute name="target">thin</attribute> -->
+      <!-- </item> -->
+      <item>
+        <attribute name="label" translatable="yes">Square</attribute>
+        <attribute name="action">win.line_shape</attribute>
+        <attribute name="target">square</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Use dashes</attribute>
+        <attribute name="action">win.line_dashes</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>
