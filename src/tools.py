@@ -29,7 +29,13 @@ class ToolTemplate():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def add_tool_action(self, action_name, callback):
-		self.window.add_action_like_a_boss(action_name, callback)
+		self.window.add_action_simple(action_name, callback)
+
+	def add_tool_action_boolean(self, action_name, default, callback):
+		self.window.add_action_boolean(action_name, default, callback)
+
+	def add_tool_action_enum(self, action_name, default, callback):
+		self.window.add_action_enum(action_name, default, callback)
 
 	def non_destructive_show_modif(self):
 		self.window.drawing_area.queue_draw()

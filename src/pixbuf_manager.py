@@ -90,7 +90,7 @@ class DrawingPixbufManager():
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 			self.surface.get_width(), self.surface.get_height())
 
-		self.window.drawing_area.set_size(width, height)
+		# self.window.drawing_area.set_size(width, height) # XXX ?
 		if x != 0 or y != 0:
 			self.resize_main_surface(0, 0, width, height)
 
@@ -231,11 +231,13 @@ class DrawingPixbufManager():
 		x1 = x0 + self.selection_pixbuf.get_width()
 		y1 = y0 + self.selection_pixbuf.get_height()
 		self.show_selection_content()
-		self.show_rectangle_on_surface_at(self.surface, x0, y0, x1, y1)
+		self.show_rectangle_on_surface_at(self.surface, x0, y0, x1, y1, True)
 
-	def show_rectangle_on_surface_at(self, surface, x0, y0, x1, y1):
+	def show_rectangle_on_surface_at(self, surface, x0, y0, x1, y1, dashed):
 		w_context = cairo.Context(surface)
-		w_context.set_dash([3, 3])
+		if dashed:
+			w_context.set_dash([3, 3])
+		# TODO assert que les coordonées soient bien dans la surface
 		w_context.move_to(x1-1, y1-1)
 		w_context.line_to(x1-1, y0+1)
 		w_context.line_to(x0+1, y0+1)
@@ -286,3 +288,12 @@ class DrawingPixbufManager():
 			return False
 		else:
 			return True
+
+	def scale_pixbuf_to(self, is_selection, new_width, new_height):
+		if is_selection:
+			self.selection_pixbuf = self.selection_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
+			self.show_selection_rectangle()
+		else:
+			self.main_pixbuf = self.main_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
+			self.use_stable_pixbuf()
+			self.on_tool_finished()

@@ -69,7 +69,7 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
 
-		preview_btn = Gtk.Button(label=_("Preview"))
+		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
 		preview_btn.connect('clicked', self.on_preview)
 		if wants_csd:
 			self.get_header_bar().pack_end(preview_btn)
@@ -128,7 +128,7 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		x1, y1 = self.convert_to_preview_coord(self._x, self._y)
 		x2, y2 = self.convert_to_preview_coord(self._x + self.get_width(), self._y + self.get_height())
-		self._window._pixbuf_manager.show_rectangle_on_surface_at(self.surface, x1, y1, x2, y2)
+		self._window._pixbuf_manager.show_rectangle_on_surface_at(self.surface, x1, y1, x2, y2, False)
 		self.preview.queue_draw()
 
 	def on_press(self, area, event):

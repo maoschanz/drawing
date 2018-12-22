@@ -49,8 +49,61 @@
           </object>
         </child>
 
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">5</property>
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Dashes</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="dash_switch">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
       </object>
     </child>
   </object>
+
+
+  <menu id="options-menu-beta">
+    <section>
+      <attribute name="label" translatable="yes">Lead shape:</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Round</attribute>
+        <attribute name="action">win.pencil_shape</attribute>
+        <attribute name="target">round</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Thin</attribute>
+        <attribute name="action">win.pencil_shape</attribute>
+        <attribute name="target">butt</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Square</attribute>
+        <attribute name="action">win.pencil_shape</attribute>
+        <attribute name="target">square</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Dashes</attribute>
+        <attribute name="action">win.pencil_dashes</attribute>
+      </item>
+    </section>
+  </menu>
 
 </interface>

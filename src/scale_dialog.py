@@ -49,7 +49,7 @@ class DrawingScaleDialog(Gtk.Dialog):
 		self.proportions_switch.set_active(True)
 		self.on_proportions_changed()
 
-		preview_btn = Gtk.Button(label=_("Preview"))
+		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
 		preview_btn.connect('clicked', self.on_preview)
 		if wants_csd:
 			self.get_header_bar().pack_end(preview_btn)
@@ -65,14 +65,7 @@ class DrawingScaleDialog(Gtk.Dialog):
 	def on_apply(self, *args):
 		w = self.get_width()
 		h = self.get_height()
-		if self.is_selection:
-			self._window._pixbuf_manager.selection_pixbuf = \
-				self._window._pixbuf_manager.selection_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
-			self._window._pixbuf_manager.show_selection_rectangle()
-		else:
-			self._window._pixbuf_manager.main_pixbuf = \
-				self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
-			self._window._pixbuf_manager.on_tool_finished()
+		self._window._pixbuf_manager.scale_pixbuf_to(self.is_selection, w, h)
 		self.destroy()
 
 	def on_cancel(self, *args):

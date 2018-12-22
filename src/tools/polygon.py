@@ -62,7 +62,7 @@ class ToolPolygon(ToolTemplate):
 		if self.past_x == -1.0:
 			self.init_polygon(w_context)
 		else:
-			w_context.append_path(self.path)
+			w_context.append_path(self._path)
 
 		if is_preview:
 			self.preview_polygon(w_context, event.x, event.y)
@@ -80,12 +80,12 @@ class ToolPolygon(ToolTemplate):
 	def init_polygon(self, w_context):
 		(self.past_x, self.past_y) = (self.x_press, self.y_press)
 		w_context.move_to(self.x_press, self.y_press)
-		self.path = w_context.copy_path()
+		self._path = w_context.copy_path()
 
 	def continue_polygon(self, w_context, x, y):
 		w_context.line_to(x, y)
 		w_context.stroke_preserve() # draw the line without closing the path
-		self.path = w_context.copy_path()
+		self._path = w_context.copy_path()
 		self.non_destructive_show_modif()
 
 	def finish_polygon(self, w_context):

@@ -194,46 +194,55 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
 		# TODO..
 
-	def add_action_like_a_boss(self, action_name, callback):
+	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect("activate", callback)
 		self.add_action(action)
 
+	def add_action_boolean(self, action_name, default, callback):
+		action = Gio.SimpleAction().new_stateful(action_name, None, \
+			GLib.Variant.new_boolean(default))
+		action.connect('change-state', callback)
+		self.add_action(action)
+
+	def add_action_enum(self, action_name, default, callback):
+		action = Gio.SimpleAction().new_stateful(action_name, \
+			GLib.VariantType.new('s'), GLib.Variant.new_string(default))
+		action.connect('change-state', callback)
+		self.add_action(action)
+
 	def add_all_win_actions(self):
-		self.add_action_like_a_boss("main_color", self.action_main_color)
-		self.add_action_like_a_boss("secondary_color", self.action_secondary_color)
-		self.add_action_like_a_boss("exchange_color", self.action_exchange_color)
+		self.add_action_simple('main_color', self.action_main_color)
+		self.add_action_simple('secondary_color', self.action_secondary_color)
+		self.add_action_simple('exchange_color', self.action_exchange_color)
 
-		self.add_action_like_a_boss("open_with", self.action_open_with)
+		self.add_action_simple('open_with', self.action_open_with)
 		self.lookup_action('open_with').set_enabled(False)
-		self.add_action_like_a_boss("print", self.action_print)
+		self.add_action_simple('print', self.action_print)
 
-		self.add_action_like_a_boss("pic_crop", self.action_crop)
-		self.add_action_like_a_boss("pic_scale", self.action_scale)
-		# self.add_action_like_a_boss("pic_rotate", self.action_rotate)
-		self.add_action_like_a_boss("properties", self.edit_properties)
+		self.add_action_simple('pic_crop', self.action_crop)
+		self.add_action_simple('pic_scale', self.action_scale)
+		# self.add_action_simple('pic_rotate', self.action_rotate)
+		self.add_action_simple('properties', self.edit_properties)
 
 		if self.main_menu_btn is not None:
-			self.add_action_like_a_boss("main_menu", self.action_main_menu)
+			self.add_action_simple('main_menu', self.action_main_menu)
 
-		self.add_action_like_a_boss("toggle_preview", self.action_toggle_preview)
-		self.add_action_like_a_boss("bigger_preview", self.action_bigger_preview)
-		self.add_action_like_a_boss("smaller_preview", self.action_smaller_preview)
+		self.add_action_simple('toggle_preview', self.action_toggle_preview)
+		self.add_action_simple('bigger_preview', self.action_bigger_preview)
+		self.add_action_simple('smaller_preview', self.action_smaller_preview)
 
-		self.add_action_like_a_boss("close", self.action_close)
-		self.add_action_like_a_boss("save", self.action_save)
-		self.add_action_like_a_boss("undo", self.action_undo)
-		self.add_action_like_a_boss("redo", self.action_redo)
+		self.add_action_simple('close', self.action_close)
+		self.add_action_simple('save', self.action_save)
+		self.add_action_simple('undo', self.action_undo)
+		self.add_action_simple('redo', self.action_redo)
 
-		self.add_action_like_a_boss("save_as", self.action_save_as)
-		self.add_action_like_a_boss("exp_png", self.export_as_png)
-		self.add_action_like_a_boss("exp_jpeg", self.export_as_jpeg)
-		self.add_action_like_a_boss("exp_bmp", self.export_as_bmp)
+		self.add_action_simple('save_as', self.action_save_as)
+		self.add_action_simple('exp_png', self.export_as_png)
+		self.add_action_simple('exp_jpeg', self.export_as_jpeg)
+		self.add_action_simple('exp_bmp', self.export_as_bmp)
 
-		action_active_tool = Gio.SimpleAction().new_stateful('active_tool', \
-			GLib.VariantType.new('s'), GLib.Variant.new_string('pencil'))
-		action_active_tool.connect('change-state', self.on_change_active_tool)
-		self.add_action(action_active_tool)
+		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 
 	def update_selection_actions(self, state):
 		if not 'select' in self.tools:

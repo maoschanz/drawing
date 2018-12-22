@@ -103,19 +103,19 @@ class Application(Gtk.Application):
 		self.get_menubar().insert_submenu(5, _("_Tools"), gio_menu)
 		self.has_tools_in_menubar = True
 
-	def add_action_like_a_boss(self, action_name, callback):
+	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect("activate", callback)
 		self.add_action(action)
 
 	def build_actions(self):
-		self.add_action_like_a_boss("new_window", self.on_new_window_activate)
-		self.add_action_like_a_boss("open", self.on_open_activate)
-		self.add_action_like_a_boss("settings", self.on_prefs_activate)
-		self.add_action_like_a_boss("shortcuts", self.on_shortcuts_activate)
-		self.add_action_like_a_boss("help", self.on_help_activate)
-		self.add_action_like_a_boss("about", self.on_about_activate)
-		self.add_action_like_a_boss("quit", self.on_quit)
+		self.add_action_simple("new_window", self.on_new_window_activate)
+		self.add_action_simple("open", self.on_open_activate)
+		self.add_action_simple("settings", self.on_prefs_activate)
+		self.add_action_simple("shortcuts", self.on_shortcuts_activate)
+		self.add_action_simple("help", self.on_help_activate)
+		self.add_action_simple("about", self.on_about_activate)
+		self.add_action_simple("quit", self.on_quit)
 
 	def add_accels(self):
 		self.set_accels_for_action("app.new_window", ["<Ctrl>n"])
