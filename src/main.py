@@ -42,11 +42,11 @@ class Application(Gtk.Application):
 		if not self.get_is_remote():
 			self.on_startup()
 
-		self.add_main_option("version", b"v", GLib.OptionFlags.NONE,
+		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
 							GLib.OptionArg.NONE, "Version", None)
 
 		self.connect('open', self.on_open_from_cli)
-		self.connect("handle-local-options", self.on_local_options)
+		self.connect('handle-local-options', self.on_local_options)
 
 	def on_startup(self):
 		self.build_actions()
@@ -65,7 +65,7 @@ class Application(Gtk.Application):
 		return 0
 
 	def on_local_options(self, app, options):
-		if options.contains("version"):
+		if options.contains('version'):
 			print("Drawing %s" % self.version)
 			exit(0)
 		return -1
@@ -87,14 +87,14 @@ class Application(Gtk.Application):
 
 	def build_app_menu(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
-		appmenu = builder.get_object("app-menu")
+		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		appmenu = builder.get_object('app-menu')
 		return appmenu
 
 	def build_menubar(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
-		menubar = builder.get_object("menu-bar")
+		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		menubar = builder.get_object('menu-bar')
 		return menubar
 
 	def add_tools_to_menubar(self, gio_menu):
@@ -105,49 +105,49 @@ class Application(Gtk.Application):
 
 	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
-		action.connect("activate", callback)
+		action.connect('activate', callback)
 		self.add_action(action)
 
 	def build_actions(self):
-		self.add_action_simple("new_window", self.on_new_window_activate)
-		self.add_action_simple("open", self.on_open_activate)
-		self.add_action_simple("settings", self.on_prefs_activate)
-		self.add_action_simple("shortcuts", self.on_shortcuts_activate)
-		self.add_action_simple("help", self.on_help_activate)
-		self.add_action_simple("about", self.on_about_activate)
-		self.add_action_simple("quit", self.on_quit)
+		self.add_action_simple('new_window', self.on_new_window_activate)
+		self.add_action_simple('open', self.on_open_activate)
+		self.add_action_simple('settings', self.on_prefs_activate)
+		self.add_action_simple('shortcuts', self.on_shortcuts_activate)
+		self.add_action_simple('help', self.on_help_activate)
+		self.add_action_simple('about', self.on_about_activate)
+		self.add_action_simple('quit', self.on_quit)
 
 	def add_accels(self):
-		self.set_accels_for_action("app.new_window", ["<Ctrl>n"])
-		self.set_accels_for_action("app.open", ["<Ctrl>o"])
-		self.set_accels_for_action("app.help", ["F1"])
-		self.set_accels_for_action("app.quit", ["<Ctrl>q"])
+		self.set_accels_for_action('app.new_window', ['<Ctrl>n'])
+		self.set_accels_for_action('app.open', ['<Ctrl>o'])
+		self.set_accels_for_action('app.help', ['F1'])
+		self.set_accels_for_action('app.quit', ['<Ctrl>q'])
 
 		# TODO mettre à jour la fentre qui résume ça
-		self.set_accels_for_action("win.main_color", ["<Ctrl>l"])
-		self.set_accels_for_action("win.secondary_color", ["<Ctrl>r"])
-		self.set_accels_for_action("win.exchange_color", ["<Ctrl>e"])
+		self.set_accels_for_action('win.main_color', ['<Ctrl>l'])
+		self.set_accels_for_action('win.secondary_color', ['<Ctrl>r'])
+		self.set_accels_for_action('win.exchange_color', ['<Ctrl>e'])
 
-		self.set_accels_for_action("win.import", ["<Ctrl>i"])
-		self.set_accels_for_action("win.paste", ["<Ctrl>v"])
-		self.set_accels_for_action("win.select_all", ["<Ctrl>a"])
-		self.set_accels_for_action("win.unselect", ["<Ctrl>u"])
+		self.set_accels_for_action('win.import', ['<Ctrl>i'])
+		self.set_accels_for_action('win.paste', ['<Ctrl>v'])
+		self.set_accels_for_action('win.select_all', ['<Ctrl>a'])
+		self.set_accels_for_action('win.unselect', ['<Ctrl>u'])
 
-		self.set_accels_for_action("win.cut", ["<Ctrl>x"])
-		self.set_accels_for_action("win.copy", ["<Ctrl>c"])
-		self.set_accels_for_action("win.selection_delete", ["<Ctrl>Delete"])
+		self.set_accels_for_action('win.cut', ['<Ctrl>x'])
+		self.set_accels_for_action('win.copy', ['<Ctrl>c'])
+		self.set_accels_for_action('win.selection_delete', ['<Ctrl>Delete'])
 
-		self.set_accels_for_action("win.main_menu", ["F10"])
-		self.set_accels_for_action("win.toggle_preview", ["<Ctrl>m"])
+		self.set_accels_for_action('win.main_menu', ['F10'])
+		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
-		self.set_accels_for_action("win.properties", ["<Ctrl>p"])
+		self.set_accels_for_action('win.properties', ['<Ctrl>p'])
 
-		self.set_accels_for_action("win.close", ["<Ctrl>w"])
-		self.set_accels_for_action("win.save", ["<Ctrl>s"])
-		self.set_accels_for_action("win.save_as", ["<Ctrl><Shift>s"])
+		self.set_accels_for_action('win.close', ['<Ctrl>w'])
+		self.set_accels_for_action('win.save', ['<Ctrl>s'])
+		self.set_accels_for_action('win.save_as', ['<Ctrl><Shift>s'])
 
-		self.set_accels_for_action("win.undo", ["<Ctrl>z"])
-		self.set_accels_for_action("win.redo", ["<Ctrl><Shift>z"])
+		self.set_accels_for_action('win.undo', ['<Ctrl>z'])
+		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
 	def on_about_activate(self, *args):
 		if self.about_dialog is None:
@@ -200,7 +200,7 @@ class Application(Gtk.Application):
 		self.prefs_window.present()
 
 	def on_help_activate(self, *args):
-		Gtk.show_uri(None, "help:drawing", Gdk.CURRENT_TIME)
+		Gtk.show_uri(None, 'help:drawing', Gdk.CURRENT_TIME)
 
 	def do_activate(self):
 		win = self.props.active_window

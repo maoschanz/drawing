@@ -17,35 +17,46 @@ class ToolPencil(ToolTemplate):
 		self._path = None
 		self.main_color = None
 
-		# Building the widget containing options
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/pencil.ui")
-		self.options_box = builder.get_object('options-menu')
-		self.dash_switch = builder.get_object("dash_switch")
-		radio_btn_1 = builder.get_object('radio_btn_1')
-		radio_btn_2 = builder.get_object('radio_btn_2')
-		radio_btn_3 = builder.get_object('radio_btn_3')
-		radio_btn_1.connect('clicked', self.on_option_changed, cairo.LineCap.ROUND)
-		radio_btn_2.connect('clicked', self.on_option_changed, cairo.LineCap.BUTT)
-		radio_btn_3.connect('clicked', self.on_option_changed, cairo.LineCap.SQUARE)
 		self.selected_shape_label = _("Round")
 		self.selected_shape_id = cairo.LineCap.ROUND
+		self.use_dashes = False
 
-		# TODO
-		model = builder.get_object('options-menu-beta')
-		self.options_box2 = Gtk.Popover.new_from_model(window.options_btn, model)
-		self.add_tool_action_enum('pencil_shape', 'round', self.osef)
-		self.add_tool_action_boolean('pencil_dashes', False, self.osef)
+		# Building the widget containing options
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/pencil.ui")
+		model = builder.get_object('options-menu')
+		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.add_tool_action_enum('pencil_shape', 'round', self.on_change_active_shape)
+		self.add_tool_action_boolean('pencil_dashes', False, self.set_dashes_state)
 
-	def osef(self, *args):
-		pass
+	def set_dashes_state(self, *args):
+		if not args[0].get_state():
+			self.use_dashes = True
+			args[0].set_state(GLib.Variant.new_boolean(True))
+		else:
+			self.use_dashes = False
+			args[0].set_state(GLib.Variant.new_boolean(False))
+
+	def on_change_active_shape(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		if state_as_string == 'thin':
+			self.selected_shape_id = cairo.LineCap.BUTT
+			self.selected_shape_label = _("Thin")
+		elif state_as_string == 'square':
+			self.selected_shape_id = cairo.LineCap.SQUARE
+			self.selected_shape_label = _("Square")
+		else:
+			self.selected_shape_id = cairo.LineCap.ROUND
+			self.selected_shape_label = _("Round")
 
 	def on_option_changed(self, *args):
 		self.selected_shape_label = args[0].get_label()
 		self.selected_shape_id = args[1]
 
 	def get_options_widget(self):
-		return self.options_box
-		# return self.options_box2
+		return self.options_menu
 
 	def get_options_label(self):
 		return self.selected_shape_label
@@ -57,7 +68,7 @@ class ToolPencil(ToolTemplate):
 		w_context.set_line_width(self.tool_width)
 		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
 				self.main_color.blue, self.main_color.alpha)
-		if self.dash_switch.get_active():
+		if self.use_dashes:
 			w_context.set_dash([2*self.tool_width, 2*self.tool_width])
 
 		if self.past_x == -1.0:

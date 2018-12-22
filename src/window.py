@@ -425,9 +425,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
 	def on_change_active_tool(self, *args):
-		if self is not self.app.props.active_window:
-			print('cela merdoie') # FIXME FIXME FIXME
-			return
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
