@@ -36,6 +36,8 @@ class DrawingPixbufManager():
 		self.selection_is_active = False
 		self.temp_x = 1
 		self.temp_y = 1
+		self.preview_x = 0
+		self.preview_y = 0
 
 		# INIT PIXBUFS AND SURFACES
 
@@ -90,7 +92,6 @@ class DrawingPixbufManager():
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 			self.surface.get_width(), self.surface.get_height())
 
-		# self.window.drawing_area.set_size(width, height) # XXX ?
 		if x != 0 or y != 0:
 			self.resize_main_surface(0, 0, width, height)
 
@@ -123,15 +124,51 @@ class DrawingPixbufManager():
 	def update_minimap(self):
 		w = self.preview_size
 		h = self.preview_size
-		if self.main_pixbuf.get_height() > self.main_pixbuf.get_width(): # TODO comparer la taille de full_pixbuf plutôt
+		if self.main_pixbuf.get_height() > self.main_pixbuf.get_width(): # TODO? comparer la taille de full_pixbuf plutôt?
 			w = self.preview_size * (self.main_pixbuf.get_width()/self.main_pixbuf.get_height())
 		else:
 			h = self.preview_size * (self.main_pixbuf.get_height()/self.main_pixbuf.get_width())
 		self.mini_pixbuf = self.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES) # full_pixbuf
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
-		self.window.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
+		# self.window.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
 		self.window.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
+
+		visible_width = min(self.window.drawing_area.get_allocated_width(), \
+			self.main_pixbuf.get_width() - self.preview_x)
+		visible_height = min(self.window.drawing_area.get_allocated_height(), \
+			self.main_pixbuf.get_height() - self.preview_y)
+		if self.window.drawing_area.get_allocated_width() < self.main_pixbuf.get_width() \
+		or self.window.drawing_area.get_allocated_height() < self.main_pixbuf.get_height():
+			mini_x = self.preview_x * self.mini_pixbuf.get_width()/self.main_pixbuf.get_width()
+			mini_y = self.preview_y * self.mini_pixbuf.get_height()/self.main_pixbuf.get_height()
+			mini_width = visible_width * self.mini_pixbuf.get_width()/self.main_pixbuf.get_width()
+			mini_height = visible_height * self.mini_pixbuf.get_height()/self.main_pixbuf.get_height()
+			self.show_rectangle_on_surface_at(self.mini_surface, mini_x, mini_y, \
+				mini_width + mini_x, mini_height + mini_y, False)
+		else:
+			print('todo : ignorer explicitement preview_x et preview_y')
 		self.window.minimap_area.queue_draw()
+
+	def on_minimap_press(self, x, y):
+		self.old_x = x
+		self.old_y = y
+
+	def on_minimap_release(self, x, y):
+		delta_x = x - self.old_x
+		delta_y = y - self.old_y
+		delta_x = delta_x * self.main_pixbuf.get_width()/self.mini_pixbuf.get_width()
+		delta_y = delta_y * self.main_pixbuf.get_height()/self.mini_pixbuf.get_height()
+		self.preview_x = int(self.preview_x + delta_x)
+		self.preview_y = int(self.preview_y + delta_y)
+		if self.preview_x < 0:
+			self.preview_x = 0
+		if self.preview_y < 0:
+			self.preview_y = 0
+		if self.preview_x + self.window.drawing_area.get_allocated_width() > self.main_pixbuf.get_width():
+			self.preview_x = self.main_pixbuf.get_width() - self.window.drawing_area.get_allocated_width()
+		if self.preview_y + self.window.drawing_area.get_allocated_height() > self.main_pixbuf.get_height():
+			self.preview_y = self.main_pixbuf.get_height() - self.window.drawing_area.get_allocated_height()
+		self.update_minimap()
 
 	def use_stable_pixbuf(self):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)

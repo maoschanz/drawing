@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: org.gnome.Draw 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-22 18:26+0100\n"
+"POT-Creation-Date: 2018-12-25 22:44+0100\n"
 "PO-Revision-Date: 2018-11-21 01:32+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Tool size"
 msgstr "Taille de l'outil"
 
-#: src/ui/window.ui:145
+#: src/ui/window.ui:145 src/tools.py:56
 msgid "No options"
 msgstr "Pas d'options"
 
@@ -124,7 +124,7 @@ msgid "Open an image"
 msgstr "Ouvrir une image"
 
 #: src/ui/shortcuts.ui:77 src/ui/menus.ui:189 src/ui/toolbar.ui:42
-#: src/window.py:521 src/window.py:542
+#: src/window.py:527 src/window.py:548
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -321,12 +321,12 @@ msgstr "_Outils"
 msgid "Open a picture"
 msgstr "Ouvrir une image"
 
-#: src/main.py:173 src/window.py:519 src/window.py:543 src/crop_dialog.py:33
+#: src/main.py:173 src/window.py:525 src/window.py:549 src/crop_dialog.py:33
 #: src/scale_dialog.py:34 src/tools/ui/text.ui:33 src/tools/select.py:180
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/main.py:175 src/window.py:546 src/tools/select.py:182
+#: src/main.py:175 src/window.py:552 src/tools/select.py:182
 msgid "All pictures"
 msgstr "Toutes les images"
 
@@ -334,51 +334,51 @@ msgstr "Toutes les images"
 msgid "Unsaved file"
 msgstr "Fichier non enregistré"
 
-#: src/window.py:484
+#: src/window.py:490
 msgid "Sorry, this picture is too big for this app!"
 msgstr "Désolé, cette image est trop grande pour cette application !"
 
-#: src/window.py:487
+#: src/window.py:493
 msgid "Edit it anyway"
 msgstr "Éditer quand même"
 
-#: src/window.py:488
+#: src/window.py:494
 msgid "Scale it"
 msgstr "Redimensionner"
 
-#: src/window.py:489
+#: src/window.py:495
 msgid "Crop it"
 msgstr "Recadrer"
 
-#: src/window.py:490
+#: src/window.py:496
 msgid "What would you prefer?"
 msgstr "Que préférez-vous ?"
 
-#: src/window.py:515 src/window.py:579
+#: src/window.py:521 src/window.py:585
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: src/window.py:520
+#: src/window.py:526
 msgid "Discard"
 msgstr "Abandonner"
 
-#: src/window.py:522
+#: src/window.py:528
 msgid "There are unsaved modifications to your drawing."
 msgstr "Il y a des modifications non-enregistrées à votre dessin."
 
-#: src/window.py:540
+#: src/window.py:546
 msgid "Save picture as…"
 msgstr "Enregistrer l'image sous…"
 
-#: src/window.py:552
+#: src/window.py:558
 msgid "PNG images"
 msgstr "Images PNG"
 
-#: src/window.py:556
+#: src/window.py:562
 msgid "JPEG images"
 msgstr "Images JPEG"
 
-#: src/window.py:560
+#: src/window.py:566
 msgid "BMP images"
 msgstr "Images BMP"
 
@@ -435,12 +435,12 @@ msgid "Lead shape"
 msgstr "Forme de mine"
 
 #: src/tools/ui/line.ui:26 src/tools/ui/pencil.ui:7 src/tools/line.py:27
-#: src/tools/line.py:61 src/tools/pencil.py:20 src/tools/pencil.py:52
+#: src/tools/line.py:61 src/tools/pencil.py:20 src/tools/pencil.py:62
 msgid "Round"
 msgstr "Ronde"
 
 #: src/tools/ui/line.ui:36 src/tools/ui/pencil.ui:17 src/tools/line.py:58
-#: src/tools/pencil.py:49
+#: src/tools/pencil.py:59
 msgid "Square"
 msgstr "Carrée"
 
@@ -448,9 +448,14 @@ msgstr "Carrée"
 msgid "Use dashes"
 msgstr "Utiliser des pointillés"
 
-#: src/tools/ui/pencil.ui:12 src/tools/pencil.py:46
+#: src/tools/ui/pencil.ui:12 src/tools/pencil.py:56
 msgid "Thin"
 msgstr "Fine"
+
+#: src/tools/ui/pencil.ui:30
+#, fuzzy
+msgid "Smooth drawing"
+msgstr "Tracé fluide"
 
 #: src/tools/ui/select.ui:87
 msgid "Properties"

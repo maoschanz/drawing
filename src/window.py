@@ -181,9 +181,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
 
 		self.handlers.append( self.minimap_area.connect('draw', self.on_minimap_draw) )
-		# self.handlers.append( self.minimap_area.connect('motion-notify-event', self.on_motion_on_area) )
-		# self.handlers.append( self.minimap_area.connect('button-press-event', self.on_press_on_area) )
-		# self.handlers.append( self.minimap_area.connect('button-release-event', self.on_release_on_area) )
+		# self.handlers.append( self.minimap_area.connect('motion-notify-event', self.on_minimap_motion) )
+		self.handlers.append( self.minimap_area.connect('button-press-event', self.on_minimap_press) )
+		self.handlers.append( self.minimap_area.connect('button-release-event', self.on_minimap_release) )
 
 		self.handlers.append( self.tools_panel.connect('size-allocate', self.update_tools_visibility) )
 		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
@@ -359,6 +359,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_minimap_draw(self, area, cairo_context):
 		cairo_context.set_source_surface(self._pixbuf_manager.mini_surface, 0, 0)
 		cairo_context.paint()
+
+	def on_minimap_press(self, area, event):
+		self._pixbuf_manager.on_minimap_press(event.x, event.y)
+
+	def on_minimap_release(self, area, event):
+		self._pixbuf_manager.on_minimap_release(event.x, event.y)
 
 	# TOOLS PANEL
 
