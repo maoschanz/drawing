@@ -455,7 +455,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# FILE MANAGEMENT
 
 	def get_file_path(self):
-		return self._pixbuf_manager.gfile.get_path()
+		return self.gfile.get_path()
 
 	def action_save(self, *args):
 		if self.gfile is None:

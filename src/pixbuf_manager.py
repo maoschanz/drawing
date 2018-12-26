@@ -27,8 +27,6 @@ class DrawingPixbufManager():
 		height = self.window._settings.get_int('default-height')
 		self.preview_size = self.window._settings.get_int('preview-size')
 
-		self.gfile = None
-
 		self.clipboard = None
 
 		self.selection_x = 1
