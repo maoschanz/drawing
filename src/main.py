@@ -180,7 +180,7 @@ class Application(Gtk.Application):
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			fn = file_chooser.get_filename()
-			if self.props.active_window.is_empty_picture():
+			if self.props.active_window._pixbuf_manager.is_empty_picture():
 				self.props.active_window.try_load_file(fn)
 			else:
 				win = self.on_new_window_activate()

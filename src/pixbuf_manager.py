@@ -27,6 +27,8 @@ class DrawingPixbufManager():
 		height = self.window._settings.get_int('default-height')
 		self.preview_size = self.window._settings.get_int('preview-size')
 
+		self.gfile = None
+
 		self.clipboard = None
 
 		self.selection_x = 1
@@ -52,6 +54,17 @@ class DrawingPixbufManager():
 
 		self.undo_history = []
 		self.redo_history = []
+
+	def is_empty_picture(self):
+		if self.gfile is None and not self.can_undo():
+			return True
+		else:
+			return False
+
+	def initial_save(self, fn):
+		self.gfile = Gio.File.new_for_path(fn)
+		self.use_stable_pixbuf()
+		self.update_minimap()
 
 	def load_main_from_filename(self, filename):
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)

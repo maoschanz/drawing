@@ -98,7 +98,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def init_instance_attributes(self):
 		self.handlers = []
-		self.gfile = None
 		self._is_saved = True
 		self.active_tool_id = 'pencil'
 		self.former_tool_id = 'pencil'
@@ -147,18 +146,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._pixbuf_manager.set_pixbuf_as_stable()
 		self._pixbuf_manager.update_minimap()
 
-	def is_empty_picture(self):
-		if self.gfile is None and not self._pixbuf_manager.can_undo():
-			return True
-		else:
-			return False
-
 	def initial_save(self, fn):
-		self.gfile = Gio.File.new_for_path(fn)
 		self.set_picture_title(fn)
 		self._is_saved = True
-		self._pixbuf_manager.use_stable_pixbuf()
-		self._pixbuf_manager.update_minimap()
+		self._pixbuf_manager.initial_save(fn)
 		self.lookup_action('open_with').set_enabled(True)
 
 	def action_close(self, *args):
@@ -455,13 +446,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# FILE MANAGEMENT
 
 	def get_file_path(self):
-		return self.gfile.get_path()
+		if self._pixbuf_manager.gfile is None:
+			return None
+		else:
+			return self._pixbuf_manager.gfile.get_path()
 
 	def action_save(self, *args):
-		if self.gfile is None:
+		fn = self.get_file_path()
+		if fn is None:
 			fn = self.run_save_file_chooser('')
-		else:
-			fn = self.get_file_path()
 		self.save_pixbuf_to_fn(fn)
 
 	def action_save_as(self, *args):
@@ -497,8 +490,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.show_all()
 			result = dialog.run()
 
-			if result == Gtk.ResponseType.APPLY: # Scale it # XXX ça scale beaucoup trop fort ??
-				self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, h, True)
+			if result == Gtk.ResponseType.APPLY: # Scale it
+				if pic_w/pic_h > w/h:
+					self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, -1, True)
+				else:
+					self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, -1, h, True)
 				self.initial_save(fn)
 			elif result == Gtk.ResponseType.YES: # Crop it
 				self._pixbuf_manager.load_main_from_filename(fn)
@@ -517,10 +513,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
-			if self.gfile is None:
+			fn = self.get_file_path()
+			if fn is None:
 				title_label = _("Untitled") + '.png'
 			else:
-				title_label = self.get_file_path().split('/')[-1]
+				title_label = fn.split('/')[-1]
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
 			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 			dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
