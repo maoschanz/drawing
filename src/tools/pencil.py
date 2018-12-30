@@ -18,7 +18,8 @@ class ToolPencil(ToolTemplate):
 		self.main_color = None
 
 		self.selected_shape_label = _("Round")
-		self.selected_shape_id = cairo.LineCap.ROUND
+		self.selected_cap_id = cairo.LineCap.ROUND
+		self.selected_join_id = cairo.LineCap.ROUND
 		self.use_dashes = False
 		self.is_smooth = True
 
@@ -27,8 +28,8 @@ class ToolPencil(ToolTemplate):
 		model = builder.get_object('options-menu')
 		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
 		self.add_tool_action_enum('pencil_shape', 'round', self.on_change_active_shape)
-		self.add_tool_action_boolean('pencil_dashes', False, self.set_dashes_state)
-		self.add_tool_action_boolean('pencil_smooth', False, self.set_smooth_state)
+		self.add_tool_action_boolean('pencil_dashes', self.use_dashes, self.set_dashes_state)
+		self.add_tool_action_boolean('pencil_smooth', self.is_smooth, self.set_smooth_state)
 
 	def set_smooth_state(self, *args):
 		if not args[0].get_state():
@@ -52,13 +53,16 @@ class ToolPencil(ToolTemplate):
 			return
 		args[0].set_state(GLib.Variant.new_string(state_as_string))
 		if state_as_string == 'thin':
-			self.selected_shape_id = cairo.LineCap.BUTT
+			self.selected_cap_id = cairo.LineCap.BUTT
+			self.selected_join_id = cairo.LineJoin.BEVEL
 			self.selected_shape_label = _("Thin")
 		elif state_as_string == 'square':
-			self.selected_shape_id = cairo.LineCap.SQUARE
+			self.selected_cap_id = cairo.LineCap.SQUARE
+			self.selected_join_id = cairo.LineJoin.MITER
 			self.selected_shape_label = _("Square")
 		else:
-			self.selected_shape_id = cairo.LineCap.ROUND
+			self.selected_cap_id = cairo.LineCap.ROUND
+			self.selected_join_id = cairo.LineJoin.ROUND
 			self.selected_shape_label = _("Round")
 
 	def get_options_widget(self):
@@ -71,7 +75,8 @@ class ToolPencil(ToolTemplate):
 		if self.is_smooth:
 			self.restore_pixbuf()
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_cap(self.selected_shape_id)
+		w_context.set_line_cap(self.selected_cap_id)
+		w_context.set_line_join(self.selected_join_id)
 		w_context.set_line_width(self.tool_width)
 		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
 				self.main_color.blue, self.main_color.alpha)
@@ -85,14 +90,6 @@ class ToolPencil(ToolTemplate):
 			w_context.line_to(event.x, event.y)
 			w_context.stroke()
 		else:
-			w_context = cairo.Context(self.window.get_surface())
-			w_context.set_line_cap(self.selected_shape_id)
-			w_context.set_line_width(self.tool_width)
-			w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-					self.main_color.blue, self.main_color.alpha)
-			if self.use_dashes:
-				w_context.set_dash([2*self.tool_width, 2*self.tool_width])
-
 			if self.past_x == -1.0:
 				(self.past_x, self.past_y) = (self.x_press, self.y_press)
 				w_context.move_to(self.x_press, self.y_press)

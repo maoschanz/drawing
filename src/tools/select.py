@@ -1,7 +1,9 @@
 # select.py
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
+
+from .crop_dialog import DrawingCropDialog
 
 from .tools import ToolTemplate
 
@@ -15,7 +17,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action('cut', self.action_cut)
 		self.add_tool_action('copy', self.action_copy)
 		self.add_tool_action('selection_delete', self.action_selection_delete)
-		# self.add_tool_action('selection_crop', self.action_selection_crop)
+		self.add_tool_action('selection_crop', self.action_selection_crop)
 		self.add_tool_action('selection_resize', self.action_selection_resize)
 		# self.add_tool_action('selection_rotate', self.action_selection_rotate)
 		self.add_tool_action('selection_export', self.action_selection_export)
@@ -29,6 +31,8 @@ class ToolSelect(ToolTemplate):
 		self.y_press = 0.0
 		self.past_x = [-1, -1]
 		self.past_y = [-1, -1]
+		self.selected_type_id = 'rectangle'
+		self.selected_type_label = _("Rectangle")
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/select.ui')
 		menu_r = builder.get_object('right-click-menu')
@@ -42,11 +46,24 @@ class ToolSelect(ToolTemplate):
 		model = builder.get_object('options-menu')
 		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
 
-		self.add_tool_action_enum('selection_type', 'rectangle', self.osef)
+		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
 		self.add_tool_action_boolean('selection_exclude', False, self.osef)
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
+
+	def on_change_active_type(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		if state_as_string == 'rectangle':
+			self.selected_type_id = 'rectangle'
+			self.selected_type_label = _("Rectangle")
+		else:
+			self.selected_type_id = 'freehand'
+			self.selected_type_label = _("Freehand")
+		self.give_back_control()
 
 	def osef(self, *args): # TODO XXX
 		pass
@@ -75,16 +92,16 @@ class ToolSelect(ToolTemplate):
 			self.window._pixbuf_manager.selection_y = self.rightc_popover.get_pointing_to()[1].y
 			self.rightc_popover.popup()
 
-	def on_motion_on_area(self, area, event, surface):
-		pass
+	# def on_motion_on_area(self, area, event, surface):
+	# 	pass
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		print("press")
 		area.grab_focus()
 		self.x_press = event.x
 		self.y_press = event.y
-		self.left_color = left_color
-		self.right_color = right_color
+		self.left_color = left_color # TODO
+		self.right_color = right_color # TODO
 
 	def on_release_on_area(self, area, event, surface):
 		print("release") # TODO à main levée c'est juste un crayon avec close_path() après
@@ -98,7 +115,7 @@ class ToolSelect(ToolTemplate):
 			self.rightc_popover.set_relative_to(area)
 			self.show_popover(True)
 			return
-		else:
+		elif self.selected_type_id == 'rectangle':
 			# If nothing is selected (only -1), coordinates should be memorized, but
 			# if something is already selected, the selection should be cancelled (the
 			# action is performed outside of the current selection), or stay the same
@@ -117,6 +134,23 @@ class ToolSelect(ToolTemplate):
 			else:
 				self.give_back_control()
 				return
+		elif self.selected_type_id == 'freehand':
+			if not self.window._pixbuf_manager.selection_is_active:
+				print('selection is not active')
+				self.selection_popover.set_relative_to(area)
+				[finished, selection_path] = self.draw_polygon(event)
+				if finished:
+					self.restore_pixbuf()
+					self.window._pixbuf_manager.create_free_selection_from_main(selection_path)
+					if self.window._pixbuf_manager.selection_is_active:
+						self.draw_selection_area(True)
+					(self.x_press, self.y_press) = (-1.0, -1.0)
+					self.past_x = [-1, -1]
+					self.past_y = [-1, -1]
+			elif self.window._pixbuf_manager.point_is_in_selection(self.x_press, self.y_press):
+				self.drag_to(event.x, event.y)
+			else:
+				self.give_back_control()
 
 	def get_center_of_selection(self):
 		x = self.window._pixbuf_manager.selection_x + \
@@ -136,7 +170,7 @@ class ToolSelect(ToolTemplate):
 		if self.past_y[0] > self.past_y[1]:
 			y0 = self.past_y[1]
 			y1 = self.past_y[0]
-		self.window._pixbuf_manager.create_selection_from_main(x0, y0, x1, y1)
+		self.window._pixbuf_manager.create_rectangle_selection_from_main(x0, y0, x1, y1)
 
 	def draw_selection_area(self, show):
 		self.row.set_active(True)
@@ -228,10 +262,68 @@ class ToolSelect(ToolTemplate):
 		self.window.scale_pixbuf(True)
 
 	def action_selection_crop(self, *args): # TODO
-		print("selection_crop")
+		crop_dialog = DrawingCropDialog(self.window, True, True)
+		result = crop_dialog.run()
+		if result == Gtk.ResponseType.APPLY:
+			crop_dialog.on_apply()
+		else:
+			crop_dialog.on_cancel()
 
 	def action_selection_rotate(self, *args): # TODO
 		print("selection_rotate")
 
 	def action_selection_export(self, *args):
 		self.window._pixbuf_manager.export_selection_as()
+
+	def draw_polygon(self, event):
+		w_context = cairo.Context(self.window.get_surface())
+		w_context.set_line_width(self.tool_width)
+
+		if self.past_x[0] == -1:
+			self.init_polygon(w_context)
+		else:
+			w_context.append_path(self._path)
+
+		if self.past_x[0] != -1 and self.past_y[0] != -1 \
+		and (max(event.x, self.past_x[0]) - min(event.x, self.past_x[0]) < self.tool_width) \
+		and (max(event.y, self.past_y[0]) - min(event.y, self.past_y[0]) < self.tool_width):
+			selection_path = self.finish_polygon(w_context)
+			return True, selection_path
+		else:
+			self.continue_polygon(w_context, event.x, event.y)
+			return False, None
+
+	def init_polygon(self, w_context):
+		(self.past_x[0], self.past_y[0]) = (self.x_press, self.y_press)
+		w_context.move_to(self.x_press, self.y_press)
+		self._path = w_context.copy_path()
+
+	def continue_polygon(self, w_context, x, y):
+		w_context.line_to(x, y)
+		w_context.stroke_preserve() # draw the line without closing the path
+		self._path = w_context.copy_path()
+		self.non_destructive_show_modif()
+
+	def finish_polygon(self, w_context):
+		w_context.close_path()
+		w_context.stroke_preserve()
+		selection_path = w_context.copy_path()
+		return selection_path
+		# w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+		# 	self.main_color.blue, self.main_color.alpha)
+		# if self.selected_style_id == 'filled':
+		# 	w_context.fill()
+		# elif self.selected_style_id == 'secondary':
+		# 	w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
+		# 		self.secondary_color.blue, self.secondary_color.alpha)
+		# 	w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
+		# 	w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+		# 		self.main_color.blue, self.main_color.alpha)
+		# 	w_context.stroke()
+		# else:
+		# 	w_context.stroke()
+
+	def on_motion_on_area(self, area, event, surface):
+		if self.selected_type_id == 'freehand':
+			self.restore_pixbuf()
+			self.draw_polygon(event)

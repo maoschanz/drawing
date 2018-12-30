@@ -22,13 +22,18 @@ import cairo
 class DrawingCropDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingCropDialog'
 
-	def __init__(self, window, o_width, o_height, forbid_growth):
+	def __init__(self, window, forbid_growth, crop_selection): # TODO se débarasser de o_width et o_height
 		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
 		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Crop the picture"), transient_for=window)
 		self._window = window
-		self.original_width = o_width
-		self.original_height = o_height
-		self.forbid_growth = forbid_growth
+		self.forbid_growth = forbid_growth and crop_selection
+		self.crop_selection = crop_selection
+		if self.crop_selection:
+			self.original_width = self._window._pixbuf_manager.selection_pixbuf.get_width()
+			self.original_height = self._window._pixbuf_manager.selection_pixbuf.get_height()
+		else:
+			self.original_width = self._window.get_pixbuf_width()
+			self.original_height = self._window.get_pixbuf_height()
 
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		self.add_button(_("Apply"), Gtk.ResponseType.APPLY)
@@ -44,11 +49,26 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.preview.connect('draw', self.on_draw)
 		self.preview.connect('button-press-event', self.on_press)
 		self.preview.connect('button-release-event', self.on_release)
-		if self._window.get_pixbuf_width() > self._window.get_pixbuf_height():
-			w = 500
-			h = 500*(self._window.get_pixbuf_height()/self._window.get_pixbuf_width())
+		if self.crop_selection:
+			self.build_preview_for_selection()
 		else:
-			w = 500*(self._window.get_pixbuf_width()/self._window.get_pixbuf_height())
+			self.build_preview_for_main()
+		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
+		preview_btn.connect('clicked', self.on_preview)
+		if wants_csd:
+			self.get_header_bar().pack_end(preview_btn)
+		else:
+			self.get_action_area().add(preview_btn)
+
+		self.show_all()
+		self.set_resizable(False)
+
+	def build_preview_for_main(self):
+		if self.original_width > self.original_height:
+			w = 500
+			h = 500*(self.original_height/self.original_width)
+		else:
+			w = 500*(self.original_width/self.original_height)
 			h = 500
 		self.pixbuf = self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
@@ -64,20 +84,30 @@ class DrawingCropDialog(Gtk.Dialog):
 			w = self._window.drawing_area.get_allocated_width()
 			h = self._window.drawing_area.get_allocated_height()
 		else:
-			w = self._window.get_pixbuf_width()
-			h = self._window.get_pixbuf_height()
+			w = self.original_width
+			h = self.original_height
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
 
-		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
-		preview_btn.connect('clicked', self.on_preview)
-		if wants_csd:
-			self.get_header_bar().pack_end(preview_btn)
+	def build_preview_for_selection(self):
+		if self.original_width > self.original_height:
+			w = 500
+			h = 500*(self.original_height/self.original_width)
 		else:
-			self.get_action_area().add(preview_btn)
+			w = 500*(self.original_height/self.original_width)
+			h = 500
+		self.pixbuf = self._window._pixbuf_manager.selection_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
+		self.preview.set_size_request(self.surface.get_width(), self.surface.get_height())
 
-		self.show_all()
-		self.set_resizable(False)
+		self.width_btn.connect('value-changed', self.on_width_changed)
+		self.height_btn.connect('value-changed', self.on_height_changed)
+		self._x = 0
+		self._y = 0
+		self.width_btn.set_range(1, self.original_width)
+		self.height_btn.set_range(1, self.original_height)
+		self.width_btn.set_value(self.original_width)
+		self.height_btn.set_value(self.original_height)
 
 	def on_preview(self, *args):
 		pass # TODO
@@ -87,8 +117,14 @@ class DrawingCropDialog(Gtk.Dialog):
 		y = self._y
 		width = self.get_width()
 		height = self.get_height()
-		self._window._pixbuf_manager.resize_main_surface(x, y, width, height)
-		self._window._pixbuf_manager.on_tool_finished()
+		if self.crop_selection:
+			self._window._pixbuf_manager.crop_selection_surface(x, y, width, height)
+			self._window._pixbuf_manager.selection_x += x
+			self._window._pixbuf_manager.selection_y += y
+			self._window._pixbuf_manager.show_selection_rectangle()
+		else:
+			self._window._pixbuf_manager.crop_main_surface(x, y, width, height)
+			self._window._pixbuf_manager.on_tool_finished()
 		self.destroy()
 
 	def on_cancel(self, *args):

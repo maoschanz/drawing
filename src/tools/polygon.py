@@ -101,6 +101,8 @@ class ToolPolygon(ToolTemplate):
 
 	def finish_polygon(self, w_context):
 		w_context.close_path()
+		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+			self.main_color.blue, self.main_color.alpha)
 		if self.selected_style_id == 'filled':
 			w_context.fill()
 		elif self.selected_style_id == 'secondary':

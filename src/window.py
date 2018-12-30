@@ -242,7 +242,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.lookup_action('cut').set_enabled(state)
 		self.lookup_action('copy').set_enabled(state)
 		self.lookup_action('selection_delete').set_enabled(state)
-		# self.lookup_action('selection_crop').set_enabled(state)
+		self.lookup_action('selection_crop').set_enabled(state)
 		self.lookup_action('selection_resize').set_enabled(state)
 		# self.lookup_action('selection_rotate').set_enabled(state)
 		self.lookup_action('selection_export').set_enabled(state)
@@ -476,9 +476,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# limitations of cairo make impossible to zoom out, or to scroll.
 		w = self.drawing_area.get_allocated_width()
 		h = self.drawing_area.get_allocated_height()
-		temp = GdkPixbuf.Pixbuf.new_from_file(fn)
-		pic_w = temp.get_width()
-		pic_h = temp.get_height()
+		self._pixbuf_manager.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
+		pic_w = self._pixbuf_manager.selection_pixbuf.get_width()
+		pic_h = self._pixbuf_manager.selection_pixbuf.get_height()
 		if (w < pic_w) or (h < pic_h):
 			title_label = _("Sorry, this picture is too big for this app!")
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
@@ -498,7 +498,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.initial_save(fn)
 			elif result == Gtk.ResponseType.YES: # Crop it
 				self._pixbuf_manager.load_main_from_filename(fn)
-				crop_dialog = DrawingCropDialog(self, pic_w, pic_h, True)
+				crop_dialog = DrawingCropDialog(self, True, True)
 				result2 = crop_dialog.run()
 				if result2 == Gtk.ResponseType.APPLY:
 					self.initial_save(fn)
@@ -686,8 +686,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		DrawingPropertiesDialog(self)
 
 	def action_crop(self, *args):
-		crop_dialog = DrawingCropDialog(self, self._pixbuf_manager.surface.get_width(), \
-			self._pixbuf_manager.surface.get_height(), False)
+		crop_dialog = DrawingCropDialog(self, False, False)
 		result = crop_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
 			crop_dialog.on_apply()

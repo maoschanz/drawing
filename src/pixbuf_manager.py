@@ -84,7 +84,7 @@ class DrawingPixbufManager():
 		if file_path is not None:
 			self.main_pixbuf.savev(file_path, file_format, [None], [])
 
-	def resize_main_surface(self, x, y, width, height):
+	def crop_main_surface(self, x, y, width, height):
 		x = int(x)
 		y = int(y)
 		width = int(width)
@@ -104,7 +104,23 @@ class DrawingPixbufManager():
 			self.surface.get_width(), self.surface.get_height())
 
 		if x != 0 or y != 0:
-			self.resize_main_surface(0, 0, width, height)
+			self.crop_main_surface(0, 0, width, height)
+
+	def crop_selection_surface(self, x, y, width, height):
+		x = int(x)
+		y = int(y)
+		width = int(width)
+		height = int(height)
+		if self.selection_pixbuf is None:
+			return
+		selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
+
+		# The cairo.Surface.map_to_image method works only when reducing the size,
+		# but the selection can not grow form this method.
+		selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
+		selection_surface = selection_surface.map_to_image(cairo.RectangleInt(x, y, width, height))
+		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(selection_surface, 0, 0, \
+			selection_surface.get_width(), selection_surface.get_height())
 
 	def on_tool_finished(self):
 		self.undo_history.append(self.main_pixbuf.copy())
@@ -227,7 +243,31 @@ class DrawingPixbufManager():
 		self.show_selection_rectangle()
 		self.create_selection_from_selection()
 
-	def create_selection_from_main(self, x0, y0, x1, y1):
+	def create_free_selection_from_main(self, cairo_path):
+		self.selection_pixbuf = self.main_pixbuf.copy()
+		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
+		w_context = cairo.Context(surface)
+		w_context.new_path()
+		w_context.append_path(cairo_path)
+
+		xmin, ymin = surface.get_width(), surface.get_height()
+		xmax, ymax = 0.0, 0.0
+		for pts in cairo_path:
+			if pts[1] is not ():
+				xmin = min(pts[1][0], xmin)
+				xmax = max(pts[1][0], xmax)
+				ymin = min(pts[1][1], ymin)
+				ymax = max(pts[1][1], ymax)
+		self.crop_selection_surface(xmin, ymin, xmax - xmin, ymax - ymin)
+		self.selection_x = xmin
+		self.selection_y = ymin
+
+		w_context.set_operator(cairo.Operator.DEST_IN) # FIXME ???
+		w_context.fill()
+		w_context.set_operator(cairo.Operator.OVER)
+		self.set_temp()
+
+	def create_rectangle_selection_from_main(self, x0, y0, x1, y1):
 		w = int(x1 - x0)
 		h = int(y1 - y0)
 		if w <= 0 or h <= 0:
@@ -285,7 +325,7 @@ class DrawingPixbufManager():
 		w_context = cairo.Context(surface)
 		if dashed:
 			w_context.set_dash([3, 3])
-		# TODO assert que les coordonées soient bien dans la surface
+		# TODO assert que les coordonnées soient bien dans la surface
 		w_context.move_to(x1-1, y1-1)
 		w_context.line_to(x1-1, y0+1)
 		w_context.line_to(x0+1, y0+1)
