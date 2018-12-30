@@ -18,6 +18,9 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
+# This object contains methods related to pixbufs and cairo surfaces manipulation.
+# It includes everything related to the history, the selection, the clipboard,
+# resizing pictures or scaling or rotating them.
 class DrawingPixbufManager():
 
 	def __init__(self, window):
@@ -28,7 +31,6 @@ class DrawingPixbufManager():
 		self.preview_size = self.window._settings.get_int('preview-size')
 
 		self.gfile = None
-
 		self.clipboard = None
 
 		self.selection_x = 1

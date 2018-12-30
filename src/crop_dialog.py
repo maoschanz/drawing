@@ -22,11 +22,11 @@ import cairo
 class DrawingCropDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingCropDialog'
 
-	def __init__(self, window, forbid_growth, crop_selection): # TODO se débarasser de o_width et o_height
+	def __init__(self, window, forbid_growth, crop_selection):
 		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
 		super().__init__(modal=True, use_header_bar=wants_csd, title=_("Crop the picture"), transient_for=window)
 		self._window = window
-		self.forbid_growth = forbid_growth and crop_selection
+		self.forbid_growth = forbid_growth or crop_selection
 		self.crop_selection = crop_selection
 		if self.crop_selection:
 			self.original_width = self._window._pixbuf_manager.selection_pixbuf.get_width()

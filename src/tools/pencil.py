@@ -21,7 +21,6 @@ class ToolPencil(ToolTemplate):
 		self.selected_cap_id = cairo.LineCap.ROUND
 		self.selected_join_id = cairo.LineCap.ROUND
 		self.use_dashes = False
-		self.is_smooth = True
 
 		# Building the widget containing options
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/pencil.ui")
@@ -29,15 +28,6 @@ class ToolPencil(ToolTemplate):
 		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
 		self.add_tool_action_enum('pencil_shape', 'round', self.on_change_active_shape)
 		self.add_tool_action_boolean('pencil_dashes', self.use_dashes, self.set_dashes_state)
-		self.add_tool_action_boolean('pencil_smooth', self.is_smooth, self.set_smooth_state)
-
-	def set_smooth_state(self, *args):
-		if not args[0].get_state():
-			self.is_smooth = True
-			args[0].set_state(GLib.Variant.new_boolean(True))
-		else:
-			self.is_smooth = False
-			args[0].set_state(GLib.Variant.new_boolean(False))
 
 	def set_dashes_state(self, *args):
 		if not args[0].get_state():
@@ -72,8 +62,7 @@ class ToolPencil(ToolTemplate):
 		return self.selected_shape_label
 
 	def on_motion_on_area(self, area, event, surface):
-		if self.is_smooth:
-			self.restore_pixbuf()
+		self.restore_pixbuf()
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_cap(self.selected_cap_id)
 		w_context.set_line_join(self.selected_join_id)
@@ -82,24 +71,15 @@ class ToolPencil(ToolTemplate):
 				self.main_color.blue, self.main_color.alpha)
 		if self.use_dashes:
 			w_context.set_dash([2*self.tool_width, 2*self.tool_width])
-
-		if not self.is_smooth:
-			if self.past_x == -1.0:
-				(self.past_x, self.past_y) = (self.x_press, self.y_press)
-			w_context.move_to(self.past_x, self.past_y)
-			w_context.line_to(event.x, event.y)
-			w_context.stroke()
-		else:
-			if self.past_x == -1.0:
-				(self.past_x, self.past_y) = (self.x_press, self.y_press)
-				w_context.move_to(self.x_press, self.y_press)
-				self._path = w_context.copy_path()
-			else:
-				w_context.append_path(self._path)
-
-			w_context.line_to(event.x, event.y)
-			w_context.stroke_preserve() # draw the line without closing the path
+		if self.past_x == -1.0:
+			(self.past_x, self.past_y) = (self.x_press, self.y_press)
+			w_context.move_to(self.x_press, self.y_press)
 			self._path = w_context.copy_path()
+		else:
+			w_context.append_path(self._path)
+		w_context.line_to(event.x, event.y)
+		w_context.stroke_preserve() # draw the line without closing the path
+		self._path = w_context.copy_path()
 		self.non_destructive_show_modif()
 		self.past_x = event.x
 		self.past_y = event.y

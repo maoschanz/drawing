@@ -248,7 +248,7 @@ class ToolSelect(ToolTemplate):
 		self.give_back_control()
 		self.non_destructive_show_modif()
 
-	def action_cancel_select(self, *args): # TODO utile à connecter quelque part ?
+	def action_cancel_select(self, *args): # TODO utile à connecter quelque part ? XXX le ctrl+z merdoie du coup
 		self.window._pixbuf_manager.reset_selection()
 		self.show_popover(False)
 		self.non_destructive_show_modif()
@@ -261,7 +261,7 @@ class ToolSelect(ToolTemplate):
 	def action_selection_resize(self, *args):
 		self.window.scale_pixbuf(True)
 
-	def action_selection_crop(self, *args): # TODO
+	def action_selection_crop(self, *args):
 		crop_dialog = DrawingCropDialog(self.window, True, True)
 		result = crop_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
@@ -309,19 +309,6 @@ class ToolSelect(ToolTemplate):
 		w_context.stroke_preserve()
 		selection_path = w_context.copy_path()
 		return selection_path
-		# w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-		# 	self.main_color.blue, self.main_color.alpha)
-		# if self.selected_style_id == 'filled':
-		# 	w_context.fill()
-		# elif self.selected_style_id == 'secondary':
-		# 	w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-		# 		self.secondary_color.blue, self.secondary_color.alpha)
-		# 	w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
-		# 	w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-		# 		self.main_color.blue, self.main_color.alpha)
-		# 	w_context.stroke()
-		# else:
-		# 	w_context.stroke()
 
 	def on_motion_on_area(self, area, event, surface):
 		if self.selected_type_id == 'freehand':
