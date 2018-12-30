@@ -248,10 +248,6 @@ class DrawingPixbufManager():
 	def create_free_selection_from_main(self, cairo_path):
 		self.selection_pixbuf = self.main_pixbuf.copy()
 		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
-		w_context = cairo.Context(surface)
-		w_context.new_path()
-		w_context.append_path(cairo_path)
-
 		xmin, ymin = surface.get_width(), surface.get_height()
 		xmax, ymax = 0.0, 0.0
 		for pts in cairo_path:
@@ -260,34 +256,54 @@ class DrawingPixbufManager():
 				xmax = max(pts[1][0], xmax)
 				ymin = min(pts[1][1], ymin)
 				ymax = max(pts[1][1], ymax)
+		xmax = min(xmax, surface.get_width())
+		ymax = min(ymax, surface.get_height())
+		xmin = max(xmin, 0.0)
+		ymin = max(ymin, 0.0)
 		self.crop_selection_surface(xmin, ymin, xmax - xmin, ymax - ymin)
 		self.selection_x = xmin
 		self.selection_y = ymin
-
-		w_context.set_operator(cairo.Operator.DEST_IN) # FIXME ???
+		w_context = cairo.Context(surface)
+		w_context.set_operator(cairo.Operator.DEST_IN)
+		w_context.new_path()
+		w_context.append_path(cairo_path)
 		w_context.fill()
 		w_context.set_operator(cairo.Operator.OVER)
-		self.set_temp()
+		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, xmin, ymin, \
+			xmax - xmin, ymax - ymin)
+		self.set_temp(cairo_path)
 
 	def create_rectangle_selection_from_main(self, x0, y0, x1, y1):
-		w = int(x1 - x0)
-		h = int(y1 - y0)
+		x0 = int(x0)
+		x1 = int(x1)
+		y0 = int(y0)
+		y1 = int(y1)
+		w = x1 - x0
+		h = y1 - y0
 		if w <= 0 or h <= 0:
 			return
-		self.selection_x = int(x0)
-		self.selection_y = int(y0)
+		self.selection_x = x0
+		self.selection_y = y0
 		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(int(x0), int(y0), w, h))
+		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(x0, y0, w, h))
 		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(temp_surface, 0, 0, \
 			temp_surface.get_width(), temp_surface.get_height())
-		self.set_temp()
+		w_context = cairo.Context(self.surface)
+		w_context.move_to(x0, y0)
+		w_context.line_to(x1, y0)
+		w_context.line_to(x1, y1)
+		w_context.line_to(x0, y1)
+		w_context.close_path()
+		selection_path = w_context.copy_path()
+		self.set_temp(selection_path)
 
 	def create_selection_from_selection(self):
 		self.selection_is_active = True
 		self.temp_pixbuf = None
 		self.update_selection_actions()
 
-	def set_temp(self):
+	def set_temp(self, selection_path):
+		self._path = selection_path
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
 		self.temp_pixbuf = self.selection_pixbuf.copy()
@@ -297,16 +313,9 @@ class DrawingPixbufManager():
 	def delete_temp(self):
 		if self.temp_pixbuf is None:
 			return
-		x0 = self.temp_x
-		y0 = self.temp_y
-		x1 = x0 + self.temp_pixbuf.get_width()
-		y1 = y0 + self.temp_pixbuf.get_height()
 		w_context = cairo.Context(self.surface)
-		w_context.move_to(x1, y1)
-		w_context.line_to(x1, y0)
-		w_context.line_to(x0, y0)
-		w_context.line_to(x0, y1)
-		w_context.close_path()
+		w_context.new_path()
+		w_context.append_path(self._path)
 		w_context.clip()
 		w_context.set_operator(cairo.Operator.CLEAR)
 		w_context.paint()
@@ -356,7 +365,14 @@ class DrawingPixbufManager():
 		self.selection_x = 0
 		self.selection_y = 0
 		self.selection_pixbuf = self.main_pixbuf.copy()
-		self.set_temp()
+		w_context = cairo.Context(self.surface)
+		w_context.move_to(0, 0)
+		w_context.line_to(self.main_pixbuf.get_width(), 0)
+		w_context.line_to(self.main_pixbuf.get_width(), self.main_pixbuf.get_height())
+		w_context.line_to(0, self.main_pixbuf.get_height())
+		w_context.close_path()
+		selection_path = w_context.copy_path()
+		self.set_temp(selection_path)
 		self.show_selection_rectangle()
 
 	def export_selection_as(self):

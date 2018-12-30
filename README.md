@@ -12,21 +12,24 @@ PNG, JPEG and BMP files are supported.
 - Shape
     - Rectangle
     - Circle
-    - Ellipsis
+    - Oval
 - Polygon
-- Line & arc
+- Line, arc, arrow, dashes
 - Text
 - Eraser
-- Selection
+- Selection (rectangle or free shape)
     - Drag
     - Cut/copy
     - Paste/import from
     - Resize
+    - Crop
     - Export to
 
 #### Future tools ?
 
 - Painting
+- Brush
+- Gradient
 
 ## Installation
 
