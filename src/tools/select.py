@@ -10,6 +10,8 @@ from .tools import ToolTemplate
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
+	closing_precision = 10
+
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
 
@@ -97,7 +99,7 @@ class ToolSelect(ToolTemplate):
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
 		print("press")
-		area.grab_focus()
+		# area.grab_focus() # TODO ??
 		self.x_press = event.x
 		self.y_press = event.y
 		self.left_color = left_color # TODO
@@ -277,7 +279,8 @@ class ToolSelect(ToolTemplate):
 
 	def draw_polygon(self, event):
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_width(self.tool_width)
+		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+		w_context.set_dash([3, 3])
 
 		if self.past_x[0] == -1:
 			self.init_polygon(w_context)
@@ -285,8 +288,8 @@ class ToolSelect(ToolTemplate):
 			w_context.append_path(self._path)
 
 		if self.past_x[0] != -1 and self.past_y[0] != -1 \
-		and (max(event.x, self.past_x[0]) - min(event.x, self.past_x[0]) < self.tool_width) \
-		and (max(event.y, self.past_y[0]) - min(event.y, self.past_y[0]) < self.tool_width):
+		and (max(event.x, self.past_x[0]) - min(event.x, self.past_x[0]) < self.closing_precision) \
+		and (max(event.y, self.past_y[0]) - min(event.y, self.past_y[0]) < self.closing_precision):
 			selection_path = self.finish_polygon(w_context)
 			return True, selection_path
 		else:
@@ -299,7 +302,7 @@ class ToolSelect(ToolTemplate):
 		self._path = w_context.copy_path()
 
 	def continue_polygon(self, w_context, x, y):
-		w_context.line_to(x, y)
+		w_context.line_to(int(x), int(y))
 		w_context.stroke_preserve() # draw the line without closing the path
 		self._path = w_context.copy_path()
 		self.non_destructive_show_modif()
@@ -311,6 +314,7 @@ class ToolSelect(ToolTemplate):
 		return selection_path
 
 	def on_motion_on_area(self, area, event, surface):
-		if self.selected_type_id == 'freehand':
-			self.restore_pixbuf()
-			self.draw_polygon(event)
+		if not self.window._pixbuf_manager.selection_is_active:
+			if self.selected_type_id == 'freehand':
+				self.restore_pixbuf()
+				self.draw_polygon(event)

@@ -28,6 +28,7 @@ from .text import ToolText
 from .picker import ToolPicker
 from .shape import ToolShape
 from .eraser import ToolEraser
+from .experiment import ToolExperiment
 from .polygon import ToolPolygon
 
 from .pixbuf_manager import DrawingPixbufManager
@@ -116,6 +117,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['picker'] = ToolPicker(self)
 		if self._settings.get_boolean('experimental'):
 			self.tools['paint'] = ToolPaint(self)
+			self.tools['experiment'] = ToolExperiment(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)

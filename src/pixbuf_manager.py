@@ -35,6 +35,7 @@ class DrawingPixbufManager():
 
 		self.selection_x = 1
 		self.selection_y = 1
+		self._path = None
 		self.selection_is_active = False
 		self.temp_x = 1
 		self.temp_y = 1
@@ -172,8 +173,14 @@ class DrawingPixbufManager():
 			mini_y = self.preview_y * self.mini_pixbuf.get_height()/self.main_pixbuf.get_height()
 			mini_width = visible_width * self.mini_pixbuf.get_width()/self.main_pixbuf.get_width()
 			mini_height = visible_height * self.mini_pixbuf.get_height()/self.main_pixbuf.get_height()
-			self.show_rectangle_on_surface_at(self.mini_surface, mini_x, mini_y, \
-				mini_width + mini_x, mini_height + mini_y, False)
+			mini_context = cairo.Context(self.mini_surface)
+			mini_context.move_to(mini_x, mini_y)
+			mini_context.line_to(mini_x, mini_height + mini_y)
+			mini_context.line_to(mini_width + mini_x, mini_height + mini_y)
+			mini_context.line_to(mini_width + mini_x, mini_y)
+			mini_context.close_path()
+			mini_path = mini_context.copy_path()
+			self.show_overlay_on_surface(self.mini_surface, mini_path, False)
 		else:
 			print('todo : ignorer explicitement preview_x et preview_y')
 		self.window.minimap_area.queue_draw()
@@ -325,28 +332,34 @@ class DrawingPixbufManager():
 		self.use_stable_pixbuf()
 		if self.selection_is_active:
 			self.delete_temp()
-		x0 = self.selection_x
-		y0 = self.selection_y
-		x1 = x0 + self.selection_pixbuf.get_width()
-		y1 = y0 + self.selection_pixbuf.get_height()
 		self.show_selection_content()
-		self.show_rectangle_on_surface_at(self.surface, x0, y0, x1, y1, True)
+		self.show_overlay_on_surface(self.surface, self._path, True)
 
-	def show_rectangle_on_surface_at(self, surface, x0, y0, x1, y1, dashed):
+	# FIXME le path n'est pas bon quand on a scale ou crop la sélection
+	def show_overlay_on_surface(self, surface, cairo_path, is_selection):
 		w_context = cairo.Context(surface)
-		if dashed:
+		w_context.new_path()
+		if is_selection:
 			w_context.set_dash([3, 3])
-		# TODO assert que les coordonnées soient bien dans la surface
-		w_context.move_to(x1-1, y1-1)
-		w_context.line_to(x1-1, y0+1)
-		w_context.line_to(x0+1, y0+1)
-		w_context.line_to(x0+1, y1-1)
-		w_context.close_path()
+			dragged_path = self.get_dragged_selection_path(surface, cairo_path)
+			w_context.append_path(dragged_path)
+		else:
+			w_context.append_path(cairo_path)
 		w_context.clip_preserve()
 		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
 		w_context.paint()
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.stroke()
+
+	def get_dragged_selection_path(self, surface, cairo_path):
+		w_context = cairo.Context(surface)
+		for pts in cairo_path:
+			if pts[1] is not ():
+				x = pts[1][0] + self.selection_x - self.temp_x
+				y = pts[1][1] + self.selection_y - self.temp_y
+				w_context.line_to(int(x), int(y))
+		w_context.close_path()
+		return w_context.copy_path()
 
 	def show_selection_content(self):
 		if self.selection_pixbuf is None:
@@ -384,16 +397,11 @@ class DrawingPixbufManager():
 		self.window.update_selection_actions(self.selection_is_active)
 
 	def point_is_in_selection(self, x, y):
-		if x < self.selection_x:
-			return False
-		elif y < self.selection_y:
-			return False
-		elif x > self.selection_x + self.selection_pixbuf.get_width():
-			return False
-		elif y > self.selection_y + self.selection_pixbuf.get_height():
-			return False
-		else:
-			return True
+		dragged_path = self.get_dragged_selection_path(self.surface, self._path)
+		w_context = cairo.Context(self.surface)
+		w_context.new_path()
+		w_context.append_path(dragged_path)
+		return w_context.in_fill(x, y)
 
 	def scale_pixbuf_to(self, is_selection, new_width, new_height):
 		if is_selection:

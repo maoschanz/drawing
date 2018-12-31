@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <menu id="options-menu">
+    <section>
+      <attribute name="label" translatable="yes">Cairo operator</attribute>
+      <submenu>
+        <attribute name="label" translatable="yes">Unbounded</attribute>
+        <section>
+          <item>
+            <attribute name="label">IN</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">IN</attribute>
+          </item>
+          <item>
+            <attribute name="label">OUT</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">OUT</attribute>
+          </item>
+          <item>
+            <attribute name="label">DEST_IN</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">DEST_IN</attribute>
+          </item>
+          <item>
+            <attribute name="label">DEST_ATOP</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">DEST_ATOP</attribute>
+          </item>
+        </section>
+      </submenu>
+      <item>
+        <attribute name="label">CLEAR</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">CLEAR</attribute>
+      </item>
+      <item>
+        <attribute name="label">SOURCE</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">SOURCE</attribute>
+      </item>
+      <item>
+        <attribute name="label">OVER</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">OVER</attribute>
+      </item>
+      <item>
+        <attribute name="label">ATOP</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">ATOP</attribute>
+      </item>
+      <item>
+        <attribute name="label">DEST</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">DEST</attribute>
+      </item>
+      <item>
+        <attribute name="label">DEST_OVER</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">DEST_OVER</attribute>
+      </item>
+      <item>
+        <attribute name="label">DEST_OUT</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">DEST_OUT</attribute>
+      </item>
+      <item>
+        <attribute name="label">XOR</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">XOR</attribute>
+      </item>
+      <item>
+        <attribute name="label">ADD</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">ADD</attribute>
+      </item>
+      <item>
+        <attribute name="label">SATURATE</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">SATURATE</attribute>
+      </item>
+      <item>
+        <attribute name="label">MULTIPLY</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">MULTIPLY</attribute>
+      </item>
+      <item>
+        <attribute name="label">SCREEN</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">SCREEN</attribute>
+      </item>
+      <item>
+        <attribute name="label">OVERLAY</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">OVERLAY</attribute>
+      </item>
+      <item>
+        <attribute name="label">DARKEN</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">DARKEN</attribute>
+      </item>
+      <item>
+        <attribute name="label">LIGHTEN</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">LIGHTEN</attribute>
+      </item>
+      <item>
+        <attribute name="label">COLOR_DODGE</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">COLOR_DODGE</attribute>
+      </item>
+      <item>
+        <attribute name="label">COLOR_BURN</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">COLOR_BURN</attribute>
+      </item>
+      <item>
+        <attribute name="label">HARD_LIGHT</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">HARD_LIGHT</attribute>
+      </item>
+      <item>
+        <attribute name="label">SOFT_LIGHT</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">SOFT_LIGHT</attribute>
+      </item>
+      <item>
+        <attribute name="label">DIFFERENCE</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">DIFFERENCE</attribute>
+      </item>
+      <item>
+        <attribute name="label">EXCLUSION</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">EXCLUSION</attribute>
+      </item>
+      <item>
+        <attribute name="label">HSL_HUE</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">HSL_HUE</attribute>
+      </item>
+      <item>
+        <attribute name="label">HSL_SATURATION</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">HSL_SATURATION</attribute>
+      </item>
+      <item>
+        <attribute name="label">HSL_COLOR</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">HSL_COLOR</attribute>
+      </item>
+      <item>
+        <attribute name="label">HSL_LUMINOSITY</attribute>
+        <attribute name="action">win.experiment_operator</attribute>
+        <attribute name="target">HSL_LUMINOSITY</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

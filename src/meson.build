@@ -40,6 +40,7 @@ drawing_sources = [
   'rotate_dialog.py',
   'properties.py',
 
+  'tools/experiment.py',
   'tools/line.py',
   'tools/paint.py',
   'tools/pencil.py',

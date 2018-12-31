@@ -164,7 +164,13 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.pixbuf, 0, None)
 		x1, y1 = self.convert_to_preview_coord(self._x, self._y)
 		x2, y2 = self.convert_to_preview_coord(self._x + self.get_width(), self._y + self.get_height())
-		self._window._pixbuf_manager.show_rectangle_on_surface_at(self.surface, x1, y1, x2, y2, False)
+		w_context = cairo.Context(self.surface)
+		w_context.move_to(x1, y1)
+		w_context.line_to(x1, y2)
+		w_context.line_to(x2, y2)
+		w_context.line_to(x2, y1)
+		w_context.close_path()
+		self._window._pixbuf_manager.show_overlay_on_surface(self.surface, w_context.copy_path(), False)
 		self.preview.queue_draw()
 
 	def on_press(self, area, event):
