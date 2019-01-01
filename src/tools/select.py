@@ -45,8 +45,7 @@ class ToolSelect(ToolTemplate):
 		#############################
 
 		# Building the widget containing options
-		model = builder.get_object('options-menu')
-		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.options_menu_model = builder.get_object('options-menu')
 
 		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
 		self.add_tool_action_boolean('selection_exclude', False, self.osef)
@@ -70,8 +69,8 @@ class ToolSelect(ToolTemplate):
 	def osef(self, *args): # TODO XXX
 		pass
 
-	def get_options_widget(self):
-		return self.options_menu
+	def get_options_model(self):
+		return self.options_menu_model
 
 	def get_options_label(self):
 		return self.selected_type_label

@@ -22,8 +22,7 @@ class ToolExperiment(ToolTemplate):
 
 		# Building the widget containing options
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/experiment.ui")
-		model = builder.get_object('options-menu')
-		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.options_menu_model = builder.get_object('options-menu')
 		self.add_tool_action_enum('experiment_operator', 'OVER', self.on_change_active_operator)
 
 	def on_change_active_operator(self, *args):
@@ -119,8 +118,8 @@ class ToolExperiment(ToolTemplate):
 			self.selected_operator = cairo.Operator.HSL_LUMINOSITY
 			self.selected_operator_label = "HSL_LUMINOSITY"
 
-	def get_options_widget(self):
-		return self.options_menu
+	def get_options_model(self):
+		return self.options_menu_model
 
 	def get_options_label(self):
 		return self.selected_operator_label

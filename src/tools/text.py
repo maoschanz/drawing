@@ -43,8 +43,8 @@ class ToolText(ToolTemplate):
 	def get_options_label(self):
 		return self.font_btn.get_font()
 
-	def get_options_widget(self):
-		return self.options_box
+	# def get_options_model(self): # FIXME !!
+	# 	return self.options_menu_model
 
 	def give_back_control(self):
 		if self.should_cancel:

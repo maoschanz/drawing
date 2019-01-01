@@ -49,7 +49,7 @@ class ToolTemplate():
 	def give_back_control(self):
 		return False
 
-	def get_options_widget(self):
+	def get_options_model(self):
 		return None
 
 	def get_options_label(self):

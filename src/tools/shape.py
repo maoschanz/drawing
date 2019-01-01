@@ -22,8 +22,7 @@ class ToolShape(ToolTemplate):
 
 		# Building the widget containing options
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/shape.ui")
-		model = builder.get_object('options-menu')
-		self.options_menu = Gtk.Popover.new_from_model(window.options_btn, model)
+		self.options_menu_model = builder.get_object('options-menu')
 		self.add_tool_action_enum('shape_shape', 'rectangle', self.on_change_active_shape)
 		self.add_tool_action_enum('shape_style', 'secondary', self.on_change_active_style)
 
@@ -53,8 +52,8 @@ class ToolShape(ToolTemplate):
 		else:
 			self.selected_shape_label = _("Circle")
 
-	def get_options_widget(self):
-		return self.options_menu
+	def get_options_model(self):
+		return self.options_menu_model
 
 	def get_options_label(self):
 		return self.selected_shape_label + ' - ' + self.selected_style_label

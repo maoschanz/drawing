@@ -88,7 +88,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app = kwargs['application']
 		self.init_tools()
 
-		self.build_options_popover()
+		self.build_options_menu()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 
 		self.update_history_sensitivity()
@@ -132,10 +132,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
-			tools_menu = Gio.Menu()
+			tools_menu = self.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
 				self.tools[tool_id].add_item_to_menu(tools_menu)
-			self.app.add_tools_to_menubar(tools_menu)
+			self.app.has_tools_in_menubar = True
 
 	def init_background(self, *args):
 		w_context = cairo.Context(self._pixbuf_manager.surface)
@@ -416,8 +416,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_size_spinbtn_value(self, *args):
 		self.tool_width = int(args[2])
 
-	def build_options_popover(self):
-		self.options_btn.set_popover(self.active_tool().get_options_widget())
+	def build_options_menu(self):
+		model = self.active_tool().get_options_model()
+		tools_menu = self.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU)
+		section = tools_menu.get_item_link(0, Gio.MENU_LINK_SECTION)
+		if model is None:
+			section.get_item_link(0, Gio.MENU_LINK_SUBMENU).remove_all()
+		else:
+			popover = Gtk.Popover.new_from_model(self.options_btn, model)
+			self.options_btn.set_popover(popover)
+			section.remove_all()
+			section.append_submenu(_("Tool options"), model)
 		self.update_option_label()
 
 	def update_option_label(self, *args):
@@ -435,7 +444,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.former_tool().give_back_control()
 		self.drawing_area.queue_draw()
 		self.active_tool_id = state_as_string
-		self.build_options_popover()
+		self.build_options_menu()
 		self.adapt_to_window_size()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 

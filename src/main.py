@@ -97,12 +97,6 @@ class Application(Gtk.Application):
 		menubar = builder.get_object('menu-bar')
 		return menubar
 
-	def add_tools_to_menubar(self, gio_menu):
-		if self.has_tools_in_menubar:
-			return
-		self.get_menubar().insert_submenu(5, _("_Tools"), gio_menu)
-		self.has_tools_in_menubar = True
-
 	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
