@@ -40,38 +40,6 @@
                 <property name="orientation">horizontal</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="label" translatable="yes">Use a color palette</property>
-                    <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="pack-type">start</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSwitch" id="color_edit_switch">
-                    <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="pack-type">end</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkListBoxRow">
-            <property name="visible">True</property>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="expand">True</property>
-                <property name="margin">10</property>
-                <property name="spacing">10</property>
-                <property name="orientation">horizontal</property>
-                <child>
-                  <object class="GtkLabel">
                     <property name="label" translatable="yes">New image default color</property>
                     <property name="visible">True</property>
                   </object>

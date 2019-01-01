@@ -102,6 +102,12 @@ class Application(Gtk.Application):
 		action.connect('activate', callback)
 		self.add_action(action)
 
+	def add_action_boolean(self, action_name, default, callback):
+		action = Gio.SimpleAction().new_stateful(action_name, None, \
+			GLib.Variant.new_boolean(default))
+		action.connect('change-state', callback)
+		self.add_action(action)
+
 	def build_actions(self):
 		self.add_action_simple('new_window', self.on_new_window_activate)
 		self.add_action_simple('open', self.on_open_activate)

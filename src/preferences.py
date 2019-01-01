@@ -25,7 +25,6 @@ class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
 	list_box = GtkTemplate.Child()
-	color_edit_switch = GtkTemplate.Child()
 	default_backg_button = GtkTemplate.Child()
 	experimental_switch = GtkTemplate.Child()
 	width_btn = GtkTemplate.Child()
@@ -41,9 +40,6 @@ class DrawingPrefsWindow(Gtk.Window):
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Drawing"), subtitle=_("Preferences"))
 			self.set_titlebar(header_bar)
-
-		self.color_edit_switch.set_active(not self._settings.get_boolean('direct-color-edit'))
-		self.color_edit_switch.connect('notify::active', self.on_color_edit_changed)
 
 		r = float(self._settings.get_strv('default-rgba')[0])
 		g = float(self._settings.get_strv('default-rgba')[1])
@@ -68,9 +64,6 @@ class DrawingPrefsWindow(Gtk.Window):
 			self.layout_combobox.append('everything', _("Both (testing only)"))
 		self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
 		self.layout_combobox.connect('changed', self.on_layout_changed)
-
-	def on_color_edit_changed(self, w, a):
-		self._settings.set_boolean('direct-color-edit', not w.get_active())
 
 	def on_experimental_changed(self, w, a):
 		self._settings.set_boolean('experimental', w.get_active())

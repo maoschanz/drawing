@@ -65,6 +65,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
+		self.app = kwargs['application']
 		self.init_template()
 		self.init_instance_attributes()
 
@@ -85,9 +86,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
-		self.app = kwargs['application']
 		self.init_tools()
-
 		self.build_options_menu()
 		self.update_size_spinbtn_state(self.active_tool().use_size)
 
@@ -166,6 +165,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 		self.handlers.append( self.color_btn_l.connect('notify::rgba', self.set_l_color_btn) )
 		self.handlers.append( self.color_btn_r.connect('notify::rgba', self.set_r_color_btn) )
+		self.handlers.append( self.back_btn_r.connect('clicked', self.close_color_editor_r) )
+		self.handlers.append( self.back_btn_l.connect('clicked', self.close_color_editor_l) )
+		self.handlers.append( self.color_btn_r.connect('notify::show-editor', self.update_box_r) )
+		self.handlers.append( self.color_btn_l.connect('notify::show-editor', self.update_box_l) )
 
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
 		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
@@ -184,10 +187,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
 
 		self.handlers.append( self.connect('configure-event', self.adapt_to_window_size) )
-
-		# Settings
-		self.handlers.append( self._settings.connect('changed::direct-color-edit', self.set_palette_setting) )
-		# TODO..
 
 	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -210,6 +209,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('main_color', self.action_main_color)
 		self.add_action_simple('secondary_color', self.action_secondary_color)
 		self.add_action_simple('exchange_color', self.action_exchange_color)
+		self.app.add_action_boolean('use_editor', self._settings.get_boolean('direct-color-edit'), self.action_use_editor)
 
 		self.add_action_simple('open_with', self.action_open_with)
 		self.lookup_action('open_with').set_enabled(False)
@@ -395,19 +395,44 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# COLORS
 
 	def build_color_buttons(self):
-		color_popover_l = Gtk.Popover.new(self.color_menu_btn_l)
-		color_popover_r = Gtk.Popover.new(self.color_menu_btn_r)
+		builder_l = Gtk.Builder()
+		builder_l.add_from_resource("/com/github/maoschanz/Drawing/ui/color_popover.ui")
+		color_popover_l = builder_l.get_object("color-menu")
+		self.color_btn_l = builder_l.get_object("color-widget")
+		self.back_btn_l = builder_l.get_object("back-btn")
+		self.editor_box_l = builder_l.get_object("editor-box")
 		self.color_menu_btn_l.set_popover(color_popover_l)
-		self.color_menu_btn_r.set_popover(color_popover_r)
-		self.color_btn_l = Gtk.ColorChooserWidget(visible=True, use_alpha=True)
-		self.color_btn_r = Gtk.ColorChooserWidget(visible=True, use_alpha=True)
-		color_popover_l.add(self.color_btn_l)
-		color_popover_r.add(self.color_btn_r)
 		self.color_btn_l.set_rgba(Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0))
+
+		builder_r = Gtk.Builder()
+		builder_r.add_from_resource("/com/github/maoschanz/Drawing/ui/color_popover.ui")
+		color_popover_r = builder_r.get_object("color-menu")
+		self.color_btn_r = builder_r.get_object("color-widget")
+		self.back_btn_r = builder_r.get_object("back-btn")
+		self.editor_box_r = builder_r.get_object("editor-box")
+		self.color_menu_btn_r.set_popover(color_popover_r)
 		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
+
 		self.set_palette_setting()
 		self.set_r_color_btn()
 		self.set_l_color_btn()
+
+	def action_use_editor(self, *args):
+		self._settings.set_boolean('direct-color-edit', not args[0].get_state())
+		args[0].set_state(GLib.Variant.new_boolean(not args[0].get_state()))
+		self.set_palette_setting()
+
+	def close_color_editor_r(self, *args):
+		self.color_btn_r.props.show_editor = False
+
+	def close_color_editor_l(self, *args):
+		self.color_btn_l.props.show_editor = False
+
+	def update_box_r(self, *args):
+		self.editor_box_r.set_visible(self.color_btn_r.props.show_editor)
+
+	def update_box_l(self, *args):
+		self.editor_box_l.set_visible(self.color_btn_l.props.show_editor)
 
 	def set_r_color_btn(self, *args):
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
@@ -429,6 +454,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		show_editor = self._settings.get_boolean('direct-color-edit')
 		self.color_btn_l.props.show_editor = show_editor
 		self.color_btn_r.props.show_editor = show_editor
+		self.update_box_r()
+		self.update_box_l()
 
 	def action_main_color(self, *args):
 		self.color_menu_btn_l.activate()

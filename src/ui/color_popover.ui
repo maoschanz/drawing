@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <object class="GtkPopover" id="color-menu">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="spacing">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="editor-box">
+            <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkButton" id="back-btn">
+                <property name="visible">True</property>
+                <property name="tooltip-text" translatable="yes">Back to the palette</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">10</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">go-previous-symbolic</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Back to the palette</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkCheckButton">
+                <property name="label" translatable="yes">Use this editor by default</property>
+                <property name="visible">True</property>
+                <property name="action_name">app.use_editor</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkColorChooserWidget" id="color-widget">
+            <property name="visible">True</property>
+            <property name="use-alpha">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
