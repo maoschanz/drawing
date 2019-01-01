@@ -392,6 +392,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# COLORS
 
+	# TODO GtkColorChooserWidget
+
 	def set_palette_setting(self, *args):
 		color_btn_show_editor = self._settings.get_boolean('direct-color-edit')
 		self.color_btn_l.props.show_editor = color_btn_show_editor
@@ -417,16 +419,22 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tool_width = int(args[2])
 
 	def build_options_menu(self):
+		widget = self.active_tool().get_options_widget()
 		model = self.active_tool().get_options_model()
 		tools_menu = self.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU)
 		section = tools_menu.get_item_link(0, Gio.MENU_LINK_SECTION)
 		if model is None:
 			section.get_item_link(0, Gio.MENU_LINK_SUBMENU).remove_all()
 		else:
-			popover = Gtk.Popover.new_from_model(self.options_btn, model)
-			self.options_btn.set_popover(popover)
 			section.remove_all()
 			section.append_submenu(_("Tool options"), model)
+		if widget is not None:
+			popover = widget
+		elif model is not None:
+			popover = Gtk.Popover.new_from_model(self.options_btn, model)
+		else:
+			popover = None
+		self.options_btn.set_popover(popover)
 		self.update_option_label()
 
 	def update_option_label(self, *args):

@@ -68,9 +68,9 @@
         <property name="spacing">10</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkFontButton" id="font-btn">
+          <object class="GtkFontChooserWidget" id="font-btn">
             <property name="visible">True</property>
-            <property name="show-size">True</property>
+            <property name="show-preview-entry">False</property>
           </object>
         </child>
         <child>

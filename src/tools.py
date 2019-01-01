@@ -52,6 +52,9 @@ class ToolTemplate():
 	def get_options_model(self):
 		return None
 
+	def get_options_widget(self):
+		return None
+
 	def get_options_label(self):
 		return _("No options")
 

@@ -43,8 +43,11 @@ class ToolText(ToolTemplate):
 	def get_options_label(self):
 		return self.font_btn.get_font()
 
-	# def get_options_model(self): # FIXME !!
+	# def get_options_model(self): # FIXME pour la barre de menus
 	# 	return self.options_menu_model
+
+	def get_options_widget(self):
+		return self.options_box
 
 	def give_back_control(self):
 		if self.should_cancel:
@@ -118,8 +121,6 @@ class ToolText(ToolTemplate):
 		lines = text.split('\n')
 		i = 0
 		for a_line in lines:
-			print(a_line)
-			print(self.tool_width)
 			if self.backg_switch.get_state():
 				w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
 					self.secondary_color.blue, 0.0)
