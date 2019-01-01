@@ -49,8 +49,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	toolbar_box = GtkTemplate.Child()
 	drawing_area = GtkTemplate.Child()
 	bottom_panel = GtkTemplate.Child()
-	color_btn_l = GtkTemplate.Child()
-	color_btn_r = GtkTemplate.Child()
+	color_menu_btn_l = GtkTemplate.Child()
+	color_menu_btn_r = GtkTemplate.Child()
+	l_btn_image	 = GtkTemplate.Child()
+	r_btn_image = GtkTemplate.Child()
 	options_btn = GtkTemplate.Child()
 	options_label = GtkTemplate.Child()
 	options_long_box = GtkTemplate.Child()
@@ -73,9 +75,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_all_win_actions()
 
-		self.color_btn_l.set_rgba(Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0))
-		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
-		self.set_palette_setting()
+		self.build_color_buttons()
 
 		self.build_minimap()
 		self._pixbuf_manager = DrawingPixbufManager(self)
@@ -164,6 +164,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
+		self.handlers.append( self.color_btn_l.connect('notify::rgba', self.set_l_color_btn) )
+		self.handlers.append( self.color_btn_r.connect('notify::rgba', self.set_r_color_btn) )
 
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
 		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
@@ -392,18 +394,47 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# COLORS
 
-	# TODO GtkColorChooserWidget
+	def build_color_buttons(self):
+		color_popover_l = Gtk.Popover.new(self.color_menu_btn_l)
+		color_popover_r = Gtk.Popover.new(self.color_menu_btn_r)
+		self.color_menu_btn_l.set_popover(color_popover_l)
+		self.color_menu_btn_r.set_popover(color_popover_r)
+		self.color_btn_l = Gtk.ColorChooserWidget(visible=True, use_alpha=True)
+		self.color_btn_r = Gtk.ColorChooserWidget(visible=True, use_alpha=True)
+		color_popover_l.add(self.color_btn_l)
+		color_popover_r.add(self.color_btn_r)
+		self.color_btn_l.set_rgba(Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0))
+		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
+		self.set_palette_setting()
+		self.set_r_color_btn()
+		self.set_l_color_btn()
+
+	def set_r_color_btn(self, *args):
+		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
+		w_context = cairo.Context(surface)
+		rgba = self.color_btn_r.get_rgba()
+		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		w_context.paint()
+		self.r_btn_image.set_from_surface(surface)
+
+	def set_l_color_btn(self, *args):
+		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
+		w_context = cairo.Context(surface)
+		rgba = self.color_btn_l.get_rgba()
+		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		w_context.paint()
+		self.l_btn_image.set_from_surface(surface)
 
 	def set_palette_setting(self, *args):
-		color_btn_show_editor = self._settings.get_boolean('direct-color-edit')
-		self.color_btn_l.props.show_editor = color_btn_show_editor
-		self.color_btn_r.props.show_editor = color_btn_show_editor
+		show_editor = self._settings.get_boolean('direct-color-edit')
+		self.color_btn_l.props.show_editor = show_editor
+		self.color_btn_r.props.show_editor = show_editor
 
 	def action_main_color(self, *args):
-		self.color_btn_l.activate()
+		self.color_menu_btn_l.activate()
 
 	def action_secondary_color(self, *args):
-		self.color_btn_r.activate()
+		self.color_menu_btn_r.activate()
 
 	def action_exchange_color(self, *args):
 		left_c = self.color_btn_l.get_rgba()

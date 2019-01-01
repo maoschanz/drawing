@@ -86,9 +86,13 @@
               <object class="GtkBox" id="color_box">
               <property name="visible">True</property>
                 <child>
-                  <object class="GtkColorButton" id="color_btn_l">
+                  <object class="GtkMenuButton" id="color_menu_btn_l">
                     <property name="visible">True</property>
-                    <property name="use-alpha">True</property>
+                    <child>
+                      <object class="GtkImage" id="l_btn_image">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child>
@@ -104,9 +108,13 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkColorButton" id="color_btn_r">
+                  <object class="GtkMenuButton" id="color_menu_btn_r">
                     <property name="visible">True</property>
-                    <property name="use-alpha">True</property>
+                    <child>
+                      <object class="GtkImage" id="r_btn_image">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <style>
