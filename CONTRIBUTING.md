@@ -52,6 +52,7 @@ And submit a "pull request"/"merge request".
 - Tell on the issue that you'll do a patch.
 - Use tabs in `.py` files.
 - Use 2 spaces in `.ui` or `.xml` files.
+- Use double quotes for translatable strings and single quotes otherwise.
 - Concerning design, try to respect GNOME Human Interface Guidelines as much as possible, while making your feature available from the global menubar.
 - I like `GAction`s and i've added wrapper methods for using them, try to use that instead of directly connecting buttons/menu-items to a method.
 - If you find some bullshit in the code, or don't understand it, feel free to ask me about it.

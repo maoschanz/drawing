@@ -226,7 +226,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.main_menu_btn is not None:
 			self.add_action_simple('main_menu', self.action_main_menu)
 
-		if not self._settings.get_boolean('experimental'):
+		if self._settings.get_boolean('experimental'):
 			self.add_action_simple('toggle_preview', self.action_toggle_preview)
 			self.add_action_simple('bigger_preview', self.action_bigger_preview)
 			self.add_action_simple('smaller_preview', self.action_smaller_preview)

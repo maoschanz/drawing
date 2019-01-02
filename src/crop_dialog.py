@@ -53,12 +53,6 @@ class DrawingCropDialog(Gtk.Dialog):
 			self.build_preview_for_selection()
 		else:
 			self.build_preview_for_main()
-		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
-		preview_btn.connect('clicked', self.on_preview)
-		if wants_csd:
-			self.get_header_bar().pack_end(preview_btn)
-		else:
-			self.get_action_area().add(preview_btn)
 
 		self.show_all()
 		self.set_resizable(False)
@@ -108,9 +102,6 @@ class DrawingCropDialog(Gtk.Dialog):
 		self.height_btn.set_range(1, self.original_height)
 		self.width_btn.set_value(self.original_width)
 		self.height_btn.set_value(self.original_height)
-
-	def on_preview(self, *args):
-		pass # TODO
 
 	def on_apply(self, *args):
 		x = self._x

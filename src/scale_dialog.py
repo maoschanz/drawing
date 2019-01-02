@@ -49,18 +49,8 @@ class DrawingScaleDialog(Gtk.Dialog):
 		self.proportions_switch.set_active(True)
 		self.on_proportions_changed()
 
-		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
-		preview_btn.connect('clicked', self.on_preview)
-		if wants_csd:
-			self.get_header_bar().pack_end(preview_btn)
-		else:
-			self.get_action_area().add(preview_btn)
-
 		self.show_all()
 		self.set_resizable(False)
-
-	def on_preview(self, *args):
-		pass # TODO
 
 	def on_apply(self, *args):
 		w = self.get_width()

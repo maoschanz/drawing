@@ -36,66 +36,13 @@ class DrawingRotateDialog(Gtk.Dialog):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/rotate_dialog.ui')
 		rotate_content_area = builder.get_object('rotate_content_area')
 		self.get_content_area().add(rotate_content_area)
-		# self.proportions_switch = builder.get_object('proportions_switch')
-		# self.height_btn = builder.get_object('height_btn')
-		# self.width_btn = builder.get_object('width_btn')
-
-		# self.width_btn.connect('value-changed', self.on_width_changed)
-		# self.height_btn.connect('value-changed', self.on_height_changed)
-		# self.proportions_switch.connect('notify::active', self.on_proportions_changed)
-		# self.width_btn.set_value(w)
-		# self.height_btn.set_value(h)
-
-		# self.proportions_switch.set_active(True)
-		# self.on_proportions_changed()
-
-		preview_btn = Gtk.Button(label=_("Preview"), sensitive=False)
-		preview_btn.connect('clicked', self.on_preview)
-		if wants_csd:
-			self.get_header_bar().pack_end(preview_btn)
-		else:
-			self.get_action_area().add(preview_btn)
 
 		self.show_all()
 		self.set_resizable(False)
 
-	def on_preview(self, *args):
-		pass # TODO
-
 	def on_apply(self, *args):
-		# w = self.get_width()
-		# h = self.get_height()
-		# if self.is_selection:
-		# 	self._window._pixbuf_manager.selection_pixbuf = \
-		# 		self._window._pixbuf_manager.selection_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
-		# 	self._window._pixbuf_manager.show_selection_rectangle()
-		# else:
-		# 	self._window._pixbuf_manager.main_pixbuf = \
-		# 		self._window._pixbuf_manager.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
-		# 	self._window._pixbuf_manager.on_tool_finished()
 		self.destroy()
 
 	def on_cancel(self, *args):
 		self.destroy()
-
-	# def on_proportions_changed(self, *args):
-	# 	self.keep_proportions = self.proportions_switch.get_active()
-	# 	if self.keep_proportions:
-	# 		self.proportion = self.get_width()/self.get_height()
-
-	# def on_width_changed(self, *args):
-	# 	if self.keep_proportions and self.proportion is not None:
-	# 		if self.proportion != self.get_width()/self.get_height():
-	# 			self.height_btn.set_value(self.get_width()/self.proportion)
-
-	# def on_height_changed(self, *args):
-	# 	if self.keep_proportions and self.proportion is not None:
-	# 		if self.proportion != self.get_width()/self.get_height():
-	# 			self.width_btn.set_value(self.get_height()*self.proportion)
-
-	# def get_width(self):
-	# 	return self.width_btn.get_value_as_int()
-
-	# def get_height(self):
-	# 	return self.height_btn.get_value_as_int()
 
