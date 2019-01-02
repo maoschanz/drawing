@@ -32,6 +32,7 @@ from .experiment import ToolExperiment
 from .polygon import ToolPolygon
 
 from .pixbuf_manager import DrawingPixbufManager
+from .color_popover import DrawingColorPopover
 
 from .properties import DrawingPropertiesDialog
 from .crop_dialog import DrawingCropDialog
@@ -166,12 +167,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
-		self.handlers.append( self.color_btn_l.connect('notify::rgba', self.set_l_color_btn) )
-		self.handlers.append( self.color_btn_r.connect('notify::rgba', self.set_r_color_btn) )
-		self.handlers.append( self.back_btn_r.connect('clicked', self.close_color_editor_r) )
-		self.handlers.append( self.back_btn_l.connect('clicked', self.close_color_editor_l) )
-		self.handlers.append( self.color_btn_r.connect('notify::show-editor', self.update_box_r) )
-		self.handlers.append( self.color_btn_l.connect('notify::show-editor', self.update_box_l) )
 
 		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
 		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
@@ -399,67 +394,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# COLORS
 
 	def build_color_buttons(self):
-		builder_l = Gtk.Builder()
-		builder_l.add_from_resource("/com/github/maoschanz/Drawing/ui/color_popover.ui")
-		color_popover_l = builder_l.get_object("color-menu")
-		self.color_btn_l = builder_l.get_object("color-widget")
-		self.back_btn_l = builder_l.get_object("back-btn")
-		self.editor_box_l = builder_l.get_object("editor-box")
-		self.color_menu_btn_l.set_popover(color_popover_l)
-		self.color_btn_l.set_rgba(Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0))
-
-		builder_r = Gtk.Builder()
-		builder_r.add_from_resource("/com/github/maoschanz/Drawing/ui/color_popover.ui")
-		color_popover_r = builder_r.get_object("color-menu")
-		self.color_btn_r = builder_r.get_object("color-widget")
-		self.back_btn_r = builder_r.get_object("back-btn")
-		self.editor_box_r = builder_r.get_object("editor-box")
-		self.color_menu_btn_r.set_popover(color_popover_r)
-		self.color_btn_r.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
-
-		self.set_palette_setting()
-		self.set_r_color_btn()
-		self.set_l_color_btn()
+		white = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0)
+		black = Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0)
+		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, self.r_btn_image, white)
+		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, black)
 
 	def action_use_editor(self, *args):
 		self._settings.set_boolean('direct-color-edit', not args[0].get_state())
 		args[0].set_state(GLib.Variant.new_boolean(not args[0].get_state()))
 		self.set_palette_setting()
 
-	def close_color_editor_r(self, *args):
-		self.color_btn_r.props.show_editor = False
-
-	def close_color_editor_l(self, *args):
-		self.color_btn_l.props.show_editor = False
-
-	def update_box_r(self, *args):
-		self.editor_box_r.set_visible(self.color_btn_r.props.show_editor)
-
-	def update_box_l(self, *args):
-		self.editor_box_l.set_visible(self.color_btn_l.props.show_editor)
-
-	def set_r_color_btn(self, *args):
-		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
-		w_context = cairo.Context(surface)
-		rgba = self.color_btn_r.get_rgba()
-		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		w_context.paint()
-		self.r_btn_image.set_from_surface(surface)
-
-	def set_l_color_btn(self, *args):
-		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
-		w_context = cairo.Context(surface)
-		rgba = self.color_btn_l.get_rgba()
-		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		w_context.paint()
-		self.l_btn_image.set_from_surface(surface)
-
 	def set_palette_setting(self, *args):
 		show_editor = self._settings.get_boolean('direct-color-edit')
-		self.color_btn_l.props.show_editor = show_editor
-		self.color_btn_r.props.show_editor = show_editor
-		self.update_box_r()
-		self.update_box_l()
+		self.color_popover_r.setting_changed(show_editor)
+		self.color_popover_l.setting_changed(show_editor)
 
 	def action_main_color(self, *args):
 		self.color_menu_btn_l.activate()
@@ -468,9 +416,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.color_menu_btn_r.activate()
 
 	def action_exchange_color(self, *args):
-		left_c = self.color_btn_l.get_rgba()
-		self.color_btn_l.set_rgba(self.color_btn_r.get_rgba())
-		self.color_btn_r.set_rgba(left_c)
+		left_c = self.color_popover_l.color_widget.get_rgba()
+		self.color_popover_l.color_widget.set_rgba(self.color_popover_r.color_widget.get_rgba())
+		self.color_popover_r.color_widget.set_rgba(left_c)
 
 	# TOOLS OPTIONS
 
@@ -730,7 +678,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return
 
 		self.active_tool().on_press_on_area(area, event, self._pixbuf_manager.surface, \
-			self.size_setter.get_value(), self.color_btn_l.get_rgba(), self.color_btn_r.get_rgba())
+			self.size_setter.get_value(), self.color_popover_l.color_widget.get_rgba(), self.color_popover_r.color_widget.get_rgba())
 
 	def on_release_on_area(self, area, event):
 		if not self.is_clicked:

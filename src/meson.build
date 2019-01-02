@@ -33,7 +33,9 @@ drawing_sources = [
   'preferences.py',
   'window.py',
   'pixbuf_manager.py',
+  'color_popover.py',
   'tools.py',
+  'modes.py',
 
   'crop_dialog.py',
   'scale_dialog.py',
