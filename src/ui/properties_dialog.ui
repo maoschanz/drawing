@@ -1,221 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-    <object class="GtkGrid" id="props_content_area">
+  <object class="GtkBox" id="props_content_area">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+    <property name="margin">10</property>
+    <property name="spacing">10</property>
+    <property name="expand">True</property>
+    <child>
+      <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="column_spacing">25</property>
         <property name="row_spacing">15</property>
-        <property name="margin">12</property>
         <property name="halign">center</property>
         <property name="column_homogeneous">False</property>
 
         <child>
-            <object class="GtkLabel" id="">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Path</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">0</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Path</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Path</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">0</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Format</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Format</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel" id="label_path">
+            <property name="visible">True</property>
+            <property name="wrap">True</property>
+            <property name="label" translatable="yes">Unsaved file</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel" id="label_path">
-                <property name="visible">True</property>
-                <property name="wrap">True</property>
-                <property name="label" translatable="yes">Unsaved file</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-            </object>
-            <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">0</property>
-                <property name="width">2</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel" id="label_format_file">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Unsaved file</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel" id="label_format_file">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Unsaved file</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-            </object>
-            <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">1</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel" id="label_format_surface">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Invalid format</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left-attach">2</property>
+            <property name="top-attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel" id="label_format_surface">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Invalid format</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-            </object>
-            <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">1</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+            <property name="width">3</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkSeparator">
-                <property name="visible">True</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">2</property>
-                <property name="width">3</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Width</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">3</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Width</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">3</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel" id="label_width">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes"></property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left-attach">2</property>
+            <property name="top-attach">3</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel" id="label_width">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes"></property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-            </object>
-            <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">3</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Height</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">4</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Height</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">4</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkLabel" id="label_height">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes"></property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left-attach">2</property>
+            <property name="top-attach">4</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkButton" id="btn_scale">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Scale</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkLabel" id="label_height">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes"></property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-            </object>
-            <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">4</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkButton" id="btn_crop">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Crop</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+          </packing>
         </child>
 
         <child>
-            <object class="GtkSeparator">
-                <property name="visible">True</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">5</property>
-                <property name="width">3</property>
-                <property name="height">1</property>
-            </packing>
+          <object class="GtkButton" id="btn_rotate">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Rotate</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+          </packing>
         </child>
-
-        <child>
-            <object class="GtkButton" id="btn_scale">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Scale</property>
-            </object>
-            <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">6</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
-        </child>
-
-        <child>
-            <object class="GtkButton" id="btn_crop">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Crop</property>
-            </object>
-            <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">6</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
-        </child>
-
-        <child>
-            <object class="GtkButton" id="btn_rotate">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Rotate</property>
-            </object>
-            <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">6</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-            </packing>
-        </child>
-
-    </object>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+  </object>
 </interface>
