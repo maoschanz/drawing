@@ -20,9 +20,6 @@ class ToolPolygon(ToolTemplate):
 		self.selected_style_label = _("Filled (secondary color)")
 		self.use_freehand = False
 
-		# Building the widget containing options
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/polygon.ui")
-		self.options_menu_model = builder.get_object('options-menu')
 		self.add_tool_action_enum('polygon_style', 'secondary', self.on_change_active_style)
 		self.add_tool_action_boolean('polygon_freehand', False, self.set_freehand)
 
@@ -48,7 +45,8 @@ class ToolPolygon(ToolTemplate):
 			self.selected_style_label = _("Filled (secondary color)")
 
 	def get_options_model(self):
-		return self.options_menu_model
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/polygon.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_label(self):
 		if self.use_freehand:

@@ -44,9 +44,6 @@ class ToolSelect(ToolTemplate):
 
 		#############################
 
-		# Building the widget containing options
-		self.options_menu_model = builder.get_object('options-menu')
-
 		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
 		self.add_tool_action_boolean('selection_exclude', False, self.osef)
 
@@ -70,7 +67,8 @@ class ToolSelect(ToolTemplate):
 		pass
 
 	def get_options_model(self):
-		return self.options_menu_model
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_label(self):
 		return self.selected_type_label

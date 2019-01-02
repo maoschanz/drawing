@@ -96,6 +96,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._pixbuf_manager.reset_selection()
 		self.init_background()
 
+		if not self._settings.get_boolean('experimental'):
+			self.minimap_btn.set_visible(False)
+
 	def init_instance_attributes(self):
 		self.handlers = []
 		self._is_saved = True
@@ -487,12 +490,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			section.remove_all()
 			section.append_submenu(_("Tool options"), model)
 		if widget is not None:
-			popover = widget
+			self.options_btn.set_popover(widget)
 		elif model is not None:
-			popover = Gtk.Popover.new_from_model(self.options_btn, model)
+			self.options_btn.set_menu_model(model)
 		else:
-			popover = None
-		self.options_btn.set_popover(popover)
+			self.options_btn.set_popover(None)
 		self.update_option_label()
 
 	def update_option_label(self, *args):

@@ -20,9 +20,6 @@ class ToolExperiment(ToolTemplate):
 		self.selected_operator_label = "OVER"
 		self.selected_operator = cairo.Operator.OVER
 
-		# Building the widget containing options
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/experiment.ui")
-		self.options_menu_model = builder.get_object('options-menu')
 		self.add_tool_action_enum('experiment_operator', 'OVER', self.on_change_active_operator)
 
 	def on_change_active_operator(self, *args):
@@ -119,7 +116,8 @@ class ToolExperiment(ToolTemplate):
 			self.selected_operator_label = "HSL_LUMINOSITY"
 
 	def get_options_model(self):
-		return self.options_menu_model
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/experiment.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_label(self):
 		return self.selected_operator_label

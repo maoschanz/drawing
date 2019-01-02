@@ -13,10 +13,6 @@ class ToolLine(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'list-remove-symbolic', window)
 
-		# Building the widget containing options
-		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/line.ui")
-		self.options_menu_model = builder.get_object('options-menu')
 		self.add_tool_action_enum('line_type', 'straight', self.on_change_active_type)
 		self.add_tool_action_enum('line_shape', 'round', self.on_change_active_shape)
 		self.add_tool_action_boolean('line_dashes', False, self.set_dashes_state)
@@ -73,7 +69,8 @@ class ToolLine(ToolTemplate):
 			self.selected_curv_label = _("Arc")
 
 	def get_options_model(self):
-		return self.options_menu_model
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/line.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_label(self):
 		return self.selected_curv_label + ' - ' + self.selected_shape_label

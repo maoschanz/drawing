@@ -22,9 +22,6 @@ class ToolPencil(ToolTemplate):
 		self.selected_join_id = cairo.LineCap.ROUND
 		self.use_dashes = False
 
-		# Building the widget containing options
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/pencil.ui")
-		self.options_menu_model = builder.get_object('options-menu')
 		self.add_tool_action_enum('pencil_shape', 'round', self.on_change_active_shape)
 		self.add_tool_action_boolean('pencil_dashes', self.use_dashes, self.set_dashes_state)
 
@@ -55,7 +52,8 @@ class ToolPencil(ToolTemplate):
 			self.selected_shape_label = _("Round")
 
 	def get_options_model(self):
-		return self.options_menu_model
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/pencil.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_label(self):
 		return self.selected_shape_label

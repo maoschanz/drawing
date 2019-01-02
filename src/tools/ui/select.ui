@@ -55,39 +55,38 @@
       </item>
     </section>
     <section>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
       <item>
         <attribute name="label" translatable="yes">Import</attribute>
         <attribute name="action">win.import</attribute>
+        <attribute name="verb-icon">document-open-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Paste</attribute>
         <attribute name="action">win.paste</attribute>
+        <attribute name="verb-icon">edit-paste-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Crop</attribute>
+        <attribute name="action">win.pic_crop</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Scale</attribute>
+        <attribute name="action">win.pic_resize</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rotate</attribute>
+        <attribute name="action">win.pic_rotate</attribute>
       </item>
     </section>
     <!-- <section> -->
-    <!--   <attribute name="display-hint">horizontal-buttons</attribute> -->
     <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Crop</attribute> -->
-    <!--     <attribute name="action">win.pic_crop</attribute> -->
-    <!--     <attribute name="verb-icon">view-restore-symbolic</attribute> -->
-    <!--   </item> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Scale</attribute> -->
-    <!--     <attribute name="action">win.pic_resize</attribute> -->
-    <!--     <attribute name="verb-icon">view-fullscreen-symbolic</attribute> -->
-    <!--   </item> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Rotate</attribute> -->
-    <!--     <attribute name="action">win.pic_rotate</attribute> -->
-    <!--     <attribute name="verb-icon">view-refresh-symbolic</attribute> -->
+    <!--     <attribute name="label" translatable="yes">Properties</attribute> -->
+    <!--     <attribute name="action">win.properties</attribute> -->
     <!--   </item> -->
     <!-- </section> -->
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Properties</attribute>
-        <attribute name="action">win.properties</attribute>
-      </item>
-    </section>
   </menu>
 
   <menu id="options-menu">

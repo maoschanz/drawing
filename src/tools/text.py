@@ -44,7 +44,8 @@ class ToolText(ToolTemplate):
 		return self.font_btn.get_font()
 
 	# def get_options_model(self): # FIXME pour la barre de menus
-	# 	return self.options_menu_model
+		# builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/text.ui")
+		# return builder.get_object('options-menu')
 
 	def get_options_widget(self):
 		return self.options_box

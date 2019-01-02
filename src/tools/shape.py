@@ -53,7 +53,8 @@ class ToolShape(ToolTemplate):
 			self.selected_shape_label = _("Circle")
 
 	def get_options_model(self):
-		return self.options_menu_model
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/shape.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_label(self):
 		return self.selected_shape_label + ' - ' + self.selected_style_label
