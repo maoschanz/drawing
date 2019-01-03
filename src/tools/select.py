@@ -27,6 +27,8 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action('paste', self.action_paste)
 		self.add_tool_action('select_all', self.action_select_all)
 
+		self.update_actions_state()
+
 		#############################
 
 		self.x_press = 0.0
@@ -49,6 +51,26 @@ class ToolSelect(ToolTemplate):
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
+
+	def on_tool_selected(self):
+		self.selection_has_been_used = True
+		self.update_actions_state()
+
+	def on_tool_unselected(self):
+		self.set_actions_state(False)
+
+	def update_actions_state(self):
+		self.set_actions_state(self.window._pixbuf_manager.selection_is_active)
+
+	def set_actions_state(self, state):
+		self.set_action_sensitivity('unselect', state)
+		self.set_action_sensitivity('cut', state)
+		self.set_action_sensitivity('copy', state)
+		self.set_action_sensitivity('selection_delete', state)
+		self.set_action_sensitivity('selection_crop', state)
+		self.set_action_sensitivity('selection_resize', state)
+		# self.lookup_action('selection_rotate', state)
+		self.set_action_sensitivity('selection_export', state)
 
 	def on_change_active_type(self, *args):
 		state_as_string = args[1].get_string()
@@ -84,6 +106,7 @@ class ToolSelect(ToolTemplate):
 			self.end_selection()
 			return False
 		else:
+			self.selection_has_been_used = True
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):

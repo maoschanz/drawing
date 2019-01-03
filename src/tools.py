@@ -37,6 +37,18 @@ class ToolTemplate():
 	def add_tool_action_enum(self, action_name, default, callback):
 		self.window.add_action_enum(action_name, default, callback)
 
+	def on_tool_selected(self):
+		pass
+
+	def on_tool_unselected(self):
+		pass
+
+	def update_actions_state(self):
+		pass
+
+	def set_action_sensitivity(self, action_name, state):
+		self.window.lookup_action(action_name).set_enabled(state)
+
 	def non_destructive_show_modif(self):
 		self.window.drawing_area.queue_draw()
 

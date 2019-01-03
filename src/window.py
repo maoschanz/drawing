@@ -133,7 +133,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		w_context.set_source_rgba(r, g, b, a)
 		w_context.paint()
 		self._pixbuf_manager.set_pixbuf_as_stable()
-		self._pixbuf_manager.update_minimap()
 
 	def initial_save(self, fn):
 		self.set_picture_title(fn)
@@ -180,12 +179,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_simple('main_color', self.draw_mode.action_main_color) # XXX
-		self.add_action_simple('secondary_color', self.draw_mode.action_secondary_color) # XXX
-		self.add_action_simple('exchange_color', self.draw_mode.action_exchange_color) # XXX
-		self.app.add_action_boolean('use_editor', \
-			self._settings.get_boolean('direct-color-edit'), self.draw_mode.action_use_editor) # XXX
-
 		self.add_action_simple('open_with', self.action_open_with)
 		self.lookup_action('open_with').set_enabled(False)
 		self.add_action_simple('print', self.action_print)
@@ -198,11 +191,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.main_menu_btn is not None:
 			self.add_action_simple('main_menu', self.action_main_menu)
 
-		if self._settings.get_boolean('experimental'):
-			self.add_action_simple('toggle_preview', self.draw_mode.action_toggle_preview) # XXX
-			self.add_action_simple('bigger_preview', self.draw_mode.action_bigger_preview) # XXX
-			self.add_action_simple('smaller_preview', self.draw_mode.action_smaller_preview) # XXX
-
 		self.add_action_simple('close', self.action_close)
 		self.add_action_simple('save', self.action_save)
 		self.add_action_simple('undo', self.action_undo)
@@ -214,18 +202,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('exp_bmp', self.export_as_bmp)
 
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
-
-	def update_selection_actions(self, state):
-		if not 'select' in self.tools:
-			return
-		self.lookup_action('unselect').set_enabled(state)
-		self.lookup_action('cut').set_enabled(state)
-		self.lookup_action('copy').set_enabled(state)
-		self.lookup_action('selection_delete').set_enabled(state)
-		self.lookup_action('selection_crop').set_enabled(state)
-		self.lookup_action('selection_resize').set_enabled(state)
-		# self.lookup_action('selection_rotate').set_enabled(state)
-		self.lookup_action('selection_export').set_enabled(state)
 
 	def adapt_to_window_size(self, *args):
 		self.active_mode().adapt_to_window_size()
@@ -257,15 +233,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_show_menubar(True)
 
 	def build_toolbar(self):
-		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/toolbar.ui")
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/ui/toolbar.ui")
 		toolbar = builder.get_object("toolbar")
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
 
 	def build_headerbar(self):
-		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
 		save_as_btn = builder.get_object("save_as_btn")
 		self.main_menu_btn = builder.get_object("main_menu_btn")
@@ -332,10 +306,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[state_as_string].row.set_active(True)
 		self.former_tool_id = self.active_tool_id
 		self.former_tool().give_back_control()
+		self.former_tool().on_tool_unselected()
 		self.drawing_area.queue_draw()
 		self.active_tool_id = state_as_string
 		self.active_mode().on_tool_changed()
 		self.adapt_to_window_size()
+		self.active_tool().on_tool_selected()
 
 	def active_tool(self):
 		return self.tools[self.active_tool_id]
@@ -503,7 +479,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT
 
 	def action_undo(self, *args):
-		should_undo = not self.active_tool().cancel_ongoing_operation()
+		should_undo = not self.active_tool().give_back_control()
 		if should_undo and self._pixbuf_manager.can_undo():
 			self._pixbuf_manager.undo_operation()
 			self.update_history_sensitivity()

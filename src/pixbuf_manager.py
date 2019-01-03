@@ -28,7 +28,6 @@ class DrawingPixbufManager():
 
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
-		self.preview_size = self.window._settings.get_int('preview-size')
 
 		self.gfile = None
 		self.clipboard = None
@@ -39,19 +38,15 @@ class DrawingPixbufManager():
 		self.selection_is_active = False
 		self.temp_x = 1
 		self.temp_y = 1
-		self.preview_x = 0
-		self.preview_y = 0
 
 		# INIT PIXBUFS AND SURFACES
 
 		# self.full_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
-		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300) # 8 ??? les autres plantent
 		self.selection_pixbuf = None
 		self.temp_pixbuf = None
 
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
 		# INIT HISTORY
 
@@ -67,7 +62,6 @@ class DrawingPixbufManager():
 	def initial_save(self, fn):
 		self.gfile = Gio.File.new_for_path(fn)
 		self.use_stable_pixbuf()
-		self.update_minimap()
 
 	def load_main_from_filename(self, filename):
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
@@ -133,7 +127,6 @@ class DrawingPixbufManager():
 		self.set_pixbuf_as_stable()
 		self.selection_is_active = False
 		self.update_selection_actions()
-		self.update_minimap()
 
 	def can_undo(self):
 		if len(self.undo_history) == 0:
@@ -151,61 +144,6 @@ class DrawingPixbufManager():
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 			self.surface.get_width(), self.surface.get_height())
 
-	def update_minimap(self):
-		w = self.preview_size
-		h = self.preview_size
-		if self.main_pixbuf.get_height() > self.main_pixbuf.get_width(): # TODO? comparer la taille de full_pixbuf plutôt?
-			w = self.preview_size * (self.main_pixbuf.get_width()/self.main_pixbuf.get_height())
-		else:
-			h = self.preview_size * (self.main_pixbuf.get_height()/self.main_pixbuf.get_width())
-		self.mini_pixbuf = self.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES) # full_pixbuf
-		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
-		# self.window.draw_mode.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
-		self.window.draw_mode.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
-
-		visible_width = min(self.window.drawing_area.get_allocated_width(), \
-			self.main_pixbuf.get_width() - self.preview_x)
-		visible_height = min(self.window.drawing_area.get_allocated_height(), \
-			self.main_pixbuf.get_height() - self.preview_y)
-		if self.window.drawing_area.get_allocated_width() < self.main_pixbuf.get_width() \
-		or self.window.drawing_area.get_allocated_height() < self.main_pixbuf.get_height():
-			mini_x = self.preview_x * self.mini_pixbuf.get_width()/self.main_pixbuf.get_width()
-			mini_y = self.preview_y * self.mini_pixbuf.get_height()/self.main_pixbuf.get_height()
-			mini_width = visible_width * self.mini_pixbuf.get_width()/self.main_pixbuf.get_width()
-			mini_height = visible_height * self.mini_pixbuf.get_height()/self.main_pixbuf.get_height()
-			mini_context = cairo.Context(self.mini_surface)
-			mini_context.move_to(mini_x, mini_y)
-			mini_context.line_to(mini_x, mini_height + mini_y)
-			mini_context.line_to(mini_width + mini_x, mini_height + mini_y)
-			mini_context.line_to(mini_width + mini_x, mini_y)
-			mini_context.close_path()
-			mini_path = mini_context.copy_path()
-			self.show_overlay_on_surface(self.mini_surface, mini_path, False)
-		else:
-			print('todo : ignorer explicitement preview_x et preview_y')
-		self.window.draw_mode.minimap_area.queue_draw()
-
-	def on_minimap_press(self, x, y):
-		self.old_x = x
-		self.old_y = y
-
-	def on_minimap_release(self, x, y):
-		delta_x = x - self.old_x
-		delta_y = y - self.old_y
-		delta_x = delta_x * self.main_pixbuf.get_width()/self.mini_pixbuf.get_width()
-		delta_y = delta_y * self.main_pixbuf.get_height()/self.mini_pixbuf.get_height()
-		self.preview_x = int(self.preview_x + delta_x)
-		self.preview_y = int(self.preview_y + delta_y)
-		if self.preview_x < 0:
-			self.preview_x = 0
-		if self.preview_y < 0:
-			self.preview_y = 0
-		if self.preview_x + self.window.drawing_area.get_allocated_width() > self.main_pixbuf.get_width():
-			self.preview_x = self.main_pixbuf.get_width() - self.window.drawing_area.get_allocated_width()
-		if self.preview_y + self.window.drawing_area.get_allocated_height() > self.main_pixbuf.get_height():
-			self.preview_y = self.main_pixbuf.get_height() - self.window.drawing_area.get_allocated_height()
-		self.update_minimap()
-
 	def use_stable_pixbuf(self):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
@@ -213,13 +151,11 @@ class DrawingPixbufManager():
 		self.redo_history.append(self.main_pixbuf.copy())
 		self.main_pixbuf = self.undo_history.pop()
 		self.use_stable_pixbuf()
-		self.update_minimap()
 
 	def redo_operation(self):
 		self.undo_history.append(self.main_pixbuf.copy())
 		self.main_pixbuf = self.redo_history.pop()
 		self.use_stable_pixbuf()
-		self.update_minimap()
 
 	def delete_operation(self):
 		x0 = self.selection_x
@@ -394,7 +330,7 @@ class DrawingPixbufManager():
 			self.selection_pixbuf.savev(file_path, file_path.split('.')[-1], [None], [])
 
 	def update_selection_actions(self):
-		self.window.update_selection_actions(self.selection_is_active)
+		self.window.active_tool().update_actions_state()
 
 	def point_is_in_selection(self, x, y):
 		dragged_path = self.get_dragged_selection_path(self.surface, self._path)

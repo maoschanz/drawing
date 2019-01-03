@@ -20,6 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GLib
 from .modes import ModeTemplate
 
 from .color_popover import DrawingColorPopover
+from .minimap import DrawingMinimap
 
 class ModeDraw(ModeTemplate):
 	__gtype_name__ = 'ModeDraw'
@@ -52,7 +53,18 @@ class ModeDraw(ModeTemplate):
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_icon = builder.get_object('minimap_icon')
 		self.minimap_label = builder.get_object('minimap_label')
-		self.build_minimap()
+		self.minimap = DrawingMinimap(self.window, self.minimap_btn)
+
+	def add_mode_actions(self):
+		self.window.add_action_simple('main_color', self.action_main_color)
+		self.window.add_action_simple('secondary_color', self.action_secondary_color)
+		self.window.add_action_simple('exchange_color', self.action_exchange_color)
+		self.window.app.add_action_boolean('use_editor', \
+			self.window._settings.get_boolean('direct-color-edit'), self.action_use_editor)
+		if self.window._settings.get_boolean('experimental'):
+			self.window.add_action_simple('toggle_preview', self.action_toggle_preview)
+			self.window.add_action_simple('bigger_preview', self.minimap.action_bigger_preview)
+			self.window.add_action_simple('smaller_preview', self.minimap.action_smaller_preview)
 
 	def get_panel(self):
 		return self.bottom_panel
@@ -164,45 +176,4 @@ class ModeDraw(ModeTemplate):
 
 	def action_toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
-
-	def action_smaller_preview(self, *args):
-		size = max(200, self._settings.get_int('preview-size') - 40)
-		self.window._settings.set_int('preview-size', size)
-		self.window._pixbuf_manager.preview_size = size
-		self.window._pixbuf_manager.update_minimap()
-
-	def action_bigger_preview(self, *args):
-		size = self._settings.get_int('preview-size') + 40
-		self.window._settings.set_int('preview-size', size)
-		self.window._pixbuf_manager.preview_size = size
-		self.window._pixbuf_manager.update_minimap()
-
-	def build_minimap(self):
-		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/minimap.ui')
-		box = builder.get_object('minimap_box')
-		self.minimap_area = builder.get_object('minimap_area')
-		self.minimap_area.set_size(200, 200)
-		minimap_popover = Gtk.Popover()
-		minimap_popover.add(box)
-		self.minimap_btn.set_popover(minimap_popover)
-
-		self.minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
-			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
-
-		self.minimap_area.connect('draw', self.on_minimap_draw)
-		# self.minimap_area.connect('motion-notify-event', self.on_minimap_motion)
-		self.minimap_area.connect('button-press-event', self.on_minimap_press)
-		self.minimap_area.connect('button-release-event', self.on_minimap_release)
-
-	def on_minimap_draw(self, area, cairo_context):
-		cairo_context.set_source_surface(self.window._pixbuf_manager.mini_surface, 0, 0)
-		cairo_context.paint()
-
-	def on_minimap_press(self, area, event):
-		self.window._pixbuf_manager.on_minimap_press(event.x, event.y)
-
-	def on_minimap_release(self, area, event):
-		self.window._pixbuf_manager.on_minimap_release(event.x, event.y)
-
 
