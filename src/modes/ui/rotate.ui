@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+
+    <object class="GtkAdjustment" id="adj_angle">
+        <property name="lower">-180</property>
+        <property name="upper">180</property>
+        <property name="step_increment">1</property>
+        <property name="page_increment">20</property>
+        <property name="value">0</property>
+    </object>
+
+  <!-- -->
+
+  <object class="GtkActionBar" id="bottom-panel">
+    <property name="visible">True</property>
+    <property name="expand">True</property>
+    <style>
+      <class name="selection-mode"/>
+      <!-- FIXME n'a pas l'air d'exister pour ce widget -->
+    </style>
+
+    <child>
+      <object class="GtkButton" id="cancel_btn">
+        <property name="tooltip_text" translatable="yes">Cancel</property>
+        <property name="visible">True</property>
+        <property name="action_name">win.pic_draw</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-previous-symbolic</property>
+            <property name="visible">True</property>
+            <property name="tooltip_text" translatable="yes">Save as…</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkLabel">
+          <property name="label" translatable="yes">Angle (degrees)</property>
+          <property name="visible">True</property>
+      </object>
+    </child>
+    <child>
+        <object class="GtkSpinButton" id="angle_btn">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_angle</property>
+            <property name="tooltip_text" translatable="yes">Angle (degrees)</property>
+        </object>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="apply_btn">
+        <property name="label" translatable="yes">Apply</property>
+        <property name="visible">True</property>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+  </object>
+</interface>

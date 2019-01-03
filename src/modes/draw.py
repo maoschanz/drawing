@@ -47,49 +47,54 @@ class ModeDraw(ModeTemplate):
 		self.options_short_box = builder.get_object('options_short_box')
 		self.options_btn.connect('toggled', self.update_option_label)
 
-		self.tool_info_label = builder.get_object('tool_info_label') # TODO
-
 		self.minimap_area = None
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_icon = builder.get_object('minimap_icon')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap = DrawingMinimap(self.window, self.minimap_btn)
 
+		self.add_mode_actions()
+
 	def add_mode_actions(self):
-		self.window.add_action_simple('main_color', self.action_main_color)
-		self.window.add_action_simple('secondary_color', self.action_secondary_color)
-		self.window.add_action_simple('exchange_color', self.action_exchange_color)
+		self.add_mode_action_simple('main_color', self.action_main_color)
+		self.add_mode_action_simple('secondary_color', self.action_secondary_color)
+		self.add_mode_action_simple('exchange_color', self.action_exchange_color)
 		self.window.app.add_action_boolean('use_editor', \
 			self.window._settings.get_boolean('direct-color-edit'), self.action_use_editor)
 		if self.window._settings.get_boolean('experimental'):
-			self.window.add_action_simple('toggle_preview', self.action_toggle_preview)
-			self.window.add_action_simple('bigger_preview', self.minimap.action_bigger_preview)
-			self.window.add_action_simple('smaller_preview', self.minimap.action_smaller_preview)
+			self.add_mode_action_simple('toggle_preview', self.action_toggle_preview)
+			self.add_mode_action_simple('bigger_preview', self.minimap.action_bigger_preview)
+			self.add_mode_action_simple('smaller_preview', self.minimap.action_smaller_preview)
 
 	def get_panel(self):
 		return self.bottom_panel
 
-	def adapt_to_window_size(self):
-		available_width = self.options_long_box.get_preferred_width()[0] + \
-			self.options_short_box.get_preferred_width()[0] + \
-			self.tool_info_label.get_allocated_width() + \
-			self.minimap_btn.get_allocated_width()
+	def adapt_to_window_size(self): # FIXME
+		# available_width = self.options_long_box.get_preferred_width()[0] + \
+		# 	self.options_short_box.get_preferred_width()[0] + \
+		# 	self.tool_info_label.get_allocated_width() + \
+		# 	self.minimap_btn.get_allocated_width()
 
-		used_width = self.options_long_box.get_allocated_width() + \
-			self.options_short_box.get_allocated_width() + \
-			self.tool_info_label.get_preferred_width()[0] + \
-			self.minimap_btn.get_preferred_width()[0]
+		# used_width = self.options_long_box.get_allocated_width() + \
+		# 	self.options_short_box.get_allocated_width() + \
+		# 	self.tool_info_label.get_preferred_width()[0] + \
+		# 	self.minimap_btn.get_preferred_width()[0]
 
-		if used_width > 0.9*available_width:
-			self.options_long_box.set_visible(False)
-			self.options_short_box.set_visible(True)
-			self.minimap_label.set_visible(False)
-			self.minimap_icon.set_visible(True)
-		else:
-			self.options_short_box.set_visible(False)
-			self.options_long_box.set_visible(True)
-			self.minimap_label.set_visible(True)
-			self.minimap_icon.set_visible(False)
+		# if used_width > 0.9*available_width:
+		# 	self.options_long_box.set_visible(False)
+		# 	self.options_short_box.set_visible(True)
+		# 	self.minimap_label.set_visible(False)
+		# 	self.minimap_icon.set_visible(True)
+		# else:
+		# 	self.options_short_box.set_visible(False)
+		# 	self.options_long_box.set_visible(True)
+		# 	self.minimap_label.set_visible(True)
+		# 	self.minimap_icon.set_visible(False)
+
+		self.options_short_box.set_visible(False)
+		self.options_long_box.set_visible(True)
+		self.minimap_label.set_visible(True)
+		self.minimap_icon.set_visible(False)
 
 	def on_tool_changed(self):
 		self.build_options_menu()

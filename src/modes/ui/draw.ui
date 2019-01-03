@@ -11,11 +11,9 @@
 
   <!-- -->
 
-  <object class="GtkBox" id="bottom-panel">
+  <object class="GtkActionBar" id="bottom-panel">
     <property name="visible">True</property>
     <property name="expand">True</property>
-    <property name="spacing">10</property>
-    <property name="orientation">horizontal</property>
 
     <child>
       <object class="GtkBox" id="color_box">
@@ -154,16 +152,6 @@
         </child>
       </object>
       <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-
-    <child>
-      <object class="GtkLabel" id="tool_info_label">
-        <property name="visible">True</property>
-      </object>
-      <packing>
-        <property name="expand">True</property>
         <property name="pack-type">end</property>
       </packing>
     </child>

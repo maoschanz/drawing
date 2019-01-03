@@ -32,6 +32,15 @@ class ModeTemplate():
 	def on_tool_changed(self):
 		pass
 
+	def add_mode_action_simple(self, action_name, callback):
+		self.window.add_action_simple(action_name, callback)
+
+	def add_mode_action_boolean(self, action_name, default, callback):
+		self.window.add_action_boolean(action_name, default, callback)
+
+	def add_mode_action_enum(self, action_name, default, callback):
+		self.window.add_action_enum(action_name, default, callback)
+
 	def on_motion_on_area(self, area, event, surface):
 		pass
 

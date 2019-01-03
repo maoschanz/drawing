@@ -32,6 +32,9 @@ from .experiment import ToolExperiment
 from .polygon import ToolPolygon
 
 from .draw import ModeDraw
+from .crop import ModeCrop
+from .scale import ModeScale
+from .rotate import ModeRotate
 
 from .pixbuf_manager import DrawingPixbufManager
 
@@ -65,8 +68,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._pixbuf_manager = DrawingPixbufManager(self)
 
 		self.draw_mode = ModeDraw(self)
+		self.crop_mode = ModeCrop(self)
+		self.scale_mode = ModeScale(self)
+		self.rotate_mode = ModeRotate(self)
 
-		self.on_active_mode_changed()
+		self.bottom_panel.add(self.active_mode().get_panel())
 
 		self.add_all_win_actions()
 
@@ -183,9 +189,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.lookup_action('open_with').set_enabled(False)
 		self.add_action_simple('print', self.action_print)
 
+		self.add_action_simple('pic_draw', self.action_draw)
+
 		self.add_action_simple('pic_crop', self.action_crop)
 		self.add_action_simple('pic_scale', self.action_scale)
-		# self.add_action_simple('pic_rotate', self.action_rotate)
+		self.add_action_simple('pic_rotate', self.action_rotate)
 		self.add_action_simple('properties', self.edit_properties)
 
 		if self.main_menu_btn is not None:
@@ -289,9 +297,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# MODES
 
 	def active_mode(self, *args): # TODO
-		return self.draw_mode
+		if self.active_mode_id == 'crop':
+			return self.crop_mode
+		elif self.active_mode_id == 'rotate':
+			return self.rotate_mode
+		elif self.active_mode_id == 'scale':
+			return self.scale_mode
+		else:
+			return self.draw_mode
 
-	def on_active_mode_changed(self, *args): # TODO remove préalable
+	def update_bottom_panel(self, new_mode_id): # TODO remove préalable
+		self.bottom_panel.remove(self.active_mode().get_panel())
+		self.active_mode_id = new_mode_id
 		self.bottom_panel.add(self.active_mode().get_panel())
 
 	# TOOLS
@@ -551,7 +568,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def edit_properties(self, *args):
 		DrawingPropertiesDialog(self)
 
-	def action_crop(self, *args):
+	def action_draw(self, *args):
+		# TODO quand on annule un autre mode en gros
+		# il faut peut-tre restaurer des pixbufs ?
+		self.update_bottom_panel('draw')
+
+	def action_crop(self, *args): # TODO
+		self.update_bottom_panel('crop')
+
 		crop_dialog = DrawingCropDialog(self, False, False)
 		result = crop_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
@@ -559,13 +583,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			crop_dialog.on_cancel()
 
-	def action_scale(self, *args):
+	def action_scale(self, *args): # TODO
 		self.scale_pixbuf(False)
 
 	def action_rotate(self, *args): # TODO
-		pass
+		self.update_bottom_panel('rotate')
 
-	def scale_pixbuf(self, is_selection):
+	def scale_pixbuf(self, is_selection): # TODO
+		self.update_bottom_panel('scale')
+
 		if is_selection:
 			w = self._pixbuf_manager.selection_pixbuf.get_width()
 			h = self._pixbuf_manager.selection_pixbuf.get_height()
