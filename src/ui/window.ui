@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-
-  <object class="GtkAdjustment" id="adjustment_size">
-    <property name="lower">1</property>
-    <property name="upper">200</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <property name="value">10</property>
-  </object>
-
   <template class="DrawingWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
@@ -47,7 +38,6 @@
                 <property name="shrink">False</property>
               </packing>
             </child>
-
             <child>
             <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
               <object class="GtkLayout" id="drawing_area">
@@ -55,14 +45,12 @@
                 <property name="can_focus">True</property>
               </object>
             </child>
-
           </object>
           <packing>
             <property name="expand">True</property>
             <!-- weird warning ?? -->
           </packing>
         </child>
-
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
@@ -73,168 +61,11 @@
             <property name="fill">True</property>
           </packing>
         </child>
-
         <child>
           <object class="GtkBox" id="bottom_panel">
             <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="margin">5</property>
-            <property name="orientation">horizontal</property>
             <property name="expand">False</property>
-
-            <child>
-              <object class="GtkBox" id="color_box">
-              <property name="visible">True</property>
-                <child>
-                  <object class="GtkMenuButton" id="color_menu_btn_l">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkImage" id="l_btn_image">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="color_btn_exc">
-                    <property name="visible">True</property>
-                    <property name="action_name">win.exchange_color</property>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="icon-name">network-transmit-receive-symbolic</property>
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkMenuButton" id="color_menu_btn_r">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkImage" id="r_btn_image">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <style>
-                  <class name="linked"/>
-                </style>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkSpinButton" id="size_setter">
-                <property name="tooltip_text" translatable="yes">Tool size</property>
-                <property name="visible">True</property>
-                <property name="adjustment">adjustment_size</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkMenuButton" id="options_btn">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="spacing">10</property>
-                    <child>
-                      <object class="GtkBox" id="options_long_box">
-                        <property name="visible">True</property>
-                        <property name="spacing">10</property>
-                        <child>
-                          <object class="GtkLabel" id="options_label">
-                            <property name="label" translatable="yes">No options</property>
-                            <property name="visible">True</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">pan-down-symbolic</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="options_short_box">
-                        <property name="visible">False</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">view-more-symbolic</property>
-                            <property name="visible">True</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkMenuButton" id="minimap_btn">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="spacing">10</property>
-                    <child>
-                      <object class="GtkImage" id="minimap_icon">
-                        <property name="icon-name">zoom-fit-best-symbolic</property>
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="pack-type">start</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="minimap_label">
-                        <property name="label" translatable="yes">Preview</property>
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="icon-name">pan-down-symbolic</property>
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="pack-type">end</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkLabel" id="tool_info_label">
-                <property name="visible">True</property>
-                <!-- <property name="label">label (todo)</property> -->
-                <!-- TODO -->
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-
+            <property name="margin">5</property>
           </object>
         </child>
       </object>

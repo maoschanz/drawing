@@ -160,8 +160,8 @@ class DrawingPixbufManager():
 			h = self.preview_size * (self.main_pixbuf.get_height()/self.main_pixbuf.get_width())
 		self.mini_pixbuf = self.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES) # full_pixbuf
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
-		# self.window.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
-		self.window.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
+		# self.window.draw_mode.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
+		self.window.draw_mode.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
 
 		visible_width = min(self.window.drawing_area.get_allocated_width(), \
 			self.main_pixbuf.get_width() - self.preview_x)
@@ -183,7 +183,7 @@ class DrawingPixbufManager():
 			self.show_overlay_on_surface(self.mini_surface, mini_path, False)
 		else:
 			print('todo : ignorer explicitement preview_x et preview_y')
-		self.window.minimap_area.queue_draw()
+		self.window.draw_mode.minimap_area.queue_draw()
 
 	def on_minimap_press(self, x, y):
 		self.old_x = x

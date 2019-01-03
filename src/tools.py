@@ -46,6 +46,9 @@ class ToolTemplate():
 	def apply_to_pixbuf(self):
 		self.window._pixbuf_manager.on_tool_finished()
 
+	def cancel_ongoing_operation(self):
+		return self.give_back_control()
+
 	def give_back_control(self):
 		return False
 

@@ -63,6 +63,9 @@ class ToolPolygon(ToolTemplate):
 			(self.past_x, self.past_y) = (-1.0, -1.0)
 			return True
 
+	# def cancel_ongoing_operation(self):
+		# TODO
+
 	def draw_polygon(self, event, is_preview):
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)

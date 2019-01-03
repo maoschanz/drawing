@@ -31,13 +31,13 @@ from .eraser import ToolEraser
 from .experiment import ToolExperiment
 from .polygon import ToolPolygon
 
+from .draw import ModeDraw
+
 from .pixbuf_manager import DrawingPixbufManager
-from .color_popover import DrawingColorPopover
 
 from .properties import DrawingPropertiesDialog
 from .crop_dialog import DrawingCropDialog
 from .scale_dialog import DrawingScaleDialog
-from .rotate_dialog import DrawingRotateDialog
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
@@ -50,19 +50,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	toolbar_box = GtkTemplate.Child()
 	drawing_area = GtkTemplate.Child()
 	bottom_panel = GtkTemplate.Child()
-	color_menu_btn_l = GtkTemplate.Child()
-	color_menu_btn_r = GtkTemplate.Child()
-	l_btn_image	 = GtkTemplate.Child()
-	r_btn_image = GtkTemplate.Child()
-	options_btn = GtkTemplate.Child()
-	options_label = GtkTemplate.Child()
-	options_long_box = GtkTemplate.Child()
-	options_short_box = GtkTemplate.Child()
-	size_setter = GtkTemplate.Child()
-	minimap_btn = GtkTemplate.Child()
-	minimap_icon = GtkTemplate.Child()
-	minimap_label = GtkTemplate.Child()
-	tool_info_label = GtkTemplate.Child() # TODO
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
@@ -75,21 +62,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title(None)
 		self.maximize()
 
-		self.add_all_win_actions()
-
-		self.build_color_buttons()
-
-		self.build_minimap()
 		self._pixbuf_manager = DrawingPixbufManager(self)
 
-		self.minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
-			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
+		self.draw_mode = ModeDraw(self)
+
+		self.on_active_mode_changed()
+
+		self.add_all_win_actions()
+
 		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
 		self.init_tools()
-		self.build_options_menu()
-		self.update_size_spinbtn_state(self.active_tool().use_size)
+		self.active_mode().on_tool_changed()
 
 		self.update_history_sensitivity()
 		self.connect_signals()
@@ -98,16 +83,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.init_background()
 
 		if not self._settings.get_boolean('experimental'):
-			self.minimap_btn.set_visible(False)
+			self.draw_mode.minimap_btn.set_visible(False)
 
 	def init_instance_attributes(self):
 		self.handlers = []
 		self._is_saved = True
+		self.active_mode_id = 'draw'
 		self.active_tool_id = 'pencil'
 		self.former_tool_id = 'pencil'
-		self.tool_width = 10
 		self.is_clicked = False
-		self.minimap_area = None
 		self.header_bar = None
 		self.main_menu_btn = None
 
@@ -168,18 +152,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 
-		self.handlers.append( self.size_setter.connect('change-value', self.update_size_spinbtn_value) )
-		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
-
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
 		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-press-event', self.on_press_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
-
-		self.handlers.append( self.minimap_area.connect('draw', self.on_minimap_draw) )
-		# self.handlers.append( self.minimap_area.connect('motion-notify-event', self.on_minimap_motion) )
-		self.handlers.append( self.minimap_area.connect('button-press-event', self.on_minimap_press) )
-		self.handlers.append( self.minimap_area.connect('button-release-event', self.on_minimap_release) )
 
 		self.handlers.append( self.tools_panel.connect('size-allocate', self.update_tools_visibility) )
 		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
@@ -204,10 +180,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_simple('main_color', self.action_main_color)
-		self.add_action_simple('secondary_color', self.action_secondary_color)
-		self.add_action_simple('exchange_color', self.action_exchange_color)
-		self.app.add_action_boolean('use_editor', self._settings.get_boolean('direct-color-edit'), self.action_use_editor)
+		self.add_action_simple('main_color', self.draw_mode.action_main_color) # XXX
+		self.add_action_simple('secondary_color', self.draw_mode.action_secondary_color) # XXX
+		self.add_action_simple('exchange_color', self.draw_mode.action_exchange_color) # XXX
+		self.app.add_action_boolean('use_editor', \
+			self._settings.get_boolean('direct-color-edit'), self.draw_mode.action_use_editor) # XXX
 
 		self.add_action_simple('open_with', self.action_open_with)
 		self.lookup_action('open_with').set_enabled(False)
@@ -222,9 +199,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.add_action_simple('main_menu', self.action_main_menu)
 
 		if self._settings.get_boolean('experimental'):
-			self.add_action_simple('toggle_preview', self.action_toggle_preview)
-			self.add_action_simple('bigger_preview', self.action_bigger_preview)
-			self.add_action_simple('smaller_preview', self.action_smaller_preview)
+			self.add_action_simple('toggle_preview', self.draw_mode.action_toggle_preview) # XXX
+			self.add_action_simple('bigger_preview', self.draw_mode.action_bigger_preview) # XXX
+			self.add_action_simple('smaller_preview', self.draw_mode.action_smaller_preview) # XXX
 
 		self.add_action_simple('close', self.action_close)
 		self.add_action_simple('save', self.action_save)
@@ -250,27 +227,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# self.lookup_action('selection_rotate').set_enabled(state)
 		self.lookup_action('selection_export').set_enabled(state)
 
-	def adapt_to_window_size(self,*args):
-		available_width = self.options_long_box.get_preferred_width()[0] + \
-			self.options_short_box.get_preferred_width()[0] + \
-			self.tool_info_label.get_allocated_width() + \
-			self.minimap_btn.get_allocated_width()
-
-		used_width = self.options_long_box.get_allocated_width() + \
-			self.options_short_box.get_allocated_width() + \
-			self.tool_info_label.get_preferred_width()[0] + \
-			self.minimap_btn.get_preferred_width()[0]
-
-		if used_width > 0.9*available_width:
-			self.options_long_box.set_visible(False)
-			self.options_short_box.set_visible(True)
-			self.minimap_label.set_visible(False)
-			self.minimap_icon.set_visible(True)
-		else:
-			self.options_short_box.set_visible(False)
-			self.options_long_box.set_visible(True)
-			self.minimap_label.set_visible(True)
-			self.minimap_icon.set_visible(False)
+	def adapt_to_window_size(self, *args):
+		self.active_mode().adapt_to_window_size()
 
 	# WINDOW BARS
 
@@ -323,43 +281,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_main_menu(self, *args):
 		self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
 
-	# MINIMAP
-
-	def action_toggle_preview(self, *args):
-		self.minimap_btn.set_active(not self.minimap_btn.get_active())
-
-	def action_smaller_preview(self, *args):
-		size = max(200, self._settings.get_int('preview-size') - 40)
-		self._settings.set_int('preview-size', size)
-		self._pixbuf_manager.preview_size = size
-		self._pixbuf_manager.update_minimap()
-
-	def action_bigger_preview(self, *args):
-		size = self._settings.get_int('preview-size') + 40
-		self._settings.set_int('preview-size', size)
-		self._pixbuf_manager.preview_size = size
-		self._pixbuf_manager.update_minimap()
-
-	def build_minimap(self):
-		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/minimap.ui")
-		box = builder.get_object("minimap_box")
-		self.minimap_area = builder.get_object("minimap_area")
-		self.minimap_area.set_size(200, 200)
-		minimap_popover = Gtk.Popover()
-		minimap_popover.add(box)
-		self.minimap_btn.set_popover(minimap_popover)
-
-	def on_minimap_draw(self, area, cairo_context):
-		cairo_context.set_source_surface(self._pixbuf_manager.mini_surface, 0, 0)
-		cairo_context.paint()
-
-	def on_minimap_press(self, area, event):
-		self._pixbuf_manager.on_minimap_press(event.x, event.y)
-
-	def on_minimap_release(self, area, event):
-		self._pixbuf_manager.on_minimap_release(event.x, event.y)
-
 	# TOOLS PANEL
 
 	def build_tool_rows(self):
@@ -391,63 +312,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_tools_labels_visibility(False)
 			self._settings.set_boolean('panel-width', False)
 
-	# COLORS
+	# MODES
 
-	def build_color_buttons(self):
-		white = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0)
-		black = Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0)
-		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, self.r_btn_image, white)
-		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, black)
+	def active_mode(self, *args): # TODO
+		return self.draw_mode
 
-	def action_use_editor(self, *args):
-		self._settings.set_boolean('direct-color-edit', not args[0].get_state())
-		args[0].set_state(GLib.Variant.new_boolean(not args[0].get_state()))
-		self.set_palette_setting()
+	def on_active_mode_changed(self, *args): # TODO remove préalable
+		self.bottom_panel.add(self.active_mode().get_panel())
 
-	def set_palette_setting(self, *args):
-		show_editor = self._settings.get_boolean('direct-color-edit')
-		self.color_popover_r.setting_changed(show_editor)
-		self.color_popover_l.setting_changed(show_editor)
-
-	def action_main_color(self, *args):
-		self.color_menu_btn_l.activate()
-
-	def action_secondary_color(self, *args):
-		self.color_menu_btn_r.activate()
-
-	def action_exchange_color(self, *args):
-		left_c = self.color_popover_l.color_widget.get_rgba()
-		self.color_popover_l.color_widget.set_rgba(self.color_popover_r.color_widget.get_rgba())
-		self.color_popover_r.color_widget.set_rgba(left_c)
-
-	# TOOLS OPTIONS
-
-	def update_size_spinbtn_state(self, sensitivity):
-		self.size_setter.set_sensitive(sensitivity)
-
-	def update_size_spinbtn_value(self, *args):
-		self.tool_width = int(args[2])
-
-	def build_options_menu(self):
-		widget = self.active_tool().get_options_widget()
-		model = self.active_tool().get_options_model()
-		tools_menu = self.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU)
-		section = tools_menu.get_item_link(0, Gio.MENU_LINK_SECTION)
-		if model is None:
-			section.get_item_link(0, Gio.MENU_LINK_SUBMENU).remove_all()
-		else:
-			section.remove_all()
-			section.append_submenu(_("Tool options"), model)
-		if widget is not None:
-			self.options_btn.set_popover(widget)
-		elif model is not None:
-			self.options_btn.set_menu_model(model)
-		else:
-			self.options_btn.set_popover(None)
-		self.update_option_label()
-
-	def update_option_label(self, *args):
-		self.options_label.set_label(self.active_tool().get_options_label())
+	# TOOLS
 
 	def on_change_active_tool(self, *args):
 		state_as_string = args[1].get_string()
@@ -461,9 +334,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.former_tool().give_back_control()
 		self.drawing_area.queue_draw()
 		self.active_tool_id = state_as_string
-		self.build_options_menu()
+		self.active_mode().on_tool_changed()
 		self.adapt_to_window_size()
-		self.update_size_spinbtn_state(self.active_tool().use_size)
 
 	def active_tool(self):
 		return self.tools[self.active_tool_id]
@@ -631,7 +503,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT
 
 	def action_undo(self, *args):
-		should_undo = not self.active_tool().give_back_control()
+		should_undo = not self.active_tool().cancel_ongoing_operation()
 		if should_undo and self._pixbuf_manager.can_undo():
 			self._pixbuf_manager.undo_operation()
 			self.update_history_sensitivity()
@@ -656,35 +528,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Ça marche aussi mais c'est moins idéal complexitivement.
 		# surface = Gdk.cairo_surface_create_from_pixbuf(self._pixbuf_manager.main_pixbuf, 0, None)
 
-		cairo_context.set_source_surface(self._pixbuf_manager.surface, 0, 0)
+		cairo_context.set_source_surface(self._pixbuf_manager.surface, 0, 0) # XXX c'est là pour le zoom non ?
 		cairo_context.paint()
 
 	def on_motion_on_area(self, area, event):
 		if (not self.is_clicked):
 			return
-		self.active_tool().on_motion_on_area(area, event, self._pixbuf_manager.surface)
+		self.active_mode().on_motion_on_area(area, event, self._pixbuf_manager.surface)
 		self.drawing_area.queue_draw()
 
 	def on_press_on_area(self, area, event):
-		self._is_saved = False
 		self.is_clicked = True
-		self.x_press = event.x
-		self.y_press = event.y
-		self.tool_width = int(self.size_setter.get_value())
-
-		if event.button is 2:
-			self.action_exchange_color()
-			self.is_clicked = False
-			return
-
-		self.active_tool().on_press_on_area(area, event, self._pixbuf_manager.surface, \
-			self.size_setter.get_value(), self.color_popover_l.color_widget.get_rgba(), self.color_popover_r.color_widget.get_rgba())
+		self._is_saved = False
+		self.active_mode().on_press_on_area(area, event, self._pixbuf_manager.surface)
 
 	def on_release_on_area(self, area, event):
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
-		self.active_tool().on_release_on_area(area, event, self._pixbuf_manager.surface)
+		self.active_mode().on_release_on_area(area, event, self._pixbuf_manager.surface)
 
 	# PRINTING
 
@@ -725,12 +587,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.scale_pixbuf(False)
 
 	def action_rotate(self, *args): # TODO
-		rotate_dialog = DrawingRotateDialog(self, 0, 0, False)
-		result = rotate_dialog.run()
-		if result == Gtk.ResponseType.APPLY:
-			rotate_dialog.on_apply()
-		else:
-			rotate_dialog.on_cancel()
 		pass
 
 	def scale_pixbuf(self, is_selection):

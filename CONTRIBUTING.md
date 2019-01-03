@@ -48,6 +48,8 @@ And submit a "pull request"/"merge request".
 
 ## If you want to fix a bug or to add a new feature
 
+<!-- TODO explain the structure of the code here ? -->
+
 - The issue has to be reported first.
 - Tell on the issue that you'll do a patch.
 - Use tabs in `.py` files.

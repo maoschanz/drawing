@@ -75,11 +75,31 @@ class ToolSelect(ToolTemplate):
 
 	def give_back_control(self):
 		print('selection give back control')
-		self.restore_pixbuf()
-		self.window._pixbuf_manager.delete_temp()
-		self.window._pixbuf_manager.show_selection_content()
+		if self.selection_has_been_used:
+			if self.window._pixbuf_manager.selection_is_active:
+				self.restore_pixbuf()
+				self.window._pixbuf_manager.delete_temp()
+				self.window._pixbuf_manager.show_selection_content()
+				self.apply_to_pixbuf()
+			self.end_selection()
+			return False
+		else:
+			return self.cancel_ongoing_operation()
+
+	def cancel_ongoing_operation(self):
+		print('cancelito')
 		self.end_selection()
-		return False
+		self.window._pixbuf_manager.reset_selection()
+		self.show_popover(False)
+		self.non_destructive_show_modif()
+		return True
+
+	def end_selection(self):
+		self.show_popover(False)
+		self.x_press = 0.0
+		self.y_press = 0.0
+		self.past_x = [-1, -1]
+		self.past_y = [-1, -1]
 
 	def show_popover(self, state):
 		self.selection_popover.popdown()
@@ -128,6 +148,7 @@ class ToolSelect(ToolTemplate):
 				self.create_selection_from_coord()
 				if self.window._pixbuf_manager.selection_is_active:
 					self.draw_selection_area(True)
+					self.selection_has_been_used = False
 			elif self.window._pixbuf_manager.point_is_in_selection(self.x_press, self.y_press):
 				self.drag_to(event.x, event.y)
 			else:
@@ -143,6 +164,7 @@ class ToolSelect(ToolTemplate):
 					self.window._pixbuf_manager.create_free_selection_from_main(selection_path)
 					if self.window._pixbuf_manager.selection_is_active:
 						self.draw_selection_area(True)
+						self.selection_has_been_used = False
 					(self.x_press, self.y_press) = (-1.0, -1.0)
 					self.past_x = [-1, -1]
 					self.past_y = [-1, -1]
@@ -184,15 +206,8 @@ class ToolSelect(ToolTemplate):
 		rectangle.width = 1
 		self.selection_popover.set_pointing_to(rectangle)
 
-	def end_selection(self):
-		self.apply_to_pixbuf()
-		self.show_popover(False)
-		self.x_press = 0.0
-		self.y_press = 0.0
-		self.past_x = [-1, -1]
-		self.past_y = [-1, -1]
-
 	def drag_to(self, final_x, final_y):
+		self.selection_has_been_used = True # XXX si delta non nuls seulement
 		self.restore_pixbuf()
 		delta_x = final_x - self.x_press
 		delta_y = final_y - self.y_press
@@ -223,41 +238,44 @@ class ToolSelect(ToolTemplate):
 			self.window._pixbuf_manager.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
 			self.window._pixbuf_manager.create_selection_from_selection()
 			self.draw_selection_area(False)
+			self.selection_has_been_used = True
 			self.non_destructive_show_modif()
 		file_chooser.destroy()
 
 	def action_cut(self, *args):
+		self.selection_has_been_used = True
 		self.window._pixbuf_manager.cut_operation()
 		self.show_popover(False)
 		self.apply_to_pixbuf()
 
 	def action_copy(self, *args):
+		self.selection_has_been_used = True
 		self.window._pixbuf_manager.copy_operation()
 
 	def action_paste(self, *args):
+		self.selection_has_been_used = True
 		self.window._pixbuf_manager.paste_operation()
 		self.draw_selection_area(False)
 		self.non_destructive_show_modif()
 
 	def action_select_all(self, *args):
+		self.selection_has_been_used = False
 		self.window._pixbuf_manager.select_all()
 		self.draw_selection_area(True)
 
 	def action_unselect(self, *args):
 		self.give_back_control()
-		self.non_destructive_show_modif()
-
-	def action_cancel_select(self, *args): # TODO utile à connecter quelque part ? XXX le ctrl+z merdoie du coup
-		self.window._pixbuf_manager.reset_selection()
-		self.show_popover(False)
-		self.non_destructive_show_modif()
+		self.non_destructive_show_modif() # utile ??
 
 	def action_selection_delete(self, *args):
+		self.selection_has_been_used = True
 		self.window._pixbuf_manager.delete_operation()
+		self.apply_to_pixbuf()
 		self.end_selection()
 		self.window._pixbuf_manager.reset_selection()
 
 	def action_selection_resize(self, *args):
+		self.selection_has_been_used = True # FIXME ça devrait retourner un truc
 		self.window.scale_pixbuf(True)
 
 	def action_selection_crop(self, *args):
@@ -265,10 +283,12 @@ class ToolSelect(ToolTemplate):
 		result = crop_dialog.run()
 		if result == Gtk.ResponseType.APPLY:
 			crop_dialog.on_apply()
+			self.selection_has_been_used = True
 		else:
 			crop_dialog.on_cancel()
 
 	def action_selection_rotate(self, *args): # TODO
+		self.selection_has_been_used = True
 		print("selection_rotate")
 
 	def action_selection_export(self, *args):
