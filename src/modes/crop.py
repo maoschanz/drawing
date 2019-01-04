@@ -108,5 +108,15 @@ class ModeCrop(ModeTemplate):
 			self.check_coord()
 		self.draw_overlay()
 
+	def check_coord(self):
+		if self._x < 0:
+			self._x = 0
+		elif self._x > self.original_width - self.get_width():
+			self._x = self.original_width - self.get_width()
+		if self._y < 0:
+			self._y = 0
+		elif self._y > self.original_height - self.get_height():
+			self._y = self.original_height - self.get_height()
+
 	def draw_overlay(self):
-		print('todo')
+		print('todo (dynamic preview of the cropping)')

@@ -14,16 +14,18 @@
   <object class="GtkActionBar" id="bottom-panel">
     <property name="visible">True</property>
     <property name="expand">True</property>
-    <style>
-      <class name="selection-mode"/>
-      <!-- FIXME n'a pas l'air d'exister pour ce widget -->
-    </style>
+    <!-- <style> -->
+    <!--   <class name="selection-mode"/> -->
+    <!-- </style> -->
 
     <child>
       <object class="GtkButton" id="cancel_btn">
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
         <property name="action_name">win.cancel_and_draw</property>
+        <style>
+          <class name="destructive-action"/>
+        </style>
         <child>
           <object class="GtkImage">
             <property name="icon-name">go-previous-symbolic</property>
@@ -52,6 +54,9 @@
         <property name="label" translatable="yes">Apply</property>
         <property name="action_name">win.apply_and_draw</property>
         <property name="visible">True</property>
+        <style>
+          <class name="suggested-action"/>
+        </style>
       </object>
       <packing>
         <property name="pack-type">end</property>
