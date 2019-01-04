@@ -30,12 +30,11 @@
       <object class="GtkButton" id="cancel_btn">
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
-        <property name="action_name">win.pic_draw</property>
+        <property name="action_name">win.cancel_and_draw</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">go-previous-symbolic</property>
             <property name="visible">True</property>
-            <property name="tooltip_text" translatable="yes">Save as…</property>
           </object>
         </child>
       </object>
@@ -67,6 +66,7 @@
     <child>
       <object class="GtkButton" id="apply_btn">
         <property name="label" translatable="yes">Apply</property>
+        <property name="action_name">win.apply_and_draw</property>
         <property name="visible">True</property>
       </object>
       <packing>

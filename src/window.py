@@ -39,8 +39,6 @@ from .rotate import ModeRotate
 from .pixbuf_manager import DrawingPixbufManager
 
 from .properties import DrawingPropertiesDialog
-from .crop_dialog import DrawingCropDialog
-from .scale_dialog import DrawingScaleDialog
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
@@ -87,9 +85,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self._pixbuf_manager.reset_selection()
 		self.init_background()
-
-		if not self._settings.get_boolean('experimental'):
-			self.draw_mode.minimap_btn.set_visible(False)
 
 	def init_instance_attributes(self):
 		self.handlers = []
@@ -189,7 +184,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.lookup_action('open_with').set_enabled(False)
 		self.add_action_simple('print', self.action_print)
 
-		self.add_action_simple('pic_draw', self.action_draw)
+		self.add_action_simple('cancel_and_draw', self.action_cancel_and_draw)
+		self.add_action_simple('apply_and_draw', self.action_apply_and_draw)
 
 		self.add_action_simple('pic_crop', self.action_crop)
 		self.add_action_simple('pic_scale', self.action_scale)
@@ -296,7 +292,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# MODES
 
-	def active_mode(self, *args): # TODO
+	def active_mode(self, *args):
 		if self.active_mode_id == 'crop':
 			return self.crop_mode
 		elif self.active_mode_id == 'rotate':
@@ -306,10 +302,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			return self.draw_mode
 
-	def update_bottom_panel(self, new_mode_id): # TODO remove préalable
+	def update_bottom_panel(self, new_mode_id):
 		self.bottom_panel.remove(self.active_mode().get_panel())
 		self.active_mode_id = new_mode_id
 		self.bottom_panel.add(self.active_mode().get_panel())
+		self.adapt_to_window_size()
 
 	# TOOLS
 
@@ -390,14 +387,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 					self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, -1, h, True)
 				self.initial_save(fn)
 			elif result == Gtk.ResponseType.YES: # Crop it
-				self._pixbuf_manager.load_main_from_filename(fn)
-				crop_dialog = DrawingCropDialog(self, True, True)
-				result2 = crop_dialog.run()
-				if result2 == Gtk.ResponseType.APPLY:
-					self.initial_save(fn)
-					crop_dialog.on_apply()
-				else:
-					crop_dialog.on_cancel()
+				self.load_fn_to_pixbuf(fn)
+				self.update_bottom_panel('crop')
+				self.crop_mode.on_mode_selected(False, True)
 			else:
 				self.load_fn_to_pixbuf(fn) # Edit it anyway
 			dialog.destroy()
@@ -568,42 +560,29 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def edit_properties(self, *args):
 		DrawingPropertiesDialog(self)
 
-	def action_draw(self, *args):
-		# TODO quand on annule un autre mode en gros
-		# il faut peut-tre restaurer des pixbufs ?
+	def action_cancel_and_draw(self, *args):
+		# TODO
+		self.active_mode().on_cancel_mode()
 		self.update_bottom_panel('draw')
 
-	def action_crop(self, *args): # TODO
+	def action_apply_and_draw(self, *args):
+		# TODO
+		self.active_mode().on_apply_mode()
+		self.update_bottom_panel('draw')
+
+	def action_crop(self, *args):
+		self.active_mode().on_cancel_mode()
 		self.update_bottom_panel('crop')
+		self.crop_mode.on_mode_selected(False, False)
 
-		crop_dialog = DrawingCropDialog(self, False, False)
-		result = crop_dialog.run()
-		if result == Gtk.ResponseType.APPLY:
-			crop_dialog.on_apply()
-		else:
-			crop_dialog.on_cancel()
-
-	def action_scale(self, *args): # TODO
-		self.scale_pixbuf(False)
+	def action_scale(self, *args):
+		self.active_mode().on_cancel_mode()
+		self.update_bottom_panel('scale')
+		self.scale_mode.on_mode_selected(False)
 
 	def action_rotate(self, *args): # TODO
+		self.active_mode().on_cancel_mode()
 		self.update_bottom_panel('rotate')
-
-	def scale_pixbuf(self, is_selection): # TODO
-		self.update_bottom_panel('scale')
-
-		if is_selection:
-			w = self._pixbuf_manager.selection_pixbuf.get_width()
-			h = self._pixbuf_manager.selection_pixbuf.get_height()
-		else:
-			w = self.get_pixbuf_width()
-			h = self.get_pixbuf_height()
-		scale_dialog = DrawingScaleDialog(self, w, h, is_selection)
-		result = scale_dialog.run()
-		if result == Gtk.ResponseType.APPLY:
-			scale_dialog.on_apply()
-		else:
-			scale_dialog.on_cancel()
 
 	def get_pixbuf_width(self):
 		return self._pixbuf_manager.main_pixbuf.get_width()

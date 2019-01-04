@@ -26,7 +26,16 @@ class ModeTemplate():
 	def get_panel(self):
 		return None
 
-	def adapt_to_window_size():
+	def adapt_to_window_size(self):
+		pass
+
+	def on_mode_selected(self, *args):
+		pass
+
+	def on_apply_mode(self):
+		pass
+
+	def on_cancel_mode(self):
 		pass
 
 	def on_tool_changed(self):

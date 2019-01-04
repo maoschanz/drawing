@@ -2,11 +2,8 @@ data/com.github.maoschanz.Drawing.desktop.in
 
 src/ui/window.ui
 src/ui/preferences.ui
-src/ui/crop_dialog.ui
 src/ui/shortcuts.ui
 src/ui/menus.ui
-src/ui/crop_dialog.ui
-src/ui/scale_dialog.ui
 src/ui/toolbar.ui
 src/ui/color_popover.ui
 
@@ -16,8 +13,16 @@ src/window.py
 src/tools.py
 src/preferences.py
 src/properties.py
-src/crop_dialog.py
-src/scale_dialog.py
+
+src/modes/ui/crop.ui
+src/modes/ui/scale.ui
+src/modes/ui/rotate.ui
+src/modes/ui/draw.ui
+
+src/modes/crop.py
+src/modes/scale.py
+src/modes/rotate.py
+src/modes/draw.py
 
 src/tools/ui/experiment.ui
 src/tools/ui/line.ui

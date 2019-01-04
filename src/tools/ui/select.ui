@@ -4,19 +4,19 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.unselect</attribute>
+        <attribute name="action">win.selection_unselect</attribute>
       </item>
     </section>
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="label" translatable="yes">Cut</attribute>
-        <attribute name="action">win.cut</attribute>
+        <attribute name="action">win.selection_cut</attribute>
         <attribute name="verb-icon">edit-cut-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Copy</attribute>
-        <attribute name="action">win.copy</attribute>
+        <attribute name="action">win.selection_copy</attribute>
         <attribute name="verb-icon">edit-copy-symbolic</attribute>
       </item>
       <item>
@@ -32,7 +32,7 @@
       </item>
       <item>
         <attribute name="label" translatable="yes">Scale</attribute>
-        <attribute name="action">win.selection_resize</attribute>
+        <attribute name="action">win.selection_scale</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Rotate</attribute>
@@ -81,12 +81,6 @@
         <attribute name="action">win.pic_rotate</attribute>
       </item>
     </section>
-    <!-- <section> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Properties</attribute> -->
-    <!--     <attribute name="action">win.properties</attribute> -->
-    <!--   </item> -->
-    <!-- </section> -->
   </menu>
 
   <menu id="options-menu">

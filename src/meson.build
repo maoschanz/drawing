@@ -38,8 +38,6 @@ drawing_sources = [
   'tools.py',
   'modes.py',
 
-  'crop_dialog.py',
-  'scale_dialog.py',
   'properties.py',
 
   'modes/draw.py',

@@ -3,8 +3,6 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
-from .crop_dialog import DrawingCropDialog
-
 from .tools import ToolTemplate
 
 class ToolSelect(ToolTemplate):
@@ -15,13 +13,13 @@ class ToolSelect(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
 
-		self.add_tool_action('unselect', self.action_unselect) # pareil que give_back_control ?
-		self.add_tool_action('cut', self.action_cut)
-		self.add_tool_action('copy', self.action_copy)
+		self.add_tool_action('selection_unselect', self.action_unselect) # pareil que give_back_control ?
+		self.add_tool_action('selection_cut', self.action_cut)
+		self.add_tool_action('selection_copy', self.action_copy)
 		self.add_tool_action('selection_delete', self.action_selection_delete)
 		self.add_tool_action('selection_crop', self.action_selection_crop)
-		self.add_tool_action('selection_resize', self.action_selection_resize)
-		# self.add_tool_action('selection_rotate', self.action_selection_rotate)
+		self.add_tool_action('selection_scale', self.action_selection_scale)
+		self.add_tool_action('selection_rotate', self.action_selection_rotate)
 		self.add_tool_action('selection_export', self.action_selection_export)
 		self.add_tool_action('import', self.action_import)
 		self.add_tool_action('paste', self.action_paste)
@@ -63,12 +61,12 @@ class ToolSelect(ToolTemplate):
 		self.set_actions_state(self.window._pixbuf_manager.selection_is_active)
 
 	def set_actions_state(self, state):
-		self.set_action_sensitivity('unselect', state)
-		self.set_action_sensitivity('cut', state)
-		self.set_action_sensitivity('copy', state)
+		self.set_action_sensitivity('selection_unselect', state)
+		self.set_action_sensitivity('selection_cut', state)
+		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
 		self.set_action_sensitivity('selection_crop', state)
-		self.set_action_sensitivity('selection_resize', state)
+		self.set_action_sensitivity('selection_scale', state)
 		# self.lookup_action('selection_rotate', state)
 		self.set_action_sensitivity('selection_export', state)
 
@@ -297,18 +295,17 @@ class ToolSelect(ToolTemplate):
 		self.end_selection()
 		self.window._pixbuf_manager.reset_selection()
 
-	def action_selection_resize(self, *args):
-		self.selection_has_been_used = True # FIXME ça devrait retourner un truc
-		self.window.scale_pixbuf(True)
+	def action_selection_scale(self, *args):
+		self.selection_has_been_used = True # XXX pas forcément !!
+		self.window.active_mode().on_cancel_mode()
+		self.window.update_bottom_panel('scale')
+		self.window.scale_mode.on_mode_selected(True)
 
 	def action_selection_crop(self, *args):
-		crop_dialog = DrawingCropDialog(self.window, True, True)
-		result = crop_dialog.run()
-		if result == Gtk.ResponseType.APPLY:
-			crop_dialog.on_apply()
-			self.selection_has_been_used = True
-		else:
-			crop_dialog.on_cancel()
+		self.selection_has_been_used = True # XXX pas forcément !!
+		self.window.active_mode().on_cancel_mode()
+		self.window.update_bottom_panel('crop')
+		self.window.crop_mode.on_mode_selected(True, True)
 
 	def action_selection_rotate(self, *args): # TODO
 		self.selection_has_been_used = True

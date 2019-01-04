@@ -264,12 +264,13 @@ class DrawingPixbufManager():
 		w_context.paint()
 		w_context.set_operator(cairo.Operator.OVER)
 
-	def show_selection_rectangle(self):
+	def show_selection_rectangle(self): # FIXME rename and comment this shit
 		self.use_stable_pixbuf()
 		if self.selection_is_active:
 			self.delete_temp()
 		self.show_selection_content()
 		self.show_overlay_on_surface(self.surface, self._path, True)
+		self.window.drawing_area.queue_draw()
 
 	# FIXME le path n'est pas bon quand on a scale ou crop la sélection
 	def show_overlay_on_surface(self, surface, cairo_path, is_selection):

@@ -18,7 +18,6 @@
 from gi.repository import Gtk, Gdk, Gio, GLib
 
 from .modes import ModeTemplate
-
 from .color_popover import DrawingColorPopover
 from .minimap import DrawingMinimap
 
@@ -47,7 +46,6 @@ class ModeDraw(ModeTemplate):
 		self.options_short_box = builder.get_object('options_short_box')
 		self.options_btn.connect('toggled', self.update_option_label)
 
-		self.minimap_area = None
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_icon = builder.get_object('minimap_icon')
 		self.minimap_label = builder.get_object('minimap_label')
@@ -68,6 +66,10 @@ class ModeDraw(ModeTemplate):
 
 	def get_panel(self):
 		return self.bottom_panel
+
+	def on_cancel_mode(self):
+		if not self.window._pixbuf_manager.selection_is_active:
+			self.window.active_tool().give_back_control()
 
 	def adapt_to_window_size(self): # FIXME
 		# available_width = self.options_long_box.get_preferred_width()[0] + \
