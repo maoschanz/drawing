@@ -203,6 +203,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('close', self.action_close)
 		self.add_action_simple('save', self.action_save)
+		self.add_action_simple('open', self.action_open)
 		self.add_action_simple('undo', self.action_undo)
 		self.add_action_simple('redo', self.action_redo)
 
@@ -252,6 +253,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
 		save_as_btn = builder.get_object("save_as_btn")
+		add_btn = builder.get_object("add_btn")
 		self.main_menu_btn = builder.get_object("main_menu_btn")
 
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
@@ -261,6 +263,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		save_as_menu = builder.get_object("save-as-menu")
 		save_as_popover = Gtk.Popover.new_from_model(save_as_btn, save_as_menu)
 		save_as_btn.set_popover(save_as_popover)
+		add_menu = builder.get_object("add-menu")
+		add_popover = Gtk.Popover.new_from_model(add_btn, add_menu)
+		add_btn.set_popover(add_popover)
 
 	def action_main_menu(self, *args):
 		self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
@@ -346,6 +351,23 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return None
 		else:
 			return self.gfile.get_path()
+
+	def action_open(self, *args):
+		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
+			Gtk.FileChooserAction.OPEN,
+			_("Open"),
+			_("Cancel"))
+		allPictures = Gtk.FileFilter()
+		allPictures.set_name(_("All pictures"))
+		allPictures.add_mime_type('image/png')
+		allPictures.add_mime_type('image/jpeg')
+		allPictures.add_mime_type('image/bmp')
+		file_chooser.add_filter(allPictures)
+		response = file_chooser.run()
+		if response == Gtk.ResponseType.ACCEPT: # TODO demander avant d'écraser ?
+			fn = file_chooser.get_filename()
+			self.try_load_file(fn)
+		file_chooser.destroy()
 
 	def action_save(self, *args):
 		fn = self.get_file_path()
@@ -613,12 +635,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.surface
 
 #######################################
-
-	def is_empty_picture(self):
-		if self.gfile is None and not self.can_undo():
-			return True
-		else:
-			return False
 
 	def export_main_as(self, file_format):
 		file_path = self.run_save_file_chooser(file_format)

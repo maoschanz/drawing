@@ -40,9 +40,9 @@
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New window</attribute>
-        <attribute name="verb-icon">document-new-symbolic</attribute>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+        <attribute name="verb-icon">edit-select-all-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Image properties</attribute>
@@ -77,20 +77,6 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Import</attribute>
-        <attribute name="action">win.import</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Paste</attribute>
-        <attribute name="action">win.paste</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">app.settings</attribute>
         <attribute name="verb-icon">preferences-system-symbolic</attribute>
@@ -110,6 +96,36 @@
         <attribute name="label" translatable="yes">About Drawing</attribute>
         <attribute name="action">app.about</attribute>
         <attribute name="verb-icon">help-about-symbolic</attribute>
+      </item>
+    </section>
+  </menu>
+
+<!-- "Add" menu -->
+  <menu id="add-menu">
+    <section>
+      <item>
+        <attribute name="action">app.new_window</attribute>
+        <attribute name="label" translatable="yes">New window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="action">win.open</attribute>
+        <attribute name="label" translatable="yes">Open an image</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.open</attribute>
+        <attribute name="label" translatable="yes">Open in a new window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Import</attribute>
+        <attribute name="action">win.import</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
       </item>
     </section>
   </menu>
@@ -149,7 +165,12 @@
           <attribute name="verb-icon">document-new-symbolic</attribute>
         </item>
         <item>
-          <attribute name="label" translatable="yes">Open</attribute>
+          <attribute name="label" translatable="yes">Open an image</attribute>
+          <attribute name="action">win.open</attribute>
+          <attribute name="verb-icon">document-open-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Open in a new window</attribute>
           <attribute name="action">app.open</attribute>
           <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
