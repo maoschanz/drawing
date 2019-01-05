@@ -36,8 +36,6 @@ from .crop import ModeCrop
 from .scale import ModeScale
 from .rotate import ModeRotate
 
-from .pixbuf_manager import DrawingPixbufManager
-
 from .properties import DrawingPropertiesDialog
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
@@ -538,7 +536,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		cairo_context.paint()
 
 	def on_motion_on_area(self, area, event):
-		if (not self.is_clicked):
+		if not self.is_clicked:
 			return
 		self.active_mode().on_motion_on_area(area, event, self.surface)
 		self.drawing_area.queue_draw()

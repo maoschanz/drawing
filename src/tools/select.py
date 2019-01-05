@@ -116,9 +116,9 @@ class ToolSelect(ToolTemplate):
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):
-		print('cancelito')
+		print('cancel_ongoing_operation')
 		self.reset_selection()
-		self.show_popover(False)
+		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 		return True
 
@@ -190,7 +190,6 @@ class ToolSelect(ToolTemplate):
 				return
 		elif self.selected_type_id == 'freehand':
 			if not self.selection_is_active:
-				print('selection is not active')
 				self.selection_popover.set_relative_to(area)
 				[finished, selection_path] = self.draw_polygon(event)
 				if finished:
@@ -306,9 +305,9 @@ class ToolSelect(ToolTemplate):
 		self.selection_pixbuf = self.window.main_pixbuf.copy()
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.move_to(0, 0)
-		w_context.line_to(self.window.main_pixbuf.get_width(), 0)
-		w_context.line_to(self.window.main_pixbuf.get_width(), self.window.main_pixbuf.get_height())
-		w_context.line_to(0, self.window.main_pixbuf.get_height())
+		w_context.line_to(self.window.get_pixbuf_width(), 0)
+		w_context.line_to(self.window.get_pixbuf_width(), self.window.get_pixbuf_height())
+		w_context.line_to(0, self.window.get_pixbuf_height())
 		w_context.close_path()
 		self.selection_path = w_context.copy_path()
 		self.set_temp()

@@ -106,14 +106,14 @@ class ModeDraw(ModeTemplate):
 		self.window.active_tool().on_motion_on_area(area, event, surface)
 
 	def on_press_on_area(self, area, event, surface):
-		self.tool_width = int(self.size_setter.get_value())
 		if event.button is 2:
 			self.action_exchange_color()
-			return
-		self.window.active_tool().on_press_on_area(area, event, surface, \
-			self.size_setter.get_value(), \
-			self.color_popover_l.color_widget.get_rgba(), \
-			self.color_popover_r.color_widget.get_rgba() )
+			self.window.is_clicked = False
+		else:
+			self.window.active_tool().on_press_on_area(area, event, surface, \
+				self.size_setter.get_value(), \
+				self.color_popover_l.color_widget.get_rgba(), \
+				self.color_popover_r.color_widget.get_rgba() )
 
 	def on_release_on_area(self, area, event, surface):
 		self.window.active_tool().on_release_on_area(area, event, surface)
