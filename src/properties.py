@@ -36,7 +36,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_width = builder.get_object('label_width')
 		self.label_height = builder.get_object('label_height')
 
-		if window._pixbuf_manager.gfile is not None:
+		if window.gfile is not None:
 			label_path.set_label(window.get_file_path())
 			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(window.get_file_path())
 			label_format_file.set_label(pb_format.get_name())

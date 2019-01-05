@@ -86,8 +86,8 @@ class ModeCrop(ModeTemplate):
 			self.window.active_tool().selection_y += y
 			self.window.active_tool().show_selection_rectangle()
 		else:
-			self.window._pixbuf_manager.crop_main_surface(x, y, width, height)
-			self.window._pixbuf_manager.on_tool_finished()
+			self.window.crop_main_surface(x, y, width, height)
+			self.window.on_tool_finished()
 
 	def on_cancel_mode(self):
 		print('cancel') # TODO

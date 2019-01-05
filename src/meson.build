@@ -32,7 +32,6 @@ drawing_sources = [
   'main.py',
   'preferences.py',
   'window.py',
-  'pixbuf_manager.py',
   'color_popover.py',
   'minimap.py',
   'tools.py',

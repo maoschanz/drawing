@@ -54,10 +54,10 @@ class ToolTemplate():
 		self.window.drawing_area.queue_draw()
 
 	def restore_pixbuf(self):
-		self.window._pixbuf_manager.use_stable_pixbuf()
+		self.window.use_stable_pixbuf()
 
 	def apply_to_pixbuf(self):
-		self.window._pixbuf_manager.on_tool_finished()
+		self.window.on_tool_finished()
 
 	def cancel_ongoing_operation(self):
 		return self.give_back_control()

@@ -107,7 +107,7 @@ class ToolSelect(ToolTemplate):
 			if self.selection_is_active:
 				self.restore_pixbuf()
 				self.delete_temp()
-				self.window._pixbuf_manager.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
+				self.window.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
 				self.apply_to_pixbuf()
 			self.reset_selection()
 			return False
@@ -303,12 +303,12 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = False
 		self.selection_x = 0
 		self.selection_y = 0
-		self.selection_pixbuf = self.window._pixbuf_manager.main_pixbuf.copy()
+		self.selection_pixbuf = self.window.main_pixbuf.copy()
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.move_to(0, 0)
-		w_context.line_to(self.window._pixbuf_manager.main_pixbuf.get_width(), 0)
-		w_context.line_to(self.window._pixbuf_manager.main_pixbuf.get_width(), self.window._pixbuf_manager.main_pixbuf.get_height())
-		w_context.line_to(0, self.window._pixbuf_manager.main_pixbuf.get_height())
+		w_context.line_to(self.window.main_pixbuf.get_width(), 0)
+		w_context.line_to(self.window.main_pixbuf.get_width(), self.window.main_pixbuf.get_height())
+		w_context.line_to(0, self.window.main_pixbuf.get_height())
 		w_context.close_path()
 		self.selection_path = w_context.copy_path()
 		self.set_temp()
@@ -423,7 +423,7 @@ class ToolSelect(ToolTemplate):
 		self.restore_pixbuf()
 		if self.selection_is_active:
 			self.delete_temp()
-		self.window._pixbuf_manager.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
+		self.window.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.new_path()
 		w_context.set_dash([3, 3])
@@ -451,7 +451,7 @@ class ToolSelect(ToolTemplate):
 		self.show_selection_rectangle()
 
 	def create_free_selection_from_main(self):
-		self.selection_pixbuf = self.main_pixbuf.copy()
+		self.selection_pixbuf = self.window.main_pixbuf.copy()
 		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
 		xmin, ymin = surface.get_width(), surface.get_height()
 		xmax, ymax = 0.0, 0.0
@@ -489,7 +489,7 @@ class ToolSelect(ToolTemplate):
 			return
 		self.selection_x = x0
 		self.selection_y = y0
-		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.window._pixbuf_manager.main_pixbuf, 0, None)
+		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.window.main_pixbuf, 0, None)
 		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(x0, y0, w, h))
 		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(temp_surface, 0, 0, \
 			temp_surface.get_width(), temp_surface.get_height())

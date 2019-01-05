@@ -86,7 +86,7 @@ class DrawingMinimap(Gtk.Popover):
 		self.update_minimap()
 
 	def get_main_pixbuf(self):
-		return self.window._pixbuf_manager.main_pixbuf
+		return self.window.main_pixbuf
 
 	def update_minimap(self, *args):
 		w = self.preview_size
@@ -119,7 +119,7 @@ class DrawingMinimap(Gtk.Popover):
 			mini_context.line_to(mini_width + mini_x, mini_y)
 			mini_context.close_path()
 			mini_path = mini_context.copy_path()
-			self.window._pixbuf_manager.show_overlay_on_surface(self.mini_surface, mini_path, False)
+			self.window.show_overlay_on_surface(self.mini_surface, mini_path, False)
 		else:
 			print('todo : ignorer explicitement preview_x et preview_y ?')
 		self.minimap_area.queue_draw()

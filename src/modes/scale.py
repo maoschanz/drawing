@@ -49,7 +49,7 @@ class ModeScale(ModeTemplate):
 		if self.scale_selection:
 			self.window.active_tool().scale_pixbuf_to(w, h)
 		else:
-			self.window._pixbuf_manager.scale_pixbuf_to(w, h)
+			self.window.scale_pixbuf_to(w, h)
 
 	def on_cancel_mode(self):
 		print('cancel') # TODO

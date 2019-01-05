@@ -63,8 +63,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title(None)
 		self.maximize()
 
-		self._pixbuf_manager = DrawingPixbufManager(self)
-
 		self.draw_mode = ModeDraw(self)
 		self.crop_mode = ModeCrop(self)
 		self.scale_mode = ModeScale(self)
@@ -87,13 +85,23 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def init_instance_attributes(self):
 		self.handlers = []
-		self._is_saved = True
 		self.active_mode_id = 'draw'
 		self.active_tool_id = 'pencil'
 		self.former_tool_id = 'pencil'
 		self.is_clicked = False
 		self.header_bar = None
 		self.main_menu_btn = None
+
+		self.undo_history = []
+		self.redo_history = []
+		self.gfile = None
+		self._is_saved = True
+
+		width = self._settings.get_int('default-width')
+		height = self._settings.get_int('default-height')
+		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
+		self.temporary_pixbuf = None # TODO
+		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 
 	def init_tools(self):
 		self.tools = {}
@@ -125,19 +133,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.app.has_tools_in_menubar = True
 
 	def init_background(self, *args):
-		w_context = cairo.Context(self._pixbuf_manager.surface)
+		w_context = cairo.Context(self.surface)
 		r = float(self._settings.get_strv('default-rgba')[0])
 		g = float(self._settings.get_strv('default-rgba')[1])
 		b = float(self._settings.get_strv('default-rgba')[2])
 		a = float(self._settings.get_strv('default-rgba')[3])
 		w_context.set_source_rgba(r, g, b, a)
 		w_context.paint()
-		self._pixbuf_manager.set_pixbuf_as_stable()
+		self.set_pixbuf_as_stable()
 
 	def initial_save(self, fn):
 		self.set_picture_title(fn)
 		self._is_saved = True
-		self._pixbuf_manager.initial_save(fn)
+		self.gfile = Gio.File.new_for_path(fn)
+		self.use_stable_pixbuf()
 		self.lookup_action('open_with').set_enabled(True)
 
 	def action_close(self, *args):
@@ -335,10 +344,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# FILE MANAGEMENT
 
 	def get_file_path(self):
-		if self._pixbuf_manager.gfile is None:
+		if self.gfile is None:
 			return None
 		else:
-			return self._pixbuf_manager.gfile.get_path()
+			return self.gfile.get_path()
 
 	def action_save(self, *args):
 		fn = self.get_file_path()
@@ -350,24 +359,32 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		fn = self.run_save_file_chooser('')
 		self.save_pixbuf_to_fn(fn)
 
-	def load_fn_to_pixbuf(self, fn):
-		if fn is not None:
-			self._pixbuf_manager.load_main_from_filename(fn)
-			self.initial_save(fn)
+	def load_fn_to_pixbuf(self, filename):
+		if filename is not None:
+			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
+			self.initial_save(filename)
 
-	def save_pixbuf_to_fn(self, fn):
-		if fn is not None:
-			self._pixbuf_manager.save_pixbuf_to_filename(fn)
-			self.initial_save(fn)
+	def save_pixbuf_to_fn(self, filename):
+		if filename is not None:
+			self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
+				self.surface.get_width(), self.surface.get_height())
+			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(filename)
+			if pb_format is None: # "jpeg", "png", "tiff", "ico" or "bmp"
+				self.main_pixbuf.savev(filename, filename.split('.')[-1], [None], [])
+			else:
+				self.main_pixbuf.savev(filename, pb_format.get_name(), [None], [])
+			# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
+
+			self.initial_save(filename)
 
 	def try_load_file(self, fn):
 		# We don't want to load too big images, because the technical
 		# limitations of cairo make impossible to zoom out, or to scroll.
 		w = self.drawing_area.get_allocated_width()
 		h = self.drawing_area.get_allocated_height()
-		self._pixbuf_manager.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-		pic_w = self._pixbuf_manager.selection_pixbuf.get_width()
-		pic_h = self._pixbuf_manager.selection_pixbuf.get_height()
+		self.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
+		pic_w = self.selection_pixbuf.get_width()
+		pic_h = self.selection_pixbuf.get_height()
 		if (w < pic_w) or (h < pic_h):
 			title_label = _("Sorry, this picture is too big for this app!")
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
@@ -381,9 +398,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 			if result == Gtk.ResponseType.APPLY: # Scale it
 				if pic_w/pic_h > w/h:
-					self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, -1, True)
+					self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, -1, True)
 				else:
-					self._pixbuf_manager.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, -1, h, True)
+					self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, -1, h, True)
 				self.initial_save(fn)
 			elif result == Gtk.ResponseType.YES: # Crop it
 				self.load_fn_to_pixbuf(fn)
@@ -473,13 +490,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return file_path
 
 	def export_as_png(self, *args):
-		self._pixbuf_manager.export_main_as('png')
+		self.export_main_as('png')
 
 	def export_as_jpeg(self, *args):
-		self._pixbuf_manager.export_main_as('jpeg')
+		self.export_main_as('jpeg')
 
 	def export_as_bmp(self, *args):
-		self._pixbuf_manager.export_main_as('bmp')
+		self.export_main_as('bmp')
 
 	def action_open_with(self, *args):
 		os.system('xdg-open ' + self.get_file_path())
@@ -488,49 +505,54 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_undo(self, *args):
 		should_undo = not self.active_tool().give_back_control()
-		if should_undo and self._pixbuf_manager.can_undo():
-			self._pixbuf_manager.undo_operation()
+		if should_undo and self.can_undo():
+			self.redo_history.append(self.main_pixbuf.copy())
+			self.main_pixbuf = self.undo_history.pop()
+			self.use_stable_pixbuf()
 			self.update_history_sensitivity()
 		self.drawing_area.queue_draw()
 
 	def action_redo(self, *args):
-		self._pixbuf_manager.redo_operation()
+		self.undo_history.append(self.main_pixbuf.copy())
+		self.main_pixbuf = self.redo_history.pop()
+		self.use_stable_pixbuf()
 		self.drawing_area.queue_draw()
 		self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
 		# This line makes sense but it forbids undoing a non-finished operation
-		# self.lookup_action('undo').set_enabled(self._pixbuf_manager.can_undo())
-		self.lookup_action('redo').set_enabled(self._pixbuf_manager.can_redo())
+		# self.lookup_action('undo').set_enabled(self.can_undo())
+
+		self.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
 
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
 		# Ça marche mais je ne sais pas si avoir une surface ne serait pas mieux.
-		# Gdk.cairo_set_source_pixbuf(cairo_context, self._pixbuf_manager.main_pixbuf, 0, 0)
+		# Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
 
 		# Ça marche aussi mais c'est moins idéal complexitivement.
-		# surface = Gdk.cairo_surface_create_from_pixbuf(self._pixbuf_manager.main_pixbuf, 0, None)
+		# surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
-		cairo_context.set_source_surface(self._pixbuf_manager.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
+		cairo_context.set_source_surface(self.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
 		cairo_context.paint()
 
 	def on_motion_on_area(self, area, event):
 		if (not self.is_clicked):
 			return
-		self.active_mode().on_motion_on_area(area, event, self._pixbuf_manager.surface)
+		self.active_mode().on_motion_on_area(area, event, self.surface)
 		self.drawing_area.queue_draw()
 
 	def on_press_on_area(self, area, event):
 		self.is_clicked = True
 		self._is_saved = False
-		self.active_mode().on_press_on_area(area, event, self._pixbuf_manager.surface)
+		self.active_mode().on_press_on_area(area, event, self.surface)
 
 	def on_release_on_area(self, area, event):
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
-		self.active_mode().on_release_on_area(area, event, self._pixbuf_manager.surface)
+		self.active_mode().on_release_on_area(area, event, self.surface)
 
 	# PRINTING
 
@@ -545,12 +567,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		pass
 
 	def do_draw_page(self, operation, print_ctx, page_num):
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self._pixbuf_manager.main_pixbuf, 0, 0)
+		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
 		op.set_n_pages(1)
 
 	def do_begin_print(self, op, print_ctx):
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self._pixbuf_manager.main_pixbuf, 0, 0)
+		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
 		op.set_n_pages(1)
 
@@ -584,11 +606,89 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_bottom_panel('rotate')
 
 	def get_pixbuf_width(self):
-		return self._pixbuf_manager.main_pixbuf.get_width()
+		return self.main_pixbuf.get_width()
 
 	def get_pixbuf_height(self):
-		return self._pixbuf_manager.main_pixbuf.get_height()
+		return self.main_pixbuf.get_height()
 
 	def get_surface(self):
-		return self._pixbuf_manager.surface
+		return self.surface
+
+#######################################
+
+	def is_empty_picture(self):
+		if self.gfile is None and not self.can_undo():
+			return True
+		else:
+			return False
+
+	def export_main_as(self, file_format):
+		file_path = self.run_save_file_chooser(file_format)
+		if file_path is not None:
+			self.main_pixbuf.savev(file_path, file_format, [None], [])
+
+	def crop_main_surface(self, x, y, width, height):
+		x = int(x)
+		y = int(y)
+		width = int(width)
+		height = int(height)
+
+		# The GdkPixbuf.Pixbuf.copy_area method works only when expanding the size
+		max_width = max(width, self.surface.get_width())
+		max_height = max(height, self.surface.get_height())
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, max_width, max_height)
+		self.main_pixbuf.copy_area(0, 0, self.surface.get_width(), self.surface.get_height(), new_pixbuf, 0, 0)
+		self.main_pixbuf = new_pixbuf
+
+		# The cairo.Surface.map_to_image method works only when reducing the size
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+		self.surface = self.surface.map_to_image(cairo.RectangleInt(x, y, width, height))
+		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
+			self.surface.get_width(), self.surface.get_height())
+
+		if x != 0 or y != 0:
+			self.crop_main_surface(0, 0, width, height)
+
+	def on_tool_finished(self):
+		self.undo_history.append(self.main_pixbuf.copy())
+		self.redo_history = []
+		self.update_history_sensitivity()
+		self.drawing_area.queue_draw()
+		self.set_pixbuf_as_stable()
+		self.active_tool().update_actions_state()
+
+	def can_undo(self):
+		if len(self.undo_history) == 0:
+			return False
+		else:
+			return True
+
+	def set_pixbuf_as_stable(self):
+		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
+			self.surface.get_width(), self.surface.get_height())
+
+	def use_stable_pixbuf(self):
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+
+	def show_overlay_on_surface(self, surface, cairo_path): # TODO doit être utilisé dans les modes
+		w_context = cairo.Context(surface)
+		w_context.new_path()
+		w_context.append_path(cairo_path)
+		w_context.clip_preserve()
+		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
+		w_context.paint()
+		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+		w_context.stroke()
+
+	def show_pixbuf_content_at(self, pixbuf, x, y):
+		if pixbuf is None:
+			return
+		w_context = cairo.Context(self.surface)
+		Gdk.cairo_set_source_pixbuf(w_context, pixbuf, x, y)
+		w_context.paint()
+
+	def scale_pixbuf_to(self, new_width, new_height):
+		self.main_pixbuf = self.main_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
+		self.use_stable_pixbuf()
+		self.on_tool_finished()
 
