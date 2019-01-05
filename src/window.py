@@ -83,7 +83,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_history_sensitivity()
 		self.connect_signals()
 
-		self._pixbuf_manager.reset_selection()
 		self.init_background()
 
 	def init_instance_attributes(self):
@@ -513,7 +512,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Ça marche aussi mais c'est moins idéal complexitivement.
 		# surface = Gdk.cairo_surface_create_from_pixbuf(self._pixbuf_manager.main_pixbuf, 0, None)
 
-		cairo_context.set_source_surface(self._pixbuf_manager.surface, 0, 0) # XXX c'est là pour le zoom non ?
+		cairo_context.set_source_surface(self._pixbuf_manager.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
 		cairo_context.paint()
 
 	def on_motion_on_area(self, area, event):

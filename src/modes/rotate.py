@@ -30,3 +30,6 @@ class ModeRotate(ModeTemplate):
 
 	def get_panel(self):
 		return self.bottom_panel
+
+	def on_mode_selected(self, *args):
+		self.rotate_selection = args[0]

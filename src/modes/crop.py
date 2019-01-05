@@ -47,8 +47,8 @@ class ModeCrop(ModeTemplate):
 		self._x = 0
 		self._y = 0
 		if self.crop_selection:
-			self.original_width = self.window._pixbuf_manager.selection_pixbuf.get_width()
-			self.original_height = self.window._pixbuf_manager.selection_pixbuf.get_height()
+			self.original_width = self.window.active_tool().selection_pixbuf.get_width()
+			self.original_height = self.window.active_tool().selection_pixbuf.get_height()
 		else:
 			self.original_width = self.window.get_pixbuf_width()
 			self.original_height = self.window.get_pixbuf_height()
@@ -81,10 +81,10 @@ class ModeCrop(ModeTemplate):
 		width = self.get_width()
 		height = self.get_height()
 		if self.crop_selection:
-			self.window._pixbuf_manager.crop_selection_surface(x, y, width, height)
-			self.window._pixbuf_manager.selection_x += x
-			self.window._pixbuf_manager.selection_y += y
-			self.window._pixbuf_manager.show_selection_rectangle()
+			self.window.active_tool().crop_selection_surface(x, y, width, height)
+			self.window.active_tool().selection_x += x
+			self.window.active_tool().selection_y += y
+			self.window.active_tool().show_selection_rectangle()
 		else:
 			self.window._pixbuf_manager.crop_main_surface(x, y, width, height)
 			self.window._pixbuf_manager.on_tool_finished()

@@ -125,19 +125,11 @@ class ToolPaint(ToolTemplate):
 
 		self.apply_to_pixbuf()
 
-	# def get_rgb_for_xy(self, x, y):
-	#	# Guard clause: we can't perform color picking outside of the surface
-	#	 if x < 0 or x > self.surface.get_width() or y < 0 or y > self.surface.get_height():
-	#		 return [-1,-1,-1]
-	#	 screenshot = Gdk.pixbuf_get_from_surface(self.surface, float(x), float(y), 1, 1)
-	#	 rgb_vals = screenshot.get_pixels()
-	#	 return rgb_vals # array de 3 valeurs, de 0 à 255
-
 	def launch_infinite_loop_dialog(self):
 		dialog = Gtk.Dialog(use_header_bar=True, modal=True, transient_for=self.window)
 		dialog.add_button(_("Continue"), Gtk.ResponseType.APPLY)
 		dialog.add_button(_("Abort"), Gtk.ResponseType.CANCEL)
-		dialog.get_content_area().add(Gtk.Label(_( \
+		dialog.get_content_area().add(Gtk.Label(label=_( \
 """The area seems poorly delimited, or is very complex.
 This tool is not seriously implemented, and may not be able to paint the area.
 

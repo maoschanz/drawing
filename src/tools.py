@@ -22,6 +22,7 @@ class ToolTemplate():
 		self.label = label
 		self.icon_name = icon_name
 		self.tool_width = 10
+		self.selection_is_active = False
 		self.build_row()
 		self.window = window
 

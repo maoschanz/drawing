@@ -68,7 +68,7 @@ class ModeDraw(ModeTemplate):
 		return self.bottom_panel
 
 	def on_cancel_mode(self):
-		if not self.window._pixbuf_manager.selection_is_active:
+		if not self.window.active_tool().selection_is_active:
 			self.window.active_tool().give_back_control()
 
 	def adapt_to_window_size(self): # FIXME
