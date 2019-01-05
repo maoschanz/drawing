@@ -125,7 +125,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
-			tools_menu = self.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
+			tools_menu = self.app.get_menubar().get_item_link(4, Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
 				self.tools[tool_id].add_item_to_menu(tools_menu)
 			self.app.has_tools_in_menubar = True

@@ -39,17 +39,20 @@ class ToolSelect(ToolTemplate):
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
+		self.background_type_id = 'transparent'
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/select.ui')
 		menu_r = builder.get_object('right-click-menu')
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
 		menu_l = builder.get_object('left-click-menu')
 		self.selection_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_l)
+		self.selection_popover.set_relative_to(self.window.drawing_area)
 
 		#############################
 
 		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
 		self.add_tool_action_boolean('selection_exclude', False, self.osef)
+		self.add_tool_action_enum('selection_background', self.background_type_id, self.osef)
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
@@ -75,7 +78,7 @@ class ToolSelect(ToolTemplate):
 		self.set_action_sensitivity('selection_delete', state)
 		self.set_action_sensitivity('selection_crop', state)
 		self.set_action_sensitivity('selection_scale', state)
-		# self.lookup_action('selection_rotate', state)
+		self.set_action_sensitivity('selection_rotate', state)
 		self.set_action_sensitivity('selection_export', state)
 
 	def on_change_active_type(self, *args):
@@ -129,6 +132,7 @@ class ToolSelect(ToolTemplate):
 		self.y_press = 0.0
 		self.past_x = [-1, -1]
 		self.past_y = [-1, -1]
+		self.selection_path = None
 		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # 8 ??? les autres plantent
 		self.update_actions_state()
 
@@ -136,8 +140,11 @@ class ToolSelect(ToolTemplate):
 		self.selection_popover.popdown()
 		self.rightc_popover.popdown()
 		if self.selection_is_active and state:
+			self.set_popover_position()
 			self.selection_popover.popup()
 		elif state:
+			self.temp_x = self.rightc_popover.get_pointing_to()[1].x
+			self.temp_y = self.rightc_popover.get_pointing_to()[1].y
 			self.selection_x = self.rightc_popover.get_pointing_to()[1].x
 			self.selection_y = self.rightc_popover.get_pointing_to()[1].y
 			self.rightc_popover.popup()
@@ -178,10 +185,9 @@ class ToolSelect(ToolTemplate):
 				self.past_x[1] = self.x_press
 				self.past_y[0] = event.y
 				self.past_y[1] = self.y_press
-				self.selection_popover.set_relative_to(area)
 				self.create_selection_from_coord()
 				if self.selection_is_active:
-					self.draw_selection_area(True)
+					self.force_and_draw_selection_area(True)
 					self.selection_has_been_used = False
 			elif self.point_is_in_selection(self.x_press, self.y_press):
 				self.drag_to(event.x, event.y)
@@ -190,14 +196,11 @@ class ToolSelect(ToolTemplate):
 				return
 		elif self.selected_type_id == 'freehand':
 			if not self.selection_is_active:
-				self.selection_popover.set_relative_to(area)
-				[finished, selection_path] = self.draw_polygon(event)
-				if finished:
+				if self.draw_polygon(event):
 					self.restore_pixbuf()
-					self.selection_path = selection_path
 					self.create_free_selection_from_main()
 					if self.selection_is_active:
-						self.draw_selection_area(True)
+						self.force_and_draw_selection_area(True)
 						self.selection_has_been_used = False
 					(self.x_press, self.y_press) = (-1.0, -1.0)
 					self.past_x = [-1, -1]
@@ -225,11 +228,10 @@ class ToolSelect(ToolTemplate):
 			y1 = self.past_y[0]
 		self.create_rectangle_selection_from_main(x0, y0, x1, y1)
 
-	def draw_selection_area(self, show):
+	def force_and_draw_selection_area(self, show_menu):
 		self.row.set_active(True)
-		self.show_selection_rectangle()
-		self.set_popover_position()
-		self.show_popover(show)
+		self.show_selection_overlay()
+		self.show_popover(show_menu)
 
 	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()
@@ -249,8 +251,7 @@ class ToolSelect(ToolTemplate):
 		self.past_y[1] += delta_y
 		self.selection_x += delta_x
 		self.selection_y += delta_y
-		self.show_selection_rectangle()
-		self.set_popover_position()
+		self.show_selection_overlay()
 		self.non_destructive_show_modif()
 
 	def action_import(self, *args):
@@ -268,10 +269,7 @@ class ToolSelect(ToolTemplate):
 		if response == Gtk.ResponseType.ACCEPT:
 			fn = file_chooser.get_filename()
 			self.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-			self.create_selection_from_selection()
-			self.draw_selection_area(False)
-			self.selection_has_been_used = True
-			self.non_destructive_show_modif()
+			self.create_selection_from_arbitrary_pixbuf()
 		file_chooser.destroy()
 
 	def action_cut(self, *args):
@@ -290,16 +288,14 @@ class ToolSelect(ToolTemplate):
 		cb.set_image(self.selection_pixbuf)
 
 	def action_paste(self, *args):
-		self.selection_has_been_used = True
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		self.selection_pixbuf = cb.wait_for_image()
-		self.show_selection_rectangle()
-		self.create_selection_from_selection()
-		self.draw_selection_area(False)
-		self.non_destructive_show_modif()
+		self.create_selection_from_arbitrary_pixbuf()
 
 	def action_select_all(self, *args):
 		self.selection_has_been_used = False
+		self.temp_x = 0
+		self.temp_y = 0
 		self.selection_x = 0
 		self.selection_y = 0
 		self.selection_pixbuf = self.window.main_pixbuf.copy()
@@ -311,8 +307,7 @@ class ToolSelect(ToolTemplate):
 		w_context.close_path()
 		self.selection_path = w_context.copy_path()
 		self.set_temp()
-		self.show_selection_rectangle()
-		self.draw_selection_area(True)
+		self.force_and_draw_selection_area(True)
 
 	def action_unselect(self, *args):
 		self.give_back_control()
@@ -355,24 +350,21 @@ class ToolSelect(ToolTemplate):
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.set_dash([3, 3])
 
-		if self.past_x[0] == -1:
-			self.init_polygon(w_context)
+		if self.selection_path is None:
+			(self.past_x[0], self.past_y[0]) = (self.x_press, self.y_press)
+			w_context.move_to(self.x_press, self.y_press)
+			self.selection_path = w_context.copy_path()
+		elif (max(event.x, self.past_x[0]) - min(event.x, self.past_x[0]) < self.closing_precision) \
+		and (max(event.y, self.past_y[0]) - min(event.y, self.past_y[0]) < self.closing_precision):
+			w_context.append_path(self.selection_path)
+			w_context.close_path()
+			w_context.stroke_preserve()
+			self.selection_path = w_context.copy_path()
+			return True
 		else:
 			w_context.append_path(self.selection_path)
-
-		if self.past_x[0] != -1 and self.past_y[0] != -1 \
-		and (max(event.x, self.past_x[0]) - min(event.x, self.past_x[0]) < self.closing_precision) \
-		and (max(event.y, self.past_y[0]) - min(event.y, self.past_y[0]) < self.closing_precision):
-			selection_path = self.finish_polygon(w_context)
-			return True, selection_path
-		else:
 			self.continue_polygon(w_context, event.x, event.y)
-			return False, None
-
-	def init_polygon(self, w_context):
-		(self.past_x[0], self.past_y[0]) = (self.x_press, self.y_press)
-		w_context.move_to(self.x_press, self.y_press)
-		self.selection_path = w_context.copy_path()
+			return False
 
 	def continue_polygon(self, w_context, x, y):
 		w_context.line_to(int(x), int(y))
@@ -380,18 +372,22 @@ class ToolSelect(ToolTemplate):
 		self.selection_path = w_context.copy_path()
 		self.non_destructive_show_modif()
 
-	def finish_polygon(self, w_context):
-		w_context.close_path()
-		w_context.stroke_preserve()
-		selection_path = w_context.copy_path()
-		return selection_path
-
 ####################################
 
-	def create_selection_from_selection(self): # Est utilisé 1 fois dans select.py, 1 fois dans pixbuf_manager.py
+	def create_selection_from_arbitrary_pixbuf(self):
+		self.selection_has_been_used = True
 		self.selection_is_active = True
+		w_context = cairo.Context(self.window.get_surface())
+		w_context.move_to(self.selection_x, self.selection_y)
+		w_context.rel_line_to(self.selection_pixbuf.get_width(), 0)
+		w_context.rel_line_to(0, self.selection_pixbuf.get_height())
+		w_context.rel_line_to(-1 * self.selection_pixbuf.get_width(), 0)
+		w_context.close_path()
+		self.selection_path = w_context.copy_path()
+		self.force_and_draw_selection_area(False)
 		self.temp_pixbuf = None
 		self.update_actions_state()
+		self.non_destructive_show_modif()
 
 	def set_temp(self):
 		self.temp_x = self.selection_x
@@ -418,7 +414,7 @@ class ToolSelect(ToolTemplate):
 		w_context.append_path(dragged_path)
 		return w_context.in_fill(x, y)
 
-	def show_selection_rectangle(self): # FIXME meilleur nom svp
+	def show_selection_overlay(self):
 		self.restore_pixbuf()
 		if self.selection_is_active:
 			self.delete_temp()
@@ -447,7 +443,7 @@ class ToolSelect(ToolTemplate):
 
 	def scale_pixbuf_to(self, new_width, new_height): # N'est utilisée qu'une seule fois, dans scale.py
 		self.selection_pixbuf = self.selection_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
-		self.show_selection_rectangle()
+		self.show_selection_overlay()
 
 	def create_free_selection_from_main(self):
 		self.selection_pixbuf = self.window.main_pixbuf.copy()

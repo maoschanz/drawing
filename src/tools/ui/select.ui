@@ -85,6 +85,56 @@
 
   <menu id="options-menu">
     <section>
+      <submenu>
+        <attribute name="label" translatable="yes">Actions</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Unselect</attribute>
+            <attribute name="action">win.selection_unselect</attribute>
+          </item>
+        </section>
+        <section>
+          <attribute name="display-hint">horizontal-buttons</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Cut</attribute>
+            <attribute name="action">win.selection_cut</attribute>
+            <attribute name="verb-icon">edit-cut-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Copy</attribute>
+            <attribute name="action">win.selection_copy</attribute>
+            <attribute name="verb-icon">edit-copy-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Delete</attribute>
+            <attribute name="action">win.selection_delete</attribute>
+            <attribute name="verb-icon">edit-delete-symbolic</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Crop</attribute>
+            <attribute name="action">win.selection_crop</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Scale</attribute>
+            <attribute name="action">win.selection_scale</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Rotate</attribute>
+            <attribute name="action">win.selection_rotate</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Export as…</attribute>
+            <attribute name="action">win.selection_export</attribute>
+            <attribute name="verb-icon">edit-save-as-symbolic</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
       <attribute name="label" translatable="yes">Selection type</attribute>
       <item>
         <attribute name="label" translatable="yes">Rectangle</attribute>
@@ -101,6 +151,19 @@
       <item>
         <attribute name="label" translatable="yes">Exclude secondary color</attribute>
         <attribute name="action">win.selection_exclude</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label" translatable="yes">Background</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Transparent</attribute>
+        <attribute name="action">win.selection_background</attribute>
+        <attribute name="target">transparent</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.selection_background</attribute>
+        <attribute name="target">secondary</attribute>
       </item>
     </section>
   </menu>

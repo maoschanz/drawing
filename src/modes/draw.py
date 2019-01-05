@@ -161,7 +161,7 @@ class ModeDraw(ModeTemplate):
 	def build_options_menu(self):
 		widget = self.window.active_tool().get_options_widget()
 		model = self.window.active_tool().get_options_model()
-		tools_menu = self.window.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU)
+		tools_menu = self.window.app.get_menubar().get_item_link(4, Gio.MENU_LINK_SUBMENU)
 		section = tools_menu.get_item_link(0, Gio.MENU_LINK_SECTION)
 		if model is None:
 			section.get_item_link(0, Gio.MENU_LINK_SUBMENU).remove_all()
