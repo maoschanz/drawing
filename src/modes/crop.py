@@ -42,7 +42,10 @@ class ModeCrop(ModeTemplate):
 		return self.bottom_panel
 
 	def get_edition_status(self):
-		return _("Cropping the canvas")
+		if self.crop_selection:
+			return _("Cropping the selection")
+		else:
+			return _("Cropping the canvas")
 
 	def on_mode_selected(self, *args):
 		self.crop_selection = args[0]

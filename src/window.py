@@ -226,6 +226,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if fn is None:
 			fn = _("Unsaved file")
 		main_title = fn
+		if self._is_saved:
+			main_title = '*' + main_title
 		subtitle = self.get_edition_status()
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-05 20:34+0100\n"
+"POT-Creation-Date: 2019-01-06 02:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:225
-#: src/window.py:228 src/preferences.py:41
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:232
+#: src/preferences.py:41
 msgid "Drawing"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgid "Open an image"
 msgstr ""
 
 #: src/ui/shortcuts.ui:77 src/ui/menus.ui:180 src/ui/toolbar.ui:42
-#: src/window.py:445 src/window.py:466
+#: src/window.py:446 src/window.py:467
 msgid "Save"
 msgstr ""
 
@@ -264,7 +264,7 @@ msgstr ""
 msgid "_Tools"
 msgstr ""
 
-#: src/ui/menus.ui:332 src/modes/draw.py:170
+#: src/ui/menus.ui:332 src/modes/draw.py:173
 msgid "Tool options"
 msgstr ""
 
@@ -276,7 +276,7 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: src/ui/toolbar.ui:27 src/main.py:172 src/window.py:358
+#: src/ui/toolbar.ui:27 src/window.py:372
 msgid "Open"
 msgstr ""
 
@@ -296,73 +296,73 @@ msgstr ""
 msgid "Report bugs or ideas"
 msgstr ""
 
-#: src/main.py:169 src/window.py:356
+#: src/window.py:227
+msgid "Unsaved file"
+msgstr ""
+
+#: src/window.py:370
 msgid "Open a picture"
 msgstr ""
 
-#: src/main.py:173 src/window.py:359 src/window.py:443 src/window.py:467
+#: src/window.py:373 src/window.py:444 src/window.py:468
 #: src/modes/ui/crop.ui:30 src/modes/ui/scale.ui:30 src/modes/ui/rotate.ui:23
 #: src/tools/ui/text.ui:33 src/tools/select.py:261
 msgid "Cancel"
 msgstr ""
 
-#: src/main.py:175 src/window.py:361 src/window.py:470 src/tools/select.py:263
+#: src/window.py:375 src/window.py:471 src/tools/select.py:263
 msgid "All pictures"
 msgstr ""
 
-#: src/window.py:224
-msgid "Unsaved file"
-msgstr ""
-
-#: src/window.py:409
+#: src/window.py:419
 msgid "Sorry, this picture is too big for this app!"
 msgstr ""
 
-#: src/window.py:412
+#: src/window.py:422
 msgid "Edit it anyway"
 msgstr ""
 
-#: src/window.py:413
+#: src/window.py:423
 msgid "Scale it"
 msgstr ""
 
-#: src/window.py:414
+#: src/window.py:424
 msgid "Crop it"
 msgstr ""
 
-#: src/window.py:415
+#: src/window.py:425
 msgid "What would you prefer?"
 msgstr ""
 
-#: src/window.py:439 src/window.py:503
+#: src/window.py:440 src/window.py:504
 msgid "Untitled"
 msgstr ""
 
-#: src/window.py:444
+#: src/window.py:445
 msgid "Discard"
 msgstr ""
 
-#: src/window.py:446
+#: src/window.py:447
 msgid "There are unsaved modifications to your drawing."
 msgstr ""
 
-#: src/window.py:464
+#: src/window.py:465
 msgid "Save picture as…"
 msgstr ""
 
-#: src/window.py:476
+#: src/window.py:477
 msgid "PNG images"
 msgstr ""
 
-#: src/window.py:480
+#: src/window.py:481
 msgid "JPEG images"
 msgstr ""
 
-#: src/window.py:484
+#: src/window.py:485
 msgid "BMP images"
 msgstr ""
 
-#: src/tools.py:75 src/modes/ui/draw.ui:86
+#: src/tools.py:78 src/modes/ui/draw.ui:86
 msgid "No options"
 msgstr ""
 
@@ -404,6 +404,30 @@ msgstr ""
 
 #: src/modes/ui/draw.ui:64
 msgid "Tool size"
+msgstr ""
+
+#: src/modes/crop.py:46
+msgid "Cropping the selection"
+msgstr ""
+
+#: src/modes/crop.py:48
+msgid "Cropping the canvas"
+msgstr ""
+
+#: src/modes/scale.py:42
+msgid "Scaling the selection"
+msgstr ""
+
+#: src/modes/scale.py:44
+msgid "Scaling the canvas"
+msgstr ""
+
+#: src/modes/rotate.py:36
+msgid "Rotating the selection"
+msgstr ""
+
+#: src/modes/rotate.py:38
+msgid "Rotating the canvas"
 msgstr ""
 
 #: src/tools/ui/experiment.ui:5

@@ -21,9 +21,9 @@ PNG, JPEG and BMP files are supported.
     - Drag
     - Cut/copy
     - Paste/import from
-    - Resize
-    - Crop
     - Export to
+
+The app can crop, scale or rotate the canvas or the selection.
 
 #### Future tools ?
 
@@ -34,6 +34,16 @@ PNG, JPEG and BMP files are supported.
 ## Installation
 
 Clone it, open it as a project with GNOME Builder, and run it (or export it as flatpak)
+
+Or:
+
+```
+flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.Drawing.json
+flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
+flatpak --user install local-drawing-repo com.github.maoschanz.Drawing
+```
+
+Or an other technique using meson directly (TODO)
 
 ## Screenshots
 
