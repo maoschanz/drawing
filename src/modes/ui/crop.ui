@@ -79,44 +79,5 @@
       </packing>
     </child>
 
-    <child>
-      <object class="GtkMenuButton" id="minimap_btn">
-        <property name="visible">True</property>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <child>
-              <object class="GtkImage" id="minimap_icon">
-                <property name="icon-name">zoom-fit-best-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="minimap_label">
-                <property name="label" translatable="yes">Preview</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">pan-down-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-
   </object>
 </interface>

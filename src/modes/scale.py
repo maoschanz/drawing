@@ -65,11 +65,11 @@ class ModeScale(ModeTemplate):
 		if self.scale_selection:
 			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.scale_simple( \
 				w, h, GdkPixbuf.InterpType.TILES)
-			super().on_draw(area, cairo_context)
 			self.window.active_tool().delete_temp()
 			selection_x = self.window.active_tool().selection_x
 			selection_y = self.window.active_tool().selection_y
 			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
+			super().on_draw(area, cairo_context)
 		else:
 			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0) # XXX c'est là pour le zoom non ? en négatif
@@ -94,12 +94,16 @@ class ModeScale(ModeTemplate):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
+		if self.scale_selection:
+			self.window.use_stable_pixbuf()
 		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
+		if self.scale_selection:
+			self.window.use_stable_pixbuf()
 		self.non_destructive_show_modif()
 
 	def get_width(self):

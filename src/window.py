@@ -717,11 +717,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_bigger_preview(self, *args):
 		self.draw_mode.bigger_preview()
-		self.crop_mode.bigger_preview()
 
 	def action_smaller_preview(self, *args):
 		self.draw_mode.smaller_preview()
-		self.crop_mode.smaller_preview()
 
 	def action_toggle_preview(self, *args):
 		self.active_mode().toggle_preview()

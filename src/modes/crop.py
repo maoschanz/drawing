@@ -33,11 +33,6 @@ class ModeCrop(ModeTemplate):
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 
-		self.minimap_btn = builder.get_object('minimap_btn')
-		self.minimap_icon = builder.get_object('minimap_icon')
-		self.minimap_label = builder.get_object('minimap_label')
-		self.minimap = DrawingMinimap(self.window, self.minimap_btn)
-
 	def get_panel(self):
 		return self.bottom_panel
 
@@ -46,6 +41,9 @@ class ModeCrop(ModeTemplate):
 			return _("Cropping the selection")
 		else:
 			return _("Cropping the canvas")
+
+	# TODO on peut ne pas s'encombrer de la minimap, et crop sur la base d'un
+	# temporary_pixbuf scalé
 
 	def on_mode_selected(self, *args):
 		self.crop_selection = args[0]
@@ -72,6 +70,8 @@ class ModeCrop(ModeTemplate):
 			w = self.window.drawing_area.get_allocated_width()
 			h = self.window.drawing_area.get_allocated_height()
 		else:
+			self.width_btn.set_range(1, 2*self.original_width)
+			self.height_btn.set_range(1, 2*self.original_height)
 			w = self.original_width
 			h = self.original_height
 		self.width_btn.set_value(w)
@@ -123,14 +123,3 @@ class ModeCrop(ModeTemplate):
 
 	def draw_overlay(self):
 		print('todo (dynamic preview of the cropping)')
-
-############################
-
-	def bigger_preview(self, *args):
-		self.minimap.action_bigger_preview()
-
-	def smaller_preview(self, *args):
-		self.minimap.action_smaller_preview()
-
-	def toggle_preview(self, *args):
-		self.minimap_btn.set_active(not self.minimap_btn.get_active())

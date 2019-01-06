@@ -281,8 +281,11 @@ class ToolSelect(ToolTemplate):
 			self.force_selection()
 			fn = file_chooser.get_filename()
 			self.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-			self.create_selection_from_arbitrary_pixbuf()
 			self.temp_pixbuf = None
+			self.temp_path = None
+			self.temp_x = self.selection_x
+			self.temp_y = self.selection_y
+			self.create_selection_from_arbitrary_pixbuf()
 		file_chooser.destroy()
 
 	def action_cut(self, *args):
@@ -301,8 +304,11 @@ class ToolSelect(ToolTemplate):
 		self.force_selection()
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		self.selection_pixbuf = cb.wait_for_image()
-		self.create_selection_from_arbitrary_pixbuf()
 		self.temp_pixbuf = None
+		self.temp_path = None
+		self.temp_x = self.selection_x
+		self.temp_y = self.selection_y
+		self.create_selection_from_arbitrary_pixbuf()
 
 	def action_select_all(self, *args):
 		self.force_selection()
