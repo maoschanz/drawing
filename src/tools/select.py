@@ -323,20 +323,20 @@ class ToolSelect(ToolTemplate):
 	def action_selection_scale(self, *args):
 		self.selection_has_been_used = True # XXX pas forcément !!
 		self.window.active_mode().on_cancel_mode()
-		self.window.update_bottom_panel('scale')
 		self.window.scale_mode.on_mode_selected(True)
+		self.window.update_bottom_panel('scale')
 
 	def action_selection_crop(self, *args):
 		self.selection_has_been_used = True # XXX pas forcément !!
 		self.window.active_mode().on_cancel_mode()
-		self.window.update_bottom_panel('crop')
 		self.window.crop_mode.on_mode_selected(True, True)
+		self.window.update_bottom_panel('crop')
 
 	def action_selection_rotate(self, *args): # TODO
 		self.selection_has_been_used = True # XXX pas forcément !!
 		self.window.active_mode().on_cancel_mode()
-		self.window.update_bottom_panel('rotate')
 		self.window.rotate_mode.on_mode_selected(True)
+		self.window.update_bottom_panel('rotate')
 
 	def action_selection_export(self, *args):
 		file_path = self.window.run_save_file_chooser('')

@@ -226,7 +226,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if fn is None:
 			fn = _("Unsaved file")
 		main_title = fn
-		if self._is_saved:
+		if not self._is_saved:
 			main_title = '*' + main_title
 		subtitle = self.get_edition_status()
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
@@ -426,11 +426,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.show_all()
 			result = dialog.run()
 			if result == Gtk.ResponseType.APPLY: # Scale it
-				self.update_bottom_panel('scale')
 				self.scale_mode.on_mode_selected(False)
+				self.update_bottom_panel('scale')
 			elif result == Gtk.ResponseType.YES: # Crop it
-				self.update_bottom_panel('crop')
 				self.crop_mode.on_mode_selected(False, True)
+				self.update_bottom_panel('crop')
 			dialog.destroy()
 
 	def confirm_save_modifs(self):
@@ -567,6 +567,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_press_on_area(self, area, event):
 		self.is_clicked = True
 		self._is_saved = False
+		self.set_picture_title()
 		self.active_mode().on_press_on_area(area, event, self.surface)
 
 	def on_release_on_area(self, area, event):
@@ -614,16 +615,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_crop(self, *args):
 		self.active_mode().on_cancel_mode()
-		self.update_bottom_panel('crop')
 		self.crop_mode.on_mode_selected(False, False)
+		self.update_bottom_panel('crop')
 
 	def action_scale(self, *args):
 		self.active_mode().on_cancel_mode()
-		self.update_bottom_panel('scale')
 		self.scale_mode.on_mode_selected(False)
+		self.update_bottom_panel('scale')
 
 	def action_rotate(self, *args): # TODO
 		self.active_mode().on_cancel_mode()
+		self.rotate_mode.on_mode_selected(False)
 		self.update_bottom_panel('rotate')
 
 	def get_pixbuf_width(self):

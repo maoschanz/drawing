@@ -13,7 +13,7 @@ PNG, JPEG and BMP files are supported.
     - Rectangle
     - Circle
     - Oval
-- Polygon
+- Polygon, free shape
 - Line, arc, arrow, dashes
 - Text
 - Eraser
@@ -33,17 +33,34 @@ The app can crop, scale or rotate the canvas or the selection.
 
 ## Installation
 
-Clone it, open it as a project with GNOME Builder, and run it (or export it as flatpak)
+### Stable version
 
-Or:
+TODO
 
+### Unstable version from `master`
+
+#### With GNOME Builder
+
+Clone this repo, open it as a project with GNOME Builder, and run it (or export it as flatpak)
+
+#### With flatpak-builder
+
+Initial installation:
 ```
 flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.Drawing.json
 flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
 flatpak --user install local-drawing-repo com.github.maoschanz.Drawing
 ```
 
-Or an other technique using meson directly (TODO)
+Update:
+```
+flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.Drawing.json
+flatpak update
+```
+
+#### Directly with meson (/ninja ?)
+
+TODO
 
 ## Screenshots
 
