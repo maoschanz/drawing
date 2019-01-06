@@ -77,10 +77,6 @@ class ModeCrop(ModeTemplate):
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
 
-	def adapt_to_window_size(self): # TODO
-		self.minimap_label.set_visible(True)
-		self.minimap_icon.set_visible(False)
-
 	def on_apply_mode(self):
 		x = self._x
 		y = self._y

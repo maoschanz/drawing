@@ -14,9 +14,6 @@
   <object class="GtkActionBar" id="bottom-panel">
     <property name="visible">True</property>
     <property name="expand">True</property>
-    <!-- <style> -->
-    <!--   <class name="selection-mode"/> -->
-    <!-- </style> -->
 
     <child>
       <object class="GtkButton" id="cancel_btn">
@@ -35,18 +32,24 @@
       </object>
     </child>
 
-    <child>
-      <object class="GtkLabel">
-          <property name="label" translatable="yes">Angle (degrees)</property>
-          <property name="visible">True</property>
-      </object>
-    </child>
-    <child>
-        <object class="GtkSpinButton" id="angle_btn">
+    <child type="center">
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes">Angle (degrees)</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="angle_btn">
             <property name="visible">True</property>
             <property name="adjustment">adj_angle</property>
             <property name="tooltip_text" translatable="yes">Angle (degrees)</property>
-        </object>
+          </object>
+        </child>
+      </object>
     </child>
 
     <child>

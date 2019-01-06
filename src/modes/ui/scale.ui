@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
 
-    <object class="GtkAdjustment" id="adj_width">
-        <property name="lower">1</property>
-        <property name="upper">8127</property>
-        <property name="step_increment">1</property>
-        <property name="page_increment">20</property>
-        <property name="value">10</property>
-    </object>
-    <object class="GtkAdjustment" id="adj_height">
-        <property name="lower">1</property>
-        <property name="upper">8127</property>
-        <property name="step_increment">1</property>
-        <property name="page_increment">20</property>
-        <property name="value">10</property>
-    </object>
+  <object class="GtkAdjustment" id="adj_width">
+    <property name="lower">1</property>
+    <property name="upper">8127</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">20</property>
+    <property name="value">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adj_height">
+    <property name="lower">1</property>
+    <property name="upper">8127</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">20</property>
+    <property name="value">10</property>
+  </object>
 
   <!-- -->
 
   <object class="GtkActionBar" id="bottom-panel">
     <property name="visible">True</property>
     <property name="expand">True</property>
-    <!-- <style> -->
-    <!--   <class name="selection-mode"/> -->
-    <!-- </style> -->
 
     <child>
       <object class="GtkButton" id="cancel_btn">
@@ -42,36 +39,45 @@
       </object>
     </child>
 
-    <child>
-      <object class="GtkCheckButton">
-        <property name="label" translatable="yes">Keep proportions</property>
+    <child type="center">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="action_name">win.keep_proportions</property>
-      </object>
-    </child>
+        <property name="spacing">10</property>
 
-    <child>
-        <object class="GtkSpinButton" id="width_btn">
+        <child>
+          <object class="GtkCheckButton">
+            <property name="label" translatable="yes">Keep proportions</property>
+            <property name="visible">True</property>
+            <property name="action_name">win.keep_proportions</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSpinButton" id="width_btn">
             <property name="visible">True</property>
             <property name="adjustment">adj_width</property>
             <property name="tooltip_text" translatable="yes">Width</property>
-        </object>
-    </child>
+          </object>
+        </child>
 
-    <child>
-      <object class="GtkLabel">
-          <property name="label">×</property>
-          <property name="visible">True</property>
-      </object>
-    </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">×</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
 
-    <child>
-        <object class="GtkSpinButton" id="height_btn">
+        <child>
+          <object class="GtkSpinButton" id="height_btn">
             <property name="visible">True</property>
             <property name="adjustment">adj_height</property>
             <property name="tooltip_text" translatable="yes">Height</property>
-        </object>
+          </object>
+        </child>
+
+      </object>
     </child>
+
 
     <child>
       <object class="GtkButton" id="apply_btn">
