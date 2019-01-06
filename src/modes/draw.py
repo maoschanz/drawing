@@ -59,10 +59,6 @@ class ModeDraw(ModeTemplate):
 		self.add_mode_action_simple('exchange_color', self.action_exchange_color)
 		self.window.app.add_action_boolean('use_editor', \
 			self.window._settings.get_boolean('direct-color-edit'), self.action_use_editor)
-		if self.window._settings.get_boolean('experimental'):
-			self.add_mode_action_simple('toggle_preview', self.action_toggle_preview)
-			self.add_mode_action_simple('bigger_preview', self.minimap.action_bigger_preview)
-			self.add_mode_action_simple('smaller_preview', self.minimap.action_smaller_preview)
 
 	def get_panel(self):
 		return self.bottom_panel
@@ -184,6 +180,12 @@ class ModeDraw(ModeTemplate):
 
 ############################
 
-	def action_toggle_preview(self, *args):
+	def bigger_preview(self, *args):
+		self.minimap.action_bigger_preview()
+
+	def smaller_preview(self, *args):
+		self.minimap.action_smaller_preview()
+
+	def toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
 

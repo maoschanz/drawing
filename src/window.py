@@ -98,7 +98,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		width = self._settings.get_int('default-width')
 		height = self._settings.get_int('default-height')
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
-		self.temporary_pixbuf = None # TODO
+		self.temporary_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 
 	def init_tools(self):
@@ -144,6 +144,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 		self._is_saved = True
 		self.use_stable_pixbuf()
+		self.drawing_area.queue_draw()
 		self.lookup_action('open_with').set_enabled(True)
 
 	def action_close(self, *args):
@@ -212,6 +213,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('exp_bmp', self.export_as_bmp)
 
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
+
+		if self._settings.get_boolean('experimental'):
+			self.add_action_simple('toggle_preview', self.action_toggle_preview)
+			self.add_action_simple('bigger_preview', self.action_bigger_preview)
+			self.add_action_simple('smaller_preview', self.action_smaller_preview)
 
 	def adapt_to_window_size(self, *args):
 		self.active_mode().adapt_to_window_size()
@@ -549,14 +555,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
-		# Ça marche mais je ne sais pas si avoir une surface ne serait pas mieux.
-		# Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
-
-		# Ça marche aussi mais c'est moins idéal complexitivement.
-		# surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-
-		cairo_context.set_source_surface(self.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
-		cairo_context.paint()
+		self.active_mode().on_draw(area, cairo_context)
 
 	def on_motion_on_area(self, area, event):
 		if not self.is_clicked:
@@ -567,7 +566,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_press_on_area(self, area, event):
 		self.is_clicked = True
 		self._is_saved = False
-		self.set_picture_title()
 		self.active_mode().on_press_on_area(area, event, self.surface)
 
 	def on_release_on_area(self, area, event):
@@ -575,6 +573,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return
 		self.is_clicked = False
 		self.active_mode().on_release_on_area(area, event, self.surface)
+		self.set_picture_title()
 
 	# PRINTING
 
@@ -709,3 +708,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.use_stable_pixbuf()
 		self.on_tool_finished()
 
+	def rotate_pixbuf(self, angle):
+		self.main_pixbuf = self.main_pixbuf.rotate_simple(angle)
+		self.use_stable_pixbuf()
+		self.on_tool_finished()
+
+############################
+
+	def action_bigger_preview(self, *args):
+		self.draw_mode.bigger_preview()
+		self.crop_mode.bigger_preview()
+
+	def action_smaller_preview(self, *args):
+		self.draw_mode.smaller_preview()
+		self.crop_mode.smaller_preview()
+
+	def action_toggle_preview(self, *args):
+		self.active_mode().toggle_preview()

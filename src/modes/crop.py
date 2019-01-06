@@ -87,10 +87,7 @@ class ModeCrop(ModeTemplate):
 		width = self.get_width()
 		height = self.get_height()
 		if self.crop_selection:
-			self.window.active_tool().crop_selection_surface(x, y, width, height)
-			self.window.active_tool().selection_x += x
-			self.window.active_tool().selection_y += y
-			self.window.active_tool().show_selection_rectangle()
+			self.window.active_tool().action_crop(x, y, width, height)
 		else:
 			self.window.crop_main_surface(x, y, width, height)
 			self.window.on_tool_finished()
@@ -126,3 +123,14 @@ class ModeCrop(ModeTemplate):
 
 	def draw_overlay(self):
 		print('todo (dynamic preview of the cropping)')
+
+############################
+
+	def bigger_preview(self, *args):
+		self.minimap.action_bigger_preview()
+
+	def smaller_preview(self, *args):
+		self.minimap.action_smaller_preview()
+
+	def toggle_preview(self, *args):
+		self.minimap_btn.set_active(not self.minimap_btn.get_active())

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
 
 from .modes import ModeTemplate
 
@@ -31,6 +31,8 @@ class ModeScale(ModeTemplate):
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
+		self.width_btn.connect('value-changed', self.on_width_changed)
+		self.height_btn.connect('value-changed', self.on_height_changed)
 
 		self.add_mode_action_boolean('keep_proportions', True, self.set_keep_proportions)
 
@@ -57,6 +59,22 @@ class ModeScale(ModeTemplate):
 		else:
 			self.window.scale_pixbuf_to(w, h)
 
+	def on_draw(self, area, cairo_context):
+		w = self.get_width()
+		h = self.get_height()
+		if self.scale_selection:
+			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.scale_simple( \
+				w, h, GdkPixbuf.InterpType.TILES)
+			super().on_draw(area, cairo_context)
+			self.window.active_tool().delete_temp()
+			selection_x = self.window.active_tool().selection_x
+			selection_y = self.window.active_tool().selection_y
+			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
+		else:
+			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0) # XXX c'est là pour le zoom non ? en négatif
+			cairo_context.paint()
+
 	def on_cancel_mode(self):
 		print('cancel') # TODO
 
@@ -70,19 +88,19 @@ class ModeScale(ModeTemplate):
 			h = self.window.get_pixbuf_height()
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
-		self.width_btn.connect('value-changed', self.on_width_changed)
-		self.height_btn.connect('value-changed', self.on_height_changed)
 		self.proportion = self.get_width()/self.get_height()
 
 	def on_width_changed(self, *args):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
+		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
+		self.non_destructive_show_modif()
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()

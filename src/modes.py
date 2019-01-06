@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 class ModeTemplate():
 	__gtype_name__ = 'ModeTemplate'
@@ -33,6 +33,15 @@ class ModeTemplate():
 		pass
 
 	def on_mode_selected(self, *args):
+		pass
+
+	def toggle_preview(self, *args):
+		pass
+
+	def bigger_preview(self, *args):
+		pass
+
+	def smaller_preview(self, *args):
 		pass
 
 	def on_apply_mode(self):
@@ -53,6 +62,13 @@ class ModeTemplate():
 	def add_mode_action_enum(self, action_name, default, callback):
 		self.window.add_action_enum(action_name, default, callback)
 
+	def on_draw(self, area, cairo_context):
+		# Ça marche moins mais peut être utile.
+		# Gdk.cairo_set_source_pixbuf(cairo_context, self.window.main_pixbuf, 0, 0)
+
+		cairo_context.set_source_surface(self.window.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
+		cairo_context.paint()
+
 	def on_motion_on_area(self, area, event, surface):
 		pass
 
@@ -61,3 +77,6 @@ class ModeTemplate():
 
 	def on_release_on_area(self, area, event, surface):
 		pass
+
+	def non_destructive_show_modif(self):
+		self.window.drawing_area.queue_draw()

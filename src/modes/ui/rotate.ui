@@ -2,10 +2,10 @@
 <interface domain="drawing">
 
     <object class="GtkAdjustment" id="adj_angle">
-        <property name="lower">-180</property>
-        <property name="upper">180</property>
-        <property name="step_increment">1</property>
-        <property name="page_increment">20</property>
+        <property name="lower">0</property>
+        <property name="upper">359</property>
+        <property name="step_increment">90</property>
+        <property name="page_increment">90</property>
         <property name="value">0</property>
     </object>
 

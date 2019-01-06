@@ -93,13 +93,12 @@ class DrawingMinimap(Gtk.Popover):
 		h = self.preview_size
 		mpb_width = self.get_main_pixbuf().get_width()
 		mpb_height = self.get_main_pixbuf().get_height()
-		if mpb_height > mpb_width: # TODO? comparer la taille de full_pixbuf plutôt?
+		if mpb_height > mpb_width:
 			w = self.preview_size * (mpb_width/mpb_height)
 		else:
 			h = self.preview_size * (mpb_height/mpb_width)
-		self.mini_pixbuf = self.get_main_pixbuf().scale_simple(w, h, GdkPixbuf.InterpType.TILES) # full_pixbuf
+		self.mini_pixbuf = self.get_main_pixbuf().scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
-		# self.minimap_area.set_size(self.mini_surface.get_width(), self.mini_surface.get_height())
 		self.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
 
 		visible_width = min(self.window.drawing_area.get_allocated_width(), \

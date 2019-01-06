@@ -38,6 +38,7 @@ class ToolShape(ToolTemplate):
 			self.selected_style_label = _("Filled (main color)")
 		else:
 			self.selected_style_label = _("Filled (secondary color)")
+		self.window.set_picture_title()
 
 	def on_change_active_shape(self, *args):
 		state_as_string = args[1].get_string()
@@ -51,6 +52,7 @@ class ToolShape(ToolTemplate):
 			self.selected_shape_label = _("Oval")
 		else:
 			self.selected_shape_label = _("Circle")
+		self.window.set_picture_title()
 
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/shape.ui")
@@ -58,6 +60,11 @@ class ToolShape(ToolTemplate):
 
 	def get_options_label(self):
 		return self.selected_shape_label + ' - ' + self.selected_style_label
+
+	def get_edition_status(self):
+		label = self.label + ' -' + self.selected_shape_label + ' - ' + \
+			self.selected_style_label
+		return label
 
 	def give_back_control(self):
 		(self.x_press, self.y_press) = (-1.0, -1.0)

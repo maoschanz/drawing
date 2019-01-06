@@ -28,6 +28,9 @@ class ToolPaint(ToolTemplate):
 # cairo.Context.clip_extents() jusqu'à ce qu'on soit à fond.
 # À partir de là on fait cairo.Context.paint()
 
+# TODO meilleure idée : on fait un path approximatif, puis on utilise GdkPixbuf
+# et sa méthode qui remplace un rgb par un alpha (??)
+
 		# Guard clause: we can't paint outside of the surface
 		if event.x < 0 or event.x > surface.get_width() \
 		or event.y < 0 or event.y > surface.get_height():
