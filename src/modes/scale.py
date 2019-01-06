@@ -37,6 +37,9 @@ class ModeScale(ModeTemplate):
 	def get_panel(self):
 		return self.bottom_panel
 
+	def get_edition_status(self):
+		return _("Scaling the canvas")
+
 	def set_keep_proportions(self, *args):
 		args[0].set_state(GLib.Variant.new_boolean(not args[0].get_state()))
 		self.keep_proportions = args[0].get_state()

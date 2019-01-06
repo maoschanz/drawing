@@ -41,6 +41,9 @@ class ModeCrop(ModeTemplate):
 	def get_panel(self):
 		return self.bottom_panel
 
+	def get_edition_status(self):
+		return _("Cropping the canvas")
+
 	def on_mode_selected(self, *args):
 		self.crop_selection = args[0]
 		self.forbid_growth = args[0] or args[1]

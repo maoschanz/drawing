@@ -31,5 +31,8 @@ class ModeRotate(ModeTemplate):
 	def get_panel(self):
 		return self.bottom_panel
 
+	def get_edition_status(self):
+		return _("Rotating the canvas")
+
 	def on_mode_selected(self, *args):
 		self.rotate_selection = args[0]

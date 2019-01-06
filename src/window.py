@@ -58,7 +58,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		decorations = self._settings.get_string('decorations')
 		self.set_ui_bars(decorations)
-		self.set_picture_title(None)
 		self.maximize()
 
 		self.draw_mode = ModeDraw(self)
@@ -80,6 +79,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.connect_signals()
 
 		self.init_background()
+		self.set_picture_title()
 
 	def init_instance_attributes(self):
 		self.handlers = []
@@ -140,10 +140,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		w_context.paint()
 		self.set_pixbuf_as_stable()
 
-	def initial_save(self, fn):
-		self.set_picture_title(fn)
+	def initial_save(self):
+		self.set_picture_title()
 		self._is_saved = True
-		self.gfile = Gio.File.new_for_path(fn)
 		self.use_stable_pixbuf()
 		self.lookup_action('open_with').set_enabled(True)
 
@@ -219,13 +218,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# WINDOW BARS
 
-	def set_picture_title(self, fn):
+	def get_edition_status(self):
+		return self.active_mode().get_edition_status()
+
+	def set_picture_title(self):
+		fn = self.get_file_path()
 		if fn is None:
 			fn = _("Unsaved file")
-		self.set_title(_("Drawing") + ' - ' + fn)
+		main_title = fn
+		subtitle = self.get_edition_status()
+		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:
-			self.header_bar.set_subtitle(fn)
-			self.header_bar.set_title(_("Drawing"))
+			self.header_bar.set_title(main_title)
+			self.header_bar.set_subtitle(subtitle)
 
 	def set_ui_bars(self, decorations):
 		if decorations == 'csd':
@@ -318,6 +323,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_mode_id = new_mode_id
 		self.bottom_panel.add(self.active_mode().get_panel())
 		self.adapt_to_window_size()
+		self.set_picture_title()
 
 	# TOOLS
 
@@ -337,6 +343,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_mode().on_tool_changed()
 		self.adapt_to_window_size()
 		self.active_tool().on_tool_selected()
+		self.set_picture_title()
 
 	def active_tool(self):
 		return self.tools[self.active_tool_id]
@@ -353,6 +360,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return self.gfile.get_path()
 
 	def action_open(self, *args):
+		if self.confirm_save_modifs():
+			self.file_chooser_open()
+			self.try_load_file()
+
+	def file_chooser_open(self, *args):
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
 			Gtk.FileChooserAction.OPEN,
 			_("Open"),
@@ -364,9 +376,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		allPictures.add_mime_type('image/bmp')
 		file_chooser.add_filter(allPictures)
 		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT: # TODO demander avant d'écraser ?
-			fn = file_chooser.get_filename()
-			self.try_load_file(fn)
+		if response == Gtk.ResponseType.ACCEPT:
+			self.gfile = file_chooser.get_file()
 		file_chooser.destroy()
 
 	def action_save(self, *args):
@@ -379,12 +390,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		fn = self.run_save_file_chooser('')
 		self.save_pixbuf_to_fn(fn)
 
-	def load_fn_to_pixbuf(self, filename):
+	def load_fn_to_pixbuf(self, filename): # FIXME utiliser le gfile
 		if filename is not None:
 			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
-			self.initial_save(filename)
+			self.initial_save()
 
-	def save_pixbuf_to_fn(self, filename):
+	def save_pixbuf_to_fn(self, filename): # FIXME utiliser le gfile ?
 		if filename is not None:
 			self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 				self.surface.get_width(), self.surface.get_height())
@@ -394,17 +405,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.main_pixbuf.savev(filename, pb_format.get_name(), [None], [])
 			# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
+			self.initial_save()
 
-			self.initial_save(filename)
-
-	def try_load_file(self, fn):
-		# We don't want to load too big images, because the technical
-		# limitations of cairo make impossible to zoom out, or to scroll.
+	def try_load_file(self):
 		w = self.drawing_area.get_allocated_width()
 		h = self.drawing_area.get_allocated_height()
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-		pic_w = self.selection_pixbuf.get_width()
-		pic_h = self.selection_pixbuf.get_height()
+		self.load_fn_to_pixbuf(self.get_file_path())
+		pic_w = self.main_pixbuf.get_width()
+		pic_h = self.main_pixbuf.get_height()
 		if (w < pic_w) or (h < pic_h):
 			title_label = _("Sorry, this picture is too big for this app!")
 			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
@@ -415,22 +423,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.get_message_area().add(Gtk.Label(label=_("What would you prefer?")))
 			dialog.show_all()
 			result = dialog.run()
-
 			if result == Gtk.ResponseType.APPLY: # Scale it
-				if pic_w/pic_h > w/h:
-					self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, w, -1, True)
-				else:
-					self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, -1, h, True)
-				self.initial_save(fn)
+				self.update_bottom_panel('scale')
+				self.scale_mode.on_mode_selected(False)
 			elif result == Gtk.ResponseType.YES: # Crop it
-				self.load_fn_to_pixbuf(fn)
 				self.update_bottom_panel('crop')
 				self.crop_mode.on_mode_selected(False, True)
-			else:
-				self.load_fn_to_pixbuf(fn) # Edit it anyway
 			dialog.destroy()
-		else:
-			self.load_fn_to_pixbuf(fn)
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:

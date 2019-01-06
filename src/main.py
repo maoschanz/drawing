@@ -166,23 +166,8 @@ class Application(Gtk.Application):
 		return win
 
 	def on_open_activate(self, *args):
-		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"),
-		self.props.active_window,
-			Gtk.FileChooserAction.OPEN,
-			_("Open"),
-			_("Cancel"))
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(allPictures)
-		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT:
-			fn = file_chooser.get_filename()
-			win = self.on_new_window_activate()
-			win.try_load_file(fn)
-		file_chooser.destroy()
+		win = self.on_new_window_activate()
+		win.action_open()
 
 	def on_shortcuts_activate(self, *args):
 		if self.shortcuts_window is not None:

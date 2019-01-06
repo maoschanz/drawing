@@ -26,6 +26,9 @@ class ModeTemplate():
 	def get_panel(self):
 		return None
 
+	def get_edition_status(self):
+		return '…'
+
 	def adapt_to_window_size(self):
 		pass
 
