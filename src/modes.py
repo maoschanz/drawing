@@ -38,17 +38,12 @@ class ModeTemplate():
 	def toggle_preview(self, *args):
 		pass
 
-	def bigger_preview(self, *args):
-		pass
-
-	def smaller_preview(self, *args):
-		pass
-
 	def on_apply_mode(self):
 		pass
 
 	def on_cancel_mode(self):
-		pass
+		self.window.use_stable_pixbuf()
+		self.non_destructive_show_modif()
 
 	def on_tool_changed(self):
 		pass
@@ -80,3 +75,6 @@ class ModeTemplate():
 
 	def non_destructive_show_modif(self):
 		self.window.drawing_area.queue_draw()
+
+	def set_action_sensitivity(self, action_name, state):
+		self.window.lookup_action(action_name).set_enabled(state)

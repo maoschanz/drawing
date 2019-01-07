@@ -41,6 +41,7 @@ class ModeRotate(ModeTemplate):
 
 	def on_mode_selected(self, *args):
 		self.rotate_selection = args[0]
+		self.set_action_sensitivity('active_tool', False)
 
 	def on_apply_mode(self):
 		if self.rotate_selection:

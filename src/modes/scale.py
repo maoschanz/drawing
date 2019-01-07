@@ -75,9 +75,6 @@ class ModeScale(ModeTemplate):
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0) # XXX c'est là pour le zoom non ? en négatif
 			cairo_context.paint()
 
-	def on_cancel_mode(self):
-		print('cancel') # TODO
-
 	def on_mode_selected(self, *args):
 		self.scale_selection = args[0]
 		if self.scale_selection:
@@ -89,6 +86,7 @@ class ModeScale(ModeTemplate):
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
 		self.proportion = self.get_width()/self.get_height()
+		self.set_action_sensitivity('active_tool', False)
 
 	def on_width_changed(self, *args):
 		if self.keep_proportions:

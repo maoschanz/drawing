@@ -52,29 +52,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		label_format_surface.set_label(enum.get(window.get_surface().get_format(), _("Invalid format")))
 		self.set_size_labels()
 
-		btn_crop = builder.get_object('btn_crop')
-		btn_crop.connect('clicked', self.on_crop)
-
-		btn_scale = builder.get_object('btn_scale')
-		btn_scale.connect('clicked', self.on_scale)
-
-		btn_scale = builder.get_object('btn_rotate')
-		btn_scale.connect('clicked', self.on_rotate)
-
-		self.set_default_size(400, 100)
+		self.set_default_size(400, 200)
 		self.show_all()
-
-	def on_rotate(self, *args):
-		self._window.action_rotate()
-		self.set_size_labels()
-
-	def on_scale(self, *args):
-		self._window.action_scale()
-		self.set_size_labels()
-
-	def on_crop(self, *args):
-		self._window.action_crop()
-		self.set_size_labels()
 
 	def set_size_labels(self):
 		self.label_width.set_label(str(self._window.get_pixbuf_width()) + ' px')

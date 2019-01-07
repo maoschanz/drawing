@@ -162,43 +162,5 @@
       </object>
     </child>
 
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="spacing">10</property>
-        <child>
-          <object class="GtkButton" id="btn_scale">
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">Scale</property>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkButton" id="btn_crop">
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">Crop</property>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkButton" id="btn_rotate">
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">Rotate</property>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
   </object>
 </interface>

@@ -66,6 +66,9 @@ class ModeDraw(ModeTemplate):
 	def get_edition_status(self):
 		return self.window.active_tool().get_edition_status()
 
+	def on_mode_selected(self, *args):
+		self.set_action_sensitivity('active_tool', True)
+
 	def on_cancel_mode(self):
 		if not self.window.active_tool().selection_is_active:
 			self.window.active_tool().give_back_control()
@@ -179,12 +182,6 @@ class ModeDraw(ModeTemplate):
 		self.options_label.set_label(self.window.active_tool().get_options_label())
 
 ############################
-
-	def bigger_preview(self, *args):
-		self.minimap.action_bigger_preview()
-
-	def smaller_preview(self, *args):
-		self.minimap.action_smaller_preview()
 
 	def toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())

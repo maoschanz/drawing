@@ -93,6 +93,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.undo_history = []
 		self.redo_history = []
 		self.gfile = None
+		self.filename = None
 		self._is_saved = True
 
 		width = self._settings.get_int('default-width')
@@ -214,10 +215,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 
-		if self._settings.get_boolean('experimental'):
-			self.add_action_simple('toggle_preview', self.action_toggle_preview)
-			self.add_action_simple('bigger_preview', self.action_bigger_preview)
-			self.add_action_simple('smaller_preview', self.action_smaller_preview)
+		self.add_action_simple('toggle_preview', self.action_toggle_preview)
 
 	def adapt_to_window_size(self, *args):
 		self.active_mode().adapt_to_window_size()
@@ -228,7 +226,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.active_mode().get_edition_status()
 
 	def set_picture_title(self):
-		fn = self.get_file_path()
+		fn = self.filename
 		if fn is None:
 			fn = _("Unsaved file")
 		main_title = fn
@@ -385,40 +383,50 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.add_filter(allPictures)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
+			self.filename = file_chooser.get_filename()
 			self.gfile = file_chooser.get_file()
 		file_chooser.destroy()
 
 	def action_save(self, *args):
 		fn = self.get_file_path()
 		if fn is None:
-			fn = self.run_save_file_chooser('')
+			gfile, fn = self.file_chooser_save('')
+			if fn is not None:
+				self.gfile = gfile
+				self.filename = fn
+			else:
+				return
 		self.save_pixbuf_to_fn(fn)
 
 	def action_save_as(self, *args):
-		fn = self.run_save_file_chooser('')
+		gfile, fn = self.file_chooser_save('')
+		if fn is not None:
+			self.gfile = gfile
+			self.filename = fn
+		else:
+			return
 		self.save_pixbuf_to_fn(fn)
 
-	def load_fn_to_pixbuf(self, filename): # FIXME utiliser le gfile
-		if filename is not None:
-			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
-			self.initial_save()
-
-	def save_pixbuf_to_fn(self, filename): # FIXME utiliser le gfile ?
-		if filename is not None:
-			self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-				self.surface.get_width(), self.surface.get_height())
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(filename)
-			if pb_format is None: # "jpeg", "png", "tiff", "ico" or "bmp"
-				self.main_pixbuf.savev(filename, filename.split('.')[-1], [None], [])
-			else:
-				self.main_pixbuf.savev(filename, pb_format.get_name(), [None], [])
-			# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
-			self.initial_save()
+	def save_pixbuf_to_fn(self, filename):
+		assert (filename is not None)
+		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
+			self.surface.get_width(), self.surface.get_height())
+		(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(filename)
+		if pb_format is None: # "jpeg", "png", "tiff", "ico" or "bmp"
+			self.main_pixbuf.savev(filename, filename.split('.')[-1], [None], [])
+		else:
+			self.main_pixbuf.savev(filename, pb_format.get_name(), [None], [])
+		# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
+		self.initial_save()
 
 	def try_load_file(self):
+		if self.filename is None:
+			return
+		else:
+			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+			self.initial_save()
 		w = self.drawing_area.get_allocated_width()
 		h = self.drawing_area.get_allocated_height()
-		self.load_fn_to_pixbuf(self.get_file_path())
 		pic_w = self.main_pixbuf.get_width()
 		pic_h = self.main_pixbuf.get_height()
 		if (w < pic_w) or (h < pic_h):
@@ -435,7 +443,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.scale_mode.on_mode_selected(False)
 				self.update_bottom_panel('scale')
 			elif result == Gtk.ResponseType.YES: # Crop it
-				self.crop_mode.on_mode_selected(False, True)
+				self.crop_mode.on_mode_selected(False)
 				self.update_bottom_panel('crop')
 			dialog.destroy()
 
@@ -466,7 +474,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			return True
 
-	def run_save_file_chooser(self, file_type):
+	def file_chooser_save(self, file_type):
 		file_path = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 			Gtk.FileChooserAction.SAVE,
@@ -513,8 +521,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			file_path = file_chooser.get_filename()
+			gfile = file_chooser.get_file()
 		file_chooser.destroy()
-		return file_path
+		return gfile, file_path
 
 	def export_as_png(self, *args):
 		self.export_main_as('png')
@@ -605,16 +614,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_cancel_and_draw(self, *args):
 		# TODO
 		self.active_mode().on_cancel_mode()
+		self.draw_mode.on_mode_selected()
 		self.update_bottom_panel('draw')
 
 	def action_apply_and_draw(self, *args):
 		# TODO
 		self.active_mode().on_apply_mode()
+		self.draw_mode.on_mode_selected()
 		self.update_bottom_panel('draw')
 
 	def action_crop(self, *args):
 		self.active_mode().on_cancel_mode()
-		self.crop_mode.on_mode_selected(False, False)
+		self.crop_mode.on_mode_selected(False)
 		self.update_bottom_panel('crop')
 
 	def action_scale(self, *args):
@@ -622,7 +633,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.scale_mode.on_mode_selected(False)
 		self.update_bottom_panel('scale')
 
-	def action_rotate(self, *args): # TODO
+	def action_rotate(self, *args):
 		self.active_mode().on_cancel_mode()
 		self.rotate_mode.on_mode_selected(False)
 		self.update_bottom_panel('rotate')
@@ -639,31 +650,22 @@ class DrawingWindow(Gtk.ApplicationWindow):
 #######################################
 
 	def export_main_as(self, file_format):
-		file_path = self.run_save_file_chooser(file_format)
+		file_path = self.file_chooser_save(file_format)
 		if file_path is not None:
 			self.main_pixbuf.savev(file_path, file_format, [None], [])
 
-	def crop_main_surface(self, x, y, width, height):
+	def crop_main_pixbuf(self, x, y, width, height):
 		x = int(x)
 		y = int(y)
 		width = int(width)
 		height = int(height)
-
-		# The GdkPixbuf.Pixbuf.copy_area method works only when expanding the size
-		max_width = max(width, self.surface.get_width())
-		max_height = max(height, self.surface.get_height())
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, max_width, max_height)
-		self.main_pixbuf.copy_area(0, 0, self.surface.get_width(), self.surface.get_height(), new_pixbuf, 0, 0)
+		min_w = min(width, self.main_pixbuf.get_width() + x)
+		min_h = min(height, self.main_pixbuf.get_height() + y)
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		new_pixbuf.fill(0)
+		self.main_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
 		self.main_pixbuf = new_pixbuf
-
-		# The cairo.Surface.map_to_image method works only when reducing the size
-		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-		self.surface = self.surface.map_to_image(cairo.RectangleInt(x, y, width, height))
-		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-			self.surface.get_width(), self.surface.get_height())
-
-		if x != 0 or y != 0:
-			self.crop_main_surface(0, 0, width, height)
+		self.use_stable_pixbuf()
 
 	def on_tool_finished(self):
 		self.undo_history.append(self.main_pixbuf.copy())
@@ -714,12 +716,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.on_tool_finished()
 
 ############################
-
-	def action_bigger_preview(self, *args):
-		self.draw_mode.bigger_preview()
-
-	def action_smaller_preview(self, *args):
-		self.draw_mode.smaller_preview()
 
 	def action_toggle_preview(self, *args):
 		self.active_mode().toggle_preview()

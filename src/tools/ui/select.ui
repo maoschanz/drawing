@@ -1,51 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <menu id="left-click-menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.selection_unselect</attribute>
-      </item>
-    </section>
-    <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Cut</attribute>
-        <attribute name="action">win.selection_cut</attribute>
-        <attribute name="verb-icon">edit-cut-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Copy</attribute>
-        <attribute name="action">win.selection_copy</attribute>
-        <attribute name="verb-icon">edit-copy-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Delete</attribute>
-        <attribute name="action">win.selection_delete</attribute>
-        <attribute name="verb-icon">edit-delete-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Crop</attribute>
-        <attribute name="action">win.selection_crop</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Scale</attribute>
-        <attribute name="action">win.selection_scale</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Rotate</attribute>
-        <attribute name="action">win.selection_rotate</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Export as…</attribute>
-        <attribute name="action">win.selection_export</attribute>
-      </item>
-    </section>
-  </menu>
+  <!-- <menu id="left-click-menu"> -->
+  <!--   <section> -->
+  <!--     <item> -->
+  <!--       <attribute name="label" translatable="yes">Unselect</attribute> -->
+  <!--       <attribute name="action">win.selection_unselect</attribute> -->
+  <!--     </item> -->
+  <!--   </section> -->
+  <!--   <section> -->
+  <!--     <attribute name="display-hint">horizontal-buttons</attribute> -->
+  <!--     <item> -->
+  <!--       <attribute name="label" translatable="yes">Cut</attribute> -->
+  <!--       <attribute name="action">win.selection_cut</attribute> -->
+  <!--       <attribute name="verb-icon">edit-cut-symbolic</attribute> -->
+  <!--     </item> -->
+  <!--     <item> -->
+  <!--       <attribute name="label" translatable="yes">Copy</attribute> -->
+  <!--       <attribute name="action">win.selection_copy</attribute> -->
 
   <menu id="right-click-menu">
     <section>
@@ -55,16 +26,13 @@
       </item>
     </section>
     <section>
-      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
       <item>
         <attribute name="label" translatable="yes">Import</attribute>
         <attribute name="action">win.import</attribute>
-        <attribute name="verb-icon">document-open-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Paste</attribute>
         <attribute name="action">win.paste</attribute>
-        <attribute name="verb-icon">edit-paste-symbolic</attribute>
       </item>
     </section>
     <section>
@@ -85,7 +53,7 @@
 
   <menu id="options-menu">
     <section>
-      <submenu>
+      <submenu id="left-click-menu">
         <attribute name="label" translatable="yes">Actions</attribute>
         <section>
           <item>
@@ -129,7 +97,6 @@
           <item>
             <attribute name="label" translatable="yes">Export as…</attribute>
             <attribute name="action">win.selection_export</attribute>
-            <attribute name="verb-icon">edit-save-as-symbolic</attribute>
           </item>
         </section>
       </submenu>

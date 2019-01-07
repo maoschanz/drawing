@@ -350,7 +350,7 @@ class ToolSelect(ToolTemplate):
 	def action_selection_crop(self, *args):
 		self.selection_has_been_used = True # XXX pas forcément !!
 		self.window.active_mode().on_cancel_mode()
-		self.window.crop_mode.on_mode_selected(True, True)
+		self.window.crop_mode.on_mode_selected(True)
 		self.window.update_bottom_panel('crop')
 
 	def action_selection_rotate(self, *args): # TODO
@@ -360,7 +360,7 @@ class ToolSelect(ToolTemplate):
 		self.window.update_bottom_panel('rotate')
 
 	def action_selection_export(self, *args):
-		file_path = self.window.run_save_file_chooser('')
+		gfile, file_path = self.window.file_chooser_save('')
 		if file_path is not None:
 			self.selection_pixbuf.savev(file_path, file_path.split('.')[-1], [None], [])
 
@@ -532,13 +532,29 @@ class ToolSelect(ToolTemplate):
 		y = int(y)
 		width = int(width)
 		height = int(height)
-		if self.selection_pixbuf is None:
-			return
-		selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
+		min_w = min(width, self.selection_pixbuf.get_width() + x)
+		min_h = min(height, self.selection_pixbuf.get_height() + y)
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		new_pixbuf.fill(0)
+		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
+		self.selection_pixbuf = new_pixbuf
+		# self.use_stable_pixbuf()
+
+
+
+
+
+		# x = int(x)
+		# y = int(y)
+		# width = int(width)
+		# height = int(height)
+		# if self.selection_pixbuf is None:
+		# 	return
+		# selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
 
 		# The cairo.Surface.map_to_image method works only when reducing the size,
 		# but the selection can not grow form this method.
-		selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
-		selection_surface = selection_surface.map_to_image(cairo.RectangleInt(x, y, width, height))
-		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(selection_surface, 0, 0, \
-			selection_surface.get_width(), selection_surface.get_height())
+		# selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
+		# selection_surface = selection_surface.map_to_image(cairo.RectangleInt(x, y, width, height))
+		# self.selection_pixbuf = Gdk.pixbuf_get_from_surface(selection_surface, 0, 0, \
+		# 	selection_surface.get_width(), selection_surface.get_height())

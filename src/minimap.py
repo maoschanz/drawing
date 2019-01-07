@@ -46,18 +46,6 @@ class DrawingMinimap(Gtk.Popover):
 		minimap_btn.set_popover(self)
 		minimap_btn.connect('toggled', self.update_minimap)
 
-	def action_smaller_preview(self, *args):
-		size = max(200, self.window._settings.get_int('preview-size') - 40)
-		self.window._settings.set_int('preview-size', size)
-		self.preview_size = size
-		self.update_minimap()
-
-	def action_bigger_preview(self, *args):
-		size = self.window._settings.get_int('preview-size') + 40
-		self.window._settings.set_int('preview-size', size)
-		self.preview_size = size
-		self.update_minimap()
-
 	def on_minimap_draw(self, area, cairo_context):
 		cairo_context.set_source_surface(self.mini_surface, 0, 0)
 		cairo_context.paint()

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
 
 from .modes import ModeTemplate
 from .minimap import DrawingMinimap
@@ -42,12 +42,8 @@ class ModeCrop(ModeTemplate):
 		else:
 			return _("Cropping the canvas")
 
-	# TODO on peut ne pas s'encombrer de la minimap, et crop sur la base d'un
-	# temporary_pixbuf scalé
-
 	def on_mode_selected(self, *args):
 		self.crop_selection = args[0]
-		self.forbid_growth = args[0] or args[1]
 		self._x = 0
 		self._y = 0
 		if self.crop_selection:
@@ -64,11 +60,6 @@ class ModeCrop(ModeTemplate):
 			self.height_btn.set_range(1, self.original_height)
 			w = self.original_width
 			h = self.original_height
-		elif self.forbid_growth:
-			self.width_btn.set_range(1, self.original_width)
-			self.height_btn.set_range(1, self.original_height)
-			w = self.window.drawing_area.get_allocated_width()
-			h = self.window.drawing_area.get_allocated_height()
 		else:
 			self.width_btn.set_range(1, 2*self.original_width)
 			self.height_btn.set_range(1, 2*self.original_height)
@@ -76,6 +67,7 @@ class ModeCrop(ModeTemplate):
 			h = self.original_height
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
+		self.set_action_sensitivity('active_tool', False)
 
 	def on_apply_mode(self):
 		x = self._x
@@ -85,11 +77,59 @@ class ModeCrop(ModeTemplate):
 		if self.crop_selection:
 			self.window.active_tool().action_crop(x, y, width, height)
 		else:
-			self.window.crop_main_surface(x, y, width, height)
+			self.window.crop_main_pixbuf(x, y, width, height)
 			self.window.on_tool_finished()
 
+	def on_draw(self, area, cairo_context):
+		x = self._x
+		y = self._y
+		width = self.get_width()
+		height = self.get_height()
+		if self.crop_selection:
+			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.copy()
+			self.crop_temp_pixbuf(x, y, width, height)
+			self.window.active_tool().delete_temp()
+			selection_x = self.window.active_tool().selection_x
+			selection_y = self.window.active_tool().selection_y
+			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
+			super().on_draw(area, cairo_context)
+		else:
+			self.window.temporary_pixbuf = self.window.main_pixbuf.copy()
+			self.crop_temp_pixbuf(x, y, width, height)
+			self.scale_temp_pixbuf_to_area(width, height)
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0)
+			cairo_context.paint()
+
+	def crop_temp_pixbuf(self, x, y, width, height):
+		x = int(x)
+		y = int(y)
+		width = int(width)
+		height = int(height)
+		min_w = min(width, self.window.temporary_pixbuf.get_width() + x)
+		min_h = min(height, self.window.temporary_pixbuf.get_height() + y)
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		new_pixbuf.fill(0)
+		self.window.temporary_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
+		self.window.temporary_pixbuf = new_pixbuf
+
+	def scale_temp_pixbuf_to_area(self, width, height):
+		visible_w = self.window.drawing_area.get_allocated_width()
+		visible_h = self.window.drawing_area.get_allocated_height()
+		w_ratio = visible_w/width
+		h_ratio = visible_h/height
+		if w_ratio > 1.0 and h_ratio > 1.0:
+			nice_w = width
+			nice_h = height
+		elif visible_h/visible_w > height/width:
+			nice_w = visible_w
+			nice_h = int(height * w_ratio)
+		else:
+			nice_w = int(width * h_ratio)
+			nice_h = visible_h
+		self.window.temporary_pixbuf = self.window.temporary_pixbuf.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES)
+
 	def on_cancel_mode(self):
-		print('cancel') # TODO
+		self.window.use_stable_pixbuf()
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
@@ -98,24 +138,8 @@ class ModeCrop(ModeTemplate):
 		return self.height_btn.get_value_as_int()
 
 	def on_width_changed(self, *args):
-		if self.forbid_growth:
-			self.check_coord()
-		self.draw_overlay()
+		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
-		if self.forbid_growth:
-			self.check_coord()
-		self.draw_overlay()
+		self.non_destructive_show_modif()
 
-	def check_coord(self):
-		if self._x < 0:
-			self._x = 0
-		elif self._x > self.original_width - self.get_width():
-			self._x = self.original_width - self.get_width()
-		if self._y < 0:
-			self._y = 0
-		elif self._y > self.original_height - self.get_height():
-			self._y = self.original_height - self.get_height()
-
-	def draw_overlay(self):
-		print('todo (dynamic preview of the cropping)')
