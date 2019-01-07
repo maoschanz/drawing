@@ -66,7 +66,7 @@ class ToolPolygon(ToolTemplate):
 	# def cancel_ongoing_operation(self):
 		# TODO
 
-	def draw_polygon(self, event, is_preview):
+	def draw_polygon(self, event_x, event_y, is_preview):
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
@@ -76,16 +76,16 @@ class ToolPolygon(ToolTemplate):
 			w_context.append_path(self._path)
 
 		if is_preview:
-			self.preview_polygon(w_context, event.x, event.y)
+			self.preview_polygon(w_context, event_x, event_y)
 			return False
 
 		if self.past_x != -1.0 and self.past_y != -1.0 \
-		and (max(event.x, self.past_x) - min(event.x, self.past_x) < self.tool_width) \
-		and (max(event.y, self.past_y) - min(event.y, self.past_y) < self.tool_width):
+		and (max(event_x, self.past_x) - min(event_x, self.past_x) < self.tool_width) \
+		and (max(event_y, self.past_y) - min(event_y, self.past_y) < self.tool_width):
 			self.finish_polygon(w_context)
 			return True
 		else:
-			self.continue_polygon(w_context, event.x, event.y)
+			self.continue_polygon(w_context, event_x, event_y)
 			return False
 
 	def init_polygon(self, w_context):
@@ -122,13 +122,13 @@ class ToolPolygon(ToolTemplate):
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		if self.use_freehand:
-			self.draw_polygon(event, False)
+			self.draw_polygon(event_x, event_y, False)
 		else:
-			self.draw_polygon(event, True)
+			self.draw_polygon(event_x, event_y, True)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self.tool_width = tool_width
 		if event.button == 3:
 			self.main_color = right_color
@@ -139,7 +139,7 @@ class ToolPolygon(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		finished = self.draw_polygon(event, False)
+		finished = self.draw_polygon(event_x, event_y, False)
 		if finished:
 			self.apply_to_pixbuf()
 			(self.x_press, self.y_press) = (-1.0, -1.0)

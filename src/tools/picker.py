@@ -19,6 +19,6 @@ class ToolPicker(ToolTemplate):
 		color = Gdk.RGBA(red=rgb_vals[0]/255, green=rgb_vals[1]/255, blue=rgb_vals[2]/255)
 		color.alpha = 1.0
 		if event.button == 3:
-			self.window.color_btn_r.set_rgba(color)
+			self.window.draw_mode.color_popover_r.color_widget.set_rgba(color)
 		elif event.button == 1:
-			self.window.color_btn_l.set_rgba(color)
+			self.window.draw_mode.color_popover_l.color_widget.set_rgba(color)

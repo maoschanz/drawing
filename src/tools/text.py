@@ -13,7 +13,8 @@ class ToolText(ToolTemplate):
 
 		self.main_color = None
 		self.secondary_color = None
-		(self.x_begin, self.y_begin) = (0, 0)
+		self.x_begin = 0.0
+		self.y_begin = 0.0
 		self.should_cancel = False
 
 		builder = Gtk.Builder()
@@ -61,12 +62,13 @@ class ToolText(ToolTemplate):
 		if event.button == 1:
 			self.main_color = left_color
 			self.secondary_color = right_color
-		if event.button == 3:
+		else:
 			self.main_color = right_color
 			self.secondary_color = left_color
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		(self.x_begin, self.y_begin) = (event.x, event.y)
+		self.x_begin = event_x
+		self.y_begin = event_y
 		self.should_cancel = True
 
 		self.font_fam = self.font_btn.get_font()

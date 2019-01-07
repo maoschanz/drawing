@@ -146,7 +146,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._is_saved = True
 		self.use_stable_pixbuf()
 		self.drawing_area.queue_draw()
-		self.lookup_action('open_with').set_enabled(True)
 
 	def action_close(self, *args):
 		self.close()
@@ -187,8 +186,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_simple('open_with', self.action_open_with)
-		self.lookup_action('open_with').set_enabled(False)
 		self.add_action_simple('print', self.action_print)
 
 		self.add_action_simple('cancel_and_draw', self.action_cancel_and_draw)
@@ -209,9 +206,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('redo', self.action_redo)
 
 		self.add_action_simple('save_as', self.action_save_as)
-		self.add_action_simple('exp_png', self.export_as_png)
-		self.add_action_simple('exp_jpeg', self.export_as_jpeg)
-		self.add_action_simple('exp_bmp', self.export_as_bmp)
+		self.add_action_simple('export_as', self.action_export_as)
 
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 
@@ -271,9 +266,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		main_menu = builder.get_object("window-menu")
 		menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, main_menu)
 		self.main_menu_btn.set_popover(menu_popover)
-		save_as_menu = builder.get_object("save-as-menu")
-		save_as_popover = Gtk.Popover.new_from_model(save_as_btn, save_as_menu)
-		save_as_btn.set_popover(save_as_popover)
 		add_menu = builder.get_object("add-menu")
 		add_popover = Gtk.Popover.new_from_model(add_btn, add_menu)
 		add_btn.set_popover(add_popover)
@@ -425,27 +417,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 			self.initial_save()
-		w = self.drawing_area.get_allocated_width()
-		h = self.drawing_area.get_allocated_height()
-		pic_w = self.main_pixbuf.get_width()
-		pic_h = self.main_pixbuf.get_height()
-		if (w < pic_w) or (h < pic_h):
-			title_label = _("Sorry, this picture is too big for this app!")
-			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
-			# dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
-			dialog.add_button(_("Edit it anyway"), Gtk.ResponseType.NO)
-			dialog.add_button(_("Scale it"), Gtk.ResponseType.APPLY)
-			dialog.add_button(_("Crop it"), Gtk.ResponseType.YES)
-			dialog.get_message_area().add(Gtk.Label(label=_("What would you prefer?")))
-			dialog.show_all()
-			result = dialog.run()
-			if result == Gtk.ResponseType.APPLY: # Scale it
-				self.scale_mode.on_mode_selected(False)
-				self.update_bottom_panel('scale')
-			elif result == Gtk.ResponseType.YES: # Crop it
-				self.crop_mode.on_mode_selected(False)
-				self.update_bottom_panel('crop')
-			dialog.destroy()
 
 	def confirm_save_modifs(self):
 		if not self._is_saved:
@@ -525,17 +496,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.destroy()
 		return gfile, file_path
 
-	def export_as_png(self, *args):
-		self.export_main_as('png')
-
-	def export_as_jpeg(self, *args):
-		self.export_main_as('jpeg')
-
-	def export_as_bmp(self, *args):
-		self.export_main_as('bmp')
-
-	def action_open_with(self, *args):
-		os.system('xdg-open ' + self.get_file_path())
+	def action_export_as(self, *args):
+		file_path = self.file_chooser_save('')
+		if file_path is not None:
+			self.main_pixbuf.savev(file_path, file_format, [None], [])
 
 	# HISTORY MANAGEMENT
 
@@ -591,7 +555,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		x, y = self.get_main_coord()
 		event_x = x + event.x
 		event_y = y + event.y
-		self.active_mode().on_release_on_area(area, event, self.surface, x, y)
+		self.active_mode().on_release_on_area(area, event, self.surface, event_x, event_y)
 		self.set_picture_title()
 
 	# PRINTING
@@ -658,11 +622,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.surface
 
 #######################################
-
-	def export_main_as(self, file_format):
-		file_path = self.file_chooser_save(file_format)
-		if file_path is not None:
-			self.main_pixbuf.savev(file_path, file_format, [None], [])
 
 	def crop_main_pixbuf(self, x, y, width, height):
 		x = int(x)

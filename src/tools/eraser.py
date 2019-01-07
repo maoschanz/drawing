@@ -21,9 +21,9 @@ class ToolEraser(ToolTemplate):
 		self.w_context.set_line_width(self.tool_width)
 		if (self.past_x > 0):
 			self.w_context.move_to(self.past_x, self.past_y)
-		self.w_context.line_to(event.x, event.y)
-		self.past_x = event.x
-		self.past_y = event.y
+		self.w_context.line_to(event_x, event_y)
+		self.past_x = event_x
+		self.past_y = event_y
 		self.w_context.stroke()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):

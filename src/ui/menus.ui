@@ -57,21 +57,25 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Open this image with…</attribute>
-        <attribute name="action">win.open_with</attribute>
+        <attribute name="label" translatable="yes">Save as…</attribute>
+        <attribute name="action">win.save_as</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Export as…</attribute>
+        <attribute name="action">win.export_as</attribute>
       </item>
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Crop</attribute>
+        <attribute name="label" translatable="yes">Crop the canvas</attribute>
         <attribute name="action">win.pic_crop</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Scale</attribute>
+        <attribute name="label" translatable="yes">Scale the canvas</attribute>
         <attribute name="action">win.pic_scale</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Rotate</attribute>
+        <attribute name="label" translatable="yes">Rotate the canvas</attribute>
         <attribute name="action">win.pic_rotate</attribute>
       </item>
     </section>
@@ -130,30 +134,6 @@
     </section>
   </menu>
 
-<!-- "Save as" menu -->
-  <menu id="save-as-menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Save as…</attribute>
-        <attribute name="action">win.save_as</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Export as PNG</attribute>
-        <attribute name="action">win.exp_png</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Export as JPEG</attribute>
-        <attribute name="action">win.exp_jpeg</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Export as BMP</attribute>
-        <attribute name="action">win.exp_bmp</attribute>
-      </item>
-    </section>
-  </menu>
-
 <!-- Menubar -->
   <menu id="menu-bar">
     <submenu>
@@ -186,34 +166,17 @@
           <attribute name="action">win.save_as</attribute>
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
         </item>
-        <submenu>
-          <attribute name="label" translatable="yes">Export</attribute>
-          <section>
-            <item>
-              <attribute name="label" translatable="yes">Export as PNG</attribute>
-              <attribute name="action">win.exp_png</attribute>
-            </item>
-            <item>
-              <attribute name="label" translatable="yes">Export as JPEG</attribute>
-              <attribute name="action">win.exp_jpeg</attribute>
-            </item>
-            <item>
-              <attribute name="label" translatable="yes">Export as BMP</attribute>
-              <attribute name="action">win.exp_bmp</attribute>
-            </item>
-          </section>
-        </submenu>
+        <item>
+          <attribute name="label" translatable="yes">Export as…</attribute>
+          <attribute name="action">win.export_as</attribute>
+          <attribute name="verb-icon">document-save-as-symbolic</attribute>
+        </item>
       </section>
       <section>
         <item>
           <attribute name="label" translatable="yes">Print</attribute>
           <attribute name="action">win.print</attribute>
           <attribute name="verb-icon">document-print-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Open this image with…</attribute>
-          <attribute name="action">win.open_with</attribute>
-          <attribute name="verb-icon">applications-graphics-symbolic</attribute>
         </item>
       </section>
       <section>
@@ -277,15 +240,15 @@
       </section>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Crop</attribute>
+          <attribute name="label" translatable="yes">Crop the canvas</attribute>
           <attribute name="action">win.pic_crop</attribute>
         </item>
         <item>
-          <attribute name="label" translatable="yes">Scale</attribute>
+          <attribute name="label" translatable="yes">Scale the canvas</attribute>
           <attribute name="action">win.pic_scale</attribute>
         </item>
         <item>
-          <attribute name="label" translatable="yes">Rotate</attribute>
+          <attribute name="label" translatable="yes">Rotate the canvas</attribute>
           <attribute name="action">win.pic_rotate</attribute>
         </item>
       </section>

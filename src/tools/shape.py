@@ -71,15 +71,15 @@ class ToolShape(ToolTemplate):
 		self.restore_pixbuf()
 		return False
 
-	def draw_rectangle(self, event):
+	def draw_rectangle(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		if self.selected_style_id == 'secondary':
 			w_context.move_to(self.x_press, self.y_press)
-			w_context.line_to(self.x_press, event.y)
-			w_context.line_to(event.x, event.y)
-			w_context.line_to(event.x, self.y_press)
+			w_context.line_to(self.x_press, event_y)
+			w_context.line_to(event_x, event_y)
+			w_context.line_to(event_x, self.y_press)
 			w_context.close_path()
 			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
 				self.secondary_color.blue, self.secondary_color.alpha)
@@ -88,32 +88,32 @@ class ToolShape(ToolTemplate):
 		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
 			self.main_color.blue, self.main_color.alpha)
 		w_context.move_to(self.x_press, self.y_press)
-		w_context.line_to(self.x_press, event.y)
-		w_context.line_to(event.x, event.y)
-		w_context.line_to(event.x, self.y_press)
+		w_context.line_to(self.x_press, event_y)
+		w_context.line_to(event_x, event_y)
+		w_context.line_to(event_x, self.y_press)
 		w_context.close_path()
 
 		if self.selected_style_id == 'filled':
 			w_context.fill()
 		w_context.stroke()
 
-	def draw_oval(self, event):
+	def draw_oval(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		if self.selected_style_id == 'secondary':
-			w_context.curve_to(self.x_press, (self.y_press+event.y)/2, \
-				self.x_press, event.y, \
-				(self.x_press+event.x)/2, event.y)
-			w_context.curve_to((self.x_press+event.x)/2, event.y, \
-				event.x, event.y, \
-				event.x, (self.y_press+event.y)/2)
-			w_context.curve_to(event.x, (self.y_press+event.y)/2, \
-				event.x, self.y_press, \
-				(self.x_press+event.x)/2, self.y_press)
-			w_context.curve_to((self.x_press+event.x)/2, self.y_press, \
+			w_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
+				self.x_press, event_y, \
+				(self.x_press+event_x)/2, event_y)
+			w_context.curve_to((self.x_press+event_x)/2, event_y, \
+				event_x, event_y, \
+				event_x, (self.y_press+event_y)/2)
+			w_context.curve_to(event_x, (self.y_press+event_y)/2, \
+				event_x, self.y_press, \
+				(self.x_press+event_x)/2, self.y_press)
+			w_context.curve_to((self.x_press+event_x)/2, self.y_press, \
 				self.x_press, self.y_press, \
-				self.x_press, (self.y_press+event.y)/2)
+				self.x_press, (self.y_press+event_y)/2)
 			w_context.close_path()
 			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
 				self.secondary_color.blue, self.secondary_color.alpha)
@@ -121,30 +121,30 @@ class ToolShape(ToolTemplate):
 			w_context.stroke()
 		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
 			self.main_color.blue, self.main_color.alpha)
-		w_context.curve_to(self.x_press, (self.y_press+event.y)/2, \
-			self.x_press, event.y, \
-			(self.x_press+event.x)/2, event.y)
-		w_context.curve_to((self.x_press+event.x)/2, event.y, \
-			event.x, event.y, \
-			event.x, (self.y_press+event.y)/2)
-		w_context.curve_to(event.x, (self.y_press+event.y)/2, \
-			event.x, self.y_press, \
-			(self.x_press+event.x)/2, self.y_press)
-		w_context.curve_to((self.x_press+event.x)/2, self.y_press, \
+		w_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
+			self.x_press, event_y, \
+			(self.x_press+event_x)/2, event_y)
+		w_context.curve_to((self.x_press+event_x)/2, event_y, \
+			event_x, event_y, \
+			event_x, (self.y_press+event_y)/2)
+		w_context.curve_to(event_x, (self.y_press+event_y)/2, \
+			event_x, self.y_press, \
+			(self.x_press+event_x)/2, self.y_press)
+		w_context.curve_to((self.x_press+event_x)/2, self.y_press, \
 			self.x_press, self.y_press, \
-			self.x_press, (self.y_press+event.y)/2)
+			self.x_press, (self.y_press+event_y)/2)
 		w_context.close_path()
 
 		if self.selected_style_id == 'filled':
 			w_context.fill()
 		w_context.stroke()
 
-	def draw_circle(self, event):
+	def draw_circle(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_line_width(self.tool_width)
 
-		rayon = math.sqrt((self.x_press - event.x)*(self.x_press - event.x) \
-			+ (self.y_press - event.y)*(self.y_press - event.y))
+		rayon = math.sqrt((self.x_press - event_x)*(self.x_press - event_x) \
+			+ (self.y_press - event_y)*(self.y_press - event_y))
 
 		if self.selected_style_id == 'secondary':
 			w_context.new_sub_path()
@@ -165,15 +165,15 @@ class ToolShape(ToolTemplate):
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		if self.selected_shape_id == 'rectangle':
-			self.draw_rectangle(event)
+			self.draw_rectangle(event_x, event_y)
 		elif self.selected_shape_id == 'oval':
-			self.draw_oval(event)
+			self.draw_oval(event_x, event_y)
 		elif self.selected_shape_id == 'circle':
-			self.draw_circle(event)
+			self.draw_circle(event_x, event_y)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self.tool_width = tool_width
 		if event.button == 3:
 			self.main_color = right_color
@@ -185,15 +185,15 @@ class ToolShape(ToolTemplate):
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'rectangle':
 			self.restore_pixbuf()
-			self.draw_rectangle(event)
+			self.draw_rectangle(event_x, event_y)
 			self.apply_to_pixbuf()
 		elif self.selected_shape_id == 'oval':
 			self.restore_pixbuf()
-			self.draw_oval(event)
+			self.draw_oval(event_x, event_y)
 			self.apply_to_pixbuf()
 		elif self.selected_shape_id == 'circle':
 			self.restore_pixbuf()
-			self.draw_circle(event)
+			self.draw_circle(event_x, event_y)
 			self.apply_to_pixbuf()
 		self.x_press = 0.0
 		self.y_press = 0.0

@@ -164,18 +164,17 @@ class ToolSelect(ToolTemplate):
 		if not self.selection_is_active:
 			if self.selected_type_id == 'freehand':
 				self.restore_pixbuf()
-				self.draw_polygon(event)
+				self.draw_polygon(event_x, event_y)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		print("press")
-		# area.grab_focus() # TODO ??
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self.left_color = left_color # TODO
 		self.right_color = right_color # TODO
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		print("release") # TODO à main levée c'est juste un crayon avec close_path() après
+		print("release")
 		if event.button == 3:
 			rectangle = Gdk.Rectangle()
 			rectangle.x = int(event.x)
@@ -192,9 +191,9 @@ class ToolSelect(ToolTemplate):
 			# action is performed outside of the current selection), or stay the same
 			# (the user is moving the selection by dragging it).
 			if not self.selection_is_active:
-				self.past_x[0] = event.x
+				self.past_x[0] = event_x
 				self.past_x[1] = self.x_press
-				self.past_y[0] = event.y
+				self.past_y[0] = event_y
 				self.past_y[1] = self.y_press
 				self.create_selection_from_coord()
 				if self.selection_is_active:
@@ -202,13 +201,13 @@ class ToolSelect(ToolTemplate):
 					self.show_popover(True)
 					self.selection_has_been_used = False
 			elif self.point_is_in_selection(self.x_press, self.y_press):
-				self.drag_to(event.x, event.y)
+				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
 				return
 		elif self.selected_type_id == 'freehand':
 			if not self.selection_is_active:
-				if self.draw_polygon(event):
+				if self.draw_polygon(event_x, event_y):
 					self.restore_pixbuf()
 					self.create_free_selection_from_main()
 					if self.selection_is_active:
@@ -219,14 +218,9 @@ class ToolSelect(ToolTemplate):
 					self.past_x = [-1, -1]
 					self.past_y = [-1, -1]
 			elif self.point_is_in_selection(self.x_press, self.y_press):
-				self.drag_to(event.x, event.y)
+				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
-
-	def get_center_of_selection(self):
-		x = self.selection_x + self.selection_pixbuf.get_width()/2
-		y = self.selection_y + self.selection_pixbuf.get_height()/2
-		return [x, y]
 
 	def create_selection_from_coord(self):
 		x0 = self.past_x[0]
@@ -246,7 +240,10 @@ class ToolSelect(ToolTemplate):
 
 	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()
-		[rectangle.x, rectangle.y] = self.get_center_of_selection()
+		main_x, main_y = self.window.get_main_coord()
+		x = self.selection_x + self.selection_pixbuf.get_width()/2 - main_x
+		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
+		[rectangle.x, rectangle.y] = [x, y]
 		rectangle.height = 1
 		rectangle.width = 1
 		self.selection_popover.set_pointing_to(rectangle)
@@ -366,7 +363,7 @@ class ToolSelect(ToolTemplate):
 
 ##############################
 
-	def draw_polygon(self, event):
+	def draw_polygon(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.set_dash([3, 3])
@@ -375,8 +372,8 @@ class ToolSelect(ToolTemplate):
 			(self.past_x[0], self.past_y[0]) = (self.x_press, self.y_press)
 			w_context.move_to(self.x_press, self.y_press)
 			self.selection_path = w_context.copy_path()
-		elif (max(event.x, self.past_x[0]) - min(event.x, self.past_x[0]) < self.closing_precision) \
-		and (max(event.y, self.past_y[0]) - min(event.y, self.past_y[0]) < self.closing_precision):
+		elif (max(event_x, self.past_x[0]) - min(event_x, self.past_x[0]) < self.closing_precision) \
+		and (max(event_y, self.past_y[0]) - min(event_y, self.past_y[0]) < self.closing_precision):
 			w_context.append_path(self.selection_path)
 			w_context.close_path()
 			w_context.stroke_preserve()
@@ -385,7 +382,7 @@ class ToolSelect(ToolTemplate):
 			return True
 		else:
 			w_context.append_path(self.selection_path)
-			self.continue_polygon(w_context, event.x, event.y)
+			self.continue_polygon(w_context, event_x, event_y)
 			return False
 
 	def continue_polygon(self, w_context, x, y):

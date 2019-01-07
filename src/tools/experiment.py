@@ -137,16 +137,16 @@ class ToolExperiment(ToolTemplate):
 			self._path = w_context.copy_path()
 		else:
 			w_context.append_path(self._path)
-		w_context.line_to(event.x, event.y)
+		w_context.line_to(event_x, event_y)
 		w_context.stroke_preserve() # draw the line without closing the path
 		self._path = w_context.copy_path()
 		self.non_destructive_show_modif()
-		self.past_x = event.x
-		self.past_y = event.y
+		self.past_x = event_x
+		self.past_y = event_y
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self.tool_width = tool_width
 		if event.button == 3:
 			self.main_color = right_color

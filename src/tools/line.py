@@ -99,7 +99,7 @@ class ToolLine(ToolTemplate):
 			w_context.set_line_cap(self.selected_end_id)
 			w_context.set_line_width(self.tool_width)
 			w_context.move_to(self.x_press, self.y_press)
-			w_context.line_to(event.x, event.y)
+			w_context.line_to(event_x, event_y)
 			w_context.stroke()
 
 		elif self.active_type == 'arc':
@@ -107,19 +107,19 @@ class ToolLine(ToolTemplate):
 			w_context.set_line_width(self.tool_width)
 			if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
 				w_context.move_to(self.x_press, self.y_press)
-				w_context.line_to(event.x, event.y)
+				w_context.line_to(event_x, event_y)
 				w_context.stroke()
 			else:
 				w_context.move_to(self.wait_points[0], self.wait_points[1])
 				w_context.set_line_width(self.tool_width)
-				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
+				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 				w_context.stroke()
 
 		self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self.tool_width = tool_width
 		if event.button == 1:
 			self.wanted_color = left_color
@@ -138,15 +138,15 @@ class ToolLine(ToolTemplate):
 				w_context.set_dash([2*self.tool_width, 2*self.tool_width])
 
 			w_context.move_to(self.x_press, self.y_press)
-			w_context.line_to(event.x, event.y)
+			w_context.line_to(event_x, event_y)
 			if self.use_arrow:
-				self.add_arrow_triangle(w_context, event.x, event.y)
+				self.add_arrow_triangle(w_context, event_x, event_y)
 			w_context.stroke()
 			self.apply_to_pixbuf()
 
 		elif self.active_type == 'arc':
 			if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
-				self.wait_points = (self.x_press, self.y_press, event.x, event.y)
+				self.wait_points = (self.x_press, self.y_press, event_x, event_y)
 			else:
 				self.restore_pixbuf()
 				w_context = cairo.Context(self.window.get_surface())
@@ -158,9 +158,9 @@ class ToolLine(ToolTemplate):
 				w_context.move_to(self.wait_points[0], self.wait_points[1])
 				w_context.set_line_width(self.tool_width)
 				w_context.set_line_cap(self.selected_end_id)
-				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event.x, event.y)
+				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 				if self.use_arrow:
-					self.add_arrow_triangle(w_context, event.x, event.y)
+					self.add_arrow_triangle(w_context, event_x, event_y)
 				w_context.stroke()
 				self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 				self.apply_to_pixbuf()

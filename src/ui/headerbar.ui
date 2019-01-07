@@ -87,31 +87,10 @@
     </child>
 
     <child>
-      <object class="GtkBox">
+      <object class="GtkButton" id="save_btn">
         <property name="visible">True</property>
-        <style>
-          <class name="linked"/>
-        </style>
-        <child>
-          <object class="GtkButton" id="save_btn">
-            <property name="visible">True</property>
-            <property name="action_name">win.save</property>
-            <property name="label" translatable="yes">Save</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkMenuButton" id="save_as_btn">
-            <property name="visible">True</property>
-            <property name="direction">down</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">document-save-as-symbolic</property>
-                <property name="visible">True</property>
-                <property name="tooltip_text" translatable="yes">Save as…</property>
-              </object>
-            </child>
-          </object>
-        </child>
+        <property name="action_name">win.save</property>
+        <property name="label" translatable="yes">Save</property>
       </object>
       <packing>
         <property name="pack-type">end</property>
