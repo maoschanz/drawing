@@ -162,7 +162,7 @@ class ToolShape(ToolTemplate):
 			w_context.fill()
 		w_context.stroke()
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		if self.selected_shape_id == 'rectangle':
 			self.draw_rectangle(event)
@@ -171,7 +171,7 @@ class ToolShape(ToolTemplate):
 		elif self.selected_shape_id == 'circle':
 			self.draw_circle(event)
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
@@ -182,7 +182,7 @@ class ToolShape(ToolTemplate):
 			self.main_color = left_color
 			self.secondary_color = right_color
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'rectangle':
 			self.restore_pixbuf()
 			self.draw_rectangle(event)

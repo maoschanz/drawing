@@ -107,7 +107,10 @@ class DrawingMinimap(Gtk.Popover):
 			mini_context.close_path()
 			mini_path = mini_context.copy_path()
 			self.window.show_overlay_on_surface(self.mini_surface, mini_path)
-		else:
-			print('todo : ignorer explicitement preview_x et preview_y ?')
+		# else:
+		# 	print('todo : ignorer explicitement preview_x et preview_y ?')
 		self.minimap_area.queue_draw()
+		self.update_main_area()
 
+	def update_main_area(self):
+		self.window.drawing_area.queue_draw()

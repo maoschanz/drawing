@@ -14,14 +14,14 @@ class ToolPaint(ToolTemplate):
 		self.new_color = None
 		self.old_color = None
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		print("press")
 		if event.button == 1:
 			self.new_color = left_color
 		if event.button == 3:
 			self.new_color = right_color
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 
 # TODO idée :
 # le délire ce serait de commencer un path petit, puis de l'étendre avec

@@ -104,10 +104,10 @@ class ModeDraw(ModeTemplate):
 		self.build_options_menu()
 		self.update_size_spinbtn_state()
 
-	def on_motion_on_area(self, area, event, surface):
-		self.window.active_tool().on_motion_on_area(area, event, surface)
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		self.window.active_tool().on_motion_on_area(area, event, surface, event_x, event_y)
 
-	def on_press_on_area(self, area, event, surface):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		if event.button is 2:
 			self.action_exchange_color()
 			self.window.is_clicked = False
@@ -115,10 +115,11 @@ class ModeDraw(ModeTemplate):
 			self.window.active_tool().on_press_on_area(area, event, surface, \
 				self.size_setter.get_value(), \
 				self.color_popover_l.color_widget.get_rgba(), \
-				self.color_popover_r.color_widget.get_rgba() )
+				self.color_popover_r.color_widget.get_rgba(), \
+				event_x, event_y )
 
-	def on_release_on_area(self, area, event, surface):
-		self.window.active_tool().on_release_on_area(area, event, surface)
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
+		self.window.active_tool().on_release_on_area(area, event, surface, event_x, event_y)
 
 ###############################
 
@@ -186,3 +187,5 @@ class ModeDraw(ModeTemplate):
 	def toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
 
+	def get_main_coord(self):
+		return self.minimap.preview_x, self.minimap.preview_y

@@ -16,7 +16,7 @@ class ToolEraser(ToolTemplate):
 		self.past_y = -1
 		self.w_context = None
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.w_context.set_line_cap(cairo.LineCap.ROUND)
 		self.w_context.set_line_width(self.tool_width)
 		if (self.past_x > 0):
@@ -26,12 +26,12 @@ class ToolEraser(ToolTemplate):
 		self.past_y = event.y
 		self.w_context.stroke()
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.tool_width = tool_width
 		self.w_context = cairo.Context(surface)
 		self.w_context.set_operator(cairo.Operator.CLEAR)
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1
 		self.past_y = -1
 		self.w_context.set_operator(cairo.Operator.OVER)

@@ -57,20 +57,21 @@ class ModeTemplate():
 	def add_mode_action_enum(self, action_name, default, callback):
 		self.window.add_action_enum(action_name, default, callback)
 
-	def on_draw(self, area, cairo_context):
+	def on_draw(self, area, cairo_context, main_x, main_y):
 		# Ça marche moins mais peut être utile.
 		# Gdk.cairo_set_source_pixbuf(cairo_context, self.window.main_pixbuf, 0, 0)
 
-		cairo_context.set_source_surface(self.window.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
+		cairo_context.set_source_surface(self.window.surface, -1*main_x, -1*main_y) # XXX c'est là pour le zoom non ? en négatif
+		# cairo_context.set_source_surface(self.window.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
 		cairo_context.paint()
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
-	def on_press_on_area(self, area, event, surface):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
 	def non_destructive_show_modif(self):

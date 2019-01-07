@@ -119,14 +119,14 @@ class ToolPolygon(ToolTemplate):
 		w_context.line_to(x, y)
 		self.finish_polygon(w_context)
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		if self.use_freehand:
 			self.draw_polygon(event, False)
 		else:
 			self.draw_polygon(event, True)
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
@@ -137,7 +137,7 @@ class ToolPolygon(ToolTemplate):
 			self.main_color = left_color
 			self.secondary_color = right_color
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		finished = self.draw_polygon(event, False)
 		if finished:

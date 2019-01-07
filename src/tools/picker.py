@@ -12,7 +12,7 @@ class ToolPicker(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		rgb_vals = get_rgb_for_xy(surface, event.x, event.y)
 		if rgb_vals == [-1, -1, -1]:
 			return # click outside of the surface

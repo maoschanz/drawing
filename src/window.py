@@ -564,24 +564,34 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
-		self.active_mode().on_draw(area, cairo_context)
+		x, y = self.get_main_coord()
+		self.active_mode().on_draw(area, cairo_context, x, y)
 
 	def on_motion_on_area(self, area, event):
 		if not self.is_clicked:
 			return
-		self.active_mode().on_motion_on_area(area, event, self.surface)
+		x, y = self.get_main_coord()
+		event_x = x + event.x
+		event_y = y + event.y
+		self.active_mode().on_motion_on_area(area, event, self.surface, event_x, event_y)
 		self.drawing_area.queue_draw()
 
 	def on_press_on_area(self, area, event):
 		self.is_clicked = True
 		self._is_saved = False
-		self.active_mode().on_press_on_area(area, event, self.surface)
+		x, y = self.get_main_coord()
+		event_x = x + event.x
+		event_y = y + event.y
+		self.active_mode().on_press_on_area(area, event, self.surface, event_x, event_y)
 
 	def on_release_on_area(self, area, event):
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
-		self.active_mode().on_release_on_area(area, event, self.surface)
+		x, y = self.get_main_coord()
+		event_x = x + event.x
+		event_y = y + event.y
+		self.active_mode().on_release_on_area(area, event, self.surface, x, y)
 		self.set_picture_title()
 
 	# PRINTING
@@ -719,3 +729,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_toggle_preview(self, *args):
 		self.active_mode().toggle_preview()
+
+	def get_main_coord(self, *args):
+		return self.draw_mode.get_main_coord()

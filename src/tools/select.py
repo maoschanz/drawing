@@ -160,13 +160,13 @@ class ToolSelect(ToolTemplate):
 			self.selection_y = self.rightc_popover.get_pointing_to()[1].y
 			self.rightc_popover.popup()
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		if not self.selection_is_active:
 			if self.selected_type_id == 'freehand':
 				self.restore_pixbuf()
 				self.draw_polygon(event)
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		print("press")
 		# area.grab_focus() # TODO ??
 		self.x_press = event.x
@@ -174,7 +174,7 @@ class ToolSelect(ToolTemplate):
 		self.left_color = left_color # TODO
 		self.right_color = right_color # TODO
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		print("release") # TODO à main levée c'est juste un crayon avec close_path() après
 		if event.button == 3:
 			rectangle = Gdk.Rectangle()
@@ -538,23 +538,4 @@ class ToolSelect(ToolTemplate):
 		new_pixbuf.fill(0)
 		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
 		self.selection_pixbuf = new_pixbuf
-		# self.use_stable_pixbuf()
-
-
-
-
-
-		# x = int(x)
-		# y = int(y)
-		# width = int(width)
-		# height = int(height)
-		# if self.selection_pixbuf is None:
-		# 	return
-		# selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
-
-		# The cairo.Surface.map_to_image method works only when reducing the size,
-		# but the selection can not grow form this method.
-		# selection_surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
-		# selection_surface = selection_surface.map_to_image(cairo.RectangleInt(x, y, width, height))
-		# self.selection_pixbuf = Gdk.pixbuf_get_from_surface(selection_surface, 0, 0, \
-		# 	selection_surface.get_width(), selection_surface.get_height())
+		

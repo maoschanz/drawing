@@ -25,6 +25,8 @@ class ModeScale(ModeTemplate):
 	def __init__(self, window):
 		super().__init__(window)
 		self.keep_proportions = True
+		self.x_press = 0
+		self.y_press = 0
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/scale.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
@@ -59,7 +61,7 @@ class ModeScale(ModeTemplate):
 		else:
 			self.window.scale_pixbuf_to(w, h)
 
-	def on_draw(self, area, cairo_context):
+	def on_draw(self, area, cairo_context, main_x, main_y):
 		w = self.get_width()
 		h = self.get_height()
 		if self.scale_selection:
@@ -69,7 +71,7 @@ class ModeScale(ModeTemplate):
 			selection_x = self.window.active_tool().selection_x
 			selection_y = self.window.active_tool().selection_y
 			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
-			super().on_draw(area, cairo_context)
+			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
 			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0) # XXX c'est là pour le zoom non ? en négatif
@@ -83,9 +85,9 @@ class ModeScale(ModeTemplate):
 		else:
 			w = self.window.get_pixbuf_width()
 			h = self.window.get_pixbuf_height()
+		self.proportion = w/h
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
-		self.proportion = self.get_width()/self.get_height()
 		self.set_action_sensitivity('active_tool', False)
 
 	def on_width_changed(self, *args):
@@ -109,4 +111,18 @@ class ModeScale(ModeTemplate):
 
 	def get_height(self):
 		return self.height_btn.get_value_as_int()
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		if self.window.is_clicked:
+			delta_x = event.x - self.x_press
+			self.width_btn.set_value(self.width_btn.get_value() + delta_x)
+			if not self.keep_proportions:
+				delta_y = event.y - self.y_press
+				self.height_btn.set_value(self.height_btn.get_value() + delta_y)
+			self.x_press = event.x
+			self.y_press = event.y
+
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		self.x_press = event.x
+		self.y_press = event.y
 

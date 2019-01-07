@@ -122,7 +122,7 @@ class ToolExperiment(ToolTemplate):
 	def get_options_label(self):
 		return self.selected_operator_label
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_operator(self.selected_operator)
@@ -144,7 +144,7 @@ class ToolExperiment(ToolTemplate):
 		self.past_x = event.x
 		self.past_y = event.y
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
@@ -153,7 +153,7 @@ class ToolExperiment(ToolTemplate):
 		else:
 			self.main_color = left_color
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self.apply_to_pixbuf()

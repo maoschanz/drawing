@@ -86,7 +86,7 @@ class ToolLine(ToolTemplate):
 			self.y_press = 0.0
 			return True
 
-	def on_motion_on_area(self, area, event, surface):
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.set_source_rgba(self.wanted_color.red, self.wanted_color.green, \
@@ -117,7 +117,7 @@ class ToolLine(ToolTemplate):
 
 		self.non_destructive_show_modif()
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.tool_width = tool_width
@@ -126,7 +126,7 @@ class ToolLine(ToolTemplate):
 		if event.button == 3:
 			self.wanted_color = right_color
 
-	def on_release_on_area(self, area, event, surface):
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.active_type == 'line':
 			self.restore_pixbuf()
 			w_context = cairo.Context(self.window.get_surface())
