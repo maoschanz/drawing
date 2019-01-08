@@ -60,7 +60,7 @@
     </child>
   </object>
 
-  <object class="GtkPopover" id="options-menu">
+  <object class="GtkPopover" id="options-widget">
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -90,6 +90,7 @@
             <child>
               <object class="GtkSwitch" id="backg-switch">
                 <property name="visible">True</property>
+                <property name="action-name">win.text_opaque_bg</property>
               </object>
               <packing>
                 <property name="pack-type">end</property>
@@ -101,4 +102,16 @@
     </child>
   </object>
 
+  <menu id="options-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Font</attribute>
+        <attribute name="action">win.options_menu</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Opaque background</attribute>
+        <attribute name="action">win.text_opaque_bg</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

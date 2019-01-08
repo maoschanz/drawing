@@ -58,19 +58,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		decorations = self._settings.get_string('decorations')
 		self.set_ui_bars(decorations)
-		self.maximize()
 
 		self.draw_mode = ModeDraw(self)
 		self.crop_mode = ModeCrop(self)
 		self.scale_mode = ModeScale(self)
 		self.rotate_mode = ModeRotate(self)
-
 		self.bottom_panel.add(self.active_mode().get_panel())
 
+		self.drawing_area.add_events( \
+			Gdk.EventMask.BUTTON_PRESS_MASK | \
+			Gdk.EventMask.BUTTON_RELEASE_MASK | \
+			Gdk.EventMask.POINTER_MOTION_MASK | \
+			Gdk.EventMask.SMOOTH_SCROLL_MASK)
 		self.add_all_win_actions()
-
-		self.drawing_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
-			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
 
 		self.init_tools()
 		self.active_mode().on_tool_changed()
@@ -162,6 +162,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-press-event', self.on_press_on_area) )
 		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
+		self.handlers.append( self.drawing_area.connect('scroll-event', self.on_scroll_on_area) )
 
 		self.handlers.append( self.tools_panel.connect('size-allocate', self.update_tools_visibility) )
 		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
@@ -196,8 +197,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('pic_rotate', self.action_rotate)
 		self.add_action_simple('properties', self.edit_properties)
 
-		if self.main_menu_btn is not None:
-			self.add_action_simple('main_menu', self.action_main_menu)
+		self.add_action_simple('main_menu', self.action_main_menu)
+		self.add_action_simple('options_menu', self.action_options_menu)
 
 		self.add_action_simple('close', self.action_close)
 		self.add_action_simple('save', self.action_save)
@@ -271,7 +272,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		add_btn.set_popover(add_popover)
 
 	def action_main_menu(self, *args):
-		self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
+		if self.main_menu_btn is not None:
+			self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
+
+	def action_options_menu(self, *args):
+		if self.active_mode_id == 'draw':
+			self.draw_mode.options_btn.set_active(not self.draw_mode.options_btn.get_active())
 
 	# TOOLS PANEL
 
@@ -557,6 +563,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		event_y = y + event.y
 		self.active_mode().on_release_on_area(area, event, self.surface, event_x, event_y)
 		self.set_picture_title()
+
+	def on_scroll_on_area(self, area, event):
+		self.draw_mode.minimap.add_deltas(event.delta_x, event.delta_y, 10)
 
 	# PRINTING
 

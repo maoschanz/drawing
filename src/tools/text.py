@@ -1,6 +1,6 @@
 # text.py
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo
 
 from .tools import ToolTemplate
@@ -17,6 +17,8 @@ class ToolText(ToolTemplate):
 		self.y_begin = 0.0
 		self.should_cancel = False
 
+		self.add_tool_action_boolean('text_opaque_bg', False, self.set_bg_state)
+
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/text.ui")
 
@@ -31,9 +33,15 @@ class ToolText(ToolTemplate):
 		self.entry.get_buffer().connect('changed', self.preview_text)
 
 		# Building the widget containing options
-		self.options_box = builder.get_object("options-menu")
+		self.options_box = builder.get_object("options-widget")
 		self.font_btn = builder.get_object("font-btn")
 		self.backg_switch = builder.get_object("backg-switch")
+
+	def set_bg_state(self, *args):
+		if not args[0].get_state():
+			args[0].set_state(GLib.Variant.new_boolean(True))
+		else:
+			args[0].set_state(GLib.Variant.new_boolean(False))
 
 	def hide_row_label(self):
 		self.label_widget.set_visible(False)
@@ -44,9 +52,9 @@ class ToolText(ToolTemplate):
 	def get_options_label(self):
 		return self.font_btn.get_font()
 
-	# def get_options_model(self): # FIXME pour la barre de menus
-		# builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/text.ui")
-		# return builder.get_object('options-menu')
+	def get_options_model(self):
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/text.ui")
+		return builder.get_object('options-menu')
 
 	def get_options_widget(self):
 		return self.options_box

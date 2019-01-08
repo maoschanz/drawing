@@ -57,12 +57,18 @@ class DrawingMinimap(Gtk.Popover):
 	def on_minimap_release(self, area, event):
 		delta_x = event.x - self.old_x
 		delta_y = event.y - self.old_y
+		ratio = self.get_main_pixbuf().get_width()/self.mini_pixbuf.get_width()
+		self.add_deltas(delta_x*ratio, delta_y*ratio, 1)
+
+	def add_deltas(self, delta_x, delta_y, factor):
+		self.preview_x += int(delta_x * factor)
+		self.preview_y += int(delta_y * factor)
+		self.correct_coords()
+		self.update_minimap()
+
+	def correct_coords(self):
 		mpb_width = self.get_main_pixbuf().get_width()
 		mpb_height = self.get_main_pixbuf().get_height()
-		delta_x = delta_x * mpb_width/self.mini_pixbuf.get_width()
-		delta_y = delta_y * mpb_height/self.mini_pixbuf.get_height()
-		self.preview_x = int(self.preview_x + delta_x)
-		self.preview_y = int(self.preview_y + delta_y)
 		if self.preview_x < 0:
 			self.preview_x = 0
 		if self.preview_y < 0:
