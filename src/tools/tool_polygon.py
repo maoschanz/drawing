@@ -50,9 +50,16 @@ class ToolPolygon(ToolTemplate):
 
 	def get_options_label(self):
 		if self.use_freehand:
-			return _("Freehand") + ' - ' + self.selected_style_label
+			return _("Freehand")
 		else:
-			return _("Edges") + ' - ' + self.selected_style_label
+			return _("Edges")
+
+	def get_edition_status(self):
+		if self.use_freehand:
+			label = _("Freehand") + ' - ' + self.selected_style_label
+		else:
+			label = _("Edges") + ' - ' + self.selected_style_label
+		return label
 
 	def give_back_control(self):
 		self.restore_pixbuf()

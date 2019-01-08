@@ -30,6 +30,9 @@ class ModeScale(ModeTemplate):
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_scale.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
+		self.centered_box = builder.get_object('centered_box')
+		self.cancel_btn = builder.get_object('cancel_btn')
+		self.apply_btn = builder.get_object('apply_btn')
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
@@ -37,6 +40,7 @@ class ModeScale(ModeTemplate):
 		self.height_btn.connect('value-changed', self.on_height_changed)
 
 		self.add_mode_action_boolean('keep_proportions', True, self.set_keep_proportions)
+		self.needed_width_for_long = 0
 
 	def get_panel(self):
 		return self.bottom_panel
@@ -74,7 +78,7 @@ class ModeScale(ModeTemplate):
 			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
 			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0) # XXX c'est là pour le zoom non ? en négatif
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, -1 * main_x, -1 * main_y)
 			cairo_context.paint()
 
 	def on_mode_selected(self, *args):
@@ -126,3 +130,13 @@ class ModeScale(ModeTemplate):
 		self.x_press = event.x
 		self.y_press = event.y
 
+	def adapt_to_window_size(self):
+		available_width = self.window.bottom_panel.get_allocated_width()
+		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
+			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
+				self.cancel_btn.get_allocated_width() + \
+				self.apply_btn.get_allocated_width()
+		if self.needed_width_for_long > 0.8 * available_width:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
+		else:
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)

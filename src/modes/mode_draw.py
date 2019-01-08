@@ -30,6 +30,7 @@ class ModeDraw(ModeTemplate):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_draw.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
+		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
 		self.l_btn_image = builder.get_object('l_btn_image')
@@ -52,6 +53,7 @@ class ModeDraw(ModeTemplate):
 		self.minimap = DrawingMinimap(self.window, self.minimap_btn)
 
 		self.add_mode_actions()
+		self.needed_width_for_long = 0
 
 	def add_mode_actions(self):
 		self.add_mode_action_simple('main_color', self.action_main_color)
@@ -73,32 +75,27 @@ class ModeDraw(ModeTemplate):
 		if not self.window.active_tool().selection_is_active:
 			self.window.active_tool().give_back_control()
 
-	def adapt_to_window_size(self): # FIXME
-		# available_width = self.options_long_box.get_preferred_width()[0] + \
-		# 	self.options_short_box.get_preferred_width()[0] + \
-		# 	self.tool_info_label.get_allocated_width() + \
-		# 	self.minimap_btn.get_allocated_width()
+	def adapt_to_window_size(self):
+		available_width = self.window.bottom_panel.get_allocated_width()
+		if self.minimap_label.get_visible():
+			self.needed_width_for_long = self.color_box.get_allocated_width() + \
+				self.size_setter.get_allocated_width() + \
+				self.options_long_box.get_preferred_width()[0] + \
+				self.minimap_label.get_preferred_width()[0]
+		if self.needed_width_for_long > 0.7 * available_width:
+			self.compact_preview_btn(True)
+			self.compact_options_btn(True)
+		else:
+			self.compact_options_btn(False)
+			self.compact_preview_btn(False)
 
-		# used_width = self.options_long_box.get_allocated_width() + \
-		# 	self.options_short_box.get_allocated_width() + \
-		# 	self.tool_info_label.get_preferred_width()[0] + \
-		# 	self.minimap_btn.get_preferred_width()[0]
+	def compact_options_btn(self, state):
+		self.options_short_box.set_visible(state)
+		self.options_long_box.set_visible(not state)
 
-		# if used_width > 0.9*available_width:
-		# 	self.options_long_box.set_visible(False)
-		# 	self.options_short_box.set_visible(True)
-		# 	self.minimap_label.set_visible(False)
-		# 	self.minimap_icon.set_visible(True)
-		# else:
-		# 	self.options_short_box.set_visible(False)
-		# 	self.options_long_box.set_visible(True)
-		# 	self.minimap_label.set_visible(True)
-		# 	self.minimap_icon.set_visible(False)
-
-		self.options_short_box.set_visible(False)
-		self.options_long_box.set_visible(True)
-		self.minimap_label.set_visible(True)
-		self.minimap_icon.set_visible(False)
+	def compact_preview_btn(self, state):
+		self.minimap_label.set_visible(not state)
+		self.minimap_icon.set_visible(state)
 
 	def on_tool_changed(self):
 		self.build_options_menu()
@@ -108,15 +105,11 @@ class ModeDraw(ModeTemplate):
 		self.window.active_tool().on_motion_on_area(area, event, surface, event_x, event_y)
 
 	def on_press_on_area(self, area, event, surface, event_x, event_y):
-		if event.button is 2:
-			self.action_exchange_color()
-			self.window.is_clicked = False
-		else:
-			self.window.active_tool().on_press_on_area(area, event, surface, \
-				self.size_setter.get_value(), \
-				self.color_popover_l.color_widget.get_rgba(), \
-				self.color_popover_r.color_widget.get_rgba(), \
-				event_x, event_y )
+		self.window.active_tool().on_press_on_area(area, event, surface, \
+			self.size_setter.get_value(), \
+			self.color_popover_l.color_widget.get_rgba(), \
+			self.color_popover_r.color_widget.get_rgba(), \
+			event_x, event_y )
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.window.active_tool().on_release_on_area(area, event, surface, event_x, event_y)

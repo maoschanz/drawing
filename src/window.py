@@ -68,7 +68,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.drawing_area.add_events( \
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | \
-			Gdk.EventMask.POINTER_MOTION_MASK | \
+			Gdk.EventMask.BUTTON_MOTION_MASK | \
 			Gdk.EventMask.SMOOTH_SCROLL_MASK)
 		self.add_all_win_actions()
 
@@ -222,10 +222,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.active_mode().get_edition_status()
 
 	def set_picture_title(self):
-		fn = self.filename
+		fn = self.get_file_path()
 		if fn is None:
 			fn = _("Unsaved file")
-		main_title = fn
+		main_title = fn.split('/')[-1]
 		if not self._is_saved:
 			main_title = '*' + main_title
 		subtitle = self.get_edition_status()
@@ -325,8 +325,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_bottom_panel(self, new_mode_id):
 		self.bottom_panel.remove(self.active_mode().get_panel())
 		self.active_mode_id = new_mode_id
-		self.bottom_panel.add(self.active_mode().get_panel())
 		self.adapt_to_window_size()
+		self.bottom_panel.add(self.active_mode().get_panel())
 		self.set_picture_title()
 
 	# TOOLS
@@ -381,26 +381,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.add_filter(allPictures)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			self.filename = file_chooser.get_filename()
 			self.gfile = file_chooser.get_file()
 		file_chooser.destroy()
 
 	def action_save(self, *args):
 		fn = self.get_file_path()
 		if fn is None:
-			gfile, fn = self.file_chooser_save('')
-			if fn is not None:
-				self.gfile = gfile
-				self.filename = fn
-			else:
-				return
+			self.action_save_as()
+			return
 		self.save_pixbuf_to_fn(fn)
 
 	def action_save_as(self, *args):
-		gfile, fn = self.file_chooser_save('')
-		if fn is not None:
+		gfile = self.file_chooser_save('')
+		if gfile is not None:
 			self.gfile = gfile
-			self.filename = fn
 		else:
 			return
 		self.save_pixbuf_to_fn(fn)
@@ -418,7 +412,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.initial_save()
 
 	def try_load_file(self):
-		if self.filename is None:
+		if self.get_file_path() is None:
 			return
 		else:
 			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
@@ -497,15 +491,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			file_path = file_chooser.get_filename()
 			gfile = file_chooser.get_file()
 		file_chooser.destroy()
-		return gfile, file_path
+		return gfile
 
 	def action_export_as(self, *args):
-		file_path = self.file_chooser_save('')
-		if file_path is not None:
-			self.main_pixbuf.savev(file_path, file_format, [None], [])
+		gfile = self.file_chooser_save('')
+		if gfile is not None:
+			file_format = gfile.get_path().split('.')[-1]
+			self.main_pixbuf.savev(gfile.get_path(), file_format, [None], [])
 
 	# HISTORY MANAGEMENT
 
@@ -547,6 +541,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.drawing_area.queue_draw()
 
 	def on_press_on_area(self, area, event):
+		if event.button == 2:
+			self.draw_mode.action_exchange_color()
+			return
 		self.is_clicked = True
 		self._is_saved = False
 		x, y = self.get_main_coord()
