@@ -42,7 +42,7 @@ class ToolSelect(ToolTemplate):
 		self.selected_type_label = _("Rectangle")
 		self.background_type_id = 'transparent'
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/select.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
 		menu_r = builder.get_object('right-click-menu')
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
 		menu_l = builder.get_object('left-click-menu')
@@ -100,7 +100,7 @@ class ToolSelect(ToolTemplate):
 		pass
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/select.ui")
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_select.ui")
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):

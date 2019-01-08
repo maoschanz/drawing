@@ -45,7 +45,7 @@ class ToolPolygon(ToolTemplate):
 			self.selected_style_label = _("Filled (secondary color)")
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/polygon.ui")
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_polygon.ui")
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):

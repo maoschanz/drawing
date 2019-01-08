@@ -69,7 +69,7 @@ class ToolLine(ToolTemplate):
 			self.selected_curv_label = _("Arc")
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/line.ui")
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_line.ui")
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):

@@ -30,7 +30,7 @@ class ModeCrop(ModeTemplate):
 		self.y_press = 0
 		self.move_instead_of_crop = False
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/crop.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_crop.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.height_btn = builder.get_object('height_btn')

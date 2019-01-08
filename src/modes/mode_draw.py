@@ -27,7 +27,7 @@ class ModeDraw(ModeTemplate):
 	def __init__(self, window):
 		super().__init__(window)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/draw.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_draw.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')

@@ -26,7 +26,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, transient_for=window, title=_("Image properties"))
 		self._window = window
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties_dialog.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties.ui')
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 

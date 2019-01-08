@@ -39,21 +39,21 @@ drawing_sources = [
 
   'properties.py',
 
-  'modes/draw.py',
-  'modes/crop.py',
-  'modes/scale.py',
-  'modes/rotate.py',
+  'modes/mode_draw.py',
+  'modes/mode_crop.py',
+  'modes/mode_scale.py',
+  'modes/mode_rotate.py',
 
-  'tools/experiment.py',
-  'tools/line.py',
-  'tools/paint.py',
-  'tools/pencil.py',
-  'tools/text.py',
-  'tools/select.py',
-  'tools/shape.py',
-  'tools/polygon.py',
-  'tools/picker.py',
-  'tools/eraser.py'
+  'tools/tool_experiment.py',
+  'tools/tool_line.py',
+  'tools/tool_paint.py',
+  'tools/tool_pencil.py',
+  'tools/tool_text.py',
+  'tools/tool_select.py',
+  'tools/tool_shape.py',
+  'tools/tool_polygon.py',
+  'tools/tool_picker.py',
+  'tools/tool_eraser.py'
 ]
 
 install_data(drawing_sources, install_dir: moduledir)

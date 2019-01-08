@@ -20,21 +20,21 @@ import cairo, os
 
 from .gi_composites import GtkTemplate
 
-from .pencil import ToolPencil
-from .select import ToolSelect
-from .line import ToolLine
-from .paint import ToolPaint
-from .text import ToolText
-from .picker import ToolPicker
-from .shape import ToolShape
-from .eraser import ToolEraser
-from .experiment import ToolExperiment
-from .polygon import ToolPolygon
+from .tool_pencil import ToolPencil
+from .tool_select import ToolSelect
+from .tool_line import ToolLine
+from .tool_paint import ToolPaint
+from .tool_text import ToolText
+from .tool_picker import ToolPicker
+from .tool_shape import ToolShape
+from .tool_eraser import ToolEraser
+from .tool_experiment import ToolExperiment
+from .tool_polygon import ToolPolygon
 
-from .draw import ModeDraw
-from .crop import ModeCrop
-from .scale import ModeScale
-from .rotate import ModeRotate
+from .mode_draw import ModeDraw
+from .mode_crop import ModeCrop
+from .mode_scale import ModeScale
+from .mode_rotate import ModeRotate
 
 from .properties import DrawingPropertiesDialog
 

@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-07 21:56+0100\n"
+"POT-Creation-Date: 2019-01-08 04:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:231
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:232
 #: src/preferences.py:41
 msgid "Drawing"
 msgstr ""
@@ -101,7 +101,7 @@ msgid "Open an image"
 msgstr ""
 
 #: src/ui/shortcuts.ui:77 src/ui/menus.ui:160 src/ui/toolbar.ui:42
-#: src/window.py:431 src/window.py:452
+#: src/window.py:437 src/window.py:458
 msgid "Save"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: src/ui/toolbar.ui:27 src/window.py:368
+#: src/ui/toolbar.ui:27 src/window.py:374
 msgid "Open"
 msgstr ""
 
@@ -277,49 +277,49 @@ msgstr ""
 msgid "Report bugs or ideas"
 msgstr ""
 
-#: src/window.py:226
+#: src/window.py:227
 msgid "Unsaved file"
 msgstr ""
 
-#: src/window.py:366
+#: src/window.py:372
 msgid "Open a picture"
 msgstr ""
 
-#: src/window.py:369 src/window.py:429 src/window.py:453
+#: src/window.py:375 src/window.py:435 src/window.py:459
 #: src/modes/ui/crop.ui:27 src/modes/ui/scale.ui:27 src/modes/ui/rotate.ui:20
 #: src/tools/ui/text.ui:33 src/tools/select.py:269
 msgid "Cancel"
 msgstr ""
 
-#: src/window.py:371 src/window.py:456 src/tools/select.py:271
+#: src/window.py:377 src/window.py:462 src/tools/select.py:271
 msgid "All pictures"
 msgstr ""
 
-#: src/window.py:425 src/window.py:489
+#: src/window.py:431 src/window.py:495
 msgid "Untitled"
 msgstr ""
 
-#: src/window.py:430
+#: src/window.py:436
 msgid "Discard"
 msgstr ""
 
-#: src/window.py:432
+#: src/window.py:438
 msgid "There are unsaved modifications to your drawing."
 msgstr ""
 
-#: src/window.py:450
+#: src/window.py:456
 msgid "Save picture as…"
 msgstr ""
 
-#: src/window.py:462
+#: src/window.py:468
 msgid "PNG images"
 msgstr ""
 
-#: src/window.py:466
+#: src/window.py:472
 msgid "JPEG images"
 msgstr ""
 
-#: src/window.py:470
+#: src/window.py:476
 msgid "BMP images"
 msgstr ""
 
@@ -419,6 +419,7 @@ msgstr ""
 msgid "Lead shape"
 msgstr ""
 
+#. Default values
 #: src/tools/ui/line.ui:26 src/tools/ui/pencil.ui:7 src/tools/line.py:22
 #: src/tools/line.py:56 src/tools/pencil.py:20 src/tools/pencil.py:52
 msgid "Round"
@@ -527,8 +528,12 @@ msgstr ""
 msgid "Insert text here"
 msgstr ""
 
-#: src/tools/ui/text.ui:84
+#: src/tools/ui/text.ui:84 src/tools/ui/text.ui:112
 msgid "Opaque background"
+msgstr ""
+
+#: src/tools/ui/text.ui:108
+msgid "Font"
 msgstr ""
 
 #: src/tools/experiment.py:14

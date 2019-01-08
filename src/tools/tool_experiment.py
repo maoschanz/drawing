@@ -116,7 +116,7 @@ class ToolExperiment(ToolTemplate):
 			self.selected_operator_label = "HSL_LUMINOSITY"
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/experiment.ui")
+		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_experiment.ui")
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):

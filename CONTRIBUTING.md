@@ -33,8 +33,8 @@ Usability and design issues are **not** considered as features.
 
 - Fork the repo and clone it on your disk.
 - Add your language to `po/LINGUAS`.
-- There is probably a more clever way to do, but you can run `./update-translations.sh XX` at the root of the project. Replace `XX` by the actual letters for the language you want. It will produce a `.po` file for your language.
-- Use a text editor of [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.Drawing`).
+- Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language.
+- Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.Drawing`).
 - If you want to test your translation: GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file and install it.
 - Run
 ```

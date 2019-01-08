@@ -28,7 +28,7 @@ class ModeScale(ModeTemplate):
 		self.x_press = 0
 		self.y_press = 0
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/scale.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_scale.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.height_btn = builder.get_object('height_btn')
