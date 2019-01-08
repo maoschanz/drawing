@@ -61,7 +61,8 @@ class Application(Gtk.Application):
 	def on_open_from_cli(self, a, b, c, d):
 		for f in b:
 			win = self.on_new_window_activate()
-			win.try_load_file(f.get_path())
+			win.gfile = f
+			win.try_load_file()
 		return 0
 
 	def on_local_options(self, app, options):

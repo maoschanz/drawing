@@ -27,9 +27,11 @@ class DrawingPrefsWindow(Gtk.Window):
 	list_box = GtkTemplate.Child()
 	default_backg_button = GtkTemplate.Child()
 	experimental_switch = GtkTemplate.Child()
+	preview_btn = GtkTemplate.Child()
 	width_btn = GtkTemplate.Child()
 	height_btn = GtkTemplate.Child()
 	layout_combobox = GtkTemplate.Child()
+	add_alpha_switch = GtkTemplate.Child()
 
 	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
 
@@ -57,6 +59,9 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
 
+		self.preview_btn.set_value(self._settings.get_int('preview-size'))
+		self.preview_btn.connect('value-changed', self.on_preview_changed)
+
 		self.layout_combobox.append('csd', _("Compact (headerbar)"))
 		self.layout_combobox.append('ssd', _("Legacy (menubar only)"))
 		self.layout_combobox.append('ssd-toolbar', _("Legacy (menubar and toolbar)"))
@@ -78,6 +83,9 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	def on_height_changed(self, w):
 		self._settings.set_int('default-height', self.height_btn.get_value())
+
+	def on_preview_changed(self, w):
+		self._settings.set_int('preview-size', self.preview_btn.get_value())
 
 	def on_layout_changed(self, w):
 		self._settings.set_string('decorations', w.get_active_id())
