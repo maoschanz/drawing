@@ -215,6 +215,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def adapt_to_window_size(self, *args):
 		self.active_mode().adapt_to_window_size()
+		if self.header_bar is not None:
+			if self.get_allocated_width() > 600:
+				self.save_label.set_visible(True)
+				self.save_icon.set_visible(False)
+				self.add_label.set_visible(True)
+				self.add_icon.set_visible(False)
+			else:
+				self.save_label.set_visible(False)
+				self.save_icon.set_visible(True)
+				self.add_label.set_visible(False)
+				self.add_icon.set_visible(True)
 
 	# WINDOW BARS
 
@@ -259,8 +270,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_headerbar(self):
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
 		self.header_bar = builder.get_object("header_bar")
-		save_as_btn = builder.get_object("save_as_btn")
+		self.save_label = builder.get_object("save_label")
+		self.save_icon = builder.get_object("save_icon")
 		add_btn = builder.get_object("add_btn")
+		self.add_label = builder.get_object("add_label")
+		self.add_icon = builder.get_object("add_icon")
 		self.main_menu_btn = builder.get_object("main_menu_btn")
 
 		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")

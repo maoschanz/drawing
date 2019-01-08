@@ -14,13 +14,19 @@
             <property name="visible">True</property>
             <property name="spacing">10</property>
             <child>
-              <object class="GtkImage">
-                <property name="icon-name">list-add-symbolic</property>
+              <object class="GtkLabel" id="add_label">
+                <property name="label" translatable="yes">Open</property>
                 <property name="visible">True</property>
               </object>
               <packing>
                 <property name="pack-type">start</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="add_icon">
+                <property name="icon-name">list-add-symbolic</property>
+                <property name="visible">True</property>
+              </object>
             </child>
             <child>
               <object class="GtkImage">
@@ -87,10 +93,28 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="save_btn">
+      <object class="GtkButton" id="save_label">
         <property name="visible">True</property>
         <property name="action_name">win.save</property>
+        <property name="tooltip_text" translatable="yes">Save</property>
         <property name="label" translatable="yes">Save</property>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="save_icon">
+        <property name="visible">True</property>
+        <property name="action_name">win.save</property>
+        <property name="tooltip_text" translatable="yes">Save</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">document-save-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
       </object>
       <packing>
         <property name="pack-type">end</property>
