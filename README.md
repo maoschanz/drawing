@@ -39,34 +39,24 @@ TODO
 
 ### Unstable version from `master`
 
-#### With GNOME Builder
-
-Clone this repo, open it as a project with GNOME Builder, and run it (or export it as flatpak)
-
-#### With flatpak-builder
-
-Initial installation:
-```
-flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.Drawing.json
-flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
-flatpak --user install local-drawing-repo com.github.maoschanz.Drawing
-```
-
-Update:
-```
-flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.Drawing.json
-flatpak update
-```
-
-#### Directly with meson (/ninja ?)
-
-TODO
+[See here](./INSTALL_FROM_SOURCE.md)
 
 ## Screenshots
 
-GNOME/Budgie UI (in French here):
+### GNOME/Budgie UI
 
-![GNOME/Budgie UI](https://raw.githubusercontent.com/maoschanz/drawing/master/data/screenshots/screenshot_gnome_2.png)
+![GNOME/Budgie UI](./data/screenshots/gnome_screenshot_menu.png)
 
-MATE/Cinnamon UI:
-![MATE/Cinnamon UI](https://raw.githubusercontent.com/maoschanz/drawing/master/data/screenshots/screenshot_mate_1.png)
+More screenshots:
+
+- [Color chooser](./data/screenshots/gnome_screenshot_colors.png)
+- [Open/Import menu](./data/screenshots/gnome_screenshot_open.png)
+- [Scaling the canvas](./data/screenshots/gnome_screenshot_scale.png)
+- [The selection tool and its menu](./data/screenshots/gnome_screenshot_selection.png)
+- [Drawing things on the picture with tools](./data/screenshots/gnome_screenshot_tools.png)
+
+### MATE/Cinnamon UI
+
+If you like menubars
+
+![MATE/Cinnamon UI](./data/screenshots/mate_screenshot_text.png)

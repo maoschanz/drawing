@@ -69,14 +69,14 @@ class DrawingMinimap(Gtk.Popover):
 	def correct_coords(self):
 		mpb_width = self.get_main_pixbuf().get_width()
 		mpb_height = self.get_main_pixbuf().get_height()
-		if self.preview_x < 0:
-			self.preview_x = 0
-		if self.preview_y < 0:
-			self.preview_y = 0
 		if self.preview_x + self.window.drawing_area.get_allocated_width() > mpb_width:
 			self.preview_x = mpb_width - self.window.drawing_area.get_allocated_width()
 		if self.preview_y + self.window.drawing_area.get_allocated_height() > mpb_height:
 			self.preview_y = mpb_height - self.window.drawing_area.get_allocated_height()
+		if self.preview_x < 0:
+			self.preview_x = 0
+		if self.preview_y < 0:
+			self.preview_y = 0
 		self.update_minimap()
 
 	def get_main_pixbuf(self):
