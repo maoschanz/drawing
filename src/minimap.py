@@ -36,9 +36,8 @@ class DrawingMinimap(Gtk.Popover):
 		self.minimap_area = builder.get_object('minimap_area')
 		self.minimap_area.set_size(200, 200)
 		self.minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
-			Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.POINTER_MOTION_MASK)
+			Gdk.EventMask.BUTTON_RELEASE_MASK)
 		self.minimap_area.connect('draw', self.on_minimap_draw)
-		# self.minimap_area.connect('motion-notify-event', self.on_minimap_motion)
 		self.minimap_area.connect('button-press-event', self.on_minimap_press)
 		self.minimap_area.connect('button-release-event', self.on_minimap_release)
 
@@ -77,7 +76,6 @@ class DrawingMinimap(Gtk.Popover):
 			self.preview_x = 0
 		if self.preview_y < 0:
 			self.preview_y = 0
-		self.update_minimap()
 
 	def get_main_pixbuf(self):
 		return self.window.main_pixbuf

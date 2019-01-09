@@ -2,16 +2,6 @@
 
 from gi.repository import Gtk, Gdk, Gio
 
-def get_rgb_for_xy(surface, x, y):
-	# Guard clause: we can't perform color picking outside of the surface
-	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
-		return [-1,-1,-1]
-	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
-	rgb_vals = screenshot.get_pixels()
-	return rgb_vals # array de 3 valeurs, de 0 à 255
-
-#-------------------------------------------------------------------------------
-
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
 
@@ -26,8 +16,7 @@ class ToolTemplate():
 		self.build_row()
 		self.window = window
 
-	def add_item_to_menu(self, tools_menu):
-		tools_menu.append(self.label, 'win.active_tool::' + self.id)
+	# Actions
 
 	def add_tool_action(self, action_name, callback):
 		self.window.add_action_simple(action_name, callback)
@@ -38,32 +27,16 @@ class ToolTemplate():
 	def add_tool_action_enum(self, action_name, default, callback):
 		self.window.add_action_enum(action_name, default, callback)
 
-	def on_tool_selected(self):
-		pass
-
-	def on_tool_unselected(self):
-		pass
+	def set_action_sensitivity(self, action_name, state):
+		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
 		pass
 
-	def set_action_sensitivity(self, action_name, state):
-		self.window.lookup_action(action_name).set_enabled(state)
+	# UI
 
-	def non_destructive_show_modif(self):
-		self.window.drawing_area.queue_draw()
-
-	def restore_pixbuf(self):
-		self.window.use_stable_pixbuf()
-
-	def apply_to_pixbuf(self):
-		self.window.on_tool_finished()
-
-	def cancel_ongoing_operation(self):
-		return self.give_back_control()
-
-	def give_back_control(self):
-		return False
+	def add_item_to_menu(self, tools_menu):
+		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
 		return None
@@ -76,15 +49,6 @@ class ToolTemplate():
 
 	def get_options_label(self):
 		return _("No options")
-
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		pass
-
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		pass
-
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		pass
 
 	def build_row(self):
 		self.row = Gtk.RadioButton(draw_indicator=False)
@@ -100,3 +64,48 @@ class ToolTemplate():
 		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)
+
+	# Activation or not
+
+	def on_tool_selected(self):
+		pass
+
+	def on_tool_unselected(self):
+		pass
+
+	def cancel_ongoing_operation(self):
+		return self.give_back_control()
+
+	def give_back_control(self):
+		return False
+
+	# History
+
+	def init_history_operation(self):
+		self.operation = {
+			"tool" : self.id
+		}
+
+	def end_history_operation(self):
+		self.window.add_operation_to_history(self.operation)
+		self.operation = None
+
+	# Drawing
+
+	def non_destructive_show_modif(self):
+		self.window.drawing_area.queue_draw()
+
+	def restore_pixbuf(self):
+		self.window.use_stable_pixbuf()
+
+	def apply_to_pixbuf(self):
+		self.window.on_tool_finished()
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		pass
+
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		pass
+
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
+		pass

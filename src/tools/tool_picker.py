@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gdk, Gio
 import cairo
 
 from .tools import ToolTemplate
-from .tools import get_rgb_for_xy
+from .utilities import get_rgb_for_xy
 
 class ToolPicker(ToolTemplate):
 	__gtype_name__ = 'ToolPicker'

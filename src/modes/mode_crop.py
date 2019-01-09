@@ -29,9 +29,13 @@ class ModeCrop(ModeTemplate):
 		self.x_press = 0
 		self.y_press = 0
 		self.move_instead_of_crop = False
+		self.needed_width_for_long = 0
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_crop.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
+		self.centered_box = builder.get_object('centered_box')
+		self.cancel_btn = builder.get_object('cancel_btn')
+		self.apply_btn = builder.get_object('apply_btn')
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
@@ -50,27 +54,26 @@ class ModeCrop(ModeTemplate):
 		self._x = 0
 		self._y = 0
 		if self.crop_selection:
-			self.original_width = self.window.active_tool().selection_pixbuf.get_width()
-			self.original_height = self.window.active_tool().selection_pixbuf.get_height()
+			self.init_if_selection()
 		else:
-			self.original_width = self.window.get_pixbuf_width()
-			self.original_height = self.window.get_pixbuf_height()
+			self.init_if_main()
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
-
-		if self.crop_selection:
-			self.width_btn.set_range(1, self.original_width)
-			self.height_btn.set_range(1, self.original_height)
-			w = self.original_width
-			h = self.original_height
-		else:
-			self.width_btn.set_range(1, 2*self.original_width)
-			self.height_btn.set_range(1, 2*self.original_height)
-			w = self.original_width
-			h = self.original_height
-		self.width_btn.set_value(w)
-		self.height_btn.set_value(h)
+		self.width_btn.set_value(self.original_width)
+		self.height_btn.set_value(self.original_height)
 		self.set_action_sensitivity('active_tool', False)
+
+	def init_if_selection(self):
+		self.original_width = self.window.active_tool().selection_pixbuf.get_width()
+		self.original_height = self.window.active_tool().selection_pixbuf.get_height()
+		self.width_btn.set_range(1, self.original_width)
+		self.height_btn.set_range(1, self.original_height)
+
+	def init_if_main(self):
+		self.original_width = self.window.get_pixbuf_width()
+		self.original_height = self.window.get_pixbuf_height()
+		self.width_btn.set_range(1, 10*self.original_width)
+		self.height_btn.set_range(1, 10*self.original_height)
 
 	def on_apply_mode(self):
 		x = self._x
@@ -80,30 +83,40 @@ class ModeCrop(ModeTemplate):
 		if self.crop_selection:
 			self.window.active_tool().action_crop(x, y, width, height)
 		else:
-			self.window.crop_main_pixbuf(x, y, width, height)
+			self.window.temporary_pixbuf = self.window.main_pixbuf.copy()
+			x, y, width, height = self.validate_coords()
+			self.crop_temp_pixbuf(x, y, width, height)
+			self.window.main_pixbuf = self.window.temporary_pixbuf.copy()
+			self.window.use_stable_pixbuf()
 			self.window.on_tool_finished()
 
 	def on_draw(self, area, cairo_context, main_x, main_y):
 		if self.crop_selection:
-			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.copy()
-			x, y, width, height = self.validate_coords()
-			self.crop_temp_pixbuf(x, y, width, height)
 			self.window.active_tool().delete_temp()
 			selection_x = self.window.active_tool().selection_x
 			selection_y = self.window.active_tool().selection_y
 			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
 			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0)
+			cairo_context.paint()
+
+	def update_temp_pixbuf(self):
+		if self.crop_selection:
+			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.copy()
+			x, y, width, height = self.validate_coords()
+			self.crop_temp_pixbuf(x, y, width, height)
+		else:
 			self.window.temporary_pixbuf = self.window.main_pixbuf.copy()
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 			self.scale_temp_pixbuf_to_area(width, height)
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0)
-			cairo_context.paint()
 
 	def crop_temp_pixbuf(self, x, y, width, height):
-		min_w = min(width, self.window.temporary_pixbuf.get_width() + x)
-		min_h = min(height, self.window.temporary_pixbuf.get_height() + y)
+		x = max(x, 0)
+		y = max(y, 0)
+		min_w = min(width, self.window.temporary_pixbuf.get_width() - x)
+		min_h = min(height, self.window.temporary_pixbuf.get_height() - y)
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
 		new_pixbuf.fill(0)
 		self.window.temporary_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
@@ -132,9 +145,11 @@ class ModeCrop(ModeTemplate):
 		return self.height_btn.get_value_as_int()
 
 	def on_width_changed(self, *args):
+		self.update_temp_pixbuf()
 		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
+		self.update_temp_pixbuf()
 		self.non_destructive_show_modif()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
@@ -149,6 +164,9 @@ class ModeCrop(ModeTemplate):
 				self.height_btn.set_value(self.height_btn.get_value() + delta_y)
 			self.x_press = event.x
 			self.y_press = event.y
+
+			self.update_temp_pixbuf()
+			self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event.x
@@ -167,3 +185,14 @@ class ModeCrop(ModeTemplate):
 		width = self.get_width()
 		height = self.get_height()
 		return x, y, width, height
+
+	def adapt_to_window_size(self):
+		available_width = self.window.bottom_panel.get_allocated_width()
+		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
+			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
+				self.cancel_btn.get_allocated_width() + \
+				self.apply_btn.get_allocated_width()
+		if self.needed_width_for_long > 0.8 * available_width:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
+		else:
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)

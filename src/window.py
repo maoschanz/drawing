@@ -38,6 +38,8 @@ from .mode_rotate import ModeRotate
 
 from .properties import DrawingPropertiesDialog
 
+from .utilities import save_pixbuf_at
+
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
@@ -139,7 +141,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		a = float(self._settings.get_strv('default-rgba')[3])
 		w_context.set_source_rgba(r, g, b, a)
 		w_context.paint()
-		self.set_pixbuf_as_stable()
+		self.on_tool_finished()
 
 	def initial_save(self):
 		self.set_picture_title()
@@ -195,6 +197,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('pic_crop', self.action_crop)
 		self.add_action_simple('pic_scale', self.action_scale)
 		self.add_action_simple('pic_rotate', self.action_rotate)
+
 		self.add_action_simple('properties', self.edit_properties)
 
 		self.add_action_simple('main_menu', self.action_main_menu)
@@ -213,19 +216,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('toggle_preview', self.action_toggle_preview)
 
-	def adapt_to_window_size(self, *args):
-		self.active_mode().adapt_to_window_size()
-		if self.header_bar is not None:
-			if self.get_allocated_width() > 600:
-				self.save_label.set_visible(True)
-				self.save_icon.set_visible(False)
-				self.add_label.set_visible(True)
-				self.add_icon.set_visible(False)
-			else:
-				self.save_label.set_visible(False)
-				self.save_icon.set_visible(True)
-				self.add_label.set_visible(False)
-				self.add_icon.set_visible(True)
+	def action_toggle_preview(self, *args):
+		self.active_mode().toggle_preview()
 
 	# WINDOW BARS
 
@@ -293,6 +285,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.active_mode_id == 'draw':
 			self.draw_mode.options_btn.set_active(not self.draw_mode.options_btn.get_active())
 
+	def adapt_to_window_size(self, *args):
+		self.active_mode().adapt_to_window_size()
+		if self.header_bar is not None:
+			if self.get_allocated_width() > 600:
+				self.save_label.set_visible(True)
+				self.save_icon.set_visible(False)
+				self.add_label.set_visible(True)
+				self.add_icon.set_visible(False)
+			else:
+				self.save_label.set_visible(False)
+				self.save_icon.set_visible(True)
+				self.add_label.set_visible(False)
+				self.add_icon.set_visible(True)
+
 	# TOOLS PANEL
 
 	def build_tool_rows(self):
@@ -341,6 +347,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_mode_id = new_mode_id
 		self.adapt_to_window_size()
 		self.bottom_panel.add(self.active_mode().get_panel())
+		self.draw_mode.minimap.correct_coords()
 		self.set_picture_title()
 
 	# TOOLS
@@ -403,27 +410,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if fn is None:
 			self.action_save_as()
 			return
-		self.save_pixbuf_to_fn(fn)
+		save_pixbuf_at(self.main_pixbuf, fn)
+		self.initial_save()
 
 	def action_save_as(self, *args):
 		gfile = self.file_chooser_save('')
 		if gfile is not None:
 			self.gfile = gfile
-		else:
-			return
-		self.save_pixbuf_to_fn(fn)
-
-	def save_pixbuf_to_fn(self, filename):
-		assert (filename is not None)
-		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-			self.surface.get_width(), self.surface.get_height())
-		(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(filename)
-		if pb_format is None: # "jpeg", "png", "tiff", "ico" or "bmp"
-			self.main_pixbuf.savev(filename, filename.split('.')[-1], [None], [])
-		else:
-			self.main_pixbuf.savev(filename, pb_format.get_name(), [None], [])
-		# TODO la doc propose une fonction d'enregistrement avec callback pour faire ce que je veux
-		self.initial_save()
+		self.action_save()
 
 	def try_load_file(self):
 		if self.get_file_path() is None:
@@ -512,8 +506,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save('')
 		if gfile is not None:
-			file_format = gfile.get_path().split('.')[-1]
-			self.main_pixbuf.savev(gfile.get_path(), file_format, [None], [])
+			save_pixbuf_at(self.main_pixbuf, gfile.get_path())
 
 	# HISTORY MANAGEMENT
 
@@ -538,6 +531,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# self.lookup_action('undo').set_enabled(self.can_undo())
 
 		self.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
+
+	def add_operation_to_history(self, operation):
+		print('todo')
 
 	# DRAWING OPERATIONS
 
@@ -577,6 +573,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_scroll_on_area(self, area, event):
 		self.draw_mode.minimap.add_deltas(event.delta_x, event.delta_y, 10)
+
+	def get_main_coord(self, *args):
+		return self.draw_mode.get_main_coord()
 
 	# PRINTING
 
@@ -643,25 +642,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 #######################################
 
-	def crop_main_pixbuf(self, x, y, width, height):
-		x = int(x)
-		y = int(y)
-		width = int(width)
-		height = int(height)
-		min_w = min(width, self.main_pixbuf.get_width() + x)
-		min_h = min(height, self.main_pixbuf.get_height() + y)
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		new_pixbuf.fill(0)
-		self.main_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
-		self.main_pixbuf = new_pixbuf
-		self.use_stable_pixbuf()
-
 	def on_tool_finished(self):
 		self.undo_history.append(self.main_pixbuf.copy())
 		self.redo_history = []
 		self.update_history_sensitivity()
 		self.drawing_area.queue_draw()
-		self.set_pixbuf_as_stable()
+		self.set_surface_as_stable_pixbuf()
 		self.active_tool().update_actions_state()
 
 	def can_undo(self):
@@ -670,7 +656,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			return True
 
-	def set_pixbuf_as_stable(self):
+	def set_surface_as_stable_pixbuf(self):
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 			self.surface.get_width(), self.surface.get_height())
 
@@ -694,20 +680,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		Gdk.cairo_set_source_pixbuf(w_context, pixbuf, x, y)
 		w_context.paint()
 
-	def scale_pixbuf_to(self, new_width, new_height):
+############################
+
+	def scale_pixbuf_to(self, new_width, new_height): # XXX c'est nul
 		self.main_pixbuf = self.main_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
 		self.use_stable_pixbuf()
 		self.on_tool_finished()
 
-	def rotate_pixbuf(self, angle):
+	def rotate_pixbuf(self, angle): # XXX c'est nul
 		self.main_pixbuf = self.main_pixbuf.rotate_simple(angle)
 		self.use_stable_pixbuf()
 		self.on_tool_finished()
 
-############################
-
-	def action_toggle_preview(self, *args):
-		self.active_mode().toggle_preview()
-
-	def get_main_coord(self, *args):
-		return self.draw_mode.get_main_coord()

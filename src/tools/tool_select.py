@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
 from .tools import ToolTemplate
+from .utilities import save_pixbuf_at
 
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
@@ -357,9 +358,9 @@ class ToolSelect(ToolTemplate):
 		self.window.update_bottom_panel('rotate')
 
 	def action_selection_export(self, *args):
-		gfile, file_path = self.window.file_chooser_save('')
-		if file_path is not None:
-			self.selection_pixbuf.savev(file_path, file_path.split('.')[-1], [None], [])
+		gfile = self.window.file_chooser_save('')
+		if gfile is not None:
+			save_pixbuf_at(self.selection_pixbuf, gfile.get_path())
 
 ##############################
 
@@ -535,4 +536,5 @@ class ToolSelect(ToolTemplate):
 		new_pixbuf.fill(0)
 		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
 		self.selection_pixbuf = new_pixbuf
-		
+
+

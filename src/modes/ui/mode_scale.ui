@@ -55,10 +55,22 @@
         </child>
 
         <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="spacing">10</property>
             <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Width</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
             <child>
               <object class="GtkSpinButton" id="width_btn">
                 <property name="visible">True</property>
@@ -66,9 +78,23 @@
                 <property name="tooltip_text" translatable="yes">Width</property>
               </object>
             </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <property name="orientation">horizontal</property>
             <child>
               <object class="GtkLabel">
-                <property name="label">×</property>
+                <property name="label" translatable="yes">Height</property>
                 <property name="visible">True</property>
               </object>
             </child>

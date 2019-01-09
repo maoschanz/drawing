@@ -26,6 +26,7 @@
       <object class="GtkButton" id="cancel_btn">
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
+        <property name="valign">center</property>
         <property name="action_name">win.cancel_and_draw</property>
         <style>
           <class name="destructive-action"/>
@@ -40,29 +41,58 @@
     </child>
 
     <child type="center">
-      <object class="GtkBox">
+      <object class="GtkBox" id="centered_box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
+
         <child>
-          <object class="GtkSpinButton" id="width_btn">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="adjustment">adj_width</property>
-            <property name="tooltip_text" translatable="yes">Width</property>
+            <property name="spacing">10</property>
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Width</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="width_btn">
+                <property name="visible">True</property>
+                <property name="adjustment">adj_width</property>
+                <property name="tooltip_text" translatable="yes">Width</property>
+              </object>
+            </child>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="label">×</property>
+          <object class="GtkSeparator">
             <property name="visible">True</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkSpinButton" id="height_btn">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="adjustment">adj_height</property>
-            <property name="tooltip_text" translatable="yes">Height</property>
+            <property name="spacing">10</property>
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Height</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="height_btn">
+                <property name="visible">True</property>
+                <property name="adjustment">adj_height</property>
+                <property name="tooltip_text" translatable="yes">Height</property>
+              </object>
+            </child>
           </object>
         </child>
+
       </object>
     </child>
 
@@ -71,6 +101,7 @@
         <property name="label" translatable="yes">Apply</property>
         <property name="action_name">win.apply_and_draw</property>
         <property name="visible">True</property>
+        <property name="valign">center</property>
         <style>
           <class name="suggested-action"/>
         </style>
