@@ -275,13 +275,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.main_menu_btn.set_popover(menu_popover)
 		add_menu = builder.get_object("add-menu")
 
+		#recent_section = add_menu.get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(1, Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+
 		add_popover = Gtk.Popover.new_from_model(add_btn, add_menu)
+
+		ch = add_popover.get_child()
+		print(ch)
+		ch2 = ch.get_children()
+		print(ch2)
 
 		chooser = Gtk.RecentChooserWidget(visible=True)
 		chooser.connect('item-activated', self.on_open_recent)
 		uris = chooser.get_uris()
 		print(uris)
-		add_popover.get_child().get_children()[1].add(chooser)
+		ch2[1].add(chooser)
 
 		add_btn.set_popover(add_popover)
 
