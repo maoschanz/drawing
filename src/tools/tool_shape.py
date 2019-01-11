@@ -9,8 +9,6 @@ from .tools import ToolTemplate
 class ToolShape(ToolTemplate):
 	__gtype_name__ = 'ToolShape'
 
-	use_size = True
-
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Basic shape"), 'radio-symbolic', window)
 

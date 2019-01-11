@@ -9,6 +9,8 @@ from .utilities import get_rgb_for_xy
 class ToolPicker(ToolTemplate):
 	__gtype_name__ = 'ToolPicker'
 
+	use_size = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
 

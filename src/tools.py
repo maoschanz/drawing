@@ -5,7 +5,7 @@ from gi.repository import Gtk, Gdk, Gio
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
 
-	use_size = False
+	use_size = True
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id

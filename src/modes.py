@@ -61,8 +61,7 @@ class ModeTemplate():
 		# Ça marche moins mais peut être utile.
 		# Gdk.cairo_set_source_pixbuf(cairo_context, self.window.main_pixbuf, 0, 0)
 
-		cairo_context.set_source_surface(self.window.surface, -1*main_x, -1*main_y) # XXX c'est là pour le zoom non ? en négatif
-		# cairo_context.set_source_surface(self.window.surface, 0, 0) # XXX c'est là pour le zoom non ? en négatif
+		cairo_context.set_source_surface(self.window.get_surface(), -1*main_x, -1*main_y)
 		cairo_context.paint()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):

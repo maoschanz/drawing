@@ -120,14 +120,13 @@ class ModeScale(ModeTemplate):
 		return self.height_btn.get_value_as_int()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		if self.window.is_clicked:
-			delta_x = event.x - self.x_press
-			self.width_btn.set_value(self.width_btn.get_value() + delta_x)
-			if not self.keep_proportions:
-				delta_y = event.y - self.y_press
-				self.height_btn.set_value(self.height_btn.get_value() + delta_y)
-			self.x_press = event.x
-			self.y_press = event.y
+		delta_x = event.x - self.x_press
+		self.width_btn.set_value(self.width_btn.get_value() + delta_x)
+		if not self.keep_proportions:
+			delta_y = event.y - self.y_press
+			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
+		self.x_press = event.x
+		self.y_press = event.y
 
 	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event.x

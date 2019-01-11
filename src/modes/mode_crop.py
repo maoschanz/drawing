@@ -153,20 +153,19 @@ class ModeCrop(ModeTemplate):
 		self.non_destructive_show_modif()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		if self.window.is_clicked:
-			delta_x = event.x - self.x_press
-			delta_y = event.y - self.y_press
-			if self.move_instead_of_crop:
-				self._x = self._x - delta_x
-				self._y = self._y - delta_y
-			else:
-				self.width_btn.set_value(self.width_btn.get_value() + delta_x)
-				self.height_btn.set_value(self.height_btn.get_value() + delta_y)
-			self.x_press = event.x
-			self.y_press = event.y
+		delta_x = event.x - self.x_press
+		delta_y = event.y - self.y_press
+		if self.move_instead_of_crop:
+			self._x = self._x - delta_x
+			self._y = self._y - delta_y
+		else:
+			self.width_btn.set_value(self.width_btn.get_value() + delta_x)
+			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
+		self.x_press = event.x
+		self.y_press = event.y
 
-			self.update_temp_pixbuf()
-			self.non_destructive_show_modif()
+		self.update_temp_pixbuf()
+		self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event.x

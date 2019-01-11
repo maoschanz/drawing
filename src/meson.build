@@ -45,6 +45,7 @@ drawing_sources = [
   'modes/mode_scale.py',
   'modes/mode_rotate.py',
 
+  'tools/tool_replace.py',
   'tools/tool_experiment.py',
   'tools/tool_line.py',
   'tools/tool_paint.py',

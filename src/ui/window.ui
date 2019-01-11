@@ -15,7 +15,6 @@
         </child>
         <child>
           <object class="GtkPaned" id="paned_area">
-            <!-- <property name="wide-handle">True</property> -->
             <property name="visible">True</property>
             <property name="orientation">horizontal</property>
             <property name="position">0</property>
@@ -35,12 +34,13 @@
                 </child>
               </object>
               <packing>
+                <property name="resize">False</property>
                 <property name="shrink">False</property>
               </packing>
             </child>
             <child>
-            <!--   <object class="GtkDrawingArea" id="drawing_area"> -->
               <object class="GtkLayout" id="drawing_area">
+              <!-- <object class="GtkDrawingArea" id="drawing_area"> -->
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
               </object>
@@ -48,7 +48,6 @@
           </object>
           <packing>
             <property name="expand">True</property>
-            <!-- weird warning ?? -->
           </packing>
         </child>
         <child>

@@ -1,0 +1,43 @@
+# XXX still shit
+
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
+import cairo
+
+from .tools import ToolTemplate
+from .utilities import get_rgb_for_xy
+
+class ToolReplace(ToolTemplate):
+	__gtype_name__ = 'ToolReplace'
+
+	def __init__(self, window, **kwargs):
+		super().__init__('replace', _("Replace color"), 'edit-delete-symbolic', window)
+		self.new_color = None
+		self.old_color = None
+
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		if event.button == 1:
+			self.new_color = left_color
+		else:
+			self.new_color = right_color
+		self.tool_width = tool_width
+
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
+		self.old_color = get_rgb_for_xy(surface, event.x, event.y)
+		i = -1 * self.tool_width
+		while i < self.tool_width:
+			red = max(0, self.old_color[0]+i)
+			green = max(0, self.old_color[1]+i)
+			blue = max(0, self.old_color[2]+i)
+			red = min(255, red)
+			green = min(255, green)
+			blue = min(255, blue)
+			temporary_pixbuf = self.window.main_pixbuf.add_alpha(True, \
+				red, green, blue)
+			self.window.main_pixbuf = temporary_pixbuf
+			i = i+1
+		self.window.use_stable_pixbuf()
+		w_context = cairo.Context(self.window.get_surface())
+		w_context.set_operator(cairo.Operator.DEST_OVER)
+		w_context.set_source_rgba(self.new_color.red, self.new_color.green, self.new_color.blue, self.new_color.alpha)
+		w_context.paint()
+		self.apply_to_pixbuf()

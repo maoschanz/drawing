@@ -8,8 +8,6 @@ from .tools import ToolTemplate
 class ToolEraser(ToolTemplate):
 	__gtype_name__ = 'ToolEraser'
 
-	use_size = True
-
 	def __init__(self, window, **kwargs):
 		super().__init__('eraser', _("Eraser"), 'edit-delete-symbolic', window)
 		self.past_x = -1

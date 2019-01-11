@@ -29,6 +29,7 @@ from .tool_picker import ToolPicker
 from .tool_shape import ToolShape
 from .tool_eraser import ToolEraser
 from .tool_experiment import ToolExperiment
+from .tool_replace import ToolReplace
 from .tool_polygon import ToolPolygon
 
 from .mode_draw import ModeDraw
@@ -113,6 +114,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['picker'] = ToolPicker(self)
 		if self._settings.get_boolean('experimental'):
 			self.tools['paint'] = ToolPaint(self)
+			self.tools['replace'] = ToolReplace(self)
 			self.tools['experiment'] = ToolExperiment(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
@@ -120,11 +122,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		# Side panel
 		self.build_tool_rows()
-		self.tools_panel.show_all()
-		self.full_panel_width = self.tools_panel.get_preferred_width()[0]
-		self.set_tools_labels_visibility(False)
-		self.icon_panel_width = self.tools_panel.get_preferred_width()[0]
-		self.paned_area.set_position(0)
 
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
@@ -159,6 +156,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
+		self.handlers.append( self.connect('configure-event', self.adapt_to_window_size) )
 
 		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
 		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
@@ -166,10 +164,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
 		self.handlers.append( self.drawing_area.connect('scroll-event', self.on_scroll_on_area) )
 
-		self.handlers.append( self.tools_panel.connect('size-allocate', self.update_tools_visibility) )
-		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
-
-		self.handlers.append( self.connect('configure-event', self.adapt_to_window_size) )
+		self.handlers.append( self._settings.connect('changed::panel-width', self.on_show_labels_setting_changed) )
 
 	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -189,8 +184,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_simple('print', self.action_print)
-
 		self.add_action_simple('cancel_and_draw', self.action_cancel_and_draw)
 		self.add_action_simple('apply_and_draw', self.action_apply_and_draw)
 
@@ -208,13 +201,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('open', self.action_open)
 		self.add_action_simple('undo', self.action_undo)
 		self.add_action_simple('redo', self.action_redo)
-
 		self.add_action_simple('save_as', self.action_save_as)
 		self.add_action_simple('export_as', self.action_export_as)
+		self.add_action_simple('print', self.action_print)
 
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 
 		self.add_action_simple('toggle_preview', self.action_toggle_preview)
+		self.add_action_boolean('show_labels', self._settings.get_boolean('panel-width'), \
+			self.on_show_labels_changed)
 
 	def action_toggle_preview(self, *args):
 		self.active_mode().toggle_preview()
@@ -309,26 +304,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
+		self.tools_panel.show_all()
+		self.on_show_labels_setting_changed()
 
 	def set_tools_labels_visibility(self, visible):
 		if visible:
 			self.tools_panel.show_all()
-			self.paned_area.set_position(self.tools_panel.get_preferred_width()[0]+10)
+			self.paned_area.set_position(self.tools_panel.get_preferred_width()[0])
 		else:
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
+			self.paned_area.set_position(0)
 
-	def update_tools_visibility(self, panelbox, gdkrect):
-		if gdkrect.width <= self.icon_panel_width+10 \
-		or gdkrect.width == self.full_panel_width \
-		or gdkrect.width == self.full_panel_width+10:
-			return
-		if gdkrect.width >= self.full_panel_width:
-			self.set_tools_labels_visibility(True)
-			self._settings.set_boolean('panel-width', True)
-		else:
-			self.set_tools_labels_visibility(False)
-			self._settings.set_boolean('panel-width', False)
+	def on_show_labels_setting_changed(self, *args):
+		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
+
+	def on_show_labels_changed(self, *args):
+		show_labels = not args[0].get_state()
+		self._settings.set_boolean('panel-width', show_labels)
+		args[0].set_state(GLib.Variant.new_boolean(show_labels))
 
 	# MODES
 
@@ -541,17 +535,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		x, y = self.get_main_coord()
 		self.active_mode().on_draw(area, cairo_context, x, y)
 
-	def on_motion_on_area(self, area, event):
-		if not self.is_clicked:
-			return
-		x, y = self.get_main_coord()
-		event_x = x + event.x
-		event_y = y + event.y
-		self.active_mode().on_motion_on_area(area, event, self.surface, event_x, event_y)
-		self.drawing_area.queue_draw()
-
 	def on_press_on_area(self, area, event):
 		if event.button == 2:
+			self.is_clicked = False
 			self.draw_mode.action_exchange_color()
 			return
 		self.is_clicked = True
@@ -560,6 +546,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		event_x = x + event.x
 		event_y = y + event.y
 		self.active_mode().on_press_on_area(area, event, self.surface, event_x, event_y)
+
+	def on_motion_on_area(self, area, event):
+		if not self.is_clicked:
+			return
+		x, y = self.get_main_coord()
+		event_x = x + event.x
+		event_y = y + event.y
+		self.active_mode().on_motion_on_area(area, event, self.surface, event_x, event_y)
+		self.drawing_area.queue_draw()
 
 	def on_release_on_area(self, area, event):
 		if not self.is_clicked:

@@ -8,8 +8,6 @@ from .tools import ToolTemplate
 class ToolPencil(ToolTemplate):
 	__gtype_name__ = 'ToolPencil'
 
-	use_size = True
-
 	def __init__(self, window, **kwargs):
 		super().__init__('pencil', _("Pencil"), 'document-edit-symbolic', window)
 		self.past_x = -1.0

@@ -45,11 +45,6 @@
         <attribute name="verb-icon">document-new-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-        <attribute name="verb-icon">edit-select-all-symbolic</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">Image properties</attribute>
         <attribute name="action">win.properties</attribute>
         <attribute name="verb-icon">document-properties-symbolic</attribute>
@@ -87,25 +82,26 @@
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes">Show tools names</attribute>
+        <attribute name="action">win.show_labels</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">app.settings</attribute>
-        <attribute name="verb-icon">preferences-system-symbolic</attribute>
       </item>
-
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Shortcuts</attribute>
         <attribute name="action">app.shortcuts</attribute>
-        <attribute name="verb-icon">input-keyboard-symbolic</attribute>
       </item>
       <item>
         <attribute name="action">app.help</attribute>
         <attribute name="label" translatable="yes">Help</attribute>
-        <attribute name="verb-icon">help-faq-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">About Drawing</attribute>
         <attribute name="action">app.about</attribute>
-        <attribute name="verb-icon">help-about-symbolic</attribute>
       </item>
     </section>
   </menu>
@@ -227,6 +223,10 @@
         </item>
       </section>
       <section>
+        <item>
+          <attribute name="label" translatable="yes">Show tools names</attribute>
+          <attribute name="action">win.show_labels</attribute>
+        </item>
         <item>
           <attribute name="label" translatable="yes">Preferences</attribute>
           <attribute name="action">app.settings</attribute>

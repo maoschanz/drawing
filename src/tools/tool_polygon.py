@@ -9,8 +9,6 @@ from .tools import ToolTemplate
 class ToolPolygon(ToolTemplate):
 	__gtype_name__ = 'ToolPolygon'
 
-	use_size = True
-
 	def __init__(self, window, **kwargs):
 		super().__init__('polygon', _("Polygon"), 'non-starred-symbolic', window)
 

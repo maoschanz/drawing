@@ -9,6 +9,7 @@ from .utilities import save_pixbuf_at
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
+	use_size = False
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):

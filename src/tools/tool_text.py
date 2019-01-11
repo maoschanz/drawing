@@ -8,6 +8,8 @@ from .tools import ToolTemplate
 class ToolText(ToolTemplate):
 	__gtype_name__ = 'ToolText'
 
+	use_size = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'font-x-generic-symbolic', window)
 
