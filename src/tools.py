@@ -81,14 +81,14 @@ class ToolTemplate():
 
 	# History
 
-	def init_history_operation(self):
-		self.operation = {
-			"tool" : self.id
-		}
+	def do_tool_operation(self, operation):
+		pass
 
-	def end_history_operation(self):
-		self.window.add_operation_to_history(self.operation)
-		self.operation = None
+	def apply_operation(self, operation):
+		self.do_tool_operation(operation)
+		self.non_destructive_show_modif()
+		self.apply_to_pixbuf()
+		self.window.add_operation_to_history(operation)
 
 	# Drawing
 

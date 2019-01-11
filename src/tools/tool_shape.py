@@ -52,7 +52,7 @@ class ToolShape(ToolTemplate):
 		self.window.set_picture_title()
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_shape.ui")
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_shape.ui')
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
@@ -70,54 +70,15 @@ class ToolShape(ToolTemplate):
 
 	def draw_rectangle(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_width(self.tool_width)
-
-		if self.selected_style_id == 'secondary':
-			w_context.move_to(self.x_press, self.y_press)
-			w_context.line_to(self.x_press, event_y)
-			w_context.line_to(event_x, event_y)
-			w_context.line_to(event_x, self.y_press)
-			w_context.close_path()
-			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-				self.secondary_color.blue, self.secondary_color.alpha)
-			w_context.fill()
-			w_context.stroke()
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-			self.main_color.blue, self.main_color.alpha)
 		w_context.move_to(self.x_press, self.y_press)
 		w_context.line_to(self.x_press, event_y)
 		w_context.line_to(event_x, event_y)
 		w_context.line_to(event_x, self.y_press)
 		w_context.close_path()
-
-		if self.selected_style_id == 'filled':
-			w_context.fill()
-		w_context.stroke()
+		self._path = w_context.copy_path()
 
 	def draw_oval(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_width(self.tool_width)
-
-		if self.selected_style_id == 'secondary':
-			w_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
-				self.x_press, event_y, \
-				(self.x_press+event_x)/2, event_y)
-			w_context.curve_to((self.x_press+event_x)/2, event_y, \
-				event_x, event_y, \
-				event_x, (self.y_press+event_y)/2)
-			w_context.curve_to(event_x, (self.y_press+event_y)/2, \
-				event_x, self.y_press, \
-				(self.x_press+event_x)/2, self.y_press)
-			w_context.curve_to((self.x_press+event_x)/2, self.y_press, \
-				self.x_press, self.y_press, \
-				self.x_press, (self.y_press+event_y)/2)
-			w_context.close_path()
-			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-				self.secondary_color.blue, self.secondary_color.alpha)
-			w_context.fill()
-			w_context.stroke()
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-			self.main_color.blue, self.main_color.alpha)
 		w_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
 			self.x_press, event_y, \
 			(self.x_press+event_x)/2, event_y)
@@ -131,33 +92,14 @@ class ToolShape(ToolTemplate):
 			self.x_press, self.y_press, \
 			self.x_press, (self.y_press+event_y)/2)
 		w_context.close_path()
-
-		if self.selected_style_id == 'filled':
-			w_context.fill()
-		w_context.stroke()
+		self._path = w_context.copy_path()
 
 	def draw_circle(self, event_x, event_y):
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_width(self.tool_width)
-
 		rayon = math.sqrt((self.x_press - event_x)*(self.x_press - event_x) \
 			+ (self.y_press - event_y)*(self.y_press - event_y))
-
-		if self.selected_style_id == 'secondary':
-			w_context.new_sub_path()
-			w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
-			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-				self.secondary_color.blue, self.secondary_color.alpha)
-			w_context.fill()
-			w_context.stroke()
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-			self.main_color.blue, self.main_color.alpha)
-
-		w_context.new_sub_path()
 		w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
-		if self.selected_style_id == 'filled':
-			w_context.fill()
-		w_context.stroke()
+		self._path = w_context.copy_path()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -167,6 +109,8 @@ class ToolShape(ToolTemplate):
 			self.draw_oval(event_x, event_y)
 		elif self.selected_shape_id == 'circle':
 			self.draw_circle(event_x, event_y)
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
@@ -181,17 +125,47 @@ class ToolShape(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'rectangle':
-			self.restore_pixbuf()
 			self.draw_rectangle(event_x, event_y)
-			self.apply_to_pixbuf()
 		elif self.selected_shape_id == 'oval':
-			self.restore_pixbuf()
 			self.draw_oval(event_x, event_y)
-			self.apply_to_pixbuf()
 		elif self.selected_shape_id == 'circle':
-			self.restore_pixbuf()
 			self.draw_circle(event_x, event_y)
-			self.apply_to_pixbuf()
 		self.x_press = 0.0
 		self.y_press = 0.0
+		operation = self.build_operation()
+		self.apply_operation(operation)
 
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'rgba_main': self.main_color,
+			'rgba_secd': self.secondary_color,
+			'operator': cairo.Operator.OVER,
+			'line_width': self.tool_width,
+			'filling': self.selected_style_id,
+			'path': self._path
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		w_context = cairo.Context(self.window.get_surface())
+		w_context.set_operator(operation['operator'])
+		w_context.set_line_width(operation['line_width'])
+		rgba_main = operation['rgba_main']
+		rgba_secd = operation['rgba_secd']
+		w_context.append_path(operation['path'])
+		filling = operation['filling']
+		if filling == 'secondary':
+			w_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+			w_context.fill_preserve()
+			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			w_context.stroke()
+		elif filling == 'filled':
+			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			w_context.fill()
+		else:
+			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			w_context.stroke()

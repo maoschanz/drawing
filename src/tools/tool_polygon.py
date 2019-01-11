@@ -89,7 +89,8 @@ class ToolPolygon(ToolTemplate):
 		if self.past_x != -1.0 and self.past_y != -1.0 \
 		and (max(event_x, self.past_x) - min(event_x, self.past_x) < self.tool_width) \
 		and (max(event_y, self.past_y) - min(event_y, self.past_y) < self.tool_width):
-			self.finish_polygon(w_context)
+			w_context.close_path()
+			self._path = w_context.copy_path()
 			return True
 		else:
 			self.continue_polygon(w_context, event_x, event_y)
@@ -101,6 +102,9 @@ class ToolPolygon(ToolTemplate):
 		self._path = w_context.copy_path()
 
 	def continue_polygon(self, w_context, x, y):
+		w_context.set_line_width(self.tool_width)
+		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+			self.main_color.blue, self.main_color.alpha)
 		w_context.line_to(x, y)
 		w_context.stroke_preserve() # draw the line without closing the path
 		self._path = w_context.copy_path()
@@ -108,23 +112,15 @@ class ToolPolygon(ToolTemplate):
 
 	def finish_polygon(self, w_context):
 		w_context.close_path()
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-			self.main_color.blue, self.main_color.alpha)
-		if self.selected_style_id == 'filled':
-			w_context.fill()
-		elif self.selected_style_id == 'secondary':
-			w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-				self.secondary_color.blue, self.secondary_color.alpha)
-			w_context.fill_preserve() # TODO c'est élégant ça, je devrais le faire ailleurs
-			w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-				self.main_color.blue, self.main_color.alpha)
-			w_context.stroke()
-		else:
-			w_context.stroke()
+		operation = self.build_operation(w_context.copy_path())
+		self.do_tool_operation(operation)
+		return
 
 	def preview_polygon(self, w_context, x, y):
 		w_context.line_to(x, y)
-		self.finish_polygon(w_context)
+		w_context.close_path()
+		operation = self.build_operation(w_context.copy_path())
+		self.do_tool_operation(operation)
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -148,7 +144,42 @@ class ToolPolygon(ToolTemplate):
 		self.restore_pixbuf()
 		finished = self.draw_polygon(event_x, event_y, False)
 		if finished:
-			self.apply_to_pixbuf()
+			operation = self.build_operation(self._path)
+			self.apply_operation(operation)
 			(self.x_press, self.y_press) = (-1.0, -1.0)
 			(self.past_x, self.past_y) = (-1.0, -1.0)
 
+	def build_operation(self, cairo_path):
+		operation = {
+			'tool_id': self.id,
+			'rgba_main': self.main_color,
+			'rgba_secd': self.secondary_color,
+			'operator': cairo.Operator.OVER,
+			'line_width': self.tool_width,
+			'filling': self.selected_style_id,
+			'path': cairo_path
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		w_context = cairo.Context(self.window.get_surface())
+		w_context.set_operator(operation['operator'])
+		w_context.set_line_width(operation['line_width'])
+		rgba_main = operation['rgba_main']
+		rgba_secd = operation['rgba_secd']
+		w_context.append_path(operation['path'])
+		filling = operation['filling']
+		if filling == 'secondary':
+			w_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+			w_context.fill_preserve()
+			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			w_context.stroke()
+		elif filling == 'filled':
+			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			w_context.fill()
+		else:
+			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			w_context.stroke()

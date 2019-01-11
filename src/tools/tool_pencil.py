@@ -59,15 +59,7 @@ class ToolPencil(ToolTemplate):
 		return self.selected_shape_label
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		self.restore_pixbuf()
 		w_context = cairo.Context(self.window.get_surface())
-		w_context.set_line_cap(self.selected_cap_id)
-		w_context.set_line_join(self.selected_join_id)
-		w_context.set_line_width(self.tool_width)
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-				self.main_color.blue, self.main_color.alpha)
-		if self.use_dashes:
-			w_context.set_dash([2*self.tool_width, 2*self.tool_width])
 		if self.past_x == -1.0:
 			(self.past_x, self.past_y) = (self.x_press, self.y_press)
 			w_context.move_to(self.x_press, self.y_press)
@@ -75,11 +67,12 @@ class ToolPencil(ToolTemplate):
 		else:
 			w_context.append_path(self._path)
 		w_context.line_to(event_x, event_y)
-		w_context.stroke_preserve() # draw the line without closing the path
 		self._path = w_context.copy_path()
-		self.non_destructive_show_modif()
 		self.past_x = event_x
 		self.past_y = event_y
+
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
@@ -93,5 +86,35 @@ class ToolPencil(ToolTemplate):
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
-		self.apply_to_pixbuf()
+		operation = self.build_operation()
+		self.apply_operation(operation)
 
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'rgba': self.main_color,
+			'operator': cairo.Operator.OVER,
+			'line_width': self.tool_width,
+			'line_cap': self.selected_cap_id,
+			'line_join': self.selected_join_id,
+			'use_dashes': self.use_dashes,
+			'path': self._path
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		w_context = cairo.Context(self.window.get_surface())
+		w_context.set_operator(operation['operator'])
+		w_context.set_line_cap(operation['line_cap'])
+		w_context.set_line_join(operation['line_join'])
+		line_width = operation['line_width']
+		w_context.set_line_width(line_width)
+		rgba = operation['rgba']
+		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		if operation['use_dashes']:
+			w_context.set_dash([2*line_width, 2*line_width])
+		w_context.append_path(operation['path'])
+		w_context.stroke()
