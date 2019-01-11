@@ -42,6 +42,8 @@ class ModeRotate(ModeTemplate):
 	def on_mode_selected(self, *args):
 		self.rotate_selection = args[0]
 		self.set_action_sensitivity('active_tool', False)
+		self.angle_btn.set_value(0.0)
+		self.update_temp_pixbuf()
 
 	def on_apply_mode(self):
 		if self.rotate_selection:
@@ -53,22 +55,26 @@ class ModeRotate(ModeTemplate):
 		return self.angle_btn.get_value_as_int()
 
 	def on_draw(self, area, cairo_context, main_x, main_y):
-		angle = self.get_angle()
 		if self.rotate_selection:
-			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.rotate_simple(angle)
+			self.window.use_stable_pixbuf()
 			self.window.active_tool().delete_temp()
 			selection_x = self.window.active_tool().selection_x
 			selection_y = self.window.active_tool().selection_y
 			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
 			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
-			self.window.temporary_pixbuf = self.window.main_pixbuf.rotate_simple(angle)
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0) # XXX c'est là pour le zoom non ? en négatif
 			cairo_context.paint()
+
+	def update_temp_pixbuf(self):
+		angle = self.get_angle()
+		if self.rotate_selection:
+			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.rotate_simple(angle)
+		else:
+			self.window.temporary_pixbuf = self.window.main_pixbuf.rotate_simple(angle)
 
 	def on_angle_changed(self, *args):
 		if self.get_angle() % 90 != 0:
 			self.angle_btn.set_value(int(self.get_angle() / 90) * 90)
-		if self.rotate_selection:
-			self.window.use_stable_pixbuf()
+		self.update_temp_pixbuf()
 		self.non_destructive_show_modif()

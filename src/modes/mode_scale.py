@@ -66,20 +66,25 @@ class ModeScale(ModeTemplate):
 			self.window.scale_pixbuf_to(w, h)
 
 	def on_draw(self, area, cairo_context, main_x, main_y):
-		w = self.get_width()
-		h = self.get_height()
 		if self.scale_selection:
-			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.scale_simple( \
-				w, h, GdkPixbuf.InterpType.TILES)
+			self.window.use_stable_pixbuf()
 			self.window.active_tool().delete_temp()
 			selection_x = self.window.active_tool().selection_x
 			selection_y = self.window.active_tool().selection_y
 			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
 			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
-			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, -1 * main_x, -1 * main_y)
 			cairo_context.paint()
+
+	def update_temp_pixbuf(self):
+		w = self.get_width()
+		h = self.get_height()
+		if self.scale_selection:
+			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.scale_simple( \
+				w, h, GdkPixbuf.InterpType.TILES)
+		else:
+			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 
 	def on_mode_selected(self, *args):
 		self.scale_selection = args[0]
@@ -98,16 +103,14 @@ class ModeScale(ModeTemplate):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
-		if self.scale_selection:
-			self.window.use_stable_pixbuf()
+		self.update_temp_pixbuf()
 		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
-		if self.scale_selection:
-			self.window.use_stable_pixbuf()
+		self.update_temp_pixbuf()
 		self.non_destructive_show_modif()
 
 	def get_width(self):
