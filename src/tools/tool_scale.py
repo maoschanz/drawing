@@ -17,18 +17,22 @@
 
 from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
 
-from .modes import ModeTemplate
+from .tools import ToolTemplate
 
-class ModeScale(ModeTemplate):
+class ToolScale(ToolTemplate):
 	__gtype_name__ = 'ModeScale'
 
+	implements_panel = True
+
 	def __init__(self, window):
-		super().__init__(window)
+		super().__init__('scale', _("Scale"), 'view-fullscreen-symbolic', window)
 		self.keep_proportions = True
 		self.x_press = 0
 		self.y_press = 0
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/modes/ui/mode_scale.ui')
+		self.add_tool_action_simple('scale_apply', self.on_apply)
+
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_scale.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.centered_box = builder.get_object('centered_box')
 		self.cancel_btn = builder.get_object('cancel_btn')
@@ -39,8 +43,10 @@ class ModeScale(ModeTemplate):
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
 
-		self.add_mode_action_boolean('keep_proportions', True, self.set_keep_proportions)
+		self.add_tool_action_boolean('keep_proportions', True, self.set_keep_proportions)
 		self.needed_width_for_long = 0
+
+		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def get_panel(self):
 		return self.bottom_panel
@@ -57,21 +63,22 @@ class ModeScale(ModeTemplate):
 		if self.keep_proportions:
 			self.proportion = self.get_width()/self.get_height()
 
-	def on_apply_mode(self):
+	def on_apply(self, *args):
 		w = self.get_width()
 		h = self.get_height()
 		if self.scale_selection:
-			self.window.active_tool().scale_pixbuf_to(w, h)
+			self.window.former_tool().scale_pixbuf_to(w, h)
 		else:
 			self.window.scale_pixbuf_to(w, h)
+			self.window.back_to_former_tool()
 
 	def on_draw(self, area, cairo_context, main_x, main_y):
 		if self.scale_selection:
 			self.window.use_stable_pixbuf()
-			self.window.active_tool().delete_temp()
-			selection_x = self.window.active_tool().selection_x
-			selection_y = self.window.active_tool().selection_y
-			self.window.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
+			self.window.former_tool().delete_temp()
+			selection_x = self.window.former_tool().selection_x
+			selection_y = self.window.former_tool().selection_y
+			self.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
 			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, -1 * main_x, -1 * main_y)
@@ -81,23 +88,22 @@ class ModeScale(ModeTemplate):
 		w = self.get_width()
 		h = self.get_height()
 		if self.scale_selection:
-			self.window.temporary_pixbuf = self.window.active_tool().selection_pixbuf.scale_simple( \
+			self.window.temporary_pixbuf = self.window.former_tool().selection_pixbuf.scale_simple( \
 				w, h, GdkPixbuf.InterpType.TILES)
 		else:
 			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 
-	def on_mode_selected(self, *args):
-		self.scale_selection = args[0]
+	def on_tool_selected(self, *args):
+		self.scale_selection = self.window.next_tool_applies_on_selection
 		if self.scale_selection:
-			w = self.window.active_tool().selection_pixbuf.get_width()
-			h = self.window.active_tool().selection_pixbuf.get_height()
+			w = self.window.former_tool().selection_pixbuf.get_width()
+			h = self.window.former_tool().selection_pixbuf.get_height()
 		else:
 			w = self.window.get_pixbuf_width()
 			h = self.window.get_pixbuf_height()
 		self.proportion = w/h
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
-		self.set_action_sensitivity('active_tool', False)
 
 	def on_width_changed(self, *args):
 		if self.keep_proportions:
@@ -128,12 +134,12 @@ class ModeScale(ModeTemplate):
 		self.x_press = event.x
 		self.y_press = event.y
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 
 	def adapt_to_window_size(self):
-		available_width = self.window.bottom_panel.get_allocated_width()
+		available_width = self.window.bottom_panel_box.get_allocated_width()
 		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
 			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
 				self.cancel_btn.get_allocated_width() + \

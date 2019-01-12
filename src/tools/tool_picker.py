@@ -9,6 +9,7 @@ from .utilities import get_rgb_for_xy
 class ToolPicker(ToolTemplate):
 	__gtype_name__ = 'ToolPicker'
 
+	implements_panel = False
 	use_size = False
 
 	def __init__(self, window, **kwargs):
@@ -21,6 +22,8 @@ class ToolPicker(ToolTemplate):
 		color = Gdk.RGBA(red=rgb_vals[0]/255, green=rgb_vals[1]/255, blue=rgb_vals[2]/255)
 		color.alpha = 1.0
 		if event.button == 3:
-			self.window.draw_mode.color_popover_r.color_widget.set_rgba(color)
+			self.window.color_popover_r.color_widget.set_rgba(color)
 		elif event.button == 1:
-			self.window.draw_mode.color_popover_l.color_widget.set_rgba(color)
+			self.window.color_popover_l.color_widget.set_rgba(color)
+
+		self.window.back_to_former_tool()

@@ -9,6 +9,9 @@ from .tools import ToolTemplate
 class ToolPolygon(ToolTemplate):
 	__gtype_name__ = 'ToolPolygon'
 
+	use_size = True
+	implements_panel = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('polygon', _("Polygon"), 'non-starred-symbolic', window)
 
@@ -159,7 +162,7 @@ class ToolPolygon(ToolTemplate):
 		}
 		return operation
 
-	def do_tool_operation(self, operation):
+	def do_tool_operation(self, operation): # TODO pas le mme line_join si on trace à main levée
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()

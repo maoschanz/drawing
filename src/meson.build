@@ -30,21 +30,18 @@ drawing_sources = [
   'gi_composites.py',
 
   'main.py',
-  'preferences.py',
   'window.py',
   'color_popover.py',
   'minimap.py',
   'utilities.py',
   'tools.py',
-  'modes.py',
 
   'properties.py',
+  'preferences.py',
 
-  'modes/mode_draw.py',
-  'modes/mode_crop.py',
-  'modes/mode_scale.py',
-  'modes/mode_rotate.py',
-
+  'tools/tool_crop.py',
+  'tools/tool_scale.py',
+  'tools/tool_rotate.py',
   'tools/tool_replace.py',
   'tools/tool_experiment.py',
   'tools/tool_line.py',
@@ -54,8 +51,7 @@ drawing_sources = [
   'tools/tool_select.py',
   'tools/tool_shape.py',
   'tools/tool_polygon.py',
-  'tools/tool_picker.py',
-  'tools/tool_eraser.py'
+  'tools/tool_picker.py'
 ]
 
 install_data(drawing_sources, install_dir: moduledir)

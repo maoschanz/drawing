@@ -1,11 +1,10 @@
 # methods that i don't want to implement in each tool
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk
+import cairo
 
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
-
-	use_size = True
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
@@ -18,7 +17,7 @@ class ToolTemplate():
 
 	# Actions
 
-	def add_tool_action(self, action_name, callback):
+	def add_tool_action_simple(self, action_name, callback):
 		self.window.add_action_simple(action_name, callback)
 
 	def add_tool_action_boolean(self, action_name, default, callback):
@@ -34,6 +33,12 @@ class ToolTemplate():
 		pass
 
 	# UI
+
+	def show_panel(self, visibility):
+		if self.implements_panel:
+			self.bottom_panel.set_visible(visibility)
+		else:
+			self.window.bottom_panel.set_visible(visibility)
 
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
@@ -57,13 +62,15 @@ class ToolTemplate():
 		self.label_widget = Gtk.Label(label=self.label)
 		box = Gtk.Box(
 			orientation=Gtk.Orientation.HORIZONTAL,
-			margin=2,
 			spacing=8,
 			tooltip_text=self.label
 		)
 		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)
+
+	def adapt_to_window_size(self):
+		pass
 
 	# Activation or not
 
@@ -77,6 +84,8 @@ class ToolTemplate():
 		return self.give_back_control()
 
 	def give_back_control(self):
+		self.window.use_stable_pixbuf()
+		self.non_destructive_show_modif()
 		return False
 
 	# History
@@ -91,6 +100,17 @@ class ToolTemplate():
 		self.window.add_operation_to_history(operation)
 
 	# Drawing
+
+	def on_draw(self, area, cairo_context, main_x, main_y):
+		cairo_context.set_source_surface(self.window.get_surface(), -1*main_x, -1*main_y)
+		cairo_context.paint()
+
+	def show_pixbuf_content_at(self, pixbuf, x, y):
+		if pixbuf is None:
+			return
+		w_context = cairo.Context(self.window.surface)
+		Gdk.cairo_set_source_pixbuf(w_context, pixbuf, x, y)
+		w_context.paint()
 
 	def non_destructive_show_modif(self):
 		self.window.drawing_area.queue_draw()

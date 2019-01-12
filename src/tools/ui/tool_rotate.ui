@@ -12,14 +12,14 @@
   <!-- -->
 
   <object class="GtkActionBar" id="bottom-panel">
-    <property name="visible">True</property>
+    <property name="visible">False</property>
     <property name="expand">True</property>
 
     <child>
       <object class="GtkButton" id="cancel_btn">
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
-        <property name="action_name">win.cancel_and_draw</property>
+        <property name="action_name">win.back_to_former_tool</property>
         <style>
           <class name="destructive-action"/>
         </style>
@@ -55,7 +55,7 @@
     <child>
       <object class="GtkButton" id="apply_btn">
         <property name="label" translatable="yes">Apply</property>
-        <property name="action_name">win.apply_and_draw</property>
+        <property name="action_name">win.rotate_apply</property>
         <property name="visible">True</property>
         <style>
           <class name="suggested-action"/>

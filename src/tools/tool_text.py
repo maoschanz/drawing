@@ -8,6 +8,7 @@ from .tools import ToolTemplate
 class ToolText(ToolTemplate):
 	__gtype_name__ = 'ToolText'
 
+	implements_panel = False
 	use_size = False
 
 	def __init__(self, window, **kwargs):

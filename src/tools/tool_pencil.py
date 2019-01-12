@@ -8,6 +8,9 @@ from .tools import ToolTemplate
 class ToolPencil(ToolTemplate):
 	__gtype_name__ = 'ToolPencil'
 
+	use_size = True
+	implements_panel = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('pencil', _("Pencil"), 'document-edit-symbolic', window)
 		self.past_x = -1.0
@@ -18,9 +21,11 @@ class ToolPencil(ToolTemplate):
 		self.selected_shape_label = _("Round")
 		self.selected_cap_id = cairo.LineCap.ROUND
 		self.selected_join_id = cairo.LineCap.ROUND
+		self.selected_operator = cairo.Operator.OVER
 		self.use_dashes = False
 
 		self.add_tool_action_enum('pencil_shape', 'round', self.on_change_active_shape)
+		self.add_tool_action_enum('pencil_operator', 'over', self.on_change_active_operator)
 		self.add_tool_action_boolean('pencil_dashes', self.use_dashes, self.set_dashes_state)
 
 	def set_dashes_state(self, *args):
@@ -48,6 +53,24 @@ class ToolPencil(ToolTemplate):
 			self.selected_cap_id = cairo.LineCap.ROUND
 			self.selected_join_id = cairo.LineJoin.ROUND
 			self.selected_shape_label = _("Round")
+
+	def on_change_active_operator(self, *args):
+		state_as_string = args[1].get_string()
+		if state_as_string == args[0].get_state().get_string():
+			return
+		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		if state_as_string == 'difference':
+			self.selected_operator = cairo.Operator.DIFFERENCE
+			self.selected_operator_label = _("Difference")
+		elif state_as_string == 'exclusion':
+			self.selected_operator = cairo.Operator.EXCLUSION
+			self.selected_operator_label = _("Exclusion")
+		elif state_as_string == 'clear':
+			self.selected_operator = cairo.Operator.CLEAR
+			self.selected_operator_label = _("Eraser")
+		else:
+			self.selected_operator = cairo.Operator.OVER
+			self.selected_operator_label = _("Classic")
 
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_pencil.ui")
@@ -91,7 +114,7 @@ class ToolPencil(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'operator': cairo.Operator.OVER,
+			'operator': self.selected_operator,
 			'line_width': self.tool_width,
 			'line_cap': self.selected_cap_id,
 			'line_join': self.selected_join_id,

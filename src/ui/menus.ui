@@ -66,21 +66,6 @@
       </item>
     </section>
     <section>
-      <attribute name="label" translatable="yes">Canvas</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Crop</attribute>
-        <attribute name="action">win.pic_crop</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Scale</attribute>
-        <attribute name="action">win.pic_scale</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Rotate</attribute>
-        <attribute name="action">win.pic_rotate</attribute>
-      </item>
-    </section>
-    <section>
       <item>
         <attribute name="label" translatable="yes">Show tools names</attribute>
         <attribute name="action">win.show_labels</attribute>
@@ -117,7 +102,7 @@
     <section>
       <item>
         <attribute name="action">win.open</attribute>
-        <attribute name="label" translatable="yes">Open an image</attribute>
+        <attribute name="label" translatable="yes">Open an image here</attribute>
       </item>
       <item>
         <attribute name="action">app.open</attribute>
@@ -147,7 +132,7 @@
           <attribute name="verb-icon">document-new-symbolic</attribute>
         </item>
         <item>
-          <attribute name="label" translatable="yes">Open an image</attribute>
+          <attribute name="label" translatable="yes">Open an image here</attribute>
           <attribute name="action">win.open</attribute>
           <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
@@ -224,9 +209,12 @@
       </section>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Show tools names</attribute>
-          <attribute name="action">win.show_labels</attribute>
+          <attribute name="label" translatable="yes">Image properties</attribute>
+          <attribute name="action">win.properties</attribute>
+          <attribute name="verb-icon">document-properties-symbolic</attribute>
         </item>
+      </section>
+      <section>
         <item>
           <attribute name="label" translatable="yes">Preferences</attribute>
           <attribute name="action">app.settings</attribute>
@@ -236,33 +224,18 @@
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">_Image</attribute>
+      <attribute name="label" translatable="yes">_View</attribute>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Show the preview</attribute>
+          <attribute name="label" translatable="yes">Toggle the preview</attribute>
           <attribute name="action">win.toggle_preview</attribute>
           <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Crop the canvas</attribute>
-          <attribute name="action">win.pic_crop</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Scale the canvas</attribute>
-          <attribute name="action">win.pic_scale</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Rotate the canvas</attribute>
-          <attribute name="action">win.pic_rotate</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Image properties</attribute>
-          <attribute name="action">win.properties</attribute>
-          <attribute name="verb-icon">document-properties-symbolic</attribute>
+          <attribute name="label" translatable="yes">Show tools names</attribute>
+          <attribute name="action">win.show_labels</attribute>
         </item>
       </section>
     </submenu>
@@ -297,12 +270,11 @@
     <submenu>
       <attribute name="label" translatable="yes">_Tools</attribute>
       <section>
-        <submenu>
-          <attribute name="label" translatable="yes">Tool options</attribute>
-        </submenu>
       </section>
-      <section>
-      </section>
+    </submenu>
+
+    <submenu>
+      <attribute name="label" translatable="yes">_Options</attribute>
     </submenu>
 
     <submenu>

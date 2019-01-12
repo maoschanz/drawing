@@ -8,6 +8,9 @@ from .tools import ToolTemplate
 class ToolExperiment(ToolTemplate):
 	__gtype_name__ = 'ToolExperiment'
 
+	use_size = True
+	implements_panel = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('experiment', _("Experiment"), 'applications-science-symbolic', window)
 		self.past_x = -1.0

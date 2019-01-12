@@ -9,6 +9,7 @@ from .utilities import save_pixbuf_at
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
+	implements_panel = False
 	use_size = False
 	closing_precision = 10
 
@@ -26,17 +27,17 @@ class ToolSelect(ToolTemplate):
 
 		#############################
 
-		self.add_tool_action('selection_unselect', self.action_unselect) # pareil que give_back_control ?
-		self.add_tool_action('selection_cut', self.action_cut)
-		self.add_tool_action('selection_copy', self.action_copy)
-		self.add_tool_action('selection_delete', self.action_selection_delete)
-		self.add_tool_action('selection_crop', self.action_selection_crop)
-		self.add_tool_action('selection_scale', self.action_selection_scale)
-		self.add_tool_action('selection_rotate', self.action_selection_rotate)
-		self.add_tool_action('selection_export', self.action_selection_export)
-		self.add_tool_action('import', self.action_import)
-		self.add_tool_action('paste', self.action_paste)
-		self.add_tool_action('select_all', self.action_select_all)
+		self.add_tool_action_simple('selection_unselect', self.action_unselect) # pareil que give_back_control ?
+		self.add_tool_action_simple('selection_cut', self.action_cut)
+		self.add_tool_action_simple('selection_copy', self.action_copy)
+		self.add_tool_action_simple('selection_delete', self.action_selection_delete)
+		self.add_tool_action_simple('selection_crop', self.action_selection_crop)
+		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
+		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
+		self.add_tool_action_simple('selection_export', self.action_selection_export)
+		self.add_tool_action_simple('import', self.action_import)
+		self.add_tool_action_simple('paste', self.action_paste)
+		self.add_tool_action_simple('select_all', self.action_select_all)
 
 		#############################
 
@@ -67,6 +68,8 @@ class ToolSelect(ToolTemplate):
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
 		self.update_actions_state()
+		if self.selection_is_active:
+			self.show_selection_overlay()
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
@@ -122,7 +125,7 @@ class ToolSelect(ToolTemplate):
 			if self.selection_is_active:
 				self.restore_pixbuf()
 				self.delete_temp()
-				self.window.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
+				self.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
 				self.apply_to_pixbuf()
 			self.reset_selection()
 			return False
@@ -341,22 +344,19 @@ class ToolSelect(ToolTemplate):
 		self.apply_to_pixbuf()
 
 	def action_selection_scale(self, *args):
-		self.selection_has_been_used = True # XXX pas forcément !!
-		self.window.active_mode().on_cancel_mode()
-		self.window.scale_mode.on_mode_selected(True)
-		self.window.update_bottom_panel('scale')
+		self.set_action_sensitivity('active_tool', False)
+		self.window.next_tool_applies_on_selection = True
+		self.window.enable_tool('scale', False)
 
 	def action_selection_crop(self, *args):
-		self.selection_has_been_used = True # XXX pas forcément !!
-		self.window.active_mode().on_cancel_mode()
-		self.window.crop_mode.on_mode_selected(True)
-		self.window.update_bottom_panel('crop')
+		self.set_action_sensitivity('active_tool', False)
+		self.window.next_tool_applies_on_selection = True
+		self.window.enable_tool('crop', False)
 
-	def action_selection_rotate(self, *args): # TODO
-		self.selection_has_been_used = True # XXX pas forcément !!
-		self.window.active_mode().on_cancel_mode()
-		self.window.rotate_mode.on_mode_selected(True)
-		self.window.update_bottom_panel('rotate')
+	def action_selection_rotate(self, *args): # TODO pus d'angles
+		self.set_action_sensitivity('active_tool', False)
+		self.window.next_tool_applies_on_selection = True
+		self.window.enable_tool('rotate', False)
 
 	def action_selection_export(self, *args):
 		gfile = self.window.file_chooser_save('')
@@ -438,7 +438,7 @@ class ToolSelect(ToolTemplate):
 	def show_selection_overlay(self):
 		self.restore_pixbuf()
 		self.delete_temp()
-		self.window.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
+		self.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
 		w_context = cairo.Context(self.window.get_surface())
 		w_context.new_path()
 		w_context.set_dash([3, 3])
@@ -462,14 +462,26 @@ class ToolSelect(ToolTemplate):
 		return w_context.copy_path()
 
 	def scale_pixbuf_to(self, new_width, new_height):
+		self.selection_has_been_used = True
+		self.window.enable_tool('select', False)
+		self.set_action_sensitivity('active_tool', True)
+		self.window.next_tool_applies_on_selection = False
 		self.selection_pixbuf = self.selection_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
 		self.create_selection_from_arbitrary_pixbuf()
 
 	def rotate_pixbuf(self, angle):
+		self.selection_has_been_used = True
+		self.window.enable_tool('select', False)
+		self.set_action_sensitivity('active_tool', True)
+		self.window.next_tool_applies_on_selection = False
 		self.selection_pixbuf = self.selection_pixbuf.rotate_simple(angle)
 		self.create_selection_from_arbitrary_pixbuf()
 
 	def action_crop(self, x, y, width, height):
+		self.selection_has_been_used = True
+		self.window.enable_tool('select', False)
+		self.set_action_sensitivity('active_tool', True)
+		self.window.next_tool_applies_on_selection = False
 		self.crop_selection_surface(x, y, width, height)
 		self.create_selection_from_arbitrary_pixbuf()
 
@@ -537,5 +549,4 @@ class ToolSelect(ToolTemplate):
 		new_pixbuf.fill(0)
 		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
 		self.selection_pixbuf = new_pixbuf
-
 

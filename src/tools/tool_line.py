@@ -8,6 +8,9 @@ from .tools import ToolTemplate
 class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
 
+	use_size = True
+	implements_panel = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'list-remove-symbolic', window)
 

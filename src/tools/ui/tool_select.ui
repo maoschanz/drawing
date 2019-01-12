@@ -35,8 +35,12 @@
 
   <menu id="options-menu">
     <section>
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+      </item>
       <submenu id="left-click-menu">
-        <attribute name="label" translatable="yes">Actions</attribute>
+        <attribute name="label" translatable="yes">Other actions</attribute>
         <section>
           <item>
             <attribute name="label" translatable="yes">Unselect</attribute>

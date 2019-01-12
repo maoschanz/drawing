@@ -19,7 +19,7 @@
   <!-- -->
 
   <object class="GtkActionBar" id="bottom-panel">
-    <property name="visible">True</property>
+    <property name="visible">False</property>
     <property name="expand">True</property>
 
     <child>
@@ -27,7 +27,7 @@
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
-        <property name="action_name">win.cancel_and_draw</property>
+        <property name="action_name">win.back_to_former_tool</property>
         <style>
           <class name="destructive-action"/>
         </style>
@@ -44,6 +44,21 @@
       <object class="GtkBox" id="centered_box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
+        <property name="orientation">horizontal</property>
+
+        <child>
+          <object class="GtkCheckButton">
+            <property name="label" translatable="yes">Keep proportions</property>
+            <property name="visible">True</property>
+            <property name="action_name">win.keep_proportions</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+          </object>
+        </child>
 
         <child>
           <object class="GtkBox">
@@ -99,9 +114,9 @@
     <child>
       <object class="GtkButton" id="apply_btn">
         <property name="label" translatable="yes">Apply</property>
-        <property name="action_name">win.apply_and_draw</property>
-        <property name="visible">True</property>
+        <property name="action_name">win.scale_apply</property>
         <property name="valign">center</property>
+        <property name="visible">True</property>
         <style>
           <class name="suggested-action"/>
         </style>

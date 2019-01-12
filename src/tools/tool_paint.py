@@ -9,6 +9,9 @@ from .utilities import get_rgb_for_xy
 class ToolPaint(ToolTemplate):
 	__gtype_name__ = 'ToolPaint'
 
+	use_size = True
+	implements_panel = False
+
 	def __init__(self, window, **kwargs):
 		super().__init__('paint', _("Paint"), 'edit-clear-all-symbolic', window)
 		self.new_color = None
