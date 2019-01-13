@@ -10,35 +10,21 @@ PNG, JPEG and BMP files are supported.
 
 #### And a few of their options
 
-- Pencil
-    - Dashes
-    - Eraser
-- Shape
-    - Rectangle
-    - Circle
-    - Oval
-- Polygon, free shape
-- Line
-    - Straight line
-    - Arc
-    - Arrow
-    - Dashes
-- Insert text
-- Selection (rectangle or free shape)
-    - Drag
-    - Cut/copy
-    - Paste/import from
-    - Export to
-- Crop
-- Scale
-    - Keep proportions or not
-- Rotate
-
-#### Future tools ?
-
-- Painting
-- Brush
-- Gradient
+| Tool      | Options   | Remarks   |
+|-----------|-----------|-----------|
+| Pencil    | Dashes, eraser |      |
+| Shape     | Rectangle, circle, oval | |
+| Polygon, free shape | Filling |   |
+| Line      | Straight line/Arc, arrow, dashes | |
+| Insert text | Font and font size | |
+| Selection | Rectangle/free shape (drag, delete, cut, copy, export, scale, crop, rotate) | Is activated when you paste or import an image |
+| Paint     |           | Not done yet |
+| Brush     |           | Not done yet |
+| Gradient  |           | Not done yet |
+| Color picker |        |           |
+| Crop      |           | The displayed picture isn't the at the actual scale. |
+| Scale     | Keep proportions |    |
+| Rotate    |           |           |
 
 ## Installation
 

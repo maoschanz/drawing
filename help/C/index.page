@@ -3,9 +3,8 @@
       type="guide" id="index">
 
   <info>
-    <title type="link">Draw</title>
-    <title type="text">Draw</title>
-    <revision pkgversion="3.12" date="2018-02-24" status="review"/>
+    <title type="text">Drawing</title>
+    <revision pkgversion="0.10" date="2019-01-13"/>
 
     <credit type="author">
       <name>Romain F. T.</name>
@@ -15,39 +14,47 @@
   </info>
 
   <title>
-  <media type="image" mime="image/png" src="figures/icon.png"
-  its:translate="no"/>
-  Draw
+    <media type="image" mime="image/png"
+    src="figures/icon.png"
+    height="48"
+    its:translate="no"/>
+    Drawing
   </title>
 
-  <p>"Draw" is a basic drawing application for the GNOME desktop. You can edit or create pictures (PNG, JPEG or BMP) with tools such as:</p>
+  <p>"Drawing" is a basic drawing application for the GNOME desktop.</p>
+  <p>You can edit or create pictures (PNG, JPEG or BMP) using tools, which can be chosen in the side panel. More options are available in the bottom bar, such as the tool size and color.</p>
+  <p>The window's title and subtitle should provide useful informations about how to use the active tool.</p>
   <list>
-    <item><p>Pencil</p></item>
-    <item><p>Shape</p></item>
-    <item><p>Line and arc</p></item>
-    <item><p>Text</p></item>
-    <item><p>Paint</p></item>
-    <item><p>Eraser (PNG with transparency only)</p></item>
+    <item>
+      <p>Pencil: The pencil draws following the pointer, and according to the chosen color. Its options include the shape of the lead, and the edition mode: use the "eraser" mode to delete existing colors.</p>
+    </item>
+    <item>
+      <p>Selection: Define an area, and edit it (delete, cut, copy, scale, crop, rotate, or export it). Clicking on <gui style="menuitem">Paste</gui>, <gui style="menuitem">Import</gui> or <gui style="menuitem">Select all</gui> will trigger this tool.</p>
+    </item>
+    <item>
+      <p>Basic shape: Draw rectangles, ovals and circles, with various filling options.</p>
+    </item>
+    <item>
+      <p>Line: This tool can draw straight lines or arcs. Its options include the shape of the lead, and the possibility to draw arrows.</p>
+    </item>
+    <item>
+      <p>Text: Insert text on the image. Don't forget to confirm the insertion using the <gui style="menuitem">Insert here</gui> button.</p>
+    </item>
+    <item>
+      <p>Paint</p>
+    </item>
+    <item>
+      <p>Polygon: Draw free shapes, with various filling options.</p>
+    </item>
+    <item>
+      <p>Crop: Change the size of the canvas, using the values in the bottom bar, or with the left click. Once resized, the content of the former canvas can be adjusted by moving it with the right-click.</p>
+    </item>
+    <item>
+      <p>Scale: Resize the image, using the values in the bottom bar, or with the left click.</p>
+    </item>
+    <item>
+      <p>Rotate: Change the orientation of the canvas, using the value in the bottom bar, or with the left click.</p>
+    </item>
   </list>
-  <p>Tools can be chosen in the side panel. More options are available in the bottom bar, such as the tool size and color.</p>
-
-  <!-- <section id="pencil"> -->
-  <!--   <title>???????</title> -->
-  <!--   <p>Use the <gui style="button">Add Pictures</gui> button to append images to your wallpaper. It's possible to use a picture several times in the same slideshow.</p> -->
-  <!--   <p>T.......he <gui style="button">Move up</gui> and <gui style="button">Move down</gui> buttons, or remove them with <gui style="button">Delete</gui> button....ow.</p> -->
-  <!-- </section> -->
-  <!-- <section id="shape"> -->
-  <!--   <title>Adjust images duration</title> -->
-  <!--   <p>Depe.......................n seconds.</p> -->
-  <!--   <p>If you want to d...........................tions included.</p> -->
-  <!-- </section> -->
-  <!-- <section id="text"> -->
-  <!--   <title>Text</title> -->
-  <!--   <p>Yo............om the <gui style="button">Start time</gui> menu. This............................ daylight</p> -->
-  <!-- </section> -->
-  <!-- <section id="save-apply"> -->
-  <!--   <title>Save or export</title> -->
-  <!--   <p>Save y....ith the <gui style="menuitem">Save</gui> butt...................... the <gui style="menuitem">Export as PNG</gui> menu item.</p> -->
-  <!-- </section> -->
 
 </page>

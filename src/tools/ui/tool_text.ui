@@ -22,7 +22,6 @@
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="homogeneous">True</property>
             <property name="orientation">horizontal</property>
             <style>
               <class name="linked"/>
@@ -42,16 +41,11 @@
             <child>
               <object class="GtkButton" id="insert_btn">
                 <property name="visible">True</property>
-                <property name="tooltip_text" translatable="yes">Insert text here</property>
+                <property name="tooltip_text" translatable="yes">Insert here</property>
+                <property name="label" translatable="yes">Insert here</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">insert-text-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
