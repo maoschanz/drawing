@@ -55,7 +55,7 @@ class ToolCrop(ToolTemplate):
 			return _("Cropping the canvas")
 
 	def on_tool_selected(self, *args):
-		self.crop_selection = self.window.next_tool_applies_on_selection
+		self.crop_selection = (self.window.hijacker_id is not None)
 		self._x = 0
 		self._y = 0
 		if self.crop_selection:

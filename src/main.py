@@ -124,7 +124,6 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('app.help', ['F1'])
 		self.set_accels_for_action('app.quit', ['<Ctrl>q'])
 
-		# TODO mettre à jour la fentre qui résume ça
 		self.set_accels_for_action('win.main_color', ['<Ctrl>l'])
 		self.set_accels_for_action('win.secondary_color', ['<Ctrl>r'])
 		self.set_accels_for_action('win.exchange_color', ['<Ctrl>e'])
@@ -136,12 +135,13 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.selection_unselect', ['<Ctrl>u'])
 		self.set_accels_for_action('win.selection_cut', ['<Ctrl>x'])
 		self.set_accels_for_action('win.selection_copy', ['<Ctrl>c'])
-		self.set_accels_for_action('win.selection_delete', ['<Ctrl>Delete'])
+		self.set_accels_for_action('win.selection_delete', ['Delete'])
 
 		self.set_accels_for_action('win.main_menu', ['F10'])
 		self.set_accels_for_action('win.options_menu', ['<Shift>F10'])
 		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
+		self.set_accels_for_action('win.open', ['<Ctrl><Shift>o'])
 		self.set_accels_for_action('win.close', ['<Ctrl>w'])
 		self.set_accels_for_action('win.save', ['<Ctrl>s'])
 		self.set_accels_for_action('win.save_as', ['<Ctrl><Shift>s'])

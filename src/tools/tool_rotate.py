@@ -46,7 +46,7 @@ class ToolRotate(ToolTemplate):
 			return _("Rotating the canvas")
 
 	def on_tool_selected(self, *args):
-		self.rotate_selection = self.window.next_tool_applies_on_selection
+		self.rotate_selection = (self.window.hijacker_id is not None)
 		self.angle_btn.set_value(0.0)
 		self.update_temp_pixbuf()
 

@@ -98,6 +98,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers = []
 		self.active_tool_id = 'pencil'
 		self.former_tool_id = 'pencil'
+		self.hijacker_id = None
 		self.is_clicked = False
 		self.header_bar = None
 		self.main_menu_btn = None
@@ -107,7 +108,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.gfile = None
 		self.filename = None
 		self._is_saved = True
-		self.next_tool_applies_on_selection = False
 		self.needed_width_for_long = 0
 
 		width = self._settings.get_int('default-width')
@@ -407,12 +407,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_former_tool(self, *args):
-		if self.next_tool_applies_on_selection:
-			self.enable_tool('select', False)
-			self.next_tool_applies_on_selection = False
-			self.lookup_action('active_tool').set_enabled(True)
+		if self.hijacker_id is not None:
+			self.hijack_end()
 		else:
 			self.tools[self.former_tool_id].row.set_active(True)
+
+	def hijack_begin(self, hijacker_id, target_id):
+		self.lookup_action('active_tool').set_enabled(False)
+		self.hijacker_id = hijacker_id
+		self.enable_tool(target_id, False)
+
+	def hijack_end(self):
+		if self.hijacker_id is not None:
+			self.enable_tool(self.hijacker_id, False)
+		self.hijacker_id = None
+		self.lookup_action('active_tool').set_enabled(True)
 
 	# FILE MANAGEMENT
 

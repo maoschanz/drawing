@@ -344,19 +344,13 @@ class ToolSelect(ToolTemplate):
 		self.apply_to_pixbuf()
 
 	def action_selection_scale(self, *args):
-		self.set_action_sensitivity('active_tool', False)
-		self.window.next_tool_applies_on_selection = True
-		self.window.enable_tool('scale', False)
+		self.window.hijack_begin(self.id, 'scale')
 
 	def action_selection_crop(self, *args):
-		self.set_action_sensitivity('active_tool', False)
-		self.window.next_tool_applies_on_selection = True
-		self.window.enable_tool('crop', False)
+		self.window.hijack_begin(self.id, 'crop')
 
-	def action_selection_rotate(self, *args): # TODO pus d'angles
-		self.set_action_sensitivity('active_tool', False)
-		self.window.next_tool_applies_on_selection = True
-		self.window.enable_tool('rotate', False)
+	def action_selection_rotate(self, *args): # TODO plus d'angles
+		self.window.hijack_begin(self.id, 'rotate')
 
 	def action_selection_export(self, *args):
 		gfile = self.window.file_chooser_save('')
@@ -463,25 +457,19 @@ class ToolSelect(ToolTemplate):
 
 	def scale_pixbuf_to(self, new_width, new_height):
 		self.selection_has_been_used = True
-		self.window.enable_tool('select', False)
-		self.set_action_sensitivity('active_tool', True)
-		self.window.next_tool_applies_on_selection = False
+		self.window.hijack_end()
 		self.selection_pixbuf = self.selection_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
 		self.create_selection_from_arbitrary_pixbuf()
 
 	def rotate_pixbuf(self, angle):
 		self.selection_has_been_used = True
-		self.window.enable_tool('select', False)
-		self.set_action_sensitivity('active_tool', True)
-		self.window.next_tool_applies_on_selection = False
+		self.window.hijack_end()
 		self.selection_pixbuf = self.selection_pixbuf.rotate_simple(angle)
 		self.create_selection_from_arbitrary_pixbuf()
 
 	def action_crop(self, x, y, width, height):
 		self.selection_has_been_used = True
-		self.window.enable_tool('select', False)
-		self.set_action_sensitivity('active_tool', True)
-		self.window.next_tool_applies_on_selection = False
+		self.window.hijack_end()
 		self.crop_selection_surface(x, y, width, height)
 		self.create_selection_from_arbitrary_pixbuf()
 

@@ -94,7 +94,7 @@ class ToolScale(ToolTemplate):
 			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 
 	def on_tool_selected(self, *args):
-		self.scale_selection = self.window.next_tool_applies_on_selection
+		self.scale_selection = (self.window.hijacker_id is not None)
 		if self.scale_selection:
 			w = self.window.former_tool().selection_pixbuf.get_width()
 			h = self.window.former_tool().selection_pixbuf.get_height()

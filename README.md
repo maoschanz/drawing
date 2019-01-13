@@ -2,28 +2,37 @@
 
 ## A drawing application for the GNOME desktop.
 
-This application is a simple image editor using Cairo for basic drawing operations, and following GNOME interface guidelines.
+This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations, and following GNOME interface guidelines.
 
 PNG, JPEG and BMP files are supported.
 
 ### Available tools
 
+#### And a few of their options
+
 - Pencil
+    - Dashes
+    - Eraser
 - Shape
     - Rectangle
     - Circle
     - Oval
 - Polygon, free shape
-- Line, arc, arrow, dashes
-- Text
-- Eraser
+- Line
+    - Straight line
+    - Arc
+    - Arrow
+    - Dashes
+- Insert text
 - Selection (rectangle or free shape)
     - Drag
     - Cut/copy
     - Paste/import from
     - Export to
-
-The app can crop, scale or rotate the canvas or the selection.
+- Crop
+- Scale
+    - Keep proportions or not
+- Rotate
 
 #### Future tools ?
 
@@ -42,6 +51,8 @@ TODO
 [See here](./INSTALL_FROM_SOURCE.md)
 
 ## Screenshots
+
+(not up-to-date)
 
 ### GNOME/Budgie UI
 
