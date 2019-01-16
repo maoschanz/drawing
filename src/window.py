@@ -45,7 +45,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
 
-	paned_area = GtkTemplate.Child()
 	tools_panel = GtkTemplate.Child()
 	toolbar_box = GtkTemplate.Child()
 	drawing_area = GtkTemplate.Child()
@@ -250,6 +249,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.set_subtitle(subtitle)
 
 	def set_ui_bars(self, decorations):
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		self.placeholder_model = builder.get_object('tool-placeholder')
 		if decorations == 'csd':
 			self.build_headerbar()
 			self.set_titlebar(self.header_bar)
@@ -266,26 +267,26 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_show_menubar(True)
 
 	def build_toolbar(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/ui/toolbar.ui")
-		toolbar = builder.get_object("toolbar")
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/toolbar.ui')
+		toolbar = builder.get_object('toolbar')
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
 
 	def build_headerbar(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/ui/headerbar.ui")
-		self.header_bar = builder.get_object("header_bar")
-		self.save_label = builder.get_object("save_label")
-		self.save_icon = builder.get_object("save_icon")
-		add_btn = builder.get_object("add_btn")
-		self.add_label = builder.get_object("add_label")
-		self.add_icon = builder.get_object("add_icon")
-		self.main_menu_btn = builder.get_object("main_menu_btn")
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar.ui')
+		self.header_bar = builder.get_object('header_bar')
+		self.save_label = builder.get_object('save_label')
+		self.save_icon = builder.get_object('save_icon')
+		add_btn = builder.get_object('add_btn')
+		self.add_label = builder.get_object('add_label')
+		self.add_icon = builder.get_object('add_icon')
+		self.main_menu_btn = builder.get_object('main_menu_btn')
 
-		builder.add_from_resource("/com/github/maoschanz/Drawing/ui/menus.ui")
-		main_menu = builder.get_object("window-menu")
+		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		main_menu = builder.get_object('window-menu')
 		menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, main_menu)
 		self.main_menu_btn.set_popover(menu_popover)
-		add_menu = builder.get_object("add-menu")
+		add_menu = builder.get_object('add-menu')
 		add_popover = Gtk.Popover.new_from_model(add_btn, add_menu)
 		add_btn.set_popover(add_popover)
 
@@ -349,11 +350,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_tools_labels_visibility(self, visible):
 		if visible:
 			self.tools_panel.show_all()
-			self.paned_area.set_position(self.tools_panel.get_preferred_width()[0])
 		else:
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
-			self.paned_area.set_position(0)
 
 	def on_show_labels_setting_changed(self, *args):
 		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
@@ -647,6 +646,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_color_buttons(self):
 		white = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0)
 		black = Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0)
+		#black = Gdk.RGBA(red=0.8, green=0.5, blue=0.3, alpha=0.8) # TODO as settings
 		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, self.r_btn_image, white)
 		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, black)
 
@@ -679,12 +679,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_options_menu(self):
 		widget = self.active_tool().get_options_widget()
 		model = self.active_tool().get_options_model()
-		options_menu = self.app.get_menubar().get_item_link(5, Gio.MENU_LINK_SUBMENU)
 		if model is None:
-			options_menu.remove_all()
+			self.app.get_menubar().remove(5)
+			self.app.get_menubar().insert_submenu(5, _("Options"), self.placeholder_model)
 		else:
-			options_menu.remove_all()
-			options_menu.append_section(None, model)
+			self.app.get_menubar().remove(5)
+			self.app.get_menubar().insert_submenu(5, _("Options"), model)
 		if widget is not None:
 			self.options_btn.set_popover(widget)
 		elif model is not None:

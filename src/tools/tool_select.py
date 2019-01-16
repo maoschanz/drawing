@@ -14,7 +14,7 @@ class ToolSelect(ToolTemplate):
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):
-		super().__init__('select', _("Selection"), 'edit-select-symbolic', window)
+		super().__init__('select', _("Selection"), 'select-symbolic', window)
 
 		self.selection_x = 1
 		self.selection_y = 1

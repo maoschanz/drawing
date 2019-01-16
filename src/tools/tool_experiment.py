@@ -18,10 +18,10 @@ class ToolExperiment(ToolTemplate):
 		self._path = None
 		self.main_color = None
 
-		self.selected_operator_label = "OVER"
-		self.selected_operator = cairo.Operator.OVER
+		self.selected_operator_label = "DIFFERENCE"
+		self.selected_operator = cairo.Operator.DIFFERENCE
 
-		self.add_tool_action_enum('experiment_operator', 'OVER', self.on_change_active_operator)
+		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE', self.on_change_active_operator)
 
 	def on_change_active_operator(self, *args):
 		state_as_string = args[1].get_string()

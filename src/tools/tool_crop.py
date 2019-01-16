@@ -25,7 +25,7 @@ class ToolCrop(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('crop', _("Crop"), 'view-restore-symbolic', window)
+		super().__init__('crop', _("Crop"), 'crop-symbolic', window)
 		self.crop_selection = False
 		self.x_press = 0
 		self.y_press = 0

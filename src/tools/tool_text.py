@@ -12,7 +12,7 @@ class ToolText(ToolTemplate):
 	use_size = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('text', _("Text"), 'font-x-generic-symbolic', window)
+		super().__init__('text', _("Text"), 'text-symbolic', window)
 
 		self.main_color = None
 		self.secondary_color = None

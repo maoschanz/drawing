@@ -32,7 +32,7 @@ class Application(Gtk.Application):
 
 	def __init__(self, version):
 		super().__init__(application_id='com.github.maoschanz.Drawing',
-						flags=Gio.ApplicationFlags.HANDLES_OPEN)
+		                 flags=Gio.ApplicationFlags.HANDLES_OPEN)
 
 		GLib.set_application_name('Drawing')
 		GLib.set_prgname('com.github.maoschanz.Drawing')
@@ -43,10 +43,13 @@ class Application(Gtk.Application):
 			self.on_startup()
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
-							GLib.OptionArg.NONE, "Version", None)
+		                     GLib.OptionArg.NONE, "Version", None)
 
 		self.connect('open', self.on_open_from_cli)
 		self.connect('handle-local-options', self.on_local_options)
+
+		icon_theme = Gtk.IconTheme.get_default()
+		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/tools/icons')
 
 	def on_startup(self):
 		self.build_actions()
