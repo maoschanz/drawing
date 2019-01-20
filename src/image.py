@@ -22,7 +22,7 @@ from .gi_composites import GtkTemplate
 
 from .properties import DrawingPropertiesDialog
 from .utilities import utilities_save_pixbuf_at
-from .utilities import utilities_show_overlay_on_surface
+from .utilities import utilities_show_overlay_on_context
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/image.ui')
 class DrawingImage(Gtk.Layout):
@@ -63,6 +63,7 @@ class DrawingImage(Gtk.Layout):
 		self.gfile = None
 		self.filename = None
 		self._is_saved = True
+		self.edition_state = 'surface'
 
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
@@ -155,32 +156,48 @@ class DrawingImage(Gtk.Layout):
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
-		main_x, main_y = self.scroll_x, self.scroll_y
-
-		cairo_context.set_source_surface(self.get_surface(), -1*main_x, -1*main_y)
-		cairo_context.paint()
-
-	def update_whole_surface(self, with_overlay):
-		main_x, main_y = self.scroll_x, self.scroll_y
-		cairo_context = cairo.Context(self.get_surface())
-
-		#Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, -1*main_x, -1*main_y)
-		#cairo_context.paint() # XXX redondant avec use_stable_pixbuf ???
-		#self.use_stable_pixbuf() oulah non surtout pas ça
-
-		if self.is_using_temp():
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.temp_pixbuf, main_x, main_y)
+		print('<on_draw>')
+		print(self.edition_state)
+		if self.edition_state == 'selection':
+			cairo_context.set_source_surface(self.get_surface(), \
+				-1*self.scroll_x, -1*self.scroll_y)
 			cairo_context.paint()
+			if self.is_using_selection() and self.selection_pixbuf is not None:
+				self.delete_former_selection()
+				Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf,
+					self.selection_x, self.selection_y)
+				cairo_context.paint()
+				utilities_show_overlay_on_context(cairo_context, self.get_selection_path(), True)
 
-		elif self.is_using_selection() and self.selection_pixbuf is not None:
-			self.window.active_tool().delete_temp()
+		elif self.edition_state == 'selection-without-overlay':
+			cairo_context.set_source_surface(self.get_surface(), \
+				-1*self.scroll_x, -1*self.scroll_y)
+			cairo_context.paint()
+			self.delete_former_selection()
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf,
-				self.get_selection_x(), self.get_selection_y())
+				self.selection_x, self.selection_y)
 			cairo_context.paint()
-			if with_overlay:
-				utilities_show_overlay_on_surface(self.get_surface(), self.get_selection_path(), True)
 
-		self.queue_draw()
+		elif self.edition_state == 'temp-as-main':
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.temp_pixbuf, \
+				-1 * self.scroll_x, -1 * self.scroll_y)
+			cairo_context.paint()
+
+		elif self.edition_state == 'temp-as-selection':
+			cairo_context.set_source_surface(self.get_surface(), \
+				-1*self.scroll_x, -1*self.scroll_y) # XXX non le pixbuf
+			cairo_context.paint()
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.temp_pixbuf, \
+				self.selection_x, self.selection_y)
+			cairo_context.paint()
+		else: # 'surface'
+			cairo_context.set_source_surface(self.get_surface(), \
+				-1*self.scroll_x, -1*self.scroll_y)
+			cairo_context.paint()
+		print('</on_draw>')
+
+	def delete_former_selection(self):
+		self.window.tools['select'].delete_temp() # XXX beurk
 
 	def on_press_on_area(self, area, event): # XXX
 		if event.button == 2:
@@ -287,7 +304,7 @@ class DrawingImage(Gtk.Layout):
 
 	def get_selection_path(self):
 		#return self.selection_path
-		return self.active_tool().get_dragged_selection_path()
+		return self.active_tool().get_dragged_selection_path() # FIXME je sais meme pas pourquoi ça marche ça
 
 	def get_selection_pixbuf(self):
 		return self.selection_pixbuf
@@ -310,16 +327,6 @@ class DrawingImage(Gtk.Layout):
 
 	def use_stable_pixbuf(self):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-
-	def scale_pixbuf_to(self, new_width, new_height): # XXX c'est nul
-		self.main_pixbuf = self.main_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
-		self.use_stable_pixbuf()
-		self.on_tool_finished()
-
-	def rotate_pixbuf(self, angle): # XXX c'est nul
-		self.main_pixbuf = self.main_pixbuf.rotate_simple(angle)
-		self.use_stable_pixbuf()
-		self.on_tool_finished()
 
 	def is_using_temp(self):
 		return self.window.tool_needs_temp()

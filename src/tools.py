@@ -118,9 +118,6 @@ class ToolTemplate():
 	def non_destructive_show_modif(self):
 		self.get_image().queue_draw()
 
-	def non_destructive_show_pixbufs(self, with_overlay): # TODO à renommer ?
-		self.get_image().update_whole_surface(with_overlay)
-
 	def restore_pixbuf(self):
 		self.get_image().use_stable_pixbuf()
 
@@ -135,3 +132,6 @@ class ToolTemplate():
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		pass
+
+	def set_edition_state(self, state):
+		self.get_image().edition_state = state

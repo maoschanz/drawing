@@ -18,7 +18,7 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-from .utilities import utilities_show_overlay_on_surface
+from .utilities import utilities_show_overlay_on_context
 
 class DrawingMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrawingMinimap'
@@ -97,7 +97,7 @@ class DrawingMinimap(Gtk.Popover):
 			mini_context.line_to(mini_width + mini_x, mini_y)
 			mini_context.close_path()
 			mini_path = mini_context.copy_path()
-			utilities_show_overlay_on_surface(self.mini_surface, mini_path, False)
+			utilities_show_overlay_on_context(mini_context, mini_path, False)
 		# else:
 		# 	???
 		self.minimap_area.queue_draw()

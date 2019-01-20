@@ -78,16 +78,6 @@ class ToolScale(ToolTemplate):
 			self.restore_pixbuf()
 			self.window.back_to_former_tool()
 
-	def on_draw(self, area, cairo_context, main_x, main_y):
-		if self.scale_selection:
-			self.restore_pixbuf()
-			self.window.former_tool().delete_temp()
-			self.non_destructive_show_pixbufs(True)
-			self.non_destructive_show_modif()
-		else:
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_image().get_temp_pixbuf(), -1 * main_x, -1 * main_y)
-			cairo_context.paint()
-
 	def update_temp_pixbuf(self):
 		w = self.get_width()
 		h = self.get_height()
@@ -113,16 +103,21 @@ class ToolScale(ToolTemplate):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
-		self.update_temp_pixbuf()
-		self.non_destructive_show_pixbufs(True)
-		self.non_destructive_show_modif()
+		self.update_area()
 
 	def on_height_changed(self, *args):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
+		else:
+			self.update_area()
+
+	def update_area(self):
 		self.update_temp_pixbuf()
-		self.non_destructive_show_pixbufs(True)
+		if self.scale_selection:
+			self.set_edition_state('temp-as-selection')
+		else:
+			self.set_edition_state('temp-as-main')
 		self.non_destructive_show_modif()
 
 	def get_width(self):

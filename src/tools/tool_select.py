@@ -48,7 +48,6 @@ class ToolSelect(ToolTemplate):
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_r) # FIXME non ?
 		menu_l = builder.get_object('left-click-menu')
 		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l) # FIXME non
-		self.selection_popover.set_relative_to(self.window.notebook)
 
 		#############################
 
@@ -66,9 +65,12 @@ class ToolSelect(ToolTemplate):
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
 		self.update_actions_state()
+		self.set_edition_state('selection')
+		self.selection_popover.set_relative_to(self.get_image())
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
+		self.set_edition_state('surface')
 
 	def update_actions_state(self):
 		self.set_actions_state(self.selection_is_active)
@@ -119,11 +121,12 @@ class ToolSelect(ToolTemplate):
 		print('selection give back control')
 		if self.selection_has_been_used:
 			if self.selection_is_active:
-				self.restore_pixbuf()
-				self.delete_temp()
-				self.non_destructive_show_pixbufs(False)
-				self.forget_selection()
+				print('---- 124 ----')
+				self.set_edition_state('selection-without-overlay')
+				#self.restore_pixbuf()
+				self.non_destructive_show_modif()
 				self.apply_to_pixbuf()
+				#self.forget_selection()
 			self.reset_temp()
 			return False
 		else:
@@ -152,7 +155,7 @@ class ToolSelect(ToolTemplate):
 			self.init_path(event_x, event_y)
 		self.left_color = left_color # TODO
 		self.right_color = right_color # TODO
-		self.non_destructive_show_pixbufs(True) # XXX placé ici au pif
+		# self.non_destructive_show_modif() # XXX placé ici au pif
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		if not self.selection_is_active:
@@ -161,6 +164,7 @@ class ToolSelect(ToolTemplate):
 				self.draw_polygon(event_x, event_y)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
+		self.set_edition_state('selection') # XXX placé ici au pif
 		if event.button == 3:
 			rectangle = Gdk.Rectangle()
 			rectangle.x = int(event.x)
@@ -181,7 +185,7 @@ class ToolSelect(ToolTemplate):
 				if self.selection_is_active:
 					self.show_popover(True)
 					self.selection_has_been_used = False
-			elif self.press_point_is_in_selection():
+			elif self.press_point_is_in_selection(event_x, event_y):
 				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
@@ -194,11 +198,11 @@ class ToolSelect(ToolTemplate):
 					if self.selection_is_active:
 						self.show_popover(True)
 						self.selection_has_been_used = False
-			elif self.press_point_is_in_selection():
+			elif self.press_point_is_in_selection(event_x, event_y):
 				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
-		self.non_destructive_show_pixbufs(True) # XXX placé ici au pif
+		#self.non_destructive_show_modif() # XXX placé ici au pif
 
 	def show_popover(self, state):
 		self.selection_popover.popdown()
@@ -408,7 +412,7 @@ class ToolSelect(ToolTemplate):
 		self.get_image().selection_path = w_context.copy_path()
 		self.show_popover(False)
 		self.update_actions_state()
-		self.non_destructive_show_pixbufs(True)
+		self.non_destructive_show_modif()
 
 	def reset_temp(self):
 		self.temp_x = 0
@@ -434,13 +438,13 @@ class ToolSelect(ToolTemplate):
 		w_context.paint()
 		w_context.set_operator(cairo.Operator.OVER)
 
-	def press_point_is_in_selection(self):
+	def press_point_is_in_selection(self, event_x, event_y):
 		dragged_path = self.get_dragged_selection_path()
 		w_context = cairo.Context(self.get_surface())
 		w_context.new_path()
 		w_context.append_path(dragged_path)
 		press_x, press_y = w_context.get_current_point()
-		return w_context.in_fill(press_x, press_y)
+		return w_context.in_fill(self.x_press, self.y_press)
 
 	def get_dragged_selection_path(self):
 		if self.get_image().selection_path is None:

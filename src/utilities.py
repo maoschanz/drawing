@@ -17,16 +17,15 @@ def utilities_save_pixbuf_at(pixbuf, fn):
 		file_format = 'png'
 	pixbuf.savev(fn, file_format, [None], [])
 
-def utilities_show_overlay_on_surface(surface, cairo_path, has_dashes):
+def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	if cairo_path is None:
 		return
-	w_context = cairo.Context(surface)
-	w_context.new_path()
+	cairo_context.new_path()
 	if has_dashes:
-		w_context.set_dash([3, 3])
-	w_context.append_path(cairo_path)
-	w_context.clip_preserve()
-	w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
-	w_context.paint()
-	w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-	w_context.stroke()
+		cairo_context.set_dash([3, 3])
+	cairo_context.append_path(cairo_path)
+	cairo_context.clip_preserve()
+	cairo_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
+	cairo_context.paint()
+	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+	cairo_context.stroke()

@@ -98,15 +98,6 @@ class ToolCrop(ToolTemplate):
 			self.apply_to_pixbuf()
 			self.window.back_to_former_tool()
 
-	def on_draw(self, area, cairo_context, main_x, main_y):
-		if self.crop_selection:
-			self.window.former_tool().delete_temp()
-			self.non_destructive_show_pixbufs(True)
-			super().on_draw(area, cairo_context, main_x, main_y)
-		else:
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_image().get_temp_pixbuf(), 0, 0)
-			cairo_context.paint()
-
 	def update_temp_pixbuf(self):
 		if self.crop_selection:
 			self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().copy())
