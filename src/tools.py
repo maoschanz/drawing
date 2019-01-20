@@ -14,6 +14,8 @@ class ToolTemplate():
 		self.selection_is_active = False
 		self.build_row()
 		self.window = window
+		self.need_temp_pixbuf = False
+		self.need_selection_pixbuf = False
 
 	# Actions
 
@@ -84,7 +86,7 @@ class ToolTemplate():
 		return self.give_back_control()
 
 	def give_back_control(self):
-		self.window.use_stable_pixbuf()
+		self.get_image().use_stable_pixbuf()
 		self.non_destructive_show_modif()
 		return False
 
@@ -99,27 +101,31 @@ class ToolTemplate():
 		self.apply_to_pixbuf()
 		self.window.add_operation_to_history(operation)
 
-	# Drawing
+	#
 
-	def on_draw(self, area, cairo_context, main_x, main_y):
-		cairo_context.set_source_surface(self.window.get_surface(), -1*main_x, -1*main_y)
-		cairo_context.paint()
+	def get_image(self):
+		return self.window.get_active_image()
 
-	def show_pixbuf_content_at(self, pixbuf, x, y):
-		if pixbuf is None:
-			return
-		w_context = cairo.Context(self.window.surface)
-		Gdk.cairo_set_source_pixbuf(w_context, pixbuf, x, y)
-		w_context.paint()
+	def get_surface(self):
+		return self.get_image().get_surface()
+
+	def get_main_pixbuf(self):
+		return self.get_image().get_main_pixbuf()
+
+	def get_selection_pixbuf(self):
+		return self.get_image().get_selection_pixbuf()
 
 	def non_destructive_show_modif(self):
-		self.window.drawing_area.queue_draw()
+		self.get_image().queue_draw()
+
+	def non_destructive_show_pixbufs(self, with_overlay): # TODO à renommer ?
+		self.get_image().update_whole_surface(with_overlay)
 
 	def restore_pixbuf(self):
-		self.window.use_stable_pixbuf()
+		self.get_image().use_stable_pixbuf()
 
 	def apply_to_pixbuf(self):
-		self.window.on_tool_finished()
+		self.get_image().on_tool_finished()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		pass

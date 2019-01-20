@@ -48,9 +48,12 @@
               </object>
             </child>
             <child>
-              <object class="GtkLayout" id="drawing_area">
+              <object class="GtkNotebook" id="notebook">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="show-tabs">True</property>
+                <property name="show-border">True</property>
+                <property name="scrollable">True</property>
+                <property name="group-name">drawing-tabs</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -187,7 +190,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkImage">
+                          <object class="GtkImage" id="minimap_arrow">
                             <property name="icon-name">pan-down-symbolic</property>
                             <property name="visible">True</property>
                           </object>

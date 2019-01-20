@@ -43,8 +43,8 @@ class ToolLine(ToolTemplate):
 			self.use_arrow = True
 			args[0].set_state(GLib.Variant.new_boolean(True))
 		else:
-			self.use_dashes = False
-			args[0].use_arrow(GLib.Variant.new_boolean(False))
+			self.use_arrow = False
+			args[0].set_state(GLib.Variant.new_boolean(False))
 
 	def on_change_active_shape(self, *args):
 		state_as_string = args[1].get_string()
@@ -119,7 +119,7 @@ class ToolLine(ToolTemplate):
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		if self.active_type == 'line':
 			w_context.move_to(self.x_press, self.y_press)
 			w_context.line_to(event_x, event_y)
@@ -147,7 +147,7 @@ class ToolLine(ToolTemplate):
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.active_type == 'line':
 			self.restore_pixbuf()
-			w_context = cairo.Context(self.window.get_surface())
+			w_context = cairo.Context(self.get_surface())
 			w_context.move_to(self.x_press, self.y_press)
 			w_context.line_to(event_x, event_y)
 
@@ -157,7 +157,7 @@ class ToolLine(ToolTemplate):
 				return
 			else:
 				self.restore_pixbuf()
-				w_context = cairo.Context(self.window.get_surface())
+				w_context = cairo.Context(self.get_surface())
 				w_context.move_to(self.wait_points[0], self.wait_points[1])
 				w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 				self.wait_points = (-1.0, -1.0, -1.0, -1.0)
@@ -225,7 +225,7 @@ class ToolLine(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(operation['operator'])
 		w_context.set_line_cap(operation['line_cap'])
 		#w_context.set_line_join(operation['line_join'])

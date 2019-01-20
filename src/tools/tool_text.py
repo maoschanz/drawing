@@ -126,7 +126,7 @@ class ToolText(ToolTemplate):
 			return
 		self.restore_pixbuf()
 
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
 			self.main_color.blue, self.main_color.alpha)
 		w_context.select_font_face(self.font_fam, self.slant, self.weight)

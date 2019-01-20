@@ -75,7 +75,7 @@ class ToolPolygon(ToolTemplate):
 		# TODO
 
 	def draw_polygon(self, event_x, event_y, is_preview):
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_line_width(self.tool_width)
 
 		if self.past_x == -1.0:
@@ -166,7 +166,7 @@ class ToolPolygon(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(operation['operator'])
 		w_context.set_line_width(operation['line_width'])
 		rgba_main = operation['rgba_main']

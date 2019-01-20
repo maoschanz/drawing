@@ -18,6 +18,8 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
+from .utilities import utilities_show_overlay_on_surface
+
 class DrawingMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrawingMinimap'
 
@@ -25,8 +27,6 @@ class DrawingMinimap(Gtk.Popover):
 		super().__init__(**kwargs)
 		self.window = window
 		self.preview_size = self.window._settings.get_int('preview-size')
-		self.preview_x = 0
-		self.preview_y = 0
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300) # 8 ??? les autres plantent
 		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
@@ -57,30 +57,17 @@ class DrawingMinimap(Gtk.Popover):
 		delta_x = event.x - self.old_x
 		delta_y = event.y - self.old_y
 		ratio = self.get_main_pixbuf().get_width()/self.mini_pixbuf.get_width()
-		self.add_deltas(delta_x*ratio, delta_y*ratio, 1)
-
-	def add_deltas(self, delta_x, delta_y, factor):
-		self.preview_x += int(delta_x * factor)
-		self.preview_y += int(delta_y * factor)
-		self.correct_coords()
-		self.update_minimap()
-
-	def correct_coords(self):
-		mpb_width = self.get_main_pixbuf().get_width()
-		mpb_height = self.get_main_pixbuf().get_height()
-		if self.preview_x + self.window.drawing_area.get_allocated_width() > mpb_width:
-			self.preview_x = mpb_width - self.window.drawing_area.get_allocated_width()
-		if self.preview_y + self.window.drawing_area.get_allocated_height() > mpb_height:
-			self.preview_y = mpb_height - self.window.drawing_area.get_allocated_height()
-		if self.preview_x < 0:
-			self.preview_x = 0
-		if self.preview_y < 0:
-			self.preview_y = 0
+		self.window.get_active_image().add_deltas(delta_x*ratio, delta_y*ratio, 1)
 
 	def get_main_pixbuf(self):
-		return self.window.main_pixbuf
+		return self.window.get_active_image().main_pixbuf
 
 	def update_minimap(self, *args):
+		x = self.window.get_active_image().scroll_x
+		y = self.window.get_active_image().scroll_y
+		self.update_minimap_to_coords(x, y)
+
+	def update_minimap_to_coords(self, x, y):
 		w = self.preview_size
 		h = self.preview_size
 		mpb_width = self.get_main_pixbuf().get_width()
@@ -93,14 +80,14 @@ class DrawingMinimap(Gtk.Popover):
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
 		self.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
 
-		visible_width = min(self.window.drawing_area.get_allocated_width(), \
-			mpb_width - self.preview_x)
-		visible_height = min(self.window.drawing_area.get_allocated_height(), \
-			mpb_height - self.preview_y)
-		if self.window.drawing_area.get_allocated_width() < mpb_width \
-		or self.window.drawing_area.get_allocated_height() < mpb_height:
-			mini_x = self.preview_x * self.mini_pixbuf.get_width()/mpb_width
-			mini_y = self.preview_y * self.mini_pixbuf.get_height()/mpb_height
+		visible_width = min(self.window.get_active_image().get_allocated_width(), \
+			mpb_width - x)
+		visible_height = min(self.window.get_active_image().get_allocated_height(), \
+			mpb_height - y)
+		if self.window.get_active_image().get_allocated_width() < mpb_width \
+		or self.window.get_active_image().get_allocated_height() < mpb_height:
+			mini_x = x * self.mini_pixbuf.get_width()/mpb_width
+			mini_y = y * self.mini_pixbuf.get_height()/mpb_height
 			mini_width = visible_width * self.mini_pixbuf.get_width()/mpb_width
 			mini_height = visible_height * self.mini_pixbuf.get_height()/mpb_height
 			mini_context = cairo.Context(self.mini_surface)
@@ -110,11 +97,11 @@ class DrawingMinimap(Gtk.Popover):
 			mini_context.line_to(mini_width + mini_x, mini_y)
 			mini_context.close_path()
 			mini_path = mini_context.copy_path()
-			self.window.show_overlay_on_surface(self.mini_surface, mini_path)
+			utilities_show_overlay_on_surface(self.mini_surface, mini_path, False)
 		# else:
-		# 	print('todo : ignorer explicitement preview_x et preview_y ?')
+		# 	???
 		self.minimap_area.queue_draw()
 		self.update_main_area()
 
 	def update_main_area(self):
-		self.window.drawing_area.queue_draw()
+		self.window.get_active_image().queue_draw()

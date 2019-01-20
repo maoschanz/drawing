@@ -6,6 +6,8 @@ This application is a simple image editor using Cairo and GdkPixbuf for basic dr
 
 PNG, JPEG and BMP files are supported.
 
+>"This one looks great!" - @omgubuntu
+
 ### Available tools
 
 #### And a few of their options

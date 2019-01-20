@@ -14,7 +14,7 @@
             <property name="visible">True</property>
             <property name="spacing">10</property>
             <child>
-              <object class="GtkLabel" id="add_label">
+              <object class="GtkLabel">
                 <property name="label" translatable="yes">Open</property>
                 <property name="visible">True</property>
                 <property name="margin-left">2</property>
@@ -22,12 +22,6 @@
               <packing>
                 <property name="pack-type">start</property>
               </packing>
-            </child>
-            <child>
-              <object class="GtkImage" id="add_icon">
-                <property name="icon-name">list-add-symbolic</property>
-                <property name="visible">True</property>
-              </object>
             </child>
             <child>
               <object class="GtkImage">

@@ -26,6 +26,8 @@ class ToolCrop(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'crop-symbolic', window)
+		self.need_temp_pixbuf = True
+
 		self.crop_selection = False
 		self.x_press = 0
 		self.y_press = 0
@@ -68,14 +70,14 @@ class ToolCrop(ToolTemplate):
 		self.height_btn.set_value(self.original_height)
 
 	def init_if_selection(self):
-		self.original_width = self.window.former_tool().selection_pixbuf.get_width()
-		self.original_height = self.window.former_tool().selection_pixbuf.get_height()
+		self.original_width = self.get_image().selection_pixbuf.get_width()
+		self.original_height = self.get_image().selection_pixbuf.get_height()
 		self.width_btn.set_range(1, self.original_width)
 		self.height_btn.set_range(1, self.original_height)
 
 	def init_if_main(self):
-		self.original_width = self.window.get_pixbuf_width()
-		self.original_height = self.window.get_pixbuf_height()
+		self.original_width = self.get_image().get_pixbuf_width()
+		self.original_height = self.get_image().get_pixbuf_height()
 		self.width_btn.set_range(1, 10*self.original_width)
 		self.height_btn.set_range(1, 10*self.original_height)
 
@@ -85,12 +87,13 @@ class ToolCrop(ToolTemplate):
 		width = self.get_width()
 		height = self.get_height()
 		if self.crop_selection:
-			self.window.former_tool().action_crop(x, y, width, height)
+			self.window.former_tool().crop_selection_surface(x, y, width, height)
+			self.window.former_tool().on_confirm_hijacked_modif()
 		else:
-			self.window.temporary_pixbuf = self.window.main_pixbuf.copy()
+			self.get_image().set_temp_pixbuf(self.get_main_pixbuf().copy())
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
-			self.window.main_pixbuf = self.window.temporary_pixbuf.copy()
+			self.get_image().set_main_pixbuf(self.get_image().get_temp_pixbuf().copy())
 			self.restore_pixbuf()
 			self.apply_to_pixbuf()
 			self.window.back_to_former_tool()
@@ -98,21 +101,19 @@ class ToolCrop(ToolTemplate):
 	def on_draw(self, area, cairo_context, main_x, main_y):
 		if self.crop_selection:
 			self.window.former_tool().delete_temp()
-			selection_x = self.window.former_tool().selection_x
-			selection_y = self.window.former_tool().selection_y
-			self.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
+			self.non_destructive_show_pixbufs(True)
 			super().on_draw(area, cairo_context, main_x, main_y)
 		else:
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, 0, 0)
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_image().get_temp_pixbuf(), 0, 0)
 			cairo_context.paint()
 
 	def update_temp_pixbuf(self):
 		if self.crop_selection:
-			self.window.temporary_pixbuf = self.window.former_tool().selection_pixbuf.copy()
+			self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().copy())
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 		else:
-			self.window.temporary_pixbuf = self.window.main_pixbuf.copy()
+			self.get_image().temp_pixbuf = self.get_main_pixbuf().copy()
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 			self.scale_temp_pixbuf_to_area(width, height)
@@ -120,16 +121,16 @@ class ToolCrop(ToolTemplate):
 	def crop_temp_pixbuf(self, x, y, width, height):
 		x = max(x, 0)
 		y = max(y, 0)
-		min_w = min(width, self.window.temporary_pixbuf.get_width() - x)
-		min_h = min(height, self.window.temporary_pixbuf.get_height() - y)
+		min_w = min(width, self.get_image().get_temp_pixbuf().get_width() - x)
+		min_h = min(height, self.get_image().get_temp_pixbuf().get_height() - y)
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
 		new_pixbuf.fill(0)
-		self.window.temporary_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
-		self.window.temporary_pixbuf = new_pixbuf
+		self.get_image().temp_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
+		self.get_image().temp_pixbuf = new_pixbuf
 
 	def scale_temp_pixbuf_to_area(self, width, height):
-		visible_w = self.window.drawing_area.get_allocated_width()
-		visible_h = self.window.drawing_area.get_allocated_height()
+		visible_w = self.get_image().get_allocated_width()
+		visible_h = self.get_image().get_allocated_height()
 		w_ratio = visible_w/width
 		h_ratio = visible_h/height
 		if w_ratio > 1.0 and h_ratio > 1.0:
@@ -141,7 +142,8 @@ class ToolCrop(ToolTemplate):
 		else:
 			nice_w = int(width * h_ratio)
 			nice_h = visible_h
-		self.window.temporary_pixbuf = self.window.temporary_pixbuf.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES)
+		pb = self.get_image().get_temp_pixbuf()
+		self.get_image().set_temp_pixbuf(pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES))
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
@@ -180,8 +182,8 @@ class ToolCrop(ToolTemplate):
 	def validate_coords(self):
 		self._x = max(self._x, 0)
 		self._y = max(self._y, 0)
-		max_w = self.window.temporary_pixbuf.get_width() - self.get_width()
-		max_h = self.window.temporary_pixbuf.get_height() - self.get_height()
+		max_w = self.get_image().get_temp_pixbuf().get_width() - self.get_width()
+		max_h = self.get_image().get_temp_pixbuf().get_height() - self.get_height()
 		self._x = min(self._x, max_w)
 		self._y = min(self._y, max_h)
 		x = int(self._x)

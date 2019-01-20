@@ -125,7 +125,7 @@ class ToolExperiment(ToolTemplate):
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(self.selected_operator)
 		w_context.set_line_cap(cairo.LineCap.ROUND)
 		w_context.set_line_join(cairo.LineJoin.ROUND)

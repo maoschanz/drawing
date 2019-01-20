@@ -21,10 +21,11 @@ import cairo
 class DrawingPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingPropertiesDialog'
 
-	def __init__(self, window):
+	def __init__(self, window, image):
 		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, transient_for=window, title=_("Image properties"))
 		self._window = window
+		self._image = image
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties.ui')
 		props_content_area = builder.get_object('props_content_area')
@@ -36,9 +37,9 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_width = builder.get_object('label_width')
 		self.label_height = builder.get_object('label_height')
 
-		if window.gfile is not None:
-			label_path.set_label(window.get_file_path())
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(window.get_file_path())
+		if self._image.gfile is not None:
+			label_path.set_label(self._image.get_file_path())
+			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._image.get_file_path())
 			label_format_file.set_label(pb_format.get_name())
 
 		enum = {
@@ -56,6 +57,6 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.show_all()
 
 	def set_size_labels(self):
-		self.label_width.set_label(str(self._window.get_pixbuf_width()) + ' px')
-		self.label_height.set_label(str(self._window.get_pixbuf_height()) + ' px')
+		self.label_width.set_label(str(self._image.get_pixbuf_width()) + ' px')
+		self.label_height.set_label(str(self._image.get_pixbuf_height()) + ' px')
 

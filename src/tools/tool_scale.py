@@ -26,6 +26,8 @@ class ToolScale(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'view-fullscreen-symbolic', window)
+		self.need_temp_pixbuf = True
+
 		self.keep_proportions = True
 		self.x_press = 0
 		self.y_press = 0
@@ -67,40 +69,42 @@ class ToolScale(ToolTemplate):
 		w = self.get_width()
 		h = self.get_height()
 		if self.scale_selection:
-			self.window.former_tool().scale_pixbuf_to(w, h)
+			self.get_image().selection_pixbuf = self.get_selection_pixbuf().scale_simple( \
+				w, h, GdkPixbuf.InterpType.TILES)
+			self.window.former_tool().on_confirm_hijacked_modif()
 		else:
-			self.window.scale_pixbuf_to(w, h)
+			pb = self.get_main_pixbuf().scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+			self.get_image().set_main_pixbuf(pb)
+			self.restore_pixbuf()
 			self.window.back_to_former_tool()
 
 	def on_draw(self, area, cairo_context, main_x, main_y):
 		if self.scale_selection:
-			self.window.use_stable_pixbuf()
+			self.restore_pixbuf()
 			self.window.former_tool().delete_temp()
-			selection_x = self.window.former_tool().selection_x
-			selection_y = self.window.former_tool().selection_y
-			self.show_pixbuf_content_at(self.window.temporary_pixbuf, selection_x, selection_y)
-			super().on_draw(area, cairo_context, main_x, main_y)
+			self.non_destructive_show_pixbufs(True)
+			self.non_destructive_show_modif()
 		else:
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.window.temporary_pixbuf, -1 * main_x, -1 * main_y)
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_image().get_temp_pixbuf(), -1 * main_x, -1 * main_y)
 			cairo_context.paint()
 
 	def update_temp_pixbuf(self):
 		w = self.get_width()
 		h = self.get_height()
 		if self.scale_selection:
-			self.window.temporary_pixbuf = self.window.former_tool().selection_pixbuf.scale_simple( \
-				w, h, GdkPixbuf.InterpType.TILES)
+			pb = self.get_selection_pixbuf().scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 		else:
-			self.window.temporary_pixbuf = self.window.main_pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+			pb = self.get_main_pixbuf().scale_simple(w, h, GdkPixbuf.InterpType.TILES)
+		self.get_image().set_temp_pixbuf(pb)
 
 	def on_tool_selected(self, *args):
 		self.scale_selection = (self.window.hijacker_id is not None)
 		if self.scale_selection:
-			w = self.window.former_tool().selection_pixbuf.get_width()
-			h = self.window.former_tool().selection_pixbuf.get_height()
+			w = self.get_selection_pixbuf().get_width()
+			h = self.get_selection_pixbuf().get_height()
 		else:
-			w = self.window.get_pixbuf_width()
-			h = self.window.get_pixbuf_height()
+			w = self.get_image().get_pixbuf_width()
+			h = self.get_image().get_pixbuf_height()
 		self.proportion = w/h
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
@@ -110,6 +114,7 @@ class ToolScale(ToolTemplate):
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
 		self.update_temp_pixbuf()
+		self.non_destructive_show_pixbufs(True)
 		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
@@ -117,6 +122,7 @@ class ToolScale(ToolTemplate):
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
 		self.update_temp_pixbuf()
+		self.non_destructive_show_pixbufs(True)
 		self.non_destructive_show_modif()
 
 	def get_width(self):

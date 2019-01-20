@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
 
 from .tools import ToolTemplate
-from .utilities import get_rgb_for_xy
+from .utilities import utilities_get_rgb_for_xy
 
 class ToolReplace(ToolTemplate):
 	__gtype_name__ = 'ToolReplace'
@@ -25,7 +25,7 @@ class ToolReplace(ToolTemplate):
 		self.tool_width = tool_width
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		self.old_color = get_rgb_for_xy(surface, event.x, event.y)
+		self.old_color = utilities_get_rgb_for_xy(surface, event.x, event.y)
 		i = -1 * self.tool_width
 		while i < self.tool_width:
 			red = max(0, self.old_color[0]+i)
@@ -34,12 +34,12 @@ class ToolReplace(ToolTemplate):
 			red = min(255, red)
 			green = min(255, green)
 			blue = min(255, blue)
-			temporary_pixbuf = self.window.main_pixbuf.add_alpha(True, \
-				red, green, blue)
-			self.window.main_pixbuf = temporary_pixbuf
+			temporary_pixbuf = self.get_main_pixbuf().add_alpha(True, red, green, blue)
+			pb = self.get_main_pixbuf()
+			pb = temporary_pixbuf
 			i = i+1
 		self.window.use_stable_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(cairo.Operator.DEST_OVER)
 		w_context.set_source_rgba(self.new_color.red, self.new_color.green, self.new_color.blue, self.new_color.alpha)
 		w_context.paint()

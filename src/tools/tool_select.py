@@ -4,7 +4,9 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
 from .tools import ToolTemplate
-from .utilities import save_pixbuf_at
+from .utilities import utilities_save_pixbuf_at
+
+# TODO remplacer les self.get_image().selection_pixbuf par mieux
 
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
@@ -15,15 +17,11 @@ class ToolSelect(ToolTemplate):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'select-symbolic', window)
+		self.need_selection_pixbuf = True
 
-		self.selection_x = 1
-		self.selection_y = 1
-		self.selection_path = None
 		self.temp_path = None
-		self.temp_x = 1
-		self.temp_y = 1
-		self.selection_pixbuf = None
-		self.temp_pixbuf = None
+		self.temp_x = 0
+		self.temp_y = 0
 
 		#############################
 
@@ -35,9 +33,9 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
 		self.add_tool_action_simple('selection_export', self.action_selection_export)
-		self.add_tool_action_simple('import', self.action_import)
-		self.add_tool_action_simple('paste', self.action_paste)
-		self.add_tool_action_simple('select_all', self.action_select_all)
+		self.add_tool_action_simple('import', self.action_import) # XXX
+		self.add_tool_action_simple('paste', self.action_paste) # XXX
+		self.add_tool_action_simple('select_all', self.action_select_all) # XXX
 
 		#############################
 
@@ -47,10 +45,10 @@ class ToolSelect(ToolTemplate):
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
 		menu_r = builder.get_object('right-click-menu')
-		self.rightc_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_r)
+		self.rightc_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_r) # FIXME non ?
 		menu_l = builder.get_object('left-click-menu')
-		self.selection_popover = Gtk.Popover.new_from_model(self.window.drawing_area, menu_l)
-		self.selection_popover.set_relative_to(self.window.drawing_area)
+		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l) # FIXME non
+		self.selection_popover.set_relative_to(self.window.notebook)
 
 		#############################
 
@@ -63,13 +61,11 @@ class ToolSelect(ToolTemplate):
 
 		#############################
 
-		self.reset_selection()
+		self.reset_temp()
 
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
 		self.update_actions_state()
-		if self.selection_is_active:
-			self.show_selection_overlay()
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
@@ -125,9 +121,10 @@ class ToolSelect(ToolTemplate):
 			if self.selection_is_active:
 				self.restore_pixbuf()
 				self.delete_temp()
-				self.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
+				self.non_destructive_show_pixbufs(False)
+				self.forget_selection()
 				self.apply_to_pixbuf()
-			self.reset_selection()
+			self.reset_temp()
 			return False
 		else:
 			self.selection_has_been_used = True
@@ -135,35 +132,27 @@ class ToolSelect(ToolTemplate):
 
 	def cancel_ongoing_operation(self):
 		print('cancel_ongoing_operation')
-		self.reset_selection()
+		self.reset_temp()
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 		return True
 
-	def reset_selection(self):
-		self.selection_is_active = False
-		self.show_popover(False)
-		self.x_press = 0.0
-		self.y_press = 0.0
-		self.past_x = [-1, -1]
-		self.past_y = [-1, -1]
-		self.selection_path = None
-		self.temp_path = None
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # 8 ??? les autres plantent
-		self.update_actions_state()
+	# XXX XXX XXX XXX XXX XXX
+	# Que doit faire cet outil ?
+	# - définir un path, stocké localement en tant que temp_path et initialement copié dans image.py
+	# - supprimer le contenu du temp_path
+	# - modifier selection_x et selection_y en fonction des déplacements de souris
+	# - cut/copy/unselect/etc.
 
-	def show_popover(self, state):
-		self.selection_popover.popdown()
-		self.rightc_popover.popdown()
-		if self.selection_is_active and state:
-			self.set_popover_position()
-			self.selection_popover.popup()
-		elif state:
-			self.temp_x = self.rightc_popover.get_pointing_to()[1].x
-			self.temp_y = self.rightc_popover.get_pointing_to()[1].y
-			self.selection_x = self.rightc_popover.get_pointing_to()[1].x
-			self.selection_y = self.rightc_popover.get_pointing_to()[1].y
-			self.rightc_popover.popup()
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		if self.selection_is_active:
+			self.x_press = event_x
+			self.y_press = event_y
+		else:
+			self.init_path(event_x, event_y)
+		self.left_color = left_color # TODO
+		self.right_color = right_color # TODO
+		self.non_destructive_show_pixbufs(True) # XXX placé ici au pif
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		if not self.selection_is_active:
@@ -171,15 +160,7 @@ class ToolSelect(ToolTemplate):
 				self.restore_pixbuf()
 				self.draw_polygon(event_x, event_y)
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		print("press")
-		self.x_press = event_x
-		self.y_press = event_y
-		self.left_color = left_color # TODO
-		self.right_color = right_color # TODO
-
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		print("release")
 		if event.button == 3:
 			rectangle = Gdk.Rectangle()
 			rectangle.x = int(event.x)
@@ -191,21 +172,16 @@ class ToolSelect(ToolTemplate):
 			self.show_popover(True)
 			return
 		elif self.selected_type_id == 'rectangle':
-			# If nothing is selected (only -1), coordinates should be memorized, but
+			# If nothing is selected, new coordinates should be memorized, but
 			# if something is already selected, the selection should be cancelled (the
 			# action is performed outside of the current selection), or stay the same
 			# (the user is moving the selection by dragging it).
 			if not self.selection_is_active:
-				self.past_x[0] = event_x
-				self.past_x[1] = self.x_press
-				self.past_y[0] = event_y
-				self.past_y[1] = self.y_press
-				self.create_selection_from_coord()
+				self.draw_rectangle(event_x, event_y)
 				if self.selection_is_active:
-					self.show_selection_overlay()
 					self.show_popover(True)
 					self.selection_has_been_used = False
-			elif self.point_is_in_selection(self.x_press, self.y_press):
+			elif self.press_point_is_in_selection():
 				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
@@ -216,58 +192,53 @@ class ToolSelect(ToolTemplate):
 					self.restore_pixbuf()
 					self.create_free_selection_from_main()
 					if self.selection_is_active:
-						self.show_selection_overlay()
 						self.show_popover(True)
 						self.selection_has_been_used = False
-					(self.x_press, self.y_press) = (-1.0, -1.0)
-					self.past_x = [-1, -1]
-					self.past_y = [-1, -1]
-			elif self.point_is_in_selection(self.x_press, self.y_press):
+			elif self.press_point_is_in_selection():
 				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
+		self.non_destructive_show_pixbufs(True) # XXX placé ici au pif
 
-	def create_selection_from_coord(self):
-		x0 = self.past_x[0]
-		x1 = self.past_x[1]
-		y0 = self.past_y[0]
-		y1 = self.past_y[1]
-		if self.past_x[0] > self.past_x[1]:
-			x0 = self.past_x[1]
-			x1 = self.past_x[0]
-		if self.past_y[0] > self.past_y[1]:
-			y0 = self.past_y[1]
-			y1 = self.past_y[0]
-		self.create_rectangle_selection_from_main(x0, y0, x1, y1)
+	def show_popover(self, state):
+		self.selection_popover.popdown()
+		self.rightc_popover.popdown()
+		if self.selection_is_active and state:
+			self.set_popover_position()
+			self.selection_popover.popup()
+		elif state:
+			self.temp_x = self.rightc_popover.get_pointing_to()[1].x
+			self.temp_y = self.rightc_popover.get_pointing_to()[1].y
+			self.get_image().selection_x = self.rightc_popover.get_pointing_to()[1].x
+			self.get_image().selection_y = self.rightc_popover.get_pointing_to()[1].y
+			self.rightc_popover.popup()
 
 	def force_selection(self):
 		self.row.set_active(True)
 
 	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()
-		main_x, main_y = self.window.get_main_coord()
-		x = self.selection_x + self.selection_pixbuf.get_width()/2 - main_x
-		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
+		main_x, main_y = self.get_image().get_main_coord()
+		x = self.get_image().selection_x + self.get_selection_pixbuf().get_width()/2 - main_x
+		y = self.get_image().selection_y + self.get_selection_pixbuf().get_height()/2 - main_y
 		[rectangle.x, rectangle.y] = [x, y]
 		rectangle.height = 1
 		rectangle.width = 1
 		self.selection_popover.set_pointing_to(rectangle)
 
 	def drag_to(self, final_x, final_y):
-		self.selection_has_been_used = True # XXX si delta non nuls seulement
-		self.restore_pixbuf()
 		delta_x = final_x - self.x_press
 		delta_y = final_y - self.y_press
-		self.past_x[0] += delta_x
-		self.past_x[1] += delta_x
-		self.past_y[0] += delta_y
-		self.past_y[1] += delta_y
-		self.selection_x += delta_x
-		self.selection_y += delta_y
-		self.show_selection_overlay()
+		self.restore_pixbuf()
+		if delta_x == 0 and delta_y == 0:
+			pass
+		else:
+			self.selection_has_been_used = True
+			self.get_image().selection_x += delta_x
+			self.get_image().selection_y += delta_y
 		self.non_destructive_show_modif()
 
-	def action_import(self, *args):
+	def action_import(self, *args): # TODO dans image??
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self.window,
 			Gtk.FileChooserAction.OPEN,
 			_("Import"),
@@ -282,11 +253,10 @@ class ToolSelect(ToolTemplate):
 		if response == Gtk.ResponseType.ACCEPT:
 			self.force_selection()
 			fn = file_chooser.get_filename()
-			self.selection_pixbuf = GdkPixbuf.Pixbuf.new_from_file(fn)
-			self.temp_pixbuf = None
+			self.get_image().set_selection_pixbuf(GdkPixbuf.Pixbuf.new_from_file(fn))
 			self.temp_path = None
-			self.temp_x = self.selection_x
-			self.temp_y = self.selection_y
+			self.temp_x = self.get_image().selection_x
+			self.temp_y = self.get_image().selection_y
 			self.create_selection_from_arbitrary_pixbuf()
 		file_chooser.destroy()
 
@@ -298,18 +268,17 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.copy_operation()
 
-	def copy_operation(self):
+	def copy_operation(self): # XXX ?
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		cb.set_image(self.selection_pixbuf)
+		cb.set_image(self.get_selection_pixbuf())
 
-	def action_paste(self, *args):
+	def action_paste(self, *args): # TODO dans image??
 		self.force_selection()
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		self.selection_pixbuf = cb.wait_for_image()
-		self.temp_pixbuf = None
+		self.get_image().set_selection_pixbuf(cb.wait_for_image())
 		self.temp_path = None
-		self.temp_x = self.selection_x
-		self.temp_y = self.selection_y
+		self.temp_x = self.get_image().selection_x
+		self.temp_y = self.get_image().selection_y
 		self.create_selection_from_arbitrary_pixbuf()
 
 	def action_select_all(self, *args):
@@ -317,19 +286,18 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = False
 		self.temp_x = 0
 		self.temp_y = 0
-		self.selection_x = 0
-		self.selection_y = 0
-		self.selection_pixbuf = self.window.main_pixbuf.copy()
-		w_context = cairo.Context(self.window.get_surface())
+		self.get_image().selection_x = 0
+		self.get_image().selection_y = 0
+		self.get_image().set_selection_pixbuf(self.get_main_pixbuf().copy())
+		w_context = cairo.Context(self.get_surface())
 		w_context.move_to(0, 0)
-		w_context.line_to(self.window.get_pixbuf_width(), 0)
-		w_context.line_to(self.window.get_pixbuf_width(), self.window.get_pixbuf_height())
-		w_context.line_to(0, self.window.get_pixbuf_height())
+		w_context.line_to(self.get_image().get_pixbuf_width(), 0)
+		w_context.line_to(self.get_image().get_pixbuf_width(), self.get_image().get_pixbuf_height())
+		w_context.line_to(0, self.get_image().get_pixbuf_height())
 		w_context.close_path()
-		self.selection_path = w_context.copy_path()
+		self.get_image().selection_path = w_context.copy_path()
 		self.temp_path = w_context.copy_path()
 		self.set_temp()
-		self.show_selection_overlay()
 		self.show_popover(True)
 
 	def action_unselect(self, *args):
@@ -340,7 +308,7 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.restore_pixbuf()
 		self.delete_temp()
-		self.reset_selection()
+		self.reset_temp()
 		self.apply_to_pixbuf()
 
 	def action_selection_scale(self, *args):
@@ -349,72 +317,116 @@ class ToolSelect(ToolTemplate):
 	def action_selection_crop(self, *args):
 		self.window.hijack_begin(self.id, 'crop')
 
-	def action_selection_rotate(self, *args): # TODO plus d'angles
+	def action_selection_rotate(self, *args): # TODO davantage d'angles
 		self.window.hijack_begin(self.id, 'rotate')
 
-	def action_selection_export(self, *args):
+	def action_selection_export(self, *args): # XXX ailleurs ??
 		gfile = self.window.file_chooser_save('')
 		if gfile is not None:
-			save_pixbuf_at(self.selection_pixbuf, gfile.get_path())
+			utilities_save_pixbuf_at(self.get_selection_pixbuf(), gfile.get_path())
 
-##############################
+############################## XXX pour toute cette section, ne peut-on pas donner le contexte en paramètre ?
+
+	def init_path(self, event_x, event_y):
+		if self.get_image().selection_path is not None:
+			print('wtf')
+			self.reset_temp()
+		w_context = cairo.Context(self.get_surface())
+		w_context.move_to(event_x, event_y)
+		self.get_image().selection_path = w_context.copy_path()
 
 	def draw_polygon(self, event_x, event_y):
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.set_dash([3, 3])
 
-		if self.selection_path is None:
-			(self.past_x[0], self.past_y[0]) = (self.x_press, self.y_press)
-			w_context.move_to(self.x_press, self.y_press)
-			self.selection_path = w_context.copy_path()
-		elif (max(event_x, self.past_x[0]) - min(event_x, self.past_x[0]) < self.closing_precision) \
+		if (max(event_x, self.past_x[0]) - min(event_x, self.past_x[0]) < self.closing_precision) \
 		and (max(event_y, self.past_y[0]) - min(event_y, self.past_y[0]) < self.closing_precision):
-			w_context.append_path(self.selection_path)
+			w_context.append_path(self.get_image().selection_path)
 			w_context.close_path()
 			w_context.stroke_preserve()
-			self.selection_path = w_context.copy_path()
+			self.get_image().selection_path = w_context.copy_path()
 			self.temp_path = w_context.copy_path()
 			return True
 		else:
-			w_context.append_path(self.selection_path)
+			w_context.append_path(self.get_image().selection_path)
 			self.continue_polygon(w_context, event_x, event_y)
 			return False
 
 	def continue_polygon(self, w_context, x, y):
 		w_context.line_to(int(x), int(y))
 		w_context.stroke_preserve() # draw the line without closing the path
-		self.selection_path = w_context.copy_path()
+		self.get_image().selection_path = w_context.copy_path()
 		self.non_destructive_show_modif()
+
+	def draw_rectangle(self, event_x, event_y):
+		w_context = cairo.Context(self.get_surface())
+		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+		w_context.set_dash([3, 3])
+		w_context.append_path(self.get_image().selection_path)
+		press_x, press_y = w_context.get_current_point()
+
+		x0 = int( min(press_x, event_x) )
+		y0 = int( min(press_y, event_y) )
+		x1 = int( max(press_x, event_x) )
+		y1 = int( max(press_y, event_y) )
+		w = x1 - x0
+		h = y1 - y0
+		if w <= 0 or h <= 0:
+			self.get_image().selection_path = None
+			return
+
+		self.get_image().selection_x = x0
+		self.get_image().selection_y = y0
+		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.get_main_pixbuf(), 0, None)
+		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(x0, y0, w, h))
+		self.get_image().set_selection_pixbuf( Gdk.pixbuf_get_from_surface(temp_surface, \
+			0, 0, temp_surface.get_width(), temp_surface.get_height()) )
+
+		w_context.new_path()
+		w_context.move_to(x0, y0)
+		w_context.line_to(x1, y0)
+		w_context.line_to(x1, y1)
+		w_context.line_to(x0, y1)
+		w_context.close_path()
+
+		self.get_image().selection_path = w_context.copy_path()
+		self.temp_path = w_context.copy_path()
+		self.set_temp()
 
 ####################################
 
 	def create_selection_from_arbitrary_pixbuf(self):
 		self.selection_has_been_used = True
 		self.selection_is_active = True
-		w_context = cairo.Context(self.window.get_surface())
-		w_context.move_to(self.selection_x, self.selection_y)
-		w_context.rel_line_to(self.selection_pixbuf.get_width(), 0)
-		w_context.rel_line_to(0, self.selection_pixbuf.get_height())
-		w_context.rel_line_to(-1 * self.selection_pixbuf.get_width(), 0)
+		w_context = cairo.Context(self.get_surface())
+		w_context.move_to(self.get_image().selection_x, self.get_image().selection_y)
+		w_context.rel_line_to(self.get_selection_pixbuf().get_width(), 0)
+		w_context.rel_line_to(0, self.get_selection_pixbuf().get_height())
+		w_context.rel_line_to(-1 * self.get_selection_pixbuf().get_width(), 0)
 		w_context.close_path()
-		self.selection_path = w_context.copy_path()
-		self.show_selection_overlay()
+		self.get_image().selection_path = w_context.copy_path()
 		self.show_popover(False)
 		self.update_actions_state()
-		self.non_destructive_show_modif()
+		self.non_destructive_show_pixbufs(True)
+
+	def reset_temp(self):
+		self.temp_x = 0
+		self.temp_y = 0
+		self.temp_path = None
+		self.selection_is_active = False
+		self.update_actions_state()
 
 	def set_temp(self):
-		self.temp_x = self.selection_x
-		self.temp_y = self.selection_y
-		self.temp_pixbuf = self.selection_pixbuf.copy()
+		self.temp_x = self.get_image().selection_x
+		self.temp_y = self.get_image().selection_y
 		self.selection_is_active = True
 		self.update_actions_state()
 
 	def delete_temp(self):
-		if self.temp_pixbuf is None or not self.selection_is_active:
+		if self.temp_path is None or not self.selection_is_active:
 			return
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.new_path()
 		w_context.append_path(self.temp_path)
 		w_context.clip()
@@ -422,63 +434,37 @@ class ToolSelect(ToolTemplate):
 		w_context.paint()
 		w_context.set_operator(cairo.Operator.OVER)
 
-	def point_is_in_selection(self, x, y):
+	def press_point_is_in_selection(self):
 		dragged_path = self.get_dragged_selection_path()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.new_path()
 		w_context.append_path(dragged_path)
-		return w_context.in_fill(x, y)
-
-	def show_selection_overlay(self):
-		self.restore_pixbuf()
-		self.delete_temp()
-		self.show_pixbuf_content_at(self.selection_pixbuf, self.selection_x, self.selection_y)
-		w_context = cairo.Context(self.window.get_surface())
-		w_context.new_path()
-		w_context.set_dash([3, 3])
-		dragged_path = self.get_dragged_selection_path()
-		w_context.append_path(dragged_path)
-		w_context.clip_preserve()
-		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
-		w_context.paint()
-		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		w_context.stroke()
-		self.non_destructive_show_modif()
+		press_x, press_y = w_context.get_current_point()
+		return w_context.in_fill(press_x, press_y)
 
 	def get_dragged_selection_path(self):
-		w_context = cairo.Context(self.window.get_surface())
-		for pts in self.selection_path:
+		if self.get_image().selection_path is None:
+			return None
+		w_context = cairo.Context(self.get_surface())
+		for pts in self.get_image().selection_path:
 			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - self.temp_x
-				y = pts[1][1] + self.selection_y - self.temp_y
+				x = pts[1][0] + self.get_image().selection_x - self.temp_x
+				y = pts[1][1] + self.get_image().selection_y - self.temp_y
 				w_context.line_to(int(x), int(y))
 		w_context.close_path()
 		return w_context.copy_path()
 
-	def scale_pixbuf_to(self, new_width, new_height):
+	def on_confirm_hijacked_modif(self):
 		self.selection_has_been_used = True
 		self.window.hijack_end()
-		self.selection_pixbuf = self.selection_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
-		self.create_selection_from_arbitrary_pixbuf()
-
-	def rotate_pixbuf(self, angle):
-		self.selection_has_been_used = True
-		self.window.hijack_end()
-		self.selection_pixbuf = self.selection_pixbuf.rotate_simple(angle)
-		self.create_selection_from_arbitrary_pixbuf()
-
-	def action_crop(self, x, y, width, height):
-		self.selection_has_been_used = True
-		self.window.hijack_end()
-		self.crop_selection_surface(x, y, width, height)
 		self.create_selection_from_arbitrary_pixbuf()
 
 	def create_free_selection_from_main(self):
-		self.selection_pixbuf = self.window.main_pixbuf.copy()
-		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
+		self.get_image().selection_pixbuf = self.get_main_pixbuf().copy()
+		surface = Gdk.cairo_surface_create_from_pixbuf(self.get_selection_pixbuf(), 0, None)
 		xmin, ymin = surface.get_width(), surface.get_height()
 		xmax, ymax = 0.0, 0.0
-		for pts in self.selection_path:
+		for pts in self.get_image().selection_path:
 			if pts[1] is not ():
 				xmin = min(pts[1][0], xmin)
 				xmax = max(pts[1][0], xmax)
@@ -494,47 +480,24 @@ class ToolSelect(ToolTemplate):
 		w_context = cairo.Context(surface)
 		w_context.set_operator(cairo.Operator.DEST_IN)
 		w_context.new_path()
-		w_context.append_path(self.selection_path)
+		w_context.append_path(self.get_image().selection_path)
 		w_context.fill()
 		w_context.set_operator(cairo.Operator.OVER)
-		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, xmin, ymin, \
+		self.get_image().selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, xmin, ymin, \
 			xmax - xmin, ymax - ymin)
 		self.set_temp()
 
-	def create_rectangle_selection_from_main(self, x0, y0, x1, y1):
-		x0 = int(x0)
-		x1 = int(x1)
-		y0 = int(y0)
-		y1 = int(y1)
-		w = x1 - x0
-		h = y1 - y0
-		if w <= 0 or h <= 0:
-			return
-		self.selection_x = x0
-		self.selection_y = y0
-		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.window.main_pixbuf, 0, None)
-		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(x0, y0, w, h))
-		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(temp_surface, 0, 0, \
-			temp_surface.get_width(), temp_surface.get_height())
-		w_context = cairo.Context(self.window.get_surface())
-		w_context.move_to(x0, y0)
-		w_context.line_to(x1, y0)
-		w_context.line_to(x1, y1)
-		w_context.line_to(x0, y1)
-		w_context.close_path()
-		self.selection_path = w_context.copy_path()
-		self.temp_path = w_context.copy_path()
-		self.set_temp()
-
-	def crop_selection_surface(self, x, y, width, height):
+	def crop_selection_surface(self, x, y, width, height): # TODO dans crop, non ?
 		x = int(x)
 		y = int(y)
 		width = int(width)
 		height = int(height)
-		min_w = min(width, self.selection_pixbuf.get_width() + x)
-		min_h = min(height, self.selection_pixbuf.get_height() + y)
+		min_w = min(width, self.get_selection_pixbuf().get_width() + x)
+		min_h = min(height, self.get_selection_pixbuf().get_height() + y)
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
 		new_pixbuf.fill(0)
-		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
-		self.selection_pixbuf = new_pixbuf
+		self.get_selection_pixbuf().copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
+		self.get_image().selection_pixbuf = new_pixbuf
 
+	def forget_selection(self):
+		self.get_image().selection_pixbuf = None

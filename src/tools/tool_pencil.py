@@ -80,7 +80,7 @@ class ToolPencil(ToolTemplate):
 		return self.selected_shape_label
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		if self.past_x == -1.0:
 			(self.past_x, self.past_y) = (self.x_press, self.y_press)
 			w_context.move_to(self.x_press, self.y_press)
@@ -127,7 +127,7 @@ class ToolPencil(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(operation['operator'])
 		w_context.set_line_cap(operation['line_cap'])
 		w_context.set_line_join(operation['line_join'])

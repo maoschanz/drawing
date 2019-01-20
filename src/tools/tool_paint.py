@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
 
 from .tools import ToolTemplate
-from .utilities import get_rgb_for_xy
+from .utilities import utilities_get_rgb_for_xy
 
 class ToolPaint(ToolTemplate):
 	__gtype_name__ = 'ToolPaint'
@@ -47,12 +47,12 @@ class ToolPaint(ToolTemplate):
 		# color we want to paint. We don't care about
 		w_context = cairo.Context(surface)
 
-		self.old_color = get_rgb_for_xy(surface, event.x, event.y)
-		# self.old_color = self.get_rgb_for_xy(event.x, event.y)
+		self.old_color = utilities_get_rgb_for_xy(surface, event.x, event.y)
+		# self.old_color = self.utilities_get_rgb_for_xy(event.x, event.y)
 
 		(x, y) = (int(event.x), int(event.y))
-		while (get_rgb_for_xy(surface, x, y) == self.old_color) and y > 0:
-		# while (self.get_rgb_for_xy(x, y) == self.old_color) and y > 0:
+		while (utilities_get_rgb_for_xy(surface, x, y) == self.old_color) and y > 0:
+		# while (self.utilities_get_rgb_for_xy(x, y) == self.old_color) and y > 0:
 			y = y - 1
 		y = y + 1 # sinon ça crashe ?
 		w_context.move_to(x, y)
@@ -80,14 +80,14 @@ class ToolPaint(ToolTemplate):
 
 			j = 0
 			while (not end_circle) or (j < 8):
-				# if (self.get_rgb_for_xy(x+x_shift[direction], y+y_shift[direction]) == self.old_color) \
-				if (get_rgb_for_xy(surface, x+x_shift[direction], y+y_shift[direction]) == self.old_color) \
+				# if (self.utilities_get_rgb_for_xy(x+x_shift[direction], y+y_shift[direction]) == self.old_color) \
+				if (utilities_get_rgb_for_xy(surface, x+x_shift[direction], y+y_shift[direction]) == self.old_color) \
 				and (x+x_shift[direction] > 0) \
 				and (y+y_shift[direction] > 0) \
 				and (x+x_shift[direction] < surface.get_width()) \
 				and (y+y_shift[direction] < surface.get_height()-2): # ???
-				# if (self.get_rgb_for_xy(x+x_shift[direction], y+y_shift[direction]) == self.old_color):
-				# if (get_rgb_for_xy(surface, x+x_shift[direction], y+y_shift[direction]) == self.old_color):
+				# if (self.utilities_get_rgb_for_xy(x+x_shift[direction], y+y_shift[direction]) == self.old_color):
+				# if (utilities_get_rgb_for_xy(surface, x+x_shift[direction], y+y_shift[direction]) == self.old_color):
 					new_x = x+x_shift[direction]
 					new_y = y+y_shift[direction]
 					direction = (direction+1) % 8

@@ -34,8 +34,9 @@ from .tool_crop import ToolCrop
 from .tool_scale import ToolScale
 from .tool_rotate import ToolRotate
 
+from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
-from .utilities import save_pixbuf_at
+from .utilities import utilities_save_pixbuf_at
 from .minimap import DrawingMinimap
 from .color_popover import DrawingColorPopover
 
@@ -47,7 +48,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	tools_panel = GtkTemplate.Child()
 	toolbar_box = GtkTemplate.Child()
-	drawing_area = GtkTemplate.Child()
+	notebook = GtkTemplate.Child()
 	bottom_panel_box = GtkTemplate.Child()
 
 	# Default bottom panel
@@ -65,6 +66,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	minimap_btn = GtkTemplate.Child()
 	minimap_icon = GtkTemplate.Child()
 	minimap_label = GtkTemplate.Child()
+	minimap_arrow = GtkTemplate.Child()
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
@@ -78,19 +80,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.build_color_buttons()
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 
-		self.drawing_area.add_events( \
-			Gdk.EventMask.BUTTON_PRESS_MASK | \
-			Gdk.EventMask.BUTTON_RELEASE_MASK | \
-			Gdk.EventMask.BUTTON_MOTION_MASK | \
-			Gdk.EventMask.SMOOTH_SCROLL_MASK)
 		self.add_all_win_actions()
+
+		self.image_list = []
+		image0 = DrawingImage(self)
+		self.image_list.insert(0, image0)
+		self.notebook.append_page(self.image_list[0], Gtk.Label(label='une seule image pour le moment', visible=True))
 
 		self.init_tools()
 
 		self.update_history_sensitivity()
 		self.connect_signals()
 
-		self.init_background()
 		self.set_picture_title()
 
 	def init_instance_attributes(self):
@@ -98,22 +99,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_tool_id = 'pencil'
 		self.former_tool_id = 'pencil'
 		self.hijacker_id = None
-		self.is_clicked = False
 		self.header_bar = None
 		self.main_menu_btn = None
-
-		self.undo_history = []
-		self.redo_history = []
-		self.gfile = None
-		self.filename = None
-		self._is_saved = True
 		self.needed_width_for_long = 0
-
-		width = self._settings.get_int('default-width')
-		height = self._settings.get_int('default-height')
-		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height) # 8 ??? les autres plantent
-		self.temporary_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 
 	def init_tools(self):
 		self.tools = {}
@@ -145,21 +133,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Initialisation of menus
 		self.enable_tool(self.active_tool_id, True)
 
-	def init_background(self, *args):
-		w_context = cairo.Context(self.surface)
-		r = float(self._settings.get_strv('default-rgba')[0])
-		g = float(self._settings.get_strv('default-rgba')[1])
-		b = float(self._settings.get_strv('default-rgba')[2])
-		a = float(self._settings.get_strv('default-rgba')[3])
-		w_context.set_source_rgba(r, g, b, a)
-		w_context.paint()
-		self.on_tool_finished()
-
 	def initial_save(self):
 		self.set_picture_title()
 		self._is_saved = True
 		self.use_stable_pixbuf()
-		self.drawing_area.queue_draw()
+		self.get_active_image().queue_draw()
 
 	def action_close(self, *args):
 		self.close()
@@ -172,15 +150,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def connect_signals(self):
 		self.handlers.append( self.connect('delete-event', self.on_close) )
 		self.handlers.append( self.connect('configure-event', self.adapt_to_window_size) )
-
-		self.handlers.append( self.drawing_area.connect('draw', self.on_draw) )
-		self.handlers.append( self.drawing_area.connect('motion-notify-event', self.on_motion_on_area) )
-		self.handlers.append( self.drawing_area.connect('button-press-event', self.on_press_on_area) )
-		self.handlers.append( self.drawing_area.connect('button-release-event', self.on_release_on_area) )
-		self.handlers.append( self.drawing_area.connect('scroll-event', self.on_scroll_on_area) )
-
-		self.options_btn.connect('toggled', self.update_option_label)
-
+		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
 		self.handlers.append( self._settings.connect('changed::panel-width', self.on_show_labels_setting_changed) )
 
 	def add_action_simple(self, action_name, callback):
@@ -201,7 +171,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_simple('properties', self.edit_properties)
+		self.add_action_simple('properties', self.action_properties)
 
 		self.add_action_simple('main_menu', self.action_main_menu)
 		self.add_action_simple('options_menu', self.action_options_menu)
@@ -240,7 +210,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if fn is None:
 			fn = _("Unsaved file")
 		main_title = fn.split('/')[-1]
-		if not self._is_saved:
+		if not self.get_active_image()._is_saved:
 			main_title = '*' + main_title
 		subtitle = self.get_edition_status()
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
@@ -277,9 +247,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.header_bar = builder.get_object('header_bar')
 		self.save_label = builder.get_object('save_label')
 		self.save_icon = builder.get_object('save_icon')
-		add_btn = builder.get_object('add_btn')
-		self.add_label = builder.get_object('add_label')
-		self.add_icon = builder.get_object('add_icon')
+		self.add_btn = builder.get_object('add_btn')
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
 		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
@@ -287,8 +255,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, main_menu)
 		self.main_menu_btn.set_popover(menu_popover)
 		add_menu = builder.get_object('add-menu')
-		add_popover = Gtk.Popover.new_from_model(add_btn, add_menu)
-		add_btn.set_popover(add_popover)
+		add_popover = Gtk.Popover.new_from_model(self.add_btn, add_menu)
+		self.add_btn.set_popover(add_popover)
 
 	def action_main_menu(self, *args):
 		if self.main_menu_btn is not None:
@@ -302,13 +270,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if self.get_allocated_width() > 600:
 				self.save_label.set_visible(True)
 				self.save_icon.set_visible(False)
-				self.add_label.set_visible(True)
-				self.add_icon.set_visible(False)
+				self.add_btn.set_visible(True)
 			else:
 				self.save_label.set_visible(False)
 				self.save_icon.set_visible(True)
-				self.add_label.set_visible(False)
-				self.add_icon.set_visible(True)
+				self.add_btn.set_visible(False)
 
 		if self.active_tool().implements_panel:
 			self.active_tool().adapt_to_window_size()
@@ -332,6 +298,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def compact_preview_btn(self, state):
 		self.minimap_label.set_visible(not state)
+		self.minimap_arrow.set_visible(not state)
 		self.minimap_icon.set_visible(state)
 
 	# TOOLS PANEL
@@ -380,11 +347,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if should_give_back_control:
 			self.former_tool().give_back_control()
 		self.former_tool().on_tool_unselected()
-		self.drawing_area.queue_draw()
+		self.get_active_image().queue_draw()
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()
 		self.active_tool().on_tool_selected()
-		self.minimap.correct_coords()
+		#self.minimap.correct_coords()
 		self.set_picture_title()
 		if self.former_tool().implements_panel:
 			self.former_tool_id = former_tool_id_2
@@ -422,13 +389,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.hijacker_id = None
 		self.lookup_action('active_tool').set_enabled(True)
 
+	def tool_needs_temp(self):
+		return self.active_tool().need_temp_pixbuf
+
+	def tool_needs_selection(self):
+		return self.active_tool().need_selection_pixbuf
+
+	def get_surface(self):
+		return self.get_active_image().get_surface()
+
 	# FILE MANAGEMENT
 
+	def action_properties(self, *args):
+		self.get_active_image().edit_properties()
+
+	def get_active_image(self):
+		return self.image_list[0]
+
 	def get_file_path(self):
-		if self.gfile is None:
-			return None
-		else:
-			return self.gfile.get_path()
+		self.get_active_image().get_file_path()
 
 	def action_open(self, *args):
 		if self.confirm_save_modifs():
@@ -456,7 +435,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if fn is None:
 			self.action_save_as()
 			return
-		save_pixbuf_at(self.main_pixbuf, fn)
+		utilities_save_pixbuf_at(self.main_pixbuf, fn)
 		self.initial_save()
 
 	def action_save_as(self, *args):
@@ -473,7 +452,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.initial_save()
 
 	def confirm_save_modifs(self):
-		if not self._is_saved:
+		if not self.get_active_image()._is_saved:
 			fn = self.get_file_path()
 			if fn is None:
 				title_label = _("Untitled") + '.png'
@@ -552,94 +531,27 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save('')
 		if gfile is not None:
-			save_pixbuf_at(self.main_pixbuf, gfile.get_path())
+			utilities_save_pixbuf_at(self.main_pixbuf, gfile.get_path())
 
 	# HISTORY MANAGEMENT
 
 	def action_undo(self, *args):
-		should_undo = not self.active_tool().give_back_control()
-		if should_undo and self.can_undo():
-			self.redo_history.append(self.main_pixbuf.copy())
-			self.main_pixbuf = self.undo_history.pop()
-			self.use_stable_pixbuf()
-			self.update_history_sensitivity()
-		self.drawing_area.queue_draw()
+		self.get_active_image().try_undo()
 
 	def action_redo(self, *args):
-		self.undo_history.append(self.main_pixbuf.copy())
-		self.main_pixbuf = self.redo_history.pop()
-		self.use_stable_pixbuf()
-		self.drawing_area.queue_draw()
-		self.update_history_sensitivity()
+		self.get_active_image().try_redo()
 
 	def update_history_sensitivity(self):
-		# This line makes sense but it forbids undoing a non-finished operation
-		# self.lookup_action('undo').set_enabled(self.can_undo())
-
-		self.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
+		self.get_active_image().update_history_sensitivity()
 
 	def add_operation_to_history(self, operation):
 		print('todo')
-
-	def on_tool_finished(self):
-		self.undo_history.append(self.main_pixbuf.copy())
-		self.redo_history = []
-		self.update_history_sensitivity()
-		self.drawing_area.queue_draw()
-		self.set_surface_as_stable_pixbuf()
-		self.active_tool().update_actions_state()
 
 	def can_undo(self):
 		if len(self.undo_history) == 0:
 			return False
 		else:
 			return True
-
-	# DRAWING OPERATIONS
-
-	def on_draw(self, area, cairo_context):
-		x, y = self.get_main_coord()
-		self.active_tool().on_draw(area, cairo_context, x, y)
-
-	def on_press_on_area(self, area, event):
-		if event.button == 2:
-			self.is_clicked = False
-			self.action_exchange_color()
-			return
-		self.is_clicked = True
-		self._is_saved = False
-		x, y = self.get_main_coord()
-		self.active_tool().on_press_on_area(area, event, self.surface, \
-			self.size_setter.get_value(), \
-			self.color_popover_l.color_widget.get_rgba(), \
-			self.color_popover_r.color_widget.get_rgba(), \
-			x + event.x, \
-			y + event.y )
-
-	def on_motion_on_area(self, area, event):
-		if not self.is_clicked:
-			return
-		x, y = self.get_main_coord()
-		event_x = x + event.x
-		event_y = y + event.y
-		self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
-		self.drawing_area.queue_draw()
-
-	def on_release_on_area(self, area, event):
-		if not self.is_clicked:
-			return
-		self.is_clicked = False
-		x, y = self.get_main_coord()
-		event_x = x + event.x
-		event_y = y + event.y
-		self.active_tool().on_release_on_area(area, event, self.surface, event_x, event_y)
-		self.set_picture_title()
-
-	def on_scroll_on_area(self, area, event):
-		self.minimap.add_deltas(event.delta_x, event.delta_y, 10)
-
-	def get_main_coord(self, *args):
-		return self.minimap.preview_x, self.minimap.preview_y
 
 	# COLORS
 
@@ -717,45 +629,4 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
 		op.set_n_pages(1)
-
-	# MAIN_PIXBUF-RELATED METHODS
-
-	def edit_properties(self, *args):
-		DrawingPropertiesDialog(self)
-
-	def get_pixbuf_width(self):
-		return self.main_pixbuf.get_width()
-
-	def get_pixbuf_height(self):
-		return self.main_pixbuf.get_height()
-
-	def get_surface(self):
-		return self.surface
-
-	def set_surface_as_stable_pixbuf(self):
-		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-			self.surface.get_width(), self.surface.get_height())
-
-	def use_stable_pixbuf(self):
-		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-
-	def show_overlay_on_surface(self, surface, cairo_path): # TODO doit être utilisé ailleurs
-		w_context = cairo.Context(surface)
-		w_context.new_path()
-		w_context.append_path(cairo_path)
-		w_context.clip_preserve()
-		w_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
-		w_context.paint()
-		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		w_context.stroke()
-
-	def scale_pixbuf_to(self, new_width, new_height): # XXX c'est nul
-		self.main_pixbuf = self.main_pixbuf.scale_simple(new_width, new_height, GdkPixbuf.InterpType.TILES)
-		self.use_stable_pixbuf()
-		self.on_tool_finished()
-
-	def rotate_pixbuf(self, angle): # XXX c'est nul
-		self.main_pixbuf = self.main_pixbuf.rotate_simple(angle)
-		self.use_stable_pixbuf()
-		self.on_tool_finished()
 

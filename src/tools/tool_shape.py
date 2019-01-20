@@ -70,7 +70,7 @@ class ToolShape(ToolTemplate):
 		return False
 
 	def draw_rectangle(self, event_x, event_y):
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.move_to(self.x_press, self.y_press)
 		w_context.line_to(self.x_press, event_y)
 		w_context.line_to(event_x, event_y)
@@ -79,7 +79,7 @@ class ToolShape(ToolTemplate):
 		self._path = w_context.copy_path()
 
 	def draw_oval(self, event_x, event_y):
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
 			self.x_press, event_y, \
 			(self.x_press+event_x)/2, event_y)
@@ -96,7 +96,7 @@ class ToolShape(ToolTemplate):
 		self._path = w_context.copy_path()
 
 	def draw_circle(self, event_x, event_y):
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		rayon = math.sqrt((self.x_press - event_x)*(self.x_press - event_x) \
 			+ (self.y_press - event_y)*(self.y_press - event_y))
 		w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
@@ -152,7 +152,7 @@ class ToolShape(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.window.get_surface())
+		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(operation['operator'])
 		w_context.set_line_width(operation['line_width'])
 		rgba_main = operation['rgba_main']
