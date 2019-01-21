@@ -186,6 +186,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('print', self.action_print)
 
+		self.add_action_simple('import', self.action_import)
+		self.add_action_simple('paste', self.action_paste)
+		self.add_action_simple('select_all', self.action_select_all)
+		self.add_action_simple('selection_export', self.action_selection_export)
+
 		self.add_action_simple('back_to_former_tool', self.back_to_former_tool)
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 		self.add_action_boolean('show_labels', self._settings.get_boolean('panel-width'), \
@@ -532,6 +537,45 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save('')
 		if gfile is not None:
 			utilities_save_pixbuf_at(self.main_pixbuf, gfile.get_path())
+
+	def action_select_all(self, *args):
+		self.force_selection_tool()
+		self.get_active_image().image_select_all()
+		self.get_selection_tool().selection_select_all()
+
+	def action_paste(self, *args):
+		self.force_selection_tool()
+		self.get_selection_tool().selection_paste()
+
+	def action_import(self, *args):
+		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
+			Gtk.FileChooserAction.OPEN,
+			_("Import"),
+			_("Cancel"))
+		allPictures = Gtk.FileFilter()
+		allPictures.set_name(_("All pictures"))
+		allPictures.add_mime_type('image/png')
+		allPictures.add_mime_type('image/jpeg')
+		allPictures.add_mime_type('image/bmp')
+		file_chooser.add_filter(allPictures)
+		response = file_chooser.run()
+		if response == Gtk.ResponseType.ACCEPT:
+			self.force_selection_tool()
+			fn = file_chooser.get_filename()
+			self.get_active_image().set_selection_pixbuf(GdkPixbuf.Pixbuf.new_from_file(fn))
+			self.get_selection_tool().selection_import()
+		file_chooser.destroy()
+
+	def action_selection_export(self, *args):
+		gfile = self.file_chooser_save('')
+		if gfile is not None:
+			utilities_save_pixbuf_at(self.get_active_image().get_selection_pixbuf(), gfile.get_path())
+
+	def get_selection_tool(self):
+		return self.tools['select']
+
+	def force_selection_tool(self):
+		self.get_selection_tool().row.set_active(True)
 
 	# HISTORY MANAGEMENT
 

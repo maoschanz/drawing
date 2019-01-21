@@ -4,9 +4,6 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo
 
 from .tools import ToolTemplate
-from .utilities import utilities_save_pixbuf_at
-
-# TODO remplacer les self.get_image().selection_pixbuf par mieux
 
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
@@ -20,8 +17,8 @@ class ToolSelect(ToolTemplate):
 		self.need_selection_pixbuf = True
 
 		self.temp_path = None
-		self.temp_x = 0
-		self.temp_y = 0
+		self.temp_x = 0 # TODO on peut peut-tre se débarasser de ça en prenant tout simplement le début du path ?
+		self.temp_y = 0 # ça n'a pas l'air très utilisé anyway
 
 		#############################
 
@@ -32,10 +29,6 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_crop', self.action_selection_crop)
 		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
-		self.add_tool_action_simple('selection_export', self.action_selection_export)
-		self.add_tool_action_simple('import', self.action_import) # XXX
-		self.add_tool_action_simple('paste', self.action_paste) # XXX
-		self.add_tool_action_simple('select_all', self.action_select_all) # XXX
 
 		#############################
 
@@ -126,11 +119,13 @@ class ToolSelect(ToolTemplate):
 				#self.restore_pixbuf()
 				self.non_destructive_show_modif()
 				self.apply_to_pixbuf()
-				#self.forget_selection()
+				#self.forget_selection() # FIXME sera moins stupide quand ce sera une opérations
 			self.reset_temp()
+			#self.set_edition_state('surface')
 			return False
 		else:
 			self.selection_has_been_used = True
+			#self.set_edition_state('surface')
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):
@@ -217,9 +212,6 @@ class ToolSelect(ToolTemplate):
 			self.get_image().selection_y = self.rightc_popover.get_pointing_to()[1].y
 			self.rightc_popover.popup()
 
-	def force_selection(self):
-		self.row.set_active(True)
-
 	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()
 		main_x, main_y = self.get_image().get_main_coord()
@@ -242,28 +234,6 @@ class ToolSelect(ToolTemplate):
 			self.get_image().selection_y += delta_y
 		self.non_destructive_show_modif()
 
-	def action_import(self, *args): # TODO dans image??
-		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self.window,
-			Gtk.FileChooserAction.OPEN,
-			_("Import"),
-			_("Cancel"))
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(allPictures)
-		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT:
-			self.force_selection()
-			fn = file_chooser.get_filename()
-			self.get_image().set_selection_pixbuf(GdkPixbuf.Pixbuf.new_from_file(fn))
-			self.temp_path = None
-			self.temp_x = self.get_image().selection_x
-			self.temp_y = self.get_image().selection_y
-			self.create_selection_from_arbitrary_pixbuf()
-		file_chooser.destroy()
-
 	def action_cut(self, *args):
 		self.copy_operation()
 		self.action_selection_delete()
@@ -276,32 +246,21 @@ class ToolSelect(ToolTemplate):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_selection_pixbuf())
 
-	def action_paste(self, *args): # TODO dans image??
-		self.force_selection()
+	def selection_import(self):
+		self.temp_path = None
+		self.create_selection_from_arbitrary_pixbuf(False)
+
+	def selection_paste(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		self.get_image().set_selection_pixbuf(cb.wait_for_image())
 		self.temp_path = None
-		self.temp_x = self.get_image().selection_x
-		self.temp_y = self.get_image().selection_y
-		self.create_selection_from_arbitrary_pixbuf()
+		self.create_selection_from_arbitrary_pixbuf(False)
 
-	def action_select_all(self, *args):
-		self.force_selection()
+	def selection_select_all(self):
 		self.selection_has_been_used = False
 		self.temp_x = 0
 		self.temp_y = 0
-		self.get_image().selection_x = 0
-		self.get_image().selection_y = 0
-		self.get_image().set_selection_pixbuf(self.get_main_pixbuf().copy())
-		w_context = cairo.Context(self.get_surface())
-		w_context.move_to(0, 0)
-		w_context.line_to(self.get_image().get_pixbuf_width(), 0)
-		w_context.line_to(self.get_image().get_pixbuf_width(), self.get_image().get_pixbuf_height())
-		w_context.line_to(0, self.get_image().get_pixbuf_height())
-		w_context.close_path()
-		self.get_image().selection_path = w_context.copy_path()
-		self.temp_path = w_context.copy_path()
-		self.set_temp()
+		self.create_selection_from_arbitrary_pixbuf(True)
 		self.show_popover(True)
 
 	def action_unselect(self, *args):
@@ -323,11 +282,6 @@ class ToolSelect(ToolTemplate):
 
 	def action_selection_rotate(self, *args): # TODO davantage d'angles
 		self.window.hijack_begin(self.id, 'rotate')
-
-	def action_selection_export(self, *args): # XXX ailleurs ??
-		gfile = self.window.file_chooser_save('')
-		if gfile is not None:
-			utilities_save_pixbuf_at(self.get_selection_pixbuf(), gfile.get_path())
 
 ############################## XXX pour toute cette section, ne peut-on pas donner le contexte en paramètre ?
 
@@ -400,7 +354,9 @@ class ToolSelect(ToolTemplate):
 
 ####################################
 
-	def create_selection_from_arbitrary_pixbuf(self):
+	def create_selection_from_arbitrary_pixbuf(self, is_existing_content):
+		self.temp_x = self.get_image().selection_x
+		self.temp_y = self.get_image().selection_y
 		self.selection_has_been_used = True
 		self.selection_is_active = True
 		w_context = cairo.Context(self.get_surface())
@@ -410,6 +366,9 @@ class ToolSelect(ToolTemplate):
 		w_context.rel_line_to(-1 * self.get_selection_pixbuf().get_width(), 0)
 		w_context.close_path()
 		self.get_image().selection_path = w_context.copy_path()
+		if is_existing_content:
+			self.temp_path = w_context.copy_path()
+			self.set_temp()
 		self.show_popover(False)
 		self.update_actions_state()
 		self.non_destructive_show_modif()
@@ -461,7 +420,7 @@ class ToolSelect(ToolTemplate):
 	def on_confirm_hijacked_modif(self):
 		self.selection_has_been_used = True
 		self.window.hijack_end()
-		self.create_selection_from_arbitrary_pixbuf()
+		self.create_selection_from_arbitrary_pixbuf(False)
 
 	def create_free_selection_from_main(self):
 		self.get_image().selection_pixbuf = self.get_main_pixbuf().copy()

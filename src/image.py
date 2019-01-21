@@ -333,3 +333,11 @@ class DrawingImage(Gtk.Layout):
 
 	def is_using_selection(self):
 		return self.window.tool_needs_selection()
+
+##########################
+
+	def image_select_all(self):
+		self.selection_x = 0
+		self.selection_y = 0
+		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
+

@@ -100,14 +100,17 @@ class ToolCrop(ToolTemplate):
 
 	def update_temp_pixbuf(self):
 		if self.crop_selection:
+			self.set_edition_state('temp-as-selection')
 			self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().copy())
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 		else:
+			self.set_edition_state('temp-as-main')
 			self.get_image().temp_pixbuf = self.get_main_pixbuf().copy()
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 			self.scale_temp_pixbuf_to_area(width, height)
+		self.non_destructive_show_modif()
 
 	def crop_temp_pixbuf(self, x, y, width, height):
 		x = max(x, 0)
@@ -144,11 +147,9 @@ class ToolCrop(ToolTemplate):
 
 	def on_width_changed(self, *args):
 		self.update_temp_pixbuf()
-		self.non_destructive_show_modif()
 
 	def on_height_changed(self, *args):
 		self.update_temp_pixbuf()
-		self.non_destructive_show_modif()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
@@ -161,9 +162,7 @@ class ToolCrop(ToolTemplate):
 			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
 		self.x_press = event.x
 		self.y_press = event.y
-
 		self.update_temp_pixbuf()
-		self.non_destructive_show_modif()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
