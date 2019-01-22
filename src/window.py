@@ -256,9 +256,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
 		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
-		main_menu = builder.get_object('window-menu')
-		menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, main_menu)
-		self.main_menu_btn.set_popover(menu_popover)
+		short_main_menu = builder.get_object('short-window-menu')
+		self.short_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, short_main_menu)
+		long_main_menu = builder.get_object('long-window-menu')
+		self.long_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, long_main_menu)
 		add_menu = builder.get_object('add-menu')
 		add_popover = Gtk.Popover.new_from_model(self.add_btn, add_menu)
 		self.add_btn.set_popover(add_popover)
@@ -276,10 +277,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.save_label.set_visible(True)
 				self.save_icon.set_visible(False)
 				self.add_btn.set_visible(True)
+				self.main_menu_btn.set_popover(self.short_menu_popover)
 			else:
 				self.save_label.set_visible(False)
 				self.save_icon.set_visible(True)
 				self.add_btn.set_visible(False)
+				self.main_menu_btn.set_popover(self.long_menu_popover)
 
 		if self.active_tool().implements_panel:
 			self.active_tool().adapt_to_window_size()
