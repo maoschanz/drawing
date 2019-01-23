@@ -58,12 +58,10 @@ class ToolSelect(ToolTemplate):
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
 		self.update_actions_state()
-		self.set_edition_state('selection')
 		self.selection_popover.set_relative_to(self.get_image())
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
-		self.set_edition_state('surface')
 
 	def update_actions_state(self):
 		self.set_actions_state(self.selection_is_active)
@@ -114,18 +112,12 @@ class ToolSelect(ToolTemplate):
 		print('selection give back control')
 		if self.selection_has_been_used:
 			if self.selection_is_active:
-				print('---- 124 ----')
-				self.set_edition_state('selection-without-overlay')
-				#self.restore_pixbuf()
-				self.non_destructive_show_modif()
-				self.apply_to_pixbuf()
-				#self.forget_selection() # FIXME sera moins stupide quand ce sera une opérations
+				operation = self.build_operation()
+				self.apply_operation(operation)
 			self.reset_temp()
-			#self.set_edition_state('surface')
 			return False
 		else:
 			self.selection_has_been_used = True
-			#self.set_edition_state('surface')
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):
@@ -135,13 +127,6 @@ class ToolSelect(ToolTemplate):
 		self.non_destructive_show_modif()
 		return True
 
-	# XXX XXX XXX XXX XXX XXX
-	# Que doit faire cet outil ?
-	# - définir un path, stocké localement en tant que temp_path et initialement copié dans image.py
-	# - supprimer le contenu du temp_path
-	# - modifier selection_x et selection_y en fonction des déplacements de souris
-	# - cut/copy/unselect/etc.
-
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		if self.selection_is_active:
 			self.x_press = event_x
@@ -150,16 +135,18 @@ class ToolSelect(ToolTemplate):
 			self.init_path(event_x, event_y)
 		self.left_color = left_color # TODO
 		self.right_color = right_color # TODO
-		# self.non_destructive_show_modif() # XXX placé ici au pif
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		if not self.selection_is_active:
+		if self.selection_is_active:
+			self.update_surface() # XXX inutile pour le moment car on n'update pas
+			# du tout selection_x et selection_y
+			print('todo: select line 151')
+		else:
 			if self.selected_type_id == 'freehand':
 				self.restore_pixbuf()
 				self.draw_polygon(event_x, event_y)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		self.set_edition_state('selection') # XXX placé ici au pif
 		if event.button == 3:
 			rectangle = Gdk.Rectangle()
 			rectangle.x = int(event.x)
@@ -197,7 +184,12 @@ class ToolSelect(ToolTemplate):
 				self.drag_to(event_x, event_y)
 			else:
 				self.give_back_control()
-		#self.non_destructive_show_modif() # XXX placé ici au pif
+		self.update_surface()
+
+	def update_surface(self): # XXX inutile si on étend bien le non_destructive_show_modif
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+		self.non_destructive_show_modif()
 
 	def show_popover(self, state):
 		self.selection_popover.popdown()
@@ -464,3 +456,34 @@ class ToolSelect(ToolTemplate):
 
 	def forget_selection(self):
 		self.get_image().selection_pixbuf = None
+		self.get_image().selection_path = None
+
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'initial_path': self.temp_path,
+			'pixbuf': self.get_image().get_selection_pixbuf().copy(),
+			'pixb_x': self.get_image().selection_x,
+			'pixb_y': self.get_image().selection_y
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		#cairo_context = cairo.Context(self.get_surface())
+		if operation['initial_path'] is not None:
+			cairo_context = cairo.Context(self.get_surface())
+			cairo_context.new_path()
+			cairo_context.append_path(operation['initial_path'])
+			cairo_context.clip()
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
+		if operation['pixbuf'] is not None:
+			cairo_context2 = cairo.Context(self.get_surface())
+			Gdk.cairo_set_source_pixbuf(cairo_context2, operation['pixbuf'],
+				operation['pixb_x'], operation['pixb_y'])
+			cairo_context2.paint()
+

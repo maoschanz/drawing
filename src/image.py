@@ -156,33 +156,12 @@ class DrawingImage(Gtk.Layout):
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
-		print('<on_draw>')
-		print(self.edition_state)
-		if self.edition_state == 'selection':
-			cairo_context.set_source_surface(self.get_surface(), \
-				-1*self.scroll_x, -1*self.scroll_y)
-			cairo_context.paint()
-			if self.is_using_selection() and self.selection_pixbuf is not None:
-				self.delete_former_selection()
-				Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf,
-					self.selection_x, self.selection_y)
-				cairo_context.paint()
-				utilities_show_overlay_on_context(cairo_context, self.get_selection_path(), True)
+		print('état: ' + self.edition_state)
 
-		elif self.edition_state == 'selection-without-overlay':
-			cairo_context.set_source_surface(self.get_surface(), \
-				-1*self.scroll_x, -1*self.scroll_y)
-			cairo_context.paint()
-			self.delete_former_selection()
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf,
-				self.selection_x, self.selection_y)
-			cairo_context.paint()
-
-		elif self.edition_state == 'temp-as-main':
+		if self.edition_state == 'temp-as-main':
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.temp_pixbuf, \
 				-1 * self.scroll_x, -1 * self.scroll_y)
 			cairo_context.paint()
-
 		elif self.edition_state == 'temp-as-selection':
 			cairo_context.set_source_surface(self.get_surface(), \
 				-1*self.scroll_x, -1*self.scroll_y) # XXX non le pixbuf
@@ -191,10 +170,13 @@ class DrawingImage(Gtk.Layout):
 				self.selection_x, self.selection_y)
 			cairo_context.paint()
 		else: # 'surface'
+
 			cairo_context.set_source_surface(self.get_surface(), \
 				-1*self.scroll_x, -1*self.scroll_y)
 			cairo_context.paint()
-		print('</on_draw>')
+
+		if self.is_using_selection() and self.selection_pixbuf is not None:
+			utilities_show_overlay_on_context(cairo_context, self.get_selection_path(), True)
 
 	def delete_former_selection(self):
 		self.window.tools['select'].delete_temp() # XXX beurk

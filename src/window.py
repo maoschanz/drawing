@@ -260,6 +260,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.short_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, short_main_menu)
 		long_main_menu = builder.get_object('long-window-menu')
 		self.long_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, long_main_menu)
+
 		add_menu = builder.get_object('add-menu')
 		add_popover = Gtk.Popover.new_from_model(self.add_btn, add_menu)
 		self.add_btn.set_popover(add_popover)

@@ -134,4 +134,5 @@ class ToolTemplate():
 		pass
 
 	def set_edition_state(self, state):
-		self.get_image().edition_state = state
+		#self.get_image().edition_state = state
+		self.get_image().edition_state = 'surface'

@@ -29,3 +29,5 @@ def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	cairo_context.paint()
 	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	cairo_context.stroke()
+	# FIXME le path obtenu ne tient pas compte du scroll mais je ne sais pas si
+	# c'est de la faute de cette fonction ou de ToolSelect.get_dragged_path()
