@@ -114,10 +114,10 @@ class ToolScale(ToolTemplate):
 
 	def update_area(self):
 		self.update_temp_pixbuf()
-		if self.scale_selection:
-			self.set_edition_state('temp-as-selection')
-		else:
-			self.set_edition_state('temp-as-main')
+		# if self.scale_selection:
+		# 	self.set_edition_state('temp-as-selection')
+		# else:
+		# 	self.set_edition_state('temp-as-main')
 		self.non_destructive_show_modif()
 
 	def get_width(self):

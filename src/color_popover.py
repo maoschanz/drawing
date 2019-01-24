@@ -51,9 +51,12 @@ class DrawingColorPopover(Gtk.Popover):
 		self.color_widget.props.show_editor = False
 
 	def update_box(self, *args):
+		"""Update the visibility of navigation controls ('back to the palette'
+		and 'always use this editor')."""
 		self.editor_box.set_visible(self.color_widget.props.show_editor)
 
 	def set_color_btn(self, *args):
+		"""Update the 'rgba' property of the GtkColorWidget and its preview."""
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
 		w_context = cairo.Context(surface)
 		rgba = self.color_widget.get_rgba()

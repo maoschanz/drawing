@@ -50,7 +50,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			4: 'RGB16_565',
 			5: 'RGB30',
 		}
-		label_format_surface.set_label(enum.get(window.get_surface().get_format(), _("Invalid format")))
+		label_format_surface.set_label(enum.get(self._image.get_surface().get_format(), _("Invalid format")))
 		self.set_size_labels()
 
 		self.set_default_size(400, 200)

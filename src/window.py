@@ -404,9 +404,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def tool_needs_selection(self):
 		return self.active_tool().need_selection_pixbuf
 
-	def get_surface(self):
-		return self.get_active_image().get_surface()
-
 	# FILE MANAGEMENT
 
 	def action_properties(self, *args):
@@ -542,6 +539,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if gfile is not None:
 			utilities_save_pixbuf_at(self.main_pixbuf, gfile.get_path())
 
+	def action_print(self, *args):
+		self.get_active_image().print_image()
+
 	def action_select_all(self, *args):
 		self.force_selection_tool()
 		self.get_active_image().image_select_all()
@@ -591,9 +591,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def update_history_sensitivity(self):
 		self.get_active_image().update_history_sensitivity()
-
-	def add_operation_to_history(self, operation):
-		print('todo')
 
 	def can_undo(self):
 		if len(self.undo_history) == 0:
@@ -655,26 +652,4 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def update_option_label(self, *args):
 		self.options_label.set_label(self.active_tool().get_options_label())
-
-	# PRINTING
-
-	def action_print(self, *args):
-		op = Gtk.PrintOperation()
-		op.connect('draw-page', self.do_draw_page)
-		op.connect('begin-print', self.do_begin_print)
-		op.connect('end-print', self.do_end_print)
-		res = op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self)
-
-	def do_end_print(self, *args):
-		pass
-
-	def do_draw_page(self, operation, print_ctx, page_num):
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
-		print_ctx.get_cairo_context().paint()
-		op.set_n_pages(1)
-
-	def do_begin_print(self, op, print_ctx):
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
-		print_ctx.get_cairo_context().paint()
-		op.set_n_pages(1)
 

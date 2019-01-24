@@ -46,14 +46,17 @@ class DrawingMinimap(Gtk.Popover):
 		minimap_btn.connect('toggled', self.update_minimap)
 
 	def on_minimap_draw(self, area, cairo_context):
+		"""Callback of the 'draw' signal, painting the area with the surface."""
 		cairo_context.set_source_surface(self.mini_surface, 0, 0)
 		cairo_context.paint()
 
 	def on_minimap_press(self, area, event):
+		"""Callback of the 'button-press-event' signal."""
 		self.old_x = event.x
 		self.old_y = event.y
 
 	def on_minimap_release(self, area, event):
+		"""Callback of the 'button-release-event' signal."""
 		delta_x = event.x - self.old_x
 		delta_y = event.y - self.old_y
 		ratio = self.get_main_pixbuf().get_width()/self.mini_pixbuf.get_width()
@@ -63,11 +66,9 @@ class DrawingMinimap(Gtk.Popover):
 		return self.window.get_active_image().main_pixbuf
 
 	def update_minimap(self, *args):
+		"""Update the overlay on the minimap, based on the scroll coordinates."""
 		x = self.window.get_active_image().scroll_x
 		y = self.window.get_active_image().scroll_y
-		self.update_minimap_to_coords(x, y)
-
-	def update_minimap_to_coords(self, x, y):
 		w = self.preview_size
 		h = self.preview_size
 		mpb_width = self.get_main_pixbuf().get_width()

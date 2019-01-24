@@ -63,7 +63,6 @@ class DrawingImage(Gtk.Layout):
 		self.gfile = None
 		self.filename = None
 		self._is_saved = True
-		self.edition_state = 'surface'
 
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
@@ -156,24 +155,9 @@ class DrawingImage(Gtk.Layout):
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
-		print('état: ' + self.edition_state)
-
-		if self.edition_state == 'temp-as-main':
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.temp_pixbuf, \
-				-1 * self.scroll_x, -1 * self.scroll_y)
-			cairo_context.paint()
-		elif self.edition_state == 'temp-as-selection':
-			cairo_context.set_source_surface(self.get_surface(), \
-				-1*self.scroll_x, -1*self.scroll_y) # XXX non le pixbuf
-			cairo_context.paint()
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.temp_pixbuf, \
-				self.selection_x, self.selection_y)
-			cairo_context.paint()
-		else: # 'surface'
-
-			cairo_context.set_source_surface(self.get_surface(), \
-				-1*self.scroll_x, -1*self.scroll_y)
-			cairo_context.paint()
+		cairo_context.set_source_surface(self.get_surface(), \
+			-1*self.scroll_x, -1*self.scroll_y)
+		cairo_context.paint()
 
 		if self.is_using_selection() and self.selection_pixbuf is not None:
 			utilities_show_overlay_on_context(cairo_context, self.get_selection_path(), True)
@@ -232,7 +216,7 @@ class DrawingImage(Gtk.Layout):
 		self.scroll_x += int(delta_x * factor)
 		self.scroll_y += int(delta_y * factor)
 		self.correct_coords()
-		self.window.minimap.update_minimap_to_coords(self.scroll_x, self.scroll_y)
+		self.window.minimap.update_minimap()
 
 	def correct_coords(self):
 		mpb_width = self.get_main_pixbuf().get_width()
@@ -286,7 +270,8 @@ class DrawingImage(Gtk.Layout):
 
 	def get_selection_path(self):
 		#return self.selection_path
-		return self.active_tool().get_dragged_selection_path() # FIXME je sais meme pas pourquoi ça marche ça
+		return self.active_tool().get_dragged_selection_path() # XXX je sais meme pas pourquoi ça marche
+		# FIXME en fait ça marche bien mal lol
 
 	def get_selection_pixbuf(self):
 		return self.selection_pixbuf
@@ -316,6 +301,9 @@ class DrawingImage(Gtk.Layout):
 	def is_using_selection(self):
 		return self.window.tool_needs_selection()
 
+	def add_operation_to_history(self, operation):
+		print('todo')
+
 ##########################
 
 	def image_select_all(self):
@@ -323,3 +311,24 @@ class DrawingImage(Gtk.Layout):
 		self.selection_y = 0
 		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
 
+# PRINTING XXX marche assez mal
+
+	def print_image(self):
+		op = Gtk.PrintOperation()
+		op.connect('draw-page', self.do_draw_page)
+		op.connect('begin-print', self.do_begin_print)
+		op.connect('end-print', self.do_end_print)
+		res = op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self.window)
+
+	def do_end_print(self, *args):
+		pass
+
+	def do_draw_page(self, op, print_ctx, page_num):
+		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
+		print_ctx.get_cairo_context().paint()
+		op.set_n_pages(1)
+
+	def do_begin_print(self, op, print_ctx):
+		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
+		print_ctx.get_cairo_context().paint()
+		op.set_n_pages(1)

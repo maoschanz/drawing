@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
+import cairo
 
 from .tools import ToolTemplate
 
@@ -82,35 +83,26 @@ class ToolCrop(ToolTemplate):
 		self.height_btn.set_range(1, 10*self.original_height)
 
 	def on_apply(self, *args):
-		x = self._x
-		y = self._y
-		width = self.get_width()
-		height = self.get_height()
-		if self.crop_selection:
-			self.window.former_tool().crop_selection_surface(x, y, width, height)
-			self.window.former_tool().on_confirm_hijacked_modif()
-		else:
-			self.get_image().set_temp_pixbuf(self.get_main_pixbuf().copy())
-			x, y, width, height = self.validate_coords()
-			self.crop_temp_pixbuf(x, y, width, height)
-			self.get_image().set_main_pixbuf(self.get_image().get_temp_pixbuf().copy())
-			self.restore_pixbuf()
-			self.apply_to_pixbuf()
-			self.window.back_to_former_tool()
+		operation = self.build_operation()
+		operation['pixbuf'] = self.get_selection_pixbuf().copy()
+		#self.do_tool_operation(operation)
+		self.apply_operation(operation)
+		self.window.back_to_former_tool()
 
-	def update_temp_pixbuf(self):
+	def update_temp_pixbuf(self): # XXX doit fusionner avec le do_tool_operation ??
 		if self.crop_selection:
-			self.set_edition_state('temp-as-selection')
 			self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().copy())
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 		else:
-			self.set_edition_state('temp-as-main')
 			self.get_image().temp_pixbuf = self.get_main_pixbuf().copy()
 			x, y, width, height = self.validate_coords()
 			self.crop_temp_pixbuf(x, y, width, height)
 			self.scale_temp_pixbuf_to_area(width, height)
 		self.non_destructive_show_modif()
+
+		operation = self.build_operation() # XXX ne marche mme pas
+		self.do_tool_operation(operation)
 
 	def crop_temp_pixbuf(self, x, y, width, height):
 		x = max(x, 0)
@@ -192,3 +184,88 @@ class ToolCrop(ToolTemplate):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+###################################################
+
+	def build_operation(self):
+		#x, y, width, height = self.validate_coords() # XXX ?
+		operation = {
+			'tool_id': self.id,
+			'is_selection': self.crop_selection,
+			'pixbuf': None,
+			'x': self._x,
+			'y': self._y,
+			'width': self.get_width(),
+			'height': self.get_height()
+		}
+		return operation
+
+	def do_tool_operation(self, operation):# TODO
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		if operation['is_selection']:
+			cairo_context.set_source_surface(self.get_surface(), \
+				-1*self.get_image().scroll_x, -1*self.get_image().scroll_y) # XXX non le pixbuf ?
+			cairo_context.paint()
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+				self.get_image().get_temp_pixbuf(), \
+				self.get_image().selection_x, \
+				self.get_image().selection_y)
+			cairo_context.paint()
+		else:
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+				self.get_image().get_temp_pixbuf(), \
+				-1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
+			cairo_context.paint()
+		self.non_destructive_show_modif()
+
+
+
+
+		# 	self.get_image().set_temp_pixbuf(self.get_main_pixbuf().copy())
+		# 	x, y, width, height = self.validate_coords()
+		# 	self.crop_temp_pixbuf(x, y, width, height)
+		# 	self.get_image().set_main_pixbuf(self.get_image().get_temp_pixbuf().copy())
+		# 	self.restore_pixbuf()
+		# 	self.apply_to_pixbuf()
+		# 	self.window.back_to_former_tool()
+
+
+
+		#cairo_context = cairo.Context(self.get_surface())
+		# if operation['initial_path'] is not None:
+		# 	cairo_context = cairo.Context(self.get_surface())
+		# 	cairo_context.new_path()
+		# 	cairo_context.append_path(operation['initial_path'])
+		# 	cairo_context.clip()
+		# 	cairo_context.set_operator(cairo.Operator.CLEAR)
+		# 	cairo_context.paint()
+		# 	cairo_context.set_operator(cairo.Operator.OVER)
+		# if operation['pixbuf'] is not None:
+		# 	cairo_context2 = cairo.Context(self.get_surface())
+		# 	Gdk.cairo_set_source_pixbuf(cairo_context2, operation['pixbuf'],
+		# 		operation['pixb_x'], operation['pixb_y'])
+		# 	cairo_context2.paint()
+
+	def preview_operation(self):
+		pass # TODO
+
+	def apply_operation(self, operation): # fonctionne, mais la préview pue XXX et l'historique ne marchera pas # TODO
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		if operation['is_selection']:
+			self.window.get_selection_tool().crop_selection_surface(operation['x'], \
+				operation['y'], operation['width'], operation['height']) # XXX à tester
+			#self.window.get_selection_tool().crop_selection_surface(x, y, width, height) # XXX à tester
+			# XXX dois-je set le temp_pixbuf d'abord ????????
+			# XXX quid du path ????????
+			self.window.get_selection_tool().on_confirm_hijacked_modif()
+		else:
+			self.get_image().set_temp_pixbuf(self.get_main_pixbuf().copy())
+			self.crop_temp_pixbuf(operation['x'], operation['y'], operation['width'], operation['height'])
+			self.get_image().set_main_pixbuf(self.get_image().get_temp_pixbuf().copy())
+			self.restore_pixbuf()
+			self.apply_to_pixbuf()

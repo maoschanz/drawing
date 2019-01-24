@@ -139,8 +139,7 @@ class ToolSelect(ToolTemplate):
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		if self.selection_is_active:
 			self.update_surface() # XXX inutile pour le moment car on n'update pas
-			# du tout selection_x et selection_y
-			print('todo: select line 151')
+			# du tout selection_x et selection_y TODO
 		else:
 			if self.selected_type_id == 'freehand':
 				self.restore_pixbuf()
@@ -186,7 +185,7 @@ class ToolSelect(ToolTemplate):
 				self.give_back_control()
 		self.update_surface()
 
-	def update_surface(self): # XXX inutile si on étend bien le non_destructive_show_modif
+	def update_surface(self):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 		self.non_destructive_show_modif()
@@ -413,6 +412,7 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.window.hijack_end()
 		self.create_selection_from_arbitrary_pixbuf(False)
+		self.update_surface()
 
 	def create_free_selection_from_main(self):
 		self.get_image().selection_pixbuf = self.get_main_pixbuf().copy()
@@ -472,7 +472,6 @@ class ToolSelect(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		#cairo_context = cairo.Context(self.get_surface())
 		if operation['initial_path'] is not None:
 			cairo_context = cairo.Context(self.get_surface())
 			cairo_context.new_path()

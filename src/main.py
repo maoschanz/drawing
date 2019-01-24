@@ -25,6 +25,12 @@ from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
+def main(version):
+	app = Application(version)
+	return app.run(sys.argv)
+
+################################################################################
+
 class Application(Gtk.Application):
 	about_dialog = None
 	shortcuts_window = None
@@ -51,7 +57,10 @@ class Application(Gtk.Application):
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/tools/icons')
 
+########
+
 	def on_startup(self):
+		"""Add app-wide menus and actions, and all accels."""
 		self.build_actions()
 		self.add_accels()
 		menubar_model = self.build_menubar()
@@ -60,34 +69,6 @@ class Application(Gtk.Application):
 		if self.prefers_app_menu():
 			appmenu_model = self.build_app_menu()
 			self.set_app_menu(appmenu_model)
-
-	def on_open_from_cli(self, a, b, c, d):
-		for f in b:
-			win = self.on_new_window_activate()
-			win.gfile = f
-			win.try_load_file()
-		return 0
-
-	def on_local_options(self, app, options):
-		if options.contains('version'):
-			print("Drawing %s" % self.version)
-			exit(0)
-		return -1
-
-	def build_about_dialog(self):
-		self.about_dialog = Gtk.AboutDialog.new()
-		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
-		self.about_dialog.set_authors(['Romain F. T.'])
-		self.about_dialog.set_copyright('© 2018 Romain F. T.')
-		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
-		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
-		self.about_dialog.set_version(str(self.version))
-		self.about_dialog.set_website('github.com/maoschanz/drawing')
-		self.about_dialog.set_website_label(_("Report bugs or ideas"))
-
-	def build_shortcuts_dialog(self):
-		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
-		self.shortcuts_window = builder.get_object('shortcuts')
 
 	def build_app_menu(self):
 		builder = Gtk.Builder()
@@ -113,6 +94,7 @@ class Application(Gtk.Application):
 		self.add_action(action)
 
 	def build_actions(self):
+		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window_activate)
 		self.add_action_simple('open', self.on_open_activate)
 		self.add_action_simple('settings', self.on_prefs_activate)
@@ -122,6 +104,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('quit', self.on_quit)
 
 	def add_accels(self):
+		"""Set all keyboard shortcuts."""
 		self.set_accels_for_action('app.new_window', ['<Ctrl>n'])
 		self.set_accels_for_action('app.open', ['<Ctrl>o'])
 		self.set_accels_for_action('app.help', ['F1'])
@@ -152,40 +135,20 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.undo', ['<Ctrl>z'])
 		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
-	def on_about_activate(self, *args):
-		if self.about_dialog is None:
-			self.build_about_dialog()
-		else:
-			self.about_dialog.destroy()
-			self.build_about_dialog()
-		self.about_dialog.show()
+########
 
-	def on_quit(self, *args):
-		self.quit()
+	def on_open_from_cli(self, a, b, c, d):
+		for f in b:
+			win = self.on_new_window_activate()
+			win.gfile = f
+			win.try_load_file()
+		return 0
 
-	def on_new_window_activate(self, *args):
-		win = DrawingWindow(application=self)
-		win.present()
-		return win
-
-	def on_open_activate(self, *args):
-		win = self.on_new_window_activate()
-		win.action_open()
-
-	def on_shortcuts_activate(self, *args):
-		if self.shortcuts_window is not None:
-			self.shortcuts_window.destroy()
-		self.build_shortcuts_dialog()
-		self.shortcuts_window.present()
-
-	def on_prefs_activate(self, *args):
-		if self.prefs_window is not None:
-			self.prefs_window.destroy()
-		self.prefs_window = DrawingPrefsWindow()
-		self.prefs_window.present()
-
-	def on_help_activate(self, *args):
-		Gtk.show_uri(None, 'help:drawing', Gdk.CURRENT_TIME)
+	def on_local_options(self, app, options):
+		if options.contains('version'):
+			print("Drawing %s" % self.version)
+			exit(0)
+		return -1
 
 	def do_activate(self):
 		win = self.props.active_window
@@ -195,6 +158,67 @@ class Application(Gtk.Application):
 		else:
 			win.present()
 
-def main(version):
-	app = Application(version)
-	return app.run(sys.argv)
+########
+
+	def build_about_dialog(self):
+		"""Build an "about" dialog."""
+		self.about_dialog = Gtk.AboutDialog.new()
+		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
+		self.about_dialog.set_authors(['Romain F. T.'])
+		self.about_dialog.set_copyright('© 2018 Romain F. T.')
+		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
+		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
+		self.about_dialog.set_version(str(self.version))
+		self.about_dialog.set_website('github.com/maoschanz/drawing')
+		self.about_dialog.set_website_label(_("Report bugs or ideas"))
+
+	def build_shortcuts_dialog(self):
+		"""Build an "shortcuts" dialog from the UI file."""
+		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
+		self.shortcuts_window = builder.get_object('shortcuts')
+
+########
+
+	def on_new_window_activate(self, *args):
+		"""Action callback, opening a new window with an empty canvas."""
+		win = DrawingWindow(application=self)
+		win.present()
+		return win
+
+	def on_open_activate(self, *args):
+		"""Action callback, opening a new window with an empty canvas."""
+		win = self.on_new_window_activate()
+		win.action_open()
+
+	def on_shortcuts_activate(self, *args):
+		"""Action callback, showing the "shortcuts" dialog."""
+		if self.shortcuts_window is not None:
+			self.shortcuts_window.destroy()
+		self.build_shortcuts_dialog()
+		self.shortcuts_window.present()
+
+	def on_prefs_activate(self, *args):
+		"""Action callback, showing the preferences window."""
+		if self.prefs_window is not None:
+			self.prefs_window.destroy()
+		self.prefs_window = DrawingPrefsWindow()
+		self.prefs_window.present()
+
+	def on_help_activate(self, *args):
+		"""Action callback, showing the user help."""
+		Gtk.show_uri(None, 'help:drawing', Gdk.CURRENT_TIME)
+
+	def on_about_activate(self, *args):
+		"""Action callback, showing the "about" dialog."""
+		if self.about_dialog is None:
+			self.build_about_dialog()
+		else:
+			self.about_dialog.destroy()
+			self.build_about_dialog()
+		self.about_dialog.show()
+
+	def on_quit(self, *args):
+		"""Action callback, quitting the app."""
+		self.quit()
+
+
