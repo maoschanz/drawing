@@ -13,7 +13,9 @@ def utilities_get_rgb_for_xy(surface, x, y):
 
 def utilities_save_pixbuf_at(pixbuf, fn):
 	file_format = fn.split('.')[-1]
-	if file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
+	if file_format in ['jpeg', 'jpg', 'jpe']:
+		file_format = 'jpeg'
+	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
 		file_format = 'png'
 	pixbuf.savev(fn, file_format, [None], [])
 
@@ -29,5 +31,4 @@ def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	cairo_context.paint()
 	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	cairo_context.stroke()
-	# FIXME le path obtenu ne tient pas compte du scroll mais je ne sais pas si
-	# c'est de la faute de cette fonction ou de ToolSelect.get_dragged_path()
+

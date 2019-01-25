@@ -160,12 +160,13 @@ class DrawingImage(Gtk.Layout):
 		cairo_context.paint()
 
 		if self.is_using_selection() and self.selection_pixbuf is not None:
-			utilities_show_overlay_on_context(cairo_context, self.get_selection_path(), True)
+			print('image.py, line 163')
+			utilities_show_overlay_on_context(cairo_context, self.get_dragged_selection_path(), True)
 
 	def delete_former_selection(self):
 		self.window.tools['select'].delete_temp() # XXX beurk
 
-	def on_press_on_area(self, area, event): # XXX
+	def on_press_on_area(self, area, event):
 		if event.button == 2:
 			self.is_clicked = False
 			self.window.action_exchange_color()
@@ -178,7 +179,7 @@ class DrawingImage(Gtk.Layout):
 			self.get_left_rgba(), self.get_right_rgba(), \
 			x + event.x, y + event.y)
 
-	def on_motion_on_area(self, area, event): # FIXME
+	def on_motion_on_area(self, area, event):
 		if not self.is_clicked:
 			return
 		x, y = self.get_main_coord()
@@ -187,7 +188,7 @@ class DrawingImage(Gtk.Layout):
 		self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
 		self.queue_draw()
 
-	def on_release_on_area(self, area, event): # FIXME
+	def on_release_on_area(self, area, event):
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
@@ -206,10 +207,10 @@ class DrawingImage(Gtk.Layout):
 	def get_left_rgba(self):
 		return self.window.color_popover_l.color_widget.get_rgba()
 
-	def on_scroll_on_area(self, area, event): # FIXME
+	def on_scroll_on_area(self, area, event):
 		self.add_deltas(event.delta_x, event.delta_y, 10)
 
-	def get_main_coord(self, *args): # FIXME
+	def get_main_coord(self, *args): # XXX utile ?
 		return self.scroll_x, self.scroll_y
 
 	def add_deltas(self, delta_x, delta_y, factor):
@@ -268,10 +269,19 @@ class DrawingImage(Gtk.Layout):
 	def get_selection_y(self):
 		return self.selection_y
 
-	def get_selection_path(self):
-		#return self.selection_path
-		return self.active_tool().get_dragged_selection_path() # XXX je sais meme pas pourquoi ça marche
-		# FIXME en fait ça marche bien mal lol
+	def get_dragged_selection_path(self):
+		if self.selection_path is None:
+			return None
+		w_context = cairo.Context(self.get_surface())
+		temp_x = self.window.get_selection_tool().temp_x
+		temp_y = self.window.get_selection_tool().temp_y
+		for pts in self.selection_path:
+			if pts[1] is not ():
+				x = pts[1][0] + self.selection_x - temp_x - self.scroll_x
+				y = pts[1][1] + self.selection_y - temp_y - self.scroll_y
+				w_context.line_to(int(x), int(y))
+		w_context.close_path()
+		return w_context.copy_path()
 
 	def get_selection_pixbuf(self):
 		return self.selection_pixbuf
@@ -295,11 +305,8 @@ class DrawingImage(Gtk.Layout):
 	def use_stable_pixbuf(self):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
-	def is_using_temp(self):
-		return self.window.tool_needs_temp()
-
 	def is_using_selection(self):
-		return self.window.tool_needs_selection()
+		return self.window.tool_needs_selection() and  self.window.active_tool().selection_is_active
 
 	def add_operation_to_history(self, operation):
 		print('todo')

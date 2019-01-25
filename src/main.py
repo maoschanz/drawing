@@ -135,6 +135,8 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.undo', ['<Ctrl>z'])
 		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
+		self.set_accels_for_action('win.restore_pixbuf', ['<Ctrl><Alt>r'])
+
 ########
 
 	def on_open_from_cli(self, a, b, c, d):

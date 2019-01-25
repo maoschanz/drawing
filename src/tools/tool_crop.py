@@ -84,7 +84,7 @@ class ToolCrop(ToolTemplate):
 
 	def on_apply(self, *args):
 		operation = self.build_operation()
-		operation['pixbuf'] = self.get_selection_pixbuf().copy()
+		operation['pixbuf'] = self.get_selection_pixbuf().copy() # XXX uh ?
 		#self.do_tool_operation(operation)
 		self.apply_operation(operation)
 		self.window.back_to_former_tool()
@@ -101,7 +101,7 @@ class ToolCrop(ToolTemplate):
 			self.scale_temp_pixbuf_to_area(width, height)
 		self.non_destructive_show_modif()
 
-		operation = self.build_operation() # XXX ne marche mme pas
+		operation = self.build_operation() # XXX ne marche pas entièrement
 		self.do_tool_operation(operation)
 
 	def crop_temp_pixbuf(self, x, y, width, height):
@@ -200,65 +200,44 @@ class ToolCrop(ToolTemplate):
 		}
 		return operation
 
-	def do_tool_operation(self, operation):# TODO
+	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		if operation['is_selection']:
-			cairo_context.set_source_surface(self.get_surface(), \
-				-1*self.get_image().scroll_x, -1*self.get_image().scroll_y) # XXX non le pixbuf ?
+			cairo_context.set_operator(cairo.Operator.CLEAR)
 			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER) # XXX on devrait peindre la surface puis
+			# se "contenter" de supprimer le path initial de la sélection ce serait bien plus propre
+
+			# cairo_context.set_source_surface(self.get_surface(), \
+			# 	-1*self.get_image().scroll_x, -1*self.get_image().scroll_y)
+			# cairo_context.paint()
+			# TODO
+
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
 				self.get_image().get_temp_pixbuf(), \
 				self.get_image().selection_x, \
 				self.get_image().selection_y)
 			cairo_context.paint()
 		else:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
 				self.get_image().get_temp_pixbuf(), \
 				-1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
 			cairo_context.paint()
 		self.non_destructive_show_modif()
 
-
-
-
-		# 	self.get_image().set_temp_pixbuf(self.get_main_pixbuf().copy())
-		# 	x, y, width, height = self.validate_coords()
-		# 	self.crop_temp_pixbuf(x, y, width, height)
-		# 	self.get_image().set_main_pixbuf(self.get_image().get_temp_pixbuf().copy())
-		# 	self.restore_pixbuf()
-		# 	self.apply_to_pixbuf()
-		# 	self.window.back_to_former_tool()
-
-
-
-		#cairo_context = cairo.Context(self.get_surface())
-		# if operation['initial_path'] is not None:
-		# 	cairo_context = cairo.Context(self.get_surface())
-		# 	cairo_context.new_path()
-		# 	cairo_context.append_path(operation['initial_path'])
-		# 	cairo_context.clip()
-		# 	cairo_context.set_operator(cairo.Operator.CLEAR)
-		# 	cairo_context.paint()
-		# 	cairo_context.set_operator(cairo.Operator.OVER)
-		# if operation['pixbuf'] is not None:
-		# 	cairo_context2 = cairo.Context(self.get_surface())
-		# 	Gdk.cairo_set_source_pixbuf(cairo_context2, operation['pixbuf'],
-		# 		operation['pixb_x'], operation['pixb_y'])
-		# 	cairo_context2.paint()
-
-	def preview_operation(self):
-		pass # TODO
-
-	def apply_operation(self, operation): # fonctionne, mais la préview pue XXX et l'historique ne marchera pas # TODO
+	def apply_operation(self, operation): # fonctionne, mais l'historique ne marchera pas # TODO
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		if operation['is_selection']:
+		if operation['is_selection']: # FIXME pas de préview
 			self.window.get_selection_tool().crop_selection_surface(operation['x'], \
-				operation['y'], operation['width'], operation['height']) # XXX à tester
+				operation['y'], operation['width'], operation['height'])
 			#self.window.get_selection_tool().crop_selection_surface(x, y, width, height) # XXX à tester
 			# XXX dois-je set le temp_pixbuf d'abord ????????
 			# XXX quid du path ????????

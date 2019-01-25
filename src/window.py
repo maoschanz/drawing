@@ -202,8 +202,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app.add_action_boolean('use_editor', \
 			self._settings.get_boolean('direct-color-edit'), self.action_use_editor)
 
+		if self._settings.get_boolean('experimental'):
+			self.add_action_simple('restore_pixbuf', self.action_restore_pixbuf)
+
 	def action_toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
+
+	def action_restore_pixbuf(self, *args):
+		self.get_active_image().use_stable_pixbuf()
+		self.get_active_image().queue_draw()
 
 	# WINDOW BARS
 
@@ -397,9 +404,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.enable_tool(self.hijacker_id, False)
 		self.hijacker_id = None
 		self.lookup_action('active_tool').set_enabled(True)
-
-	def tool_needs_temp(self):
-		return self.active_tool().need_temp_pixbuf
 
 	def tool_needs_selection(self):
 		return self.active_tool().need_selection_pixbuf

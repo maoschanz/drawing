@@ -17,20 +17,16 @@ class ToolSelect(ToolTemplate):
 		self.need_selection_pixbuf = True
 
 		self.temp_path = None
-		self.temp_x = 0 # TODO on peut peut-tre se débarasser de ça en prenant tout simplement le début du path ?
-		self.temp_y = 0 # ça n'a pas l'air très utilisé anyway
+		self.temp_x = 0 # TODO on peut peut-tre se débarasser de ça ?
+		self.temp_y = 0
 
-		#############################
-
-		self.add_tool_action_simple('selection_unselect', self.action_unselect) # pareil que give_back_control ?
+		self.add_tool_action_simple('selection_unselect', self.action_unselect)
 		self.add_tool_action_simple('selection_cut', self.action_cut)
 		self.add_tool_action_simple('selection_copy', self.action_copy)
 		self.add_tool_action_simple('selection_delete', self.action_selection_delete)
 		self.add_tool_action_simple('selection_crop', self.action_selection_crop)
 		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
-
-		#############################
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
@@ -42,16 +38,9 @@ class ToolSelect(ToolTemplate):
 		menu_l = builder.get_object('left-click-menu')
 		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l) # FIXME non
 
-		#############################
-
 		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
 		self.add_tool_action_boolean('selection_exclude', False, self.osef)
 		self.add_tool_action_enum('selection_background', self.background_type_id, self.osef)
-
-		self.selected_type_id = 'rectangle'
-		self.selected_type_label = _("Rectangle")
-
-		#############################
 
 		self.reset_temp()
 
@@ -114,8 +103,10 @@ class ToolSelect(ToolTemplate):
 			if self.selection_is_active:
 				operation = self.build_operation()
 				self.apply_operation(operation)
-			self.reset_temp()
 			self.forget_selection()
+			self.reset_temp()
+			# self.restore_pixbuf()
+			# self.non_destructive_show_modif()
 			return False
 		else:
 			self.selection_has_been_used = True # ne sert à rien puisqu'on définit l'inverse juste après XXX
@@ -132,9 +123,14 @@ class ToolSelect(ToolTemplate):
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
+		if self.selected_type_id == 'freehand' and not self.selection_is_active:
+			self.init_path(event_x, event_y)
 		if not self.press_point_is_in_selection():
 			self.give_back_control()
-		if not self.selection_is_active:
+			self.restore_pixbuf()
+			self.non_destructive_show_modif()
+			print('ligne 133')
+		if self.selected_type_id == 'rectangle' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
 		self.left_color = left_color # TODO
 		self.right_color = right_color # TODO
@@ -159,29 +155,26 @@ class ToolSelect(ToolTemplate):
 			self.rightc_popover.set_relative_to(area)
 			self.show_popover(True)
 			return
-		elif self.selected_type_id == 'rectangle':
-			# If nothing is selected, new coordinates should be memorized, but
-			# if something is already selected, the selection should be cancelled (the
-			# action is performed outside of the current selection), or stay the same
-			# (the user is moving the selection by dragging it).
-			if not self.selection_is_active:
+		elif not self.selection_is_active:
+			if self.selected_type_id == 'rectangle':
 				self.draw_rectangle(event_x, event_y)
 				if self.selection_is_active:
 					self.show_popover(True)
 					self.selection_has_been_used = False
-			elif self.press_point_is_in_selection():
-				self.drag_to(event_x, event_y)
-		elif self.selected_type_id == 'freehand':
-			if not self.selection_is_active:
+			elif self.selected_type_id == 'freehand':
 				if self.draw_polygon(event_x, event_y):
 					self.restore_pixbuf()
 					self.create_free_selection_from_main()
 					if self.selection_is_active:
 						self.show_popover(True)
 						self.selection_has_been_used = False
-			elif self.press_point_is_in_selection():
-				self.drag_to(event_x, event_y)
-		self.update_surface()
+			self.update_surface()
+		elif self.press_point_is_in_selection():
+			self.drag_to(event_x, event_y)
+			self.update_surface()
+		else:
+			self.restore_pixbuf()
+			self.non_destructive_show_modif()
 
 	def update_surface(self):
 		operation = self.build_operation()
@@ -276,8 +269,9 @@ class ToolSelect(ToolTemplate):
 
 	def init_path(self, event_x, event_y):
 		if self.get_image().selection_path is not None:
-			print('wtf')
-			self.reset_temp()
+			# self.reset_temp() # XXX pourquoi c'était là ça ?
+			print('continuation d un path existant dans le cadre d une sélection à main levée')
+			return
 		w_context = cairo.Context(self.get_surface())
 		w_context.move_to(event_x, event_y)
 		self.get_image().selection_path = w_context.copy_path()
@@ -287,8 +281,8 @@ class ToolSelect(ToolTemplate):
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.set_dash([3, 3])
 
-		if (max(event_x, self.past_x[0]) - min(event_x, self.past_x[0]) < self.closing_precision) \
-		and (max(event_y, self.past_y[0]) - min(event_y, self.past_y[0]) < self.closing_precision):
+		if (max(event_x, self.x_press) - min(event_x, self.x_press) < self.closing_precision) \
+		and (max(event_y, self.y_press) - min(event_y, self.y_press) < self.closing_precision):
 			w_context.append_path(self.get_image().selection_path)
 			w_context.close_path()
 			w_context.stroke_preserve()
@@ -389,14 +383,6 @@ class ToolSelect(ToolTemplate):
 	def press_point_is_in_selection(self):
 		if not self.selection_is_active:
 			return True
-		dragged_path = self.get_dragged_selection_path()
-		w_context = cairo.Context(self.get_surface())
-		w_context.new_path()
-		w_context.append_path(dragged_path)
-		press_x, press_y = w_context.get_current_point()
-		return w_context.in_fill(self.x_press, self.y_press)
-
-	def get_dragged_selection_path(self):
 		if self.get_image().selection_path is None:
 			return None
 		w_context = cairo.Context(self.get_surface())
@@ -405,8 +391,7 @@ class ToolSelect(ToolTemplate):
 				x = pts[1][0] + self.get_image().selection_x - self.temp_x
 				y = pts[1][1] + self.get_image().selection_y - self.temp_y
 				w_context.line_to(int(x), int(y))
-		w_context.close_path()
-		return w_context.copy_path()
+		return w_context.in_fill(self.x_press, self.y_press)
 
 	def on_confirm_hijacked_modif(self):
 		self.selection_has_been_used = True
@@ -429,9 +414,11 @@ class ToolSelect(ToolTemplate):
 		ymax = min(ymax, surface.get_height())
 		xmin = max(xmin, 0.0)
 		ymin = max(ymin, 0.0)
+		if xmax - xmin < self.closing_precision and ymax - ymin < self.closing_precision:
+			return # when the path is not drawable yet XXX
 		self.crop_selection_surface(xmin, ymin, xmax - xmin, ymax - ymin)
-		self.selection_x = xmin
-		self.selection_y = ymin
+		self.get_image().selection_x = xmin
+		self.get_image().selection_y = ymin
 		w_context = cairo.Context(surface)
 		w_context.set_operator(cairo.Operator.DEST_IN)
 		w_context.new_path()
@@ -442,7 +429,7 @@ class ToolSelect(ToolTemplate):
 			xmax - xmin, ymax - ymin)
 		self.set_temp()
 
-	def crop_selection_surface(self, x, y, width, height): # TODO dans crop, non ?
+	def crop_selection_surface(self, x, y, width, height): # TODO dans crop, non ? non je m'en sers plus haut
 		x = int(x)
 		y = int(y)
 		width = int(width)
@@ -459,10 +446,14 @@ class ToolSelect(ToolTemplate):
 		self.get_image().selection_path = None
 
 	def build_operation(self):
+		if self.get_image().get_selection_pixbuf() is None:
+			pixbuf = None
+		else:
+			pixbuf = self.get_image().get_selection_pixbuf().copy()
 		operation = {
 			'tool_id': self.id,
 			'initial_path': self.temp_path,
-			'pixbuf': self.get_image().get_selection_pixbuf().copy(),
+			'pixbuf': pixbuf,
 			'pixb_x': self.get_image().selection_x,
 			'pixb_y': self.get_image().selection_y
 		}
