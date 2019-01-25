@@ -115,9 +115,11 @@ class ToolSelect(ToolTemplate):
 				operation = self.build_operation()
 				self.apply_operation(operation)
 			self.reset_temp()
+			self.forget_selection()
 			return False
 		else:
-			self.selection_has_been_used = True
+			self.selection_has_been_used = True # ne sert à rien puisqu'on définit l'inverse juste après XXX
+			self.forget_selection()
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):
@@ -128,10 +130,11 @@ class ToolSelect(ToolTemplate):
 		return True
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		if self.selection_is_active:
-			self.x_press = event_x
-			self.y_press = event_y
-		else:
+		self.x_press = event_x
+		self.y_press = event_y
+		if not self.press_point_is_in_selection():
+			self.give_back_control()
+		if not self.selection_is_active:
 			self.init_path(event_x, event_y)
 		self.left_color = left_color # TODO
 		self.right_color = right_color # TODO
@@ -166,11 +169,8 @@ class ToolSelect(ToolTemplate):
 				if self.selection_is_active:
 					self.show_popover(True)
 					self.selection_has_been_used = False
-			elif self.press_point_is_in_selection(event_x, event_y):
+			elif self.press_point_is_in_selection():
 				self.drag_to(event_x, event_y)
-			else:
-				self.give_back_control()
-				return
 		elif self.selected_type_id == 'freehand':
 			if not self.selection_is_active:
 				if self.draw_polygon(event_x, event_y):
@@ -179,10 +179,8 @@ class ToolSelect(ToolTemplate):
 					if self.selection_is_active:
 						self.show_popover(True)
 						self.selection_has_been_used = False
-			elif self.press_point_is_in_selection(event_x, event_y):
+			elif self.press_point_is_in_selection():
 				self.drag_to(event_x, event_y)
-			else:
-				self.give_back_control()
 		self.update_surface()
 
 	def update_surface(self):
@@ -388,7 +386,9 @@ class ToolSelect(ToolTemplate):
 		w_context.paint()
 		w_context.set_operator(cairo.Operator.OVER)
 
-	def press_point_is_in_selection(self, event_x, event_y):
+	def press_point_is_in_selection(self):
+		if not self.selection_is_active:
+			return True
 		dragged_path = self.get_dragged_selection_path()
 		w_context = cairo.Context(self.get_surface())
 		w_context.new_path()
