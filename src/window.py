@@ -104,6 +104,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.needed_width_for_long = 0
 
 	def init_tools(self):
+		"""Initialize all tools, building the UI for them including the menubar,
+		and enable the default tool."""
 		self.tools = {}
 		self.tools['pencil'] = ToolPencil(self)
 		self.tools['select'] = ToolSelect(self)
@@ -154,17 +156,27 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.handlers.append( self._settings.connect('changed::panel-width', self.on_show_labels_setting_changed) )
 
 	def add_action_simple(self, action_name, callback):
+		"""Convenient wrapper method adding a stateless action to the window. It
+		will be named 'action_name' (string) and activating the action will
+		trigger the method 'callback'."""
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect("activate", callback)
 		self.add_action(action)
 
 	def add_action_boolean(self, action_name, default, callback):
+		"""Convenient wrapper method adding a stateful action to the window. It
+		will be named 'action_name' (string), be created with the state 'default'
+		(boolean), and activating the action will trigger the method 'callback'."""
 		action = Gio.SimpleAction().new_stateful(action_name, None, \
 			GLib.Variant.new_boolean(default))
 		action.connect('change-state', callback)
 		self.add_action(action)
 
 	def add_action_enum(self, action_name, default, callback):
+		"""Convenient wrapper method adding a stateful action to the window. It
+		will be named 'action_name' (string), be created with the state 'default'
+		(string), and changing the active target of the action will trigger the
+		method 'callback'."""
 		action = Gio.SimpleAction().new_stateful(action_name, \
 			GLib.VariantType.new('s'), GLib.Variant.new_string(default))
 		action.connect('change-state', callback)

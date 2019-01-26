@@ -24,7 +24,7 @@ PNG, JPEG and BMP files are supported.
 |Brush      |           |Not done yet |
 |Gradient   |           |Not done yet |
 |Color picker |         |           |
-|Crop       |           |The displayed picture isn't the at the actual scale. |
+|Crop       |           |The previewed picture isn't the at the actual scale. |
 |Scale      |Keep proportions |     |
 |Rotate     |           |           |
 

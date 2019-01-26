@@ -1,4 +1,6 @@
-# methods that i don't want to implement in each tool
+# tools.py
+
+"""Super-class implemented and extended by all tools."""
 
 from gi.repository import Gtk, Gdk
 import cairo
@@ -20,12 +22,22 @@ class ToolTemplate():
 	# Actions
 
 	def add_tool_action_simple(self, action_name, callback):
+		"""Convenient wrapper method adding a stateless action to the window. It
+		will be named 'action_name' (string) and activating the action will
+		trigger the method 'callback'."""
 		self.window.add_action_simple(action_name, callback)
 
 	def add_tool_action_boolean(self, action_name, default, callback):
+		"""Convenient wrapper method adding a stateful action to the window. It
+		will be named 'action_name' (string), be created with the state 'default'
+		(boolean), and activating the action will trigger the method 'callback'."""
 		self.window.add_action_boolean(action_name, default, callback)
 
 	def add_tool_action_enum(self, action_name, default, callback):
+		"""Convenient wrapper method adding a stateful action to the window. It
+		will be named 'action_name' (string), be created with the state 'default'
+		(string), and changing the active target of the action will trigger the
+		method 'callback'."""
 		self.window.add_action_enum(action_name, default, callback)
 
 	def set_action_sensitivity(self, action_name, state):

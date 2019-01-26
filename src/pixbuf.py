@@ -18,11 +18,11 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-class DrawingPixbuf(GdkPixbuf.Pixbuf):
+class DrawingPixbuf():
 	__gtype_name__ = 'DrawingPixbuf'
 
 	def __init__(self):
-		super.__init__(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+		self._pixbuf = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
 		# TODO l'idée serait de faire des setters et des getters ici, ce qui serait orienté objet
 		# ainsi que des méthodes plus simples pour redimensionner ou cropper ou pivoter.
 		# la contrepartie serait que les tools auraient chacun le leur (si ils le souhaitent)

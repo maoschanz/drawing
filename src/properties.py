@@ -23,10 +23,14 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 	def __init__(self, window, image):
 		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
-		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, transient_for=window, title=_("Image properties"))
-		self._window = window
+		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
+			transient_for=window, title=_("Image properties"))
 		self._image = image
+		self.set_default_size(400, 200)
+		self.show_all()
 
+	def build_ui(self):
+		"""Fill the dialog with labels displaying correct informations."""
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties.ui')
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
@@ -52,9 +56,6 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		}
 		label_format_surface.set_label(enum.get(self._image.get_surface().get_format(), _("Invalid format")))
 		self.set_size_labels()
-
-		self.set_default_size(400, 200)
-		self.show_all()
 
 	def set_size_labels(self):
 		self.label_width.set_label(str(self._image.get_pixbuf_width()) + ' px')
