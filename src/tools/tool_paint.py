@@ -143,3 +143,6 @@ Do you want to abort the operation, or to let the tool struggle ?""" \
 		), margin=10))
 		dialog.show_all()
 		return dialog
+
+# TODO as an operation
+

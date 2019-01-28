@@ -2,11 +2,11 @@
 
 ## A drawing application for the GNOME desktop.
 
+>"This one looks great!" - @omgubuntu
+
 This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations, and following GNOME interface guidelines.
 
 PNG, JPEG and BMP files are supported.
-
->"This one looks great!" - @omgubuntu
 
 ### Available tools
 

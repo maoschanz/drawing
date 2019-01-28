@@ -164,7 +164,7 @@ class DrawingImage(Gtk.Layout):
 			utilities_show_overlay_on_context(cairo_context, self.get_dragged_selection_path(), True)
 
 	def delete_former_selection(self):
-		self.window.tools['select'].delete_temp() # XXX beurk
+		self.window.get_selection_tool().delete_temp()
 
 	def on_press_on_area(self, area, event):
 		if event.button == 2:

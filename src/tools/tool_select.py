@@ -224,7 +224,7 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.copy_operation()
 
-	def copy_operation(self): # XXX ?
+	def copy_operation(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_selection_pixbuf())
 

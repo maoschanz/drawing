@@ -86,3 +86,18 @@ class ToolRotate(ToolTemplate):
 		# 	self.set_edition_state('temp-as-main')
 		self.non_destructive_show_modif()
 
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'is_selection': self.rotate_selection,
+			'pixbuf': None,
+			'angle': self.get_angle()
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		# TODO 

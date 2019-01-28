@@ -206,16 +206,9 @@ class ToolCrop(ToolTemplate):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		if operation['is_selection']:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER) # XXX on devrait peindre la surface puis
-			# se "contenter" de supprimer le path initial de la sélection ce serait bien plus propre
-
-			# cairo_context.set_source_surface(self.get_surface(), \
-			# 	-1*self.get_image().scroll_x, -1*self.get_image().scroll_y)
-			# cairo_context.paint()
-			# TODO
-
+			self.get_image().delete_former_selection()
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
 				self.get_image().get_temp_pixbuf(), \
 				self.get_image().selection_x, \
