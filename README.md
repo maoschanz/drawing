@@ -46,6 +46,8 @@ TODO
 
 ![GNOME/Budgie UI](./data/screenshots/gnome_screenshot_menu.png)
 
+Theorically compatible with the Purism Librem 5 phone.
+
 More screenshots:
 
 - [Color chooser](./data/screenshots/gnome_screenshot_colors.png)
