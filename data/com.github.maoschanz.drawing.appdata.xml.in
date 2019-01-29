@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>com.github.maoschanz.Drawing.desktop</id>
+	<id>com.github.maoschanz.drawing</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
 	<name>Drawing</name>
-	<summary>
-A drawing application for the GNOME desktop.
-	</summary>
+	<summary>A drawing application.</summary>
 	<description>
-		<p>A simple application to draw or edit pictures on GNOME.</p>
+		<p>A simple application to draw or edit pictures.</p>
 		<p>It includes tools like:</p>
 		<ul>
 			<li>Pencil</li>
@@ -19,8 +17,11 @@ A drawing application for the GNOME desktop.
 			<li>Paint</li>
 		</ul>
 	</description>
+	<provides>
+		<binary>com.github.maoschanz.drawing</binary>
+	</provides>
 	<url type="bugtracker">https://github.com/maoschanz/drawing/issues</url>
-	<url type="homepage">https://github.com/maoschanz/drawing/wiki</url>  
+	<url type="homepage">https://github.com/maoschanz/drawing/wiki</url>
 	<developer_name>Romain F. T.</developer_name>
 	<screenshots>
 		<screenshot type="default">
