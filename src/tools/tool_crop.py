@@ -84,7 +84,10 @@ class ToolCrop(ToolTemplate):
 
 	def on_apply(self, *args):
 		operation = self.build_operation()
-		operation['pixbuf'] = self.get_selection_pixbuf().copy() # XXX uh ?
+		if self.crop_selection:
+			operation['pixbuf'] = self.get_selection_pixbuf().copy() # XXX uh ?
+		else:
+			operation['pixbuf'] = None
 		#self.do_tool_operation(operation)
 		self.apply_operation(operation)
 		self.window.back_to_former_tool()
@@ -224,7 +227,7 @@ class ToolCrop(ToolTemplate):
 			cairo_context.paint()
 		self.non_destructive_show_modif()
 
-	def apply_operation(self, operation): # fonctionne, mais l'historique ne marchera pas # TODO
+	def apply_operation(self, operation): # fonctionne, mais l'historique ne marchera pas bien # TODO
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()

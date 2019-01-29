@@ -216,13 +216,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('experimental'):
 			self.add_action_simple('restore_pixbuf', self.action_restore_pixbuf)
+			self.add_action_simple('rebuild_from_histo', self.action_rebuild_from_histo)
 
 	def action_toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
 
+	# XXX
 	def action_restore_pixbuf(self, *args):
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().queue_draw()
+
+	# XXX
+	def action_rebuild_from_histo(self, *args):
+		pass
 
 	# WINDOW BARS
 
@@ -525,7 +531,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		bmpPictures.set_name(_("BMP images"))
 		bmpPictures.add_mime_type('image/bmp')
 
-		if file_type == 'png':
+		if file_type == 'png': # XXX still useful ??
 			file_chooser.add_filter(pngPictures)
 			file_chooser.add_filter(allPictures)
 		elif file_type == 'jpeg':

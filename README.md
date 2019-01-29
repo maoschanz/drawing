@@ -2,7 +2,7 @@
 
 ## A drawing application for the GNOME desktop.
 
->"This one looks great!" - @omgubuntu
+>"This one looks great!" - [@omgubuntu](https://twitter.com/omgubuntu/status/1085923553525010433)
 
 This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations, and following GNOME interface guidelines.
 

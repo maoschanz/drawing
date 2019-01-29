@@ -55,6 +55,7 @@ class Application(Gtk.Application):
 		self.connect('handle-local-options', self.on_local_options)
 
 		icon_theme = Gtk.IconTheme.get_default()
+		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/icons')
 		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/tools/icons')
 
 ########
@@ -136,6 +137,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
 		self.set_accels_for_action('win.restore_pixbuf', ['<Ctrl><Alt>r'])
+		self.set_accels_for_action('win.rebuild_from_histo', ['<Ctrl><Shift>r'])
 
 ########
 
