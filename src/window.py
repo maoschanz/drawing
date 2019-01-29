@@ -40,11 +40,11 @@ from .utilities import utilities_save_pixbuf_at
 from .minimap import DrawingMinimap
 from .color_popover import DrawingColorPopover
 
-@GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
+@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
 
-	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
+	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	tools_panel = GtkTemplate.Child()
 	toolbar_box = GtkTemplate.Child()
@@ -243,7 +243,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.set_subtitle(subtitle)
 
 	def set_ui_bars(self, decorations):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/menus.ui')
 		self.placeholder_model = builder.get_object('tool-placeholder')
 		if decorations == 'csd':
 			self.build_headerbar()
@@ -261,20 +261,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_show_menubar(True)
 
 	def build_toolbar(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/toolbar.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/toolbar.ui')
 		toolbar = builder.get_object('toolbar')
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
 
 	def build_headerbar(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/headerbar.ui')
 		self.header_bar = builder.get_object('header_bar')
 		self.save_label = builder.get_object('save_label')
 		self.save_icon = builder.get_object('save_icon')
 		self.add_btn = builder.get_object('add_btn')
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder.add_from_resource('/com/github/maoschanz/drawing/ui/menus.ui')
 		short_main_menu = builder.get_object('short-window-menu')
 		self.short_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, short_main_menu)
 		long_main_menu = builder.get_object('long-window-menu')

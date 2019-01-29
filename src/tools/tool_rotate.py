@@ -30,7 +30,7 @@ class ToolRotate(ToolTemplate):
 
 		self.add_tool_action_simple('rotate_apply', self.on_apply)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_rotate.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_rotate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.angle_btn = builder.get_object('angle_btn')
 		self.angle_btn.connect('value-changed', self.on_angle_changed)

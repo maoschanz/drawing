@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .gi_composites import GtkTemplate
 
-SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
+SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
 
-@GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/preferences.ui')
+@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/preferences.ui')
 class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
@@ -33,7 +33,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	layout_combobox = GtkTemplate.Child()
 	add_alpha_switch = GtkTemplate.Child()
 
-	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
+	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)

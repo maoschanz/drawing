@@ -53,7 +53,7 @@ class ToolShape(ToolTemplate):
 		self.window.set_picture_title()
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_shape.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_shape.ui')
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):

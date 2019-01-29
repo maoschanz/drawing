@@ -37,11 +37,11 @@ class Application(Gtk.Application):
 	prefs_window = None
 
 	def __init__(self, version):
-		super().__init__(application_id='com.github.maoschanz.Drawing',
+		super().__init__(application_id='com.github.maoschanz.drawing',
 		                 flags=Gio.ApplicationFlags.HANDLES_OPEN)
 
 		GLib.set_application_name('Drawing')
-		GLib.set_prgname('com.github.maoschanz.Drawing')
+		GLib.set_prgname('com.github.maoschanz.drawing')
 		self.register(None) # ?
 		self.version = version
 
@@ -55,7 +55,7 @@ class Application(Gtk.Application):
 		self.connect('handle-local-options', self.on_local_options)
 
 		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/tools/icons')
+		icon_theme.add_resource_path('/com/github/maoschanz/drawing/tools/icons')
 
 ########
 
@@ -72,13 +72,13 @@ class Application(Gtk.Application):
 
 	def build_app_menu(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder.add_from_resource('/com/github/maoschanz/drawing/ui/menus.ui')
 		appmenu = builder.get_object('app-menu')
 		return appmenu
 
 	def build_menubar(self):
 		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder.add_from_resource('/com/github/maoschanz/drawing/ui/menus.ui')
 		menubar = builder.get_object('menu-bar')
 		return menubar
 
@@ -169,14 +169,14 @@ class Application(Gtk.Application):
 		self.about_dialog.set_authors(['Romain F. T.'])
 		self.about_dialog.set_copyright('© 2018 Romain F. T.')
 		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
-		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
+		self.about_dialog.set_logo_icon_name('com.github.maoschanz.drawing')
 		self.about_dialog.set_version(str(self.version))
 		self.about_dialog.set_website('github.com/maoschanz/drawing')
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))
 
 	def build_shortcuts_dialog(self):
 		"""Build an "shortcuts" dialog from the UI file."""
-		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/drawing/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 
 ########

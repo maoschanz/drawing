@@ -24,7 +24,7 @@ from .properties import DrawingPropertiesDialog
 from .utilities import utilities_save_pixbuf_at
 from .utilities import utilities_show_overlay_on_context
 
-@GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/image.ui')
+@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
 class DrawingImage(Gtk.Layout):
 	__gtype_name__ = 'DrawingImage'
 
