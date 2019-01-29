@@ -63,8 +63,9 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.preview_btn.connect('value-changed', self.on_preview_changed)
 
 		self.layout_combobox.append('csd', _("Compact (headerbar)"))
-		self.layout_combobox.append('ssd', _("Legacy (menubar only)"))
-		self.layout_combobox.append('ssd-toolbar', _("Legacy (menubar and toolbar)"))
+		self.layout_combobox.append('ssd-menubar', _("Legacy (menubar only)"))
+		self.layout_combobox.append('ssd-toolbar', _("Legacy (toolbar only)"))
+		self.layout_combobox.append('ssd', _("Legacy (menubar and toolbar)"))
 		if self._settings.get_boolean('experimental'):
 			self.layout_combobox.append('everything', _("Both (testing only)"))
 		self.layout_combobox.set_active_id(self._settings.get_string('decorations'))

@@ -260,10 +260,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(True)
 			self.build_toolbar()
-		elif decorations == 'ssd-toolbar':
+		elif decorations == 'ssd-menubar':
 			self.set_show_menubar(True)
+		elif decorations == 'ssd-toolbar':
 			self.build_toolbar()
+			self.set_show_menubar(False)
 		else:
+			self.build_toolbar()
 			self.set_show_menubar(True)
 
 	def build_toolbar(self):

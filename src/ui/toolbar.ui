@@ -7,14 +7,23 @@
       <object class="GtkToolbar">
         <property name="visible">True</property>
         <property name="show-arrow">True</property>
-        <property name="icon-size">small-toolbar</property>
+        <property name="icon-size">large-toolbar</property>
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action_name">app.new_window</property>
-            <property name="icon_name">document-new-symbolic</property>
-            <property name="tooltip_text">New</property>
+            <property name="icon_name">document-new</property>
+            <property name="tooltip_text" translatable="yes">New</property>
             <property name="label" translatable="yes">New</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">app.open</property>
+            <property name="icon_name">window-new</property>
+            <property name="tooltip_text" translatable="yes">Open in a new window</property>
+            <property name="label" translatable="yes">Open in a new window</property>
           </object>
         </child>
         <child>
@@ -22,8 +31,8 @@
             <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action_name">win.open</property>
-            <property name="icon_name">document-open-symbolic</property>
-            <property name="tooltip_text">Open</property>
+            <property name="icon_name">document-open</property>
+            <property name="tooltip_text" translatable="yes">Open an image here</property>
             <property name="label" translatable="yes">Open</property>
           </object>
         </child>
@@ -35,28 +44,18 @@
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
-            <property name="is-important">True</property>
-            <property name="action_name">win.save</property>
-            <property name="icon_name">document-save-symbolic</property>
-            <property name="tooltip_text">Save</property>
-            <property name="label" translatable="yes">Save</property>
+            <property name="action_name">win.import</property>
+            <property name="tooltip_text" translatable="yes">Import</property>
+            <property name="label" translatable="yes">Import</property>
           </object>
         </child>
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
-            <property name="action_name">win.save</property>
-            <property name="icon_name">document-save-as-symbolic</property>
-            <property name="tooltip_text">Save as</property>
-            <property name="label" translatable="yes">Save as</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">win.print</property>
-            <property name="icon_name">document-print-symbolic</property>
-            <property name="label" translatable="yes">Print</property>
+            <property name="action_name">win.paste</property>
+            <property name="icon_name">edit-paste</property>
+            <property name="tooltip_text" translatable="yes">Paste</property>
+            <property name="label" translatable="yes">Paste</property>
           </object>
         </child>
         <child>
@@ -69,8 +68,8 @@
             <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action_name">win.undo</property>
-            <property name="icon_name">edit-undo-symbolic</property>
-            <property name="tooltip_text">Undo</property>
+            <property name="icon_name">edit-undo</property>
+            <property name="tooltip_text" translatable="yes">Undo</property>
             <property name="label" translatable="yes">Undo</property>
           </object>
         </child>
@@ -78,8 +77,8 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action_name">win.redo</property>
-            <property name="icon_name">edit-redo-symbolic</property>
-            <property name="tooltip_text">Redo</property>
+            <property name="icon_name">edit-redo</property>
+            <property name="tooltip_text" translatable="yes">Redo</property>
             <property name="label" translatable="yes">Redo</property>
           </object>
         </child>
@@ -91,18 +90,38 @@
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
-            <property name="action_name">win.import</property>
-            <property name="tooltip_text">Import</property>
-            <property name="label" translatable="yes">Import</property>
+            <property name="is-important">True</property>
+            <property name="action_name">win.save</property>
+            <property name="icon_name">document-save</property>
+            <property name="tooltip_text" translatable="yes">Save</property>
+            <property name="label" translatable="yes">Save</property>
           </object>
         </child>
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
-            <property name="action_name">win.paste</property>
-            <property name="icon_name">edit-paste-symbolic</property>
-            <property name="tooltip_text">Paste</property>
-            <property name="label" translatable="yes">Paste</property>
+            <property name="action_name">win.save_as</property>
+            <!-- <property name="icon_name">document-save-as</property> -->
+            <property name="tooltip_text" translatable="yes">Save as…</property>
+            <property name="label" translatable="yes">Save as…</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.export_as</property>
+            <property name="icon_name">document-save-as</property>
+            <property name="tooltip_text" translatable="yes">Export as…</property>
+            <property name="label" translatable="yes">Export as…</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.print</property>
+            <property name="icon_name">document-print</property>
+            <property name="tooltip_text" translatable="yes">Print</property>
+            <property name="label" translatable="yes">Print</property>
           </object>
         </child>
         <child>
@@ -114,9 +133,59 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action_name">win.properties</property>
-            <property name="icon_name">document-properties-symbolic</property>
-            <property name="tooltip_text">Image properties</property>
+            <property name="icon_name">document-properties</property>
+            <property name="tooltip_text" translatable="yes">Image properties</property>
             <property name="label" translatable="yes">Image properties</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparatorToolItem">
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.show_labels</property>
+            <property name="icon_name">view-list</property>
+            <property name="tooltip_text" translatable="yes">Show tools names</property>
+            <property name="label" translatable="yes">Show tools names</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">app.settings</property>
+            <property name="icon_name">preferences-other</property>
+            <property name="tooltip_text" translatable="yes">Preferences</property>
+            <property name="label" translatable="yes">Preferences</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">app.shortcuts</property>
+            <property name="icon_name">preferences-desktop-keyboard-shortcuts</property>
+            <property name="tooltip_text" translatable="yes">Shortcuts</property>
+            <property name="label" translatable="yes">Shortcuts</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">app.help</property>
+            <property name="icon_name">help-faq</property>
+            <property name="tooltip_text" translatable="yes">Help</property>
+            <property name="label" translatable="yes">Help</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">app.about</property>
+            <property name="icon_name">help-about</property>
+            <property name="tooltip_text" translatable="yes">About Drawing</property>
+            <property name="label" translatable="yes">About Drawing</property>
           </object>
         </child>
       </object>
