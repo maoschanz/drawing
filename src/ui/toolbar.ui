@@ -16,6 +16,9 @@
             <property name="tooltip_text" translatable="yes">New</property>
             <property name="label" translatable="yes">New</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -25,6 +28,9 @@
             <property name="tooltip_text" translatable="yes">Open in a new window</property>
             <property name="label" translatable="yes">Open in a new window</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -35,6 +41,9 @@
             <property name="tooltip_text" translatable="yes">Open an image here</property>
             <property name="label" translatable="yes">Open</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkSeparatorToolItem">
@@ -48,6 +57,9 @@
             <property name="tooltip_text" translatable="yes">Import</property>
             <property name="label" translatable="yes">Import</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -57,6 +69,9 @@
             <property name="tooltip_text" translatable="yes">Paste</property>
             <property name="label" translatable="yes">Paste</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkSeparatorToolItem">
@@ -72,6 +87,9 @@
             <property name="tooltip_text" translatable="yes">Undo</property>
             <property name="label" translatable="yes">Undo</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -81,6 +99,9 @@
             <property name="tooltip_text" translatable="yes">Redo</property>
             <property name="label" translatable="yes">Redo</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkSeparatorToolItem">
@@ -96,24 +117,33 @@
             <property name="tooltip_text" translatable="yes">Save</property>
             <property name="label" translatable="yes">Save</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action_name">win.save_as</property>
-            <!-- <property name="icon_name">document-save-as</property> -->
+            <property name="icon_name">document-save-as</property>
             <property name="tooltip_text" translatable="yes">Save as…</property>
             <property name="label" translatable="yes">Save as…</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action_name">win.export_as</property>
-            <property name="icon_name">document-save-as</property>
+            <!-- <property name="icon_name">document-save-as</property> -->
             <property name="tooltip_text" translatable="yes">Export as…</property>
             <property name="label" translatable="yes">Export as…</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -123,6 +153,9 @@
             <property name="tooltip_text" translatable="yes">Print</property>
             <property name="label" translatable="yes">Print</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkSeparatorToolItem">
@@ -137,6 +170,9 @@
             <property name="tooltip_text" translatable="yes">Image properties</property>
             <property name="label" translatable="yes">Image properties</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkSeparatorToolItem">
@@ -151,6 +187,9 @@
             <property name="tooltip_text" translatable="yes">Show tools names</property>
             <property name="label" translatable="yes">Show tools names</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -160,6 +199,9 @@
             <property name="tooltip_text" translatable="yes">Preferences</property>
             <property name="label" translatable="yes">Preferences</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -169,6 +211,9 @@
             <property name="tooltip_text" translatable="yes">Shortcuts</property>
             <property name="label" translatable="yes">Shortcuts</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -178,6 +223,9 @@
             <property name="tooltip_text" translatable="yes">Help</property>
             <property name="label" translatable="yes">Help</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkToolButton">
@@ -187,6 +235,9 @@
             <property name="tooltip_text" translatable="yes">About Drawing</property>
             <property name="label" translatable="yes">About Drawing</property>
           </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
         </child>
       </object>
     </child>

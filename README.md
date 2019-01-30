@@ -13,20 +13,22 @@ PNG, JPEG and BMP files are supported.
 #### And a few of their options
 
 | Tool      | Options   | Remarks   |
-|-----------|-----------|-----------|
+|:---------:|:---------:|:---------:|
 |Pencil     |Dashes, eraser |       |
-|Shape      |Rectangle, circle, oval | |
-|Polygon, free shape |Filling |     |
-|Line       |Straight line/Arc, arrow, dashes | |
-|Insert text |Font and font size |  |
-|Selection  |Rectangle/free shape (drag, delete, cut, copy, export, scale, crop, rotate) |Is activated when you paste or import an image |
-|Paint      |           |Not done yet |
-|Brush      |           |Not done yet |
-|Gradient   |           |Not done yet |
-|Color picker |         |           |
-|Crop       |           |The previewed picture isn't the at the actual scale. |
-|Scale      |Keep proportions |     |
-|Rotate     |           |           |
+|Shape      |Rectangle, circle, oval ; Filling
+|Polygon, free shape |Filling|      |
+|Line       |Straight line/Arc, arrow, dashes
+|Insert text|Font and font size|    |
+|Selection  |Rectangle/free shape|Drag, delete, cut, copy, export a portion of the image
+|-          |           |Is activated when you paste or import an image
+|Paint      |           |Not done yet
+|Brush      |           |Not done yet
+|Gradient   |           |Not done yet
+|Color picker|          |           |
+|Crop       |           |The previewed picture isn't the at the actual scale.
+|-          |           |Can be applied to the selection
+|Scale      |Keep proportions or not|Can be applied to the selection
+|Rotate     |           |Can be applied to the selection
 
 ## Installation
 

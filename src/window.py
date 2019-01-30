@@ -228,7 +228,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# XXX
 	def action_rebuild_from_histo(self, *args):
-		pass
+		self.get_active_image().init_background()
+		h = self.get_active_image().undo_history.copy()
+		self.get_active_image().undo_history = []
+		for op in h:
+			self.tools[op['tool_id']].apply_operation(op)
+			print(op)
+		self.get_active_image().queue_draw()
 
 	# WINDOW BARS
 
@@ -616,12 +622,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def update_history_sensitivity(self):
 		self.get_active_image().update_history_sensitivity()
-
-	def can_undo(self):
-		if len(self.undo_history) == 0:
-			return False
-		else:
-			return True
 
 	# COLORS
 

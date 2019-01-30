@@ -112,7 +112,7 @@ class DrawingImage(Gtk.Layout):
 
 	# HISTORY MANAGEMENT
 
-	def try_undo(self, *args):
+	def try_undo1(self, *args):
 		should_undo = not self.active_tool().give_back_control()
 		if should_undo and self.can_undo():
 			self.redo_history.append(self.main_pixbuf.copy())
@@ -121,7 +121,7 @@ class DrawingImage(Gtk.Layout):
 			self.update_history_sensitivity()
 		self.queue_draw()
 
-	def try_redo(self, *args):
+	def try_redo1(self, *args):
 		self.undo_history.append(self.main_pixbuf.copy())
 		self.main_pixbuf = self.redo_history.pop()
 		self.use_stable_pixbuf()
@@ -135,7 +135,7 @@ class DrawingImage(Gtk.Layout):
 		self.window.lookup_action('redo').set_enabled(False)
 
 	def add_operation_to_history(self, operation):
-		print('todo')
+		self.undo_history.append(operation)
 
 	def on_tool_finished(self):
 		#self.undo_history.append(self.main_pixbuf.copy())
@@ -307,9 +307,6 @@ class DrawingImage(Gtk.Layout):
 
 	def is_using_selection(self):
 		return self.window.tool_needs_selection() and  self.window.active_tool().selection_is_active
-
-	def add_operation_to_history(self, operation):
-		print('todo')
 
 ##########################
 
