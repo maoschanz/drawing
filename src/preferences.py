@@ -24,7 +24,7 @@ SETTINGS_SCHEMA = 'com.github.maoschanz.Drawing'
 class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
-	list_box = GtkTemplate.Child()
+	content_area = GtkTemplate.Child()
 	default_backg_button = GtkTemplate.Child()
 	experimental_switch = GtkTemplate.Child()
 	preview_btn = GtkTemplate.Child()

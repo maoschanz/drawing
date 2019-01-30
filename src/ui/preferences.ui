@@ -25,345 +25,397 @@
   </object>
 
   <template class="DrawingPrefsWindow" parent="GtkWindow">
-    <property name="default-width">450</property>
-    <property name="default-height">440</property>
+    <property name="default-width">400</property>
+    <property name="default-height">300</property>
     <property name="title" translatable="yes">Preferences</property>
 
     <child>
-      <object class="GtkScrolledWindow" id="list_box">
+      <object class="GtkBox" id="content_area">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="margin">12</property>
+        <property name="spacing">12</property>
+
         <child>
-          <object class="GtkBox">
+          <object class="GtkStackSwitcher">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
-            <property name="margin">12</property>
-            <property name="spacing">12</property>
-
-            <child>
-              <object class="GtkListBox">
-                <property name="visible">True</property>
-                <property name="selection-mode">none</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">Image</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Default background</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkColorButton" id="default_backg_button">
-                            <property name="visible">True</property>
-                            <property name="use-alpha">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Default width</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="width_btn">
-                            <property name="visible">True</property>
-                            <property name="adjustment">adj_width</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Default height</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="height_btn">
-                            <property name="visible">True</property>
-                            <property name="adjustment">adj_height</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Always add transparency</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="add_alpha_switch">
-                            <property name="visible">True</property>
-                            <property name="sensitive">False</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-              </object>
-            </child>
-            <child>
-              <object class="GtkListBox">
-                <property name="visible">True</property>
-                <property name="selection-mode">none</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">Edition and tools</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Default colors</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkColorButton" id="sec_color_btn">
-                            <property name="visible">True</property>
-                            <property name="use-alpha">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="tooltip_text" translatable="yes">Secondary color</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkColorButton" id="main_color_btn">
-                            <property name="visible">True</property>
-                            <property name="use-alpha">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="tooltip_text" translatable="yes">Main color</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-              </object>
-            </child>
-            <child>
-              <object class="GtkListBox">
-                <property name="visible">True</property>
-                <property name="selection-mode">none</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">User interface</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Layout</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBoxText" id="layout_combobox">
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Preview size</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="preview_btn">
-                            <property name="visible">True</property>
-                            <property name="adjustment">adj_preview</property>
-                            <property name="tooltip_text" translatable="yes">Preview size</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-              </object>
-            </child>
-            <child>
-              <object class="GtkListBox">
-                <property name="visible">True</property>
-                <property name="selection-mode">none</property>
-
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="expand">True</property>
-                        <property name="margin">5</property>
-                        <property name="spacing">10</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Experimental features</property>
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">start</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="experimental_switch">
-                            <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="pack-type">end</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-              </object>
-            </child>
+            <property name="stack">stack</property>
+            <property name="halign">center</property>
           </object>
         </child>
 
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="visible">True</property>
+            <property name="transition-type">crossfade</property>
+
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
+
+                <child>
+                  <object class="GtkListBox">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">New images</property>
+                        <property name="visible">True</property>
+                        <style><class name="dim-label"/></style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Default background</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkColorButton" id="default_backg_button">
+                                <property name="visible">True</property>
+                                <property name="use-alpha">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Default width</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="width_btn">
+                                <property name="visible">True</property>
+                                <property name="adjustment">adj_width</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Default height</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="height_btn">
+                                <property name="visible">True</property>
+                                <property name="adjustment">adj_height</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkListBox">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">Opened images</property>
+                        <property name="visible">True</property>
+                        <style><class name="dim-label"/></style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Always add transparency</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSwitch" id="add_alpha_switch">
+                                <property name="visible">True</property>
+                                <property name="sensitive">False</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                  </object>
+                </child>
+
+              </object>
+              <packing>
+                <property name="name">page1</property>
+                <property name="title" translatable="yes">Image</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
+
+                <child>
+                  <object class="GtkListBox">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">Edition and tools</property>
+                        <property name="visible">True</property>
+                        <style><class name="dim-label"/></style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Default colors</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkColorButton" id="sec_color_btn">
+                                <property name="visible">True</property>
+                                <property name="use-alpha">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="tooltip_text" translatable="yes">Secondary color</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkColorButton" id="main_color_btn">
+                                <property name="visible">True</property>
+                                <property name="use-alpha">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="tooltip_text" translatable="yes">Main color</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBox">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">User interface</property>
+                        <property name="visible">True</property>
+                        <style><class name="dim-label"/></style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Layout</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBoxText" id="layout_combobox">
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Preview size</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="preview_btn">
+                                <property name="visible">True</property>
+                                <property name="adjustment">adj_preview</property>
+                                <property name="tooltip_text" translatable="yes">Preview size</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBox">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Experimental features</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSwitch" id="experimental_switch">
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page2</property>
+                <property name="title" translatable="yes">Other</property>
+              </packing>
+            </child>
+
+          </object>
+        </child>
       </object>
     </child>
   </template>

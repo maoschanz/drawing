@@ -19,7 +19,7 @@ Clone this repo, open it as a project with GNOME Builder, and run it (or export 
 
 Initial installation:
 ```
-wget https://github.com/maoschanz/drawing/blob/master/com.github.maoschanz.Drawing.json
+wget https://raw.githubusercontent.com/maoschanz/drawing/master/com.github.maoschanz.Drawing.json
 flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.Drawing.json
 flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
 flatpak --user install local-drawing-repo com.github.maoschanz.Drawing
