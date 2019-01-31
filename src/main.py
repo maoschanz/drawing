@@ -136,9 +136,9 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.undo', ['<Ctrl>z'])
 		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
-		# XXX
+		# XXX hidden "experimental" actions, for testing only
 		self.set_accels_for_action('win.restore_pixbuf', ['<Ctrl><Alt>r'])
-		self.set_accels_for_action('win.rebuild_from_histo', ['<Ctrl><Shift>r'])
+		self.set_accels_for_action('win.rebuild_from_histo', ['<Ctrl><Alt>h'])
 
 ########
 

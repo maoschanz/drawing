@@ -17,8 +17,11 @@ class ToolSelect(ToolTemplate):
 		self.need_selection_pixbuf = True
 
 		self.temp_path = None
-		self.temp_x = 0 # TODO on peut peut-tre se débarasser de ça ?
+		self.temp_x = 0
 		self.temp_y = 0
+
+		self.closing_x = 0
+		self.closing_y = 0
 
 		self.add_tool_action_simple('selection_unselect', self.action_unselect)
 		self.add_tool_action_simple('selection_cut', self.action_cut)
@@ -98,15 +101,13 @@ class ToolSelect(ToolTemplate):
 		return label
 
 	def give_back_control(self):
-		print('selection give back control')
+		print('selection give_back_control')
 		if self.selection_has_been_used:
 			if self.selection_is_active:
 				operation = self.build_operation()
 				self.apply_operation(operation)
 			self.forget_selection()
 			self.reset_temp()
-			# self.restore_pixbuf()
-			# self.non_destructive_show_modif()
 			return False
 		else:
 			self.selection_has_been_used = True # ne sert à rien puisqu'on définit l'inverse juste après XXX
@@ -114,7 +115,7 @@ class ToolSelect(ToolTemplate):
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):
-		print('cancel_ongoing_operation')
+		print('selection cancel_ongoing_operation')
 		self.reset_temp()
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
@@ -129,7 +130,6 @@ class ToolSelect(ToolTemplate):
 			self.give_back_control()
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
-			print('ligne 133')
 		if self.selected_type_id == 'rectangle' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
 		self.left_color = left_color # TODO
@@ -199,6 +199,8 @@ class ToolSelect(ToolTemplate):
 		main_x, main_y = self.get_image().get_main_coord()
 		x = self.get_image().selection_x + self.get_selection_pixbuf().get_width()/2 - main_x
 		y = self.get_image().selection_y + self.get_selection_pixbuf().get_height()/2 - main_y
+		x = max(0, min(x, self.get_image().get_allocated_width()))
+		y = max(0, min(y, self.get_image().get_allocated_height()))
 		[rectangle.x, rectangle.y] = [x, y]
 		rectangle.height = 1
 		rectangle.width = 1
@@ -269,9 +271,9 @@ class ToolSelect(ToolTemplate):
 
 	def init_path(self, event_x, event_y):
 		if self.get_image().selection_path is not None:
-			# self.reset_temp() # XXX pourquoi c'était là ça ?
-			print('continuation d un path existant dans le cadre d une sélection à main levée')
 			return
+		self.closing_x = event_x
+		self.closing_y = event_y
 		w_context = cairo.Context(self.get_surface())
 		w_context.move_to(event_x, event_y)
 		self.get_image().selection_path = w_context.copy_path()
@@ -280,9 +282,8 @@ class ToolSelect(ToolTemplate):
 		w_context = cairo.Context(self.get_surface())
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.set_dash([3, 3])
-
-		if (max(event_x, self.x_press) - min(event_x, self.x_press) < self.closing_precision) \
-		and (max(event_y, self.y_press) - min(event_y, self.y_press) < self.closing_precision):
+		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
+		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
 			w_context.append_path(self.get_image().selection_path)
 			w_context.close_path()
 			w_context.stroke_preserve()
