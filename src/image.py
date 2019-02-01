@@ -140,6 +140,7 @@ class DrawingImage(Gtk.Layout):
 		self.window.lookup_action('redo').set_enabled(False)
 
 	def add_operation_to_history(self, operation):
+		self._is_saved = False
 		self.undo_history.append(operation)
 
 	def on_tool_finished(self):
@@ -177,7 +178,6 @@ class DrawingImage(Gtk.Layout):
 			self.window.action_exchange_color()
 			return
 		self.is_clicked = True
-		self._is_saved = False
 		x, y = self.get_main_coord()
 		self.active_tool().on_press_on_area(area, event, self.surface, \
 			self.window.size_setter.get_value(), \

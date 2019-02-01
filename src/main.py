@@ -97,7 +97,6 @@ class Application(Gtk.Application):
 	def build_actions(self):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window_activate)
-		self.add_action_simple('open', self.on_open_activate)
 		self.add_action_simple('settings', self.on_prefs_activate)
 		self.add_action_simple('shortcuts', self.on_shortcuts_activate)
 		self.add_action_simple('help', self.on_help_activate)
@@ -107,7 +106,6 @@ class Application(Gtk.Application):
 	def add_accels(self):
 		"""Set all keyboard shortcuts."""
 		self.set_accels_for_action('app.new_window', ['<Ctrl>n'])
-		self.set_accels_for_action('app.open', ['<Ctrl>o'])
 		self.set_accels_for_action('app.help', ['F1'])
 		self.set_accels_for_action('app.quit', ['<Ctrl>q'])
 
@@ -128,7 +126,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.options_menu', ['<Shift>F10'])
 		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
-		self.set_accels_for_action('win.open', ['<Ctrl><Shift>o'])
+		self.set_accels_for_action('win.open', ['<Ctrl>o'])
 		self.set_accels_for_action('win.close', ['<Ctrl>w'])
 		self.set_accels_for_action('win.save', ['<Ctrl>s'])
 		self.set_accels_for_action('win.save_as', ['<Ctrl><Shift>s'])
@@ -144,10 +142,12 @@ class Application(Gtk.Application):
 
 	def on_open_from_cli(self, a, b, c, d):
 		for f in b:
-			win = self.on_new_window_activate()
-			win.gfile = f
-			win.try_load_file()
+			self.open_window_with_file(f)
 		return 0
+
+	def open_window_with_file(self, f):
+		win = self.on_new_window_activate()
+		win.try_load_file(f)
 
 	def on_local_options(self, app, options):
 		if options.contains('version'):
@@ -189,11 +189,6 @@ class Application(Gtk.Application):
 		win = DrawingWindow(application=self)
 		win.present()
 		return win
-
-	def on_open_activate(self, *args):
-		"""Action callback, opening a new window with an empty canvas."""
-		win = self.on_new_window_activate()
-		win.action_open()
 
 	def on_shortcuts_activate(self, *args):
 		"""Action callback, showing the "shortcuts" dialog."""

@@ -133,6 +133,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.notebook.append_page(new_image, label)
 		new_image.init_image()
 		self.update_tabs_visibility()
+		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def update_tabs_visibility(self):
 		if self.notebook.get_n_pages() > 1:
@@ -447,9 +448,33 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.get_active_image().get_file_path()
 
 	def action_open(self, *args):
-		if self.confirm_save_modifs():
-			gfile = self.file_chooser_open()
-			self.try_load_file(gfile)
+		gfile = self.file_chooser_open()
+		if gfile is None:
+			return
+		if not self.get_active_image()._is_saved:
+			if self.get_file_path() is None:
+				unsaved_file_name = _("Untitled") + '.png'
+			else:
+				unsaved_file_name = fn.split('/')[-1]
+			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved modifications"), \
+				transient_for=self)
+			dialog.add_button(_("New tab"), Gtk.ResponseType.OK)
+			dialog.add_button(_("New window"), Gtk.ResponseType.ACCEPT)
+			dialog.add_button(_("Here (overwrite)"), Gtk.ResponseType.APPLY)
+			dialog.get_message_area().add(Gtk.Label( \
+				label=(_("There are unsaved modifications to %s.")%unsaved_file_name) ))
+			dialog.get_message_area().add(Gtk.Label( \
+				label=(_("Where do you want to open %s?")%(gfile.get_path().split('/')[-1])) ))
+			dialog.show_all()
+			result = dialog.run()
+			if result == Gtk.ResponseType.OK:
+				self.build_new_image()
+			elif result == Gtk.ResponseType.ACCEPT:
+				self.app.open_window_with_file(gfile)
+				dialog.destroy()
+				return
+			dialog.destroy()
+		self.try_load_file(gfile)
 
 	def file_chooser_open(self, *args):
 		gfile = None
@@ -495,14 +520,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if not self.get_active_image()._is_saved:
 			fn = self.get_file_path()
 			if fn is None:
-				title_label = _("Untitled") + '.png'
+				unsaved_file_name = _("Untitled") + '.png'
 			else:
-				title_label = fn.split('/')[-1]
-			dialog = Gtk.MessageDialog(modal=True, title=title_label, transient_for=self)
+				unsaved_file_name = fn.split('/')[-1]
+			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved modifications"), \
+				transient_for=self)
 			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 			dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
 			dialog.add_button(_("Save"), Gtk.ResponseType.APPLY)
-			dialog.get_message_area().add(Gtk.Label(label=_("There are unsaved modifications to your drawing.")))
+			dialog.get_message_area().add(Gtk.Label(
+				label=(_("There are unsaved modifications to %s.")%unsaved_file_name) ))
 			dialog.show_all()
 			result = dialog.run()
 			if result == Gtk.ResponseType.APPLY:
@@ -666,10 +693,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		model = self.active_tool().get_options_model()
 		if model is None:
 			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("Options"), self.placeholder_model)
+			self.app.get_menubar().insert_submenu(5, _("_Options"), self.placeholder_model)
 		else:
 			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("Options"), model)
+			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
 		if widget is not None:
 			self.options_btn.set_popover(widget)
 		elif model is not None:

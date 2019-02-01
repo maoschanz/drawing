@@ -23,22 +23,10 @@
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
-            <property name="action_name">app.open</property>
-            <property name="icon_name">window-new</property>
-            <property name="tooltip_text" translatable="yes">Open in a new window</property>
-            <property name="label" translatable="yes">Open in a new window</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action_name">win.open</property>
             <property name="icon_name">document-open</property>
-            <property name="tooltip_text" translatable="yes">Open an image here</property>
+            <property name="tooltip_text" translatable="yes">Open an image</property>
             <property name="label" translatable="yes">Open</property>
           </object>
           <packing>
