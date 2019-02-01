@@ -48,22 +48,31 @@ class DrawingImage(Gtk.Layout):
 		self.handlers.append( self.connect('button-release-event', self.on_release_on_area) )
 		self.handlers.append( self.connect('scroll-event', self.on_scroll_on_area) )
 
-		self.init_background()
-
 	def init_instance_attributes(self):
 		self.handlers = []
+		self.is_clicked = False
+		self.gfile = None
+		self.filename = None
+
+	def init_image(self):
+		if self.gfile is None:
+			self.init_background()
+		self.undo_history = []
+		self.redo_history = []
+		self._is_saved = True
 		self.scroll_x = 0
 		self.scroll_y = 0
 		self.selection_x = 1
 		self.selection_y = 1
 		self.selection_path = None
-		self.is_clicked = False
-		self.undo_history = []
-		self.redo_history = []
-		self.gfile = None
-		self.filename = None
-		self._is_saved = True
+		self.use_stable_pixbuf()
+		self.queue_draw()
+		self.first_pixbuf = self.main_pixbuf.copy()
 
+	def restore_first_pixbuf(self):
+		self.main_pixbuf = self.first_pixbuf.copy()
+
+	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
 
@@ -74,7 +83,6 @@ class DrawingImage(Gtk.Layout):
 
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 
-	def init_background(self, *args): # pourquoi ce blanc ? XXX FIXME
 		w_context = cairo.Context(self.surface)
 		r = float(self.window._settings.get_strv('default-rgba')[0])
 		g = float(self.window._settings.get_strv('default-rgba')[1])
@@ -82,15 +90,8 @@ class DrawingImage(Gtk.Layout):
 		a = float(self.window._settings.get_strv('default-rgba')[3])
 		w_context.set_source_rgba(r, g, b, a)
 		w_context.paint()
-		# TODO opération
 		self.queue_draw()
 		self.set_surface_as_stable_pixbuf()
-
-	def initial_save(self):
-		self.window.set_picture_title()
-		self._is_saved = True
-		self.use_stable_pixbuf()
-		self.queue_draw()
 
 	# FILE MANAGEMENT
 
@@ -103,12 +104,16 @@ class DrawingImage(Gtk.Layout):
 		else:
 			return self.gfile.get_path()
 
-	def try_load_file(self):
-		if self.get_file_path() is None:
-			return
-		else:
-			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-			self.initial_save()
+	def try_load_file(self, gfile):
+		self.gfile = gfile
+		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		self.init_image()
+		self.window.set_picture_title()
+
+	def post_save(self):
+		self._is_saved = True
+		self.use_stable_pixbuf()
+		self.queue_draw()
 
 	# HISTORY MANAGEMENT
 
@@ -160,7 +165,7 @@ class DrawingImage(Gtk.Layout):
 		cairo_context.paint()
 
 		if self.is_using_selection() and self.selection_pixbuf is not None:
-			print('image.py, line 163')
+			#print('image.py, line 163')
 			utilities_show_overlay_on_context(cairo_context, self.get_dragged_selection_path(), True)
 
 	def delete_former_selection(self):

@@ -177,8 +177,13 @@
   </menu>
 
 <!-- "Add" menu -->
+<!-- TODO trier et ajouter aux autre menus -->
   <menu id="add-menu">
     <section>
+      <item>
+        <attribute name="action">win.new_tab</attribute>
+        <attribute name="label" translatable="yes">New tab</attribute>
+      </item>
       <item>
         <attribute name="action">app.new_window</attribute>
         <attribute name="label" translatable="yes">New window</attribute>
@@ -188,6 +193,10 @@
       <item>
         <attribute name="action">win.open</attribute>
         <attribute name="label" translatable="yes">Open an image here</attribute>
+      </item>
+      <item>
+        <attribute name="action">win.open_tab</attribute>
+        <attribute name="label" translatable="yes">Open in a new tab</attribute>
       </item>
       <item>
         <attribute name="action">app.open</attribute>

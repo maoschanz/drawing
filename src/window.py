@@ -73,25 +73,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app = kwargs['application']
 		self.init_template()
 		self.init_instance_attributes()
-
 		decorations = self._settings.get_string('decorations')
 		self.set_ui_bars(decorations)
-
 		self.build_color_buttons()
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
-
 		self.add_all_win_actions()
-
 		self.image_list = []
-		image0 = DrawingImage(self)
-		self.image_list.insert(0, image0)
-		self.notebook.append_page(self.image_list[0], Gtk.Label(label='une seule image pour le moment', visible=True))
-
+		self.build_new_image()
 		self.init_tools()
-
 		self.update_history_sensitivity()
 		self.connect_signals()
-
 		self.set_picture_title()
 
 	def init_instance_attributes(self):
@@ -135,11 +126,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Initialisation of menus
 		self.enable_tool(self.active_tool_id, True)
 
-	def initial_save(self):
-		self.set_picture_title()
-		self._is_saved = True
-		self.use_stable_pixbuf()
-		self.get_active_image().queue_draw()
+	def build_new_image(self, *args):
+		new_image = DrawingImage(self)
+		self.image_list.append(new_image)
+		label = Gtk.Label(label=_("Untitled"), visible=True)
+		self.notebook.append_page(new_image, label)
+		new_image.init_image()
+		self.update_tabs_visibility()
+
+	def update_tabs_visibility(self):
+		if self.notebook.get_n_pages() > 1:
+			self.notebook.set_show_tabs(True)
+		else:
+			self.notebook.set_show_tabs(False)
 
 	def action_close(self, *args):
 		self.close()
@@ -189,6 +188,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('options_menu', self.action_options_menu)
 		self.add_action_simple('toggle_preview', self.action_toggle_preview)
 
+		self.add_action_simple('new_tab', self.build_new_image)
 		self.add_action_simple('close', self.action_close)
 		self.add_action_simple('save', self.action_save)
 		self.add_action_simple('open', self.action_open)
@@ -228,7 +228,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# XXX
 	def action_rebuild_from_histo(self, *args):
-		self.get_active_image().init_background()
+		self.get_active_image().restore_first_pixbuf()
 		h = self.get_active_image().undo_history.copy()
 		self.get_active_image().undo_history = []
 		for op in h:
@@ -441,17 +441,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().edit_properties()
 
 	def get_active_image(self):
-		return self.image_list[0]
+		return self.image_list[self.notebook.get_current_page()]
 
 	def get_file_path(self):
-		self.get_active_image().get_file_path()
+		return self.get_active_image().get_file_path()
 
 	def action_open(self, *args):
 		if self.confirm_save_modifs():
-			self.file_chooser_open()
-			self.try_load_file()
+			gfile = self.file_chooser_open()
+			self.try_load_file(gfile)
 
 	def file_chooser_open(self, *args):
+		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
 			Gtk.FileChooserAction.OPEN,
 			_("Open"),
@@ -464,29 +465,31 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.add_filter(allPictures)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			self.gfile = file_chooser.get_file()
+			gfile = file_chooser.get_file()
 		file_chooser.destroy()
+		return gfile
 
 	def action_save(self, *args):
 		fn = self.get_file_path()
 		if fn is None:
-			self.action_save_as()
-			return
-		utilities_save_pixbuf_at(self.main_pixbuf, fn)
-		self.initial_save()
+			gfile = self.file_chooser_save('')
+			if gfile is not None:
+				self.get_active_image().gfile = gfile
+		fn = self.get_file_path()
+		if fn is not None:
+			utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn)
+		self.get_active_image().post_save()
+		self.set_picture_title()
 
 	def action_save_as(self, *args):
 		gfile = self.file_chooser_save('')
 		if gfile is not None:
-			self.gfile = gfile
+			self.get_active_image().gfile = gfile
 		self.action_save()
 
-	def try_load_file(self):
-		if self.get_file_path() is None:
-			return
-		else:
-			self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-			self.initial_save()
+	def try_load_file(self, gfile):
+		if gfile is not None:
+			self.get_active_image().try_load_file(gfile)
 
 	def confirm_save_modifs(self):
 		if not self.get_active_image()._is_saved:
@@ -516,7 +519,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return True
 
 	def file_chooser_save(self, file_type):
-		file_path = None
+		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 			Gtk.FileChooserAction.SAVE,
 			_("Save"),
@@ -620,7 +623,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
 
-	def update_history_sensitivity(self):
+	def update_history_sensitivity(self): #XXX
 		self.get_active_image().update_history_sensitivity()
 
 	# COLORS
