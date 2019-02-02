@@ -129,11 +129,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_new_image(self, *args):
 		new_image = DrawingImage(self)
 		self.image_list.append(new_image)
-		label = Gtk.Label(label=_("Untitled"), visible=True)
-		self.notebook.append_page(new_image, label)
+		self.notebook.append_page(new_image, new_image.tab_title)
 		new_image.init_image()
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
+
+	def close_tab(self, tab):
+		# TODO XXX FIXME saving
+		index = self.notebook.page_num(tab)
+		self.notebook.remove_page(index)
+		self.image_list.pop(index)
+		self.update_tabs_visibility()
 
 	def update_tabs_visibility(self):
 		if self.notebook.get_n_pages() > 1:
@@ -452,17 +458,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if gfile is None:
 			return
 		if not self.get_active_image()._is_saved:
-			if self.get_file_path() is None:
-				unsaved_file_name = _("Untitled") + '.png'
-			else:
-				unsaved_file_name = fn.split('/')[-1]
 			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved modifications"), \
 				transient_for=self)
 			dialog.add_button(_("New tab"), Gtk.ResponseType.OK)
 			dialog.add_button(_("New window"), Gtk.ResponseType.ACCEPT)
-			dialog.add_button(_("Here (overwrite)"), Gtk.ResponseType.APPLY)
+			dialog.add_button(_("Here (discard changes)"), Gtk.ResponseType.APPLY)
 			dialog.get_message_area().add(Gtk.Label( \
-				label=(_("There are unsaved modifications to %s.")%unsaved_file_name) ))
+				label=( _("There are unsaved modifications to %s.") % \
+				self.get_active_image().get_filename_for_display() ) ))
 			dialog.get_message_area().add(Gtk.Label( \
 				label=(_("Where do you want to open %s?")%(gfile.get_path().split('/')[-1])) ))
 			dialog.show_all()
@@ -529,7 +532,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
 			dialog.add_button(_("Save"), Gtk.ResponseType.APPLY)
 			dialog.get_message_area().add(Gtk.Label(
-				label=(_("There are unsaved modifications to %s.")%unsaved_file_name) ))
+				label=( _("There are unsaved modifications to %s.") % \
+				self.get_active_image().get_filename_for_display() ) ))
 			dialog.show_all()
 			result = dialog.run()
 			if result == Gtk.ResponseType.APPLY:

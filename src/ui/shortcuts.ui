@@ -20,8 +20,8 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Open an image in a new window</property>
-                <property name="accelerator">&lt;Primary&gt;o</property>
+                <property name="title" translatable="yes">New tab</property>
+                <property name="accelerator">&lt;Primary&gt;t</property>
               </object>
             </child>
             <child>
@@ -34,7 +34,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Close</property>
+                <property name="title" translatable="yes">Close the window</property>
                 <property name="accelerator">&lt;Primary&gt;w</property>
               </object>
             </child>
@@ -89,7 +89,7 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Open an image</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;o</property>
+                <property name="accelerator">&lt;Primary&gt;o</property>
               </object>
             </child>
             <child>
@@ -104,6 +104,13 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Save as</property>
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;s</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Toggle the preview</property>
+                <property name="accelerator">&lt;Primary&gt;m</property>
               </object>
             </child>
           </object>
@@ -131,13 +138,6 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Options menu</property>
                 <property name="accelerator">&lt;Primary&gt;F10</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Toggle the preview</property>
-                <property name="accelerator">&lt;Primary&gt;m</property>
               </object>
             </child>
             <child>

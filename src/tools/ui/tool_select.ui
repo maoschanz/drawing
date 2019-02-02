@@ -52,23 +52,31 @@
           </item>
         </section>
         <section>
+          <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
           <item>
             <attribute name="label" translatable="yes">Crop</attribute>
             <attribute name="action">win.selection_crop</attribute>
+            <attribute name="verb-icon">crop-symbolic</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">Scale</attribute>
             <attribute name="action">win.selection_scale</attribute>
+            <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">Rotate</attribute>
             <attribute name="action">win.selection_rotate</attribute>
+            <attribute name="verb-icon">view-refresh-symbolic</attribute>
           </item>
         </section>
         <section>
           <item>
             <attribute name="label" translatable="yes">Export as…</attribute>
             <attribute name="action">win.selection_export</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Open in a new tab</attribute>
+            <attribute name="action">win.selection_new_tab</attribute>
           </item>
         </section>
       </submenu>

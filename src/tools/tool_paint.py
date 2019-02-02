@@ -13,7 +13,7 @@ class ToolPaint(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('paint', _("Paint"), 'paint-symbolic', window)
+		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window)
 		self.new_color = None
 		self.old_color = None
 

@@ -13,7 +13,7 @@ class ToolSelect(ToolTemplate):
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):
-		super().__init__('select', _("Selection"), 'select-symbolic', window)
+		super().__init__('select', _("Selection"), 'tool-select-symbolic', window)
 		self.need_selection_pixbuf = True
 
 		self.temp_path = None

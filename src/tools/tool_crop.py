@@ -26,7 +26,7 @@ class ToolCrop(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('crop', _("Crop"), 'crop-symbolic', window)
+		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
 		self.need_temp_pixbuf = True
 
 		self.crop_selection = False

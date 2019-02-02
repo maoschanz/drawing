@@ -11,10 +11,22 @@
         <child>
           <object class="GtkToolButton">
             <property name="visible">True</property>
+            <property name="action_name">win.new_tab</property>
+            <property name="icon_name">tab-new</property>
+            <property name="tooltip_text" translatable="yes">New tab</property>
+            <property name="label" translatable="yes">New tab</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
             <property name="action_name">app.new_window</property>
-            <property name="icon_name">document-new</property>
-            <property name="tooltip_text" translatable="yes">New</property>
-            <property name="label" translatable="yes">New</property>
+            <property name="icon_name">window-new</property>
+            <property name="tooltip_text" translatable="yes">New window</property>
+            <property name="label" translatable="yes">New window</property>
           </object>
           <packing>
             <property name="homogeneous">False</property>
@@ -92,6 +104,18 @@
           </packing>
         </child>
         <child>
+          <object class="GtkToolButton">
+            <property name="visible">True</property>
+            <property name="action_name">win.properties</property>
+            <property name="icon_name">document-properties</property>
+            <property name="tooltip_text" translatable="yes">Image properties</property>
+            <property name="label" translatable="yes">Image properties</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkSeparatorToolItem">
             <property name="visible">True</property>
           </object>
@@ -113,7 +137,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action_name">win.save_as</property>
-            <property name="icon_name">document-save-as</property>
+            <!-- <property name="icon_name">document-save-as</property> -->
             <property name="tooltip_text" translatable="yes">Save as…</property>
             <property name="label" translatable="yes">Save as…</property>
           </object>
@@ -140,23 +164,6 @@
             <property name="icon_name">document-print</property>
             <property name="tooltip_text" translatable="yes">Print</property>
             <property name="label" translatable="yes">Print</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparatorToolItem">
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">win.properties</property>
-            <property name="icon_name">document-properties</property>
-            <property name="tooltip_text" translatable="yes">Image properties</property>
-            <property name="label" translatable="yes">Image properties</property>
           </object>
           <packing>
             <property name="homogeneous">False</property>

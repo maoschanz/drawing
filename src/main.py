@@ -126,6 +126,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.options_menu', ['<Shift>F10'])
 		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
+		self.set_accels_for_action('win.new_tab', ['<Ctrl>t'])
 		self.set_accels_for_action('win.open', ['<Ctrl>o'])
 		self.set_accels_for_action('win.close', ['<Ctrl>w'])
 		self.set_accels_for_action('win.save', ['<Ctrl>s'])
@@ -148,6 +149,7 @@ class Application(Gtk.Application):
 	def open_window_with_file(self, f):
 		win = self.on_new_window_activate()
 		win.try_load_file(f)
+		win.present()
 
 	def on_local_options(self, app, options):
 		if options.contains('version'):

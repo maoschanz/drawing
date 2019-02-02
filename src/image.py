@@ -33,6 +33,7 @@ class DrawingImage(Gtk.Layout):
 		self.window = window
 		self.init_template()
 		self.init_instance_attributes()
+		self.build_tab_label()
 
 		self.add_events( \
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
@@ -68,6 +69,27 @@ class DrawingImage(Gtk.Layout):
 		self.use_stable_pixbuf()
 		self.queue_draw()
 		self.first_pixbuf = self.main_pixbuf.copy()
+
+	def build_tab_label(self):
+		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
+		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
+		btn.set_relief(Gtk.ReliefStyle.NONE)
+		btn.connect('clicked', self.try_close_tab)
+		self.tab_title.add(self.tab_label)
+		self.tab_title.add(btn)
+		self.tab_title.show_all()
+
+	def get_filename_for_display(self):
+		if self.get_file_path() is None:
+			unsaved_file_name = _("Untitled")
+		else:
+			unsaved_file_name = self.get_file_path().split('/')[-1]
+		return unsaved_file_name
+
+	def try_close_tab(self, *args):
+		self.window.close_tab(self)
+		self.destroy()
 
 	def restore_first_pixbuf(self):
 		self.main_pixbuf = self.first_pixbuf.copy()
@@ -108,6 +130,7 @@ class DrawingImage(Gtk.Layout):
 		self.gfile = gfile
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		self.init_image()
+		self.tab_label.set_label(self.get_filename_for_display())
 		self.window.set_picture_title()
 
 	def post_save(self):

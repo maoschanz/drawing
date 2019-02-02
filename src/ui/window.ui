@@ -54,6 +54,19 @@
                 <property name="show-border">True</property>
                 <property name="scrollable">True</property>
                 <property name="group-name">drawing-tabs</property>
+                <child type="action-end">
+                  <object class="GtkButton">
+                    <property name="visible">True</property>
+                    <property name="relief">none</property>
+                    <property name="action-name">win.new_tab</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">tab-new-symbolic</property>
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">True</property>
