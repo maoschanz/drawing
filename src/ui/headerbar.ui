@@ -105,12 +105,14 @@
     <child>
       <object class="GtkButton" id="save_icon">
         <property name="visible">True</property>
-        <property name="valign">center</property>w
+        <property name="valign">center</property>
+<property name="relief">none</property>
         <property name="action_name">win.save</property>
         <property name="tooltip_text" translatable="yes">Save</property>
         <child>
           <object class="GtkImage">
-            <property name="icon-name">document-save-symbolic</property>
+<property name="icon-name">document-save</property>
+            <!-- <property name="icon-name">document-save-symbolic</property> -->
             <property name="visible">True</property>
           </object>
         </child>

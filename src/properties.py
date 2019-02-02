@@ -26,6 +26,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 			transient_for=window, title=_("Image properties"))
 		self._image = image
+		self.build_ui()
 		self.set_default_size(400, 200)
 		self.show_all()
 
