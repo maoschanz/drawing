@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
-import cairo, os
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 
 from .gi_composites import GtkTemplate
 
@@ -135,11 +134,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def close_tab(self, tab):
-		# TODO XXX FIXME saving
 		index = self.notebook.page_num(tab)
+		if not self.image_list[index]._is_saved:
+			self.notebook.set_current_page(index)
+			is_saved = self.confirm_save_modifs()
+			return is_saved
 		self.notebook.remove_page(index)
 		self.image_list.pop(index)
 		self.update_tabs_visibility()
+		return True
 
 	def update_tabs_visibility(self):
 		if self.notebook.get_n_pages() > 1:
@@ -151,7 +154,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.close()
 
 	def on_close(self, *args):
-		return not self.confirm_save_modifs()
+		for i in self.image_list:
+			if not self.close_tab(i):
+				return True
+		return False
 
 	# GENERAL PURPOSE METHODS
 
@@ -458,16 +464,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if gfile is None:
 			return
 		if not self.get_active_image()._is_saved:
-			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved modifications"), \
+			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved changes"), \
 				transient_for=self)
 			dialog.add_button(_("New tab"), Gtk.ResponseType.OK)
 			dialog.add_button(_("New window"), Gtk.ResponseType.ACCEPT)
-			dialog.add_button(_("Here (discard changes)"), Gtk.ResponseType.APPLY)
-			dialog.get_message_area().add(Gtk.Label( \
-				label=( _("There are unsaved modifications to %s.") % \
-				self.get_active_image().get_filename_for_display() ) ))
-			dialog.get_message_area().add(Gtk.Label( \
-				label=(_("Where do you want to open %s?")%(gfile.get_path().split('/')[-1])) ))
+			dialog.add_button(_("Discard changes"), Gtk.ResponseType.APPLY)
+			label1 = Gtk.Label( label=( _("There are unsaved modifications to %s.") % \
+				self.get_active_image().get_filename_for_display() ) )
+			label1.set_ellipsize(Pango.EllipsizeMode.END) # FIXME
+			dialog.get_message_area().add(label1)
+			label2 = Gtk.Label( \
+				label=(_("Where do you want to open %s?") %  \
+				(gfile.get_path().split('/')[-1])) )
+			label2.set_ellipsize(Pango.EllipsizeMode.END) # FIXME
+			dialog.get_message_area().add(label2)
 			dialog.show_all()
 			result = dialog.run()
 			if result == Gtk.ResponseType.OK:
@@ -520,34 +530,35 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.get_active_image().try_load_file(gfile)
 
 	def confirm_save_modifs(self):
-		if not self.get_active_image()._is_saved:
-			fn = self.get_file_path()
-			if fn is None:
-				unsaved_file_name = _("Untitled") + '.png'
-			else:
-				unsaved_file_name = fn.split('/')[-1]
-			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved modifications"), \
-				transient_for=self)
-			dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
-			dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
-			dialog.add_button(_("Save"), Gtk.ResponseType.APPLY)
-			dialog.get_message_area().add(Gtk.Label(
-				label=( _("There are unsaved modifications to %s.") % \
-				self.get_active_image().get_filename_for_display() ) ))
-			dialog.show_all()
-			result = dialog.run()
-			if result == Gtk.ResponseType.APPLY:
-				dialog.destroy()
-				self.action_save()
-				return True
-			elif result == Gtk.ResponseType.NO:
-				dialog.destroy()
-				return True
-			else:
-				dialog.destroy()
-				return False
-		else:
+		if self.get_active_image()._is_saved:
 			return True
+		fn = self.get_file_path()
+		if fn is None:
+			unsaved_file_name = _("Untitled") + '.png'
+		else:
+			unsaved_file_name = fn.split('/')[-1]
+		dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved changes"), \
+			transient_for=self)
+		dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+		dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
+		dialog.add_button(_("Save"), Gtk.ResponseType.APPLY)
+		label1 = Gtk.Label( label=( _("There are unsaved modifications to %s.") % \
+			self.get_active_image().get_filename_for_display() ) )
+		label1.set_ellipsize(Pango.EllipsizeMode.END) # FIXME
+		dialog.get_message_area().add(label1)
+		dialog.show_all()
+		dialog.set_size_request(0, 0)
+		result = dialog.run()
+		if result == Gtk.ResponseType.APPLY:
+			dialog.destroy()
+			self.action_save()
+			return True
+		elif result == Gtk.ResponseType.NO:
+			dialog.destroy()
+			return True
+		else:
+			dialog.destroy()
+			return False
 
 	def file_chooser_save(self, file_type):
 		gfile = None

@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
-import cairo, os
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
+import cairo
 
 from .gi_composites import GtkTemplate
 
@@ -71,13 +71,14 @@ class DrawingImage(Gtk.Layout):
 		self.first_pixbuf = self.main_pixbuf.copy()
 
 	def build_tab_label(self):
-		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
 		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
+		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
 		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
 		btn.set_relief(Gtk.ReliefStyle.NONE)
 		btn.connect('clicked', self.try_close_tab)
-		self.tab_title.add(self.tab_label)
-		self.tab_title.add(btn)
+		self.tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
+		self.tab_title.pack_end(btn, expand=False, fill=False, padding=0)
 		self.tab_title.show_all()
 
 	def get_filename_for_display(self):
