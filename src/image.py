@@ -141,6 +141,12 @@ class DrawingImage(Gtk.Layout):
 
 	# HISTORY MANAGEMENT
 
+	def try_undo(self, *args):
+		pass # TODO
+
+	def try_redo(self, *args):
+		pass # TODO
+
 	def try_undo1(self, *args):
 		should_undo = not self.active_tool().give_back_control()
 		if should_undo and self.can_undo():
@@ -160,8 +166,10 @@ class DrawingImage(Gtk.Layout):
 	def update_history_sensitivity(self):
 		#self.window.lookup_action('undo').set_enabled(self.can_undo())
 		#self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
-		self.window.lookup_action('undo').set_enabled(False)
-		self.window.lookup_action('redo').set_enabled(False)
+		self.window.lookup_action('undo').set_enabled(True)
+		self.window.lookup_action('redo').set_enabled(True)
+		# self.window.lookup_action('undo').set_enabled(False)
+		# self.window.lookup_action('redo').set_enabled(False)
 
 	def add_operation_to_history(self, operation):
 		self._is_saved = False

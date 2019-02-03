@@ -138,7 +138,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if not self.image_list[index]._is_saved:
 			self.notebook.set_current_page(index)
 			is_saved = self.confirm_save_modifs()
-			return is_saved
+			if not is_saved:
+				return False
 		self.notebook.remove_page(index)
 		self.image_list.pop(index)
 		self.update_tabs_visibility()
@@ -234,12 +235,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
 
-	# XXX
+	# XXX testing only
 	def action_restore_pixbuf(self, *args):
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().queue_draw()
 
-	# XXX
 	def action_rebuild_from_histo(self, *args):
 		self.get_active_image().restore_first_pixbuf()
 		h = self.get_active_image().undo_history.copy()
@@ -661,9 +661,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_undo(self, *args):
 		self.get_active_image().try_undo()
+		self.action_rebuild_from_histo()
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
+		self.action_rebuild_from_histo()
 
 	def update_history_sensitivity(self): #XXX
 		self.get_active_image().update_history_sensitivity()
