@@ -329,7 +329,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def adapt_to_window_size(self, *args):
 		if self.header_bar is not None:
-			if self.get_allocated_width() > 600:
+			widgets_width = self.save_label.get_allocated_width() \
+				+ self.save_icon.get_allocated_width() \
+				+ self.add_btn.get_allocated_width()
+			limit = 3 * widgets_width
+			if self.header_bar.get_allocated_width() > limit: # Totalement arbitraire
 				self.save_label.set_visible(True)
 				self.save_icon.set_visible(False)
 				self.add_btn.set_visible(True)

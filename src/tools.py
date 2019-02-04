@@ -77,6 +77,7 @@ class ToolTemplate():
 		box = Gtk.Box(
 			orientation=Gtk.Orientation.HORIZONTAL,
 			spacing=8,
+			margin=2,
 			tooltip_text=self.label
 		)
 		box.add(image)
