@@ -38,6 +38,32 @@
 <!-- Hamburger menu -->
   <menu id="long-window-menu">
     <section>
+      <item>
+        <attribute name="action">win.new_tab</attribute>
+        <attribute name="label" translatable="yes">New tab</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.new_window</attribute>
+        <attribute name="label" translatable="yes">New window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="action">win.open</attribute>
+        <attribute name="label" translatable="yes">Open an image</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Import</attribute>
+        <attribute name="action">win.import</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
+      </item>
+    </section>
+    <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="action">win.save_as</attribute>
@@ -53,30 +79,6 @@
         <attribute name="label" translatable="yes">Print</attribute>
         <attribute name="action">win.print</attribute>
         <attribute name="verb-icon">document-print-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">win.new_tab</attribute>
-        <attribute name="label" translatable="yes">New tab</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New window</attribute>
-      </item>
-      <item>
-        <attribute name="action">win.open</attribute>
-        <attribute name="label" translatable="yes">Open an image</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Import</attribute>
-        <attribute name="action">win.import</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Paste</attribute>
-        <attribute name="action">win.paste</attribute>
       </item>
     </section>
     <section>

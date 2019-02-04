@@ -271,7 +271,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
 		self.placeholder_model = builder.get_object('tool-placeholder')
 		if decorations == 'csd':
-			self.build_headerbar()
+			self.build_headerbar(False)
+			self.set_titlebar(self.header_bar)
+			self.set_show_menubar(False)
+		elif decorations == 'csd-eos':
+			self.build_headerbar(True)
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(False)
 		elif decorations == 'everything':
@@ -284,7 +288,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		elif decorations == 'ssd-toolbar':
 			self.build_toolbar()
 			self.set_show_menubar(False)
-		else:
+		else: # decorations == 'ssd'
 			self.build_toolbar()
 			self.set_show_menubar(True)
 
@@ -294,8 +298,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
 
-	def build_headerbar(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar.ui')
+	def build_headerbar(self, is_eos):
+		if is_eos:
+			builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar_eos.ui')
+		else:
+			builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar.ui')
 		self.header_bar = builder.get_object('header_bar')
 		self.save_label = builder.get_object('save_label')
 		self.save_icon = builder.get_object('save_icon')
@@ -308,9 +315,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		long_main_menu = builder.get_object('long-window-menu')
 		self.long_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, long_main_menu)
 
-		add_menu = builder.get_object('add-menu')
-		add_popover = Gtk.Popover.new_from_model(self.add_btn, add_menu)
-		self.add_btn.set_popover(add_popover)
+		if not is_eos:
+			add_menu = builder.get_object('add-menu')
+			add_popover = Gtk.Popover.new_from_model(self.add_btn, add_menu)
+			self.add_btn.set_popover(add_popover)
 
 	def action_main_menu(self, *args):
 		if self.main_menu_btn is not None:

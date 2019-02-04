@@ -63,6 +63,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.preview_btn.connect('value-changed', self.on_preview_changed)
 
 		self.layout_combobox.append('csd', _("Compact"))
+		self.layout_combobox.append('csd-eos', 'elementary OS')
 		self.layout_combobox.append('ssd', _("Legacy"))
 		self.layout_combobox.append('ssd-menubar', _("Menubar only"))
 		self.layout_combobox.append('ssd-toolbar', _("Toolbar only"))
