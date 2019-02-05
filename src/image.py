@@ -56,8 +56,6 @@ class DrawingImage(Gtk.Layout):
 		self.filename = None
 
 	def init_image(self):
-		if self.gfile is None:
-			self.init_background()
 		self.undo_history = []
 		self.redo_history = []
 		self._is_saved = True
@@ -68,7 +66,6 @@ class DrawingImage(Gtk.Layout):
 		self.selection_path = None
 		self.use_stable_pixbuf()
 		self.queue_draw()
-		self.first_pixbuf = self.main_pixbuf.copy()
 
 	def build_tab_label(self):
 		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
@@ -92,29 +89,47 @@ class DrawingImage(Gtk.Layout):
 		self.window.close_tab(self)
 		self.destroy()
 
-	def restore_first_pixbuf(self):
-		self.main_pixbuf = self.first_pixbuf.copy()
-
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
-
-		# 8 ??? les autres plantent
-		self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-
-		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-
-		w_context = cairo.Context(self.surface)
 		r = float(self.window._settings.get_strv('default-rgba')[0])
 		g = float(self.window._settings.get_strv('default-rgba')[1])
 		b = float(self.window._settings.get_strv('default-rgba')[2])
 		a = float(self.window._settings.get_strv('default-rgba')[3])
-		w_context.set_source_rgba(r, g, b, a)
-		w_context.paint()
-		self.queue_draw()
-		self.set_surface_as_stable_pixbuf()
+		self.initial_operation = {
+			'tool_id': None,
+			'pixbuf': None,
+			'red': r,
+			'green': g,
+			'blue': b,
+			'alpha': a,
+			'width': width,
+			'height': height
+		}
+		self.restore_first_pixbuf()
+		self.init_image()
+
+	def restore_first_pixbuf(self):
+		pixbuf = self.initial_operation['pixbuf']
+		width = self.initial_operation['width']
+		height = self.initial_operation['height']
+		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # XXX
+		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # XXX
+		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
+		if pixbuf is None:
+			r = self.initial_operation['red']
+			g = self.initial_operation['green']
+			b = self.initial_operation['blue']
+			a = self.initial_operation['alpha']
+			self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+			w_context = cairo.Context(self.surface)
+			w_context.set_source_rgba(r, g, b, a)
+			w_context.paint()
+			self.queue_draw()
+			self.set_surface_as_stable_pixbuf()
+		else:
+			self.main_pixbuf = self.initial_operation['pixbuf'].copy()
+			self.use_stable_pixbuf()
 
 	# FILE MANAGEMENT
 
@@ -130,6 +145,18 @@ class DrawingImage(Gtk.Layout):
 	def try_load_file(self, gfile):
 		self.gfile = gfile
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		self.initial_operation = {
+			'tool_id': None,
+			'pixbuf': pixbuf,
+			'red': 0.0,
+			'green': 0.0,
+			'blue': 0.0,
+			'alpha': 0.0,
+			'width': pixbuf.get_width(),
+			'height': pixbuf.get_height()
+		}
+		self.restore_first_pixbuf()
 		self.init_image()
 		self.tab_label.set_label(self.get_filename_for_display())
 		self.window.set_picture_title()
@@ -141,27 +168,27 @@ class DrawingImage(Gtk.Layout):
 
 	# HISTORY MANAGEMENT
 
-	def try_undo(self, *args):
-		pass # TODO
+	def try_undo(self, *args): # TODO should_undo
+		self.redo_history.append(self.undo_history.pop())
 
 	def try_redo(self, *args):
-		pass # TODO
+		self.undo_history.append(self.redo_history.pop())
 
-	def try_undo1(self, *args):
-		should_undo = not self.active_tool().give_back_control()
-		if should_undo and self.can_undo():
-			self.redo_history.append(self.main_pixbuf.copy())
-			self.main_pixbuf = self.undo_history.pop()
-			self.use_stable_pixbuf()
-			self.update_history_sensitivity()
-		self.queue_draw()
+	# def try_undo1(self, *args):
+	# 	should_undo = not self.active_tool().give_back_control()
+	# 	if should_undo and self.can_undo():
+	# 		self.redo_history.append(self.main_pixbuf.copy())
+	# 		self.main_pixbuf = self.undo_history.pop()
+	# 		self.use_stable_pixbuf()
+	# 		self.update_history_sensitivity()
+	# 	self.queue_draw()
 
-	def try_redo1(self, *args):
-		self.undo_history.append(self.main_pixbuf.copy())
-		self.main_pixbuf = self.redo_history.pop()
-		self.use_stable_pixbuf()
-		self.queue_draw()
-		self.update_history_sensitivity()
+	# def try_redo1(self, *args):
+	# 	self.undo_history.append(self.main_pixbuf.copy())
+	# 	self.main_pixbuf = self.redo_history.pop()
+	# 	self.use_stable_pixbuf()
+	# 	self.queue_draw()
+	# 	self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
 		#self.window.lookup_action('undo').set_enabled(self.can_undo())
@@ -175,7 +202,7 @@ class DrawingImage(Gtk.Layout):
 		self._is_saved = False
 		self.undo_history.append(operation)
 
-	def on_tool_finished(self):
+	def on_tool_finished(self): # XXX encore utile ?
 		#self.undo_history.append(self.main_pixbuf.copy())
 		#self.redo_history = []
 		#self.update_history_sensitivity()

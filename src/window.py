@@ -129,7 +129,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		new_image = DrawingImage(self)
 		self.image_list.append(new_image)
 		self.notebook.append_page(new_image, new_image.tab_title)
-		new_image.init_image()
+		new_image.init_background()
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 

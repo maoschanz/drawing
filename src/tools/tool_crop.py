@@ -1,4 +1,4 @@
-# crop.py
+# crop.py XXX
 #
 # Copyright 2018 Romain F. T.
 #
