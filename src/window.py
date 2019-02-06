@@ -235,20 +235,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_toggle_preview(self, *args):
 		self.minimap_btn.set_active(not self.minimap_btn.get_active())
 
-	# XXX testing only
-	def action_restore_pixbuf(self, *args):
-		self.get_active_image().use_stable_pixbuf()
-		self.get_active_image().queue_draw()
-
-	def action_rebuild_from_histo(self, *args):
-		self.get_active_image().restore_first_pixbuf()
-		h = self.get_active_image().undo_history.copy()
-		self.get_active_image().undo_history = []
-		for op in h:
-			self.tools[op['tool_id']].apply_operation(op)
-			print(op)
-		self.get_active_image().queue_draw()
-
 	# WINDOW BARS
 
 	def get_edition_status(self):
@@ -679,8 +665,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().try_redo()
 		self.action_rebuild_from_histo()
 
-	def update_history_sensitivity(self): #XXX
+	def update_history_sensitivity(self): #XXX utile ? normalement non
 		self.get_active_image().update_history_sensitivity()
+
+	def operation_is_ongoing(self):
+		return False # TODO
+
+	def action_restore_pixbuf(self, *args):
+		self.get_active_image().use_stable_pixbuf()
+		self.get_active_image().queue_draw()
+
+	def action_rebuild_from_histo(self, *args):
+		self.get_active_image().restore_first_pixbuf()
+		h = self.get_active_image().undo_history.copy()
+		self.get_active_image().undo_history = []
+		for op in h:
+			self.tools[op['tool_id']].apply_operation(op)
+			# print(op)
+		self.get_active_image().queue_draw()
+		self.update_history_sensitivity()
 
 	# COLORS
 

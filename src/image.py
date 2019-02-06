@@ -41,8 +41,6 @@ class DrawingImage(Gtk.Layout):
 			Gdk.EventMask.BUTTON_MOTION_MASK | \
 			Gdk.EventMask.SMOOTH_SCROLL_MASK)
 
-		self.update_history_sensitivity()
-
 		self.handlers.append( self.connect('draw', self.on_draw) )
 		self.handlers.append( self.connect('motion-notify-event', self.on_motion_on_area) )
 		self.handlers.append( self.connect('button-press-event', self.on_press_on_area) )
@@ -64,6 +62,8 @@ class DrawingImage(Gtk.Layout):
 		self.selection_x = 1
 		self.selection_y = 1
 		self.selection_path = None
+
+		self.update_history_sensitivity()
 		self.use_stable_pixbuf()
 		self.queue_draw()
 
@@ -87,6 +87,7 @@ class DrawingImage(Gtk.Layout):
 
 	def try_close_tab(self, *args):
 		self.window.close_tab(self)
+		self.main_pixbuf.destroy()
 		self.destroy()
 
 	def init_background(self, *args):
@@ -168,54 +169,31 @@ class DrawingImage(Gtk.Layout):
 
 	# HISTORY MANAGEMENT
 
-	def try_undo(self, *args): # TODO should_undo
-		self.redo_history.append(self.undo_history.pop())
+	def try_undo(self, *args):
+		if self.window.operation_is_ongoing():
+			self.window.active_tool().cancel_ongoing_operation()
+		elif len(self.undo_history) != 0:
+			self.redo_history.append(self.undo_history.pop())
 
 	def try_redo(self, *args):
 		self.undo_history.append(self.redo_history.pop())
 
-	# def try_undo1(self, *args):
-	# 	should_undo = not self.active_tool().give_back_control()
-	# 	if should_undo and self.can_undo():
-	# 		self.redo_history.append(self.main_pixbuf.copy())
-	# 		self.main_pixbuf = self.undo_history.pop()
-	# 		self.use_stable_pixbuf()
-	# 		self.update_history_sensitivity()
-	# 	self.queue_draw()
-
-	# def try_redo1(self, *args):
-	# 	self.undo_history.append(self.main_pixbuf.copy())
-	# 	self.main_pixbuf = self.redo_history.pop()
-	# 	self.use_stable_pixbuf()
-	# 	self.queue_draw()
-	# 	self.update_history_sensitivity()
-
 	def update_history_sensitivity(self):
-		#self.window.lookup_action('undo').set_enabled(self.can_undo())
-		#self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
-		self.window.lookup_action('undo').set_enabled(True)
-		self.window.lookup_action('redo').set_enabled(True)
-		# self.window.lookup_action('undo').set_enabled(False)
-		# self.window.lookup_action('redo').set_enabled(False)
+		can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
+		self.window.lookup_action('undo').set_enabled(can_undo)
+		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
 
 	def add_operation_to_history(self, operation):
 		self._is_saved = False
 		self.undo_history.append(operation)
+		self.update_history_sensitivity()
 
-	def on_tool_finished(self): # XXX encore utile ?
-		#self.undo_history.append(self.main_pixbuf.copy())
+	def on_tool_finished(self): # XXX encore utile ? encore appelé en tout cas
 		#self.redo_history = []
-		#self.update_history_sensitivity()
+		self.update_history_sensitivity()
 		self.queue_draw()
 		self.set_surface_as_stable_pixbuf()
 		self.active_tool().update_actions_state()
-
-	def can_undo(self):
-		return True # FIXME prendre en compte la possibilité de cancel une opération en cours ??
-		if len(self.undo_history) == 0:
-			return False
-		else:
-			return True
 
 	# DRAWING OPERATIONS
 
