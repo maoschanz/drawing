@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2018 Romain F. T.
+# Copyright 2019 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -172,7 +172,7 @@ class Application(Gtk.Application):
 		self.about_dialog = Gtk.AboutDialog.new()
 		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
 		self.about_dialog.set_authors(['Romain F. T.'])
-		self.about_dialog.set_copyright('© 2018 Romain F. T.')
+		self.about_dialog.set_copyright('© 2019 Romain F. T.')
 		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
 		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
 		self.about_dialog.set_version(str(self.version))

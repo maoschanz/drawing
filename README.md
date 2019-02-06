@@ -4,7 +4,9 @@
 
 >"This one looks great!" - [@omgubuntu](https://twitter.com/omgubuntu/status/1085923553525010433)
 
-This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations, and following GNOME interface guidelines.
+This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations.
+
+It follows GNOME interface guidelines, but can optionally use elementarysOS UI guidelines or Cinnamon/MATE UI guidelines.
 
 PNG, JPEG and BMP files are supported.
 
@@ -19,13 +21,13 @@ PNG, JPEG and BMP files are supported.
 |Polygon, free shape |Filling|      |
 |Line       |Straight line/Arc, arrow, dashes
 |Insert text|Font and font size|    |
-|Selection  |Rectangle/free shape|Drag, delete, cut, copy, export a portion of the image
+|Selection  |Rectangle/free shape|Drag, delete, cut, copy, export
 |-          |           |Is activated when you paste or import an image
 |Paint      |           |Not done yet
 |Brush      |           |Not done yet
 |Gradient   |           |Not done yet
 |Color picker|          |           |
-|Crop       |           |The previewed picture isn't the at the actual scale.
+|Crop       |           |The previewed picture isn't at the actual scale.
 |-          |           |Can be applied to the selection
 |Scale      |Keep proportions or not|Can be applied to the selection
 |Rotate     |           |Can be applied to the selection
@@ -57,6 +59,12 @@ More screenshots:
 - [Scaling the canvas](./data/screenshots/gnome_screenshot_scale.png)
 - [The selection tool and its menu](./data/screenshots/gnome_screenshot_selection.png)
 - [Drawing things on the picture with tools](./data/screenshots/gnome_screenshot_tools.png)
+
+### elementarysOS UI
+
+![]()
+
+<!--TODO-->
 
 ### MATE/Cinnamon UI
 

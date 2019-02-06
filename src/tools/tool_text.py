@@ -1,4 +1,4 @@
-# text.py
+# tool_text.py
 
 from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo

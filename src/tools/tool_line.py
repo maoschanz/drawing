@@ -1,4 +1,4 @@
-# line.py
+# tool_line.py
 
 from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo, math

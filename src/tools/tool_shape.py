@@ -1,4 +1,4 @@
-# shape.py
+# tool_shape.py
 
 from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo

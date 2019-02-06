@@ -1,4 +1,4 @@
-# select.py
+# tool_select.py
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 import cairo

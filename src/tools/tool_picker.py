@@ -1,4 +1,4 @@
-# picker.py
+# tool_picker.py
 
 from gi.repository import Gtk, Gdk, Gio
 import cairo

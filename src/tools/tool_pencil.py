@@ -1,4 +1,4 @@
-# pencil.py
+# tool_pencil.py
 
 from gi.repository import Gtk, Gdk, Gio, GLib
 import cairo

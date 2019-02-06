@@ -1,4 +1,4 @@
-# XXX still shit
+# tool_replace.py XXX still shit
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 import cairo
