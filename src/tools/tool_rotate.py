@@ -20,7 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GLib
 from .tools import ToolTemplate
 
 class ToolRotate(ToolTemplate):
-	__gtype_name__ = 'ModeRotate'
+	__gtype_name__ = 'ToolRotate'
 
 	implements_panel = True
 

@@ -29,6 +29,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_delete', self.action_selection_delete)
 		self.add_tool_action_simple('selection_crop', self.action_selection_crop)
 		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
+		self.add_tool_action_simple('selection_flip', self.action_selection_flip)
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
 
 		self.selected_type_id = 'rectangle'
@@ -51,6 +52,7 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.update_actions_state()
 		self.selection_popover.set_relative_to(self.get_image())
+		self.update_surface()
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
@@ -90,7 +92,7 @@ class ToolSelect(ToolTemplate):
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
-		return self.selected_type_label
+		return _("Selection options")
 
 	def get_edition_status(self):
 		label = self.label + ' (' + self.selected_type_label +  ') '
@@ -258,6 +260,9 @@ class ToolSelect(ToolTemplate):
 		self.reset_temp()
 		self.apply_to_pixbuf()
 
+	def action_selection_flip(self, *args):
+		self.window.hijack_begin(self.id, 'flip')
+
 	def action_selection_scale(self, *args):
 		self.window.hijack_begin(self.id, 'scale')
 
@@ -355,7 +360,7 @@ class ToolSelect(ToolTemplate):
 			self.set_temp()
 		self.show_popover(False)
 		self.update_actions_state()
-		self.non_destructive_show_modif()
+		self.update_surface()
 
 	def reset_temp(self):
 		self.temp_x = 0
@@ -398,7 +403,6 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.window.hijack_end()
 		self.create_selection_from_arbitrary_pixbuf(False)
-		self.update_surface()
 
 	def create_free_selection_from_main(self):
 		self.get_image().selection_pixbuf = self.get_main_pixbuf().copy()

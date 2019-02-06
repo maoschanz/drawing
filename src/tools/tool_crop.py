@@ -21,7 +21,7 @@ import cairo
 from .tools import ToolTemplate
 
 class ToolCrop(ToolTemplate):
-	__gtype_name__ = 'ModeCrop'
+	__gtype_name__ = 'ToolCrop'
 
 	implements_panel = True
 

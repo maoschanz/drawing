@@ -20,7 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
 from .tools import ToolTemplate
 
 class ToolScale(ToolTemplate):
-	__gtype_name__ = 'ModeScale'
+	__gtype_name__ = 'ToolScale'
 
 	implements_panel = True
 

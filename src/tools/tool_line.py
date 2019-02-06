@@ -94,7 +94,7 @@ class ToolLine(ToolTemplate):
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
-		return self.selected_curv_label
+		return _("Line options")
 
 	def get_edition_status(self):
 		label = self.selected_curv_label + ' (' + self.selected_shape_label + ') '

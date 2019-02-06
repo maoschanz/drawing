@@ -87,8 +87,10 @@ class DrawingImage(Gtk.Layout):
 
 	def try_close_tab(self, *args):
 		self.window.close_tab(self)
-		self.main_pixbuf.destroy()
 		self.destroy()
+		self.main_pixbuf = None
+		self.selection_pixbuf = None
+		self.temp_pixbuf = None
 
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')

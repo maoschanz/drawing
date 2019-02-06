@@ -32,6 +32,7 @@ from .tool_polygon import ToolPolygon
 from .tool_crop import ToolCrop
 from .tool_scale import ToolScale
 from .tool_rotate import ToolRotate
+from .tool_flip import ToolFlip
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
@@ -101,13 +102,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['select'] = ToolSelect(self)
 		self.tools['text'] = ToolText(self)
 		self.tools['picker'] = ToolPicker(self)
-		if self._settings.get_boolean('experimental'):
-			self.tools['paint'] = ToolPaint(self)
-			self.tools['replace'] = ToolReplace(self)
-			self.tools['experiment'] = ToolExperiment(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
+		if self._settings.get_boolean('experimental'):
+			self.tools['experiment'] = ToolExperiment(self)
+			self.tools['paint'] = ToolPaint(self)
+			self.tools['replace'] = ToolReplace(self)
+		self.tools['flip'] = ToolFlip(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
@@ -117,7 +119,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
-			tools_menu = self.app.get_menubar().get_item_link(4, Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			tools_menu = self.app.get_menubar().get_item_link(4, \
+				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
 				self.tools[tool_id].add_item_to_menu(tools_menu)
 			self.app.has_tools_in_menubar = True
@@ -126,6 +129,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.enable_tool(self.active_tool_id, True)
 
 	def build_new_image(self, *args):
+		"""Open a new tab with a drawable blank image."""
 		new_image = DrawingImage(self)
 		self.image_list.append(new_image)
 		self.notebook.append_page(new_image, new_image.tab_title)
@@ -134,6 +138,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def close_tab(self, tab):
+		"""Close a tab (after asking to save if needed)."""
 		index = self.notebook.page_num(tab)
 		if not self.image_list[index]._is_saved:
 			self.notebook.set_current_page(index)
@@ -146,10 +151,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return True
 
 	def update_tabs_visibility(self):
-		if self.notebook.get_n_pages() > 1:
-			self.notebook.set_show_tabs(True)
-		else:
-			self.notebook.set_show_tabs(False)
+		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
 
 	def action_close(self, *args):
 		self.close()

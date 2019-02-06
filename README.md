@@ -16,7 +16,7 @@ PNG, JPEG and BMP files are supported.
 
 | Tool      | Options   | Remarks   |
 |:---------:|:---------:|:---------:|
-|Pencil     |Dashes, eraser |       |
+|Pencil     |Dashes, eraser|       |
 |Shape      |Rectangle, circle, oval ; Filling
 |Polygon, free shape |Filling|      |
 |Line       |Straight line/Arc, arrow, dashes
@@ -29,6 +29,7 @@ PNG, JPEG and BMP files are supported.
 |Color picker|          |           |
 |Crop       |           |The previewed picture isn't at the actual scale.
 |-          |           |Can be applied to the selection
+|Flip       |Horizontally or vertically|Can be applied to the selection
 |Scale      |Keep proportions or not|Can be applied to the selection
 |Rotate     |           |Can be applied to the selection
 

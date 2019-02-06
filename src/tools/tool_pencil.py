@@ -77,7 +77,7 @@ class ToolPencil(ToolTemplate):
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
-		return self.selected_shape_label
+		return _("Pencil options")
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		w_context = cairo.Context(self.get_surface())

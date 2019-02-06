@@ -57,7 +57,7 @@ class ToolShape(ToolTemplate):
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
-		return self.selected_shape_label
+		return _("Shape options")
 
 	def get_edition_status(self):
 		label = self.label + ' -' + self.selected_shape_label + ' - ' + \

@@ -41,18 +41,19 @@ drawing_sources = [
   'preferences.py',
 
   'tools/tool_crop.py',
-  'tools/tool_scale.py',
-  'tools/tool_rotate.py',
-  'tools/tool_replace.py',
   'tools/tool_experiment.py',
+  'tools/tool_flip.py',
   'tools/tool_line.py',
   'tools/tool_paint.py',
   'tools/tool_pencil.py',
-  'tools/tool_text.py',
+  'tools/tool_polygon.py',
+  'tools/tool_picker.py',
+  'tools/tool_replace.py',
+  'tools/tool_rotate.py',
+  'tools/tool_scale.py',
   'tools/tool_select.py',
   'tools/tool_shape.py',
-  'tools/tool_polygon.py',
-  'tools/tool_picker.py'
+  'tools/tool_text.py'
 ]
 
 install_data(drawing_sources, install_dir: moduledir)
