@@ -33,7 +33,13 @@ class ToolRotate(ToolTemplate):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_rotate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.angle_btn = builder.get_object('angle_btn')
+		self.angle_label = builder.get_object('angle_label')
+		self.right_btn = builder.get_object('right_btn')
+		self.left_btn = builder.get_object('left_btn')
+
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
+		self.right_btn.connect('clicked', self.on_right_clicked)
+		self.left_btn.connect('clicked', self.on_left_clicked)
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
@@ -49,6 +55,17 @@ class ToolRotate(ToolTemplate):
 	def on_tool_selected(self, *args):
 		self.rotate_selection = (self.window.hijacker_id is not None)
 		self.angle_btn.set_value(0.0)
+		if False:
+		# if self.rotate_selection:
+			self.angle_btn.set_visible(True)
+			self.angle_label.set_visible(True)
+			self.right_btn.set_visible(False)
+			self.left_btn.set_visible(False)
+		else:
+			self.angle_btn.set_visible(False)
+			self.angle_label.set_visible(False)
+			self.right_btn.set_visible(True)
+			self.left_btn.set_visible(True)
 		self.update_temp_pixbuf()
 
 	def on_apply(self, *args):
@@ -72,9 +89,22 @@ class ToolRotate(ToolTemplate):
 		else:
 			self.get_image().set_temp_pixbuf(self.get_main_pixbuf().rotate_simple(angle))
 
+	def on_right_clicked(self, *args):
+		self.angle_btn.set_value(self.get_angle() + 90)
+
+	def on_left_clicked(self, *args):
+		self.angle_btn.set_value(self.get_angle() - 90)
+
 	def on_angle_changed(self, *args):
-		if self.get_angle() % 90 != 0:
-			self.angle_btn.set_value(int(self.get_angle() / 90) * 90)
+		angle = self.get_angle()
+		angle = angle % 360
+		if angle < 0:
+			angle += 180
+		if True:
+		# if not self.rotate_selection:
+			angle = int(angle/90) * 90
+		if angle != self.get_angle():
+			self.angle_btn.set_value(angle)
 		self.update_temp_pixbuf()
 		self.update_area()
 

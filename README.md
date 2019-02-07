@@ -12,11 +12,11 @@ PNG, JPEG and BMP files are supported.
 
 ### Available tools
 
-#### And a few of their options
+(and a few of their options)
 
 | Tool      | Options   | Remarks   |
 |:---------:|:---------:|:---------:|
-|Pencil     |Dashes, eraser|       |
+|Pencil     |Dashes, eraser, ...|   |
 |Shape      |Rectangle, circle, oval ; Filling
 |Polygon, free shape |Filling|      |
 |Line       |Straight line/Arc, arrow, dashes
@@ -27,11 +27,18 @@ PNG, JPEG and BMP files are supported.
 |Brush      |           |Not done yet
 |Gradient   |           |Not done yet
 |Color picker|          |           |
-|Crop       |           |The previewed picture isn't at the actual scale.
-|-          |           |Can be applied to the selection
-|Flip       |Horizontally or vertically|Can be applied to the selection
-|Scale      |Keep proportions or not|Can be applied to the selection
-|Rotate     |           |Can be applied to the selection
+|Crop*      |           |The previewed picture isn't at the actual scale
+|Flip*      |Horizontally or vertically
+|Scale*     |Keep proportions or not
+|Rotate*    |           |           |
+
+\*Can be applied to the selection
+
+### Languages
+
+- English
+- French
+- Turkish
 
 ## Installation
 
@@ -52,6 +59,8 @@ TODO
 ![GNOME/Budgie UI](./data/screenshots/gnome_screenshot_menu.png)
 
 Theorically compatible with the Purism Librem 5 phone.
+
+<!-- TODO -->
 
 More screenshots:
 

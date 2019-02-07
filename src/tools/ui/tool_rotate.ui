@@ -2,9 +2,9 @@
 <interface domain="drawing">
 
   <object class="GtkAdjustment" id="adj_angle">
-    <property name="lower">0</property>
-    <property name="upper">359</property>
-    <property name="step_increment">90</property>
+    <property name="lower">-90</property>
+    <property name="upper">360</property>
+    <property name="step_increment">10</property>
     <property name="page_increment">90</property>
     <property name="value">0</property>
   </object>
@@ -36,8 +36,23 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="spacing">10</property>
+
         <child>
-          <object class="GtkLabel">
+          <object class="GtkButton" id="left_btn">
+            <property name="tooltip_text" translatable="yes">Rotate left</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-rotate-left-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        
+        <child>
+          <object class="GtkLabel" id="angle_label">
             <property name="label" translatable="yes">Angle (degrees)</property>
             <property name="visible">True</property>
           </object>
@@ -49,6 +64,21 @@
             <property name="tooltip_text" translatable="yes">Angle (degrees)</property>
           </object>
         </child>
+
+        <child>
+          <object class="GtkButton" id="right_btn">
+            <property name="tooltip_text" translatable="yes">Rotate right</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-rotate-right-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        
       </object>
     </child>
 
