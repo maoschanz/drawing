@@ -25,7 +25,9 @@ class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
 	content_area = GtkTemplate.Child()
-	default_backg_button = GtkTemplate.Child()
+	background_color_btn = GtkTemplate.Child()
+	main_color_btn = GtkTemplate.Child()
+	sec_color_btn = GtkTemplate.Child()
 	experimental_switch = GtkTemplate.Child()
 	preview_btn = GtkTemplate.Child()
 	width_btn = GtkTemplate.Child()
@@ -42,14 +44,34 @@ class DrawingPrefsWindow(Gtk.Window):
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Drawing"), subtitle=_("Preferences"))
 			self.set_titlebar(header_bar)
+			# TODO stackswitcher
 
-		r = float(self._settings.get_strv('default-rgba')[0])
-		g = float(self._settings.get_strv('default-rgba')[1])
-		b = float(self._settings.get_strv('default-rgba')[2])
-		a = float(self._settings.get_strv('default-rgba')[3])
+		background_rgba = self._settings.get_strv('background-rgba') # FIXME factoriser ça
+		r = float(background_rgba[0])
+		g = float(background_rgba[1])
+		b = float(background_rgba[2])
+		a = float(background_rgba[3])
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		self.default_backg_button.set_rgba(color)
-		self.default_backg_button.connect('color-set', self.on_default_backg_changed)
+		self.background_color_btn.set_rgba(color)
+		self.background_color_btn.connect('color-set', self.on_background_changed)
+
+		right_rgba = self._settings.get_strv('right-rgba')
+		r = float(right_rgba[0])
+		g = float(right_rgba[1])
+		b = float(right_rgba[2])
+		a = float(right_rgba[3])
+		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		self.sec_color_btn.set_rgba(color)
+		self.sec_color_btn.connect('color-set', self.on_sec_color_changed)
+
+		left_rgba = self._settings.get_strv('left-rgba')
+		r = float(left_rgba[0])
+		g = float(left_rgba[1])
+		b = float(left_rgba[2])
+		a = float(left_rgba[3])
+		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		self.main_color_btn.set_rgba(color)
+		self.main_color_btn.connect('color-set', self.on_main_color_changed)
 
 		self.experimental_switch.set_active(self._settings.get_boolean('experimental'))
 		self.experimental_switch.connect('notify::active', self.on_experimental_changed)
@@ -75,9 +97,19 @@ class DrawingPrefsWindow(Gtk.Window):
 	def on_experimental_changed(self, w, a):
 		self._settings.set_boolean('experimental', w.get_active())
 
-	def on_default_backg_changed(self, w):
-		color = self.default_backg_button.get_rgba()
-		self._settings.set_strv('default-rgba', [str(color.red), str(color.green), \
+	def on_background_changed(self, w):
+		color = self.background_color_btn.get_rgba()
+		self._settings.set_strv('background-rgba', [str(color.red), str(color.green), \
+			str(color.blue), str(color.alpha)])
+
+	def on_sec_color_changed(self, w):
+		color = self.sec_color_btn.get_rgba()
+		self._settings.set_strv('right-rgba', [str(color.red), str(color.green), \
+			str(color.blue), str(color.alpha)])
+
+	def on_main_color_changed(self, w):
+		color = self.main_color_btn.get_rgba()
+		self._settings.set_strv('left-rgba', [str(color.red), str(color.green), \
 			str(color.blue), str(color.alpha)])
 
 	def on_width_changed(self, w):

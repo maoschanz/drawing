@@ -87,7 +87,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkColorButton" id="default_backg_button">
+                              <object class="GtkColorButton" id="background_color_btn">
                                 <property name="visible">True</property>
                                 <property name="use-alpha">True</property>
                               </object>
@@ -263,7 +263,6 @@
                               <object class="GtkColorButton" id="sec_color_btn">
                                 <property name="visible">True</property>
                                 <property name="use-alpha">True</property>
-                                <property name="sensitive">False</property>
                                 <property name="tooltip_text" translatable="yes">Secondary color</property>
                               </object>
                               <packing>
@@ -274,7 +273,6 @@
                               <object class="GtkColorButton" id="main_color_btn">
                                 <property name="visible">True</property>
                                 <property name="use-alpha">True</property>
-                                <property name="sensitive">False</property>
                                 <property name="tooltip_text" translatable="yes">Main color</property>
                               </object>
                               <packing>

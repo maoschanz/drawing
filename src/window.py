@@ -690,11 +690,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# COLORS
 
 	def build_color_buttons(self):
-		white = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0)
-		black = Gdk.RGBA(red=0.0, green=0.0, blue=0.0, alpha=1.0)
-		#black = Gdk.RGBA(red=0.8, green=0.5, blue=0.3, alpha=0.8) # TODO as settings
-		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, self.r_btn_image, white)
-		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, black)
+		right_rgba = self._settings.get_strv('right-rgba')
+		r = float(right_rgba[0])
+		g = float(right_rgba[1])
+		b = float(right_rgba[2])
+		a = float(right_rgba[3])
+		right_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		left_rgba = self._settings.get_strv('left-rgba')
+		r = float(left_rgba[0])
+		g = float(left_rgba[1])
+		b = float(left_rgba[2])
+		a = float(left_rgba[3])
+		left_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, self.r_btn_image, right_rgba)
+		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, left_rgba)
 
 	def action_use_editor(self, *args):
 		self._settings.set_boolean('direct-color-edit', not args[0].get_state())

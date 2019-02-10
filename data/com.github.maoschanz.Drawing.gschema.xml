@@ -36,10 +36,20 @@
 			<summary>Default height</summary>
 			<description>Default height of a new image (px).</description>
 		</key>
-		<key type="as" name="default-rgba">
+		<key type="as" name="background-rgba">
 			<default>['1.0', '1.0', '1.0', '1.0']</default>
 			<summary>Default color background</summary>
 			<description>The default color background of a new image.</description>
+		</key>
+		<key type="as" name="right-rgba">
+			<default>['1.0', '1.0', '1.0', '1.0']</default>
+			<summary>Default right-click color</summary>
+			<description>The default edition color for the right click.</description>
+		</key>
+		<key type="as" name="left-rgba">
+			<default>['0.0', '0.0', '0.0', '1.0']</default>
+			<summary>Default left-click color</summary>
+			<description>The default edition color for the left click.</description>
 		</key>
 	</schema>
 </schemalist>

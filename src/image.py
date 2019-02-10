@@ -95,10 +95,11 @@ class DrawingImage(Gtk.Layout):
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
-		r = float(self.window._settings.get_strv('default-rgba')[0])
-		g = float(self.window._settings.get_strv('default-rgba')[1])
-		b = float(self.window._settings.get_strv('default-rgba')[2])
-		a = float(self.window._settings.get_strv('default-rgba')[3])
+		background_rgba = self.window._settings.get_strv('background-rgba')
+		r = float(background_rgba[0])
+		g = float(background_rgba[1])
+		b = float(background_rgba[2])
+		a = float(background_rgba[3])
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': None,

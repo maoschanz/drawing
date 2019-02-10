@@ -36,6 +36,7 @@ PNG, JPEG and BMP files are supported.
 
 ### Languages
 
+- Castillan
 - English
 - French
 - Turkish

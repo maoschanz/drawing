@@ -79,6 +79,16 @@ class ToolPencil(ToolTemplate):
 	def get_options_label(self):
 		return _("Pencil options")
 
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		self.x_press = event_x
+		self.y_press = event_y
+		self.tool_width = tool_width
+		if event.button == 3:
+			self.main_color = right_color
+		else:
+			self.main_color = left_color
+		self._path = None
+
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		w_context = cairo.Context(self.get_surface())
 		if self.past_x == -1.0:
@@ -94,15 +104,6 @@ class ToolPencil(ToolTemplate):
 
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
-
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 3:
-			self.main_color = right_color
-		else:
-			self.main_color = left_color
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1.0
@@ -125,6 +126,8 @@ class ToolPencil(ToolTemplate):
 
 	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
+			return
+		if operation['path'] is None:
 			return
 		self.restore_pixbuf()
 		w_context = cairo.Context(self.get_surface())
