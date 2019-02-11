@@ -53,8 +53,6 @@ TODO
 
 ## Screenshots
 
-(not up-to-date)
-
 ### GNOME/Budgie UI
 
 ![GNOME/Budgie UI](./data/screenshots/gnome_screenshot_menu.png)
@@ -71,11 +69,9 @@ More screenshots:
 - [The selection tool and its menu](./data/screenshots/gnome_screenshot_selection.png)
 - [Drawing things on the picture with tools](./data/screenshots/gnome_screenshot_tools.png)
 
-### elementarysOS UI
+### elementaryOS UI
 
-![]()
-
-<!--TODO-->
+![elementaryOS UI](./data/screenshots/elementary_screenshot.png)
 
 ### MATE/Cinnamon UI
 
