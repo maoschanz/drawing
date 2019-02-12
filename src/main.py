@@ -172,7 +172,6 @@ class Application(Gtk.Application):
 
 	def on_new_window_activate(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
-		print('eee')
 		win = DrawingWindow(application=self)
 		win.present()
 		win.init_window_content()

@@ -32,7 +32,10 @@ class DrawingImage(Gtk.Layout):
 		super().__init__(**kwargs)
 		self.window = window
 		self.init_template()
-		self.init_instance_attributes()
+
+		self.gfile = None
+		self.filename = None
+		self.is_clicked = False
 		self.build_tab_label()
 
 		self.add_events( \
@@ -41,19 +44,15 @@ class DrawingImage(Gtk.Layout):
 			Gdk.EventMask.BUTTON_MOTION_MASK | \
 			Gdk.EventMask.SMOOTH_SCROLL_MASK)
 
-		self.handlers.append( self.connect('draw', self.on_draw) )
-		self.handlers.append( self.connect('motion-notify-event', self.on_motion_on_area) )
-		self.handlers.append( self.connect('button-press-event', self.on_press_on_area) )
-		self.handlers.append( self.connect('button-release-event', self.on_release_on_area) )
-		self.handlers.append( self.connect('scroll-event', self.on_scroll_on_area) )
-
-	def init_instance_attributes(self):
-		self.handlers = []
-		self.is_clicked = False
-		self.gfile = None
-		self.filename = None
+		self.connect('draw', self.on_draw)
+		self.connect('motion-notify-event', self.on_motion_on_area)
+		self.connect('button-press-event', self.on_press_on_area)
+		self.connect('button-release-event', self.on_release_on_area)
+		self.connect('scroll-event', self.on_scroll_on_area)
 
 	def init_image(self):
+		"""Part of the initialization common to both a new blank image and an
+		opened image."""
 		self.undo_history = []
 		self.redo_history = []
 		self._is_saved = True
@@ -338,6 +337,11 @@ class DrawingImage(Gtk.Layout):
 			self.selection_pixbuf = new_pixbuf
 			return True
 
+	def image_select_all(self):
+		self.selection_x = 0
+		self.selection_y = 0
+		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
+
 ########################
 
 	def get_surface(self):
@@ -352,13 +356,6 @@ class DrawingImage(Gtk.Layout):
 
 	def is_using_selection(self):
 		return self.window.tool_needs_selection() and  self.window.active_tool().selection_is_active
-
-##########################
-
-	def image_select_all(self):
-		self.selection_x = 0
-		self.selection_y = 0
-		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
 
 # PRINTING XXX marche assez mal
 

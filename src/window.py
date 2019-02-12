@@ -81,9 +81,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_ui_bars(decorations)
 
 	def init_window_content(self):
-		self.handlers = []
-		self.active_tool_id = 'pencil'
-		self.former_tool_id = 'pencil'
 		self.hijacker_id = None
 
 		self.build_color_buttons()
@@ -127,15 +124,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.tools[tool_id].add_item_to_menu(tools_menu)
 			self.app.has_tools_in_menubar = True
 
-		# Initialisation of menus
-		self.enable_tool(self.active_tool_id, True)
+		# Initialisation of options and menus
+		self.active_tool_id = self._settings.get_string('active-tool')
+		self.former_tool_id = self._settings.get_string('active-tool')
+		self.tools[self.active_tool_id].row.set_active(True)
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
 		new_image = DrawingImage(self)
 		self.image_list.append(new_image)
 		self.notebook.append_page(new_image, new_image.tab_title)
-		new_image.init_background()
+		new_image.init_background() # XXX j'init le background mme quand j'appelle try_load_file juste derrière
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
@@ -162,15 +161,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for i in self.image_list:
 			if not self.close_tab(i):
 				return True
+		self._settings.set_string('active-tool', self.active_tool_id)
 		return False
 
 	# GENERAL PURPOSE METHODS
 
 	def connect_signals(self):
-		self.handlers.append( self.connect('delete-event', self.on_close) )
-		self.handlers.append( self.connect('configure-event', self.adapt_to_window_size) )
-		self.handlers.append( self.options_btn.connect('toggled', self.update_option_label) )
-		self.handlers.append( self._settings.connect('changed::panel-width', self.on_show_labels_setting_changed) )
+		self.connect('delete-event', self.on_close)
+		self.connect('configure-event', self.adapt_to_window_size)
+		self.options_btn.connect('toggled', self.update_option_label)
+		self._settings.connect('changed::panel-width', self.on_show_labels_setting_changed)
 
 	def add_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It

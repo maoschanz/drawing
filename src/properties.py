@@ -62,3 +62,4 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_width.set_label(str(self._image.get_pixbuf_width()) + ' px')
 		self.label_height.set_label(str(self._image.get_pixbuf_height()) + ' px')
 
+	# TODO here, a button to add transparency
