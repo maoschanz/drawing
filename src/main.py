@@ -64,24 +64,13 @@ class Application(Gtk.Application):
 		"""Add app-wide menus and actions, and all accels."""
 		self.build_actions()
 		self.add_accels()
-		menubar_model = self.build_menubar()
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		self.has_tools_in_menubar = False
 		if self.prefers_app_menu():
-			appmenu_model = self.build_app_menu()
+			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
-
-	def build_app_menu(self):
-		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
-		appmenu = builder.get_object('app-menu')
-		return appmenu
-
-	def build_menubar(self):
-		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
-		menubar = builder.get_object('menu-bar')
-		return menubar
 
 	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -179,24 +168,22 @@ class Application(Gtk.Application):
 		self.about_dialog.set_website('github.com/maoschanz/drawing')
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))
 
-	def build_shortcuts_dialog(self):
-		"""Build an "shortcuts" dialog from the UI file."""
-		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
-		self.shortcuts_window = builder.get_object('shortcuts')
-
 ########
 
 	def on_new_window_activate(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
+		print('eee')
 		win = DrawingWindow(application=self)
 		win.present()
+		win.init_window_content()
 		return win
 
 	def on_shortcuts_activate(self, *args):
 		"""Action callback, showing the "shortcuts" dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-		self.build_shortcuts_dialog()
+		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
+		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
 	def on_prefs_activate(self, *args):

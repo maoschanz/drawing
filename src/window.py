@@ -72,9 +72,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
 		self.init_template()
-		self.init_instance_attributes()
+
+		self.header_bar = None
+		self.main_menu_btn = None
+		self.needed_width_for_long = 0
+
 		decorations = self._settings.get_string('decorations')
 		self.set_ui_bars(decorations)
+
+	def init_window_content(self):
+		self.handlers = []
+		self.active_tool_id = 'pencil'
+		self.former_tool_id = 'pencil'
+		self.hijacker_id = None
+
 		self.build_color_buttons()
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.add_all_win_actions()
@@ -84,15 +95,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_history_sensitivity()
 		self.connect_signals()
 		self.set_picture_title()
-
-	def init_instance_attributes(self):
-		self.handlers = []
-		self.active_tool_id = 'pencil'
-		self.former_tool_id = 'pencil'
-		self.hijacker_id = None
-		self.header_bar = None
-		self.main_menu_btn = None
-		self.needed_width_for_long = 0
 
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
@@ -108,7 +110,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self._settings.get_boolean('experimental'):
 			self.tools['experiment'] = ToolExperiment(self)
 			self.tools['paint'] = ToolPaint(self)
-			self.tools['replace'] = ToolReplace(self)
+			# self.tools['replace'] = ToolReplace(self)
 		self.tools['flip'] = ToolFlip(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
