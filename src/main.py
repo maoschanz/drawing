@@ -44,6 +44,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname('com.github.maoschanz.Drawing')
 		self.register(None) # ?
 		self.version = version
+		self.git_url = 'https://github.com/maoschanz/drawing'
 
 		if not self.get_is_remote():
 			self.on_startup()
@@ -64,7 +65,7 @@ class Application(Gtk.Application):
 		"""Add app-wide menus and actions, and all accels."""
 		self.build_actions()
 		self.add_accels()
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		self.has_tools_in_menubar = False
@@ -87,6 +88,7 @@ class Application(Gtk.Application):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window_activate)
 		self.add_action_simple('settings', self.on_prefs_activate)
+		self.add_action_simple('report_bug', self.on_report_activate)
 		self.add_action_simple('shortcuts', self.on_shortcuts_activate)
 		self.add_action_simple('help', self.on_help_activate)
 		self.add_action_simple('about', self.on_about_activate)
@@ -156,26 +158,17 @@ class Application(Gtk.Application):
 
 ########
 
-	def build_about_dialog(self):
-		"""Build an "about" dialog."""
-		self.about_dialog = Gtk.AboutDialog.new()
-		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
-		self.about_dialog.set_authors(['Romain F. T.'])
-		self.about_dialog.set_copyright('© 2019 Romain F. T.')
-		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
-		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
-		self.about_dialog.set_version(str(self.version))
-		self.about_dialog.set_website('github.com/maoschanz/drawing')
-		self.about_dialog.set_website_label(_("Report bugs or ideas"))
-
-########
-
 	def on_new_window_activate(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
 		win = DrawingWindow(application=self)
 		win.present()
 		win.init_window_content()
 		return win
+
+	def on_report_activate(self, *args):
+		"""Action callback, opening a new issue on the github repo."""
+		win = self.props.active_window
+		Gtk.show_uri_on_window(win, self.git_url + '/issues/new', Gdk.CURRENT_TIME)
 
 	def on_shortcuts_activate(self, *args):
 		"""Action callback, showing the "shortcuts" dialog."""
@@ -194,19 +187,25 @@ class Application(Gtk.Application):
 
 	def on_help_activate(self, *args):
 		"""Action callback, showing the user help."""
-		Gtk.show_uri(None, 'help:drawing', Gdk.CURRENT_TIME)
+		win = self.props.active_window
+		Gtk.show_uri_on_window(win, 'help:drawing', Gdk.CURRENT_TIME)
 
 	def on_about_activate(self, *args):
 		"""Action callback, showing the "about" dialog."""
-		if self.about_dialog is None:
-			self.build_about_dialog()
-		else:
+		if self.about_dialog is not None:
 			self.about_dialog.destroy()
-			self.build_about_dialog()
+		self.about_dialog = Gtk.AboutDialog.new()
+		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
+		self.about_dialog.set_authors(['Romain F. T.'])
+		self.about_dialog.set_copyright('© 2019 Romain F. T.')
+		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
+		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
+		self.about_dialog.set_version(str(self.version))
+		self.about_dialog.set_website(self.git_url)
+		self.about_dialog.set_website_label(_("Report bugs or ideas"))
 		self.about_dialog.show()
 
 	def on_quit(self, *args):
 		"""Action callback, quitting the app."""
 		self.quit()
-
 

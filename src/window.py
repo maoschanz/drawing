@@ -267,7 +267,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.set_subtitle(subtitle)
 
 	def set_ui_bars(self, decorations):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder = Gtk.Builder.new_from_string('''
+<?xml version="1.0"?>
+<interface domain="drawing">
+  <menu id="tool-placeholder">
+    <section>
+      <item>
+        <attribute name="action">none</attribute>
+        <attribute name="label" translatable="yes">No options for this tool</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>''', -1) # No need to load a whole file for this
 		self.placeholder_model = builder.get_object('tool-placeholder')
 		if decorations == 'csd':
 			self.build_headerbar(False)
@@ -308,7 +319,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_btn = builder.get_object('add_btn')
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/menus.ui')
+		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/win-menus.ui')
 		short_main_menu = builder.get_object('short-window-menu')
 		self.short_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, short_main_menu)
 		long_main_menu = builder.get_object('long-window-menu')
@@ -331,8 +342,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			widgets_width = self.save_label.get_allocated_width() \
 				+ self.save_icon.get_allocated_width() \
 				+ self.add_btn.get_allocated_width()
-			limit = 3 * widgets_width
-			if self.header_bar.get_allocated_width() > limit: # Totalement arbitraire
+			limit = 3 * widgets_width # 100% arbitrary
+			if self.header_bar.get_allocated_width() > limit:
 				self.save_label.set_visible(True)
 				self.save_icon.set_visible(False)
 				self.add_btn.set_visible(True)

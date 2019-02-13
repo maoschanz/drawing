@@ -25,7 +25,7 @@
   </object>
 
   <template class="DrawingPrefsWindow" parent="GtkWindow">
-    <property name="default-width">400</property>
+    <property name="default-width">350</property>
     <property name="default-height">300</property>
     <property name="title" translatable="yes">Preferences</property>
 
@@ -37,7 +37,7 @@
         <property name="spacing">12</property>
 
         <child>
-          <object class="GtkStackSwitcher">
+          <object class="GtkStackSwitcher" id="stack_switcher">
             <property name="visible">True</property>
             <property name="stack">stack</property>
             <property name="halign">center</property>

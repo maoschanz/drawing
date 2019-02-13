@@ -17,6 +17,10 @@
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes">Report a bug</attribute>
+        <attribute name="action">app.report_bug</attribute>
+      </item>
+      <item>
         <attribute name="action">app.shortcuts</attribute>
         <attribute name="label" translatable="yes">Shortcuts</attribute>
       </item>
@@ -28,179 +32,11 @@
         <attribute name="action">app.about</attribute>
         <attribute name="label" translatable="yes">About</attribute>
       </item>
+    </section>
+    <section>
       <item>
         <attribute name="action">app.quit</attribute>
         <attribute name="label" translatable="yes">Quit</attribute>
-      </item>
-    </section>
-  </menu>
-
-<!-- Hamburger menu -->
-  <menu id="long-window-menu">
-    <section>
-      <item>
-        <attribute name="action">win.new_tab</attribute>
-        <attribute name="label" translatable="yes">New tab</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">win.open</attribute>
-        <attribute name="label" translatable="yes">Open an image</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Import</attribute>
-        <attribute name="action">win.import</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Paste</attribute>
-        <attribute name="action">win.paste</attribute>
-      </item>
-    </section>
-    <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
-      <item>
-        <attribute name="action">win.save_as</attribute>
-        <attribute name="label" translatable="yes">Save as…</attribute>
-        <attribute name="verb-icon">document-save-as-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Print</attribute>
-        <attribute name="action">win.print</attribute>
-        <attribute name="verb-icon">document-print-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Image properties</attribute>
-        <attribute name="action">win.properties</attribute>
-        <attribute name="verb-icon">document-properties-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Export as…</attribute>
-        <attribute name="action">win.export_as</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Show tools names</attribute>
-        <attribute name="action">win.show_labels</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Preferences</attribute>
-        <attribute name="action">app.settings</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Shortcuts</attribute>
-        <attribute name="action">app.shortcuts</attribute>
-        <!-- <attribute name="hidden-when">action-disabled</attribute> -->
-      </item>
-      <item>
-        <attribute name="action">app.help</attribute>
-        <attribute name="label" translatable="yes">Help</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">About Drawing</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
-
-<!-- Hamburger menu -->
-  <menu id="short-window-menu">
-    <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
-      <item>
-        <attribute name="action">win.save_as</attribute>
-        <attribute name="label" translatable="yes">Save as…</attribute>
-        <attribute name="verb-icon">document-save-as-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Print</attribute>
-        <attribute name="action">win.print</attribute>
-        <attribute name="verb-icon">document-print-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Image properties</attribute>
-        <attribute name="action">win.properties</attribute>
-        <attribute name="verb-icon">document-properties-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Export as…</attribute>
-        <attribute name="action">win.export_as</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Show tools names</attribute>
-        <attribute name="action">win.show_labels</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Preferences</attribute>
-        <attribute name="action">app.settings</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Shortcuts</attribute>
-        <attribute name="action">app.shortcuts</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.help</attribute>
-        <attribute name="label" translatable="yes">Help</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">About Drawing</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
-
-  <menu id="tool-placeholder">
-    <section>
-      <item>
-        <attribute name="action">none</attribute>
-        <attribute name="label" translatable="yes">No options for this tool</attribute>
-      </item>
-    </section>
-  </menu>
-
-<!-- "Add" menu -->
-  <menu id="add-menu">
-    <section>
-      <item>
-        <attribute name="action">win.new_tab</attribute>
-        <attribute name="label" translatable="yes">New tab</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">win.open</attribute>
-        <attribute name="label" translatable="yes">Open an image</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Import</attribute>
-        <attribute name="action">win.import</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Paste</attribute>
-        <attribute name="action">win.paste</attribute>
       </item>
     </section>
   </menu>
@@ -314,6 +150,20 @@
       <attribute name="label" translatable="yes">_View</attribute>
       <section>
         <item>
+          <attribute name="label" translatable="yes">Refresh</attribute>
+          <attribute name="action">win.restore_pixbuf</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rebuild from history</attribute>
+          <attribute name="action">win.rebuild_from_histo</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
           <attribute name="label" translatable="yes">Toggle the preview</attribute>
           <attribute name="action">win.toggle_preview</attribute>
           <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
@@ -366,6 +216,12 @@
 
     <submenu>
       <attribute name="label" translatable="yes">_Help</attribute>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Report a bug</attribute>
+          <attribute name="action">app.report_bug</attribute>
+        </item>
+      </section>
       <section>
         <item>
           <attribute name="label" translatable="yes">Shortcuts</attribute>

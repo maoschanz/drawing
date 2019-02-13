@@ -25,6 +25,8 @@ class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
 	content_area = GtkTemplate.Child()
+	stack_switcher = GtkTemplate.Child()
+
 	background_color_btn = GtkTemplate.Child()
 	experimental_switch = GtkTemplate.Child()
 	preview_btn = GtkTemplate.Child()
@@ -40,9 +42,10 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.init_template()
 		wants_csd = not ( 'ssd' in self._settings.get_string('decorations') )
 		if wants_csd:
-			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Drawing"), subtitle=_("Preferences"))
+			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Preferences"))
 			self.set_titlebar(header_bar)
-			# TODO stackswitcher
+			self.content_area.remove(self.stack_switcher)
+			header_bar.set_custom_title(self.stack_switcher)
 
 		background_rgba = self._settings.get_strv('background-rgba')
 		r = float(background_rgba[0])
