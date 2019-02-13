@@ -53,7 +53,7 @@ TODO
 
 ## Screenshots
 
-### GNOME/Budgie UI
+### Default user interface (for GNOME/Budgie)
 
 ![GNOME/Budgie UI](./data/screenshots/gnome_screenshot_menu.png)
 
@@ -69,12 +69,7 @@ More screenshots:
 - [The selection tool and its menu](./data/screenshots/gnome_screenshot_selection.png)
 - [Drawing things on the picture with tools](./data/screenshots/gnome_screenshot_tools.png)
 
-### elementaryOS UI
+### Alternative user interfaces
 
-![elementaryOS UI](./data/screenshots/elementary_screenshot.png)
-
-### MATE/Cinnamon UI
-
-If you like menubars
-
-![MATE/Cinnamon UI](./data/screenshots/mate_screenshot_text.png)
+- [elementaryOS UI](./data/screenshots/elementary_screenshot.png)
+- [MATE/Cinnamon UI](./data/screenshots/mate_screenshot_text.png)

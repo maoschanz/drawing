@@ -269,12 +269,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_ui_bars(self, decorations):
 		builder = Gtk.Builder.new_from_string('''
 <?xml version="1.0"?>
-<interface domain="drawing">
+<interface>
   <menu id="tool-placeholder">
     <section>
       <item>
         <attribute name="action">none</attribute>
-        <attribute name="label" translatable="yes">No options for this tool</attribute>
+        <attribute name="label">''' + _("No options for this tool") + '''</attribute>
       </item>
     </section>
   </menu>
