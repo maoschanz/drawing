@@ -125,8 +125,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.app.has_tools_in_menubar = True
 
 		# Initialisation of options and menus
-		self.active_tool_id = self._settings.get_string('last-active-tool')
-		self.former_tool_id = self._settings.get_string('last-active-tool')
+		tool_id = self._settings.get_string('last-active-tool')
+		if tool_id not in self.tools:
+			tool_id = 'pencil'
+		self.active_tool_id = tool_id
+		self.former_tool_id = tool_id
 		self.tools[self.active_tool_id].row.set_active(True)
 
 	def build_new_image(self, *args):

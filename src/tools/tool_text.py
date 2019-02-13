@@ -83,17 +83,17 @@ class ToolText(ToolTemplate):
 		self.should_cancel = True
 
 		self.font_fam = self.font_btn.get_font()
-		self.slant = cairo.FontSlant.NORMAL
-		self.weight = cairo.FontWeight.NORMAL
+		self.font_slant = cairo.FontSlant.NORMAL
+		self.font_weight = cairo.FontWeight.NORMAL
 		if 'Bold' in self.font_fam:
-			self.weight = cairo.FontWeight.BOLD
+			self.font_weight = cairo.FontWeight.BOLD
 		if 'Regular' in self.font_fam:
-			self.slant = cairo.FontSlant.NORMAL
-			self.weight = cairo.FontWeight.NORMAL
+			self.font_slant = cairo.FontSlant.NORMAL
+			self.font_weight = cairo.FontWeight.NORMAL
 		if 'Italic' in self.font_fam:
-			self.slant = cairo.FontSlant.ITALIC
+			self.font_slant = cairo.FontSlant.ITALIC
 		if 'Oblique' in self.font_fam:
-			self.slant = cairo.FontSlant.OBLIQUE
+			self.font_slant = cairo.FontSlant.OBLIQUE
 
 		self.font_fam.replace('Bold', '')
 		self.font_fam.replace('Regular', '')
@@ -114,49 +114,85 @@ class ToolText(ToolTemplate):
 		self.preview_text()
 
 	def on_insert_text(self, *args):
-		self.preview_text()
 		self.popover.popdown()
-		self.apply_to_pixbuf()
-		self.entry.get_buffer().set_text('', 0)
+		if self.has_current_text():
+			operation = self.build_operation()
+			self.apply_operation(operation)
+			self.entry.get_buffer().set_text('', 0)
+
+	def has_current_text(self):
+		self.text_string = self.entry.get_buffer().get_text( self.entry.get_buffer().get_start_iter(), \
+			self.entry.get_buffer().get_end_iter(), False)
+		if self.text_string == '':
+			self.restore_pixbuf()
+			return False
+		else:
+			return True
 
 	def preview_text(self, *args):
-		text = self.entry.get_buffer().get_text( self.entry.get_buffer().get_start_iter(), \
-			self.entry.get_buffer().get_end_iter(), False)
-		if text == '':
-			return
-		self.restore_pixbuf()
-
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-			self.main_color.blue, self.main_color.alpha)
-		w_context.select_font_face(self.font_fam, self.slant, self.weight)
-		w_context.set_font_size(self.tool_width)
-
-		lines = text.split('\n')
-		i = 0
-		for a_line in lines:
-			if self.backg_switch.get_state():
-				w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-					self.secondary_color.blue, 0.0)
-				w_context.move_to(self.x_begin, self.y_begin + (i+0.2)*self.tool_width)
-				w_context.show_text( a_line )
-				w_context.rel_line_to(0, (-1)*self.tool_width)
-				w_context.line_to(self.x_begin, self.y_begin + (i-0.8)*self.tool_width)
-				w_context.line_to(self.x_begin, self.y_begin + (i+0.2)*self.tool_width)
-				w_context.set_source_rgba(self.secondary_color.red, self.secondary_color.green, \
-					self.secondary_color.blue, self.secondary_color.alpha)
-				w_context.fill()
-				w_context.stroke()
-			w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-				self.main_color.blue, self.main_color.alpha)
-			w_context.move_to(self.x_begin, self.y_begin + i*self.tool_width)
-			w_context.show_text( a_line )
-			i = i + 1
-		self.non_destructive_show_modif()
+		if self.has_current_text():
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
 
 	def on_cancel(self, *args):
 		self.restore_pixbuf()
 		self.popover.popdown()
 		self.entry.get_buffer().set_text('', 0)
 		self.should_cancel = False
+
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'rgba_main': self.main_color,
+			'rgba_secd': self.secondary_color,
+			'font_fam': self.font_fam,
+			'font_slant': self.font_slant,
+			'font_weight': self.font_weight,
+			'font_size': self.tool_width,
+			'x': self.x_begin,
+			'y': self.y_begin,
+			'background': self.backg_switch.get_state(),
+			'text': self.text_string
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		w_context = cairo.Context(self.get_surface())
+
+		font_fam = operation['font_fam']
+		font_slant = operation['font_slant']
+		font_weight = operation['font_weight']
+		font_size = operation['font_size']
+		w_context.select_font_face(font_fam, font_slant, font_weight)
+		w_context.set_font_size(font_size)
+
+		lines = operation['text'].split('\n')
+		i = 0
+
+		main_color = operation['rgba_main']
+		secondary_color = operation['rgba_secd']
+		text_x = operation['x']
+		text_y = operation['y']
+
+		for a_line in lines:
+			if operation['background']:
+				w_context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
+				w_context.move_to(text_x, text_y + (i+0.2)*font_size)
+				w_context.show_text( a_line )
+				w_context.rel_line_to(0, (-1)*font_size)
+				w_context.line_to(text_x, text_y + (i-0.8)*font_size)
+				w_context.line_to(text_x, text_y + (i+0.2)*font_size)
+				w_context.set_source_rgba(secondary_color.red, secondary_color.green, \
+					secondary_color.blue, secondary_color.alpha)
+				w_context.fill()
+				w_context.stroke()
+			w_context.set_source_rgba(main_color.red, main_color.green, \
+				main_color.blue, main_color.alpha)
+			w_context.move_to(text_x, text_y + i*font_size)
+			w_context.show_text( a_line )
+			i = i + 1
+		self.non_destructive_show_modif()
 

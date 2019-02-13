@@ -111,6 +111,18 @@
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes">Refresh</attribute>
+        <attribute name="action">win.restore_pixbuf</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rebuild from history</attribute>
+        <attribute name="action">win.rebuild_from_histo</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
         <attribute name="label" translatable="yes">Show tools names</attribute>
         <attribute name="action">win.show_labels</attribute>
       </item>
