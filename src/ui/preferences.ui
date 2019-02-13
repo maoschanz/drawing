@@ -234,64 +234,6 @@
                     <property name="selection-mode">none</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="label" translatable="yes">Edition and tools</property>
-                        <property name="visible">True</property>
-                        <style><class name="dim-label"/></style>
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="visible">True</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="expand">True</property>
-                            <property name="margin">5</property>
-                            <property name="spacing">10</property>
-                            <property name="orientation">horizontal</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="label" translatable="yes">Default colors</property>
-                                <property name="visible">True</property>
-                              </object>
-                              <packing>
-                                <property name="pack-type">start</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkColorButton" id="sec_color_btn">
-                                <property name="visible">True</property>
-                                <property name="use-alpha">True</property>
-                                <property name="tooltip_text" translatable="yes">Secondary color</property>
-                              </object>
-                              <packing>
-                                <property name="pack-type">end</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkColorButton" id="main_color_btn">
-                                <property name="visible">True</property>
-                                <property name="use-alpha">True</property>
-                                <property name="tooltip_text" translatable="yes">Main color</property>
-                              </object>
-                              <packing>
-                                <property name="pack-type">end</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkListBox">
-                    <property name="visible">True</property>
-                    <property name="selection-mode">none</property>
-                    <child>
-                      <object class="GtkLabel">
                         <property name="label" translatable="yes">User interface</property>
                         <property name="visible">True</property>
                         <style><class name="dim-label"/></style>

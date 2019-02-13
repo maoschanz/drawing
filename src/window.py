@@ -125,8 +125,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.app.has_tools_in_menubar = True
 
 		# Initialisation of options and menus
-		self.active_tool_id = self._settings.get_string('active-tool')
-		self.former_tool_id = self._settings.get_string('active-tool')
+		self.active_tool_id = self._settings.get_string('last-active-tool')
+		self.former_tool_id = self._settings.get_string('last-active-tool')
 		self.tools[self.active_tool_id].row.set_active(True)
 
 	def build_new_image(self, *args):
@@ -158,10 +158,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.close()
 
 	def on_close(self, *args):
+		# Close each tab
 		for i in self.image_list:
 			if not self.close_tab(i):
 				return True
-		self._settings.set_string('active-tool', self.active_tool_id)
+
+		# Save the app state (active tool, edition colors)
+		self._settings.set_string('last-active-tool', self.active_tool_id)
+		rgba = self.color_popover_l.color_widget.get_rgba()
+		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
+		self._settings.set_strv('last-left-rgba', rgba)
+		rgba = self.color_popover_r.color_widget.get_rgba()
+		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
+		self._settings.set_strv('last-right-rgba', rgba)
 		return False
 
 	# GENERAL PURPOSE METHODS
@@ -692,13 +701,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# COLORS
 
 	def build_color_buttons(self):
-		right_rgba = self._settings.get_strv('right-rgba')
+		right_rgba = self._settings.get_strv('last-right-rgba')
 		r = float(right_rgba[0])
 		g = float(right_rgba[1])
 		b = float(right_rgba[2])
 		a = float(right_rgba[3])
 		right_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		left_rgba = self._settings.get_strv('left-rgba')
+		left_rgba = self._settings.get_strv('last-left-rgba')
 		r = float(left_rgba[0])
 		g = float(left_rgba[1])
 		b = float(left_rgba[2])
