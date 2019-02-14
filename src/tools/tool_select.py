@@ -16,6 +16,8 @@ class ToolSelect(ToolTemplate):
 		super().__init__('select', _("Selection"), 'tool-select-symbolic', window)
 		self.need_selection_pixbuf = True
 
+		self.selection_has_been_used = False
+
 		self.temp_path = None
 		self.temp_x = 0
 		self.temp_y = 0
@@ -31,6 +33,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
 		self.add_tool_action_simple('selection_flip', self.action_selection_flip)
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
+		self.add_tool_action_simple('selection_saturate', self.action_selection_saturate)
 
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle")
@@ -268,6 +271,9 @@ class ToolSelect(ToolTemplate):
 
 	def action_selection_crop(self, *args):
 		self.window.hijack_begin(self.id, 'crop')
+
+	def action_selection_saturate(self, *args):
+		self.window.hijack_begin(self.id, 'saturate')
 
 	def action_selection_rotate(self, *args): # TODO davantage d'angles
 		self.window.hijack_begin(self.id, 'rotate')

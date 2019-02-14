@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
 
+  <object class="GtkAdjustment" id="adj_saturation">
+    <property name="lower">0</property>
+    <property name="upper">1000</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">30</property>
+    <property name="value">100</property>
+  </object>
+
+  <!-- -->
+
   <object class="GtkActionBar" id="bottom-panel">
     <property name="visible">False</property>
     <property name="expand">True</property>
@@ -9,7 +19,6 @@
       <object class="GtkButton" id="cancel_btn">
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
-        <property name="valign">center</property>
         <property name="action_name">win.back_to_former_tool</property>
         <style>
           <class name="destructive-action"/>
@@ -24,35 +33,21 @@
     </child>
 
     <child type="center">
-      <object class="GtkBox" id="centered_box">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="spacing">10</property>
 
         <child>
-          <object class="GtkButton" id="horizontal_btn">
-            <property name="tooltip_text" translatable="yes">Flip horizontally</property>
+          <object class="GtkLabel" id="sat_label">
+            <property name="label" translatable="yes">Saturation (%)</property>
             <property name="visible">True</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">object-flip-horizontal-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
           </object>
         </child>
-
         <child>
-          <object class="GtkButton" id="vertical_btn">
-            <property name="tooltip_text" translatable="yes">Flip vertically</property>
+          <object class="GtkSpinButton" id="sat_btn">
             <property name="visible">True</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">object-flip-vertical-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
+            <property name="adjustment">adj_saturation</property>
+            <property name="tooltip_text" translatable="yes">Saturation (%)</property>
           </object>
         </child>
 
@@ -61,7 +56,7 @@
 
     <child>
       <object class="GtkButton" id="apply_btn">
-        <property name="action_name">win.flip_apply</property>
+        <property name="action_name">win.saturate_apply</property>
         <property name="tooltip-text" translatable="yes">Apply</property>
         <property name="visible">True</property>
         <property name="valign">center</property>

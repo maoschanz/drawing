@@ -33,6 +33,7 @@ from .tool_crop import ToolCrop
 from .tool_scale import ToolScale
 from .tool_rotate import ToolRotate
 from .tool_flip import ToolFlip
+from .tool_saturate import ToolSaturate
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
@@ -105,9 +106,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
 		if self._settings.get_boolean('experimental'):
-			self.tools['experiment'] = ToolExperiment(self)
+			# self.tools['experiment'] = ToolExperiment(self)
 			self.tools['paint'] = ToolPaint(self)
 			# self.tools['replace'] = ToolReplace(self)
+		self.tools['saturate'] = ToolSaturate(self)
 		self.tools['flip'] = ToolFlip(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)

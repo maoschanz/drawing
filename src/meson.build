@@ -43,6 +43,7 @@ drawing_sources = [
   'tools/tool_crop.py',
   'tools/tool_experiment.py',
   'tools/tool_flip.py',
+  'tools/tool_saturate.py',
   'tools/tool_line.py',
   'tools/tool_paint.py',
   'tools/tool_pencil.py',
