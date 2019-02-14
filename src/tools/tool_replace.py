@@ -9,13 +9,13 @@ from .utilities import utilities_get_rgb_for_xy
 class ToolReplace(ToolTemplate):
 	__gtype_name__ = 'ToolReplace'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
 		super().__init__('replace', _("Replace color"), 'edit-delete-symbolic', window, False)
 		self.new_color = None
 		self.old_color = None
+		self.use_size = True
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		if event.button == 1:

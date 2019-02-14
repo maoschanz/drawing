@@ -11,22 +11,20 @@
         <property name="can_focus">True</property>
       </object>
     </child>
-
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="homogeneous">True</property>
         <property name="expand">True</property>
-
         <style>
           <class name="linked"/>
         </style>
-
         <child>
           <object class="GtkButton">
             <property name="visible">True</property>
             <property name="action-name">win.go_left</property>
+            <property name="tooltip-text" translatable="yes">Go Left</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">go-previous-symbolic</property>
@@ -39,6 +37,7 @@
           <object class="GtkButton">
             <property name="visible">True</property>
             <property name="action-name">win.go_up</property>
+            <property name="tooltip-text" translatable="yes">Go Up</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">go-up-symbolic</property>
@@ -51,6 +50,7 @@
           <object class="GtkButton">
             <property name="visible">True</property>
             <property name="action-name">win.go_down</property>
+            <property name="tooltip-text" translatable="yes">Go Down</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">go-down-symbolic</property>
@@ -63,6 +63,7 @@
           <object class="GtkButton">
             <property name="visible">True</property>
             <property name="action-name">win.go_right</property>
+            <property name="tooltip-text" translatable="yes">Go Right</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">go-next-symbolic</property>
@@ -71,15 +72,7 @@
             </child>
           </object>
         </child>
-
-
       </object>
     </child>
-
-
-
-
-
-
   </object>
 </interface>

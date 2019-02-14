@@ -104,6 +104,7 @@
                       <object class="GtkButton" id="color_btn_exc">
                         <property name="visible">True</property>
                         <property name="action_name">win.exchange_color</property>
+                        <property name="tooltip-text" translatable="yes">Exchange colors</property>
                         <child>
                           <object class="GtkImage">
                             <property name="icon-name">exchange-colors-symbolic</property>
@@ -132,7 +133,7 @@
                 </child>
                 <child>
                   <object class="GtkSpinButton" id="size_setter">
-                    <property name="tooltip_text" translatable="yes">Tool size</property>
+                    <property name="tooltip-text" translatable="yes">Tool size</property>
                     <property name="visible">True</property>
                     <property name="adjustment">adjustment_size</property>
                   </object>

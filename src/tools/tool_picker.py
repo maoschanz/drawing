@@ -10,7 +10,6 @@ class ToolPicker(ToolTemplate):
 	__gtype_name__ = 'ToolPicker'
 
 	implements_panel = False
-	use_size = False
 
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window, False)

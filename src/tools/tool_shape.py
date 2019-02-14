@@ -9,11 +9,11 @@ from .tools import ToolTemplate
 class ToolShape(ToolTemplate):
 	__gtype_name__ = 'ToolShape'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Basic shape"), 'radio-symbolic', window, False)
+		self.use_size = True
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		self.selected_style_label = _("Filled (secondary color)")

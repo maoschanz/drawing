@@ -8,7 +8,6 @@ from .tools import ToolTemplate
 class ToolPencil(ToolTemplate):
 	__gtype_name__ = 'ToolPencil'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
@@ -17,6 +16,7 @@ class ToolPencil(ToolTemplate):
 		self.past_y = -1.0
 		self._path = None
 		self.main_color = None
+		self.use_size = True
 
 		self.selected_shape_label = _("Round")
 		self.selected_cap_id = cairo.LineCap.ROUND

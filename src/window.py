@@ -90,7 +90,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.image_list = []
 		self.build_new_image()
 		self.init_tools()
-		self.update_history_sensitivity()
 		self.connect_signals()
 		self.set_picture_title()
 
@@ -132,7 +131,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			tool_id = 'pencil'
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		self.enable_tool(tool_id, False)
+		if tool_id == 'pencil':
+			self.enable_tool(tool_id, True)
+		else:
+			self.active_tool().row.set_active(True)
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
@@ -447,7 +449,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def update_bottom_panel(self):
 		self.build_options_menu()
-		self.former_tool().show_panel(False)
+		if self.former_tool_id is not self.active_tool_id:
+			self.former_tool().show_panel(False)
 		self.active_tool().show_panel(True)
 		self.update_size_spinbtn_state()
 		self.adapt_to_window_size()

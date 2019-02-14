@@ -9,7 +9,6 @@ class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
 	implements_panel = True
-	use_size = False
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):

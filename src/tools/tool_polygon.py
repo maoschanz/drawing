@@ -9,11 +9,11 @@ from .tools import ToolTemplate
 class ToolPolygon(ToolTemplate):
 	__gtype_name__ = 'ToolPolygon'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
 		super().__init__('polygon', _("Polygon"), 'tool-polygon-symbolic', window, False)
+		self.use_size = True
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		(self.past_x, self.past_y) = (-1.0, -1.0)

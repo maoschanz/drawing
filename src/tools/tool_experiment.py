@@ -8,7 +8,6 @@ from .tools import ToolTemplate
 class ToolExperiment(ToolTemplate):
 	__gtype_name__ = 'ToolExperiment'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
@@ -17,6 +16,7 @@ class ToolExperiment(ToolTemplate):
 		self.past_y = -1.0
 		self._path = None
 		self.main_color = None
+		self.use_size = True
 
 		self.selected_operator_label = "DIFFERENCE"
 		self.selected_operator = cairo.Operator.DIFFERENCE

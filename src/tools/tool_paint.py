@@ -9,13 +9,13 @@ from .utilities import utilities_get_rgb_for_xy
 class ToolPaint(ToolTemplate):
 	__gtype_name__ = 'ToolPaint'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
 		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window, False)
 		self.new_color = None
 		self.old_color = None
+		self.use_size = True
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		print("press")

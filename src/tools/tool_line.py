@@ -8,11 +8,11 @@ from .tools import ToolTemplate
 class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
 
-	use_size = True
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'list-remove-symbolic', window, False)
+		self.use_size = True
 
 		self.add_tool_action_enum('line_type', 'straight', self.on_change_active_type)
 		self.add_tool_action_enum('line_shape', 'round', self.on_change_active_shape)
