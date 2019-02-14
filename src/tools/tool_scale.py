@@ -1,4 +1,4 @@
-# tool_scale.py
+# tool_scale.py # XXX
 #
 # Copyright 2019 Romain F. T.
 #

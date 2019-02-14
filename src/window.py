@@ -220,6 +220,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('options_menu', self.action_options_menu)
 		self.add_action_simple('toggle_preview', self.action_toggle_preview)
 
+		self.add_action_simple('go_up', self.action_go_up)
+		self.add_action_simple('go_down', self.action_go_down)
+		self.add_action_simple('go_left', self.action_go_left)
+		self.add_action_simple('go_right', self.action_go_right)
+
 		self.add_action_simple('new_tab', self.build_new_image)
 		self.add_action_simple('close', self.action_close)
 		self.add_action_simple('save', self.action_save)
@@ -294,7 +299,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(False)
 		elif decorations == 'everything':
-			self.build_headerbar()
+			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(True)
 			self.build_toolbar()
@@ -778,3 +783,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_option_label(self, *args):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
+	# Navigation
+	def action_go_up(self, *args):
+		self.get_active_image().add_deltas(0, -1, 100)
+
+	def action_go_down(self, *args):
+		self.get_active_image().add_deltas(0, 1, 100)
+
+	def action_go_left(self, *args):
+		self.get_active_image().add_deltas(-1, 0, 100)
+
+	def action_go_right(self, *args):
+		self.get_active_image().add_deltas(1, 0, 100)

@@ -1,4 +1,4 @@
-# tool_flip.py # TODO
+# tool_flip.py # XXX
 #
 # Copyright 2019 Romain F. T.
 #

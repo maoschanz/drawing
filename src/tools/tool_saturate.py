@@ -1,4 +1,4 @@
-# tool_blur.py # TODO
+# tool_saturate.py # XXX
 #
 # Copyright 2019 Romain F. T.
 #

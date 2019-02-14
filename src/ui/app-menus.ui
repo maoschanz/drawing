@@ -150,6 +150,24 @@
       <attribute name="label" translatable="yes">_View</attribute>
       <section>
         <item>
+          <attribute name="label" translatable="yes">Go Up</attribute>
+          <attribute name="action">win.go_up</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Go Down</attribute>
+          <attribute name="action">win.go_down</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Go Left</attribute>
+          <attribute name="action">win.go_left</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Go Right</attribute>
+          <attribute name="action">win.go_right</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
           <attribute name="label" translatable="yes">Refresh</attribute>
           <attribute name="action">win.restore_pixbuf</attribute>
           <attribute name="hidden-when">action-missing</attribute>
