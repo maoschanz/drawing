@@ -25,7 +25,7 @@ class ToolScale(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('scale', _("Scale"), 'view-fullscreen-symbolic', window)
+		super().__init__('scale', _("Scale"), 'view-fullscreen-symbolic', window, True)
 		self.need_temp_pixbuf = True
 
 		self.keep_proportions = True
@@ -71,12 +71,12 @@ class ToolScale(ToolTemplate):
 		if self.scale_selection:
 			self.get_image().selection_pixbuf = self.get_selection_pixbuf().scale_simple( \
 				w, h, GdkPixbuf.InterpType.TILES)
-			self.window.former_tool().on_confirm_hijacked_modif()
+			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
 			pb = self.get_main_pixbuf().scale_simple(w, h, GdkPixbuf.InterpType.TILES)
 			self.get_image().set_main_pixbuf(pb)
 			self.restore_pixbuf()
-			self.window.back_to_former_tool()
+			self.window.force_selection_tool()
 
 	def update_temp_pixbuf(self):
 		w = self.get_width()

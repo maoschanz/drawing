@@ -13,7 +13,7 @@ class ToolShape(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('shape', _("Basic shape"), 'radio-symbolic', window)
+		super().__init__('shape', _("Basic shape"), 'radio-symbolic', window, False)
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		self.selected_style_label = _("Filled (secondary color)")

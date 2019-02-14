@@ -26,7 +26,7 @@ class ToolCrop(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
+		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window, True)
 		self.need_temp_pixbuf = True
 
 		self.crop_selection = False
@@ -90,7 +90,7 @@ class ToolCrop(ToolTemplate):
 			operation['pixbuf'] = None
 		#self.do_tool_operation(operation)
 		self.apply_operation(operation)
-		self.window.back_to_former_tool()
+		self.window.force_selection_tool()
 
 	def update_temp_pixbuf(self): # XXX doit fusionner avec le do_tool_operation ??
 		if self.crop_selection:

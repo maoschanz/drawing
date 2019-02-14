@@ -8,6 +8,35 @@
       </item>
     </section>
     <section>
+      <submenu>
+        <attribute name="label" translatable="yes">Edit</attribute>
+        <item>
+          <attribute name="label" translatable="yes">Flip</attribute>
+          <attribute name="action">win.selection_flip</attribute>
+          <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Crop</attribute>
+          <attribute name="action">win.selection_crop</attribute>
+          <attribute name="verb-icon">crop-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Scale</attribute>
+          <attribute name="action">win.selection_scale</attribute>
+          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rotate</attribute>
+          <attribute name="action">win.selection_rotate</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Saturate</attribute>
+          <attribute name="action">win.selection_saturate</attribute>
+        </item>
+      </submenu>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Import</attribute>
         <attribute name="action">win.import</attribute>
@@ -19,72 +48,129 @@
     </section>
   </menu>
 
+  <menu id="left-click-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="action">win.selection_unselect</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Cut</attribute>
+        <attribute name="action">win.selection_cut</attribute>
+        <attribute name="verb-icon">edit-cut-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Copy</attribute>
+        <attribute name="action">win.selection_copy</attribute>
+        <attribute name="verb-icon">edit-copy-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Delete</attribute>
+        <attribute name="action">win.selection_delete</attribute>
+        <attribute name="verb-icon">edit-delete-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <submenu>
+        <attribute name="label" translatable="yes">Edit</attribute>
+        <item>
+          <attribute name="label" translatable="yes">Flip</attribute>
+          <attribute name="action">win.selection_flip</attribute>
+          <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Crop</attribute>
+          <attribute name="action">win.selection_crop</attribute>
+          <attribute name="verb-icon">crop-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Scale</attribute>
+          <attribute name="action">win.selection_scale</attribute>
+          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rotate</attribute>
+          <attribute name="action">win.selection_rotate</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Saturate</attribute>
+          <attribute name="action">win.selection_saturate</attribute>
+        </item>
+      </submenu>
+      <item>
+        <attribute name="label" translatable="yes">Export as…</attribute>
+        <attribute name="action">win.selection_export</attribute>
+      </item>
+    </section>
+  </menu>
+
   <menu id="options-menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">Select all</attribute>
         <attribute name="action">win.select_all</attribute>
       </item>
-      <submenu id="left-click-menu">
-        <attribute name="label" translatable="yes">Other actions</attribute>
-        <section>
-          <item>
-            <attribute name="label" translatable="yes">Unselect</attribute>
-            <attribute name="action">win.selection_unselect</attribute>
-          </item>
-        </section>
-        <section>
-          <attribute name="display-hint">horizontal-buttons</attribute>
-          <item>
-            <attribute name="label" translatable="yes">Cut</attribute>
-            <attribute name="action">win.selection_cut</attribute>
-            <attribute name="verb-icon">edit-cut-symbolic</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Copy</attribute>
-            <attribute name="action">win.selection_copy</attribute>
-            <attribute name="verb-icon">edit-copy-symbolic</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Delete</attribute>
-            <attribute name="action">win.selection_delete</attribute>
-            <attribute name="verb-icon">edit-delete-symbolic</attribute>
-          </item>
-        </section>
-        <section>
-          <submenu>
-            <attribute name="label" translatable="yes">Edit</attribute>
-            <item>
-              <attribute name="label" translatable="yes">Flip</attribute>
-              <attribute name="action">win.selection_flip</attribute>
-              <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
-            </item>
-            <item>
-              <attribute name="label" translatable="yes">Crop</attribute>
-              <attribute name="action">win.selection_crop</attribute>
-              <attribute name="verb-icon">crop-symbolic</attribute>
-            </item>
-            <item>
-              <attribute name="label" translatable="yes">Scale</attribute>
-              <attribute name="action">win.selection_scale</attribute>
-              <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
-            </item>
-            <item>
-              <attribute name="label" translatable="yes">Rotate</attribute>
-              <attribute name="action">win.selection_rotate</attribute>
-              <attribute name="verb-icon">view-refresh-symbolic</attribute>
-            </item>
-            <item>
-              <attribute name="label" translatable="yes">Saturate</attribute>
-              <attribute name="action">win.selection_saturate</attribute>
-            </item>
-          </submenu>
-          <item>
-            <attribute name="label" translatable="yes">Export as…</attribute>
-            <attribute name="action">win.selection_export</attribute>
-          </item>
-        </section>
+      <item>
+        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="action">win.selection_unselect</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Cut</attribute>
+        <attribute name="action">win.selection_cut</attribute>
+        <attribute name="verb-icon">edit-cut-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Copy</attribute>
+        <attribute name="action">win.selection_copy</attribute>
+        <attribute name="verb-icon">edit-copy-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Delete</attribute>
+        <attribute name="action">win.selection_delete</attribute>
+        <attribute name="verb-icon">edit-delete-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <submenu>
+        <attribute name="label" translatable="yes">Edit</attribute>
+        <item>
+          <attribute name="label" translatable="yes">Flip</attribute>
+          <attribute name="action">win.selection_flip</attribute>
+          <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Crop</attribute>
+          <attribute name="action">win.selection_crop</attribute>
+          <attribute name="verb-icon">crop-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Scale</attribute>
+          <attribute name="action">win.selection_scale</attribute>
+          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rotate</attribute>
+          <attribute name="action">win.selection_rotate</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Saturate</attribute>
+          <attribute name="action">win.selection_saturate</attribute>
+        </item>
       </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Export as…</attribute>
+        <attribute name="action">win.selection_export</attribute>
+      </item>
     </section>
     <section>
       <attribute name="label" translatable="yes">Selection type</attribute>
@@ -99,25 +185,159 @@
         <attribute name="target">freenhand</attribute>
       </item>
     </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Exclude secondary color</attribute>
-        <attribute name="action">win.selection_exclude</attribute>
-      </item>
-    </section>
-    <section>
-      <attribute name="label" translatable="yes">Background</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Transparent</attribute>
-        <attribute name="action">win.selection_background</attribute>
-        <attribute name="target">transparent</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Secondary color</attribute>
-        <attribute name="action">win.selection_background</attribute>
-        <attribute name="target">secondary</attribute>
-      </item>
-    </section>
   </menu>
+
+<!-- -->
+
+  <object class="GtkActionBar" id="bottom-panel">
+    <property name="visible">False</property>
+    <property name="expand">True</property>
+
+    <child>
+      <object class="GtkButton" id="actions_btn">
+        <property name="tooltip_text" translatable="yes">Selection actions</property>
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">view-more-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child type="center">
+      <object class="GtkBox" id="centered_box">
+        <property name="visible">True</property>
+        <style>
+          <class name="linked"/>
+        </style>
+
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Crop</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.selection_crop</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">tool-crop-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Scale</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.selection_scale</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">view-fullscreen-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip-text" translatable="yes">Flip</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.selection_flip</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-flip-horizontal-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip-text" translatable="yes">Rotate</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.selection_rotate</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">view-refresh-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Saturate</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.selection_saturate</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">weather-clear-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <style>
+          <class name="linked"/>
+        </style>
+        <child>
+          <object class="GtkRadioButton" id="selection_type_btn1">
+            <property name="tooltip_text" translatable="yes">Rectangle selection</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="draw-indicator">False</property>
+            <property name="action-name">win.selection_type</property>
+            <property name="action-target">'rectangle'</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">checkbox-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioButton" id="selection_type_btn2">
+            <property name="tooltip_text" translatable="yes">Free selection</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="draw-indicator">False</property>
+            <property name="action-name">win.selection_type</property>
+            <property name="action-target">'freenhand'</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">tool-polygon-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">start</property>
+      </packing>
+    </child>
+
+  </object>
 
 </interface>

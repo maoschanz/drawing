@@ -25,7 +25,8 @@ class ToolRotate(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window)
+		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window, True)
+		self.is_hidden = True
 		self.need_temp_pixbuf = True
 
 		self.add_tool_action_simple('rotate_apply', self.on_apply)
@@ -72,12 +73,12 @@ class ToolRotate(ToolTemplate):
 		self.restore_pixbuf()
 		if self.rotate_selection:
 			self.get_image().selection_pixbuf = self.get_selection_pixbuf().rotate_simple(self.get_angle())
-			self.window.former_tool().on_confirm_hijacked_modif()
+			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
 			self.get_image().set_main_pixbuf(self.get_main_pixbuf().rotate_simple(self.get_angle()))
 			#self.apply_to_pixbuf()
 			self.restore_pixbuf()
-			self.window.back_to_former_tool()
+			self.window.force_selection_tool()
 
 	def get_angle(self):
 		return self.angle_btn.get_value_as_int()

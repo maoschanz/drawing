@@ -8,15 +8,16 @@ from .tools import ToolTemplate
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
-	implements_panel = False
+	implements_panel = True
 	use_size = False
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):
-		super().__init__('select', _("Selection"), 'tool-select-symbolic', window)
+		super().__init__('select', _("Selection"), 'tool-select-symbolic', window, False)
 		self.need_selection_pixbuf = True
 
 		self.selection_has_been_used = False
+		self.selection_is_active = False
 
 		self.temp_path = None
 		self.temp_x = 0
@@ -40,16 +41,23 @@ class ToolSelect(ToolTemplate):
 		self.background_type_id = 'transparent'
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
-		menu_r = builder.get_object('right-click-menu')
-		self.rightc_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_r) # FIXME non ?
-		menu_l = builder.get_object('left-click-menu')
-		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l) # FIXME non
 
+		self.bottom_panel = builder.get_object('bottom-panel')
+		self.window.bottom_panel_box.add(self.bottom_panel)
+
+		menu_r = builder.get_object('right-click-menu')
+		self.rightc_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_r)
+		menu_l = builder.get_object('left-click-menu')
+		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l)
+		builder.get_object('actions_btn').connect('clicked', self.on_actions_btn_clicked)
+
+		builder.get_object('selection_type_btn1').join_group(builder.get_object('selection_type_btn2'))
 		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
-		self.add_tool_action_boolean('selection_exclude', False, self.osef)
-		self.add_tool_action_enum('selection_background', self.background_type_id, self.osef)
 
 		self.reset_temp()
+
+	def get_panel(self):
+		return self.bottom_panel
 
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
@@ -68,9 +76,6 @@ class ToolSelect(ToolTemplate):
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
-		self.set_action_sensitivity('selection_crop', state)
-		self.set_action_sensitivity('selection_scale', state)
-		self.set_action_sensitivity('selection_rotate', state)
 		self.set_action_sensitivity('selection_export', state)
 
 	def on_change_active_type(self, *args):
@@ -86,9 +91,6 @@ class ToolSelect(ToolTemplate):
 			self.selected_type_label = _("Freehand")
 		self.give_back_control()
 		self.window.set_picture_title()
-
-	def osef(self, *args): # TODO XXX
-		pass
 
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_select.ui")
@@ -137,8 +139,6 @@ class ToolSelect(ToolTemplate):
 			self.non_destructive_show_modif()
 		if self.selected_type_id == 'rectangle' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
-		self.left_color = left_color # TODO
-		self.right_color = right_color # TODO
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		if self.selection_is_active:
@@ -149,15 +149,23 @@ class ToolSelect(ToolTemplate):
 				self.restore_pixbuf()
 				self.draw_polygon(event_x, event_y)
 
+	def on_actions_btn_clicked(self, *args):
+		self.set_rightc_popover_position( self.get_image().get_allocated_width()/2, \
+			self.get_image().get_allocated_height()/2 )
+		self.show_popover(True)
+
+	def set_rightc_popover_position(self, x, y):
+		rectangle = Gdk.Rectangle()
+		rectangle.x = int(x)
+		rectangle.y = int(y)
+		rectangle.height = 1
+		rectangle.width = 1
+		self.rightc_popover.set_pointing_to(rectangle)
+		self.rightc_popover.set_relative_to(self.get_image())
+
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if event.button == 3:
-			rectangle = Gdk.Rectangle()
-			rectangle.x = int(event.x)
-			rectangle.y = int(event.y)
-			rectangle.height = 1
-			rectangle.width = 1
-			self.rightc_popover.set_pointing_to(rectangle)
-			self.rightc_popover.set_relative_to(area)
+			self.set_rightc_popover_position(event.x, event.y)
 			self.show_popover(True)
 			return
 		elif not self.selection_is_active:
@@ -264,19 +272,27 @@ class ToolSelect(ToolTemplate):
 		self.apply_to_pixbuf()
 
 	def action_selection_flip(self, *args):
-		self.window.hijack_begin(self.id, 'flip')
+		self.try_edit('flip')
 
 	def action_selection_scale(self, *args):
-		self.window.hijack_begin(self.id, 'scale')
+		self.try_edit('scale')
 
 	def action_selection_crop(self, *args):
-		self.window.hijack_begin(self.id, 'crop')
+		self.try_edit('crop')
 
 	def action_selection_saturate(self, *args):
-		self.window.hijack_begin(self.id, 'saturate')
+		self.try_edit('saturate')
 
-	def action_selection_rotate(self, *args): # TODO davantage d'angles
-		self.window.hijack_begin(self.id, 'rotate')
+	def action_selection_rotate(self, *args):
+		self.try_edit('rotate')
+
+	def try_edit(self, tool_id):
+		if self.selection_is_active:
+			print('tool hijack')
+			self.window.hijack_begin(self.id, tool_id)
+		else:
+			print('tool change')
+			self.window.tools[tool_id].row.set_active(True)
 
 ############################## XXX pour toute cette section, ne peut-on pas donner le contexte en paramètre ?
 

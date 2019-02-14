@@ -25,7 +25,7 @@ class ToolSaturate(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('saturate', _("Saturate"), 'weather-fog-symbolic', window)
+		super().__init__('saturate', _("Saturate"), 'weather-clear-symbolic', window, True)
 		self.need_temp_pixbuf = True
 
 		self.add_tool_action_simple('saturate_apply', self.on_apply)
@@ -62,11 +62,11 @@ class ToolSaturate(ToolTemplate):
 		if self.saturate_selection:
 			selection_pixbuf = self.get_selection_pixbuf()
 			self.get_image().set_selection_pixbuf(selection_pixbuf.saturate_and_pixelate(selection_pixbuf, sat, False))
-			self.window.former_tool().on_confirm_hijacked_modif()
+			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
 			main_pixbuf = self.get_main_pixbuf()
 			self.get_image().set_main_pixbuf(main_pixbuf.saturate_and_pixelate(main_pixbuf, sat, False))
-			self.window.back_to_former_tool()
+			self.window.force_selection_tool()
 
 	def get_saturation(self):
 		return self.saturation_btn.get_value()/100

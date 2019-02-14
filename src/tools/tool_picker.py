@@ -13,7 +13,7 @@ class ToolPicker(ToolTemplate):
 	use_size = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
+		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window, False)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		rgb_vals = utilities_get_rgb_for_xy(surface, event.x, event.y)

@@ -106,9 +106,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
 		if self._settings.get_boolean('experimental'):
-			# self.tools['experiment'] = ToolExperiment(self)
+			self.tools['experiment'] = ToolExperiment(self)
 			self.tools['paint'] = ToolPaint(self)
-			# self.tools['replace'] = ToolReplace(self)
+			self.tools['replace'] = ToolReplace(self)
 		self.tools['saturate'] = ToolSaturate(self)
 		self.tools['flip'] = ToolFlip(self)
 		self.tools['crop'] = ToolCrop(self)
@@ -241,6 +241,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('selection_export', self.action_selection_export)
 
 		self.add_action_simple('back_to_former_tool', self.back_to_former_tool)
+		self.add_action_simple('force_selection_tool', self.force_selection_tool)
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 		self.add_action_boolean('show_labels', self._settings.get_boolean('panel-width'), \
 			self.on_show_labels_changed)
@@ -399,12 +400,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
-		self.tools_panel.show_all()
 		self.on_show_labels_setting_changed()
 
 	def set_tools_labels_visibility(self, visible):
 		if visible:
-			self.tools_panel.show_all()
+			for label in self.tools:
+				self.tools[label].label_widget.set_visible(True)
 		else:
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
@@ -686,8 +687,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def get_selection_tool(self):
 		return self.tools['select']
 
-	def force_selection_tool(self):
-		self.get_selection_tool().row.set_active(True)
+	def force_selection_tool(self, *args):
+		if self.hijacker_id is not None:
+			self.hijack_end()
+		else:
+			self.get_selection_tool().row.set_active(True)
 
 	# HISTORY MANAGEMENT
 

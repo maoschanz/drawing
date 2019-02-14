@@ -12,7 +12,7 @@ class ToolPencil(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('pencil', _("Pencil"), 'tool-pencil-symbolic', window)
+		super().__init__('pencil', _("Pencil"), 'tool-pencil-symbolic', window, False)
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None

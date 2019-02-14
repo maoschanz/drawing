@@ -12,7 +12,7 @@ class ToolLine(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('line', _("Line"), 'list-remove-symbolic', window)
+		super().__init__('line', _("Line"), 'list-remove-symbolic', window, False)
 
 		self.add_tool_action_enum('line_type', 'straight', self.on_change_active_type)
 		self.add_tool_action_enum('line_shape', 'round', self.on_change_active_shape)

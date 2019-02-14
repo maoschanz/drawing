@@ -25,7 +25,7 @@ class ToolFlip(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('flip', _("Flip"), 'object-flip-horizontal-symbolic', window)
+		super().__init__('flip', _("Flip"), 'object-flip-horizontal-symbolic', window, True)
 		self.need_temp_pixbuf = True
 
 		self.add_tool_action_simple('flip_apply', self.on_apply)
@@ -44,7 +44,7 @@ class ToolFlip(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self):
+	def get_panel(self): # FIXME utile ??
 		return self.bottom_panel
 
 	def on_vertical_clicked(self, *args):
@@ -79,13 +79,13 @@ class ToolFlip(ToolTemplate):
 				self.get_image().set_selection_pixbuf(self.get_selection_pixbuf().flip(True))
 			if self.flip_v:
 				self.get_image().set_selection_pixbuf(self.get_selection_pixbuf().flip(False))
-			self.window.former_tool().on_confirm_hijacked_modif()
+			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
 			if self.flip_h:
 				self.get_image().set_main_pixbuf(self.get_main_pixbuf().flip(True))
 			if self.flip_v:
 				self.get_image().set_main_pixbuf(self.get_main_pixbuf().flip(False))
-			self.window.back_to_former_tool()
+			self.window.force_selection_tool()
 
 
 

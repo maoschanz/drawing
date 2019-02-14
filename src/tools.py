@@ -8,10 +8,11 @@ import cairo
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
 
-	def __init__(self, tool_id, label, icon_name, window, **kwargs):
+	def __init__(self, tool_id, label, icon_name, window, is_hidden, **kwargs):
 		self.id = tool_id
 		self.label = label
 		self.icon_name = icon_name
+		self.is_hidden = is_hidden
 		self.tool_width = 10
 		self.selection_is_active = False
 		self.build_row()
@@ -55,7 +56,8 @@ class ToolTemplate():
 			self.window.bottom_panel.set_visible(visibility)
 
 	def add_item_to_menu(self, tools_menu):
-		tools_menu.append(self.label, 'win.active_tool::' + self.id)
+		if not self.is_hidden:
+			tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
 		return None
@@ -83,6 +85,8 @@ class ToolTemplate():
 		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)
+		if not self.is_hidden:
+			self.row.show_all()
 
 	def adapt_to_window_size(self):
 		pass

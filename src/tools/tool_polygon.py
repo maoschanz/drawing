@@ -13,7 +13,7 @@ class ToolPolygon(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('polygon', _("Polygon"), 'tool-polygon-symbolic', window)
+		super().__init__('polygon', _("Polygon"), 'tool-polygon-symbolic', window, False)
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		(self.past_x, self.past_y) = (-1.0, -1.0)
