@@ -132,7 +132,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			tool_id = 'pencil'
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		self.tools[self.active_tool_id].row.set_active(True)
+		self.enable_tool(tool_id, False)
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
@@ -420,15 +420,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# TOOLS
 
-	def on_change_active_tool(self, *args): # FIXME on n'a jamais de panneau custom quand on fait depuis la menubar
+	def on_change_active_tool(self, *args):
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
 		elif self.tools[state_as_string].row.get_active():
 			args[0].set_state(GLib.Variant.new_string(state_as_string))
+			self.enable_tool(state_as_string, True)
 		else:
 			self.tools[state_as_string].row.set_active(True)
-		self.enable_tool(state_as_string, True)
 
 	def enable_tool(self, new_tool_id, should_give_back_control):
 		former_tool_id_2 = self.former_tool_id
@@ -446,13 +446,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.former_tool_id = former_tool_id_2
 
 	def update_bottom_panel(self):
-		self.adapt_to_window_size() # XXX redondant ?
 		self.build_options_menu()
+		self.former_tool().show_panel(False)
 		self.active_tool().show_panel(True)
-		if self.former_tool().implements_panel or self.active_tool().implements_panel:
-			self.former_tool().show_panel(False)
-		elif not self.active_tool().implements_panel:
-			self.update_size_spinbtn_state()
+		self.update_size_spinbtn_state()
 		self.adapt_to_window_size()
 
 	def active_tool(self):

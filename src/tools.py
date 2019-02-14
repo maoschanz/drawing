@@ -15,6 +15,7 @@ class ToolTemplate():
 		self.is_hidden = is_hidden
 		self.tool_width = 10
 		self.selection_is_active = False
+		self.use_size = False
 		self.build_row()
 		self.window = window
 		self.need_temp_pixbuf = False
@@ -51,13 +52,13 @@ class ToolTemplate():
 
 	def show_panel(self, visibility):
 		if self.implements_panel:
+			self.window.bottom_panel.set_visible(not visibility)
 			self.bottom_panel.set_visible(visibility)
 		else:
-			self.window.bottom_panel.set_visible(visibility)
+			self.window.bottom_panel.set_visible(True)
 
 	def add_item_to_menu(self, tools_menu):
-		if not self.is_hidden:
-			tools_menu.append(self.label, 'win.active_tool::' + self.id)
+		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
 		return None
@@ -118,7 +119,7 @@ class ToolTemplate():
 		self.apply_to_pixbuf()
 		self.get_image().add_operation_to_history(operation)
 
-	#
+	# Miscellaneous
 
 	def get_image(self):
 		return self.window.get_active_image()

@@ -288,10 +288,8 @@ class ToolSelect(ToolTemplate):
 
 	def try_edit(self, tool_id):
 		if self.selection_is_active:
-			print('tool hijack')
 			self.window.hijack_begin(self.id, tool_id)
 		else:
-			print('tool change')
 			self.window.tools[tool_id].row.set_active(True)
 
 ############################## XXX pour toute cette section, ne peut-on pas donner le contexte en paramètre ?
