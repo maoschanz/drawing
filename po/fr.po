@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.Drawing 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-15 01:00+0100\n"
+"POT-Creation-Date: 2019-02-15 17:57+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 3.30.1\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:277
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:287
 msgid "Drawing"
 msgstr "Dessin"
 
@@ -30,19 +30,23 @@ msgstr "Utilitaire simple pour le dessin"
 msgid "com.github.maoschanz.Drawing"
 msgstr ""
 
-#: src/ui/window.ui:107 src/ui/shortcuts.ui:78 src/ui/app-menus.ui:212
+#: src/ui/window.ui:36
+msgid "Error starting the application, please report this bug."
+msgstr "Erreur au démarrage de l'application, veuillez reporter ce problème."
+
+#: src/ui/window.ui:126 src/ui/shortcuts.ui:78 src/ui/app-menus.ui:212
 msgid "Exchange colors"
 msgstr "Échanger les couleurs"
 
-#: src/ui/window.ui:136
+#: src/ui/window.ui:155
 msgid "Tool size"
 msgstr "Taille de l'outil"
 
-#: src/ui/window.ui:154 src/tools.py:73
+#: src/ui/window.ui:173 src/tools.py:73
 msgid "No options"
 msgstr "Pas d'options"
 
-#: src/ui/window.ui:202
+#: src/ui/window.ui:221
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -108,11 +112,11 @@ msgstr "Chemin"
 msgid "Format"
 msgstr "Format"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:272
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:282
 msgid "Unsaved file"
 msgstr "Fichier non enregistré"
 
-#: src/ui/properties.ui:87 src/properties.py:81
+#: src/ui/properties.ui:87 src/properties.py:94
 msgid "Invalid format"
 msgstr "Format invalide"
 
@@ -150,13 +154,13 @@ msgstr "Fenêtres"
 
 #: src/ui/shortcuts.ui:16 src/ui/app-menus.ui:9 src/ui/app-menus.ui:50
 #: src/ui/win-menus.ui:13 src/ui/win-menus.ui:163 src/ui/toolbar.ui:28
-#: src/ui/toolbar.ui:29 src/window.py:503
+#: src/ui/toolbar.ui:29 src/window.py:516
 msgid "New window"
 msgstr "Nouvelle fenêtre"
 
 #: src/ui/shortcuts.ui:23 src/ui/app-menus.ui:55 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:159 src/ui/toolbar.ui:16 src/ui/toolbar.ui:17
-#: src/window.py:502
+#: src/window.py:515
 msgid "New tab"
 msgstr "Nouvel onglet"
 
@@ -195,7 +199,7 @@ msgid "Open an image"
 msgstr "Ouvrir une image"
 
 #: src/ui/shortcuts.ui:98 src/ui/app-menus.ui:69 src/ui/toolbar.ui:130
-#: src/ui/toolbar.ui:131 src/window.py:577 src/window.py:600
+#: src/ui/toolbar.ui:131 src/window.py:592 src/window.py:615
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -233,7 +237,7 @@ msgstr "Coller"
 
 #: src/ui/shortcuts.ui:153 src/ui/app-menus.ui:128 src/ui/win-menus.ui:24
 #: src/ui/win-menus.ui:174 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
-#: src/window.py:666 src/tools/ui/tool_select.ui:41
+#: src/window.py:681 src/tools/ui/tool_select.ui:41
 msgid "Import"
 msgstr "Importer"
 
@@ -372,7 +376,7 @@ msgstr "Éditeur de couleurs par défaut"
 msgid "_Tools"
 msgstr "Ou_tils"
 
-#: src/ui/app-menus.ui:232 src/window.py:775 src/window.py:778
+#: src/ui/app-menus.ui:232 src/window.py:790 src/window.py:793
 msgid "_Options"
 msgstr "_Options"
 
@@ -389,7 +393,7 @@ msgstr "Sommaire"
 msgid "About Drawing"
 msgstr "À propos de Dessin"
 
-#: src/ui/toolbar.ui:42 src/window.py:529
+#: src/ui/toolbar.ui:42 src/window.py:541
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -409,68 +413,73 @@ msgstr "Une application de dessin pour le bureau GNOME."
 msgid "Report bugs or ideas"
 msgstr "Rapporter des bugs ou des idées"
 
-#: src/window.py:290
+#: src/window.py:300
 msgid "No options for this tool"
 msgstr "Pas d'option pour cet outil"
 
-#: src/window.py:500 src/window.py:573
+#: src/window.py:510
+#, python-format
+msgid "Loading %s"
+msgstr "Chargement de %s"
+
+#: src/window.py:513 src/window.py:588
 msgid "Unsaved changes"
 msgstr "Changements non enregistrés"
 
-#: src/window.py:504
+#: src/window.py:517
 msgid "Discard changes"
 msgstr "Abandonner les modifications"
 
-#: src/window.py:505 src/window.py:578
+#: src/window.py:518 src/window.py:593
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Il y a des modifications non-enregistrées à %s."
 
-#: src/window.py:510
+#: src/window.py:522
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Où souhaitez-vous ouvrir %s ?"
 
-#: src/window.py:527
+#: src/window.py:539
 msgid "Open a picture"
 msgstr "Ouvrir une image"
 
-#: src/window.py:530 src/window.py:575 src/window.py:601 src/window.py:667
+#: src/window.py:542 src/window.py:590 src/window.py:616 src/window.py:682
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_scale.ui:27
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_saturate.ui:20 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/window.py:532 src/window.py:604 src/window.py:669
+#: src/window.py:544 src/window.py:619 src/window.py:684
 msgid "All pictures"
 msgstr "Toutes les images"
 
-#: src/window.py:570 src/window.py:637
+#: src/window.py:585 src/window.py:652
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: src/window.py:576
+#: src/window.py:591
 msgid "Discard"
 msgstr "Abandonner"
 
-#: src/window.py:598
+#: src/window.py:613
 msgid "Save picture as…"
 msgstr "Enregistrer l'image sous…"
 
-#: src/window.py:610
+#: src/window.py:625
 msgid "PNG images"
 msgstr "Images PNG"
 
-#: src/window.py:614
+#: src/window.py:629
 msgid "JPEG images"
 msgstr "Images JPEG"
 
-#: src/window.py:618
+#: src/window.py:633
 msgid "BMP images"
 msgstr "Images BMP"
 
-#: src/window.py:664
+#: src/window.py:679
 msgid "Import a picture"
 msgstr "Importer une image"
 
@@ -494,7 +503,7 @@ msgstr "Barre de boutons"
 msgid "Everything (testing only)"
 msgstr "Tout (ne pas utiliser)"
 
-#: src/properties.py:84
+#: src/properties.py:97
 msgid ""
 "This surface format already supports transparency, but you can still replace "
 "a color with transparency."
@@ -502,13 +511,14 @@ msgstr ""
 "Ce format de surface supporte déjà la transparence, mais vous pouvez quand "
 "même remplacer une couleur par de la transparence."
 
-#: src/properties.py:88
+#: src/properties.py:102
 msgid ""
 "This surface format doesn't support transparency, you can add an alpha "
 "channel, optionally by replacing a color."
 msgstr ""
 "Ce format de surface ne supporte pas la transparence, vous pouvez ajouter un "
-"canal alpha, optionnellement en remplaçant une couleur par de la transparence."
+"canal alpha, optionnellement en remplaçant une couleur par de la "
+"transparence."
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_scale.ui:117
 #: src/tools/ui/tool_rotate.ui:88 src/tools/ui/tool_flip.ui:65

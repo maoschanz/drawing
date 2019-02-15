@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-15 01:00+0100\n"
+"POT-Creation-Date: 2019-02-15 17:57+0100\n"
 "PO-Revision-Date: 2019-02-07 23:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:277
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:287
 msgid "Drawing"
 msgstr "Çizim"
 
@@ -30,19 +30,23 @@ msgstr "Basit çizim aracı"
 msgid "com.github.maoschanz.Drawing"
 msgstr ""
 
-#: src/ui/window.ui:107 src/ui/shortcuts.ui:78 src/ui/app-menus.ui:212
+#: src/ui/window.ui:36
+msgid "Error starting the application, please report this bug."
+msgstr ""
+
+#: src/ui/window.ui:126 src/ui/shortcuts.ui:78 src/ui/app-menus.ui:212
 msgid "Exchange colors"
 msgstr "Değişim renkleri"
 
-#: src/ui/window.ui:136
+#: src/ui/window.ui:155
 msgid "Tool size"
 msgstr "Araç boyutu"
 
-#: src/ui/window.ui:154 src/tools.py:73
+#: src/ui/window.ui:173 src/tools.py:73
 msgid "No options"
 msgstr "Seçenek yok"
 
-#: src/ui/window.ui:202
+#: src/ui/window.ui:221
 msgid "Preview"
 msgstr "Önizle"
 
@@ -108,11 +112,11 @@ msgstr "Yol"
 msgid "Format"
 msgstr "Biçim"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:272
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:282
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
 
-#: src/ui/properties.ui:87 src/properties.py:81
+#: src/ui/properties.ui:87 src/properties.py:94
 msgid "Invalid format"
 msgstr "Geçersiz biçim"
 
@@ -150,13 +154,13 @@ msgstr "Pencereler"
 
 #: src/ui/shortcuts.ui:16 src/ui/app-menus.ui:9 src/ui/app-menus.ui:50
 #: src/ui/win-menus.ui:13 src/ui/win-menus.ui:163 src/ui/toolbar.ui:28
-#: src/ui/toolbar.ui:29 src/window.py:503
+#: src/ui/toolbar.ui:29 src/window.py:516
 msgid "New window"
 msgstr "Yeni pencere"
 
 #: src/ui/shortcuts.ui:23 src/ui/app-menus.ui:55 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:159 src/ui/toolbar.ui:16 src/ui/toolbar.ui:17
-#: src/window.py:502
+#: src/window.py:515
 msgid "New tab"
 msgstr "Yeni sekme"
 
@@ -195,7 +199,7 @@ msgid "Open an image"
 msgstr "Bir görüntü aç"
 
 #: src/ui/shortcuts.ui:98 src/ui/app-menus.ui:69 src/ui/toolbar.ui:130
-#: src/ui/toolbar.ui:131 src/window.py:577 src/window.py:600
+#: src/ui/toolbar.ui:131 src/window.py:592 src/window.py:615
 msgid "Save"
 msgstr "Kaydet"
 
@@ -233,7 +237,7 @@ msgstr "Yapıştır"
 
 #: src/ui/shortcuts.ui:153 src/ui/app-menus.ui:128 src/ui/win-menus.ui:24
 #: src/ui/win-menus.ui:174 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
-#: src/window.py:666 src/tools/ui/tool_select.ui:41
+#: src/window.py:681 src/tools/ui/tool_select.ui:41
 msgid "Import"
 msgstr "İçeri aktar"
 
@@ -374,7 +378,7 @@ msgstr "Varsayılan olarak renk düzenleyici"
 msgid "_Tools"
 msgstr "_Araçlar"
 
-#: src/ui/app-menus.ui:232 src/window.py:775 src/window.py:778
+#: src/ui/app-menus.ui:232 src/window.py:790 src/window.py:793
 msgid "_Options"
 msgstr "_Seçenekler"
 
@@ -391,7 +395,7 @@ msgstr "Özet"
 msgid "About Drawing"
 msgstr "Çizim Hakkında"
 
-#: src/ui/toolbar.ui:42 src/window.py:529
+#: src/ui/toolbar.ui:42 src/window.py:541
 msgid "Open"
 msgstr "Aç"
 
@@ -411,68 +415,73 @@ msgstr "GNOME masaüstü için bir çizim uygulaması."
 msgid "Report bugs or ideas"
 msgstr "Hataları veya fikirleri bildirin"
 
-#: src/window.py:290
+#: src/window.py:300
 msgid "No options for this tool"
 msgstr "Bu araç için seçenek yok"
 
-#: src/window.py:500 src/window.py:573
+#: src/window.py:510
+#, python-format
+msgid "Loading %s"
+msgstr ""
+
+#: src/window.py:513 src/window.py:588
 msgid "Unsaved changes"
 msgstr "Kaydedilmemiş değişiklikler"
 
-#: src/window.py:504
+#: src/window.py:517
 msgid "Discard changes"
 msgstr "Değişiklikleri yoksay"
 
-#: src/window.py:505 src/window.py:578
+#: src/window.py:518 src/window.py:593
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Kaydedilmemiş değişiklikler var %s."
 
-#: src/window.py:510
+#: src/window.py:522
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Nerede açmak istiyorsunuz %s?"
 
-#: src/window.py:527
+#: src/window.py:539
 msgid "Open a picture"
 msgstr "Bir resim aç"
 
-#: src/window.py:530 src/window.py:575 src/window.py:601 src/window.py:667
+#: src/window.py:542 src/window.py:590 src/window.py:616 src/window.py:682
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_scale.ui:27
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_saturate.ui:20 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/window.py:532 src/window.py:604 src/window.py:669
+#: src/window.py:544 src/window.py:619 src/window.py:684
 msgid "All pictures"
 msgstr "Tüm resimler"
 
-#: src/window.py:570 src/window.py:637
+#: src/window.py:585 src/window.py:652
 msgid "Untitled"
 msgstr "Başlıksız"
 
-#: src/window.py:576
+#: src/window.py:591
 msgid "Discard"
 msgstr "Yoksay"
 
-#: src/window.py:598
+#: src/window.py:613
 msgid "Save picture as…"
 msgstr "Resmi farklı kaydet…"
 
-#: src/window.py:610
+#: src/window.py:625
 msgid "PNG images"
 msgstr "PNG görüntüleri"
 
-#: src/window.py:614
+#: src/window.py:629
 msgid "JPEG images"
 msgstr "JPEG görüntüleri"
 
-#: src/window.py:618
+#: src/window.py:633
 msgid "BMP images"
 msgstr "BMP görüntüleri"
 
-#: src/window.py:664
+#: src/window.py:679
 msgid "Import a picture"
 msgstr "Bir resmi içe aktar"
 
@@ -496,13 +505,13 @@ msgstr "Sadece araç çubuğu"
 msgid "Everything (testing only)"
 msgstr "Her şey (sadece test)"
 
-#: src/properties.py:84
+#: src/properties.py:97
 msgid ""
 "This surface format already supports transparency, but you can still replace "
 "a color with transparency."
 msgstr ""
 
-#: src/properties.py:88
+#: src/properties.py:102
 msgid ""
 "This surface format doesn't support transparency, you can add an alpha "
 "channel, optionally by replacing a color."

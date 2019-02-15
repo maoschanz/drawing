@@ -28,7 +28,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	stack_switcher = GtkTemplate.Child()
 
 	background_color_btn = GtkTemplate.Child()
-	experimental_switch = GtkTemplate.Child()
+	devel_switch = GtkTemplate.Child()
 	preview_btn = GtkTemplate.Child()
 	width_btn = GtkTemplate.Child()
 	height_btn = GtkTemplate.Child()
@@ -56,8 +56,8 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.background_color_btn.set_rgba(color)
 		self.background_color_btn.connect('color-set', self.on_background_changed)
 
-		self.experimental_switch.set_active(self._settings.get_boolean('experimental'))
-		self.experimental_switch.connect('notify::active', self.on_experimental_changed)
+		self.devel-only_switch.set_active(self._settings.get_boolean('devel-only'))
+		self.devel_switch.connect('notify::active', self.on_devel_changed)
 
 		self.add_alpha_switch.set_active(self._settings.get_boolean('add-alpha'))
 		self.add_alpha_switch.connect('notify::active', self.on_alpha_changed)
@@ -75,13 +75,13 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.layout_combobox.append('ssd', _("Legacy"))
 		self.layout_combobox.append('ssd-menubar', _("Menubar only"))
 		self.layout_combobox.append('ssd-toolbar', _("Toolbar only"))
-		if self._settings.get_boolean('experimental'):
+		if self._settings.get_boolean('devel-only'):
 			self.layout_combobox.append('everything', _("Everything (testing only)"))
 		self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
 		self.layout_combobox.connect('changed', self.on_layout_changed)
 
-	def on_experimental_changed(self, w, a):
-		self._settings.set_boolean('experimental', w.get_active())
+	def on_devel_changed(self, w, a):
+		self._settings.set_boolean('devel-only', w.get_active())
 
 	def on_alpha_changed(self, w, a):
 		self._settings.set_boolean('add-alpha', w.get_active())

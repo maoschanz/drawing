@@ -49,6 +49,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	tools_panel = GtkTemplate.Child()
 	toolbar_box = GtkTemplate.Child()
+	info_bar = GtkTemplate.Child()
+	info_label = GtkTemplate.Child()
 	notebook = GtkTemplate.Child()
 	bottom_panel_box = GtkTemplate.Child()
 
@@ -92,6 +94,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()
+		self.prompt_message(False, 'window successfully started')
 
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
@@ -104,7 +107,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['line'] = ToolLine(self)
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
-		if self._settings.get_boolean('experimental'):
+		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
 			self.tools['paint'] = ToolPaint(self)
 			self.tools['replace'] = ToolReplace(self)
@@ -157,6 +160,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.image_list.pop(index)
 		self.update_tabs_visibility()
 		return True
+
+	def prompt_message(self, show, label):
+		self.info_bar.set_visible(show)
+		if show:
+			self.info_label.set_label(label)
+		if self._settings.get_boolean('devel-only'):
+			print('Drawing: ' + label)
 
 	def update_tabs_visibility(self):
 		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
@@ -254,7 +264,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app.add_action_boolean('use_editor', \
 			self._settings.get_boolean('direct-color-edit'), self.action_use_editor)
 
-		if self._settings.get_boolean('experimental'):
+		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore_pixbuf)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild_from_histo)
 
@@ -496,6 +506,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_open()
 		if gfile is None:
 			return
+		else:
+			self.prompt_message(True, _("Loading %s") % \
+				(gfile.get_path().split('/')[-1]))
 		if not self.get_active_image()._is_saved:
 			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved changes"), \
 				transient_for=self)
@@ -503,13 +516,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.add_button(_("New window"), Gtk.ResponseType.ACCEPT)
 			dialog.add_button(_("Discard changes"), Gtk.ResponseType.APPLY)
 			label1 = Gtk.Label( label=( _("There are unsaved modifications to %s.") % \
-				self.get_active_image().get_filename_for_display() ) )
-			label1.set_ellipsize(Pango.EllipsizeMode.END) # FIXME
+				self.get_active_image().get_filename_for_display() ), wrap=True)
 			dialog.get_message_area().add(label1)
 			label2 = Gtk.Label( \
 				label=(_("Where do you want to open %s?") %  \
-				(gfile.get_path().split('/')[-1])) )
-			label2.set_ellipsize(Pango.EllipsizeMode.END) # FIXME
+				(gfile.get_path().split('/')[-1])), wrap=True) # FIXME
 			dialog.get_message_area().add(label2)
 			dialog.show_all()
 			result = dialog.run()
@@ -518,6 +529,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			elif result == Gtk.ResponseType.ACCEPT:
 				self.app.open_window_with_file(gfile)
 				dialog.destroy()
+				self.prompt_message(False, 'load the file in a new window')
 				return
 			dialog.destroy()
 		self.try_load_file(gfile)
@@ -561,8 +573,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def try_load_file(self, gfile):
 		if gfile is not None:
 			self.get_active_image().try_load_file(gfile)
+		self.prompt_message(False, 'file successfully loaded')
 
 	def confirm_save_modifs(self):
+		"""Return True if the image can be closed/overwritten (whether it's saved
+		or not), or False if the image can't be closed/overwritten."""
 		if self.get_active_image()._is_saved:
 			return True
 		fn = self.get_file_path()
@@ -799,3 +814,4 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_go_right(self, *args):
 		self.get_active_image().add_deltas(1, 0, 100)
+

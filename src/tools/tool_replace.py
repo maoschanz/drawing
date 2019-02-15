@@ -38,7 +38,7 @@ class ToolReplace(ToolTemplate):
 			pb = self.get_main_pixbuf()
 			pb = temporary_pixbuf
 			i = i+1
-		self.window.use_stable_pixbuf()
+		self.get_image().use_stable_pixbuf()
 		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(cairo.Operator.DEST_OVER)
 		w_context.set_source_rgba(self.new_color.red, self.new_color.green, self.new_color.blue, self.new_color.alpha)

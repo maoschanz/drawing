@@ -36,25 +36,39 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 
-		label_path = builder.get_object('label_path')
-		label_format_file = builder.get_object('label_format_file')
-		self.label_format_surface = builder.get_object('label_format_surface')
-		self.label_width = builder.get_object('label_width')
-		self.label_height = builder.get_object('label_height')
+		# Alpha channel
+
+		self.label_alpha_info = builder.get_object('label_alpha_info')
 
 		self.toggle_alpha = builder.get_object('add_alpha_toggle')
 		self.toggle_alpha.connect('toggled', self.set_alpha_widgets_visibility)
 
-		self.label_alpha_info = builder.get_object('label_alpha_info')
-		self.switch_alpha_color = builder.get_object('switch_alpha_color') # TODO
-		self.button_alpha_color = builder.get_object('button_alpha_color') # TODO
-		self.add_alpha_button = builder.get_object('add_alpha_button') # TODO
-		self.toggle_alpha.set_sensitive(False) # XXX temporary
+		self.switch_alpha_color = builder.get_object('switch_alpha_color')
+		self.switch_alpha_color.connect('state-set', self.set_color_btn_sensitivity)
+
+		self.button_alpha_color = builder.get_object('button_alpha_color')
+		self.button_alpha_color.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
+
+		self.add_alpha_button = builder.get_object('add_alpha_button')
+		self.add_alpha_button.connect('clicked', self.add_alpha_to_image)
+
+		# Path and format
+
+		label_path = builder.get_object('label_path')
+		label_format_file = builder.get_object('label_format_file')
+		self.label_format_surface = builder.get_object('label_format_surface')
 
 		if self._image.gfile is not None:
 			label_path.set_label(self._image.get_file_path())
 			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._image.get_file_path())
 			label_format_file.set_label(pb_format.get_name())
+
+		self.set_format_label()
+
+		# Size (and size unit)
+
+		self.label_width = builder.get_object('label_width')
+		self.label_height = builder.get_object('label_height')
 
 		self.unit = ' px'
 		btn_px = builder.get_object('units_pixels')
@@ -66,7 +80,6 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		btn_cm.connect('toggled', self.set_unit, ' cm')
 		btn_in.connect('toggled', self.set_unit, ' in')
 
-		self.set_format_label()
 		self.set_size_labels()
 
 	def set_format_label(self):
@@ -84,9 +97,12 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			self.label_alpha_info.set_label(_("This surface format already supports transparency, " + \
 				"but you can still replace a color with transparency."))
 			self.switch_alpha_color.set_active(True)
+			self.switch_alpha_color.set_visible(False)
 		else:
 			self.label_alpha_info.set_label(_("This surface format doesn't support transparency, " + \
 				"you can add an alpha channel, optionally by replacing a color."))
+			self.switch_alpha_color.set_active(False)
+			self.switch_alpha_color.set_visible(True)
 
 	def set_size_labels(self):
 		px_width = self._image.get_pixbuf_width()
@@ -106,14 +122,24 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 	def set_alpha_widgets_visibility(self, *args):
 		visible = args[0].get_active()
 		self.label_alpha_info.set_visible(visible)
-		self.switch_alpha_color.set_visible(visible)
 		self.button_alpha_color.set_visible(visible)
 		self.add_alpha_button.set_visible(visible)
 
-	def set_unit(self,*args):
+	def set_unit(self, *args):
 		self.unit = args[1]
 		self.set_size_labels()
 
+	def set_color_btn_sensitivity(self, *args):
+		want_color = self.switch_alpha_color.get_active()
+		self.button_alpha_color.set_sensitive(want_color)
 
-
+	def add_alpha_to_image(self, *args):
+		want_color = self.switch_alpha_color.get_active()
+		red = int( self.button_alpha_color.get_rgba().red * 255 )
+		green = int( self.button_alpha_color.get_rgba().green * 255 )
+		blue = int( self.button_alpha_color.get_rgba().blue * 255 )
+		self._image.main_pixbuf = self._image.main_pixbuf.add_alpha(want_color, \
+			red, green, blue)
+		self._image.use_stable_pixbuf()
+		self._image.queue_draw()
 
