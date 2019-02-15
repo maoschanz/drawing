@@ -31,14 +31,14 @@ class ToolReplace(ToolTemplate):
 			red = max(0, self.old_color[0]+i)
 			green = max(0, self.old_color[1]+i)
 			blue = max(0, self.old_color[2]+i)
-			red = min(255, red)
-			green = min(255, green)
-			blue = min(255, blue)
+			red = int( min(255, red) )
+			green = int( min(255, green) )
+			blue = int( min(255, blue) )
 			temporary_pixbuf = self.get_main_pixbuf().add_alpha(True, red, green, blue)
-			pb = self.get_main_pixbuf()
-			pb = temporary_pixbuf
+			self.get_image().main_pixbuf = temporary_pixbuf
 			i = i+1
-		self.get_image().use_stable_pixbuf()
+		self.restore_pixbuf()
+		self.non_destructive_show_modif()
 		w_context = cairo.Context(self.get_surface())
 		w_context.set_operator(cairo.Operator.DEST_OVER)
 		w_context.set_source_rgba(self.new_color.red, self.new_color.green, self.new_color.blue, self.new_color.alpha)

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 from .gi_composites import GtkTemplate
 
@@ -591,8 +591,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
 		dialog.add_button(_("Save"), Gtk.ResponseType.APPLY)
 		label1 = Gtk.Label( label=( _("There are unsaved modifications to %s.") % \
-			self.get_active_image().get_filename_for_display() ) )
-		label1.set_ellipsize(Pango.EllipsizeMode.END) # FIXME
+			self.get_active_image().get_filename_for_display() ), wrap=True)
 		dialog.get_message_area().add(label1)
 		dialog.show_all()
 		dialog.set_size_request(0, 0)
