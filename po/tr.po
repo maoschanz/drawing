@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-14 20:35+0100\n"
+"POT-Creation-Date: 2019-02-15 01:00+0100\n"
 "PO-Revision-Date: 2019-02-07 23:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -76,27 +76,27 @@ msgstr "Açılan görüntüler"
 msgid "Always add transparency"
 msgstr "Daima şeffaflık ekle"
 
-#: src/ui/preferences.ui:222 src/ui/shortcuts.ui:87
+#: src/ui/preferences.ui:221 src/ui/shortcuts.ui:87
 msgid "Image"
 msgstr "Görüntü"
 
-#: src/ui/preferences.ui:237
+#: src/ui/preferences.ui:236
 msgid "User interface"
 msgstr "Kullanıcı arayüzü"
 
-#: src/ui/preferences.ui:255
+#: src/ui/preferences.ui:254
 msgid "Layout"
 msgstr "Düzen"
 
-#: src/ui/preferences.ui:287 src/ui/preferences.ui:298
+#: src/ui/preferences.ui:286 src/ui/preferences.ui:297
 msgid "Preview size"
 msgstr "Önizleme boyutu"
 
-#: src/ui/preferences.ui:328
+#: src/ui/preferences.ui:327
 msgid "Experimental features"
 msgstr "Deneysel özellikler"
 
-#: src/ui/preferences.ui:353
+#: src/ui/preferences.ui:352
 msgid "Other"
 msgstr "Diğer"
 
@@ -112,21 +112,37 @@ msgstr "Biçim"
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
 
-#: src/ui/properties.ui:79 src/properties.py:58
+#: src/ui/properties.ui:87 src/properties.py:81
 msgid "Invalid format"
 msgstr "Geçersiz biçim"
 
-#: src/ui/properties.ui:107 src/tools/ui/tool_crop.ui:55
+#: src/ui/properties.ui:163
+msgid "Add"
+msgstr ""
+
+#: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
 #: src/tools/ui/tool_scale.ui:78
 msgid "Width"
 msgstr "Genişlik"
 
-#: src/ui/properties.ui:136 src/tools/ui/tool_crop.ui:82
+#: src/ui/properties.ui:217 src/tools/ui/tool_crop.ui:82
 #: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:97
 #: src/tools/ui/tool_scale.ui:105
 msgid "Height"
 msgstr "Yükseklik"
+
+#: src/ui/properties.ui:253
+msgid "pixels"
+msgstr ""
+
+#: src/ui/properties.ui:259
+msgid "centimeters"
+msgstr ""
+
+#: src/ui/properties.ui:265
+msgid "inches"
+msgstr ""
 
 #: src/ui/shortcuts.ui:12
 msgid "Windows"
@@ -460,25 +476,37 @@ msgstr "BMP görüntüleri"
 msgid "Import a picture"
 msgstr "Bir resmi içe aktar"
 
-#: src/preferences.py:70
+#: src/preferences.py:73
 msgid "Compact"
 msgstr "Yoğun"
 
-#: src/preferences.py:72
+#: src/preferences.py:75
 msgid "Legacy"
 msgstr "Eski"
 
-#: src/preferences.py:73
+#: src/preferences.py:76
 msgid "Menubar only"
 msgstr "Sadece menü çubuğu"
 
-#: src/preferences.py:74
+#: src/preferences.py:77
 msgid "Toolbar only"
 msgstr "Sadece araç çubuğu"
 
-#: src/preferences.py:76
+#: src/preferences.py:79
 msgid "Everything (testing only)"
 msgstr "Her şey (sadece test)"
+
+#: src/properties.py:84
+msgid ""
+"This surface format already supports transparency, but you can still replace "
+"a color with transparency."
+msgstr ""
+
+#: src/properties.py:88
+msgid ""
+"This surface format doesn't support transparency, you can add an alpha "
+"channel, optionally by replacing a color."
+msgstr ""
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_scale.ui:117
 #: src/tools/ui/tool_rotate.ui:88 src/tools/ui/tool_flip.ui:65
@@ -822,4 +850,3 @@ msgstr "Metin"
 
 #~ msgid "Other actions"
 #~ msgstr "Diğer eylemler"
-

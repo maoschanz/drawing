@@ -27,8 +27,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			transient_for=window, title=_("Image properties"))
 		self._image = image
 		self.build_ui()
-		self.set_default_size(400, 200)
-		self.show_all()
+		self.set_default_size(350, 200)
+		self.show()
 
 	def build_ui(self):
 		"""Fill the dialog with labels displaying correct informations."""
@@ -38,15 +38,38 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 		label_path = builder.get_object('label_path')
 		label_format_file = builder.get_object('label_format_file')
-		label_format_surface = builder.get_object('label_format_surface')
+		self.label_format_surface = builder.get_object('label_format_surface')
 		self.label_width = builder.get_object('label_width')
 		self.label_height = builder.get_object('label_height')
+
+		self.toggle_alpha = builder.get_object('add_alpha_toggle')
+		self.toggle_alpha.connect('toggled', self.set_alpha_widgets_visibility)
+
+		self.label_alpha_info = builder.get_object('label_alpha_info')
+		self.switch_alpha_color = builder.get_object('switch_alpha_color') # TODO
+		self.button_alpha_color = builder.get_object('button_alpha_color') # TODO
+		self.add_alpha_button = builder.get_object('add_alpha_button') # TODO
+		self.toggle_alpha.set_sensitive(False) # XXX temporary
 
 		if self._image.gfile is not None:
 			label_path.set_label(self._image.get_file_path())
 			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._image.get_file_path())
 			label_format_file.set_label(pb_format.get_name())
 
+		self.unit = ' px'
+		btn_px = builder.get_object('units_pixels')
+		btn_in = builder.get_object('units_inches')
+		btn_cm = builder.get_object('units_cm')
+		btn_in.join_group(btn_px)
+		btn_cm.join_group(btn_px)
+		btn_px.connect('toggled', self.set_unit, ' px')
+		btn_cm.connect('toggled', self.set_unit, ' cm')
+		btn_in.connect('toggled', self.set_unit, ' in')
+
+		self.set_format_label()
+		self.set_size_labels()
+
+	def set_format_label(self):
 		enum = {
 			0: 'ARGB32',
 			1: 'RGB24',
@@ -55,11 +78,42 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			4: 'RGB16_565',
 			5: 'RGB30',
 		}
-		label_format_surface.set_label(enum.get(self._image.get_surface().get_format(), _("Invalid format")))
-		self.set_size_labels()
+		cairo_format = enum.get(self._image.get_surface().get_format(), _("Invalid format"))
+		self.label_format_surface.set_label(cairo_format)
+		if cairo_format is 'ARGB32':
+			self.label_alpha_info.set_label(_("This surface format already supports transparency, " + \
+				"but you can still replace a color with transparency."))
+			self.switch_alpha_color.set_active(True)
+		else:
+			self.label_alpha_info.set_label(_("This surface format doesn't support transparency, " + \
+				"you can add an alpha channel, optionally by replacing a color."))
 
 	def set_size_labels(self):
-		self.label_width.set_label(str(self._image.get_pixbuf_width()) + ' px')
-		self.label_height.set_label(str(self._image.get_pixbuf_height()) + ' px')
+		px_width = self._image.get_pixbuf_width()
+		px_height = self._image.get_pixbuf_height()
+		if self.unit == ' in':
+			width = round(px_width/96.0, 2)
+			height = round(px_height/96.0, 2)
+		elif self.unit == ' cm':
+			width = round(px_width/37.795275591, 2)
+			height = round(px_height/37.795275591, 2)
+		else:
+			width = px_width
+			height = px_height
+		self.label_width.set_label(str(width) + self.unit)
+		self.label_height.set_label(str(height) + self.unit)
 
-	# TODO here, a button to add transparency
+	def set_alpha_widgets_visibility(self, *args):
+		visible = args[0].get_active()
+		self.label_alpha_info.set_visible(visible)
+		self.switch_alpha_color.set_visible(visible)
+		self.button_alpha_color.set_visible(visible)
+		self.add_alpha_button.set_visible(visible)
+
+	def set_unit(self,*args):
+		self.unit = args[1]
+		self.set_size_labels()
+
+
+
+

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.Drawing 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-14 20:35+0100\n"
+"POT-Creation-Date: 2019-02-15 01:00+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -76,27 +76,27 @@ msgstr "Images ouvertes"
 msgid "Always add transparency"
 msgstr "Ajouter de la transparence"
 
-#: src/ui/preferences.ui:222 src/ui/shortcuts.ui:87
+#: src/ui/preferences.ui:221 src/ui/shortcuts.ui:87
 msgid "Image"
 msgstr "Image"
 
-#: src/ui/preferences.ui:237
+#: src/ui/preferences.ui:236
 msgid "User interface"
 msgstr "Interface"
 
-#: src/ui/preferences.ui:255
+#: src/ui/preferences.ui:254
 msgid "Layout"
 msgstr "Organisation"
 
-#: src/ui/preferences.ui:287 src/ui/preferences.ui:298
+#: src/ui/preferences.ui:286 src/ui/preferences.ui:297
 msgid "Preview size"
 msgstr "Taille de l'aperçu"
 
-#: src/ui/preferences.ui:328
+#: src/ui/preferences.ui:327
 msgid "Experimental features"
 msgstr "Fonctionnalités expérimentales"
 
-#: src/ui/preferences.ui:353
+#: src/ui/preferences.ui:352
 msgid "Other"
 msgstr "Autre"
 
@@ -112,21 +112,37 @@ msgstr "Format"
 msgid "Unsaved file"
 msgstr "Fichier non enregistré"
 
-#: src/ui/properties.ui:79 src/properties.py:58
+#: src/ui/properties.ui:87 src/properties.py:81
 msgid "Invalid format"
 msgstr "Format invalide"
 
-#: src/ui/properties.ui:107 src/tools/ui/tool_crop.ui:55
+#: src/ui/properties.ui:163
+msgid "Add"
+msgstr "Ajouter"
+
+#: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
 #: src/tools/ui/tool_scale.ui:78
 msgid "Width"
 msgstr "Largeur"
 
-#: src/ui/properties.ui:136 src/tools/ui/tool_crop.ui:82
+#: src/ui/properties.ui:217 src/tools/ui/tool_crop.ui:82
 #: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:97
 #: src/tools/ui/tool_scale.ui:105
 msgid "Height"
 msgstr "Hauteur"
+
+#: src/ui/properties.ui:253
+msgid "pixels"
+msgstr "pixels"
+
+#: src/ui/properties.ui:259
+msgid "centimeters"
+msgstr "centimètres"
+
+#: src/ui/properties.ui:265
+msgid "inches"
+msgstr "pouces"
 
 #: src/ui/shortcuts.ui:12
 msgid "Windows"
@@ -458,25 +474,41 @@ msgstr "Images BMP"
 msgid "Import a picture"
 msgstr "Importer une image"
 
-#: src/preferences.py:70
+#: src/preferences.py:73
 msgid "Compact"
 msgstr "Compacte"
 
-#: src/preferences.py:72
+#: src/preferences.py:75
 msgid "Legacy"
 msgstr "Traditionnelle"
 
-#: src/preferences.py:73
+#: src/preferences.py:76
 msgid "Menubar only"
 msgstr "Barre de menus"
 
-#: src/preferences.py:74
+#: src/preferences.py:77
 msgid "Toolbar only"
 msgstr "Barre de boutons"
 
-#: src/preferences.py:76
+#: src/preferences.py:79
 msgid "Everything (testing only)"
 msgstr "Tout (ne pas utiliser)"
+
+#: src/properties.py:84
+msgid ""
+"This surface format already supports transparency, but you can still replace "
+"a color with transparency."
+msgstr ""
+"Ce format de surface supporte déjà la transparence, mais vous pouvez quand "
+"même remplacer une couleur par de la transparence."
+
+#: src/properties.py:88
+msgid ""
+"This surface format doesn't support transparency, you can add an alpha "
+"channel, optionally by replacing a color."
+msgstr ""
+"Ce format de surface ne supporte pas la transparence, vous pouvez ajouter un "
+"canal alpha, optionnellement en remplaçant une couleur par de la transparence."
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_scale.ui:117
 #: src/tools/ui/tool_rotate.ui:88 src/tools/ui/tool_flip.ui:65

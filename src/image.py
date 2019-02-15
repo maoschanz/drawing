@@ -149,6 +149,8 @@ class DrawingImage(Gtk.Layout):
 		self.gfile = gfile
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
+			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,

@@ -59,6 +59,9 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.experimental_switch.set_active(self._settings.get_boolean('experimental'))
 		self.experimental_switch.connect('notify::active', self.on_experimental_changed)
 
+		self.add_alpha_switch.set_active(self._settings.get_boolean('add-alpha'))
+		self.add_alpha_switch.connect('notify::active', self.on_alpha_changed)
+
 		self.width_btn.set_value(self._settings.get_int('default-width'))
 		self.height_btn.set_value(self._settings.get_int('default-height'))
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -79,6 +82,9 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	def on_experimental_changed(self, w, a):
 		self._settings.set_boolean('experimental', w.get_active())
+
+	def on_alpha_changed(self, w, a):
+		self._settings.set_boolean('add-alpha', w.get_active())
 
 	def on_background_changed(self, w):
 		color = self.background_color_btn.get_rgba()

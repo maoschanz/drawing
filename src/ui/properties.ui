@@ -74,16 +74,97 @@
         </child>
 
         <child>
-          <object class="GtkLabel" id="label_format_surface">
+          <object class="GtkToggleButton" id="add_alpha_toggle">
             <property name="visible">True</property>
-            <property name="label" translatable="yes">Invalid format</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="spacing">2</property>
+                <child>
+                  <object class="GtkLabel" id="label_format_surface">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Invalid format</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">pan-down-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="pack-type">end</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left-attach">2</property>
+            <property name="top-attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="label_alpha_info">
+            <property name="visible">False</property>
+            <property name="wrap">True</property>
+            <property name="label">an informative label about this feature</property>
             <style>
               <class name="dim-label"/>
             </style>
           </object>
           <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+            <property name="width">3</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkSwitch" id="switch_alpha_color">
+            <property name="visible">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">3</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkColorButton" id="button_alpha_color">
+            <property name="visible">False</property>
+            <property name="use-alpha">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">3</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="add_alpha_button">
+            <property name="visible">False</property>
+            <property name="valign">center</property>
+            <property name="label" translatable="yes">Add</property>
+          </object>
+          <packing>
             <property name="left-attach">2</property>
-            <property name="top-attach">1</property>
+            <property name="top-attach">3</property>
             <property name="width">1</property>
             <property name="height">1</property>
           </packing>
@@ -95,7 +176,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
+            <property name="top-attach">4</property>
             <property name="width">3</property>
             <property name="height">1</property>
           </packing>
@@ -108,7 +189,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">3</property>
+            <property name="top-attach">5</property>
             <property name="width">1</property>
             <property name="height">1</property>
           </packing>
@@ -117,14 +198,14 @@
         <child>
           <object class="GtkLabel" id="label_width">
             <property name="visible">True</property>
-            <property name="label" translatable="yes"></property>
+            <property name="label">0</property>
             <style>
               <class name="dim-label"/>
             </style>
           </object>
           <packing>
-            <property name="left-attach">2</property>
-            <property name="top-attach">3</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">5</property>
             <property name="width">1</property>
             <property name="height">1</property>
           </packing>
@@ -137,7 +218,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">4</property>
+            <property name="top-attach">6</property>
             <property name="width">1</property>
             <property name="height">1</property>
           </packing>
@@ -146,16 +227,50 @@
         <child>
           <object class="GtkLabel" id="label_height">
             <property name="visible">True</property>
-            <property name="label" translatable="yes"></property>
+            <property name="label">0</property>
             <style>
               <class name="dim-label"/>
             </style>
           </object>
           <packing>
-            <property name="left-attach">2</property>
-            <property name="top-attach">4</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">6</property>
             <property name="width">1</property>
             <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkRadioButton" id="units_pixels">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">pixels</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton" id="units_cm">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">centimeters</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton" id="units_inches">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">inches</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left-attach">2</property>
+            <property name="top-attach">5</property>
+            <property name="width">1</property>
+            <property name="height">2</property>
           </packing>
         </child>
 
