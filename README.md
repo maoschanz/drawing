@@ -2,11 +2,9 @@
 
 ## A drawing application for the GNOME desktop.
 
->"This one looks great!" - [@omgubuntu](https://twitter.com/omgubuntu/status/1085923553525010433)
-
 This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations.
 
-It follows GNOME interface guidelines, but can optionally use elementarysOS UI guidelines or Cinnamon/MATE UI guidelines.
+It follows GNOME interface guidelines (but can optionally use elementarysOS UI guidelines or Cinnamon/MATE UI guidelines).
 
 PNG, JPEG and BMP files are supported.
 
@@ -14,32 +12,59 @@ PNG, JPEG and BMP files are supported.
 
 (and a few of their options)
 
-| Tool      | Options   | Remarks   |
-|:---------:|:---------:|:---------:|
-|Pencil     |Dashes, eraser, ...|   |
+| Tool      | Options   | Remarks |
+|:---------:|:---------:|:-------:|
+|Pencil     |Dashes, eraser, ...| |
 |Shape      |Rectangle, circle, oval ; Filling
-|Polygon, free shape |Filling|      |
+|Polygon, free shape |Filling|    |
 |Line       |Straight line/Arc, arrow, dashes
-|Insert text|Font and font size|    |
-|Selection  |Rectangle/free shape|Drag, delete, cut, copy, export
-|-          |           |Is activated when you paste or import an image
-|Paint      |           |Not done yet
-|Brush      |           |Not done yet
-|Gradient   |           |Not done yet
-|Color picker|          |           |
+|Insert text|Font and font size|  |
+|Selection  |Rectangle/free shape|Is auto-activated when you paste or import an image
+|Color picker|          |         |
 |Crop*      |           |The previewed picture isn't at the actual scale
 |Flip*      |Horizontally or vertically
 |Scale*     |Keep proportions or not
-|Rotate*    |           |           |
+|Rotate*    |           |         |
+|Saturate*  |           |         |
+
+<!--|Paint      |           |Not done yet-->
+<!--|Brush      |           |Not done yet-->
+<!--|Gradient   |           |Not done yet-->
 
 \*Can be applied to the selection
 
-### Languages
+### Available languages
 
-- Castillan
+- Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb))
 - English
 - French
-- Turkish
+- Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
+
+----
+
+## Screenshots
+
+### Default user interface (for GNOME/Budgie)
+
+![GNOME/Budgie UI, here with the main menu opened](./data/screenshots/gnome_menu.png)
+
+More screenshots:
+
+- [Color chooser](./data/screenshots/gnome_colors.png)
+- [Open/Import menu](./data/screenshots/gnome_open.png)
+- [Scaling the canvas](./data/screenshots/gnome_scale.png)
+- [The selection tool and its menu](./data/screenshots/gnome_selection.png)
+- [Drawing things on the picture with tools](./data/screenshots/gnome_tools.png)
+- [Inserting text](./data/screenshots/gnome_text.png)
+- [Adjusting the saturation](./data/screenshots/gnome_menu_saturation.png)
+
+### Alternative user interfaces
+
+- [elementaryOS UI](./data/screenshots/elementary.png)
+- [MATE/Cinnamon UI](./data/screenshots/mate_selection.png)
+- The default UI can be resized to be [compatible with the Purism Librem 5 phone](./data/screenshots/librem_preview.png)
+
+----
 
 ## Installation
 
@@ -51,25 +76,3 @@ TODO
 
 [See here](./INSTALL_FROM_SOURCE.md)
 
-## Screenshots
-
-### Default user interface (for GNOME/Budgie)
-
-![GNOME/Budgie UI](./data/screenshots/gnome_screenshot_menu.png)
-
-Theorically compatible with the Purism Librem 5 phone.
-
-<!-- TODO -->
-
-More screenshots:
-
-- [Color chooser](./data/screenshots/gnome_screenshot_colors.png)
-- [Open/Import menu](./data/screenshots/gnome_screenshot_open.png)
-- [Scaling the canvas](./data/screenshots/gnome_screenshot_scale.png)
-- [The selection tool and its menu](./data/screenshots/gnome_screenshot_selection.png)
-- [Drawing things on the picture with tools](./data/screenshots/gnome_screenshot_tools.png)
-
-### Alternative user interfaces
-
-- [elementaryOS UI](./data/screenshots/elementary_screenshot.png)
-- [MATE/Cinnamon UI](./data/screenshots/mate_screenshot_text.png)
