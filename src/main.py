@@ -73,6 +73,13 @@ class Application(Gtk.Application):
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
 
+	def is_beta(self):
+		version_array = self.version.split('.')
+		if int(version_array[1]) * 5 == 5:
+			return True
+		else:
+			return False
+
 	def add_action_simple(self, action_name, callback):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
@@ -131,10 +138,6 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.undo', ['<Ctrl>z'])
 		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
-		# XXX hidden "devel" actions, for testing only
-		self.set_accels_for_action('win.restore_pixbuf', ['<Ctrl><Alt>r'])
-		self.set_accels_for_action('win.rebuild_from_histo', ['<Ctrl><Alt>h'])
-
 ########
 
 	def on_open_from_cli(self, a, b, c, d):
@@ -187,7 +190,7 @@ class Application(Gtk.Application):
 		"""Action callback, showing the preferences window."""
 		if self.prefs_window is not None:
 			self.prefs_window.destroy()
-		self.prefs_window = DrawingPrefsWindow()
+		self.prefs_window = DrawingPrefsWindow(self.is_beta())
 		self.prefs_window.present()
 
 	def on_help_activate(self, *args):

@@ -1,6 +1,6 @@
 # tool_pencil.py
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk
 import cairo
 
 from .tools import ToolTemplate
@@ -24,23 +24,12 @@ class ToolPencil(ToolTemplate):
 		self.selected_operator = cairo.Operator.OVER
 		self.use_dashes = False
 
-		self.add_tool_action_enum('pencil_shape', 'round', self.on_change_active_shape)
-		self.add_tool_action_enum('pencil_operator', 'over', self.on_change_active_operator)
-		self.add_tool_action_boolean('pencil_dashes', self.use_dashes, self.set_dashes_state)
+		self.add_tool_action_enum('pencil_shape', 'round')
+		self.add_tool_action_enum('cairo_operator', 'over')
+		self.add_tool_action_boolean('use_dashes', self.use_dashes)
 
-	def set_dashes_state(self, *args):
-		if not args[0].get_state():
-			self.use_dashes = True
-			args[0].set_state(GLib.Variant.new_boolean(True))
-		else:
-			self.use_dashes = False
-			args[0].set_state(GLib.Variant.new_boolean(False))
-
-	def on_change_active_shape(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
+	def set_active_shape(self, *args):
+		state_as_string = self.get_option_value('pencil_shape')
 		if state_as_string == 'thin':
 			self.selected_cap_id = cairo.LineCap.BUTT
 			self.selected_join_id = cairo.LineJoin.BEVEL
@@ -54,11 +43,8 @@ class ToolPencil(ToolTemplate):
 			self.selected_join_id = cairo.LineJoin.ROUND
 			self.selected_shape_label = _("Round")
 
-	def on_change_active_operator(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
+	def set_active_operator(self, *args):
+		state_as_string = self.get_option_value('cairo_operator')
 		if state_as_string == 'difference':
 			self.selected_operator = cairo.Operator.DIFFERENCE
 			self.selected_operator_label = _("Difference")
@@ -88,6 +74,9 @@ class ToolPencil(ToolTemplate):
 		else:
 			self.main_color = left_color
 		self._path = None
+		self.use_dashes = self.get_option_value('use_dashes')
+		self.set_active_shape()
+		self.set_active_operator()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		w_context = cairo.Context(self.get_surface())

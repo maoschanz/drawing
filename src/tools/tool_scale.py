@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .tools import ToolTemplate
 
@@ -44,8 +44,9 @@ class ToolScale(ToolTemplate):
 		self.width_btn = builder.get_object('width_btn')
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
+		builder.get_object('proportions_btn').connect('toggled', self.set_keep_proportions)
 
-		self.add_tool_action_boolean('keep_proportions', True, self.set_keep_proportions)
+		self.add_tool_action_boolean('keep_proportions', True)
 		self.needed_width_for_long = 0
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
@@ -60,8 +61,7 @@ class ToolScale(ToolTemplate):
 			return _("Scaling the canvas")
 
 	def set_keep_proportions(self, *args):
-		args[0].set_state(GLib.Variant.new_boolean(not args[0].get_state()))
-		self.keep_proportions = args[0].get_state()
+		self.keep_proportions = args[0].get_active()
 		if self.keep_proportions:
 			self.proportion = self.get_width()/self.get_height()
 
@@ -95,7 +95,7 @@ class ToolScale(ToolTemplate):
 		else:
 			w = self.get_image().get_pixbuf_width()
 			h = self.get_image().get_pixbuf_height()
-		self.proportion = w/h
+		self.set_keep_proportions() # XXX redondant ?
 		self.width_btn.set_value(w)
 		self.height_btn.set_value(h)
 

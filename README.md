@@ -2,7 +2,7 @@
 
 ## A drawing application for the GNOME desktop.
 
-This application is a simple image editor using Cairo and GdkPixbuf for basic drawing operations.
+This application is a simple image editor, using Cairo and GdkPixbuf for basic drawing operations.
 
 It follows GNOME interface guidelines (but can optionally use elementarysOS UI guidelines or Cinnamon/MATE UI guidelines).
 
@@ -12,26 +12,32 @@ PNG, JPEG and BMP files are supported.
 
 (and a few of their options)
 
+Drawing tools:
+
 | Tool      | Options   | Remarks |
 |:---------:|:---------:|:-------:|
 |Pencil     |Dashes, eraser, ...| |
 |Shape      |Rectangle, circle, oval ; Filling
 |Polygon, free shape |Filling|    |
-|Line       |Straight line/Arc, arrow, dashes
+|Line       |Arrow, dashes, ...|  |
+|Arc        |Arrow, dashes, ...|  |
 |Insert text|Font and font size|  |
 |Selection  |Rectangle/free shape|Is auto-activated when you paste or import an image
 |Color picker|          |         |
-|Crop*      |           |The previewed picture isn't at the actual scale
-|Flip*      |Horizontally or vertically
-|Scale*     |Keep proportions or not
-|Rotate*    |           |         |
-|Saturate*  |           |         |
 
 <!--|Paint      |           |Not done yet-->
 <!--|Brush      |           |Not done yet-->
 <!--|Gradient   |           |Not done yet-->
 
-\*Can be applied to the selection
+Canvas/selection edition tools:
+
+| Tool      | Options   | Remarks |
+|:---------:|:---------:|:-------:|
+|Crop       |           |The previewed picture isn't at the actual scale
+|Flip       |Horizontally or vertically
+|Scale      |Keep proportions or not
+|Rotate     |           |         |
+|Saturate   |           |         |
 
 ### Available languages
 

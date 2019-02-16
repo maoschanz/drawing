@@ -1,6 +1,6 @@
 # tool_text.py
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk
 import cairo
 
 from .tools import ToolTemplate
@@ -19,7 +19,7 @@ class ToolText(ToolTemplate):
 		self.y_begin = 0.0
 		self.should_cancel = False
 
-		self.add_tool_action_boolean('text_opaque_bg', False, self.set_bg_state)
+		self.add_tool_action_boolean('text_opaque_bg', False)
 
 		builder = Gtk.Builder()
 		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_text.ui")
@@ -38,12 +38,6 @@ class ToolText(ToolTemplate):
 		self.options_box = builder.get_object("options-widget")
 		self.font_btn = builder.get_object("font-btn")
 		self.backg_switch = builder.get_object("backg-switch")
-
-	def set_bg_state(self, *args):
-		if not args[0].get_state():
-			args[0].set_state(GLib.Variant.new_boolean(True))
-		else:
-			args[0].set_state(GLib.Variant.new_boolean(False))
 
 	def hide_row_label(self):
 		self.label_widget.set_visible(False)

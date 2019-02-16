@@ -1,17 +1,17 @@
-# tool_line.py
+# tool_arc.py
 
 from gi.repository import Gtk, Gdk
 import cairo, math
 
 from .tools import ToolTemplate
 
-class ToolLine(ToolTemplate):
-	__gtype_name__ = 'ToolLine'
+class ToolArc(ToolTemplate):
+	__gtype_name__ = 'ToolArc'
 
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('line', _("Line"), 'list-remove-symbolic', window, False)
+		super().__init__('arc', _("Arc"), 'mail-replied-symbolic', window, False)
 		self.use_size = True
 
 		self.add_tool_action_enum('line_shape', 'round')
@@ -51,11 +51,11 @@ class ToolLine(ToolTemplate):
 			self.selected_operator_label = _("Classic")
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_line.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_arc.ui')
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
-		return _("Line options")
+		return _("Arc options")
 
 	def get_edition_status(self): # TODO l'opérateur est important
 		label = self.label + ' (' + self.selected_shape_label + ') '
@@ -81,8 +81,12 @@ class ToolLine(ToolTemplate):
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		w_context = cairo.Context(self.get_surface())
-		w_context.move_to(self.x_press, self.y_press)
-		w_context.line_to(event_x, event_y)
+		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
+			w_context.move_to(self.x_press, self.y_press)
+			w_context.line_to(event_x, event_y)
+		else:
+			w_context.move_to(self.wait_points[0], self.wait_points[1])
+			w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 
 		self._path = w_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
@@ -102,10 +106,15 @@ class ToolLine(ToolTemplate):
 		self.set_active_operator()
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.move_to(self.x_press, self.y_press)
-		w_context.line_to(event_x, event_y)
+		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
+			self.wait_points = (self.x_press, self.y_press, event_x, event_y)
+			return
+		else:
+			self.restore_pixbuf()
+			w_context = cairo.Context(self.get_surface())
+			w_context.move_to(self.wait_points[0], self.wait_points[1])
+			w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
+			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
 		self._path = w_context.copy_path()
 		operation = self.build_operation(event_x, event_y)

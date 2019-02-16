@@ -1,6 +1,6 @@
 # tool_select.py
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
+from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .tools import ToolTemplate
@@ -29,6 +29,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_cut', self.action_cut)
 		self.add_tool_action_simple('selection_copy', self.action_copy)
 		self.add_tool_action_simple('selection_delete', self.action_selection_delete)
+
 		self.add_tool_action_simple('selection_crop', self.action_selection_crop)
 		self.add_tool_action_simple('selection_scale', self.action_selection_scale)
 		self.add_tool_action_simple('selection_flip', self.action_selection_flip)
@@ -51,7 +52,10 @@ class ToolSelect(ToolTemplate):
 		builder.get_object('actions_btn').connect('clicked', self.on_actions_btn_clicked)
 
 		builder.get_object('selection_type_btn1').join_group(builder.get_object('selection_type_btn2'))
-		self.add_tool_action_enum('selection_type', self.selected_type_id, self.on_change_active_type)
+		self.add_tool_action_enum('selection_type', self.selected_type_id)
+
+		self.exclude_color = False
+		#self.add_tool_action_boolean('selection_exclude', False)
 
 		self.reset_temp()
 
@@ -77,18 +81,13 @@ class ToolSelect(ToolTemplate):
 		self.set_action_sensitivity('selection_delete', state)
 		self.set_action_sensitivity('selection_export', state)
 
-	def on_change_active_type(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
-		if state_as_string == 'rectangle':
+	def set_active_type(self, *args): # TODO split ça en 2 outils ayant la même barre ?
+		if self.get_option_value('selection_type') == 'rectangle':
 			self.selected_type_id = 'rectangle'
-			self.selected_type_label = _("Rectangle")
+			self.selected_type_label = _("Rectangle selection")
 		else:
 			self.selected_type_id = 'freehand'
-			self.selected_type_label = _("Freehand")
-		self.give_back_control()
+			self.selected_type_label = _("Freehand selection")
 		self.window.set_picture_title()
 
 	def get_options_model(self):
@@ -128,6 +127,9 @@ class ToolSelect(ToolTemplate):
 		return True
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		self.set_active_type() # mdr pas entièrement au point tout ça
+		# self.exclude_color = self.get_option_value('selection_exclude')
+		# self.secondary_color = right_color
 		self.x_press = event_x
 		self.y_press = event_y
 		if self.selected_type_id == 'freehand' and not self.selection_is_active:
@@ -141,7 +143,8 @@ class ToolSelect(ToolTemplate):
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		if self.selection_is_active:
-			self.update_surface() # XXX inutile pour le moment car on n'update pas
+			pass
+			# self.update_surface() # XXX inutile pour le moment car on n'update pas
 			# du tout selection_x et selection_y TODO
 		else:
 			if self.selected_type_id == 'freehand':
@@ -180,6 +183,8 @@ class ToolSelect(ToolTemplate):
 					if self.selection_is_active:
 						self.show_popover(True)
 						self.selection_has_been_used = False
+				else:
+					return # without updating the surface so the path is visible
 			self.update_surface()
 		elif self.press_point_is_in_selection():
 			self.drag_to(event_x, event_y)
@@ -306,6 +311,8 @@ class ToolSelect(ToolTemplate):
 		w_context = cairo.Context(self.get_surface())
 		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		w_context.set_dash([3, 3])
+		if self.get_image().selection_path is None:
+			return False
 		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
 		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
 			w_context.append_path(self.get_image().selection_path)
@@ -393,6 +400,13 @@ class ToolSelect(ToolTemplate):
 		self.temp_y = self.get_image().selection_y
 		self.selection_is_active = True
 		self.update_actions_state()
+
+		if self.exclude_color:
+			self.get_image().selection_pixbuf = \
+				self.get_image().selection_pixbuf.add_alpha(True, \
+				int(255 * self.secondary_color.red), \
+				int(255 * self.secondary_color.green), \
+				int(255 * self.secondary_color.blue))
 
 	def delete_temp(self):
 		if self.temp_path is None or not self.selection_is_active:

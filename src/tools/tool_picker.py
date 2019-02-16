@@ -1,6 +1,6 @@
 # tool_picker.py
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk
 import cairo
 
 from .tools import ToolTemplate

@@ -1,6 +1,6 @@
 # tool_experiment.py
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk
 import cairo
 
 from .tools import ToolTemplate
@@ -21,13 +21,10 @@ class ToolExperiment(ToolTemplate):
 		self.selected_operator_label = "DIFFERENCE"
 		self.selected_operator = cairo.Operator.DIFFERENCE
 
-		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE', self.on_change_active_operator)
+		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
 
 	def on_change_active_operator(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
+		state_as_string = self.get_option_value('experiment_operator')
 		if state_as_string == 'CLEAR':
 			self.selected_operator = cairo.Operator.CLEAR
 			self.selected_operator_label = "CLEAR"

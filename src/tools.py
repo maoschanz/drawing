@@ -29,18 +29,14 @@ class ToolTemplate():
 		trigger the method 'callback'."""
 		self.window.add_action_simple(action_name, callback)
 
-	def add_tool_action_boolean(self, action_name, default, callback):
-		"""Convenient wrapper method adding a stateful action to the window. It
-		will be named 'action_name' (string), be created with the state 'default'
-		(boolean), and activating the action will trigger the method 'callback'."""
-		self.window.add_action_boolean(action_name, default, callback)
+	def add_tool_action_boolean(self, action_name, default):
+		self.window.options_manager.add_tool_option_boolean(action_name, default)
 
-	def add_tool_action_enum(self, action_name, default, callback):
-		"""Convenient wrapper method adding a stateful action to the window. It
-		will be named 'action_name' (string), be created with the state 'default'
-		(string), and changing the active target of the action will trigger the
-		method 'callback'."""
-		self.window.add_action_enum(action_name, default, callback)
+	def add_tool_action_enum(self, action_name, default):
+		self.window.options_manager.add_tool_option_enum(action_name, default)
+
+	def get_option_value(self, action_name):
+		return self.window.options_manager.get_value(action_name)
 
 	def set_action_sensitivity(self, action_name, state):
 		self.window.lookup_action(action_name).set_enabled(state)

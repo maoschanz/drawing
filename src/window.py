@@ -19,26 +19,28 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 from .gi_composites import GtkTemplate
 
-from .tool_pencil import ToolPencil
-from .tool_select import ToolSelect
+from .tool_arc import ToolArc
+from .tool_crop import ToolCrop
+from .tool_experiment import ToolExperiment
+from .tool_flip import ToolFlip
 from .tool_line import ToolLine
 from .tool_paint import ToolPaint
-from .tool_text import ToolText
+from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
-from .tool_shape import ToolShape
-from .tool_experiment import ToolExperiment
-from .tool_replace import ToolReplace
 from .tool_polygon import ToolPolygon
-from .tool_crop import ToolCrop
-from .tool_scale import ToolScale
+from .tool_replace import ToolReplace
 from .tool_rotate import ToolRotate
-from .tool_flip import ToolFlip
 from .tool_saturate import ToolSaturate
+from .tool_scale import ToolScale
+from .tool_select import ToolSelect
+from .tool_shape import ToolShape
+from .tool_text import ToolText
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
 from .utilities import utilities_save_pixbuf_at
 from .minimap import DrawingMinimap
+from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
@@ -88,6 +90,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.build_color_buttons()
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
+		self.options_manager = DrawingOptionsManager(self)
 		self.add_all_win_actions()
 		self.image_list = []
 		self.build_new_image()
@@ -105,6 +108,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['text'] = ToolText(self)
 		self.tools['picker'] = ToolPicker(self)
 		self.tools['line'] = ToolLine(self)
+		self.tools['arc'] = ToolArc(self)
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
 		if self._settings.get_boolean('devel-only'):
@@ -325,6 +329,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_toolbar()
 			self.set_show_menubar(True)
 
+		if self.app.is_beta():
+			self.get_style_context().add_class('devel')
+
 	def build_toolbar(self):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/toolbar.ui')
 		toolbar = builder.get_object('toolbar')
@@ -452,7 +459,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()
 		self.active_tool().on_tool_selected()
-		#self.minimap.correct_coords()
 		self.set_picture_title()
 		if self.former_tool().implements_panel:
 			self.former_tool_id = former_tool_id_2

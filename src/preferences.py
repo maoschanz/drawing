@@ -29,6 +29,7 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	background_color_btn = GtkTemplate.Child()
 	devel_switch = GtkTemplate.Child()
+	devel_box = GtkTemplate.Child()
 	preview_btn = GtkTemplate.Child()
 	width_btn = GtkTemplate.Child()
 	height_btn = GtkTemplate.Child()
@@ -37,7 +38,7 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
 
-	def __init__(self, **kwargs):
+	def __init__(self, is_beta, **kwargs):
 		super().__init__(**kwargs)
 		self.init_template()
 		wants_csd = not ( 'ssd' in self._settings.get_string('decorations') )
@@ -56,8 +57,11 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.background_color_btn.set_rgba(color)
 		self.background_color_btn.connect('color-set', self.on_background_changed)
 
-		self.devel_switch.set_active(self._settings.get_boolean('devel-only'))
-		self.devel_switch.connect('notify::active', self.on_devel_changed)
+		if is_beta:
+			self.devel_switch.set_active(self._settings.get_boolean('devel-only'))
+			self.devel_switch.connect('notify::active', self.on_devel_changed)
+		else:
+			self.devel_box.set_visible(False)
 
 		self.add_alpha_switch.set_active(self._settings.get_boolean('add-alpha'))
 		self.add_alpha_switch.connect('notify::active', self.on_alpha_changed)
@@ -75,7 +79,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.layout_combobox.append('ssd', _("Legacy"))
 		self.layout_combobox.append('ssd-menubar', _("Menubar only"))
 		self.layout_combobox.append('ssd-toolbar', _("Toolbar only"))
-		if self._settings.get_boolean('devel-only'):
+		if is_beta and self._settings.get_boolean('devel-only'):
 			self.layout_combobox.append('everything', _("Everything (testing only)"))
 		self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
 		self.layout_combobox.connect('changed', self.on_layout_changed)

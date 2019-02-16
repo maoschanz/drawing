@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GLib, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .tools import ToolTemplate
 

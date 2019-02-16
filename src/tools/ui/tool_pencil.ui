@@ -22,29 +22,29 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Use dashes</attribute>
-        <attribute name="action">win.pencil_dashes</attribute>
+        <attribute name="action">win.use_dashes</attribute>
       </item>
     </section>
     <section>
       <attribute name="label" translatable="yes">Mode</attribute>
       <item>
         <attribute name="label" translatable="yes">Classic</attribute>
-        <attribute name="action">win.pencil_operator</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">over</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Eraser</attribute>
-        <attribute name="action">win.pencil_operator</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">clear</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Difference</attribute>
-        <attribute name="action">win.pencil_operator</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">difference</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Exclusion</attribute>
-        <attribute name="action">win.pencil_operator</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">exclusion</attribute>
       </item>
     </section>

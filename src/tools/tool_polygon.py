@@ -1,6 +1,6 @@
 # tool_polygon.py
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk
 import cairo
 import math
 
@@ -21,22 +21,11 @@ class ToolPolygon(ToolTemplate):
 		self.selected_style_label = _("Filled (secondary color)")
 		self.use_freehand = False
 
-		self.add_tool_action_enum('polygon_style', 'secondary', self.on_change_active_style)
-		self.add_tool_action_boolean('polygon_freehand', False, self.set_freehand)
+		self.add_tool_action_enum('filling_style', 'secondary')
+		self.add_tool_action_boolean('polygon_freehand', False)
 
-	def set_freehand(self, *args):
-		if not args[0].get_state():
-			self.use_freehand = True
-			args[0].set_state(GLib.Variant.new_boolean(True))
-		else:
-			self.use_freehand = False
-			args[0].set_state(GLib.Variant.new_boolean(False))
-
-	def on_change_active_style(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
+	def set_filling_style(self):
+		state_as_string = self.get_option_value('filling_style')
 		self.selected_style_id = state_as_string
 		if state_as_string == 'empty':
 			self.selected_style_label = _("Empty")
@@ -72,7 +61,7 @@ class ToolPolygon(ToolTemplate):
 			return True
 
 	# def cancel_ongoing_operation(self):
-		# TODO
+		# TODO ??
 
 	def draw_polygon(self, event_x, event_y, is_preview):
 		w_context = cairo.Context(self.get_surface())
@@ -140,6 +129,8 @@ class ToolPolygon(ToolTemplate):
 		else:
 			self.main_color = left_color
 			self.secondary_color = right_color
+		self.use_freehand = self.get_option_value('polygon_freehand')
+		self.set_filling_style()
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()

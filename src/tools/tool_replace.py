@@ -1,6 +1,6 @@
 # tool_replace.py XXX still shit
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .tools import ToolTemplate

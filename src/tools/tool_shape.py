@@ -1,6 +1,6 @@
 # tool_shape.py
 
-from gi.repository import Gtk, Gdk, Gio, GLib
+from gi.repository import Gtk, Gdk
 import cairo
 import math
 
@@ -21,14 +21,11 @@ class ToolShape(ToolTemplate):
 		self.selected_style_id = 'secondary'
 		self.selected_shape_id = 'rectangle'
 
-		self.add_tool_action_enum('shape_shape', 'rectangle', self.on_change_active_shape)
-		self.add_tool_action_enum('shape_style', 'secondary', self.on_change_active_style)
+		self.add_tool_action_enum('shape_shape', 'rectangle')
+		self.add_tool_action_enum('shape_style', 'secondary')
 
-	def on_change_active_style(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
+	def set_active_style(self, *args):
+		state_as_string = self.get_option_value('filling_style')
 		self.selected_style_id = state_as_string
 		if state_as_string == 'empty':
 			self.selected_style_label = _("Empty")
@@ -38,11 +35,8 @@ class ToolShape(ToolTemplate):
 			self.selected_style_label = _("Filled (secondary color)")
 		self.window.set_picture_title()
 
-	def on_change_active_shape(self, *args):
-		state_as_string = args[1].get_string()
-		if state_as_string == args[0].get_state().get_string():
-			return
-		args[0].set_state(GLib.Variant.new_string(state_as_string))
+	def set_active_shape(self, *args):
+		state_as_string = self.get_option_value('shape_shape')
 		self.selected_shape_id = state_as_string
 		if state_as_string == 'rectangle':
 			self.selected_shape_label = _("Rectangle")
@@ -102,17 +96,6 @@ class ToolShape(ToolTemplate):
 		w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
 		self._path = w_context.copy_path()
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		if self.selected_shape_id == 'rectangle':
-			self.draw_rectangle(event_x, event_y)
-		elif self.selected_shape_id == 'oval':
-			self.draw_oval(event_x, event_y)
-		elif self.selected_shape_id == 'circle':
-			self.draw_circle(event_x, event_y)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
@@ -123,6 +106,19 @@ class ToolShape(ToolTemplate):
 		else:
 			self.main_color = left_color
 			self.secondary_color = right_color
+		self.set_active_shape()
+		self.set_active_style()
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		self.restore_pixbuf()
+		if self.selected_shape_id == 'rectangle':
+			self.draw_rectangle(event_x, event_y)
+		elif self.selected_shape_id == 'oval':
+			self.draw_oval(event_x, event_y)
+		elif self.selected_shape_id == 'circle':
+			self.draw_circle(event_x, event_y)
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'rectangle':
