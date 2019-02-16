@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-15 17:57+0100\n"
-"PO-Revision-Date: 2019-02-07 23:28+0300\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2019-02-16 09:00+0300\n"
+"Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,11 @@ msgstr "Basit çizim aracı"
 
 #: data/com.github.maoschanz.Drawing.desktop.in:10
 msgid "com.github.maoschanz.Drawing"
-msgstr ""
+msgstr "com.github.maoschanz.Drawing"
 
 #: src/ui/window.ui:36
 msgid "Error starting the application, please report this bug."
-msgstr ""
+msgstr "Uygulamayı başlatırken hata, bu hatayı rapor edin."
 
 #: src/ui/window.ui:126 src/ui/shortcuts.ui:78 src/ui/app-menus.ui:212
 msgid "Exchange colors"
@@ -122,7 +122,7 @@ msgstr "Geçersiz biçim"
 
 #: src/ui/properties.ui:163
 msgid "Add"
-msgstr ""
+msgstr "Ekle"
 
 #: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
@@ -138,15 +138,15 @@ msgstr "Yükseklik"
 
 #: src/ui/properties.ui:253
 msgid "pixels"
-msgstr ""
+msgstr "piksel"
 
 #: src/ui/properties.ui:259
 msgid "centimeters"
-msgstr ""
+msgstr "santimetre"
 
 #: src/ui/properties.ui:265
 msgid "inches"
-msgstr ""
+msgstr "inç"
 
 #: src/ui/shortcuts.ui:12
 msgid "Windows"
@@ -272,9 +272,8 @@ msgstr "Sil"
 
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:239 src/ui/win-menus.ui:68
 #: src/ui/win-menus.ui:136
-#, fuzzy
 msgid "Report a bug"
-msgstr "Hataları veya fikirleri bildirin"
+msgstr "Hataları bildir"
 
 #: src/ui/app-menus.ui:25 src/ui/app-menus.ui:245 src/ui/win-menus.ui:72
 #: src/ui/win-menus.ui:140 src/ui/toolbar.ui:207 src/ui/toolbar.ui:208
@@ -330,28 +329,27 @@ msgstr "_Görünüm"
 
 #: src/ui/app-menus.ui:153
 msgid "Go Up"
-msgstr ""
+msgstr "Yukarı Git"
 
 #: src/ui/app-menus.ui:157
 msgid "Go Down"
-msgstr ""
+msgstr "Aşağı Git"
 
 #: src/ui/app-menus.ui:161
 msgid "Go Left"
-msgstr ""
+msgstr "Sola Git"
 
 #: src/ui/app-menus.ui:165
-#, fuzzy
 msgid "Go Right"
-msgstr "Sağa döndür"
+msgstr "Sağa Git"
 
 #: src/ui/app-menus.ui:171 src/ui/win-menus.ui:114
 msgid "Refresh"
-msgstr ""
+msgstr "Yenile"
 
 #: src/ui/app-menus.ui:177 src/ui/win-menus.ui:119
 msgid "Rebuild from history"
-msgstr ""
+msgstr "Geçmişten yeniden oluştur"
 
 #: src/ui/app-menus.ui:192 src/ui/win-menus.ui:58 src/ui/win-menus.ui:126
 #: src/ui/toolbar.ui:183 src/ui/toolbar.ui:184
@@ -422,7 +420,7 @@ msgstr "Bu araç için seçenek yok"
 #: src/window.py:510
 #, python-format
 msgid "Loading %s"
-msgstr ""
+msgstr "Yükleniyor %s"
 
 #: src/window.py:513 src/window.py:588
 msgid "Unsaved changes"
@@ -510,12 +508,16 @@ msgid ""
 "This surface format already supports transparency, but you can still replace "
 "a color with transparency."
 msgstr ""
+"Bu yüzey biçimi zaten saydamlığı destekliyor, ancak yine de bir saydamlığı "
+"olan bir rengi değiştirebilirsiniz."
 
 #: src/properties.py:102
 msgid ""
 "This surface format doesn't support transparency, you can add an alpha "
 "channel, optionally by replacing a color."
 msgstr ""
+"Bu yüzey biçimi saydamlığı desteklemez, isteğe bağlı olarak bir rengi "
+"değiştirerek bir alfa kanalı ekleyebilirsiniz."
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_scale.ui:117
 #: src/tools/ui/tool_rotate.ui:88 src/tools/ui/tool_flip.ui:65
@@ -541,15 +543,15 @@ msgstr "Sağa döndür"
 
 #: src/tools/ui/tool_flip.ui:33
 msgid "Flip horizontally"
-msgstr ""
+msgstr "Yatay çevir"
 
 #: src/tools/ui/tool_flip.ui:47
 msgid "Flip vertically"
-msgstr ""
+msgstr "Dikey çevir"
 
 #: src/tools/ui/tool_saturate.ui:42 src/tools/ui/tool_saturate.ui:50
 msgid "Saturation (%)"
-msgstr ""
+msgstr "Doygunluk (%)"
 
 #: src/tools/ui/tool_experiment.ui:5
 msgid "Cairo operator"
@@ -657,7 +659,7 @@ msgstr "Döndür"
 #: src/tools/ui/tool_select.ui:34 src/tools/ui/tool_select.ui:100
 #: src/tools/ui/tool_select.ui:164 src/tools/ui/tool_select.ui:281
 msgid "Saturate"
-msgstr ""
+msgstr "Doygunluk"
 
 #: src/tools/ui/tool_select.ui:176
 msgid "Selection type"
@@ -675,19 +677,16 @@ msgid "Freehand"
 msgstr "Düzensiz"
 
 #: src/tools/ui/tool_select.ui:198
-#, fuzzy
 msgid "Selection actions"
-msgstr "Seçim seçenekleri"
+msgstr "Seçim eylemleri"
 
 #: src/tools/ui/tool_select.ui:305
-#, fuzzy
 msgid "Rectangle selection"
-msgstr "Seçimi döndür"
+msgstr "Dikdörtgen seçim"
 
 #: src/tools/ui/tool_select.ui:321
-#, fuzzy
 msgid "Free selection"
-msgstr "Seçim"
+msgstr "Serbest seçim"
 
 #: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_shape.ui:23
 msgid "Filling"
