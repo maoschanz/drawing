@@ -6,7 +6,7 @@
 
     <child>
       <object class="GtkMenuButton" id="add_btn">
-        <property name="visible">True</property>
+        <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="tooltip_text" translatable="yes">Open</property>
         <child>
@@ -91,7 +91,7 @@
 
     <child>
       <object class="GtkButton" id="save_label">
-        <property name="visible">True</property>
+        <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
         <property name="tooltip_text" translatable="yes">Save</property>
@@ -104,7 +104,7 @@
 
     <child>
       <object class="GtkButton" id="save_icon">
-        <property name="visible">True</property>
+        <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
         <property name="tooltip_text" translatable="yes">Save</property>

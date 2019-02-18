@@ -14,7 +14,7 @@ class ToolTemplate():
 		self.icon_name = icon_name
 		self.is_hidden = is_hidden
 		self.tool_width = 10
-		self.selection_is_active = False
+		self.selection_is_active = False # XXX il y a du ménage à faire par ici
 		self.use_size = False
 		self.build_row()
 		self.window = window
@@ -85,7 +85,8 @@ class ToolTemplate():
 			self.row.show_all()
 
 	def build_selection_bar_btn(self):
-		btn = Gtk.Button(tooltip_text=self.label).new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
+		btn = Gtk.Button.new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
+		btn.set_tooltip_text(self.label)
 		btn.set_detailed_action_name('win.selection_' + self.id)
 		btn.show_all()
 		return btn

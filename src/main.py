@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import sys
-import gi
+import sys, gi
 
 gi.require_version('Gtk', '3.0')
 
@@ -74,6 +73,9 @@ class Application(Gtk.Application):
 			self.set_app_menu(appmenu_model)
 
 	def is_beta(self):
+		"""Tells is the app version is even or odd, odd versions being considered
+		as unstable versions. This affects available options and the style of
+		the headerbar."""
 		version_array = self.version.split('.')
 		if int(version_array[1]) * 5 == 5:
 			return True
@@ -170,7 +172,7 @@ class Application(Gtk.Application):
 		"""Action callback, opening a new window with an empty canvas."""
 		win = DrawingWindow(application=self)
 		win.present()
-		win.init_window_content()
+		win.init_window_content() # this optimization has no effect because of GLib obscure magic
 		return win
 
 	def on_report_activate(self, *args):

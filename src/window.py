@@ -49,6 +49,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
 
+	# Window empty widgets
 	tools_panel = GtkTemplate.Child()
 	toolbar_box = GtkTemplate.Child()
 	info_bar = GtkTemplate.Child()
@@ -84,18 +85,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
-
 		decorations = self._settings.get_string('decorations')
 		self.set_ui_bars(decorations)
 
 	def init_window_content(self):
+		"""Initialize the window's content, such as the minimap, the color popovers,
+		the tools, their options, and a new default image."""
 		self.hijacker_id = None
-
-		self.build_color_buttons()
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
-		self.add_all_win_actions()
 		self.image_list = []
+
+		self.build_color_buttons()
+		self.add_all_win_actions()
 		self.build_new_image()
 		self.init_tools()
 		self.connect_signals()
@@ -168,26 +170,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_tabs_visibility()
 		return True
 
-	def prompt_message(self, show, label):
-		self.info_bar.set_visible(show)
-		if show:
-			self.info_label.set_label(label)
-		if self._settings.get_boolean('devel-only'):
-			print('Drawing: ' + label)
-
-	def update_tabs_visibility(self):
-		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
-
 	def action_close(self, *args):
 		self.close()
 
 	def on_close(self, *args):
-		# Close each tab
+		"""Event callback when trying to close a window. It saves/closes each
+		tab and saves the current window settings in order to restore them."""
 		for i in self.image_list:
 			if not self.close_tab(i):
 				return True
 
-		# Save the app state (active tool, edition colors)
 		self._settings.set_string('last-active-tool', self.active_tool_id)
 		rgba = self.color_popover_l.color_widget.get_rgba()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
@@ -196,7 +188,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
 		self._settings.set_strv('last-right-rgba', rgba)
 
-		# Save the window state
 		self._settings.set_boolean('maximized', self.is_maximized())
 		return False
 
@@ -206,7 +197,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.connect('delete-event', self.on_close)
 		self.connect('configure-event', self.adapt_to_window_size)
 		self.options_btn.connect('toggled', self.update_option_label)
-		self._settings.connect('changed::panel-width', self.on_show_labels_setting_changed)
+		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 
 	def add_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -236,11 +227,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def add_all_win_actions(self):
-		self.add_action_simple('properties', self.action_properties)
+		"""This doesn't add all window-wide GioActions, but only the GioActions
+		which are here "by default", independently of any tool."""
 
 		self.add_action_simple('main_menu', self.action_main_menu)
 		self.add_action_simple('options_menu', self.action_options_menu)
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
+		self.add_action_simple('properties', self.action_properties)
+		self.add_action_boolean('show_labels', self._settings.get_boolean('show-labels'), \
+			self.on_show_labels_changed)
 
 		self.add_action_simple('go_up', self.action_go_up)
 		self.add_action_simple('go_down', self.action_go_down)
@@ -256,36 +251,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('save_as', self.action_save_as)
 		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('print', self.action_print)
-
 		self.add_action_simple('import', self.action_import)
 		self.add_action_simple('paste', self.action_paste)
 		self.add_action_simple('select_all', self.action_select_all)
-		self.add_action_simple('selection_export', self.action_selection_export)
+		self.add_action_simple('selection_export', self.action_selection_export) # XXX
 
 		self.add_action_simple('back_to_former_tool', self.back_to_former_tool)
 		self.add_action_simple('force_selection_tool', self.force_selection_tool)
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
-		self.add_action_boolean('show_labels', self._settings.get_boolean('panel-width'), \
-			self.on_show_labels_changed)
 
 		self.add_action_simple('main_color', self.action_main_color)
 		self.add_action_simple('secondary_color', self.action_secondary_color)
 		self.add_action_simple('exchange_color', self.action_exchange_color)
+
 		self.app.add_action_boolean('use_editor', \
 			self._settings.get_boolean('direct-color-edit'), self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore_pixbuf)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild_from_histo)
-
-	def action_toggle_preview(self, *args):
-		preview_visible = not args[0].get_state()
-		if preview_visible:
-			self.minimap.popup()
-			self.minimap.update_minimap()
-		else:
-			self.minimap.popdown()
-		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
 
 	# WINDOW BARS
 
@@ -380,6 +364,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_btn.set_active(not self.options_btn.get_active())
 
 	def adapt_to_window_size(self, *args):
+		"""Adapts the headerbar (if any) and the default bottom panel to the new
+		window size. If the current bottom panel isn't the default one, this will
+		call the tool method applying the new size to the tool panel."""
 		if self.header_bar is not None:
 			widgets_width = self.save_label.get_allocated_width() \
 				+ self.save_icon.get_allocated_width() \
@@ -421,6 +408,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap_arrow.set_visible(not state)
 		self.minimap_icon.set_visible(state)
 
+	def prompt_message(self, show, label):
+		"""Update the content and the visibility of the info bar."""
+		self.info_bar.set_visible(show)
+		if show:
+			self.info_label.set_label(label)
+		if self._settings.get_boolean('devel-only'):
+			print('Drawing: ' + label)
+
+	def update_tabs_visibility(self):
+		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
+
 	# TOOLS PANEL
 
 	def build_tool_rows(self):
@@ -444,11 +442,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.tools[label].label_widget.set_visible(False)
 
 	def on_show_labels_setting_changed(self, *args):
-		self.set_tools_labels_visibility(self._settings.get_boolean('panel-width'))
+		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
 	def on_show_labels_changed(self, *args):
 		show_labels = not args[0].get_state()
-		self._settings.set_boolean('panel-width', show_labels)
+		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
 
 	# TOOLS
@@ -555,17 +553,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.try_load_file(gfile)
 
 	def file_chooser_open(self, *args):
+		"""Opens an "open" file chooser dialog, and return a GioFile or None."""
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
 			Gtk.FileChooserAction.OPEN,
 			_("Open"),
 			_("Cancel"))
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(allPictures)
+		self.add_filechooser_filters(file_chooser)
+
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			gfile = file_chooser.get_file()
@@ -575,7 +570,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_save(self, *args):
 		fn = self.get_file_path()
 		if fn is None:
-			gfile = self.file_chooser_save('')
+			gfile = self.file_chooser_save()
 			if gfile is not None:
 				self.get_active_image().gfile = gfile
 		fn = self.get_file_path()
@@ -585,7 +580,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 
 	def action_save_as(self, *args):
-		gfile = self.file_chooser_save('')
+		gfile = self.file_chooser_save()
 		if gfile is not None:
 			self.get_active_image().gfile = gfile
 		self.action_save()
@@ -627,13 +622,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.destroy()
 			return False
 
-	def file_chooser_save(self, file_type):
-		gfile = None
-		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
-			Gtk.FileChooserAction.SAVE,
-			_("Save"),
-			_("Cancel"))
-
+	def add_filechooser_filters(self, dialog):
+		"""Add file filters for images to file chooser dialogs."""
 		allPictures = Gtk.FileFilter()
 		allPictures.set_name(_("All pictures"))
 		allPictures.add_mime_type('image/png')
@@ -652,23 +642,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		bmpPictures.set_name(_("BMP images"))
 		bmpPictures.add_mime_type('image/bmp')
 
-		if file_type == 'png': # XXX still useful ??
-			file_chooser.add_filter(pngPictures)
-			file_chooser.add_filter(allPictures)
-		elif file_type == 'jpeg':
-			file_chooser.add_filter(jpegPictures)
-			file_chooser.add_filter(allPictures)
-		elif file_type == 'bmp':
-			file_chooser.add_filter(bmpPictures)
-			file_chooser.add_filter(allPictures)
-		else:
-			file_chooser.add_filter(allPictures)
-			file_chooser.add_filter(pngPictures)
-			file_chooser.add_filter(jpegPictures)
-			file_chooser.add_filter(bmpPictures)
-			file_type = 'png'
+		dialog.add_filter(allPictures)
+		dialog.add_filter(pngPictures)
+		dialog.add_filter(jpegPictures)
+		dialog.add_filter(bmpPictures)
 
-		default_file_name = str(_("Untitled") + '.' + file_type)
+	def file_chooser_save(self):
+		"""Opens an "save" file chooser dialog, and return a GioFile or None."""
+		gfile = None
+		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
+			Gtk.FileChooserAction.SAVE,
+			_("Save"),
+			_("Cancel"))
+		self.add_filechooser_filters(file_chooser)
+		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 
 		response = file_chooser.run()
@@ -678,7 +665,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return gfile
 
 	def action_export_as(self, *args):
-		gfile = self.file_chooser_save('')
+		gfile = self.file_chooser_save()
 		if gfile is not None:
 			utilities_save_pixbuf_at(self.main_pixbuf, gfile.get_path())
 
@@ -699,12 +686,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			Gtk.FileChooserAction.OPEN,
 			_("Import"),
 			_("Cancel"))
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-		file_chooser.add_filter(allPictures)
+		self.add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			self.force_selection_tool()
@@ -714,7 +696,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.destroy()
 
 	def action_selection_export(self, *args):
-		gfile = self.file_chooser_save('')
+		gfile = self.file_chooser_save()
 		if gfile is not None:
 			utilities_save_pixbuf_at(self.get_active_image().get_selection_pixbuf(), gfile.get_path())
 
@@ -737,9 +719,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().try_redo()
 		self.action_rebuild_from_histo()
 
-	def update_history_sensitivity(self): #XXX utile ? normalement non
-		self.get_active_image().update_history_sensitivity()
-
 	def operation_is_ongoing(self):
 		return False # TODO
 
@@ -753,13 +732,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().undo_history = []
 		for op in h:
 			self.tools[op['tool_id']].apply_operation(op)
-			# print(op)
 		self.get_active_image().queue_draw()
-		self.update_history_sensitivity()
+		self.get_active_image().update_history_sensitivity()
 
 	# COLORS
 
 	def build_color_buttons(self):
+		"""Initialize the 2 color buttons and popovers with the 2 previously
+		memorized RGBA values."""
 		right_rgba = self._settings.get_strv('last-right-rgba')
 		r = float(right_rgba[0])
 		g = float(right_rgba[1])
@@ -822,7 +802,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_option_label(self, *args):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
-	# Navigation
+	# PREVIEW & NAVIGATION
+
+	def action_toggle_preview(self, *args):
+		"""Action callback, showing or hiding the "minimap" preview popover."""
+		preview_visible = not args[0].get_state()
+		if preview_visible:
+			self.minimap.popup()
+			self.minimap.update_minimap()
+		else:
+			self.minimap.popdown()
+		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
+
 	def action_go_up(self, *args):
 		self.get_active_image().add_deltas(0, -1, 100)
 
