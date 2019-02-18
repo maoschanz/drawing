@@ -150,6 +150,13 @@
       <attribute name="label" translatable="yes">_View</attribute>
       <section>
         <item>
+          <attribute name="label" translatable="yes">Show the preview</attribute>
+          <attribute name="action">win.toggle_preview</attribute>
+          <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
           <attribute name="label" translatable="yes">Go Up</attribute>
           <attribute name="action">win.go_up</attribute>
         </item>
@@ -184,13 +191,6 @@
         <item>
           <attribute name="label" translatable="yes">Show tools names</attribute>
           <attribute name="action">win.show_labels</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Toggle the preview</attribute>
-          <attribute name="action">win.toggle_preview</attribute>
-          <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
         </item>
       </section>
     </submenu>

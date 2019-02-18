@@ -44,6 +44,7 @@ class ToolSelect(ToolTemplate):
 
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.centered_box = builder.get_object('centered-box')
+		self.minimap_btn = builder.get_object('minimap_btn')
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 		menu_r = builder.get_object('right-click-menu')
@@ -70,10 +71,12 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = True
 		self.update_actions_state()
 		self.selection_popover.set_relative_to(self.get_image())
+		self.window.minimap.set_relative_to(self.minimap_btn)
 		self.update_surface()
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
+		self.window.minimap.set_relative_to(self.window.minimap_btn)
 
 	def update_actions_state(self):
 		self.set_actions_state(self.selection_is_active)

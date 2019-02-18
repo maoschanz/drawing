@@ -272,6 +272,24 @@
     </child>
 
     <child>
+      <object class="GtkToggleButton" id="minimap_btn">
+        <property name="tooltip_text" translatable="yes">Show the preview</property>
+        <property name="visible">True</property>
+        <property name="action-name">win.toggle_preview</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">zoom-fit-best-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
       <object class="GtkButton" id="actions_btn">
         <property name="tooltip_text" translatable="yes">Selection actions</property>
         <property name="visible">True</property>

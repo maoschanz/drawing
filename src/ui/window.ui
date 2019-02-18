@@ -201,8 +201,9 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkMenuButton" id="minimap_btn">
+                  <object class="GtkToggleButton" id="minimap_btn">
                     <property name="visible">True</property>
+                    <property name="action-name">win.toggle_preview</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>

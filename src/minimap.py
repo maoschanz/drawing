@@ -26,8 +26,9 @@ class DrawingMinimap(Gtk.Popover):
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)
 		self.window = window
+		self.minimap_btn = minimap_btn
 		self.preview_size = self.window._settings.get_int('preview-size')
-		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300) # 8 ??? les autres plantent
+		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300)
 		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/minimap.ui')
@@ -42,8 +43,12 @@ class DrawingMinimap(Gtk.Popover):
 		self.minimap_area.connect('button-release-event', self.on_minimap_release)
 
 		self.add(box)
-		minimap_btn.set_popover(self)
-		minimap_btn.connect('toggled', self.update_minimap)
+		self.set_relative_to(self.minimap_btn)
+		self.connect('closed', self.on_popover_dismissed)
+
+	def on_popover_dismissed(self, *args):
+		"""Callback of the 'closed' signal, updating the state of the action."""
+		self.minimap_btn.set_active(False)
 
 	def on_minimap_draw(self, area, cairo_context):
 		"""Callback of the 'draw' signal, painting the area with the surface."""

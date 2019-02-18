@@ -82,6 +82,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.main_menu_btn = None
 		self.needed_width_for_long = 0
 
+		if self._settings.get_boolean('maximized'):
+			self.maximize()
+
 		decorations = self._settings.get_string('decorations')
 		self.set_ui_bars(decorations)
 
@@ -192,6 +195,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		rgba = self.color_popover_r.color_widget.get_rgba()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
 		self._settings.set_strv('last-right-rgba', rgba)
+
+		# Save the window state
+		self._settings.set_boolean('maximized', self.is_maximized())
 		return False
 
 	# GENERAL PURPOSE METHODS
@@ -234,7 +240,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu)
 		self.add_action_simple('options_menu', self.action_options_menu)
-		self.add_action_simple('toggle_preview', self.action_toggle_preview)
+		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 
 		self.add_action_simple('go_up', self.action_go_up)
 		self.add_action_simple('go_down', self.action_go_down)
@@ -273,7 +279,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild_from_histo)
 
 	def action_toggle_preview(self, *args):
-		self.minimap_btn.set_active(not self.minimap_btn.get_active())
+		preview_visible = not args[0].get_state()
+		if preview_visible:
+			self.minimap.popup()
+			self.minimap.update_minimap()
+		else:
+			self.minimap.popdown()
+		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
 
 	# WINDOW BARS
 
@@ -764,8 +776,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, left_rgba)
 
 	def action_use_editor(self, *args):
-		self._settings.set_boolean('direct-color-edit', not args[0].get_state())
-		args[0].set_state(GLib.Variant.new_boolean(not args[0].get_state()))
+		use_editor = not args[0].get_state()
+		self._settings.set_boolean('direct-color-edit', use_editor)
+		args[0].set_state(GLib.Variant.new_boolean(use_editor))
 		self.set_palette_setting()
 
 	def set_palette_setting(self, *args):
