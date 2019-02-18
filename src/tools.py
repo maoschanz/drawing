@@ -69,21 +69,26 @@ class ToolTemplate():
 		return _("No options")
 
 	def build_row(self):
-		self.row = Gtk.RadioButton(draw_indicator=False)
+		self.row = Gtk.RadioButton(draw_indicator=False, tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
 		self.label_widget = Gtk.Label(label=self.label)
 		box = Gtk.Box(
 			orientation=Gtk.Orientation.HORIZONTAL,
 			spacing=8,
-			margin=2,
-			tooltip_text=self.label
+			margin=2
 		)
 		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)
 		if not self.is_hidden:
 			self.row.show_all()
+
+	def build_selection_bar_btn(self):
+		btn = Gtk.Button(tooltip_text=self.label).new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
+		btn.set_detailed_action_name('win.selection_' + self.id)
+		btn.show_all()
+		return btn
 
 	def adapt_to_window_size(self):
 		pass

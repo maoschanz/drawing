@@ -115,13 +115,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools['experiment'] = ToolExperiment(self)
 			self.tools['paint'] = ToolPaint(self)
 			self.tools['replace'] = ToolReplace(self)
-		self.tools['saturate'] = ToolSaturate(self)
-		self.tools['flip'] = ToolFlip(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
+		self.tools['flip'] = ToolFlip(self)
+		self.tools['saturate'] = ToolSaturate(self)
 
-		# Side panel
+		# Buttons for tools (in the side panel and the selection tool action bar)
 		self.build_tool_rows()
 
 		# Global menubar
@@ -419,6 +419,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
+			if self.tools[tool_id].is_hidden:
+				self.get_selection_tool().add_subtool(self.tools[tool_id])
 		self.on_show_labels_setting_changed()
 
 	def set_tools_labels_visibility(self, visible):

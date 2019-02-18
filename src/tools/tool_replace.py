@@ -12,7 +12,7 @@ class ToolReplace(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('replace', _("Replace color"), 'edit-delete-symbolic', window, False)
+		super().__init__('replace', _("Replace color"), 'preferences-color-symbolic', window, False)
 		self.new_color = None
 		self.old_color = None
 		self.use_size = True

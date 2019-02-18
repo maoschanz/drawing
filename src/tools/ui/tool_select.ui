@@ -263,81 +263,11 @@
     </child>
 
     <child type="center">
-      <object class="GtkBox" id="centered_box">
+      <object class="GtkBox" id="centered-box">
         <property name="visible">True</property>
         <style>
           <class name="linked"/>
         </style>
-        <child>
-          <object class="GtkButton">
-            <property name="tooltip_text" translatable="yes">Crop</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.selection_crop</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">tool-crop-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="tooltip_text" translatable="yes">Scale</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.selection_scale</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-fullscreen-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="tooltip-text" translatable="yes">Flip</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.selection_flip</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">object-flip-horizontal-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="tooltip-text" translatable="yes">Rotate</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.selection_rotate</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-refresh-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="tooltip_text" translatable="yes">Saturate</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.selection_saturate</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">weather-clear-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
       </object>
     </child>
 

@@ -43,6 +43,7 @@ class ToolSelect(ToolTemplate):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
 
 		self.bottom_panel = builder.get_object('bottom-panel')
+		self.centered_box = builder.get_object('centered-box')
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 		menu_r = builder.get_object('right-click-menu')
@@ -58,6 +59,9 @@ class ToolSelect(ToolTemplate):
 		#self.add_tool_action_boolean('selection_exclude', False)
 
 		self.reset_temp()
+
+	def add_subtool(self, tool):
+		self.centered_box.add(tool.build_selection_bar_btn())
 
 	def get_panel(self):
 		return self.bottom_panel

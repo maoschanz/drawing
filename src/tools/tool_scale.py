@@ -25,7 +25,7 @@ class ToolScale(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('scale', _("Scale"), 'view-fullscreen-symbolic', window, True)
+		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window, True)
 		self.need_temp_pixbuf = True
 
 		self.keep_proportions = True

@@ -25,7 +25,7 @@ class ToolFlip(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('flip', _("Flip"), 'object-flip-horizontal-symbolic', window, True)
+		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window, True)
 		self.need_temp_pixbuf = True
 
 		self.add_tool_action_simple('flip_apply', self.on_apply)
