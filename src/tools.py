@@ -153,4 +153,7 @@ class ToolTemplate():
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
+	def on_apply(self):
+		pass
+
 

@@ -32,8 +32,6 @@ class ToolScale(ToolTemplate):
 		self.x_press = 0
 		self.y_press = 0
 
-		self.add_tool_action_simple('scale_apply', self.on_apply)
-
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_scale.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.centered_box = builder.get_object('centered_box')

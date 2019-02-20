@@ -1,4 +1,4 @@
-# tool_rotate.py # XXX
+# tool_rotate.py
 #
 # Copyright 2019 Romain F. T.
 #
@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk
+import cairo
 
 from .tools import ToolTemplate
 
@@ -28,8 +29,6 @@ class ToolRotate(ToolTemplate):
 		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window, True)
 		self.is_hidden = True
 		self.need_temp_pixbuf = True
-
-		self.add_tool_action_simple('rotate_apply', self.on_apply)
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_rotate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
@@ -67,7 +66,7 @@ class ToolRotate(ToolTemplate):
 			self.angle_label.set_visible(False)
 			self.right_btn.set_visible(True)
 			self.left_btn.set_visible(True)
-		self.update_temp_pixbuf()
+		self.on_angle_changed()
 
 	def on_apply(self, *args):
 		self.restore_pixbuf()
@@ -75,20 +74,12 @@ class ToolRotate(ToolTemplate):
 			self.get_image().selection_pixbuf = self.get_selection_pixbuf().rotate_simple(self.get_angle())
 			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
-			self.get_image().set_main_pixbuf(self.get_main_pixbuf().rotate_simple(self.get_angle()))
-			#self.apply_to_pixbuf()
-			self.restore_pixbuf()
+			operation = self.build_operation()
+			self.apply_operation(operation)
 			self.window.force_selection_tool()
 
 	def get_angle(self):
 		return self.angle_btn.get_value_as_int()
-
-	def update_temp_pixbuf(self):
-		angle = self.get_angle()
-		if self.rotate_selection:
-			self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().rotate_simple(angle))
-		else:
-			self.get_image().set_temp_pixbuf(self.get_main_pixbuf().rotate_simple(angle))
 
 	def on_right_clicked(self, *args):
 		self.angle_btn.set_value(self.get_angle() + 90)
@@ -106,22 +97,14 @@ class ToolRotate(ToolTemplate):
 			angle = int(angle/90) * 90
 		if angle != self.get_angle():
 			self.angle_btn.set_value(angle)
-		self.update_temp_pixbuf()
-		self.update_area()
 
-	def update_area(self):
-		self.update_temp_pixbuf()
-		# if self.rotate_selection:
-		# 	self.set_edition_state('temp-as-selection')
-		# else:
-		# 	self.set_edition_state('temp-as-main')
-		self.non_destructive_show_modif()
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.rotate_selection,
-			'pixbuf': None,
 			'angle': self.get_angle()
 		}
 		return operation
@@ -130,5 +113,28 @@ class ToolRotate(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
+		angle = operation['angle']
+		if operation['is_selection']:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		self.get_image().set_temp_pixbuf(source_pixbuf.rotate_simple(angle))
 		cairo_context = cairo.Context(self.get_surface())
-		# TODO 
+		if operation['is_selection']:
+			cairo_context.set_source_surface(self.get_surface(), 0, 0)
+			cairo_context.paint()
+			self.get_image().delete_former_selection()
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+				self.get_image().get_temp_pixbuf(), \
+				self.get_image().selection_x, \
+				self.get_image().selection_y)
+			cairo_context.paint()
+		else:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+				self.get_image().get_temp_pixbuf(), \
+				-1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
+			cairo_context.paint()
+		self.non_destructive_show_modif()

@@ -259,6 +259,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('back_to_former_tool', self.back_to_former_tool)
 		self.add_action_simple('force_selection_tool', self.force_selection_tool)
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
+		self.add_action_simple('apply_selection_tool', self.action_apply_selection_tool)
 
 		self.add_action_simple('main_color', self.action_main_color)
 		self.add_action_simple('secondary_color', self.action_secondary_color)
@@ -708,6 +709,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.hijack_end()
 		else:
 			self.get_selection_tool().row.set_active(True)
+
+	def action_apply_selection_tool(self, *args):
+		self.active_tool().on_apply()
 
 	# HISTORY MANAGEMENT
 

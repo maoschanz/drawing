@@ -1,4 +1,4 @@
-# tool_flip.py # XXX
+# tool_flip.py
 #
 # Copyright 2019 Romain F. T.
 #
@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
+import cairo
 
 from .tools import ToolTemplate
 
@@ -27,8 +28,6 @@ class ToolFlip(ToolTemplate):
 	def __init__(self, window):
 		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window, True)
 		self.need_temp_pixbuf = True
-
-		self.add_tool_action_simple('flip_apply', self.on_apply)
 
 		self.flip_selection = False
 		self.flip_h = False
@@ -44,7 +43,7 @@ class ToolFlip(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self): # FIXME utile ??
+	def get_panel(self): # XXX utile ??
 		return self.bottom_panel
 
 	def on_vertical_clicked(self, *args):
@@ -62,30 +61,62 @@ class ToolFlip(ToolTemplate):
 		self.update_temp_pixbuf()
 
 	def update_temp_pixbuf(self):
-		if self.flip_selection:
-			if self.flip_h:
-				self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().flip(True))
-			if self.flip_v:
-				self.get_image().set_temp_pixbuf(self.get_selection_pixbuf().flip(False))
-		else:
-			if self.flip_h:
-				self.get_image().set_temp_pixbuf(self.get_main_pixbuf().flip(True))
-			if self.flip_v:
-				self.get_image().set_temp_pixbuf(self.get_main_pixbuf().flip(False))
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_apply(self, *args):
+		self.restore_pixbuf()
+		operation = self.build_operation()
 		if self.flip_selection:
-			if self.flip_h:
-				self.get_image().set_selection_pixbuf(self.get_selection_pixbuf().flip(True))
-			if self.flip_v:
-				self.get_image().set_selection_pixbuf(self.get_selection_pixbuf().flip(False))
+			self.do_tool_operation(operation)
+			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
-			if self.flip_h:
-				self.get_image().set_main_pixbuf(self.get_main_pixbuf().flip(True))
-			if self.flip_v:
-				self.get_image().set_main_pixbuf(self.get_main_pixbuf().flip(False))
+			self.apply_operation(operation)
 			self.window.force_selection_tool()
 
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'is_selection': self.flip_selection,
+			'flip_h': self.flip_h,
+			'flip_v': self.flip_v
+		}
+		return operation
 
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		flip_h = operation['flip_h']
+		flip_v = operation['flip_v']
+		if operation['is_selection']:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
+		preview = self.get_image().get_temp_pixbuf()
+		if flip_h:
+			self.get_image().set_temp_pixbuf(preview.flip(True))
+		if flip_v:
+			self.get_image().set_temp_pixbuf(preview.flip(False))
 
+		cairo_context = cairo.Context(self.get_surface())
+		if operation['is_selection']:
+			cairo_context.set_source_surface(self.get_surface(), 0, 0)
+			cairo_context.paint()
+			self.get_image().delete_former_selection()
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+				self.get_image().get_temp_pixbuf(), \
+				self.get_image().selection_x, \
+				self.get_image().selection_y)
+			cairo_context.paint()
+		else:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+				self.get_image().get_temp_pixbuf(), \
+				-1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
+			cairo_context.paint()
+		self.non_destructive_show_modif()
