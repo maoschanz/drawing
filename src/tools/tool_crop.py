@@ -43,6 +43,7 @@ class ToolCrop(ToolTemplate):
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
+		# FIXME X et Y ? TODO
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
@@ -210,23 +211,6 @@ class ToolCrop(ToolTemplate):
 		if not operation['is_selection'] and operation['is_preview']:
 			self.scale_temp_pixbuf_to_area(width, height)
 
-		cairo_context = cairo.Context(self.get_surface())
-		if operation['is_selection']:
-			cairo_context.set_source_surface(self.get_surface(), 0, 0)
-			cairo_context.paint()
-			self.get_image().delete_former_selection()
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-				self.get_image().get_temp_pixbuf(), \
-				self.get_image().selection_x, \
-				self.get_image().selection_y)
-			cairo_context.paint()
-		else:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-				self.get_image().get_temp_pixbuf(), \
-				-1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
-			cairo_context.paint()
-		self.non_destructive_show_modif()
+		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+
 

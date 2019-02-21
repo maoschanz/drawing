@@ -1,4 +1,4 @@
-# tool_saturate.py # XXX
+# tool_saturate.py
 #
 # Copyright 2019 Romain F. T.
 #
@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
+import cairo
 
 from .tools import ToolTemplate
 
@@ -43,31 +44,45 @@ class ToolSaturate(ToolTemplate):
 	def on_tool_selected(self, *args):
 		self.saturate_selection = (self.window.hijacker_id is not None)
 		self.saturation_btn.set_value(100.0)
-		self.update_temp_pixbuf()
-
-	def update_temp_pixbuf(self):
-		sat = self.get_saturation()
-		if self.saturate_selection:
-			pixbuf = self.get_selection_pixbuf()
-		else:
-			pixbuf = self.get_main_pixbuf()
-		self.get_image().set_temp_pixbuf(pixbuf.saturate_and_pixelate(pixbuf, sat, False))
+		self.on_sat_changed()
 
 	def on_apply(self, *args):
-		sat = self.get_saturation()
-		print(sat)
+		self.restore_pixbuf()
+		operation = self.build_operation()
 		if self.saturate_selection:
-			selection_pixbuf = self.get_selection_pixbuf()
-			self.get_image().set_selection_pixbuf(selection_pixbuf.saturate_and_pixelate(selection_pixbuf, sat, False))
+			self.do_tool_operation(operation)
+			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
-			main_pixbuf = self.get_main_pixbuf()
-			self.get_image().set_main_pixbuf(main_pixbuf.saturate_and_pixelate(main_pixbuf, sat, False))
+			self.apply_operation(operation)
 			self.window.force_selection_tool()
 
 	def get_saturation(self):
 		return self.saturation_btn.get_value()/100
 
 	def on_sat_changed(self, *args):
-		# self.update_temp_pixbuf() # FIXME
-		pass # TODO
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'is_selection': self.saturate_selection,
+			'saturation': self.get_saturation()
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		saturation = operation['saturation']
+		if operation['is_selection']:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
+		temp = self.get_image().get_temp_pixbuf()
+		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
+		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+

@@ -57,7 +57,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
 		self.exclude_color = False
-		#self.add_tool_action_boolean('selection_exclude', False)
+		self.add_tool_action_boolean('selection_exclude', False)
 
 		self.reset_temp()
 
@@ -66,6 +66,14 @@ class ToolSelect(ToolTemplate):
 
 	def get_panel(self):
 		return self.bottom_panel
+
+	def adapt_to_window_size(self):
+		available_width = self.window.bottom_panel_box.get_allocated_width()
+		box_width = self.centered_box.get_allocated_width()
+		if box_width > 0.4 * available_width:
+			self.centered_box.set_visible(False)
+		else:
+			self.centered_box.set_visible(True)
 
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
@@ -112,6 +120,8 @@ class ToolSelect(ToolTemplate):
 			label = label + ' - ' +  _("Select an area or right-click on the canvas")
 		return label
 
+	############################################################################
+
 	def give_back_control(self):
 		print('selection give_back_control')
 		if self.selection_has_been_used:
@@ -135,8 +145,8 @@ class ToolSelect(ToolTemplate):
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.set_active_type() # mdr pas entièrement au point tout ça
-		# self.exclude_color = self.get_option_value('selection_exclude')
-		# self.secondary_color = right_color
+		self.exclude_color = self.get_option_value('selection_exclude')
+		self.secondary_color = right_color
 		self.x_press = event_x
 		self.y_press = event_y
 		if self.selected_type_id == 'freehand' and not self.selection_is_active:
@@ -303,7 +313,7 @@ class ToolSelect(ToolTemplate):
 		else:
 			self.window.tools[tool_id].row.set_active(True)
 
-############################## XXX pour toute cette section, ne peut-on pas donner le contexte en paramètre ?
+	###################### XXX pour toute cette section, ne peut-on pas donner le contexte en paramètre ?
 
 	def init_path(self, event_x, event_y):
 		if self.get_image().selection_path is not None:
@@ -374,7 +384,7 @@ class ToolSelect(ToolTemplate):
 		self.temp_path = w_context.copy_path()
 		self.set_temp()
 
-####################################
+	############################################################################
 
 	def create_selection_from_arbitrary_pixbuf(self, is_existing_content):
 		self.temp_x = self.get_image().selection_x
@@ -461,7 +471,7 @@ class ToolSelect(ToolTemplate):
 		ymin = max(ymin, 0.0)
 		if xmax - xmin < self.closing_precision and ymax - ymin < self.closing_precision:
 			return # when the path is not drawable yet XXX
-		self.crop_selection_surface(xmin, ymin, xmax - xmin, ymax - ymin)
+		self.crop_free_selection_pixbuf(xmin, ymin, xmax - xmin, ymax - ymin)
 		self.get_image().selection_x = xmin
 		self.get_image().selection_y = ymin
 		w_context = cairo.Context(surface)
@@ -474,7 +484,7 @@ class ToolSelect(ToolTemplate):
 			xmax - xmin, ymax - ymin)
 		self.set_temp()
 
-	def crop_selection_surface(self, x, y, width, height): # TODO dans crop, non ? non je m'en sers plus haut
+	def crop_free_selection_pixbuf(self, x, y, width, height):
 		x = int(x)
 		y = int(y)
 		width = int(width)
@@ -489,6 +499,8 @@ class ToolSelect(ToolTemplate):
 	def forget_selection(self):
 		self.get_image().selection_pixbuf = None
 		self.get_image().selection_path = None
+
+	############################################################################
 
 	def build_operation(self):
 		if self.get_image().get_selection_pixbuf() is None:

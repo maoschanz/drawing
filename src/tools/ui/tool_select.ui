@@ -201,6 +201,7 @@
 
     <child>
       <object class="GtkToggleButton">
+        <!-- XXX ? -->
         <property name="tooltip_text" translatable="yes">Erase secondary color</property>
         <property name="visible">False</property>
         <!-- <property name="visible">True</property> -->
@@ -221,6 +222,7 @@
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
         <style>
           <class name="linked"/>
         </style>
@@ -264,7 +266,8 @@
 
     <child type="center">
       <object class="GtkBox" id="centered-box">
-        <property name="visible">True</property>
+        <property name="visible">False</property>
+        <property name="valign">center</property>
         <style>
           <class name="linked"/>
         </style>
@@ -305,5 +308,6 @@
         <property name="pack-type">end</property>
       </packing>
     </child>
+
   </object>
 </interface>
