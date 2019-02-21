@@ -36,8 +36,10 @@ class ToolText(ToolTemplate):
 
 		# Building the widget containing options
 		self.options_box = builder.get_object("options-widget")
-		self.font_btn = builder.get_object("font-btn")
+		self.font_btn = builder.get_object("font-chooser-widget")
 		self.backg_switch = builder.get_object("backg-switch")
+
+		self.font_btn.set_font('Sans 36')
 
 	def hide_row_label(self):
 		self.label_widget.set_visible(False)
@@ -153,14 +155,14 @@ class ToolText(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 
 		font_fam = operation['font_fam']
 		font_slant = operation['font_slant']
 		font_weight = operation['font_weight']
 		font_size = operation['font_size']
-		w_context.select_font_face(font_fam, font_slant, font_weight)
-		w_context.set_font_size(font_size)
+		cairo_context.select_font_face(font_fam, font_slant, font_weight)
+		cairo_context.set_font_size(font_size)
 
 		lines = operation['text'].split('\n')
 		i = 0
@@ -172,20 +174,20 @@ class ToolText(ToolTemplate):
 
 		for a_line in lines:
 			if operation['background']:
-				w_context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
-				w_context.move_to(text_x, text_y + (i+0.2)*font_size)
-				w_context.show_text( a_line )
-				w_context.rel_line_to(0, (-1)*font_size)
-				w_context.line_to(text_x, text_y + (i-0.8)*font_size)
-				w_context.line_to(text_x, text_y + (i+0.2)*font_size)
-				w_context.set_source_rgba(secondary_color.red, secondary_color.green, \
-					secondary_color.blue, secondary_color.alpha)
-				w_context.fill()
-				w_context.stroke()
-			w_context.set_source_rgba(main_color.red, main_color.green, \
+				cairo_context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
+				cairo_context.move_to(text_x, text_y + (i+0.2)*font_size)
+				cairo_context.show_text( a_line )
+				cairo_context.rel_line_to(0, (-1)*font_size)
+				cairo_context.line_to(text_x, text_y + (i-0.8)*font_size)
+				cairo_context.line_to(text_x, text_y + (i+0.2)*font_size)
+				cairo_context.set_source_rgba(secondary_color.red, \
+					secondary_color.green, secondary_color.blue, secondary_color.alpha)
+				cairo_context.fill()
+				cairo_context.stroke()
+			cairo_context.set_source_rgba(main_color.red, main_color.green, \
 				main_color.blue, main_color.alpha)
-			w_context.move_to(text_x, text_y + i*font_size)
-			w_context.show_text( a_line )
+			cairo_context.move_to(text_x, text_y + i*font_size)
+			cairo_context.show_text( a_line )
 			i = i + 1
 		self.non_destructive_show_modif()
 

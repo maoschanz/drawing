@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-21 23:20+0100\n"
+"POT-Creation-Date: 2019-02-22 00:12+0100\n"
 "PO-Revision-Date: 2019-02-09 02:12-0600\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: \n"
@@ -629,29 +629,34 @@ msgstr ""
 msgid "Flip vertically"
 msgstr ""
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/tool_pencil.py:36
-msgid "Thin"
-msgstr "Fino"
-
-#: src/tools/ui/tool_polygon.ui:5 src/tools/ui/tool_shape.ui:23
+#: src/tools/ui/tool_freeshape.ui:5 src/tools/ui/tool_polygon.ui:5
+#: src/tools/ui/tool_shape.ui:23
 msgid "Filling"
 msgstr "Relleno"
 
-#: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_shape.ui:25
+#: src/tools/ui/tool_freeshape.ui:7 src/tools/ui/tool_polygon.ui:7
+#: src/tools/ui/tool_shape.ui:25 src/tools/tool_freeshape.py:28
 #: src/tools/tool_polygon.py:29 src/tools/tool_shape.py:31
 msgid "Empty"
 msgstr "Vacío"
 
-#: src/tools/ui/tool_polygon.ui:12 src/tools/ui/tool_shape.ui:30
+#: src/tools/ui/tool_freeshape.ui:12 src/tools/ui/tool_polygon.ui:12
+#: src/tools/ui/tool_shape.ui:30 src/tools/tool_freeshape.py:30
 #: src/tools/tool_polygon.py:31 src/tools/tool_shape.py:33
 msgid "Filled (main color)"
 msgstr "Relleno (color principal)"
 
-#: src/tools/ui/tool_polygon.ui:17 src/tools/ui/tool_shape.ui:35
-#: src/tools/tool_polygon.py:21 src/tools/tool_polygon.py:33
-#: src/tools/tool_shape.py:19 src/tools/tool_shape.py:35
+#: src/tools/ui/tool_freeshape.ui:17 src/tools/ui/tool_polygon.ui:17
+#: src/tools/ui/tool_shape.ui:35 src/tools/tool_freeshape.py:20
+#: src/tools/tool_freeshape.py:32 src/tools/tool_polygon.py:21
+#: src/tools/tool_polygon.py:33 src/tools/tool_shape.py:19
+#: src/tools/tool_shape.py:35
 msgid "Filled (secondary color)"
 msgstr "Relleno (color secundario)"
+
+#: src/tools/ui/tool_pencil.ui:12 src/tools/tool_pencil.py:36
+msgid "Thin"
+msgstr "Fino"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
@@ -793,6 +798,15 @@ msgstr "Recortando la selección"
 msgid "Cropping the canvas"
 msgstr "Recortando el lienzo"
 
+#: src/tools/tool_freeshape.py:14
+#, fuzzy
+msgid "Free shape"
+msgstr "Forma al frente"
+
+#: src/tools/tool_freeshape.py:39 src/tools/tool_shape.py:54
+msgid "Shape options"
+msgstr "Opciones de forma"
+
 #: src/tools/tool_experiment.py:14
 msgid "Experiment"
 msgstr "Experimento"
@@ -873,10 +887,6 @@ msgstr ""
 #: src/tools/tool_shape.py:15
 msgid "Basic shape"
 msgstr "Forma básica"
-
-#: src/tools/tool_shape.py:54
-msgid "Shape options"
-msgstr "Opciones de forma"
 
 #: src/tools/tool_text.py:14
 msgid "Text"

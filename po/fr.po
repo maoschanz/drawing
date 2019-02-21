@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.Drawing 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-21 23:20+0100\n"
+"POT-Creation-Date: 2019-02-22 00:12+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -629,29 +629,34 @@ msgstr "Retourner horizontalement"
 msgid "Flip vertically"
 msgstr "Retourner verticalement"
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/tool_pencil.py:36
-msgid "Thin"
-msgstr "Fine"
-
-#: src/tools/ui/tool_polygon.ui:5 src/tools/ui/tool_shape.ui:23
+#: src/tools/ui/tool_freeshape.ui:5 src/tools/ui/tool_polygon.ui:5
+#: src/tools/ui/tool_shape.ui:23
 msgid "Filling"
 msgstr "Remplissage"
 
-#: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_shape.ui:25
+#: src/tools/ui/tool_freeshape.ui:7 src/tools/ui/tool_polygon.ui:7
+#: src/tools/ui/tool_shape.ui:25 src/tools/tool_freeshape.py:28
 #: src/tools/tool_polygon.py:29 src/tools/tool_shape.py:31
 msgid "Empty"
 msgstr "Vide"
 
-#: src/tools/ui/tool_polygon.ui:12 src/tools/ui/tool_shape.ui:30
+#: src/tools/ui/tool_freeshape.ui:12 src/tools/ui/tool_polygon.ui:12
+#: src/tools/ui/tool_shape.ui:30 src/tools/tool_freeshape.py:30
 #: src/tools/tool_polygon.py:31 src/tools/tool_shape.py:33
 msgid "Filled (main color)"
 msgstr "Plein (couleur principale)"
 
-#: src/tools/ui/tool_polygon.ui:17 src/tools/ui/tool_shape.ui:35
-#: src/tools/tool_polygon.py:21 src/tools/tool_polygon.py:33
-#: src/tools/tool_shape.py:19 src/tools/tool_shape.py:35
+#: src/tools/ui/tool_freeshape.ui:17 src/tools/ui/tool_polygon.ui:17
+#: src/tools/ui/tool_shape.ui:35 src/tools/tool_freeshape.py:20
+#: src/tools/tool_freeshape.py:32 src/tools/tool_polygon.py:21
+#: src/tools/tool_polygon.py:33 src/tools/tool_shape.py:19
+#: src/tools/tool_shape.py:35
 msgid "Filled (secondary color)"
 msgstr "Plein (couleur secondaire)"
+
+#: src/tools/ui/tool_pencil.ui:12 src/tools/tool_pencil.py:36
+msgid "Thin"
+msgstr "Fine"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
@@ -787,9 +792,17 @@ msgstr "Recadrer la sélection"
 msgid "Cropping the canvas"
 msgstr "Recadrer le canevas"
 
+#: src/tools/tool_freeshape.py:14
+msgid "Free shape"
+msgstr "Forme libre"
+
+#: src/tools/tool_freeshape.py:39 src/tools/tool_shape.py:54
+msgid "Shape options"
+msgstr "Options des formes"
+
 #: src/tools/tool_experiment.py:14
 msgid "Experiment"
-msgstr "Expérimentation"
+msgstr "Opérateurs"
 
 #: src/tools/tool_line.py:14
 msgid "Line"
@@ -821,7 +834,7 @@ msgstr "Options du crayon"
 
 #: src/tools/tool_picker.py:15
 msgid "Color Picker"
-msgstr "Sélecteur de couleur"
+msgstr "Couleur"
 
 #: src/tools/tool_rotate.py:51
 msgid "Rotating the selection"
@@ -863,16 +876,6 @@ msgstr "Sélectionner une zone ou faites un clic-droit sur le canevas"
 msgid "Basic shape"
 msgstr "Forme simple"
 
-#: src/tools/tool_shape.py:54
-msgid "Shape options"
-msgstr "Options des formes"
-
 #: src/tools/tool_text.py:14
 msgid "Text"
 msgstr "Texte"
-
-#~ msgid "Allow freehand drawing"
-#~ msgstr "Tracé à main levée"
-
-#~ msgid "Edges"
-#~ msgstr "Arêtes"
