@@ -43,4 +43,4 @@ class ToolReplace(ToolTemplate):
 		w_context.set_operator(cairo.Operator.DEST_OVER)
 		w_context.set_source_rgba(self.new_color.red, self.new_color.green, self.new_color.blue, self.new_color.alpha)
 		w_context.paint()
-		self.apply_to_pixbuf()
+		self.apply_to_pixbuf() # XXX should do an operation instead (not important for this tool)

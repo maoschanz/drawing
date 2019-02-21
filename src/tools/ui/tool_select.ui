@@ -182,7 +182,12 @@
       <item>
         <attribute name="label" translatable="yes">Freehand</attribute>
         <attribute name="action">win.selection_type</attribute>
-        <attribute name="target">freenhand</attribute>
+        <attribute name="target">freehand</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Similar color</attribute>
+        <attribute name="action">win.selection_type</attribute>
+        <attribute name="target">color</attribute>
       </item>
     </section>
     <!-- <section> -->
@@ -249,10 +254,26 @@
             <property name="valign">center</property>
             <property name="draw-indicator">False</property>
             <property name="action-name">win.selection_type</property>
-            <property name="action-target">'freenhand'</property>
+            <property name="action-target">'freehand'</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">tool-polygon-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioButton" id="selection_type_btn3">
+            <property name="tooltip_text" translatable="yes">Similar color selection</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="draw-indicator">False</property>
+            <property name="action-name">win.selection_type</property>
+            <property name="action-target">'color'</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">preferences-color-symbolic</property>
                 <property name="visible">True</property>
               </object>
             </child>

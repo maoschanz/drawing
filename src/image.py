@@ -192,7 +192,7 @@ class DrawingImage(Gtk.Layout):
 		self.undo_history.append(operation)
 		self.update_history_sensitivity()
 
-	def on_tool_finished(self): # XXX encore utile ? encore appelé en tout cas
+	def on_tool_finished(self):
 		#self.redo_history = []
 		self.update_history_sensitivity()
 		self.queue_draw()

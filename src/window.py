@@ -116,9 +116,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['arc'] = ToolArc(self)
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
+		self.tools['paint'] = ToolPaint(self)
 		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
-			self.tools['paint'] = ToolPaint(self)
 			self.tools['replace'] = ToolReplace(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)

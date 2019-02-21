@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .tools import ToolTemplate
+from .utilities import utilities_get_magic_path
 
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
@@ -37,7 +38,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_saturate', self.action_selection_saturate)
 
 		self.selected_type_id = 'rectangle'
-		self.selected_type_label = _("Rectangle")
+		self.selected_type_label = _("Rectangle selection")
 		self.background_type_id = 'transparent'
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
@@ -53,11 +54,13 @@ class ToolSelect(ToolTemplate):
 		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l)
 		builder.get_object('actions_btn').connect('clicked', self.on_actions_btn_clicked)
 
-		builder.get_object('selection_type_btn1').join_group(builder.get_object('selection_type_btn2'))
+		btn1 = builder.get_object('selection_type_btn1')
+		builder.get_object('selection_type_btn2').join_group(btn1)
+		builder.get_object('selection_type_btn3').join_group(btn1)
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
 		self.exclude_color = False
-		self.add_tool_action_boolean('selection_exclude', False)
+		# self.add_tool_action_boolean('selection_exclude', False)
 
 		self.reset_temp()
 
@@ -96,13 +99,19 @@ class ToolSelect(ToolTemplate):
 		self.set_action_sensitivity('selection_delete', state)
 		self.set_action_sensitivity('selection_export', state)
 
-	def set_active_type(self, *args): # TODO split ça en 2 outils ayant la même barre ?
-		if self.get_option_value('selection_type') == 'rectangle':
+	def set_active_type(self, *args):
+		# TODO split ça en 3 outils ayant la même barre ?
+		# les 3 outils pouvant dériver d'un unique ToolSelect
+		selection_type = self.get_option_value('selection_type')
+		if selection_type == 'rectangle':
 			self.selected_type_id = 'rectangle'
 			self.selected_type_label = _("Rectangle selection")
-		else:
+		elif selection_type == 'freehand':
 			self.selected_type_id = 'freehand'
 			self.selected_type_label = _("Freehand selection")
+		else:
+			self.selected_type_id = 'color'
+			self.selected_type_label = _("Color selection")
 		self.window.set_picture_title()
 
 	def get_options_model(self):
@@ -113,7 +122,7 @@ class ToolSelect(ToolTemplate):
 		return _("Selection options")
 
 	def get_edition_status(self):
-		label = self.label + ' (' + self.selected_type_label +  ') '
+		label = self.selected_type_label
 		if self.selection_is_active:
 			label = label + ' - ' +  _("Drag the selection or right-click on the canvas")
 		else:
@@ -145,11 +154,14 @@ class ToolSelect(ToolTemplate):
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.set_active_type() # mdr pas entièrement au point tout ça
-		self.exclude_color = self.get_option_value('selection_exclude')
-		self.secondary_color = right_color
+		# self.exclude_color = self.get_option_value('selection_exclude')
+		# self.secondary_color = right_color
 		self.x_press = event_x
 		self.y_press = event_y
-		if self.selected_type_id == 'freehand' and not self.selection_is_active:
+		if self.selected_type_id == 'color' and not self.selection_is_active:
+			self.get_image().selection_path = utilities_get_magic_path(surface, \
+				event_x, event_y, self.window)
+		elif self.selected_type_id == 'freehand' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
 		if not self.press_point_is_in_selection():
 			self.give_back_control()
@@ -202,6 +214,13 @@ class ToolSelect(ToolTemplate):
 						self.selection_has_been_used = False
 				else:
 					return # without updating the surface so the path is visible
+			elif self.selected_type_id == 'color':
+				self.restore_pixbuf()
+				if self.get_image().selection_path is not None:
+					self.create_free_selection_from_main()
+					if self.selection_is_active:
+						self.show_popover(True)
+						self.selection_has_been_used = False
 			self.update_surface()
 		elif self.press_point_is_in_selection():
 			self.drag_to(event_x, event_y)
@@ -290,7 +309,7 @@ class ToolSelect(ToolTemplate):
 		self.restore_pixbuf()
 		self.delete_temp()
 		self.reset_temp()
-		self.apply_to_pixbuf()
+		self.apply_to_pixbuf() # actually needed
 
 	def action_selection_flip(self, *args):
 		self.try_edit('flip')
@@ -459,7 +478,9 @@ class ToolSelect(ToolTemplate):
 		surface = Gdk.cairo_surface_create_from_pixbuf(self.get_selection_pixbuf(), 0, None)
 		xmin, ymin = surface.get_width(), surface.get_height()
 		xmax, ymax = 0.0, 0.0
-		for pts in self.get_image().selection_path:
+		if self.get_image().selection_path is None:
+			return
+		for pts in self.get_image().selection_path: # XXX cairo has a method for this
 			if pts[1] is not ():
 				xmin = min(pts[1][0], xmin)
 				xmax = max(pts[1][0], xmax)
@@ -478,6 +499,8 @@ class ToolSelect(ToolTemplate):
 		w_context.set_operator(cairo.Operator.DEST_IN)
 		w_context.new_path()
 		w_context.append_path(self.get_image().selection_path)
+		if self.temp_path is None: # ??
+			self.temp_path = w_context.copy_path()
 		w_context.fill()
 		w_context.set_operator(cairo.Operator.OVER)
 		self.get_image().selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, xmin, ymin, \

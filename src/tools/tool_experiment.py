@@ -154,5 +154,5 @@ class ToolExperiment(ToolTemplate):
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
-		self.apply_to_pixbuf()
+		self.apply_to_pixbuf() # XXX should do an operation instead (not important for this tool)
 
