@@ -211,6 +211,10 @@ class ToolCrop(ToolTemplate):
 		if not operation['is_selection'] and operation['is_preview']:
 			self.scale_temp_pixbuf_to_area(width, height)
 
-		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+		if operation['is_preview']:
+			self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+		else:
+			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.restore_pixbuf()
 
 

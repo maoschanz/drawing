@@ -85,6 +85,7 @@ class ToolScale(ToolTemplate):
 			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.window.get_selection_tool().on_confirm_hijacked_modif()
 		else:
+			operation['is_preview'] = False
 			self.apply_operation(operation)
 			self.window.force_selection_tool()
 
@@ -142,6 +143,7 @@ class ToolScale(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.scale_selection,
+			'is_preview': True,
 			'width': self.get_width(),
 			'height': self.get_height()
 		}
@@ -157,5 +159,10 @@ class ToolScale(ToolTemplate):
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.scale_simple( \
 			operation['width'], operation['height'], GdkPixbuf.InterpType.TILES))
-		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+
+		if operation['is_preview']:
+			self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+		else:
+			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.restore_pixbuf()
 
