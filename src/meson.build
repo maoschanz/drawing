@@ -51,7 +51,6 @@ drawing_sources = [
 	'tools/tool_pencil.py',
 	'tools/tool_polygon.py',
 	'tools/tool_picker.py',
-	'tools/tool_replace.py',
 	'tools/tool_rotate.py',
 	'tools/tool_saturate.py',
 	'tools/tool_scale.py',

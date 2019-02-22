@@ -29,7 +29,6 @@ from .tool_paint import ToolPaint
 from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
 from .tool_polygon import ToolPolygon
-# from .tool_replace import ToolReplace
 from .tool_rotate import ToolRotate
 from .tool_saturate import ToolSaturate
 from .tool_scale import ToolScale
@@ -121,7 +120,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['paint'] = ToolPaint(self)
 		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
-			# self.tools['replace'] = ToolReplace(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)

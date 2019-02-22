@@ -160,7 +160,7 @@ class ToolSelect(ToolTemplate):
 		self.y_press = event_y
 		if self.selected_type_id == 'color' and not self.selection_is_active:
 			self.get_image().selection_path = utilities_get_magic_path(surface, \
-				event_x, event_y, self.window)
+				event_x, event_y, self.window, 1)
 		elif self.selected_type_id == 'freehand' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
 		if not self.press_point_is_in_selection():

@@ -32,7 +32,7 @@ def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	cairo_context.stroke()
 
-def utilities_get_magic_path(surface, x, y, window):
+def utilities_get_magic_path(surface, x, y, window, coef):
 # TODO idée :
 # le délire ce serait de commencer un path petit, puis de l'étendre avec
 # cairo.Context.clip_extents() jusqu'à ce qu'on soit à fond.
@@ -65,12 +65,12 @@ def utilities_get_magic_path(surface, x, y, window):
 	should_stop = False
 	i = 0
 
-	x_shift = [-1, 0, 1, 1, 1, 0, -1, -1]
-	y_shift = [-1, -1, -1, 0, 1, 1, 1, 0]
+	x_shift = [-1 * coef, 0, coef, coef, coef, 0, -1 * coef, -1 * coef]
+	y_shift = [-1 * coef, -1 * coef, -1 * coef, 0, coef, coef, coef, 0]
 
 	while (not should_stop and i < 50000):
-		new_x = -2
-		new_y = -2
+		new_x = -10
+		new_y = -10
 		end_circle = False
 
 		j = 0
@@ -94,7 +94,7 @@ def utilities_get_magic_path(surface, x, y, window):
 		direction = (direction+4) % 8
 		# print('direction:')
 		# print(direction)
-		if (new_x != -2):
+		if (new_x != -10):
 			w_context.line_to(x, y)
 		# else:
 		#	 print('TENTATIVE ABUSIVE D\'AJOUT')
@@ -125,7 +125,7 @@ def launch_infinite_loop_dialog(window):
 	dialog.add_button(_("Abort"), Gtk.ResponseType.CANCEL)
 	dialog.get_content_area().add(Gtk.Label(label=_( \
 """The area seems poorly delimited, or is very complex.
-This algorithm is not may not be able to manage the wanted area.
+This algorithm may not be able to manage the wanted area.
 
 Do you want to abort the operation, or to let the tool struggle ?""" \
 	), margin=10))

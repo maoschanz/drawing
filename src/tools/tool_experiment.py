@@ -23,7 +23,7 @@ class ToolExperiment(ToolTemplate):
 
 		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
 
-	def on_change_active_operator(self, *args):
+	def set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
 		if state_as_string == 'CLEAR':
 			self.selected_operator = cairo.Operator.CLEAR
@@ -120,28 +120,6 @@ class ToolExperiment(ToolTemplate):
 	def get_options_label(self):
 		return self.selected_operator_label
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_operator(self.selected_operator)
-		w_context.set_line_cap(cairo.LineCap.ROUND)
-		w_context.set_line_join(cairo.LineJoin.ROUND)
-		w_context.set_line_width(self.tool_width)
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
-				self.main_color.blue, self.main_color.alpha)
-		if self.past_x == -1.0:
-			(self.past_x, self.past_y) = (self.x_press, self.y_press)
-			w_context.move_to(self.x_press, self.y_press)
-			self._path = w_context.copy_path()
-		else:
-			w_context.append_path(self._path)
-		w_context.line_to(event_x, event_y)
-		w_context.stroke_preserve() # draw the line without closing the path
-		self._path = w_context.copy_path()
-		self.non_destructive_show_modif()
-		self.past_x = event_x
-		self.past_y = event_y
-
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
@@ -150,9 +128,57 @@ class ToolExperiment(ToolTemplate):
 			self.main_color = right_color
 		else:
 			self.main_color = left_color
+		self.set_active_operator()
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		if self.past_x == -1.0:
+			(self.past_x, self.past_y) = (self.x_press, self.y_press)
+			cairo_context.move_to(self.x_press, self.y_press)
+			self._path = cairo_context.copy_path()
+		else:
+			cairo_context.append_path(self._path)
+		cairo_context.line_to(event_x, event_y)
+		self._path = cairo_context.copy_path()
+		self.past_x = event_x
+		self.past_y = event_y
+
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
-		self.apply_to_pixbuf() # XXX should do an operation instead (not important for this tool)
+		operation = self.build_operation()
+		self.apply_operation(operation)
 
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'rgba': self.main_color,
+			'operator': self.selected_operator,
+			'line_width': self.tool_width,
+			'line_cap': cairo.LineCap.ROUND,
+			'line_join': cairo.LineJoin.ROUND,
+			'path': self._path
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		if operation['path'] is None:
+			return
+		self.restore_pixbuf()
+		print(operation['operator'])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_cap(operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join'])
+		line_width = operation['line_width']
+		cairo_context.set_line_width(line_width)
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.append_path(operation['path'])
+		cairo_context.stroke()

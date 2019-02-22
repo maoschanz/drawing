@@ -59,7 +59,7 @@ class ToolPencil(ToolTemplate):
 			self.selected_operator_label = _("Classic")
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_pencil.ui")
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_pencil.ui')
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
@@ -79,15 +79,15 @@ class ToolPencil(ToolTemplate):
 		self.set_active_operator()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 		if self.past_x == -1.0:
 			(self.past_x, self.past_y) = (self.x_press, self.y_press)
-			w_context.move_to(self.x_press, self.y_press)
-			self._path = w_context.copy_path()
+			cairo_context.move_to(self.x_press, self.y_press)
+			self._path = cairo_context.copy_path()
 		else:
-			w_context.append_path(self._path)
-		w_context.line_to(event_x, event_y)
-		self._path = w_context.copy_path()
+			cairo_context.append_path(self._path)
+		cairo_context.line_to(event_x, event_y)
+		self._path = cairo_context.copy_path()
 		self.past_x = event_x
 		self.past_y = event_y
 
@@ -119,15 +119,15 @@ class ToolPencil(ToolTemplate):
 		if operation['path'] is None:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_operator(operation['operator'])
-		w_context.set_line_cap(operation['line_cap'])
-		w_context.set_line_join(operation['line_join'])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_cap(operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']
-		w_context.set_line_width(line_width)
+		cairo_context.set_line_width(line_width)
 		rgba = operation['rgba']
-		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		if operation['use_dashes']:
-			w_context.set_dash([2*line_width, 2*line_width])
-		w_context.append_path(operation['path'])
-		w_context.stroke()
+			cairo_context.set_dash([2*line_width, 2*line_width])
+		cairo_context.append_path(operation['path'])
+		cairo_context.stroke()
