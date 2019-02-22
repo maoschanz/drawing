@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-22 00:12+0100\n"
-"PO-Revision-Date: 2019-02-16 09:00+0300\n"
+"PO-Revision-Date: 2019-02-22 10:26+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -328,9 +328,8 @@ msgid "_View"
 msgstr "_Görünüm"
 
 #: src/ui/app-menus.ui:153 src/tools/ui/tool_select.ui:300
-#, fuzzy
 msgid "Show the preview"
-msgstr "Önizlemeyi değiştir"
+msgstr "Önizlemeyi göster"
 
 #: src/ui/app-menus.ui:160
 msgid "Go Up"
@@ -526,7 +525,7 @@ msgstr ""
 
 #: src/utilities.py:123
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #: src/utilities.py:124
 msgid "Continue"
@@ -537,17 +536,17 @@ msgid "Abort"
 msgstr "Durdur"
 
 #: src/utilities.py:126
-#, fuzzy
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
 "This algorithm is not may not be able to manage the wanted area.\n"
 "\n"
 "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
-"Alan kötü ayrılmış gibi görünüyor, ya da çok karmaşıktır.\n"
-"Bu araç ciddi şekilde uygulanmamıştır ve bölgeyi boyayamayabilir.\n"
+"Alan çok sınırlı görünüyor veya çok karmaşık.\n"
+"Bu algoritma istenen alanı yönetemeyebilir.\n"
 "\n"
-"İşemi iptal etmek veya aracın mücadelesine izin vermek ister misiniz ?"
+"İşlemi iptal etmek mi yoksa aracın mücadele etmesine izin vermek mi "
+"istiyorsunuz?"
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
@@ -723,15 +722,13 @@ msgid "Freehand"
 msgstr "Düzensiz"
 
 #: src/tools/ui/tool_select.ui:188
-#, fuzzy
 msgid "Similar color"
-msgstr "İkincil renk"
+msgstr "Benzer renk"
 
 #. XXX ?
 #: src/tools/ui/tool_select.ui:210
-#, fuzzy
 msgid "Erase secondary color"
-msgstr "İkincil renk"
+msgstr "İkincil rengi sil"
 
 #: src/tools/ui/tool_select.ui:236 src/tools/tool_select.py:41
 #: src/tools/tool_select.py:108
@@ -744,7 +741,7 @@ msgstr "Serbest seçim"
 
 #: src/tools/ui/tool_select.ui:268
 msgid "Similar color selection"
-msgstr ""
+msgstr "Benzer renk seçimi"
 
 #: src/tools/ui/tool_select.ui:318
 msgid "Selection actions"
@@ -779,9 +776,8 @@ msgid "Arc"
 msgstr "Yay"
 
 #: src/tools/tool_arc.py:58
-#, fuzzy
 msgid "Arc options"
-msgstr "Seçenek yok"
+msgstr "Yay seçenekleri"
 
 #: src/tools/tool_arc.py:63 src/tools/tool_arc.py:67 src/tools/tool_line.py:63
 #: src/tools/tool_line.py:67
@@ -797,9 +793,8 @@ msgid "Cropping the canvas"
 msgstr "Tuvali kırp"
 
 #: src/tools/tool_freeshape.py:14
-#, fuzzy
 msgid "Free shape"
-msgstr "Kalem şekli"
+msgstr "Serbest şekil"
 
 #: src/tools/tool_freeshape.py:39 src/tools/tool_shape.py:54
 msgid "Shape options"
@@ -826,9 +821,8 @@ msgid "Polygon"
 msgstr "Çokgen"
 
 #: src/tools/tool_polygon.py:40
-#, fuzzy
 msgid "Polygon options"
-msgstr "Seçenek yok"
+msgstr "Poligon seçenekleri"
 
 #: src/tools/tool_pencil.py:14
 msgid "Pencil"
@@ -859,14 +853,12 @@ msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
 
 #: src/tools/tool_select.py:111
-#, fuzzy
 msgid "Freehand selection"
-msgstr "Serbest seçim"
+msgstr "Serbest el seçimi"
 
 #: src/tools/tool_select.py:114
-#, fuzzy
 msgid "Color selection"
-msgstr "Serbest seçim"
+msgstr "Renk seçimi"
 
 #: src/tools/tool_select.py:122
 msgid "Selection options"
