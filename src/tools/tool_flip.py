@@ -27,8 +27,6 @@ class ToolFlip(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window, True)
-		self.need_temp_pixbuf = True
-
 		self.flip_selection = False
 		self.flip_h = False
 		self.flip_v = False

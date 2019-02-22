@@ -1,6 +1,6 @@
 # tools.py
-
-"""Super-class implemented and extended by all tools."""
+#
+# Super-class implemented and extended by all tools.
 
 from gi.repository import Gtk, Gdk
 import cairo
@@ -14,12 +14,11 @@ class ToolTemplate():
 		self.icon_name = icon_name
 		self.is_hidden = is_hidden
 		self.tool_width = 10
-		self.selection_is_active = False # XXX il y a du ménage à faire par ici
+		self.selection_is_active = False
 		self.use_size = False
+		self.has_ongoing_operation = False
 		self.build_row()
 		self.window = window
-		self.need_temp_pixbuf = False
-		self.need_selection_pixbuf = False
 
 	# Actions
 
@@ -106,7 +105,7 @@ class ToolTemplate():
 		return self.give_back_control()
 
 	def give_back_control(self):
-		self.get_image().use_stable_pixbuf()
+		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 		return False
 

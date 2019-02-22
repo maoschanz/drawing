@@ -2,7 +2,6 @@
 
 from gi.repository import Gtk, Gdk
 import cairo
-import math
 
 from .tools import ToolTemplate
 
@@ -51,9 +50,6 @@ class ToolPolygon(ToolTemplate):
 			(self.x_press, self.y_press) = (-1.0, -1.0)
 			(self.past_x, self.past_y) = (-1.0, -1.0)
 			return True
-
-	# def cancel_ongoing_operation(self):
-		# TODO ??
 
 	def draw_polygon(self, event_x, event_y, is_preview):
 		w_context = cairo.Context(self.get_surface())

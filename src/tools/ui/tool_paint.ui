@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <menu id="options-menu">
+    <section>
+      <attribute name="label" translatable="yes">Algorithm</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Encircle and fill</attribute>
+        <attribute name="action">win.paint_algo</attribute>
+        <attribute name="target">fill</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Erase and replace</attribute>
+        <attribute name="action">win.paint_algo</attribute>
+        <attribute name="target">replace</attribute>
+      </item>
+    </section>
+  </menu>
+
+</interface>

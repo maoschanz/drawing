@@ -14,8 +14,6 @@ class ToolSelect(ToolTemplate):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'tool-select-symbolic', window, False)
-		self.need_selection_pixbuf = True
-
 		self.selection_has_been_used = False
 		self.selection_is_active = False
 
@@ -132,7 +130,6 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 
 	def give_back_control(self):
-		print('selection give_back_control')
 		if self.selection_has_been_used:
 			if self.selection_is_active:
 				operation = self.build_operation()
@@ -141,15 +138,15 @@ class ToolSelect(ToolTemplate):
 			self.reset_temp()
 			return False
 		else:
-			self.selection_has_been_used = True # ne sert à rien puisqu'on définit l'inverse juste après XXX
+			self.selection_has_been_used = True # XXX ???
 			self.forget_selection()
 			return self.cancel_ongoing_operation()
 
 	def cancel_ongoing_operation(self):
-		print('selection cancel_ongoing_operation')
 		self.reset_temp()
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
+		self.selection_has_been_used = False
 		return True
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
@@ -566,6 +563,7 @@ class ToolSelect(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
+		self.get_image().update_history_sensitivity(True)
 		if operation['initial_path'] is not None:
 			cairo_context = cairo.Context(self.get_surface())
 			cairo_context.new_path()

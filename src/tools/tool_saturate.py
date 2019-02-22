@@ -27,7 +27,6 @@ class ToolSaturate(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('saturate', _("Saturate"), 'weather-clear-symbolic', window, True)
-		self.need_temp_pixbuf = True
 		self.saturate_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_saturate.ui')

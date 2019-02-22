@@ -62,7 +62,7 @@ class DrawingImage(Gtk.Layout):
 		self.selection_y = 1
 		self.selection_path = None
 
-		self.update_history_sensitivity()
+		self.update_history_sensitivity(False)
 		self.use_stable_pixbuf()
 		self.queue_draw()
 
@@ -182,19 +182,22 @@ class DrawingImage(Gtk.Layout):
 	def try_redo(self, *args):
 		self.undo_history.append(self.redo_history.pop())
 
-	def update_history_sensitivity(self):
-		can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
+	def update_history_sensitivity(self, tools_exist):
+		if not tools_exist:
+			can_undo = False
+		else:
+			can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
 
 	def add_operation_to_history(self, operation):
 		self._is_saved = False
 		self.undo_history.append(operation)
-		self.update_history_sensitivity()
+		self.update_history_sensitivity(True)
 
 	def on_tool_finished(self):
 		#self.redo_history = []
-		self.update_history_sensitivity()
+		self.update_history_sensitivity(True)
 		self.queue_draw()
 		self.set_surface_as_stable_pixbuf()
 		self.active_tool().update_actions_state()

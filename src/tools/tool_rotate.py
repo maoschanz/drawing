@@ -27,8 +27,7 @@ class ToolRotate(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window, True)
-		self.is_hidden = True
-		self.need_temp_pixbuf = True
+		self.rotate_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_rotate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')

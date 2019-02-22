@@ -14,18 +14,18 @@ PNG, JPEG and BMP files are supported.
 
 Drawing tools:
 
-| Tool      | Options   | Remarks |
-|:---------:|:---------:|:-------:|
-|Pencil     |Dashes, eraser, ...| |
+| Tool      | Options        |
+|:---------:|:--------------:|
+|Pencil     |Dashes, eraser, ...|
 |Shape      |Rectangle, circle, oval ; Filling
-|Polygon, free shape |Filling|    |
-|Line       |Arrow, dashes, ...|  |
-|Arc        |Arrow, dashes, ...|  |
-|Insert text|Font and font size|  |
-|Selection  |Rectangle/free shape|Is auto-activated when you paste or import an image
-|Color picker|          |         |
+|Polygon, free shape |Filling|
+|Line       |Arrow, dashes, ...|
+|Arc        |Arrow, dashes, ...|
+|Insert text|Font and font size|
+|Selection  |Rectangle/free shape/adjacent color|
+|Color picker|               |
+|Paint      |                |
 
-<!--|Paint      |           |Not done yet-->
 <!--|Brush      |           |Not done yet-->
 <!--|Gradient   |           |Not done yet-->
 

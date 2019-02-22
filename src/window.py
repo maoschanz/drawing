@@ -112,12 +112,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['select'] = ToolSelect(self)
 		self.tools['text'] = ToolText(self)
 		self.tools['picker'] = ToolPicker(self)
+		self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['arc'] = ToolArc(self)
 		self.tools['shape'] = ToolShape(self)
 		self.tools['polygon'] = ToolPolygon(self)
 		self.tools['freeshape'] = ToolFreeshape(self)
-		self.tools['paint'] = ToolPaint(self)
 		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
 		self.tools['crop'] = ToolCrop(self)
@@ -507,9 +507,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.hijacker_id = None
 		self.lookup_action('active_tool').set_enabled(True)
 
-	def tool_needs_selection(self):
-		return self.active_tool().need_selection_pixbuf
-
 	# FILE MANAGEMENT
 
 	def action_properties(self, *args):
@@ -713,6 +710,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_apply_selection_tool(self, *args):
 		self.active_tool().on_apply()
 
+	def tool_needs_selection(self):
+		return ( self.active_tool() is self.get_selection_tool() )
+
 	# HISTORY MANAGEMENT
 
 	def action_undo(self, *args):
@@ -723,8 +723,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().try_redo()
 		self.action_rebuild_from_histo()
 
-	def operation_is_ongoing(self):
-		return False # TODO
+	def operation_is_ongoing(self): # TODO
+		# if self.active_tool() is self.get_selection_tool():
+		# 	is_ongoing = self.active_tool().selection_has_been_used
+		# else:
+		# 	is_ongoing = self.active_tool().has_ongoing_operation
+		# return is_ongoing
+		return False
 
 	def action_restore_pixbuf(self, *args):
 		self.get_active_image().use_stable_pixbuf()
@@ -737,7 +742,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for op in h:
 			self.tools[op['tool_id']].apply_operation(op)
 		self.get_active_image().queue_draw()
-		self.get_active_image().update_history_sensitivity()
+		self.get_active_image().update_history_sensitivity(True)
 
 	# COLORS
 

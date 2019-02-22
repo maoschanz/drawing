@@ -51,12 +51,10 @@ class ToolFreeshape(ToolTemplate):
 			(self.past_x, self.past_y) = (-1.0, -1.0)
 			return True
 
-	# def cancel_ongoing_operation(self):
-		# TODO ??
-
 	def draw_polygon(self, event_x, event_y):
 		w_context = cairo.Context(self.get_surface())
 		w_context.set_line_width(self.tool_width)
+		w_context.set_line_join(cairo.LineJoin.ROUND)
 
 		if self.past_x == -1.0:
 			self.init_polygon(w_context)
