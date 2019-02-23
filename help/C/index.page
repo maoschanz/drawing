@@ -21,46 +21,16 @@
     Drawing
   </title>
 
-  <!-- TODO FIXME 4 pages: -->
-  <!-- - index -->
-  <!-- - general informations -->
-  <!-- - drawing tools -->
-  <!-- - canvas/selection tools -->
-
   <p>"Drawing" is a basic drawing application for the GNOME desktop.</p>
   <p>You can edit or create pictures (PNG, JPEG or BMP) using tools, which can be chosen in the side panel. More options are available in the bottom bar, such as the tool size and color.</p>
-  <p>The window's title and subtitle should provide useful informations about how to use the active tool.</p>
-  <list>
-    <item>
-      <p>Pencil: The pencil draws following the pointer, and according to the chosen color. Its options include the shape of the lead, and the edition mode: use the "eraser" mode to delete existing colors.</p>
-    </item>
-    <item>
-      <p>Selection: Define an area, and edit it (delete, cut, copy, scale, crop, rotate, or export it). Clicking on <gui style="menuitem">Paste</gui>, <gui style="menuitem">Import</gui> or <gui style="menuitem">Select all</gui> will trigger this tool.</p>
-    </item>
-    <item>
-      <p>Basic shape: Draw rectangles, ovals and circles, with various filling options.</p>
-    </item>
-    <item>
-      <p>Line: This tool can draw straight lines or arcs. Its options include the shape of the lead, and the possibility to draw arrows.</p>
-    </item>
-    <item>
-      <p>Text: Insert text on the image. Don't forget to confirm the insertion using the <gui style="menuitem">Insert here</gui> button.</p>
-    </item>
-    <item>
-      <p>Paint</p>
-    </item>
-    <item>
-      <p>Polygon: Draw free shapes, with various filling options.</p>
-    </item>
-    <item>
-      <p>Crop: Change the size of the canvas, using the values in the bottom bar, or with the left click. Once resized, the content of the former canvas can be adjusted by moving it with the right-click.</p>
-    </item>
-    <item>
-      <p>Scale: Resize the image, using the values in the bottom bar, or with the left click.</p>
-    </item>
-    <item>
-      <p>Rotate: Change the orientation of the canvas, using the value in the bottom bar, or with the left click.</p>
-    </item>
-  </list>
+  <p>The window's subtitle should provide useful informations about how to use the active tool.</p>
+
+  <section id="main" style="2column">
+    <title>General</title>
+  </section>
+
+  <section id="tools" style="2column">
+    <title>Tools</title>
+  </section>
 
 </page>

@@ -26,7 +26,7 @@ class ToolSaturate(ToolTemplate):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('saturate', _("Saturate"), 'weather-clear-symbolic', window, True)
+		super().__init__('saturate', _("Saturate"), 'tool-saturate-symbolic', window, True)
 		self.saturate_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_saturate.ui')

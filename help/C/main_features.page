@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task" id="main_features">
+
+  <info>
+    <link type="guide" xref="index#main"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+
+    <credit type="author">
+      <name>Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+
+    <desc>Opening and saving files.</desc>
+  </info>
+
+  <title>Main features</title>
+
+  <p>"Drawing" is a basic drawing application for the GNOME desktop, which can edit or create pictures (PNG, JPEG or BMP).</p>
+  <p>Main features are located in the header of the window, such as the <gui style="button">Open</gui> menu, the <gui style="button">Undo</gui> and <gui style="button">Redo</gui> buttons, the <gui style="button">Save</gui> button, and the primary menu.</p>
+  <p>The primary menu allows you to:</p>
+
+  <list>
+    <item>
+      <p>Export the image or save it as a new file. Both options don't overwrite the original file. With <gui style="menuitem">Export as…</gui>, you keep editing the original file, but <gui style="button">Save as…</gui> closes the original file and makes you edit the new one.</p>
+    </item>
+    <item>
+      <p>Print the picture.</p>
+    </item>
+    <item>
+      <p>See the pictures properties, such as its size and colorspace.</p>
+    </item>
+    <item>
+      <p>Show tools names. Edit preferences.</p>
+    </item>
+  </list>
+
+  <p>The <gui style="button">Open</gui> menu is merged in the primary menu if the window size is too small to display its button. With the elementaryOS layou, this menu is replaced by buttons.</p>
+
+  <list>
+    <item>
+      <p>Open a new window or a new tab.</p>
+    </item>
+    <item>
+      <p>Open a picture file.</p>
+    </item>
+    <item>
+      <p>Import a picture into the currently edited one.</p>
+    </item>
+    <item>
+      <p>Paste a picture into the currently edited one.</p>
+    </item>
+  </list>
+
+<!-- TODO image, lien vers preferences et outils -->
+
+  <p>The <gui style="button">Preview</gui> button, available with all drawing tools in the bottom bar, displays a thumbnail of the full picture you're editing. If you're device doesn't allows you to scroll in all directions, the preview provides navigations buttons.</p>
+
+</page>
