@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task" id="main_features">
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="main_features">
 
   <info>
     <link type="guide" xref="index#main"/>
@@ -15,13 +17,20 @@
 
   <title>Main features</title>
 
-  <p>"Drawing" is a basic drawing application for the GNOME desktop, which can edit or create pictures (PNG, JPEG or BMP).</p>
-  <p>Main features are located in the header of the window, such as the <gui style="button">Open</gui> menu, the <gui style="button">Undo</gui> and <gui style="button">Redo</gui> buttons, the <gui style="button">Save</gui> button, and the primary menu.</p>
+  <p>"Drawing" is a basic drawing application for the GNOME desktop, which can
+  edit or create pictures (PNG, JPEG or BMP).</p>
+  <p>Main features are located in the header of the window, such as the
+  <gui style="button">Open</gui> menu, the <gui style="button">Undo</gui> and
+  <gui style="button">Redo</gui> buttons, the <gui style="button">Save</gui>
+  button, and the primary menu.</p>
   <p>The primary menu allows you to:</p>
 
   <list>
     <item>
-      <p>Export the image or save it as a new file. Both options don't overwrite the original file. With <gui style="menuitem">Export as…</gui>, you keep editing the original file, but <gui style="button">Save as…</gui> closes the original file and makes you edit the new one.</p>
+      <p>Export the image or save it as a new file. Both options don't overwrite
+      the original file. With <gui style="menuitem">Export as…</gui>, you keep
+      editing the original file, but <gui style="button">Save as…</gui> closes
+      the original file and makes you edit the new one.</p>
     </item>
     <item>
       <p>Print the picture.</p>
@@ -34,7 +43,12 @@
     </item>
   </list>
 
-  <p>The <gui style="button">Open</gui> menu is merged in the primary menu if the window size is too small to display its button. With the elementaryOS layou, this menu is replaced by buttons.</p>
+  <media type="image" mime="image/png" width="450"
+  src="figures/screenshot_menu.png" its:translate="no"/>
+
+  <p>The <gui style="button">Open</gui> menu is merged in the primary menu if
+  the window size is too small to display its button. With the elementaryOS
+  layout, this menu is replaced by buttons.</p>
 
   <list>
     <item>
@@ -51,8 +65,11 @@
     </item>
   </list>
 
-<!-- TODO image, lien vers preferences et outils -->
+<!-- TODO lien vers preferences et outils -->
 
-  <p>The <gui style="button">Preview</gui> button, available with all drawing tools in the bottom bar, displays a thumbnail of the full picture you're editing. If you're device doesn't allows you to scroll in all directions, the preview provides navigations buttons.</p>
+  <p>The <gui style="button">Preview</gui> button, available with all drawing
+  tools in the bottom bar, displays a thumbnail of the full picture you're
+  editing. If you're device doesn't allows you to scroll in all directions, the
+  preview provides navigations buttons.</p>
 
 </page>

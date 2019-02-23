@@ -8,5 +8,10 @@ gnome.yelp(meson.project_name(),
     'selection_canvas.page',
     'legal.xml'
   ],
-  media: 'figures/icon.png'
+  media: [
+    'figures/icon.png',
+    'figures/screenshot_menu.png',
+    'figures/screenshot_arc.png',
+    'figures/screenshot_saturate.png'
+  ]
 )

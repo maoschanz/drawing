@@ -15,27 +15,42 @@
 
   <title>Selection or canvas edition</title>
 
-  <p>These tools are available from the bottom bar of the <gui style="menuitem">Selection</gui> tool, or from a right click on the canvas while using the <gui style="menuitem">Selection</gui> tool.</p>
-  <p>If a selection is defined, these tools will have an effect on the selected area, otherwise they will have an effect on the picture as a whole.</p>
+  <p>These tools are available from the bottom bar of the <gui style="menuitem">
+  Selection</gui> tool, or from a right click on the canvas while using the
+  <gui style="menuitem">Selection</gui> tool.</p>
+  <p>If a selection is defined, these tools will have an effect on the selected
+  area, otherwise they will have an effect on the picture as a whole.</p>
 
   <list>
     <item>
-      <p>Crop: change the size of the image, using the values in the bottom bar, or with the left click. Once resized, the content of the former canvas can be adjusted by moving it with the right-click.</p>
+      <p>Crop: change the size of the image, using the values in the bottom bar,
+      or with the left click. Once resized, the content of the former canvas can
+      be adjusted by moving it with the right-click. The previewed image might
+      not be at a 100% scale.</p>
     </item>
     <item>
-      <p>Scale: resize the image, using the values in the bottom bar, or with the left click.</p>
+      <p>Scale: resize the image, using the values in the bottom bar, or with
+      the left click.</p>
     </item>
     <item>
-      <p>Rotate: change the orientation of the image, using the buttons in the bottom bar.</p>
+      <p>Rotate: change the orientation of the image, using the buttons in the
+      bottom bar.</p>
     </item>
     <item>
       <p>Flip: flip the image, using the buttons in the bottom bar.</p>
     </item>
     <item>
-      <p>Saturate: edit the saturation of the image, using the value in the bottom bar. A saturation bigger than 100% will boost the colors, a saturation smaller than 100% will produce a greyish image.</p>
+      <p>Saturate: edit the saturation of the image, using the value in the
+      bottom bar.</p>
+      <media type="image" mime="image/png" width="450"
+      src="figures/screenshot_saturate.png" its:translate="no"/>
+      <p>A saturation bigger than 100% will boost the colors, a saturation
+      smaller than 100% will produce a greyish image.</p>
     </item>
   </list>
 
-  <p>After finding the value you need, you have to apply the result with the <gui style="button">Apply</gui> button at the right. Otherwise you can cancel the edition with the <gui style="button">Cancel</gui> button at the left.</p>
+  <p>After finding the value you need, you have to apply the result with the
+  <gui style="button">Apply</gui> button at the right. Otherwise you can cancel
+  the edition with the <gui style="button">Cancel</gui> button at the left.</p>
 
 </page>
