@@ -39,6 +39,7 @@ class ToolFreeshape(ToolTemplate):
 		return _("Shape options")
 
 	def get_edition_status(self):
+		self.set_filling_style()
 		label = self.label + ' - ' + self.selected_style_label
 		return label
 
@@ -57,7 +58,9 @@ class ToolFreeshape(ToolTemplate):
 		w_context.set_line_join(cairo.LineJoin.ROUND)
 
 		if self.past_x == -1.0:
-			self.init_polygon(w_context)
+			(self.past_x, self.past_y) = (self.x_press, self.y_press)
+			w_context.move_to(self.x_press, self.y_press)
+			self._path = w_context.copy_path()
 		else:
 			w_context.append_path(self._path)
 
@@ -71,11 +74,6 @@ class ToolFreeshape(ToolTemplate):
 			self.continue_polygon(w_context, event_x, event_y)
 			return False
 
-	def init_polygon(self, w_context): # TODO simplfiable depuis que c'est split en 2 outils
-		(self.past_x, self.past_y) = (self.x_press, self.y_press)
-		w_context.move_to(self.x_press, self.y_press)
-		self._path = w_context.copy_path()
-
 	def continue_polygon(self, w_context, x, y):
 		w_context.set_line_width(self.tool_width)
 		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
@@ -84,12 +82,6 @@ class ToolFreeshape(ToolTemplate):
 		w_context.stroke_preserve() # draw the line without closing the path
 		self._path = w_context.copy_path()
 		self.non_destructive_show_modif()
-
-	def finish_polygon(self, w_context):
-		w_context.close_path()
-		operation = self.build_operation(w_context.copy_path())
-		self.do_tool_operation(operation)
-		return
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -105,7 +97,6 @@ class ToolFreeshape(ToolTemplate):
 		else:
 			self.main_color = left_color
 			self.secondary_color = right_color
-		self.set_filling_style()
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()

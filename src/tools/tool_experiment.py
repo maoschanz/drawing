@@ -120,6 +120,9 @@ class ToolExperiment(ToolTemplate):
 	def get_options_label(self):
 		return self.selected_operator_label
 
+	def get_edition_status(self):
+		return self.selected_operator_label
+
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y

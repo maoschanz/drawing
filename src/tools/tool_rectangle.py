@@ -2,7 +2,6 @@
 
 from gi.repository import Gtk, Gdk
 import cairo
-import math
 
 from .tools import ToolTemplate
 
@@ -40,6 +39,7 @@ class ToolRectangle(ToolTemplate):
 		return _("Rectangle options")
 
 	def get_edition_status(self):
+		self.set_filling_style()
 		label = self.label + ' - ' + self.selected_style_label
 		return label
 
@@ -49,13 +49,13 @@ class ToolRectangle(ToolTemplate):
 		return False
 
 	def build_rectangle(self, event_x, event_y):
-		w_context = cairo.Context(self.get_surface())
-		w_context.move_to(self.x_press, self.y_press)
-		w_context.line_to(self.x_press, event_y)
-		w_context.line_to(event_x, event_y)
-		w_context.line_to(event_x, self.y_press)
-		w_context.close_path()
-		self._path = w_context.copy_path()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(self.x_press, self.y_press)
+		cairo_context.line_to(self.x_press, event_y)
+		cairo_context.line_to(event_x, event_y)
+		cairo_context.line_to(event_x, self.y_press)
+		cairo_context.close_path()
+		self._path = cairo_context.copy_path()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
@@ -67,7 +67,6 @@ class ToolRectangle(ToolTemplate):
 		else:
 			self.main_color = left_color
 			self.secondary_color = right_color
-		self.set_active_style()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -98,21 +97,21 @@ class ToolRectangle(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_operator(operation['operator'])
-		w_context.set_line_width(operation['line_width'])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_width(operation['line_width'])
 		rgba_main = operation['rgba_main']
 		rgba_secd = operation['rgba_secd']
-		w_context.append_path(operation['path'])
+		cairo_context.append_path(operation['path'])
 		filling = operation['filling']
 		if filling == 'secondary':
-			w_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
-			w_context.fill_preserve()
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.stroke()
+			cairo_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+			cairo_context.fill_preserve()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.stroke()
 		elif filling == 'filled':
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.fill()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.fill()
 		else:
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.stroke()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.stroke()

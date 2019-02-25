@@ -155,7 +155,7 @@ class ToolTemplate():
 	def on_apply(self):
 		pass
 
-	def finish_temp_pixbuf_tool_operation(self, is_selection):
+	def finish_temp_pixbuf_tool_operation(self, is_selection): # TODO mettre ça dans utilities ?
 		cairo_context = cairo.Context(self.get_surface())
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)

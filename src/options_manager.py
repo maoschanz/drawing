@@ -37,12 +37,14 @@ class DrawingOptionsManager():
 	def boolean_callback(self, *args):
 		new_value = not args[0].get_state()
 		args[0].set_state(GLib.Variant.new_boolean(new_value))
+		self.window.set_picture_title()
 
 	def enum_callback(self, *args):
 		new_value = args[1].get_string()
 		if new_value == args[0].get_state().get_string():
 			return
 		args[0].set_state(GLib.Variant.new_string(new_value))
+		self.window.set_picture_title()
 
 	def get_value(self, name):
 		if self.window.lookup_action(name) is None:

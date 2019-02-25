@@ -125,9 +125,9 @@ class DrawingImage(Gtk.Layout):
 			b = self.initial_operation['blue']
 			a = self.initial_operation['alpha']
 			self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-			w_context = cairo.Context(self.surface)
-			w_context.set_source_rgba(r, g, b, a)
-			w_context.paint()
+			cairo_context = cairo.Context(self.surface)
+			cairo_context.set_source_rgba(r, g, b, a)
+			cairo_context.paint()
 			self.queue_draw()
 			self.set_surface_as_stable_pixbuf()
 		else:
@@ -321,16 +321,16 @@ class DrawingImage(Gtk.Layout):
 	def get_dragged_selection_path(self):
 		if self.selection_path is None:
 			return None
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 		temp_x = self.window.get_selection_tool().temp_x
 		temp_y = self.window.get_selection_tool().temp_y
 		for pts in self.selection_path:
 			if pts[1] is not ():
 				x = pts[1][0] + self.selection_x - temp_x - self.scroll_x
 				y = pts[1][1] + self.selection_y - temp_y - self.scroll_y
-				w_context.line_to(int(x), int(y))
-		w_context.close_path()
-		return w_context.copy_path()
+				cairo_context.line_to(int(x), int(y))
+		cairo_context.close_path()
+		return cairo_context.copy_path()
 
 	def get_selection_pixbuf(self):
 		return self.selection_pixbuf

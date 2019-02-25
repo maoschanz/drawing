@@ -136,7 +136,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
 				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
-				Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
+				Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
+				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
 				if self.tools[tool_id].is_hidden:
 					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
@@ -305,7 +306,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
     <section>
       <item>
         <attribute name="action">none</attribute>
-        <attribute name="label">''' + _("No options for this tool") + '''</attribute>
+        <attribute name="label">''' + _("No options") + '''</attribute>
       </item>
     </section>
   </menu>

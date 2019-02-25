@@ -65,6 +65,15 @@ class ToolPencil(ToolTemplate):
 	def get_options_label(self):
 		return _("Pencil options")
 
+	def get_edition_status(self):
+		self.use_dashes = self.get_option_value('use_dashes')
+		self.set_active_shape()
+		self.set_active_operator()
+		label = self.label + ' - ' + self.selected_shape_label
+		if self.use_dashes:
+			label = label + ' - ' + _("With dashes")
+		return label
+
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
@@ -74,9 +83,6 @@ class ToolPencil(ToolTemplate):
 		else:
 			self.main_color = left_color
 		self._path = None
-		self.use_dashes = self.get_option_value('use_dashes')
-		self.set_active_shape()
-		self.set_active_operator()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())

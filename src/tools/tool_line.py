@@ -1,9 +1,10 @@
 # tool_line.py
 
 from gi.repository import Gtk, Gdk
-import cairo, math
+import cairo
 
 from .tools import ToolTemplate
+from .utilities import utilities_add_arrow_triangle
 
 class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
@@ -58,6 +59,10 @@ class ToolLine(ToolTemplate):
 		return _("Line options")
 
 	def get_edition_status(self): # TODO l'opérateur est important
+		self.use_dashes = self.get_option_value('use_dashes')
+		self.use_arrow = self.get_option_value('is_arrow')
+		self.set_active_shape()
+		self.set_active_operator()
 		label = self.label + ' (' + self.selected_shape_label + ') '
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
@@ -96,10 +101,6 @@ class ToolLine(ToolTemplate):
 			self.main_color = left_color
 		if event.button == 3:
 			self.main_color = right_color
-		self.use_dashes = self.get_option_value('use_dashes')
-		self.use_arrow = self.get_option_value('is_arrow')
-		self.set_active_shape()
-		self.set_active_operator()
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -112,42 +113,6 @@ class ToolLine(ToolTemplate):
 		self.apply_operation(operation)
 		self.x_press = 0.0
 		self.y_press = 0.0
-
-	def add_arrow_triangle(self, w_context, x_release, y_release, x_press, y_press, line_width):
-		w_context.new_path()
-		w_context.set_line_width(line_width)
-		w_context.set_dash([1, 0])
-		w_context.move_to(x_release, y_release)
-		x_length = max(x_press, x_release) - min(x_press, x_release)
-		y_length = max(y_press, y_release) - min(y_press, y_release)
-		line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
-		arrow_width = math.log(line_length)
-		if (x_press - x_release) != 0:
-			delta = (y_press - y_release) / (x_press - x_release)
-		else:
-			delta = 1.0
-
-		x_backpoint = (x_press + x_release)/2
-		y_backpoint = (y_press + y_release)/2
-		i = 0
-		while i < arrow_width:
-			i = i + 2
-			x_backpoint = (x_backpoint + x_release)/2
-			y_backpoint = (y_backpoint + y_release)/2
-
-		if delta < -1.5 or delta > 1.0:
-			w_context.line_to(x_backpoint-arrow_width, y_backpoint)
-			w_context.line_to(x_backpoint+arrow_width, y_backpoint)
-		elif delta > -0.5 and delta <= 1.0:
-			w_context.line_to(x_backpoint, y_backpoint-arrow_width)
-			w_context.line_to(x_backpoint, y_backpoint+arrow_width)
-		else:
-			w_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
-			w_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
-
-		w_context.close_path()
-		w_context.fill_preserve()
-		w_context.stroke()
 
 	def build_operation(self, event_x, event_y):
 		operation = {
@@ -188,4 +153,4 @@ class ToolLine(ToolTemplate):
 			y_press = operation['y_press']
 			x_release = operation['x_release']
 			y_release = operation['y_release']
-			self.add_arrow_triangle(w_context, x_release, y_release, x_press, y_press, line_width)
+			utilities_add_arrow_triangle(w_context, x_release, y_release, x_press, y_press, line_width)

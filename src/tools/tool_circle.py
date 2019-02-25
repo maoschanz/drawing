@@ -32,16 +32,9 @@ class ToolCircle(ToolTemplate):
 			self.selected_style_label = _("Filled (main color)")
 		else:
 			self.selected_style_label = _("Filled (secondary color)")
-		self.window.set_picture_title()
 
 	def set_active_shape(self, *args):
-		state_as_string = self.get_option_value('circle_shape')
-		self.selected_shape_id = state_as_string
-		if state_as_string == 'oval':
-			self.selected_shape_label = _("Oval")
-		else:
-			self.selected_shape_label = _("Circle")
-		self.window.set_picture_title()
+		self.selected_shape_id = self.get_option_value('circle_shape')
 
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_circle.ui')
@@ -51,8 +44,12 @@ class ToolCircle(ToolTemplate):
 		return _("Circle options")
 
 	def get_edition_status(self):
-		label = self.label + ' -' + self.selected_shape_label + ' - ' + \
-			self.selected_style_label
+		self.set_active_shape()
+		self.set_active_style()
+		if self.selected_shape_id == 'oval':
+			label = _("Oval") + ' - ' + self.selected_style_label
+		else:
+			label = self.label + ' - ' + self.selected_style_label
 		return label
 
 	def give_back_control(self):
@@ -94,8 +91,6 @@ class ToolCircle(ToolTemplate):
 		else:
 			self.main_color = left_color
 			self.secondary_color = right_color
-		self.set_active_shape()
-		self.set_active_style()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()

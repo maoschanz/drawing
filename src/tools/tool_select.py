@@ -106,11 +106,10 @@ class ToolSelect(ToolTemplate):
 			self.selected_type_label = _("Rectangle selection")
 		elif selection_type == 'freehand':
 			self.selected_type_id = 'freehand'
-			self.selected_type_label = _("Freehand selection")
+			self.selected_type_label = _("Free selection")
 		else:
 			self.selected_type_id = 'color'
 			self.selected_type_label = _("Color selection")
-		self.window.set_picture_title()
 
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
@@ -120,6 +119,8 @@ class ToolSelect(ToolTemplate):
 		return _("Selection options")
 
 	def get_edition_status(self):
+		self.set_active_type()
+		# self.exclude_color = self.get_option_value('selection_exclude')
 		label = self.selected_type_label
 		if self.selection_is_active:
 			label = label + ' - ' +  _("Drag the selection or right-click on the canvas")
@@ -150,8 +151,6 @@ class ToolSelect(ToolTemplate):
 		return True
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.set_active_type() # mdr pas entièrement au point tout ça
-		# self.exclude_color = self.get_option_value('selection_exclude')
 		# self.secondary_color = right_color
 		self.x_press = event_x
 		self.y_press = event_y
@@ -339,35 +338,35 @@ class ToolSelect(ToolTemplate):
 			return
 		self.closing_x = event_x
 		self.closing_y = event_y
-		w_context = cairo.Context(self.get_surface())
-		w_context.move_to(event_x, event_y)
-		self.get_image().selection_path = w_context.copy_path()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(event_x, event_y)
+		self.get_image().selection_path = cairo_context.copy_path()
 
 	def draw_polygon(self, event_x, event_y):
 		"""This method is specific to the "free selection" mode."""
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		w_context.set_dash([3, 3])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+		cairo_context.set_dash([3, 3])
 		if self.get_image().selection_path is None:
 			return False
 		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
 		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
-			w_context.append_path(self.get_image().selection_path)
-			w_context.close_path()
-			w_context.stroke_preserve()
-			self.get_image().selection_path = w_context.copy_path()
-			self.temp_path = w_context.copy_path()
+			cairo_context.append_path(self.get_image().selection_path)
+			cairo_context.close_path()
+			cairo_context.stroke_preserve()
+			self.get_image().selection_path = cairo_context.copy_path()
+			self.temp_path = cairo_context.copy_path()
 			return True
 		else:
-			w_context.append_path(self.get_image().selection_path)
-			self.continue_polygon(w_context, event_x, event_y)
+			cairo_context.append_path(self.get_image().selection_path)
+			self.continue_polygon(cairo_context, event_x, event_y)
 			return False
 
-	def continue_polygon(self, w_context, x, y):
+	def continue_polygon(self, cairo_context, x, y):
 		"""This method is specific to the "free selection" mode."""
-		w_context.line_to(int(x), int(y))
-		w_context.stroke_preserve() # draw the line without closing the path
-		self.get_image().selection_path = w_context.copy_path()
+		cairo_context.line_to(int(x), int(y))
+		cairo_context.stroke_preserve() # draw the line without closing the path
+		self.get_image().selection_path = cairo_context.copy_path()
 		self.non_destructive_show_modif()
 
 	def draw_rectangle(self, event_x, event_y):
@@ -375,11 +374,11 @@ class ToolSelect(ToolTemplate):
 		selection beginning where the "press" event was made and ending where
 		the "release" event is made (its coordinates are parameters). This
 		method is specific to the "rectangle selection" mode."""
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		w_context.set_dash([3, 3])
-		w_context.append_path(self.get_image().selection_path)
-		press_x, press_y = w_context.get_current_point()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+		cairo_context.set_dash([3, 3])
+		cairo_context.append_path(self.get_image().selection_path)
+		press_x, press_y = cairo_context.get_current_point()
 
 		x0 = int( min(press_x, event_x) )
 		y0 = int( min(press_y, event_y) )
@@ -398,15 +397,15 @@ class ToolSelect(ToolTemplate):
 		self.get_image().set_selection_pixbuf( Gdk.pixbuf_get_from_surface(temp_surface, \
 			0, 0, temp_surface.get_width(), temp_surface.get_height()) )
 
-		w_context.new_path()
-		w_context.move_to(x0, y0)
-		w_context.line_to(x1, y0)
-		w_context.line_to(x1, y1)
-		w_context.line_to(x0, y1)
-		w_context.close_path()
+		cairo_context.new_path()
+		cairo_context.move_to(x0, y0)
+		cairo_context.line_to(x1, y0)
+		cairo_context.line_to(x1, y1)
+		cairo_context.line_to(x0, y1)
+		cairo_context.close_path()
 
-		self.get_image().selection_path = w_context.copy_path()
-		self.temp_path = w_context.copy_path()
+		self.get_image().selection_path = cairo_context.copy_path()
+		self.temp_path = cairo_context.copy_path()
 		self.set_temp()
 
 	############################################################################
@@ -421,15 +420,15 @@ class ToolSelect(ToolTemplate):
 		self.temp_y = self.get_image().selection_y
 		self.selection_has_been_used = True
 		self.selection_is_active = True
-		w_context = cairo.Context(self.get_surface())
-		w_context.move_to(self.get_image().selection_x, self.get_image().selection_y)
-		w_context.rel_line_to(self.get_selection_pixbuf().get_width(), 0)
-		w_context.rel_line_to(0, self.get_selection_pixbuf().get_height())
-		w_context.rel_line_to(-1 * self.get_selection_pixbuf().get_width(), 0)
-		w_context.close_path()
-		self.get_image().selection_path = w_context.copy_path()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(self.get_image().selection_x, self.get_image().selection_y)
+		cairo_context.rel_line_to(self.get_selection_pixbuf().get_width(), 0)
+		cairo_context.rel_line_to(0, self.get_selection_pixbuf().get_height())
+		cairo_context.rel_line_to(-1 * self.get_selection_pixbuf().get_width(), 0)
+		cairo_context.close_path()
+		self.get_image().selection_path = cairo_context.copy_path()
 		if is_existing_content:
-			self.temp_path = w_context.copy_path()
+			self.temp_path = cairo_context.copy_path()
 			self.set_temp()
 		self.show_popover(False)
 		self.update_actions_state()
@@ -458,13 +457,13 @@ class ToolSelect(ToolTemplate):
 	def delete_temp(self):
 		if self.temp_path is None or not self.selection_is_active:
 			return
-		w_context = cairo.Context(self.get_surface())
-		w_context.new_path()
-		w_context.append_path(self.temp_path)
-		w_context.clip()
-		w_context.set_operator(cairo.Operator.CLEAR)
-		w_context.paint()
-		w_context.set_operator(cairo.Operator.OVER)
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.new_path()
+		cairo_context.append_path(self.temp_path)
+		cairo_context.clip()
+		cairo_context.set_operator(cairo.Operator.CLEAR)
+		cairo_context.paint()
+		cairo_context.set_operator(cairo.Operator.OVER)
 
 	def press_point_is_in_selection(self):
 		"""Returns a boolean if the point whose coordinates are "(self.x_press,
@@ -474,13 +473,13 @@ class ToolSelect(ToolTemplate):
 			return True
 		if self.get_image().selection_path is None:
 			return None
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 		for pts in self.get_image().selection_path:
 			if pts[1] is not ():
 				x = pts[1][0] + self.get_image().selection_x - self.temp_x
 				y = pts[1][1] + self.get_image().selection_y - self.temp_y
-				w_context.line_to(int(x), int(y))
-		return w_context.in_fill(self.x_press, self.y_press)
+				cairo_context.line_to(int(x), int(y))
+		return cairo_context.in_fill(self.x_press, self.y_press)
 
 	def on_confirm_hijacked_modif(self):
 		self.selection_has_been_used = True
@@ -507,14 +506,14 @@ class ToolSelect(ToolTemplate):
 		if xmax - xmin < self.closing_precision and ymax - ymin < self.closing_precision:
 			return # when the path is not drawable yet XXX
 		self.crop_free_selection_pixbuf(xmin, ymin, xmax - xmin, ymax - ymin)
-		w_context = cairo.Context(surface)
-		w_context.set_operator(cairo.Operator.DEST_IN)
-		w_context.new_path()
-		w_context.append_path(self.get_image().selection_path)
+		cairo_context = cairo.Context(surface)
+		cairo_context.set_operator(cairo.Operator.DEST_IN)
+		cairo_context.new_path()
+		cairo_context.append_path(self.get_image().selection_path)
 		if self.temp_path is None: # ??
-			self.temp_path = w_context.copy_path()
-		w_context.fill()
-		w_context.set_operator(cairo.Operator.OVER)
+			self.temp_path = cairo_context.copy_path()
+		cairo_context.fill()
+		cairo_context.set_operator(cairo.Operator.OVER)
 		self.get_image().selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, xmin, ymin, \
 			xmax - xmin, ymax - ymin)
 		self.set_temp()

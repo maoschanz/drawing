@@ -1,7 +1,7 @@
 # utilities.py TODO
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import cairo
+import cairo, math
 
 def utilities_get_rgb_for_xy(surface, x, y):
 	# Guard clause: we can't perform color picking outside of the surface
@@ -132,3 +132,38 @@ Do you want to abort the operation, or to let the tool struggle ?""" \
 	dialog.show_all()
 	return dialog
 
+def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width):
+	cairo_context.new_path()
+	cairo_context.set_line_width(line_width)
+	cairo_context.set_dash([1, 0])
+	cairo_context.move_to(x_release, y_release)
+	x_length = max(x_press, x_release) - min(x_press, x_release)
+	y_length = max(y_press, y_release) - min(y_press, y_release)
+	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
+	arrow_width = math.log(line_length)
+	if (x_press - x_release) != 0:
+		delta = (y_press - y_release) / (x_press - x_release)
+	else:
+		delta = 1.0
+
+	x_backpoint = (x_press + x_release)/2
+	y_backpoint = (y_press + y_release)/2
+	i = 0
+	while i < arrow_width:
+		i = i + 2
+		x_backpoint = (x_backpoint + x_release)/2
+		y_backpoint = (y_backpoint + y_release)/2
+
+	if delta < -1.5 or delta > 1.0:
+		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint)
+		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint)
+	elif delta > -0.5 and delta <= 1.0:
+		cairo_context.line_to(x_backpoint, y_backpoint-arrow_width)
+		cairo_context.line_to(x_backpoint, y_backpoint+arrow_width)
+	else:
+		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
+		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
+
+	cairo_context.close_path()
+	cairo_context.fill_preserve()
+	cairo_context.stroke()

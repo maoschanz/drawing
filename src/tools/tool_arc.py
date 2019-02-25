@@ -1,9 +1,10 @@
 # tool_arc.py
 
 from gi.repository import Gtk, Gdk
-import cairo, math
+import cairo
 
 from .tools import ToolTemplate
+from .utilities import utilities_add_arrow_triangle
 
 class ToolArc(ToolTemplate):
 	__gtype_name__ = 'ToolArc'
@@ -58,6 +59,10 @@ class ToolArc(ToolTemplate):
 		return _("Arc options")
 
 	def get_edition_status(self): # TODO l'opérateur est important
+		self.use_dashes = self.get_option_value('use_dashes')
+		self.use_arrow = self.get_option_value('is_arrow')
+		self.set_active_shape()
+		self.set_active_operator()
 		label = self.label + ' (' + self.selected_shape_label + ') '
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
@@ -80,15 +85,15 @@ class ToolArc(ToolTemplate):
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
-			w_context.move_to(self.x_press, self.y_press)
-			w_context.line_to(event_x, event_y)
+			cairo_context.move_to(self.x_press, self.y_press)
+			cairo_context.line_to(event_x, event_y)
 		else:
-			w_context.move_to(self.wait_points[0], self.wait_points[1])
-			w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
+			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
+			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 
-		self._path = w_context.copy_path()
+		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
 
@@ -100,10 +105,6 @@ class ToolArc(ToolTemplate):
 			self.main_color = left_color
 		if event.button == 3:
 			self.main_color = right_color
-		self.use_dashes = self.get_option_value('use_dashes')
-		self.use_arrow = self.get_option_value('is_arrow')
-		self.set_active_shape()
-		self.set_active_operator()
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
@@ -111,52 +112,16 @@ class ToolArc(ToolTemplate):
 			return
 		else:
 			self.restore_pixbuf()
-			w_context = cairo.Context(self.get_surface())
-			w_context.move_to(self.wait_points[0], self.wait_points[1])
-			w_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
+			cairo_context = cairo.Context(self.get_surface())
+			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
+			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
-		self._path = w_context.copy_path()
+		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
 		self.x_press = 0.0
 		self.y_press = 0.0
-
-	def add_arrow_triangle(self, w_context, x_release, y_release, x_press, y_press, line_width):
-		w_context.new_path()
-		w_context.set_line_width(line_width)
-		w_context.set_dash([1, 0])
-		w_context.move_to(x_release, y_release)
-		x_length = max(x_press, x_release) - min(x_press, x_release)
-		y_length = max(y_press, y_release) - min(y_press, y_release)
-		line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
-		arrow_width = math.log(line_length)
-		if (x_press - x_release) != 0:
-			delta = (y_press - y_release) / (x_press - x_release)
-		else:
-			delta = 1.0
-
-		x_backpoint = (x_press + x_release)/2
-		y_backpoint = (y_press + y_release)/2
-		i = 0
-		while i < arrow_width:
-			i = i + 2
-			x_backpoint = (x_backpoint + x_release)/2
-			y_backpoint = (y_backpoint + y_release)/2
-
-		if delta < -1.5 or delta > 1.0:
-			w_context.line_to(x_backpoint-arrow_width, y_backpoint)
-			w_context.line_to(x_backpoint+arrow_width, y_backpoint)
-		elif delta > -0.5 and delta <= 1.0:
-			w_context.line_to(x_backpoint, y_backpoint-arrow_width)
-			w_context.line_to(x_backpoint, y_backpoint+arrow_width)
-		else:
-			w_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
-			w_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
-
-		w_context.close_path()
-		w_context.fill_preserve()
-		w_context.stroke()
 
 	def build_operation(self, event_x, event_y):
 		operation = {
@@ -179,22 +144,22 @@ class ToolArc(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_operator(operation['operator'])
-		w_context.set_line_cap(operation['line_cap'])
-		#w_context.set_line_join(operation['line_join'])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_cap(operation['line_cap'])
+		#cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']
-		w_context.set_line_width(line_width)
+		cairo_context.set_line_width(line_width)
 		rgba = operation['rgba']
-		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		if operation['use_dashes']:
-			w_context.set_dash([2*line_width, 2*line_width])
-		w_context.append_path(operation['path'])
-		w_context.stroke()
+			cairo_context.set_dash([2*line_width, 2*line_width])
+		cairo_context.append_path(operation['path'])
+		cairo_context.stroke()
 
 		if operation['use_arrow']:
 			x_press = operation['x_press']
 			y_press = operation['y_press']
 			x_release = operation['x_release']
 			y_release = operation['y_release']
-			self.add_arrow_triangle(w_context, x_release, y_release, x_press, y_press, line_width)
+			utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width)
