@@ -11,7 +11,7 @@ class ToolFreeshape(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('freeshape', _("Free shape"), 'tool-polygon-symbolic', window, False)
+		super().__init__('freeshape', _("Free shape"), 'tool-freeshape-symbolic', window, False)
 		self.use_size = True
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)
