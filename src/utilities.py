@@ -164,3 +164,24 @@ def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y
 	cairo_context.close_path()
 	cairo_context.fill_preserve()
 	cairo_context.stroke()
+
+def utilities_generic_shape_tool_operation(cairo_context, operation):
+	cairo_context.set_operator(operation['operator'])
+	cairo_context.set_line_width(operation['line_width'])
+	cairo_context.set_line_join(operation['line_join'])
+	rgba_main = operation['rgba_main']
+	rgba_secd = operation['rgba_secd']
+	cairo_context.append_path(operation['path'])
+	filling = operation['filling']
+	if filling == 'secondary':
+		cairo_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+		cairo_context.fill_preserve()
+		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+		cairo_context.stroke()
+	elif filling == 'filled':
+		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+		cairo_context.fill()
+	else:
+		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+		cairo_context.stroke()
+

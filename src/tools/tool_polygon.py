@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gdk
 import cairo
 
 from .tools import ToolTemplate
+from .utilities import utilities_generic_shape_tool_operation
 
 class ToolPolygon(ToolTemplate):
 	__gtype_name__ = 'ToolPolygon'
@@ -125,6 +126,7 @@ class ToolPolygon(ToolTemplate):
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
 			'operator': cairo.Operator.OVER,
+			'line_join': cairo.LineJoin.MITER, # or BEVEL ?
 			'line_width': self.tool_width,
 			'filling': self.selected_style_id,
 			'path': cairo_path
@@ -136,20 +138,5 @@ class ToolPolygon(ToolTemplate):
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_operator(operation['operator'])
-		cairo_context.set_line_width(operation['line_width'])
-		rgba_main = operation['rgba_main']
-		rgba_secd = operation['rgba_secd']
-		cairo_context.append_path(operation['path'])
-		filling = operation['filling']
-		if filling == 'secondary':
-			cairo_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
-			cairo_context.fill_preserve()
-			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			cairo_context.stroke()
-		elif filling == 'filled':
-			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			cairo_context.fill()
-		else:
-			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			cairo_context.stroke()
+		utilities_generic_shape_tool_operation(cairo_context, operation)
+
