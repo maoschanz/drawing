@@ -17,8 +17,10 @@ Drawing tools:
 | Tool      | Options        |
 |:---------:|:--------------:|
 |Pencil     |Dashes, eraser, ...|
-|Shape      |Rectangle, circle, oval ; Filling
-|Polygon, free shape |Filling|
+|Rectangle  |Filling         |
+|Circle     |Regular circle or oval; Filling
+|Polygon    |Filling         |
+|Free shape |Filling         |
 |Line       |Arrow, dashes, ...|
 |Arc        |Arrow, dashes, ...|
 |Insert text|Font and font size|

@@ -48,7 +48,7 @@ class ToolCircle(ToolTemplate):
 		return builder.get_object('options-menu')
 
 	def get_options_label(self):
-		return _("Shape options")
+		return _("Circle options")
 
 	def get_edition_status(self):
 		label = self.label + ' -' + self.selected_shape_label + ' - ' + \
