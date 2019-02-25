@@ -53,34 +53,34 @@ class ToolFreeshape(ToolTemplate):
 			return True
 
 	def draw_polygon(self, event_x, event_y):
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_line_width(self.tool_width)
-		w_context.set_line_join(cairo.LineJoin.ROUND)
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_line_width(self.tool_width)
+		cairo_context.set_line_join(cairo.LineJoin.ROUND)
 
 		if self.past_x == -1.0:
 			(self.past_x, self.past_y) = (self.x_press, self.y_press)
-			w_context.move_to(self.x_press, self.y_press)
-			self._path = w_context.copy_path()
+			cairo_context.move_to(self.x_press, self.y_press)
+			self._path = cairo_context.copy_path()
 		else:
-			w_context.append_path(self._path)
+			cairo_context.append_path(self._path)
 
 		if self.past_x != -1.0 and self.past_y != -1.0 \
 		and (max(event_x, self.past_x) - min(event_x, self.past_x) < self.tool_width) \
 		and (max(event_y, self.past_y) - min(event_y, self.past_y) < self.tool_width):
-			w_context.close_path()
-			self._path = w_context.copy_path()
+			cairo_context.close_path()
+			self._path = cairo_context.copy_path()
 			return True
 		else:
-			self.continue_polygon(w_context, event_x, event_y)
+			self.continue_polygon(cairo_context, event_x, event_y)
 			return False
 
-	def continue_polygon(self, w_context, x, y):
-		w_context.set_line_width(self.tool_width)
-		w_context.set_source_rgba(self.main_color.red, self.main_color.green, \
+	def continue_polygon(self, cairo_context, x, y):
+		cairo_context.set_line_width(self.tool_width)
+		cairo_context.set_source_rgba(self.main_color.red, self.main_color.green, \
 			self.main_color.blue, self.main_color.alpha)
-		w_context.line_to(x, y)
-		w_context.stroke_preserve() # draw the line without closing the path
-		self._path = w_context.copy_path()
+		cairo_context.line_to(x, y)
+		cairo_context.stroke_preserve() # draw the line without closing the path
+		self._path = cairo_context.copy_path()
 		self.non_destructive_show_modif()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
@@ -124,22 +124,22 @@ class ToolFreeshape(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_operator(operation['operator'])
-		w_context.set_line_width(operation['line_width'])
-		w_context.set_line_join(operation['line_join'])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_width(operation['line_width'])
+		cairo_context.set_line_join(operation['line_join'])
 		rgba_main = operation['rgba_main']
 		rgba_secd = operation['rgba_secd']
-		w_context.append_path(operation['path'])
+		cairo_context.append_path(operation['path'])
 		filling = operation['filling']
 		if filling == 'secondary':
-			w_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
-			w_context.fill_preserve()
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.stroke()
+			cairo_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+			cairo_context.fill_preserve()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.stroke()
 		elif filling == 'filled':
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.fill()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.fill()
 		else:
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.stroke()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.stroke()

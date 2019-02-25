@@ -58,28 +58,24 @@ class ToolCircle(ToolTemplate):
 		return False
 
 	def draw_oval(self, event_x, event_y):
-		w_context = cairo.Context(self.get_surface())
-		w_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
-			self.x_press, event_y, \
-			(self.x_press+event_x)/2, event_y)
-		w_context.curve_to((self.x_press+event_x)/2, event_y, \
-			event_x, event_y, \
-			event_x, (self.y_press+event_y)/2)
-		w_context.curve_to(event_x, (self.y_press+event_y)/2, \
-			event_x, self.y_press, \
-			(self.x_press+event_x)/2, self.y_press)
-		w_context.curve_to((self.x_press+event_x)/2, self.y_press, \
-			self.x_press, self.y_press, \
-			self.x_press, (self.y_press+event_y)/2)
-		w_context.close_path()
-		self._path = w_context.copy_path()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
+			self.x_press, event_y, (self.x_press+event_x)/2, event_y)
+		cairo_context.curve_to((self.x_press+event_x)/2, event_y, \
+			event_x, event_y, event_x, (self.y_press+event_y)/2)
+		cairo_context.curve_to(event_x, (self.y_press+event_y)/2, \
+			event_x, self.y_press, (self.x_press+event_x)/2, self.y_press)
+		cairo_context.curve_to((self.x_press+event_x)/2, self.y_press, \
+			self.x_press, self.y_press, self.x_press, (self.y_press+event_y)/2)
+		cairo_context.close_path()
+		self._path = cairo_context.copy_path()
 
 	def draw_circle(self, event_x, event_y):
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 		rayon = math.sqrt((self.x_press - event_x)*(self.x_press - event_x) \
 			+ (self.y_press - event_y)*(self.y_press - event_y))
-		w_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
-		self._path = w_context.copy_path()
+		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
+		self._path = cairo_context.copy_path()
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
@@ -127,21 +123,21 @@ class ToolCircle(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
-		w_context.set_operator(operation['operator'])
-		w_context.set_line_width(operation['line_width'])
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_width(operation['line_width'])
 		rgba_main = operation['rgba_main']
 		rgba_secd = operation['rgba_secd']
-		w_context.append_path(operation['path'])
+		cairo_context.append_path(operation['path'])
 		filling = operation['filling']
 		if filling == 'secondary':
-			w_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
-			w_context.fill_preserve()
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.stroke()
+			cairo_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+			cairo_context.fill_preserve()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.stroke()
 		elif filling == 'filled':
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.fill()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.fill()
 		else:
-			w_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
-			w_context.stroke()
+			cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+			cairo_context.stroke()

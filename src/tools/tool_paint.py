@@ -128,9 +128,9 @@ class ToolPaint(ToolTemplate):
 		if operation['path'] is None:
 			return
 		self.restore_pixbuf()
-		w_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.get_surface())
 		rgba = operation['rgba']
-		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		w_context.append_path(operation['path'])
-		w_context.fill()
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.append_path(operation['path'])
+		cairo_context.fill()
 

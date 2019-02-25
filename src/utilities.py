@@ -38,20 +38,17 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 # cairo.Context.clip_extents() jusqu'à ce qu'on soit à fond.
 # À partir de là on fait cairo.Context.paint()
 
-# TODO meilleure idée : on fait un path approximatif, puis on utilise GdkPixbuf
-# et sa méthode qui remplace un rgb par un alpha (??)
-
 	# Cairo doesn't provide methods for what we want to do. I will have to
 	# define myself how to decide what should be filled.
 	# The heuristic here is that we create a hull containing the area of
 	# color we want to paint. We don't care about "enclaves" of other colors.
-	w_context = cairo.Context(surface)
+	cairo_context = cairo.Context(surface)
 	old_color = utilities_get_rgb_for_xy(surface, x, y)
 
 	while (utilities_get_rgb_for_xy(surface, x, y) == old_color) and y > 0:
 		y = y - 1
 	y = y + 1 # sinon ça crashe ?
-	w_context.move_to(x, y)
+	cairo_context.move_to(x, y)
 
 	(first_x, first_y) = (x, y)
 
@@ -95,7 +92,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		# print('direction:')
 		# print(direction)
 		if (new_x != -10):
-			w_context.line_to(x, y)
+			cairo_context.line_to(x, y)
 		# else:
 		#	 print('TENTATIVE ABUSIVE D\'AJOUT')
 		#	 should_stop = True
@@ -115,9 +112,9 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 				dialog.destroy()
 				return
 
-	w_context.close_path()
+	cairo_context.close_path()
 	# print('i: ' + str(i))
-	return w_context.copy_path()
+	return cairo_context.copy_path()
 
 def launch_infinite_loop_dialog(window):
 	dialog = Gtk.Dialog(use_header_bar=True, modal=True, title=_("Warning"), transient_for=window)

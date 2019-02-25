@@ -58,8 +58,8 @@ class DrawingColorPopover(Gtk.Popover):
 	def set_color_btn(self, *args):
 		"""Update the 'rgba' property of the GtkColorWidget and its preview."""
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
-		w_context = cairo.Context(surface)
+		cairo_context = cairo.Context(surface)
 		rgba = self.color_widget.get_rgba()
-		w_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		w_context.paint()
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.paint()
 		self.btn_image.set_from_surface(surface)
