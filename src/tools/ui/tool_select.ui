@@ -206,7 +206,7 @@
 
     <child>
       <object class="GtkToggleButton">
-        <!-- XXX ? -->
+        <!-- XXX not working as wanted, hidden -->
         <property name="tooltip_text" translatable="yes">Erase secondary color</property>
         <property name="visible">False</property>
         <!-- <property name="visible">True</property> -->
@@ -241,7 +241,7 @@
             <property name="action-target">'rectangle'</property>
             <child>
               <object class="GtkImage">
-                <property name="icon-name">checkbox-symbolic</property>
+                <property name="icon-name">tool-rectangle-symbolic</property>
                 <property name="visible">True</property>
               </object>
             </child>

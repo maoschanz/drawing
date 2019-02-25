@@ -20,6 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 from .gi_composites import GtkTemplate
 
 from .tool_arc import ToolArc
+from .tool_circle import ToolCircle
 from .tool_crop import ToolCrop
 from .tool_experiment import ToolExperiment
 from .tool_flip import ToolFlip
@@ -29,11 +30,11 @@ from .tool_paint import ToolPaint
 from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
 from .tool_polygon import ToolPolygon
+from .tool_rectangle import ToolRectangle
 from .tool_rotate import ToolRotate
 from .tool_saturate import ToolSaturate
 from .tool_scale import ToolScale
 from .tool_select import ToolSelect
-from .tool_shape import ToolShape
 from .tool_text import ToolText
 
 from .image import DrawingImage
@@ -115,7 +116,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['arc'] = ToolArc(self)
-		self.tools['shape'] = ToolShape(self)
+		self.tools['rectangle'] = ToolRectangle(self)
+		self.tools['circle'] = ToolCircle(self)
 		self.tools['polygon'] = ToolPolygon(self)
 		self.tools['freeshape'] = ToolFreeshape(self)
 		if self._settings.get_boolean('devel-only'):
@@ -131,10 +133,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
-			tools_menu = self.app.get_menubar().get_item_link(4, \
+			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
 				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
+				Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
-				self.tools[tool_id].add_item_to_menu(tools_menu)
+				if self.tools[tool_id].is_hidden:
+					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
+				else:
+					self.tools[tool_id].add_item_to_menu(drawing_tools_section)
 			self.app.has_tools_in_menubar = True
 
 		# Initialisation of options and menus
