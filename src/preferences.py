@@ -74,6 +74,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.preview_btn.set_value(self._settings.get_int('preview-size'))
 		self.preview_btn.connect('value-changed', self.on_preview_changed)
 
+		self.layout_combobox.append('auto', _("Automatic"))
 		self.layout_combobox.append('csd', _("Compact"))
 		self.layout_combobox.append('csd-eos', 'elementary OS')
 		self.layout_combobox.append('ssd', _("Legacy"))

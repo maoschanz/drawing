@@ -4,7 +4,8 @@
 		<key type="b" name="direct-color-edit">
 			<default>false</default>
 			<summary>Don't use a color palette</summary>
-			<description>If a click on the color button should display directly the complete color selector.</description>
+			<description>If a click on the color button should display directly
+			the complete color selector.</description>
 		</key>
 		<key type="b" name="maximized">
 			<default>false</default>
@@ -17,9 +18,10 @@
 			<description>Turn on devel features (not recommended).</description>
 		</key>
 		<key type="s" name="decorations">
-			<default>'csd'</default>
+			<default>'auto'</default>
 			<summary>Type of window decorations</summary>
-			<description>Can be 'csd', 'ssd', 'ssd-toolbar' or 'everything'.</description>
+			<description>Can be 'auto', 'csd', 'csd-eos', 'ssd', 'ssd-toolbar',
+			'ssd-menubar' or 'everything'.</description>
 		</key>
 		<key type="b" name="show-labels">
 			<default>false</default>
@@ -44,17 +46,20 @@
 		<key type="s" name="last-active-tool">
 			<default>'pencil'</default>
 			<summary>Default active tool</summary>
-			<description>The id of the last active tool, saved when closing a window.</description>
+			<description>The id of the last active tool, saved when closing a
+			window.</description>
 		</key>
 		<key type="as" name="last-right-rgba">
 			<default>['1.0', '1.0', '1.0', '1.0']</default>
 			<summary>Last right-click color</summary>
-			<description>The last edition color for the right click, saved when closing a window.</description>
+			<description>The last edition color for the right click, saved when
+			closing a window.</description>
 		</key>
 		<key type="as" name="last-left-rgba">
 			<default>['0.0', '0.0', '0.0', '1.0']</default>
 			<summary>Last left-click color</summary>
-			<description>The last edition color for the left click, saved when closing a window.</description>
+			<description>The last edition color for the left click, saved when
+			closing a window.</description>
 		</key>
 		<key type="as" name="background-rgba">
 			<default>['1.0', '1.0', '1.0', '1.0']</default>
@@ -64,7 +69,8 @@
 		<key type="b" name="add-alpha">
 			<default>true</default>
 			<summary>Add an alpha channel</summary>
-			<description>Add an alpha channel to all opened pictures. It is recommended, the free selection will fail otherwise.</description>
+			<description>Add an alpha channel to all opened pictures. It is
+			recommended, the free selection will fail otherwise.</description>
 		</key>
 	</schema>
 </schemalist>

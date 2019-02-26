@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
+
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 from .gi_composites import GtkTemplate
@@ -86,8 +88,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
-		decorations = self._settings.get_string('decorations')
-		self.set_ui_bars(decorations)
+		self.set_ui_bars()
 
 	def init_window_content(self):
 		"""Initialize the window's content, such as the minimap, the color popovers,
@@ -298,7 +299,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.set_title(main_title)
 			self.header_bar.set_subtitle(subtitle)
 
-	def set_ui_bars(self, decorations):
+	def get_auto_decorations(self):
+		desktop_env = os.getenv('XDG_CURRENT_DESKTOP', 'GNOME')
+		if 'GNOME' in desktop_env:
+			return 'csd'
+		elif 'Pantheon' in desktop_env:
+			return 'csd-eos'
+		elif 'Unity' in desktop_env:
+			return 'ssd-toolbar'
+		else:
+			return 'ssd'
+
+	def set_ui_bars(self):
+		decorations = self._settings.get_string('decorations')
+		if decorations == 'auto':
+			decorations = self.get_auto_decorations()
 		builder = Gtk.Builder.new_from_string('''
 <?xml version="1.0"?>
 <interface>
