@@ -18,7 +18,6 @@
 import os
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
-
 from .gi_composites import GtkTemplate
 
 from .tool_arc import ToolArc
@@ -306,14 +305,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.active_tool().get_edition_status()
 
 	def set_picture_title(self):
-		# if self.tools is None:
-		# 	return
+		"""Set the window's title and subtitle (regardless of the preferred UI
+		bars), and the active tab title. Tools have to be initilized before
+		calling this method, because they provide the subtitle."""
 		fn = self.get_file_path()
 		if fn is None:
 			fn = _("Unsaved file")
 		main_title = fn.split('/')[-1]
 		if not self.get_active_image()._is_saved:
 			main_title = '*' + main_title
+		self.get_active_image().set_tab_label(main_title)
 		subtitle = self.get_edition_status()
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:
@@ -394,10 +395,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.toolbar_box.show_all()
 
 	def build_headerbar(self, is_eos):
+		"""Build the window's headerbar. If "is_eos" is true, the headerbar will
+		follow elementaryOS guidelines, else it will follow GNOME guidelines."""
 		if is_eos:
 			builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar_eos.ui')
 		else:
 			builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar.ui')
+
+		# Code differences are kept minimal between the 2 cases: widgets will
+		# share similar names in order to both work with the same method
+		# updating widgets' visibility when resizing.
 		self.header_bar = builder.get_object('header_bar')
 		self.save_label = builder.get_object('save_label')
 		self.save_icon = builder.get_object('save_icon')

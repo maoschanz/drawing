@@ -176,7 +176,9 @@ class DrawingImage(Gtk.Layout):
 		}
 		self.restore_first_pixbuf()
 		self.init_image()
-		self.tab_label.set_label(self.get_filename_for_display())
+
+	def set_tab_label(self, title):
+		self.tab_label.set_label(title)
 
 	def post_save(self):
 		self._is_saved = True
