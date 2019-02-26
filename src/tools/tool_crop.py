@@ -27,6 +27,7 @@ class ToolCrop(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window, True)
+		self.cursor_name = 'se-resize'
 		self.crop_selection = False
 		self.x_press = 0
 		self.y_press = 0

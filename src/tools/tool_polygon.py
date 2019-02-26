@@ -22,6 +22,8 @@ class ToolPolygon(ToolTemplate):
 
 		self.add_tool_action_enum('filling_style', 'secondary')
 
+		self.cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), 'cell')
+
 	def set_filling_style(self):
 		state_as_string = self.get_option_value('filling_style')
 		self.selected_style_id = state_as_string
@@ -80,6 +82,9 @@ class ToolPolygon(ToolTemplate):
 		(self.past_x, self.past_y) = (self.x_press, self.y_press)
 		cairo_context.move_to(self.x_press, self.y_press)
 		self._path = cairo_context.copy_path()
+
+		Gdk.Window.set_cursor(self.get_image().window, self.cursor)
+		# self.get_image().window.set_cursor(self.cursor)
 
 	def continue_polygon(self, cairo_context, x, y):
 		cairo_context.set_line_width(self.tool_width)

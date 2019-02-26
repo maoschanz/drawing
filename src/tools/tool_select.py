@@ -88,6 +88,10 @@ class ToolSelect(ToolTemplate):
 		self.window.minimap.set_relative_to(self.window.minimap_btn)
 
 	def update_actions_state(self):
+		if self.selection_is_active:
+			self.cursor_name = 'grab'
+		else:
+			self.cursor_name = 'cell'
 		self.set_actions_state(self.selection_is_active)
 
 	def set_actions_state(self, state):
@@ -154,12 +158,17 @@ class ToolSelect(ToolTemplate):
 		# self.secondary_color = right_color
 		self.x_press = event_x
 		self.y_press = event_y
+		if self.selection_is_active and self.press_point_is_in_selection():
+			self.cursor_name = 'grabbing'
+			self.window.set_cursor(True)
 		if self.selected_type_id == 'color' and not self.selection_is_active:
 			self.get_image().selection_path = utilities_get_magic_path(surface, \
 				event_x, event_y, self.window, 1)
 		elif self.selected_type_id == 'freehand' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
 		if not self.press_point_is_in_selection():
+			self.cursor_name = 'cell'
+			self.window.set_cursor(True)
 			self.give_back_control()
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
@@ -220,6 +229,8 @@ class ToolSelect(ToolTemplate):
 			self.update_surface()
 		elif self.press_point_is_in_selection():
 			self.drag_to(event_x, event_y)
+			self.cursor_name = 'grab'
+			self.window.set_cursor(True)
 			self.update_surface()
 		else:
 			self.restore_pixbuf()

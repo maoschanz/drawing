@@ -27,6 +27,7 @@ class ToolRotate(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window, True)
+		self.cursor_name = 'not-allowed'
 		self.rotate_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_rotate.ui')

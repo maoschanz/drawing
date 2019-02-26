@@ -42,13 +42,18 @@ class DrawingImage(Gtk.Layout):
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | \
 			Gdk.EventMask.BUTTON_MOTION_MASK | \
-			Gdk.EventMask.SMOOTH_SCROLL_MASK)
+			Gdk.EventMask.SMOOTH_SCROLL_MASK | \
+			Gdk.EventMask.ENTER_NOTIFY_MASK | \
+			Gdk.EventMask.LEAVE_NOTIFY_MASK)
 
 		self.connect('draw', self.on_draw)
 		self.connect('motion-notify-event', self.on_motion_on_area)
 		self.connect('button-press-event', self.on_press_on_area)
 		self.connect('button-release-event', self.on_release_on_area)
 		self.connect('scroll-event', self.on_scroll_on_area)
+
+		self.connect('enter-notify-event', self.on_enter_image)
+		self.connect('leave-notify-event', self.on_leave_image)
 
 	def init_image(self):
 		"""Part of the initialization common to both a new blank image and an
@@ -133,6 +138,12 @@ class DrawingImage(Gtk.Layout):
 		else:
 			self.main_pixbuf = self.initial_operation['pixbuf'].copy()
 			self.use_stable_pixbuf()
+
+	def on_enter_image(self, *args):
+		self.window.set_cursor(True)
+
+	def on_leave_image(self, *args):
+		self.window.set_cursor(False)
 
 	# FILE MANAGEMENT
 

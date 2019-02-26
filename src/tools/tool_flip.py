@@ -27,6 +27,7 @@ class ToolFlip(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window, True)
+		self.cursor_name = 'not-allowed'
 		self.flip_selection = False
 		self.flip_h = False
 		self.flip_v = False

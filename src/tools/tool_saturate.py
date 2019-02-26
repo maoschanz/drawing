@@ -27,6 +27,7 @@ class ToolSaturate(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('saturate', _("Saturate"), 'tool-saturate-symbolic', window, True)
+		self.cursor_name = 'not-allowed'
 		self.saturate_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_saturate.ui')

@@ -106,6 +106,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 		self.prompt_message(False, 'window successfully started')
 
+	def set_cursor(self, is_custom):
+		if is_custom:
+			name = self.active_tool().cursor_name
+		else:
+			name = 'default'
+		cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
+		self.get_window().set_cursor(cursor)
+
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""

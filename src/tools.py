@@ -14,6 +14,7 @@ class ToolTemplate():
 		self.icon_name = icon_name
 		self.is_hidden = is_hidden
 		self.tool_width = 10
+		self.cursor_name = 'cell'
 		self.selection_is_active = False
 		self.use_size = False
 		self.has_ongoing_operation = False

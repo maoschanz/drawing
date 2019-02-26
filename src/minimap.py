@@ -22,6 +22,7 @@ from .utilities import utilities_show_overlay_on_context
 
 class DrawingMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrawingMinimap'
+	# TODO custom "move" cursor
 
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)

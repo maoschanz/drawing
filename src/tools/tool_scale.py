@@ -27,6 +27,7 @@ class ToolScale(ToolTemplate):
 
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window, True)
+		self.cursor_name = 'se-resize'
 		self.keep_proportions = False
 		self.x_press = 0
 		self.y_press = 0
