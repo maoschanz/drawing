@@ -48,13 +48,11 @@
           <object class="GtkStack" id="stack">
             <property name="visible">True</property>
             <property name="transition-type">crossfade</property>
-
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
-
                 <child>
                   <object class="GtkListBox">
                     <property name="visible">True</property>
@@ -174,65 +172,6 @@
                     <property name="selection-mode">none</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="label" translatable="yes">Opened images</property>
-                        <property name="visible">True</property>
-                        <style><class name="dim-label"/></style>
-                      </object>
-                    </child>
-
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="visible">True</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="expand">True</property>
-                            <property name="margin">5</property>
-                            <property name="spacing">10</property>
-                            <property name="orientation">horizontal</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="label" translatable="yes">Always add transparency</property>
-                                <property name="visible">True</property>
-                              </object>
-                              <packing>
-                                <property name="pack-type">start</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSwitch" id="add_alpha_switch">
-                                <property name="visible">True</property>
-                              </object>
-                              <packing>
-                                <property name="pack-type">end</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-
-                  </object>
-                </child>
-
-              </object>
-              <packing>
-                <property name="name">page1</property>
-                <property name="title" translatable="yes">Image</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-
-                <child>
-                  <object class="GtkListBox">
-                    <property name="visible">True</property>
-                    <property name="selection-mode">none</property>
-                    <child>
-                      <object class="GtkLabel">
                         <property name="label" translatable="yes">User interface</property>
                         <property name="visible">True</property>
                         <style><class name="dim-label"/></style>
@@ -307,11 +246,28 @@
 
                   </object>
                 </child>
+              </object>
+              <packing>
+                <property name="name">page1</property>
+                <property name="title" translatable="yes">Basic</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
                 <child>
-                  <object class="GtkListBox" id="devel_box">
+                  <object class="GtkListBox">
                     <property name="visible">True</property>
                     <property name="selection-mode">none</property>
-
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">Opened images</property>
+                        <property name="visible">True</property>
+                        <style><class name="dim-label"/></style>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkListBoxRow">
                         <property name="visible">True</property>
@@ -324,7 +280,44 @@
                             <property name="orientation">horizontal</property>
                             <child>
                               <object class="GtkLabel">
-                                <property name="label" translatable="yes">Experimental features</property>
+                                <property name="label" translatable="yes">Always add transparency</property>
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">start</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSwitch" id="add_alpha_switch">
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="pack-type">end</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBox" id="devel_box">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="expand">True</property>
+                            <property name="margin">5</property>
+                            <property name="spacing">10</property>
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Development features</property>
                                 <property name="visible">True</property>
                               </object>
                               <packing>
@@ -343,13 +336,12 @@
                         </child>
                       </object>
                     </child>
-
                   </object>
                 </child>
               </object>
               <packing>
                 <property name="name">page2</property>
-                <property name="title" translatable="yes">Other</property>
+                <property name="title" translatable="yes">Advanced</property>
               </packing>
             </child>
 

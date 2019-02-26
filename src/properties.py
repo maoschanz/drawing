@@ -22,7 +22,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingPropertiesDialog'
 
 	def __init__(self, window, image):
-		wants_csd = not ( 'ssd' in window._settings.get_string('decorations') )
+		wants_csd = not ('ssd' in window.decorations)
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 			transient_for=window, title=_("Image properties"))
 		self._image = image
@@ -105,6 +105,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			self.switch_alpha_color.set_visible(True)
 
 	def set_size_labels(self):
+		"""Set the labels for picture width and height according to the selected
+		unit (px, cm or in)."""
 		px_width = self._image.get_pixbuf_width()
 		px_height = self._image.get_pixbuf_height()
 		if self.unit == ' in':

@@ -38,10 +38,9 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
 
-	def __init__(self, is_beta, **kwargs):
+	def __init__(self, is_beta, wants_csd, **kwargs):
 		super().__init__(**kwargs)
 		self.init_template()
-		wants_csd = not ( 'ssd' in self._settings.get_string('decorations') )
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Preferences"))
 			self.set_titlebar(header_bar)

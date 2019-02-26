@@ -147,10 +147,11 @@ class Application(Gtk.Application):
 			self.open_window_with_file(f)
 		return 0
 
-	def open_window_with_file(self, f):
-		win = self.on_new_window_activate()
-		win.try_load_file(f)
+	def open_window_with_file(self, gfile):
+		win = DrawingWindow(application=self)
 		win.present()
+		win.init_window_content(gfile) # this optimization has no effect because of GLib obscure magic
+		return win
 
 	def on_local_options(self, app, options):
 		if options.contains('version'):
@@ -170,10 +171,7 @@ class Application(Gtk.Application):
 
 	def on_new_window_activate(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
-		win = DrawingWindow(application=self)
-		win.present()
-		win.init_window_content() # this optimization has no effect because of GLib obscure magic
-		return win
+		return self.open_window_with_file(None)
 
 	def on_report_activate(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
@@ -192,7 +190,8 @@ class Application(Gtk.Application):
 		"""Action callback, showing the preferences window."""
 		if self.prefs_window is not None:
 			self.prefs_window.destroy()
-		self.prefs_window = DrawingPrefsWindow(self.is_beta())
+		wants_csd = not 'ssd' in self.props.active_window.decorations
+		self.prefs_window = DrawingPrefsWindow(self.is_beta(), wants_csd)
 		self.prefs_window.present()
 
 	def on_help_activate(self, *args):

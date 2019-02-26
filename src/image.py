@@ -72,6 +72,8 @@ class DrawingImage(Gtk.Layout):
 		self.queue_draw()
 
 	def build_tab_label(self):
+		"""Build the "self.tab_title" attribute, which is the GTK widget
+		displayed as the tab title."""
 		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
 		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
 		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
@@ -175,7 +177,6 @@ class DrawingImage(Gtk.Layout):
 		self.restore_first_pixbuf()
 		self.init_image()
 		self.tab_label.set_label(self.get_filename_for_display())
-		self.window.set_picture_title()
 
 	def post_save(self):
 		self._is_saved = True
@@ -235,7 +236,7 @@ class DrawingImage(Gtk.Layout):
 		self.is_clicked = True
 		x, y = self.get_main_coord()
 		self.active_tool().on_press_on_area(area, event, self.surface, \
-			self.window.size_setter.get_value(), \
+			self.window.thickness_spinbtn.get_value(), \
 			self.get_left_rgba(), self.get_right_rgba(), \
 			x + event.x, y + event.y)
 

@@ -67,7 +67,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	color_menu_btn_r = GtkTemplate.Child()
 	l_btn_image = GtkTemplate.Child()
 	r_btn_image = GtkTemplate.Child()
-	size_setter = GtkTemplate.Child()
+	thickness_spinbtn = GtkTemplate.Child()
 	options_btn = GtkTemplate.Child()
 	options_label = GtkTemplate.Child()
 	options_long_box = GtkTemplate.Child()
@@ -90,17 +90,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.maximize()
 		self.set_ui_bars()
 
-	def init_window_content(self):
+	def init_window_content(self, gfile):
 		"""Initialize the window's content, such as the minimap, the color popovers,
 		the tools, their options, and a new default image."""
 		self.hijacker_id = None
+		self.tools = None
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
 		self.image_list = []
+		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
 
 		self.build_color_buttons()
 		self.add_all_win_actions()
-		self.build_new_image()
+		self.build_new_tab(gfile)
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()
@@ -167,10 +169,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
+		self.build_new_tab(None)
+		self.set_picture_title()
+
+	def build_new_tab(self, gfile):
+		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
 		self.image_list.append(new_image)
 		self.notebook.append_page(new_image, new_image.tab_title)
-		new_image.init_background() # XXX j'init le background mme quand j'appelle try_load_file juste derrière
+		if gfile is None:
+			new_image.init_background()
+		else:
+			new_image.try_load_file(gfile)
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
@@ -197,6 +207,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if not self.close_tab(i):
 				return True
 
+		self._settings.set_int('last-size', int(self.thickness_spinbtn.get_value()))
 		self._settings.set_string('last-active-tool', self.active_tool_id)
 		rgba = self.color_popover_l.color_widget.get_rgba()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
@@ -295,6 +306,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.active_tool().get_edition_status()
 
 	def set_picture_title(self):
+		# if self.tools is None:
+		# 	return
 		fn = self.get_file_path()
 		if fn is None:
 			fn = _("Unsaved file")
@@ -308,6 +321,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.set_subtitle(subtitle)
 
 	def get_auto_decorations(self):
+		"""Return the decorations setting based on the XDG_CURRENT_DESKTOP
+		environment variable."""
 		desktop_env = os.getenv('XDG_CURRENT_DESKTOP', 'GNOME')
 		if 'GNOME' in desktop_env:
 			return 'csd'
@@ -315,13 +330,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return 'csd-eos'
 		elif 'Unity' in desktop_env:
 			return 'ssd-toolbar'
-		else:
+		elif 'Cinnamon' in desktop_env or 'MATE' in desktop_env or 'XFCE' in desktop_env:
 			return 'ssd'
+		else:
+			return 'csd' # Use the GNOME layout if the desktop is unknown,
+		# because i don't know how the env variable is on mobile.
+		# Since hipsterwm users love "ricing", they'll be happy to edit
+		# preferences themselves if they hate CSD.
 
 	def set_ui_bars(self):
-		decorations = self._settings.get_string('decorations')
-		if decorations == 'auto':
-			decorations = self.get_auto_decorations()
+		"""Set the UI "bars" (headerbar, menubar, title, toolbar, whatever)
+		according to the user's preference, which by default is 'auto'."""
+		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
+		# so it's built from a string.
 		builder = Gtk.Builder.new_from_string('''
 <?xml version="1.0"?>
 <interface>
@@ -333,27 +354,33 @@ class DrawingWindow(Gtk.ApplicationWindow):
       </item>
     </section>
   </menu>
-</interface>''', -1) # No need to load a whole file for this
+</interface>''', -1)
 		self.placeholder_model = builder.get_object('tool-placeholder')
-		if decorations == 'csd':
+
+		# Remember the setting, so no need to restart this at each dialog.
+		self.decorations = self._settings.get_string('decorations')
+		if self.decorations == 'auto':
+			self.decorations = self.get_auto_decorations()
+
+		if self.decorations == 'csd':
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(False)
-		elif decorations == 'csd-eos':
+		elif self.decorations == 'csd-eos':
 			self.build_headerbar(True)
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(False)
-		elif decorations == 'everything':
+		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar)
 			self.set_show_menubar(True)
 			self.build_toolbar()
-		elif decorations == 'ssd-menubar':
+		elif self.decorations == 'ssd-menubar':
 			self.set_show_menubar(True)
-		elif decorations == 'ssd-toolbar':
+		elif self.decorations == 'ssd-toolbar':
 			self.build_toolbar()
 			self.set_show_menubar(False)
-		else: # decorations == 'ssd'
+		else: # self.decorations == 'ssd'
 			self.build_toolbar()
 			self.set_show_menubar(True)
 
@@ -392,7 +419,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.main_menu_btn is not None:
 			self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
 
-	def action_options_menu(self, *args):
+	def action_options_menu(self, *args): # TODO disable if custom panel
 		self.options_btn.set_active(not self.options_btn.get_active())
 
 	def adapt_to_window_size(self, *args):
@@ -421,7 +448,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			available_width = self.bottom_panel_box.get_allocated_width()
 			if self.minimap_label.get_visible():
 				self.needed_width_for_long = self.color_box.get_allocated_width() + \
-					self.size_setter.get_allocated_width() + \
+					self.thickness_spinbtn.get_allocated_width() + \
 					self.options_long_box.get_preferred_width()[0] + \
 					self.minimap_label.get_preferred_width()[0]
 			if self.needed_width_for_long > 0.7 * available_width:
@@ -454,6 +481,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# TOOLS PANEL
 
 	def build_tool_rows(self):
+		"""Adds each tool's button to the side panel, or to the selection's
+		bottom panel."""
 		group = None
 		for tool_id in self.tools:
 			if group is None:
@@ -473,7 +502,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
 
-	def on_show_labels_setting_changed(self, *args):
+	def on_show_labels_setting_changed(self, *args): # TODO actions bound to settings are a thing
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
 	def on_show_labels_changed(self, *args):
@@ -508,11 +537,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.former_tool_id = former_tool_id_2
 
 	def update_bottom_panel(self):
+		"""Show the correct bottom panel, with the correct tool options menu."""
 		self.build_options_menu()
 		if self.former_tool_id is not self.active_tool_id:
 			self.former_tool().show_panel(False)
 		self.active_tool().show_panel(True)
-		self.update_size_spinbtn_state()
+		self.update_thickness_spinbtn_state()
 		self.adapt_to_window_size()
 
 	def active_tool(self):
@@ -556,7 +586,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			self.prompt_message(True, _("Loading %s") % \
 				(gfile.get_path().split('/')[-1]))
-		if not self.get_active_image()._is_saved:
+		if self.get_active_image()._is_saved:
+			self.try_load_file(gfile)
+		else:
 			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved changes"), \
 				transient_for=self)
 			dialog.add_button(_("New tab"), Gtk.ResponseType.OK)
@@ -571,15 +603,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.get_message_area().add(label2)
 			dialog.show_all()
 			result = dialog.run()
+			dialog.destroy()
 			if result == Gtk.ResponseType.OK:
-				self.build_new_image()
+				self.build_new_tab(gfile)
+				self.prompt_message(False, 'load the file in a new tab')
+			elif result == Gtk.ResponseType.APPLY:
+				self.try_load_file(gfile)
+				self.prompt_message(False, 'load the file in the same tab')
 			elif result == Gtk.ResponseType.ACCEPT:
 				self.app.open_window_with_file(gfile)
-				dialog.destroy()
 				self.prompt_message(False, 'load the file in a new window')
-				return
-			dialog.destroy()
-		self.try_load_file(gfile)
 
 	def file_chooser_open(self, *args):
 		"""Opens an "open" file chooser dialog, and return a GioFile or None."""
@@ -617,6 +650,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def try_load_file(self, gfile):
 		if gfile is not None:
 			self.get_active_image().try_load_file(gfile)
+		self.set_picture_title()
 		self.prompt_message(False, 'file successfully loaded')
 
 	def confirm_save_modifs(self):
@@ -819,8 +853,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	# TOOLS OPTIONS
 
-	def update_size_spinbtn_state(self):
-		self.size_setter.set_sensitive(self.active_tool().use_size)
+	def update_thickness_spinbtn_state(self):
+		self.thickness_spinbtn.set_sensitive(self.active_tool().use_size)
 
 	def build_options_menu(self):
 		widget = self.active_tool().get_options_widget()
