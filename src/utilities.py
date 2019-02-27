@@ -3,6 +3,8 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo, math
 
+from .message_dialog import DrawingMessageDialog
+
 def utilities_get_rgb_for_xy(surface, x, y):
 	# Guard clause: we can't perform color picking outside of the surface
 	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
@@ -106,9 +108,9 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		if i == 2000:
 			dialog = launch_infinite_loop_dialog(window)
 			result = dialog.run()
-			if result == -10:
+			if result == 2: # Continue
 				dialog.destroy()
-			else:
+			else: # Cancel
 				dialog.destroy()
 				return
 
@@ -117,15 +119,12 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 	return cairo_context.copy_path()
 
 def launch_infinite_loop_dialog(window):
-	dialog = Gtk.Dialog(use_header_bar=True, modal=True, title=_("Warning"), transient_for=window)
-	dialog.add_button(_("Continue"), Gtk.ResponseType.APPLY)
-	dialog.add_button(_("Abort"), Gtk.ResponseType.CANCEL)
-	dialog.get_content_area().add(Gtk.Label(label=_( \
-"""The area seems poorly delimited, or is very complex.
+	dialog = DrawingMessageDialog(_("Warning"), window)
+	dialog.set_actions([_("Cancel"), _("Continue")])
+	dialog.add_string( _("""The area seems poorly delimited, or is very complex.
 This algorithm may not be able to manage the wanted area.
 
-Do you want to abort the operation, or to let the tool struggle ?""" \
-	), margin=10))
+Do you want to abort the operation, or to let the tool struggle ?""") )
 	dialog.show_all()
 	return dialog
 

@@ -44,6 +44,7 @@ from .utilities import utilities_save_pixbuf_at
 from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
+from .message_dialog import DrawingMessageDialog
 
 @GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
@@ -596,28 +597,22 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.get_active_image()._is_saved:
 			self.try_load_file(gfile)
 		else:
-			dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved changes"), \
-				transient_for=self)
-			dialog.add_button(_("New tab"), Gtk.ResponseType.OK)
-			dialog.add_button(_("New window"), Gtk.ResponseType.ACCEPT)
-			dialog.add_button(_("Discard changes"), Gtk.ResponseType.APPLY)
-			label1 = Gtk.Label( label=( _("There are unsaved modifications to %s.") % \
-				self.get_active_image().get_filename_for_display() ), wrap=True)
-			dialog.get_message_area().add(label1)
-			label2 = Gtk.Label( \
-				label=(_("Where do you want to open %s?") %  \
-				(gfile.get_path().split('/')[-1])), wrap=True) # FIXME
-			dialog.get_message_area().add(label2)
+			dialog = DrawingMessageDialog(_("Unsaved changes"), self)
+			dialog.set_actions([_("New tab"), _("New window"), _("Discard changes")])
+			dialog.add_string( _("There are unsaved modifications to %s.") % \
+				self.get_active_image().get_filename_for_display() )
+			dialog.add_string( _("Where do you want to open %s?") %  \
+				(gfile.get_path().split('/')[-1]) )
 			dialog.show_all()
 			result = dialog.run()
 			dialog.destroy()
-			if result == Gtk.ResponseType.OK:
+			if result == 1:
 				self.build_new_tab(gfile)
 				self.prompt_message(False, 'load the file in a new tab')
-			elif result == Gtk.ResponseType.APPLY:
+			elif result == 3:
 				self.try_load_file(gfile)
 				self.prompt_message(False, 'load the file in the same tab')
-			elif result == Gtk.ResponseType.ACCEPT:
+			elif result == 2:
 				self.app.open_window_with_file(gfile)
 				self.prompt_message(False, 'load the file in a new window')
 
@@ -670,26 +665,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			unsaved_file_name = _("Untitled") + '.png'
 		else:
 			unsaved_file_name = fn.split('/')[-1]
-		dialog = Gtk.MessageDialog(modal=True, title=_("Unsaved changes"), \
-			transient_for=self)
-		dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
-		dialog.add_button(_("Discard"), Gtk.ResponseType.NO)
-		dialog.add_button(_("Save"), Gtk.ResponseType.APPLY)
-		label1 = Gtk.Label( label=( _("There are unsaved modifications to %s.") % \
-			self.get_active_image().get_filename_for_display() ), wrap=True)
-		dialog.get_message_area().add(label1)
+		dialog = DrawingMessageDialog(_("Unsaved changes"), self)
+		dialog.set_actions([_("Cancel"), _("Discard"), _("Save")])
+		dialog.add_string( _("There are unsaved modifications to %s.") % \
+			self.get_active_image().get_filename_for_display() )
 		dialog.show_all()
-		dialog.set_size_request(0, 0)
 		result = dialog.run()
-		if result == Gtk.ResponseType.APPLY:
-			dialog.destroy()
+		dialog.destroy()
+		if result == 3:
 			self.action_save()
 			return True
-		elif result == Gtk.ResponseType.NO:
-			dialog.destroy()
+		elif result == 2:
 			return True
 		else:
-			dialog.destroy()
 			return False
 
 	def add_filechooser_filters(self, dialog):
