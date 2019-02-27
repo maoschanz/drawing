@@ -46,9 +46,6 @@ class ToolCrop(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self):
-		return self.bottom_panel
-
 	def adapt_to_window_size(self):
 		available_width = self.window.bottom_panel_box.get_allocated_width()
 		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:

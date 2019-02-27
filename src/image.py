@@ -20,7 +20,6 @@ import cairo
 
 from .gi_composites import GtkTemplate
 
-from .properties import DrawingPropertiesDialog
 from .utilities import utilities_save_pixbuf_at
 from .utilities import utilities_show_overlay_on_context
 
@@ -46,12 +45,15 @@ class DrawingImage(Gtk.Layout):
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
 
+		# For displaying things on the widget
 		self.connect('draw', self.on_draw)
+		# For drawing with tools
 		self.connect('motion-notify-event', self.on_motion_on_area)
 		self.connect('button-press-event', self.on_press_on_area)
 		self.connect('button-release-event', self.on_release_on_area)
+		# For scrolling, obviously
 		self.connect('scroll-event', self.on_scroll_on_area)
-
+		# For the cursor
 		self.connect('enter-notify-event', self.on_enter_image)
 		self.connect('leave-notify-event', self.on_leave_image)
 
@@ -92,6 +94,7 @@ class DrawingImage(Gtk.Layout):
 		return unsaved_file_name
 
 	def try_close_tab(self, *args):
+		"""Ask the window to close the tab; then unallocate pixbufs."""
 		self.window.close_tab(self)
 		self.destroy()
 		self.main_pixbuf = None
@@ -120,11 +123,13 @@ class DrawingImage(Gtk.Layout):
 		self.init_image()
 
 	def restore_first_pixbuf(self):
+		"""Set the first saved pixbuf as the main_pixbuf. This is used to
+		rebuild the picture from its history."""
 		pixbuf = self.initial_operation['pixbuf']
 		width = self.initial_operation['width']
 		height = self.initial_operation['height']
-		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # XXX
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1) # XXX
+		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
 			r = self.initial_operation['red']
@@ -148,9 +153,6 @@ class DrawingImage(Gtk.Layout):
 		self.window.set_cursor(False)
 
 	# FILE MANAGEMENT
-
-	def edit_properties(self):
-		DrawingPropertiesDialog(self.window, self)
 
 	def get_file_path(self):
 		if self.gfile is None:
@@ -273,7 +275,7 @@ class DrawingImage(Gtk.Layout):
 	def on_scroll_on_area(self, area, event):
 		self.add_deltas(event.delta_x, event.delta_y, 10)
 
-	def get_main_coord(self, *args): # XXX utile ?
+	def get_main_coord(self, *args):
 		return self.scroll_x, self.scroll_y
 
 	def add_deltas(self, delta_x, delta_y, factor):
@@ -397,3 +399,4 @@ class DrawingImage(Gtk.Layout):
 		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
 		op.set_n_pages(1)
+

@@ -38,9 +38,6 @@ class ToolSaturate(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self):
-		return self.bottom_panel
-
 	def on_tool_selected(self, *args):
 		self.saturate_selection = (self.window.hijacker_id is not None)
 		self.saturation_btn.set_value(100.0)

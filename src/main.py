@@ -148,6 +148,7 @@ class Application(Gtk.Application):
 		return 0
 
 	def open_window_with_file(self, gfile):
+		"""Open a new window with an optional Gio.File as an argument."""
 		win = DrawingWindow(application=self)
 		win.present()
 		win.init_window_content(gfile) # this optimization has no effect because of GLib obscure magic

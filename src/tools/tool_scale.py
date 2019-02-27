@@ -49,9 +49,6 @@ class ToolScale(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self):
-		return self.bottom_panel
-
 	def get_edition_status(self):
 		if self.scale_selection:
 			return _("Scaling the selection")

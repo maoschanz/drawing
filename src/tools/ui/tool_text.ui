@@ -41,12 +41,16 @@
             <child>
               <object class="GtkButton" id="insert_btn">
                 <property name="visible">True</property>
+                <property name="expand">True</property>
                 <property name="tooltip_text" translatable="yes">Insert here</property>
                 <property name="label" translatable="yes">Insert here</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
               </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
             </child>
           </object>
         </child>

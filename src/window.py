@@ -228,8 +228,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_btn.connect('toggled', self.update_option_label)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
-		self.notebook.connect('select-page', self.on_active_tab_changed)
-		self.notebook.connect('change-current-page', self.on_active_tab_changed)
 
 	def add_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -588,7 +586,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# FILE MANAGEMENT
 
 	def action_properties(self, *args):
-		self.get_active_image().edit_properties()
+		DrawingPropertiesDialog(self, self.get_active_image())
 
 	def get_active_image(self):
 		return self.notebook.get_nth_page(self.notebook.get_current_page())

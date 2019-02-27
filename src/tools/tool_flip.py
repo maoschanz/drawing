@@ -42,9 +42,6 @@ class ToolFlip(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self): # XXX utile ??
-		return self.bottom_panel
-
 	def on_vertical_clicked(self, *args):
 		self.flip_v = not self.flip_v
 		self.update_temp_pixbuf()

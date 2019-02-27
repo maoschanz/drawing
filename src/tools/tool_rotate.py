@@ -43,9 +43,6 @@ class ToolRotate(ToolTemplate):
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
-	def get_panel(self):
-		return self.bottom_panel
-
 	def get_edition_status(self):
 		if self.rotate_selection:
 			return _("Rotating the selection")

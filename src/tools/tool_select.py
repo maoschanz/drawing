@@ -16,11 +16,12 @@ class ToolSelect(ToolTemplate):
 		super().__init__('select', _("Selection"), 'tool-select-symbolic', window, False)
 		self.selection_has_been_used = False
 		self.selection_is_active = False
-
+		self.selected_type_id = 'rectangle'
+		self.selected_type_label = _("Rectangle selection")
+		self.background_type_id = 'transparent'
 		self.temp_path = None
 		self.temp_x = 0
 		self.temp_y = 0
-
 		self.closing_x = 0
 		self.closing_y = 0
 
@@ -34,10 +35,6 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_flip', self.action_selection_flip)
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
 		self.add_tool_action_simple('selection_saturate', self.action_selection_saturate)
-
-		self.selected_type_id = 'rectangle'
-		self.selected_type_label = _("Rectangle selection")
-		self.background_type_id = 'transparent'
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
 
@@ -64,9 +61,6 @@ class ToolSelect(ToolTemplate):
 
 	def add_subtool(self, tool):
 		self.centered_box.add(tool.build_selection_bar_btn())
-
-	def get_panel(self):
-		return self.bottom_panel
 
 	def adapt_to_window_size(self):
 		available_width = self.window.bottom_panel_box.get_allocated_width()
@@ -119,7 +113,7 @@ class ToolSelect(ToolTemplate):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
 		return builder.get_object('options-menu')
 
-	def get_options_label(self):
+	def get_options_label(self): # XXX should not be used
 		return _("Selection options")
 
 	def get_edition_status(self):
