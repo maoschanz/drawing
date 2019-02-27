@@ -35,6 +35,9 @@ class ToolTemplate():
 	def add_tool_action_enum(self, action_name, default):
 		self.window.options_manager.add_tool_option_enum(action_name, default)
 
+	def add_tool_action_enum_radio(self, action_name, default):
+		self.window.options_manager.add_tool_option_enum_radio(action_name, default)
+
 	def get_option_value(self, action_name):
 		return self.window.options_manager.get_value(action_name)
 
@@ -57,7 +60,9 @@ class ToolTemplate():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		return None
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_' \
+			+ self.id + '.ui')
+		return builder.get_object('options-menu')
 
 	def get_options_widget(self):
 		return None

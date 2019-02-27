@@ -14,6 +14,9 @@ class ToolPicker(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window, False)
 
+	def get_options_model(self):
+		return None
+
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		rgb_vals = utilities_get_rgb_for_xy(surface, event.x, event.y)
 		if rgb_vals == [-1, -1, -1]:

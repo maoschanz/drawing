@@ -19,10 +19,6 @@ class ToolPaint(ToolTemplate):
 		self.use_size = False
 		self.add_tool_action_enum('paint_algo', 'fill')
 
-	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_paint.ui')
-		return builder.get_object('options-menu')
-
 	def get_options_label(self):
 		return _("Painting options")
 

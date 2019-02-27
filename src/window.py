@@ -198,7 +198,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_tabs_visibility()
 		return True
 
-	def action_close(self, *args):
+	def action_close_tab(self, *args):
+		if self.notebook.get_n_pages() > 1:
+			self.close_tab(self.get_active_image())
+		else:
+			self.close()
+
+	def action_close_window(self, *args):
 		self.close()
 
 	def on_close(self, *args):
@@ -273,7 +279,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('go_right', self.action_go_right)
 
 		self.add_action_simple('new_tab', self.build_new_image)
-		self.add_action_simple('close', self.action_close)
+		self.add_action_simple('close_tab', self.action_close_tab)
+		self.add_action_simple('close', self.action_close_window)
 		self.add_action_simple('save', self.action_save)
 		self.add_action_simple('open', self.action_open)
 		self.add_action_simple('undo', self.action_undo)

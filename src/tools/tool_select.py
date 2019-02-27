@@ -14,8 +14,6 @@ class ToolSelect(ToolTemplate):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'tool-select-symbolic', window, False)
-		self.selection_has_been_used = False
-		self.selection_is_active = False
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle selection")
 		self.background_type_id = 'transparent'
@@ -52,11 +50,13 @@ class ToolSelect(ToolTemplate):
 		btn1 = builder.get_object('selection_type_btn1')
 		builder.get_object('selection_type_btn2').join_group(btn1)
 		builder.get_object('selection_type_btn3').join_group(btn1)
-		self.add_tool_action_enum('selection_type', self.selected_type_id)
+		self.add_tool_action_enum_radio('selection_type', self.selected_type_id)
 
 		self.exclude_color = False
 		# self.add_tool_action_boolean('selection_exclude', False)
 
+		self.selection_has_been_used = False
+		self.selection_is_active = False
 		self.reset_temp()
 
 	def add_subtool(self, tool):
@@ -108,10 +108,6 @@ class ToolSelect(ToolTemplate):
 		else:
 			self.selected_type_id = 'color'
 			self.selected_type_label = _("Color selection")
-
-	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
-		return builder.get_object('options-menu')
 
 	def get_options_label(self): # XXX should not be used
 		return _("Selection options")

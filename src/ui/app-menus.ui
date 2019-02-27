@@ -47,11 +47,6 @@
       <attribute name="label" translatable="yes">_File</attribute>
       <section>
         <item>
-          <attribute name="label" translatable="yes">New window</attribute>
-          <attribute name="action">app.new_window</attribute>
-          <attribute name="verb-icon">document-new-symbolic</attribute>
-        </item>
-        <item>
           <attribute name="label" translatable="yes">New tab</attribute>
           <attribute name="action">win.new_tab</attribute>
           <attribute name="verb-icon">document-new-symbolic</attribute>
@@ -91,8 +86,8 @@
       <section>
         <item>
           <attribute name="label" translatable="yes">Close</attribute>
-          <attribute name="action">win.close</attribute>
-          <attribute name="verb-icon">application-exit-symbolic</attribute>
+          <attribute name="action">win.close_tab</attribute>
+          <attribute name="verb-icon">window-close-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -193,6 +188,9 @@
           <attribute name="action">win.show_labels</attribute>
         </item>
       </section>
+      <!-- <section> -->
+      <!--   TODO list of tabs -->
+      <!-- </section> -->
     </submenu>
 
     <submenu>
@@ -233,10 +231,42 @@
             </section>
         </submenu>
       </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Former tool</attribute>
+          <attribute name="action">win.back_to_former_tool</attribute>
+        </item>
+      </section>
     </submenu>
 
     <submenu>
       <attribute name="label" translatable="yes">_Options</attribute>
+    </submenu>
+
+    <submenu>
+      <attribute name="label" translatable="yes">_Windows</attribute>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">New window</attribute>
+          <attribute name="action">app.new_window</attribute>
+          <attribute name="verb-icon">document-new-symbolic</attribute>
+        </item>
+      </section>
+      <!-- <section> -->
+      <!--   TODO list of windows -->
+      <!-- </section> -->
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Close</attribute>
+          <attribute name="action">win.close</attribute>
+          <attribute name="verb-icon">application-exit-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Quit</attribute>
+          <attribute name="action">app.quit</attribute>
+          <attribute name="verb-icon">application-exit-symbolic</attribute>
+        </item>
+      </section>
     </submenu>
 
     <submenu>

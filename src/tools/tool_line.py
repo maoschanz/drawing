@@ -51,10 +51,6 @@ class ToolLine(ToolTemplate):
 			self.selected_operator = cairo.Operator.OVER
 			self.selected_operator_label = _("Classic")
 
-	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_line.ui')
-		return builder.get_object('options-menu')
-
 	def get_options_label(self):
 		return _("Line options")
 

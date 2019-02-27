@@ -32,10 +32,6 @@ class ToolFreeshape(ToolTemplate):
 		else:
 			self.selected_style_label = _("Filled (secondary color)")
 
-	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_freeshape.ui')
-		return builder.get_object('options-menu')
-
 	def get_options_label(self):
 		return _("Shape options")
 

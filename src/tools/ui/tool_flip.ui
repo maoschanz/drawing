@@ -79,6 +79,23 @@
         <property name="pack-type">end</property>
       </packing>
     </child>
-
   </object>
+
+  <!-- -->
+
+  <menu id="options-menu">
+    <!-- <section> -->
+    <!--   TODO flip h/flip v -->
+    <!-- </section> -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Cancel</attribute>
+        <attribute name="action">win.force_selection_tool</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Apply</attribute>
+        <attribute name="action">win.apply_selection_tool</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

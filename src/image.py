@@ -82,8 +82,12 @@ class DrawingImage(Gtk.Layout):
 		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
 		btn.set_relief(Gtk.ReliefStyle.NONE)
 		btn.connect('clicked', self.try_close_tab)
-		self.tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
-		self.tab_title.pack_end(btn, expand=False, fill=False, padding=0)
+		if self.window.decorations == 'csd-eos':
+			self.tab_title.pack_start(btn, expand=False, fill=False, padding=0)
+			self.tab_title.pack_end(self.tab_label, expand=True, fill=True, padding=0)
+		else:
+			self.tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
+			self.tab_title.pack_end(btn, expand=False, fill=False, padding=0)
 		self.tab_title.show_all()
 
 	def get_filename_for_display(self):

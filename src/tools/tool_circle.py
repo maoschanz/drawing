@@ -36,10 +36,6 @@ class ToolCircle(ToolTemplate):
 	def set_active_shape(self, *args):
 		self.selected_shape_id = self.get_option_value('circle_shape')
 
-	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_circle.ui')
-		return builder.get_object('options-menu')
-
 	def get_options_label(self):
 		return _("Circle options")
 
