@@ -97,7 +97,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools = None
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
-		self.image_list = []
 		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
 
 		self.build_color_buttons()
@@ -175,7 +174,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_new_tab(self, gfile):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
-		self.image_list.append(new_image)
 		self.notebook.append_page(new_image, new_image.tab_title)
 		if gfile is None:
 			new_image.init_background()
@@ -184,16 +182,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
+	def on_active_tab_changed(self, *args):
+		self.change_active_tool_for(self.active_tool_id)
+		# On pourrait être moins bourrin et conserver la sélection, mais flemme
+
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
 		index = self.notebook.page_num(tab)
-		if not self.image_list[index]._is_saved:
+		if not self.notebook.get_nth_page(index)._is_saved:
 			self.notebook.set_current_page(index)
 			is_saved = self.confirm_save_modifs()
 			if not is_saved:
 				return False
 		self.notebook.remove_page(index)
-		self.image_list.pop(index)
 		self.update_tabs_visibility()
 		return True
 
@@ -203,8 +204,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_close(self, *args):
 		"""Event callback when trying to close a window. It saves/closes each
 		tab and saves the current window settings in order to restore them."""
-		for i in self.image_list:
-			if not self.close_tab(i):
+		while self.notebook.get_n_pages() != 0:
+			if not self.close_tab(self.get_active_image()):
 				return True
 
 		self._settings.set_int('last-size', int(self.thickness_spinbtn.get_value()))
@@ -226,6 +227,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.connect('configure-event', self.adapt_to_window_size)
 		self.options_btn.connect('toggled', self.update_option_label)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
+		self.notebook.connect('switch-page', self.on_active_tab_changed)
+		self.notebook.connect('select-page', self.on_active_tab_changed)
+		self.notebook.connect('change-current-page', self.on_active_tab_changed)
 
 	def add_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -524,11 +528,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
-		elif self.tools[state_as_string].row.get_active():
-			args[0].set_state(GLib.Variant.new_string(state_as_string))
-			self.enable_tool(state_as_string, True)
 		else:
-			self.tools[state_as_string].row.set_active(True)
+			self.change_active_tool_for(state_as_string)
+
+	def change_active_tool_for(self, tool_id):
+		action = self.lookup_action('active_tool')
+		if self.tools[tool_id].row.get_active():
+			action.set_state(GLib.Variant.new_string(tool_id))
+			self.enable_tool(tool_id, True)
+		else:
+			self.tools[tool_id].row.set_active(True)
 
 	def enable_tool(self, new_tool_id, should_give_back_control):
 		former_tool_id_2 = self.former_tool_id
@@ -582,7 +591,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().edit_properties()
 
 	def get_active_image(self):
-		return self.image_list[self.notebook.get_current_page()]
+		return self.notebook.get_nth_page(self.notebook.get_current_page())
 
 	def get_file_path(self):
 		return self.get_active_image().get_file_path()

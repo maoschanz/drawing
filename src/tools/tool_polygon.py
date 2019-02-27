@@ -22,8 +22,6 @@ class ToolPolygon(ToolTemplate):
 
 		self.add_tool_action_enum('filling_style', 'secondary')
 
-		self.cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), 'cell')
-
 	def set_filling_style(self):
 		state_as_string = self.get_option_value('filling_style')
 		self.selected_style_id = state_as_string
