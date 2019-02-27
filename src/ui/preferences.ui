@@ -26,7 +26,7 @@
 
   <template class="DrawingPrefsWindow" parent="GtkWindow">
     <property name="default-width">350</property>
-    <property name="default-height">300</property>
+    <property name="default-height">200</property>
     <property name="title" translatable="yes">Preferences</property>
 
     <child>
@@ -165,7 +165,17 @@
                     </child>
                   </object>
                 </child>
-
+              </object>
+              <packing>
+                <property name="name">page1</property>
+                <property name="title" translatable="yes">Basic</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
                 <child>
                   <object class="GtkListBox">
                     <property name="visible">True</property>
@@ -243,20 +253,9 @@
                         </child>
                       </object>
                     </child>
-
                   </object>
                 </child>
-              </object>
-              <packing>
-                <property name="name">page1</property>
-                <property name="title" translatable="yes">Basic</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
+
                 <child>
                   <object class="GtkListBox">
                     <property name="visible">True</property>

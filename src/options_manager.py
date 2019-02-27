@@ -70,8 +70,8 @@ class DrawingOptionsManager():
 		# the user might want to actually go back to the former value.
 		# Cases "m1 m2 m1 m2"
 		if self.cached_value1 == new_value and self.cached_value2 == current_value:
-			self.cached_value1 = current_value
-			self.cached_value2 = new_value
+			self.cached_value1 = None
+			self.cached_value2 = None
 			return
 		# Cases "b1 b2 b1 b2"
 		self.cached_value1 = current_value
