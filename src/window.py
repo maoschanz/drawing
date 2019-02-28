@@ -634,7 +634,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.get_active_image()._is_saved:
 			self.try_load_file(gfile)
 		else:
-			dialog = DrawingMessageDialog(_("Unsaved changes"), self)
+			dialog = DrawingMessageDialog(self)
 			dialog.set_actions([_("New tab"), _("New window"), _("Discard changes")])
 			dialog.add_string( _("There are unsaved modifications to %s.") % \
 				self.get_active_image().get_filename_for_display() )
@@ -701,12 +701,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		fn = self.get_file_path()
 		if fn is None:
 			unsaved_file_name = _("Untitled") + '.png'
+			display_name = _("this picture")
 		else:
 			unsaved_file_name = fn.split('/')[-1]
-		dialog = DrawingMessageDialog(_("Unsaved changes"), self)
+			display_name = self.get_active_image().get_filename_for_display()
+		dialog = DrawingMessageDialog(self)
 		dialog.set_actions([_("Cancel"), _("Discard"), _("Save")])
-		dialog.add_string( _("There are unsaved modifications to %s.") % \
-			self.get_active_image().get_filename_for_display() )
+		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
+		self.minimap.update_minimap()
+		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
+		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
+		frame.add(image)
+		dialog.add_widget(frame)
 		dialog.show_all()
 		result = dialog.run()
 		dialog.destroy()
