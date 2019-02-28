@@ -99,11 +99,14 @@ class DrawingImage(Gtk.Layout):
 
 	def try_close_tab(self, *args):
 		"""Ask the window to close the tab; then unallocate pixbufs."""
-		self.window.close_tab(self)
-		self.destroy()
-		self.main_pixbuf = None
-		self.selection_pixbuf = None
-		self.temp_pixbuf = None
+		if self.window.close_tab(self):
+			self.destroy()
+			self.main_pixbuf = None
+			self.selection_pixbuf = None
+			self.temp_pixbuf = None
+			return True
+		else:
+			return False
 
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')

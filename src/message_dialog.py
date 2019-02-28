@@ -22,8 +22,10 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 
 	def __init__(self, title, window, **kwargs):
 		super().__init__(modal=True, title=title, transient_for=window, **kwargs)
-		if window.get_allocated_width() < 400:
+		self.set_resizable(True)
+		if window.get_allocated_width() < 500:
 			self.get_action_area().set_orientation(Gtk.Orientation.VERTICAL)
+			self.set_default_size(350, -1)
 
 	def set_actions(self, labels):
 		i = 1
@@ -35,3 +37,5 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 		label = Gtk.Label(label=string, wrap=True)
 		self.get_message_area().add(label)
 
+	def add_widget(self, widget):
+		self.get_content_area().add(widget)

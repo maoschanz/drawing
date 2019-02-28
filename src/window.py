@@ -84,7 +84,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.header_bar = None
 		self.main_menu_btn = None
-		self.needed_width_for_long = 0
+		self.has_good_limits = False
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -98,6 +98,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
 		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
+		self.limit_size_bottom = 600
+		self.limit_size_header = 700
 
 		self.build_color_buttons()
 		self.add_all_win_actions()
@@ -200,7 +202,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_close_tab(self, *args):
 		if self.notebook.get_n_pages() > 1:
-			self.close_tab(self.get_active_image())
+			self.get_active_image().try_close_tab()
 		else:
 			self.close()
 
@@ -211,7 +213,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Event callback when trying to close a window. It saves/closes each
 		tab and saves the current window settings in order to restore them."""
 		while self.notebook.get_n_pages() != 0:
-			if not self.close_tab(self.get_active_image()):
+			if not self.get_active_image().try_close_tab():
 				return True
 
 		self._settings.set_int('last-size', int(self.thickness_spinbtn.get_value()))
@@ -439,41 +441,61 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_options_menu(self, *args): # TODO disable if custom panel
 		self.options_btn.set_active(not self.options_btn.get_active())
 
+	def set_bottom_width_limit(self): # XXX devrait se transmettre aux panneaux custom
+		if not self.has_good_limits: # heureusement ils marchent assez bien tous seuls
+			return
+		self.bottom_panel.show_all()
+		self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
+			self.thickness_spinbtn.get_preferred_width()[0] + \
+			self.options_long_box.get_preferred_width()[0] + \
+			self.minimap_label.get_preferred_width()[0]
+		self.bottom_panel.set_visible(not self.active_tool().implements_panel)
+
+	def init_adaptability(self):
+		self.has_good_limits = True
+
+		# Bottom panel width limit
+		self.set_bottom_width_limit()
+
+		if self.header_bar is None:
+			return
+		# Header bar width limit
+		self.header_bar.show_all()
+		widgets_width = self.save_label.get_preferred_width()[0] \
+			+ self.save_icon.get_preferred_width()[0] \
+			+ self.add_btn.get_preferred_width()[0]
+		self.limit_size_header = 3 * widgets_width # 100% arbitrary
+
 	def adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
 		window size. If the current bottom panel isn't the default one, this will
 		call the tool method applying the new size to the tool panel."""
+		if not self.has_good_limits and self.get_allocated_width() > 700:
+			self.init_adaptability()
+
 		if self.header_bar is not None:
-			widgets_width = self.save_label.get_allocated_width() \
-				+ self.save_icon.get_allocated_width() \
-				+ self.add_btn.get_allocated_width()
-			limit = 3 * widgets_width # 100% arbitrary
-			if self.header_bar.get_allocated_width() > limit:
-				self.save_label.set_visible(True)
-				self.save_icon.set_visible(False)
-				self.add_btn.set_visible(True)
-				self.main_menu_btn.set_popover(self.short_menu_popover)
-			else:
-				self.save_label.set_visible(False)
-				self.save_icon.set_visible(True)
-				self.add_btn.set_visible(False)
+			if self.header_bar.get_allocated_width() < self.limit_size_header:
+				self.compact_headerbar(True)
 				self.main_menu_btn.set_popover(self.long_menu_popover)
+			else:
+				self.compact_headerbar(False)
+				self.main_menu_btn.set_popover(self.short_menu_popover)
 
 		if self.active_tool().implements_panel:
 			self.active_tool().adapt_to_window_size()
 		else:
 			available_width = self.bottom_panel_box.get_allocated_width()
-			if self.minimap_label.get_visible():
-				self.needed_width_for_long = self.color_box.get_allocated_width() + \
-					self.thickness_spinbtn.get_allocated_width() + \
-					self.options_long_box.get_preferred_width()[0] + \
-					self.minimap_label.get_preferred_width()[0]
-			if self.needed_width_for_long > 0.7 * available_width:
+			if self.limit_size_bottom > 0.7 * available_width:
 				self.compact_preview_btn(True)
 				self.compact_options_btn(True)
 			else:
 				self.compact_options_btn(False)
 				self.compact_preview_btn(False)
+
+	def compact_headerbar(self, state):
+		self.save_label.set_visible(not state)
+		self.save_icon.set_visible(state)
+		self.add_btn.set_visible(not state)
 
 	def compact_options_btn(self, state):
 		self.options_short_box.set_visible(state)
@@ -564,6 +586,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.former_tool_id is not self.active_tool_id:
 			self.former_tool().show_panel(False)
 		self.active_tool().show_panel(True)
+		self.set_bottom_width_limit()
 		self.update_thickness_spinbtn_state()
 		self.adapt_to_window_size()
 
@@ -629,6 +652,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			elif result == 2:
 				self.app.open_window_with_file(gfile)
 				self.prompt_message(False, 'load the file in a new window')
+		self.prompt_message(False, 'dialog closed')
 
 	def file_chooser_open(self, *args):
 		"""Opens an "open" file chooser dialog, and return a GioFile or None."""
@@ -686,12 +710,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		dialog.show_all()
 		result = dialog.run()
 		dialog.destroy()
-		if result == 3:
+		if result == 3: # Save
 			self.action_save()
 			return True
-		elif result == 2:
+		elif result == 2: # Discard
 			return True
-		else:
+		else: # Cancel
 			return False
 
 	def add_filechooser_filters(self, dialog):

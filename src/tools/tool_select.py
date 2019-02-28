@@ -64,8 +64,7 @@ class ToolSelect(ToolTemplate):
 
 	def adapt_to_window_size(self):
 		available_width = self.window.bottom_panel_box.get_allocated_width()
-		box_width = self.centered_box.get_allocated_width()
-		if box_width > 0.4 * available_width:
+		if available_width < 400: # No label so who cares
 			self.centered_box.set_visible(False)
 		else:
 			self.centered_box.set_visible(True)

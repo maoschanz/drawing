@@ -9,6 +9,7 @@
   </object>
 
   <template class="DrawingWindow" parent="GtkApplicationWindow">
+    <!-- <property name="default-width">360</property> -->
     <property name="default-width">900</property>
     <property name="default-height">500</property>
     <child>
@@ -166,7 +167,7 @@
                         <property name="spacing">10</property>
                         <child>
                           <object class="GtkBox" id="options_long_box">
-                            <property name="visible">True</property>
+                            <property name="visible">False</property>
                             <property name="spacing">10</property>
                             <child>
                               <object class="GtkLabel" id="options_label">
@@ -211,7 +212,7 @@
                         <child>
                           <object class="GtkImage" id="minimap_icon">
                             <property name="icon-name">zoom-fit-best-symbolic</property>
-                            <property name="visible">True</property>
+                            <property name="visible">False</property>
                           </object>
                           <packing>
                             <property name="pack-type">start</property>
@@ -220,13 +221,13 @@
                         <child>
                           <object class="GtkLabel" id="minimap_label">
                             <property name="label" translatable="yes">Preview</property>
-                            <property name="visible">True</property>
+                            <property name="visible">False</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImage" id="minimap_arrow">
                             <property name="icon-name">pan-down-symbolic</property>
-                            <property name="visible">True</property>
+                            <property name="visible">False</property>
                           </object>
                           <packing>
                             <property name="pack-type">end</property>
