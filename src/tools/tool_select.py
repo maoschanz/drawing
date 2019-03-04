@@ -95,8 +95,6 @@ class ToolSelect(ToolTemplate):
 		self.set_action_sensitivity('selection_export', state)
 
 	def set_active_type(self, *args):
-		# TODO split ça en 3 outils ayant la même barre ?
-		# les 3 outils pouvant dériver d'un unique ToolSelect
 		selection_type = self.get_option_value('selection_type')
 		if selection_type == 'rectangle':
 			self.selected_type_id = 'rectangle'
@@ -108,8 +106,9 @@ class ToolSelect(ToolTemplate):
 			self.selected_type_id = 'color'
 			self.selected_type_label = _("Color selection")
 
-	def get_options_label(self): # XXX should not be used
+	def get_options_label(self):
 		return _("Selection options")
+		# XXX should not be used, and isn't visible
 
 	def get_edition_status(self):
 		self.set_active_type()

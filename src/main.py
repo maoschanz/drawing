@@ -179,7 +179,7 @@ class Application(Gtk.Application):
 			self.do_activate()
 			for path in arguments:
 				f = args[1].create_file_for_arg(path)
-				if 'image/' in f.get_content_type():
+				if 'image/' in f.query_info().get_content_type():
 					self.open_window_with_file(f)
 
 		elif options.contains('new-tab') and len(arguments) == 1:
@@ -191,7 +191,7 @@ class Application(Gtk.Application):
 			self.do_activate()
 			for path in arguments:
 				f = args[1].create_file_for_arg(path)
-				if 'image/' in f.get_content_type():
+				if 'image/' in f.query_info().get_content_type():
 					self.props.active_window.build_new_tab(f)
 
 		# Am i supposed to return something else?

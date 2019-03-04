@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 00:13+0100\n"
+"POT-Creation-Date: 2019-03-04 23:54+0100\n"
 "PO-Revision-Date: 2019-03-02 00:27+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -18,7 +18,8 @@ msgstr ""
 "X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/window.py:296
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/main.py:173
+#: src/window.py:340
 msgid "Drawing"
 msgstr "Çizim"
 
@@ -26,83 +27,102 @@ msgstr "Çizim"
 msgid "Simple drawing utility"
 msgstr "Basit çizim aracı"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:10
+#. Icon name, do not translate
+#: data/com.github.maoschanz.Drawing.desktop.in:12
 msgid "com.github.maoschanz.Drawing"
 msgstr "com.github.maoschanz.Drawing"
 
-#: src/ui/window.ui:36
+#: data/com.github.maoschanz.Drawing.desktop.in:17 src/ui/shortcuts.ui:16
+#: src/ui/app-menus.ui:9 src/ui/app-menus.ui:251 src/ui/win-menus.ui:33
+#: src/ui/win-menus.ui:169 src/ui/toolbar.ui:28 src/ui/toolbar.ui:29
+#: src/window.py:655
+#, fuzzy
+msgid "New Window"
+msgstr "Yeni pencere"
+
+#: data/com.github.maoschanz.Drawing.desktop.in:21 src/ui/shortcuts.ui:23
+#: src/ui/app-menus.ui:51 src/ui/win-menus.ui:29 src/ui/win-menus.ui:165
+#: src/ui/toolbar.ui:16 src/ui/toolbar.ui:17 src/window.py:655
+#, fuzzy
+msgid "New Tab"
+msgstr "Yeni sekme"
+
+#: src/ui/window.ui:37
 msgid "Error starting the application, please report this bug."
 msgstr "Uygulamayı başlatırken hata, bu hatayı rapor edin."
 
-#: src/ui/window.ui:126 src/ui/shortcuts.ui:78 src/ui/app-menus.ui:212
+#: src/ui/window.ui:127 src/ui/shortcuts.ui:194 src/ui/app-menus.ui:211
 msgid "Exchange colors"
 msgstr "Renkleri değiş"
 
-#: src/ui/window.ui:155
+#: src/ui/window.ui:156
 msgid "Tool size"
 msgstr "Araç boyutu"
 
-#: src/ui/window.ui:173 src/window.py:309 src/tools.py:68
+#. Loading a whole file in a GtkBuilder just for this looked ridiculous,
+#. so it's built from a string.
+#: src/ui/window.ui:174 src/window.py:375 src/tools.py:74
 msgid "No options"
 msgstr "Seçenek yok"
 
-#: src/ui/window.ui:222
+#: src/ui/window.ui:223
 msgid "Preview"
 msgstr "Önizle"
 
-#: src/ui/preferences.ui:30 src/ui/app-menus.ui:15 src/ui/app-menus.ui:142
-#: src/ui/win-menus.ui:62 src/ui/win-menus.ui:130 src/ui/toolbar.ui:195
-#: src/ui/toolbar.ui:196 src/preferences.py:46
+#: src/ui/preferences.ui:30 src/ui/app-menus.ui:15 src/ui/app-menus.ui:138
+#: src/ui/win-menus.ui:66 src/ui/win-menus.ui:135 src/ui/toolbar.ui:195
+#: src/ui/toolbar.ui:196 src/preferences.py:45
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: src/ui/preferences.ui:64
+#: src/ui/preferences.ui:62
 msgid "New images"
 msgstr "Yeni görüntüler"
 
-#: src/ui/preferences.ui:82
+#: src/ui/preferences.ui:80
 msgid "Default background"
 msgstr "Öntanımlı arka plan"
 
-#: src/ui/preferences.ui:115
+#: src/ui/preferences.ui:113
 msgid "Default width"
 msgstr "Öntanımlı genişlik"
 
-#: src/ui/preferences.ui:148
+#: src/ui/preferences.ui:146
 msgid "Default height"
 msgstr "Öntanımlı yükseklik"
 
-#: src/ui/preferences.ui:177
-msgid "Opened images"
-msgstr "Açılan görüntüler"
+#: src/ui/preferences.ui:171
+msgid "Basic"
+msgstr ""
 
-#: src/ui/preferences.ui:195
-msgid "Always add transparency"
-msgstr "Daima şeffaflık ekle"
-
-#: src/ui/preferences.ui:221 src/ui/shortcuts.ui:87
-msgid "Image"
-msgstr "Görüntü"
-
-#: src/ui/preferences.ui:236
+#: src/ui/preferences.ui:185
 msgid "User interface"
 msgstr "Kullanıcı arayüzü"
 
-#: src/ui/preferences.ui:254
+#: src/ui/preferences.ui:203
 msgid "Layout"
 msgstr "Düzen"
 
-#: src/ui/preferences.ui:286 src/ui/preferences.ui:297
+#: src/ui/preferences.ui:235 src/ui/preferences.ui:246
 msgid "Preview size"
 msgstr "Önizleme boyutu"
 
-#: src/ui/preferences.ui:327
-msgid "Experimental features"
+#: src/ui/preferences.ui:265
+msgid "Opened images"
+msgstr "Açılan görüntüler"
+
+#: src/ui/preferences.ui:282
+msgid "Always add transparency"
+msgstr "Daima şeffaflık ekle"
+
+#: src/ui/preferences.ui:319
+#, fuzzy
+msgid "Development features"
 msgstr "Deneysel özellikler"
 
-#: src/ui/preferences.ui:352
-msgid "Other"
-msgstr "Diğer"
+#: src/ui/preferences.ui:343
+msgid "Advanced"
+msgstr ""
 
 #: src/ui/properties.ui:20
 msgid "Path"
@@ -112,7 +132,7 @@ msgstr "Yol"
 msgid "Format"
 msgstr "Biçim"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:291
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:334
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
 
@@ -149,259 +169,269 @@ msgid "inches"
 msgstr "inç"
 
 #: src/ui/shortcuts.ui:12
-msgid "Windows"
-msgstr "Pencereler"
-
-#: src/ui/shortcuts.ui:16 src/ui/app-menus.ui:9 src/ui/app-menus.ui:50
-#: src/ui/win-menus.ui:13 src/ui/win-menus.ui:163 src/ui/toolbar.ui:28
-#: src/ui/toolbar.ui:29 src/window.py:540
-msgid "New window"
-msgstr "Yeni pencere"
-
-#: src/ui/shortcuts.ui:23 src/ui/app-menus.ui:55 src/ui/win-menus.ui:9
-#: src/ui/win-menus.ui:159 src/ui/toolbar.ui:16 src/ui/toolbar.ui:17
-#: src/window.py:539
-msgid "New tab"
-msgstr "Yeni sekme"
+msgid "General"
+msgstr ""
 
 #: src/ui/shortcuts.ui:30
 msgid "Main menu"
 msgstr "Ana menü"
 
-#: src/ui/shortcuts.ui:37
-msgid "Close the window"
-msgstr "Pencereyi kapat"
-
-#: src/ui/shortcuts.ui:44 src/ui/app-menus.ui:29 src/ui/win-menus.ui:77
-#: src/ui/win-menus.ui:145 src/ui/toolbar.ui:219 src/ui/toolbar.ui:220
+#: src/ui/shortcuts.ui:37 src/ui/app-menus.ui:30 src/ui/win-menus.ui:82
+#: src/ui/win-menus.ui:151 src/ui/toolbar.ui:219 src/ui/toolbar.ui:220
 msgid "Help"
 msgstr "Yardım"
 
-#: src/ui/shortcuts.ui:51
+#: src/ui/shortcuts.ui:44
 msgid "Quit all windows"
 msgstr "Tüm pencerelerden çık"
 
-#: src/ui/shortcuts.ui:60
-msgid "Colors"
-msgstr "Renkler"
+#: src/ui/shortcuts.ui:53
+msgid "Image"
+msgstr "Görüntü"
 
-#: src/ui/shortcuts.ui:64
-msgid "Edit the main color (left click)"
-msgstr "Ana rengi düzenle (sol tıklama)"
-
-#: src/ui/shortcuts.ui:71
-msgid "Edit the secondary color (right click)"
-msgstr "İkincil rengi düzenle (sağ tıkla)"
-
-#: src/ui/shortcuts.ui:91 src/ui/app-menus.ui:62 src/ui/win-menus.ui:19
-#: src/ui/win-menus.ui:169 src/ui/toolbar.ui:41
-msgid "Open an image"
+#: src/ui/shortcuts.ui:57
+#, fuzzy
+msgid "Open a file"
 msgstr "Bir görüntü aç"
 
-#: src/ui/shortcuts.ui:98 src/ui/app-menus.ui:69 src/ui/toolbar.ui:130
-#: src/ui/toolbar.ui:131 src/window.py:613 src/window.py:661
+#: src/ui/shortcuts.ui:64
+msgid "Close the active image"
+msgstr ""
+
+#: src/ui/shortcuts.ui:71 src/ui/app-menus.ui:65 src/ui/toolbar.ui:130
+#: src/ui/toolbar.ui:131 src/window.py:723 src/window.py:771
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/ui/shortcuts.ui:105
+#: src/ui/shortcuts.ui:78
 msgid "Save as"
 msgstr "Farklı kaydet"
 
-#: src/ui/shortcuts.ui:112
+#: src/ui/shortcuts.ui:85
 msgid "Toggle the preview"
 msgstr "Önizlemeyi değiştir"
 
-#: src/ui/shortcuts.ui:121
+#: src/ui/shortcuts.ui:94
 msgid "Edition"
 msgstr "Baskı"
 
-#: src/ui/shortcuts.ui:125 src/ui/app-menus.ui:104 src/ui/toolbar.ui:88
+#: src/ui/shortcuts.ui:98 src/ui/app-menus.ui:100 src/ui/toolbar.ui:88
 #: src/ui/toolbar.ui:89
 msgid "Undo"
 msgstr "Geri al"
 
-#: src/ui/shortcuts.ui:132 src/ui/app-menus.ui:109 src/ui/toolbar.ui:100
+#: src/ui/shortcuts.ui:105 src/ui/app-menus.ui:105 src/ui/toolbar.ui:100
 #: src/ui/toolbar.ui:101
 msgid "Redo"
 msgstr "Yinele"
 
-#: src/ui/shortcuts.ui:139
+#: src/ui/shortcuts.ui:112
 msgid "Options menu"
 msgstr "Seçenekler menüsü"
 
-#: src/ui/shortcuts.ui:146 src/ui/app-menus.ui:123 src/ui/win-menus.ui:28
-#: src/ui/win-menus.ui:178 src/ui/toolbar.ui:70 src/ui/toolbar.ui:71
+#: src/ui/shortcuts.ui:119 src/ui/app-menus.ui:119 src/ui/win-menus.ui:22
+#: src/ui/win-menus.ui:184 src/ui/toolbar.ui:70 src/ui/toolbar.ui:71
 #: src/tools/ui/tool_select.ui:45
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: src/ui/shortcuts.ui:153 src/ui/app-menus.ui:128 src/ui/win-menus.ui:24
-#: src/ui/win-menus.ui:174 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
-#: src/window.py:693 src/tools/ui/tool_select.ui:41
+#: src/ui/shortcuts.ui:126 src/ui/app-menus.ui:124 src/ui/win-menus.ui:18
+#: src/ui/win-menus.ui:180 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
+#: src/window.py:803 src/tools/ui/tool_select.ui:41
 msgid "Import"
 msgstr "İçeri aktar"
 
-#: src/ui/shortcuts.ui:162 src/tools/tool_select.py:16
+#: src/ui/shortcuts.ui:135 src/tools/tool_select.py:16
 msgid "Selection"
 msgstr "Seçim"
 
-#: src/ui/shortcuts.ui:166 src/ui/app-menus.ui:116
+#: src/ui/shortcuts.ui:139 src/ui/app-menus.ui:112
 #: src/tools/ui/tool_select.ui:6 src/tools/ui/tool_select.ui:114
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: src/ui/shortcuts.ui:173 src/tools/ui/tool_select.ui:54
+#: src/ui/shortcuts.ui:146 src/tools/ui/tool_select.ui:54
 #: src/tools/ui/tool_select.ui:118
 msgid "Unselect"
 msgstr "Seçimi kaldır"
 
-#: src/ui/shortcuts.ui:180 src/tools/ui/tool_select.ui:61
+#: src/ui/shortcuts.ui:153 src/tools/ui/tool_select.ui:61
 #: src/tools/ui/tool_select.ui:125
 msgid "Cut"
 msgstr "Kes"
 
-#: src/ui/shortcuts.ui:187 src/tools/ui/tool_select.ui:66
+#: src/ui/shortcuts.ui:160 src/tools/ui/tool_select.ui:66
 #: src/tools/ui/tool_select.ui:130
 msgid "Copy"
 msgstr "Kopyala"
 
-#: src/ui/shortcuts.ui:194 src/tools/ui/tool_select.ui:71
+#: src/ui/shortcuts.ui:167 src/tools/ui/tool_select.ui:71
 #: src/tools/ui/tool_select.ui:135
 msgid "Delete"
 msgstr "Sil"
 
-#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:246 src/ui/win-menus.ui:68
-#: src/ui/win-menus.ui:136
+#: src/ui/shortcuts.ui:176
+msgid "Colors"
+msgstr "Renkler"
+
+#: src/ui/shortcuts.ui:180
+msgid "Edit the main color (left click)"
+msgstr "Ana rengi düzenle (sol tıklama)"
+
+#: src/ui/shortcuts.ui:187
+msgid "Edit the secondary color (right click)"
+msgstr "İkincil rengi düzenle (sağ tıkla)"
+
+#: src/ui/shortcuts.ui:203
+msgid "Navigation"
+msgstr ""
+
+#: src/ui/shortcuts.ui:207 src/ui/app-menus.ui:156
+msgid "Go Left"
+msgstr "Sola Git"
+
+#: src/ui/shortcuts.ui:214 src/ui/app-menus.ui:160
+msgid "Go Up"
+msgstr "Yukarı Git"
+
+#: src/ui/shortcuts.ui:221 src/ui/app-menus.ui:164
+msgid "Go Down"
+msgstr "Aşağı Git"
+
+#: src/ui/shortcuts.ui:228 src/ui/app-menus.ui:168
+msgid "Go Right"
+msgstr "Sağa Git"
+
+#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:277 src/ui/win-menus.ui:72
+#: src/ui/win-menus.ui:141
 msgid "Report a bug"
 msgstr "Hataları bildir"
 
-#: src/ui/app-menus.ui:25 src/ui/app-menus.ui:252 src/ui/win-menus.ui:72
-#: src/ui/win-menus.ui:140 src/ui/toolbar.ui:207 src/ui/toolbar.ui:208
+#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:284 src/ui/win-menus.ui:77
+#: src/ui/win-menus.ui:146 src/ui/toolbar.ui:207 src/ui/toolbar.ui:208
 msgid "Shortcuts"
 msgstr "Kısayollar"
 
-#: src/ui/app-menus.ui:33
+#: src/ui/app-menus.ui:34
 msgid "About"
 msgstr "Hakkında"
 
-#: src/ui/app-menus.ui:39
+#: src/ui/app-menus.ui:40 src/ui/app-menus.ui:266
 msgid "Quit"
 msgstr "Çıkış"
 
-#: src/ui/app-menus.ui:47
+#: src/ui/app-menus.ui:48
 msgid "_File"
 msgstr "_Dosya"
 
+#: src/ui/app-menus.ui:58 src/ui/win-menus.ui:11 src/ui/win-menus.ui:175
+#: src/ui/toolbar.ui:41
+msgid "Open an image"
+msgstr "Bir görüntü aç"
+
 #. <property name="icon_name">document-save-as</property>
-#: src/ui/app-menus.ui:74 src/ui/win-menus.ui:36 src/ui/win-menus.ui:92
+#: src/ui/app-menus.ui:70 src/ui/win-menus.ui:40 src/ui/win-menus.ui:97
 #: src/ui/toolbar.ui:142 src/ui/toolbar.ui:143
 msgid "Save as…"
 msgstr "Farklı kaydet…"
 
 #. <property name="icon_name">document-save-as</property>
-#: src/ui/app-menus.ui:79 src/ui/win-menus.ui:52 src/ui/win-menus.ui:108
+#: src/ui/app-menus.ui:75 src/ui/win-menus.ui:56 src/ui/win-menus.ui:113
 #: src/ui/toolbar.ui:154 src/ui/toolbar.ui:155 src/tools/ui/tool_select.ui:105
 #: src/tools/ui/tool_select.ui:171
 msgid "Export as…"
 msgstr "Farklı aktar…"
 
-#: src/ui/app-menus.ui:86 src/ui/win-menus.ui:40 src/ui/win-menus.ui:96
+#: src/ui/app-menus.ui:82 src/ui/win-menus.ui:44 src/ui/win-menus.ui:101
 #: src/ui/toolbar.ui:166 src/ui/toolbar.ui:167
 msgid "Print"
 msgstr "Yazdır"
 
-#: src/ui/app-menus.ui:93
+#: src/ui/app-menus.ui:89 src/ui/app-menus.ui:261
 msgid "Close"
 msgstr "Kapat"
 
-#: src/ui/app-menus.ui:101
+#: src/ui/app-menus.ui:97
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: src/ui/app-menus.ui:135 src/ui/win-menus.ui:45 src/ui/win-menus.ui:101
+#: src/ui/app-menus.ui:131 src/ui/win-menus.ui:49 src/ui/win-menus.ui:106
 #: src/ui/toolbar.ui:112 src/ui/toolbar.ui:113 src/properties.py:27
 msgid "Image properties"
 msgstr "Görüntü özellikleri"
 
-#: src/ui/app-menus.ui:150
+#: src/ui/app-menus.ui:146
 msgid "_View"
 msgstr "_Görünüm"
 
-#: src/ui/app-menus.ui:153 src/tools/ui/tool_select.ui:300
+#: src/ui/app-menus.ui:149 src/tools/ui/tool_select.ui:300
 msgid "Show the preview"
 msgstr "Önizlemeyi göster"
 
-#: src/ui/app-menus.ui:160
-msgid "Go Up"
-msgstr "Yukarı Git"
-
-#: src/ui/app-menus.ui:164
-msgid "Go Down"
-msgstr "Aşağı Git"
-
-#: src/ui/app-menus.ui:168
-msgid "Go Left"
-msgstr "Sola Git"
-
-#: src/ui/app-menus.ui:172
-msgid "Go Right"
-msgstr "Sağa Git"
-
-#: src/ui/app-menus.ui:178 src/ui/win-menus.ui:114
+#: src/ui/app-menus.ui:174 src/ui/win-menus.ui:119
 msgid "Refresh"
 msgstr "Yenile"
 
-#: src/ui/app-menus.ui:184 src/ui/win-menus.ui:119
+#: src/ui/app-menus.ui:180 src/ui/win-menus.ui:124
 msgid "Rebuild from history"
 msgstr "Geçmişten yeniden oluştur"
 
-#: src/ui/app-menus.ui:192 src/ui/win-menus.ui:58 src/ui/win-menus.ui:126
+#: src/ui/app-menus.ui:188 src/ui/win-menus.ui:62 src/ui/win-menus.ui:131
 #: src/ui/toolbar.ui:183 src/ui/toolbar.ui:184
 msgid "Show tools names"
 msgstr "Araç adlarını göster"
 
-#: src/ui/app-menus.ui:199
+#: src/ui/app-menus.ui:198
 msgid "_Colors"
 msgstr "_Renkler"
 
-#: src/ui/app-menus.ui:202
+#: src/ui/app-menus.ui:201
 msgid "Main color"
 msgstr "Ana renk"
 
-#: src/ui/app-menus.ui:206
+#: src/ui/app-menus.ui:205
 msgid "Secondary color"
 msgstr "İkincil renk"
 
-#: src/ui/app-menus.ui:219
+#: src/ui/app-menus.ui:218
 msgid "Color editor by default"
 msgstr "Varsayılan olarak renk düzenleyici"
 
-#: src/ui/app-menus.ui:226
+#: src/ui/app-menus.ui:225
 msgid "_Tools"
 msgstr "_Araçlar"
 
-#: src/ui/app-menus.ui:231
+#: src/ui/app-menus.ui:230
 msgid "_Canvas"
 msgstr "_Tuval"
 
-#: src/ui/app-menus.ui:239 src/window.py:807 src/window.py:810
+#: src/ui/app-menus.ui:237
+msgid "Previous tool"
+msgstr ""
+
+#: src/ui/app-menus.ui:244 src/window.py:917 src/window.py:920
 msgid "_Options"
 msgstr "_Seçenekler"
 
-#: src/ui/app-menus.ui:243
+#: src/ui/app-menus.ui:248
+#, fuzzy
+msgid "_Windows"
+msgstr "Pencereler"
+
+#: src/ui/app-menus.ui:274
 msgid "_Help"
 msgstr "_Yardım"
 
-#: src/ui/app-menus.ui:257
+#: src/ui/app-menus.ui:289
 msgid "Summary"
 msgstr "Özet"
 
-#: src/ui/app-menus.ui:264 src/ui/win-menus.ui:80 src/ui/win-menus.ui:148
+#: src/ui/app-menus.ui:296 src/ui/win-menus.ui:85 src/ui/win-menus.ui:154
 #: src/ui/toolbar.ui:231 src/ui/toolbar.ui:232
 msgid "About Drawing"
 msgstr "Çizim Hakkında"
 
-#: src/ui/toolbar.ui:42 src/window.py:566
+#: src/ui/toolbar.ui:42 src/window.py:676
 msgid "Open"
 msgstr "Aç"
 
@@ -413,79 +443,105 @@ msgstr "Palete geri dön"
 msgid "Use this editor by default"
 msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
 
-#: src/main.py:208
+#: src/main.py:53
+msgid "Print the version and display the 'about' dialog"
+msgstr ""
+
+#: src/main.py:56
+#, fuzzy
+msgid "Open a new window"
+msgstr "Yeni pencere"
+
+#: src/main.py:58
+#, fuzzy
+msgid "Open a new tab"
+msgstr "Bir görüntü aç"
+
+#: src/main.py:246
 msgid "A drawing application for the GNOME desktop."
 msgstr "GNOME masaüstü için bir çizim uygulaması."
 
-#: src/main.py:215
+#: src/main.py:253
 msgid "Report bugs or ideas"
 msgstr "Hataları veya fikirleri bildirin"
 
-#: src/window.py:534
+#: src/window.py:323
+msgid "Modifications will take effect in the next new window."
+msgstr ""
+
+#: src/window.py:649
 #, python-format
 msgid "Loading %s"
 msgstr "Yükleniyor %s"
 
-#: src/window.py:537 src/window.py:609
-msgid "Unsaved changes"
-msgstr "Kaydedilmemiş değişiklikler"
-
-#: src/window.py:541
+#: src/window.py:655
 msgid "Discard changes"
 msgstr "Değişiklikleri yoksay"
 
-#: src/window.py:542 src/window.py:614
+#: src/window.py:656 src/window.py:724
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Kaydedilmemiş değişiklikler var %s."
 
-#: src/window.py:546
+#: src/window.py:658
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Nerede açmak istiyorsunuz %s?"
 
-#: src/window.py:564
+#: src/window.py:674
 msgid "Open a picture"
 msgstr "Bir resim aç"
 
-#: src/window.py:567 src/window.py:611 src/window.py:662 src/window.py:694
-#: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_flip.ui:10
-#: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_saturate.ui:20
-#: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_text.ui:32
+#: src/window.py:677 src/window.py:723 src/window.py:772 src/window.py:804
+#: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
+#: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
+#: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
+#: src/tools/ui/tool_rotate.ui:115 src/tools/ui/tool_saturate.ui:20
+#: src/tools/ui/tool_saturate.ui:84 src/tools/ui/tool_scale.ui:27
+#: src/tools/ui/tool_scale.ui:144 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/window.py:606 src/window.py:664
+#: src/window.py:717 src/window.py:774
 msgid "Untitled"
 msgstr "Başlıksız"
 
-#: src/window.py:612
+#: src/window.py:718
+#, fuzzy
+msgid "this picture"
+msgstr "Tüm resimler"
+
+#: src/window.py:723
 msgid "Discard"
 msgstr "Yoksay"
 
-#: src/window.py:634
+#: src/window.py:744
 msgid "All pictures"
 msgstr "Tüm resimler"
 
-#: src/window.py:640
+#: src/window.py:750
 msgid "PNG images"
 msgstr "PNG görüntüleri"
 
-#: src/window.py:644
+#: src/window.py:754
 msgid "JPEG images"
 msgstr "JPEG görüntüleri"
 
-#: src/window.py:648
+#: src/window.py:758
 msgid "BMP images"
 msgstr "BMP görüntüleri"
 
-#: src/window.py:659
+#: src/window.py:769
 msgid "Save picture as…"
 msgstr "Resmi farklı kaydet…"
 
-#: src/window.py:691
+#: src/window.py:801
 msgid "Import a picture"
 msgstr "Bir resmi içe aktar"
+
+#: src/preferences.py:76
+msgid "Automatic"
+msgstr ""
 
 #: src/preferences.py:77
 msgid "Compact"
@@ -524,18 +580,10 @@ msgstr ""
 "değiştirerek bir alfa kanalı ekleyebilirsiniz."
 
 #: src/utilities.py:123
-msgid "Warning"
-msgstr "Uyarı"
-
-#: src/utilities.py:124
 msgid "Continue"
 msgstr "Devam"
 
-#: src/utilities.py:125
-msgid "Abort"
-msgstr "Durdur"
-
-#: src/utilities.py:126
+#: src/utilities.py:124
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
 "This algorithm may not be able to manage the wanted area.\n"
@@ -572,8 +620,8 @@ msgid "Use dashes"
 msgstr "Kısa çizgiler"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/tool_arc.py:68 src/tools/tool_arc.py:70 src/tools/tool_line.py:68
-#: src/tools/tool_line.py:70
+#: src/tools/tool_arc.py:64 src/tools/tool_arc.py:66 src/tools/tool_line.py:64
+#: src/tools/tool_line.py:66
 msgid "Arrow"
 msgstr "Ok"
 
@@ -610,7 +658,7 @@ msgstr "Dışlanmışlık"
 msgid "Shape"
 msgstr "Şekil"
 
-#: src/tools/ui/tool_circle.ui:7 src/tools/tool_circle.py:50
+#: src/tools/ui/tool_circle.ui:7 src/tools/tool_circle.py:46
 msgid "Oval"
 msgstr "Oval"
 
@@ -626,30 +674,32 @@ msgstr "Dolgu"
 
 #: src/tools/ui/tool_circle.ui:20 src/tools/ui/tool_freeshape.ui:7
 #: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_rectangle.ui:7
-#: src/tools/tool_circle.py:30 src/tools/tool_freeshape.py:28
-#: src/tools/tool_polygon.py:28 src/tools/tool_rectangle.py:27
+#: src/tools/tool_circle.py:30 src/tools/tool_freeshape.py:29
+#: src/tools/tool_polygon.py:29 src/tools/tool_rectangle.py:28
 msgid "Empty"
 msgstr "Boş"
 
 #: src/tools/ui/tool_circle.ui:25 src/tools/ui/tool_freeshape.ui:12
 #: src/tools/ui/tool_polygon.ui:12 src/tools/ui/tool_rectangle.ui:12
-#: src/tools/tool_circle.py:32 src/tools/tool_freeshape.py:30
-#: src/tools/tool_polygon.py:30 src/tools/tool_rectangle.py:29
+#: src/tools/tool_circle.py:32 src/tools/tool_freeshape.py:31
+#: src/tools/tool_polygon.py:31 src/tools/tool_rectangle.py:30
 msgid "Filled (main color)"
 msgstr "Dolgulu (ana renk)"
 
 #: src/tools/ui/tool_circle.ui:30 src/tools/ui/tool_freeshape.ui:17
 #: src/tools/ui/tool_polygon.ui:17 src/tools/ui/tool_rectangle.ui:17
 #: src/tools/tool_circle.py:19 src/tools/tool_circle.py:34
-#: src/tools/tool_freeshape.py:20 src/tools/tool_freeshape.py:32
-#: src/tools/tool_polygon.py:20 src/tools/tool_polygon.py:32
-#: src/tools/tool_rectangle.py:18 src/tools/tool_rectangle.py:31
+#: src/tools/tool_freeshape.py:21 src/tools/tool_freeshape.py:33
+#: src/tools/tool_polygon.py:21 src/tools/tool_polygon.py:33
+#: src/tools/tool_rectangle.py:19 src/tools/tool_rectangle.py:32
 msgid "Filled (secondary color)"
 msgstr "Dolgulu (ikincil renk)"
 
-#: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_flip.ui:65
-#: src/tools/ui/tool_rotate.ui:88 src/tools/ui/tool_saturate.ui:60
-#: src/tools/ui/tool_scale.ui:117
+#: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:130
+#: src/tools/ui/tool_flip.ui:65 src/tools/ui/tool_flip.ui:96
+#: src/tools/ui/tool_rotate.ui:88 src/tools/ui/tool_rotate.ui:119
+#: src/tools/ui/tool_saturate.ui:60 src/tools/ui/tool_saturate.ui:88
+#: src/tools/ui/tool_scale.ui:117 src/tools/ui/tool_scale.ui:148
 msgid "Apply"
 msgstr "Onayla"
 
@@ -739,7 +789,7 @@ msgstr "Doygunluk"
 msgid "Selection type"
 msgstr "Seçim tipi"
 
-#: src/tools/ui/tool_select.ui:178 src/tools/tool_rectangle.py:14
+#: src/tools/ui/tool_select.ui:178 src/tools/tool_rectangle.py:15
 msgid "Rectangle"
 msgstr "Dikdörtgen"
 
@@ -751,17 +801,16 @@ msgstr "Düzensiz"
 msgid "Similar color"
 msgstr "Benzer renk"
 
-#. XXX not working as wanted, hidden
 #: src/tools/ui/tool_select.ui:210
 msgid "Erase secondary color"
 msgstr "İkincil rengi sil"
 
-#: src/tools/ui/tool_select.ui:236 src/tools/tool_select.py:39
-#: src/tools/tool_select.py:106
+#: src/tools/ui/tool_select.ui:236 src/tools/tool_select.py:18
+#: src/tools/tool_select.py:101
 msgid "Rectangle selection"
 msgstr "Dikdörtgen seçim"
 
-#: src/tools/ui/tool_select.ui:252 src/tools/tool_select.py:109
+#: src/tools/ui/tool_select.ui:252 src/tools/tool_select.py:104
 msgid "Free selection"
 msgstr "Serbest seçim"
 
@@ -773,15 +822,15 @@ msgstr "Benzer renk seçimi"
 msgid "Selection actions"
 msgstr "Seçim eylemleri"
 
-#: src/tools/ui/tool_text.ui:44 src/tools/ui/tool_text.ui:45
+#: src/tools/ui/tool_text.ui:45 src/tools/ui/tool_text.ui:46
 msgid "Insert here"
 msgstr "Buraya ekle"
 
-#: src/tools/ui/tool_text.ui:78 src/tools/ui/tool_text.ui:106
+#: src/tools/ui/tool_text.ui:82 src/tools/ui/tool_text.ui:110
 msgid "Opaque background"
 msgstr "Opak arka plan"
 
-#: src/tools/ui/tool_text.ui:102
+#: src/tools/ui/tool_text.ui:106
 msgid "Font"
 msgstr "Yazı tipi"
 
@@ -789,32 +838,32 @@ msgstr "Yazı tipi"
 msgid "Arc"
 msgstr "Yay"
 
-#: src/tools/tool_arc.py:59
+#: src/tools/tool_arc.py:55
 msgid "Arc options"
 msgstr "Yay seçenekleri"
 
-#: src/tools/tool_arc.py:68 src/tools/tool_arc.py:72 src/tools/tool_line.py:68
-#: src/tools/tool_line.py:72 src/tools/tool_pencil.py:74
+#: src/tools/tool_arc.py:64 src/tools/tool_arc.py:68 src/tools/tool_line.py:64
+#: src/tools/tool_line.py:68 src/tools/tool_pencil.py:70
 msgid "With dashes"
 msgstr "Tire ile"
 
-#: src/tools/tool_circle.py:44
+#: src/tools/tool_circle.py:40
 msgid "Circle options"
 msgstr "Daire seçenekleri"
 
-#: src/tools/tool_crop.py:64
+#: src/tools/tool_crop.py:62
 msgid "Cropping the selection"
 msgstr "Seçimi kırp"
 
-#: src/tools/tool_crop.py:66
+#: src/tools/tool_crop.py:64
 msgid "Cropping the canvas"
 msgstr "Tuvali kırp"
 
-#: src/tools/tool_freeshape.py:14
+#: src/tools/tool_freeshape.py:15
 msgid "Free shape"
 msgstr "Serbest şekil"
 
-#: src/tools/tool_freeshape.py:39
+#: src/tools/tool_freeshape.py:36
 msgid "Shape options"
 msgstr "Şekil seçenekleri"
 
@@ -826,7 +875,7 @@ msgstr "Deney"
 msgid "Line"
 msgstr "Çizgi"
 
-#: src/tools/tool_line.py:59
+#: src/tools/tool_line.py:55
 msgid "Line options"
 msgstr "Çizgi seçenekleri"
 
@@ -834,15 +883,15 @@ msgstr "Çizgi seçenekleri"
 msgid "Paint"
 msgstr "Boya"
 
-#: src/tools/tool_paint.py:27
+#: src/tools/tool_paint.py:23
 msgid "Painting options"
 msgstr "Boyama seçenekleri"
 
-#: src/tools/tool_polygon.py:14
+#: src/tools/tool_polygon.py:15
 msgid "Polygon"
 msgstr "Çokgen"
 
-#: src/tools/tool_polygon.py:39
+#: src/tools/tool_polygon.py:36
 msgid "Polygon options"
 msgstr "Çokgen seçenekleri"
 
@@ -850,7 +899,7 @@ msgstr "Çokgen seçenekleri"
 msgid "Pencil"
 msgstr "Kalem"
 
-#: src/tools/tool_pencil.py:66
+#: src/tools/tool_pencil.py:62
 msgid "Pencil options"
 msgstr "Kalem seçenekleri"
 
@@ -858,42 +907,46 @@ msgstr "Kalem seçenekleri"
 msgid "Color Picker"
 msgstr "Renk Seçici"
 
-#: src/tools/tool_rectangle.py:39
+#: src/tools/tool_rectangle.py:35
 msgid "Rectangle options"
 msgstr "Dikdörtgen seçenekleri"
 
-#: src/tools/tool_rotate.py:50
+#: src/tools/tool_rotate.py:48
 msgid "Rotating the selection"
 msgstr "Seçimi döndür"
 
-#: src/tools/tool_rotate.py:52
+#: src/tools/tool_rotate.py:50
 msgid "Rotating the canvas"
 msgstr "Tuvali döndür"
 
-#: src/tools/tool_scale.py:56
+#: src/tools/tool_scale.py:54
 msgid "Scaling the selection"
 msgstr "Seçimi ölçeklendir"
 
-#: src/tools/tool_scale.py:58
+#: src/tools/tool_scale.py:56
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
 
-#: src/tools/tool_select.py:112
+#: src/tools/tool_select.py:107
 msgid "Color selection"
 msgstr "Renk seçimi"
 
-#: src/tools/tool_select.py:119
+#: src/tools/tool_select.py:110
 msgid "Selection options"
 msgstr "Seçim seçenekleri"
 
-#: src/tools/tool_select.py:126
+#: src/tools/tool_select.py:118
 msgid "Drag the selection or right-click on the canvas"
 msgstr "Seçimi sürükleyin veya tuval üzerine sağ tıklayın"
 
-#: src/tools/tool_select.py:128
+#: src/tools/tool_select.py:120
 msgid "Select an area or right-click on the canvas"
 msgstr "Bir alan seçin veya tuval üzerine sağ tıklayın"
 
 #: src/tools/tool_text.py:14
 msgid "Text"
 msgstr "Metin"
+
+#~ msgid "Close the window"
+#~ msgstr "Pencereyi kapat"
+

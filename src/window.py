@@ -320,7 +320,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# WINDOW BARS
 
 	def on_layout_changed(self, *args):
-		self.prompt_message(True, _("Modifications will take effect the next new window."))
+		self.prompt_message(True, _("Modifications will take effect in the next new window."))
 
 	def get_edition_status(self):
 		return self.active_tool().get_edition_status()
