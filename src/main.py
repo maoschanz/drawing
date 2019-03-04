@@ -38,7 +38,6 @@ class Application(Gtk.Application):
 	def __init__(self, version):
 		super().__init__(application_id='com.github.maoschanz.Drawing',
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
-		                 # flags=Gio.ApplicationFlags.HANDLES_OPEN)
 
 		GLib.set_application_name('Drawing')
 		GLib.set_prgname('com.github.maoschanz.Drawing')
@@ -50,14 +49,15 @@ class Application(Gtk.Application):
 			self.on_startup()
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, "Print the version", None)
+		                     GLib.OptionArg.NONE,
+		                     _("Print the version and display the 'about' dialog"),
+		                     None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, "Open a new window", None)
+		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, "Open a new tab", None)
+		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 
-		# self.connect('open', self.on_open_from_cli)
-		# self.connect('activate', self.do_activate)
+		# self.connect('activate', self.do_activate) # ça ne mange pas de pain
 		self.connect('command-line', self.on_cli)
 
 		icon_theme = Gtk.IconTheme.get_default()
@@ -149,19 +149,18 @@ class Application(Gtk.Application):
 
 ########
 
-	def on_open_from_cli(self, a, gfiles_list, c, d):
-		for f in gfiles_list:
-			self.open_window_with_file(f)
-		return 0
-
 	def open_window_with_file(self, gfile):
 		"""Open a new window with an optional Gio.File as an argument."""
 		win = DrawingWindow(application=self)
 		win.present()
-		win.init_window_content(gfile) # this optimization has no effect because of GLib obscure magic
+		win.init_window_content(gfile) # this optimization has no effect because
+		# of GLib obscure magic, but should be kept anyway because the window is
+		# presented to the user, making any issue in `init_window_content` very
+		# explicit, and likely to be reported.
 		return win
 
 	def on_cli(self, *args):
+		"""Main activation handler, managing options and CLI arguments."""
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
@@ -180,7 +179,8 @@ class Application(Gtk.Application):
 			self.do_activate()
 			for path in arguments:
 				f = args[1].create_file_for_arg(path)
-				self.open_window_with_file(f)
+				if 'image/' in f.get_content_type():
+					self.open_window_with_file(f)
 
 		elif options.contains('new-tab') and len(arguments) == 1:
 			self.do_activate()
@@ -191,7 +191,8 @@ class Application(Gtk.Application):
 			self.do_activate()
 			for path in arguments:
 				f = args[1].create_file_for_arg(path)
-				self.props.active_window.build_new_tab(f)
+				if 'image/' in f.get_content_type():
+					self.props.active_window.build_new_tab(f)
 
 		# Am i supposed to return something else?
 		return 0
@@ -250,7 +251,7 @@ class Application(Gtk.Application):
 		self.about_dialog.set_version(str(self.version))
 		self.about_dialog.set_website(self.git_url)
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))
-		self.about_dialog.show()
+		self.about_dialog.run()
 
 	def on_quit(self, *args):
 		"""Action callback, quitting the app."""
