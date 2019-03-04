@@ -231,10 +231,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# GENERAL PURPOSE METHODS
 
 	def connect_signals(self):
+		self.info_bar.connect('close', self.hide_message)
+		self.info_bar.connect('response', self.hide_message)
 		self.connect('delete-event', self.on_close)
 		self.connect('configure-event', self.adapt_to_window_size)
 		self.options_btn.connect('toggled', self.update_option_label)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
+		self._settings.connect('changed::decorations', self.on_layout_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
 	def add_action_simple(self, action_name, callback):
@@ -312,6 +315,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild_from_histo)
 
 	# WINDOW BARS
+
+	def on_layout_changed(self, *args):
+		self.prompt_message(True, _("Modifications will take effect the next new window."))
 
 	def get_edition_status(self):
 		return self.active_tool().get_edition_status()
@@ -506,6 +512,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap_arrow.set_visible(not state)
 		self.minimap_icon.set_visible(state)
 
+	def hide_message(self, *args):
+		self.prompt_message(False, '')
+
 	def prompt_message(self, show, label):
 		"""Update the content and the visibility of the info bar."""
 		self.info_bar.set_visible(show)
@@ -645,14 +654,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			dialog.destroy()
 			if result == 1:
 				self.build_new_tab(gfile)
-				self.prompt_message(False, 'load the file in a new tab')
 			elif result == 3:
 				self.try_load_file(gfile)
-				self.prompt_message(False, 'load the file in the same tab')
 			elif result == 2:
 				self.app.open_window_with_file(gfile)
-				self.prompt_message(False, 'load the file in a new window')
-		self.prompt_message(False, 'dialog closed')
+		self.hide_message()
 
 	def file_chooser_open(self, *args):
 		"""Opens an "open" file chooser dialog, and return a GioFile or None."""

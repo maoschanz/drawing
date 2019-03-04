@@ -50,6 +50,8 @@ class Application(Gtk.Application):
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, "Version", None)
+		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
+		                     GLib.OptionArg.NONE, "New window", None)
 
 		self.connect('open', self.on_open_from_cli)
 		self.connect('handle-local-options', self.on_local_options)
@@ -143,8 +145,8 @@ class Application(Gtk.Application):
 
 ########
 
-	def on_open_from_cli(self, a, b, c, d):
-		for f in b:
+	def on_open_from_cli(self, a, gfiles_list, c, d):
+		for f in gfiles_list:
 			self.open_window_with_file(f)
 		return 0
 
@@ -156,9 +158,14 @@ class Application(Gtk.Application):
 		return win
 
 	def on_local_options(self, app, options):
+		"""Print the version and close the app."""
 		if options.contains('version'):
 			print("Drawing %s" % self.version)
 			exit(0)
+			return 0
+		else: # Do not work
+			self.on_startup() # Do not work
+			self.on_new_window_activate() # Do not work
 		return -1
 
 	def do_activate(self):
