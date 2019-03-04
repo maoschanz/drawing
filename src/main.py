@@ -37,7 +37,8 @@ class Application(Gtk.Application):
 
 	def __init__(self, version):
 		super().__init__(application_id='com.github.maoschanz.Drawing',
-		                 flags=Gio.ApplicationFlags.HANDLES_OPEN)
+		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
+		                 # flags=Gio.ApplicationFlags.HANDLES_OPEN)
 
 		GLib.set_application_name('Drawing')
 		GLib.set_prgname('com.github.maoschanz.Drawing')
@@ -55,7 +56,8 @@ class Application(Gtk.Application):
 
 		self.connect('open', self.on_open_from_cli)
 		self.connect('activate', self.do_activate)
-		self.connect('handle-local-options', self.on_local_options)
+		self.connect('command-line', self.on_cli)
+		# self.connect('handle-local-options', self.on_local_options)
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/icons')
@@ -158,21 +160,43 @@ class Application(Gtk.Application):
 		win.init_window_content(gfile) # this optimization has no effect because of GLib obscure magic
 		return win
 
-	def on_local_options(self, app, options):
-		"""Print the version and close the app."""
+	# def on_local_options(self, app, options):
+	# 	"""Print the version and close the app."""
+	# 	if options.contains('version'):
+	# 		print("Drawing %s" % self.version)
+	# 		exit(0)
+	# 		return 0
+	# 	elif options.contains('new-window'):
+	# 		print('new window')
+	# 		print(options)
+	# 		self.on_new_window_activate() # Do not work
+	# 		return 0
+	# 	self.do_activate()
+	# 	return -1
+
+	def on_cli(self, *args):
+		print(args[0])
+		print(args[1])
+		arguments = args[1].get_arguments()
+		print(arguments)
+		options = args[1].get_options_dict()
 		if options.contains('version'):
-			print("Drawing %s" % self.version)
-			exit(0)
-			return 0
+			print(_("Drawing") + ' ' + self.version)
+			exit(0) # XXX ?
 		elif options.contains('new-window'):
 			print('new window')
 			print(options)
-			self.on_new_window_activate() # Do not work
-			return 0
-		self.do_activate()
-		return -1
+			self.on_new_window_activate()
+		elif len(arguments) == 1: # ['/app/bin/drawing'] only
+			self.do_activate()
+		else:
+			self.do_activate()
+			for f in arguments:
+				self.build_new_tab(args[1].create_file_for_arg(f))
+		return 0
 
-	def do_activate(self): # n'est jamais appelé ? XXX
+	def do_activate(self, *args):
+		print('activate !!!')
 		win = self.props.active_window
 		if not win:
 			self.on_startup()
