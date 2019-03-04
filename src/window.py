@@ -296,7 +296,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('import', self.action_import)
 		self.add_action_simple('paste', self.action_paste)
 		self.add_action_simple('select_all', self.action_select_all)
-		self.add_action_simple('selection_export', self.action_selection_export) # XXX
+
+		# Is declared here because its callback need several methods from this
+		# file but none from select.py
+		self.add_action_simple('selection_export', self.action_selection_export)
 
 		self.add_action_simple('back_to_former_tool', self.back_to_former_tool)
 		self.add_action_simple('force_selection_tool', self.force_selection_tool)
@@ -444,7 +447,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.main_menu_btn is not None:
 			self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
 
-	def action_options_menu(self, *args): # TODO disable if custom panel
+	def action_options_menu(self, *args):
+		"""This displays/hides the tool's options menu, and is implemented as an
+		action to ease the accelerator (shift+f10). This action could be
+		disable when the current panel doesn't contain the corresponding button,
+		but will not be."""
 		self.options_btn.set_active(not self.options_btn.get_active())
 
 	def set_bottom_width_limit(self): # XXX devrait se transmettre aux panneaux custom
@@ -550,7 +557,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			for label in self.tools:
 				self.tools[label].label_widget.set_visible(False)
 
-	def on_show_labels_setting_changed(self, *args): # TODO actions bound to settings are a thing
+	def on_show_labels_setting_changed(self, *args):
+		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
 	def on_show_labels_changed(self, *args):

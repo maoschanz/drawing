@@ -12,7 +12,7 @@ class ToolArc(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('arc', _("Arc"), 'mail-replied-symbolic', window, False)
+		super().__init__('arc', _("Arc"), 'tool-arc-symbolic', window, False)
 		self.use_size = True
 
 		self.add_tool_action_enum('line_shape', 'round')

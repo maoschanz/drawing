@@ -164,7 +164,6 @@ class Application(Gtk.Application):
 			exit(0)
 			return 0
 		else: # Do not work
-			self.on_startup() # Do not work
 			self.on_new_window_activate() # Do not work
 		return -1
 
