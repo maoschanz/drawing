@@ -652,7 +652,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.try_load_file(gfile)
 		else:
 			dialog = DrawingMessageDialog(self)
-			dialog.set_actions([_("New tab"), _("New window"), _("Discard changes")])
+			dialog.set_actions([_("New Tab"), _("New Window"), _("Discard changes")])
 			dialog.add_string( _("There are unsaved modifications to %s.") % \
 				self.get_active_image().get_filename_for_display() )
 			dialog.add_string( _("Where do you want to open %s?") %  \

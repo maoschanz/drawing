@@ -8,3 +8,12 @@ Categories=Graphics;GNOME;GTK;
 StartupNotify=true
 Icon=com.github.maoschanz.Drawing
 MimeType=image/png;image/bmp;image/jpeg;
+Actions=new-window;new-tab;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=drawing --new-window
+
+[Desktop Action new-tab]
+Name=New Tab
+Exec=drawing --new-tab

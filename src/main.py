@@ -50,14 +50,15 @@ class Application(Gtk.Application):
 			self.on_startup()
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, "Version", None)
+		                     GLib.OptionArg.NONE, "Print the version", None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, "New window", None)
+		                     GLib.OptionArg.NONE, "Open a new window", None)
+		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
+		                     GLib.OptionArg.NONE, "Open a new tab", None)
 
-		self.connect('open', self.on_open_from_cli)
-		self.connect('activate', self.do_activate)
+		# self.connect('open', self.on_open_from_cli)
+		# self.connect('activate', self.do_activate)
 		self.connect('command-line', self.on_cli)
-		# self.connect('handle-local-options', self.on_local_options)
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/icons')
@@ -160,39 +161,39 @@ class Application(Gtk.Application):
 		win.init_window_content(gfile) # this optimization has no effect because of GLib obscure magic
 		return win
 
-	# def on_local_options(self, app, options):
-	# 	"""Print the version and close the app."""
-	# 	if options.contains('version'):
-	# 		print("Drawing %s" % self.version)
-	# 		exit(0)
-	# 		return 0
-	# 	elif options.contains('new-window'):
-	# 		print('new window')
-	# 		print(options)
-	# 		self.on_new_window_activate() # Do not work
-	# 		return 0
-	# 	self.do_activate()
-	# 	return -1
-
 	def on_cli(self, *args):
-		print(args[0])
-		print(args[1])
+		# This is the list of files given by the command line. If there is none,
+		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
-		print(arguments)
+
+		# Possible options are 'version', 'new-window', and 'new-tab', in this
+		# order: only one option can be applied, '-ntv' will be the same as '-v'.
 		options = args[1].get_options_dict()
+
 		if options.contains('version'):
 			print(_("Drawing") + ' ' + self.version)
-			exit(0) # XXX ?
-		elif options.contains('new-window'):
-			print('new window')
-			print(options)
+			self.on_about_activate()
+
+		elif options.contains('new-window') and len(arguments) == 1:
 			self.on_new_window_activate()
-		elif len(arguments) == 1: # ['/app/bin/drawing'] only
+		elif options.contains('new-window'):
+			self.do_activate()
+			for path in arguments:
+				f = args[1].create_file_for_arg(path)
+				self.open_window_with_file(f)
+
+		elif options.contains('new-tab') and len(arguments) == 1:
+			self.do_activate()
+			self.props.active_window.build_new_tab(None)
+		elif len(arguments) == 1:
 			self.do_activate()
 		else:
 			self.do_activate()
-			for f in arguments:
-				self.build_new_tab(args[1].create_file_for_arg(f))
+			for path in arguments:
+				f = args[1].create_file_for_arg(path)
+				self.props.active_window.build_new_tab(f)
+
+		# Am i supposed to return something else?
 		return 0
 
 	def do_activate(self, *args):
