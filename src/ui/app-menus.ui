@@ -19,6 +19,7 @@
       <item>
         <attribute name="label" translatable="yes">Report a bug</attribute>
         <attribute name="action">app.report_bug</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
       </item>
       <item>
         <attribute name="action">app.shortcuts</attribute>
@@ -275,6 +276,7 @@
         <item>
           <attribute name="label" translatable="yes">Report a bug</attribute>
           <attribute name="action">app.report_bug</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
         </item>
       </section>
       <section>

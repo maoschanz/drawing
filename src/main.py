@@ -54,6 +54,7 @@ class Application(Gtk.Application):
 		                     GLib.OptionArg.NONE, "New window", None)
 
 		self.connect('open', self.on_open_from_cli)
+		self.connect('activate', self.do_activate)
 		self.connect('handle-local-options', self.on_local_options)
 
 		icon_theme = Gtk.IconTheme.get_default()
@@ -163,11 +164,15 @@ class Application(Gtk.Application):
 			print("Drawing %s" % self.version)
 			exit(0)
 			return 0
-		else: # Do not work
+		elif options.contains('new-window'):
+			print('new window')
+			print(options)
 			self.on_new_window_activate() # Do not work
+			return 0
+		self.do_activate()
 		return -1
 
-	def do_activate(self):
+	def do_activate(self): # n'est jamais appelé ? XXX
 		win = self.props.active_window
 		if not win:
 			self.on_startup()

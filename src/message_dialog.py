@@ -21,7 +21,7 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 	__gtype_name__ = 'DrawingMessageDialog'
 
 	def __init__(self, window, **kwargs):
-		super().__init__(modal=True, transient_for=window, **kwargs)
+		super().__init__(modal=True, title=_("Drawing"), transient_for=window, **kwargs)
 		self.set_resizable(True)
 		if window.get_allocated_width() < 500:
 			self.get_action_area().set_orientation(Gtk.Orientation.VERTICAL)
