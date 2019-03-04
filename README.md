@@ -4,7 +4,7 @@
 
 This application is a simple image editor, using Cairo and GdkPixbuf for basic drawing operations.
 
-It follows GNOME interface guidelines (but can optionally use elementarysOS UI guidelines or Cinnamon/MATE UI guidelines).
+It follows GNOME interface guidelines (but can optionally use elementaryOS UI guidelines or Cinnamon/MATE UI guidelines).
 
 PNG, JPEG and BMP files are supported.
 

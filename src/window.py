@@ -9,11 +9,11 @@
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import os
 
@@ -46,7 +46,9 @@ from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
 from .message_dialog import DrawingMessageDialog
 
-@GtkTemplate(ui='/com/github/maoschanz/Drawing/ui/window.ui')
+UI_PATH = '/com/github/maoschanz/Drawing/ui/'
+
+@GtkTemplate(ui=UI_PATH+'window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
 
@@ -91,8 +93,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_ui_bars()
 
 	def init_window_content(self, gfile):
-		"""Initialize the window's content, such as the minimap, the color popovers,
-		the tools, their options, and a new default image."""
+		"""Initialize the window's content, such as the minimap, the color
+		popovers, the tools, their options, and a new default image."""
 		self.hijacker_id = None
 		self.tools = None
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
@@ -410,7 +412,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.get_style_context().add_class('devel')
 
 	def build_toolbar(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/toolbar.ui')
+		builder = Gtk.Builder.new_from_resource(UI_PATH+'toolbar.ui')
 		toolbar = builder.get_object('toolbar')
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
@@ -419,9 +421,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Build the window's headerbar. If "is_eos" is true, the headerbar will
 		follow elementaryOS guidelines, else it will follow GNOME guidelines."""
 		if is_eos:
-			builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar_eos.ui')
+			builder = Gtk.Builder.new_from_resource(UI_PATH+'headerbar_eos.ui')
 		else:
-			builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/headerbar.ui')
+			builder = Gtk.Builder.new_from_resource(UI_PATH+'headerbar.ui')
 
 		# Code differences are kept minimal between the 2 cases: widgets will
 		# share similar names in order to both work with the same method
@@ -432,7 +434,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_btn = builder.get_object('add_btn')
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
-		builder.add_from_resource('/com/github/maoschanz/Drawing/ui/win-menus.ui')
+		builder.add_from_resource(UI_PATH+'win-menus.ui')
 		short_main_menu = builder.get_object('short-window-menu')
 		self.short_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, short_main_menu)
 		long_main_menu = builder.get_object('long-window-menu')

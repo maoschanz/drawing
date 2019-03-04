@@ -70,7 +70,8 @@ class Application(Gtk.Application):
 		"""Add app-wide menus and actions, and all accels."""
 		self.build_actions()
 		self.add_accels()
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/app-menus.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                        '/com/github/maoschanz/Drawing/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		self.has_tools_in_menubar = False
@@ -103,7 +104,8 @@ class Application(Gtk.Application):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window_activate)
 		self.add_action_simple('settings', self.on_prefs_activate)
-		self.add_action_simple('report_bug', self.on_report_activate)
+		if self.is_beta():
+			self.add_action_simple('report_bug', self.on_report_activate)
 		self.add_action_simple('shortcuts', self.on_shortcuts_activate)
 		self.add_action_simple('help', self.on_help_activate)
 		self.add_action_simple('about', self.on_about_activate)
@@ -179,7 +181,8 @@ class Application(Gtk.Application):
 			self.do_activate()
 			for path in arguments:
 				f = args[1].create_file_for_arg(path)
-				if 'image/' in f.query_info().get_content_type():
+				if 'image/' in f.query_info('standard::*', \
+				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
 					self.open_window_with_file(f)
 
 		elif options.contains('new-tab') and len(arguments) == 1:
@@ -191,7 +194,8 @@ class Application(Gtk.Application):
 			self.do_activate()
 			for path in arguments:
 				f = args[1].create_file_for_arg(path)
-				if 'image/' in f.query_info().get_content_type():
+				if 'image/' in f.query_info('standard::*', \
+				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
 					self.props.active_window.build_new_tab(f)
 
 		# Am i supposed to return something else?
@@ -221,7 +225,8 @@ class Application(Gtk.Application):
 		"""Action callback, showing the "shortcuts" dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-		builder = Gtk.Builder().new_from_resource('/com/github/maoschanz/Drawing/ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource( \
+		                        '/com/github/maoschanz/Drawing/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
