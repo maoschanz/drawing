@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-04 23:54+0100\n"
+"POT-Creation-Date: 2019-03-05 15:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.maoschanz.Drawing.desktop.in:3 src/main.py:173
-#: src/window.py:340
+#: data/com.github.maoschanz.Drawing.desktop.in:3 src/main.py:185
+#: src/window.py:342
 msgid "Drawing"
 msgstr ""
 
@@ -34,13 +34,13 @@ msgstr ""
 #: data/com.github.maoschanz.Drawing.desktop.in:17 src/ui/shortcuts.ui:16
 #: src/ui/app-menus.ui:9 src/ui/app-menus.ui:251 src/ui/win-menus.ui:33
 #: src/ui/win-menus.ui:169 src/ui/toolbar.ui:28 src/ui/toolbar.ui:29
-#: src/window.py:655
+#: src/window.py:657
 msgid "New Window"
 msgstr ""
 
 #: data/com.github.maoschanz.Drawing.desktop.in:21 src/ui/shortcuts.ui:23
 #: src/ui/app-menus.ui:51 src/ui/win-menus.ui:29 src/ui/win-menus.ui:165
-#: src/ui/toolbar.ui:16 src/ui/toolbar.ui:17 src/window.py:655
+#: src/ui/toolbar.ui:16 src/ui/toolbar.ui:17 src/window.py:657
 msgid "New Tab"
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr ""
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:174 src/window.py:375 src/tools.py:74
+#: src/ui/window.ui:174 src/window.py:377 src/tools.py:74
 msgid "No options"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:334
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/window.py:336
 msgid "Unsaved file"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgid "Close the active image"
 msgstr ""
 
 #: src/ui/shortcuts.ui:71 src/ui/app-menus.ui:65 src/ui/toolbar.ui:130
-#: src/ui/toolbar.ui:131 src/window.py:723 src/window.py:771
+#: src/ui/toolbar.ui:131 src/window.py:725 src/window.py:773
 msgid "Save"
 msgstr ""
 
@@ -232,7 +232,7 @@ msgstr ""
 
 #: src/ui/shortcuts.ui:126 src/ui/app-menus.ui:124 src/ui/win-menus.ui:18
 #: src/ui/win-menus.ui:180 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
-#: src/window.py:803 src/tools/ui/tool_select.ui:41
+#: src/window.py:805 src/tools/ui/tool_select.ui:41
 msgid "Import"
 msgstr ""
 
@@ -404,7 +404,7 @@ msgstr ""
 msgid "Previous tool"
 msgstr ""
 
-#: src/ui/app-menus.ui:244 src/window.py:917 src/window.py:920
+#: src/ui/app-menus.ui:244 src/window.py:919 src/window.py:922
 msgid "_Options"
 msgstr ""
 
@@ -425,7 +425,7 @@ msgstr ""
 msgid "About Drawing"
 msgstr ""
 
-#: src/ui/toolbar.ui:42 src/window.py:676
+#: src/ui/toolbar.ui:42 src/window.py:678
 msgid "Open"
 msgstr ""
 
@@ -437,54 +437,63 @@ msgstr ""
 msgid "Use this editor by default"
 msgstr ""
 
-#: src/main.py:53
+#: src/main.py:58
 msgid "Print the version and display the 'about' dialog"
 msgstr ""
 
-#: src/main.py:56
+#: src/main.py:61
 msgid "Open a new window"
 msgstr ""
 
-#: src/main.py:58
+#: src/main.py:63
 msgid "Open a new tab"
 msgstr ""
 
-#: src/main.py:246
+#. Obviously, do not translate the command line.
+#: src/main.py:230
+#, python-brace-format
+msgid ""
+"Error opening this file. Did you mean\n"
+"flatpak run --file-forwarding {0} @@ {1} @@\n"
+"?"
+msgstr ""
+
+#: src/main.py:274
 msgid "A drawing application for the GNOME desktop."
 msgstr ""
 
-#: src/main.py:253
+#: src/main.py:281
 msgid "Report bugs or ideas"
 msgstr ""
 
-#: src/window.py:323
+#: src/window.py:325
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
-#: src/window.py:649
+#: src/window.py:651
 #, python-format
 msgid "Loading %s"
 msgstr ""
 
-#: src/window.py:655
+#: src/window.py:657
 msgid "Discard changes"
 msgstr ""
 
-#: src/window.py:656 src/window.py:724
+#: src/window.py:658 src/window.py:726
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr ""
 
-#: src/window.py:658
+#: src/window.py:660
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr ""
 
-#: src/window.py:674
+#: src/window.py:676
 msgid "Open a picture"
 msgstr ""
 
-#: src/window.py:677 src/window.py:723 src/window.py:772 src/window.py:804
+#: src/window.py:679 src/window.py:725 src/window.py:774 src/window.py:806
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -494,39 +503,39 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/window.py:717 src/window.py:774
+#: src/window.py:719 src/window.py:776
 msgid "Untitled"
 msgstr ""
 
-#: src/window.py:718
+#: src/window.py:720
 msgid "this picture"
 msgstr ""
 
-#: src/window.py:723
+#: src/window.py:725
 msgid "Discard"
 msgstr ""
 
-#: src/window.py:744
+#: src/window.py:746
 msgid "All pictures"
 msgstr ""
 
-#: src/window.py:750
+#: src/window.py:752
 msgid "PNG images"
 msgstr ""
 
-#: src/window.py:754
+#: src/window.py:756
 msgid "JPEG images"
 msgstr ""
 
-#: src/window.py:758
+#: src/window.py:760
 msgid "BMP images"
 msgstr ""
 
-#: src/window.py:769
+#: src/window.py:771
 msgid "Save picture as…"
 msgstr ""
 
-#: src/window.py:801
+#: src/window.py:803
 msgid "Import a picture"
 msgstr ""
 

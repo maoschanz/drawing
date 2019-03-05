@@ -189,6 +189,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_active_tab_changed(self, *args):
 		self.change_active_tool_for(self.active_tool_id)
 		# On pourrait être moins bourrin et conserver la sélection, mais flemme
+		self.set_picture_title(args[1].update_title())
 
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
@@ -327,18 +328,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def get_edition_status(self):
 		return self.active_tool().get_edition_status()
 
-	def set_picture_title(self):
+	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI
 		bars), and the active tab title. Tools have to be initilized before
 		calling this method, because they provide the subtitle."""
-		fn = self.get_file_path()
-		if fn is None:
-			fn = _("Unsaved file")
-		main_title = fn.split('/')[-1]
-		if not self.get_active_image()._is_saved:
-			main_title = '*' + main_title
-		self.get_active_image().set_tab_label(main_title)
+		if len(args) == 1:
+			main_title = args[0]
+		else:
+			main_title = self.get_active_image().update_title()
 		subtitle = self.get_edition_status()
+
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:
 			self.header_bar.set_title(main_title)
@@ -467,6 +466,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.bottom_panel.set_visible(not self.active_tool().implements_panel)
 
 	def init_adaptability(self):
+		"""Initialize limit_size_header and limit_size_bottom, which are 700 by
+		default, but are likely to actually be less wide."""
 		self.has_good_limits = True
 
 		# Bottom panel width limit
@@ -501,22 +502,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			available_width = self.bottom_panel_box.get_allocated_width()
 			if self.limit_size_bottom > 0.7 * available_width:
-				self.compact_preview_btn(True)
-				self.compact_options_btn(True)
+				self.compact_bottombar(True)
 			else:
-				self.compact_options_btn(False)
-				self.compact_preview_btn(False)
+				self.compact_bottombar(False)
 
 	def compact_headerbar(self, state):
 		self.save_label.set_visible(not state)
 		self.save_icon.set_visible(state)
 		self.add_btn.set_visible(not state)
 
-	def compact_options_btn(self, state):
+	def compact_bottombar(self, state):
 		self.options_short_box.set_visible(state)
 		self.options_long_box.set_visible(not state)
-
-	def compact_preview_btn(self, state):
 		self.minimap_label.set_visible(not state)
 		self.minimap_arrow.set_visible(not state)
 		self.minimap_icon.set_visible(state)
@@ -706,7 +703,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def try_load_file(self, gfile):
 		if gfile is not None:
 			self.get_active_image().try_load_file(gfile)
-		self.set_picture_title()
+		self.set_picture_title() # often redundant but not useless
 		self.prompt_message(False, 'file successfully loaded')
 
 	def confirm_save_modifs(self):
@@ -809,14 +806,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if response == Gtk.ResponseType.ACCEPT:
 			self.force_selection_tool()
 			fn = file_chooser.get_filename()
-			self.get_active_image().set_selection_pixbuf(GdkPixbuf.Pixbuf.new_from_file(fn))
+			self.get_active_image().set_selection_pixbuf( \
+			                                 GdkPixbuf.Pixbuf.new_from_file(fn))
 			self.get_selection_tool().selection_import()
 		file_chooser.destroy()
 
 	def action_selection_export(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
-			utilities_save_pixbuf_at(self.get_active_image().get_selection_pixbuf(), gfile.get_path())
+			utilities_save_pixbuf_at( \
+			   self.get_active_image().get_selection_pixbuf(), gfile.get_path())
 
 	def get_selection_tool(self):
 		return self.tools['select']
@@ -828,7 +827,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.get_selection_tool().row.set_active(True)
 
 	def action_apply_selection_tool(self, *args):
-		self.active_tool().on_apply()
+		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	def tool_needs_selection(self):
 		return ( self.active_tool() is self.get_selection_tool() )
@@ -881,8 +880,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		b = float(left_rgba[2])
 		a = float(left_rgba[3])
 		left_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, self.r_btn_image, right_rgba)
-		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, self.l_btn_image, left_rgba)
+		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, \
+		                                           self.r_btn_image, right_rgba)
+		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, \
+		                                           self.l_btn_image, left_rgba)
 
 	def action_use_editor(self, *args):
 		use_editor = not args[0].get_state()

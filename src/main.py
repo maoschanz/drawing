@@ -24,6 +24,8 @@ from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
+APP_ID = 'com.github.maoschanz.Drawing'
+
 def main(version):
 	app = Application(version)
 	return app.run(sys.argv)
@@ -36,17 +38,20 @@ class Application(Gtk.Application):
 	prefs_window = None
 
 	def __init__(self, version):
-		super().__init__(application_id='com.github.maoschanz.Drawing',
+		super().__init__(application_id=APP_ID,
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
 		GLib.set_application_name('Drawing')
-		GLib.set_prgname('com.github.maoschanz.Drawing')
-		self.register(None) # ?
+		GLib.set_prgname(APP_ID)
 		self.version = version
 		self.git_url = 'https://github.com/maoschanz/drawing'
+		self.has_tools_in_menubar = False
 
-		if not self.get_is_remote():
-			self.on_startup()
+		self.connect('startup', self.on_startup)
+		self.register(None)
+
+		self.connect('activate', self.on_activate)
+		self.connect('command-line', self.on_cli)
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE,
@@ -57,16 +62,13 @@ class Application(Gtk.Application):
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 
-		# self.connect('activate', self.do_activate) # ça ne mange pas de pain
-		self.connect('command-line', self.on_cli)
-
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/icons')
 		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/tools/icons')
 
 ########
 
-	def on_startup(self):
+	def on_startup(self, *args):
 		"""Add app-wide menus and actions, and all accels."""
 		self.build_actions()
 		self.add_accels()
@@ -74,7 +76,6 @@ class Application(Gtk.Application):
 		                        '/com/github/maoschanz/Drawing/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
-		self.has_tools_in_menubar = False
 		if self.prefers_app_menu():
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
@@ -156,13 +157,22 @@ class Application(Gtk.Application):
 		win = DrawingWindow(application=self)
 		win.present()
 		win.init_window_content(gfile) # this optimization has no effect because
-		# of GLib obscure magic, but should be kept anyway because the window is
+		# of GLib unknown magic, but should be kept anyway because the window is
 		# presented to the user, making any issue in `init_window_content` very
 		# explicit, and likely to be reported.
 		return win
 
+	def on_activate(self, *args):
+		"""I don't know if this is ever called from the 'activate' signal, but
+		it's called by on_cli anyway."""
+		win = self.props.active_window
+		if not win:
+			self.on_new_window_activate()
+		else:
+			win.present()
+
 	def on_cli(self, *args):
-		"""Main activation handler, managing options and CLI arguments."""
+		"""Main handler, managing options and CLI arguments."""
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
@@ -175,40 +185,53 @@ class Application(Gtk.Application):
 			print(_("Drawing") + ' ' + self.version)
 			self.on_about_activate()
 
+		# If no file given as argument
 		elif options.contains('new-window') and len(arguments) == 1:
 			self.on_new_window_activate()
-		elif options.contains('new-window'):
-			self.do_activate()
-			for path in arguments:
-				f = args[1].create_file_for_arg(path)
-				if 'image/' in f.query_info('standard::*', \
-				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
-					self.open_window_with_file(f)
-
 		elif options.contains('new-tab') and len(arguments) == 1:
-			self.do_activate()
-			self.props.active_window.build_new_tab(None)
+			win = self.props.active_window
+			if not win:
+				self.on_new_window_activate()
+			else:
+				win.present()
+				self.props.active_window.build_new_tab(None)
 		elif len(arguments) == 1:
-			self.do_activate()
-		else:
-			self.do_activate()
-			for path in arguments:
-				f = args[1].create_file_for_arg(path)
-				if 'image/' in f.query_info('standard::*', \
-				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
-					self.props.active_window.build_new_tab(f)
+			self.on_activate()
 
-		# Am i supposed to return something else?
+		elif options.contains('new-window'):
+			self.on_new_window_activate()
+			for path in arguments:
+				f = self.get_valid_file(args[1], path)
+				if f is not None:
+					self.open_window_with_file(f)
+		else: # giving files without '-n' is equivalent to giving files with '-t'
+			for path in arguments:
+				f = self.get_valid_file(args[1], path)
+				if f is not None:
+					win = self.props.active_window
+					if not win:
+						self.open_window_with_file(f)
+					else:
+						win.present()
+						self.props.active_window.build_new_tab(f)
+		# I don't even know if i should return something
 		return 0
 
-	def do_activate(self, *args):
-		print('activate !!!')
-		win = self.props.active_window
-		if not win:
-			self.on_startup()
-			self.on_new_window_activate()
-		else:
-			win.present()
+	def get_valid_file(self, app, path):
+		try:
+			f = app.create_file_for_arg(path)
+			if 'image/' in f.query_info('standard::*', \
+				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
+				return f
+			else:
+				return None
+		except:
+			# Obviously, do not translate the command line.
+			err = _("""Error opening this file. Did you mean
+flatpak run --file-forwarding {0} @@ {1} @@
+?""")
+			print(err.format(APP_ID, path))
+			return None
 
 ########
 
@@ -252,7 +275,7 @@ class Application(Gtk.Application):
 		self.about_dialog.set_authors(['Romain F. T.'])
 		self.about_dialog.set_copyright('© 2019 Romain F. T.')
 		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
-		self.about_dialog.set_logo_icon_name('com.github.maoschanz.Drawing')
+		self.about_dialog.set_logo_icon_name(APP_ID)
 		self.about_dialog.set_version(str(self.version))
 		self.about_dialog.set_website(self.git_url)
 		self.about_dialog.set_website_label(_("Report bugs or ideas"))

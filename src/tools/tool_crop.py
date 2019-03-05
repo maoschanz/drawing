@@ -28,7 +28,7 @@ class ToolCrop(ToolTemplate):
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window, True)
 		self.cursor_name = 'se-resize'
-		self.crop_selection = False
+		self.apply_to_selection = False
 		self.x_press = 0
 		self.y_press = 0
 		self.move_instead_of_crop = False
@@ -58,7 +58,7 @@ class ToolCrop(ToolTemplate):
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
 
 	def get_edition_status(self):
-		if self.crop_selection:
+		if self.apply_to_selection:
 			return _("Cropping the selection")
 		else:
 			return _("Cropping the canvas")
@@ -66,10 +66,10 @@ class ToolCrop(ToolTemplate):
 ###################################################
 
 	def on_tool_selected(self, *args):
-		self.crop_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = (self.window.hijacker_id is not None)
 		self._x = 0
 		self._y = 0
-		if self.crop_selection:
+		if self.apply_to_selection:
 			self.init_if_selection()
 		else:
 			self.init_if_main()
@@ -89,18 +89,6 @@ class ToolCrop(ToolTemplate):
 		self.original_height = self.get_image().get_pixbuf_height()
 		self.width_btn.set_range(1, 10*self.original_width)
 		self.height_btn.set_range(1, 10*self.original_height)
-
-	def on_apply(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		if self.crop_selection:
-			self.do_tool_operation(operation)
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
-		else:
-			operation['is_preview'] = False
-			self.apply_operation(operation)
-			self.window.force_selection_tool()
 
 	def update_temp_pixbuf(self):
 		operation = self.build_operation()
@@ -179,7 +167,7 @@ class ToolCrop(ToolTemplate):
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
-			'is_selection': self.crop_selection,
+			'is_selection': self.apply_to_selection,
 			'is_preview': True,
 			'x': self._x,
 			'y': self._y,

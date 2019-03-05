@@ -28,7 +28,7 @@ class ToolSaturate(ToolTemplate):
 	def __init__(self, window):
 		super().__init__('saturate', _("Saturate"), 'tool-saturate-symbolic', window, True)
 		self.cursor_name = 'not-allowed'
-		self.saturate_selection = False
+		self.apply_to_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_saturate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
@@ -39,20 +39,9 @@ class ToolSaturate(ToolTemplate):
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def on_tool_selected(self, *args):
-		self.saturate_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = (self.window.hijacker_id is not None)
 		self.saturation_btn.set_value(100.0)
 		self.on_sat_changed()
-
-	def on_apply(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		if self.saturate_selection:
-			self.do_tool_operation(operation)
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
-		else:
-			self.apply_operation(operation)
-			self.window.force_selection_tool()
 
 	def get_saturation(self):
 		return self.saturation_btn.get_value()/100
@@ -64,7 +53,7 @@ class ToolSaturate(ToolTemplate):
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
-			'is_selection': self.saturate_selection,
+			'is_selection': self.apply_to_selection,
 			'saturation': self.get_saturation()
 		}
 		return operation

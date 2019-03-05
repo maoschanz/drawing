@@ -90,15 +90,23 @@ class DrawingImage(Gtk.Layout):
 			self.tab_title.pack_end(btn, expand=False, fill=False, padding=0)
 		self.tab_title.show_all()
 
+	def update_title(self):
+		main_title = self.get_filename_for_display()
+		if not self._is_saved:
+			main_title = '*' + main_title
+		self.set_tab_label(main_title)
+		return main_title
+
 	def get_filename_for_display(self):
 		if self.get_file_path() is None:
-			unsaved_file_name = _("Untitled")
+			unsaved_file_name = _("Unsaved file")
 		else:
 			unsaved_file_name = self.get_file_path().split('/')[-1]
 		return unsaved_file_name
 
 	def try_close_tab(self, *args):
-		"""Ask the window to close the tab; then unallocate pixbufs."""
+		"""Ask the window to close the tab; then unallocate wigdets and
+		pixbufs."""
 		if self.window.close_tab(self):
 			self.destroy()
 			self.main_pixbuf = None
@@ -185,6 +193,7 @@ class DrawingImage(Gtk.Layout):
 		}
 		self.restore_first_pixbuf()
 		self.init_image()
+		self.update_title()
 
 	def set_tab_label(self, title):
 		self.tab_label.set_label(title)

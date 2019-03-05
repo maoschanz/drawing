@@ -28,7 +28,7 @@ class ToolFlip(ToolTemplate):
 	def __init__(self, window):
 		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window, True)
 		self.cursor_name = 'not-allowed'
-		self.flip_selection = False
+		self.apply_to_selection = False
 		self.flip_h = False
 		self.flip_v = False
 
@@ -51,7 +51,7 @@ class ToolFlip(ToolTemplate):
 		self.update_temp_pixbuf()
 
 	def on_tool_selected(self, *args):
-		self.flip_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = (self.window.hijacker_id is not None)
 		self.flip_h = False
 		self.flip_v = False
 		self.update_temp_pixbuf()
@@ -60,21 +60,10 @@ class ToolFlip(ToolTemplate):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def on_apply(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		if self.flip_selection:
-			self.do_tool_operation(operation)
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
-		else:
-			self.apply_operation(operation)
-			self.window.force_selection_tool()
-
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
-			'is_selection': self.flip_selection,
+			'is_selection': self.apply_to_selection,
 			'flip_h': self.flip_h,
 			'flip_v': self.flip_v
 		}

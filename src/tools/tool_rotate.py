@@ -28,7 +28,7 @@ class ToolRotate(ToolTemplate):
 	def __init__(self, window):
 		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window, True)
 		self.cursor_name = 'not-allowed'
-		self.rotate_selection = False
+		self.apply_to_selection = False
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_rotate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
@@ -44,16 +44,16 @@ class ToolRotate(ToolTemplate):
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def get_edition_status(self):
-		if self.rotate_selection:
+		if self.apply_to_selection:
 			return _("Rotating the selection")
 		else:
 			return _("Rotating the canvas")
 
 	def on_tool_selected(self, *args):
-		self.rotate_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = (self.window.hijacker_id is not None)
 		self.angle_btn.set_value(0.0)
 		if False:
-		# if self.rotate_selection:
+		# if self.apply_to_selection:
 			self.angle_btn.set_visible(True)
 			self.angle_label.set_visible(True)
 			self.right_btn.set_visible(False)
@@ -64,18 +64,6 @@ class ToolRotate(ToolTemplate):
 			self.right_btn.set_visible(True)
 			self.left_btn.set_visible(True)
 		self.on_angle_changed()
-
-	def on_apply(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		if self.rotate_selection:
-			self.do_tool_operation(operation)
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
-		else:
-			operation['is_preview'] = False
-			self.apply_operation(operation)
-			self.window.force_selection_tool()
 
 	def get_angle(self):
 		return self.angle_btn.get_value_as_int()
@@ -92,7 +80,7 @@ class ToolRotate(ToolTemplate):
 		if angle < 0:
 			angle += 180
 		if True:
-		# if not self.rotate_selection:
+		# if not self.apply_to_selection:
 			angle = int(angle/90) * 90
 		if angle != self.get_angle():
 			self.angle_btn.set_value(angle)
@@ -103,7 +91,7 @@ class ToolRotate(ToolTemplate):
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
-			'is_selection': self.rotate_selection,
+			'is_selection': self.apply_to_selection,
 			'is_preview': True,
 			'angle': self.get_angle()
 		}

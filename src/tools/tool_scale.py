@@ -50,7 +50,7 @@ class ToolScale(ToolTemplate):
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def get_edition_status(self):
-		if self.scale_selection:
+		if self.apply_to_selection:
 			return _("Scaling the selection")
 		else:
 			return _("Scaling the canvas")
@@ -73,22 +73,10 @@ class ToolScale(ToolTemplate):
 		if self.keep_proportions:
 			self.proportion = self.get_width()/self.get_height()
 
-	def on_apply(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		if self.scale_selection:
-			self.do_tool_operation(operation)
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
-		else:
-			operation['is_preview'] = False
-			self.apply_operation(operation)
-			self.window.force_selection_tool()
-
 	def on_tool_selected(self, *args):
-		self.scale_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = (self.window.hijacker_id is not None)
 		self.keep_proportions = False
-		if self.scale_selection:
+		if self.apply_to_selection:
 			w = self.get_selection_pixbuf().get_width()
 			h = self.get_selection_pixbuf().get_height()
 		else:
@@ -138,7 +126,7 @@ class ToolScale(ToolTemplate):
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
-			'is_selection': self.scale_selection,
+			'is_selection': self.apply_to_selection,
 			'is_preview': True,
 			'width': self.get_width(),
 			'height': self.get_height()

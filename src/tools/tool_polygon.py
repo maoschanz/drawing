@@ -77,9 +77,6 @@ class ToolPolygon(ToolTemplate):
 		cairo_context.move_to(self.x_press, self.y_press)
 		self._path = cairo_context.copy_path()
 
-		Gdk.Window.set_cursor(self.get_image().window, self.cursor)
-		# self.get_image().window.set_cursor(self.cursor)
-
 	def continue_polygon(self, cairo_context, x, y):
 		cairo_context.set_line_width(self.tool_width)
 		cairo_context.set_source_rgba(self.main_color.red, self.main_color.green, \
