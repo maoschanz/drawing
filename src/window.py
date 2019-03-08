@@ -583,7 +583,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].row.set_active(True)
 
 	def enable_tool(self, new_tool_id, should_give_back_control):
-		former_tool_id_2 = self.former_tool_id
 		self.former_tool_id = self.active_tool_id
 		if should_give_back_control:
 			self.former_tool().give_back_control()
@@ -593,8 +592,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_bottom_panel()
 		self.active_tool().on_tool_selected()
 		self.set_picture_title()
-		if self.former_tool().implements_panel:
-			self.former_tool_id = former_tool_id_2
 
 	def update_bottom_panel(self):
 		"""Show the correct bottom panel, with the correct tool options menu."""
@@ -793,8 +790,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().selection_select_all()
 
 	def action_paste(self, *args):
-		self.force_selection_tool()
-		self.get_selection_tool().selection_paste()
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		pixbuf = cb.wait_for_image()
+		if pixbuf is not None:
+			self.force_selection_tool()
+			self.set_selection_pixbuf(pixbuf)
+			self.get_selection_tool().selection_paste()
+		else:
+			string =  cb.wait_for_text()
+			self.tools['text'].row.set_active(True)
+			self.active_tool().set_string(string)
+			self.active_tool().on_release_on_area(None, None, None, 100, 100)
 
 	def action_import(self, *args):
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,

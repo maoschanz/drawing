@@ -283,8 +283,6 @@ class ToolSelect(ToolTemplate):
 		self.create_selection_from_arbitrary_pixbuf(False)
 
 	def selection_paste(self):
-		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		self.get_image().set_selection_pixbuf(cb.wait_for_image())
 		self.temp_path = None
 		self.create_selection_from_arbitrary_pixbuf(False)
 

@@ -130,7 +130,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.import', ['<Ctrl>i'])
 		self.set_accels_for_action('win.paste', ['<Ctrl>v'])
 		self.set_accels_for_action('win.select_all', ['<Ctrl>a'])
-		self.set_accels_for_action('win.back_to_former_tool', ['<Ctrl>f'])
+		self.set_accels_for_action('win.back_to_former_tool', ['<Ctrl>b'])
 
 		self.set_accels_for_action('win.selection_unselect', ['<Ctrl>u'])
 		self.set_accels_for_action('win.selection_cut', ['<Ctrl>x'])

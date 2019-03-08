@@ -5,7 +5,7 @@
       <object class="GtkShortcutsSection">
         <property name="visible">True</property>
         <property name="section-name">shortcuts</property>
-        <property name="max-height">6</property>
+        <property name="max-height">8</property>
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
@@ -125,6 +125,13 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Import</property>
                 <property name="accelerator">&lt;Primary&gt;i</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Back to previous tool</property>
+                <property name="accelerator">&lt;Primary&gt;b</property>
               </object>
             </child>
           </object>

@@ -22,30 +22,38 @@ class ToolText(ToolTemplate):
 		self.add_tool_action_boolean('text_opaque_bg', False)
 
 		builder = Gtk.Builder()
-		builder.add_from_resource("/com/github/maoschanz/Drawing/tools/ui/tool_text.ui")
+		builder.add_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_text.ui')
 
 		# Main popover for text insertion
-		self.popover = builder.get_object("insertion-popover")
-		self.entry = builder.get_object("entry")
+		self.popover = builder.get_object('insertion-popover')
+		self.entry = builder.get_object('entry')
 		self.entry.set_size_request(100, 50)
-		insert_btn = builder.get_object("insert_btn")
+		insert_btn = builder.get_object('insert_btn')
 		insert_btn.connect('clicked', self.on_insert_text)
-		cancel_btn = builder.get_object("cancel_btn")
+		cancel_btn = builder.get_object('cancel_btn')
 		cancel_btn.connect('clicked', self.on_cancel)
 		self.entry.get_buffer().connect('changed', self.preview_text)
 
 		# Building the widget containing options
-		self.options_box = builder.get_object("options-widget")
-		self.font_btn = builder.get_object("font-chooser-widget")
-		self.backg_switch = builder.get_object("backg-switch")
+		self.options_box = builder.get_object('options-widget')
+		self.font_btn = builder.get_object('font-chooser-widget')
+		self.backg_switch = builder.get_object('backg-switch')
 
 		self.font_btn.set_font('Sans 36')
+		self.font_fam = self.font_btn.get_font()
 
 	def hide_row_label(self):
 		self.label_widget.set_visible(False)
 
 	def show_row_label(self):
 		self.label_widget.set_visible(True)
+
+	def on_tool_selected(self):
+		# Ctrl+v can't paste text in the entry otherwise
+		self.set_action_sensitivity('paste', False)
+
+	def on_tool_unselected(self):
+		self.set_action_sensitivity('paste', True)
 
 	def get_options_label(self):
 		return self.font_btn.get_font()
@@ -92,14 +100,19 @@ class ToolText(ToolTemplate):
 		self.font_fam.replace('Oblique', '')
 
 		self.tool_width = int(self.font_fam.split(' ')[-1])
+		if event is None: # XXX
+			self.open_popover_at(int(event_x), int(event_y))
+		else:
+			self.open_popover_at(int(event.x), int(event.y))
 
+	def open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
-		rectangle.x = int(event.x)
-		rectangle.y = int(event.y)
+		rectangle.x = x
+		rectangle.y = y
 		rectangle.height = 1
 		rectangle.width = 1
 		self.popover.set_pointing_to(rectangle)
-		self.popover.set_relative_to(area)
+		self.popover.set_relative_to(self.get_image())
 		self.popover.popup()
 		self.entry.grab_focus()
 		self.preview_text()
@@ -109,11 +122,12 @@ class ToolText(ToolTemplate):
 		if self.has_current_text():
 			operation = self.build_operation()
 			self.apply_operation(operation)
-			self.entry.get_buffer().set_text('', 0)
+			self.set_string('')
 
 	def has_current_text(self):
-		self.text_string = self.entry.get_buffer().get_text( self.entry.get_buffer().get_start_iter(), \
-			self.entry.get_buffer().get_end_iter(), False)
+		self.text_string = self.entry.get_buffer().get_text( \
+		    self.entry.get_buffer().get_start_iter(), \
+		    self.entry.get_buffer().get_end_iter(), False)
 		if self.text_string == '':
 			self.restore_pixbuf()
 			return False
@@ -128,8 +142,11 @@ class ToolText(ToolTemplate):
 	def on_cancel(self, *args):
 		self.restore_pixbuf()
 		self.popover.popdown()
-		self.entry.get_buffer().set_text('', 0)
+		self.set_string('')
 		self.should_cancel = False
+
+	def set_string(self, string):
+		self.entry.get_buffer().set_text(string, -1)
 
 	def build_operation(self):
 		operation = {
@@ -177,11 +194,11 @@ class ToolText(ToolTemplate):
 				cairo_context.line_to(text_x, text_y + (i-0.8)*font_size)
 				cairo_context.line_to(text_x, text_y + (i+0.2)*font_size)
 				cairo_context.set_source_rgba(secondary_color.red, \
-					secondary_color.green, secondary_color.blue, secondary_color.alpha)
+				    secondary_color.green, secondary_color.blue, secondary_color.alpha)
 				cairo_context.fill()
 				cairo_context.stroke()
 			cairo_context.set_source_rgba(main_color.red, main_color.green, \
-				main_color.blue, main_color.alpha)
+			    main_color.blue, main_color.alpha)
 			cairo_context.move_to(text_x, text_y + i*font_size)
 			cairo_context.show_text( a_line )
 			i = i + 1
