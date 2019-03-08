@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-05 15:23+0100\n"
-"PO-Revision-Date: 2019-03-02 00:27+0300\n"
+"PO-Revision-Date: 2019-03-07 15:44+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.Drawing.desktop.in:3 src/main.py:185
@@ -36,16 +36,14 @@ msgstr "com.github.maoschanz.Drawing"
 #: src/ui/app-menus.ui:9 src/ui/app-menus.ui:251 src/ui/win-menus.ui:33
 #: src/ui/win-menus.ui:169 src/ui/toolbar.ui:28 src/ui/toolbar.ui:29
 #: src/window.py:657
-#, fuzzy
 msgid "New Window"
-msgstr "Yeni pencere"
+msgstr "Yeni Pencere"
 
 #: data/com.github.maoschanz.Drawing.desktop.in:21 src/ui/shortcuts.ui:23
 #: src/ui/app-menus.ui:51 src/ui/win-menus.ui:29 src/ui/win-menus.ui:165
 #: src/ui/toolbar.ui:16 src/ui/toolbar.ui:17 src/window.py:657
-#, fuzzy
 msgid "New Tab"
-msgstr "Yeni sekme"
+msgstr "Yeni Sekme"
 
 #: src/ui/window.ui:37
 msgid "Error starting the application, please report this bug."
@@ -93,7 +91,7 @@ msgstr "Öntanımlı yükseklik"
 
 #: src/ui/preferences.ui:171
 msgid "Basic"
-msgstr ""
+msgstr "Basit"
 
 #: src/ui/preferences.ui:185
 msgid "User interface"
@@ -116,13 +114,12 @@ msgid "Always add transparency"
 msgstr "Daima şeffaflık ekle"
 
 #: src/ui/preferences.ui:319
-#, fuzzy
 msgid "Development features"
-msgstr "Deneysel özellikler"
+msgstr "Geliştirilmiş özellikler"
 
 #: src/ui/preferences.ui:343
 msgid "Advanced"
-msgstr ""
+msgstr "Gelişmiş"
 
 #: src/ui/properties.ui:20
 msgid "Path"
@@ -170,7 +167,7 @@ msgstr "inç"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: src/ui/shortcuts.ui:30
 msgid "Main menu"
@@ -190,13 +187,12 @@ msgid "Image"
 msgstr "Görüntü"
 
 #: src/ui/shortcuts.ui:57
-#, fuzzy
 msgid "Open a file"
-msgstr "Bir görüntü aç"
+msgstr "Bir dosya aç"
 
 #: src/ui/shortcuts.ui:64
 msgid "Close the active image"
-msgstr ""
+msgstr "Aktif resmi kapat"
 
 #: src/ui/shortcuts.ui:71 src/ui/app-menus.ui:65 src/ui/toolbar.ui:130
 #: src/ui/toolbar.ui:131 src/window.py:725 src/window.py:773
@@ -284,7 +280,7 @@ msgstr "İkincil rengi düzenle (sağ tıkla)"
 
 #: src/ui/shortcuts.ui:203
 msgid "Navigation"
-msgstr ""
+msgstr "Gezinti"
 
 #: src/ui/shortcuts.ui:207 src/ui/app-menus.ui:156
 msgid "Go Left"
@@ -407,16 +403,15 @@ msgstr "_Tuval"
 
 #: src/ui/app-menus.ui:237
 msgid "Previous tool"
-msgstr ""
+msgstr "Önceki araç"
 
 #: src/ui/app-menus.ui:244 src/window.py:919 src/window.py:922
 msgid "_Options"
 msgstr "_Seçenekler"
 
 #: src/ui/app-menus.ui:248
-#, fuzzy
 msgid "_Windows"
-msgstr "Pencereler"
+msgstr "_Pencereler"
 
 #: src/ui/app-menus.ui:274
 msgid "_Help"
@@ -445,17 +440,15 @@ msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
 
 #: src/main.py:58
 msgid "Print the version and display the 'about' dialog"
-msgstr ""
+msgstr "Sürümü yazdır ve 'hakkında' iletişim kutusunu görüntüle"
 
 #: src/main.py:61
-#, fuzzy
 msgid "Open a new window"
-msgstr "Yeni pencere"
+msgstr "Yeni bir pencere aç"
 
 #: src/main.py:63
-#, fuzzy
 msgid "Open a new tab"
-msgstr "Bir görüntü aç"
+msgstr "Yeni bir sekmede aç"
 
 #. Obviously, do not translate the command line.
 #: src/main.py:230
@@ -465,6 +458,9 @@ msgid ""
 "flatpak run --file-forwarding {0} @@ {1} @@\n"
 "?"
 msgstr ""
+"Bu dosyayı açarken hata. Demek istediğin\n"
+"flatpak run --file-forwarding {0} @@ {1} @@\n"
+"?"
 
 #: src/main.py:274
 msgid "A drawing application for the GNOME desktop."
@@ -476,7 +472,7 @@ msgstr "Hataları veya fikirleri bildirin"
 
 #: src/window.py:325
 msgid "Modifications will take effect in the next new window."
-msgstr ""
+msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
 
 #: src/window.py:651
 #, python-format
@@ -516,9 +512,8 @@ msgid "Untitled"
 msgstr "Başlıksız"
 
 #: src/window.py:720
-#, fuzzy
 msgid "this picture"
-msgstr "Tüm resimler"
+msgstr "bu resim"
 
 #: src/window.py:725
 msgid "Discard"
@@ -530,15 +525,15 @@ msgstr "Tüm resimler"
 
 #: src/window.py:752
 msgid "PNG images"
-msgstr "PNG görüntüleri"
+msgstr "PNG görüntüler"
 
 #: src/window.py:756
 msgid "JPEG images"
-msgstr "JPEG görüntüleri"
+msgstr "JPEG görüntüler"
 
 #: src/window.py:760
 msgid "BMP images"
-msgstr "BMP görüntüleri"
+msgstr "BMP görüntüler"
 
 #: src/window.py:771
 msgid "Save picture as…"
@@ -550,7 +545,7 @@ msgstr "Bir resmi içe aktar"
 
 #: src/preferences.py:76
 msgid "Automatic"
-msgstr ""
+msgstr "Otomatik"
 
 #: src/preferences.py:77
 msgid "Compact"
