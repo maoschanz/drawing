@@ -273,7 +273,7 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		self.about_dialog = Gtk.AboutDialog.new()
 		self.about_dialog.set_copyright('© 2019 Romain F. T.')
 		self.about_dialog.set_authors(['Romain F. T.'])
-		# To tranlators, "translate" this by your name, it will be displayed in the "about" dialog
+		# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 		self.about_dialog.set_translator_credits(_("translator-credits"))
 		self.about_dialog.set_artists(['Dmitry Z.'])
 		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
