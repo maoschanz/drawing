@@ -21,11 +21,21 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 	__gtype_name__ = 'DrawingMessageDialog'
 
 	def __init__(self, window, **kwargs):
-		super().__init__(modal=True, title=_("Drawing"), transient_for=window, **kwargs)
+		super().__init__(modal=True, transient_for=window, **kwargs)
 		self.set_resizable(True)
+		self.set_default_size(350, -1)
+
+		# The dialog has already a default empty label, with methods around it,
+		# but i don't care i'll add my widgets myself later.
+		self.get_message_area().get_children()[0].destroy()
+
 		if window.get_allocated_width() < 500:
 			self.get_action_area().set_orientation(Gtk.Orientation.VERTICAL)
-			self.set_default_size(350, -1)
+			self.should_wrap = True
+		else:
+			# Wrappable labels bother the height allocation, so they shouldn't
+			# be used if it's not required
+			self.should_wrap = False
 
 	def set_actions(self, labels):
 		i = 1
@@ -34,8 +44,11 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 			i = i+1
 
 	def add_string(self, string):
-		label = Gtk.Label(label=string, wrap=True)
+		label = Gtk.Label(label=string, wrap=self.should_wrap)
 		self.get_message_area().add(label)
+		self.get_message_area().show_all()
 
 	def add_widget(self, widget):
 		self.get_content_area().add(widget)
+		self.get_content_area().show_all()
+

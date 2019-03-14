@@ -653,7 +653,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.get_active_image().get_filename_for_display() )
 			dialog.add_string( _("Where do you want to open %s?") %  \
 				(gfile.get_path().split('/')[-1]) )
-			dialog.show_all()
 			result = dialog.run()
 			dialog.destroy()
 			if result == 1:
@@ -723,7 +722,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
 		frame.add(image)
 		dialog.add_widget(frame)
-		dialog.show_all()
 		result = dialog.run()
 		dialog.destroy()
 		if result == 3: # Save
