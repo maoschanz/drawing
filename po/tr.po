@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 15:26+0100\n"
-"PO-Revision-Date: 2019-03-07 15:44+0300\n"
+"PO-Revision-Date: 2019-03-12 21:20+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/com.github.maoschanz.Drawing.desktop.in:3 src/main.py:185
 #: src/window.py:341
@@ -40,13 +40,12 @@ msgid "New Window"
 msgstr "Yeni Pencere"
 
 #: data/com.github.maoschanz.Drawing.desktop.in:20
-#, fuzzy
 msgid "New Image"
-msgstr "Yeni görüntüler"
+msgstr "Yeni Görüntü"
 
 #: src/ui/window.ui:37
 msgid "Error starting the application, please report this bug."
-msgstr "Uygulamayı başlatırken hata, bu hatayı rapor edin."
+msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
 
 #: src/ui/window.ui:127 src/ui/shortcuts.ui:201 src/ui/app-menus.ui:211
 msgid "Exchange colors"
@@ -64,7 +63,7 @@ msgstr "Seçenek yok"
 
 #: src/ui/window.ui:223
 msgid "Preview"
-msgstr "Önizle"
+msgstr "Önizlenim"
 
 #: src/ui/preferences.ui:30 src/ui/app-menus.ui:15 src/ui/app-menus.ui:138
 #: src/ui/win-menus.ui:64 src/ui/win-menus.ui:133 src/ui/toolbar.ui:195
@@ -243,9 +242,8 @@ msgid "Import"
 msgstr "İçeri aktar"
 
 #: src/ui/shortcuts.ui:133
-#, fuzzy
 msgid "Back to previous tool"
-msgstr "Önceki araç"
+msgstr "Önceki araca dön"
 
 #: src/ui/shortcuts.ui:142 src/tools/tool_select.py:16
 msgid "Selection"
@@ -282,7 +280,7 @@ msgstr "Renkler"
 
 #: src/ui/shortcuts.ui:187
 msgid "Edit the main color (left click)"
-msgstr "Ana rengi düzenle (sol tıklama)"
+msgstr "Ana rengi düzenle (sol tıkla)"
 
 #: src/ui/shortcuts.ui:194
 msgid "Edit the secondary color (right click)"
@@ -311,7 +309,7 @@ msgstr "Sağa Git"
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:277 src/ui/win-menus.ui:70
 #: src/ui/win-menus.ui:139
 msgid "Report a bug"
-msgstr "Hataları bildir"
+msgstr "Hata bildir"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:284 src/ui/win-menus.ui:75
 #: src/ui/win-menus.ui:144 src/ui/toolbar.ui:207 src/ui/toolbar.ui:208
@@ -401,7 +399,7 @@ msgstr "İkincil renk"
 
 #: src/ui/app-menus.ui:218
 msgid "Color editor by default"
-msgstr "Varsayılan olarak renk düzenleyici"
+msgstr "Öntanımlı renk düzenleyici"
 
 #: src/ui/app-menus.ui:225
 msgid "_Tools"
@@ -475,7 +473,7 @@ msgstr ""
 #. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 #: src/main.py:277
 msgid "translator-credits"
-msgstr ""
+msgstr "Serdar Sağlam <teknomobil@yandex.com>"
 
 #: src/main.py:279
 msgid "A drawing application for the GNOME desktop."
@@ -483,7 +481,7 @@ msgstr "GNOME masaüstü için bir çizim uygulaması."
 
 #: src/main.py:284
 msgid "Report bugs or ideas"
-msgstr "Hataları veya fikirleri bildirin"
+msgstr "Hata veya fikir bildirin"
 
 #: src/window.py:326
 msgid "Modifications will take effect in the next new window."
@@ -501,7 +499,7 @@ msgstr "Değişiklikleri yoksay"
 #: src/window.py:652 src/window.py:720
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Kaydedilmemiş değişiklikler var %s."
+msgstr "%s üstünde kaydedilmemiş değişiklikler."
 
 #: src/window.py:654
 #, python-format
@@ -617,7 +615,7 @@ msgstr ""
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
-msgstr "Kalem şekli"
+msgstr "Fırça formu"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -642,7 +640,7 @@ msgstr "Kısa çizgiler"
 #: src/tools/tool_arc.py:64 src/tools/tool_arc.py:66 src/tools/tool_line.py:64
 #: src/tools/tool_line.py:66
 msgid "Arrow"
-msgstr "Ok"
+msgstr "Oklar"
 
 #: src/tools/ui/tool_arc.ui:33 src/tools/ui/tool_line.ui:33
 #: src/tools/ui/tool_pencil.ui:29
@@ -880,15 +878,15 @@ msgstr "Tuvali kırp"
 
 #: src/tools/tool_freeshape.py:15
 msgid "Free shape"
-msgstr "Serbest şekil"
+msgstr "Serbest biçim"
 
 #: src/tools/tool_freeshape.py:36
 msgid "Shape options"
-msgstr "Şekil seçenekleri"
+msgstr "Biçim seçenekleri"
 
 #: src/tools/tool_experiment.py:14
 msgid "Experiment"
-msgstr "Deney"
+msgstr "Deneysel"
 
 #: src/tools/tool_line.py:15
 msgid "Line"
@@ -916,15 +914,15 @@ msgstr "Çokgen seçenekleri"
 
 #: src/tools/tool_pencil.py:14
 msgid "Pencil"
-msgstr "Kalem"
+msgstr "Fırça"
 
 #: src/tools/tool_pencil.py:62
 msgid "Pencil options"
-msgstr "Kalem seçenekleri"
+msgstr "Fırça seçenekleri"
 
 #: src/tools/tool_picker.py:15
 msgid "Color Picker"
-msgstr "Renk Seçici"
+msgstr "Renk seçici"
 
 #: src/tools/tool_rectangle.py:35
 msgid "Rectangle options"
@@ -952,15 +950,15 @@ msgstr "Renk seçimi"
 
 #: src/tools/tool_select.py:110
 msgid "Selection options"
-msgstr "Seçim seçenekleri"
+msgstr "Seçici seçenekleri"
 
 #: src/tools/tool_select.py:118
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Seçimi sürükleyin veya tuval üzerine sağ tıklayın"
+msgstr "Seçimi sürükle veya tuval üzerine sağ tıkla"
 
 #: src/tools/tool_select.py:120
 msgid "Select an area or right-click on the canvas"
-msgstr "Bir alan seçin veya tuval üzerine sağ tıklayın"
+msgstr "Bir alan seç veya tuval üzerine sağ tıkla"
 
 #: src/tools/tool_text.py:14
 msgid "Text"
