@@ -792,7 +792,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		pixbuf = cb.wait_for_image()
 		if pixbuf is not None:
 			self.force_selection_tool()
-			self.set_selection_pixbuf(pixbuf)
+			self.get_active_image().set_selection_pixbuf(pixbuf)
 			self.get_selection_tool().selection_paste()
 		else:
 			string =  cb.wait_for_text()

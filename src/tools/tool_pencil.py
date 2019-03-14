@@ -48,9 +48,9 @@ class ToolPencil(ToolTemplate):
 		if state_as_string == 'difference':
 			self.selected_operator = cairo.Operator.DIFFERENCE
 			self.selected_operator_label = _("Difference")
-		elif state_as_string == 'exclusion':
-			self.selected_operator = cairo.Operator.EXCLUSION
-			self.selected_operator_label = _("Exclusion")
+		elif state_as_string == 'source':
+			self.selected_operator = cairo.Operator.SOURCE
+			self.selected_operator_label = _("Source color")
 		elif state_as_string == 'clear':
 			self.selected_operator = cairo.Operator.CLEAR
 			self.selected_operator_label = _("Eraser")

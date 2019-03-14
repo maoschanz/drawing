@@ -206,10 +206,14 @@ class DrawingImage(Gtk.Layout):
 	# HISTORY MANAGEMENT
 
 	def try_undo(self, *args):
-		if self.window.operation_is_ongoing():
-			self.window.active_tool().cancel_ongoing_operation()
-		elif len(self.undo_history) != 0:
+		self.window.active_tool().cancel_ongoing_operation()
+		if len(self.undo_history) != 0:
 			self.redo_history.append(self.undo_history.pop())
+		# TODO implement operation_is_ongoing
+		# if self.window.operation_is_ongoing():
+		# 	self.window.active_tool().cancel_ongoing_operation()
+		# elif len(self.undo_history) != 0:
+		# 	self.redo_history.append(self.undo_history.pop())
 
 	def try_redo(self, *args):
 		self.undo_history.append(self.redo_history.pop())

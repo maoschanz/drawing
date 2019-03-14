@@ -33,6 +33,11 @@
         <attribute name="target">over</attribute>
       </item>
       <item>
+        <attribute name="label" translatable="yes">Source color</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">source</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Eraser</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">clear</attribute>
@@ -41,11 +46,6 @@
         <attribute name="label" translatable="yes">Difference</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">difference</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Exclusion</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">exclusion</attribute>
       </item>
     </section>
   </menu>
