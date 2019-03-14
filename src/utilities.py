@@ -125,7 +125,6 @@ def launch_infinite_loop_dialog(window):
 This algorithm may not be able to manage the wanted area.
 
 Do you want to abort the operation, or to let the tool struggle ?""") )
-	dialog.show_all()
 	return dialog
 
 def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width):

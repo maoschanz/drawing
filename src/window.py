@@ -687,7 +687,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		fn = self.get_file_path()
 		if fn is not None:
 			utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn)
-		self.get_active_image().post_save()
+			self.get_active_image().post_save()
 		self.set_picture_title()
 
 	def action_save_as(self, *args):
