@@ -30,7 +30,7 @@ class ToolSaturate(ToolTemplate):
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_saturate.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_saturate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.saturation_btn = builder.get_object('sat_btn')

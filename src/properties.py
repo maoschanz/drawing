@@ -32,7 +32,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 	def build_ui(self):
 		"""Fill the dialog with labels displaying correct informations."""
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/properties.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/properties.ui')
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 

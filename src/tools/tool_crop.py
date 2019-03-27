@@ -34,7 +34,7 @@ class ToolCrop(ToolTemplate):
 		self.move_instead_of_crop = False
 		self.needed_width_for_long = 0
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_crop.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_crop.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.centered_box = builder.get_object('centered_box')
 		self.cancel_btn = builder.get_object('cancel_btn')

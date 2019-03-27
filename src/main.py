@@ -24,7 +24,7 @@ from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
-APP_ID = 'com.github.maoschanz.Drawing'
+APP_ID = 'com.github.maoschanz.drawing'
 
 def main(version):
 	app = Application(version)
@@ -63,8 +63,8 @@ class Application(Gtk.Application):
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 
 		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/icons')
-		icon_theme.add_resource_path('/com/github/maoschanz/Drawing/tools/icons')
+		icon_theme.add_resource_path('/com/github/maoschanz/drawing/icons')
+		icon_theme.add_resource_path('/com/github/maoschanz/drawing/tools/icons')
 
 ########
 
@@ -73,7 +73,7 @@ class Application(Gtk.Application):
 		self.build_actions()
 		self.add_accels()
 		builder = Gtk.Builder.new_from_resource( \
-		                        '/com/github/maoschanz/Drawing/ui/app-menus.ui')
+		                        '/com/github/maoschanz/drawing/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		if self.prefers_app_menu():
@@ -249,7 +249,7 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
 		builder = Gtk.Builder().new_from_resource( \
-		                        '/com/github/maoschanz/Drawing/ui/shortcuts.ui')
+		                        '/com/github/maoschanz/drawing/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 

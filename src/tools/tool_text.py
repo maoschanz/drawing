@@ -22,7 +22,7 @@ class ToolText(ToolTemplate):
 		self.add_tool_action_boolean('text_opaque_bg', False)
 
 		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_text.ui')
+		builder.add_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
 
 		# Main popover for text insertion
 		self.popover = builder.get_object('insertion-popover')

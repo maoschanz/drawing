@@ -46,13 +46,13 @@ from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
 from .message_dialog import DrawingMessageDialog
 
-UI_PATH = '/com/github/maoschanz/Drawing/ui/'
+UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
 @GtkTemplate(ui=UI_PATH+'window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
 
-	_settings = Gio.Settings.new('com.github.maoschanz.Drawing')
+	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	# Window empty widgets
 	tools_panel = GtkTemplate.Child()

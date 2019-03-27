@@ -34,7 +34,7 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
 		self.add_tool_action_simple('selection_saturate', self.action_selection_saturate)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_select.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
 
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.centered_box = builder.get_object('centered-box')

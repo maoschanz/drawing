@@ -9,8 +9,8 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 #)
 
 desktop_file = i18n.merge_file(
-  input: 'com.github.maoschanz.Drawing.desktop.in',
-  output: 'com.github.maoschanz.Drawing.desktop',
+  input: 'com.github.maoschanz.drawing.desktop.in',
+  output: 'com.github.maoschanz.drawing.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -25,8 +25,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.github.maoschanz.Drawing.appdata.xml.in',
-  output: 'com.github.maoschanz.Drawing.appdata.xml',
+  input: 'com.github.maoschanz.drawing.appdata.xml.in',
+  output: 'com.github.maoschanz.drawing.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -39,7 +39,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('com.github.maoschanz.Drawing.gschema.xml',
+install_data('com.github.maoschanz.drawing.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

@@ -32,7 +32,7 @@ class ToolFlip(ToolTemplate):
 		self.flip_h = False
 		self.flip_v = False
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/tools/ui/tool_flip.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_flip.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.horizontal_btn = builder.get_object('horizontal_btn')

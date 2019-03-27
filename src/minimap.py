@@ -32,7 +32,7 @@ class DrawingMinimap(Gtk.Popover):
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300)
 		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/Drawing/ui/minimap.ui')
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/minimap.ui')
 		box = builder.get_object('minimap_box')
 
 		self.minimap_area = builder.get_object('minimap_area')
