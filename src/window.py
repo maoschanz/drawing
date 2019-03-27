@@ -434,15 +434,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
 		builder.add_from_resource(UI_PATH+'win-menus.ui')
-		short_main_menu = builder.get_object('short-window-menu')
-		self.short_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, short_main_menu)
-		long_main_menu = builder.get_object('long-window-menu')
-		self.long_menu_popover = Gtk.Popover.new_from_model(self.main_menu_btn, long_main_menu)
+		self.short_main_menu = builder.get_object('short-window-menu')
+		self.long_main_menu = builder.get_object('long-window-menu')
 
 		if not is_eos:
 			add_menu = builder.get_object('add-menu')
-			add_popover = Gtk.Popover.new_from_model(self.add_btn, add_menu)
-			self.add_btn.set_popover(add_popover)
+			self.add_btn.set_menu_model(add_menu)
 
 	def action_main_menu(self, *args):
 		if self.main_menu_btn is not None:
@@ -492,10 +489,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.header_bar is not None:
 			if self.header_bar.get_allocated_width() < self.limit_size_header:
 				self.compact_headerbar(True)
-				self.main_menu_btn.set_popover(self.long_menu_popover)
+				self.main_menu_btn.set_menu_model(self.long_main_menu)
 			else:
 				self.compact_headerbar(False)
-				self.main_menu_btn.set_popover(self.short_menu_popover)
+				self.main_menu_btn.set_menu_model(self.short_main_menu)
 
 		if self.active_tool().implements_panel:
 			self.active_tool().adapt_to_window_size()
