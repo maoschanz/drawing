@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-12 15:26+0100\n"
+"POT-Creation-Date: 2019-03-27 15:53+0100\n"
 "PO-Revision-Date: 2019-02-09 02:12-0600\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: \n"
@@ -204,7 +204,7 @@ msgid "Close the active image"
 msgstr ""
 
 #: src/ui/shortcuts.ui:71 src/ui/app-menus.ui:65 src/ui/toolbar.ui:130
-#: src/ui/toolbar.ui:131 src/window.py:719 src/window.py:767
+#: src/ui/toolbar.ui:131 src/window.py:718 src/window.py:765
 msgid "Save"
 msgstr "Guardar"
 
@@ -242,7 +242,7 @@ msgstr "Pegar"
 
 #: src/ui/shortcuts.ui:126 src/ui/app-menus.ui:124 src/ui/win-menus.ui:16
 #: src/ui/win-menus.ui:178 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
-#: src/window.py:808 src/tools/ui/tool_select.ui:41
+#: src/window.py:806 src/tools/ui/tool_select.ui:41
 msgid "Import"
 msgstr "Importar"
 
@@ -421,7 +421,7 @@ msgstr ""
 msgid "Previous tool"
 msgstr ""
 
-#: src/ui/app-menus.ui:244 src/window.py:926 src/window.py:929
+#: src/ui/app-menus.ui:244 src/window.py:924 src/window.py:927
 msgid "_Options"
 msgstr "_Opciones"
 
@@ -443,7 +443,7 @@ msgstr "Resumen"
 msgid "About Drawing"
 msgstr "Acerca de Drawing"
 
-#: src/ui/toolbar.ui:42 src/window.py:672
+#: src/ui/toolbar.ui:42 src/window.py:671
 msgid "Open"
 msgstr "Abrir"
 
@@ -504,7 +504,7 @@ msgstr ""
 msgid "Discard changes"
 msgstr "Descartar cambios"
 
-#: src/window.py:652 src/window.py:720
+#: src/window.py:652 src/window.py:719
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Hay cambios no guardados en «%s»."
@@ -514,11 +514,11 @@ msgstr "Hay cambios no guardados en «%s»."
 msgid "Where do you want to open %s?"
 msgstr "¿Dónde quiere abrir «%s»?"
 
-#: src/window.py:670
+#: src/window.py:669
 msgid "Open a picture"
 msgstr "Abrir una imagen"
 
-#: src/window.py:673 src/window.py:719 src/window.py:768 src/window.py:809
+#: src/window.py:672 src/window.py:718 src/window.py:766 src/window.py:807
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -528,40 +528,40 @@ msgstr "Abrir una imagen"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/window.py:713 src/window.py:770
+#: src/window.py:712 src/window.py:768
 msgid "Untitled"
 msgstr "Sin título"
 
-#: src/window.py:714
+#: src/window.py:713
 #, fuzzy
 msgid "this picture"
 msgstr "Todas las imágenes"
 
-#: src/window.py:719
+#: src/window.py:718
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/window.py:740
+#: src/window.py:738
 msgid "All pictures"
 msgstr "Todas las imágenes"
 
-#: src/window.py:746
+#: src/window.py:744
 msgid "PNG images"
 msgstr "Imágenes PNG"
 
-#: src/window.py:750
+#: src/window.py:748
 msgid "JPEG images"
 msgstr "Imágenes JPEG"
 
-#: src/window.py:754
+#: src/window.py:752
 msgid "BMP images"
 msgstr "Imágenes BMP"
 
-#: src/window.py:765
+#: src/window.py:763
 msgid "Save picture as…"
 msgstr "Guardar imagen como…"
 
-#: src/window.py:806
+#: src/window.py:804
 msgid "Import a picture"
 msgstr "Importar una imagen"
 
@@ -661,22 +661,23 @@ msgid "Classic"
 msgstr "Clásico"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:40
-#: src/tools/ui/tool_pencil.ui:36 src/tools/tool_arc.py:49
+#: src/tools/ui/tool_pencil.ui:36 src/tools/tool_arc.py:46
+#: src/tools/tool_line.py:46 src/tools/tool_pencil.py:53
+#, fuzzy
+msgid "Source color"
+msgstr "Color secundario"
+
+#: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:45
+#: src/tools/ui/tool_pencil.ui:41 src/tools/tool_arc.py:49
 #: src/tools/tool_line.py:49 src/tools/tool_pencil.py:56
 msgid "Eraser"
 msgstr "Borrador"
 
-#: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:45
-#: src/tools/ui/tool_pencil.ui:41 src/tools/tool_arc.py:43
+#: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:50
+#: src/tools/ui/tool_pencil.ui:46 src/tools/tool_arc.py:43
 #: src/tools/tool_line.py:43 src/tools/tool_pencil.py:50
 msgid "Difference"
 msgstr "Diferencia"
-
-#: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:50
-#: src/tools/ui/tool_pencil.ui:46 src/tools/tool_arc.py:46
-#: src/tools/tool_line.py:46 src/tools/tool_pencil.py:53
-msgid "Exclusion"
-msgstr "Exclusión"
 
 #: src/tools/ui/tool_circle.ui:5
 msgid "Shape"
@@ -984,6 +985,9 @@ msgstr ""
 #: src/tools/tool_text.py:14
 msgid "Text"
 msgstr "Texto"
+
+#~ msgid "Exclusion"
+#~ msgstr "Exclusión"
 
 #~ msgid "Close the window"
 #~ msgstr "Cerrar ventana"
