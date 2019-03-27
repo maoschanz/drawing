@@ -398,10 +398,12 @@ class DrawingImage(Gtk.Layout):
 	def is_using_selection(self):
 		return self.window.tool_needs_selection() and  self.window.active_tool().selection_is_active
 
-# PRINTING XXX marche assez mal
+# PRINTING
 
 	def print_image(self):
 		op = Gtk.PrintOperation()
+		# FIXME the preview doesn't work, i guess it's because of flatpak ?
+		# I could connect to the 'preview' signal but that would be a hack
 		op.connect('draw-page', self.do_draw_page)
 		op.connect('begin-print', self.do_begin_print)
 		op.connect('end-print', self.do_end_print)
@@ -411,12 +413,12 @@ class DrawingImage(Gtk.Layout):
 		pass
 
 	def do_draw_page(self, op, print_ctx, page_num):
+		# XXX TODO if it's too big for one page ?
 		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
-		op.set_n_pages(1)
 
 	def do_begin_print(self, op, print_ctx):
+		op.set_n_pages(1)
 		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
-		op.set_n_pages(1)
 

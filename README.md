@@ -16,13 +16,13 @@ Drawing tools:
 
 | Tool      | Options        |
 |:---------:|:--------------:|
-|Pencil     |Dashes, eraser, ...|
+|Pencil     |Dashes, eraser, …|
 |Rectangle  |Filling         |
 |Circle     |Regular circle or oval; Filling
 |Polygon    |Filling         |
 |Free shape |Filling         |
-|Line       |Arrow, dashes, ...|
-|Arc        |Arrow, dashes, ...|
+|Line       |Arrow, dashes, …|
+|Arc        |Arrow, dashes, …|
 |Insert text|Font and font size|
 |Selection  |Rectangle/free shape/adjacent color|
 |Color picker|               |

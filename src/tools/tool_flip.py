@@ -81,9 +81,13 @@ class ToolFlip(ToolTemplate):
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		preview = self.get_image().get_temp_pixbuf()
-		if flip_h:
+		if flip_h and flip_v:
+			preview = preview.flip(True)
+			preview = preview.flip(False)
+			self.get_image().set_temp_pixbuf(preview)
+		elif flip_h:
 			self.get_image().set_temp_pixbuf(preview.flip(True))
-		if flip_v:
+		elif flip_v:
 			self.get_image().set_temp_pixbuf(preview.flip(False))
 		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
 
