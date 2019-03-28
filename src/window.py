@@ -87,6 +87,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.header_bar = None
 		self.main_menu_btn = None
 		self.has_good_limits = False
+		self.is_short = True # This is a hack reducing the complexity of resizing,
+		# but it's main goal is to avoid a GTK minor bug where the initial
+		# bunch of configure-event signals was sent to soon, so the popover was
+		# displayed a parallel universe when running the app on Wayland.
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -437,6 +441,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.short_main_menu = builder.get_object('short-window-menu')
 		self.long_main_menu = builder.get_object('long-window-menu')
 
+		# This one is the default to be coherent with the default value of
+		# self.is_short
+		self.main_menu_btn.set_menu_model(self.long_main_menu)
+
 		if not is_eos:
 			add_menu = builder.get_object('add-menu')
 			self.add_btn.set_menu_model(add_menu)
@@ -488,9 +496,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self.header_bar is not None:
 			if self.header_bar.get_allocated_width() < self.limit_size_header:
+				if self.is_short:
+					return
+				self.is_short = True
 				self.compact_headerbar(True)
 				self.main_menu_btn.set_menu_model(self.long_main_menu)
 			else:
+				if not self.is_short:
+					return
+				self.is_short = False
 				self.compact_headerbar(False)
 				self.main_menu_btn.set_menu_model(self.short_main_menu)
 
