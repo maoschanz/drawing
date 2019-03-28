@@ -1,9 +1,9 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-moduledir = join_paths(pkgdatadir, 'drawing')
+moduledir = join_paths(pkgdatadir, meson.project_name())
 gnome = import('gnome')
 
-gnome.compile_resources('drawing',
-	'drawing.gresource.xml',
+gnome.compile_resources(meson.project_name(),
+	meson.project_name() + '.gresource.xml',
 	gresource_bundle: true,
 	install: true,
 	install_dir: pkgdatadir,
@@ -18,8 +18,8 @@ conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-	input: 'drawing.in',
-	output: 'drawing',
+	input: meson.project_name() + '.in',
+	output: meson.project_name(),
 	configuration: conf,
 	install: true,
 	install_dir: get_option('bindir')

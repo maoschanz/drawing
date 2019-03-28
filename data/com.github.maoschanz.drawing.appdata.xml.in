@@ -4,21 +4,26 @@
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
 	<name>Drawing</name>
-	<summary>
-A drawing application for the GNOME desktop.
-	</summary>
+	<summary>A drawing application for the GNOME desktop.</summary>
 	<description>
 		<p>A simple application to draw or edit pictures.</p>
 		<p>It includes tools like:</p>
 		<ul>
 			<li>Pencil</li>
-			<li>Selection (cut/copy/paste/drag)</li>
-			<li>Line/Arc</li>
-			<li>Shapes/Polygons</li>
+			<li>Selection (cut/copy/paste/drag/…)</li>
+			<li>Line</li>
+			<li>Arc</li>
+			<li>Rectangle</li>
+			<li>Circle</li>
+			<li>Polygon</li>
+			<li>Shape</li>
 			<li>Text</li>
 			<li>Paint</li>
 		</ul>
 	</description>
+	<provides>
+		<binary>drawing</binary>
+	</provides>
 	<url type="bugtracker">https://github.com/maoschanz/drawing/issues</url>
 	<url type="homepage">https://github.com/maoschanz/drawing/wiki</url>
 	<developer_name>Romain F. T.</developer_name>
