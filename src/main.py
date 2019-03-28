@@ -137,6 +137,7 @@ class Application(Gtk.Application):
 		self.set_accels_for_action('win.selection_copy', ['<Ctrl>c'])
 		self.set_accels_for_action('win.selection_delete', ['Delete'])
 
+		self.set_accels_for_action('win.show_labels', ['F9'])
 		self.set_accels_for_action('win.main_menu', ['F10'])
 		self.set_accels_for_action('win.options_menu', ['<Shift>F10'])
 		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
