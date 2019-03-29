@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_tool import ToolTemplate
 
 class ToolText(ToolTemplate):
 	__gtype_name__ = 'ToolText'
@@ -198,7 +198,7 @@ class ToolText(ToolTemplate):
 				cairo_context.fill()
 				cairo_context.stroke()
 			cairo_context.set_source_rgba(main_color.red, main_color.green, \
-			    main_color.blue, main_color.alpha)
+			                                  main_color.blue, main_color.alpha)
 			cairo_context.move_to(text_x, text_y + i*font_size)
 			cairo_context.show_text( a_line )
 			i = i + 1

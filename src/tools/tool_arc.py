@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_tool import ToolTemplate
 from .utilities import utilities_add_arrow_triangle
 
 class ToolArc(ToolTemplate):

@@ -497,6 +497,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.header_bar is not None:
 			if self.header_bar.get_allocated_width() < self.limit_size_header:
 				if not self.is_short:
+
 					self.is_short = True
 					self.compact_headerbar(True)
 					self.main_menu_btn.set_menu_model(self.long_main_menu)

@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_tool import ToolTemplate
 from .utilities import utilities_get_rgb_for_xy
 
 class ToolPicker(ToolTemplate):

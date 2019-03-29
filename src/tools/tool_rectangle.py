@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_tool import ToolTemplate
 from .utilities import utilities_generic_shape_tool_operation
 
 class ToolRectangle(ToolTemplate):

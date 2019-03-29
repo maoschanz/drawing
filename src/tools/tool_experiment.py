@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_tool import ToolTemplate
 
 class ToolExperiment(ToolTemplate):
 	__gtype_name__ = 'ToolExperiment'

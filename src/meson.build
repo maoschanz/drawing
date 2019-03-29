@@ -37,16 +37,15 @@ drawing_sources = [
 	'options_manager.py',
 	'minimap.py',
 	'utilities.py',
-	'tools.py',
 
 	'properties.py',
 	'preferences.py',
 
+	'tools/abstract_tool.py',
+
 	'tools/tool_arc.py',
 	'tools/tool_circle.py',
-	'tools/tool_crop.py',
 	'tools/tool_experiment.py',
-	'tools/tool_flip.py',
 	'tools/tool_freeshape.py',
 	'tools/tool_line.py',
 	'tools/tool_paint.py',
@@ -54,11 +53,16 @@ drawing_sources = [
 	'tools/tool_polygon.py',
 	'tools/tool_picker.py',
 	'tools/tool_rectangle.py',
-	'tools/tool_rotate.py',
-	'tools/tool_saturate.py',
-	'tools/tool_scale.py',
 	'tools/tool_select.py',
-	'tools/tool_text.py'
+	'tools/tool_text.py',
+
+	'tools/canvas_tools/abstract_canvas_tool.py',
+
+	'tools/canvas_tools/tool_crop.py',
+	'tools/canvas_tools/tool_flip.py',
+	'tools/canvas_tools/tool_rotate.py',
+	'tools/canvas_tools/tool_saturate.py',
+	'tools/canvas_tools/tool_scale.py'
 ]
 
 install_data(drawing_sources, install_dir: moduledir)

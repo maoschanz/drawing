@@ -41,7 +41,7 @@ class Application(Gtk.Application):
 		super().__init__(application_id=APP_ID,
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
-		GLib.set_application_name('Drawing')
+		GLib.set_application_name('Drawing') # XXX drawing ?
 		GLib.set_prgname(APP_ID)
 		self.version = version
 		self.git_url = 'https://github.com/maoschanz/drawing'
@@ -85,7 +85,7 @@ class Application(Gtk.Application):
 		as unstable versions. This affects available options and the style of
 		the headerbar."""
 		version_array = self.version.split('.')
-		if int(version_array[1]) * 5 == 5:
+		if (int(version_array[1]) * 5) % 10 == 5:
 			return True
 		else:
 			return False

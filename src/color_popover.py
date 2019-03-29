@@ -24,17 +24,17 @@ class DrawingColorPopover(Gtk.Popover):
 	def __init__(self, btn, image, initial_rgba, **kwargs):
 		super().__init__(**kwargs)
 
-		builder = Gtk.Builder.new_from_resource("/com/github/maoschanz/drawing/ui/color_popover.ui")
-		main_box = builder.get_object("main-box")
+		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/color_popover.ui')
+		main_box = builder.get_object('main-box')
 		self.add(main_box)
 		btn.set_popover(self)
 		self.btn_image = image
 
-		self.color_widget = builder.get_object("color-widget")
+		self.color_widget = builder.get_object('color-widget')
 		self.color_widget.set_rgba(initial_rgba)
 
-		back_btn = builder.get_object("back-btn")
-		self.editor_box = builder.get_object("editor-box")
+		back_btn = builder.get_object('back-btn')
+		self.editor_box = builder.get_object('editor-box')
 
 		self.color_widget.connect('notify::rgba', self.set_color_btn)
 		self.color_widget.connect('notify::show-editor', self.update_box)

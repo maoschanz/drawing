@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_canvas_tool import AbstractCanvasTool
 
-class ToolSaturate(ToolTemplate):
+class ToolSaturate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSaturate'
 
 	implements_panel = True

@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_tool import ToolTemplate
 from .utilities import utilities_get_magic_path
 
 class ToolSelect(ToolTemplate):

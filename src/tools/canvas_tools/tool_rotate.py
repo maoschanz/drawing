@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .tools import ToolTemplate
+from .abstract_canvas_tool import AbstractCanvasTool
 
-class ToolRotate(ToolTemplate):
+class ToolRotate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolRotate'
 
 	implements_panel = True

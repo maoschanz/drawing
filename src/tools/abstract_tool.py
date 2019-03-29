@@ -161,36 +161,3 @@ class ToolTemplate():
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		pass
-
-	def finish_temp_pixbuf_tool_operation(self, is_selection): # TODO mettre ça dans utilities ?
-		cairo_context = cairo.Context(self.get_surface())
-		if is_selection:
-			cairo_context.set_source_surface(self.get_surface(), 0, 0)
-			cairo_context.paint()
-			self.get_image().delete_former_selection()
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-				self.get_image().get_temp_pixbuf(), \
-				self.get_image().selection_x, \
-				self.get_image().selection_y)
-			cairo_context.paint()
-		else:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-				self.get_image().get_temp_pixbuf(), \
-				-1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
-			cairo_context.paint()
-		self.non_destructive_show_modif()
-
-	def on_apply_temp_pixbuf_tool_operation(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		if self.apply_to_selection:
-			self.do_tool_operation(operation)
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
-		else:
-			operation['is_preview'] = False
-			self.apply_operation(operation)
-			self.window.force_selection_tool()
