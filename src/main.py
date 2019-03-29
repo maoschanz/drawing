@@ -267,22 +267,27 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing', Gdk.CURRENT_TIME)
 
+	def widget_destroy(self, widget, button):
+		widget.destroy()
+
 	def on_about_activate(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		if self.about_dialog is not None:
 			self.about_dialog.destroy()
-		self.about_dialog = Gtk.AboutDialog.new()
-		self.about_dialog.set_copyright('© 2019 Romain F. T.')
-		self.about_dialog.set_authors(['Romain F. T.'])
-		# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
-		self.about_dialog.set_translator_credits(_("translator-credits"))
-		self.about_dialog.set_artists(['Dmitry Z.'])
-		self.about_dialog.set_comments(_("A drawing application for the GNOME desktop."))
-		self.about_dialog.set_license_type(Gtk.License.GPL_3_0)
-		self.about_dialog.set_logo_icon_name(APP_ID)
-		self.about_dialog.set_version(str(self.version))
-		self.about_dialog.set_website(self.git_url)
-		self.about_dialog.set_website_label(_("Report bugs or ideas"))
+		self.about_dialog = Gtk.AboutDialog(
+			transient_for=self.props.active_window,
+			copyright='© 2019 Romain F. T.',
+			authors=['Romain F. T.'],
+			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
+			translator_credits=_("translator-credits"),
+			artists=['Dmitry Z.'],
+			comments=_("A drawing application for the GNOME desktop."),
+			license_type=Gtk.License.GPL_3_0,
+			logo_icon_name=APP_ID,
+			version=str(self.version),
+			website=self.git_url,
+			website_label=_("Report bugs or ideas"))
+		self.about_dialog.connect('response', self.widget_destroy)
 		self.about_dialog.run()
 
 	def on_quit(self, *args):
