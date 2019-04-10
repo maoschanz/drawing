@@ -787,7 +787,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
-			utilities_save_pixbuf_at(self.main_pixbuf, gfile.get_path())
+			utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, gfile.get_path())
 
 	def action_print(self, *args):
 		self.get_active_image().print_image()

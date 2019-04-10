@@ -115,6 +115,7 @@ class Application(Gtk.Application):
 	def add_accels(self):
 		"""Set all keyboard shortcuts."""
 		self.set_accels_for_action('app.new_window', ['<Ctrl>n'])
+		self.set_accels_for_action('app.shortcuts', ['<Ctrl>?', '<Ctrl>F1'])
 		self.set_accels_for_action('app.about', ['<Shift>F1'])
 		self.set_accels_for_action('app.help', ['F1'])
 		self.set_accels_for_action('app.quit', ['<Ctrl>q'])
@@ -268,10 +269,10 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing', Gdk.CURRENT_TIME)
 
-	def widget_destroy(self, widget, button):
+	def widget_destroy(self, widget, button): # TODO object oriented
 		widget.destroy()
 
-	def on_about_activate(self, *args):
+	def on_about_activate(self, *args): # TODO object oriented
 		"""Action callback, showing the "about" dialog."""
 		if self.about_dialog is not None:
 			self.about_dialog.destroy()
