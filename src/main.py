@@ -269,10 +269,7 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing', Gdk.CURRENT_TIME)
 
-	def widget_destroy(self, widget, button): # TODO object oriented
-		widget.destroy()
-
-	def on_about_activate(self, *args): # TODO object oriented
+	def on_about_activate(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		if self.about_dialog is not None:
 			self.about_dialog.destroy()
@@ -291,6 +288,9 @@ flatpak run --file-forwarding {0} @@ {1} @@
 			website_label=_("Report bugs or ideas"))
 		self.about_dialog.connect('response', self.widget_destroy)
 		self.about_dialog.run()
+
+	def widget_destroy(self, widget, button):
+		widget.destroy()
 
 	def on_quit(self, *args):
 		"""Action callback, quitting the app."""

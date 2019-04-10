@@ -13,22 +13,18 @@
         <item>
           <attribute name="label" translatable="yes">Flip</attribute>
           <attribute name="action">win.selection_flip</attribute>
-          <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Crop</attribute>
           <attribute name="action">win.selection_crop</attribute>
-          <attribute name="verb-icon">crop-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Scale</attribute>
           <attribute name="action">win.selection_scale</attribute>
-          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Rotate</attribute>
           <attribute name="action">win.selection_rotate</attribute>
-          <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Saturate</attribute>
@@ -79,22 +75,18 @@
         <item>
           <attribute name="label" translatable="yes">Flip</attribute>
           <attribute name="action">win.selection_flip</attribute>
-          <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Crop</attribute>
           <attribute name="action">win.selection_crop</attribute>
-          <attribute name="verb-icon">crop-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Scale</attribute>
           <attribute name="action">win.selection_scale</attribute>
-          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Rotate</attribute>
           <attribute name="action">win.selection_rotate</attribute>
-          <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Saturate</attribute>
@@ -163,6 +155,7 @@
         <item>
           <attribute name="label" translatable="yes">Saturate</attribute>
           <attribute name="action">win.selection_saturate</attribute>
+          <attribute name="verb-icon">tool-saturate-symbolic</attribute>
         </item>
       </submenu>
     </section>
@@ -203,26 +196,6 @@
   <object class="GtkActionBar" id="bottom-panel">
     <property name="visible">False</property>
     <property name="expand">True</property>
-
-    <child>
-      <!-- XXX not working as wanted, hidden -->
-      <object class="GtkToggleButton">
-        <property name="tooltip_text" translatable="yes">Erase secondary color</property>
-        <property name="visible">False</property>
-        <!-- <property name="visible">True</property> -->
-        <property name="valign">center</property>
-        <property name="action-name">win.selection_exclude</property>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">edit-delete-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="pack-type">start</property>
-      </packing>
-    </child>
 
     <child>
       <object class="GtkBox">
@@ -273,7 +246,7 @@
             <property name="action-target">'color'</property>
             <child>
               <object class="GtkImage">
-                <property name="icon-name">option-color-symbolic</property>
+                <property name="icon-name">tool-addalpha-symbolic</property>
                 <property name="visible">True</property>
               </object>
             </child>
