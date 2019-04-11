@@ -1,4 +1,4 @@
-# tool_picker.py
+# tool_addalpha.py
 
 from gi.repository import Gtk, Gdk
 import cairo
@@ -13,18 +13,33 @@ class ToolAddAlpha(ToolTemplate):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('addalpha', _("Remove color"), 'tool-addalpha-symbolic', window, False)
+		self.rgb_vals = []
 
 	def get_options_model(self):
 		return None
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		rgb_vals = utilities_get_rgb_for_xy(surface, event.x, event.y)
-		if rgb_vals == [-1, -1, -1]:
+		self.rgb_vals = utilities_get_rgb_for_xy(surface, event.x, event.y)
+		if self.rgb_vals == [-1, -1, -1]:
 			return # click outside of the surface
+		operation = self.build_operation()
+		self.apply_operation(operation)
+
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'r': self.rgb_vals[0],
+			'g': self.rgb_vals[1],
+			'b': self.rgb_vals[2]
+			# TODO error margin ?
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
 		self.get_image().main_pixbuf = self.get_main_pixbuf().add_alpha(True, \
-		                                  rgb_vals[0], rgb_vals[1], rgb_vals[2])
+		                         operation['r'], operation['g'], operation['b'])
 		self.get_image().use_stable_pixbuf()
 		self.get_image().queue_draw()
-
-		# TODO history operations
-		# TODO use the size as an error margin
