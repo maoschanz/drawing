@@ -46,6 +46,7 @@ from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
 from .message_dialog import DrawingMessageDialog
+from .headerbar import DrawingAdaptativeHeaderBar
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -88,10 +89,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.header_bar = None
 		self.main_menu_btn = None
 		self.has_good_limits = False
-		self.is_short = True # This is a hack reducing the complexity of resizing,
-		# but its main goal is to avoid a GTK minor bug where the initial
-		# bunch of configure-event signals was sent to soon, so the popover was
-		# displayed a parallel universe when running the app on Wayland.
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -346,8 +343,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:
-			self.header_bar.set_title(main_title)
-			self.header_bar.set_subtitle(subtitle)
+			self.header_bar.header_bar.set_title(main_title)
+			self.header_bar.header_bar.set_subtitle(subtitle)
 
 	def get_auto_decorations(self):
 		"""Return the decorations setting based on the XDG_CURRENT_DESKTOP
@@ -393,15 +390,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self.decorations == 'csd':
 			self.build_headerbar(False)
-			self.set_titlebar(self.header_bar)
+			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(False)
 		elif self.decorations == 'csd-eos':
 			self.build_headerbar(True)
-			self.set_titlebar(self.header_bar)
+			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(False)
 		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
-			self.set_titlebar(self.header_bar)
+			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(True)
 			self.build_toolbar()
 		elif self.decorations == 'ssd-menubar':
@@ -425,31 +422,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_headerbar(self, is_eos):
 		"""Build the window's headerbar. If "is_eos" is true, the headerbar will
 		follow elementaryOS guidelines, else it will follow GNOME guidelines."""
-		if is_eos:
-			builder = Gtk.Builder.new_from_resource(UI_PATH+'headerbar_eos.ui')
-		else:
-			builder = Gtk.Builder.new_from_resource(UI_PATH+'headerbar.ui')
-
-		# Code differences are kept minimal between the 2 cases: widgets will
-		# share similar names in order to both work with the same method
-		# updating widgets' visibility when resizing.
-		self.header_bar = builder.get_object('header_bar')
-		self.save_label = builder.get_object('save_label')
-		self.save_icon = builder.get_object('save_icon')
-		self.add_btn = builder.get_object('add_btn')
-		self.main_menu_btn = builder.get_object('main_menu_btn')
-
-		builder.add_from_resource(UI_PATH+'win-menus.ui')
-		self.short_main_menu = builder.get_object('short-window-menu')
-		self.long_main_menu = builder.get_object('long-window-menu')
-
-		# This one is the default to be coherent with the default value of
-		# self.is_short
-		self.main_menu_btn.set_menu_model(self.long_main_menu)
-
-		if not is_eos:
-			add_menu = builder.get_object('add-menu')
-			self.add_btn.set_menu_model(add_menu)
+		self.header_bar = DrawingAdaptativeHeaderBar(is_eos)
 
 	def action_main_menu(self, *args):
 		if self.main_menu_btn is not None:
@@ -480,14 +453,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Bottom panel width limit
 		self.set_bottom_width_limit()
 
-		if self.header_bar is None:
-			return
 		# Header bar width limit
-		self.header_bar.show_all()
-		widgets_width = self.save_label.get_preferred_width()[0] \
-			+ self.save_icon.get_preferred_width()[0] \
-			+ self.add_btn.get_preferred_width()[0]
-		self.limit_size_header = 3 * widgets_width # 100% arbitrary
+		if self.header_bar is not None:
+			self.header_bar.init_adaptability()
 
 	def adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
@@ -497,17 +465,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.init_adaptability()
 
 		if self.header_bar is not None:
-			if self.header_bar.get_allocated_width() < self.limit_size_header:
-				if not self.is_short:
-
-					self.is_short = True
-					self.compact_headerbar(True)
-					self.main_menu_btn.set_menu_model(self.long_main_menu)
-			else:
-				if self.is_short:
-					self.is_short = False
-					self.compact_headerbar(False)
-					self.main_menu_btn.set_menu_model(self.short_main_menu)
+			self.header_bar.adapt_to_window_size()
 
 		if self.active_tool().implements_panel:
 			self.active_tool().adapt_to_window_size()
