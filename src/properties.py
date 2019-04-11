@@ -38,19 +38,13 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 		# Alpha channel
 
-		# self.label_alpha_info = builder.get_object('label_alpha_info') # TODO
+		self.label_alpha_info = builder.get_object('label_alpha_info')
 
-		# self.toggle_alpha = builder.get_object('add_alpha_toggle')
-		# self.toggle_alpha.connect('toggled', self.set_alpha_widgets_visibility)
+		self.toggle_alpha = builder.get_object('add_alpha_toggle')
+		self.toggle_alpha.connect('toggled', self.set_alpha_widgets_visibility)
 
-		# self.switch_alpha_color = builder.get_object('switch_alpha_color')
-		# self.switch_alpha_color.connect('state-set', self.set_color_btn_sensitivity)
-
-		# self.button_alpha_color = builder.get_object('button_alpha_color')
-		# self.button_alpha_color.set_rgba(Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=1.0))
-
-		# self.add_alpha_button = builder.get_object('add_alpha_button')
-		# self.add_alpha_button.connect('clicked', self.add_alpha_to_image)
+		self.add_alpha_button = builder.get_object('add_alpha_button')
+		self.add_alpha_button.connect('clicked', self.add_alpha_to_image)
 
 		# Path and format
 
@@ -60,7 +54,8 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 		if self._image.gfile is not None:
 			label_path.set_label(self._image.get_file_path())
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info(self._image.get_file_path())
+			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info( \
+			                                        self._image.get_file_path())
 			label_format_file.set_label(pb_format.get_name())
 
 		self.set_format_label()
@@ -93,16 +88,14 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		}
 		cairo_format = enum.get(self._image.get_surface().get_format(), _("Invalid format"))
 		self.label_format_surface.set_label(cairo_format)
-		# if cairo_format is 'ARGB32':
-		# 	self.label_alpha_info.set_label(_("This surface format already supports transparency, " + \
-		# 		"but you can still replace a color with transparency."))
-		# 	self.switch_alpha_color.set_active(True)
-		# 	self.switch_alpha_color.set_visible(False)
-		# else:
-		# 	self.label_alpha_info.set_label(_("This surface format doesn't support transparency, " + \
-		# 		"you can add an alpha channel, optionally by replacing a color."))
-		# 	self.switch_alpha_color.set_active(False)
-		# 	self.switch_alpha_color.set_visible(True)
+		if cairo_format is 'ARGB32':
+			self.label_alpha_info.set_label( \
+			            _("This surface format already supports transparency."))
+		else:
+			self.label_alpha_info.set_label( \
+			          _("This surface format doesn't support transparency, " + \
+			  "you can add an alpha channel, optionally by replacing a color."))
+		return cairo_format
 
 	def set_size_labels(self):
 		"""Set the labels for picture width and height according to the selected
@@ -121,11 +114,11 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_width.set_label(str(width) + self.unit)
 		self.label_height.set_label(str(height) + self.unit)
 
-	# def set_alpha_widgets_visibility(self, *args):
-	# 	visible = args[0].get_active()
-	# 	self.label_alpha_info.set_visible(visible)
-	# 	self.button_alpha_color.set_visible(visible)
-	# 	self.add_alpha_button.set_visible(visible)
+	def set_alpha_widgets_visibility(self, *args):
+		visible = args[0].get_active()
+		self.label_alpha_info.set_visible(visible)
+		if (self.set_format_label() is not 'ARGB32') or (not visible):
+			self.add_alpha_button.set_visible(visible)
 
 	def set_unit(self, *args):
 		self.unit = args[1]
@@ -135,13 +128,10 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		want_color = self.switch_alpha_color.get_active()
 		self.button_alpha_color.set_sensitive(want_color)
 
-	# def add_alpha_to_image(self, *args):
-	# 	want_color = self.switch_alpha_color.get_active()
-	# 	red = int( self.button_alpha_color.get_rgba().red * 255 )
-	# 	green = int( self.button_alpha_color.get_rgba().green * 255 )
-	# 	blue = int( self.button_alpha_color.get_rgba().blue * 255 )
-	# 	self._image.main_pixbuf = self._image.main_pixbuf.add_alpha(want_color, \
-	# 		red, green, blue)
-	# 	self._image.use_stable_pixbuf()
-	# 	self._image.queue_draw()
+	def add_alpha_to_image(self, *args):
+		self._image.main_pixbuf = self._image.main_pixbuf.add_alpha(False, 0, 0, 0)
+		self._image.use_stable_pixbuf()
+		self._image.queue_draw()
+		self.set_format_label()
+		self.add_alpha_button.set_visible(False)
 
