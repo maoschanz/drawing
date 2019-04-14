@@ -43,9 +43,11 @@ Canvas/selection edition tools:
 
 ### Available languages
 
-- Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb))
+- Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
+- Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
 - French
+- Italian (thanks to [Jimmy](https://github.com/amivaleo))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 
 ----
@@ -78,9 +80,9 @@ More screenshots:
 
 ### Stable version
 
-TODO
+You can install it from flathub.org using the instructions on [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
 
-### Unstable version from `master`
+### Unstable/nightly version
 
 [See here](./INSTALL_FROM_SOURCE.md)
 

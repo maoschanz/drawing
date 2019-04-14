@@ -18,6 +18,9 @@ class ToolAddAlpha(ToolTemplate):
 	def get_options_model(self):
 		return None
 
+	def get_edition_status(self):
+		return _("Click on an area to replace its color by transparency")
+
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.rgb_vals = utilities_get_rgb_for_xy(surface, event.x, event.y)
 		if self.rgb_vals == [-1, -1, -1]:

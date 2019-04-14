@@ -128,7 +128,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		want_color = self.switch_alpha_color.get_active()
 		self.button_alpha_color.set_sensitive(want_color)
 
-	def add_alpha_to_image(self, *args):
+	def add_alpha_to_image(self, *args): # XXX not retained by history ?
 		self._image.main_pixbuf = self._image.main_pixbuf.add_alpha(False, 0, 0, 0)
 		self._image.use_stable_pixbuf()
 		self._image.queue_draw()

@@ -664,7 +664,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			self.get_active_image().gfile = gfile
-		self.action_save()
+			self.action_save()
 
 	def try_load_file(self, gfile):
 		if gfile is not None:

@@ -4,7 +4,7 @@
 
 ```
 git clone https://github.com/maoschanz/drawing.git
-cd drawing-master
+cd drawing
 meson _build
 cd _build
 ninja
