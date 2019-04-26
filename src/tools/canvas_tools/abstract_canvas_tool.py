@@ -49,13 +49,11 @@ class AbstractCanvasTool(ToolTemplate):
 	# 	else:
 	# 		self.init_if_main()
 
-	# def update_temp_pixbuf(self):
-	# 	operation = self.build_operation()
-	# 	self.do_tool_operation(operation)
+	def update_temp_pixbuf(self):
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
-
-
-	def finish_temp_pixbuf_tool_operation(self, is_selection): # TODO mettre ça dans utilities ?
+	def finish_pixbuf_tool_operation_preview(self, is_selection):
 		cairo_context = cairo.Context(self.get_surface())
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)

@@ -47,13 +47,13 @@ class ToolSaturate(AbstractCanvasTool):
 		return self.saturation_btn.get_value()/100
 
 	def on_sat_changed(self, *args):
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		self.update_temp_pixbuf()
 
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
+			'is_preview': True,
 			'saturation': self.get_saturation()
 		}
 		return operation
@@ -70,5 +70,9 @@ class ToolSaturate(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		temp = self.get_image().get_temp_pixbuf()
 		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
-		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+		if operation['is_preview']:
+			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
+		else:
+			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.restore_pixbuf()
 

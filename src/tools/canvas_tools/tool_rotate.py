@@ -84,9 +84,7 @@ class ToolRotate(AbstractCanvasTool):
 			angle = int(angle/90) * 90
 		if angle != self.get_angle():
 			self.angle_btn.set_value(angle)
-
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		self.update_temp_pixbuf()
 
 	def build_operation(self):
 		operation = {
@@ -109,7 +107,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.rotate_simple(angle))
 
 		if operation['is_preview']:
-			self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
 		else:
 			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.restore_pixbuf()

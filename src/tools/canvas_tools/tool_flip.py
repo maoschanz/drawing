@@ -56,14 +56,11 @@ class ToolFlip(AbstractCanvasTool):
 		self.flip_v = False
 		self.update_temp_pixbuf()
 
-	def update_temp_pixbuf(self):
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
+			'is_preview': True,
 			'flip_h': self.flip_h,
 			'flip_v': self.flip_v
 		}
@@ -89,5 +86,10 @@ class ToolFlip(AbstractCanvasTool):
 			self.get_image().set_temp_pixbuf(preview.flip(True))
 		elif flip_v:
 			self.get_image().set_temp_pixbuf(preview.flip(False))
-		self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+		if operation['is_preview']:
+			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
+		else:
+			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.restore_pixbuf()
+
 

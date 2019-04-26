@@ -100,10 +100,6 @@ class ToolScale(AbstractCanvasTool):
 		else:
 			self.update_temp_pixbuf()
 
-	def update_temp_pixbuf(self):
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
 
@@ -145,7 +141,7 @@ class ToolScale(AbstractCanvasTool):
 			operation['width'], operation['height'], GdkPixbuf.InterpType.TILES))
 
 		if operation['is_preview']:
-			self.finish_temp_pixbuf_tool_operation(operation['is_selection'])
+			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
 		else:
 			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.restore_pixbuf()
