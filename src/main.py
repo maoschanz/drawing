@@ -115,7 +115,7 @@ class Application(Gtk.Application):
 	def add_accels(self):
 		"""Set all keyboard shortcuts."""
 		self.set_accels_for_action('app.new_window', ['<Ctrl>n'])
-		self.set_accels_for_action('app.shortcuts', ['<Ctrl>?', '<Ctrl>F1'])
+		self.set_accels_for_action('app.shortcuts', ['<Ctrl>question', '<Ctrl>F1'])
 		self.set_accels_for_action('app.about', ['<Shift>F1'])
 		self.set_accels_for_action('app.help', ['F1'])
 		self.set_accels_for_action('app.quit', ['<Ctrl>q'])
