@@ -27,27 +27,21 @@ class AbstractCanvasTool(ToolTemplate):
 
 	def __init__(self, tool_id, label, icon_name, window, is_hidden, **kwargs):
 		super().__init__(tool_id, label, icon_name, window, is_hidden)
+		self.centered_box = None
+		self.needed_width_for_long = 0
 		# TODO
 
-	# def adapt_to_window_size(self):
-	# 	available_width = self.window.bottom_panel_box.get_allocated_width()
-	# 	if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
-	# 		self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
-	# 			self.cancel_btn.get_allocated_width() + \
-	# 			self.apply_btn.get_allocated_width()
-	# 	if self.needed_width_for_long > 0.8 * available_width:
-	# 		self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
-	# 	else:
-	# 		self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-
-	# def on_tool_selected(self, *args):
-	# 	self.apply_to_selection = (self.window.hijacker_id is not None)
-	# 	self._x = 0
-	# 	self._y = 0
-	# 	if self.apply_to_selection:
-	# 		self.init_if_selection()
-	# 	else:
-	# 		self.init_if_main()
+	def adapt_to_window_size(self, available_width):
+		if self.centered_box is None:
+			return
+		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
+			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
+				self.cancel_btn.get_allocated_width() + \
+				self.apply_btn.get_allocated_width()
+		if self.needed_width_for_long > 0.8 * available_width:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
+		else:
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
 
 	def update_temp_pixbuf(self):
 		operation = self.build_operation()

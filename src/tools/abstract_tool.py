@@ -60,8 +60,8 @@ class ToolTemplate():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_' \
-			+ self.id + '.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		       '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui')
 		return builder.get_object('options-menu')
 
 	def get_options_widget(self):
@@ -100,7 +100,7 @@ class ToolTemplate():
 		btn.show_all()
 		return btn
 
-	def adapt_to_window_size(self):
+	def adapt_to_window_size(self, available_width):
 		pass
 
 	# Activation or not

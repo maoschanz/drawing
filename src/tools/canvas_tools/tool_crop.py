@@ -32,7 +32,6 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 		self.move_instead_of_crop = False
-		self.needed_width_for_long = 0
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_crop.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
@@ -45,17 +44,6 @@ class ToolCrop(AbstractCanvasTool):
 		# FIXME X et Y ? TODO
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
-
-	def adapt_to_window_size(self):
-		available_width = self.window.bottom_panel_box.get_allocated_width()
-		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
-			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
-				self.cancel_btn.get_allocated_width() + \
-				self.apply_btn.get_allocated_width()
-		if self.needed_width_for_long > 0.8 * available_width:
-			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
-		else:
-			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
 
 	def get_edition_status(self):
 		if self.apply_to_selection:

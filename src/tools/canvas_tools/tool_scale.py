@@ -45,8 +45,6 @@ class ToolScale(AbstractCanvasTool):
 		self.proportions_btn = builder.get_object('proportions_btn')
 		self.proportions_btn.connect('toggled', self.set_keep_proportions)
 
-		self.needed_width_for_long = 0
-
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def get_edition_status(self):
@@ -54,17 +52,6 @@ class ToolScale(AbstractCanvasTool):
 			return _("Scaling the selection")
 		else:
 			return _("Scaling the canvas")
-
-	def adapt_to_window_size(self):
-		available_width = self.window.bottom_panel_box.get_allocated_width()
-		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
-			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
-				self.cancel_btn.get_allocated_width() + \
-				self.apply_btn.get_allocated_width()
-		if self.needed_width_for_long > 0.8 * available_width:
-			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
-		else:
-			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
 
 	############################################################################
 

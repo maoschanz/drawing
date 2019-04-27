@@ -62,8 +62,7 @@ class ToolSelect(ToolTemplate):
 	def add_subtool(self, tool):
 		self.centered_box.add(tool.build_selection_bar_btn())
 
-	def adapt_to_window_size(self):
-		available_width = self.window.bottom_panel_box.get_allocated_width()
+	def adapt_to_window_size(self, available_width): # FIXME ??? wtf
 		if available_width < 400: # No label so who cares
 			self.centered_box.set_visible(False)
 		else:

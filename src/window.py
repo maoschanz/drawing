@@ -467,10 +467,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.header_bar is not None:
 			self.header_bar.adapt_to_window_size()
 
-		if self.active_tool().implements_panel:
-			self.active_tool().adapt_to_window_size()
-		else:
-			available_width = self.bottom_panel_box.get_allocated_width()
+		available_width = self.bottom_panel_box.get_allocated_width()
+		print(available_width)
+		for tool_id in self.tools:
+			self.tools[tool_id].adapt_to_window_size(available_width)
+		if not self.active_tool().implements_panel:
 			if self.limit_size_bottom > 0.7 * available_width:
 				self.compact_bottombar(True)
 			else:
@@ -520,11 +521,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def set_tools_labels_visibility(self, visible):
 		if visible:
-			for label in self.tools:
-				self.tools[label].label_widget.set_visible(True)
+			for tool_id in self.tools:
+				self.tools[tool_id].label_widget.set_visible(True)
 		else:
-			for label in self.tools:
-				self.tools[label].label_widget.set_visible(False)
+			for tool_id in self.tools:
+				self.tools[tool_id].label_widget.set_visible(False)
 
 	def on_show_labels_setting_changed(self, *args):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
