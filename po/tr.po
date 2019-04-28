@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-28 16:00+0200\n"
-"PO-Revision-Date: 2019-03-12 21:20+0300\n"
+"PO-Revision-Date: 2019-04-28 21:07+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -36,7 +36,7 @@ msgstr "com.github.maoschanz.drawing"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in:12
 msgid "Paint;Sketch;Pencil;"
-msgstr ""
+msgstr "Çizim;Boyama;Karakalem;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:251 src/ui/shortcuts.ui:16 src/ui/toolbar.ui:28
@@ -55,11 +55,11 @@ msgstr "GNOME masaüstü için bir çizim uygulaması."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:9
 msgid "A simple application to draw or edit pictures."
-msgstr ""
+msgstr "Resim çizmek veya düzenlemek için basit bir uygulama."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:10
 msgid "It includes tools like:"
-msgstr ""
+msgstr "Bu gibi araçlar içerir:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:12
 #: src/tools/tool_pencil.py:14
@@ -68,7 +68,7 @@ msgstr "Fırça"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:13
 msgid "Selection (cut/copy/paste/drag/…)"
-msgstr ""
+msgstr "Seçim (kes/kopyala/yapıştır/sürükle /…)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14
 #: src/tools/tool_line.py:15
@@ -112,17 +112,19 @@ msgstr "Boya"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:27
 msgid "First stable version"
-msgstr ""
+msgstr "İlk kararlı sürüm"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:32
 msgid ""
 "New icon, new \"remove color\" tool, bug fixes, and various new translations"
 msgstr ""
+"Yeni simge, yeni \"rengi kaldır\" aracı, hata düzeltmeleri ve çeşitli yeni "
+"çeviriler"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "Romain F. T."
-msgstr ""
+msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:138 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:195 src/ui/toolbar.ui:196 src/ui/win-menus.ui:64
@@ -402,9 +404,8 @@ msgid "Invalid format"
 msgstr "Geçersiz biçim"
 
 #: src/ui/properties.ui:134
-#, fuzzy
 msgid "Add transparency"
-msgstr "Daima şeffaflık ekle"
+msgstr "Şeffaflık ekle"
 
 #: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
@@ -663,11 +664,8 @@ msgid "Everything (testing only)"
 msgstr "Her şey (sadece test)"
 
 #: src/properties.py:93
-#, fuzzy
 msgid "This surface format already supports transparency."
-msgstr ""
-"Bu yüzey biçimi zaten saydamlığı destekliyor, ancak yine de bir saydamlığı "
-"olan bir rengi değiştirebilirsiniz."
+msgstr "Bu yüzey biçimi zaten saydamlığı destekliyor."
 
 #: src/properties.py:96
 msgid ""
@@ -737,9 +735,8 @@ msgstr "Klasik"
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:40
 #: src/tools/ui/tool_pencil.ui:36 src/tools/tool_arc.py:46
 #: src/tools/tool_line.py:46 src/tools/tool_pencil.py:53
-#, fuzzy
 msgid "Source color"
-msgstr "İkincil renk"
+msgstr "Kaynak renk"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:45
 #: src/tools/ui/tool_pencil.ui:41 src/tools/tool_arc.py:49
@@ -917,13 +914,12 @@ msgid "Font"
 msgstr "Yazı tipi"
 
 #: src/tools/tool_addalpha.py:15
-#, fuzzy
 msgid "Remove color"
-msgstr "İkincil renk"
+msgstr "Rengi kaldır"
 
 #: src/tools/tool_addalpha.py:22
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "Rengi saydamlıkla değiştirmek için bir alana tıkla"
 
 #: src/tools/tool_arc.py:55
 msgid "Arc options"
