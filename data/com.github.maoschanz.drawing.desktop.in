@@ -2,12 +2,14 @@
 Name=Drawing
 Comment=Simple drawing utility
 Exec=drawing %U
-Terminal=false
-Type=Application
-Categories=Graphics;GNOME;GTK;
-StartupNotify=true
 # Icon name, do not translate
 Icon=com.github.maoschanz.drawing
+Terminal=false
+Type=Application
+StartupNotify=true
+# This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+Keywords=Paint;Sketch;Pencil;
+Categories=Graphics;GNOME;GTK;
 MimeType=image/png;image/bmp;image/jpeg;
 Actions=new-window;new-tab;
 

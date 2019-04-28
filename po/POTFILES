@@ -1,17 +1,19 @@
 data/com.github.maoschanz.drawing.desktop.in
+data/com.github.maoschanz.drawing.appdata.xml.in
 
-src/ui/window.ui
+src/ui/app-menus.ui
+src/ui/color_popover.ui
+src/ui/headerbar.ui
+src/ui/headerbar_eos.ui
 src/ui/preferences.ui
 src/ui/properties.ui
 src/ui/shortcuts.ui
-src/ui/app-menus.ui
-src/ui/win-menus.ui
 src/ui/toolbar.ui
-src/ui/color_popover.ui
+src/ui/window.ui
+src/ui/win-menus.ui
 
 src/main.py
 src/window.py
-src/tools.py
 src/preferences.py
 src/properties.py
 src/utilities.py
@@ -33,10 +35,10 @@ src/tools/ui/tool_scale.ui
 src/tools/ui/tool_select.ui
 src/tools/ui/tool_text.ui
 
+src/tools/abstract_tool.py
+src/tools/tool_addalpha.py
 src/tools/tool_arc.py
 src/tools/tool_circle.py
-src/tools/tool_crop.py
-src/tools/tool_flip.py
 src/tools/tool_freeshape.py
 src/tools/tool_experiment.py
 src/tools/tool_line.py
@@ -45,8 +47,11 @@ src/tools/tool_polygon.py
 src/tools/tool_pencil.py
 src/tools/tool_picker.py
 src/tools/tool_rectangle.py
-src/tools/tool_rotate.py
-src/tools/tool_scale.py
 src/tools/tool_select.py
 src/tools/tool_text.py
 
+src/tools/canvas_tools/tool_crop.py
+src/tools/canvas_tools/tool_flip.py
+src/tools/canvas_tools/tool_rotate.py
+src/tools/canvas_tools/tool_saturate.py
+src/tools/canvas_tools/tool_scale.py

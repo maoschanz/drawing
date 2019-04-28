@@ -468,7 +468,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.adapt_to_window_size()
 
 		available_width = self.bottom_panel_box.get_allocated_width()
-		print(available_width)
+		# print(available_width)
 		for tool_id in self.tools:
 			self.tools[tool_id].adapt_to_window_size(available_width)
 		if not self.active_tool().implements_panel:
