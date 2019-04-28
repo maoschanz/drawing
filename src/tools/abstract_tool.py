@@ -12,7 +12,7 @@ class ToolTemplate():
 		self.id = tool_id
 		self.label = label
 		self.icon_name = icon_name
-		self.is_hidden = is_hidden
+		self.is_hidden = is_hidden # TODO remplacer ça par un "groupe" (0, 1 ou 2)
 		self.tool_width = 10
 		self.cursor_name = 'cell'
 		self.selection_is_active = False

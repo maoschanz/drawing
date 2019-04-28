@@ -20,6 +20,7 @@ Drawing tools:
 |Rectangle  |Filling         |
 |Circle     |Regular circle or oval; Filling
 |Polygon    |Filling         |
+|Remove color|               | <!-- XXX should be a canvas tool -->
 |Free shape |Filling         |
 |Line       |Arrow, dashes, …|
 |Arc        |Arrow, dashes, …|
