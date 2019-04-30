@@ -436,7 +436,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_btn.set_active(not self.options_btn.get_active())
 
 	def set_bottom_width_limit(self): # XXX devrait se transmettre aux panneaux custom
-		if not self.has_good_limits: # heureusement ils marchent assez bien tous seuls
+		if self.has_good_limits: # heureusement ils marchent assez bien tous seuls
 			return
 		self.bottom_panel.show_all()
 		self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
