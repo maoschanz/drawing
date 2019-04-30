@@ -76,7 +76,10 @@ class ToolTemplate():
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method does not pack
 		it in the bar, and does not return it, but store it as "self.row"."""
-		self.row = Gtk.RadioButton(draw_indicator=False, tooltip_text=self.label)
+		self.row = Gtk.RadioButton( \
+			draw_indicator=False, \
+			tooltip_text=self.label, \
+			relief=Gtk.ReliefStyle.NONE)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
 		self.label_widget = Gtk.Label(label=self.label)
@@ -90,6 +93,7 @@ class ToolTemplate():
 		self.row.add(box)
 		if not self.is_hidden:
 			self.row.show_all()
+		# self.row.show_all() # TODO
 
 	def build_selection_bar_btn(self):
 		"""Build the GtkButton for the selection's bottom bar, and returns it.

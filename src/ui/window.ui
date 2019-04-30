@@ -46,6 +46,16 @@
             <property name="visible">True</property>
             <property name="expand">True</property>
             <property name="orientation">horizontal</property>
+            <!-- TODO -->
+            <!-- <child> -->
+            <!--   <object class="GtkFlowBox" id="tools_panel"> -->
+            <!--     <property name="visible">True</property> -->
+            <!--     <property name="selection-mode">none</property> -->
+            <!--     <property name="max-children-per-line">12</property> -->
+            <!--     <property name="min-children-per-line">5</property> -->
+            <!--     <property name="orientation">vertical</property> -->
+            <!--   </object> -->
+            <!-- </child> -->
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
@@ -55,9 +65,6 @@
                     <property name="visible">True</property>
                     <property name="margin">5</property>
                     <property name="orientation">vertical</property>
-                    <style>
-                      <class name="linked"/>
-                    </style>
                   </object>
                 </child>
               </object>
