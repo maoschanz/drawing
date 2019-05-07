@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-28 16:00+0200\n"
-"PO-Revision-Date: 2019-04-10 10:01+0100\n"
+"PO-Revision-Date: 2019-05-07 14:04+0000\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:188
 #: src/window.py:344
 msgid "Drawing"
-msgstr ""
+msgstr "Drawing"
 
 #: data/com.github.maoschanz.drawing.desktop.in:4
 msgid "Simple drawing utility"
@@ -32,12 +32,12 @@ msgstr "Utilidad de dibujo sencilla"
 #. Icon name, do not translate
 #: data/com.github.maoschanz.drawing.desktop.in:7
 msgid "com.github.maoschanz.drawing"
-msgstr ""
+msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in:12
 msgid "Paint;Sketch;Pencil;"
-msgstr ""
+msgstr "Paint;Boceto;Lápiz;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:251 src/ui/shortcuts.ui:16 src/ui/toolbar.ui:28
@@ -56,11 +56,11 @@ msgstr "Una aplicación de dibujo para el escritorio GNOME."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:9
 msgid "A simple application to draw or edit pictures."
-msgstr ""
+msgstr "Una sencilla aplicación para dibujar o editar imágenes."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:10
 msgid "It includes tools like:"
-msgstr ""
+msgstr "Incluye herramientas como:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:12
 #: src/tools/tool_pencil.py:14
@@ -69,7 +69,7 @@ msgstr "Lápiz"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:13
 msgid "Selection (cut/copy/paste/drag/…)"
-msgstr ""
+msgstr "Selección (cortar/copiar/pegar/arrastrar/…)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14
 #: src/tools/tool_line.py:15
@@ -113,17 +113,19 @@ msgstr "Relleno"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:27
 msgid "First stable version"
-msgstr ""
+msgstr "Primera versión estable"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:32
 msgid ""
 "New icon, new \"remove color\" tool, bug fixes, and various new translations"
 msgstr ""
+"Nuevo icono, nueva herramienta «eliminar color», resolución de errores, y "
+"nuevas traducciones"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "Romain F. T."
-msgstr ""
+msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:138 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:195 src/ui/toolbar.ui:196 src/ui/win-menus.ui:64
@@ -403,9 +405,8 @@ msgid "Invalid format"
 msgstr "Formato no válido"
 
 #: src/ui/properties.ui:134
-#, fuzzy
 msgid "Add transparency"
-msgstr "Siempre añadir transparencia"
+msgstr "Añadir transparencia"
 
 #: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
@@ -666,11 +667,8 @@ msgid "Everything (testing only)"
 msgstr "Todo (solo para pruebas)"
 
 #: src/properties.py:93
-#, fuzzy
 msgid "This surface format already supports transparency."
-msgstr ""
-"El formato de imagen soporta transparencia; aún así, puede reemplazar un "
-"color por transparencia."
+msgstr "El formato de imagen ya soporta transparencia."
 
 #: src/properties.py:96
 msgid ""
@@ -919,13 +917,12 @@ msgid "Font"
 msgstr "Tipo de letra"
 
 #: src/tools/tool_addalpha.py:15
-#, fuzzy
 msgid "Remove color"
-msgstr "Color de origen"
+msgstr "Eliminar color"
 
 #: src/tools/tool_addalpha.py:22
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "Haga clic en un área para reemplazar su color por transparencia."
 
 #: src/tools/tool_arc.py:55
 msgid "Arc options"
