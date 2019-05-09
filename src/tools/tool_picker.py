@@ -11,7 +11,7 @@ class ToolPicker(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window, False)
+		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
 
 	def get_options_model(self):
 		return None

@@ -9,11 +9,11 @@ from .utilities import utilities_get_magic_path
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
-	implements_panel = True
+	implements_panel = False
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):
-		super().__init__('select', _("Selection"), 'tool-select-symbolic', window, False)
+		super().__init__('select', _("Selection"), 'tool-select-symbolic', window)
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle selection")
 		self.background_type_id = 'transparent'
@@ -36,48 +36,28 @@ class ToolSelect(ToolTemplate):
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
 
-		self.bottom_panel = builder.get_object('bottom-panel')
-		self.centered_box = builder.get_object('centered-box')
-		self.minimap_btn = builder.get_object('minimap_btn')
-		self.window.bottom_panel_box.add(self.bottom_panel)
-
 		menu_r = builder.get_object('right-click-menu')
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_r)
 		menu_l = builder.get_object('left-click-menu')
 		self.selection_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_l)
-		builder.get_object('actions_btn').connect('clicked', self.on_actions_btn_clicked)
 
-		btn1 = builder.get_object('selection_type_btn1')
-		builder.get_object('selection_type_btn2').join_group(btn1)
-		builder.get_object('selection_type_btn3').join_group(btn1)
-		self.add_tool_action_enum_radio('selection_type', self.selected_type_id)
+		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
 		self.exclude_color = False
-		# self.add_tool_action_boolean('selection_exclude', False)
+		# self.add_tool_action_boolean('selection_exclude', self.exclude_color)
 
 		self.selection_has_been_used = False
 		self.selection_is_active = False
 		self.reset_temp()
 
-	def add_subtool(self, tool):
-		self.centered_box.add(tool.build_selection_bar_btn())
-
-	def adapt_to_window_size(self, available_width): # FIXME ??? wtf
-		if available_width < 400: # No label so who cares
-			self.centered_box.set_visible(False)
-		else:
-			self.centered_box.set_visible(True)
-
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
 		self.update_actions_state()
 		self.selection_popover.set_relative_to(self.get_image())
-		self.window.minimap.set_relative_to(self.minimap_btn)
 		self.update_surface()
 
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
-		self.window.minimap.set_relative_to(self.window.minimap_btn)
 
 	def update_actions_state(self):
 		if self.selection_is_active:
@@ -107,7 +87,7 @@ class ToolSelect(ToolTemplate):
 
 	def get_options_label(self):
 		return _("Selection options")
-		# XXX should not be used, and isn't visible
+		# return self.selected_type_label # XXX better ?
 
 	def get_edition_status(self):
 		self.set_active_type()

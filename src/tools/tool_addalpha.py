@@ -12,7 +12,7 @@ class ToolAddAlpha(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('addalpha', _("Remove color"), 'tool-addalpha-symbolic', window, False)
+		super().__init__('addalpha', _("Remove color"), 'tool-addalpha-symbolic', window)
 		self.rgb_vals = []
 
 	def get_options_model(self):

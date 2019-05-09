@@ -8,11 +8,10 @@ import cairo
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
 
-	def __init__(self, tool_id, label, icon_name, window, is_hidden, **kwargs):
+	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
 		self.label = label
 		self.icon_name = icon_name
-		self.is_hidden = is_hidden # TODO remplacer ça par un "groupe" (0, 1 ou 2)
 		self.tool_width = 10
 		self.cursor_name = 'cell'
 		self.selection_is_active = False
@@ -34,9 +33,6 @@ class ToolTemplate():
 
 	def add_tool_action_enum(self, action_name, default):
 		self.window.options_manager.add_tool_option_enum(action_name, default)
-
-	def add_tool_action_enum_radio(self, action_name, default):
-		self.window.options_manager.add_tool_option_enum_radio(action_name, default)
 
 	def get_option_value(self, action_name):
 		return self.window.options_manager.get_value(action_name)
@@ -91,18 +87,7 @@ class ToolTemplate():
 		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)
-		if not self.is_hidden:
-			self.row.show_all()
-		# self.row.show_all() # TODO
-
-	def build_selection_bar_btn(self):
-		"""Build the GtkButton for the selection's bottom bar, and returns it.
-		This method does not concern all tools."""
-		btn = Gtk.Button.new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
-		btn.set_tooltip_text(self.label)
-		btn.set_detailed_action_name('win.selection_' + self.id)
-		btn.show_all()
-		return btn
+		self.row.show_all()
 
 	def adapt_to_window_size(self, available_width):
 		pass

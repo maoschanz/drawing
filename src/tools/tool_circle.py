@@ -12,7 +12,7 @@ class ToolCircle(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('circle', _("Circle"), 'tool-circle-symbolic', window, False)
+		super().__init__('circle', _("Circle"), 'tool-circle-symbolic', window)
 		self.use_size = True
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)

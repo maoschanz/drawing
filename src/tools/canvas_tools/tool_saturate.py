@@ -26,7 +26,7 @@ class ToolSaturate(AbstractCanvasTool):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('saturate', _("Saturate"), 'tool-saturate-symbolic', window, True)
+		super().__init__('saturate', _("Saturate"), 'tool-saturate-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 

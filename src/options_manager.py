@@ -58,28 +58,6 @@ class DrawingOptionsManager():
 		args[0].set_state(GLib.Variant.new_boolean(new_value))
 		self.window.set_picture_title()
 
-	def enum_callback_radio(self, *args):
-		"""This callback is awful in order to avoid infinite loops caused by
-		recursive state changes between a menuitem and a radiobutton. However
-		it can't handle 2 menus (such as a menubar + a popover menu)."""
-		new_value = args[1].get_string()
-		current_value = args[0].get_state().get_string()
-
-		# If the values are the opposite of the previously set ones, assume we
-		# are on the edge on a infinite loop. Values are then exchanged, because
-		# the user might want to actually go back to the former value.
-		# Cases "m1 m2 m1 m2"
-		if self.cached_value1 == new_value and self.cached_value2 == current_value:
-			self.cached_value1 = None
-			self.cached_value2 = None
-			return
-		# Cases "b1 b2 b1 b2"
-		self.cached_value1 = current_value
-		self.cached_value2 = new_value
-
-		self.enum_callback(*args)
-		# Some cases stay unhandled, such as "b1 m2 b1 **dead m2**"
-
 	def enum_callback(self, *args):
 		"""This callback is simple but can't handle both menuitems and
 		radiobuttons. It is only good for menuitems and modelbuttons."""

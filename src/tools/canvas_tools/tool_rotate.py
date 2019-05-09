@@ -26,7 +26,7 @@ class ToolRotate(AbstractCanvasTool):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window, True)
+		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 

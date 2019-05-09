@@ -46,24 +46,13 @@
             <property name="visible">True</property>
             <property name="expand">True</property>
             <property name="orientation">horizontal</property>
-            <!-- TODO -->
-            <!-- <child> -->
-            <!--   <object class="GtkFlowBox" id="tools_panel"> -->
-            <!--     <property name="visible">True</property> -->
-            <!--     <property name="selection-mode">none</property> -->
-            <!--     <property name="max-children-per-line">12</property> -->
-            <!--     <property name="min-children-per-line">5</property> -->
-            <!--     <property name="orientation">vertical</property> -->
-            <!--   </object> -->
-            <!-- </child> -->
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkScrolledWindow" id="tools_scrollable_box">
                 <property name="visible">True</property>
-                <property name="hscrollbar-policy">never</property>
                 <child>
-                  <object class="GtkBox" id="tools_panel">
+                  <object class="GtkFlowBox" id="tools_panel">
                     <property name="visible">True</property>
-                    <property name="margin">5</property>
+                    <property name="selection-mode">none</property>
                     <property name="orientation">vertical</property>
                   </object>
                 </child>

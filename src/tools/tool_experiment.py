@@ -11,7 +11,7 @@ class ToolExperiment(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('experiment', _("Experiment"), 'applications-science-symbolic', window, False)
+		super().__init__('experiment', _("Experiment"), 'applications-science-symbolic', window)
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None

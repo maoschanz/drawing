@@ -12,7 +12,7 @@ class ToolPolygon(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('polygon', _("Polygon"), 'tool-polygon-symbolic', window, False)
+		super().__init__('polygon', _("Polygon"), 'tool-polygon-symbolic', window)
 		self.use_size = True
 
 		(self.x_press, self.y_press) = (-1.0, -1.0)

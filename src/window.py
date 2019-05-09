@@ -63,6 +63,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	info_label = GtkTemplate.Child()
 	notebook = GtkTemplate.Child()
 	bottom_panel_box = GtkTemplate.Child()
+	tools_scrollable_box = GtkTemplate.Child()
 
 	# Default bottom panel
 	bottom_panel = GtkTemplate.Child()
@@ -156,7 +157,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
 				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
-				if self.tools[tool_id].is_hidden:
+				if False:
+				# if self.tools[tool_id].is_hidden: FIXME
 					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
 				else:
 					self.tools[tool_id].add_item_to_menu(drawing_tools_section)
@@ -515,17 +517,23 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
-			if self.tools[tool_id].is_hidden:
-				self.get_selection_tool().add_subtool(self.tools[tool_id])
 		self.on_show_labels_setting_changed()
 
 	def set_tools_labels_visibility(self, visible):
+		for tool_id in self.tools:
+			self.tools[tool_id].label_widget.set_visible(visible)
+		nb_tools = len(self.tools)
 		if visible:
-			for tool_id in self.tools:
-				self.tools[tool_id].label_widget.set_visible(True)
+			self.tools_scrollable_box.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+			self.tools_panel.set_min_children_per_line(nb_tools)
 		else:
-			for tool_id in self.tools:
-				self.tools[tool_id].label_widget.set_visible(False)
+			self.tools_scrollable_box.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+			nb_tools = len(self.tools)
+			if nb_tools % 2 != 0:
+				self.tools_panel.set_min_children_per_line( nb_tools/2 )
+			else:
+				self.tools_panel.set_min_children_per_line( (nb_tools+1)/2 )
+		self.tools_panel.set_max_children_per_line(nb_tools)
 
 	def on_show_labels_setting_changed(self, *args):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
@@ -642,7 +650,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			_("Open"),
 			_("Cancel"))
 		self.add_filechooser_filters(file_chooser)
-
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			gfile = file_chooser.get_file()
@@ -738,7 +745,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_filechooser_filters(file_chooser)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
-
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			gfile = file_chooser.get_file()

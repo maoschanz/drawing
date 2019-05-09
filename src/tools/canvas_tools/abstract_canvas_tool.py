@@ -25,8 +25,8 @@ class AbstractCanvasTool(ToolTemplate):
 
 	implements_panel = True
 
-	def __init__(self, tool_id, label, icon_name, window, is_hidden, **kwargs):
-		super().__init__(tool_id, label, icon_name, window, is_hidden)
+	def __init__(self, tool_id, label, icon_name, window, **kwargs):
+		super().__init__(tool_id, label, icon_name, window)
 		self.centered_box = None
 		self.needed_width_for_long = 0
 		# TODO

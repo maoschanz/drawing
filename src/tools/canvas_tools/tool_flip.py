@@ -26,7 +26,7 @@ class ToolFlip(AbstractCanvasTool):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window, True)
+		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 		self.flip_h = False

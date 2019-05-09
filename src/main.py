@@ -279,7 +279,7 @@ flatpak run --file-forwarding {0} @@ {1} @@
 			authors=['Romain F. T.'],
 			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
-			artists=['Dmitry Z.'],
+			artists=['Tobias Bernard'],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID,

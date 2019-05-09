@@ -26,7 +26,7 @@ class ToolScale(AbstractCanvasTool):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window, True)
+		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'se-resize'
 		self.keep_proportions = False
 		self.x_press = 0

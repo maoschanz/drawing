@@ -12,7 +12,7 @@ class ToolLine(ToolTemplate):
 	implements_panel = False
 
 	def __init__(self, window, **kwargs):
-		super().__init__('line', _("Line"), 'tool-line-symbolic', window, False)
+		super().__init__('line', _("Line"), 'tool-line-symbolic', window)
 		self.use_size = True
 
 		self.add_tool_action_enum('line_shape', 'round')

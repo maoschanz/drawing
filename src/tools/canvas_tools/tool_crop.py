@@ -26,7 +26,7 @@ class ToolCrop(AbstractCanvasTool):
 	implements_panel = True
 
 	def __init__(self, window):
-		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window, True)
+		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
 		self.cursor_name = 'se-resize'
 		self.apply_to_selection = False
 		self.x_press = 0
