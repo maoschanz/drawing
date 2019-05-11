@@ -29,11 +29,11 @@ class ToolPaint(ToolTemplate):
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		# Guard clause: we can't paint outside of the surface
-		if event.x < 0 or event.x > surface.get_width() \
-		or event.y < 0 or event.y > surface.get_height():
+		if event_x < 0 or event_x > surface.get_width() \
+		or event_y < 0 or event_y > surface.get_height():
 			return
 
-		(x, y) = (int(event.x), int(event.y))
+		(x, y) = (int(event_x), int(event_y))
 
 		self.old_color = utilities_get_rgb_for_xy(surface, x, y)
 

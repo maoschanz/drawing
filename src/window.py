@@ -157,8 +157,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
 				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
-				if False:
-				# if self.tools[tool_id].is_hidden: FIXME
+				if self.tools[tool_id].menu_id > 0:
 					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
 				else:
 					self.tools[tool_id].add_item_to_menu(drawing_tools_section)

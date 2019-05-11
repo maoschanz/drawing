@@ -12,6 +12,7 @@ class ToolTemplate():
 		self.id = tool_id
 		self.implements_panel = False
 		self.use_color = True
+		self.menu_id = 0
 		self.label = label
 		self.icon_name = icon_name
 		self.tool_width = 10

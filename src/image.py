@@ -68,6 +68,7 @@ class DrawingImage(Gtk.Layout):
 		self.selection_x = 1
 		self.selection_y = 1
 		self.selection_path = None
+		self.selection_is_defined = False
 
 		self.update_history_sensitivity(False)
 		self.use_stable_pixbuf()
