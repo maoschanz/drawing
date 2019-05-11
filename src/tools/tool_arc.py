@@ -9,8 +9,6 @@ from .utilities import utilities_add_arrow_triangle
 class ToolArc(ToolTemplate):
 	__gtype_name__ = 'ToolArc'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('arc', _("Arc"), 'tool-arc-symbolic', window)
 		self.use_size = True

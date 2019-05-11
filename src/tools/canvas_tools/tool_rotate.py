@@ -23,8 +23,6 @@ from .abstract_canvas_tool import AbstractCanvasTool
 class ToolRotate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolRotate'
 
-	implements_panel = True
-
 	def __init__(self, window):
 		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window)
 		self.cursor_name = 'not-allowed'

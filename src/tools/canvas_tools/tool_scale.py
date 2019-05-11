@@ -23,8 +23,6 @@ from .abstract_canvas_tool import AbstractCanvasTool
 class ToolScale(AbstractCanvasTool):
 	__gtype_name__ = 'ToolScale'
 
-	implements_panel = True
-
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'se-resize'

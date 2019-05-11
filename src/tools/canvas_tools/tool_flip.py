@@ -23,8 +23,6 @@ from .abstract_canvas_tool import AbstractCanvasTool
 class ToolFlip(AbstractCanvasTool):
 	__gtype_name__ = 'ToolFlip'
 
-	implements_panel = True
-
 	def __init__(self, window):
 		super().__init__('flip', _("Flip"), 'tool-flip-symbolic', window)
 		self.cursor_name = 'not-allowed'

@@ -9,8 +9,6 @@ from .utilities import utilities_generic_shape_tool_operation
 class ToolPolygon(ToolTemplate):
 	__gtype_name__ = 'ToolPolygon'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('polygon', _("Polygon"), 'tool-polygon-symbolic', window)
 		self.use_size = True

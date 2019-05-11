@@ -23,8 +23,6 @@ from .abstract_canvas_tool import AbstractCanvasTool
 class ToolSaturate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSaturate'
 
-	implements_panel = True
-
 	def __init__(self, window):
 		super().__init__('saturate', _("Saturate"), 'tool-saturate-symbolic', window)
 		self.cursor_name = 'not-allowed'

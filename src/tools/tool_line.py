@@ -9,8 +9,6 @@ from .utilities import utilities_add_arrow_triangle
 class ToolLine(ToolTemplate):
 	__gtype_name__ = 'ToolLine'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'tool-line-symbolic', window)
 		self.use_size = True

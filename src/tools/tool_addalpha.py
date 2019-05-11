@@ -9,10 +9,9 @@ from .utilities import utilities_get_rgb_for_xy
 class ToolAddAlpha(ToolTemplate):
 	__gtype_name__ = 'ToolAddAlpha'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('addalpha', _("Remove color"), 'tool-addalpha-symbolic', window)
+		self.use_color = False
 		self.rgb_vals = []
 
 	def get_options_model(self):
@@ -25,7 +24,7 @@ class ToolAddAlpha(ToolTemplate):
 		self.tool_width = tool_width
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
-		self.rgb_vals = utilities_get_rgb_for_xy(surface, event.x, event.y)
+		self.rgb_vals = utilities_get_rgb_for_xy(surface, event_x, event_y)
 		if self.rgb_vals == [-1, -1, -1]:
 			return # click outside of the surface
 		operation = self.build_operation()

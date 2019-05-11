@@ -23,8 +23,6 @@ from .abstract_canvas_tool import AbstractCanvasTool
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
 
-	implements_panel = True
-
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
 		self.cursor_name = 'se-resize'

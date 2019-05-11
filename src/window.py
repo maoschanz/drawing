@@ -569,6 +569,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().queue_draw()
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()
+		self.color_box.set_sensitive(self.active_tool().use_color)
 		self.active_tool().on_tool_selected()
 		self.set_picture_title()
 

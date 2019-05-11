@@ -9,8 +9,6 @@ from .utilities import utilities_generic_shape_tool_operation
 class ToolCircle(ToolTemplate):
 	__gtype_name__ = 'ToolCircle'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('circle', _("Circle"), 'tool-circle-symbolic', window)
 		self.use_size = True

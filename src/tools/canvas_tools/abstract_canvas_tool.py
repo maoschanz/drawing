@@ -23,10 +23,9 @@ from .abstract_tool import ToolTemplate
 class AbstractCanvasTool(ToolTemplate):
 	__gtype_name__ = 'AbstractCanvasTool'
 
-	implements_panel = True
-
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
+		self.implements_panel = True
 		self.centered_box = None
 		self.needed_width_for_long = 0
 		# TODO

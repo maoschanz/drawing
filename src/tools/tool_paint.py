@@ -10,8 +10,6 @@ from .utilities import utilities_get_rgb_for_xy
 class ToolPaint(ToolTemplate):
 	__gtype_name__ = 'ToolPaint'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window)
 		self.new_color = None

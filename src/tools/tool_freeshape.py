@@ -9,8 +9,6 @@ from .utilities import utilities_generic_shape_tool_operation
 class ToolFreeshape(ToolTemplate):
 	__gtype_name__ = 'ToolFreeshape'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('freeshape', _("Free shape"), 'tool-freeshape-symbolic', window)
 		self.use_size = True

@@ -10,6 +10,8 @@ class ToolTemplate():
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
+		self.implements_panel = False
+		self.use_color = True
 		self.label = label
 		self.icon_name = icon_name
 		self.tool_width = 10

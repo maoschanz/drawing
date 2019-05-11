@@ -52,7 +52,7 @@ class DrawingOptionsManager():
 
 	############################################################################
 
-	def boolean_callback(self, *args): # TODO recursivity-resilient variation of this callback ?
+	def boolean_callback(self, *args):
 		new_value = args[1].get_boolean()
 		# current_value = args[0].get_state()
 		args[0].set_state(GLib.Variant.new_boolean(new_value))

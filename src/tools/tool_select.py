@@ -9,11 +9,11 @@ from .utilities import utilities_get_magic_path
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
 
-	implements_panel = False
 	closing_precision = 10
 
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'tool-select-symbolic', window)
+		self.use_color = False
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle selection")
 		self.background_type_id = 'transparent'

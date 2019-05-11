@@ -8,8 +8,6 @@ from .abstract_tool import ToolTemplate
 class ToolPencil(ToolTemplate):
 	__gtype_name__ = 'ToolPencil'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('pencil', _("Pencil"), 'tool-pencil-symbolic', window)
 		self.past_x = -1.0

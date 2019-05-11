@@ -9,8 +9,6 @@ from .utilities import utilities_generic_shape_tool_operation
 class ToolRectangle(ToolTemplate):
 	__gtype_name__ = 'ToolRectangle'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('rectangle', _("Rectangle"), 'tool-rectangle-symbolic', window)
 		self.use_size = True

@@ -8,8 +8,6 @@ from .abstract_tool import ToolTemplate
 class ToolText(ToolTemplate):
 	__gtype_name__ = 'ToolText'
 
-	implements_panel = False
-
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
 
