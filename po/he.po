@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-28 16:00+0200\n"
-"PO-Revision-Date: 2019-05-12 00:07+0300\n"
+"PO-Revision-Date: 2019-05-12 02:34+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgstr "עיפרון"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:13
 msgid "Selection (cut/copy/paste/drag/…)"
-msgstr "בחירה (חתיכה/העתקה/הדבקה/משיכה/...)"
+msgstr "בחירה (חתיכה/העתקה/הדבקה/גרירה/...)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14
 #: src/tools/tool_line.py:15
@@ -270,7 +270,7 @@ msgstr "רענון"
 
 #: src/ui/app-menus.ui:180 src/ui/win-menus.ui:122
 msgid "Rebuild from history"
-msgstr ""
+msgstr "בנה מחדש מההסטוריה"
 
 #: src/ui/app-menus.ui:188 src/ui/shortcuts.ui:37 src/ui/toolbar.ui:183
 #: src/ui/toolbar.ui:184 src/ui/win-menus.ui:60 src/ui/win-menus.ui:129
@@ -283,11 +283,11 @@ msgstr "_צבעים"
 
 #: src/ui/app-menus.ui:201
 msgid "Main color"
-msgstr ""
+msgstr "צבע ראשי"
 
 #: src/ui/app-menus.ui:205
 msgid "Secondary color"
-msgstr ""
+msgstr "צבע משנה"
 
 #: src/ui/app-menus.ui:211 src/ui/shortcuts.ui:208 src/ui/window.ui:127
 msgid "Exchange colors"
@@ -295,7 +295,7 @@ msgstr "החלף צבעים"
 
 #: src/ui/app-menus.ui:218
 msgid "Color editor by default"
-msgstr ""
+msgstr "עורך צבעים בברירת המחדל"
 
 #: src/ui/app-menus.ui:225
 msgid "_Tools"
@@ -303,7 +303,7 @@ msgstr "_כלים"
 
 #: src/ui/app-menus.ui:230
 msgid "_Canvas"
-msgstr ""
+msgstr "_בד"
 
 #: src/ui/app-menus.ui:237
 msgid "Previous tool"
@@ -336,7 +336,7 @@ msgstr "חזרה ללוח הצבעים"
 
 #: src/ui/color_popover.ui:43
 msgid "Use this editor by default"
-msgstr ""
+msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/ui/headerbar.ui:11 src/ui/headerbar.ui:18 src/ui/headerbar_eos.ui:30
 #: src/ui/toolbar.ui:42 src/window.py:642
@@ -369,7 +369,7 @@ msgstr "ממשק משתמש"
 
 #: src/ui/preferences.ui:203
 msgid "Layout"
-msgstr ""
+msgstr "פריסה"
 
 #: src/ui/preferences.ui:235 src/ui/preferences.ui:246
 msgid "Preview size"
@@ -377,7 +377,7 @@ msgstr "גודל תצוגה מקדימה"
 
 #: src/ui/preferences.ui:265
 msgid "Opened images"
-msgstr ""
+msgstr "תמונות שנפתחו"
 
 #: src/ui/preferences.ui:282
 msgid "Always add transparency"
@@ -397,7 +397,7 @@ msgstr "נתיב"
 
 #: src/ui/properties.ui:33
 msgid "Format"
-msgstr ""
+msgstr "תבנית"
 
 #: src/ui/properties.ui:47 src/ui/properties.ui:63
 msgid "Unsaved file"
@@ -405,7 +405,7 @@ msgstr "קובץ לא שמור"
 
 #: src/ui/properties.ui:87 src/properties.py:89
 msgid "Invalid format"
-msgstr ""
+msgstr "תבנית לא תקפה"
 
 #: src/ui/properties.ui:134
 msgid "Add transparency"
@@ -463,13 +463,16 @@ msgstr "סגור תמונה נוכחית"
 msgid "Save as"
 msgstr "שמירה כ..."
 
+# There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
 #: src/ui/shortcuts.ui:92
 msgid "Toggle the preview"
-msgstr ""
+msgstr "הצג/הסתר תצוגה מקדימה"
 
+# Perhaps this should be renamed to "Editing"?
+# I had a hard time understanding what this term was supposed to mean.
 #: src/ui/shortcuts.ui:101
 msgid "Edition"
-msgstr ""
+msgstr "עריכה"
 
 #: src/ui/shortcuts.ui:119
 msgid "Options menu"
@@ -509,11 +512,11 @@ msgstr "צבעים"
 
 #: src/ui/shortcuts.ui:194
 msgid "Edit the main color (left click)"
-msgstr ""
+msgstr "ערוך את הצבע הראשי (לחיצה שמאלית)"
 
 #: src/ui/shortcuts.ui:201
 msgid "Edit the secondary color (right click)"
-msgstr ""
+msgstr "ערוך את צבע המשנה (לחיצה שמאלית)"
 
 #: src/ui/shortcuts.ui:217
 msgid "Navigation"
@@ -535,11 +538,13 @@ msgstr "אין אפשרויות"
 
 #: src/ui/window.ui:223
 msgid "Preview"
-msgstr ""
+msgstr "תצוגה מקדימה"
 
+# I had to translate this to "Display the version and "about" dialog".
+# I hope this is in line with the original intent?
 #: src/main.py:58
 msgid "Print the version and display the 'about' dialog"
-msgstr ""
+msgstr "הצג את הגרסה ואת מסך \"אודות\""
 
 #: src/main.py:61
 msgid "Open a new window"
@@ -557,6 +562,9 @@ msgid ""
 "flatpak run --file-forwarding {0} @@ {1} @@\n"
 "?"
 msgstr ""
+"שגיאה בפתיחת קובץ זה. האם התכוונת ל-\n"
+"flatpak run --file-forwarding {0} @@ {1}\n"
+"?"
 
 #. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 #: src/main.py:281
@@ -615,7 +623,7 @@ msgstr "תמונה זו"
 
 #: src/window.py:689
 msgid "Discard"
-msgstr ""
+msgstr "מחיקת שינויים"
 
 #: src/window.py:709
 msgid "All pictures"
@@ -647,33 +655,37 @@ msgstr "אוטומטי"
 
 #: src/preferences.py:77
 msgid "Compact"
-msgstr ""
+msgstr "דחוס"
 
 #: src/preferences.py:79
 msgid "Legacy"
-msgstr ""
+msgstr "קודם"
 
 #: src/preferences.py:80
 msgid "Menubar only"
-msgstr ""
+msgstr "סרגל תפריט בלבד"
 
 #: src/preferences.py:81
 msgid "Toolbar only"
-msgstr ""
+msgstr "סרגל כלים בלבד"
 
+# I had to translate this to "Everything (for testing only)"
 #: src/preferences.py:83
 msgid "Everything (testing only)"
-msgstr ""
+msgstr "הכל (לבחינה בלבד)"
 
 #: src/properties.py:93
 msgid "This surface format already supports transparency."
-msgstr ""
+msgstr "תבנית פני השטח הזו כבר תומכת בשקיפות."
 
+# I think "optionally" should be after "you can", not after the comma.
 #: src/properties.py:96
 msgid ""
 "This surface format doesn't support transparency, you can add an alpha "
 "channel, optionally by replacing a color."
 msgstr ""
+"תבנית פני השטח הזו אינה תומכת בשקיפות, באפשרותך להוסיף ערוץ אלפה, על ידי "
+"החלפת צבע."
 
 #: src/utilities.py:123
 msgid "Continue"
@@ -686,11 +698,14 @@ msgid ""
 "\n"
 "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
+"האזור לא נראה תחום בראוי, או שמאוד מסובך.\n"
+"לא בטוח שסדרה זו תוכל לנהל את האזור הרצוי.\n"
+"האם ברצונך לבטל את הפעולה, או לתת לכלי להיאבק?"
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
-msgstr ""
+msgstr "צורת פס"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -710,6 +725,8 @@ msgstr "מרובע"
 #: src/tools/ui/tool_pencil.ui:24
 msgid "Use dashes"
 msgstr ""
+"עשה שימוש בעורך זה בבריר\n"
+"ת המחדל"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
 #: src/tools/tool_arc.py:64 src/tools/tool_arc.py:66 src/tools/tool_line.py:64
@@ -720,13 +737,13 @@ msgstr "חץ"
 #: src/tools/ui/tool_arc.ui:33 src/tools/ui/tool_line.ui:33
 #: src/tools/ui/tool_pencil.ui:29
 msgid "Mode"
-msgstr ""
+msgstr "סגנון"
 
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:35
 #: src/tools/ui/tool_pencil.ui:31 src/tools/tool_arc.py:52
 #: src/tools/tool_line.py:52 src/tools/tool_pencil.py:59
 msgid "Classic"
-msgstr ""
+msgstr "רגיל"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:40
 #: src/tools/ui/tool_pencil.ui:36 src/tools/tool_arc.py:46
@@ -748,12 +765,12 @@ msgstr "שוני"
 
 #: src/tools/ui/tool_circle.ui:7 src/tools/tool_circle.py:46
 msgid "Oval"
-msgstr ""
+msgstr "סגלגל"
 
 #: src/tools/ui/tool_circle.ui:18 src/tools/ui/tool_freeshape.ui:5
 #: src/tools/ui/tool_polygon.ui:5 src/tools/ui/tool_rectangle.ui:5
 msgid "Filling"
-msgstr ""
+msgstr "מילוי"
 
 #: src/tools/ui/tool_circle.ui:20 src/tools/ui/tool_freeshape.ui:7
 #: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_rectangle.ui:7
@@ -767,7 +784,7 @@ msgstr "ריק"
 #: src/tools/tool_circle.py:32 src/tools/tool_freeshape.py:31
 #: src/tools/tool_polygon.py:31 src/tools/tool_rectangle.py:30
 msgid "Filled (main color)"
-msgstr ""
+msgstr "ממולא (צבע ראשי)"
 
 #: src/tools/ui/tool_circle.ui:30 src/tools/ui/tool_freeshape.ui:17
 #: src/tools/ui/tool_polygon.ui:17 src/tools/ui/tool_rectangle.ui:17
@@ -776,7 +793,7 @@ msgstr ""
 #: src/tools/tool_polygon.py:21 src/tools/tool_polygon.py:33
 #: src/tools/tool_rectangle.py:19 src/tools/tool_rectangle.py:32
 msgid "Filled (secondary color)"
-msgstr ""
+msgstr "ממולא (צבע משנה)"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:130
 #: src/tools/ui/tool_flip.ui:65 src/tools/ui/tool_flip.ui:96
@@ -788,27 +805,27 @@ msgstr "יישום"
 
 #: src/tools/ui/tool_experiment.ui:5
 msgid "Cairo operator"
-msgstr ""
+msgstr "מפעילי קיירו"
 
 #: src/tools/ui/tool_experiment.ui:7
 msgid "Unbounded"
-msgstr ""
+msgstr "חסר גבולות"
 
 #: src/tools/ui/tool_flip.ui:33
 msgid "Flip horizontally"
-msgstr ""
+msgstr "הפוך אופקית"
 
 #: src/tools/ui/tool_flip.ui:47
 msgid "Flip vertically"
-msgstr ""
+msgstr "הפוך אנכית"
 
 #: src/tools/ui/tool_paint.ui:5
 msgid "Algorithm"
-msgstr ""
+msgstr "סדרה"
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
-msgstr ""
+msgstr "הקף ומלא"
 
 #: src/tools/ui/tool_paint.ui:12
 msgid "Erase and replace"
@@ -820,7 +837,7 @@ msgstr "דק"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
-msgstr ""
+msgstr "סובב שמאלה"
 
 #: src/tools/ui/tool_rotate.ui:56 src/tools/ui/tool_rotate.ui:64
 msgid "Angle (degrees)"
@@ -828,15 +845,15 @@ msgstr "זווית (מעלות)"
 
 #: src/tools/ui/tool_rotate.ui:70
 msgid "Rotate right"
-msgstr ""
+msgstr "סובב ימינה"
 
 #: src/tools/ui/tool_saturate.ui:42 src/tools/ui/tool_saturate.ui:50
 msgid "Saturation (%)"
-msgstr ""
+msgstr "רוויה (%)"
 
 #: src/tools/ui/tool_scale.ui:51
 msgid "Keep proportions"
-msgstr ""
+msgstr "שמור יחסי קנה מידה"
 
 #: src/tools/ui/tool_select.ui:12 src/tools/ui/tool_select.ui:74
 #: src/tools/ui/tool_select.ui:134
@@ -846,35 +863,35 @@ msgstr "עריכה"
 #: src/tools/ui/tool_select.ui:14 src/tools/ui/tool_select.ui:76
 #: src/tools/ui/tool_select.ui:136 src/tools/canvas_tools/tool_flip.py:29
 msgid "Flip"
-msgstr ""
+msgstr "הפיכה"
 
 #: src/tools/ui/tool_select.ui:18 src/tools/ui/tool_select.ui:80
 #: src/tools/ui/tool_select.ui:141 src/tools/canvas_tools/tool_crop.py:29
 msgid "Crop"
-msgstr ""
+msgstr "חיתוך"
 
 #: src/tools/ui/tool_select.ui:22 src/tools/ui/tool_select.ui:84
 #: src/tools/ui/tool_select.ui:146 src/tools/canvas_tools/tool_scale.py:29
 msgid "Scale"
-msgstr ""
+msgstr "שינוי קנה מידה"
 
 #: src/tools/ui/tool_select.ui:26 src/tools/ui/tool_select.ui:88
 #: src/tools/ui/tool_select.ui:151 src/tools/canvas_tools/tool_rotate.py:29
 msgid "Rotate"
-msgstr ""
+msgstr "סיבוב"
 
 #: src/tools/ui/tool_select.ui:30 src/tools/ui/tool_select.ui:92
 #: src/tools/ui/tool_select.ui:156 src/tools/canvas_tools/tool_saturate.py:29
 msgid "Saturate"
-msgstr ""
+msgstr "רווה"
 
 #: src/tools/ui/tool_select.ui:169
 msgid "Selection type"
-msgstr ""
+msgstr "סוג בחירה"
 
 #: src/tools/ui/tool_select.ui:176
 msgid "Freehand"
-msgstr ""
+msgstr "חופשי"
 
 #: src/tools/ui/tool_select.ui:181
 msgid "Similar color"
@@ -887,23 +904,23 @@ msgstr "בחירה מלבנית"
 
 #: src/tools/ui/tool_select.ui:219 src/tools/tool_select.py:103
 msgid "Free selection"
-msgstr ""
+msgstr "בחירה חופשית"
 
 #: src/tools/ui/tool_select.ui:235
 msgid "Similar color selection"
-msgstr ""
+msgstr "בחירת צבע דומה"
 
 #: src/tools/ui/tool_select.ui:285
 msgid "Selection actions"
-msgstr ""
+msgstr "פעולות בחירה"
 
 #: src/tools/ui/tool_text.ui:45 src/tools/ui/tool_text.ui:46
 msgid "Insert here"
-msgstr ""
+msgstr "הכנס כאן"
 
 #: src/tools/ui/tool_text.ui:82 src/tools/ui/tool_text.ui:110
 msgid "Opaque background"
-msgstr ""
+msgstr "רקע אטום"
 
 #: src/tools/ui/tool_text.ui:106
 msgid "Font"
@@ -911,11 +928,11 @@ msgstr "גופן"
 
 #: src/tools/tool_addalpha.py:15
 msgid "Remove color"
-msgstr "הסר צבע"
+msgstr "הסרת צבע"
 
 #: src/tools/tool_addalpha.py:22
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "לחץ על אזור כדי  להחליף את צבעו לפי שקיפות"
 
 #: src/tools/tool_arc.py:55
 msgid "Arc options"
@@ -924,7 +941,7 @@ msgstr "אפשרויות קשת"
 #: src/tools/tool_arc.py:64 src/tools/tool_arc.py:68 src/tools/tool_line.py:64
 #: src/tools/tool_line.py:68 src/tools/tool_pencil.py:70
 msgid "With dashes"
-msgstr ""
+msgstr "עם קווים מפרידים"
 
 #: src/tools/tool_circle.py:40
 msgid "Circle options"
@@ -940,7 +957,7 @@ msgstr "אפשרויות"
 
 #: src/tools/tool_experiment.py:14
 msgid "Experiment"
-msgstr ""
+msgstr "ניסוי"
 
 #: src/tools/tool_line.py:55
 msgid "Line options"
@@ -948,7 +965,7 @@ msgstr "אפשרויות קו"
 
 #: src/tools/tool_paint.py:23
 msgid "Painting options"
-msgstr ""
+msgstr "אפשרויות צביעה"
 
 #: src/tools/tool_polygon.py:36
 msgid "Polygon options"
@@ -974,34 +991,36 @@ msgstr "אפשרויות צבע"
 msgid "Selection options"
 msgstr "אפשרויות בחירה"
 
+# I had to translate "right-click" to "click a right-click", since it would not make any sense otherwise.
 #: src/tools/tool_select.py:117
 msgid "Drag the selection or right-click on the canvas"
-msgstr ""
+msgstr "גרור את הבחירה או לחץ לחיצה ימנית על הבד"
 
+# I had to translate "left-click" to "click a left-click", because otherwise it would not make any sense.
 #: src/tools/tool_select.py:119
 msgid "Select an area or right-click on the canvas"
-msgstr ""
+msgstr "גרור את הבחירה או לחץ לחיצה שמאלית על הבד"
 
 #: src/tools/canvas_tools/tool_crop.py:50
 msgid "Cropping the selection"
-msgstr ""
+msgstr "חיתוך הבחירה"
 
 #: src/tools/canvas_tools/tool_crop.py:52
 msgid "Cropping the canvas"
-msgstr ""
+msgstr "חיתוך הבד"
 
 #: src/tools/canvas_tools/tool_rotate.py:48
 msgid "Rotating the selection"
-msgstr ""
+msgstr "סיבוב הבחירה"
 
 #: src/tools/canvas_tools/tool_rotate.py:50
 msgid "Rotating the canvas"
-msgstr ""
+msgstr "סיבוב הבד"
 
 #: src/tools/canvas_tools/tool_scale.py:52
 msgid "Scaling the selection"
-msgstr ""
+msgstr "שינוי קנה מידה של הבחירה"
 
 #: src/tools/canvas_tools/tool_scale.py:54
 msgid "Scaling the canvas"
-msgstr ""
+msgstr "שינוי קנה מידה של הבד"
