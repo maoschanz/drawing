@@ -1,7 +1,7 @@
 project(
 	'drawing',
 	version: '0.3.0',
-	meson_version: '>= 0.48.0',
+	meson_version: '>= 0.50.0',
 )
 
 i18n = import('i18n')
