@@ -533,10 +533,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.tools_scrollable_box.remove(self.tools_panel)
 				self.tools_nonscrollable_box.add(self.tools_panel)
 			nb_tools = len(self.tools)
-			if nb_tools % 2 != 0:
-				self.tools_panel.set_min_children_per_line( nb_tools/2 )
-			else:
-				self.tools_panel.set_min_children_per_line( (nb_tools+1)/2 )
+			self.tools_panel.set_min_children_per_line( (nb_tools+(nb_tools % 3))/3 )
 		self.tools_panel.set_max_children_per_line(nb_tools)
 
 	def on_show_labels_setting_changed(self, *args):

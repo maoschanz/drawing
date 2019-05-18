@@ -76,33 +76,6 @@ class ToolCrop(AbstractCanvasTool):
 		self.width_btn.set_range(1, 10*self.original_width)
 		self.height_btn.set_range(1, 10*self.original_height)
 
-	def crop_temp_pixbuf(self, x, y, width, height):
-		x = max(x, 0)
-		y = max(y, 0)
-		min_w = min(width, self.get_image().get_temp_pixbuf().get_width() - x)
-		min_h = min(height, self.get_image().get_temp_pixbuf().get_height() - y)
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		new_pixbuf.fill(0)
-		self.get_image().temp_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
-		self.get_image().temp_pixbuf = new_pixbuf
-
-	def scale_temp_pixbuf_to_area(self, width, height):
-		visible_w = self.get_image().get_allocated_width()
-		visible_h = self.get_image().get_allocated_height()
-		w_ratio = visible_w/width
-		h_ratio = visible_h/height
-		if w_ratio > 1.0 and h_ratio > 1.0:
-			nice_w = width
-			nice_h = height
-		elif visible_h/visible_w > height/width:
-			nice_w = visible_w
-			nice_h = int(height * w_ratio)
-		else:
-			nice_w = int(width * h_ratio)
-			nice_h = visible_h
-		pb = self.get_image().get_temp_pixbuf()
-		self.get_image().set_temp_pixbuf(pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES))
-
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
 
@@ -141,8 +114,6 @@ class ToolCrop(AbstractCanvasTool):
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
 		delta_y = event.y - self.y_press
-
-		print(self.cursor_name)
 
 		if self.cursor_name == 'not-allowed':
 			return
@@ -188,26 +159,48 @@ class ToolCrop(AbstractCanvasTool):
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.window.set_cursor(False)
 
-	def validate_coords(self):
-		self._x = max(self._x, 0)
-		self._y = max(self._y, 0)
-		max_w = self.get_image().get_temp_pixbuf().get_width() - self.get_width()
-		max_h = self.get_image().get_temp_pixbuf().get_height() - self.get_height()
-		self._x = min(self._x, max_w)
-		self._y = min(self._y, max_h)
-		x = int(self._x)
-		y = int(self._y)
-		width = self.get_width()
-		height = self.get_height()
-		return x, y, width, height
+	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		new_pixbuf.fill(0)
+		src_x = max(x, 0)
+		src_y = max(y, 0)
+		if is_selection:
+			dest_x = 0
+			dest_y = 0
+		else:
+			dest_x = max(-1 * x, 0)
+			dest_y = max(-1 * y, 0)
+		min_w = min(width, self.get_image().get_temp_pixbuf().get_width() - src_x)
+		min_h = min(height, self.get_image().get_temp_pixbuf().get_height() - src_y)
+		self.get_image().temp_pixbuf.copy_area(src_x, src_y, min_w, min_h, \
+		                                             new_pixbuf, dest_x, dest_y)
+		self.get_image().temp_pixbuf = new_pixbuf
+
+	def scale_temp_pixbuf_to_area(self, width, height):
+		visible_w = self.get_image().get_allocated_width()
+		visible_h = self.get_image().get_allocated_height()
+		w_ratio = visible_w/width
+		h_ratio = visible_h/height
+		if w_ratio > 1.0 and h_ratio > 1.0:
+			nice_w = width
+			nice_h = height
+		elif visible_h/visible_w > height/width:
+			nice_w = visible_w
+			nice_h = int(height * w_ratio)
+		else:
+			nice_w = int(width * h_ratio)
+			nice_h = visible_h
+		pb = self.get_image().get_temp_pixbuf()
+		self.get_image().set_temp_pixbuf( \
+		            pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES))
 
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
-			'x': self._x,
-			'y': self._y,
+			'x': int(self._x),
+			'y': int(self._y),
 			'width': self.get_width(),
 			'height': self.get_height()
 		}
@@ -226,8 +219,7 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		x, y, width, height = self.validate_coords() # FIXME les augmentations ouest et nord sont pétées
-		self.crop_temp_pixbuf(x, y, width, height)
+		self.crop_temp_pixbuf(x, y, width, height, operation['is_selection'])
 
 		if not operation['is_selection'] and operation['is_preview']:
 			self.scale_temp_pixbuf_to_area(width, height)

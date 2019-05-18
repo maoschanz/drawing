@@ -17,8 +17,19 @@ class ToolPolygon(ToolTemplate):
 		(self.past_x, self.past_y) = (-1.0, -1.0)
 		self.selected_style_id = 'secondary'
 		self.selected_style_label = _("Filled (secondary color)")
+		self.selected_join_id = cairo.LineJoin.MITER
 
 		self.add_tool_action_enum('filling_style', 'secondary')
+	# 	self.add_tool_action_enum('angle_style', 'miter')
+
+	# def set_angle_style(self, *args):
+	# 	state_as_string = self.get_option_value('angle_style')
+	# 	if state_as_string == 'bevel':
+	# 		self.selected_join_id = cairo.LineJoin.BEVEL
+	# 	elif state_as_string == 'miter':
+	# 		self.selected_join_id = cairo.LineJoin.MITER
+	# 	else:
+	# 		self.selected_join_id = cairo.LineJoin.ROUND
 
 	def set_filling_style(self):
 		state_as_string = self.get_option_value('filling_style')
@@ -120,7 +131,7 @@ class ToolPolygon(ToolTemplate):
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
 			'operator': cairo.Operator.OVER,
-			'line_join': cairo.LineJoin.MITER, # or BEVEL ?
+			'line_join': self.selected_join_id,
 			'line_width': self.tool_width,
 			'filling': self.selected_style_id,
 			'path': cairo_path
