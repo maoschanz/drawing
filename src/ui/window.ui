@@ -49,6 +49,13 @@
             <child>
               <object class="GtkScrolledWindow" id="tools_scrollable_box">
                 <property name="visible">True</property>
+                <property name="vscrollbar-policy">automatic</property>
+                <property name="hscrollbar-policy">never</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="tools_nonscrollable_box">
+                <property name="visible">True</property>
                 <child>
                   <object class="GtkFlowBox" id="tools_panel">
                     <property name="visible">True</property>

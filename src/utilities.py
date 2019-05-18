@@ -1,4 +1,4 @@
-# utilities.py TODO
+# utilities.py
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo, math

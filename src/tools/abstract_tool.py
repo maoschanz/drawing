@@ -145,10 +145,13 @@ class ToolTemplate():
 	def apply_to_pixbuf(self):
 		self.get_image().on_tool_finished()
 
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		pass
+
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_unclicked_motion_on_area(self, event, surface):
 		pass
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):

@@ -64,6 +64,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	notebook = GtkTemplate.Child()
 	bottom_panel_box = GtkTemplate.Child()
 	tools_scrollable_box = GtkTemplate.Child()
+	tools_nonscrollable_box = GtkTemplate.Child()
 
 	# Default bottom panel
 	bottom_panel = GtkTemplate.Child()
@@ -523,10 +524,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
 		if visible:
-			self.tools_scrollable_box.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+			if self.tools_panel.get_parent() is self.tools_nonscrollable_box:
+				self.tools_nonscrollable_box.remove(self.tools_panel)
+				self.tools_scrollable_box.add(self.tools_panel)
 			self.tools_panel.set_min_children_per_line(nb_tools)
 		else:
-			self.tools_scrollable_box.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+			if self.tools_panel.get_parent() is self.tools_scrollable_box:
+				self.tools_scrollable_box.remove(self.tools_panel)
+				self.tools_nonscrollable_box.add(self.tools_panel)
 			nb_tools = len(self.tools)
 			if nb_tools % 2 != 0:
 				self.tools_panel.set_min_children_per_line( nb_tools/2 )

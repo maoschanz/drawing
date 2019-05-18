@@ -25,7 +25,7 @@ class ToolCrop(AbstractCanvasTool):
 
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
-		self.cursor_name = 'se-resize'
+		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 		self.x_press = 0
 		self.y_press = 0
@@ -39,7 +39,7 @@ class ToolCrop(AbstractCanvasTool):
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
-		# FIXME X et Y ? TODO
+		# FIXME X et Y ? top/bottom/left/right ? TODO
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
@@ -115,23 +115,78 @@ class ToolCrop(AbstractCanvasTool):
 	def on_height_changed(self, *args):
 		self.update_temp_pixbuf()
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		delta_x = event.x - self.x_press
-		delta_y = event.y - self.y_press
-		if self.move_instead_of_crop:
-			self._x = self._x - delta_x
-			self._y = self._y - delta_y
+	def on_unclicked_motion_on_area(self, event, surface):
+		cursor_name = ''
+		if event.y < 0.3 * surface.get_height():
+			cursor_name = cursor_name + 'n'
+		elif event.y > 0.6 * surface.get_height():
+			cursor_name = cursor_name + 's'
+
+		if event.x < 0.3 * surface.get_width():
+			cursor_name = cursor_name + 'w'
+		elif event.x > 0.6 * surface.get_width():
+			cursor_name = cursor_name + 'e'
+
+		if cursor_name == '':
+			cursor_name = 'not-allowed'
 		else:
-			self.width_btn.set_value(self.width_btn.get_value() + delta_x)
-			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
-		self.x_press = event.x
-		self.y_press = event.y
-		self.update_temp_pixbuf()
+			cursor_name = cursor_name + '-resize'
+		self.cursor_name = cursor_name
+		self.window.set_cursor(True)
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
-		self.move_instead_of_crop = (event.button == 3)
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		delta_x = event.x - self.x_press
+		delta_y = event.y - self.y_press
+
+		print(self.cursor_name)
+
+		if self.cursor_name == 'not-allowed':
+			return
+		elif self.cursor_name == 'n-resize':
+			self.move_north(delta_y)
+		elif self.cursor_name == 'ne-resize':
+			self.move_north(delta_y)
+			self.move_east(delta_x)
+		elif self.cursor_name == 'e-resize':
+			self.move_east(delta_x)
+		elif self.cursor_name == 'se-resize':
+			self.move_south(delta_y)
+			self.move_east(delta_x)
+		elif self.cursor_name == 's-resize':
+			self.move_south(delta_y)
+		elif self.cursor_name == 'sw-resize':
+			self.move_south(delta_y)
+			self.move_west(delta_x)
+		elif self.cursor_name == 'w-resize':
+			self.move_west(delta_x)
+		elif self.cursor_name == 'nw-resize':
+			self.move_north(delta_y)
+			self.move_west(delta_x)
+
+		self.x_press = event.x
+		self.y_press = event.y
+		self.update_temp_pixbuf()
+
+	def move_north(self, delta):
+		self.height_btn.set_value(self.height_btn.get_value() - delta)
+		self._y = self._y + delta
+
+	def move_south(self, delta):
+		self.height_btn.set_value(self.height_btn.get_value() + delta)
+
+	def move_east(self, delta):
+		self.width_btn.set_value(self.width_btn.get_value() + delta)
+
+	def move_west(self, delta):
+		self.width_btn.set_value(self.width_btn.get_value() - delta)
+		self._x = self._x + delta
+
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
+		self.window.set_cursor(False)
 
 	def validate_coords(self):
 		self._x = max(self._x, 0)
@@ -171,7 +226,7 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		x, y, width, height = self.validate_coords()
+		x, y, width, height = self.validate_coords() # FIXME les augmentations ouest et nord sont pétées
 		self.crop_temp_pixbuf(x, y, width, height)
 
 		if not operation['is_selection'] and operation['is_preview']:

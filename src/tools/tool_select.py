@@ -63,7 +63,7 @@ class ToolSelect(ToolTemplate):
 		if self.selection_is_active:
 			self.cursor_name = 'grab'
 		else:
-			self.cursor_name = 'cell'
+			self.cursor_name = 'cross'
 		self.set_actions_state(self.selection_is_active)
 
 	def set_actions_state(self, state):
@@ -121,11 +121,11 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = False
 		return True
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, event_x, event_y):
 		# self.secondary_color = right_color
 		self.x_press = event_x
 		self.y_press = event_y
-		if self.selection_is_active and self.press_point_is_in_selection():
+		if self.selection_is_active and self.point_is_in_selection(self.x_press, self.y_press):
 			self.cursor_name = 'grabbing'
 			self.window.set_cursor(True)
 		if self.selected_type_id == 'color' and not self.selection_is_active:
@@ -133,8 +133,8 @@ class ToolSelect(ToolTemplate):
 				event_x, event_y, self.window, 1)
 		elif self.selected_type_id == 'freehand' and not self.selection_is_active:
 			self.init_path(event_x, event_y)
-		if not self.press_point_is_in_selection():
-			self.cursor_name = 'cell'
+		if not self.point_is_in_selection(self.x_press, self.y_press):
+			self.cursor_name = 'cross'
 			self.window.set_cursor(True)
 			self.give_back_control()
 			self.restore_pixbuf()
@@ -151,6 +151,15 @@ class ToolSelect(ToolTemplate):
 			if self.selected_type_id == 'freehand':
 				self.restore_pixbuf()
 				self.draw_polygon(event_x, event_y)
+
+	def on_unclicked_motion_on_area(self, event, surface):
+		if not self.selection_is_active:
+			self.cursor_name = 'cross'
+		elif self.point_is_in_selection(event.x, event.y):
+			self.cursor_name = 'grab'
+		else:
+			self.cursor_name = 'cross'
+		self.window.set_cursor(True)
 
 	def on_actions_btn_clicked(self, *args):
 		self.set_rightc_popover_position( self.get_image().get_allocated_width()/2, \
@@ -194,7 +203,7 @@ class ToolSelect(ToolTemplate):
 						self.show_popover(True)
 						self.selection_has_been_used = False
 			self.update_surface()
-		elif self.press_point_is_in_selection():
+		elif self.point_is_in_selection(self.x_press, self.y_press):
 			self.drag_to(event_x, event_y)
 			self.cursor_name = 'grab'
 			self.window.set_cursor(True)
@@ -441,10 +450,10 @@ class ToolSelect(ToolTemplate):
 		cairo_context.paint()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
-	def press_point_is_in_selection(self):
-		"""Returns a boolean if the point whose coordinates are "(self.x_press,
-		self.y_press)" is in the path defining the selection. If such path
-		doesn't exist, it returns None."""
+	def point_is_in_selection(self, tested_x, tested_y):
+		"""Returns a boolean if the point whose coordinates are "(tested_x,
+		tested_y)" is in the path defining the selection. If such path doesn't
+		exist, it returns None."""
 		if not self.selection_is_active:
 			return True
 		if self.get_image().selection_path is None:
@@ -455,7 +464,7 @@ class ToolSelect(ToolTemplate):
 				x = pts[1][0] + self.get_image().selection_x - self.temp_x
 				y = pts[1][1] + self.get_image().selection_y - self.temp_y
 				cairo_context.line_to(int(x), int(y))
-		return cairo_context.in_fill(self.x_press, self.y_press)
+		return cairo_context.in_fill(tested_x, tested_y)
 
 	def on_confirm_hijacked_modif(self):
 		self.selection_has_been_used = True

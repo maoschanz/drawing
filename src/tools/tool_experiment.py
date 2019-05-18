@@ -168,7 +168,6 @@ class ToolExperiment(ToolTemplate):
 		if operation['path'] is None:
 			return
 		self.restore_pixbuf()
-		print(operation['operator'])
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])

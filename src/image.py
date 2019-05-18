@@ -40,10 +40,13 @@ class DrawingImage(Gtk.Layout):
 		self.add_events( \
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | \
-			Gdk.EventMask.BUTTON_MOTION_MASK | \
+			Gdk.EventMask.POINTER_MOTION_MASK | \
 			Gdk.EventMask.SMOOTH_SCROLL_MASK | \
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
+		# Utiliser ce masque au lieu de POINTER_MOTION_MASK est plus efficace
+		# mais moins puissant
+			# Gdk.EventMask.BUTTON_MOTION_MASK | \
 
 		# For displaying things on the widget
 		self.connect('draw', self.on_draw)
@@ -267,6 +270,7 @@ class DrawingImage(Gtk.Layout):
 
 	def on_motion_on_area(self, area, event):
 		if not self.is_clicked:
+			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 			return
 		x, y = self.get_main_coord()
 		event_x = x + event.x
