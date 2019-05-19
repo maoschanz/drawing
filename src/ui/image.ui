@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <template class="DrawingImage" parent="GtkLayout">
+  <template class="DrawingImage" parent="GtkBox">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="visible">True</property>
+        <property name="expand">True</property>
+        <child>
+          <object class="GtkLayout" id="drawing_area">
+            <property name="expand">True</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkHScrollbar" id="h_scrollbar">
+            <!-- <property name="visible">True</property> -->
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkVScrollbar" id="v_scrollbar">
+        <!-- <property name="visible">True</property> -->
+      </object>
+    </child>
   </template>
 </interface>

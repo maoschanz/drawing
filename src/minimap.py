@@ -63,10 +63,10 @@ class DrawingMinimap(Gtk.Popover):
 
 	def on_minimap_release(self, area, event):
 		"""Callback of the 'button-release-event' signal."""
-		delta_x = event.x - self.old_x
-		delta_y = event.y - self.old_y
 		ratio = self.get_main_pixbuf().get_width()/self.mini_pixbuf.get_width()
-		self.window.get_active_image().add_deltas(delta_x*ratio, delta_y*ratio, 1)
+		delta_x = int((event.x - self.old_x) * ratio)
+		delta_y = int((event.y - self.old_y) * ratio)
+		self.window.get_active_image().add_deltas(delta_x, delta_y, 1)
 
 	def get_main_pixbuf(self):
 		return self.window.get_active_image().main_pixbuf
@@ -88,9 +88,9 @@ class DrawingMinimap(Gtk.Popover):
 		self.minimap_area.set_size_request(self.mini_surface.get_width(), self.mini_surface.get_height())
 
 		visible_width = min(self.window.get_active_image().get_allocated_width(), \
-			mpb_width - x)
+		                    mpb_width - x)
 		visible_height = min(self.window.get_active_image().get_allocated_height(), \
-			mpb_height - y)
+		                     mpb_height - y)
 		if self.window.get_active_image().get_allocated_width() < mpb_width \
 		or self.window.get_active_image().get_allocated_height() < mpb_height:
 			mini_x = x * self.mini_pixbuf.get_width()/mpb_width

@@ -479,6 +479,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.compact_bottombar(False)
 
+		# Update the scrollbars
+		self.get_active_image().add_deltas(0, 0, 0)
+
 	def compact_headerbar(self, state):
 		self.save_label.set_visible(not state)
 		self.save_icon.set_visible(state)
@@ -567,7 +570,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if should_give_back_control:
 			self.former_tool().give_back_control()
 		self.former_tool().on_tool_unselected()
-		self.get_active_image().queue_draw()
+		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()
 		self.color_box.set_sensitive(self.active_tool().use_color)
@@ -835,7 +838,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_restore_pixbuf(self, *args):
 		self.get_active_image().use_stable_pixbuf()
-		self.get_active_image().queue_draw()
+		self.get_active_image().update()
 
 	def action_rebuild_from_histo(self, *args):
 		self.get_active_image().restore_first_pixbuf()
@@ -843,7 +846,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().undo_history = []
 		for op in h:
 			self.tools[op['tool_id']].apply_operation(op)
-		self.get_active_image().queue_draw()
+		self.get_active_image().update()
 		self.get_active_image().update_history_sensitivity(True)
 
 	# COLORS

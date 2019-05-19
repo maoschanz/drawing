@@ -24,8 +24,12 @@ from .utilities import utilities_save_pixbuf_at
 from .utilities import utilities_show_overlay_on_context
 
 @GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
-class DrawingImage(Gtk.Layout):
+class DrawingImage(Gtk.Box):
 	__gtype_name__ = 'DrawingImage'
+
+	drawing_area = GtkTemplate.Child()
+	h_scrollbar = GtkTemplate.Child()
+	v_scrollbar = GtkTemplate.Child()
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
@@ -37,28 +41,29 @@ class DrawingImage(Gtk.Layout):
 		self.is_clicked = False
 		self.build_tab_label()
 
-		self.add_events( \
+		self.drawing_area.add_events( \
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | \
 			Gdk.EventMask.POINTER_MOTION_MASK | \
 			Gdk.EventMask.SMOOTH_SCROLL_MASK | \
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
-		# Utiliser ce masque au lieu de POINTER_MOTION_MASK est plus efficace
-		# mais moins puissant
-			# Gdk.EventMask.BUTTON_MOTION_MASK | \
+		# Utiliser BUTTON_MOTION_MASK au lieu de POINTER_MOTION_MASK serait plus
+		# efficace mais moins puissant
 
 		# For displaying things on the widget
-		self.connect('draw', self.on_draw)
+		self.drawing_area.connect('draw', self.on_draw)
 		# For drawing with tools
-		self.connect('motion-notify-event', self.on_motion_on_area)
-		self.connect('button-press-event', self.on_press_on_area)
-		self.connect('button-release-event', self.on_release_on_area)
-		# For scrolling, obviously
-		self.connect('scroll-event', self.on_scroll_on_area)
+		self.drawing_area.connect('motion-notify-event', self.on_motion_on_area)
+		self.drawing_area.connect('button-press-event', self.on_press_on_area)
+		self.drawing_area.connect('button-release-event', self.on_release_on_area)
+		# For scrolling
+		self.drawing_area.connect('scroll-event', self.on_scroll_on_area)
+		self.h_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
+		self.v_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
 		# For the cursor
-		self.connect('enter-notify-event', self.on_enter_image)
-		self.connect('leave-notify-event', self.on_leave_image)
+		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
+		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
 
 	def init_image(self):
 		"""Part of the initialization common to both a new blank image and an
@@ -75,7 +80,7 @@ class DrawingImage(Gtk.Layout):
 
 		self.update_history_sensitivity(False)
 		self.use_stable_pixbuf()
-		self.queue_draw()
+		self.update()
 
 	def build_tab_label(self):
 		"""Build the "self.tab_title" attribute, which is the GTK widget
@@ -159,7 +164,7 @@ class DrawingImage(Gtk.Layout):
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
 			cairo_context.paint()
-			self.queue_draw()
+			self.update()
 			self.set_surface_as_stable_pixbuf()
 		else:
 			self.main_pixbuf = self.initial_operation['pixbuf'].copy()
@@ -205,7 +210,7 @@ class DrawingImage(Gtk.Layout):
 	def post_save(self):
 		self._is_saved = True
 		self.use_stable_pixbuf()
-		self.queue_draw()
+		self.update()
 
 	# HISTORY MANAGEMENT
 
@@ -238,7 +243,7 @@ class DrawingImage(Gtk.Layout):
 	def on_tool_finished(self):
 		#self.redo_history = []
 		self.update_history_sensitivity(True)
-		self.queue_draw()
+		self.update()
 		self.set_surface_as_stable_pixbuf()
 		self.active_tool().update_actions_state()
 
@@ -246,7 +251,7 @@ class DrawingImage(Gtk.Layout):
 
 	def on_draw(self, area, cairo_context):
 		cairo_context.set_source_surface(self.get_surface(), \
-			-1*self.scroll_x, -1*self.scroll_y)
+			                             -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
 		if self.is_using_selection() and self.selection_pixbuf is not None:
@@ -276,7 +281,7 @@ class DrawingImage(Gtk.Layout):
 		event_x = x + event.x
 		event_y = y + event.y
 		self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
-		self.queue_draw()
+		self.update()
 
 	def on_release_on_area(self, area, event):
 		if not self.is_clicked:
@@ -300,26 +305,49 @@ class DrawingImage(Gtk.Layout):
 	def on_scroll_on_area(self, area, event):
 		self.add_deltas(event.delta_x, event.delta_y, 10)
 
+	def on_scrollbar_value_change(self, scrollbar):
+		self.correct_coords(self.h_scrollbar.get_value(), self.v_scrollbar.get_value())
+		self.update()
+
 	def get_main_coord(self, *args):
 		return self.scroll_x, self.scroll_y
 
 	def add_deltas(self, delta_x, delta_y, factor):
-		self.scroll_x += int(delta_x * factor)
-		self.scroll_y += int(delta_y * factor)
-		self.correct_coords()
+		incorrect_x = self.scroll_x + int(delta_x * factor)
+		incorrect_y = self.scroll_y + int(delta_y * factor)
+		self.correct_coords(incorrect_x, incorrect_y)
 		self.window.minimap.update_minimap()
 
-	def correct_coords(self):
+	def correct_coords(self, incorrect_x, incorrect_y):
+		# Forbid absurd values
+		if self.drawing_area.get_allocated_width() < 2:
+			return
 		mpb_width = self.get_main_pixbuf().get_width()
 		mpb_height = self.get_main_pixbuf().get_height()
-		if self.scroll_x + self.get_allocated_width() > mpb_width:
-			self.scroll_x = mpb_width - self.get_allocated_width()
-		if self.scroll_y + self.get_allocated_height() > mpb_height:
-			self.scroll_y = mpb_height - self.get_allocated_height()
-		if self.scroll_x < 0:
-			self.scroll_x = 0
-		if self.scroll_y < 0:
-			self.scroll_y = 0
+		if incorrect_x + self.drawing_area.get_allocated_width() > mpb_width:
+			incorrect_x = mpb_width - self.drawing_area.get_allocated_width()
+		if incorrect_y + self.drawing_area.get_allocated_height() > mpb_height:
+			incorrect_y = mpb_height - self.drawing_area.get_allocated_height()
+		if incorrect_x < 0:
+			incorrect_x = 0
+		if incorrect_y < 0:
+			incorrect_y = 0
+
+		# Update the horizontal scrollbar
+		self.h_scrollbar.set_visible(self.drawing_area.get_allocated_width() < mpb_width)
+		self.h_scrollbar.set_range(0, mpb_width)
+		self.h_scrollbar.get_adjustment().set_page_size( \
+		                                self.drawing_area.get_allocated_width())
+		self.h_scrollbar.set_value(incorrect_x)
+		self.scroll_x = self.h_scrollbar.get_value()
+
+		# Update the vertical scrollbar
+		self.v_scrollbar.set_visible(self.drawing_area.get_allocated_height() < mpb_height)
+		self.v_scrollbar.set_range(0, mpb_height)
+		self.v_scrollbar.get_adjustment().set_page_size( \
+		                               self.drawing_area.get_allocated_height())
+		self.v_scrollbar.set_value(incorrect_y)
+		self.scroll_y = self.v_scrollbar.get_value()
 
 #######################
 
@@ -389,6 +417,9 @@ class DrawingImage(Gtk.Layout):
 		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
 
 ########################
+
+	def update(self):
+		self.drawing_area.queue_draw()
 
 	def get_surface(self):
 		return self.surface
