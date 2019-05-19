@@ -61,6 +61,6 @@ class ToolAddAlpha(ToolTemplate):
 							if b <= 255 and b >= 0:
 								self.get_image().main_pixbuf = \
 								 self.get_main_pixbuf().add_alpha(True, r, g, b)
-		self.get_image().use_stable_pixbuf()
-		self.get_image().queue_draw()
+		self.restore_pixbuf()
+		self.non_destructive_show_modif()
 

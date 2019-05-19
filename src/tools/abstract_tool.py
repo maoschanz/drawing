@@ -137,7 +137,7 @@ class ToolTemplate():
 		return self.get_image().get_selection_pixbuf()
 
 	def non_destructive_show_modif(self):
-		self.get_image().queue_draw()
+		self.get_image().update()
 
 	def restore_pixbuf(self):
 		self.get_image().use_stable_pixbuf()

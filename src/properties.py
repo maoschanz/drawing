@@ -131,7 +131,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 	def add_alpha_to_image(self, *args): # XXX not retained by history ?
 		self._image.main_pixbuf = self._image.main_pixbuf.add_alpha(False, 0, 0, 0)
 		self._image.use_stable_pixbuf()
-		self._image.queue_draw()
+		self._image.update()
 		self.set_format_label()
 		self.add_alpha_button.set_visible(False)
 

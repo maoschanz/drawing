@@ -111,4 +111,4 @@ class DrawingMinimap(Gtk.Popover):
 		self.update_main_area()
 
 	def update_main_area(self):
-		self.window.get_active_image().queue_draw()
+		self.window.get_active_image().update()
