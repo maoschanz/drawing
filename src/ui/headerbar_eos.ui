@@ -5,12 +5,11 @@
     <property name="show-close-button">True</property>
 
     <child>
-      <object class="GtkButton">
+      <object class="GtkMenuButton" id="new_btn">
         <property name="visible">True</property>
-        <property name="action-name">win.new_tab</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
-        <property name="tooltip_text" translatable="yes">New Tab</property>
+        <property name="tooltip_text" translatable="yes">New Image</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">document-new</property>

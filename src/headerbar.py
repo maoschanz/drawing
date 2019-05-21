@@ -54,7 +54,11 @@ class DrawingAdaptativeHeaderBar():
 		# self.is_short
 		self.main_menu_btn.set_menu_model(self.long_main_menu)
 
-		if not is_eos:
+		if is_eos:
+			new_btn = builder.get_object('new_btn')
+			add_menu = builder.get_object('new-image-menu')
+			new_btn.set_menu_model(add_menu)
+		else:
 			add_menu = builder.get_object('add-menu')
 			self.add_btn.set_menu_model(add_menu)
 
