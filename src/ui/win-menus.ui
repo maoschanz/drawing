@@ -10,8 +10,31 @@
       </item>
     </section>
     <section>
-      <!-- The goal here is to provide a more wide touch target -->
-      <attribute name="display-hint">horizontal-buttons</attribute>
+      <submenu>
+        <attribute name="label" translatable="yes">New…</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">New Blank Image</attribute>
+            <attribute name="action">win.new_tab</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">New Image From Selection</attribute>
+            <attribute name="action">win.new_tab_selection</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+            <attribute name="action">win.new_tab_clipboard</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="action">app.new_window</attribute>
+            <attribute name="label" translatable="yes">New Window</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Import</attribute>
         <attribute name="action">win.import</attribute>
@@ -21,16 +44,7 @@
         <attribute name="action">win.paste</attribute>
       </item>
     </section>
-    <section>
-      <item>
-        <attribute name="action">win.new_tab</attribute>
-        <attribute name="label" translatable="yes">New Tab</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New Window</attribute>
-      </item>
-    </section>
+
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
@@ -159,18 +173,28 @@
   <menu id="add-menu">
     <section>
       <item>
-        <attribute name="action">win.new_tab</attribute>
-        <attribute name="label" translatable="yes">New Tab</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New Window</attribute>
+        <attribute name="action">win.open</attribute>
+        <attribute name="label" translatable="yes">Open an image</attribute>
       </item>
     </section>
     <section>
       <item>
-        <attribute name="action">win.open</attribute>
-        <attribute name="label" translatable="yes">Open an image</attribute>
+        <attribute name="action">win.new_tab</attribute>
+        <attribute name="label" translatable="yes">New Blank Image</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Image From Selection</attribute>
+        <attribute name="action">win.new_tab_selection</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+        <attribute name="action">win.new_tab_clipboard</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="action">app.new_window</attribute>
+        <attribute name="label" translatable="yes">New Window</attribute>
       </item>
     </section>
     <section>

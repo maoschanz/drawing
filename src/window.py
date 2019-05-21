@@ -950,7 +950,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().inc_zoom_level(50)
 
 	def action_zoom_out(self, *args):
-		print('out')
 		self.get_active_image().inc_zoom_level(-50)
 
 	def action_zoom_100(self, *args):

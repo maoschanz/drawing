@@ -60,7 +60,8 @@ class Application(Gtk.Application):
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
+		                     GLib.OptionArg.NONE, _("Open a new tab"), None) # FIXME ne pas utiliser le mot tab
+		# TODO options pour le clipboard voire le screenshot
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path('/com/github/maoschanz/drawing/icons')

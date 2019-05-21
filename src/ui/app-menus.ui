@@ -48,9 +48,19 @@
       <attribute name="label" translatable="yes">_File</attribute>
       <section>
         <item>
-          <attribute name="label" translatable="yes">New Tab</attribute>
           <attribute name="action">win.new_tab</attribute>
+          <attribute name="label" translatable="yes">New Blank Image</attribute>
           <attribute name="verb-icon">document-new-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">New Image From Selection</attribute>
+          <attribute name="verb-icon">edit-select-symbolic</attribute>
+          <attribute name="action">win.new_tab_selection</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+          <attribute name="action">win.new_tab_clipboard</attribute>
+          <attribute name="verb-icon">edit-past-symbolic</attribute>
         </item>
       </section>
       <section>
