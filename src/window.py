@@ -262,13 +262,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.connect('changed::decorations', self.on_layout_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
-	def add_action_simple(self, action_name, callback):
+	def add_action_simple(self, action_name, callback, shortcuts):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
 		action = Gio.SimpleAction.new(action_name, None)
-		action.connect("activate", callback)
+		action.connect('activate', callback)
 		self.add_action(action)
+		if shortcuts is not None:
+			self.app.set_accels_for_action('win.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		"""Convenient wrapper method adding a stateful action to the window. It
@@ -293,57 +295,62 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""This doesn't add all window-wide GioActions, but only the GioActions
 		which are here "by default", independently of any tool."""
 
-		self.add_action_simple('main_menu', self.action_main_menu)
-		self.add_action_simple('options_menu', self.action_options_menu)
+		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
+		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
+		self.add_action_simple('properties', self.action_properties, None)
+
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
-		self.add_action_simple('properties', self.action_properties)
 		self.add_action_boolean('show_labels', self._settings.get_boolean('show-labels'), \
 			self.on_show_labels_changed)
 
-		self.add_action_simple('go_up', self.action_go_up)
-		self.add_action_simple('go_down', self.action_go_down)
-		self.add_action_simple('go_left', self.action_go_left)
-		self.add_action_simple('go_right', self.action_go_right)
-		self.add_action_simple('zoom_in', self.action_zoom_in)
-		self.add_action_simple('zoom_out', self.action_zoom_out)
-		self.add_action_simple('zoom_100', self.action_zoom_100)
-		self.add_action_simple('zoom_opti', self.action_zoom_opti)
+		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
+		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
+		self.add_action_simple('go_left', self.action_go_left, ['<Ctrl>Left'])
+		self.add_action_simple('go_right', self.action_go_right, ['<Ctrl>Right'])
+		self.add_action_simple('zoom_in', self.action_zoom_in, None)
+		self.add_action_simple('zoom_out', self.action_zoom_out, None)
+		self.add_action_simple('zoom_100', self.action_zoom_100, None)
+		self.add_action_simple('zoom_opti', self.action_zoom_opti, None)
 
-		self.add_action_simple('new_tab', self.build_new_image)
-		self.add_action_simple('new_tab_clipboard', self.build_image_from_clipboard)
-		self.add_action_simple('new_tab_selection', self.build_image_from_selection)
-		self.add_action_simple('close_tab', self.action_close_tab)
-		self.add_action_simple('close', self.action_close_window)
-		self.add_action_simple('save', self.action_save)
-		self.add_action_simple('open', self.action_open)
-		self.add_action_simple('undo', self.action_undo)
-		self.add_action_simple('redo', self.action_redo)
-		self.add_action_simple('save_as', self.action_save_as)
-		self.add_action_simple('export_as', self.action_export_as)
-		self.add_action_simple('print', self.action_print)
-		self.add_action_simple('import', self.action_import)
-		self.add_action_simple('paste', self.action_paste)
-		self.add_action_simple('select_all', self.action_select_all)
+		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
+		self.add_action_simple('new_tab_selection', \
+		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
+		self.add_action_simple('new_tab_clipboard', \
+		                    self.build_image_from_clipboard, ['<Ctrl><Shift>o'])
+		self.add_action_simple('open', self.action_open, ['<Ctrl>o'])
+		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
+		self.add_action_simple('close', self.action_close_window, None)
+		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
+		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
+		self.add_action_simple('undo', self.action_undo, ['<Ctrl>z'])
+		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
+		self.add_action_simple('export_as', self.action_export_as, None)
+		self.add_action_simple('print', self.action_print, ['<Ctrl>p'])
+		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
+		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
+		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 
 		# Is declared here because its callback need several methods from this
 		# file but none from select.py
-		self.add_action_simple('selection_export', self.action_selection_export)
+		self.add_action_simple('selection_export', self.action_selection_export, None)
 
-		self.add_action_simple('back_to_former_tool', self.back_to_former_tool)
-		self.add_action_simple('force_selection_tool', self.force_selection_tool)
+		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
+		self.add_action_simple('force_selection', self.force_selection, None)
+		self.add_action_simple('apply_selection', self.action_apply_selection, None)
+
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
-		self.add_action_simple('apply_selection_tool', self.action_apply_selection_tool)
 
-		self.add_action_simple('main_color', self.action_main_color)
-		self.add_action_simple('secondary_color', self.action_secondary_color)
-		self.add_action_simple('exchange_color', self.action_exchange_color)
+		self.add_action_simple('main_color', self.action_color1, ['<Ctrl>l'])
+		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
+		self.add_action_simple('exchange_color', self.action_exchange_color, ['<Ctrl>e'])
 
 		self.app.add_action_boolean('use_editor', \
-			self._settings.get_boolean('direct-color-edit'), self.action_use_editor)
+		                      self._settings.get_boolean('direct-color-edit'), \
+		                                                 self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
-			self.add_action_simple('restore_pixbuf', self.action_restore_pixbuf)
-			self.add_action_simple('rebuild_from_histo', self.action_rebuild_from_histo)
+			self.add_action_simple('restore_pixbuf', self.action_restore, None)
+			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 
 	# WINDOW BARS
 
@@ -614,7 +621,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def former_tool(self):
 		return self.tools[self.former_tool_id]
 
-	def back_to_former_tool(self, *args):
+	def back_to_previous(self, *args):
 		if self.hijacker_id is not None:
 			self.hijack_end()
 		else:
@@ -786,7 +793,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().print_image()
 
 	def action_select_all(self, *args):
-		self.force_selection_tool()
+		self.force_selection()
 		self.get_active_image().image_select_all()
 		self.get_selection_tool().selection_select_all()
 
@@ -794,7 +801,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is not None:
-			self.force_selection_tool()
+			self.force_selection()
 			self.get_active_image().set_selection_pixbuf(pixbuf)
 			self.get_selection_tool().selection_paste()
 		else:
@@ -811,7 +818,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			self.force_selection_tool()
+			self.force_selection()
 			fn = file_chooser.get_filename()
 			self.get_active_image().set_selection_pixbuf( \
 			                                 GdkPixbuf.Pixbuf.new_from_file(fn))
@@ -827,13 +834,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def get_selection_tool(self):
 		return self.tools['select']
 
-	def force_selection_tool(self, *args):
+	def force_selection(self, *args):
 		if self.hijacker_id is not None:
 			self.hijack_end()
 		else:
 			self.get_selection_tool().row.set_active(True)
 
-	def action_apply_selection_tool(self, *args):
+	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	def tool_needs_selection(self):
@@ -843,11 +850,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_undo(self, *args):
 		self.get_active_image().try_undo()
-		self.action_rebuild_from_histo()
+		self.action_rebuild()
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
-		self.action_rebuild_from_histo()
+		self.action_rebuild()
 
 	def operation_is_ongoing(self): # TODO
 		# if self.active_tool() is self.get_selection_tool():
@@ -857,11 +864,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# return is_ongoing
 		return False
 
-	def action_restore_pixbuf(self, *args):
+	def action_restore(self, *args):
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().update()
 
-	def action_rebuild_from_histo(self, *args):
+	def action_rebuild(self, *args):
 		self.get_active_image().restore_first_pixbuf()
 		h = self.get_active_image().undo_history.copy()
 		self.get_active_image().undo_history = []
@@ -903,10 +910,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.color_popover_r.setting_changed(show_editor)
 		self.color_popover_l.setting_changed(show_editor)
 
-	def action_main_color(self, *args):
+	def action_color1(self, *args):
 		self.color_menu_btn_l.activate()
 
-	def action_secondary_color(self, *args):
+	def action_color2(self, *args):
 		self.color_menu_btn_r.activate()
 
 	def action_exchange_color(self, *args):

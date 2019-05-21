@@ -29,7 +29,7 @@ class ToolTemplate():
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
-		self.window.add_action_simple(action_name, callback)
+		self.window.add_action_simple(action_name, callback, None) # XXX
 
 	def add_tool_action_boolean(self, action_name, default):
 		self.window.options_manager.add_tool_option_boolean(action_name, default)

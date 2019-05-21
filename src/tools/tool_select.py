@@ -72,6 +72,7 @@ class ToolSelect(ToolTemplate):
 		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
 		self.set_action_sensitivity('selection_export', state)
+		self.set_action_sensitivity('new_tab_selection', state)
 
 	def set_active_type(self, *args):
 		selection_type = self.get_option_value('selection_type')

@@ -27,7 +27,7 @@
         <property name="tooltip_text" translatable="yes">Cancel</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
-        <property name="action_name">win.force_selection_tool</property>
+        <property name="action_name">win.force_selection</property>
         <style>
           <class name="destructive-action"/>
         </style>
@@ -98,7 +98,7 @@
 
     <child>
       <object class="GtkButton" id="apply_btn">
-        <property name="action_name">win.apply_selection_tool</property>
+        <property name="action_name">win.apply_selection</property>
         <property name="tooltip-text" translatable="yes">Apply</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -124,11 +124,11 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Cancel</attribute>
-        <attribute name="action">win.force_selection_tool</attribute>
+        <attribute name="action">win.force_selection</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Apply</attribute>
-        <attribute name="action">win.apply_selection_tool</attribute>
+        <attribute name="action">win.apply_selection</attribute>
       </item>
     </section>
   </menu>

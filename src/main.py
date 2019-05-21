@@ -93,10 +93,12 @@ class Application(Gtk.Application):
 		else:
 			return False
 
-	def add_action_simple(self, action_name, callback):
+	def add_action_simple(self, action_name, callback, shortcuts):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
+		if shortcuts is not None:
+			self.set_accels_for_action('app.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		action = Gio.SimpleAction().new_stateful(action_name, None, \
@@ -106,55 +108,26 @@ class Application(Gtk.Application):
 
 	def build_actions(self):
 		"""Add app-wide actions."""
-		self.add_action_simple('new_window', self.on_new_window_activate)
-		self.add_action_simple('settings', self.on_prefs_activate)
+		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
+		self.add_action_simple('settings', self.on_prefs, None)
 		if self.is_beta():
-			self.add_action_simple('report_bug', self.on_report_activate)
-		self.add_action_simple('shortcuts', self.on_shortcuts_activate)
-		self.add_action_simple('help', self.on_help_activate)
-		self.add_action_simple('about', self.on_about_activate)
-		self.add_action_simple('quit', self.on_quit)
+			self.add_action_simple('report_bug', self.on_report, None)
+		self.add_action_simple('shortcuts', self.on_shortcuts, \
+		                                         ['<Ctrl>question', '<Ctrl>F1'])
+		self.add_action_simple('help', self.on_help, ['F1'])
+		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
+		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
 	def add_accels(self):
-		"""Set all keyboard shortcuts."""
-		self.set_accels_for_action('app.new_window', ['<Ctrl>n'])
-		self.set_accels_for_action('app.shortcuts', ['<Ctrl>question', '<Ctrl>F1'])
-		self.set_accels_for_action('app.about', ['<Shift>F1'])
-		self.set_accels_for_action('app.help', ['F1'])
-		self.set_accels_for_action('app.quit', ['<Ctrl>q'])
-
-		self.set_accels_for_action('win.main_color', ['<Ctrl>l'])
-		self.set_accels_for_action('win.secondary_color', ['<Ctrl>r'])
-		self.set_accels_for_action('win.exchange_color', ['<Ctrl>e'])
-
-		self.set_accels_for_action('win.go_up', ['<Ctrl>Up'])
-		self.set_accels_for_action('win.go_down', ['<Ctrl>Down'])
-		self.set_accels_for_action('win.go_left', ['<Ctrl>Left'])
-		self.set_accels_for_action('win.go_right', ['<Ctrl>Right'])
-
-		self.set_accels_for_action('win.import', ['<Ctrl>i'])
-		self.set_accels_for_action('win.paste', ['<Ctrl>v'])
-		self.set_accels_for_action('win.select_all', ['<Ctrl>a'])
-		self.set_accels_for_action('win.back_to_former_tool', ['<Ctrl>b'])
-
+		"""Set all keyboard shortcuts which are not already set by their related
+		action.""" # TODO shouldn't exist
 		self.set_accels_for_action('win.selection_unselect', ['<Ctrl>u'])
 		self.set_accels_for_action('win.selection_cut', ['<Ctrl>x'])
 		self.set_accels_for_action('win.selection_copy', ['<Ctrl>c'])
 		self.set_accels_for_action('win.selection_delete', ['Delete'])
 
 		self.set_accels_for_action('win.show_labels', ['F9'])
-		self.set_accels_for_action('win.main_menu', ['F10'])
-		self.set_accels_for_action('win.options_menu', ['<Shift>F10'])
 		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
-
-		self.set_accels_for_action('win.new_tab', ['<Ctrl>t'])
-		self.set_accels_for_action('win.close_tab', ['<Ctrl>w'])
-		self.set_accels_for_action('win.open', ['<Ctrl>o'])
-		self.set_accels_for_action('win.save', ['<Ctrl>s'])
-		self.set_accels_for_action('win.save_as', ['<Ctrl><Shift>s'])
-
-		self.set_accels_for_action('win.undo', ['<Ctrl>z'])
-		self.set_accels_for_action('win.redo', ['<Ctrl><Shift>z'])
 
 ########
 
@@ -176,7 +149,7 @@ class Application(Gtk.Application):
 		it's called by on_cli anyway."""
 		win = self.props.active_window
 		if not win:
-			self.on_new_window_activate()
+			self.on_new_window()
 		else:
 			win.present()
 
@@ -192,17 +165,17 @@ class Application(Gtk.Application):
 
 		if options.contains('version'):
 			print(_("Drawing") + ' ' + self.version)
-			self.on_about_activate()
+			self.on_about()
 		elif options.contains('edit-clipboard'):
 			self.open_window_with_content(None, True)
 
 		# If no file given as argument
 		elif options.contains('new-window') and len(arguments) == 1:
-			self.on_new_window_activate()
+			self.on_new_window()
 		elif options.contains('new-tab') and len(arguments) == 1:
 			win = self.props.active_window
 			if not win:
-				self.on_new_window_activate()
+				self.on_new_window()
 			else:
 				win.present()
 				self.props.active_window.build_new_tab(None, None)
@@ -210,7 +183,7 @@ class Application(Gtk.Application):
 			self.on_activate()
 
 		elif options.contains('new-window'):
-			self.on_new_window_activate()
+			self.on_new_window()
 			for path in arguments:
 				f = self.get_valid_file(args[1], path)
 				if f is not None:
@@ -246,16 +219,16 @@ flatpak run --file-forwarding {0} @@ {1} @@
 
 ########
 
-	def on_new_window_activate(self, *args):
+	def on_new_window(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
 		return self.open_window_with_content(None, False)
 
-	def on_report_activate(self, *args):
+	def on_report(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, self.git_url + '/issues/new', Gdk.CURRENT_TIME)
 
-	def on_shortcuts_activate(self, *args):
+	def on_shortcuts(self, *args):
 		"""Action callback, showing the "shortcuts" dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
@@ -264,7 +237,7 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
-	def on_prefs_activate(self, *args):
+	def on_prefs(self, *args):
 		"""Action callback, showing the preferences window."""
 		if self.prefs_window is not None:
 			self.prefs_window.destroy()
@@ -272,12 +245,12 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		self.prefs_window = DrawingPrefsWindow(self.is_beta(), wants_csd)
 		self.prefs_window.present()
 
-	def on_help_activate(self, *args):
+	def on_help(self, *args):
 		"""Action callback, showing the user help."""
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing', Gdk.CURRENT_TIME)
 
-	def on_about_activate(self, *args):
+	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		if self.about_dialog is not None:
 			self.about_dialog.destroy()

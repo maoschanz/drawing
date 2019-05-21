@@ -78,4 +78,4 @@ class AbstractCanvasTool(ToolTemplate):
 		else:
 			operation['is_preview'] = False
 			self.apply_operation(operation)
-			self.window.force_selection_tool()
+			self.window.force_selection()

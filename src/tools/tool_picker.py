@@ -25,4 +25,4 @@ class ToolPicker(ToolTemplate):
 		elif event.button == 1:
 			self.window.color_popover_l.color_widget.set_rgba(color)
 
-		self.window.back_to_former_tool()
+		self.window.back_to_previous()
