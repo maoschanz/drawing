@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-21 20:52+0200\n"
+"POT-Creation-Date: 2019-05-21 21:28+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:194
-#: src/window.py:372
+#: src/window.py:366
 msgid "Drawing"
 msgstr ""
 
@@ -41,12 +41,13 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:290 src/ui/shortcuts.ui:16 src/ui/toolbar.ui:28
-#: src/ui/toolbar.ui:29 src/ui/win-menus.ui:32 src/ui/win-menus.ui:197
-#: src/window.py:661
+#: src/ui/toolbar.ui:29 src/ui/win-menus.ui:32 src/ui/win-menus.ui:198
+#: src/window.py:656
 msgid "New Window"
 msgstr "Новое окно"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/headerbar_eos.ui:12
+#: src/ui/win-menus.ui:14 src/ui/win-menus.ui:181
 msgid "New Image"
 msgstr "Новое изображение"
 
@@ -157,17 +158,17 @@ msgstr "Завершить"
 msgid "_File"
 msgstr "_Файл\t"
 
-#: src/ui/app-menus.ui:52 src/ui/win-menus.ui:17 src/ui/win-menus.ui:183
+#: src/ui/app-menus.ui:52 src/ui/win-menus.ui:17 src/ui/win-menus.ui:184
 #, fuzzy
 msgid "New Blank Image"
 msgstr "Новое изображение"
 
-#: src/ui/app-menus.ui:56 src/ui/win-menus.ui:21 src/ui/win-menus.ui:186
+#: src/ui/app-menus.ui:56
 #, fuzzy
 msgid "New Image From Selection"
 msgstr "Прямоугольное выделение"
 
-#: src/ui/app-menus.ui:61 src/ui/win-menus.ui:25 src/ui/win-menus.ui:190
+#: src/ui/app-menus.ui:61
 msgid "New Image From Clipboard"
 msgstr ""
 
@@ -180,7 +181,7 @@ msgstr "Открыть изображение"
 #: src/ui/headerbar.ui:123 src/ui/headerbar_eos.ui:142
 #: src/ui/headerbar_eos.ui:156 src/ui/headerbar_eos.ui:174
 #: src/ui/shortcuts.ui:78 src/ui/toolbar.ui:130 src/ui/toolbar.ui:131
-#: src/window.py:727 src/window.py:774
+#: src/window.py:722 src/window.py:769
 msgid "Save"
 msgstr "Сохранить"
 
@@ -227,13 +228,13 @@ msgstr "Выбрать все"
 
 #: src/ui/app-menus.ui:129 src/ui/headerbar_eos.ui:67 src/ui/shortcuts.ui:126
 #: src/ui/toolbar.ui:70 src/ui/toolbar.ui:71 src/ui/win-menus.ui:43
-#: src/ui/win-menus.ui:206 src/tools/ui/tool_select.ui:16
+#: src/ui/win-menus.ui:207 src/tools/ui/tool_select.ui:16
 msgid "Paste"
 msgstr "Вставить"
 
 #: src/ui/app-menus.ui:134 src/ui/headerbar_eos.ui:50 src/ui/shortcuts.ui:133
 #: src/ui/toolbar.ui:58 src/ui/toolbar.ui:59 src/ui/win-menus.ui:39
-#: src/ui/win-menus.ui:202 src/window.py:814 src/tools/ui/tool_select.ui:12
+#: src/ui/win-menus.ui:203 src/window.py:809 src/tools/ui/tool_select.ui:12
 msgid "Import"
 msgstr "Импортировать"
 
@@ -296,7 +297,7 @@ msgstr "Основной цвет"
 msgid "Secondary color"
 msgstr "Вторичный цвет"
 
-#: src/ui/app-menus.ui:250 src/ui/shortcuts.ui:208 src/ui/window.ui:130
+#: src/ui/app-menus.ui:250 src/ui/shortcuts.ui:208 src/ui/window.ui:133
 msgid "Exchange colors"
 msgstr "Поменять цвета"
 
@@ -316,7 +317,7 @@ msgstr "_Холст"
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
-#: src/ui/app-menus.ui:283 src/window.py:932 src/window.py:935
+#: src/ui/app-menus.ui:283 src/window.py:927 src/window.py:930
 msgid "_Options"
 msgstr "_Опции"
 
@@ -346,7 +347,7 @@ msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/ui/headerbar.ui:11 src/ui/headerbar.ui:18 src/ui/headerbar_eos.ui:29
-#: src/ui/toolbar.ui:42 src/window.py:681
+#: src/ui/toolbar.ui:42 src/window.py:676
 msgid "Open"
 msgstr "Открыть"
 
@@ -447,7 +448,7 @@ msgid "General"
 msgstr "Общие"
 
 #: src/ui/shortcuts.ui:23 src/ui/toolbar.ui:16 src/ui/toolbar.ui:17
-#: src/window.py:661
+#: src/window.py:656
 msgid "New Tab"
 msgstr "Новая вкладка"
 
@@ -535,22 +536,27 @@ msgstr "Навигация"
 msgid "Error starting the application, please report this bug."
 msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
 
-#: src/ui/window.ui:159
+#: src/ui/window.ui:162
 msgid "Tool size"
 msgstr "Размер инструмента"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:177 src/window.py:407 src/tools/abstract_tool.py:73
+#: src/ui/window.ui:180 src/window.py:401 src/tools/abstract_tool.py:73
 msgid "No options"
 msgstr ""
 
-#: src/ui/window.ui:226
+#: src/ui/window.ui:229
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
-#: src/ui/win-menus.ui:14
-msgid "New…"
+#: src/ui/win-menus.ui:21 src/ui/win-menus.ui:187
+#, fuzzy
+msgid "From Selection"
+msgstr "Свободное выделение"
+
+#: src/ui/win-menus.ui:25 src/ui/win-menus.ui:191
+msgid "From Clipboard"
 msgstr ""
 
 #: src/main.py:58
@@ -590,34 +596,34 @@ msgstr "Artem Polishchuk <ego.cordatus@gmail.com>, 2019."
 msgid "Report bugs or ideas"
 msgstr "Сообщить об ошибках или идеях"
 
-#: src/window.py:357
+#: src/window.py:351
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
 
-#: src/window.py:655
+#: src/window.py:650
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#: src/window.py:661
+#: src/window.py:656
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
-#: src/window.py:662 src/window.py:728
+#: src/window.py:657 src/window.py:723
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Несохраненные изменения в %s."
 
-#: src/window.py:664
+#: src/window.py:659
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:679
+#: src/window.py:674
 msgid "Open a picture"
 msgstr "Открыть изображение"
 
-#: src/window.py:682 src/window.py:727 src/window.py:775 src/window.py:815
+#: src/window.py:677 src/window.py:722 src/window.py:770 src/window.py:810
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -627,39 +633,39 @@ msgstr "Открыть изображение"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/window.py:721 src/window.py:777
+#: src/window.py:716 src/window.py:772
 msgid "Untitled"
 msgstr "Без названия"
 
-#: src/window.py:722
+#: src/window.py:717
 msgid "this picture"
 msgstr "это изображение"
 
-#: src/window.py:727
+#: src/window.py:722
 msgid "Discard"
 msgstr "Сбросить"
 
-#: src/window.py:747
+#: src/window.py:742
 msgid "All pictures"
 msgstr "Все изображения"
 
-#: src/window.py:753
+#: src/window.py:748
 msgid "PNG images"
 msgstr "Изображения PNG"
 
-#: src/window.py:757
+#: src/window.py:752
 msgid "JPEG images"
 msgstr "Изображения JPEG"
 
-#: src/window.py:761
+#: src/window.py:756
 msgid "BMP images"
 msgstr "Изображения BMP"
 
-#: src/window.py:772
+#: src/window.py:767
 msgid "Save picture as…"
 msgstr "Сохранить изображение как..."
 
-#: src/window.py:812
+#: src/window.py:807
 msgid "Import a picture"
 msgstr "Импорт изображения"
 

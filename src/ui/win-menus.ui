@@ -11,18 +11,18 @@
     </section>
     <section>
       <submenu id="new-image-menu">
-        <attribute name="label" translatable="yes">New…</attribute>
+        <attribute name="label" translatable="yes">New Image</attribute>
         <section>
           <item>
             <attribute name="label" translatable="yes">New Blank Image</attribute>
             <attribute name="action">win.new_tab</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">New Image From Selection</attribute>
+            <attribute name="label" translatable="yes">From Selection</attribute>
             <attribute name="action">win.new_tab_selection</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+            <attribute name="label" translatable="yes">From Clipboard</attribute>
             <attribute name="action">win.new_tab_clipboard</attribute>
           </item>
         </section>
@@ -178,16 +178,17 @@
       </item>
     </section>
     <section>
+      <attribute name="label" translatable="yes">New Image</attribute>
       <item>
         <attribute name="action">win.new_tab</attribute>
         <attribute name="label" translatable="yes">New Blank Image</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">New Image From Selection</attribute>
+        <attribute name="label" translatable="yes">From Selection</attribute>
         <attribute name="action">win.new_tab_selection</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+        <attribute name="label" translatable="yes">From Clipboard</attribute>
         <attribute name="action">win.new_tab_clipboard</attribute>
       </item>
     </section>

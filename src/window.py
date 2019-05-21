@@ -555,6 +555,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if self.tools_panel.get_parent() is self.tools_scrollable_box:
 				self.tools_scrollable_box.remove(self.tools_panel)
 				self.tools_nonscrollable_box.add(self.tools_panel)
+				# FIXME
 			nb_tools = len(self.tools)
 			self.tools_panel.set_min_children_per_line( (nb_tools+(nb_tools % 3))/3 )
 		self.tools_panel.set_max_children_per_line(nb_tools)

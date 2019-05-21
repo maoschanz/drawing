@@ -44,13 +44,16 @@
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="expand">True</property>
+            <!-- <property name="expand">True</property> -->
             <property name="orientation">horizontal</property>
             <child>
               <object class="GtkScrolledWindow" id="tools_scrollable_box">
                 <property name="visible">True</property>
                 <property name="vscrollbar-policy">automatic</property>
                 <property name="hscrollbar-policy">never</property>
+                <!-- <child> -->
+                <!--   the flowbox will move here if needed -->
+                <!-- </child> -->
               </object>
             </child>
             <child>
