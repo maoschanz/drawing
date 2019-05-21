@@ -34,9 +34,7 @@
             <property name="visible">True</property>
             <property name="action-name">win.zoom_opti</property>
             <property name="tooltip-text" translatable="yes">Optimal Zoom</property>
-            <style>
-              <class name="flat"/>
-            </style>
+            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">zoom-fit-best-symbolic</property>
@@ -53,9 +51,7 @@
             <property name="visible">True</property>
             <property name="action-name">win.zoom_in</property>
             <property name="tooltip-text" translatable="yes">Zoom In</property>
-            <style>
-              <class name="flat"/>
-            </style>
+            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">zoom-in-symbolic</property>
@@ -72,9 +68,7 @@
             <property name="visible">True</property>
             <property name="action-name">win.zoom_100</property>
             <property name="label" translatable="yes">100%</property>
-            <style>
-              <class name="flat"/>
-            </style>
+            <property name="relief">none</property>
           </object>
           <packing>
             <property name="pack-type">end</property>
@@ -85,9 +79,7 @@
             <property name="visible">True</property>
             <property name="action-name">win.zoom_out</property>
             <property name="tooltip-text" translatable="yes">Zoom Out</property>
-            <style>
-              <class name="flat"/>
-            </style>
+            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">zoom-out-symbolic</property>
