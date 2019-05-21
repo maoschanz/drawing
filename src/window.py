@@ -96,7 +96,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.maximize()
 		self.set_ui_bars()
 
-	def init_window_content(self, gfile, pixbuf):
+	def init_window_content(self, gfile, get_cb):
 		"""Initialize the window's content, such as the minimap, the color
 		popovers, the tools, their options, and a new default image."""
 		self.hijacker_id = None
@@ -109,7 +109,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.build_color_buttons()
 		self.add_all_win_actions()
-		self.build_new_tab(gfile, pixbuf)
+		if get_cb:
+			self.build_image_from_clipboard()
+		else:
+			self.build_new_tab(gfile, None)
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()

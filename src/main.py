@@ -60,8 +60,10 @@ class Application(Gtk.Application):
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE, _("Open a new tab"), None) # FIXME ne pas utiliser le mot tab
-		# TODO options pour le clipboard voire le screenshot
+		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
+		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
+		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
+		# TODO options pour le screenshot ?
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path('/com/github/maoschanz/drawing/icons')
@@ -156,11 +158,13 @@ class Application(Gtk.Application):
 
 ########
 
-	def open_window_with_file(self, gfile):
-		"""Open a new window with an optional Gio.File as an argument."""
+	def open_window_with_content(self, gfile, get_cb):
+		"""Open a new window with an optional Gio.File as an argument. If get_cb
+		is true, the Gio.File is ignored and the picture is built from the
+		clipboard content."""
 		win = DrawingWindow(application=self)
 		win.present()
-		win.init_window_content(gfile, None) # this optimization has no effect
+		win.init_window_content(gfile, get_cb) # this optimization has no effect
 		# because of GLib unknown magic, but should be kept anyway because the
 		# window is presented to the user regarless of loading errors, making
 		# any issue in `init_window_content` very explicit, and more likely to
@@ -189,6 +193,8 @@ class Application(Gtk.Application):
 		if options.contains('version'):
 			print(_("Drawing") + ' ' + self.version)
 			self.on_about_activate()
+		elif options.contains('edit-clipboard'):
+			self.open_window_with_content(None, True)
 
 		# If no file given as argument
 		elif options.contains('new-window') and len(arguments) == 1:
@@ -208,14 +214,14 @@ class Application(Gtk.Application):
 			for path in arguments:
 				f = self.get_valid_file(args[1], path)
 				if f is not None:
-					self.open_window_with_file(f)
+					self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
 			for path in arguments:
 				f = self.get_valid_file(args[1], path)
 				if f is not None:
 					win = self.props.active_window
 					if not win:
-						self.open_window_with_file(f)
+						self.open_window_with_content(f, False)
 					else:
 						win.present()
 						self.props.active_window.build_new_tab(f, None)
@@ -242,7 +248,7 @@ flatpak run --file-forwarding {0} @@ {1} @@
 
 	def on_new_window_activate(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
-		return self.open_window_with_file(None)
+		return self.open_window_with_content(None, False)
 
 	def on_report_activate(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
