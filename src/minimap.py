@@ -35,6 +35,9 @@ class DrawingMinimap(Gtk.Popover):
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/minimap.ui')
 		box = builder.get_object('minimap_box')
 
+		self.zoom_scale = builder.get_object('zoom_scale')
+		# self.zoom_scale.connect('', self.) # TODO
+
 		self.minimap_area = builder.get_object('minimap_area')
 		self.minimap_area.set_size(200, 200)
 		self.minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
@@ -46,6 +49,9 @@ class DrawingMinimap(Gtk.Popover):
 		self.add(box)
 		self.set_relative_to(self.minimap_btn)
 		self.connect('closed', self.on_popover_dismissed)
+
+	def update_zoom_scale(self, value):
+		self.zoom_scale.set_value(value * 100)
 
 	def on_popover_dismissed(self, *args):
 		"""Callback of the 'closed' signal, updating the state of the action."""

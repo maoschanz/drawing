@@ -290,6 +290,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('go_down', self.action_go_down)
 		self.add_action_simple('go_left', self.action_go_left)
 		self.add_action_simple('go_right', self.action_go_right)
+		self.add_action_simple('zoom_in', self.action_zoom_in)
+		self.add_action_simple('zoom_out', self.action_zoom_out)
+		self.add_action_simple('zoom_100', self.action_zoom_100)
+		self.add_action_simple('zoom_opti', self.action_zoom_opti)
 
 		self.add_action_simple('new_tab', self.build_new_image)
 		self.add_action_simple('close_tab', self.action_close_tab)
@@ -941,4 +945,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_go_right(self, *args):
 		self.get_active_image().add_deltas(1, 0, 100)
+
+	def action_zoom_in(self, *args):
+		self.get_active_image().inc_zoom_level(50)
+
+	def action_zoom_out(self, *args):
+		print('out')
+		self.get_active_image().inc_zoom_level(-50)
+
+	def action_zoom_100(self, *args):
+		self.get_active_image().set_zoom_level(100)
+
+	def action_zoom_opti(self, *args):
+		# TODO
+		pass
+
 

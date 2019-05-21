@@ -71,6 +71,7 @@ class DrawingImage(Gtk.Box):
 		self.undo_history = []
 		self.redo_history = []
 		self._is_saved = True
+		self.zoom_level = 1.0
 		self.scroll_x = 0
 		self.scroll_y = 0
 		self.selection_x = 1
@@ -348,6 +349,13 @@ class DrawingImage(Gtk.Box):
 		                               self.drawing_area.get_allocated_height())
 		self.v_scrollbar.set_value(incorrect_y)
 		self.scroll_y = self.v_scrollbar.get_value()
+
+	def inc_zoom_level(self, delta):
+		self.set_zoom_level((self.zoom_level * 100) + delta)
+
+	def set_zoom_level(self, level):
+		self.zoom_level = (level/100)
+		self.window.minimap.update_zoom_scale(self.zoom_level)
 
 #######################
 
