@@ -96,7 +96,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.maximize()
 		self.set_ui_bars()
 
-	def init_window_content(self, gfile):
+	def init_window_content(self, gfile, pixbuf):
 		"""Initialize the window's content, such as the minimap, the color
 		popovers, the tools, their options, and a new default image."""
 		self.hijacker_id = None
@@ -109,7 +109,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.build_color_buttons()
 		self.add_all_win_actions()
-		self.build_new_tab(gfile)
+		self.build_new_tab(gfile, pixbuf)
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()
@@ -177,17 +177,34 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
-		self.build_new_tab(None)
+		self.build_new_tab(None, None)
 		self.set_picture_title()
 
-	def build_new_tab(self, gfile):
+	def build_image_from_clipboard(self, *args):
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		pixbuf = cb.wait_for_image()
+		if pixbuf is None:
+			self.build_new_image()
+			return
+		self.build_new_tab(None, pixbuf)
+
+	def build_image_from_selection(self, *args):
+		pixbuf = self.get_active_image().selection_pixbuf
+		if pixbuf is None:
+			self.build_new_image()
+			return
+		self.build_new_tab(None, pixbuf)
+
+	def build_new_tab(self, gfile, pixbuf):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
 		self.notebook.append_page(new_image, new_image.tab_title)
-		if gfile is None:
-			new_image.init_background()
-		else:
+		if gfile is not None:
 			new_image.try_load_file(gfile)
+		elif pixbuf is not None:
+			new_image.try_load_pixbuf(pixbuf)
+		else:
+			new_image.init_background()
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
@@ -296,6 +313,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('zoom_opti', self.action_zoom_opti)
 
 		self.add_action_simple('new_tab', self.build_new_image)
+		self.add_action_simple('new_tab_clipboard', self.build_image_from_clipboard)
+		self.add_action_simple('new_tab_selection', self.build_image_from_selection)
 		self.add_action_simple('close_tab', self.action_close_tab)
 		self.add_action_simple('close', self.action_close_window)
 		self.add_action_simple('save', self.action_save)
@@ -644,7 +663,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			result = dialog.run()
 			dialog.destroy()
 			if result == 1:
-				self.build_new_tab(gfile)
+				self.build_new_tab(gfile, None)
 			elif result == 3:
 				self.try_load_file(gfile)
 			elif result == 2:

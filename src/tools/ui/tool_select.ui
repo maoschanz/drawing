@@ -8,31 +8,6 @@
       </item>
     </section>
     <section>
-      <submenu>
-        <attribute name="label" translatable="yes">Edit</attribute>
-        <item>
-          <attribute name="label" translatable="yes">Flip</attribute>
-          <attribute name="action">win.selection_flip</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Crop</attribute>
-          <attribute name="action">win.selection_crop</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Scale</attribute>
-          <attribute name="action">win.selection_scale</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Rotate</attribute>
-          <attribute name="action">win.selection_rotate</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Saturate</attribute>
-          <attribute name="action">win.selection_saturate</attribute>
-        </item>
-      </submenu>
-    </section>
-    <section>
       <item>
         <attribute name="label" translatable="yes">Import</attribute>
         <attribute name="action">win.import</attribute>
@@ -71,6 +46,7 @@
     </section>
     <section>
       <submenu>
+        <!-- TODO virer ce menu -->
         <attribute name="label" translatable="yes">Edit</attribute>
         <item>
           <attribute name="label" translatable="yes">Flip</attribute>
@@ -93,6 +69,12 @@
           <attribute name="action">win.selection_saturate</attribute>
         </item>
       </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Open As New Image</attribute>
+        <attribute name="action">win.new_tab_selection</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes">Export as…</attribute>
         <attribute name="action">win.selection_export</attribute>
@@ -131,6 +113,7 @@
     </section>
     <section>
       <submenu>
+        <!-- TODO virer ce menu -->
         <attribute name="label" translatable="yes">Edit</attribute>
         <item>
           <attribute name="label" translatable="yes">Flip</attribute>
@@ -158,6 +141,12 @@
           <attribute name="verb-icon">tool-saturate-symbolic</attribute>
         </item>
       </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Open As New Image</attribute>
+        <attribute name="action">win.new_tab_selection</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes">Export as…</attribute>
         <attribute name="action">win.selection_export</attribute>

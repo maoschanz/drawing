@@ -160,10 +160,11 @@ class Application(Gtk.Application):
 		"""Open a new window with an optional Gio.File as an argument."""
 		win = DrawingWindow(application=self)
 		win.present()
-		win.init_window_content(gfile) # this optimization has no effect because
-		# of GLib unknown magic, but should be kept anyway because the window is
-		# presented to the user, making any issue in `init_window_content` very
-		# explicit, and likely to be reported.
+		win.init_window_content(gfile, None) # this optimization has no effect
+		# because of GLib unknown magic, but should be kept anyway because the
+		# window is presented to the user regarless of loading errors, making
+		# any issue in `init_window_content` very explicit, and more likely to
+		# be reported.
 		return win
 
 	def on_activate(self, *args):
@@ -198,7 +199,7 @@ class Application(Gtk.Application):
 				self.on_new_window_activate()
 			else:
 				win.present()
-				self.props.active_window.build_new_tab(None)
+				self.props.active_window.build_new_tab(None, None)
 		elif len(arguments) == 1:
 			self.on_activate()
 
@@ -217,7 +218,7 @@ class Application(Gtk.Application):
 						self.open_window_with_file(f)
 					else:
 						win.present()
-						self.props.active_window.build_new_tab(f)
+						self.props.active_window.build_new_tab(f, None)
 		# I don't even know if i should return something
 		return 0
 

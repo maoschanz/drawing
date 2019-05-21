@@ -147,6 +147,24 @@ class DrawingImage(Gtk.Box):
 		self.restore_first_pixbuf()
 		self.init_image()
 
+	def try_load_pixbuf(self, pixbuf):
+		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
+			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
+		self.initial_operation = {
+			'tool_id': None,
+			'pixbuf': pixbuf,
+			'red': 0.0,
+			'green': 0.0,
+			'blue': 0.0,
+			'alpha': 0.0,
+			'width': pixbuf.get_width(),
+			'height': pixbuf.get_height()
+		}
+		self.main_pixbuf = pixbuf
+		self.restore_first_pixbuf()
+		self.init_image()
+		self.update_title()
+
 	def restore_first_pixbuf(self):
 		"""Set the first saved pixbuf as the main_pixbuf. This is used to
 		rebuild the picture from its history."""
