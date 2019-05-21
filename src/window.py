@@ -186,16 +186,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_image_from_clipboard(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
-		if pixbuf is None:
-			self.build_new_image()
-			return
 		self.build_new_tab(None, pixbuf)
 
 	def build_image_from_selection(self, *args):
 		pixbuf = self.get_active_image().selection_pixbuf
-		if pixbuf is None:
-			self.build_new_image()
-			return
 		self.build_new_tab(None, pixbuf)
 
 	def build_new_tab(self, gfile, pixbuf):
