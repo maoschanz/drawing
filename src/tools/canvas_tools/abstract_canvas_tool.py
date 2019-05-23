@@ -71,7 +71,7 @@ class AbstractCanvasTool(ToolTemplate):
 	def on_apply_temp_pixbuf_tool_operation(self, *args):
 		self.restore_pixbuf()
 		operation = self.build_operation()
-		if self.apply_to_selection:
+		if self.apply_to_selection:  # FIXME IMAGE.PY
 			self.do_tool_operation(operation)
 			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.window.get_selection_tool().on_confirm_hijacked_modif()

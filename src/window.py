@@ -509,11 +509,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Update the scrollbars
 		self.get_active_image().add_deltas(0, 0, 0)
 
-	def compact_headerbar(self, state):
-		self.save_label.set_visible(not state)
-		self.save_icon.set_visible(state)
-		self.add_btn.set_visible(not state)
-
 	def compact_bottombar(self, state):
 		self.options_short_box.set_visible(state)
 		self.options_long_box.set_visible(not state)
@@ -803,7 +798,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if pixbuf is not None:
 			self.force_selection()
 			self.get_active_image().set_selection_pixbuf(pixbuf)
-			self.get_selection_tool().selection_paste()
+			self.get_active_image().on_import_selection()
 		else:
 			string =  cb.wait_for_text()
 			self.tools['text'].row.set_active(True)
@@ -822,7 +817,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			fn = file_chooser.get_filename()
 			self.get_active_image().set_selection_pixbuf( \
 			                                 GdkPixbuf.Pixbuf.new_from_file(fn))
-			self.get_selection_tool().selection_import()
+			self.get_active_image().on_import_selection()
 		file_chooser.destroy()
 
 	def action_selection_export(self, *args):
@@ -832,7 +827,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			   self.get_active_image().get_selection_pixbuf(), gfile.get_path())
 
 	def get_selection_tool(self):
-		return self.tools['select']
+		if 'select' in self.tools:
+			return self.tools['select']
+		else:
+			self.prompt_message(True, 'Required tool is not available')
+			return self.active_tool()
 
 	def force_selection(self, *args):
 		if self.hijacker_id is not None:
@@ -843,7 +842,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
-	def tool_needs_selection(self):
+	def tool_needs_selection(self): # FIXME est appelé giga souvent ????
 		return ( self.active_tool() is self.get_selection_tool() )
 
 	# HISTORY MANAGEMENT
