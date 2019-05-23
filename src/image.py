@@ -421,6 +421,10 @@ class DrawingImage(Gtk.Box):
 		self.temp_path = None
 		self.create_selection_from_arbitrary_pixbuf(False)
 
+	def image_unselect(self, *args):
+		self.window.get_selection_tool().give_back_control() # FIXME
+		self.update() # utile ??
+
 
 
 
@@ -667,6 +671,11 @@ class DrawingImage(Gtk.Box):
 		self.selection_x = 0
 		self.selection_y = 0
 		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
+		self.selection_has_been_used = False # TODO non
+		self.temp_x = 0
+		self.temp_y = 0
+		self.create_selection_from_arbitrary_pixbuf(True)
+		self.show_popover(True)
 
 ########################
 

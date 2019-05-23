@@ -46,6 +46,18 @@
     </section>
 
     <section>
+      <!-- XXX good here ? -->
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="action">win.unselect</attribute>
+      </item>
+    </section>
+
+    <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="action">win.save_as</attribute>
@@ -102,6 +114,18 @@
 
 <!-- Hamburger menu for desktop -->
   <menu id="short-window-menu">
+    <section>
+      <!-- XXX good here ? -->
+      <!-- <item> -->
+      <!--   <attribute name="label" translatable="yes">Select all</attribute> -->
+      <!--   <attribute name="action">win.select_all</attribute> -->
+      <!-- </item> -->
+      <item>
+        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="action">win.unselect</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>

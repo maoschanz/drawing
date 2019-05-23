@@ -23,7 +23,7 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.selection_unselect</attribute>
+        <attribute name="action">win.unselect</attribute>
       </item>
     </section>
     <section>
@@ -84,13 +84,14 @@
 
   <menu id="options-menu">
     <section>
+      <!-- XXX section duplicated from other menus -->
       <item>
         <attribute name="label" translatable="yes">Select all</attribute>
         <attribute name="action">win.select_all</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.selection_unselect</attribute>
+        <attribute name="action">win.unselect</attribute>
       </item>
     </section>
     <section>

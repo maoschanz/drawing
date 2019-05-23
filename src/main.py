@@ -121,7 +121,6 @@ class Application(Gtk.Application):
 	def add_accels(self):
 		"""Set all keyboard shortcuts which are not already set by their related
 		action.""" # TODO shouldn't exist
-		self.set_accels_for_action('win.selection_unselect', ['<Ctrl>u'])
 		self.set_accels_for_action('win.selection_cut', ['<Ctrl>x'])
 		self.set_accels_for_action('win.selection_copy', ['<Ctrl>c'])
 		self.set_accels_for_action('win.selection_delete', ['Delete'])

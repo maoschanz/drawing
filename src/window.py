@@ -329,6 +329,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
+		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl>u'])
 
 		# Is declared here because its callback need several methods from this
 		# file but none from select.py
@@ -617,21 +618,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
-		if self.hijacker_id is not None:
-			self.hijack_end()
-		else:
-			self.tools[self.former_tool_id].row.set_active(True)
+		# if self.hijacker_id is not None:
+		# 	self.hijack_end()
+		# else:
+		self.tools[self.former_tool_id].row.set_active(True)
 
 	def hijack_begin(self, hijacker_id, target_id):
 		self.lookup_action('active_tool').set_enabled(False)
 		self.hijacker_id = hijacker_id
 		self.enable_tool(target_id, False)
 
-	def hijack_end(self):
-		if self.hijacker_id is not None:
-			self.enable_tool(self.hijacker_id, False)
-		self.hijacker_id = None
-		self.lookup_action('active_tool').set_enabled(True)
+	# def hijack_end(self):
+	# 	if self.hijacker_id is not None:
+	# 		self.enable_tool(self.hijacker_id, False)
+	# 	self.hijacker_id = None
+	# 	self.lookup_action('active_tool').set_enabled(True)
 
 	# FILE MANAGEMENT
 
@@ -790,7 +791,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_select_all(self, *args):
 		self.force_selection()
 		self.get_active_image().image_select_all()
-		self.get_selection_tool().selection_select_all()
+
+	def action_unselect(self, *args):
+		self.get_active_image().image_unselect()
 
 	def action_paste(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -834,10 +837,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return self.active_tool()
 
 	def force_selection(self, *args):
-		if self.hijacker_id is not None:
-			self.hijack_end()
-		else:
-			self.get_selection_tool().row.set_active(True)
+		# if self.hijacker_id is not None:
+		# 	self.hijack_end()
+		# else:
+		self.get_selection_tool().row.set_active(True)
 
 	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()

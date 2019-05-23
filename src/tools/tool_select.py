@@ -23,7 +23,6 @@ class ToolSelect(ToolTemplate):
 		self.closing_x = 0
 		self.closing_y = 0
 
-		self.add_tool_action_simple('selection_unselect', self.action_unselect)
 		self.add_tool_action_simple('selection_cut', self.action_cut)
 		self.add_tool_action_simple('selection_copy', self.action_copy)
 		self.add_tool_action_simple('selection_delete', self.action_selection_delete)
@@ -66,8 +65,8 @@ class ToolSelect(ToolTemplate):
 			self.cursor_name = 'cross'
 		self.set_actions_state(self.selection_is_active())
 
-	def set_actions_state(self, state):
-		self.set_action_sensitivity('selection_unselect', state)
+	def set_actions_state(self, state): # XXX du coup non puisque c'est valable à l'échelle de l'image
+		self.set_action_sensitivity('unselect', state)
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
@@ -101,25 +100,28 @@ class ToolSelect(ToolTemplate):
 
 	############################################################################
 
-	# def give_back_control(self): # FIXME
-	# 	if self.selection_has_been_used:
-	# 		if self.selection_is_active:
-	# 			operation = self.build_operation()
-	# 			self.apply_operation(operation)
-	# 		self.forget_selection()
-	# 		self.reset_temp()
-	# 		return False
-	# 	else:
-	# 		self.selection_has_been_used = True # XXX ???
-	# 		self.forget_selection()
-	# 		return self.cancel_ongoing_operation()
+	def give_back_control(self): # FIXME la plupart de ces trucs ça va dans image hein
+		if self.selection_has_been_used:
+			self.apply_selection()
+			self.get_image().forget_selection()
+			self.get_image().reset_temp()
+			return False
+		else:
+			self.selection_has_been_used = True # XXX ???
+			self.get_image().forget_selection()
+			return self.cancel_ongoing_operation()
 
-	# def cancel_ongoing_operation(self): # FIXME
-	# 	self.reset_temp()
-	# 	self.restore_pixbuf()
-	# 	self.non_destructive_show_modif()
-	# 	self.selection_has_been_used = False
-	# 	return True
+	def apply_selection(self):
+		if self.selection_is_active():
+			operation = self.build_operation()
+			self.apply_operation(operation)
+
+	def cancel_ongoing_operation(self):
+		self.get_image().reset_temp()
+		self.restore_pixbuf()
+		self.non_destructive_show_modif()
+		self.selection_has_been_used = False
+		return True
 
 	def get_press_behavior(self):
 		if self.selection_is_active():
@@ -174,11 +176,6 @@ class ToolSelect(ToolTemplate):
 			self.cursor_name = 'cross'
 		self.window.set_cursor(True)
 
-	def on_actions_btn_clicked(self, *args):
-		self.set_rightc_popover_position( self.get_image().get_allocated_width()/2, \
-			self.get_image().get_allocated_height()/2 )
-		self.show_popover(True)
-
 	def set_rightc_popover_position(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = int(x)
@@ -202,12 +199,12 @@ class ToolSelect(ToolTemplate):
 			self.show_popover(True)
 			return
 		behavior = self.get_release_behavior()
-		if behavior == 'rectangle':
+		if behavior == 'rectangle': # TODO image method
 			self.get_image().draw_rectangle(event_x, event_y)
 			if self.selection_is_active():
 				self.show_popover(True)
 				self.selection_has_been_used = False
-		elif behavior == 'freehand':
+		elif behavior == 'freehand': # TODO image method
 			if self.get_image().draw_polygon(event_x, event_y):
 				self.restore_pixbuf()
 				self.get_image().create_free_selection_from_main()
@@ -216,7 +213,7 @@ class ToolSelect(ToolTemplate):
 					self.selection_has_been_used = False
 			else:
 				return # without updating the surface so the path is visible
-		elif behavior == 'color':
+		elif behavior == 'color': # TODO image method
 			self.restore_pixbuf()
 			if self.get_image().selection_path is not None:
 				self.get_image().create_free_selection_from_main()
@@ -286,17 +283,6 @@ class ToolSelect(ToolTemplate):
 	def copy_operation(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_selection_pixbuf())
-
-	def selection_select_all(self):
-		self.selection_has_been_used = False
-		self.temp_x = 0
-		self.temp_y = 0
-		self.create_selection_from_arbitrary_pixbuf(True)
-		self.show_popover(True)
-
-	def action_unselect(self, *args):
-		self.give_back_control()
-		self.non_destructive_show_modif() # utile ??
 
 	def action_selection_delete(self, *args):
 		self.selection_has_been_used = True
