@@ -28,7 +28,8 @@ class ToolSaturate(AbstractCanvasTool):
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_saturate.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		              '/com/github/maoschanz/drawing/tools/ui/tool_saturate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.saturation_btn = builder.get_object('sat_btn')
@@ -37,7 +38,7 @@ class ToolSaturate(AbstractCanvasTool):
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def on_tool_selected(self, *args):
-		self.apply_to_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = self.selection_is_active()
 		self.saturation_btn.set_value(100.0)
 		self.on_sat_changed()
 

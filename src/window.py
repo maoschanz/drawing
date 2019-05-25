@@ -99,7 +99,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def init_window_content(self, gfile, get_cb):
 		"""Initialize the window's content, such as the minimap, the color
 		popovers, the tools, their options, and a new default image."""
-		self.hijacker_id = None
 		self.tools = None
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
@@ -207,7 +206,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_active_tab_changed(self, *args):
 		self.change_active_tool_for(self.active_tool_id)
-		# On pourrait être moins bourrin et conserver la sélection, mais flemme
+		# On devrait être moins bourrin et conserver la sélection #FIXME
 		self.set_picture_title(args[1].update_title())
 
 	def close_tab(self, tab):
@@ -561,7 +560,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if self.tools_panel.get_parent() is self.tools_scrollable_box:
 				self.tools_scrollable_box.remove(self.tools_panel)
 				self.tools_nonscrollable_box.add(self.tools_panel)
-				# FIXME
+				# FIXME largeur des boutons pétée
 			nb_tools = len(self.tools)
 			self.tools_panel.set_min_children_per_line( (nb_tools+(nb_tools % 3))/3 )
 		self.tools_panel.set_max_children_per_line(nb_tools)
@@ -588,14 +587,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		action = self.lookup_action('active_tool')
 		if self.tools[tool_id].row.get_active():
 			action.set_state(GLib.Variant.new_string(tool_id))
-			self.enable_tool(tool_id, True)
+			self.enable_tool(tool_id, True) # FIXME
 		else:
 			self.tools[tool_id].row.set_active(True)
 
 	def enable_tool(self, new_tool_id, should_give_back_control):
 		self.former_tool_id = self.active_tool_id
-		if should_give_back_control:
-			self.former_tool().give_back_control()
+		if should_give_back_control: # FIXME
+			self.former_tool().give_back_control() # FIXME
 		self.former_tool().on_tool_unselected()
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
@@ -626,10 +625,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# else:
 		self.tools[self.former_tool_id].row.set_active(True)
 
-	def hijack_begin(self, hijacker_id, target_id):
-		self.lookup_action('active_tool').set_enabled(False)
-		self.hijacker_id = hijacker_id
-		self.enable_tool(target_id, False)
+	# def hijack_begin(self, hijacker_id, target_id):
+	# 	self.lookup_action('active_tool').set_enabled(False)
+	# 	self.hijacker_id = hijacker_id
+	# 	self.enable_tool(target_id, False)
 
 	# def hijack_end(self):
 	# 	if self.hijacker_id is not None:
@@ -678,9 +677,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Opens an "open" file chooser dialog, and return a GioFile or None."""
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
-			Gtk.FileChooserAction.OPEN,
-			_("Open"),
-			_("Cancel"))
+		                     Gtk.FileChooserAction.OPEN, _("Open"), _("Cancel"))
 		self.add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
@@ -771,9 +768,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Opens an "save" file chooser dialog, and return a GioFile or None."""
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
-			Gtk.FileChooserAction.SAVE,
-			_("Save"),
-			_("Cancel"))
+		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
 		self.add_filechooser_filters(file_chooser)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
@@ -808,7 +803,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def copy_operation(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		cb.set_image(self.get_active_image().get_selection_pixbuf())
+		cb.set_image(self.get_active_image().selection_pixbuf)
 
 	def action_delete(self, *args):
 		self.get_active_image().image_delete()
@@ -828,9 +823,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_import(self, *args):
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
-			Gtk.FileChooserAction.OPEN,
-			_("Import"),
-			_("Cancel"))
+		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))
 		self.add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
@@ -844,8 +837,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_selection_export(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
-			utilities_save_pixbuf_at( \
-			   self.get_active_image().get_selection_pixbuf(), gfile.get_path())
+			utilities_save_pixbuf_at(self.get_active_image().selection_pixbuf, \
+			                                                   gfile.get_path())
 
 	def get_selection_tool(self):
 		if 'select' in self.tools:
@@ -967,7 +960,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_option_label(self, *args):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
-	# PREVIEW & NAVIGATION
+	# PREVIEW, NAVIGATION AND ZOOM ACTIONS
 
 	def action_toggle_preview(self, *args):
 		"""Action callback, showing or hiding the "minimap" preview popover."""

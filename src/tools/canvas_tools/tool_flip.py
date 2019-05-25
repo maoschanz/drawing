@@ -30,7 +30,8 @@ class ToolFlip(AbstractCanvasTool):
 		self.flip_h = False
 		self.flip_v = False
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_flip.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                  '/com/github/maoschanz/drawing/tools/ui/tool_flip.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.horizontal_btn = builder.get_object('horizontal_btn')
@@ -49,7 +50,7 @@ class ToolFlip(AbstractCanvasTool):
 		self.update_temp_pixbuf()
 
 	def on_tool_selected(self, *args):
-		self.apply_to_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = self.selection_is_active()
 		self.flip_h = False
 		self.flip_v = False
 		self.update_temp_pixbuf()

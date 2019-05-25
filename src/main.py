@@ -18,7 +18,6 @@
 import sys, gi
 
 gi.require_version('Gtk', '3.0')
-
 from gi.repository import Gtk, Gio, GLib, Gdk
 
 from .window import DrawingWindow
@@ -202,7 +201,7 @@ class Application(Gtk.Application):
 			err = _("""Error opening this file. Did you mean
 flatpak run --file-forwarding {0} @@ {1} @@
 ?""")
-			print(err.format(APP_ID, path))
+			print(err.format(APP_ID, path)) # TODO sortir la commande de la chaîne à traduire
 			return None
 
 ########

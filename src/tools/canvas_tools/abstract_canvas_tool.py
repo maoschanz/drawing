@@ -30,7 +30,6 @@ class AbstractCanvasTool(ToolTemplate):
 		self.centered_box = None
 		self.needed_width_for_long = 0
 		self.accept_selection = True
-		# TODO
 
 	def adapt_to_window_size(self, available_width):
 		if self.centered_box is None:
@@ -49,11 +48,12 @@ class AbstractCanvasTool(ToolTemplate):
 		self.do_tool_operation(operation)
 
 	def finish_pixbuf_tool_operation_preview(self, is_selection):
+		"""Part of the previewing methods shared by all canvas tools."""
 		cairo_context = cairo.Context(self.get_surface())
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
-			self.get_image().delete_former_selection()
+			self.get_image().delete_temp()
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
 				self.get_image().get_temp_pixbuf(), \
 				self.get_image().selection_x, \
@@ -72,10 +72,11 @@ class AbstractCanvasTool(ToolTemplate):
 	def on_apply_temp_pixbuf_tool_operation(self, *args):
 		self.restore_pixbuf()
 		operation = self.build_operation()
-		if self.apply_to_selection:  # FIXME IMAGE.PY
+		if self.apply_to_selection:
 			self.do_tool_operation(operation)
 			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.window.get_selection_tool().on_confirm_hijacked_modif()
+			self.get_image().create_selection_from_arbitrary_pixbuf(False)
+			self.window.enable_tool('select', False)
 		else:
 			operation['is_preview'] = False
 			self.apply_operation(operation)

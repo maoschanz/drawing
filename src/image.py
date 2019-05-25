@@ -121,7 +121,7 @@ class DrawingImage(Gtk.Box):
 		return unsaved_file_name
 
 	def try_close_tab(self, *args):
-		"""Ask the window to close the tab; then unallocate wigdets and
+		"""Ask the window to close the image/tab. Then unallocate widgets and
 		pixbufs."""
 		if self.window.close_tab(self):
 			self.destroy()
@@ -185,7 +185,8 @@ class DrawingImage(Gtk.Box):
 			g = self.initial_operation['green']
 			b = self.initial_operation['blue']
 			a = self.initial_operation['alpha']
-			self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+			self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, \
+			                                             True, 8, width, height)
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
 			cairo_context.paint()
@@ -278,18 +279,19 @@ class DrawingImage(Gtk.Box):
 	# DRAWING OPERATIONS
 
 	def on_draw(self, area, cairo_context):
+		"""Signal callback. Executed when self.drawing_area is redrawn."""
 		cairo_context.set_source_surface(self.get_surface(), \
 			                             -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
 		if self.is_using_selection() and self.selection_pixbuf is not None:
-			#print('image.py, line 163')
-			utilities_show_overlay_on_context(cairo_context, self.get_dragged_selection_path(), True)
-
-	def delete_former_selection(self):
-		self.window.get_selection_tool().delete_temp()
+			utilities_show_overlay_on_context(cairo_context, \
+			                            self.get_dragged_selection_path(), True)
 
 	def on_press_on_area(self, area, event):
+		"""Signal callback. Executed when a mouse button is pressed on
+		self.drawing_area, if the button is the mouse wheel the colors are
+		exchanged, otherwise the signal is transmitted to the selected tool."""
 		if event.button == 2:
 			self.is_clicked = False
 			self.window.action_exchange_color()
@@ -297,11 +299,16 @@ class DrawingImage(Gtk.Box):
 		self.is_clicked = True
 		x, y = self.get_main_coord()
 		self.active_tool().on_press_on_area(area, event, self.surface, \
-			self.window.thickness_spinbtn.get_value(), \
-			self.get_left_rgba(), self.get_right_rgba(), \
-			x + event.x, y + event.y)
+		                            self.window.thickness_spinbtn.get_value(), \
+		                          self.get_left_rgba(), self.get_right_rgba(), \
+		                                               x + event.x, y + event.y)
 
 	def on_motion_on_area(self, area, event):
+		"""Signal callback. Executed when the mouse pointer moves upon
+		self.drawing_area, the signal is transmitted to the selected tool.
+		If a button (not the mouse wheel) is pressed, the tool's method should
+		have an effect on the image, otherwise it shouldn't change anything
+		except the mouse cursor icon for example."""
 		if not self.is_clicked:
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 			return
@@ -312,6 +319,9 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def on_release_on_area(self, area, event):
+		"""Signal callback. Executed when a mouse button is released on
+		self.drawing_area, if the button is not the signal is transmitted to the
+		selected tool."""
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
@@ -464,9 +474,9 @@ class DrawingImage(Gtk.Box):
 		self.selection_is_active = True
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.move_to(self.selection_x, self.selection_y)
-		cairo_context.rel_line_to(self.get_selection_pixbuf().get_width(), 0)
-		cairo_context.rel_line_to(0, self.get_selection_pixbuf().get_height())
-		cairo_context.rel_line_to(-1 * self.get_selection_pixbuf().get_width(), 0)
+		cairo_context.rel_line_to(self.selection_pixbuf.get_width(), 0)
+		cairo_context.rel_line_to(0, self.selection_pixbuf.get_height())
+		cairo_context.rel_line_to(-1 * self.selection_pixbuf.get_width(), 0)
 		cairo_context.close_path()
 		self.selection_path = cairo_context.copy_path()
 		if is_existing_content:
@@ -474,11 +484,11 @@ class DrawingImage(Gtk.Box):
 			self.set_temp()
 		self.show_selection_popover(False)
 		self.update_actions_state()
-		self.update_surface()
+		self.window.get_selection_tool().update_surface()
 
 	def create_free_selection_from_main(self):
 		self.selection_pixbuf = self.get_main_pixbuf().copy()
-		surface = Gdk.cairo_surface_create_from_pixbuf(self.get_selection_pixbuf(), 0, None)
+		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
 		xmin, ymin = surface.get_width(), surface.get_height()
 		xmax, ymax = 0.0, 0.0
 		if self.selection_path is None:

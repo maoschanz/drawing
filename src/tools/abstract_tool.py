@@ -82,8 +82,7 @@ class ToolTemplate():
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
 		self.label_widget = Gtk.Label(label=self.label)
-		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, \
-		              spacing=8, margin=2)
+		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 		box.add(image)
 		box.add(self.label_widget)
 		self.row.add(box)
@@ -125,7 +124,7 @@ class ToolTemplate():
 		return self.get_image().selection_is_active
 
 	def get_selection_pixbuf(self):
-		return self.get_image().get_selection_pixbuf()
+		return self.get_image().selection_pixbuf
 
 	# Image management
 

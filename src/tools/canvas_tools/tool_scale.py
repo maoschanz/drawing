@@ -30,7 +30,8 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_scale.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                 '/com/github/maoschanz/drawing/tools/ui/tool_scale.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.centered_box = builder.get_object('centered_box')
 		self.cancel_btn = builder.get_object('cancel_btn')
@@ -59,7 +60,7 @@ class ToolScale(AbstractCanvasTool):
 			self.proportion = self.get_width()/self.get_height()
 
 	def on_tool_selected(self, *args):
-		self.apply_to_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = self.selection_is_active()
 		self.keep_proportions = False
 		if self.apply_to_selection:
 			w = self.get_selection_pixbuf().get_width()

@@ -24,11 +24,12 @@ class ToolRotate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolRotate'
 
 	def __init__(self, window):
-		super().__init__('rotate', _("Rotate"), 'view-refresh-symbolic', window)
+		super().__init__('rotate', _("Rotate"), 'tool-rotate-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_rotate.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                '/com/github/maoschanz/drawing/tools/ui/tool_rotate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		self.angle_btn = builder.get_object('angle_btn')
 		self.angle_label = builder.get_object('angle_label')
@@ -48,7 +49,7 @@ class ToolRotate(AbstractCanvasTool):
 			return _("Rotating the canvas")
 
 	def on_tool_selected(self, *args):
-		self.apply_to_selection = (self.window.hijacker_id is not None)
+		self.apply_to_selection = self.selection_is_active()
 		self.angle_btn.set_value(0.0)
 		if False:
 		# if self.apply_to_selection:

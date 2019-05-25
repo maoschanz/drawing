@@ -27,7 +27,6 @@
       </item>
     </section>
     <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="label" translatable="yes">Cut</attribute>
         <attribute name="action">win.selection_cut</attribute>
@@ -45,30 +44,32 @@
       </item>
     </section>
     <section>
-      <submenu>
-        <!-- TODO virer ce menu ? -->
-        <attribute name="label" translatable="yes">Edit</attribute>
-        <item>
-          <attribute name="label" translatable="yes">Flip</attribute>
-          <attribute name="action">win.selection_flip</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Crop</attribute>
-          <attribute name="action">win.selection_crop</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Scale</attribute>
-          <attribute name="action">win.selection_scale</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Rotate</attribute>
-          <attribute name="action">win.selection_rotate</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Saturate</attribute>
-          <attribute name="action">win.selection_saturate</attribute>
-        </item>
-      </submenu>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Flip</attribute>
+        <attribute name="action">win.selection_flip</attribute>
+        <attribute name="verb-icon">tool-flip-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Crop</attribute>
+        <attribute name="action">win.selection_crop</attribute>
+        <attribute name="verb-icon">tool-crop-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Scale</attribute>
+        <attribute name="action">win.selection_scale</attribute>
+        <attribute name="verb-icon">tool-scale-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rotate</attribute>
+        <attribute name="action">win.selection_rotate</attribute>
+        <attribute name="verb-icon">tool-rotate-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Saturate</attribute>
+        <attribute name="action">win.selection_saturate</attribute>
+        <attribute name="verb-icon">tool-saturate-symbolic</attribute>
+      </item>
     </section>
     <section>
       <item>
@@ -84,7 +85,6 @@
 
   <menu id="options-menu">
     <section>
-      <!-- XXX section duplicated from other menus -->
       <item>
         <attribute name="label" translatable="yes">Select all</attribute>
         <attribute name="action">win.select_all</attribute>
@@ -113,28 +113,28 @@
       </item>
     </section>
     <section>
-      <submenu>
-        <!-- TODO virer ce menu ? -->
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <submenu><!-- TODO virer ce menu ? -->
         <attribute name="label" translatable="yes">Edit</attribute>
         <item>
           <attribute name="label" translatable="yes">Flip</attribute>
           <attribute name="action">win.selection_flip</attribute>
-          <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
+          <attribute name="verb-icon">tool-flip-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Crop</attribute>
           <attribute name="action">win.selection_crop</attribute>
-          <attribute name="verb-icon">crop-symbolic</attribute>
+          <attribute name="verb-icon">tool-crop-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Scale</attribute>
           <attribute name="action">win.selection_scale</attribute>
-          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
+          <attribute name="verb-icon">tool-scale-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Rotate</attribute>
           <attribute name="action">win.selection_rotate</attribute>
-          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+          <attribute name="verb-icon">tool-rotate-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Saturate</attribute>

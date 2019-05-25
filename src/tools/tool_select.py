@@ -18,15 +18,6 @@ class ToolSelect(ToolTemplate):
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle selection")
 		self.background_type_id = 'transparent'
-		self.temp_path = None
-		self.temp_x = 0
-		self.temp_y = 0
-		self.closing_x = 0
-		self.closing_y = 0
-
-		# self.add_tool_action_simple('selection_cut', self.action_cut)
-		# self.add_tool_action_simple('selection_copy', self.action_copy)
-		# self.add_tool_action_simple('selection_delete', self.action_selection_delete)
 
 		# self.add_tool_action_simple('selection_crop', self.action_selection_crop)
 		# self.add_tool_action_simple('selection_scale', self.action_selection_scale)
@@ -44,7 +35,6 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
 		self.selection_has_been_used = False
-		# self.selection_is_active = False
 
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
@@ -63,7 +53,7 @@ class ToolSelect(ToolTemplate):
 		self.set_actions_state(self.selection_is_active())
 
 	def set_actions_state(self, state): # XXX du coup non puisque c'est valable à l'échelle de l'image
-		# self.set_action_sensitivity('unselect', state) # FIXME
+		self.set_action_sensitivity('unselect', state) # FIXME ?
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
