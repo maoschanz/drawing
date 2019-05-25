@@ -24,9 +24,9 @@ class ToolSelect(ToolTemplate):
 		self.closing_x = 0
 		self.closing_y = 0
 
-		self.add_tool_action_simple('selection_cut', self.action_cut)
-		self.add_tool_action_simple('selection_copy', self.action_copy)
-		self.add_tool_action_simple('selection_delete', self.action_selection_delete)
+		# self.add_tool_action_simple('selection_cut', self.action_cut)
+		# self.add_tool_action_simple('selection_copy', self.action_copy)
+		# self.add_tool_action_simple('selection_delete', self.action_selection_delete)
 
 		# self.add_tool_action_simple('selection_crop', self.action_selection_crop)
 		# self.add_tool_action_simple('selection_scale', self.action_selection_scale)
@@ -45,7 +45,6 @@ class ToolSelect(ToolTemplate):
 
 		self.selection_has_been_used = False
 		# self.selection_is_active = False
-		# self.reset_temp()
 
 	def on_tool_selected(self):
 		self.selection_has_been_used = True
@@ -240,8 +239,8 @@ class ToolSelect(ToolTemplate):
 			self.set_popover_position()
 			self.selection_popover.popup()
 		elif state:
-			self.temp_x = self.rightc_popover.get_pointing_to()[1].x
-			self.temp_y = self.rightc_popover.get_pointing_to()[1].y
+			self.get_image().temp_x = self.rightc_popover.get_pointing_to()[1].x
+			self.get_image().temp_y = self.rightc_popover.get_pointing_to()[1].y
 			self.get_image().selection_x = self.rightc_popover.get_pointing_to()[1].x
 			self.get_image().selection_y = self.rightc_popover.get_pointing_to()[1].y
 			self.rightc_popover.popup()
@@ -269,25 +268,6 @@ class ToolSelect(ToolTemplate):
 			self.get_image().selection_x += delta_x
 			self.get_image().selection_y += delta_y
 		self.non_destructive_show_modif()
-
-	def action_cut(self, *args):
-		self.copy_operation()
-		self.action_selection_delete()
-
-	def action_copy(self, *args):
-		self.selection_has_been_used = True
-		self.copy_operation()
-
-	def copy_operation(self):
-		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		cb.set_image(self.get_selection_pixbuf())
-
-	def action_selection_delete(self, *args):
-		self.selection_has_been_used = True
-		self.restore_pixbuf()
-		self.delete_temp()
-		self.reset_temp()
-		self.apply_to_pixbuf() # actually needed
 
 	# def action_selection_flip(self, *args):
 	# 	self.try_edit('flip')

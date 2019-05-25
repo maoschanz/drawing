@@ -300,8 +300,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('properties', self.action_properties, None)
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
+		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 		self.add_action_boolean('show_labels', self._settings.get_boolean('show-labels'), \
 			self.on_show_labels_changed)
+		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -326,13 +328,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 		self.add_action_simple('export_as', self.action_export_as, None)
 		self.add_action_simple('print', self.action_print, ['<Ctrl>p'])
+
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl>u'])
-
-		# Is declared here because its callback need several methods from this
-		# file but none from select.py
+		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
+		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
+		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
 		self.add_action_simple('selection_export', self.action_selection_export, None)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
@@ -795,6 +798,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_unselect(self, *args):
 		self.get_active_image().image_unselect()
 
+	def action_cut(self, *args):
+		self.copy_operation()
+		self.action_delete()
+
+	def action_copy(self, *args):
+		self.get_active_image().selection_has_been_used = True
+		self.copy_operation()
+
+	def copy_operation(self):
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		cb.set_image(self.get_active_image().get_selection_pixbuf())
+
+	def action_delete(self, *args):
+		self.get_active_image().image_delete()
+
 	def action_paste(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
@@ -846,7 +864,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	def tool_needs_selection(self): # FIXME est appelé giga souvent ????
-		return ( self.active_tool() is self.get_selection_tool() )
+		# return ( self.active_tool() is self.get_selection_tool() )
+		return self.active_tool().accept_selection
 
 	# HISTORY MANAGEMENT
 

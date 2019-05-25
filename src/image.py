@@ -240,12 +240,12 @@ class DrawingImage(Gtk.Box):
 	# HISTORY MANAGEMENT
 
 	def try_undo(self, *args):
-		self.window.active_tool().cancel_ongoing_operation()
+		self.active_tool().cancel_ongoing_operation()
 		if len(self.undo_history) != 0:
 			self.redo_history.append(self.undo_history.pop())
 		# TODO implement operation_is_ongoing
 		# if self.window.operation_is_ongoing():
-		# 	self.window.active_tool().cancel_ongoing_operation()
+		# 	self.active_tool().cancel_ongoing_operation()
 		# elif len(self.undo_history) != 0:
 		# 	self.redo_history.append(self.undo_history.pop())
 
@@ -273,8 +273,7 @@ class DrawingImage(Gtk.Box):
 		self.update_actions_state()
 
 	def update_actions_state(self):
-		# self.active_tool().update_actions_state() # FIXME
-		pass
+		self.active_tool().update_actions_state()
 
 	# DRAWING OPERATIONS
 
@@ -423,9 +422,19 @@ class DrawingImage(Gtk.Box):
 
 	def image_unselect(self, *args):
 		self.window.get_selection_tool().give_back_control() # FIXME
+
+	def image_delete(self, *args):
+		self.selection_has_been_used = True
+		self.use_stable_pixbuf()
+		self.delete_temp()
+		self.reset_temp()
+		self.on_tool_finished() # actually needed # XXX est-ce une opération FIXME
 		self.update() # utile ??
 
 ########################
+
+	def show_selection_popover(self, state):
+		self.window.get_selection_tool().show_popover(state)
 
 	def point_is_in_selection(self, tested_x, tested_y):
 		"""Returns a boolean if the point whose coordinates are "(tested_x,
@@ -463,7 +472,7 @@ class DrawingImage(Gtk.Box):
 		if is_existing_content:
 			self.temp_path = cairo_context.copy_path()
 			self.set_temp()
-		self.show_popover(False)
+		self.show_selection_popover(False)
 		self.update_actions_state()
 		self.update_surface()
 
@@ -504,6 +513,8 @@ class DrawingImage(Gtk.Box):
 		selection beginning where the "press" event was made and ending where
 		the "release" event is made (its coordinates are parameters). This
 		method is specific to the "rectangle selection" mode."""
+		if self.selection_path is None:
+			return
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		cairo_context.set_dash([3, 3])
@@ -606,7 +617,7 @@ class DrawingImage(Gtk.Box):
 		self.temp_y = 0
 		self.temp_path = None
 		self.selection_is_active = False
-		self.update_actions_state()
+		# self.update_actions_state() # FIXME ne peut pas être ici car empêche le démarrage
 
 	def set_temp(self):
 		self.temp_x = self.selection_x
@@ -624,16 +635,6 @@ class DrawingImage(Gtk.Box):
 		cairo_context.set_operator(cairo.Operator.CLEAR)
 		cairo_context.paint()
 		cairo_context.set_operator(cairo.Operator.OVER)
-
-
-
-
-
-	def get_selection_x(self):
-		return self.selection_x
-
-	def get_selection_y(self):
-		return self.selection_y
 
 	def get_dragged_selection_path(self):
 		if self.selection_path is None:
@@ -665,7 +666,7 @@ class DrawingImage(Gtk.Box):
 		self.temp_x = 0
 		self.temp_y = 0
 		self.create_selection_from_arbitrary_pixbuf(True)
-		self.show_popover(True)
+		self.show_selection_popover(True)
 
 ########################
 

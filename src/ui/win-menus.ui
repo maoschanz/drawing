@@ -44,19 +44,16 @@
         <attribute name="action">win.paste</attribute>
       </item>
     </section>
-
     <section>
-      <!-- XXX good here ? -->
-      <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-      </item>
       <item>
         <attribute name="label" translatable="yes">Unselect</attribute>
         <attribute name="action">win.unselect</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
+      </item>
     </section>
-
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
@@ -115,18 +112,6 @@
 <!-- Hamburger menu for desktop -->
   <menu id="short-window-menu">
     <section>
-      <!-- XXX good here ? -->
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">Select all</attribute> -->
-      <!--   <attribute name="action">win.select_all</attribute> -->
-      <!-- </item> -->
-      <item>
-        <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.unselect</attribute>
-        <attribute name="hidden-when">action-disabled</attribute>
-      </item>
-    </section>
-    <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="action">win.save_as</attribute>
@@ -148,6 +133,17 @@
       <item>
         <attribute name="label" translatable="yes">Export as…</attribute>
         <attribute name="action">win.export_as</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="action">win.unselect</attribute>
+        <!-- <attribute name="hidden-when">action-disabled</attribute> -->
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Select all</attribute>
+        <attribute name="action">win.select_all</attribute>
       </item>
     </section>
     <section>

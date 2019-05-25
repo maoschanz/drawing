@@ -74,7 +74,6 @@ class Application(Gtk.Application):
 	def on_startup(self, *args):
 		"""Add app-wide menus and actions, and all accels."""
 		self.build_actions()
-		self.add_accels()
 		builder = Gtk.Builder.new_from_resource( \
 		                        '/com/github/maoschanz/drawing/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
@@ -117,16 +116,6 @@ class Application(Gtk.Application):
 		self.add_action_simple('help', self.on_help, ['F1'])
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
-
-	def add_accels(self):
-		"""Set all keyboard shortcuts which are not already set by their related
-		action.""" # TODO shouldn't exist
-		self.set_accels_for_action('win.selection_cut', ['<Ctrl>x'])
-		self.set_accels_for_action('win.selection_copy', ['<Ctrl>c'])
-		self.set_accels_for_action('win.selection_delete', ['Delete'])
-
-		self.set_accels_for_action('win.show_labels', ['F9'])
-		self.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
 ########
 
