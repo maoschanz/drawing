@@ -14,6 +14,7 @@ class ToolSelect(ToolTemplate):
 	def __init__(self, window, **kwargs):
 		super().__init__('select', _("Selection"), 'tool-select-symbolic', window)
 		self.use_color = False
+		self.accept_selection = True
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle selection")
 		self.background_type_id = 'transparent'
@@ -55,9 +56,6 @@ class ToolSelect(ToolTemplate):
 	def on_tool_unselected(self):
 		self.set_actions_state(False)
 
-	def selection_is_active(self): # XXX
-		return self.get_image().selection_is_active
-
 	def update_actions_state(self):
 		if self.selection_is_active():
 			self.cursor_name = 'grab'
@@ -66,7 +64,7 @@ class ToolSelect(ToolTemplate):
 		self.set_actions_state(self.selection_is_active())
 
 	def set_actions_state(self, state): # XXX du coup non puisque c'est valable à l'échelle de l'image
-		self.set_action_sensitivity('unselect', state)
+		# self.set_action_sensitivity('unselect', state) # FIXME
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
@@ -312,9 +310,7 @@ class ToolSelect(ToolTemplate):
 	# 	else:
 	# 		self.window.tools[tool_id].row.set_active(True)
 
-	############################################################################
-
-	# def on_confirm_hijacked_modif(self):  # FIXME IMAGE.PY
+	# def on_confirm_hijacked_modif(self):
 	# 	self.selection_has_been_used = True
 	# 	self.window.hijack_end()
 	#	self.create_selection_from_arbitrary_pixbuf(False)
@@ -322,13 +318,13 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 
 	def build_operation(self):
-		if self.get_image().get_selection_pixbuf() is None:
+		if self.get_selection_pixbuf() is None:
 			pixbuf = None
 		else:
-			pixbuf = self.get_image().get_selection_pixbuf().copy()
+			pixbuf = self.get_selection_pixbuf().copy()
 		operation = {
 			'tool_id': self.id,
-			'initial_path': self.temp_path,
+			'initial_path': self.get_image().temp_path,
 			'pixbuf': pixbuf,
 			'pixb_x': self.get_image().selection_x,
 			'pixb_y': self.get_image().selection_y

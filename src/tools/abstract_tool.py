@@ -11,6 +11,7 @@ class ToolTemplate():
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
 		self.implements_panel = False
+		self.accept_selection = False
 		self.use_color = True
 		self.menu_id = 0
 		self.label = label
@@ -121,7 +122,15 @@ class ToolTemplate():
 		self.apply_to_pixbuf()
 		self.get_image().add_operation_to_history(operation)
 
-	# Miscellaneous
+	# Selection
+
+	def selection_is_active(self): # XXX
+		return self.get_image().selection_is_active
+
+	def get_selection_pixbuf(self):
+		return self.get_image().get_selection_pixbuf()
+
+	# Image management
 
 	def get_image(self):
 		return self.window.get_active_image()
@@ -132,9 +141,6 @@ class ToolTemplate():
 	def get_main_pixbuf(self):
 		return self.get_image().get_main_pixbuf()
 
-	def get_selection_pixbuf(self):
-		return self.get_image().get_selection_pixbuf()
-
 	def non_destructive_show_modif(self):
 		self.get_image().update()
 
@@ -143,6 +149,8 @@ class ToolTemplate():
 
 	def apply_to_pixbuf(self):
 		self.get_image().on_tool_finished()
+
+	# Signals handling
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		pass

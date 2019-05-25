@@ -425,9 +425,7 @@ class DrawingImage(Gtk.Box):
 		self.window.get_selection_tool().give_back_control() # FIXME
 		self.update() # utile ??
 
-
-
-
+########################
 
 	def point_is_in_selection(self, tested_x, tested_y):
 		"""Returns a boolean if the point whose coordinates are "(tested_x,
@@ -451,8 +449,8 @@ class DrawingImage(Gtk.Box):
 		can be an imported picture (from a file or from the clipboard).
 		In the first case, the "is_existing_content" boolean parameter should be
 		true, so the temp_path will be cleared."""
-		self.temp_x = self.selection_x  # FIXME IMAGE.PY
-		self.temp_y = self.selection_y  # FIXME IMAGE.PY
+		self.temp_x = self.selection_x
+		self.temp_y = self.selection_y
 		self.selection_has_been_used = True
 		self.selection_is_active = True
 		cairo_context = cairo.Context(self.get_surface())
@@ -599,12 +597,6 @@ class DrawingImage(Gtk.Box):
 		self.selection_x = x
 		self.selection_y = y
 
-
-
-
-
-
-
 	def forget_selection(self):
 		self.selection_pixbuf = None
 		self.selection_path = None
@@ -647,12 +639,10 @@ class DrawingImage(Gtk.Box):
 		if self.selection_path is None:
 			return None
 		cairo_context = cairo.Context(self.get_surface())
-		temp_x = self.window.get_selection_tool().temp_x
-		temp_y = self.window.get_selection_tool().temp_y
 		for pts in self.selection_path:
 			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - temp_x - self.scroll_x
-				y = pts[1][1] + self.selection_y - temp_y - self.scroll_y
+				x = pts[1][0] + self.selection_x - self.temp_x - self.scroll_x
+				y = pts[1][1] + self.selection_y - self.temp_y - self.scroll_y
 				cairo_context.line_to(int(x), int(y))
 		cairo_context.close_path()
 		return cairo_context.copy_path()

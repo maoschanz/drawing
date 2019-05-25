@@ -29,6 +29,7 @@ class AbstractCanvasTool(ToolTemplate):
 		self.menu_id = 1
 		self.centered_box = None
 		self.needed_width_for_long = 0
+		self.accept_selection = True
 		# TODO
 
 	def adapt_to_window_size(self, available_width):
