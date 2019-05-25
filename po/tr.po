@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-21 21:28+0200\n"
-"PO-Revision-Date: 2019-04-28 21:07+0300\n"
+"PO-Revision-Date: 2019-05-23 17:54+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -52,11 +52,11 @@ msgstr "Yeni Görüntü"
 
 #: data/com.github.maoschanz.drawing.desktop.in:26
 msgid "Edit Image in Clipboard"
-msgstr ""
+msgstr "Panodaki Resmi Düzenle"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:7 src/main.py:291
 msgid "A drawing application for the GNOME desktop."
-msgstr "GNOME masaüstü için bir çizim uygulaması."
+msgstr "GNOME masaüstü ortamı için çizim uygulaması."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:9
 msgid "A simple application to draw or edit pictures."
@@ -158,18 +158,16 @@ msgid "_File"
 msgstr "_Dosya"
 
 #: src/ui/app-menus.ui:52 src/ui/win-menus.ui:17 src/ui/win-menus.ui:184
-#, fuzzy
 msgid "New Blank Image"
-msgstr "Yeni Görüntü"
+msgstr "Yeni Boş Görüntü"
 
 #: src/ui/app-menus.ui:56
-#, fuzzy
 msgid "New Image From Selection"
-msgstr "Dikdörtgen seçim"
+msgstr "Seçimden Yeni Görüntü"
 
 #: src/ui/app-menus.ui:61
 msgid "New Image From Clipboard"
-msgstr ""
+msgstr "Panodan Yeni Görüntü"
 
 #: src/ui/app-menus.ui:68 src/ui/toolbar.ui:41 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:177
@@ -259,9 +257,8 @@ msgid "Rebuild from history"
 msgstr "Geçmişten yeniden oluştur"
 
 #: src/ui/app-menus.ui:204
-#, fuzzy
 msgid "Position"
-msgstr "Baskı"
+msgstr "Konum"
 
 #: src/ui/app-menus.ui:207 src/ui/shortcuts.ui:221
 msgid "Go Left"
@@ -550,13 +547,12 @@ msgid "Preview"
 msgstr "Önizlenim"
 
 #: src/ui/win-menus.ui:21 src/ui/win-menus.ui:187
-#, fuzzy
 msgid "From Selection"
-msgstr "Serbest seçim"
+msgstr "Seçimden"
 
 #: src/ui/win-menus.ui:25 src/ui/win-menus.ui:191
 msgid "From Clipboard"
-msgstr ""
+msgstr "Panodan"
 
 #: src/main.py:58
 msgid "Print the version and display the 'about' dialog"
@@ -572,7 +568,7 @@ msgstr "Yeni bir sekmede aç"
 
 #: src/main.py:65
 msgid "Edit the clipboard content"
-msgstr ""
+msgstr "Pano içeriğini düzenle"
 
 #. Obviously, do not translate the command line.
 #: src/main.py:241
@@ -902,9 +898,8 @@ msgid "Saturate"
 msgstr "Doygunluk"
 
 #: src/tools/ui/tool_select.ui:75 src/tools/ui/tool_select.ui:147
-#, fuzzy
 msgid "Open As New Image"
-msgstr "Yeni Görüntü"
+msgstr "Yeni Görüntü Olarak Aç"
 
 #: src/tools/ui/tool_select.ui:156
 msgid "Selection type"
