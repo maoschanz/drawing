@@ -16,6 +16,7 @@ class ToolLine(ToolTemplate):
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', False)
 		self.add_tool_action_boolean('is_arrow', False)
+		self.add_tool_action_boolean('use_gradient', False)
 		self.add_tool_action_enum('cairo_operator', 'over')
 
 		# Default values
@@ -55,6 +56,7 @@ class ToolLine(ToolTemplate):
 	def get_edition_status(self): # TODO l'opérateur est important
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.use_arrow = self.get_option_value('is_arrow')
+		self.use_gradient = self.get_option_value('use_gradient')
 		self.set_active_shape()
 		self.set_active_operator()
 		label = self.label + ' (' + self.selected_shape_label + ') '
@@ -93,8 +95,10 @@ class ToolLine(ToolTemplate):
 		self.tool_width = tool_width
 		if event.button == 1:
 			self.main_color = left_color
+			self.sec_color = right_color
 		if event.button == 3:
 			self.main_color = right_color
+			self.sec_color = left_color
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -112,11 +116,13 @@ class ToolLine(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
+			'rgba2': self.sec_color,
 			'operator': self.selected_operator,
 			'line_width': self.tool_width,
 			'line_cap': self.selected_end_id,
 			'use_dashes': self.use_dashes,
 			'use_arrow': self.use_arrow,
+			'use_gradient': self.use_gradient,
 			'path': self._path,
 			'x_release': event_x,
 			'y_release': event_y,
@@ -132,11 +138,18 @@ class ToolLine(ToolTemplate):
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])
-		#cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
 		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		rgba2 = operation['rgba2']
+		if operation['use_gradient']:
+			pattern = cairo.LinearGradient(operation['x_press'], operation['y_press'], \
+			                     operation['x_release'], operation['y_release'])
+			pattern.add_color_stop_rgba(0.1, rgba.red, rgba.green, rgba.blue, rgba.alpha)
+			pattern.add_color_stop_rgba(0.9, rgba2.red, rgba2.green, rgba2.blue, rgba2.alpha)
+			cairo_context.set_source(pattern)
+		else:
+			cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		if operation['use_dashes']:
 			cairo_context.set_dash([2*line_width, 2*line_width])
 		cairo_context.append_path(operation['path'])
@@ -147,4 +160,6 @@ class ToolLine(ToolTemplate):
 			y_press = operation['y_press']
 			x_release = operation['x_release']
 			y_release = operation['y_release']
-			utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width)
+			utilities_add_arrow_triangle(cairo_context, x_release, y_release, \
+			                                       x_press, y_press, line_width)
+
