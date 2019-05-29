@@ -155,10 +155,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
 			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
-				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
-				Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
-				Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			    Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
+			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
 				if self.tools[tool_id].menu_id > 0:
 					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
@@ -601,6 +601,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.update_bottom_panel()
 		self.color_box.set_sensitive(self.active_tool().use_color)
 		self.active_tool().on_tool_selected()
+		self.get_active_image().update_actions_state()
 		self.set_picture_title()
 
 	def update_bottom_panel(self):

@@ -17,13 +17,7 @@ class ToolSelect(ToolTemplate):
 		self.accept_selection = True
 		self.selected_type_id = 'rectangle'
 		self.selected_type_label = _("Rectangle selection")
-		self.background_type_id = 'transparent'
-
-		# self.add_tool_action_simple('selection_crop', self.action_selection_crop)
-		# self.add_tool_action_simple('selection_scale', self.action_selection_scale)
-		# self.add_tool_action_simple('selection_flip', self.action_selection_flip)
-		# self.add_tool_action_simple('selection_rotate', self.action_selection_rotate)
-		# self.add_tool_action_simple('selection_saturate', self.action_selection_saturate)
+		self.operation_type = 'op-drag'
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
 
@@ -37,28 +31,19 @@ class ToolSelect(ToolTemplate):
 		self.selection_has_been_used = False
 
 	def on_tool_selected(self):
+		self.operation_type = 'op-drag'
 		self.selection_has_been_used = True
-		self.update_actions_state()
 		self.selection_popover.set_relative_to(self.get_image())
 		self.update_surface()
 
-	def on_tool_unselected(self):
-		self.set_actions_state(False)
+	# def on_tool_unselected(self):
+	# 	pass # XXX vraiment ?
 
 	def update_actions_state(self):
 		if self.selection_is_active():
 			self.cursor_name = 'grab'
 		else:
 			self.cursor_name = 'cross'
-		self.set_actions_state(self.selection_is_active())
-
-	def set_actions_state(self, state): # XXX du coup non puisque c'est valable à l'échelle de l'image
-		self.set_action_sensitivity('unselect', state) # FIXME ?
-		self.set_action_sensitivity('selection_cut', state)
-		self.set_action_sensitivity('selection_copy', state)
-		self.set_action_sensitivity('selection_delete', state)
-		self.set_action_sensitivity('selection_export', state)
-		self.set_action_sensitivity('new_tab_selection', state)
 
 	def set_active_type(self, *args):
 		selection_type = self.get_option_value('selection_type')
@@ -262,18 +247,6 @@ class ToolSelect(ToolTemplate):
 	# def action_selection_flip(self, *args):
 	# 	self.try_edit('flip')
 
-	# def action_selection_scale(self, *args):
-	# 	self.try_edit('scale')
-
-	# def action_selection_crop(self, *args):
-	# 	self.try_edit('crop')
-
-	# def action_selection_saturate(self, *args):
-	# 	self.try_edit('saturate')
-
-	# def action_selection_rotate(self, *args):
-	# 	self.try_edit('rotate')
-
 	# def try_edit(self, tool_id):
 	# 	if self.selection_is_active:
 	# 		self.window.hijack_begin(self.id, tool_id)
@@ -285,6 +258,11 @@ class ToolSelect(ToolTemplate):
 	# 	self.window.hijack_end()
 	#	self.create_selection_from_arbitrary_pixbuf(False)
 
+	def delete_selection(self):
+		self.operation_type = 'op-delete'
+		self.apply_selection()
+		self.operation_type = 'op-drag'
+
 	############################################################################
 
 	def build_operation(self):
@@ -294,6 +272,7 @@ class ToolSelect(ToolTemplate):
 			pixbuf = self.get_selection_pixbuf().copy()
 		operation = {
 			'tool_id': self.id,
+			'operation_type': self.operation_type,
 			'initial_path': self.get_image().temp_path,
 			'pixbuf': pixbuf,
 			'pixb_x': self.get_image().selection_x,
@@ -301,22 +280,35 @@ class ToolSelect(ToolTemplate):
 		}
 		return operation
 
+	def op_delete(self, operation):
+		if operation['initial_path'] is None:
+			return
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.new_path()
+		cairo_context.append_path(operation['initial_path'])
+		cairo_context.clip()
+		cairo_context.set_operator(cairo.Operator.CLEAR)
+		cairo_context.paint()
+		cairo_context.set_operator(cairo.Operator.OVER)
+
+	def op_drag(self, operation):
+		if operation['initial_path'] is None:
+			return
+		cairo_context = cairo.Context(self.get_surface())
+		Gdk.cairo_set_source_pixbuf(cairo_context, operation['pixbuf'],
+			operation['pixb_x'], operation['pixb_y'])
+		cairo_context.paint()
+
 	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		self.get_image().update_history_sensitivity(True)
-		if operation['initial_path'] is not None:
-			cairo_context = cairo.Context(self.get_surface())
-			cairo_context.new_path()
-			cairo_context.append_path(operation['initial_path'])
-			cairo_context.clip()
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
-		if operation['pixbuf'] is not None:
-			cairo_context2 = cairo.Context(self.get_surface())
-			Gdk.cairo_set_source_pixbuf(cairo_context2, operation['pixbuf'],
-				operation['pixb_x'], operation['pixb_y'])
-			cairo_context2.paint()
+		if operation['operation_type'] == 'op-delete':
+			self.op_delete(operation)
+		elif operation['operation_type'] == 'op-drag':
+			self.op_delete(operation)
+			self.op_drag(operation)
+		elif operation['operation_type'] == 'op-define':
+			pass # TODO ?
+
 

@@ -254,7 +254,7 @@ class DrawingImage(Gtk.Box):
 		self.undo_history.append(self.redo_history.pop())
 
 	def update_history_sensitivity(self, tools_exist):
-		if not tools_exist:
+		if not tools_exist: # FIXME wtf is this hack
 			can_undo = False
 		else:
 			can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
@@ -273,7 +273,17 @@ class DrawingImage(Gtk.Box):
 		self.set_surface_as_stable_pixbuf()
 		self.update_actions_state()
 
+	def set_action_sensitivity(self, action_name, state):
+		self.window.lookup_action(action_name).set_enabled(state)
+
 	def update_actions_state(self):
+		state = self.selection_is_active
+		self.set_action_sensitivity('unselect', state)
+		self.set_action_sensitivity('selection_cut', state)
+		self.set_action_sensitivity('selection_copy', state)
+		self.set_action_sensitivity('selection_delete', state)
+		self.set_action_sensitivity('selection_export', state)
+		self.set_action_sensitivity('new_tab_selection', state)
 		self.active_tool().update_actions_state()
 
 	# DRAWING OPERATIONS
@@ -436,9 +446,9 @@ class DrawingImage(Gtk.Box):
 	def image_delete(self, *args):
 		self.selection_has_been_used = True
 		self.use_stable_pixbuf()
-		self.delete_temp()
+		self.window.get_selection_tool().delete_selection()
+		# self.delete_temp()
 		self.reset_temp()
-		self.on_tool_finished() # actually needed # XXX est-ce une opération FIXME
 		self.update() # utile ??
 
 ########################
