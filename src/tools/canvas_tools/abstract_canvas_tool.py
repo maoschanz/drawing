@@ -76,8 +76,7 @@ class AbstractCanvasTool(ToolTemplate):
 			self.do_tool_operation(operation)
 			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.get_image().create_selection_from_arbitrary_pixbuf(False)
-			self.window.enable_tool('select', False)
 		else:
 			operation['is_preview'] = False
 			self.apply_operation(operation)
-			self.window.force_selection()
+		self.window.force_selection()

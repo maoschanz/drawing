@@ -173,7 +173,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
 		if tool_id == 'pencil':
-			self.enable_tool(tool_id, True)
+			self.enable_tool(tool_id)
 		else:
 			self.active_tool().row.set_active(True)
 
@@ -587,14 +587,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		action = self.lookup_action('active_tool')
 		if self.tools[tool_id].row.get_active():
 			action.set_state(GLib.Variant.new_string(tool_id))
-			self.enable_tool(tool_id, True) # FIXME
+			self.enable_tool(tool_id)
 		else:
 			self.tools[tool_id].row.set_active(True)
 
-	def enable_tool(self, new_tool_id, should_give_back_control):
+	def enable_tool(self, new_tool_id):
 		self.former_tool_id = self.active_tool_id
-		if should_give_back_control: # FIXME
-			self.former_tool().give_back_control() # FIXME
+		should_preserve_selection = self.tools[new_tool_id].accept_selection
+		self.former_tool().give_back_control(should_preserve_selection)
 		self.former_tool().on_tool_unselected()
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
@@ -621,21 +621,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
-		# if self.hijacker_id is not None:
-		# 	self.hijack_end()
-		# else:
 		self.tools[self.former_tool_id].row.set_active(True)
-
-	# def hijack_begin(self, hijacker_id, target_id):
-	# 	self.lookup_action('active_tool').set_enabled(False)
-	# 	self.hijacker_id = hijacker_id
-	# 	self.enable_tool(target_id, False)
-
-	# def hijack_end(self):
-	# 	if self.hijacker_id is not None:
-	# 		self.enable_tool(self.hijacker_id, False)
-	# 	self.hijacker_id = None
-	# 	self.lookup_action('active_tool').set_enabled(True)
 
 	# FILE MANAGEMENT
 
@@ -849,10 +835,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return self.active_tool()
 
 	def force_selection(self, *args):
-		# if self.hijacker_id is not None:
-		# 	self.hijack_end()
-		# else:
-		self.get_selection_tool().row.set_active(True)
+		self.get_selection_tool().row.set_active(True) # XXX appeler enable tool ?
 
 	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
@@ -890,7 +873,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for op in h:
 			self.tools[op['tool_id']].apply_operation(op)
 		self.get_active_image().update()
-		self.get_active_image().update_history_sensitivity(True)
+		self.get_active_image().update_history_sensitivity()
 
 	# COLORS
 

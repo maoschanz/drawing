@@ -28,11 +28,9 @@ class ToolSelect(ToolTemplate):
 
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
-		self.selection_has_been_used = False
-
 	def on_tool_selected(self):
 		self.operation_type = 'op-drag'
-		self.selection_has_been_used = True
+		# self.selection_has_been_used = True
 		self.selection_popover.set_relative_to(self.get_image())
 		self.update_surface()
 
@@ -72,16 +70,18 @@ class ToolSelect(ToolTemplate):
 
 	############################################################################
 
-	def give_back_control(self): # FIXME la plupart de ces trucs ça va dans image hein
-		if self.selection_has_been_used:
+	def selection_has_been_used(self):
+		return self.get_image().selection_has_been_used
+
+	def give_back_control(self, preserve_selection):
+		if preserve_selection and self.selection_is_active():
+			operation = self.build_operation()
+			operation['operation_type'] = 'op-define'
+			self.apply_operation(operation)
+			return
+		if self.selection_has_been_used():
 			self.apply_selection()
-			self.get_image().forget_selection()
-			self.get_image().reset_temp()
-			return False
-		else:
-			self.selection_has_been_used = True # XXX ???
-			self.get_image().forget_selection()
-			return self.cancel_ongoing_operation()
+		self.get_image().reset_temp()
 
 	def apply_selection(self):
 		if self.selection_is_active():
@@ -90,9 +90,6 @@ class ToolSelect(ToolTemplate):
 
 	def cancel_ongoing_operation(self):
 		self.get_image().reset_temp()
-		self.restore_pixbuf()
-		self.non_destructive_show_modif()
-		self.selection_has_been_used = False
 		return True
 
 	def get_press_behavior(self):
@@ -123,7 +120,7 @@ class ToolSelect(ToolTemplate):
 		if not self.get_image().point_is_in_selection(self.x_press, self.y_press):
 			self.cursor_name = 'cross'
 			self.window.set_cursor(True)
-			self.give_back_control()
+			self.give_back_control(False)
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 		if behavior == 'select-rectangle':
@@ -175,14 +172,14 @@ class ToolSelect(ToolTemplate):
 			self.get_image().draw_rectangle(event_x, event_y)
 			if self.selection_is_active():
 				self.show_popover(True)
-				self.selection_has_been_used = False
+				# self.selection_has_been_used = False
 		elif behavior == 'freehand': # TODO image method
 			if self.get_image().draw_polygon(event_x, event_y):
 				self.restore_pixbuf()
 				self.get_image().create_free_selection_from_main()
 				if self.selection_is_active():
 					self.show_popover(True)
-					self.selection_has_been_used = False
+					# self.selection_has_been_used = False
 			else:
 				return # without updating the surface so the path is visible
 		elif behavior == 'color': # TODO image method
@@ -191,7 +188,7 @@ class ToolSelect(ToolTemplate):
 				self.get_image().create_free_selection_from_main()
 				if self.selection_is_active():
 					self.show_popover(True)
-					self.selection_has_been_used = False
+					# self.selection_has_been_used = False
 		self.update_surface()
 		if behavior == 'drag-selection':
 			self.drag_to(event_x, event_y)
@@ -239,7 +236,7 @@ class ToolSelect(ToolTemplate):
 		if delta_x == 0 and delta_y == 0:
 			pass
 		else:
-			self.selection_has_been_used = True
+			# self.selection_has_been_used = True
 			self.get_image().selection_x += delta_x
 			self.get_image().selection_y += delta_y
 		self.non_destructive_show_modif()

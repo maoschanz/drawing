@@ -79,15 +79,13 @@ class DrawingImage(Gtk.Box):
 		self.selection_x = 1
 		self.selection_y = 1
 		self.selection_path = None
-		self.selection_is_defined = False
 		self.selection_is_active = False # XXX ?
+		self.selection_has_been_used = False # TODO
 		self.closing_x = 0
 		self.closing_y = 0
 		self.reset_temp()
-
-		self.update_history_sensitivity(False)
-		self.use_stable_pixbuf()
-		self.update()
+		self.window.lookup_action('undo').set_enabled(False)
+		self.window.lookup_action('redo').set_enabled(False)
 
 	def build_tab_label(self):
 		"""Build the "self.tab_title" attribute, which is the GTK widget
@@ -253,22 +251,19 @@ class DrawingImage(Gtk.Box):
 	def try_redo(self, *args):
 		self.undo_history.append(self.redo_history.pop())
 
-	def update_history_sensitivity(self, tools_exist):
-		if not tools_exist: # FIXME wtf is this hack
-			can_undo = False
-		else:
-			can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
+	def update_history_sensitivity(self):
+		can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
 
 	def add_operation_to_history(self, operation):
 		self._is_saved = False
 		self.undo_history.append(operation)
-		self.update_history_sensitivity(True)
+		self.update_history_sensitivity()
 
 	def on_tool_finished(self):
 		#self.redo_history = []
-		self.update_history_sensitivity(True)
+		self.update_history_sensitivity()
 		self.update()
 		self.set_surface_as_stable_pixbuf()
 		self.update_actions_state()
@@ -441,15 +436,14 @@ class DrawingImage(Gtk.Box):
 		self.create_selection_from_arbitrary_pixbuf(False)
 
 	def image_unselect(self, *args):
-		self.window.get_selection_tool().give_back_control() # FIXME
+		self.window.get_selection_tool().give_back_control(False) # FIXME ?
 
 	def image_delete(self, *args):
 		self.selection_has_been_used = True
 		self.use_stable_pixbuf()
 		self.window.get_selection_tool().delete_selection()
-		# self.delete_temp()
 		self.reset_temp()
-		self.update() # utile ??
+		self.show_selection_popover(False)
 
 ########################
 
@@ -628,16 +622,16 @@ class DrawingImage(Gtk.Box):
 		self.selection_x = x
 		self.selection_y = y
 
-	def forget_selection(self):
+	def reset_temp(self):
 		self.selection_pixbuf = None
 		self.selection_path = None
-
-	def reset_temp(self):
 		self.temp_x = 0
 		self.temp_y = 0
 		self.temp_path = None
 		self.selection_is_active = False
 		# self.update_actions_state() # FIXME ne peut pas être ici car empêche le démarrage
+		self.use_stable_pixbuf()
+		self.update()
 
 	def set_temp(self):
 		self.temp_x = self.selection_x

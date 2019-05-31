@@ -37,10 +37,9 @@ class ToolRectangle(ToolTemplate):
 		label = self.label + ' - ' + self.selected_style_label
 		return label
 
-	def give_back_control(self):
+	def give_back_control(self, preserve_selection):
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		self.restore_pixbuf()
-		return False
 
 	def build_rectangle(self, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())

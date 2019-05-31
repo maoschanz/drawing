@@ -23,7 +23,6 @@ class ToolLine(ToolTemplate):
 		self.selected_shape_label = _("Round")
 		self.selected_operator = cairo.Operator.OVER
 		self.selected_end_id = cairo.LineCap.ROUND
-		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 		self.use_dashes = False
 		self.use_arrow = False
 
@@ -68,16 +67,9 @@ class ToolLine(ToolTemplate):
 			label = label + ' - ' + _("With dashes")
 		return label
 
-	def give_back_control(self):
-		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
-			self.x_press = 0.0
-			self.y_press = 0.0
-			return False
-		else:
-			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
-			self.x_press = 0.0
-			self.y_press = 0.0
-			return True
+	def give_back_control(self, preserve_selection):
+		self.x_press = 0.0
+		self.y_press = 0.0
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()

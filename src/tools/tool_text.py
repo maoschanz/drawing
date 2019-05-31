@@ -59,12 +59,9 @@ class ToolText(ToolTemplate):
 	def get_options_widget(self):
 		return self.options_box
 
-	def give_back_control(self):
+	def give_back_control(self, preserve_selection):
 		if self.should_cancel:
 			self.on_cancel()
-			return True
-		else:
-			return False
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		if event.button == 1:

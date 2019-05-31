@@ -19,7 +19,7 @@ class ToolTemplate():
 		self.tool_width = 10
 		self.cursor_name = 'cell'
 		self.use_size = False
-		self.has_ongoing_operation = False
+		self.has_ongoing_operation = False # TODO trier tous ces attributs et ces méthodes
 		self.build_row()
 		self.window = window
 
@@ -100,12 +100,11 @@ class ToolTemplate():
 		pass
 
 	def cancel_ongoing_operation(self):
-		return self.give_back_control()
+		pass
 
-	def give_back_control(self):
+	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
-		return False
 
 	# History
 
@@ -120,7 +119,7 @@ class ToolTemplate():
 
 	# Selection
 
-	def selection_is_active(self): # XXX
+	def selection_is_active(self):
 		return self.get_image().selection_is_active
 
 	def get_selection_pixbuf(self):
