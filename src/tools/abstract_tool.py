@@ -125,6 +125,12 @@ class ToolTemplate():
 	def get_selection_pixbuf(self):
 		return self.get_image().selection_pixbuf
 
+	def set_selection_has_been_used(self, state):
+		self.get_image().selection_has_been_used = state
+
+	def selection_has_been_used(self):
+		return self.get_image().selection_has_been_used
+
 	# Image management
 
 	def get_image(self):

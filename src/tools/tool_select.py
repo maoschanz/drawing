@@ -19,7 +19,8 @@ class ToolSelect(ToolTemplate):
 		self.selected_type_label = _("Rectangle selection")
 		self.operation_type = 'op-drag'
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
 
 		menu_r = builder.get_object('right-click-menu')
 		self.rightc_popover = Gtk.Popover.new_from_model(self.window.notebook, menu_r)
@@ -30,7 +31,7 @@ class ToolSelect(ToolTemplate):
 
 	def on_tool_selected(self):
 		self.operation_type = 'op-drag'
-		# self.selection_has_been_used = True
+		# self.set_selection_has_been_used(True) # XXX ?
 		self.selection_popover.set_relative_to(self.get_image())
 		self.update_surface()
 
@@ -69,9 +70,6 @@ class ToolSelect(ToolTemplate):
 		return label
 
 	############################################################################
-
-	def selection_has_been_used(self):
-		return self.get_image().selection_has_been_used
 
 	def give_back_control(self, preserve_selection):
 		if preserve_selection and self.selection_is_active():
@@ -168,18 +166,18 @@ class ToolSelect(ToolTemplate):
 			self.show_popover(True)
 			return
 		behavior = self.get_release_behavior()
-		if behavior == 'rectangle': # TODO image method
+		if behavior == 'rectangle':
 			self.get_image().draw_rectangle(event_x, event_y)
 			if self.selection_is_active():
 				self.show_popover(True)
-				# self.selection_has_been_used = False
-		elif behavior == 'freehand': # TODO image method
+				self.set_selection_has_been_used(False)
+		elif behavior == 'freehand':
 			if self.get_image().draw_polygon(event_x, event_y):
 				self.restore_pixbuf()
 				self.get_image().create_free_selection_from_main()
 				if self.selection_is_active():
 					self.show_popover(True)
-					# self.selection_has_been_used = False
+					self.set_selection_has_been_used(False)
 			else:
 				return # without updating the surface so the path is visible
 		elif behavior == 'color': # TODO image method
@@ -188,7 +186,7 @@ class ToolSelect(ToolTemplate):
 				self.get_image().create_free_selection_from_main()
 				if self.selection_is_active():
 					self.show_popover(True)
-					# self.selection_has_been_used = False
+					self.set_selection_has_been_used(False)
 		self.update_surface()
 		if behavior == 'drag-selection':
 			self.drag_to(event_x, event_y)
@@ -219,7 +217,8 @@ class ToolSelect(ToolTemplate):
 
 	def set_popover_position(self):
 		rectangle = Gdk.Rectangle()
-		main_x, main_y = self.get_image().get_main_coord()
+		main_x = self.get_image().scroll_x
+		main_y = self.get_image().scroll_y
 		x = self.get_image().selection_x + self.get_selection_pixbuf().get_width()/2 - main_x
 		y = self.get_image().selection_y + self.get_selection_pixbuf().get_height()/2 - main_y
 		x = max(0, min(x, self.get_image().get_allocated_width()))
@@ -236,7 +235,7 @@ class ToolSelect(ToolTemplate):
 		if delta_x == 0 and delta_y == 0:
 			pass
 		else:
-			# self.selection_has_been_used = True
+			self.set_selection_has_been_used(True)
 			self.get_image().selection_x += delta_x
 			self.get_image().selection_y += delta_y
 		self.non_destructive_show_modif()
@@ -303,6 +302,7 @@ class ToolSelect(ToolTemplate):
 		if operation['operation_type'] == 'op-delete':
 			self.op_delete(operation)
 		elif operation['operation_type'] == 'op-drag':
+			print('op-drag')
 			self.op_delete(operation)
 			self.op_drag(operation)
 		elif operation['operation_type'] == 'op-define':

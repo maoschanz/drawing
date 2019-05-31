@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkAdjustment" id="zoom_adj">
-    <property name="lower">50</property>
+    <property name="lower">20</property>
     <property name="upper">400</property>
-    <property name="step_increment">50</property>
+    <property name="step_increment">20</property>
     <property name="page_increment">100</property>
     <property name="value">100</property>
   </object>

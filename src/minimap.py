@@ -34,11 +34,11 @@ class DrawingMinimap(Gtk.Popover):
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/minimap.ui')
 		box = builder.get_object('minimap_box')
-		# if self.window._settings.get_boolean('devel-only'): # XXX à retirer
-		# 	box.show_all()
+		if self.window._settings.get_boolean('devel-only'): # XXX à retirer
+			box.show_all()
 
 		self.zoom_scale = builder.get_object('zoom_scale')
-		# self.zoom_scale.connect('', self.) # TODO
+		self.zoom_scale.connect('value-changed', self.update_zoom_level)
 
 		self.minimap_area = builder.get_object('minimap_area')
 		self.minimap_area.set_size(200, 200)
@@ -51,6 +51,12 @@ class DrawingMinimap(Gtk.Popover):
 		self.add(box)
 		self.set_relative_to(self.minimap_btn)
 		self.connect('closed', self.on_popover_dismissed)
+
+	def update_zoom_level(self, *args):
+		self.window.get_active_image().zoom_level = self.zoom_scale.get_value()/100
+		self.window.get_active_image().update()
+		zoom_label = str(int(self.zoom_scale.get_value())) + '%'
+		self.window.minimap_label.set_label(zoom_label)
 
 	def update_zoom_scale(self, value):
 		self.zoom_scale.set_value(value * 100)

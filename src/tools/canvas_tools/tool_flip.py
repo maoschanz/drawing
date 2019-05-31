@@ -87,8 +87,5 @@ class ToolFlip(AbstractCanvasTool):
 			self.get_image().set_temp_pixbuf(preview.flip(False))
 		if operation['is_preview']:
 			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
-		else:
-			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy() # FIXME ne fait pas sens
-			self.restore_pixbuf()
 
 

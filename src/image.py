@@ -285,8 +285,9 @@ class DrawingImage(Gtk.Box):
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self.drawing_area is redrawn."""
+		cairo_context.scale(self.zoom_level, self.zoom_level)
 		cairo_context.set_source_surface(self.get_surface(), \
-			                             -1 * self.scroll_x, -1 * self.scroll_y)
+		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
 		if self.is_using_selection() and self.selection_pixbuf is not None:
@@ -302,11 +303,11 @@ class DrawingImage(Gtk.Box):
 			self.window.action_exchange_color()
 			return
 		self.is_clicked = True
-		x, y = self.get_main_coord()
+		event_x = (self.scroll_x + event.x) / self.zoom_level
+		event_y = (self.scroll_y + event.y) / self.zoom_level
 		self.active_tool().on_press_on_area(area, event, self.surface, \
 		                            self.window.thickness_spinbtn.get_value(), \
-		                          self.get_left_rgba(), self.get_right_rgba(), \
-		                                               x + event.x, y + event.y)
+		          self.get_left_rgba(), self.get_right_rgba(), event_x, event_y)
 
 	def on_motion_on_area(self, area, event):
 		"""Signal callback. Executed when the mouse pointer moves upon
@@ -317,9 +318,8 @@ class DrawingImage(Gtk.Box):
 		if not self.is_clicked:
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 			return
-		x, y = self.get_main_coord()
-		event_x = x + event.x
-		event_y = y + event.y
+		event_x = (self.scroll_x + event.x) / self.zoom_level
+		event_y = (self.scroll_y + event.y) / self.zoom_level
 		self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
 		self.update()
 
@@ -330,9 +330,8 @@ class DrawingImage(Gtk.Box):
 		if not self.is_clicked:
 			return
 		self.is_clicked = False
-		x, y = self.get_main_coord()
-		event_x = x + event.x
-		event_y = y + event.y
+		event_x = (self.scroll_x + event.x) / self.zoom_level
+		event_y = (self.scroll_y + event.y) / self.zoom_level
 		self.active_tool().on_release_on_area(area, event, self.surface, event_x, event_y)
 		self.window.set_picture_title()
 
@@ -351,9 +350,6 @@ class DrawingImage(Gtk.Box):
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self.h_scrollbar.get_value(), self.v_scrollbar.get_value())
 		self.update()
-
-	def get_main_coord(self, *args):
-		return self.scroll_x, self.scroll_y
 
 	def add_deltas(self, delta_x, delta_y, factor):
 		incorrect_x = self.scroll_x + int(delta_x * factor)
@@ -398,6 +394,7 @@ class DrawingImage(Gtk.Box):
 	def set_zoom_level(self, level):
 		self.zoom_level = (level/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
+		self.update()
 
 #######################
 

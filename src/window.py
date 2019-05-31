@@ -308,10 +308,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
 		self.add_action_simple('go_left', self.action_go_left, ['<Ctrl>Left'])
 		self.add_action_simple('go_right', self.action_go_right, ['<Ctrl>Right'])
-		self.add_action_simple('zoom_in', self.action_zoom_in, None)
-		self.add_action_simple('zoom_out', self.action_zoom_out, None)
-		self.add_action_simple('zoom_100', self.action_zoom_100, None)
-		self.add_action_simple('zoom_opti', self.action_zoom_opti, None)
+		if self._settings.get_boolean('devel-only'):
+			self.add_action_simple('zoom_in', self.action_zoom_in, ['<Ctrl>plus', '<Ctrl>KP_Add'])
+			self.add_action_simple('zoom_out', self.action_zoom_out, ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
+			self.add_action_simple('zoom_100', self.action_zoom_100, None)
+			self.add_action_simple('zoom_opti', self.action_zoom_opti, None)
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
 		self.add_action_simple('new_tab_selection', \
@@ -871,6 +872,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		h = self.get_active_image().undo_history.copy()
 		self.get_active_image().undo_history = []
 		for op in h:
+			# print()
+			# print(op)
+			# print()
 			self.tools[op['tool_id']].apply_operation(op)
 		self.get_active_image().update()
 		self.get_active_image().update_history_sensitivity()

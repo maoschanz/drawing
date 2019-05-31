@@ -123,27 +123,32 @@
         <attribute name="label" translatable="yes">Edit</attribute>
         <item>
           <attribute name="label" translatable="yes">Flip</attribute>
-          <attribute name="action">win.selection_flip</attribute>
+          <attribute name="action">win.active_tool</attribute>
+          <attribute name="target">flip</attribute>
           <attribute name="verb-icon">tool-flip-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Crop</attribute>
-          <attribute name="action">win.selection_crop</attribute>
+          <attribute name="action">win.active_tool</attribute>
+          <attribute name="target">crop</attribute>
           <attribute name="verb-icon">tool-crop-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Scale</attribute>
-          <attribute name="action">win.selection_scale</attribute>
+          <attribute name="action">win.active_tool</attribute>
+          <attribute name="target">scale</attribute>
           <attribute name="verb-icon">tool-scale-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Rotate</attribute>
-          <attribute name="action">win.selection_rotate</attribute>
+          <attribute name="action">win.active_tool</attribute>
+          <attribute name="target">rotate</attribute>
           <attribute name="verb-icon">tool-rotate-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Saturate</attribute>
-          <attribute name="action">win.selection_saturate</attribute>
+          <attribute name="action">win.active_tool</attribute>
+          <attribute name="target">saturate</attribute>
           <attribute name="verb-icon">tool-saturate-symbolic</attribute>
         </item>
       </submenu>
