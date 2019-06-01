@@ -71,4 +71,6 @@ class ToolSaturate(AbstractCanvasTool):
 		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
 		if operation['is_preview']:
 			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
+		else:
+			self.apply_temp(operation['is_selection'])
 

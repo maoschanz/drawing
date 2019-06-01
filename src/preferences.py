@@ -56,10 +56,11 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.background_color_btn.set_rgba(color)
 		self.background_color_btn.connect('color-set', self.on_background_changed)
 
+		self.devel_switch.connect('notify::active', self.on_devel_changed)
 		if is_beta:
 			self.devel_switch.set_active(self._settings.get_boolean('devel-only'))
-			self.devel_switch.connect('notify::active', self.on_devel_changed)
 		else:
+			self.devel_switch.set_active(False)
 			self.devel_box.set_visible(False)
 
 		self.add_alpha_switch.set_active(self._settings.get_boolean('add-alpha'))

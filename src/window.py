@@ -311,8 +311,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('zoom_in', self.action_zoom_in, ['<Ctrl>plus', '<Ctrl>KP_Add'])
 			self.add_action_simple('zoom_out', self.action_zoom_out, ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
-			self.add_action_simple('zoom_100', self.action_zoom_100, None)
-			self.add_action_simple('zoom_opti', self.action_zoom_opti, None)
+			self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
+			self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
 		self.add_action_simple('new_tab_selection', \
@@ -1005,7 +1005,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().set_zoom_level(100)
 
 	def action_zoom_opti(self, *args):
-		# TODO
-		pass
+		self.get_active_image().set_opti_zoom_level()
 
 

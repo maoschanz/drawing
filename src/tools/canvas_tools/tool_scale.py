@@ -119,6 +119,7 @@ class ToolScale(AbstractCanvasTool):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
+
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
@@ -128,10 +129,5 @@ class ToolScale(AbstractCanvasTool):
 
 		if operation['is_preview']:
 			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
-		elif operation['is_selection']:
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.get_image().create_selection_from_arbitrary_pixbuf(False)
 		else:
-			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.non_destructive_show_modif()
-			self.apply_to_pixbuf()
+			self.apply_temp(operation['is_selection'])

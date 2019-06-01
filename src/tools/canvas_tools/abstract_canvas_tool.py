@@ -78,17 +78,11 @@ class AbstractCanvasTool(ToolTemplate):
 		operation['is_preview'] = False
 		super().apply_operation(operation)
 
-
-
-
-
-		# self.do_tool_operation(operation)
-		# self.non_destructive_show_modif()
-		# if operation['is_selection']:
-		#
-		# else:
-		# 	self.apply_to_pixbuf()
-		# 	print(operation)
-		# self.get_image().add_operation_to_history(operation)
-
+	def apply_temp(self, operation_is_selection):
+		if operation_is_selection:
+			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.get_image().create_selection_from_arbitrary_pixbuf(False)
+		else:
+			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.restore_pixbuf()
 

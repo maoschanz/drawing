@@ -410,6 +410,12 @@ class DrawingImage(Gtk.Box):
 		self.window.minimap.update_zoom_scale(self.zoom_level)
 		self.update()
 
+	def set_opti_zoom_level(self):
+		h_ratio = self.drawing_area.get_allocated_width() / self.main_pixbuf.get_width()
+		v_ratio = self.drawing_area.get_allocated_height() / self.main_pixbuf.get_height()
+		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
+		self.set_zoom_level(opti)
+
 #######################
 
 	def get_main_pixbuf(self):

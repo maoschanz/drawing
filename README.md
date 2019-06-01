@@ -63,7 +63,6 @@ More screenshots:
 
 - [Color chooser](./data/screenshots/gnome_colors.png)
 - [Open/Import menu](./data/screenshots/gnome_open.png)
-- [Scaling the canvas](./data/screenshots/gnome_scale.png)
 - [The selection tool and its menu](./data/screenshots/gnome_selection.png)
 - [Drawing things on the picture with tools](./data/screenshots/gnome_tools.png)
 - [Inserting text](./data/screenshots/gnome_text.png)
