@@ -131,6 +131,23 @@
       </section>
       <section>
         <item>
+          <attribute name="label" translatable="yes">Cut</attribute>
+          <attribute name="action">win.selection_cut</attribute>
+          <attribute name="verb-icon">edit-cut-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Copy</attribute>
+          <attribute name="action">win.selection_copy</attribute>
+          <attribute name="verb-icon">edit-copy-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Delete</attribute>
+          <attribute name="action">win.selection_delete</attribute>
+          <attribute name="verb-icon">edit-delete-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
           <attribute name="label" translatable="yes">Paste</attribute>
           <attribute name="action">win.paste</attribute>
           <attribute name="verb-icon">edit-paste-symbolic</attribute>

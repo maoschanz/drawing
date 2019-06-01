@@ -62,6 +62,10 @@ class DrawingAdaptativeHeaderBar():
 			add_menu = builder.get_object('add-menu')
 			self.add_btn.set_menu_model(add_menu)
 
+		self.undo_btn = builder.get_object('undo_btn')
+		# self.correct_btn = builder.get_object('correct_btn')
+		self.redo_btn = builder.get_object('redo_btn')
+
 	def init_adaptability(self):
 		# Header bar width limit
 		self.header_bar.show_all()
@@ -86,5 +90,19 @@ class DrawingAdaptativeHeaderBar():
 		self.save_label.set_visible(not state)
 		self.save_icon.set_visible(state)
 		self.add_btn.set_visible(not state)
+
+	def set_undo_label(self, label):
+		if label is None:
+			self.undo_btn.set_tooltip_text(_("Undo"))
+		else:
+			self.undo_btn.set_tooltip_text(_("Undo %s") % label)
+
+
+	def set_redo_label(self, label):
+		if label is None:
+			self.redo_btn.set_tooltip_text(_("Redo"))
+		else:
+			self.redo_btn.set_tooltip_text(_("Redo %s") % label)
+
 
 

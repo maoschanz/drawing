@@ -447,7 +447,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.get_style_context().add_class('devel')
 
 	def build_toolbar(self):
-		builder = Gtk.Builder.new_from_resource(UI_PATH+'toolbar.ui')
+		builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar.ui')
 		toolbar = builder.get_object('toolbar')
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
@@ -473,9 +473,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return
 		self.bottom_panel.show_all()
 		self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
-			self.thickness_spinbtn.get_preferred_width()[0] + \
-			self.options_long_box.get_preferred_width()[0] + \
-			self.minimap_label.get_preferred_width()[0]
+		                 self.thickness_spinbtn.get_preferred_width()[0] + \
+		                  self.options_long_box.get_preferred_width()[0] + \
+		                     self.minimap_label.get_preferred_width()[0]
 		self.bottom_panel.set_visible(not self.active_tool().implements_panel)
 
 	def init_adaptability(self):
@@ -549,6 +549,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.on_show_labels_setting_changed()
 
 	def set_tools_labels_visibility(self, visible):
+		"""Change the way tools are displayed in the side panel. Visible labels
+		mean the tools will be arranged in a scrollable list of buttons, else
+		they will be in an adaptative flowbox."""
 		for tool_id in self.tools:
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
@@ -578,6 +581,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# TOOLS
 
 	def on_change_active_tool(self, *args):
+		"""Action callback, doing nothing in some situations, thus avoiding
+		infinite loops. It calls `change_active_tool_for` with the correct value
+		otherwise."""
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
@@ -585,6 +591,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.change_active_tool_for(state_as_string)
 
 	def change_active_tool_for(self, tool_id):
+		"""Change the active_tool action state according to `tool_id`."""
 		action = self.lookup_action('active_tool')
 		if self.tools[tool_id].row.get_active():
 			action.set_state(GLib.Variant.new_string(tool_id))
@@ -593,6 +600,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].row.set_active(True)
 
 	def enable_tool(self, new_tool_id):
+		"""Deactivate the formerly active tool, and activate `new_tool_id`."""
 		self.former_tool_id = self.active_tool_id
 		should_preserve_selection = self.tools[new_tool_id].accept_selection
 		self.former_tool().give_back_control(should_preserve_selection)
@@ -636,6 +644,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.get_active_image().get_file_path()
 
 	def action_open(self, *args):
+		"""Handle the result of an "open" file chooser dialog, and open it
+		according to the user choice."""
 		gfile = self.file_chooser_open()
 		if gfile is None:
 			return
@@ -810,6 +820,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.active_tool().on_release_on_area(None, None, None, 100, 100)
 
 	def action_import(self, *args):
+		"""Handle the result of an "open" file chooser dialog, and import it
+		as the selection."""
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))
 		self.add_filechooser_filters(file_chooser)
@@ -841,8 +853,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
-	def tool_needs_selection(self): # FIXME est appelé giga souvent ????
-		# return ( self.active_tool() is self.get_selection_tool() )
+	def tool_needs_selection(self):
 		return self.active_tool().accept_selection
 
 	# HISTORY MANAGEMENT
@@ -867,7 +878,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().update()
 
-	def action_rebuild(self, *args):
+	def action_rebuild(self, *args): # XXX image method ?
+		"""Rebuild the image according to the history content."""
 		self.get_active_image().restore_first_pixbuf()
 		h = self.get_active_image().undo_history.copy()
 		self.get_active_image().undo_history = []
@@ -878,6 +890,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[op['tool_id']].apply_operation(op)
 		self.get_active_image().update()
 		self.get_active_image().update_history_sensitivity()
+
+	def update_history_actions_labels(self, undo_label, redo_label):
+		# TODO menubar
+		if self.header_bar is not None:
+			self.header_bar.set_undo_label(undo_label)
+			self.header_bar.set_redo_label(redo_label)
 
 	# COLORS
 
@@ -929,6 +947,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.thickness_spinbtn.set_sensitive(self.active_tool().use_size)
 
 	def build_options_menu(self):
+		"""Build the active tool's option menus.
+		The first menu is the popover from the bottom bar. It can contain any
+		widget, or it can be build from a Gio.MenuModel
+		The second menu is build from a Gio.MenuModel and is in the menubar (not
+		available with all layouts)."""
 		widget = self.active_tool().get_options_widget()
 		model = self.active_tool().get_options_model()
 		if model is None:

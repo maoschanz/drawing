@@ -302,7 +302,6 @@ class ToolSelect(ToolTemplate):
 		if operation['operation_type'] == 'op-delete':
 			self.op_delete(operation)
 		elif operation['operation_type'] == 'op-drag':
-			print('op-drag')
 			self.op_delete(operation)
 			self.op_drag(operation)
 		elif operation['operation_type'] == 'op-define':
