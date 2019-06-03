@@ -63,8 +63,7 @@ class AbstractCanvasTool(ToolTemplate):
 			cairo_context.paint()
 			cairo_context.set_operator(cairo.Operator.OVER)
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
-			                            self.get_image().get_temp_pixbuf(), \
-			     -1 * self.get_image().scroll_x, -1 * self.get_image().scroll_y)
+			                           self.get_image().get_temp_pixbuf(), 0, 0)
 			cairo_context.paint()
 		self.non_destructive_show_modif()
 

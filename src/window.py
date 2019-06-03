@@ -605,6 +605,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		should_preserve_selection = self.tools[new_tool_id].accept_selection
 		self.former_tool().give_back_control(should_preserve_selection)
 		self.former_tool().on_tool_unselected()
+		self.get_active_image().show_selection_popover(False)
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()

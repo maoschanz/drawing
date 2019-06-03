@@ -490,6 +490,8 @@ class DrawingImage(Gtk.Box):
 		can be an imported picture (from a file or from the clipboard).
 		In the first case, the "is_existing_content" boolean parameter should be
 		true, so the temp_path will be cleared."""
+		if self.selection_pixbuf is None:
+			return
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
 		self.selection_has_been_used = True
