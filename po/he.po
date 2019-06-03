@@ -2,22 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Shaked Ashkenazi <shaked.a21@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 01:23+0200\n"
-"PO-Revision-Date: 2019-05-12 03:15+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2019-06-03 23:22+0300\n"
+"Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
+"Language-Team: Hebrew <shaked.a21@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3);\n"
+"X-Generator: Gtranslator 3.32.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:154
@@ -52,8 +52,9 @@ msgid "New Image"
 msgstr "תמונה חדשה"
 
 #: data/com.github.maoschanz.drawing.desktop.in:26
+#, fuzzy
 msgid "Edit Image in Clipboard"
-msgstr ""
+msgstr "עריכת תמונה מהלוח"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:7 src/main.py:251
 msgid "A drawing application for the GNOME desktop."
@@ -173,7 +174,7 @@ msgstr "בחירה מלבנית"
 
 #: src/ui/app-menus.ui:61 src/ui/shortcuts.ui:78
 msgid "New Image From Clipboard"
-msgstr ""
+msgstr "תמונה חדשה מהלוח"
 
 #: src/ui/app-menus.ui:68 src/ui/toolbar.ui:41 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:197
@@ -275,20 +276,24 @@ msgid "_View"
 msgstr "_הצגה"
 
 #: src/ui/app-menus.ui:181
+#, fuzzy
 msgid "Optimal Zoom"
-msgstr ""
+msgstr "מרחק מיטבי"
 
 #: src/ui/app-menus.ui:189
+#, fuzzy
 msgid "Zoom Out"
-msgstr ""
+msgstr "התרחקות"
 
 #: src/ui/app-menus.ui:195
+#, fuzzy
 msgid "Original Zoom"
-msgstr ""
+msgstr "מרחק מקורי"
 
 #: src/ui/app-menus.ui:201
+#, fuzzy
 msgid "Zoom In"
-msgstr ""
+msgstr "התקרבות"
 
 #: src/ui/app-menus.ui:209
 msgid "Show the preview"
@@ -588,8 +593,9 @@ msgid "From Selection"
 msgstr "בחירה חופשית"
 
 #: src/ui/win-menus.ui:25 src/ui/win-menus.ui:211
+#, fuzzy
 msgid "From Clipboard"
-msgstr ""
+msgstr "בחירה מהלוח"
 
 # I had to translate this to "Display the version and "about" dialog".
 # I hope this is in line with the original intent?
@@ -606,8 +612,9 @@ msgid "Open a new tab"
 msgstr "פתח לשונית חדשה"
 
 #: src/main.py:64
+#, fuzzy
 msgid "Edit the clipboard content"
-msgstr ""
+msgstr "ערוך את תכולת הלוח"
 
 #. Obviously, do not translate the command line.
 #: src/main.py:201
@@ -705,14 +712,14 @@ msgid "Import a picture"
 msgstr "יבא תמונה"
 
 #: src/headerbar.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "Undo %s"
-msgstr "ביטול פעולה"
+msgstr "ביטול פעולה %s"
 
 #: src/headerbar.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "Redo %s"
-msgstr "חידוש פעולה"
+msgstr "חידוש פעולה %s"
 
 #: src/preferences.py:76
 msgid "Automatic"
@@ -949,9 +956,8 @@ msgid "Saturate"
 msgstr "רוויה"
 
 #: src/tools/ui/tool_select.ui:81 src/tools/ui/tool_select.ui:158
-#, fuzzy
 msgid "Open As New Image"
-msgstr "תמונה חדשה"
+msgstr "פתח כתמונה חדשה"
 
 #. TODO virer ce menu ?
 #: src/tools/ui/tool_select.ui:123
