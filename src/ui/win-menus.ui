@@ -44,16 +44,16 @@
         <attribute name="action">win.paste</attribute>
       </item>
     </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.unselect</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-      </item>
-    </section>
+    <!-- <section> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Unselect</attribute> -->
+    <!--     <attribute name="action">win.unselect</attribute> -->
+    <!--   </item> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Select all</attribute> -->
+    <!--     <attribute name="action">win.select_all</attribute> -->
+    <!--   </item> -->
+    <!-- </section> -->
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
@@ -135,17 +135,16 @@
         <attribute name="action">win.export_as</attribute>
       </item>
     </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.unselect</attribute>
-        <!-- <attribute name="hidden-when">action-disabled</attribute> -->
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-      </item>
-    </section>
+    <!-- <section> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Unselect</attribute> -->
+    <!--     <attribute name="action">win.unselect</attribute> -->
+    <!--   </item> -->
+    <!--   <item> -->
+    <!--     <attribute name="label" translatable="yes">Select all</attribute> -->
+    <!--     <attribute name="action">win.select_all</attribute> -->
+    <!--   </item> -->
+    <!-- </section> -->
     <section>
       <item>
         <attribute name="label" translatable="yes">Refresh</attribute>
@@ -204,11 +203,11 @@
         <attribute name="label" translatable="yes">New Blank Image</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">From Selection</attribute>
+        <attribute name="label" translatable="yes">New Image From Selection</attribute>
         <attribute name="action">win.new_tab_selection</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">From Clipboard</attribute>
+        <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
         <attribute name="action">win.new_tab_clipboard</attribute>
       </item>
     </section>

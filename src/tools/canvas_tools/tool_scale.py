@@ -128,6 +128,6 @@ class ToolScale(AbstractCanvasTool):
 		   operation['width'], operation['height'], GdkPixbuf.InterpType.TILES))
 
 		if operation['is_preview']:
-			self.finish_pixbuf_tool_operation_preview(operation['is_selection'])
+			self.get_image().temp_preview(operation['is_selection'])
 		else:
-			self.apply_temp(operation['is_selection'])
+			self.get_image().apply_temp(operation['is_selection'])

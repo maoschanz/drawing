@@ -135,9 +135,11 @@ class ToolSelect(ToolTemplate):
 				self.get_image().draw_polygon(event_x, event_y)
 
 	def on_unclicked_motion_on_area(self, event, surface):
+		x = event.x + self.get_image().scroll_x
+		y = event.y + self.get_image().scroll_y
 		if not self.selection_is_active():
 			self.cursor_name = 'cross'
-		elif self.get_image().point_is_in_selection(event.x, event.y):
+		elif self.get_image().point_is_in_selection(x, y):
 			self.cursor_name = 'grab'
 		else:
 			self.cursor_name = 'cross'
@@ -271,8 +273,8 @@ class ToolSelect(ToolTemplate):
 			'operation_type': self.operation_type,
 			'initial_path': self.get_image().temp_path,
 			'pixbuf': pixbuf,
-			'pixb_x': self.get_image().selection_x,
-			'pixb_y': self.get_image().selection_y
+			'pixb_x': int(self.get_image().selection_x),
+			'pixb_y': int(self.get_image().selection_y)
 		}
 		return operation
 
@@ -291,9 +293,16 @@ class ToolSelect(ToolTemplate):
 		if operation['initial_path'] is None:
 			return
 		cairo_context = cairo.Context(self.get_surface())
-		Gdk.cairo_set_source_pixbuf(cairo_context, operation['pixbuf'],
-			operation['pixb_x'], operation['pixb_y'])
+		Gdk.cairo_set_source_pixbuf(cairo_context, operation['pixbuf'], \
+		                            operation['pixb_x'], operation['pixb_y'])
 		cairo_context.paint()
+
+	def op_define(self, operation):
+		# print('op_define') # TODO
+		# if operation['pixbuf'] is None:
+		# 	return
+		# self.get_image().selection_pixbuf = operation['pixbuf'].copy()
+		pass
 
 	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
@@ -305,6 +314,6 @@ class ToolSelect(ToolTemplate):
 			self.op_delete(operation)
 			self.op_drag(operation)
 		elif operation['operation_type'] == 'op-define':
-			pass # TODO ?
+			self.op_define(operation)
 
 

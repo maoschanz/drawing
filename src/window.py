@@ -862,10 +862,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_undo(self, *args):
 		self.get_active_image().try_undo()
 		self.action_rebuild()
+		self.get_active_image().reset_temp() # FIXME ne devrait pas exister
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
 		self.action_rebuild()
+		self.get_active_image().reset_temp() # FIXME ne devrait pas exister
 
 	def operation_is_ongoing(self): # TODO
 		# if self.active_tool() is self.get_selection_tool():

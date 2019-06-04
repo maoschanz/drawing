@@ -47,26 +47,6 @@ class AbstractCanvasTool(ToolTemplate):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def finish_pixbuf_tool_operation_preview(self, is_selection):
-		"""Part of the previewing methods shared by all canvas tools."""
-		cairo_context = cairo.Context(self.get_surface())
-		if is_selection:
-			cairo_context.set_source_surface(self.get_surface(), 0, 0)
-			cairo_context.paint()
-			self.get_image().delete_temp()
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-			                            self.get_image().get_temp_pixbuf(), \
-			         self.get_image().selection_x, self.get_image().selection_y)
-			cairo_context.paint()
-		else:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-			                           self.get_image().get_temp_pixbuf(), 0, 0)
-			cairo_context.paint()
-		self.non_destructive_show_modif()
-
 	def on_apply_temp_pixbuf_tool_operation(self, *args):
 		self.restore_pixbuf()
 		operation = self.build_operation()
@@ -77,11 +57,4 @@ class AbstractCanvasTool(ToolTemplate):
 		operation['is_preview'] = False
 		super().apply_operation(operation)
 
-	def apply_temp(self, operation_is_selection):
-		if operation_is_selection:
-			self.get_image().selection_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.get_image().create_selection_from_arbitrary_pixbuf(False)
-		else:
-			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.restore_pixbuf()
 

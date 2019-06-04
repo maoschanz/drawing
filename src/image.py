@@ -640,6 +640,34 @@ class DrawingImage(Gtk.Box):
 		self.selection_x = x
 		self.selection_y = y
 
+	def apply_temp(self, operation_is_selection):
+		# self.use_stable_pixbuf() # FIXME ça n'a pas l'air de suffire pour le bug du double-scale
+		# self.update()
+		if operation_is_selection:
+			self.selection_pixbuf = self.get_temp_pixbuf().copy()
+			self.create_selection_from_arbitrary_pixbuf(False)
+		else:
+			self.main_pixbuf = self.get_temp_pixbuf().copy()
+			self.use_stable_pixbuf()
+
+	def temp_preview(self, is_selection):
+		"""Part of the previewing methods shared by all canvas tools."""
+		cairo_context = cairo.Context(self.get_surface())
+		if is_selection:
+			cairo_context.set_source_surface(self.get_surface(), 0, 0)
+			cairo_context.paint()
+			self.delete_temp()
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_temp_pixbuf(), \
+			                                 self.selection_x, self.selection_y)
+			cairo_context.paint()
+		else:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
+			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_temp_pixbuf(), 0, 0)
+			cairo_context.paint()
+		self.update()
+
 	def reset_temp(self):
 		self.selection_pixbuf = None
 		self.selection_path = None
@@ -647,7 +675,7 @@ class DrawingImage(Gtk.Box):
 		self.temp_y = 0
 		self.temp_path = None
 		self.selection_is_active = False
-		# self.update_actions_state() # FIXME ne peut pas être ici car empêche le démarrage
+		# self.update_actions_state() # XXX ne peut pas être ici car empêche le démarrage
 		self.use_stable_pixbuf()
 		self.update()
 
