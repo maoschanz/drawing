@@ -68,6 +68,9 @@ class DrawingImage(Gtk.Box):
 		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
 
+	############################################################################
+	# Image initialization #####################################################
+
 	def init_image(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
@@ -80,49 +83,6 @@ class DrawingImage(Gtk.Box):
 		self.selection = DrawingSelectionManager(self)
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
-
-	def build_tab_label(self):
-		"""Build the "self.tab_title" attribute, which is the GTK widget
-		displayed as the tab title."""
-		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
-		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
-		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
-		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
-		btn.set_relief(Gtk.ReliefStyle.NONE)
-		btn.connect('clicked', self.try_close_tab)
-		if self.window.decorations == 'csd-eos':
-			self.tab_title.pack_start(btn, expand=False, fill=False, padding=0)
-			self.tab_title.pack_end(self.tab_label, expand=True, fill=True, padding=0)
-		else:
-			self.tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
-			self.tab_title.pack_end(btn, expand=False, fill=False, padding=0)
-		self.tab_title.show_all()
-
-	def update_title(self):
-		main_title = self.get_filename_for_display()
-		if not self._is_saved:
-			main_title = '*' + main_title
-		self.set_tab_label(main_title)
-		return main_title
-
-	def get_filename_for_display(self):
-		if self.get_file_path() is None:
-			unsaved_file_name = _("Unsaved file")
-		else:
-			unsaved_file_name = self.get_file_path().split('/')[-1]
-		return unsaved_file_name
-
-	def try_close_tab(self, *args):
-		"""Ask the window to close the image/tab. Then unallocate widgets and
-		pixbufs."""
-		if self.window.close_tab(self):
-			self.destroy()
-			self.main_pixbuf = None
-			self.selection.reset()
-			self.temp_pixbuf = None
-			return True
-		else:
-			return False
 
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')
@@ -188,20 +148,6 @@ class DrawingImage(Gtk.Box):
 			self.main_pixbuf = self.initial_operation['pixbuf'].copy()
 			self.use_stable_pixbuf()
 
-	def on_enter_image(self, *args):
-		self.window.set_cursor(True)
-
-	def on_leave_image(self, *args):
-		self.window.set_cursor(False)
-
-	# FILE MANAGEMENT
-
-	def get_file_path(self):
-		if self.gfile is None:
-			return None
-		else:
-			return self.gfile.get_path()
-
 	def try_load_file(self, gfile):
 		self.gfile = gfile
 		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
@@ -222,15 +168,75 @@ class DrawingImage(Gtk.Box):
 		self.restore_first_pixbuf()
 		self.update_title()
 
+	############################################################################
+	# Image title and tab management ###########################################
+
+	def build_tab_label(self):
+		"""Build the "self.tab_title" attribute, which is the GTK widget
+		displayed as the tab title."""
+		self.tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
+		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
+		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
+		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
+		btn.set_relief(Gtk.ReliefStyle.NONE)
+		btn.connect('clicked', self.try_close_tab)
+		if self.window.decorations == 'csd-eos':
+			self.tab_title.pack_start(btn, expand=False, fill=False, padding=0)
+			self.tab_title.pack_end(self.tab_label, expand=True, fill=True, padding=0)
+		else:
+			self.tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
+			self.tab_title.pack_end(btn, expand=False, fill=False, padding=0)
+		self.tab_title.show_all()
+
+	def update_title(self):
+		main_title = self.get_filename_for_display()
+		if not self._is_saved:
+			main_title = '*' + main_title
+		self.set_tab_label(main_title)
+		return main_title
+
+	def get_filename_for_display(self):
+		if self.get_file_path() is None:
+			unsaved_file_name = _("Unsaved file")
+		else:
+			unsaved_file_name = self.get_file_path().split('/')[-1]
+		return unsaved_file_name
+
+	def try_close_tab(self, *args):
+		"""Ask the window to close the image/tab. Then unallocate widgets and
+		pixbufs."""
+		if self.window.close_tab(self):
+			self.destroy()
+			self.main_pixbuf = None
+			self.selection.reset()
+			self.temp_pixbuf = None
+			return True
+		else:
+			return False
+
 	def set_tab_label(self, title):
 		self.tab_label.set_label(title)
 
-	def post_save(self):
-		self._is_saved = True
-		self.use_stable_pixbuf()
-		self.update()
+	def get_file_path(self):
+		if self.gfile is None:
+			return None
+		else:
+			return self.gfile.get_path()
 
-	# HISTORY MANAGEMENT
+	############################################################################
+	# Wrappers for window methods related to tools #############################
+
+	def active_tool(self):
+		return self.window.active_tool()
+
+	def get_right_rgba(self):
+		return self.window.color_popover_r.color_widget.get_rgba()
+
+	def get_left_rgba(self):
+		return self.window.color_popover_l.color_widget.get_rgba()
+
+	############################################################################
+	# History management #######################################################
 
 	def try_undo(self, *args):
 		self.active_tool().cancel_ongoing_operation()
@@ -281,7 +287,7 @@ class DrawingImage(Gtk.Box):
 		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
-		state = self.selection.selection_is_active
+		state = self.selection.is_active
 		self.set_action_sensitivity('unselect', state)
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
@@ -290,7 +296,8 @@ class DrawingImage(Gtk.Box):
 		self.set_action_sensitivity('new_tab_selection', state)
 		self.active_tool().update_actions_state()
 
-	# DRAWING OPERATIONS
+	############################################################################
+	# Drawing area, main pixbuf, and surface management ########################
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self.drawing_area is redrawn."""
@@ -344,14 +351,48 @@ class DrawingImage(Gtk.Box):
 		self.active_tool().on_release_on_area(area, event, self.surface, event_x, event_y)
 		self.window.set_picture_title()
 
-	def active_tool(self):
-		return self.window.active_tool()
+	def update(self):
+		self.drawing_area.queue_draw()
 
-	def get_right_rgba(self):
-		return self.window.color_popover_r.color_widget.get_rgba()
+	def get_surface(self):
+		return self.surface
 
-	def get_left_rgba(self):
-		return self.window.color_popover_l.color_widget.get_rgba()
+	def on_enter_image(self, *args):
+		self.window.set_cursor(True)
+
+	def on_leave_image(self, *args):
+		self.window.set_cursor(False)
+
+	def post_save(self):
+		self._is_saved = True
+		self.use_stable_pixbuf()
+		self.update()
+
+	def set_surface_as_stable_pixbuf(self):
+		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
+		                    self.surface.get_width(), self.surface.get_height())
+
+	def use_stable_pixbuf(self):
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+
+	def get_main_pixbuf(self):
+		return self.main_pixbuf
+
+	def get_pixbuf_width(self):
+		return self.main_pixbuf.get_width()
+
+	def get_pixbuf_height(self):
+		return self.main_pixbuf.get_height()
+
+	def set_main_pixbuf(self, new_pixbuf):
+		if new_pixbuf is None:
+			return False
+		else:
+			self.main_pixbuf = new_pixbuf
+			return True
+
+	############################################################################
+	# Scroll and zoom levels ###################################################
 
 	def on_scroll_on_area(self, area, event):
 		self.add_deltas(event.delta_x, event.delta_y, 10)
@@ -406,47 +447,13 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def set_opti_zoom_level(self):
-		h_ratio = self.drawing_area.get_allocated_width() / self.main_pixbuf.get_width()
-		v_ratio = self.drawing_area.get_allocated_height() / self.main_pixbuf.get_height()
+		h_ratio = self.drawing_area.get_allocated_width() / get_pixbuf_width()
+		v_ratio = self.drawing_area.get_allocated_height() / get_pixbuf_height()
 		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
 		self.set_zoom_level(opti)
 
-#######################
-
-	def get_main_pixbuf(self):
-		return self.main_pixbuf
-
-	def get_pixbuf_width(self):
-		return self.main_pixbuf.get_width()
-
-	def get_pixbuf_height(self):
-		return self.main_pixbuf.get_height()
-
-	def set_main_pixbuf(self, new_pixbuf):
-		if new_pixbuf is None:
-			return False
-		else:
-			self.main_pixbuf = new_pixbuf
-			return True
-
-########################
-
-	def on_import_selection(self, pixbuf):
-		self.temp_path = None
-		self.selection_pixbuf = pixbuf # XXX PAS_SOUHAITABLE
-		self.create_path_from_pixbuf(False)
-
-	def image_unselect(self, *args):
-		self.window.get_selection_tool().give_back_control(False) # FIXME ?
-
-	def image_delete(self, *args):
-		self.selection.selection_has_been_used = True
-		self.use_stable_pixbuf()
-		self.window.get_selection_tool().delete_selection()
-		self.reset_temp()
-		self.show_selection_popover(False)
-
-########################
+	############################################################################
+	# Methods related to the selection #########################################
 
 	def apply_temp(self, operation_is_selection):
 		if operation_is_selection:
@@ -474,55 +481,14 @@ class DrawingImage(Gtk.Box):
 			cairo_context.paint()
 		self.update()
 
-	def reset_temp(self):
-		self.selection_pixbuf = None
-		self.selection_path = None
-		self.temp_x = 0
-		self.temp_y = 0
-		self.temp_path = None
-		self.selection_is_active = False
-		# self.update_actions_state() # XXX ne peut pas être ici car empêche le démarrage
-		self.use_stable_pixbuf()
-		self.update()
-
-	def set_temp(self):
-		self.temp_x = self.selection_x
-		self.temp_y = self.selection_y
-		self.selection_is_active = True
-		self.update_actions_state()
-
 	def get_dragged_selection_path(self):
 		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
 
-	def image_select_all(self): # TODO
-		self.selection_x = 0
-		self.selection_y = 0
-		self.selection_pixbuf = self.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE devrait être une opération
-		self.selection.selection_has_been_used = False # TODO non
-		self.temp_x = 0
-		self.temp_y = 0
-		self.create_path_from_pixbuf(True)
-		self.show_selection_popover(True)
-
-########################
-
-	def update(self):
-		self.drawing_area.queue_draw()
-
-	def get_surface(self):
-		return self.surface
-
-	def set_surface_as_stable_pixbuf(self):
-		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-		                    self.surface.get_width(), self.surface.get_height())
-
-	def use_stable_pixbuf(self):
-		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-
 	def is_using_selection(self):
-		return self.window.tool_needs_selection() and self.selection.selection_is_active
+		return self.window.tool_needs_selection() and self.selection.is_active
 
-# PRINTING
+	############################################################################
+	# Printing operations ######################################################
 
 	def print_image(self):
 		op = Gtk.PrintOperation()
@@ -546,3 +512,41 @@ class DrawingImage(Gtk.Box):
 		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
 		print_ctx.get_cairo_context().paint()
 
+	############################################################################
+	# TODO à supprimer XXX #####################################################
+
+	def image_select_all(self): # TODO
+		self.selection_x = 0
+		self.selection_y = 0
+		self.selection_pixbuf = self.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE devrait être une opération
+		self.selection.selection_has_been_used = False # TODO non
+		self.temp_x = 0
+		self.temp_y = 0
+		self.create_path_from_pixbuf(True)
+		self.show_selection_popover(True)
+
+	def reset_temp(self):
+		self.selection_pixbuf = None
+		self.selection_path = None
+		self.temp_x = 0
+		self.temp_y = 0
+		self.temp_path = None
+		self.selection_is_active = False
+		# self.update_actions_state() # XXX ne peut pas être ici car empêche le démarrage
+		self.use_stable_pixbuf()
+		self.update()
+
+	def on_import_selection(self, pixbuf):
+		self.temp_path = None
+		self.selection_pixbuf = pixbuf # XXX PAS_SOUHAITABLE
+		self.create_path_from_pixbuf(False)
+
+	def image_unselect(self, *args):
+		self.window.get_selection_tool().give_back_control(False) # FIXME ?
+
+	def image_delete(self, *args):
+		self.selection.selection_has_been_used = True
+		self.use_stable_pixbuf()
+		self.window.get_selection_tool().delete_selection()
+		self.reset_temp()
+		self.show_selection_popover(False)

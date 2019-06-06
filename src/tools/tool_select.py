@@ -71,6 +71,12 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 	############################################################################
 
+	def update_cursor(self):
+		if self.selection_is_active():
+			self.cursor_name = 'grab'
+		else:
+			self.cursor_name = 'cross'
+
 	def get_press_behavior(self):
 		if self.selection_is_active():
 			if self.get_image().point_is_in_selection(self.x_press, self.y_press):

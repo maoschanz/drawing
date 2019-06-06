@@ -19,7 +19,7 @@ class ToolTemplate():
 		self.tool_width = 10
 		self.cursor_name = 'cell'
 		self.use_size = False
-		self.has_ongoing_operation = False # TODO trier tous ces attributs et ces méthodes
+		self.has_ongoing_operation = False # TODO
 		self.build_row()
 		self.window = window
 
@@ -29,7 +29,7 @@ class ToolTemplate():
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
-		self.window.add_action_simple(action_name, callback, None) # XXX
+		self.window.add_action_simple(action_name, callback, None) # XXX shortcut ?
 
 	def add_tool_action_boolean(self, action_name, default):
 		self.window.options_manager.add_tool_option_boolean(action_name, default)
@@ -126,16 +126,16 @@ class ToolTemplate():
 		return self.get_image().selection
 
 	def selection_is_active(self):
-		return self.get_selection().selection_is_active
+		return self.get_selection().is_active
 
 	def get_selection_pixbuf(self):
 		return self.get_selection().get_pixbuf()
 
 	def set_selection_has_been_used(self, state):
-		self.get_selection().selection_has_been_used = state
+		self.get_selection().has_been_used = state
 
 	def selection_has_been_used(self):
-		return self.get_selection().selection_has_been_used
+		return self.get_selection().has_been_used
 
 	# Image management
 
@@ -159,7 +159,7 @@ class ToolTemplate():
 
 	# Signals handling
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, e_x, e_y):
 		pass
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
