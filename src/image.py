@@ -22,6 +22,7 @@ from .gi_composites import GtkTemplate
 
 from .utilities import utilities_save_pixbuf_at
 from .utilities import utilities_show_overlay_on_context
+from .selection_manager import DrawingSelectionManager
 
 @GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
 class DrawingImage(Gtk.Box):
@@ -76,14 +77,7 @@ class DrawingImage(Gtk.Box):
 		self.zoom_level = 1.0
 		self.scroll_x = 0
 		self.scroll_y = 0
-		self.selection_x = 1
-		self.selection_y = 1
-		self.selection_path = None
-		self.selection_is_active = False # XXX ?
-		self.selection_has_been_used = False # TODO
-		self.closing_x = 0
-		self.closing_y = 0
-		self.reset_temp()
+		self.selection = DrawingSelectionManager(self)
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
 
@@ -124,7 +118,7 @@ class DrawingImage(Gtk.Box):
 		if self.window.close_tab(self):
 			self.destroy()
 			self.main_pixbuf = None
-			self.selection_pixbuf = None
+			self.selection.reset()
 			self.temp_pixbuf = None
 			return True
 		else:
@@ -148,8 +142,8 @@ class DrawingImage(Gtk.Box):
 			'width': width,
 			'height': height
 		}
-		self.restore_first_pixbuf()
 		self.init_image()
+		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
 		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
@@ -165,8 +159,8 @@ class DrawingImage(Gtk.Box):
 			'height': pixbuf.get_height()
 		}
 		self.main_pixbuf = pixbuf
-		self.restore_first_pixbuf()
 		self.init_image()
+		self.restore_first_pixbuf()
 		self.update_title()
 
 	def restore_first_pixbuf(self):
@@ -176,7 +170,7 @@ class DrawingImage(Gtk.Box):
 		width = self.initial_operation['width']
 		height = self.initial_operation['height']
 		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+		self.selection.init_pixbuf()
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
 			r = self.initial_operation['red']
@@ -224,8 +218,8 @@ class DrawingImage(Gtk.Box):
 			'width': pixbuf.get_width(),
 			'height': pixbuf.get_height()
 		}
-		self.restore_first_pixbuf()
 		self.init_image()
+		self.restore_first_pixbuf()
 		self.update_title()
 
 	def set_tab_label(self, title):
@@ -271,6 +265,7 @@ class DrawingImage(Gtk.Box):
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_operation_to_history(self, operation):
+		print(operation)
 		self._is_saved = False
 		self.undo_history.append(operation)
 		self.update_history_sensitivity()
@@ -279,14 +274,14 @@ class DrawingImage(Gtk.Box):
 		#self.redo_history = []
 		self.update_history_sensitivity()
 		self.update()
-		self.set_surface_as_stable_pixbuf()
+		self.set_surface_as_stable_pixbuf() # XXX ici ou dans [Tool].apply_operation ?
 		self.update_actions_state()
 
 	def set_action_sensitivity(self, action_name, state):
 		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
-		state = self.selection_is_active
+		state = self.selection.selection_is_active
 		self.set_action_sensitivity('unselect', state)
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
@@ -304,7 +299,7 @@ class DrawingImage(Gtk.Box):
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
-		if self.is_using_selection() and self.selection_pixbuf is not None:
+		if self.is_using_selection() and self.selection.get_pixbuf() is not None:
 			utilities_show_overlay_on_context(cairo_context, \
 			                            self.get_dragged_selection_path(), True)
 
@@ -436,27 +431,16 @@ class DrawingImage(Gtk.Box):
 
 ########################
 
-	def get_temp_pixbuf(self):
-		return self.temp_pixbuf
-
-	def set_temp_pixbuf(self, new_pixbuf):
-		if new_pixbuf is None:
-			return False
-		else:
-			self.temp_pixbuf = new_pixbuf
-			return True
-
-########################
-
-	def on_import_selection(self):
+	def on_import_selection(self, pixbuf):
 		self.temp_path = None
-		self.create_selection_from_arbitrary_pixbuf(False)
+		self.selection_pixbuf = pixbuf # XXX PAS_SOUHAITABLE
+		self.create_path_from_pixbuf(False)
 
 	def image_unselect(self, *args):
 		self.window.get_selection_tool().give_back_control(False) # FIXME ?
 
 	def image_delete(self, *args):
-		self.selection_has_been_used = True
+		self.selection.selection_has_been_used = True
 		self.use_stable_pixbuf()
 		self.window.get_selection_tool().delete_selection()
 		self.reset_temp()
@@ -464,188 +448,10 @@ class DrawingImage(Gtk.Box):
 
 ########################
 
-	def show_selection_popover(self, state):
-		self.window.get_selection_tool().show_popover(state)
-
-	def point_is_in_selection(self, tested_x, tested_y):
-		"""Returns a boolean if the point whose coordinates are "(tested_x,
-		tested_y)" is in the path defining the selection. If such path doesn't
-		exist, it returns None."""
-		if not self.selection_is_active:
-			return True
-		if self.selection_path is None:
-			return None
-		cairo_context = cairo.Context(self.get_surface())
-		for pts in self.selection_path:
-			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - self.temp_x
-				y = pts[1][1] + self.selection_y - self.temp_y
-				cairo_context.line_to(int(x), int(y))
-		return cairo_context.in_fill(tested_x, tested_y)
-
-	def create_selection_from_arbitrary_pixbuf(self, is_existing_content):
-		"""This method creates a rectangle selection from the currently set
-		selection pixbuf.
-		It can be the result of an editing operation (crop, scale, etc.), or it
-		can be an imported picture (from a file or from the clipboard).
-		In the first case, the "is_existing_content" boolean parameter should be
-		true, so the temp_path will be cleared."""
-		if self.selection_pixbuf is None:
-			return
-		self.temp_x = self.selection_x
-		self.temp_y = self.selection_y
-		self.selection_has_been_used = True
-		self.selection_is_active = True
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(self.selection_x, self.selection_y)
-		cairo_context.rel_line_to(self.selection_pixbuf.get_width(), 0)
-		cairo_context.rel_line_to(0, self.selection_pixbuf.get_height())
-		cairo_context.rel_line_to(-1 * self.selection_pixbuf.get_width(), 0)
-		cairo_context.close_path()
-		self.selection_path = cairo_context.copy_path()
-		if is_existing_content:
-			self.temp_path = cairo_context.copy_path()
-			self.set_temp()
-		self.show_selection_popover(False)
-		self.update_actions_state()
-		self.window.get_selection_tool().update_surface()
-
-	def create_free_selection_from_main(self):
-		"""This method defines a selection pixbuf by copying the main pixbuf and
-		deleting everything outside of the `selection_path`."""
-		self.selection_pixbuf = self.get_main_pixbuf().copy()
-		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
-		xmin, ymin = surface.get_width(), surface.get_height()
-		xmax, ymax = 0.0, 0.0
-		if self.selection_path is None:
-			return
-		for pts in self.selection_path: # XXX cairo has a method for this
-			if pts[1] is not ():
-				xmin = min(pts[1][0], xmin)
-				xmax = max(pts[1][0], xmax)
-				ymin = min(pts[1][1], ymin)
-				ymax = max(pts[1][1], ymax)
-		xmax = min(xmax, surface.get_width())
-		ymax = min(ymax, surface.get_height())
-		xmin = max(xmin, 0.0)
-		ymin = max(ymin, 0.0)
-		if xmax - xmin < self.closing_precision and ymax - ymin < self.closing_precision:
-			return # when the path is not drawable yet XXX
-		self.crop_free_selection_pixbuf(xmin, ymin, xmax - xmin, ymax - ymin)
-		cairo_context = cairo.Context(surface)
-		cairo_context.set_operator(cairo.Operator.DEST_IN)
-		cairo_context.new_path()
-		cairo_context.append_path(self.selection_path)
-		if self.temp_path is None: # ??
-			self.temp_path = cairo_context.copy_path()
-		cairo_context.fill()
-		cairo_context.set_operator(cairo.Operator.OVER)
-		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
-		                                   xmin, ymin, xmax - xmin, ymax - ymin)
-		self.set_temp()
-
-	def draw_rectangle(self, event_x, event_y):
-		"""Define the selection pixbuf and draw an overlay for a rectangle
-		selection beginning where the "press" event was made and ending where
-		the "release" event is made (its coordinates are parameters). This
-		method is specific to the "rectangle selection" mode."""
-		if self.selection_path is None:
-			return
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		cairo_context.set_dash([3, 3])
-		cairo_context.append_path(self.selection_path)
-		press_x, press_y = cairo_context.get_current_point()
-
-		x0 = int( min(press_x, event_x) )
-		y0 = int( min(press_y, event_y) )
-		x1 = int( max(press_x, event_x) )
-		y1 = int( max(press_y, event_y) )
-		w = x1 - x0
-		h = y1 - y0
-		if w <= 0 or h <= 0:
-			self.selection_path = None
-			return
-
-		self.selection_x = x0
-		self.selection_y = y0
-		temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.get_main_pixbuf(), 0, None)
-		temp_surface = temp_surface.map_to_image(cairo.RectangleInt(x0, y0, w, h))
-		self.set_selection_pixbuf( Gdk.pixbuf_get_from_surface(temp_surface, \
-			0, 0, temp_surface.get_width(), temp_surface.get_height()) )
-
-		cairo_context.new_path()
-		cairo_context.move_to(x0, y0)
-		cairo_context.line_to(x1, y0)
-		cairo_context.line_to(x1, y1)
-		cairo_context.line_to(x0, y1)
-		cairo_context.close_path()
-
-		self.selection_path = cairo_context.copy_path()
-		self.temp_path = cairo_context.copy_path()
-		self.set_temp()
-
-	def init_path(self, event_x, event_y):
-		"""This method moves the current path to the "press" event coordinates.
-		It's used by both the 'rectangle selection' mode and the 'free
-		selection' mode."""
-		if self.selection_path is not None:
-			return
-		self.closing_x = event_x
-		self.closing_y = event_y
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(event_x, event_y)
-		self.selection_path = cairo_context.copy_path()
-
-	def draw_polygon(self, event_x, event_y):
-		"""This method is specific to the 'free selection' mode."""
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		cairo_context.set_dash([3, 3])
-		if self.selection_path is None:
-			return False
-		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
-		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
-			cairo_context.append_path(self.selection_path)
-			cairo_context.close_path()
-			cairo_context.stroke_preserve()
-			self.selection_path = cairo_context.copy_path()
-			self.temp_path = cairo_context.copy_path()
-			return True
-		else:
-			cairo_context.append_path(self.selection_path)
-			cairo_context.line_to(int(event_x), int(event_y))
-			cairo_context.stroke_preserve() # draw the line without closing the path
-			self.selection_path = cairo_context.copy_path()
-			self.update()
-			return False
-
-	def crop_free_selection_pixbuf(self, x, y, width, height):
-		"""Reduce the size of the pixbuf generated by "create_free_selection_from_main"
-		for usability and performance improvements.
-		Before this method, the "selection_pixbuf" is a copy of the main one, but
-		is mainly full of alpha, while "selection_x" and "selection_y" are zeros.
-		After this method, the "selection_pixbuf" is smaller and coordinates make
-		more sense."""
-		x = int(x)
-		y = int(y)
-		width = int(width)
-		height = int(height)
-		min_w = min(width, self.selection_pixbuf.get_width() + x)
-		min_h = min(height, self.selection_pixbuf.get_height() + y)
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		new_pixbuf.fill(0)
-		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
-		self.selection_pixbuf = new_pixbuf
-		self.selection_x = x
-		self.selection_y = y
-
 	def apply_temp(self, operation_is_selection):
-		# self.use_stable_pixbuf() # FIXME ça n'a pas l'air de suffire pour le bug du double-scale
-		# self.update()
 		if operation_is_selection:
-			self.selection_pixbuf = self.get_temp_pixbuf().copy()
-			self.create_selection_from_arbitrary_pixbuf(False)
+			self.selection_pixbuf = self.get_temp_pixbuf().copy() # XXX PAS_SOUHAITABLE
+			self.create_path_from_pixbuf(False)
 		else:
 			self.main_pixbuf = self.get_temp_pixbuf().copy()
 			self.use_stable_pixbuf()
@@ -685,47 +491,17 @@ class DrawingImage(Gtk.Box):
 		self.selection_is_active = True
 		self.update_actions_state()
 
-	def delete_temp(self):
-		if self.temp_path is None or not self.selection_is_active:
-			return
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.new_path()
-		cairo_context.append_path(self.temp_path)
-		cairo_context.clip()
-		cairo_context.set_operator(cairo.Operator.CLEAR)
-		cairo_context.paint()
-		cairo_context.set_operator(cairo.Operator.OVER)
-
 	def get_dragged_selection_path(self):
-		if self.selection_path is None:
-			return None
-		cairo_context = cairo.Context(self.get_surface())
-		for pts in self.selection_path:
-			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - self.temp_x - self.scroll_x
-				y = pts[1][1] + self.selection_y - self.temp_y - self.scroll_y
-				cairo_context.line_to(int(x), int(y))
-		cairo_context.close_path()
-		return cairo_context.copy_path()
+		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
 
-	def get_selection_pixbuf(self):
-		return self.selection_pixbuf
-
-	def set_selection_pixbuf(self, new_pixbuf):
-		if new_pixbuf is None:
-			return False
-		else:
-			self.selection_pixbuf = new_pixbuf
-			return True
-
-	def image_select_all(self):
+	def image_select_all(self): # TODO
 		self.selection_x = 0
 		self.selection_y = 0
-		self.set_selection_pixbuf(self.get_main_pixbuf().copy())
-		self.selection_has_been_used = False # TODO non
+		self.selection_pixbuf = self.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE devrait être une opération
+		self.selection.selection_has_been_used = False # TODO non
 		self.temp_x = 0
 		self.temp_y = 0
-		self.create_selection_from_arbitrary_pixbuf(True)
+		self.create_path_from_pixbuf(True)
 		self.show_selection_popover(True)
 
 ########################
@@ -738,13 +514,13 @@ class DrawingImage(Gtk.Box):
 
 	def set_surface_as_stable_pixbuf(self):
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-			self.surface.get_width(), self.surface.get_height())
+		                    self.surface.get_width(), self.surface.get_height())
 
 	def use_stable_pixbuf(self):
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
 	def is_using_selection(self):
-		return self.window.tool_needs_selection() and self.selection_is_active
+		return self.window.tool_needs_selection() and self.selection.selection_is_active
 
 # PRINTING
 

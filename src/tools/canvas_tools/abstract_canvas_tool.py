@@ -58,3 +58,4 @@ class AbstractCanvasTool(ToolTemplate):
 		super().apply_operation(operation)
 
 
+

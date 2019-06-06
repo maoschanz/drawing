@@ -48,6 +48,9 @@ class ToolTemplate():
 
 	# UI
 
+	def show_error(self, text):
+		self.window.prompt_message(True, text)
+
 	def show_panel(self, visibility):
 		if self.implements_panel:
 			self.window.bottom_panel.set_visible(not visibility)
@@ -119,17 +122,20 @@ class ToolTemplate():
 
 	# Selection
 
+	def get_selection(self):
+		return self.get_image().selection
+
 	def selection_is_active(self):
-		return self.get_image().selection_is_active
+		return self.get_selection().selection_is_active
 
 	def get_selection_pixbuf(self):
-		return self.get_image().selection_pixbuf
+		return self.get_selection().get_pixbuf()
 
 	def set_selection_has_been_used(self, state):
-		self.get_image().selection_has_been_used = state
+		self.get_selection().selection_has_been_used = state
 
 	def selection_has_been_used(self):
-		return self.get_image().selection_has_been_used
+		return self.get_selection().selection_has_been_used
 
 	# Image management
 
@@ -164,4 +170,5 @@ class ToolTemplate():
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		pass
+
 

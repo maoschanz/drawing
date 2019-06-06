@@ -188,7 +188,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.build_new_tab(None, pixbuf)
 
 	def build_image_from_selection(self, *args):
-		pixbuf = self.get_active_image().selection_pixbuf
+		pixbuf = self.get_active_image().selection.get_pixbuf()
 		self.build_new_tab(None, pixbuf)
 
 	def build_new_tab(self, gfile, pixbuf):
@@ -605,7 +605,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		should_preserve_selection = self.tools[new_tool_id].accept_selection
 		self.former_tool().give_back_control(should_preserve_selection)
 		self.former_tool().on_tool_unselected()
-		self.get_active_image().show_selection_popover(False)
+		self.get_active_image().selection.show_popover(False)
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()
@@ -797,12 +797,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.action_delete()
 
 	def action_copy(self, *args):
-		self.get_active_image().selection_has_been_used = True
+		self.get_active_image().selection.selection_has_been_used = True # XXX bizarre
 		self.copy_operation()
 
 	def copy_operation(self):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-		cb.set_image(self.get_active_image().selection_pixbuf)
+		cb.set_image(self.get_active_image().selection.get_pixbuf())
 
 	def action_delete(self, *args):
 		self.get_active_image().image_delete()
@@ -812,8 +812,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		pixbuf = cb.wait_for_image()
 		if pixbuf is not None:
 			self.force_selection()
-			self.get_active_image().set_selection_pixbuf(pixbuf)
-			self.get_active_image().on_import_selection()
+			self.get_active_image().on_import_selection(pixbuf)
 		else:
 			string =  cb.wait_for_text()
 			self.tools['text'].row.set_active(True)
@@ -830,18 +829,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if response == Gtk.ResponseType.ACCEPT:
 			self.force_selection()
 			fn = file_chooser.get_filename()
-			self.get_active_image().set_selection_pixbuf( \
-			                                 GdkPixbuf.Pixbuf.new_from_file(fn))
-			self.get_active_image().on_import_selection()
+			self.get_active_image().on_import_selection(GdkPixbuf.Pixbuf.new_from_file(fn))
 		file_chooser.destroy()
 
 	def action_selection_export(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
-			utilities_save_pixbuf_at(self.get_active_image().selection_pixbuf, \
-			                                                   gfile.get_path())
+			pixbuf = self.get_active_image().selection.get_pixbuf()
+			utilities_save_pixbuf_at(pixbuf, gfile.get_path())
 
-	def get_selection_tool(self):
+	def get_selection_tool(self):  # XXX réellement utile ?
 		if 'select' in self.tools:
 			return self.tools['select']
 		else:
@@ -862,16 +859,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_undo(self, *args):
 		self.get_active_image().try_undo()
 		self.action_rebuild()
-		self.get_active_image().reset_temp() # FIXME ne devrait pas exister
+		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
 		self.action_rebuild()
-		self.get_active_image().reset_temp() # FIXME ne devrait pas exister
+		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
 
 	def operation_is_ongoing(self): # TODO
 		# if self.active_tool() is self.get_selection_tool():
-		# 	is_ongoing = self.active_tool().selection_has_been_used
+		# 	is_ongoing = self.active_tool().selection.selection_has_been_used
 		# else:
 		# 	is_ongoing = self.active_tool().has_ongoing_operation
 		# return is_ongoing

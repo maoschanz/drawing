@@ -37,6 +37,7 @@ drawing_sources = [
 	'options_manager.py',
 	'headerbar.py',
 	'minimap.py',
+	'selection_manager.py',
 	'utilities.py',
 
 	'properties.py',
