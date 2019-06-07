@@ -9,24 +9,12 @@
         <property name="show-arrow">True</property>
         <property name="icon-size">large-toolbar</property>
         <child>
-          <object class="GtkToolButton">
+          <object class="GtkMenuToolButton" id="new_menu_btn">
             <property name="visible">True</property>
             <property name="action_name">win.new_tab</property>
             <property name="icon_name">tab-new</property>
-            <property name="tooltip_text" translatable="yes">New Tab</property>
-            <property name="label" translatable="yes">New Tab</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">app.new_window</property>
-            <property name="icon_name">window-new</property>
-            <property name="tooltip_text" translatable="yes">New Window</property>
-            <property name="label" translatable="yes">New Window</property>
+            <property name="tooltip_text" translatable="yes">New Image</property>
+            <property name="label" translatable="yes">New Image</property>
           </object>
           <packing>
             <property name="homogeneous">False</property>
@@ -122,37 +110,13 @@
           </object>
         </child>
         <child>
-          <object class="GtkToolButton">
+          <object class="GtkMenuToolButton" id="save_menu_btn">
             <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action_name">win.save</property>
             <property name="icon_name">document-save</property>
             <property name="tooltip_text" translatable="yes">Save</property>
             <property name="label" translatable="yes">Save</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">win.save_as</property>
-            <!-- <property name="icon_name">document-save-as</property> -->
-            <property name="tooltip_text" translatable="yes">Save as…</property>
-            <property name="label" translatable="yes">Save as…</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">win.export_as</property>
-            <!-- <property name="icon_name">document-save-as</property> -->
-            <property name="tooltip_text" translatable="yes">Export as…</property>
-            <property name="label" translatable="yes">Export as…</property>
           </object>
           <packing>
             <property name="homogeneous">False</property>
@@ -200,36 +164,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="icon_name">preferences-desktop-keyboard-shortcuts</property>
-            <property name="tooltip_text" translatable="yes">Shortcuts</property>
-            <property name="label" translatable="yes">Shortcuts</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
+          <object class="GtkMenuToolButton" id="help_menu_btn">
             <property name="visible">True</property>
             <property name="action_name">app.help</property>
             <property name="icon_name">help-faq</property>
             <property name="tooltip_text" translatable="yes">Help</property>
             <property name="label" translatable="yes">Help</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="visible">True</property>
-            <property name="action_name">app.about</property>
-            <property name="icon_name">help-about</property>
-            <property name="tooltip_text" translatable="yes">About Drawing</property>
-            <property name="label" translatable="yes">About Drawing</property>
           </object>
           <packing>
             <property name="homogeneous">False</property>

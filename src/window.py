@@ -449,6 +449,22 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_toolbar(self):
 		builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar.ui')
 		toolbar = builder.get_object('toolbar')
+
+		# The toolbar has menus which need to be set manually
+		builder.add_from_resource(UI_PATH + 'win-menus.ui')
+
+		new_btn = builder.get_object('new_menu_btn')
+		new_menu = Gtk.Menu.new_from_model(builder.get_object('new-image-menu'))
+		new_btn.set_menu(new_menu)
+
+		save_btn = builder.get_object('save_menu_btn')
+		save_menu = Gtk.Menu.new_from_model(builder.get_object('save-section'))
+		save_btn.set_menu(save_menu)
+
+		help_btn = builder.get_object('help_menu_btn')
+		help_menu = Gtk.Menu.new_from_model(builder.get_object('help-section'))
+		help_btn.set_menu(help_menu)
+
 		self.toolbar_box.add(toolbar)
 		self.toolbar_box.show_all()
 
