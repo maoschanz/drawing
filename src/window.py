@@ -787,7 +787,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_select_all(self, *args):
 		self.force_selection()
-		self.get_active_image().image_select_all()
+		self.get_selection_tool().tool_select_all()
 
 	def action_unselect(self, *args):
 		self.get_active_image().image_unselect()
@@ -805,7 +805,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		cb.set_image(self.get_active_image().selection.get_pixbuf())
 
 	def action_delete(self, *args):
-		self.get_active_image().image_delete()
+		self.get_selection_tool().delete_selection()
 
 	def action_paste(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -829,7 +829,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if response == Gtk.ResponseType.ACCEPT:
 			self.force_selection()
 			fn = file_chooser.get_filename()
-			self.get_active_image().on_import_selection(GdkPixbuf.Pixbuf.new_from_file(fn))
+			self.get_selection_tool().import_selection(GdkPixbuf.Pixbuf.new_from_file(fn))
 		file_chooser.destroy()
 
 	def action_selection_export(self, *args):

@@ -104,7 +104,7 @@ class DrawingSelectionManager():
 	def delete_temp(self):
 		if self.temp_path is None or not self.is_active:
 			return
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = cairo.Context(self.image.get_surface())
 		cairo_context.new_path()
 		cairo_context.append_path(self.temp_path)
 		cairo_context.clip()

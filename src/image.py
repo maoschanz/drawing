@@ -207,8 +207,8 @@ class DrawingImage(Gtk.Box):
 		pixbufs."""
 		if self.window.close_tab(self):
 			self.destroy()
-			self.main_pixbuf = None
 			self.selection.reset()
+			self.main_pixbuf = None
 			self.temp_pixbuf = None
 			return True
 		else:
@@ -271,12 +271,13 @@ class DrawingImage(Gtk.Box):
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_operation_to_history(self, operation):
-		print(operation)
+		# print(operation)
 		self._is_saved = False
 		self.undo_history.append(operation)
 		self.update_history_sensitivity()
 
-	def on_tool_finished(self):
+	def on_tool_finished(self): # XXX malgré son nom, cette méthode est appelée
+		                        # (uniquement) par [Tool].apply_to_pixbuf
 		#self.redo_history = []
 		self.update_history_sensitivity()
 		self.update()
@@ -515,15 +516,15 @@ class DrawingImage(Gtk.Box):
 	############################################################################
 	# TODO à supprimer XXX #####################################################
 
-	def image_select_all(self): # TODO
-		self.selection_x = 0
-		self.selection_y = 0
-		self.selection_pixbuf = self.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE devrait être une opération
-		self.selection.selection_has_been_used = False # TODO non
-		self.temp_x = 0
-		self.temp_y = 0
-		self.create_path_from_pixbuf(True)
-		self.show_selection_popover(True)
+	# def image_select_all(self): # TODO
+	# 	self.selection_x = 0
+	# 	self.selection_y = 0
+	# 	self.selection_pixbuf = self.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE devrait être une opération
+	# 	self.selection.selection_has_been_used = False # TODO non
+	# 	self.temp_x = 0
+	# 	self.temp_y = 0
+	# 	self.create_path_from_pixbuf(True)
+	# 	self.show_selection_popover(True)
 
 	def reset_temp(self):
 		self.selection_pixbuf = None
@@ -536,17 +537,17 @@ class DrawingImage(Gtk.Box):
 		self.use_stable_pixbuf()
 		self.update()
 
-	def on_import_selection(self, pixbuf):
-		self.temp_path = None
-		self.selection_pixbuf = pixbuf # XXX PAS_SOUHAITABLE
-		self.create_path_from_pixbuf(False)
+	# def on_import_selection(self, pixbuf):
+	# 	self.temp_path = None
+	# 	self.selection_pixbuf = pixbuf # XXX PAS_SOUHAITABLE
+	# 	self.create_path_from_pixbuf(False)
 
-	def image_unselect(self, *args):
+	def image_unselect(self, *args): # Lui il n'y a ptêt pas besoin de le virer ?
 		self.window.get_selection_tool().give_back_control(False) # FIXME ?
 
-	def image_delete(self, *args):
-		self.selection.selection_has_been_used = True
-		self.use_stable_pixbuf()
-		self.window.get_selection_tool().delete_selection()
-		self.reset_temp()
-		self.show_selection_popover(False)
+	# def image_delete(self, *args):
+	# 	self.selection.selection_has_been_used = True
+	# 	self.use_stable_pixbuf()
+	# 	self.window.get_selection_tool().delete_selection()
+	# 	self.reset_temp()
+	# 	self.show_selection_popover(False)
