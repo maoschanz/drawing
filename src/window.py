@@ -828,7 +828,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		pixbuf = cb.wait_for_image()
 		if pixbuf is not None:
 			self.force_selection()
-			self.get_active_image().on_import_selection(pixbuf)
+			self.get_selection_tool().import_selection(pixbuf)
 		else:
 			string =  cb.wait_for_text()
 			self.tools['text'].row.set_active(True)

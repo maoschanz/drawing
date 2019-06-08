@@ -307,9 +307,14 @@ class DrawingImage(Gtk.Box):
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
+		# print('on_draw')
 		if self.is_using_selection() and self.selection.get_pixbuf() is not None:
+			print('on_draw AVEC sélection')
+			# print(self.selection.get_pixbuf())
 			utilities_show_overlay_on_context(cairo_context, \
 			                            self.get_dragged_selection_path(), True)
+		else:
+			print('on_draw sans sélection')
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on
@@ -392,6 +397,16 @@ class DrawingImage(Gtk.Box):
 			self.main_pixbuf = new_pixbuf
 			return True
 
+	def get_temp_pixbuf(self):
+		return self.temp_pixbuf
+
+	def set_temp_pixbuf(self, new_pixbuf):
+		if new_pixbuf is None:
+			return False
+		else:
+			self.temp_pixbuf = new_pixbuf
+			return True
+
 	############################################################################
 	# Scroll and zoom levels ###################################################
 
@@ -458,8 +473,8 @@ class DrawingImage(Gtk.Box):
 
 	def apply_temp(self, operation_is_selection):
 		if operation_is_selection:
-			self.selection_pixbuf = self.get_temp_pixbuf().copy() # XXX PAS_SOUHAITABLE
-			self.create_path_from_pixbuf(False)
+			self.selection.selection_pixbuf = self.get_temp_pixbuf().copy() # XXX PAS_SOUHAITABLE ?
+			# self.selection.create_path_from_pixbuf(False) # FIXME
 		else:
 			self.main_pixbuf = self.get_temp_pixbuf().copy()
 			self.use_stable_pixbuf()
@@ -470,9 +485,9 @@ class DrawingImage(Gtk.Box):
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
-			self.delete_temp()
+			self.selection.delete_temp()
 			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_temp_pixbuf(), \
-			                                 self.selection_x, self.selection_y)
+			             self.selection.selection_x, self.selection.selection_y)
 			cairo_context.paint()
 		else:
 			cairo_context.set_operator(cairo.Operator.CLEAR)

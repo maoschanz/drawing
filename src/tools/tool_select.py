@@ -26,7 +26,7 @@ class ToolSelect(ToolTemplate):
 		self.future_y = 0
 		self.future_path = None
 		self.future_pixbuf = None
-		self.operation_type = 'drag' # TODO bof bof comme stratégie
+		self.operation_type = 'op-drag' # TODO bof bof comme stratégie
 
 		builder = Gtk.Builder.new_from_resource( \
 		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
@@ -236,11 +236,6 @@ class ToolSelect(ToolTemplate):
 
 		self.future_x = x0
 		self.future_y = y0
-		# XXX la définition du pixbuf se fait mtn dans le selection_manager
-		# temp_surface = Gdk.cairo_surface_create_from_pixbuf(self.get_main_pixbuf(), 0, None)
-		# temp_surface = temp_surface.map_to_image(cairo.RectangleInt(x0, y0, w, h))
-		# self.selection_pixbuf = Gdk.pixbuf_get_from_surface(temp_surface, \
-		#               0, 0, temp_surface.get_width(), temp_surface.get_height())
 
 		cairo_context.new_path()
 		cairo_context.move_to(x0, y0)
@@ -250,9 +245,6 @@ class ToolSelect(ToolTemplate):
 		cairo_context.close_path()
 
 		self.future_path = cairo_context.copy_path()
-		# self.temp_path = cairo_context.copy_path() # XXX XXX XXX
-		# self.set_temp() # XXX XXX XXX TODO
-
 
 
 
@@ -266,7 +258,7 @@ class ToolSelect(ToolTemplate):
 		self.do_tool_operation(operation)
 		self.non_destructive_show_modif()
 
-	def apply_selection(self): # XXX XXX XXX FIXME excessivement mauvais
+	def apply_selection(self): # XXX FIXME mauvais
 		# if self.selection_is_active():
 			operation = self.build_operation()
 			self.apply_operation(operation)
@@ -281,6 +273,8 @@ class ToolSelect(ToolTemplate):
 		self.operation_type = 'op-import'
 		self.apply_selection()
 		self.operation_type = 'op-drag'
+
+	#####
 
 	def op_import(self, operation):
 		if operation['pixbuf'] is None:
@@ -297,10 +291,9 @@ class ToolSelect(ToolTemplate):
 	def op_drag(self, operation):
 		if operation['initial_path'] is None:
 			return
-		cairo_context = cairo.Context(self.get_surface())
-		Gdk.cairo_set_source_pixbuf(cairo_context, operation['pixbuf'], \
-		                               operation['pixb_x'], operation['pixb_y'])
-		cairo_context.paint()
+		self.get_selection().selection_x = operation['pixb_x']
+		self.get_selection().selection_y = operation['pixb_y']
+		self.non_destructive_show_modif()
 
 
 
@@ -331,6 +324,7 @@ class ToolSelect(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
+		print(operation['operation_type'])
 		if operation['operation_type'] == 'op-delete':
 			self.op_delete(operation)
 		elif operation['operation_type'] == 'op-drag':
@@ -340,6 +334,5 @@ class ToolSelect(ToolTemplate):
 			self.op_import(operation)
 		elif operation['operation_type'] == 'op-define':
 			self.op_define(operation)
-
 
 
