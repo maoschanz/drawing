@@ -115,6 +115,7 @@
                 <child>
                   <object class="GtkBox" id="color_box">
                   <property name="visible">True</property>
+                  <property name="valign">center</property>
                     <child>
                       <object class="GtkMenuButton" id="color_menu_btn_l">
                         <property name="visible">True</property>
@@ -159,12 +160,14 @@
                 <child>
                   <object class="GtkSpinButton" id="thickness_spinbtn">
                     <property name="tooltip-text" translatable="yes">Tool size</property>
+                    <property name="valign">center</property>
                     <property name="visible">True</property>
                     <property name="adjustment">adjustment_size</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkMenuButton" id="options_btn">
+                    <property name="valign">center</property>
                     <property name="visible">True</property>
                     <child>
                       <object class="GtkBox">
@@ -208,6 +211,7 @@
                 </child>
                 <child>
                   <object class="GtkToggleButton" id="minimap_btn">
+                    <property name="valign">center</property>
                     <property name="tooltip-text" translatable="yes">Preview</property>
                     <property name="visible">True</property>
                     <property name="action-name">win.toggle_preview</property>

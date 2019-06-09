@@ -148,7 +148,7 @@ class DrawingSelectionManager():
 			self._set_temp_path(cairo_context.copy_path())
 		self.show_popover(False)
 		self.image.update_actions_state()
-		self.image.window.get_selection_tool().update_surface() # XXX
+		# self.image.window.get_selection_tool().update_surface() # XXX non, boucle infinie
 
 	def _set_temp_path(self, path):
 		self.temp_x = self.selection_x

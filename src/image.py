@@ -307,14 +307,15 @@ class DrawingImage(Gtk.Box):
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
+		self.active_tool().on_draw(area, cairo_context)
 		# print('on_draw')
-		if self.is_using_selection() and self.selection.get_pixbuf() is not None:
-			print('on_draw AVEC sélection')
+		# if self.is_using_selection() and self.selection.get_pixbuf() is not None:
+		# 	print('on_draw AVEC sélection')
 			# print(self.selection.get_pixbuf())
-			utilities_show_overlay_on_context(cairo_context, \
-			                            self.get_dragged_selection_path(), True)
-		else:
-			print('on_draw sans sélection')
+		# 	utilities_show_overlay_on_context(cairo_context, \
+		# 	                            self.get_dragged_selection_path(), True)
+		# else:
+		# 	print('on_draw sans sélection')
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on
@@ -500,8 +501,8 @@ class DrawingImage(Gtk.Box):
 	def get_dragged_selection_path(self):
 		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
 
-	def is_using_selection(self):
-		return self.window.tool_needs_selection() and self.selection.is_active
+	# def is_using_selection(self):
+	# 	return self.window.tool_needs_selection() and self.selection.is_active
 
 	############################################################################
 	# Printing operations ######################################################

@@ -5,6 +5,7 @@ import cairo
 
 from .abstract_tool import ToolTemplate
 from .utilities import utilities_get_magic_path
+from .utilities import utilities_show_overlay_on_context
 
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
@@ -26,7 +27,8 @@ class ToolSelect(ToolTemplate):
 		self.future_y = 0
 		self.future_path = None
 		self.future_pixbuf = None
-		self.operation_type = 'op-drag' # TODO bof bof comme stratégie
+		self.operation_type = 'op-define'
+		self.behavior = 'rectangle'
 
 		builder = Gtk.Builder.new_from_resource( \
 		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
@@ -63,6 +65,13 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 	# Lifecycle implementations ################################################
 
+	def give_back_control(self, preserve_selection):
+		# if preserve_selection and self.selection_is_active():
+		if True: # TODO
+			operation = self.build_operation()
+			self.apply_operation(operation)
+		if not preserve_selection:
+			self.get_selection().reset()
 
 
 
@@ -71,33 +80,27 @@ class ToolSelect(ToolTemplate):
 
 	############################################################################
 	############################################################################
-
-	def update_cursor(self):
-		if self.selection_is_active():
-			self.cursor_name = 'grab'
-		else:
-			self.cursor_name = 'cross'
 
 	def get_press_behavior(self):
 		if self.selection_is_active():
 			if self.get_selection().point_is_in_selection(self.x_press, self.y_press):
-				return 'grab-selection'
+				return 'drag'
 		else:
 			if self.selected_type_id == 'color':
-				return 'select-color'
+				return 'color'
 			elif self.selected_type_id == 'freehand':
-				return 'begin-freehand'
+				return 'freehand'
 			else:
-				return 'select-rectangle'
+				return 'rectangle'
 		return 'cancel'
 
-	def get_release_behavior(self):
-		if not self.selection_is_active():
-			return self.selected_type_id
-		elif self.get_selection().point_is_in_selection(self.x_press, self.y_press):
-			return 'drag-selection'
-		else:
-			return 'cancel'
+	# def get_release_behavior(self):
+	# 	if not self.selection_is_active():
+	# 		return self.selected_type_id
+	# 	elif self.get_selection().point_is_in_selection(self.x_press, self.y_press):
+	# 		return 'drag'
+	# 	else:
+	# 		return 'cancel'
 
 	############################################################################
 	# Signal callbacks implementations #########################################
@@ -105,34 +108,28 @@ class ToolSelect(ToolTemplate):
 	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		behavior = self.get_press_behavior()
-		if behavior == 'grab-selection':
+		self.behavior = self.get_press_behavior()
+		if self.behavior == 'drag':
 			self.cursor_name = 'grabbing'
 			self.window.set_cursor(True)
-		if behavior == 'select-color':
-			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
-		elif behavior == 'begin-freehand':
-			self.init_path(event_x, event_y)
+		# elif self.behavior == 'color':
+		# 	self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
+		# elif self.behavior == 'freehand':
+		# 	self.init_path(event_x, event_y) # TODO
 		if not self.get_selection().point_is_in_selection(self.x_press, self.y_press):
 			self.cursor_name = 'cross'
 			self.window.set_cursor(True)
 			self.give_back_control(False) # XXX à vérifier, ça me semble louche
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
-		if behavior == 'select-rectangle':
-			self.init_path(event_x, event_y)
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		if self.selection_is_active():
-			pass
-			# self.update_surface() # TODO mais ça ne marchera pas à un tel simple appel mdr
-		else:
-			if self.selected_type_id == 'freehand':
-				self.restore_pixbuf()
-				self.draw_polygon(event_x, event_y)
-			elif self.selected_type_id == 'rectangle':
-				pass
-				# TODO tracer dynamiquement le rectangle n'est pas idiot
+		if self.behavior == 'rectangle':
+			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
+		elif self.behavior == 'drag':
+			pass # TODO
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		x = event.x + self.get_image().scroll_x
@@ -150,100 +147,62 @@ class ToolSelect(ToolTemplate):
 			self.get_selection().set_r_popover_position(event.x, event.y)
 			self.get_selection().show_popover(True)
 			return
-		behavior = self.get_release_behavior()
-		# TODO TODO TODO utiliser les mêmes conditionnelles mais avec des "future_xxx"
-		if behavior == 'rectangle':
-			self.draw_rectangle(event_x, event_y)
-			if self.selection_is_active():
-				self.show_popover(True)
-				self.set_selection_has_been_used(False)
-		elif behavior == 'freehand':
-			pass
-			# if self.draw_polygon(event_x, event_y):
-			# 	self.restore_pixbuf()
-			# 	self.get_image().create_free_selection_from_main() # FIXME oula mdr c'est quoi mtn ça ?
-			# 	if self.selection_is_active():
-			# 		self.show_popover(True)
-			# 		self.set_selection_has_been_used(False)
-			# else:
-			# 	return # without updating the surface so the path is visible
-		elif behavior == 'color':
-			pass
-		# 	self.restore_pixbuf()
-		# 	if self.future_path is not None:
-		# 		self.get_image().selection.load_from_path(self.future_path)
-		# 		if self.selection_is_active():
-		# 			self.show_popover(True)
-		# 			self.set_selection_has_been_used(False)
-		self.update_surface()
-		if behavior == 'drag-selection':
-			self.drag_to(event_x, event_y)
-			self.cursor_name = 'grab'
-			self.window.set_cursor(True)
-			self.update_surface()
-		else:
-			self.restore_pixbuf()
-			self.non_destructive_show_modif()
+		self.restore_pixbuf()
+		if self.behavior == 'rectangle':
+			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
+			self.operation_type = 'op-define'
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
+		elif self.behavior == 'freehand':
+			pass # TODO ?
+		elif self.behavior == 'color':
+			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
+			self.operation_type = 'op-define'
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
+		elif self.behavior == 'drag':
+			x = self.get_selection().selection_x
+			y = self.get_selection().selection_y
+			self.future_x = x + event_x - self.x_press
+			self.future_y = y + event_y - self.y_press
+			print('drag to : ', self.future_x, self.future_y)
+			self.operation_type = 'op-drag'
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
+			self.operation_type = 'op-define'
+
 
 	def drag_to(self, final_x, final_y):
-		delta_x = final_x - self.x_press
-		delta_y = final_y - self.y_press
-		self.restore_pixbuf()
-		if delta_x == 0 and delta_y == 0:
-			pass
-		else:
-			self.set_selection_has_been_used(True)
-			self.future_x += delta_x
-			self.future_y += delta_y
-		self.non_destructive_show_modif()
+		pass
 
 	############################################################################
 	# Path management ##########################################################
 
 	def init_path(self, event_x, event_y):
-		"""This method moves the current path to the "press" event coordinates.
-		It's used by both the 'rectangle selection' mode and the 'free
-		selection' mode."""
-		if self.future_path is not None:
-			return
-		self.closing_x = event_x
-		self.closing_y = event_y
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(event_x, event_y)
-		self.future_path = cairo_context.copy_path()
+		pass
 
 	def tool_select_all(self):
 		pass # TODO utiliser draw_rectangle
 
-	def draw_rectangle(self, event_x, event_y): # TODO donner les 4 coordonnées en paramètre
-		if self.future_path is None:
-			return
+	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
 		cairo_context = cairo.Context(self.get_surface())
-		# cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		# cairo_context.set_dash([3, 3])
-		cairo_context.append_path(self.future_path)
-		press_x, press_y = cairo_context.get_current_point() # XXX pourquoi les retenir du coup ?
-
-		x0 = int( min(press_x, event_x) )
-		y0 = int( min(press_y, event_y) )
-		x1 = int( max(press_x, event_x) )
-		y1 = int( max(press_y, event_y) )
+		x0 = int( min(press_x, release_x) )
+		y0 = int( min(press_y, release_y) )
+		x1 = int( max(press_x, release_x) )
+		y1 = int( max(press_y, release_y) )
 		w = x1 - x0
 		h = y1 - y0
 		if w <= 0 or h <= 0:
 			self.future_path = None
 			return
-
 		self.future_x = x0
 		self.future_y = y0
-
 		cairo_context.new_path()
 		cairo_context.move_to(x0, y0)
 		cairo_context.line_to(x1, y0)
 		cairo_context.line_to(x1, y1)
 		cairo_context.line_to(x0, y1)
 		cairo_context.close_path()
-
 		self.future_path = cairo_context.copy_path()
 
 
@@ -266,35 +225,39 @@ class ToolSelect(ToolTemplate):
 	def delete_selection(self):
 		self.operation_type = 'op-delete'
 		self.apply_selection()
-		self.operation_type = 'op-drag'
+		self.operation_type = 'op-define'
 
 	def import_selection(self, pixbuf):
-		self.get_image().selection.set_pixbuf(pixbuf, True)
+		self.future_pixbuf = pixbuf
 		self.operation_type = 'op-import'
 		self.apply_selection()
-		self.operation_type = 'op-drag'
+		self.operation_type = 'op-define'
 
 	#####
 
 	def op_import(self, operation):
 		if operation['pixbuf'] is None:
 			return
-		self.get_selection().selection_pixbuf = operation['pixbuf'].copy()
+		self.get_selection().set_pixbuf(operation['pixbuf'].copy(), True)
 
 	def op_delete(self, operation):
 		if operation['initial_path'] is None:
 			return
 		self.get_selection().temp_path = operation['initial_path']
 		self.get_selection().delete_temp()
-		# self.get_selection().reset() # attention op_delete est aussi appelé pour d'autres opérations ???
 
 	def op_drag(self, operation):
-		if operation['initial_path'] is None:
-			return
+		print(operation['pixb_x'], operation['pixb_y'])
 		self.get_selection().selection_x = operation['pixb_x']
 		self.get_selection().selection_y = operation['pixb_y']
 		self.non_destructive_show_modif()
 
+	def op_define(self, operation):
+		if operation['initial_path'] is None:
+			return
+		self.get_selection().selection_x = operation['pixb_x']
+		self.get_selection().selection_y = operation['pixb_y']
+		self.get_selection().load_from_path(operation['initial_path'])
 
 
 
@@ -306,9 +269,9 @@ class ToolSelect(ToolTemplate):
 	# Operations management implementations#####################################
 
 	def build_operation(self):
-		if self.future_pixbuf is None:
+		if self.future_pixbuf is None: # Cas normal
 			pixbuf = None
-		else:
+		else: # Cas des importations uniquement
 			pixbuf = self.future_pixbuf.copy()
 		operation = {
 			'tool_id': self.id,
@@ -326,13 +289,26 @@ class ToolSelect(ToolTemplate):
 		self.restore_pixbuf()
 		print(operation['operation_type'])
 		if operation['operation_type'] == 'op-delete':
+			# Opération instantanée (sans preview), correspondant à une action
+			# de type "clic-droit > couper" ou "clic-droit > supprimer".
+			# On réinitialise le selection_manager.
 			self.op_delete(operation)
-		elif operation['operation_type'] == 'op-drag':
-			self.op_delete(operation)
-			self.op_drag(operation)
+			self.get_selection().reset() # car op_delete est aussi appelé pour l'op-drag
 		elif operation['operation_type'] == 'op-import':
+			# Opération instantanée (sans preview), correspondant à une action
+			# de type "clic-droit > importer" ou "clic-droit > coller".
+			# On charge un pixbuf dans le selection_manager.
 			self.op_import(operation)
 		elif operation['operation_type'] == 'op-define':
+			# Opération instantanée (sans preview), correspondant à une sélection
+			# (rectangulaire ou non) par définition d'un path.
+			# On charge un pixbuf dans le selection_manager.
 			self.op_define(operation)
+		elif operation['operation_type'] == 'op-drag':
+			# Opération prévisualisable, correspondant à la définition d'une
+			# sélection (rectangulaire ou non) par construction d'un path.
+			# On modifie les coordonnées connues du selection_manager.
+			self.op_delete(operation)
+			self.op_drag(operation)
 
 

@@ -429,6 +429,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_headerbar(True)
 			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(False)
+			self.minimap_btn.set_border_width(6)
 		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar.header_bar)
@@ -867,8 +868,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
-	def tool_needs_selection(self):
-		return self.active_tool().accept_selection
+	# def tool_needs_selection(self):
+	# 	return self.active_tool().accept_selection
 
 	# HISTORY MANAGEMENT
 

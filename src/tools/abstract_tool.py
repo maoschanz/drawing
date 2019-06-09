@@ -5,6 +5,8 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
+from .utilities import utilities_show_overlay_on_context
+
 class ToolTemplate():
 	__gtype_name__ = 'ToolTemplate'
 
@@ -20,8 +22,8 @@ class ToolTemplate():
 		self.cursor_name = 'cell'
 		self.use_size = False
 		self.has_ongoing_operation = False # TODO
-		self.build_row()
 		self.window = window
+		self.build_row()
 
 	# Actions
 
@@ -76,15 +78,15 @@ class ToolTemplate():
 		return _("No options")
 
 	def build_row(self):
-		"""Build the GtkRadioButton for the sidebar. This method does not pack
-		it in the bar, and does not return it, but store it as "self.row"."""
-		self.row = Gtk.RadioButton( \
-			draw_indicator=False, \
-			tooltip_text=self.label, \
-			relief=Gtk.ReliefStyle.NONE)
+		"""Build the GtkRadioButton for the sidebar. This method stores it as
+		'self.row', but does not pack it in the bar, and does not return it."""
+		self.row = Gtk.RadioButton(draw_indicator=False, \
+		                   tooltip_text=self.label, relief=Gtk.ReliefStyle.NONE)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.BUTTON)
 		self.label_widget = Gtk.Label(label=self.label)
+		if self.window.decorations == 'csd-eos':
+			self.row.set_border_width(6)
+		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.SMALL_TOOLBAR)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 		box.add(image)
 		box.add(self.label_widget)
@@ -170,5 +172,18 @@ class ToolTemplate():
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		pass
+
+	def on_draw(self, area, cairo_context):
+		if not self.accept_selection:
+			return
+		# Very basic implementation
+		if self.selection_is_active():
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+			                            self.get_selection_pixbuf(), \
+			                            self.get_selection().selection_x, \
+			                            self.get_selection().selection_y) # FIXME le scroll ptn
+			cairo_context.paint()
+			utilities_show_overlay_on_context(cairo_context, \
+			                self.get_image().get_dragged_selection_path(), True)
 
 
