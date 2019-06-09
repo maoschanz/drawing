@@ -165,7 +165,7 @@
         <attribute name="action">app.settings</attribute>
       </item>
     </section>
-    <section id="help-section">
+    <section>
       <item>
         <attribute name="label" translatable="yes">Report a bug</attribute>
         <attribute name="action">app.report_bug</attribute>
@@ -223,6 +223,49 @@
       <item>
         <attribute name="label" translatable="yes">Paste</attribute>
         <attribute name="action">win.paste</attribute>
+      </item>
+    </section>
+  </menu>
+
+  <menu id="help-section">
+    <!-- Used only for the toolbar layout, where app.help is already the action
+    assigned to the button. -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Basic help</attribute>
+        <attribute name="action">app.help_main</attribute>
+        <attribute name="verb-icon">help-faq-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Help about tools</attribute>
+        <attribute name="action">app.help_tools</attribute>
+        <attribute name="verb-icon">help-faq-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Canvas and selection</attribute>
+        <attribute name="action">app.help_canvas</attribute>
+        <attribute name="verb-icon">help-faq-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Shortcuts</attribute>
+        <attribute name="action">app.shortcuts</attribute>
+        <attribute name="verb-icon">input-keyboard-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Report a bug</attribute>
+        <attribute name="action">app.report_bug</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">About Drawing</attribute>
+        <attribute name="action">app.about</attribute>
+        <attribute name="verb-icon">help-about-symbolic</attribute>
       </item>
     </section>
   </menu>

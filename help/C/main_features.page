@@ -15,28 +15,27 @@
     <desc>Opening and saving files.</desc>
   </info>
 
-  <title>Main features</title>
+  <title>Basic features</title>
 
   <p>"Drawing" is a basic drawing application for the GNOME desktop, which can
   edit or create pictures (PNG, JPEG or BMP).</p>
-  <p>Main features are located in the header of the window, such as the
-  <gui style="button">Open</gui> menu, the <gui style="button">Undo</gui> and
-  <gui style="button">Redo</gui> buttons, the <gui style="button">Save</gui>
+  <p>Basic features are located in the header of the window, such as the
+  <gui style="button">Open</gui> menu, the <gui style="button">Save</gui>
   button, and the primary menu.</p>
   <p>The primary menu allows you to:</p>
 
   <list>
     <item>
-      <p>Export the image or save it as a new file. Both options don't overwrite
-      the original file. With <gui style="menuitem">Export as…</gui>, you keep
-      editing the original file, but <gui style="button">Save as…</gui> closes
-      the original file and makes you edit the new one.</p>
-    </item>
-    <item>
       <p>Print the picture.</p>
     </item>
     <item>
       <p>See the pictures properties, such as its size and colorspace.</p>
+    </item>
+    <item>
+      <p>Export the image or save it as a new file. Both options don't overwrite
+      the original file. With <gui style="menuitem">Export as…</gui>, you keep
+      editing the original file, but <gui style="menuitem">Save as…</gui> closes
+      the original file and makes you edit the new one.</p>
     </item>
     <item>
       <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
@@ -69,8 +68,13 @@
     </item>
   </list>
 
-  <p>The <gui style="button">Preview</gui> button, available with all
-  <link xref="drawing_tools">drawing tools</link> in the bottom bar, displays a
+  <p>You can edit the opened picture with the <link xref="drawing_tools">tools
+  </link> in the side bar. The <gui style="button">Undo</gui> and
+  <gui style="button">Redo</gui> buttons are located in the header of the
+  window.</p>
+
+  <p>In the bottom bar, the <gui style="button">Preview</gui> button (not
+  available with <link xref="selection_canvas">some tools</link>) displays a
   thumbnail of the full picture you're editing.</p>
 
 </page>

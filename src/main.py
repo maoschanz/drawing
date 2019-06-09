@@ -112,7 +112,10 @@ class Application(Gtk.Application):
 			self.add_action_simple('report_bug', self.on_report, None)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
-		self.add_action_simple('help', self.on_help, ['F1'])
+		self.add_action_simple('help', self.on_help_index, ['F1'])
+		self.add_action_simple('help_main', self.on_help_main, None)
+		self.add_action_simple('help_tools', self.on_help_tools, None)
+		self.add_action_simple('help_canvas', self.on_help_canvas, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
@@ -232,10 +235,27 @@ flatpak run --file-forwarding {0} @@ {1} @@
 		self.prefs_window = DrawingPrefsWindow(self.is_beta(), wants_csd)
 		self.prefs_window.present()
 
-	def on_help(self, *args):
-		"""Action callback, showing the user help."""
+	def on_help_index(self, *args):
+		"""Action callback, showing the index of user help manual."""
+		self.show_help_page('')
+
+	def on_help_main(self, *args):
+		"""Action callback, showing the 'basic features' page of the user help
+		manual."""
+		self.show_help_page('/main_features')
+
+	def on_help_tools(self, *args):
+		"""Action callback, showing the 'tools' page of the user help manual."""
+		self.show_help_page('/drawing_tools')
+
+	def on_help_canvas(self, *args):
+		"""Action callback, showing the 'selection and canvas' page of the user
+		help manual."""
+		self.show_help_page('/selection_canvas')
+
+	def show_help_page(self, suffix):
 		win = self.props.active_window
-		Gtk.show_uri_on_window(win, 'help:drawing', Gdk.CURRENT_TIME)
+		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
 
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
