@@ -85,6 +85,8 @@ class ToolSelect(ToolTemplate):
 		if self.selection_is_active():
 			if self.get_selection().point_is_in_selection(self.x_press, self.y_press):
 				return 'drag'
+			#else: # superflu
+			#	return 'cancel'
 		else:
 			if self.selected_type_id == 'color':
 				return 'color'
@@ -116,10 +118,15 @@ class ToolSelect(ToolTemplate):
 		# 	self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
 		# elif self.behavior == 'freehand':
 		# 	self.init_path(event_x, event_y) # TODO
-		if not self.get_selection().point_is_in_selection(self.x_press, self.y_press):
+		if self.behavior == 'cancel':
+		# if not self.get_selection().point_is_in_selection(self.x_press, self.y_press):
+		# 	print('--------------')
+		# 	print(self.behavior)
+			self.operation_type = 'op-apply'
 			self.cursor_name = 'cross'
 			self.window.set_cursor(True)
 			self.give_back_control(False) # XXX à vérifier, ça me semble louche
+			self.operation_type = 'op-define'
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
@@ -259,8 +266,9 @@ class ToolSelect(ToolTemplate):
 		self.get_selection().selection_y = operation['pixb_y']
 		self.get_selection().load_from_path(operation['initial_path'])
 
-
-
+	def op_apply(self):
+		cairo_context = cairo.Context(self.get_surface())
+		self.get_selection().apply_selection_to_surface(cairo_context)
 
 
 
@@ -305,10 +313,19 @@ class ToolSelect(ToolTemplate):
 			# On charge un pixbuf dans le selection_manager.
 			self.op_define(operation)
 		elif operation['operation_type'] == 'op-drag':
-			# Opération prévisualisable, correspondant à la définition d'une
+			# Prévisualisation d'opération, correspondant à la définition d'une
 			# sélection (rectangulaire ou non) par construction d'un path.
 			# On modifie les coordonnées connues du selection_manager.
 			self.op_delete(operation)
 			self.op_drag(operation)
+		elif operation['operation_type'] == 'op-apply':
+			# Opération instantanée correspondant à l'aperçu de l'op-drag,
+			# correspondant à la définition d'une sélection (rectangulaire ou
+			# non) par construction d'un path.
+			# On modifie les coordonnées connues du selection_manager.
+			self.op_delete(operation)
+			self.op_drag(operation)
+			self.op_apply()
+
 
 

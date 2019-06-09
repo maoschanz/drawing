@@ -178,11 +178,7 @@ class ToolTemplate():
 			return
 		# Very basic implementation
 		if self.selection_is_active():
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-			                            self.get_selection_pixbuf(), \
-			                            self.get_selection().selection_x, \
-			                            self.get_selection().selection_y) # FIXME le scroll ptn
-			cairo_context.paint()
+			self.get_selection().apply_selection_to_surface(cairo_context)
 			utilities_show_overlay_on_context(cairo_context, \
 			                self.get_image().get_dragged_selection_path(), True)
 

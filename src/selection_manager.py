@@ -124,6 +124,11 @@ class DrawingSelectionManager():
 		cairo_context.close_path()
 		return cairo_context.copy_path()
 
+	def apply_selection_to_surface(self, cairo_context):
+		Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf, \
+		               self.selection_x, self.selection_y) # FIXME le scroll ptn
+		cairo_context.paint()
+
 	############################################################################
 
 	def _create_path_from_pixbuf(self, delete_path_content):

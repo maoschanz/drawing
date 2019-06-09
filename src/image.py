@@ -376,10 +376,12 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def set_surface_as_stable_pixbuf(self):
+		print('image/379: set_surface_as_stable_pixbuf')
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 		                    self.surface.get_width(), self.surface.get_height())
 
 	def use_stable_pixbuf(self):
+		print('image/384: use_stable_pixbuf')
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
 	def get_main_pixbuf(self):
