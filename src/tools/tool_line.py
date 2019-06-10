@@ -135,7 +135,8 @@ class ToolLine(ToolTemplate):
 		rgba = operation['rgba']
 		rgba2 = operation['rgba2']
 		if operation['use_gradient']:
-			pattern = cairo.LinearGradient(operation['x_press'], operation['y_press'], \
+			pattern = cairo.LinearGradient( \
+			                     operation['x_press'], operation['y_press'], \
 			                     operation['x_release'], operation['y_release'])
 			pattern.add_color_stop_rgba(0.1, rgba.red, rgba.green, rgba.blue, rgba.alpha)
 			pattern.add_color_stop_rgba(0.9, rgba2.red, rgba2.green, rgba2.blue, rgba2.alpha)

@@ -271,7 +271,11 @@ class DrawingImage(Gtk.Box):
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_operation_to_history(self, operation):
-		# print(operation)
+		print('add_operation_to_history')
+		print(operation['tool_id'])
+		if operation['tool_id'] == 'select':
+			print(operation['operation_type'])
+		print('-----------------------------------')
 		self._is_saved = False
 		self.undo_history.append(operation)
 		self.update_history_sensitivity()
@@ -376,12 +380,12 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def set_surface_as_stable_pixbuf(self):
-		print('image/379: set_surface_as_stable_pixbuf')
+		# print('image/379: set_surface_as_stable_pixbuf')
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 		                    self.surface.get_width(), self.surface.get_height())
 
 	def use_stable_pixbuf(self):
-		print('image/384: use_stable_pixbuf')
+		# print('image/384: use_stable_pixbuf')
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
 	def get_main_pixbuf(self):
@@ -534,16 +538,6 @@ class DrawingImage(Gtk.Box):
 	############################################################################
 	# TODO à supprimer XXX #####################################################
 
-	# def image_select_all(self): # TODO
-	# 	self.selection_x = 0
-	# 	self.selection_y = 0
-	# 	self.selection_pixbuf = self.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE devrait être une opération
-	# 	self.selection.selection_has_been_used = False # TODO non
-	# 	self.temp_x = 0
-	# 	self.temp_y = 0
-	# 	self.create_path_from_pixbuf(True)
-	# 	self.show_selection_popover(True)
-
 	def reset_temp(self):
 		self.selection_pixbuf = None
 		self.selection_path = None
@@ -555,17 +549,6 @@ class DrawingImage(Gtk.Box):
 		self.use_stable_pixbuf()
 		self.update()
 
-	# def on_import_selection(self, pixbuf):
-	# 	self.temp_path = None
-	# 	self.selection_pixbuf = pixbuf # XXX PAS_SOUHAITABLE
-	# 	self.create_path_from_pixbuf(False)
-
 	def image_unselect(self, *args): # Lui il n'y a ptêt pas besoin de le virer ?
 		self.window.get_selection_tool().give_back_control(False) # FIXME ?
 
-	# def image_delete(self, *args):
-	# 	self.selection.selection_has_been_used = True
-	# 	self.use_stable_pixbuf()
-	# 	self.window.get_selection_tool().delete_selection()
-	# 	self.reset_temp()
-	# 	self.show_selection_popover(False)

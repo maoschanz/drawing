@@ -20,7 +20,7 @@ class ToolAddAlpha(ToolTemplate):
 	def get_edition_status(self):
 		return _("Click on an area to replace its color by transparency")
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, e_x, e_y):
 		self.tool_width = tool_width
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):

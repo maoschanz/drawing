@@ -102,8 +102,8 @@ class DrawingSelectionManager():
 		self.image.update()
 
 	def delete_temp(self):
-		if self.temp_path is None or not self.is_active:
-			return
+		# if self.temp_path is None or not self.is_active:
+		# 	return
 		cairo_context = cairo.Context(self.image.get_surface())
 		cairo_context.new_path()
 		cairo_context.append_path(self.temp_path)
@@ -118,15 +118,20 @@ class DrawingSelectionManager():
 		cairo_context = cairo.Context(self._get_surface())
 		for pts in self.selection_path:
 			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - self.temp_x - scroll_x
-				y = pts[1][1] + self.selection_y - self.temp_y - scroll_y
+				x = pts[1][0] - scroll_x + self.selection_x - self.temp_x
+				y = pts[1][1] - scroll_y + self.selection_y - self.temp_y
 				cairo_context.line_to(int(x), int(y))
 		cairo_context.close_path()
 		return cairo_context.copy_path()
 
-	def apply_selection_to_surface(self, cairo_context):
-		Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf, \
-		               self.selection_x, self.selection_y) # FIXME le scroll ptn
+	def apply_selection_to_surface(self, cairo_context, with_scroll):
+		if with_scroll:
+			x = self.selection_x - self.image.scroll_x
+			y = self.selection_y - self.image.scroll_y
+		else:
+			x = self.selection_x
+			y = self.selection_y
+		Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf, x, y)
 		cairo_context.paint()
 
 	############################################################################

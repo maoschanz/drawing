@@ -30,8 +30,8 @@ class ToolTemplate():
 	def add_tool_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
-		trigger the method 'callback'."""
-		self.window.add_action_simple(action_name, callback, None) # XXX shortcut ?
+		trigger the method 'callback'.""" # XXX shortcut ?
+		self.window.add_action_simple(action_name, callback, None)
 
 	def add_tool_action_boolean(self, action_name, default):
 		self.window.options_manager.add_tool_option_boolean(action_name, default)
@@ -178,7 +178,7 @@ class ToolTemplate():
 			return
 		# Very basic implementation
 		if self.selection_is_active():
-			self.get_selection().apply_selection_to_surface(cairo_context)
+			self.get_selection().apply_selection_to_surface(cairo_context, True)
 			utilities_show_overlay_on_context(cairo_context, \
 			                self.get_image().get_dragged_selection_path(), True)
 

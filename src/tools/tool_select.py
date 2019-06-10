@@ -29,10 +29,6 @@ class ToolSelect(ToolTemplate):
 		self.future_pixbuf = None
 		self.operation_type = 'op-define'
 		self.behavior = 'rectangle'
-
-		builder = Gtk.Builder.new_from_resource( \
-		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
-
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
 	############################################################################
@@ -136,7 +132,8 @@ class ToolSelect(ToolTemplate):
 			operation = self.build_operation()
 			self.do_tool_operation(operation)
 		elif self.behavior == 'drag':
-			pass # TODO
+			# self.drag_to(event_x, event_y)
+			pass # on modifie réellement les coordonnées, c'est pas une "vraie" preview
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		x = event.x + self.get_image().scroll_x
@@ -161,26 +158,31 @@ class ToolSelect(ToolTemplate):
 			operation = self.build_operation()
 			self.do_tool_operation(operation)
 		elif self.behavior == 'freehand':
-			pass # TODO ?
+			pass
+			#
+			#
+			# TODO
+			#
+			#
+			#
+			#
 		elif self.behavior == 'color':
 			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
 			self.operation_type = 'op-define'
 			operation = self.build_operation()
 			self.do_tool_operation(operation)
 		elif self.behavior == 'drag':
-			x = self.get_selection().selection_x
-			y = self.get_selection().selection_y
-			self.future_x = x + event_x - self.x_press
-			self.future_y = y + event_y - self.y_press
-			print('drag to : ', self.future_x, self.future_y)
-			self.operation_type = 'op-drag'
-			operation = self.build_operation()
-			self.do_tool_operation(operation)
-			self.operation_type = 'op-define'
+			self.drag_to(event_x, event_y)
 
-
-	def drag_to(self, final_x, final_y):
-		pass
+	def drag_to(self, event_x, event_y):
+		x = self.get_selection().selection_x
+		y = self.get_selection().selection_y
+		self.future_x = x + event_x - self.x_press
+		self.future_y = y + event_y - self.y_press
+		self.operation_type = 'op-drag'
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+		self.operation_type = 'op-define'
 
 	############################################################################
 	# Path management ##########################################################
@@ -189,7 +191,11 @@ class ToolSelect(ToolTemplate):
 		pass
 
 	def tool_select_all(self):
-		pass # TODO utiliser draw_rectangle
+		self.build_rectangle_path(0, 0, self.get_main_pixbuf().get_width(), \
+		                                    self.get_main_pixbuf().get_height())
+		self.operation_type = 'op-define'
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
 		cairo_context = cairo.Context(self.get_surface())
@@ -254,7 +260,7 @@ class ToolSelect(ToolTemplate):
 		self.get_selection().delete_temp()
 
 	def op_drag(self, operation):
-		print(operation['pixb_x'], operation['pixb_y'])
+		# print('drag to : ', operation['pixb_x'], operation['pixb_y'])
 		self.get_selection().selection_x = operation['pixb_x']
 		self.get_selection().selection_y = operation['pixb_y']
 		self.non_destructive_show_modif()
@@ -264,14 +270,13 @@ class ToolSelect(ToolTemplate):
 			return
 		self.get_selection().selection_x = operation['pixb_x']
 		self.get_selection().selection_y = operation['pixb_y']
+		self.get_selection().temp_x = operation['pixb_x']
+		self.get_selection().temp_y = operation['pixb_y']
 		self.get_selection().load_from_path(operation['initial_path'])
 
 	def op_apply(self):
 		cairo_context = cairo.Context(self.get_surface())
-		self.get_selection().apply_selection_to_surface(cairo_context)
-
-
-
+		self.get_selection().apply_selection_to_surface(cairo_context, False)
 
 	############################################################################
 	# Operations management implementations#####################################
@@ -319,13 +324,12 @@ class ToolSelect(ToolTemplate):
 			self.op_delete(operation)
 			self.op_drag(operation)
 		elif operation['operation_type'] == 'op-apply':
-			# Opération instantanée correspondant à l'aperçu de l'op-drag,
-			# correspondant à la définition d'une sélection (rectangulaire ou
-			# non) par construction d'un path.
+			# Opération instantanée correspondant à l'aperçu de l'op-drag, donc
+			# la définition d'une sélection (rectangulaire ou non) par
+			# construction d'un path qui sera "fusionné" au main_pixbuf.
 			# On modifie les coordonnées connues du selection_manager.
 			self.op_delete(operation)
 			self.op_drag(operation)
 			self.op_apply()
-
 
 

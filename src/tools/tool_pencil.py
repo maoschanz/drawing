@@ -131,3 +131,4 @@ class ToolPencil(ToolTemplate):
 			cairo_context.set_dash([2*line_width, 2*line_width])
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
+
