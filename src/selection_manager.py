@@ -30,6 +30,17 @@ class DrawingSelectionManager():
 		self.image = image
 		self.init_pixbuf()
 
+		builder = Gtk.Builder.new_from_resource( \
+		                        '/com/github/maoschanz/drawing/ui/selection.ui')
+		menu_r = builder.get_object('right-click-menu')
+		self.r_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_r)
+		menu_l = builder.get_object('left-click-menu')
+		self.l_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_l)
+
+	def init_pixbuf(self):
+		print('⇒ init pixbuf')
+		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+
 		self.selection_x = 0
 		self.selection_y = 0
 		self.selection_path = None
@@ -41,17 +52,8 @@ class DrawingSelectionManager():
 		self.is_active = False
 		self.has_been_used = False
 
-		builder = Gtk.Builder.new_from_resource( \
-		                        '/com/github/maoschanz/drawing/ui/selection.ui')
-		menu_r = builder.get_object('right-click-menu')
-		self.r_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_r)
-		menu_l = builder.get_object('left-click-menu')
-		self.l_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_l)
-
-	def init_pixbuf(self):
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-
 	def load_from_path(self, new_path):
+		print('⇒ load pixbuf 1')
 		self.selection_pixbuf = self.image.get_main_pixbuf().copy() # XXX PAS_SOUHAITABLE ?
 		surface = Gdk.cairo_surface_create_from_pixbuf(self.selection_pixbuf, 0, None)
 		xmin, ymin = surface.get_width(), surface.get_height()
@@ -79,12 +81,14 @@ class DrawingSelectionManager():
 			self._set_temp_path(cairo_context.copy_path())
 		cairo_context.fill()
 		cairo_context.set_operator(cairo.Operator.OVER)
+		print('⇒ load pixbuf 2')
 		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
 		                                   xmin, ymin, xmax - xmin, ymax - ymin) # XXX PAS_SOUHAITABLE
 		self.image.update_actions_state()
 
 	def set_pixbuf(self, pixbuf, is_imported_data):
 		self.temp_path = None
+		print('⇒ set pixbuf')
 		self.selection_pixbuf = pixbuf
 		self._create_path_from_pixbuf(not is_imported_data)
 
@@ -92,6 +96,7 @@ class DrawingSelectionManager():
 		return self.selection_pixbuf
 
 	def reset(self):
+		print('⇒ reset pixbuf')
 		self.selection_pixbuf = None
 		self.selection_path = None
 		self.temp_x = 0
@@ -182,6 +187,7 @@ class DrawingSelectionManager():
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
 		new_pixbuf.fill(0)
 		self.selection_pixbuf.copy_area(x, y, min_w, min_h, new_pixbuf, 0, 0)
+		print('⇒ crop pixbuf')
 		self.selection_pixbuf = new_pixbuf # XXX PAS_SOUHAITABLE
 		self.selection_x = x
 		self.selection_y = y

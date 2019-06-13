@@ -86,7 +86,11 @@ class ToolTemplate():
 		self.label_widget = Gtk.Label(label=self.label)
 		if self.window.decorations == 'csd-eos':
 			self.row.set_border_width(6)
-		image = Gtk.Image().new_from_icon_name(self.icon_name, Gtk.IconSize.SMALL_TOOLBAR)
+		if self.window._settings.get_boolean('big-icons'):
+			size = Gtk.IconSize.LARGE_TOOLBAR
+		else:
+			size = Gtk.IconSize.SMALL_TOOLBAR
+		image = Gtk.Image().new_from_icon_name(self.icon_name, size)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 		box.add(image)
 		box.add(self.label_widget)

@@ -92,14 +92,6 @@ class ToolSelect(ToolTemplate):
 				return 'rectangle'
 		return 'cancel'
 
-	# def get_release_behavior(self):
-	# 	if not self.selection_is_active():
-	# 		return self.selected_type_id
-	# 	elif self.get_selection().point_is_in_selection(self.x_press, self.y_press):
-	# 		return 'drag'
-	# 	else:
-	# 		return 'cancel'
-
 	############################################################################
 	# Signal callbacks implementations #########################################
 
@@ -130,7 +122,9 @@ class ToolSelect(ToolTemplate):
 		if self.behavior == 'rectangle':
 			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 			operation = self.build_operation()
-			self.do_tool_operation(operation)
+			self.do_tool_operation(operation) # FIXME ça pousse à load race de
+			# trucs inutiles vers le selection manager alors qu'on veut juste
+			# dessiner un path
 		elif self.behavior == 'drag':
 			# self.drag_to(event_x, event_y)
 			pass # on modifie réellement les coordonnées, c'est pas une "vraie" preview
@@ -156,7 +150,8 @@ class ToolSelect(ToolTemplate):
 			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 			self.operation_type = 'op-define'
 			operation = self.build_operation()
-			self.do_tool_operation(operation)
+			self.apply_operation(operation)
+			self.get_selection().show_popover(True)
 		elif self.behavior == 'freehand':
 			pass
 			#
@@ -170,7 +165,7 @@ class ToolSelect(ToolTemplate):
 			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
 			self.operation_type = 'op-define'
 			operation = self.build_operation()
-			self.do_tool_operation(operation)
+			self.apply_operation(operation)
 		elif self.behavior == 'drag':
 			self.drag_to(event_x, event_y)
 
@@ -196,6 +191,7 @@ class ToolSelect(ToolTemplate):
 		self.operation_type = 'op-define'
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
+		self.get_selection().show_popover(True)
 
 	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
 		cairo_context = cairo.Context(self.get_surface())

@@ -35,6 +35,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	height_btn = GtkTemplate.Child()
 	layout_combobox = GtkTemplate.Child()
 	add_alpha_switch = GtkTemplate.Child()
+	big_icons_switch = GtkTemplate.Child()
 
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
@@ -63,6 +64,9 @@ class DrawingPrefsWindow(Gtk.Window):
 			self.devel_switch.set_active(False)
 			self.devel_box.set_visible(False)
 
+		self.big_icons_switch.set_active(self._settings.get_boolean('big-icons'))
+		self.big_icons_switch.connect('notify::active', self.on_icons_changed)
+
 		self.add_alpha_switch.set_active(self._settings.get_boolean('add-alpha'))
 		self.add_alpha_switch.connect('notify::active', self.on_alpha_changed)
 
@@ -90,6 +94,9 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	def on_alpha_changed(self, w, a):
 		self._settings.set_boolean('add-alpha', w.get_active())
+
+	def on_icons_changed(self, w, a):
+		self._settings.set_boolean('big-icons', w.get_active())
 
 	def on_background_changed(self, w):
 		color = self.background_color_btn.get_rgba()
