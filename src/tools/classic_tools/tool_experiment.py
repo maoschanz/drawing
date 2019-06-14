@@ -16,10 +16,16 @@ class ToolExperiment(ToolTemplate):
 		self.main_color = None
 		self.use_size = True
 
-		self.selected_operator_label = "DIFFERENCE"
-		self.selected_operator = cairo.Operator.DIFFERENCE
+		self.selected_mode = 'dynamic'
+		self.selected_operator_label = "MULTIPLY"
+		self.selected_operator = cairo.Operator.MULTIPLY
 
-		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
+		self.add_tool_action_enum('experiment_operator', 'MULTIPLY')
+		self.add_tool_action_enum('experiment_mode', 'dynamic')
+
+	def set_active_mode(self, *args):
+		state_as_string = self.get_option_value('experiment_mode')
+		self.selected_mode =  state_as_string
 
 	def set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
@@ -112,12 +118,19 @@ class ToolExperiment(ToolTemplate):
 			self.selected_operator_label = "HSL_LUMINOSITY"
 
 	def get_options_label(self):
-		return self.selected_operator_label
+		self.set_active_operator()
+		self.set_active_mode()
+		if self.selected_mode == 'simple':
+			return self.selected_operator_label
+		else:
+			return self.selected_mode
 
 	def get_edition_status(self):
-		return self.selected_operator_label
+		return "You're not supposed to use this tool (development only)."
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		self.set_active_operator()
+		self.set_active_mode()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.tool_width = tool_width
@@ -125,7 +138,6 @@ class ToolExperiment(ToolTemplate):
 			self.main_color = right_color
 		else:
 			self.main_color = left_color
-		self.set_active_operator()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -155,6 +167,7 @@ class ToolExperiment(ToolTemplate):
 			'tool_id': self.id,
 			'rgba': self.main_color,
 			'operator': self.selected_operator,
+			'mode': self.selected_mode,
 			'line_width': self.tool_width,
 			'line_cap': cairo.LineCap.ROUND,
 			'line_join': cairo.LineJoin.ROUND,
@@ -162,7 +175,20 @@ class ToolExperiment(ToolTemplate):
 		}
 		return operation
 
-	def do_tool_operation2(self, operation): # "classic" thing
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		if operation['path'] is None:
+			return
+		self.restore_pixbuf()
+		if operation['mode'] == 'dynamic':
+			self.do_tool_operation_dynamic(operation)
+		elif operation['mode'] == 'curves':
+			self.do_tool_operation_curves(operation)
+		else:
+			self.do_tool_operation_simple(operation)
+
+	def do_tool_operation_simple(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		if operation['path'] is None:
@@ -179,14 +205,14 @@ class ToolExperiment(ToolTemplate):
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
 
-	def do_tool_operation(self, operation):
+	def do_tool_operation_dynamic(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		if operation['path'] is None:
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_operator(cairo.Operator.SOURCE)
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		rgba = operation['rgba']
@@ -210,4 +236,11 @@ class ToolExperiment(ToolTemplate):
 				cairo_context.stroke()
 				cairo_context.move_to(int(future_x), int(future_y))
 
+	def do_tool_operation_curves(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		if operation['path'] is None:
+			return
+		self.restore_pixbuf()
+		# TODO
 
