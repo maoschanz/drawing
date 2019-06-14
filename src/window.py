@@ -300,8 +300,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
-		self.add_action_boolean('show_labels', self._settings.get_boolean('show-labels'), \
-			self.on_show_labels_changed)
+		self.add_action_boolean('show_labels', self._settings.get_boolean( \
+		                            'show-labels'), self.on_show_labels_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
@@ -674,20 +674,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.try_load_file(gfile)
 		else:
 			dialog = DrawingMessageDialog(self)
-			dialog.set_actions([ [_("New Tab"), None, True, 1], \
-			                     [_("New Window"), None, False, 2], \
-			           [_("Discard changes"), 'destructive-action', False, 3] ])
+			new_tab_id = dialog.set_action(_("New Tab"), None, True)
+			new_window_id = dialog.set_action(_("New Window"), None, False)
+			discard_id = dialog.set_action(_("Discard changes"), \
+			                                        'destructive-action', False)
 			dialog.add_string( _("There are unsaved modifications to %s.") % \
 				self.get_active_image().get_filename_for_display() )
 			dialog.add_string( _("Where do you want to open %s?") %  \
 				(gfile.get_path().split('/')[-1]) )
 			result = dialog.run()
 			dialog.destroy()
-			if result == 1:
+			if result == new_tab_id:
 				self.build_new_tab(gfile, None)
-			elif result == 3:
+			elif result == discard_id:
 				self.try_load_file(gfile)
-			elif result == 2:
+			elif result == new_window_id:
 				self.app.open_window_with_file(gfile)
 		self.hide_message()
 
@@ -740,9 +741,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			unsaved_file_name = fn.split('/')[-1]
 			display_name = self.get_active_image().get_filename_for_display()
 		dialog = DrawingMessageDialog(self)
-		dialog.set_actions([ [_("Discard"), 'destructive-action', False, 1], \
-		                     [_("Cancel"), None, False, 2], \
-		                     [_("Save"), None, True, 3] ])
+		discard_id = dialog.set_action(_("Discard"), 'destructive-action', False)
+		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		save_id = dialog.set_action(_("Save"), None, True)
 		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
 		self.minimap.update_minimap()
 		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
@@ -751,12 +752,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		dialog.add_widget(frame)
 		result = dialog.run()
 		dialog.destroy()
-		if result == 3: # Save
+		if result == save_id:
 			self.action_save()
 			return True
-		elif result == 1: # Discard
+		elif result == discard_id:
 			return True
-		else: # Cancel
+		else: # cancel_id
 			return False
 
 	def add_filechooser_filters(self, dialog):

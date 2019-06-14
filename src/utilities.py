@@ -106,9 +106,9 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		# print('----------')
 
 		if i == 2000:
-			dialog = launch_infinite_loop_dialog(window)
+			dialog, continue_id = launch_infinite_loop_dialog(window)
 			result = dialog.run()
-			if result == 2: # Continue
+			if result == continue_id: # Continue
 				dialog.destroy()
 			else: # Cancel
 				dialog.destroy()
@@ -120,13 +120,13 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 
 def launch_infinite_loop_dialog(window):
 	dialog = DrawingMessageDialog(window)
-	dialog.set_actions([ [_("Cancel"), None, False, 1], \
-	                     [_("Continue"), None, True, 2] ])
+	ccancel_id = dialog.set_action(_("Cancel"), None, False)
+	continue_id = dialog.set_action(_("Continue"), None, True)
 	dialog.add_string( _("""The area seems poorly delimited, or is very complex.
 This algorithm may not be able to manage the wanted area.
 
 Do you want to abort the operation, or to let the tool struggle ?""") )
-	return dialog
+	return dialog, continue_id
 
 def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width):
 	cairo_context.new_path()
