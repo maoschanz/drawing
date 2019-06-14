@@ -1,7 +1,7 @@
 # tool_experiment.py
 
 from gi.repository import Gtk, Gdk
-import cairo
+import cairo, math
 
 from .abstract_tool import ToolTemplate
 
@@ -162,7 +162,7 @@ class ToolExperiment(ToolTemplate):
 		}
 		return operation
 
-	def do_tool_operation(self, operation):
+	def do_tool_operation2(self, operation): # "classic" thing
 		if operation['tool_id'] != self.id:
 			return
 		if operation['path'] is None:
@@ -178,3 +178,36 @@ class ToolExperiment(ToolTemplate):
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		if operation['path'] is None:
+			return
+		self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_cap(operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join'])
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		line_width = 0
+		for pts in operation['path']:
+			if pts[1] is not ():
+				current_x, current_y = cairo_context.get_current_point()
+				future_x = pts[1][0]
+				future_y = pts[1][1]
+				dist = math.sqrt( (current_x - future_x) * (current_x - future_x) \
+				             + (current_y - future_y) * (current_y - future_y) )
+				new_width = 1 + int( operation['line_width']/max(1, 0.05 * dist) )
+				if line_width == 0:
+					line_width = new_width
+				else:
+					line_width = (new_width + line_width) / 2
+				# print(int(dist), line_width)
+				cairo_context.set_line_width(line_width)
+				cairo_context.line_to(int(future_x), int(future_y))
+				cairo_context.stroke()
+				cairo_context.move_to(int(future_x), int(future_y))
+
+
