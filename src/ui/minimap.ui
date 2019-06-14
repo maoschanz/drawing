@@ -13,17 +13,115 @@
     <property name="orientation">vertical</property>
     <property name="spacing">5</property>
     <property name="margin">5</property>
+
     <child>
-      <object class="GtkFrame">
+      <object class="GtkGrid">
         <property name="visible">True</property>
+        <property name="row_spacing">1</property>
+        <property name="column_spacing">1</property>
         <child>
-          <object class="GtkLayout" id="minimap_area">
+          <object class="GtkFrame">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <child>
+              <object class="GtkLayout" id="minimap_area">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+            </child>
           </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="relief">none</property>
+            <property name="tooltip_text" translatable="yes">Go Up</property>
+            <property name="halign">center</property>
+            <property name="action_name">win.go_up</property>
+            <property name="width_request">64</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">go-up-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="relief">none</property>
+            <property name="tooltip_text" translatable="yes">Go Left</property>
+            <property name="valign">center</property>
+            <property name="action_name">win.go_left</property>
+            <property name="height_request">64</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">go-previous-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="relief">none</property>
+            <property name="tooltip_text" translatable="yes">Go Down</property>
+            <property name="halign">center</property>
+            <property name="action_name">win.go_down</property>
+            <property name="width_request">64</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">go-down-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="relief">none</property>
+            <property name="tooltip_text" translatable="yes">Go Right</property>
+            <property name="valign">center</property>
+            <property name="action_name">win.go_right</property>
+            <property name="height_request">64</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">go-next-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">1</property>
+          </packing>
         </child>
       </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
     </child>
+
     <child>
       <object class="GtkBox">
         <!-- <property name="visible">True</property> -->
@@ -98,69 +196,6 @@
         <!-- <property name="visible">True</property> -->
         <property name="digits">0</property>
         <property name="adjustment">zoom_adj</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="homogeneous">True</property>
-        <property name="expand">True</property>
-        <style>
-          <class name="linked"/>
-        </style>
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <property name="action-name">win.go_left</property>
-            <property name="tooltip-text" translatable="yes">Go Left</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">go-previous-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <property name="action-name">win.go_up</property>
-            <property name="tooltip-text" translatable="yes">Go Up</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">go-up-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <property name="action-name">win.go_down</property>
-            <property name="tooltip-text" translatable="yes">Go Down</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">go-down-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <property name="action-name">win.go_right</property>
-            <property name="tooltip-text" translatable="yes">Go Right</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">go-next-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
       </object>
     </child>
   </object>
