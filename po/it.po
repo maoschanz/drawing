@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-09 22:10+0200\n"
-"PO-Revision-Date: 2019-04-01 14:35+0200\n"
+"PO-Revision-Date: 2019-06-14 10:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -36,7 +36,7 @@ msgstr "com.github.maoschanz.drawing"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in:12
 msgid "Paint;Sketch;Pencil;"
-msgstr ""
+msgstr "Paint;Bozze;Matita;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
@@ -51,7 +51,7 @@ msgstr "Nuova immagine"
 
 #: data/com.github.maoschanz.drawing.desktop.in:26
 msgid "Edit Image in Clipboard"
-msgstr ""
+msgstr "Modifica l'immagine negli appunti"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:7 src/main.py:271
 msgid "A drawing application for the GNOME desktop."
@@ -59,11 +59,11 @@ msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:9
 msgid "A simple application to draw or edit pictures."
-msgstr ""
+msgstr "Una semplice applicazione per disegnare o modificare immagini."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:10
 msgid "It includes tools like:"
-msgstr ""
+msgstr "Include strumenti come:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:12
 #: src/tools/tool_pencil.py:12
@@ -72,7 +72,7 @@ msgstr "Matita"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:13
 msgid "Selection (cut/copy/paste/drag/…)"
-msgstr ""
+msgstr "Selezione (taglia/copia/incolla/trascina/…)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14
 #: src/tools/tool_line.py:13
@@ -116,12 +116,12 @@ msgstr "Dipingi"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:27
 msgid "First stable version"
-msgstr ""
+msgstr "Prima versione stabile"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "Romain F. T."
-msgstr ""
+msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:86
@@ -142,7 +142,7 @@ msgstr "Scorciatoie"
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:44 src/ui/toolbar.ui:171
 #: src/ui/toolbar.ui:172 src/ui/win-menus.ui:102 src/ui/win-menus.ui:180
 msgid "Help"
-msgstr "Aiuti"
+msgstr "Aiuto"
 
 #: src/ui/app-menus.ui:34
 msgid "About"
@@ -158,18 +158,16 @@ msgstr "_File"
 
 #: src/ui/app-menus.ui:52 src/ui/shortcuts.ui:64 src/ui/win-menus.ui:17
 #: src/ui/win-menus.ui:201
-#, fuzzy
 msgid "New Blank Image"
-msgstr "Nuova immagine"
+msgstr "Nuova immagine vuota"
 
 #: src/ui/app-menus.ui:56 src/ui/shortcuts.ui:71 src/ui/win-menus.ui:204
-#, fuzzy
 msgid "New Image From Selection"
-msgstr "Selezione rettangolare"
+msgstr "Nuova immagine dalla selezione"
 
 #: src/ui/app-menus.ui:61 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:208
 msgid "New Image From Clipboard"
-msgstr ""
+msgstr "Nuova immagine dagli appunti"
 
 #: src/ui/app-menus.ui:68 src/ui/toolbar.ui:29 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:194
@@ -261,19 +259,19 @@ msgstr "_Vista"
 
 #: src/ui/app-menus.ui:180
 msgid "Optimal Zoom"
-msgstr ""
+msgstr "Zoom ottimale"
 
 #: src/ui/app-menus.ui:188
 msgid "Zoom Out"
-msgstr ""
+msgstr "Rimpicciolisci"
 
 #: src/ui/app-menus.ui:194
 msgid "Original Zoom"
-msgstr ""
+msgstr "Zoom originale"
 
 #: src/ui/app-menus.ui:200
 msgid "Zoom In"
-msgstr ""
+msgstr "Ingrandisci"
 
 #: src/ui/app-menus.ui:208
 msgid "Show the preview"
@@ -288,9 +286,8 @@ msgid "Rebuild from history"
 msgstr "Ricrea dalla cronologia"
 
 #: src/ui/app-menus.ui:229
-#, fuzzy
 msgid "Position"
-msgstr "Modifica"
+msgstr "Posizione"
 
 #: src/ui/app-menus.ui:232 src/ui/shortcuts.ui:242
 msgid "Go Left"
@@ -359,21 +356,19 @@ msgstr "_Aiuto"
 
 #: src/ui/app-menus.ui:355
 msgid "Index"
-msgstr ""
+msgstr "Indice"
 
 #: src/ui/app-menus.ui:360 src/ui/win-menus.ui:235
-#, fuzzy
 msgid "Basic help"
-msgstr "Basilare"
+msgstr "Aiuto generico"
 
 #: src/ui/app-menus.ui:365 src/ui/win-menus.ui:240
 msgid "Help about tools"
-msgstr ""
+msgstr "Aiuto sugli strumenti"
 
 #: src/ui/app-menus.ui:370 src/ui/win-menus.ui:245
-#, fuzzy
 msgid "Canvas and selection"
-msgstr "Ridimensionamento della selezione"
+msgstr "Tela e selezione"
 
 #: src/ui/app-menus.ui:377 src/ui/win-menus.ui:105 src/ui/win-menus.ui:183
 #: src/ui/win-menus.ui:266
@@ -458,9 +453,8 @@ msgid "Invalid format"
 msgstr "Formato non valido"
 
 #: src/ui/properties.ui:134
-#, fuzzy
 msgid "Add transparency"
-msgstr "Aggiungi sempre la trasparenza"
+msgstr "Aggiungi trasparenza"
 
 #: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
@@ -517,9 +511,8 @@ msgid "Saturate"
 msgstr "Satura"
 
 #: src/ui/selection.ui:82 src/tools/ui/tool_select.ui:72
-#, fuzzy
 msgid "Open As New Image"
-msgstr "Nuova immagine"
+msgstr "Apri come nuova immagine"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
@@ -604,13 +597,12 @@ msgid "Preview"
 msgstr "Anteprima"
 
 #: src/ui/win-menus.ui:21
-#, fuzzy
 msgid "From Selection"
-msgstr "Selezione libera"
+msgstr "Dalla selezione"
 
 #: src/ui/win-menus.ui:25
 msgid "From Clipboard"
-msgstr ""
+msgstr "Dagli appunti"
 
 #: src/main.py:57
 msgid "Print the version and display the 'about' dialog"
@@ -626,7 +618,7 @@ msgstr "Apri una nuova scheda"
 
 #: src/main.py:64
 msgid "Edit the clipboard content"
-msgstr ""
+msgstr "Modifica il contenuto degli appunti"
 
 #. Obviously, do not translate the command line.
 #: src/main.py:204
@@ -727,14 +719,14 @@ msgid "Import a picture"
 msgstr "Importa un'immagine"
 
 #: src/headerbar.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "Undo %s"
-msgstr "Annulla"
+msgstr "Annulla %s"
 
 #: src/headerbar.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "Redo %s"
-msgstr "Ripeti"
+msgstr "Ripeti %s"
 
 #: src/preferences.py:77
 msgid "Automatic"
@@ -761,11 +753,8 @@ msgid "Everything (testing only)"
 msgstr "Tutto (solo test)"
 
 #: src/properties.py:93
-#, fuzzy
 msgid "This surface format already supports transparency."
-msgstr ""
-"Questo formato della superficie supporta già la trasparenza, ma puoi "
-"utilizzare un colore al posto della trasparenza."
+msgstr "Questo formato della superficie supporta già la trasparenza."
 
 #: src/properties.py:96
 msgid ""
@@ -907,9 +896,8 @@ msgid "Flip vertically"
 msgstr "Ribalta verticalmente"
 
 #: src/tools/ui/tool_line.ui:32
-#, fuzzy
 msgid "Color gradient"
-msgstr "Selettore colore"
+msgstr "Gradiente di colore"
 
 #: src/tools/ui/tool_paint.ui:5
 msgid "Algorithm"
@@ -976,13 +964,12 @@ msgid "Font"
 msgstr "Carattere"
 
 #: src/tools/tool_addalpha.py:13
-#, fuzzy
 msgid "Remove color"
-msgstr "Colore sorgente"
+msgstr "Rimuovi il colore"
 
 #: src/tools/tool_addalpha.py:21
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "Clicca su un'area per sostituire il suo colore con la trasparenza"
 
 #: src/tools/tool_arc.py:53
 msgid "Arc options"
