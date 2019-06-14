@@ -45,19 +45,20 @@ drawing_sources = [
 
 	'tools/abstract_tool.py',
 
-	'tools/tool_addalpha.py',
-	'tools/tool_arc.py',
-	'tools/tool_circle.py',
-	'tools/tool_experiment.py',
-	'tools/tool_freeshape.py',
-	'tools/tool_line.py',
-	'tools/tool_paint.py',
-	'tools/tool_pencil.py',
-	'tools/tool_polygon.py',
-	'tools/tool_picker.py',
-	'tools/tool_rectangle.py',
-	'tools/tool_select.py',
-	'tools/tool_text.py',
+	'tools/classic_tools/tool_addalpha.py',
+	'tools/classic_tools/tool_arc.py',
+	'tools/classic_tools/tool_circle.py',
+	'tools/classic_tools/tool_experiment.py',
+	'tools/classic_tools/tool_freeshape.py',
+	'tools/classic_tools/tool_line.py',
+	'tools/classic_tools/tool_paint.py',
+	'tools/classic_tools/tool_pencil.py',
+	'tools/classic_tools/tool_polygon.py',
+	'tools/classic_tools/tool_picker.py',
+	'tools/classic_tools/tool_rectangle.py',
+	'tools/classic_tools/tool_text.py',
+
+	'tools/selection_tools/tool_select.py',
 
 	'tools/canvas_tools/abstract_canvas_tool.py',
 
