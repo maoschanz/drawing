@@ -705,16 +705,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return gfile
 
 	def action_save(self, *args):
+		"""Try to save the active image, and return True if the image has been
+		successfully saved."""
 		fn = self.get_file_path()
-		if fn is None:
+		if fn is None: # Newly created and never saved image
 			gfile = self.file_chooser_save()
-			if gfile is not None:
+			if gfile is None:
+				# The user pressed "cancel" or closed the file chooser dialog
+				return False
+			else:
 				self.get_active_image().gfile = gfile
-		fn = self.get_file_path()
-		if fn is not None:
-			utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn)
-			self.get_active_image().post_save()
+				fn = self.get_file_path()
+		utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn)
+		self.get_active_image().post_save()
 		self.set_picture_title()
+		return True
 
 	def action_save_as(self, *args):
 		gfile = self.file_chooser_save()
@@ -753,8 +758,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		result = dialog.run()
 		dialog.destroy()
 		if result == save_id:
-			self.action_save()
-			return True
+			return self.action_save()
 		elif result == discard_id:
 			return True
 		else: # cancel_id
