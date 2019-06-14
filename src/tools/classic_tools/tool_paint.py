@@ -39,8 +39,10 @@ class ToolPaint(ToolTemplate):
 
 		if self.get_option_value('paint_algo') == 'fill':
 			self.magic_path = utilities_get_magic_path(surface, x, y, self.window, 1)
-		else:
+		elif self.get_option_value('paint_algo') == 'replace':
 			self.magic_path = utilities_get_magic_path(surface, x, y, self.window, 2)
+		else:
+			pass # == 'clipping'
 
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -52,7 +54,7 @@ class ToolPaint(ToolTemplate):
 			'tool_id': self.id,
 			'algo': self.get_option_value('paint_algo'),
 			'rgba': self.new_color,
-			'old_rgba': self.old_color,
+			'old_rgb': self.old_color,
 			'path': self.magic_path
 		}
 		return operation
@@ -60,24 +62,23 @@ class ToolPaint(ToolTemplate):
 	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
 			return
-		if operation['path'] is None:
-			return
-		if operation['algo'] is 'replace':
+		self.restore_pixbuf()
+
+		if operation['algo'] == 'replace':
 			self.do_tool_operation_replace(operation)
-		else:
+		elif operation['algo'] == 'fill':
 			self.do_tool_operation_fill(operation)
+		else: # == 'clipping'
+			self.do_tool_operation_clipping(operation)
 
 	def do_tool_operation_replace(self, operation):
 		"""Moins laid mais piêtre gestion des couleurs (semi-)transparentes en
 		dehors de la zone ciblée."""
-		if operation['tool_id'] != self.id:
-			return
 		if operation['path'] is None:
 			return
-		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		rgba = operation['rgba']
-		old_rgba = operation['old_rgba']
+		old_rgb = operation['old_rgb']
 		cairo_context.set_source_rgba(255, 255, 255, 1.0)
 		cairo_context.append_path(operation['path'])
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
@@ -89,9 +90,9 @@ class ToolPaint(ToolTemplate):
 		tolerance = 10 # XXX
 		i = -1 * tolerance
 		while i < tolerance:
-			red = max(0, old_rgba[0]+i)
-			green = max(0, old_rgba[1]+i)
-			blue = max(0, old_rgba[2]+i)
+			red = max(0, old_rgb[0]+i)
+			green = max(0, old_rgb[1]+i)
+			blue = max(0, old_rgb[2]+i)
 			red = int( min(255, red) )
 			green = int( min(255, green) )
 			blue = int( min(255, blue) )
@@ -117,14 +118,31 @@ class ToolPaint(ToolTemplate):
 
 	def do_tool_operation_fill(self, operation):
 		"""Simple mais laid et reposant sur la précision du path."""
-		if operation['tool_id'] != self.id:
-			return
 		if operation['path'] is None:
 			return
-		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.append_path(operation['path'])
 		cairo_context.fill()
 
+	def do_tool_operation_clipping(self, operation):
+		"""Remplacement de la couleur par du alpha."""
+		old_rgb = operation['old_rgb']
+		r0 = old_rgb[0]
+		g0 = old_rgb[1]
+		b0 = old_rgb[2]
+		margin = 0 # TODO as an option ? is not elegant but is powerful
+		for i in range(-1 * margin, margin+1):
+			r = r0 + i
+			if r <= 255 and r >= 0:
+				for j in range(-1 * margin, margin+1):
+					g = g0 + j
+					if g <= 255 and g >= 0:
+						for k in range(-1 * margin, margin+1):
+							b = b0 + k
+							if b <= 255 and b >= 0:
+								self.get_image().main_pixbuf = \
+								 self.get_main_pixbuf().add_alpha(True, r, g, b)
+		self.restore_pixbuf()
+		self.non_destructive_show_modif()

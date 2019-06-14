@@ -20,7 +20,6 @@ import os
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 from .gi_composites import GtkTemplate
 
-from .tool_addalpha import ToolAddAlpha
 from .tool_arc import ToolArc
 from .tool_circle import ToolCircle
 from .tool_crop import ToolCrop
@@ -133,7 +132,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['select'] = ToolSelect(self)
 		self.tools['text'] = ToolText(self)
 		self.tools['picker'] = ToolPicker(self)
-		self.tools['addalpha'] = ToolAddAlpha(self)
 		self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['arc'] = ToolArc(self)

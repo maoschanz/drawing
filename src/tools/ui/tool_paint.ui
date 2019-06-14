@@ -2,7 +2,7 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
-      <attribute name="label" translatable="yes">Algorithm</attribute>
+      <attribute name="label" translatable="yes">Behavior</attribute>
       <item>
         <attribute name="label" translatable="yes">Encircle and fill</attribute>
         <attribute name="action">win.paint_algo</attribute>
@@ -14,6 +14,12 @@
         <attribute name="target">replace</attribute>
       </item>
     </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Clipping</attribute>
+        <attribute name="action">win.paint_algo</attribute>
+        <attribute name="target">clipping</attribute>
+      </item>
+    </section>
   </menu>
-
 </interface>

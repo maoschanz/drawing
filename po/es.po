@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-09 22:10+0200\n"
+"POT-Creation-Date: 2019-06-15 01:35+0200\n"
 "PO-Revision-Date: 2019-05-28 10:10+0000\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:157
-#: src/window.py:377
+#: src/window.py:375
 msgid "Drawing"
 msgstr "Drawing"
 
@@ -41,7 +41,7 @@ msgstr "Paint;Boceto;Lápiz;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/ui/win-menus.ui:215 src/window.py:677
+#: src/ui/win-menus.ui:215 src/window.py:676
 msgid "New Window"
 msgstr "Ventana nueva"
 
@@ -67,7 +67,7 @@ msgid "It includes tools like:"
 msgstr "Incluye herramientas como:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:12
-#: src/tools/tool_pencil.py:12
+#: src/tools/classic_tools/tool_pencil.py:12
 msgid "Pencil"
 msgstr "Lápiz"
 
@@ -76,27 +76,28 @@ msgid "Selection (cut/copy/paste/drag/…)"
 msgstr "Selección (cortar/copiar/pegar/arrastrar/…)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14
-#: src/tools/tool_line.py:13
+#: src/tools/classic_tools/tool_line.py:13
 msgid "Line"
 msgstr "Línea"
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:15 src/tools/tool_arc.py:13
+#: data/com.github.maoschanz.drawing.appdata.xml.in:15
+#: src/tools/classic_tools/tool_arc.py:13
 msgid "Arc"
 msgstr "Arco"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:16
-#: src/tools/ui/tool_select.ui:83 src/tools/tool_rectangle.py:13
+#: src/tools/ui/tool_select.ui:83 src/tools/classic_tools/tool_rectangle.py:13
 msgid "Rectangle"
 msgstr "Rectángulo"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:17
-#: src/tools/ui/tool_circle.ui:12 src/tools/tool_circle.py:13
-#: src/tools/tool_circle.py:18
+#: src/tools/ui/tool_circle.ui:12 src/tools/classic_tools/tool_circle.py:13
+#: src/tools/classic_tools/tool_circle.py:18
 msgid "Circle"
 msgstr "Círculo"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
-#: src/tools/tool_polygon.py:13
+#: src/tools/classic_tools/tool_polygon.py:13
 msgid "Polygon"
 msgstr "Polígono"
 
@@ -106,12 +107,12 @@ msgid "Shape"
 msgstr "Forma"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:20
-#: src/tools/tool_text.py:12
+#: src/tools/classic_tools/tool_text.py:12
 msgid "Text"
 msgstr "Texto"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:21
-#: src/tools/tool_paint.py:14
+#: src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Relleno"
 
@@ -120,13 +121,13 @@ msgid "First stable version"
 msgstr "Primera versión estable"
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:42
+#: data/com.github.maoschanz.drawing.appdata.xml.in:44
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:86
-#: src/ui/win-menus.ui:164 src/preferences.py:45
+#: src/ui/win-menus.ui:164 src/preferences.py:46
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -179,7 +180,7 @@ msgstr "Abrir una imagen"
 #: src/ui/headerbar.ui:123 src/ui/headerbar_eos.ui:157
 #: src/ui/headerbar_eos.ui:171 src/ui/headerbar_eos.ui:189
 #: src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:741 src/window.py:787
+#: src/window.py:749 src/window.py:794
 msgid "Save"
 msgstr "Guardar"
 
@@ -245,7 +246,7 @@ msgstr "Pegar"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/ui/win-menus.ui:39 src/ui/win-menus.ui:220 src/window.py:843
+#: src/ui/win-menus.ui:39 src/ui/win-menus.ui:220 src/window.py:850
 msgid "Import"
 msgstr "Importar"
 
@@ -343,7 +344,7 @@ msgstr "_Lienzo"
 msgid "Previous tool"
 msgstr "Herramienta anterior"
 
-#: src/ui/app-menus.ui:308 src/window.py:976 src/window.py:979
+#: src/ui/app-menus.ui:308 src/window.py:983 src/window.py:986
 msgid "_Options"
 msgstr "_Opciones"
 
@@ -387,7 +388,7 @@ msgid "Use this editor by default"
 msgstr "Utilizar este editor de manera predeterminada"
 
 #: src/ui/headerbar.ui:11 src/ui/headerbar.ui:18 src/ui/headerbar_eos.ui:29
-#: src/ui/toolbar.ui:30 src/window.py:696
+#: src/ui/toolbar.ui:30 src/window.py:697
 msgid "Open"
 msgstr "Abrir"
 
@@ -407,35 +408,44 @@ msgstr "Anchura predeterminada"
 msgid "Default height"
 msgstr "Altura predeterminada"
 
-#: src/ui/preferences.ui:176
+#: src/ui/preferences.ui:182
+#, fuzzy
+msgid "Tools"
+msgstr "_Herramientas"
+
+#: src/ui/preferences.ui:199
+msgid "Use big icons"
+msgstr ""
+
+#: src/ui/preferences.ui:225
 msgid "Basic"
 msgstr "Básico"
 
-#: src/ui/preferences.ui:193
+#: src/ui/preferences.ui:242
 msgid "User interface"
 msgstr "Interfaz de usuario"
 
-#: src/ui/preferences.ui:211
+#: src/ui/preferences.ui:260
 msgid "Layout"
 msgstr "Disposición"
 
-#: src/ui/preferences.ui:243 src/ui/preferences.ui:254
+#: src/ui/preferences.ui:292 src/ui/preferences.ui:303
 msgid "Preview size"
 msgstr "Tamaño de previsualización"
 
-#: src/ui/preferences.ui:278
+#: src/ui/preferences.ui:327
 msgid "Opened images"
 msgstr "Imágenes abiertas"
 
-#: src/ui/preferences.ui:295
+#: src/ui/preferences.ui:344
 msgid "Always add transparency"
 msgstr "Siempre añadir transparencia"
 
-#: src/ui/preferences.ui:337
+#: src/ui/preferences.ui:386
 msgid "Development features"
 msgstr "Funcionalidades experimentales"
 
-#: src/ui/preferences.ui:363
+#: src/ui/preferences.ui:412
 msgid "Advanced"
 msgstr "Avanzado"
 
@@ -557,7 +567,7 @@ msgstr "Menú de opciones"
 msgid "Back to previous tool"
 msgstr "Volver a la herramienta anterior"
 
-#: src/ui/shortcuts.ui:163 src/tools/tool_select.py:16
+#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:16
 msgid "Selection"
 msgstr "Selección"
 
@@ -591,7 +601,7 @@ msgstr "Tamaño de herramienta"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:182 src/window.py:412 src/tools/abstract_tool.py:78
+#: src/ui/window.ui:182 src/window.py:410 src/tools/abstract_tool.py:78
 msgid "No options"
 msgstr "Sin opciones"
 
@@ -646,16 +656,16 @@ msgstr ""
 msgid "Report bugs or ideas"
 msgstr "Informar de fallos o proponer ideas"
 
-#: src/window.py:362
+#: src/window.py:360
 msgid "Modifications will take effect in the next new window."
 msgstr "Los cambios tendrán efecto en la próxima ventana nueva."
 
-#: src/window.py:671
+#: src/window.py:669
 #, python-format
 msgid "Loading %s"
 msgstr "Cargando %s"
 
-#: src/window.py:677
+#: src/window.py:675
 msgid "New Tab"
 msgstr "Pestaña nueva"
 
@@ -663,21 +673,21 @@ msgstr "Pestaña nueva"
 msgid "Discard changes"
 msgstr "Descartar cambios"
 
-#: src/window.py:678 src/window.py:742
+#: src/window.py:679 src/window.py:750
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Hay cambios no guardados en «%s»."
 
-#: src/window.py:680
+#: src/window.py:681
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "¿Dónde quiere abrir «%s»?"
 
-#: src/window.py:695
+#: src/window.py:696
 msgid "Open a picture"
 msgstr "Abrir una imagen"
 
-#: src/window.py:696 src/window.py:741 src/window.py:787 src/window.py:843
+#: src/window.py:697 src/window.py:748 src/window.py:794 src/window.py:850
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -687,39 +697,39 @@ msgstr "Abrir una imagen"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/window.py:735 src/window.py:789
+#: src/window.py:741 src/window.py:796
 msgid "Untitled"
 msgstr "Sin título"
 
-#: src/window.py:736
+#: src/window.py:742
 msgid "this picture"
 msgstr "esta imagen"
 
-#: src/window.py:741
+#: src/window.py:747
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/window.py:761
+#: src/window.py:768
 msgid "All pictures"
 msgstr "Todas las imágenes"
 
-#: src/window.py:767
+#: src/window.py:774
 msgid "PNG images"
 msgstr "Imágenes PNG"
 
-#: src/window.py:771
+#: src/window.py:778
 msgid "JPEG images"
 msgstr "Imágenes JPEG"
 
-#: src/window.py:775
+#: src/window.py:782
 msgid "BMP images"
 msgstr "Imágenes BMP"
 
-#: src/window.py:786
+#: src/window.py:793
 msgid "Save picture as…"
 msgstr "Guardar imagen como…"
 
-#: src/window.py:842
+#: src/window.py:849
 msgid "Import a picture"
 msgstr "Importar una imagen"
 
@@ -733,27 +743,27 @@ msgstr "Deshacer"
 msgid "Redo %s"
 msgstr "Rehacer"
 
-#: src/preferences.py:77
+#: src/preferences.py:81
 msgid "Automatic"
 msgstr "Automático"
 
-#: src/preferences.py:78
+#: src/preferences.py:82
 msgid "Compact"
 msgstr "Compacto"
 
-#: src/preferences.py:80
+#: src/preferences.py:84
 msgid "Legacy"
 msgstr "Heredado"
 
-#: src/preferences.py:81
+#: src/preferences.py:85
 msgid "Menubar only"
 msgstr "Solo barra de menús"
 
-#: src/preferences.py:82
+#: src/preferences.py:86
 msgid "Toolbar only"
 msgstr "Solo barra de herramientas"
 
-#: src/preferences.py:84
+#: src/preferences.py:88
 msgid "Everything (testing only)"
 msgstr "Todo (solo para pruebas)"
 
@@ -769,11 +779,11 @@ msgstr ""
 "El formato de imagen no soporta transparencia; puede añadir un canal alfa, "
 "reemplazando opcionalmente un color."
 
-#: src/utilities.py:123
+#: src/utilities.py:124
 msgid "Continue"
 msgstr "Continuar"
 
-#: src/utilities.py:124
+#: src/utilities.py:125
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
 "This algorithm may not be able to manage the wanted area.\n"
@@ -792,15 +802,19 @@ msgstr "Forma"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
-#: src/tools/ui/tool_pencil.ui:7 src/tools/tool_arc.py:22
-#: src/tools/tool_arc.py:35 src/tools/tool_line.py:23 src/tools/tool_line.py:35
-#: src/tools/tool_pencil.py:19 src/tools/tool_pencil.py:42
+#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:22
+#: src/tools/classic_tools/tool_arc.py:35
+#: src/tools/classic_tools/tool_line.py:23
+#: src/tools/classic_tools/tool_line.py:35
+#: src/tools/classic_tools/tool_pencil.py:19
+#: src/tools/classic_tools/tool_pencil.py:42
 msgid "Round"
 msgstr "Extremos redondeados"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
-#: src/tools/ui/tool_pencil.ui:17 src/tools/tool_arc.py:32
-#: src/tools/tool_line.py:32 src/tools/tool_pencil.py:38
+#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
+#: src/tools/classic_tools/tool_line.py:32
+#: src/tools/classic_tools/tool_pencil.py:38
 msgid "Square"
 msgstr "Extremos cuadrados"
 
@@ -810,8 +824,10 @@ msgid "Use dashes"
 msgstr "Utilizar trazos"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/tool_arc.py:62 src/tools/tool_arc.py:64 src/tools/tool_line.py:63
-#: src/tools/tool_line.py:65
+#: src/tools/classic_tools/tool_arc.py:62
+#: src/tools/classic_tools/tool_arc.py:64
+#: src/tools/classic_tools/tool_line.py:63
+#: src/tools/classic_tools/tool_line.py:65
 msgid "Arrow"
 msgstr "Flecha"
 
@@ -821,30 +837,34 @@ msgid "Mode"
 msgstr "Modo"
 
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
-#: src/tools/ui/tool_pencil.ui:31 src/tools/tool_arc.py:50
-#: src/tools/tool_line.py:50 src/tools/tool_pencil.py:57
+#: src/tools/ui/tool_pencil.ui:31 src/tools/classic_tools/tool_arc.py:50
+#: src/tools/classic_tools/tool_line.py:50
+#: src/tools/classic_tools/tool_pencil.py:57
 msgid "Classic"
 msgstr "Clásico"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:44
-#: src/tools/ui/tool_pencil.ui:36 src/tools/tool_arc.py:44
-#: src/tools/tool_line.py:44 src/tools/tool_pencil.py:51
+#: src/tools/ui/tool_pencil.ui:36 src/tools/classic_tools/tool_arc.py:44
+#: src/tools/classic_tools/tool_line.py:44
+#: src/tools/classic_tools/tool_pencil.py:51
 msgid "Source color"
 msgstr "Color de origen"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
-#: src/tools/ui/tool_pencil.ui:41 src/tools/tool_arc.py:47
-#: src/tools/tool_line.py:47 src/tools/tool_pencil.py:54
+#: src/tools/ui/tool_pencil.ui:41 src/tools/classic_tools/tool_arc.py:47
+#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_pencil.py:54
 msgid "Eraser"
 msgstr "Borrador"
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
-#: src/tools/ui/tool_pencil.ui:46 src/tools/tool_arc.py:41
-#: src/tools/tool_line.py:41 src/tools/tool_pencil.py:48
+#: src/tools/ui/tool_pencil.ui:46 src/tools/classic_tools/tool_arc.py:41
+#: src/tools/classic_tools/tool_line.py:41
+#: src/tools/classic_tools/tool_pencil.py:48
 msgid "Difference"
 msgstr "Diferencia"
 
-#: src/tools/ui/tool_circle.ui:7 src/tools/tool_circle.py:44
+#: src/tools/ui/tool_circle.ui:7 src/tools/classic_tools/tool_circle.py:44
 msgid "Oval"
 msgstr "Óvalo"
 
@@ -855,24 +875,32 @@ msgstr "Relleno"
 
 #: src/tools/ui/tool_circle.ui:20 src/tools/ui/tool_freeshape.ui:7
 #: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_rectangle.ui:7
-#: src/tools/tool_circle.py:28 src/tools/tool_freeshape.py:38
-#: src/tools/tool_polygon.py:38 src/tools/tool_rectangle.py:26
+#: src/tools/classic_tools/tool_circle.py:28
+#: src/tools/classic_tools/tool_freeshape.py:38
+#: src/tools/classic_tools/tool_polygon.py:38
+#: src/tools/classic_tools/tool_rectangle.py:26
 msgid "Empty"
 msgstr "Vacío"
 
 #: src/tools/ui/tool_circle.ui:25 src/tools/ui/tool_freeshape.ui:12
 #: src/tools/ui/tool_polygon.ui:12 src/tools/ui/tool_rectangle.ui:12
-#: src/tools/tool_circle.py:30 src/tools/tool_freeshape.py:40
-#: src/tools/tool_polygon.py:40 src/tools/tool_rectangle.py:28
+#: src/tools/classic_tools/tool_circle.py:30
+#: src/tools/classic_tools/tool_freeshape.py:40
+#: src/tools/classic_tools/tool_polygon.py:40
+#: src/tools/classic_tools/tool_rectangle.py:28
 msgid "Filled (main color)"
 msgstr "Relleno (color principal)"
 
 #: src/tools/ui/tool_circle.ui:30 src/tools/ui/tool_freeshape.ui:17
 #: src/tools/ui/tool_polygon.ui:17 src/tools/ui/tool_rectangle.ui:17
-#: src/tools/tool_circle.py:17 src/tools/tool_circle.py:32
-#: src/tools/tool_freeshape.py:19 src/tools/tool_freeshape.py:42
-#: src/tools/tool_polygon.py:19 src/tools/tool_polygon.py:42
-#: src/tools/tool_rectangle.py:17 src/tools/tool_rectangle.py:30
+#: src/tools/classic_tools/tool_circle.py:17
+#: src/tools/classic_tools/tool_circle.py:32
+#: src/tools/classic_tools/tool_freeshape.py:19
+#: src/tools/classic_tools/tool_freeshape.py:42
+#: src/tools/classic_tools/tool_polygon.py:19
+#: src/tools/classic_tools/tool_polygon.py:42
+#: src/tools/classic_tools/tool_rectangle.py:17
+#: src/tools/classic_tools/tool_rectangle.py:30
 msgid "Filled (secondary color)"
 msgstr "Relleno (color secundario)"
 
@@ -883,14 +911,6 @@ msgstr "Relleno (color secundario)"
 #: src/tools/ui/tool_scale.ui:117 src/tools/ui/tool_scale.ui:148
 msgid "Apply"
 msgstr "Aplicar"
-
-#: src/tools/ui/tool_experiment.ui:5
-msgid "Cairo operator"
-msgstr "Operador de Cairo"
-
-#: src/tools/ui/tool_experiment.ui:7
-msgid "Unbounded"
-msgstr "Sin límites"
 
 #: src/tools/ui/tool_flip.ui:33
 msgid "Flip horizontally"
@@ -906,8 +926,8 @@ msgid "Color gradient"
 msgstr "Selector de color"
 
 #: src/tools/ui/tool_paint.ui:5
-msgid "Algorithm"
-msgstr "Algoritmo"
+msgid "Behavior"
+msgstr ""
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
@@ -917,7 +937,11 @@ msgstr "Rodear y rellenar"
 msgid "Erase and replace"
 msgstr "Borrar y reemplazar"
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/tool_pencil.py:34
+#: src/tools/ui/tool_paint.ui:19
+msgid "Clipping"
+msgstr ""
+
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
 msgid "Thin"
 msgstr "Extremos apuntados"
 
@@ -969,85 +993,77 @@ msgstr "Fondo opaco"
 msgid "Font"
 msgstr "Tipo de letra"
 
-#: src/tools/tool_addalpha.py:13
-msgid "Remove color"
-msgstr "Eliminar color"
-
-#: src/tools/tool_addalpha.py:21
-msgid "Click on an area to replace its color by transparency"
-msgstr "Haga clic en un área para reemplazar su color por transparencia."
-
-#: src/tools/tool_arc.py:53
+#: src/tools/classic_tools/tool_arc.py:53
 msgid "Arc options"
 msgstr "Opciones de arco"
 
-#: src/tools/tool_arc.py:62 src/tools/tool_arc.py:66 src/tools/tool_line.py:63
-#: src/tools/tool_line.py:67 src/tools/tool_pencil.py:68
+#: src/tools/classic_tools/tool_arc.py:62
+#: src/tools/classic_tools/tool_arc.py:66
+#: src/tools/classic_tools/tool_line.py:63
+#: src/tools/classic_tools/tool_line.py:67
+#: src/tools/classic_tools/tool_pencil.py:68
 msgid "With dashes"
 msgstr "Con trazos"
 
-#: src/tools/tool_circle.py:38
+#: src/tools/classic_tools/tool_circle.py:38
 msgid "Circle options"
 msgstr "Opciones de círculo"
 
-#: src/tools/tool_freeshape.py:13
+#: src/tools/classic_tools/tool_freeshape.py:13
 msgid "Free shape"
 msgstr "Forma libre"
 
-#: src/tools/tool_freeshape.py:45
+#: src/tools/classic_tools/tool_freeshape.py:45
 msgid "Shape options"
 msgstr "Opciones de forma"
 
-#: src/tools/tool_experiment.py:12
-msgid "Experiment"
-msgstr "Experimento"
-
-#: src/tools/tool_line.py:53
+#: src/tools/classic_tools/tool_line.py:53
 msgid "Line options"
 msgstr "Opciones de línea"
 
-#: src/tools/tool_paint.py:21
+#: src/tools/classic_tools/tool_paint.py:21
 msgid "Painting options"
 msgstr "Opciones de relleno"
 
-#: src/tools/tool_polygon.py:45
+#: src/tools/classic_tools/tool_polygon.py:45
 msgid "Polygon options"
 msgstr "Opciones de polígono"
 
-#: src/tools/tool_pencil.py:60
+#: src/tools/classic_tools/tool_pencil.py:60
 msgid "Pencil options"
 msgstr "Opciones de lápiz"
 
-#: src/tools/tool_picker.py:12
+#: src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Selector de color"
 
-#: src/tools/tool_rectangle.py:33
+#: src/tools/classic_tools/tool_rectangle.py:33
 msgid "Rectangle options"
 msgstr "Opciones de rectángulo"
 
-#: src/tools/tool_select.py:21 src/tools/tool_select.py:45
+#: src/tools/selection_tools/tool_select.py:21
+#: src/tools/selection_tools/tool_select.py:41
 msgid "Rectangle selection"
 msgstr "Selección rectangular"
 
-#: src/tools/tool_select.py:48
+#: src/tools/selection_tools/tool_select.py:44
 msgid "Free selection"
 msgstr "Selección libre"
 
-#: src/tools/tool_select.py:51
+#: src/tools/selection_tools/tool_select.py:47
 msgid "Color selection"
 msgstr "Selección por color"
 
-#: src/tools/tool_select.py:54
+#: src/tools/selection_tools/tool_select.py:50
 msgid "Selection options"
 msgstr "Opciones de selección"
 
-#: src/tools/tool_select.py:60
+#: src/tools/selection_tools/tool_select.py:56
 msgid "Drag the selection or right-click on the canvas"
 msgstr ""
 "Arrastre la selección o pulse con el botón secundario del ratón en el lienzo"
 
-#: src/tools/tool_select.py:62
+#: src/tools/selection_tools/tool_select.py:58
 msgid "Select an area or right-click on the canvas"
 msgstr ""
 "Seleccione un área o pulse con el botón secundario del ratón en el lienzo"
@@ -1075,6 +1091,24 @@ msgstr "Escalando la selección"
 #: src/tools/canvas_tools/tool_scale.py:53
 msgid "Scaling the canvas"
 msgstr "Escalando el lienzo"
+
+#~ msgid "Cairo operator"
+#~ msgstr "Operador de Cairo"
+
+#~ msgid "Unbounded"
+#~ msgstr "Sin límites"
+
+#~ msgid "Algorithm"
+#~ msgstr "Algoritmo"
+
+#~ msgid "Remove color"
+#~ msgstr "Eliminar color"
+
+#~ msgid "Click on an area to replace its color by transparency"
+#~ msgstr "Haga clic en un área para reemplazar su color por transparencia."
+
+#~ msgid "Experiment"
+#~ msgstr "Experimento"
 
 #~ msgid "Summary"
 #~ msgstr "Resumen"

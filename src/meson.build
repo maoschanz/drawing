@@ -45,7 +45,6 @@ drawing_sources = [
 
 	'tools/abstract_tool.py',
 
-	'tools/classic_tools/tool_addalpha.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_circle.py',
 	'tools/classic_tools/tool_experiment.py',
