@@ -120,7 +120,8 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 
 def launch_infinite_loop_dialog(window):
 	dialog = DrawingMessageDialog(window)
-	dialog.set_actions([_("Cancel"), _("Continue")])
+	dialog.set_actions([ [_("Cancel"), None, False, 1], \
+	                     [_("Continue"), None, True, 2] ])
 	dialog.add_string( _("""The area seems poorly delimited, or is very complex.
 This algorithm may not be able to manage the wanted area.
 

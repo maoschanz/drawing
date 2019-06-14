@@ -674,7 +674,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.try_load_file(gfile)
 		else:
 			dialog = DrawingMessageDialog(self)
-			dialog.set_actions([_("New Tab"), _("New Window"), _("Discard changes")])
+			dialog.set_actions([ [_("New Tab"), None, True, 1], \
+			                     [_("New Window"), None, False, 2], \
+			           [_("Discard changes"), 'destructive-action', False, 3] ])
 			dialog.add_string( _("There are unsaved modifications to %s.") % \
 				self.get_active_image().get_filename_for_display() )
 			dialog.add_string( _("Where do you want to open %s?") %  \
@@ -738,7 +740,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			unsaved_file_name = fn.split('/')[-1]
 			display_name = self.get_active_image().get_filename_for_display()
 		dialog = DrawingMessageDialog(self)
-		dialog.set_actions([_("Cancel"), _("Discard"), _("Save")])
+		dialog.set_actions([ [_("Discard"), 'destructive-action', False, 1], \
+		                     [_("Cancel"), None, False, 2], \
+		                     [_("Save"), None, True, 3] ])
 		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
 		self.minimap.update_minimap()
 		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
@@ -750,7 +754,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if result == 3: # Save
 			self.action_save()
 			return True
-		elif result == 2: # Discard
+		elif result == 1: # Discard
 			return True
 		else: # Cancel
 			return False

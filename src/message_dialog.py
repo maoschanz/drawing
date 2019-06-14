@@ -37,11 +37,14 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 			# be used if it's not required
 			self.should_wrap = False
 
-	def set_actions(self, labels):
-		i = 1
-		for action_label in labels:
-			self.add_button(action_label, i)
-			i = i+1
+	def set_actions(self, actions):
+		for action in actions:
+			# [label, style class, should be the default action, response id]
+			btn = self.add_button(action[0], action[3])
+			if action[1] is not None:
+				btn.get_style_context().add_class(action[1])
+			if action[2]:
+				btn.grab_default()
 
 	def add_string(self, string):
 		label = Gtk.Label(label=string, wrap=self.should_wrap)
