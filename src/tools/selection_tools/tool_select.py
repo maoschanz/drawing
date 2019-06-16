@@ -5,7 +5,6 @@ import cairo
 
 from .abstract_tool import ToolTemplate
 from .utilities import utilities_get_magic_path
-from .utilities import utilities_show_overlay_on_context
 
 class ToolSelect(ToolTemplate):
 	__gtype_name__ = 'ToolSelect'
@@ -27,7 +26,7 @@ class ToolSelect(ToolTemplate):
 		self.future_y = 0
 		self.future_path = None
 		self.future_pixbuf = None
-		self.operation_type = 'op-define'
+		self.operation_type = None # 'op-define'
 		self.behavior = 'rectangle'
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
@@ -65,7 +64,10 @@ class ToolSelect(ToolTemplate):
 		# if preserve_selection and self.selection_is_active():
 		if True: # TODO
 			operation = self.build_operation()
-			self.apply_operation(operation)
+			if operation['operation_type'] is not None:
+			# This condition avoid applying empty operation if 'select' is the
+			# active tool when the window is opening itself.
+				self.apply_operation(operation)
 		if not preserve_selection:
 			self.get_selection().reset()
 
@@ -275,7 +277,7 @@ class ToolSelect(ToolTemplate):
 		self.get_selection().apply_selection_to_surface(cairo_context, False)
 
 	############################################################################
-	# Operations management implementations#####################################
+	# Operations management implementations ####################################
 
 	def build_operation(self):
 		if self.future_pixbuf is None: # Cas normal
@@ -302,7 +304,8 @@ class ToolSelect(ToolTemplate):
 			# de type "clic-droit > couper" ou "clic-droit > supprimer".
 			# On réinitialise le selection_manager.
 			self.op_delete(operation)
-			self.get_selection().reset() # car op_delete est aussi appelé pour l'op-drag
+			self.get_selection().reset() # the selection is reset here because
+			                          # op_delete is also used for the 'op-drag'
 		elif operation['operation_type'] == 'op-import':
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > importer" ou "clic-droit > coller".
@@ -328,4 +331,5 @@ class ToolSelect(ToolTemplate):
 			self.op_drag(operation)
 			self.op_apply()
 
+################################################################################
 

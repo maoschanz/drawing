@@ -98,12 +98,15 @@ class DrawingSelectionManager():
 	def reset(self):
 		print('⇒ reset pixbuf')
 		self.selection_pixbuf = None
+		self.selection_x = 0
+		self.selection_y = 0
 		self.selection_path = None
 		self.temp_x = 0
 		self.temp_y = 0
 		self.temp_path = None
 		self.is_active = False
-		self.image.use_stable_pixbuf()
+		# self.image.use_stable_pixbuf() # XXX empêchait la suppression de la
+		       # sélection, mais peut-être que ça avait du sens que ce soit là ?
 		self.image.update()
 
 	def delete_temp(self):

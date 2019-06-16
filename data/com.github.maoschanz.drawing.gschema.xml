@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="drawing">
 	<schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
-		<key type="b" name="direct-color-edit">
-			<default>false</default>
-			<summary>Don't use a color palette</summary>
-			<description>If a click on the color button should display directly
-			the complete color selector.</description>
-		</key>
-		<key type="b" name="maximized">
-			<default>false</default>
-			<summary>State of the window</summary>
-			<description>The state of the last closed window.</description>
-		</key>
-		<key type="b" name="devel-only">
-			<default>false</default>
-			<summary>Experimental features</summary>
-			<description>Turn on devel features (not recommended).</description>
-		</key>
+
+		<!-- Actual options -->
 		<key type="b" name="big-icons">
 			<default>false</default>
 			<summary>Use large icons</summary>
@@ -29,15 +15,28 @@
 			<description>Can be 'auto', 'csd', 'csd-eos', 'ssd', 'ssd-toolbar',
 			'ssd-menubar' or 'everything'.</description>
 		</key>
-		<key type="b" name="show-labels">
-			<default>false</default>
-			<summary>Wide side panel</summary>
-			<description>Visibility of tools' labels in the side panel.</description>
-		</key>
 		<key type="i" name="preview-size">
 			<default>250</default>
 			<summary>Preview size</summary>
 			<description>Size of the bigger dimension of the preview (px).</description>
+		</key>
+		<key type="b" name="add-alpha">
+			<default>true</default>
+			<summary>Add an alpha channel</summary>
+			<description>Add an alpha channel to all opened pictures. It is
+			recommended, the free selection will fail otherwise.</description>
+		</key>
+		<key type="b" name="devel-only">
+			<default>false</default>
+			<summary>Experimental features</summary>
+			<description>Turn on devel features (not recommended).</description>
+		</key>
+
+		<!-- Default new canvas -->
+		<key type="as" name="background-rgba">
+			<default>['1.0', '1.0', '1.0', '1.0']</default>
+			<summary>Default color background</summary>
+			<description>The default color background of a new image.</description>
 		</key>
 		<key type="i" name="default-width">
 			<default>1000</default>
@@ -49,6 +48,13 @@
 			<summary>Default height</summary>
 			<description>Default height of a new image (px).</description>
 		</key>
+
+		<!-- Window state -->
+		<key type="b" name="maximized">
+			<default>false</default>
+			<summary>State of the window</summary>
+			<description>The state of the last closed window.</description>
+		</key>
 		<key type="s" name="last-active-tool">
 			<default>'pencil'</default>
 			<summary>Default active tool</summary>
@@ -56,32 +62,32 @@
 			window.</description>
 		</key>
 		<key type="as" name="last-right-rgba">
-			<default>['1.0', '1.0', '1.0', '1.0']</default>
+			<default>['1.0', '1.0', '0.0', '0.5']</default>
 			<summary>Last right-click color</summary>
 			<description>The last edition color for the right click, saved when
 			closing a window.</description>
 		</key>
 		<key type="as" name="last-left-rgba">
-			<default>['0.0', '0.0', '0.0', '1.0']</default>
+			<default>['0.8', '0.0', '0.0', '1.0']</default>
 			<summary>Last left-click color</summary>
 			<description>The last edition color for the left click, saved when
 			closing a window.</description>
 		</key>
 		<key type="i" name="last-size">
-			<default>10</default>
+			<default>5</default>
 			<summary>Last tool size</summary>
 			<description>The last tool size (px), saved when closing a window.</description>
 		</key>
-		<key type="as" name="background-rgba">
-			<default>['1.0', '1.0', '1.0', '1.0']</default>
-			<summary>Default color background</summary>
-			<description>The default color background of a new image.</description>
+		<key type="b" name="direct-color-edit">
+			<default>false</default>
+			<summary>Don't use a color palette</summary>
+			<description>If a click on the color button should display directly
+			the complete color selector.</description>
 		</key>
-		<key type="b" name="add-alpha">
-			<default>true</default>
-			<summary>Add an alpha channel</summary>
-			<description>Add an alpha channel to all opened pictures. It is
-			recommended, the free selection will fail otherwise.</description>
+		<key type="b" name="show-labels">
+			<default>false</default>
+			<summary>Wide side panel</summary>
+			<description>Visibility of tools' labels in the side panel.</description>
 		</key>
 	</schema>
 </schemalist>
