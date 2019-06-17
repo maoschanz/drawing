@@ -224,7 +224,4 @@ class ToolCrop(AbstractCanvasTool):
 
 		if not operation['is_selection'] and operation['is_preview']:
 			self.scale_temp_pixbuf_to_area(width, height)
-		if operation['is_preview']:
-			self.get_image().temp_preview(operation['is_selection'])
-		else:
-			self.get_image().apply_temp(operation['is_selection'])
+		self.common_end_operation(operation['is_preview'], operation['is_selection'])

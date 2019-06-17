@@ -61,17 +61,16 @@ class ToolSelect(ToolTemplate):
 	# Lifecycle implementations ################################################
 
 	def give_back_control(self, preserve_selection):
-		# if preserve_selection and self.selection_is_active():
-		if True: # TODO
-			operation = self.build_operation()
-			if operation['operation_type'] is not None:
-			# This condition avoid applying empty operation if 'select' is the
-			# active tool when the window is opening itself.
-				self.apply_operation(operation)
+		# if preserve_selection and self.selection_is_active(): # TODO
+		# operation = self.build_operation()
+		# if operation['operation_type'] is not None:
+		# This condition avoid applying empty operation if 'select' is the
+		# active tool when the window is opening itself.
+		# 	self.apply_operation(operation)
+		# if not preserve_selection:
+		# 	self.get_selection().reset()
 		if not preserve_selection:
-			self.get_selection().reset()
-
-
+			self.unselect_and_apply()
 
 
 
@@ -109,14 +108,7 @@ class ToolSelect(ToolTemplate):
 		# elif self.behavior == 'freehand':
 		# 	self.init_path(event_x, event_y) # TODO
 		if self.behavior == 'cancel':
-		# if not self.get_selection().point_is_in_selection(self.x_press, self.y_press):
-		# 	print('--------------')
-		# 	print(self.behavior)
-			self.operation_type = 'op-apply'
-			self.cursor_name = 'cross'
-			self.window.set_cursor(True)
-			self.give_back_control(False) # XXX à vérifier, ça me semble louche
-			self.operation_type = 'op-define'
+			self.unselect_and_apply()
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
@@ -228,21 +220,29 @@ class ToolSelect(ToolTemplate):
 		self.do_tool_operation(operation)
 		self.non_destructive_show_modif()
 
-	def apply_selection(self): # XXX FIXME mauvais
-		# if self.selection_is_active():
-			operation = self.build_operation()
-			self.apply_operation(operation)
-
 	def delete_selection(self):
 		self.operation_type = 'op-delete'
-		self.apply_selection()
+		operation = self.build_operation()
+		self.apply_operation(operation)
 		self.operation_type = 'op-define'
 
 	def import_selection(self, pixbuf):
 		self.future_pixbuf = pixbuf
 		self.operation_type = 'op-import'
-		self.apply_selection()
+		operation = self.build_operation()
+		self.apply_operation(operation)
 		self.operation_type = 'op-define'
+
+	def unselect_and_apply(self):
+		if self.operation_type is None:
+			return
+		self.operation_type = 'op-apply'
+		operation = self.build_operation()
+		self.apply_operation(operation)
+		self.operation_type = 'op-define'
+		self.cursor_name = 'cross'
+		self.window.set_cursor(True)
+		self.get_selection().reset()
 
 	#####
 
@@ -327,6 +327,8 @@ class ToolSelect(ToolTemplate):
 			# la définition d'une sélection (rectangulaire ou non) par
 			# construction d'un path qui sera "fusionné" au main_pixbuf.
 			# On modifie les coordonnées connues du selection_manager.
+			if self.get_selection_pixbuf() is None:
+				return
 			self.op_delete(operation)
 			self.op_drag(operation)
 			self.op_apply()

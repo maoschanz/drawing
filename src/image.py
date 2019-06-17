@@ -312,14 +312,6 @@ class DrawingImage(Gtk.Box):
 		cairo_context.paint()
 
 		self.active_tool().on_draw(area, cairo_context)
-		# print('on_draw')
-		# if self.is_using_selection() and self.selection.get_pixbuf() is not None:
-		# 	print('on_draw AVEC sélection')
-			# print(self.selection.get_pixbuf())
-		# 	utilities_show_overlay_on_context(cairo_context, \
-		# 	                            self.get_dragged_selection_path(), True)
-		# else:
-		# 	print('on_draw sans sélection')
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on
@@ -404,6 +396,9 @@ class DrawingImage(Gtk.Box):
 			self.main_pixbuf = new_pixbuf
 			return True
 
+	############################################################################
+	# Temporary pixbuf management ########################
+
 	def get_temp_pixbuf(self):
 		return self.temp_pixbuf
 
@@ -414,11 +409,19 @@ class DrawingImage(Gtk.Box):
 			self.temp_pixbuf = new_pixbuf
 			return True
 
+	def reset_temp(self):
+		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+		self.use_stable_pixbuf()
+		self.update()
+
 	############################################################################
 	# Scroll and zoom levels ###################################################
 
 	def on_scroll_on_area(self, area, event):
 		self.add_deltas(event.delta_x, event.delta_y, 10)
+
+	def get_dragged_selection_path(self):
+		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
 
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self.h_scrollbar.get_value(), self.v_scrollbar.get_value())
@@ -476,41 +479,6 @@ class DrawingImage(Gtk.Box):
 		self.set_zoom_level(opti)
 
 	############################################################################
-	# Methods related to the selection #########################################
-
-	def apply_temp(self, operation_is_selection):
-		if operation_is_selection:
-			self.selection.selection_pixbuf = self.get_temp_pixbuf().copy() # XXX PAS_SOUHAITABLE ?
-			# self.selection.create_path_from_pixbuf(False) # FIXME
-		else:
-			self.main_pixbuf = self.get_temp_pixbuf().copy()
-			self.use_stable_pixbuf()
-
-	def temp_preview(self, is_selection):
-		"""Part of the previewing methods shared by all canvas tools."""
-		cairo_context = cairo.Context(self.get_surface())
-		if is_selection:
-			cairo_context.set_source_surface(self.get_surface(), 0, 0)
-			cairo_context.paint()
-			self.selection.delete_temp()
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_temp_pixbuf(), \
-			             self.selection.selection_x, self.selection.selection_y)
-			cairo_context.paint()
-		else:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
-			Gdk.cairo_set_source_pixbuf(cairo_context, self.get_temp_pixbuf(), 0, 0)
-			cairo_context.paint()
-		self.update()
-
-	def get_dragged_selection_path(self):
-		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
-
-	# def is_using_selection(self):
-	# 	return self.window.tool_needs_selection() and self.selection.is_active
-
-	############################################################################
 	# Printing operations ######################################################
 
 	def print_image(self):
@@ -536,19 +504,4 @@ class DrawingImage(Gtk.Box):
 		print_ctx.get_cairo_context().paint()
 
 	############################################################################
-	# TODO à supprimer XXX #####################################################
-
-	def reset_temp(self):
-		self.selection_pixbuf = None
-		self.selection_path = None
-		self.temp_x = 0
-		self.temp_y = 0
-		self.temp_path = None
-		self.selection_is_active = False
-		# self.update_actions_state() # XXX ne peut pas être ici car empêche le démarrage
-		self.use_stable_pixbuf()
-		self.update()
-
-	def image_unselect(self, *args): # Lui il n'y a ptêt pas besoin de le virer ?
-		self.window.get_selection_tool().give_back_control(False) # FIXME ?
 

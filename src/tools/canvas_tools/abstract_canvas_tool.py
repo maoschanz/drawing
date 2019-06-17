@@ -56,6 +56,45 @@ class AbstractCanvasTool(ToolTemplate):
 	def apply_operation(self, operation):
 		operation['is_preview'] = False
 		super().apply_operation(operation)
+		self.get_image().reset_temp()
 
+	def common_end_operation(self, is_preview, is_selection):
+		if is_preview:
+			self.temp_preview(is_selection)
+		else:
+			self.apply_temp(is_selection)
+
+	def apply_temp(self, operation_is_selection):
+		if operation_is_selection:
+			pixbuf = self.get_image().get_temp_pixbuf().copy() # XXX copy ??
+			self.get_selection().set_pixbuf(pixbuf, False)
+			# FIXME n'a pas l'air particulièrement efficace sur les scales successifs
+		else:
+			self.main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.use_stable_pixbuf()
+
+	def temp_preview(self, is_selection):
+		"""Part of the previewing methods shared by all canvas tools."""
+		cairo_context = cairo.Context(self.get_surface())
+		if is_selection:
+			cairo_context.set_source_surface(self.get_surface(), 0, 0)
+			cairo_context.paint()
+			self.get_selection().delete_temp()
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+			                            self.get_image().get_temp_pixbuf(), \
+			                            self.get_selection().selection_x, \
+			                            self.get_selection().selection_y)
+			cairo_context.paint()
+		else:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
+			Gdk.cairo_set_source_pixbuf(cairo_context, \
+			                           self.get_image().get_temp_pixbuf(), 0, 0)
+			cairo_context.paint()
+		self.update()
+
+	def on_draw(self, area, cairo_context):
+		pass # TODO FIXME
 
 

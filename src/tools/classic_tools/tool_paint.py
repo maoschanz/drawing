@@ -65,13 +65,15 @@ class ToolPaint(ToolTemplate):
 		self.restore_pixbuf()
 
 		if operation['algo'] == 'replace':
-			self.do_tool_operation_replace(operation)
+			self.op_replace(operation)
 		elif operation['algo'] == 'fill':
-			self.do_tool_operation_fill(operation)
+			self.op_fill(operation)
 		else: # == 'clipping'
-			self.do_tool_operation_clipping(operation)
+			self.op_clipping(operation)
 
-	def do_tool_operation_replace(self, operation):
+	############################################################################
+
+	def op_replace(self, operation):
 		"""Moins laid mais piêtre gestion des couleurs (semi-)transparentes en
 		dehors de la zone ciblée."""
 		if operation['path'] is None:
@@ -116,7 +118,7 @@ class ToolPaint(ToolTemplate):
 		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context2.paint()
 
-	def do_tool_operation_fill(self, operation):
+	def op_fill(self, operation):
 		"""Simple mais laid et reposant sur la précision du path."""
 		if operation['path'] is None:
 			return
@@ -126,7 +128,7 @@ class ToolPaint(ToolTemplate):
 		cairo_context.append_path(operation['path'])
 		cairo_context.fill()
 
-	def do_tool_operation_clipping(self, operation):
+	def op_clipping(self, operation):
 		"""Remplacement de la couleur par du alpha."""
 		old_rgb = operation['old_rgb']
 		r0 = old_rgb[0]

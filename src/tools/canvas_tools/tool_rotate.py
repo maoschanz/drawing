@@ -104,9 +104,5 @@ class ToolRotate(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.rotate_simple(angle))
-
-		if operation['is_preview']:
-			self.get_image().temp_preview(operation['is_selection'])
-		else:
-			self.get_image().apply_temp(operation['is_selection'])
+		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 

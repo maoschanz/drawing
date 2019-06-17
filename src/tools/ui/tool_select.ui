@@ -79,20 +79,24 @@
     </section>
     <section>
       <attribute name="label" translatable="yes">Selection type</attribute>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
       <item>
         <attribute name="label" translatable="yes">Rectangle</attribute>
         <attribute name="action">win.selection_type</attribute>
         <attribute name="target">rectangle</attribute>
+        <attribute name="verb-icon">tool-rectangle-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Freehand</attribute>
         <attribute name="action">win.selection_type</attribute>
         <attribute name="target">freehand</attribute>
+        <attribute name="verb-icon">tool-freeshape-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Similar color</attribute>
         <attribute name="action">win.selection_type</attribute>
         <attribute name="target">color</attribute>
+        <attribute name="verb-icon">tool-magic-symbolic</attribute>
       </item>
     </section>
   </menu>

@@ -69,8 +69,4 @@ class ToolSaturate(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		temp = self.get_image().get_temp_pixbuf()
 		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
-		if operation['is_preview']:
-			self.get_image().temp_preview(operation['is_selection'])
-		else:
-			self.get_image().apply_temp(operation['is_selection'])
-
+		self.common_end_operation(operation['is_preview'], operation['is_selection'])

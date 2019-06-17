@@ -814,7 +814,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().tool_select_all()
 
 	def action_unselect(self, *args):
-		self.get_active_image().image_unselect()
+		self.get_selection_tool().give_back_control(False)
 
 	def action_cut(self, *args):
 		self.copy_operation()
