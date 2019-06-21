@@ -2,12 +2,49 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
-      <attribute name="label">Opérateurs Cairo</attribute>
+      <attribute name="label">Pinceaux</attribute>
       <item>
         <attribute name="label">Pinceau simple</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">simple</attribute>
       </item>
+      <item>
+        <attribute name="label">Pinceau lisse (perte de points)</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">smooth1</attribute>
+      </item>
+      <item>
+        <attribute name="label">Pinceau lisse (ajout de points)</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">smooth2</attribute>
+      </item>
+      <item>
+        <attribute name="label">Pinceau dynamique</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">dynamic</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label">Actions</attribute>
+      <item>
+        <attribute name="label">Tracé en Z</attribute>
+        <attribute name="action">win.experiment_macro_z</attribute>
+      </item>
+      <item>
+        <attribute name="label">Tracé en dents de scies</attribute>
+        <attribute name="action">win.experiment_macro_scie</attribute>
+      </item>
+      <item>
+        <attribute name="label">Hexagone (sens horaire)</attribute>
+        <attribute name="action">win.experiment_macro_hexa1</attribute>
+      </item>
+      <item>
+        <attribute name="label">Hexagone (sens antihoraire)</attribute>
+        <attribute name="action">win.experiment_macro_hexa2</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label">Opérateurs Cairo</attribute>
       <submenu>
         <attribute name="label">Opérateurs basiques</attribute>
         <section>
@@ -174,20 +211,6 @@
           </item>
         </section>
       </submenu>
-    </section>
-    <section>
-      <item>
-        <attribute name="label">Pinceau courbe</attribute>
-        <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">curves</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label">Pinceau dynamique</attribute>
-        <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">dynamic</attribute>
-      </item>
     </section>
   </menu>
 </interface>

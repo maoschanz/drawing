@@ -1,7 +1,7 @@
 # tool_pencil.py
 
 from gi.repository import Gtk, Gdk
-import cairo
+import cairo, math
 
 from .abstract_tool import ToolTemplate
 
@@ -21,10 +21,12 @@ class ToolPencil(ToolTemplate):
 		self.selected_join_id = cairo.LineCap.ROUND
 		self.selected_operator = cairo.Operator.OVER
 		self.use_dashes = False
+		self.is_smooth = True
 
 		self.add_tool_action_enum('pencil_shape', 'round')
 		self.add_tool_action_enum('cairo_operator', 'over')
 		self.add_tool_action_boolean('use_dashes', self.use_dashes)
+		self.add_tool_action_boolean('pencil_smooth', self.is_smooth)
 
 	def set_active_shape(self, *args):
 		state_as_string = self.get_option_value('pencil_shape')
@@ -60,6 +62,7 @@ class ToolPencil(ToolTemplate):
 		return _("Pencil options")
 
 	def get_edition_status(self):
+		self.is_smooth = self.get_option_value('pencil_smooth')
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.set_active_shape()
 		self.set_active_operator()
@@ -100,6 +103,8 @@ class ToolPencil(ToolTemplate):
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
+	############################################################################
+
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
@@ -109,6 +114,7 @@ class ToolPencil(ToolTemplate):
 			'line_cap': self.selected_cap_id,
 			'line_join': self.selected_join_id,
 			'use_dashes': self.use_dashes,
+			'is_smooth': self.is_smooth,
 			'path': self._path
 		}
 		return operation
@@ -129,6 +135,59 @@ class ToolPencil(ToolTemplate):
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		if operation['use_dashes']:
 			cairo_context.set_dash([2*line_width, 2*line_width])
-		cairo_context.append_path(operation['path'])
+		if operation['is_smooth']:
+			self.smooth_path(cairo_context, operation['path'])
+		else:
+			cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
+
+	############################################################################
+
+	def smooth_path(self, cairo_context, cairo_path):
+		x1 = None
+		y1 = None
+		x2 = None
+		y2 = None
+		x3 = None
+		y3 = None
+		x4 = None
+		y4 = None
+		for pts in cairo_path:
+			if pts[1] is ():
+				continue
+			x1, y1, x2, y2, x3, y3, x4, y4 = self.next_arc(cairo_context, \
+			                       x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])
+		self.next_arc(cairo_context, x2, y2, x3, y3, x4, y4, None, None)
+		# cairo_context.stroke()
+
+	def next_point(self, x1, y1, x2, y2, dist):
+		coef = 0.1
+		dx = x2 - x1
+		dy = y2 - y1
+		angle = math.atan2(dy, dx)
+		nx = x2 + math.cos(angle) * dist * coef
+		ny = y2 + math.sin(angle) * dist * coef
+		return nx, ny
+
+	def next_arc(self, cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
+		if x2 is None or x3 is None:
+			# No drawing possible yet, just continue to the next point
+			return x1, y1, x2, y2, x3, y3, x4, y4
+		dist = math.sqrt( (x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3) )
+		if x1 is None and x4 is None:
+			cairo_context.move_to(x2, y2)
+			cairo_context.line_to(x3, y3)
+			return x1, y1, x2, y2, x3, y3, x4, y4
+		elif x1 is None:
+			nx1, ny1 = x2, y2
+			nx2, ny2 = self.next_point(x4, y4, x3, y3, dist)
+		elif x4 is None:
+			nx1, ny1 = self.next_point(x1, y1, x2, y2, dist)
+			nx2, ny2 = x3, y3
+		else:
+			nx1, ny1 = self.next_point(x1, y1, x2, y2, dist)
+			nx2, ny2 = self.next_point(x4, y4, x3, y3, dist)
+		cairo_context.move_to(x2, y2)
+		cairo_context.curve_to(nx1, ny1, nx2, ny2, x3, y3)
+		return x1, y1, x2, y2, x3, y3, x4, y4
 

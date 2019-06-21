@@ -16,12 +16,16 @@ class ToolExperiment(ToolTemplate):
 		self.main_color = None
 		self.use_size = True
 
-		self.selected_mode = 'dynamic'
-		self.selected_operator_label = "MULTIPLY"
-		self.selected_operator = cairo.Operator.MULTIPLY
+		self.selected_mode = 'smooth2'
+		self.selected_operator_label = "DIFFERENCE"
+		self.selected_operator = cairo.Operator.DIFFERENCE
 
-		self.add_tool_action_enum('experiment_operator', 'MULTIPLY')
-		self.add_tool_action_enum('experiment_mode', 'dynamic')
+		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
+		self.add_tool_action_enum('experiment_mode', 'smooth2')
+		self.add_tool_action_simple('experiment_macro_z', self.action_macro_z)
+		self.add_tool_action_simple('experiment_macro_scie', self.action_macro_scie)
+		self.add_tool_action_simple('experiment_macro_hexa1', self.action_macro_hexa1)
+		self.add_tool_action_simple('experiment_macro_hexa2', self.action_macro_hexa2)
 
 	def set_active_mode(self, *args):
 		state_as_string = self.get_option_value('experiment_mode')
@@ -117,6 +121,61 @@ class ToolExperiment(ToolTemplate):
 			self.selected_operator = cairo.Operator.HSL_LUMINOSITY
 			self.selected_operator_label = "HSL_LUMINOSITY"
 
+	def action_macro_z(self, *args):
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(200, 200)
+		cairo_context.line_to(400, 200)
+		cairo_context.line_to(200, 400)
+		cairo_context.line_to(400, 400)
+		self._path = cairo_context.copy_path()
+		self.macros_common()
+
+	def action_macro_scie(self, *args):
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(50, 50)
+		cairo_context.line_to(100, 150)
+		cairo_context.line_to(150, 50)
+		cairo_context.line_to(200, 150)
+		cairo_context.line_to(250, 50)
+		cairo_context.line_to(300, 150)
+		cairo_context.line_to(350, 50)
+		cairo_context.line_to(400, 150)
+		cairo_context.line_to(450, 50)
+		cairo_context.line_to(500, 150)
+		cairo_context.line_to(550, 50)
+		self._path = cairo_context.copy_path()
+		self.macros_common()
+
+	def action_macro_hexa1(self, *args):
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(100, 300)
+		cairo_context.line_to(200, 300)
+		cairo_context.line_to(250, 400)
+		cairo_context.line_to(200, 500)
+		cairo_context.line_to(100, 500)
+		cairo_context.line_to(50, 400)
+		cairo_context.line_to(100, 300)
+		self._path = cairo_context.copy_path()
+		self.macros_common()
+
+	def action_macro_hexa2(self, *args):
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(500, 300)
+		cairo_context.line_to(450, 400)
+		cairo_context.line_to(500, 500)
+		cairo_context.line_to(600, 500)
+		cairo_context.line_to(650, 400)
+		cairo_context.line_to(600, 300)
+		cairo_context.line_to(500, 300)
+		self._path = cairo_context.copy_path()
+		self.macros_common()
+
+	def macros_common(self):
+		self.tool_width = self.window.thickness_spinbtn.get_value()
+		self.main_color = self.get_image().get_left_rgba()
+		operation = self.build_operation()
+		self.apply_operation(operation)
+
 	def get_options_label(self):
 		self.set_active_operator()
 		self.set_active_mode()
@@ -182,13 +241,17 @@ class ToolExperiment(ToolTemplate):
 			return
 		self.restore_pixbuf()
 		if operation['mode'] == 'dynamic':
-			self.do_tool_operation_dynamic(operation)
-		elif operation['mode'] == 'curves':
-			self.do_tool_operation_curves(operation)
+			self.op_dynamic(operation)
+		elif operation['mode'] == 'smooth1':
+			self.op_simple(operation)
+			self.op_smooth1(operation)
+		elif operation['mode'] == 'smooth2':
+			self.op_simple(operation)
+			self.op_smooth2(operation)
 		else:
-			self.do_tool_operation_simple(operation)
+			self.op_simple(operation)
 
-	def do_tool_operation_simple(self, operation):
+	def op_simple(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		if operation['path'] is None:
@@ -198,14 +261,13 @@ class ToolExperiment(ToolTemplate):
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
-		line_width = operation['line_width']
-		cairo_context.set_line_width(line_width)
+		cairo_context.set_line_width(operation['line_width'])
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
 
-	def do_tool_operation_dynamic(self, operation):
+	def op_dynamic(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		if operation['path'] is None:
@@ -217,30 +279,133 @@ class ToolExperiment(ToolTemplate):
 		cairo_context.set_line_join(operation['line_join'])
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+
 		line_width = 0
 		for pts in operation['path']:
-			if pts[1] is not ():
-				current_x, current_y = cairo_context.get_current_point()
-				future_x = pts[1][0]
-				future_y = pts[1][1]
-				dist = math.sqrt( (current_x - future_x) * (current_x - future_x) \
-				             + (current_y - future_y) * (current_y - future_y) )
-				new_width = 1 + int( operation['line_width']/max(1, 0.05 * dist) )
-				if line_width == 0:
-					line_width = new_width
-				else:
-					line_width = (new_width + line_width) / 2
-				# print(int(dist), line_width)
-				cairo_context.set_line_width(line_width)
-				cairo_context.line_to(int(future_x), int(future_y))
-				cairo_context.stroke()
-				cairo_context.move_to(int(future_x), int(future_y))
+			if pts[1] is ():
+				continue
+			current_x, current_y = cairo_context.get_current_point()
+			future_x = pts[1][0]
+			future_y = pts[1][1]
+			dist = math.sqrt( (current_x - future_x) * (current_x - future_x) \
+			                 + (current_y - future_y) * (current_y - future_y) )
+			new_width = 1 + int( operation['line_width']/max(1, 0.05 * dist) )
+			if line_width == 0:
+				line_width = new_width
+			else:
+				line_width = (new_width + line_width) / 2
+			# print(int(dist), line_width)
+			cairo_context.set_line_width(line_width)
+			cairo_context.line_to(int(future_x), int(future_y))
+			cairo_context.stroke()
+			cairo_context.move_to(int(future_x), int(future_y))
 
-	def do_tool_operation_curves(self, operation):
+	def op_smooth1(self, operation):
 		if operation['tool_id'] != self.id:
 			return
 		if operation['path'] is None:
 			return
-		self.restore_pixbuf()
-		# TODO
+		# self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(cairo.Operator.OVER)
+		cairo_context.set_line_width(operation['line_width'])
+		cairo_context.set_line_cap(operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join'])
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+
+		past_x = None
+		past_y = None
+		current_x = None
+		current_y = None
+		future_x = None
+		future_y = None
+		for pts in operation['path']: # FIXME c'est de la merde mais osef
+			if pts[1] is ():
+				continue
+			if past_x is None:
+				past_x = int(pts[1][0])
+				past_y = int(pts[1][1])
+			elif current_x is None:
+				current_x = int(pts[1][0])
+				current_y = int(pts[1][1])
+			else: # if future_x is None:
+				future_x = int(pts[1][0])
+				future_y = int(pts[1][1])
+				cairo_context.curve_to(past_x, past_y, current_x, current_y, future_x, future_y)
+				past_x = None
+				past_y = None
+				current_x = None
+				current_y = None
+				future_x = None
+				future_y = None
+		if past_x is not None:
+			if current_x is None:
+				cairo_context.line_to(past_x, past_y)
+			else:
+				cairo_context.curve_to(past_x, past_y, current_x, current_y, current_x, current_y)
+		cairo_context.stroke()
+
+	def op_smooth2(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		if operation['path'] is None:
+			return
+		# self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_operator(cairo.Operator.OVER)
+		cairo_context.set_line_width(operation['line_width'])
+		cairo_context.set_line_cap(operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join'])
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+
+		x1 = None
+		y1 = None
+		x2 = None
+		y2 = None
+		x3 = None
+		y3 = None
+		x4 = None
+		y4 = None
+		for pts in operation['path']:
+			if pts[1] is ():
+				continue
+			x1, y1, x2, y2, x3, y3, x4, y4 = self.next_arc(cairo_context, \
+			                       x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])
+		self.next_arc(cairo_context, x2, y2, x3, y3, x4, y4, None, None)
+		cairo_context.stroke()
+
+	def next_point(self, x1, y1, x2, y2, dist):
+		coef = 0.1
+		dx = x2 - x1
+		dy = y2 - y1
+		angle = math.atan2(dy, dx)
+		nx = x2 + math.cos(angle) * dist * coef
+		ny = y2 + math.sin(angle) * dist * coef
+		return nx, ny
+
+	def next_arc(self, cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
+		if x2 is None or x3 is None:
+			# No drawing possible yet, just continue to the next point
+			return x1, y1, x2, y2, x3, y3, x4, y4
+		dist = math.sqrt( (x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3) )
+		if x1 is None and x4 is None:
+			cairo_context.move_to(x2, y2)
+			cairo_context.line_to(x3, y3)
+			return x1, y1, x2, y2, x3, y3, x4, y4
+		elif x1 is None:
+			nx1, ny1 = x2, y2
+			nx2, ny2 = self.next_point(x4, y4, x3, y3, dist)
+		elif x4 is None:
+			nx1, ny1 = self.next_point(x1, y1, x2, y2, dist)
+			nx2, ny2 = x3, y3
+		else:
+			nx1, ny1 = self.next_point(x1, y1, x2, y2, dist)
+			nx2, ny2 = self.next_point(x4, y4, x3, y3, dist)
+		cairo_context.move_to(x2, y2)
+		cairo_context.curve_to(nx1, ny1, nx2, ny2, x3, y3)
+		return x1, y1, x2, y2, x3, y3, x4, y4
+
+
 

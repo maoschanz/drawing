@@ -20,17 +20,15 @@ Drawing tools:
 |Rectangle  |Filling         |
 |Circle     |Regular circle or oval; Filling
 |Polygon    |Filling         |
-|Remove color|               | <!-- XXX should be a canvas tool -->
 |Free shape |Filling         |
 |Line       |Arrow, dashes, …|
 |Arc        |Arrow, dashes, …|
 |Insert text|Font and font size|
 |Selection  |Rectangle/free shape/adjacent color|
 |Color picker|               |
-|Paint      |                |
+|Paint      |Remove a color  |
 
 <!--|Brush      |           |Not done yet-->
-<!--|Gradient   |           |Not done yet-->
 
 Canvas/selection edition tools:
 
@@ -42,13 +40,18 @@ Canvas/selection edition tools:
 |Rotate     |           |         |
 |Saturate   |           |         |
 
+<!-- |Matrix     |           |         |Not done yet -->
+
 ### Available languages
 
 - Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
 - Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
 - French
-- Italian (thanks to [Jimmy](https://github.com/amivaleo))
+- German (thanks to [Onno Giesmann](https://github.com/Etamuk))
+- Hebrew (thanks to [moriel5](https://github.com/moriel5))
+- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo))
+- Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 
 ----

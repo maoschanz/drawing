@@ -61,14 +61,7 @@ class ToolSelect(ToolTemplate):
 	# Lifecycle implementations ################################################
 
 	def give_back_control(self, preserve_selection):
-		# if preserve_selection and self.selection_is_active(): # TODO
-		# operation = self.build_operation()
-		# if operation['operation_type'] is not None:
-		# This condition avoid applying empty operation if 'select' is the
-		# active tool when the window is opening itself.
-		# 	self.apply_operation(operation)
-		# if not preserve_selection:
-		# 	self.get_selection().reset()
+		# TODO tout le bazar sur has_been_used
 		if not preserve_selection:
 			self.unselect_and_apply()
 
