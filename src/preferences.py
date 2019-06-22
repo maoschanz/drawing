@@ -79,8 +79,19 @@ class DrawingPrefsWindow(Gtk.Window):
 		########################################################################
 		# Build the "tools" page ###############################################
 
+#		w = self.add_title(_("Appearance"), False)
+#		self.page_tools.add(w)
+
+		w = self.add_from_bool(_("Show tools names"), 'show-labels')
+		self.page_tools.add(w)
+
 		w = self.add_from_bool(_("Use big icons"), 'big-icons')
 		self.page_tools.add(w)
+
+#		w = self.add_title(_("Bonus tools"), True)
+#		self.page_tools.add(w)
+
+		# TODO
 
 		########################################################################
 		# Build the "advanced" page ############################################

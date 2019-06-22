@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.maoschanz.drawing 0.1\n"
+"Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 01:35+0200\n"
+"POT-Creation-Date: 2019-06-22 23:18+0200\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -85,7 +85,7 @@ msgid "Arc"
 msgstr "Arc"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:16
-#: src/tools/ui/tool_select.ui:83 src/tools/classic_tools/tool_rectangle.py:13
+#: src/tools/ui/tool_select.ui:84 src/tools/classic_tools/tool_rectangle.py:13
 msgid "Rectangle"
 msgstr "Rectangle"
 
@@ -126,7 +126,7 @@ msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:86
-#: src/ui/win-menus.ui:164 src/preferences.py:46
+#: src/ui/win-menus.ui:164 src/preferences.py:44
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -306,8 +306,13 @@ msgstr "Aller vers le bas"
 msgid "Go Right"
 msgstr "Aller à droite"
 
+#. #######################################################################
+#. Build the "tools" page ###############################################
+#. w = self.add_title(_("Appearance"), False)
+#. self.page_tools.add(w)
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:82 src/ui/win-menus.ui:160
+#: src/preferences.py:85
 msgid "Show tools names"
 msgstr "Afficher le nom des outils"
 
@@ -389,61 +394,22 @@ msgstr "Utiliser cet éditeur par défaut"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/ui/preferences.ui:65
-msgid "New images"
-msgstr "Nouvelles images"
+#: src/ui/preferences.ui:60
+msgid "Images"
+msgstr "Images"
 
-#: src/ui/preferences.ui:83
-msgid "Default background"
-msgstr "Arrière-plan par défaut"
-
-#: src/ui/preferences.ui:116
-msgid "Default width"
-msgstr "Largeur par défaut"
-
-#: src/ui/preferences.ui:149
-msgid "Default height"
-msgstr "Hauteur par défaut"
-
-#: src/ui/preferences.ui:182
+#: src/ui/preferences.ui:72
 msgid "Tools"
 msgstr "Outils"
 
-#: src/ui/preferences.ui:199
-msgid "Use big icons"
-msgstr "Utiliser de grosses icones"
-
-#: src/ui/preferences.ui:225
-msgid "Basic"
-msgstr "Basique"
-
-#: src/ui/preferences.ui:242
-msgid "User interface"
-msgstr "Interface"
-
-#: src/ui/preferences.ui:260
-msgid "Layout"
-msgstr "Organisation"
-
-#: src/ui/preferences.ui:292 src/ui/preferences.ui:303
-msgid "Preview size"
-msgstr "Taille de l'aperçu"
-
-#: src/ui/preferences.ui:327
-msgid "Opened images"
-msgstr "Images ouvertes"
-
-#: src/ui/preferences.ui:344
-msgid "Always add transparency"
-msgstr "Ajouter de la transparence"
-
-#: src/ui/preferences.ui:386
-msgid "Development features"
-msgstr "Fonctionnalités de test"
-
-#: src/ui/preferences.ui:412
-msgid "Advanced"
-msgstr "Avancé"
+#. w = self.add_title(_("Bonus tools"), True)
+#. self.page_tools.add(w)
+#. TODO
+#. #######################################################################
+#. Build the "advanced" page ############################################
+#: src/ui/preferences.ui:85 src/preferences.py:99
+msgid "Advanced options"
+msgstr "Options avancées"
 
 #: src/ui/properties.ui:20
 msgid "Path"
@@ -563,7 +529,7 @@ msgstr "Menu des options"
 msgid "Back to previous tool"
 msgstr "Revenir à l'outil précédent"
 
-#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:16
+#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:15
 msgid "Selection"
 msgstr "Sélection"
 
@@ -737,29 +703,71 @@ msgstr "Annuler %s"
 msgid "Redo %s"
 msgstr "Rétablir %s"
 
-#: src/preferences.py:81
+#. #######################################################################
+#. Build the "images" page ##############################################
+#: src/preferences.py:52
+msgid "New images"
+msgstr "Nouvelles images"
+
+#: src/preferences.py:55
+msgid "Default width"
+msgstr "Largeur par défaut"
+
+#: src/preferences.py:58
+msgid "Default height"
+msgstr "Hauteur par défaut"
+
+#: src/preferences.py:70
+msgid "Default background"
+msgstr "Arrière-plan par défaut"
+
+#: src/preferences.py:73
+msgid "Opened images"
+msgstr "Images ouvertes"
+
+#: src/preferences.py:76
+msgid "Always add transparency"
+msgstr "Ajouter de la transparence"
+
+#: src/preferences.py:88
+msgid "Use big icons"
+msgstr "Utiliser de grosses icones"
+
+#: src/preferences.py:102
+msgid "Preview size"
+msgstr "Taille de l'aperçu"
+
+#: src/preferences.py:106
 msgid "Automatic"
 msgstr "Automatique"
 
-#: src/preferences.py:82
+#: src/preferences.py:107
 msgid "Compact"
 msgstr "Compacte"
 
-#: src/preferences.py:84
+#: src/preferences.py:109
 msgid "Legacy"
 msgstr "Traditionnelle"
 
-#: src/preferences.py:85
+#: src/preferences.py:110
 msgid "Menubar only"
 msgstr "Barre de menus"
 
-#: src/preferences.py:86
+#: src/preferences.py:111
 msgid "Toolbar only"
 msgstr "Barre de boutons"
 
-#: src/preferences.py:88
+#: src/preferences.py:113
 msgid "Everything (testing only)"
 msgstr "Tout (ne pas utiliser)"
+
+#: src/preferences.py:116
+msgid "Layout"
+msgstr "Organisation"
+
+#: src/preferences.py:121
+msgid "Development features"
+msgstr "Fonctionnalités de test"
 
 #: src/properties.py:93
 msgid "This surface format already supports transparency."
@@ -802,14 +810,14 @@ msgstr "Forme de mine"
 #: src/tools/classic_tools/tool_line.py:23
 #: src/tools/classic_tools/tool_line.py:35
 #: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:42
+#: src/tools/classic_tools/tool_pencil.py:44
 msgid "Round"
 msgstr "Ronde"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
 #: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
 #: src/tools/classic_tools/tool_line.py:32
-#: src/tools/classic_tools/tool_pencil.py:38
+#: src/tools/classic_tools/tool_pencil.py:40
 msgid "Square"
 msgstr "Carrée"
 
@@ -834,28 +842,28 @@ msgstr "Mode"
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
 #: src/tools/ui/tool_pencil.ui:31 src/tools/classic_tools/tool_arc.py:50
 #: src/tools/classic_tools/tool_line.py:50
-#: src/tools/classic_tools/tool_pencil.py:57
+#: src/tools/classic_tools/tool_pencil.py:59
 msgid "Classic"
 msgstr "Classique"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:44
 #: src/tools/ui/tool_pencil.ui:36 src/tools/classic_tools/tool_arc.py:44
 #: src/tools/classic_tools/tool_line.py:44
-#: src/tools/classic_tools/tool_pencil.py:51
+#: src/tools/classic_tools/tool_pencil.py:53
 msgid "Source color"
 msgstr "Couleur source"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41 src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_line.py:47
-#: src/tools/classic_tools/tool_pencil.py:54
+#: src/tools/classic_tools/tool_pencil.py:56
 msgid "Eraser"
 msgstr "Effaceur"
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
 #: src/tools/ui/tool_pencil.ui:46 src/tools/classic_tools/tool_arc.py:41
 #: src/tools/classic_tools/tool_line.py:41
-#: src/tools/classic_tools/tool_pencil.py:48
+#: src/tools/classic_tools/tool_pencil.py:50
 msgid "Difference"
 msgstr "Différence"
 
@@ -935,9 +943,13 @@ msgstr "Effacer et remplacer"
 msgid "Clipping"
 msgstr "Détourage"
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
 msgid "Thin"
 msgstr "Fine"
+
+#: src/tools/ui/tool_pencil.ui:53
+msgid "Artificial smoothness"
+msgstr "Lissage artificiel"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
@@ -967,11 +979,11 @@ msgstr "Éditer"
 msgid "Selection type"
 msgstr "Type de sélection"
 
-#: src/tools/ui/tool_select.ui:88
+#: src/tools/ui/tool_select.ui:90
 msgid "Freehand"
 msgstr "À main levée"
 
-#: src/tools/ui/tool_select.ui:93
+#: src/tools/ui/tool_select.ui:96
 msgid "Similar color"
 msgstr "Couleur similaire"
 
@@ -995,7 +1007,7 @@ msgstr "Options de l'arc"
 #: src/tools/classic_tools/tool_arc.py:66
 #: src/tools/classic_tools/tool_line.py:63
 #: src/tools/classic_tools/tool_line.py:67
-#: src/tools/classic_tools/tool_pencil.py:68
+#: src/tools/classic_tools/tool_pencil.py:71
 msgid "With dashes"
 msgstr "En pointillés"
 
@@ -1019,11 +1031,15 @@ msgstr "Options de la ligne"
 msgid "Painting options"
 msgstr "Options de peinture"
 
+#: src/tools/classic_tools/tool_paint.py:25
+msgid "Click on an area to replace its color by transparency"
+msgstr "Cliquez sur une zone pour remplacer sa couleur par de la transparence"
+
 #: src/tools/classic_tools/tool_polygon.py:45
 msgid "Polygon options"
 msgstr "Options du polygone"
 
-#: src/tools/classic_tools/tool_pencil.py:60
+#: src/tools/classic_tools/tool_pencil.py:62
 msgid "Pencil options"
 msgstr "Options du crayon"
 
@@ -1035,28 +1051,28 @@ msgstr "Couleur"
 msgid "Rectangle options"
 msgstr "Options du rectangle"
 
-#: src/tools/selection_tools/tool_select.py:21
-#: src/tools/selection_tools/tool_select.py:41
+#: src/tools/selection_tools/tool_select.py:20
+#: src/tools/selection_tools/tool_select.py:40
 msgid "Rectangle selection"
 msgstr "Selection rectangulaire"
 
-#: src/tools/selection_tools/tool_select.py:44
+#: src/tools/selection_tools/tool_select.py:43
 msgid "Free selection"
 msgstr "Sélection libre"
 
-#: src/tools/selection_tools/tool_select.py:47
+#: src/tools/selection_tools/tool_select.py:46
 msgid "Color selection"
 msgstr "Sélection par couleur"
 
-#: src/tools/selection_tools/tool_select.py:50
+#: src/tools/selection_tools/tool_select.py:49
 msgid "Selection options"
 msgstr "Options de la sélection"
 
-#: src/tools/selection_tools/tool_select.py:56
+#: src/tools/selection_tools/tool_select.py:55
 msgid "Drag the selection or right-click on the canvas"
 msgstr "Faites glisser la sélection ou faites un clic-droit sur le canevas"
 
-#: src/tools/selection_tools/tool_select.py:58
+#: src/tools/selection_tools/tool_select.py:57
 msgid "Select an area or right-click on the canvas"
 msgstr "Sélectionner une zone ou faites un clic-droit sur le canevas"
 
@@ -1083,4 +1099,3 @@ msgstr "Redimensionner la sélection"
 #: src/tools/canvas_tools/tool_scale.py:53
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
-

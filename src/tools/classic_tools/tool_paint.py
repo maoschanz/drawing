@@ -20,6 +20,12 @@ class ToolPaint(ToolTemplate):
 	def get_options_label(self):
 		return _("Painting options")
 
+	def get_edition_status(self):
+		if self.get_option_value('paint_algo') == 'clipping':
+			return _("Click on an area to replace its color by transparency")
+		else:
+			return self.label
+
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		print("press")
 		if event.button == 1:

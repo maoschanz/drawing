@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 01:35+0200\n"
+"POT-Creation-Date: 2019-06-22 23:18+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -88,7 +88,7 @@ msgid "Arc"
 msgstr "קשת"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:16
-#: src/tools/ui/tool_select.ui:83 src/tools/classic_tools/tool_rectangle.py:13
+#: src/tools/ui/tool_select.ui:84 src/tools/classic_tools/tool_rectangle.py:13
 msgid "Rectangle"
 msgstr "מלבן"
 
@@ -129,7 +129,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:86
-#: src/ui/win-menus.ui:164 src/preferences.py:46
+#: src/ui/win-menus.ui:164 src/preferences.py:44
 msgid "Preferences"
 msgstr "מאפיינים"
 
@@ -322,8 +322,13 @@ msgstr "לך למטה"
 msgid "Go Right"
 msgstr "לך ימינה"
 
+#. #######################################################################
+#. Build the "tools" page ###############################################
+#. w = self.add_title(_("Appearance"), False)
+#. self.page_tools.add(w)
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:82 src/ui/win-menus.ui:160
+#: src/preferences.py:85
 msgid "Show tools names"
 msgstr "הצג שמות כלים"
 
@@ -407,62 +412,25 @@ msgstr "עשה שימוש בעורך זה בברירת המחדל"
 msgid "Open"
 msgstr "פתיחה"
 
-#: src/ui/preferences.ui:65
-msgid "New images"
-msgstr "תמונות חדשות"
+#: src/ui/preferences.ui:60
+#, fuzzy
+msgid "Images"
+msgstr "תמונה"
 
-#: src/ui/preferences.ui:83
-msgid "Default background"
-msgstr "רקע ברירת מחדל"
-
-#: src/ui/preferences.ui:116
-msgid "Default width"
-msgstr "רוחב ברירת מחדל"
-
-#: src/ui/preferences.ui:149
-msgid "Default height"
-msgstr "גובה ברירת מחדל"
-
-#: src/ui/preferences.ui:182
+#: src/ui/preferences.ui:72
 #, fuzzy
 msgid "Tools"
 msgstr "_כלים"
 
-#: src/ui/preferences.ui:199
-msgid "Use big icons"
-msgstr ""
-
-#: src/ui/preferences.ui:225
-msgid "Basic"
-msgstr "בסיסי"
-
-#: src/ui/preferences.ui:242
-msgid "User interface"
-msgstr "ממשק משתמש"
-
-#: src/ui/preferences.ui:260
-msgid "Layout"
-msgstr "פריסה"
-
-#: src/ui/preferences.ui:292 src/ui/preferences.ui:303
-msgid "Preview size"
-msgstr "גודל תצוגה מקדימה"
-
-#: src/ui/preferences.ui:327
-msgid "Opened images"
-msgstr "תמונות שנפתחו"
-
-#: src/ui/preferences.ui:344
-msgid "Always add transparency"
-msgstr "תמיד להוסיף שקיפות"
-
-#: src/ui/preferences.ui:386
-msgid "Development features"
-msgstr "תכונות פיתוח"
-
-#: src/ui/preferences.ui:412
-msgid "Advanced"
-msgstr "מתקדם"
+#. w = self.add_title(_("Bonus tools"), True)
+#. self.page_tools.add(w)
+#. TODO
+#. #######################################################################
+#. Build the "advanced" page ############################################
+#: src/ui/preferences.ui:85 src/preferences.py:99
+#, fuzzy
+msgid "Advanced options"
+msgstr "אפשרויות קשת"
 
 #: src/ui/properties.ui:20
 msgid "Path"
@@ -584,7 +552,7 @@ msgstr "תפריט אפשרויות"
 msgid "Back to previous tool"
 msgstr "חזרה לכלי הקודם"
 
-#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:16
+#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:15
 msgid "Selection"
 msgstr "בחירה"
 
@@ -765,30 +733,72 @@ msgstr "ביטול פעולה %s"
 msgid "Redo %s"
 msgstr "חידוש פעולה %s"
 
-#: src/preferences.py:81
+#. #######################################################################
+#. Build the "images" page ##############################################
+#: src/preferences.py:52
+msgid "New images"
+msgstr "תמונות חדשות"
+
+#: src/preferences.py:55
+msgid "Default width"
+msgstr "רוחב ברירת מחדל"
+
+#: src/preferences.py:58
+msgid "Default height"
+msgstr "גובה ברירת מחדל"
+
+#: src/preferences.py:70
+msgid "Default background"
+msgstr "רקע ברירת מחדל"
+
+#: src/preferences.py:73
+msgid "Opened images"
+msgstr "תמונות שנפתחו"
+
+#: src/preferences.py:76
+msgid "Always add transparency"
+msgstr "תמיד להוסיף שקיפות"
+
+#: src/preferences.py:88
+msgid "Use big icons"
+msgstr ""
+
+#: src/preferences.py:102
+msgid "Preview size"
+msgstr "גודל תצוגה מקדימה"
+
+#: src/preferences.py:106
 msgid "Automatic"
 msgstr "אוטומטי"
 
-#: src/preferences.py:82
+#: src/preferences.py:107
 msgid "Compact"
 msgstr "דחוס"
 
-#: src/preferences.py:84
+#: src/preferences.py:109
 msgid "Legacy"
 msgstr "מסורתיבש"
 
-#: src/preferences.py:85
+#: src/preferences.py:110
 msgid "Menubar only"
 msgstr "סרגל תפריט בלבד"
 
-#: src/preferences.py:86
+#: src/preferences.py:111
 msgid "Toolbar only"
 msgstr "סרגל כלים בלבד"
 
 # I had to translate this to "Everything (for testing only)"
-#: src/preferences.py:88
+#: src/preferences.py:113
 msgid "Everything (testing only)"
 msgstr "הכל (לבחינה בלבד)"
+
+#: src/preferences.py:116
+msgid "Layout"
+msgstr "פריסה"
+
+#: src/preferences.py:121
+msgid "Development features"
+msgstr "תכונות פיתוח"
 
 #: src/properties.py:93
 msgid "This surface format already supports transparency."
@@ -830,14 +840,14 @@ msgstr "צורת פס"
 #: src/tools/classic_tools/tool_line.py:23
 #: src/tools/classic_tools/tool_line.py:35
 #: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:42
+#: src/tools/classic_tools/tool_pencil.py:44
 msgid "Round"
 msgstr "עגול"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
 #: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
 #: src/tools/classic_tools/tool_line.py:32
-#: src/tools/classic_tools/tool_pencil.py:38
+#: src/tools/classic_tools/tool_pencil.py:40
 msgid "Square"
 msgstr "מרובע"
 
@@ -862,28 +872,28 @@ msgstr "סגנון"
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
 #: src/tools/ui/tool_pencil.ui:31 src/tools/classic_tools/tool_arc.py:50
 #: src/tools/classic_tools/tool_line.py:50
-#: src/tools/classic_tools/tool_pencil.py:57
+#: src/tools/classic_tools/tool_pencil.py:59
 msgid "Classic"
 msgstr "רגיל"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:44
 #: src/tools/ui/tool_pencil.ui:36 src/tools/classic_tools/tool_arc.py:44
 #: src/tools/classic_tools/tool_line.py:44
-#: src/tools/classic_tools/tool_pencil.py:51
+#: src/tools/classic_tools/tool_pencil.py:53
 msgid "Source color"
 msgstr "צבע מקור"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41 src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_line.py:47
-#: src/tools/classic_tools/tool_pencil.py:54
+#: src/tools/classic_tools/tool_pencil.py:56
 msgid "Eraser"
 msgstr "מחק"
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
 #: src/tools/ui/tool_pencil.ui:46 src/tools/classic_tools/tool_arc.py:41
 #: src/tools/classic_tools/tool_line.py:41
-#: src/tools/classic_tools/tool_pencil.py:48
+#: src/tools/classic_tools/tool_pencil.py:50
 msgid "Difference"
 msgstr "שוני"
 
@@ -964,9 +974,13 @@ msgstr "מחק והחלף"
 msgid "Clipping"
 msgstr ""
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
 msgid "Thin"
 msgstr "דק"
+
+#: src/tools/ui/tool_pencil.ui:53
+msgid "Artificial smoothness"
+msgstr ""
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
@@ -996,11 +1010,11 @@ msgstr "עריכה"
 msgid "Selection type"
 msgstr "סוג בחירה"
 
-#: src/tools/ui/tool_select.ui:88
+#: src/tools/ui/tool_select.ui:90
 msgid "Freehand"
 msgstr "חופשי"
 
-#: src/tools/ui/tool_select.ui:93
+#: src/tools/ui/tool_select.ui:96
 msgid "Similar color"
 msgstr "צבע דומה"
 
@@ -1024,7 +1038,7 @@ msgstr "אפשרויות קשת"
 #: src/tools/classic_tools/tool_arc.py:66
 #: src/tools/classic_tools/tool_line.py:63
 #: src/tools/classic_tools/tool_line.py:67
-#: src/tools/classic_tools/tool_pencil.py:68
+#: src/tools/classic_tools/tool_pencil.py:71
 msgid "With dashes"
 msgstr "עם קווים מפרידים"
 
@@ -1048,11 +1062,15 @@ msgstr "אפשרויות קו"
 msgid "Painting options"
 msgstr "אפשרויות צביעה"
 
+#: src/tools/classic_tools/tool_paint.py:25
+msgid "Click on an area to replace its color by transparency"
+msgstr "לחץ על אזור כדי  להחליף את צבעו לפי שקיפות"
+
 #: src/tools/classic_tools/tool_polygon.py:45
 msgid "Polygon options"
 msgstr "אפשרויות מצולע"
 
-#: src/tools/classic_tools/tool_pencil.py:60
+#: src/tools/classic_tools/tool_pencil.py:62
 msgid "Pencil options"
 msgstr "אפשרויות עיפרון"
 
@@ -1064,30 +1082,30 @@ msgstr "בוחר צבעים"
 msgid "Rectangle options"
 msgstr "אפשרויות מלבן"
 
-#: src/tools/selection_tools/tool_select.py:21
-#: src/tools/selection_tools/tool_select.py:41
+#: src/tools/selection_tools/tool_select.py:20
+#: src/tools/selection_tools/tool_select.py:40
 msgid "Rectangle selection"
 msgstr "בחירה מלבנית"
 
-#: src/tools/selection_tools/tool_select.py:44
+#: src/tools/selection_tools/tool_select.py:43
 msgid "Free selection"
 msgstr "בחירה חופשית"
 
-#: src/tools/selection_tools/tool_select.py:47
+#: src/tools/selection_tools/tool_select.py:46
 msgid "Color selection"
 msgstr "אפשרויות צבע"
 
-#: src/tools/selection_tools/tool_select.py:50
+#: src/tools/selection_tools/tool_select.py:49
 msgid "Selection options"
 msgstr "אפשרויות בחירה"
 
 # I had to translate "right-click" to "click a right-click", since it would not make any sense otherwise.
-#: src/tools/selection_tools/tool_select.py:56
+#: src/tools/selection_tools/tool_select.py:55
 msgid "Drag the selection or right-click on the canvas"
 msgstr "גרור את הבחירה או לחץ לחיצה ימנית על לוח הציור"
 
 # I had to translate "left-click" to "click a left-click", because otherwise it would not make any sense.
-#: src/tools/selection_tools/tool_select.py:58
+#: src/tools/selection_tools/tool_select.py:57
 msgid "Select an area or right-click on the canvas"
 msgstr "גרור את הבחירה או לחץ לחיצה שמאלית על לוח הציור"
 
@@ -1115,23 +1133,17 @@ msgstr "שינוי קנה מידה של הבחירה"
 msgid "Scaling the canvas"
 msgstr "שינוי קנה מידה של לוח הציור"
 
-#~ msgid "Cairo operator"
-#~ msgstr "מפעילי קיירו"
+#~ msgid "Basic"
+#~ msgstr "בסיסי"
 
-#~ msgid "Unbounded"
-#~ msgstr "חסר גבולות"
+#~ msgid "User interface"
+#~ msgstr "ממשק משתמש"
 
-#~ msgid "Algorithm"
-#~ msgstr "סדרה"
+#~ msgid "Advanced"
+#~ msgstr "מתקדם"
 
 #~ msgid "Remove color"
 #~ msgstr "הסרת צבע"
-
-#~ msgid "Click on an area to replace its color by transparency"
-#~ msgstr "לחץ על אזור כדי  להחליף את צבעו לפי שקיפות"
-
-#~ msgid "Experiment"
-#~ msgstr "ניסוי"
 
 #~ msgid "Summary"
 #~ msgstr "תקציר"

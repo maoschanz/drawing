@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 01:35+0200\n"
+"POT-Creation-Date: 2019-06-22 23:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,7 +84,7 @@ msgid "Arc"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:16
-#: src/tools/ui/tool_select.ui:83 src/tools/classic_tools/tool_rectangle.py:13
+#: src/tools/ui/tool_select.ui:84 src/tools/classic_tools/tool_rectangle.py:13
 msgid "Rectangle"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:86
-#: src/ui/win-menus.ui:164 src/preferences.py:46
+#: src/ui/win-menus.ui:164 src/preferences.py:44
 msgid "Preferences"
 msgstr ""
 
@@ -305,8 +305,13 @@ msgstr ""
 msgid "Go Right"
 msgstr ""
 
+#. #######################################################################
+#. Build the "tools" page ###############################################
+#. w = self.add_title(_("Appearance"), False)
+#. self.page_tools.add(w)
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:82 src/ui/win-menus.ui:160
+#: src/preferences.py:85
 msgid "Show tools names"
 msgstr ""
 
@@ -388,60 +393,21 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-#: src/ui/preferences.ui:65
-msgid "New images"
+#: src/ui/preferences.ui:60
+msgid "Images"
 msgstr ""
 
-#: src/ui/preferences.ui:83
-msgid "Default background"
-msgstr ""
-
-#: src/ui/preferences.ui:116
-msgid "Default width"
-msgstr ""
-
-#: src/ui/preferences.ui:149
-msgid "Default height"
-msgstr ""
-
-#: src/ui/preferences.ui:182
+#: src/ui/preferences.ui:72
 msgid "Tools"
 msgstr ""
 
-#: src/ui/preferences.ui:199
-msgid "Use big icons"
-msgstr ""
-
-#: src/ui/preferences.ui:225
-msgid "Basic"
-msgstr ""
-
-#: src/ui/preferences.ui:242
-msgid "User interface"
-msgstr ""
-
-#: src/ui/preferences.ui:260
-msgid "Layout"
-msgstr ""
-
-#: src/ui/preferences.ui:292 src/ui/preferences.ui:303
-msgid "Preview size"
-msgstr ""
-
-#: src/ui/preferences.ui:327
-msgid "Opened images"
-msgstr ""
-
-#: src/ui/preferences.ui:344
-msgid "Always add transparency"
-msgstr ""
-
-#: src/ui/preferences.ui:386
-msgid "Development features"
-msgstr ""
-
-#: src/ui/preferences.ui:412
-msgid "Advanced"
+#. w = self.add_title(_("Bonus tools"), True)
+#. self.page_tools.add(w)
+#. TODO
+#. #######################################################################
+#. Build the "advanced" page ############################################
+#: src/ui/preferences.ui:85 src/preferences.py:99
+msgid "Advanced options"
 msgstr ""
 
 #: src/ui/properties.ui:20
@@ -562,7 +528,7 @@ msgstr ""
 msgid "Back to previous tool"
 msgstr ""
 
-#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:16
+#: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:15
 msgid "Selection"
 msgstr ""
 
@@ -733,28 +699,70 @@ msgstr ""
 msgid "Redo %s"
 msgstr ""
 
-#: src/preferences.py:81
-msgid "Automatic"
+#. #######################################################################
+#. Build the "images" page ##############################################
+#: src/preferences.py:52
+msgid "New images"
 msgstr ""
 
-#: src/preferences.py:82
-msgid "Compact"
+#: src/preferences.py:55
+msgid "Default width"
 msgstr ""
 
-#: src/preferences.py:84
-msgid "Legacy"
+#: src/preferences.py:58
+msgid "Default height"
 msgstr ""
 
-#: src/preferences.py:85
-msgid "Menubar only"
+#: src/preferences.py:70
+msgid "Default background"
 msgstr ""
 
-#: src/preferences.py:86
-msgid "Toolbar only"
+#: src/preferences.py:73
+msgid "Opened images"
+msgstr ""
+
+#: src/preferences.py:76
+msgid "Always add transparency"
 msgstr ""
 
 #: src/preferences.py:88
+msgid "Use big icons"
+msgstr ""
+
+#: src/preferences.py:102
+msgid "Preview size"
+msgstr ""
+
+#: src/preferences.py:106
+msgid "Automatic"
+msgstr ""
+
+#: src/preferences.py:107
+msgid "Compact"
+msgstr ""
+
+#: src/preferences.py:109
+msgid "Legacy"
+msgstr ""
+
+#: src/preferences.py:110
+msgid "Menubar only"
+msgstr ""
+
+#: src/preferences.py:111
+msgid "Toolbar only"
+msgstr ""
+
+#: src/preferences.py:113
 msgid "Everything (testing only)"
+msgstr ""
+
+#: src/preferences.py:116
+msgid "Layout"
+msgstr ""
+
+#: src/preferences.py:121
+msgid "Development features"
 msgstr ""
 
 #: src/properties.py:93
@@ -791,14 +799,14 @@ msgstr ""
 #: src/tools/classic_tools/tool_line.py:23
 #: src/tools/classic_tools/tool_line.py:35
 #: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:42
+#: src/tools/classic_tools/tool_pencil.py:44
 msgid "Round"
 msgstr ""
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
 #: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
 #: src/tools/classic_tools/tool_line.py:32
-#: src/tools/classic_tools/tool_pencil.py:38
+#: src/tools/classic_tools/tool_pencil.py:40
 msgid "Square"
 msgstr ""
 
@@ -823,28 +831,28 @@ msgstr ""
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
 #: src/tools/ui/tool_pencil.ui:31 src/tools/classic_tools/tool_arc.py:50
 #: src/tools/classic_tools/tool_line.py:50
-#: src/tools/classic_tools/tool_pencil.py:57
+#: src/tools/classic_tools/tool_pencil.py:59
 msgid "Classic"
 msgstr ""
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:44
 #: src/tools/ui/tool_pencil.ui:36 src/tools/classic_tools/tool_arc.py:44
 #: src/tools/classic_tools/tool_line.py:44
-#: src/tools/classic_tools/tool_pencil.py:51
+#: src/tools/classic_tools/tool_pencil.py:53
 msgid "Source color"
 msgstr ""
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41 src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_line.py:47
-#: src/tools/classic_tools/tool_pencil.py:54
+#: src/tools/classic_tools/tool_pencil.py:56
 msgid "Eraser"
 msgstr ""
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
 #: src/tools/ui/tool_pencil.ui:46 src/tools/classic_tools/tool_arc.py:41
 #: src/tools/classic_tools/tool_line.py:41
-#: src/tools/classic_tools/tool_pencil.py:48
+#: src/tools/classic_tools/tool_pencil.py:50
 msgid "Difference"
 msgstr ""
 
@@ -924,8 +932,12 @@ msgstr ""
 msgid "Clipping"
 msgstr ""
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
 msgid "Thin"
+msgstr ""
+
+#: src/tools/ui/tool_pencil.ui:53
+msgid "Artificial smoothness"
 msgstr ""
 
 #: src/tools/ui/tool_rotate.ui:42
@@ -956,11 +968,11 @@ msgstr ""
 msgid "Selection type"
 msgstr ""
 
-#: src/tools/ui/tool_select.ui:88
+#: src/tools/ui/tool_select.ui:90
 msgid "Freehand"
 msgstr ""
 
-#: src/tools/ui/tool_select.ui:93
+#: src/tools/ui/tool_select.ui:96
 msgid "Similar color"
 msgstr ""
 
@@ -984,7 +996,7 @@ msgstr ""
 #: src/tools/classic_tools/tool_arc.py:66
 #: src/tools/classic_tools/tool_line.py:63
 #: src/tools/classic_tools/tool_line.py:67
-#: src/tools/classic_tools/tool_pencil.py:68
+#: src/tools/classic_tools/tool_pencil.py:71
 msgid "With dashes"
 msgstr ""
 
@@ -1008,11 +1020,15 @@ msgstr ""
 msgid "Painting options"
 msgstr ""
 
+#: src/tools/classic_tools/tool_paint.py:25
+msgid "Click on an area to replace its color by transparency"
+msgstr ""
+
 #: src/tools/classic_tools/tool_polygon.py:45
 msgid "Polygon options"
 msgstr ""
 
-#: src/tools/classic_tools/tool_pencil.py:60
+#: src/tools/classic_tools/tool_pencil.py:62
 msgid "Pencil options"
 msgstr ""
 
@@ -1024,28 +1040,28 @@ msgstr ""
 msgid "Rectangle options"
 msgstr ""
 
-#: src/tools/selection_tools/tool_select.py:21
-#: src/tools/selection_tools/tool_select.py:41
+#: src/tools/selection_tools/tool_select.py:20
+#: src/tools/selection_tools/tool_select.py:40
 msgid "Rectangle selection"
 msgstr ""
 
-#: src/tools/selection_tools/tool_select.py:44
+#: src/tools/selection_tools/tool_select.py:43
 msgid "Free selection"
 msgstr ""
 
-#: src/tools/selection_tools/tool_select.py:47
+#: src/tools/selection_tools/tool_select.py:46
 msgid "Color selection"
 msgstr ""
 
-#: src/tools/selection_tools/tool_select.py:50
+#: src/tools/selection_tools/tool_select.py:49
 msgid "Selection options"
 msgstr ""
 
-#: src/tools/selection_tools/tool_select.py:56
+#: src/tools/selection_tools/tool_select.py:55
 msgid "Drag the selection or right-click on the canvas"
 msgstr ""
 
-#: src/tools/selection_tools/tool_select.py:58
+#: src/tools/selection_tools/tool_select.py:57
 msgid "Select an area or right-click on the canvas"
 msgstr ""
 
