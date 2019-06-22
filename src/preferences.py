@@ -27,15 +27,13 @@ class DrawingPrefsWindow(Gtk.Window):
 	content_area = GtkTemplate.Child()
 	stack_switcher = GtkTemplate.Child()
 
-	background_color_btn = GtkTemplate.Child()
-	devel_switch = GtkTemplate.Child()
-	devel_box = GtkTemplate.Child()
-	preview_btn = GtkTemplate.Child()
-	width_btn = GtkTemplate.Child()
-	height_btn = GtkTemplate.Child()
-	layout_combobox = GtkTemplate.Child()
-	add_alpha_switch = GtkTemplate.Child()
-	big_icons_switch = GtkTemplate.Child()
+	page_images = GtkTemplate.Child()
+	page_tools = GtkTemplate.Child()
+	page_advanced = GtkTemplate.Child()
+
+	adj_width = GtkTemplate.Child()
+	adj_height = GtkTemplate.Child()
+	adj_preview = GtkTemplate.Child()
 
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
@@ -48,68 +46,122 @@ class DrawingPrefsWindow(Gtk.Window):
 			self.content_area.remove(self.stack_switcher)
 			header_bar.set_custom_title(self.stack_switcher)
 
+		########################################################################
+		# Build the "images" page ##############################################
+
+		w = self.add_title(_("New images"), False)
+		self.page_images.add(w)
+
+		w = self.add_from_adj(_("Default width"), 'default-width', self.adj_width)
+		self.page_images.add(w)
+
+		w = self.add_from_adj(_("Default height"), 'default-height', self.adj_height)
+		self.page_images.add(w)
+
+		background_color_btn = Gtk.ColorButton(use_alpha=True)
 		background_rgba = self._settings.get_strv('background-rgba')
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
 		a = float(background_rgba[3])
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		self.background_color_btn.set_rgba(color)
-		self.background_color_btn.connect('color-set', self.on_background_changed)
+		background_color_btn.set_rgba(color)
+		background_color_btn.connect('color-set', self.on_background_changed)
+		w = self.add_from_widget(_("Default background"), background_color_btn)
+		self.page_images.add(w)
 
-		self.devel_switch.connect('notify::active', self.on_devel_changed)
+		w = self.add_title(_("Opened images"), True)
+		self.page_images.add(w)
+
+		w = self.add_from_bool(_("Always add transparency"), 'add-alpha')
+		self.page_images.add(w)
+
+		########################################################################
+		# Build the "tools" page ###############################################
+
+		w = self.add_from_bool(_("Use big icons"), 'big-icons')
+		self.page_tools.add(w)
+
+		########################################################################
+		# Build the "advanced" page ############################################
+
+		w = self.add_title(_("Advanced options"), False)
+		self.page_advanced.add(w)
+
+		w = self.add_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
+		self.page_advanced.add(w)
+
+		layout_combobox = Gtk.ComboBoxText()
+		layout_combobox.append('auto', _("Automatic"))
+		layout_combobox.append('csd', _("Compact"))
+		layout_combobox.append('csd-eos', 'elementary OS')
+		layout_combobox.append('ssd', _("Legacy"))
+		layout_combobox.append('ssd-menubar', _("Menubar only"))
+		layout_combobox.append('ssd-toolbar', _("Toolbar only"))
+		if is_beta and self._settings.get_boolean('devel-only'):
+			layout_combobox.append('everything', _("Everything (testing only)"))
+		layout_combobox.set_active_id(self._settings.get_string('decorations'))
+		layout_combobox.connect('changed', self.on_layout_changed)
+		w = self.add_from_widget(_("Layout"), layout_combobox)
+		self.page_advanced.add(w)
+
 		if not is_beta:
 			self._settings.set_boolean('devel-only', False)
-			self.devel_box.set_visible(False)
-		self.devel_switch.set_active(self._settings.get_boolean('devel-only'))
+		w = self.add_from_bool(_("Development features"), 'devel-only')
+		self.page_advanced.add(w)
+		if not is_beta:
+			w.set_visible(False)
 
-		self.big_icons_switch.set_active(self._settings.get_boolean('big-icons'))
-		self.big_icons_switch.connect('notify::active', self.on_icons_changed)
+	############################################################################
 
-		self.add_alpha_switch.set_active(self._settings.get_boolean('add-alpha'))
-		self.add_alpha_switch.connect('notify::active', self.on_alpha_changed)
+	def add_title(self, text, with_margin):
+		label = Gtk.Label(label=('<b>'+text+'</b>'), halign=Gtk.Align.START, use_markup=True)
+		if with_margin:
+			label.set_margin_top(12)
+		label.set_visible(True)
+		return label
 
-		self.width_btn.set_value(self._settings.get_int('default-width'))
-		self.height_btn.set_value(self._settings.get_int('default-height'))
-		self.width_btn.connect('value-changed', self.on_width_changed)
-		self.height_btn.connect('value-changed', self.on_height_changed)
+	def add_from_widget(self, text, widget):
+		label = Gtk.Label(label=text)
+		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+		box.pack_start(label, expand=False, fill=False, padding=0)
+		box.pack_end(widget, expand=False, fill=False, padding=0)
+		box.show_all()
+		return box
 
-		self.preview_btn.set_value(self._settings.get_int('preview-size'))
-		self.preview_btn.connect('value-changed', self.on_preview_changed)
+	def add_from_bool(self, text, key):
+		label = Gtk.Label(label=text)
+		switch = Gtk.Switch()
+		switch.set_active(self._settings.get_boolean(key))
+		switch.connect('notify::active', self.on_bool_changed, key)
+		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+		box.pack_start(label, expand=False, fill=False, padding=0)
+		box.pack_end(switch, expand=False, fill=False, padding=0)
+		box.show_all()
+		return box
 
-		self.layout_combobox.append('auto', _("Automatic"))
-		self.layout_combobox.append('csd', _("Compact"))
-		self.layout_combobox.append('csd-eos', 'elementary OS')
-		self.layout_combobox.append('ssd', _("Legacy"))
-		self.layout_combobox.append('ssd-menubar', _("Menubar only"))
-		self.layout_combobox.append('ssd-toolbar', _("Toolbar only"))
-		if is_beta and self._settings.get_boolean('devel-only'):
-			self.layout_combobox.append('everything', _("Everything (testing only)"))
-		self.layout_combobox.set_active_id(self._settings.get_string('decorations'))
-		self.layout_combobox.connect('changed', self.on_layout_changed)
+	def on_bool_changed(self, switch, state, key):
+		self._settings.set_boolean(key, switch.get_active())
 
-	def on_devel_changed(self, w, a):
-		self._settings.set_boolean('devel-only', w.get_active())
+	def add_from_adj(self, text, key, adj):
+		label = Gtk.Label(label=text)
+		spinbtn = Gtk.SpinButton(adjustment=adj)
+		spinbtn.set_value(self._settings.get_int(key))
+		spinbtn.connect('value-changed', self.on_adj_changed, key)
+		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+		box.pack_start(label, expand=False, fill=False, padding=0)
+		box.pack_end(spinbtn, expand=False, fill=False, padding=0)
+		box.show_all()
+		return box
 
-	def on_alpha_changed(self, w, a):
-		self._settings.set_boolean('add-alpha', w.get_active())
+	def on_adj_changed(self, spinbtn, key):
+		self._settings.set_int(key, spinbtn.get_value_as_int())
 
-	def on_icons_changed(self, w, a):
-		self._settings.set_boolean('big-icons', w.get_active())
+	def on_background_changed(self, color_btn):
+		color = color_btn.get_rgba()
+		self._settings.set_strv('background-rgba', [str(color.red), \
+		                   str(color.green), str(color.blue), str(color.alpha)])
 
-	def on_background_changed(self, w):
-		color = self.background_color_btn.get_rgba()
-		self._settings.set_strv('background-rgba', [str(color.red), str(color.green), \
-			str(color.blue), str(color.alpha)])
+	def on_layout_changed(self, combobox):
+		self._settings.set_string('decorations', combobox.get_active_id())
 
-	def on_width_changed(self, w):
-		self._settings.set_int('default-width', self.width_btn.get_value())
-
-	def on_height_changed(self, w):
-		self._settings.set_int('default-height', self.height_btn.get_value())
-
-	def on_preview_changed(self, w):
-		self._settings.set_int('preview-size', self.preview_btn.get_value())
-
-	def on_layout_changed(self, w):
-		self._settings.set_string('decorations', w.get_active_id())
