@@ -98,9 +98,9 @@ class ToolSelect(ToolTemplate):
 			self.window.set_cursor(True)
 		# elif self.behavior == 'color':
 		# 	self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
-		# elif self.behavior == 'freehand':
-		# 	self.init_path(event_x, event_y) # TODO
-		if self.behavior == 'cancel':
+		elif self.behavior == 'freehand':
+			self.draw_polygon(event_x, event_y)
+		elif self.behavior == 'cancel':
 			self.unselect_and_apply()
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
@@ -112,6 +112,8 @@ class ToolSelect(ToolTemplate):
 			self.do_tool_operation(operation) # FIXME ça pousse à load race de
 			# trucs inutiles vers le selection manager alors qu'on veut juste
 			# dessiner un path
+		elif self.behavior == 'freehand':
+			self.draw_polygon(event_x, event_y)
 		elif self.behavior == 'drag':
 			# self.drag_to(event_x, event_y)
 			pass # on modifie réellement les coordonnées, c'est pas une "vraie" preview
@@ -140,14 +142,14 @@ class ToolSelect(ToolTemplate):
 			self.apply_operation(operation)
 			self.get_selection().show_popover(True)
 		elif self.behavior == 'freehand':
-			pass
-			#
-			#
-			# TODO
-			#
-			#
-			#
-			#
+			if self.draw_polygon(event_x, event_y):
+				self.restore_pixbuf()
+				self.get_selection().load_from_path(self.future_path)
+				if self.selection_is_active():
+					self.get_selection().show_popover(True)
+					# self.set_selection_has_been_used(False) # TODO
+			else:
+				return # without updating the surface so the path is visible
 		elif self.behavior == 'color':
 			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
 			self.operation_type = 'op-define'
@@ -169,8 +171,31 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 	# Path management ##########################################################
 
-	def init_path(self, event_x, event_y):
-		pass
+	def draw_polygon(self, event_x, event_y):
+		"""This method is specific to the 'free selection' mode."""
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+		cairo_context.set_dash([3, 3])
+		if self.future_path is None:
+			self.closing_x = event_x
+			self.closing_y = event_y
+			cairo_context.move_to(event_x, event_y)
+			self.future_path = cairo_context.copy_path()
+			return False
+		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
+		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
+			cairo_context.append_path(self.future_path)
+			cairo_context.close_path()
+			cairo_context.stroke_preserve()
+			self.future_path = cairo_context.copy_path()
+			return True
+		else:
+			cairo_context.append_path(self.future_path)
+			cairo_context.line_to(int(event_x), int(event_y))
+			cairo_context.stroke_preserve() # draw the line without closing the path
+			self.future_path = cairo_context.copy_path()
+			self.non_destructive_show_modif() # XXX
+			return False
 
 	def tool_select_all(self):
 		self.build_rectangle_path(0, 0, self.get_main_pixbuf().get_width(), \
@@ -236,6 +261,7 @@ class ToolSelect(ToolTemplate):
 		self.cursor_name = 'cross'
 		self.window.set_cursor(True)
 		self.get_selection().reset()
+		self.future_path = None
 
 	#####
 

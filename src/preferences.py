@@ -58,11 +58,10 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.background_color_btn.connect('color-set', self.on_background_changed)
 
 		self.devel_switch.connect('notify::active', self.on_devel_changed)
-		if is_beta:
-			self.devel_switch.set_active(self._settings.get_boolean('devel-only'))
-		else:
-			self.devel_switch.set_active(False)
+		if not is_beta:
+			self._settings.set_boolean('devel-only', False)
 			self.devel_box.set_visible(False)
+		self.devel_switch.set_active(self._settings.get_boolean('devel-only'))
 
 		self.big_icons_switch.set_active(self._settings.get_boolean('big-icons'))
 		self.big_icons_switch.connect('notify::active', self.on_icons_changed)

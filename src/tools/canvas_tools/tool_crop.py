@@ -66,8 +66,8 @@ class ToolCrop(AbstractCanvasTool):
 		self.height_btn.set_value(self.original_height)
 
 	def init_if_selection(self):
-		self.original_width = self.get_image().selection_pixbuf.get_width()
-		self.original_height = self.get_image().selection_pixbuf.get_height()
+		self.original_width = self.get_selection().selection_pixbuf.get_width()
+		self.original_height = self.get_selection().selection_pixbuf.get_height()
 		self.width_btn.set_range(1, self.original_width)
 		self.height_btn.set_range(1, self.original_height)
 

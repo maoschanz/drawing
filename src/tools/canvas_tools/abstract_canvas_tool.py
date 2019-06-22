@@ -66,12 +66,13 @@ class AbstractCanvasTool(ToolTemplate):
 
 	def apply_temp(self, operation_is_selection):
 		if operation_is_selection:
+			self.get_selection().delete_temp()
 			pixbuf = self.get_image().get_temp_pixbuf().copy() # XXX copy ??
 			self.get_selection().set_pixbuf(pixbuf, False)
 			# FIXME n'a pas l'air particulièrement efficace sur les scales successifs
 		else:
-			self.main_pixbuf = self.get_image().get_temp_pixbuf().copy()
-			self.use_stable_pixbuf()
+			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.get_image().use_stable_pixbuf()
 
 	def temp_preview(self, is_selection):
 		"""Part of the previewing methods shared by all canvas tools."""
@@ -92,9 +93,9 @@ class AbstractCanvasTool(ToolTemplate):
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
 			                           self.get_image().get_temp_pixbuf(), 0, 0)
 			cairo_context.paint()
-		self.update()
+		self.get_image().update()
 
 	def on_draw(self, area, cairo_context):
-		pass # TODO FIXME
+		pass # TODO FIXME pour l'instant pas d'overlay quand on modifie la sélection
 
 
