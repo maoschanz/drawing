@@ -21,13 +21,14 @@ import cairo
 from .gi_composites import GtkTemplate
 
 from .utilities import utilities_save_pixbuf_at
-from .utilities import utilities_show_overlay_on_context
 from .selection_manager import DrawingSelectionManager
 
 class DrawingMotionBehavior():
 	HOVER = 0
 	DRAW = 1
 	SLIP = 2
+
+################################################################################
 
 @GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
 class DrawingImage(Gtk.Box):
@@ -37,7 +38,7 @@ class DrawingImage(Gtk.Box):
 	h_scrollbar = GtkTemplate.Child()
 	v_scrollbar = GtkTemplate.Child()
 
-	closing_precision = 10
+	CLOSING_PRECISION = 10
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
@@ -46,7 +47,6 @@ class DrawingImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
-		self.motion_behavior = DrawingMotionBehavior.HOVER
 		self.build_tab_label()
 
 		self.drawing_area.add_events( \
@@ -79,13 +79,24 @@ class DrawingImage(Gtk.Box):
 	def init_image(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
-		self.undo_history = []
-		self.redo_history = []
-		self._is_saved = True
+
+		# Zoom and scroll initialization
 		self.zoom_level = 1.0
 		self.scroll_x = 0
 		self.scroll_y = 0
+		self.motion_behavior = DrawingMotionBehavior.HOVER
+		self.press2_x = 0.0
+		self.press2_y = 0.0
+		self.drag_scroll_x = 0.0
+		self.drag_scroll_y = 0.0
+
+		# Selection initialization
 		self.selection = DrawingSelectionManager(self)
+		
+		# History initialization
+		self.undo_history = []
+		self.redo_history = []
+		self._is_saved = True
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
 
@@ -325,10 +336,10 @@ class DrawingImage(Gtk.Box):
 		event_x, event_y = self.get_event_coords(event)
 		if event.button == 2:
 			self.motion_behavior = DrawingMotionBehavior.SLIP
-			self.press2_x = int(event_x)
-			self.press2_y = int(event_y)
-			self.drag_scroll_x = int(event_x)
-			self.drag_scroll_y = int(event_y)
+			self.press2_x = event_x
+			self.press2_y = event_y
+			self.drag_scroll_x = event_x
+			self.drag_scroll_y = event_y
 			return
 		self.motion_behavior = DrawingMotionBehavior.DRAW
 		self.active_tool().on_press_on_area(area, event, self.surface, \
@@ -349,17 +360,19 @@ class DrawingImage(Gtk.Box):
 			self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
 			self.update()
 		else: # self.motion_behavior == DrawingMotionBehavior.SLIP:
-			self.add_deltas(self.drag_scroll_x - event_x, self.drag_scroll_y - event_y, 0.5)
-			self.drag_scroll_x = int(event_x)
-			self.drag_scroll_y = int(event_y)
+			delta_x = int(self.drag_scroll_x - event_x)
+			delta_y = int(self.drag_scroll_y - event_y)
+			self.add_deltas(delta_x, delta_y, 0.8)
+			self.drag_scroll_x = event_x
+			self.drag_scroll_y = event_y
 
 	def on_release_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is released on
 		self.drawing_area, if the button is not the signal is transmitted to the
 		selected tool."""
 		if self.motion_behavior == DrawingMotionBehavior.SLIP:
-			if abs(self.press2_x - self.drag_scroll_x) < 10 \
-			and abs(self.press2_y - self.drag_scroll_y) < 10:
+			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
+			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
 				self.window.action_exchange_color()
 			self.motion_behavior = DrawingMotionBehavior.HOVER
 			return
@@ -453,33 +466,34 @@ class DrawingImage(Gtk.Box):
 		self.window.minimap.update_minimap()
 
 	def correct_coords(self, incorrect_x, incorrect_y): # FIXME doesn't work with the zoom
+		allocated_width = self.drawing_area.get_allocated_width()
+		allocated_height = self.drawing_area.get_allocated_height()
+
 		# Forbid absurd values
-		if self.drawing_area.get_allocated_width() < 2:
+		if allocated_width < 2:
 			return
 		mpb_width = self.get_main_pixbuf().get_width()
 		mpb_height = self.get_main_pixbuf().get_height()
-		if incorrect_x + self.drawing_area.get_allocated_width() > mpb_width:
-			incorrect_x = mpb_width - self.drawing_area.get_allocated_width()
-		if incorrect_y + self.drawing_area.get_allocated_height() > mpb_height:
-			incorrect_y = mpb_height - self.drawing_area.get_allocated_height()
+		if incorrect_x + allocated_width > mpb_width:
+			incorrect_x = mpb_width - allocated_width
+		if incorrect_y + allocated_height > mpb_height:
+			incorrect_y = mpb_height - allocated_height
 		if incorrect_x < 0:
 			incorrect_x = 0
 		if incorrect_y < 0:
 			incorrect_y = 0
 
 		# Update the horizontal scrollbar
-		self.h_scrollbar.set_visible(self.drawing_area.get_allocated_width() < mpb_width)
+		self.h_scrollbar.set_visible(allocated_width < mpb_width)
 		self.h_scrollbar.set_range(0, mpb_width)
-		self.h_scrollbar.get_adjustment().set_page_size( \
-		                                self.drawing_area.get_allocated_width())
+		self.h_scrollbar.get_adjustment().set_page_size(allocated_width)
 		self.h_scrollbar.set_value(incorrect_x)
 		self.scroll_x = self.h_scrollbar.get_value()
 
 		# Update the vertical scrollbar
-		self.v_scrollbar.set_visible(self.drawing_area.get_allocated_height() < mpb_height)
+		self.v_scrollbar.set_visible(allocated_height < mpb_height)
 		self.v_scrollbar.set_range(0, mpb_height)
-		self.v_scrollbar.get_adjustment().set_page_size( \
-		                               self.drawing_area.get_allocated_height())
+		self.v_scrollbar.get_adjustment().set_page_size(allocated_height)
 		self.v_scrollbar.set_value(incorrect_y)
 		self.scroll_y = self.v_scrollbar.get_value()
 
@@ -523,4 +537,5 @@ class DrawingImage(Gtk.Box):
 		print_ctx.get_cairo_context().paint()
 
 	############################################################################
+################################################################################
 
