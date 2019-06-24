@@ -24,6 +24,11 @@ from .utilities import utilities_save_pixbuf_at
 from .utilities import utilities_show_overlay_on_context
 from .selection_manager import DrawingSelectionManager
 
+class DrawingMotionBehavior():
+	HOVER = 0
+	DRAW = 1
+	SLIP = 2
+
 @GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
 class DrawingImage(Gtk.Box):
 	__gtype_name__ = 'DrawingImage'
@@ -41,7 +46,7 @@ class DrawingImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
-		self.is_clicked = False
+		self.motion_behavior = DrawingMotionBehavior.HOVER
 		self.build_tab_label()
 
 		self.drawing_area.add_events( \
@@ -317,13 +322,15 @@ class DrawingImage(Gtk.Box):
 		"""Signal callback. Executed when a mouse button is pressed on
 		self.drawing_area, if the button is the mouse wheel the colors are
 		exchanged, otherwise the signal is transmitted to the selected tool."""
+		event_x, event_y = self.get_event_coords(event)
 		if event.button == 2:
-			self.is_clicked = False
-			self.window.action_exchange_color()
+			self.motion_behavior = DrawingMotionBehavior.SLIP
+			self.press2_x = int(event_x)
+			self.press2_y = int(event_y)
+			self.drag_scroll_x = int(event_x)
+			self.drag_scroll_y = int(event_y)
 			return
-		self.is_clicked = True
-		event_x = (self.scroll_x + event.x) / self.zoom_level
-		event_y = (self.scroll_y + event.y) / self.zoom_level
+		self.motion_behavior = DrawingMotionBehavior.DRAW
 		self.active_tool().on_press_on_area(area, event, self.surface, \
 		                            self.window.thickness_spinbtn.get_value(), \
 		          self.get_left_rgba(), self.get_right_rgba(), event_x, event_y)
@@ -334,23 +341,30 @@ class DrawingImage(Gtk.Box):
 		If a button (not the mouse wheel) is pressed, the tool's method should
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
-		if not self.is_clicked:
+		event_x, event_y = self.get_event_coords(event)
+		if self.motion_behavior == DrawingMotionBehavior.HOVER:
+			# XXX ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
-			return
-		event_x = (self.scroll_x + event.x) / self.zoom_level
-		event_y = (self.scroll_y + event.y) / self.zoom_level
-		self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
-		self.update()
+		elif self.motion_behavior == DrawingMotionBehavior.DRAW:
+			self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
+			self.update()
+		else: # self.motion_behavior == DrawingMotionBehavior.SLIP:
+			self.add_deltas(self.drag_scroll_x - event_x, self.drag_scroll_y - event_y, 0.5)
+			self.drag_scroll_x = int(event_x)
+			self.drag_scroll_y = int(event_y)
 
 	def on_release_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is released on
 		self.drawing_area, if the button is not the signal is transmitted to the
 		selected tool."""
-		if not self.is_clicked:
+		if self.motion_behavior == DrawingMotionBehavior.SLIP:
+			if abs(self.press2_x - self.drag_scroll_x) < 10 \
+			and abs(self.press2_y - self.drag_scroll_y) < 10:
+				self.window.action_exchange_color()
+			self.motion_behavior = DrawingMotionBehavior.HOVER
 			return
-		self.is_clicked = False
-		event_x = (self.scroll_x + event.x) / self.zoom_level
-		event_y = (self.scroll_y + event.y) / self.zoom_level
+		self.motion_behavior = DrawingMotionBehavior.HOVER
+		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(area, event, self.surface, event_x, event_y)
 		self.window.set_picture_title()
 
@@ -417,6 +431,11 @@ class DrawingImage(Gtk.Box):
 	############################################################################
 	# Scroll and zoom levels ###################################################
 
+	def get_event_coords(self, event):
+		event_x = (self.scroll_x + event.x) / self.zoom_level
+		event_y = (self.scroll_y + event.y) / self.zoom_level
+		return event_x, event_y
+
 	def on_scroll_on_area(self, area, event):
 		self.add_deltas(event.delta_x, event.delta_y, 10)
 
@@ -473,8 +492,8 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def set_opti_zoom_level(self):
-		h_ratio = self.drawing_area.get_allocated_width() / get_pixbuf_width()
-		v_ratio = self.drawing_area.get_allocated_height() / get_pixbuf_height()
+		h_ratio = self.drawing_area.get_allocated_width() / self.get_pixbuf_width()
+		v_ratio = self.drawing_area.get_allocated_height() / self.get_pixbuf_height()
 		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
 		self.set_zoom_level(opti)
 
