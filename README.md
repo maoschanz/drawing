@@ -2,11 +2,13 @@
 
 ## A drawing application for the GNOME desktop.
 
-This application is a simple image editor, using Cairo and GdkPixbuf for basic drawing operations.
+## A simple drawing application for Linux.
 
-It follows GNOME interface guidelines (but can optionally use elementaryOS UI guidelines or Cinnamon/MATE UI guidelines).
+This application is a basic image editor, similar to Microsoft Paint, but aiming at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
+
+Besides GNOME, more traditional design layouts are available too, as well as an [elementaryOS layout](./data/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./data/screenshots/librem_preview.png).
 
 ### Available tools
 
@@ -49,7 +51,7 @@ Canvas/selection edition tools:
 - English
 - French
 - German (thanks to [Onno Giesmann](https://github.com/Etamuk))
-- Hebrew (thanks to [moriel5](https://github.com/moriel5))
+- Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
 - Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo))
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
@@ -84,6 +86,12 @@ More screenshots:
 ### Stable version
 
 You can install it from flathub.org using the instructions on [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
+
+<!--Packages specific to distros: TODO-->
+
+<!--- Fedora COPR-->
+<!--- Solus-->
+<!--- Arch & Manjaro AUR-->
 
 ### Unstable/nightly version
 

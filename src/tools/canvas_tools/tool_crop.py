@@ -20,6 +20,8 @@ import cairo
 
 from .abstract_canvas_tool import AbstractCanvasTool
 
+from .utilities import utilities_add_px_to_spinbutton
+
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
 
@@ -40,6 +42,8 @@ class ToolCrop(AbstractCanvasTool):
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
+		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
+		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
 		# FIXME X et Y ? top/bottom/left/right ? TODO
 
 		self.window.bottom_panel_box.add(self.bottom_panel)

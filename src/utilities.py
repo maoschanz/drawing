@@ -184,3 +184,12 @@ def utilities_generic_shape_tool_operation(cairo_context, operation):
 		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
 		cairo_context.stroke()
 
+def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
+	spinbutton.set_width_chars(width_chars + 3)
+	if unit == 'px':
+		spinbutton.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, 'unit-pixels-symbolic')
+		spinbutton.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, _("pixels"))
+	spinbutton.set_icon_sensitive(Gtk.EntryIconPosition.SECONDARY, False)
+
+################################################################################
+

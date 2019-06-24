@@ -40,12 +40,14 @@ from .tool_text import ToolText
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
-from .utilities import utilities_save_pixbuf_at
 from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
 from .message_dialog import DrawingMessageDialog
 from .headerbar import DrawingAdaptativeHeaderBar
+
+from .utilities import utilities_save_pixbuf_at
+from .utilities import utilities_add_px_to_spinbutton
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -102,6 +104,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
 		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
+		utilities_add_px_to_spinbutton(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
 		self.limit_size_bottom = 600
 		self.limit_size_header = 700
 

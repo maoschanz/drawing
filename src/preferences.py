@@ -18,6 +18,8 @@
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .gi_composites import GtkTemplate
 
+from .utilities import utilities_add_px_to_spinbutton
+
 SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
 
 @GtkTemplate(ui='/com/github/maoschanz/drawing/ui/preferences.ui')
@@ -158,6 +160,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		label = Gtk.Label(label=text)
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
+		utilities_add_px_to_spinbutton(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 		box.pack_start(label, expand=False, fill=False, padding=0)

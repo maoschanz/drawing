@@ -2,7 +2,7 @@
 
 ## A simple drawing application for Linux.
 
-This application is a basic image editor, similar to Microsoft Paint™, but aiming at the GNOME desktop.
+This application is a basic image editor, similar to Microsoft Paint, but aiming at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
 
@@ -44,12 +44,12 @@ _[More screenshots](../data/screenshots/)_
 - English
 - French
 - German (thanks to [Onno Giesmann](https://github.com/Etamuk))
-- Hebrew (thanks to [moriel5](https://github.com/moriel5))
+- Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
 - Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo))
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 
 ----
 
-[Github page](https://github.com/maoschanz/drawing)
+[Source code](https://github.com/maoschanz/drawing)
 
