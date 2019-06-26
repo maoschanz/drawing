@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-22 23:18+0200\n"
-"PO-Revision-Date: 2019-05-28 10:10+0000\n"
+"PO-Revision-Date: 2019-06-26 15:11+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -261,19 +261,19 @@ msgstr "_Ver"
 
 #: src/ui/app-menus.ui:180
 msgid "Optimal Zoom"
-msgstr ""
+msgstr "Ampliación óptima"
 
 #: src/ui/app-menus.ui:188
 msgid "Zoom Out"
-msgstr ""
+msgstr "Alejar"
 
 #: src/ui/app-menus.ui:194
 msgid "Original Zoom"
-msgstr ""
+msgstr "Ampliación original"
 
 #: src/ui/app-menus.ui:200
 msgid "Zoom In"
-msgstr ""
+msgstr "Acercar"
 
 #: src/ui/app-menus.ui:208
 msgid "Show the preview"
@@ -363,21 +363,19 @@ msgstr "Ay_uda"
 
 #: src/ui/app-menus.ui:355
 msgid "Index"
-msgstr ""
+msgstr "Índice"
 
 #: src/ui/app-menus.ui:360 src/ui/win-menus.ui:235
-#, fuzzy
 msgid "Basic help"
-msgstr "Básico"
+msgstr "Ayuda básica"
 
 #: src/ui/app-menus.ui:365 src/ui/win-menus.ui:240
 msgid "Help about tools"
-msgstr ""
+msgstr "Ayuda acerca de las herramientas"
 
 #: src/ui/app-menus.ui:370 src/ui/win-menus.ui:245
-#, fuzzy
 msgid "Canvas and selection"
-msgstr "Escalando la selección"
+msgstr "Lienzo y selección"
 
 #: src/ui/app-menus.ui:377 src/ui/win-menus.ui:105 src/ui/win-menus.ui:183
 #: src/ui/win-menus.ui:266
@@ -398,14 +396,12 @@ msgid "Open"
 msgstr "Abrir"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Images"
-msgstr "Imagen"
+msgstr "Imágenes"
 
 #: src/ui/preferences.ui:72
-#, fuzzy
 msgid "Tools"
-msgstr "_Herramientas"
+msgstr "Herramientas"
 
 #. w = self.add_title(_("Bonus tools"), True)
 #. self.page_tools.add(w)
@@ -413,9 +409,8 @@ msgstr "_Herramientas"
 #. #######################################################################
 #. Build the "advanced" page ############################################
 #: src/ui/preferences.ui:85 src/preferences.py:99
-#, fuzzy
 msgid "Advanced options"
-msgstr "Opciones de arco"
+msgstr "Opciones avanzadas"
 
 #: src/ui/properties.ui:20
 msgid "Path"
@@ -702,14 +697,14 @@ msgid "Import a picture"
 msgstr "Importar una imagen"
 
 #: src/headerbar.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "Undo %s"
-msgstr "Deshacer"
+msgstr "Deshacer %s"
 
 #: src/headerbar.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "Redo %s"
-msgstr "Rehacer"
+msgstr "Rehacer %s"
 
 #. #######################################################################
 #. Build the "images" page ##############################################
@@ -739,7 +734,7 @@ msgstr "Siempre añadir transparencia"
 
 #: src/preferences.py:88
 msgid "Use big icons"
-msgstr ""
+msgstr "Usar iconos grandes"
 
 #: src/preferences.py:102
 msgid "Preview size"
@@ -931,13 +926,12 @@ msgid "Flip vertically"
 msgstr "Voltear verticalmente"
 
 #: src/tools/ui/tool_line.ui:32
-#, fuzzy
 msgid "Color gradient"
-msgstr "Selector de color"
+msgstr "Degradado"
 
 #: src/tools/ui/tool_paint.ui:5
 msgid "Behavior"
-msgstr ""
+msgstr "Comportamiento"
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
@@ -949,7 +943,7 @@ msgstr "Borrar y reemplazar"
 
 #: src/tools/ui/tool_paint.ui:19
 msgid "Clipping"
-msgstr ""
+msgstr "Recorte"
 
 #: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
 msgid "Thin"
@@ -957,7 +951,7 @@ msgstr "Extremos apuntados"
 
 #: src/tools/ui/tool_pencil.ui:53
 msgid "Artificial smoothness"
-msgstr ""
+msgstr "Suavizado artificial"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
