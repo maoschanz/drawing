@@ -200,11 +200,10 @@ class Application(Gtk.Application):
 			else:
 				return None
 		except:
-			# Obviously, do not translate the command line.
-			err = _("""Error opening this file. Did you mean
-flatpak run --file-forwarding {0} @@ {1} @@
-?""")
-			print(err.format(APP_ID, path)) # TODO sortir la commande de la chaîne à traduire
+			err = _("Error opening this file. Did you mean %s ?")
+			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+			command = command.format(APP_ID, path)
+			print(err % command)
 			return None
 
 ########

@@ -20,10 +20,10 @@ Usability and design issues are considered as bugs.
 Usability and design issues are **not** considered as features.
 
 - Report it as an issue, and explain what it does, not how it does it.
-- Is it...
+- Is it…
 	- a general feature ?
 	- a new standalone tool ?
-	- a new option for an existing tool ? Which one ?
+	- a new option for an existing tool ?
 
 ----
 
@@ -35,28 +35,36 @@ Usability and design issues are **not** considered as features.
 - Add your language to `po/LINGUAS`.
 - Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language.
 - Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.drawing`).
-- If you want to test your translation: GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file and install it.
-- Run
-```
-git add .
-git commit
-git push
-```
-And submit a "pull request"/"merge request".
+- If you want to test your translation:
+	- GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file.
+	- Install it with `flatpak install path/to/that/file`.
+- Run `git add . && git commit && git push`
+- Submit a "pull request"/"merge request".
 
 ----
 
 ## If you want to fix a bug or to add a new feature
 
-<!-- TODO explain the structure of the code here ? -->
-
 - The issue has to be reported first.
 - Tell on the issue that you'll do a patch.
+
+### Syntax
+
 - Use tabs in `.py` files.
 - Use 2 spaces in `.ui` or `.xml` files.
 - In the python code, use double quotes for translatable strings and single quotes otherwise.
-- Concerning design, try to respect GNOME Human Interface Guidelines as much as possible, while making your feature available from the global menubar.
 - I like `GAction`s and i've added wrapper methods for using them, try to use that instead of directly connecting buttons/menu-items to a method.
+
+Concerning design, try to respect GNOME Human Interface Guidelines as much as possible, while making your feature available from the (hidden by default) menubar.
+
+### Explanation of the code
+
+<!-- TODO explain the structure of the code here ? -->
+
+UML diagrams:
+
+![UML diagrams](docs/uml.png)
+
 - If you find some bullshit in the code, or don't understand it, feel free to ask me about it.
 
 ----

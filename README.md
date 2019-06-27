@@ -1,7 +1,5 @@
 # Drawing
 
-## A drawing application for the GNOME desktop.
-
 ## A simple drawing application for Linux.
 
 This application is a basic image editor, similar to Microsoft Paint, but aiming at the GNOME desktop.

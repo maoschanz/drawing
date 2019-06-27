@@ -78,6 +78,12 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.add_from_bool(_("Always add transparency"), 'add-alpha')
 		self.page_images.add(w)
 
+		# w = self.add_title(_("Zoom"), True)
+		# self.page_images.add(w)
+
+		# w = self.add_from_bool(_("TODO"), 'ctrl-to-zoom')
+		# self.page_images.add(w)
+
 		########################################################################
 		# Build the "tools" page ###############################################
 
@@ -143,30 +149,20 @@ class DrawingPrefsWindow(Gtk.Window):
 		return box
 
 	def add_from_bool(self, text, key):
-		label = Gtk.Label(label=text)
 		switch = Gtk.Switch()
 		switch.set_active(self._settings.get_boolean(key))
 		switch.connect('notify::active', self.on_bool_changed, key)
-		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-		box.pack_start(label, expand=False, fill=False, padding=0)
-		box.pack_end(switch, expand=False, fill=False, padding=0)
-		box.show_all()
-		return box
+		return self.add_from_widget(text, switch)
 
 	def on_bool_changed(self, switch, state, key):
 		self._settings.set_boolean(key, switch.get_active())
 
 	def add_from_adj(self, text, key, adj):
-		label = Gtk.Label(label=text)
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
 		utilities_add_px_to_spinbutton(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
-		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-		box.pack_start(label, expand=False, fill=False, padding=0)
-		box.pack_end(spinbtn, expand=False, fill=False, padding=0)
-		box.show_all()
-		return box
+		return self.add_from_widget(text, spinbtn)
 
 	def on_adj_changed(self, spinbtn, key):
 		self._settings.set_int(key, spinbtn.get_value_as_int())
