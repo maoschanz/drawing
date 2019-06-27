@@ -19,8 +19,8 @@ class ToolText(ToolTemplate):
 
 		self.add_tool_action_boolean('text_opaque_bg', False)
 
-		builder = Gtk.Builder()
-		builder.add_from_resource('/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
+		builder = Gtk.Builder().new_from_resource( \
+		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
 
 		# Main popover for text insertion
 		self.popover = builder.get_object('insertion-popover')
@@ -95,7 +95,7 @@ class ToolText(ToolTemplate):
 		self.font_fam.replace('Oblique', '')
 
 		self.tool_width = int(self.font_fam.split(' ')[-1])
-		if event is None: # XXX
+		if event is None: # TODO l'ouvrir à l'endroit précédent si clic droit ?
 			self.open_popover_at(int(event_x), int(event_y))
 		else:
 			self.open_popover_at(int(event.x), int(event.y))
@@ -125,6 +125,7 @@ class ToolText(ToolTemplate):
 		    self.entry.get_buffer().get_end_iter(), False)
 		if self.text_string == '':
 			self.restore_pixbuf()
+			self.non_destructive_show_modif()
 			return False
 		else:
 			return True

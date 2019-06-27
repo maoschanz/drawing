@@ -21,60 +21,76 @@
   edit or create pictures (PNG, JPEG or BMP).</p>
   <p>Basic features are located in the header of the window, such as the
   <gui style="button">Open</gui> menu, the <gui style="button">Save</gui>
-  button, and the primary menu.</p>
-  <p>The primary menu allows you to:</p>
+  button, and the main menu.</p>
 
-  <list>
-    <item>
-      <p>Print the picture.</p>
-    </item>
-    <item>
-      <p>See the pictures properties, such as its size and colorspace.</p>
-    </item>
-    <item>
-      <p>Export the image or save it as a new file. Both options don't overwrite
-      the original file. With <gui style="menuitem">Export as…</gui>, you keep
-      editing the original file, but <gui style="menuitem">Save as…</gui> closes
-      the original file and makes you edit the new one.</p>
-    </item>
-    <item>
-      <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
-    </item>
-  </list>
+  <section>
+    <title>The main menu</title>
 
-  <media type="image" mime="image/png" width="450"
-  src="figures/screenshot_menu.png" its:translate="no"/>
+    <list>
+      <item>
+        <p>Print the picture.</p>
+      </item>
+      <item>
+        <p>See the pictures properties, such as its size and colorspace.</p>
+      </item>
+      <item>
+        <p>Export the image or save it as a new file. Both options don't overwrite
+        the original file. With <gui style="menuitem">Export as…</gui>, you keep
+        editing the original file, but <gui style="menuitem">Save as…</gui> closes
+        the original file and makes you edit the new one.</p>
+      </item>
+      <item>
+        <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
+      </item>
+    </list>
 
-  <p>The <gui style="button">Open</gui> menu is merged in the primary menu if
-  the window size is too small to display its button. With <link xref="preferences">
-  the elementaryOS layout</link>, this menu is partly replaced by buttons.</p>
+    <media type="image" mime="image/png" width="450"
+    src="figures/screenshot_menu.png" its:translate="no"/>
+  </section>
 
-  <list>
-    <item>
-      <p>Open a new window.</p>
-    </item>
-    <item>
-      <p>Open a new image. It can be a blank image, or an image created from the
-      clipboard content, or an image created from the current selection.</p>
-    </item>
-    <item>
-      <p>Open a picture file.</p>
-    </item>
-    <item>
-      <p>Import a picture into the currently edited one.</p>
-    </item>
-    <item>
-      <p>Paste a picture into the currently edited one.</p>
-    </item>
-  </list>
+  <section>
+    <title>The "open" menu</title>
 
-  <p>You can edit the opened picture with the <link xref="drawing_tools">tools
-  </link> in the side bar. The <gui style="button">Undo</gui> and
-  <gui style="button">Redo</gui> buttons are located in the header of the
-  window.</p>
+    <p>If the window size is too small to display its button, the
+    <gui style="button">Open</gui> menu is merged in the main menu. With
+    <link xref="preferences"> the elementaryOS layout</link>, this menu is partly
+    replaced by buttons.</p>
 
-  <p>In the bottom bar, the <gui style="button">Preview</gui> button (not
-  available with <link xref="selection_canvas">some tools</link>) displays a
-  thumbnail of the full picture you're editing.</p>
+    <list>
+      <item>
+        <p>Open a new window.</p>
+      </item>
+      <item>
+        <p>Open a new image. It can be a blank image, or an image created from the
+        clipboard content, or an image created from the current selection.</p>
+      </item>
+      <item>
+        <p>Open a picture file.</p>
+      </item>
+      <item>
+        <p>Import a picture into the currently edited one.</p>
+      </item>
+      <item>
+        <p>Paste a picture into the currently edited one.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Edition</title>
+
+    <p>You can edit the opened picture with the <link xref="drawing_tools">tools
+    </link> in the side bar. The <gui style="button">Undo</gui> and
+    <gui style="button">Redo</gui> buttons are located in the header of the
+    window.</p>
+  </section>
+
+  <section>
+    <title>Preview</title>
+
+    <p>In the bottom bar, the <gui style="button">Preview</gui> button (not
+    available with <link xref="selection_canvas">some tools</link>) displays a
+    thumbnail of the full picture you're editing.</p>
+  </section>
 
 </page>
