@@ -193,3 +193,52 @@ def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
 
 ################################################################################
 
+def utilities_smooth_path(cairo_context, cairo_path):
+	x1 = None
+	y1 = None
+	x2 = None
+	y2 = None
+	x3 = None
+	y3 = None
+	x4 = None
+	y4 = None
+	for pts in cairo_path:
+		if pts[1] is ():
+			continue
+		x1, y1, x2, y2, x3, y3, x4, y4 = _next_arc(cairo_context, \
+		                       x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])
+	_next_arc(cairo_context, x2, y2, x3, y3, x4, y4, None, None)
+	# cairo_context.stroke()
+
+def _next_point(x1, y1, x2, y2, dist):
+	coef = 0.1
+	dx = x2 - x1
+	dy = y2 - y1
+	angle = math.atan2(dy, dx)
+	nx = x2 + math.cos(angle) * dist * coef
+	ny = y2 + math.sin(angle) * dist * coef
+	return nx, ny
+
+def _next_arc(cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
+	if x2 is None or x3 is None:
+		# No drawing possible yet, just continue to the next point
+		return x1, y1, x2, y2, x3, y3, x4, y4
+	dist = math.sqrt( (x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3) )
+	if x1 is None and x4 is None:
+		cairo_context.move_to(x2, y2)
+		cairo_context.line_to(x3, y3)
+		return x1, y1, x2, y2, x3, y3, x4, y4
+	elif x1 is None:
+		nx1, ny1 = x2, y2
+		nx2, ny2 = _next_point(x4, y4, x3, y3, dist)
+	elif x4 is None:
+		nx1, ny1 = _next_point(x1, y1, x2, y2, dist)
+		nx2, ny2 = x3, y3
+	else:
+		nx1, ny1 = _next_point(x1, y1, x2, y2, dist)
+		nx2, ny2 = _next_point(x4, y4, x3, y3, dist)
+	cairo_context.curve_to(nx1, ny1, nx2, ny2, x3, y3)
+	return x1, y1, x2, y2, x3, y3, x4, y4
+
+################################################################################
+
