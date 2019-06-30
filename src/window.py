@@ -197,7 +197,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_new_tab(self, gfile, pixbuf):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
-		self.notebook.append_page(new_image, new_image.tab_title)
+		self.notebook.append_page(new_image, new_image.build_tab_widget())
 		if gfile is not None:
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
@@ -220,8 +220,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for page in self.notebook.get_children():
 			tab_title = page.update_title()
 			tab_index = self.notebook.page_num(page)
-			section.insert(tab_index, tab_title, 'win.active_tab(' + \
-			                                               str(tab_index) + ')')
+			section.append(tab_title, 'win.active_tab(' + str(tab_index) + ')')
 
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
@@ -392,6 +391,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		subtitle = self.get_edition_status()
 
 		self.update_tabs_menu_section()
+		self.app.update_windows_menu_section() # Un peu idiot sans doute
 
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:
@@ -688,7 +688,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return
 		else:
 			self.prompt_message(True, _("Loading %s") % \
-				(gfile.get_path().split('/')[-1]))
+			                                  (gfile.get_path().split('/')[-1]))
 		if self.get_active_image()._is_saved:
 			self.try_load_file(gfile)
 		else:
@@ -698,9 +698,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
 			dialog.add_string( _("There are unsaved modifications to %s.") % \
-				self.get_active_image().get_filename_for_display() )
+			                self.get_active_image().get_filename_for_display() )
 			dialog.add_string( _("Where do you want to open %s?") %  \
-				(gfile.get_path().split('/')[-1]) )
+			                                 (gfile.get_path().split('/')[-1]) )
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
@@ -708,7 +708,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			elif result == discard_id:
 				self.try_load_file(gfile)
 			elif result == new_window_id:
-				self.app.open_window_with_file(gfile)
+				self.app.open_window_with_content(gfile, False)
 		self.hide_message()
 
 	def file_chooser_open(self, *args):

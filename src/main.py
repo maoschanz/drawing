@@ -36,6 +36,8 @@ class Application(Gtk.Application):
 	shortcuts_window = None
 	prefs_window = None
 
+	# INITIALIZATION ###########################################################
+
 	def __init__(self, version):
 		super().__init__(application_id=APP_ID,
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
@@ -68,10 +70,10 @@ class Application(Gtk.Application):
 		icon_theme.add_resource_path('/com/github/maoschanz/drawing/icons')
 		icon_theme.add_resource_path('/com/github/maoschanz/drawing/tools/icons')
 
-########
+		self.connect('window-removed', self.update_windows_menu_section)
 
 	def on_startup(self, *args):
-		"""Add app-wide menus and actions, and all accels."""
+		"""Called only once, add app-wide menus and actions, and all accels."""
 		self.build_actions()
 		builder = Gtk.Builder.new_from_resource( \
 		                        '/com/github/maoschanz/drawing/ui/app-menus.ui')
@@ -80,42 +82,6 @@ class Application(Gtk.Application):
 		if self.prefers_app_menu():
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
-
-	def is_beta(self):
-		"""Tells is the app version is even or odd, odd versions being considered
-		as unstable versions. This affects available options and the style of
-		the headerbar."""
-		version_array = self.version.split('.')
-		if (int(version_array[1]) * 5) % 10 == 5:
-			return True
-		else:
-			return False
-
-	# def update_windows_menu_section(self, *args):
-	# 	action = self.lookup_action('active_window')
-	# 	section = self.app.get_menubar().get_item_link(6, \
-	# 	          Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
-	# 	section.remove_all()
-	# 	i = 0
-	# 	for window in self.get_windows():
-	# 		win_title = window.get_title()
-	# 		win_index = i
-	# 		section.insert(win_index, win_title, 'win.active_window(' + \
-	# 		                                               str(win_index) + ')')
-	# 		i = i + 1
-
-	def add_action_simple(self, action_name, callback, shortcuts):
-		action = Gio.SimpleAction.new(action_name, None)
-		action.connect('activate', callback)
-		self.add_action(action)
-		if shortcuts is not None:
-			self.set_accels_for_action('app.' + action_name, shortcuts)
-
-	def add_action_boolean(self, action_name, default, callback):
-		action = Gio.SimpleAction().new_stateful(action_name, None, \
-			GLib.Variant.new_boolean(default))
-		action.connect('change-state', callback)
-		self.add_action(action)
 
 	def build_actions(self):
 		"""Add app-wide actions."""
@@ -131,11 +97,29 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_canvas', self.on_help_canvas, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
+		self.add_action_enum('active-window', 0, self.change_active_win)
 
-		# action = Gio.PropertyAction.new('active_window', self, 'active-window')
-		# self.add_action(action) # TODO not possible since it's a read-only property
+	# WINDOWS AND CLI MANAGEMENT ###############################################
 
-########
+	def change_active_win(self, *args):
+		win_id = args[1].get_uint32()
+		for window in self.get_windows():
+			if not isinstance(window, Gtk.ApplicationWindow):
+				continue
+			elif window.get_id() is args[1].get_uint32():
+				window.present()
+		args[0].set_state( GLib.Variant('u', win_id) )
+
+	def update_windows_menu_section(self, *args):
+		# XXX trop appelée à mon goût
+		section = self.get_menubar().get_item_link(6, \
+		          Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
+		section.remove_all()
+		for window in self.get_windows():
+			if not isinstance(window, Gtk.ApplicationWindow):
+				continue
+			detailed_name = 'app.active-window(uint32 '+str(window.get_id())+')'
+			section.append(window.get_title(), detailed_name)
 
 	def open_window_with_content(self, gfile, get_cb):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
@@ -148,6 +132,8 @@ class Application(Gtk.Application):
 		# window is presented to the user regarless of loading errors, making
 		# any issue in `init_window_content` very explicit, and more likely to
 		# be reported.
+		action = self.lookup_action('active-window')
+		action.set_state( GLib.Variant('u', win.get_id()) )
 		return win
 
 	def on_activate(self, *args):
@@ -207,22 +193,7 @@ class Application(Gtk.Application):
 		# I don't even know if i should return something
 		return 0
 
-	def get_valid_file(self, app, path):
-		try:
-			f = app.create_file_for_arg(path)
-			if 'image/' in f.query_info('standard::*', \
-				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
-				return f
-			else:
-				return None
-		except:
-			err = _("Error opening this file. Did you mean %s ?")
-			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-			command = command.format(APP_ID, path)
-			print(err % command)
-			return None
-
-########
+	# ACTIONS CALLBACKS ########################################################
 
 	def on_new_window(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
@@ -298,4 +269,54 @@ class Application(Gtk.Application):
 	def on_quit(self, *args):
 		"""Action callback, quitting the app."""
 		self.quit()
+
+	# UTILITIES ################################################################
+
+	def is_beta(self):
+		"""Tells is the app version is even or odd, odd versions being considered
+		as unstable versions. This affects available options and the style of
+		the headerbar."""
+		version_array = self.version.split('.')
+		if (int(version_array[1]) * 5) % 10 == 5:
+			return True
+		else:
+			return False
+
+	def add_action_simple(self, action_name, callback, shortcuts):
+		action = Gio.SimpleAction.new(action_name, None)
+		action.connect('activate', callback)
+		self.add_action(action)
+		if shortcuts is not None:
+			self.set_accels_for_action('app.' + action_name, shortcuts)
+
+	def add_action_boolean(self, action_name, default, callback):
+		action = Gio.SimpleAction().new_stateful(action_name, None, \
+		                                      GLib.Variant.new_boolean(default))
+		action.connect('change-state', callback)
+		self.add_action(action)
+
+	def add_action_enum(self, action_name, default, callback):
+		# XXX attention, celle-ci fonctionne avec un int, pas une string
+		action = Gio.SimpleAction().new_stateful(action_name, \
+		             GLib.VariantType.new('u'), GLib.Variant('u', default))
+		action.connect('change-state', callback)
+		self.add_action(action)
+
+	def get_valid_file(self, app, path):
+		try:
+			f = app.create_file_for_arg(path)
+			if 'image/' in f.query_info('standard::*', \
+				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
+				return f
+			else:
+				return None
+		except:
+			err = _("Error opening this file. Did you mean %s ?")
+			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+			command = command.format(APP_ID, path)
+			print(err % command)
+			return None
+
+	############################################################################
+################################################################################
 
