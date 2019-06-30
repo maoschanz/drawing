@@ -118,8 +118,12 @@ class Application(Gtk.Application):
 		for window in self.get_windows():
 			if not isinstance(window, Gtk.ApplicationWindow):
 				continue
-			detailed_name = 'app.active-window(uint32 '+str(window.get_id())+')'
-			section.append(window.get_title(), detailed_name)
+			elif window.get_title() is None:
+				continue
+			else:
+				detailed_name = 'app.active-window(uint32 ' + \
+				                                      str(window.get_id()) + ')'
+				section.append(window.get_title(), detailed_name)
 
 	def open_window_with_content(self, gfile, get_cb):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb

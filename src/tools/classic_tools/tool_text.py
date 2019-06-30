@@ -18,6 +18,7 @@ class ToolText(ToolTemplate):
 		self.should_cancel = False
 
 		self.add_tool_action_boolean('text_opaque_bg', False)
+		self.add_tool_action_boolean('text_shadow', False)
 
 		builder = Gtk.Builder().new_from_resource( \
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
@@ -36,6 +37,7 @@ class ToolText(ToolTemplate):
 		self.options_box = builder.get_object('options-widget')
 		self.font_btn = builder.get_object('font-chooser-widget')
 		self.backg_switch = builder.get_object('backg-switch')
+		self.shadow_switch = builder.get_object('shadow-switch')
 
 		self.font_btn.set_font('Sans 36')
 		self.font_fam = self.font_btn.get_font()
@@ -156,6 +158,7 @@ class ToolText(ToolTemplate):
 			'x': self.x_begin,
 			'y': self.y_begin,
 			'background': self.backg_switch.get_state(),
+			'shadow': self.shadow_switch.get_state(),
 			'text': self.text_string
 		}
 		return operation
@@ -177,7 +180,7 @@ class ToolText(ToolTemplate):
 		i = 0
 
 		main_color = operation['rgba_main']
-		secondary_color = operation['rgba_secd']
+		snd_color = operation['rgba_secd']
 		text_x = operation['x']
 		text_y = operation['y']
 
@@ -189,13 +192,26 @@ class ToolText(ToolTemplate):
 				cairo_context.rel_line_to(0, (-1)*font_size)
 				cairo_context.line_to(text_x, text_y + (i-0.8)*font_size)
 				cairo_context.line_to(text_x, text_y + (i+0.2)*font_size)
-				cairo_context.set_source_rgba(secondary_color.red, \
-				    secondary_color.green, secondary_color.blue, secondary_color.alpha)
+				cairo_context.set_source_rgba(snd_color.red, snd_color.green, \
+				                              snd_color.blue, snd_color.alpha)
 				cairo_context.fill()
 				cairo_context.stroke()
+			actual_text_y = text_y + i*font_size
+			if operation['shadow']:
+				cairo_context.set_source_rgba(snd_color.red, snd_color.green, \
+				                              snd_color.blue, snd_color.alpha)
+				if font_size < 32:
+					cairo_context.move_to(text_x+1, actual_text_y+1)
+					cairo_context.show_text( a_line )
+				else:
+					cairo_context.move_to(text_x+2, actual_text_y+2)
+					cairo_context.show_text( a_line )
+					cairo_context.move_to(text_x-1, actual_text_y-1)
+					cairo_context.show_text( a_line )
+			####################################################################
 			cairo_context.set_source_rgba(main_color.red, main_color.green, \
 			                                  main_color.blue, main_color.alpha)
-			cairo_context.move_to(text_x, text_y + i*font_size)
+			cairo_context.move_to(text_x, actual_text_y)
 			cairo_context.show_text( a_line )
 			i = i + 1
 		self.non_destructive_show_modif()

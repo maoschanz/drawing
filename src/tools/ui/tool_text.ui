@@ -65,12 +65,14 @@
         <property name="margin">10</property>
         <property name="spacing">10</property>
         <property name="orientation">vertical</property>
+
         <child>
           <object class="GtkFontChooserWidget" id="font-chooser-widget">
             <property name="visible">True</property>
             <property name="show-preview-entry">False</property>
           </object>
         </child>
+
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -96,6 +98,33 @@
             </child>
           </object>
         </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <property name="orientation">horizontal</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Use a shadow</property>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="shadow-switch">
+                <property name="visible">True</property>
+                <property name="action-name">win.text_shadow</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
       </object>
     </child>
   </object>
@@ -106,9 +135,15 @@
         <attribute name="label" translatable="yes">Font</attribute>
         <attribute name="action">win.options_menu</attribute>
       </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Opaque background</attribute>
         <attribute name="action">win.text_opaque_bg</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Use a shadow</attribute>
+        <attribute name="action">win.text_shadow</attribute>
       </item>
     </section>
   </menu>
