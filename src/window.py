@@ -178,6 +178,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			self.active_tool().row.set_active(True)
 
+	# TABS AND WINDOWS MANAGEMENT
+
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
 		self.build_new_tab(None, None)
@@ -209,6 +211,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.change_active_tool_for(self.active_tool_id)
 		# On devrait être moins bourrin et conserver la sélection #FIXME
 		self.set_picture_title(args[1].update_title())
+
+	def update_tabs_menu_section(self, *args):
+		action = self.lookup_action('active_tab')
+		section = self.app.get_menubar().get_item_link(2, \
+		          Gio.MENU_LINK_SUBMENU).get_item_link(6, Gio.MENU_LINK_SECTION)
+		section.remove_all()
+		for page in self.notebook.get_children():
+			tab_title = page.update_title()
+			tab_index = self.notebook.page_num(page)
+			section.insert(tab_index, tab_title, 'win.active_tab(' + \
+			                                               str(tab_index) + ')')
 
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
@@ -357,6 +370,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 
+		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
+		self.add_action(action)
+
 	# WINDOW BARS
 
 	def on_layout_changed(self, *args):
@@ -367,13 +383,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI
-		bars), and the active tab title. Tools have to be initilized before
+		bars), and the active tab title. Tools have to be initialized before
 		calling this method, because they provide the subtitle."""
 		if len(args) == 1:
 			main_title = args[0]
 		else:
 			main_title = self.get_active_image().update_title()
 		subtitle = self.get_edition_status()
+
+		self.update_tabs_menu_section()
 
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:

@@ -91,6 +91,19 @@ class Application(Gtk.Application):
 		else:
 			return False
 
+	# def update_windows_menu_section(self, *args):
+	# 	action = self.lookup_action('active_window')
+	# 	section = self.app.get_menubar().get_item_link(6, \
+	# 	          Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
+	# 	section.remove_all()
+	# 	i = 0
+	# 	for window in self.get_windows():
+	# 		win_title = window.get_title()
+	# 		win_index = i
+	# 		section.insert(win_index, win_title, 'win.active_window(' + \
+	# 		                                               str(win_index) + ')')
+	# 		i = i + 1
+
 	def add_action_simple(self, action_name, callback, shortcuts):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
@@ -118,6 +131,9 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_canvas', self.on_help_canvas, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
+
+		# action = Gio.PropertyAction.new('active_window', self, 'active-window')
+		# self.add_action(action) # TODO not possible since it's a read-only property
 
 ########
 
