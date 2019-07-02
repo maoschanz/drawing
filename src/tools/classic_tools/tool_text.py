@@ -18,7 +18,7 @@ class ToolText(ToolTemplate):
 		self.should_cancel = False
 
 		self.add_tool_action_boolean('text_opaque_bg', False)
-		self.add_tool_action_boolean('text_shadow', False)
+		self.add_tool_action_boolean('text_shadow', True)
 
 		builder = Gtk.Builder().new_from_resource( \
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
@@ -35,12 +35,19 @@ class ToolText(ToolTemplate):
 
 		# Building the widget containing options
 		self.options_box = builder.get_object('options-widget')
-		self.font_btn = builder.get_object('font-chooser-widget')
+		self.font_widget = builder.get_object('font-chooser-widget')
+		# grid1 = self.font_widget.get_children()[0].get_children()[0]
+		# grid2 = grid1.get_children()[0].get_children()[0]
+		# children = grid2.get_children()
+		# children[0].set_visible(False)
+		# children[1].set_visible(False)
+		# children[2].set_visible(False)
+		# children[3].set_size_request (360, -1) # FIXME TODO issue #58
 		self.backg_switch = builder.get_object('backg-switch')
 		self.shadow_switch = builder.get_object('shadow-switch')
 
-		self.font_btn.set_font('Sans 36')
-		self.font_fam = self.font_btn.get_font()
+		self.font_widget.set_font('Sans 36')
+		self.font_fam = self.font_widget.get_font()
 
 	def hide_row_label(self):
 		self.label_widget.set_visible(False)
@@ -56,7 +63,7 @@ class ToolText(ToolTemplate):
 		self.set_action_sensitivity('paste', True)
 
 	def get_options_label(self):
-		return self.font_btn.get_font()
+		return self.font_widget.get_font()
 
 	def get_options_widget(self):
 		return self.options_box
@@ -78,7 +85,7 @@ class ToolText(ToolTemplate):
 		self.y_begin = event_y
 		self.should_cancel = True
 
-		self.font_fam = self.font_btn.get_font()
+		self.font_fam = self.font_widget.get_font()
 		self.font_slant = cairo.FontSlant.NORMAL
 		self.font_weight = cairo.FontWeight.NORMAL
 		if 'Bold' in self.font_fam:

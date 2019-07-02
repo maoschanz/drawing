@@ -97,12 +97,11 @@ class DrawingAdaptativeHeaderBar():
 		else:
 			self.undo_btn.set_tooltip_text(_("Undo %s") % label)
 
-
 	def set_redo_label(self, label):
 		if label is None:
 			self.redo_btn.set_tooltip_text(_("Redo"))
 		else:
 			self.redo_btn.set_tooltip_text(_("Redo %s") % label)
 
-
+################################################################################
 

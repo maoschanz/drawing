@@ -119,14 +119,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 		self.prompt_message(False, 'window successfully started')
 
-	def set_cursor(self, is_custom):
-		if is_custom:
-			name = self.active_tool().cursor_name
-		else:
-			name = 'default'
-		cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
-		self.get_window().set_cursor(cursor)
-
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
@@ -178,7 +170,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			self.active_tool().row.set_active(True)
 
-	# TABS AND WINDOWS MANAGEMENT
+	# TABS AND WINDOWS MANAGEMENT ##############################################
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
@@ -262,7 +254,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.set_boolean('maximized', self.is_maximized())
 		return False
 
-	# GENERAL PURPOSE METHODS
+	# GENERAL PURPOSE METHODS ##################################################
 
 	def connect_signals(self):
 		self.info_bar.connect('close', self.hide_message)
@@ -372,10 +364,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
 		self.add_action(action)
 
-	# WINDOW BARS
+	def set_cursor(self, is_custom):
+		if is_custom:
+			name = self.active_tool().cursor_name
+		else:
+			name = 'default'
+		cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
+		self.get_window().set_cursor(cursor)
+
+	############################################################################
+	# WINDOW BARS ##############################################################
 
 	def on_layout_changed(self, *args):
-		self.prompt_message(True, _("Modifications will take effect in the next new window."))
+		self.prompt_message(False, _("Modifications will take effect in the next new window."))
+		self.set_titlebar(None)
+		self.header_bar = None
+		toolbar = self.toolbar_box.get_children()
+		if len(toolbar) > 0:
+			toolbar[0].destroy()
+		self.set_ui_bars()
 
 	def get_edition_status(self):
 		return self.active_tool().get_edition_status()
@@ -614,7 +621,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
 
-	# TOOLS
+	############################################################################
+	# TOOLS ####################################################################
 
 	def on_change_active_tool(self, *args):
 		"""Action callback, doing nothing in some situations, thus avoiding
@@ -669,7 +677,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def back_to_previous(self, *args):
 		self.tools[self.former_tool_id].row.set_active(True)
 
-	# FILE MANAGEMENT
+	############################################################################
+	# IMAGE FILES MANAGEMENT ###################################################
 
 	def action_properties(self, *args):
 		DrawingPropertiesDialog(self, self.get_active_image())
@@ -822,13 +831,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.destroy()
 		return gfile
 
+	def action_print(self, *args):
+		self.get_active_image().print_image()
+
+	############################################################################
+	# SELECTION MANAGEMENT #####################################################
+
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, gfile.get_path())
-
-	def action_print(self, *args):
-		self.get_active_image().print_image()
 
 	def action_select_all(self, *args):
 		self.force_selection()
@@ -896,10 +908,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_apply_selection(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
-	# def tool_needs_selection(self):
-	# 	return self.active_tool().accept_selection
-
-	# HISTORY MANAGEMENT
+	############################################################################
+	# HISTORY MANAGEMENT #######################################################
 
 	def action_undo(self, *args):
 		self.get_active_image().try_undo()
@@ -942,7 +952,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.set_undo_label(undo_label)
 			self.header_bar.set_redo_label(redo_label)
 
-	# COLORS
+	############################################################################
+	# COLORS ###################################################################
 
 	def build_color_buttons(self):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
@@ -986,7 +997,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.color_popover_l.color_widget.set_rgba(self.color_popover_r.color_widget.get_rgba())
 		self.color_popover_r.color_widget.set_rgba(left_c)
 
-	# TOOLS OPTIONS
+	############################################################################
+	# TOOLS OPTIONS ############################################################
 
 	def update_thickness_spinbtn_state(self):
 		self.thickness_spinbtn.set_sensitive(self.active_tool().use_size)
@@ -1016,7 +1028,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_option_label(self, *args):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
-	# PREVIEW, NAVIGATION AND ZOOM ACTIONS
+	############################################################################
+	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################
 
 	def action_toggle_preview(self, *args):
 		"""Action callback, showing or hiding the "minimap" preview popover."""
@@ -1052,4 +1065,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_zoom_opti(self, *args):
 		self.get_active_image().set_opti_zoom_level()
 
+	############################################################################
+################################################################################
 
