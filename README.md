@@ -6,7 +6,7 @@ This application is a basic image editor, similar to Microsoft Paint, but aiming
 
 PNG, JPEG and BMP files are supported.
 
-Besides GNOME, more traditional design layouts are available too, as well as an [elementaryOS layout](./data/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./data/screenshots/librem_preview.png).
+Besides GNOME, some more traditional design layouts are available too, as well as an [elementaryOS layout](./data/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./data/screenshots/librem_options.png).
 
 ### Available tools
 
@@ -17,14 +17,14 @@ Drawing tools:
 | Tool      | Options        |
 |:---------:|:--------------:|
 |Pencil     |Dashes, eraser, …|
+|Line       |Arrow, dashes, gradient …
+|Arc        |Arrow, dashes, …|
+|Insert text|Font and font size|
 |Rectangle  |Filling         |
 |Circle     |Regular circle or oval; Filling
 |Polygon    |Filling         |
 |Free shape |Filling         |
-|Line       |Arrow, dashes, …|
-|Arc        |Arrow, dashes, …|
-|Insert text|Font and font size|
-|Selection  |Rectangle/free shape/adjacent color|
+|Selection  |Rectangle/free shape/adjacent color
 |Color picker|               |
 |Paint      |Remove a color  |
 
@@ -32,15 +32,17 @@ Drawing tools:
 
 Canvas/selection edition tools:
 
-| Tool      | Options   | Remarks |
-|:---------:|:---------:|:-------:|
-|Crop       |           |The previewed picture isn't at the actual scale
+| Tool      | Options   |
+|:---------:|:---------:|
+|Crop*      |           |
 |Flip       |Horizontally or vertically
 |Scale      |Keep proportions or not
-|Rotate     |           |         |
-|Saturate   |           |         |
+|Rotate     |           |
+|Saturate   |           |
 
-<!-- |Matrix     |           |         |Not done yet -->
+<!-- |Matrix     |           |Not done yet -->
+
+\*Remark: The previewed picture isn't at the actual scale.
 
 ### Available languages
 
@@ -65,17 +67,17 @@ Canvas/selection edition tools:
 More screenshots:
 
 - [Color chooser](./data/screenshots/gnome_colors.png)
-- [Open/Import menu](./data/screenshots/gnome_open.png)
+- [Open/Import menu](./data/screenshots/gnome_open.png), with several tabs opened
 - [The selection tool and its menu](./data/screenshots/gnome_selection.png)
-- [Drawing things on the picture with tools](./data/screenshots/gnome_tools.png)
+- [Drawing things a blank picture with tools](./data/screenshots/gnome_tools_preview.png), with the preview opened
 - [Inserting text](./data/screenshots/gnome_text.png)
-- [Adjusting the saturation](./data/screenshots/gnome_menu_saturation.png)
+- [Adjusting the saturation](./data/screenshots/gnome_menu_saturation.png), with the main menu opened
 
 ### Alternative user interfaces
 
 - [elementaryOS UI](./data/screenshots/elementary.png)
-- [MATE/Cinnamon UI](./data/screenshots/mate_selection.png)
-- The default UI can be resized to be [compatible with the Purism Librem 5 phone](./data/screenshots/librem_preview.png)
+- [MATE/Cinnamon UI](./data/screenshots/mate_scale.png)
+- The default "GNOME" UI can be resized to be [compatible with the Purism Librem 5 phone](./data/screenshots/librem_options.png). [Youtube screencast](https://www.youtube.com/watch?v=xwfDnPd5NDU)
 
 ----
 
@@ -83,13 +85,19 @@ More screenshots:
 
 ### Stable version
 
+>**Recommended**
+
 You can install it from flathub.org using the instructions on [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
 
-<!--Packages specific to distros: TODO-->
+### Native packages
 
-<!--- Fedora COPR-->
-<!--- Solus-->
-<!--- Arch & Manjaro AUR-->
+>**Warning:** I don't maintain these packages, and thus I don't know what versions they provide.
+
+- Fedora (29, 30 and Rawhide) ([COPR](https://copr.fedorainfracloud.org/coprs/atim/drawing/))
+- Arch and Manjaro ([AUR](https://aur.archlinux.org/packages/drawing-git/))
+
+<!-- TODO Solus -->
+<!-- etc. -->
 
 ### Unstable/nightly version
 

@@ -8,7 +8,7 @@ PNG, JPEG and BMP files are supported.
 
 ![screenshot](img/test.png)<!--TODO en anglais-->
 
-More traditional design layouts are available too, as well as an [elementaryOS layout](../data/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](../data/screenshots/librem_preview.png).
+More traditional design layouts are available too, as well as an [elementaryOS layout](../data/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](../data/screenshots/librem_options.png).
 
 _[More screenshots](../data/screenshots/)_
 
@@ -16,7 +16,12 @@ _[More screenshots](../data/screenshots/)_
 
 [![Install it from Flathub](https://raw.githubusercontent.com/flatpak-design-team/flathub-mockups/master/assets/download-button/download-i.png)](https://flathub.org/apps/details/com.github.maoschanz.drawing)
 
-<!--TODO fedora copr ? arch aur ? solus ?-->
+Also available from:
+
+- [COPR](https://copr.fedorainfracloud.org/coprs/atim/drawing/) (Fedora)
+- [AUR](https://aur.archlinux.org/packages/drawing-git/) (Arch and Manjaro)
+
+<!--TODO solus ?-->
 
 ### Available tools
 
