@@ -18,8 +18,6 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 import cairo
 
-from .gi_composites import GtkTemplate
-
 # from .utilities import utilities_save_pixbuf_at
 # from .utilities import utilities_show_overlay_on_context
 

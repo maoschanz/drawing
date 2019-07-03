@@ -16,32 +16,30 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio, GLib, Gdk
-from .gi_composites import GtkTemplate
 
 from .utilities import utilities_add_px_to_spinbutton
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
 
-@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/preferences.ui')
+@Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/preferences.ui')
 class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
-	content_area = GtkTemplate.Child()
-	stack_switcher = GtkTemplate.Child()
+	content_area = Gtk.Template.Child()
+	stack_switcher = Gtk.Template.Child()
 
-	page_images = GtkTemplate.Child()
-	page_tools = GtkTemplate.Child()
-	page_advanced = GtkTemplate.Child()
+	page_images = Gtk.Template.Child()
+	page_tools = Gtk.Template.Child()
+	page_advanced = Gtk.Template.Child()
 
-	adj_width = GtkTemplate.Child()
-	adj_height = GtkTemplate.Child()
-	adj_preview = GtkTemplate.Child()
+	adj_width = Gtk.Template.Child()
+	adj_height = Gtk.Template.Child()
+	adj_preview = Gtk.Template.Child()
 
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	def __init__(self, is_beta, wants_csd, **kwargs):
 		super().__init__(**kwargs)
-		self.init_template()
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Preferences"))
 			self.set_titlebar(header_bar)

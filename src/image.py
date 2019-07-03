@@ -18,8 +18,6 @@
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 import cairo
 
-from .gi_composites import GtkTemplate
-
 from .utilities import utilities_save_pixbuf_at
 from .selection_manager import DrawingSelectionManager
 
@@ -30,20 +28,19 @@ class DrawingMotionBehavior():
 
 ################################################################################
 
-@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
+@Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/image.ui')
 class DrawingImage(Gtk.Box):
 	__gtype_name__ = 'DrawingImage'
 
-	drawing_area = GtkTemplate.Child()
-	h_scrollbar = GtkTemplate.Child()
-	v_scrollbar = GtkTemplate.Child()
+	drawing_area = Gtk.Template.Child()
+	h_scrollbar = Gtk.Template.Child()
+	v_scrollbar = Gtk.Template.Child()
 
 	CLOSING_PRECISION = 10
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
 		self.window = window
-		self.init_template()
 
 		self.gfile = None
 		self.filename = None

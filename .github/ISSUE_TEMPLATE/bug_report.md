@@ -29,10 +29,10 @@ assignees: ''
 
 ## System
 
-Please complete the following information:
+<!-- Please complete the following informations: -->
 
 - Device (desktop computer/tablet/phone/...):
-- OS: 
+- OS:
 - Desktop environment:
 - Package format (flatpak, DEB, AUR ?):
 - App version:
