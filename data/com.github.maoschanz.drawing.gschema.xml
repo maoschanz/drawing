@@ -15,6 +15,24 @@
 			<description>Can be 'auto', 'csd', 'csd-eos', 'ssd', 'ssd-toolbar',
 			'ssd-menubar' or 'everything'.</description>
 		</key>
+		<key type="s" name="zoom-behavior">
+			<default>'ctrl'</default>
+			<summary>Action to perform to zoom</summary>
+			<description>Can be 'ctrl' or 'scroll'.</description>
+		</key>
+		<key type="s" name="default-zoom">
+			<default>'100'</default>
+			<summary>Default zoom level</summary>
+			<description>Can be '100' or 'opti'.</description>
+		</key>
+		<key type="as" name="disabled-tools">
+			<default>[]</default>
+			<!-- <default>['colorselect', 'picker', 'saturate']</default> -->
+			<summary>Optional tools to disable</summary>
+			<description>A list of optional tools' id to disable. All tools are not
+			optional, but putting garbage in the list isn't catastrophic so try any id
+			you want.</description>
+		</key>
 		<key type="i" name="preview-size">
 			<default>250</default>
 			<summary>Preview size</summary>

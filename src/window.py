@@ -91,7 +91,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.header_bar = None
 		self.main_menu_btn = None
-		self.has_good_limits = False
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -105,8 +104,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_manager = DrawingOptionsManager(self)
 		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
 		utilities_add_px_to_spinbutton(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
-		self.limit_size_bottom = 600
-		self.limit_size_header = 700
 
 		self.build_color_buttons()
 		self.add_all_win_actions()
@@ -122,17 +119,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
+		disabled_tools_id = self._settings.get_strv('disabled-tools')
 		self.tools = {}
 		self.tools['pencil'] = ToolPencil(self)
-		self.tools['select'] = ToolSelect(self)
+		self.tools['select'] = ToolSelect(self) # TODO
+		# self.tools['rectselect'] = ToolRectSelect(self)
+		# self.tools['freeselect'] = ToolFreeSelect(self)
+		# if 'colorselect' not in disabled_tools_id:
+		# 	self.tools['colorselect'] = ToolColorSelect(self)
 		self.tools['text'] = ToolText(self)
-		self.tools['picker'] = ToolPicker(self)
-		self.tools['paint'] = ToolPaint(self)
+		if 'picker' not in disabled_tools_id:
+			self.tools['picker'] = ToolPicker(self)
+		if 'paint' not in disabled_tools_id:
+			self.tools['paint'] = ToolPaint(self)
 		self.tools['line'] = ToolLine(self)
 		self.tools['arc'] = ToolArc(self)
 		self.tools['rectangle'] = ToolRectangle(self)
 		self.tools['circle'] = ToolCircle(self)
-		self.tools['polygon'] = ToolPolygon(self)
+		if 'polygon' not in disabled_tools_id:
+			self.tools['polygon'] = ToolPolygon(self)
 		self.tools['freeshape'] = ToolFreeshape(self)
 		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
@@ -140,7 +145,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
 		self.tools['flip'] = ToolFlip(self)
-		self.tools['saturate'] = ToolSaturate(self)
+		if 'saturate' not in disabled_tools_id:
+			self.tools['saturate'] = ToolSaturate(self)
 
 		# Buttons for tools (in the side panel and the selection tool action bar)
 		self.build_tool_rows()
@@ -299,6 +305,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""This doesn't add all window-wide GioActions, but only the GioActions
 		which are here "by default", independently of any tool."""
 
+		# TODO ??
+		# action = Gio.PropertyAction.new('main_menu', self.main_menu_btn, 'active')
+		# self.window.add_action(action)
+		# self.window.app.set_accels_for_action('win.main_menu', ['F10'])
+
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
 		self.add_action_simple('properties', self.action_properties, None)
@@ -351,7 +362,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_color', self.action_color1, ['<Ctrl>l'])
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
-		self.add_action_simple('exchange_color', self.action_exchange_color, ['<Ctrl>e'])
+		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
 		self.app.add_action_boolean('use_editor', \
 		                      self._settings.get_boolean('direct-color-edit'), \
@@ -379,13 +390,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.prompt_message(False, _("Modifications will take effect in the next new window."))
 		self.set_titlebar(None)
 		self.header_bar = None
+		self.has_good_limits = False
 		toolbar = self.toolbar_box.get_children()
 		if len(toolbar) > 0:
 			toolbar[0].destroy()
 		self.set_ui_bars()
-
-	def get_edition_status(self):
-		return self.active_tool().get_edition_status()
+		self.set_picture_title()
+		self.adapt_to_window_size() # XXX show all, which isn't what we want
 
 	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI
@@ -395,7 +406,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			main_title = args[0]
 		else:
 			main_title = self.get_active_image().update_title()
-		subtitle = self.get_edition_status()
+		subtitle = self.active_tool().get_edition_status()
 
 		self.update_tabs_menu_section()
 		self.app.update_windows_menu_section() # Un peu idiot sans doute
@@ -426,6 +437,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, title, toolbar, whatever)
 		according to the user's preference, which by default is 'auto'."""
+		self.has_good_limits = False
+		self.limit_size_bottom = 600
+		self.limit_size_header = 700
+
 		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
 		# so it's built from a string.
 		builder = Gtk.Builder.new_from_string('''
@@ -455,7 +470,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_headerbar(True)
 			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(False)
-			self.minimap_btn.set_border_width(6)
+			# self.minimap_btn.set_border_width(6) # XXX faisable mais bof, et il faudrait l'annuler pour les autres
 		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar.header_bar)
@@ -535,8 +550,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
-		window size. If the current bottom panel isn't the default one, this will
-		call the tool method applying the new size to the tool panel."""
+		window size. If the current bottom panel isn't the default one, this
+		will call the tool method applying the new size to the tool panel."""
 		if not self.has_good_limits and self.get_allocated_width() > 700:
 			self.init_adaptability()
 
@@ -577,7 +592,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def update_tabs_visibility(self):
 		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
 
-	# TOOLS PANEL
+	############################################################################
+	# TOOLS PANEL ##############################################################
 
 	def build_tool_rows(self):
 		"""Adds each tool's button to the side panel, or to the selection's
@@ -992,7 +1008,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_color2(self, *args):
 		self.color_menu_btn_r.activate()
 
-	def action_exchange_color(self, *args):
+	def exchange_colors(self, *args):
 		left_c = self.color_popover_l.color_widget.get_rgba()
 		self.color_popover_l.color_widget.set_rgba(self.color_popover_r.color_widget.get_rgba())
 		self.color_popover_r.color_widget.set_rgba(left_c)

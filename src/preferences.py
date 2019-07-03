@@ -51,13 +51,13 @@ class DrawingPrefsWindow(Gtk.Window):
 		########################################################################
 		# Build the "images" page ##############################################
 
-		w = self.add_title(_("New images"), False)
+		w = self.row_from_label(_("New images"), False)
 		self.page_images.add(w)
 
-		w = self.add_from_adj(_("Default width"), 'default-width', self.adj_width)
+		w = self.row_from_adj(_("Default width"), 'default-width', self.adj_width)
 		self.page_images.add(w)
 
-		w = self.add_from_adj(_("Default height"), 'default-height', self.adj_height)
+		w = self.row_from_adj(_("Default height"), 'default-height', self.adj_height)
 		self.page_images.add(w)
 
 		background_color_btn = Gtk.ColorButton(use_alpha=True)
@@ -69,45 +69,71 @@ class DrawingPrefsWindow(Gtk.Window):
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		background_color_btn.set_rgba(color)
 		background_color_btn.connect('color-set', self.on_background_changed)
-		w = self.add_from_widget(_("Default background"), background_color_btn)
+		w = self.row_from_widget(_("Default background"), background_color_btn)
 		self.page_images.add(w)
 
-		w = self.add_title(_("Opened images"), True)
+		w = self.row_from_label(_("Opened images"), True)  # TODO move this section to "advanced"
 		self.page_images.add(w)
 
-		w = self.add_from_bool(_("Always add transparency"), 'add-alpha')
+		w = self.row_from_bool(_("Always add transparency"), 'add-alpha')
 		self.page_images.add(w)
 
-		# w = self.add_title(_("Zoom"), True)
+		# w = self.row_from_label(_("Zoom"), True)
 		# self.page_images.add(w)
 
-		# w = self.add_from_bool(_("TODO"), 'ctrl-to-zoom')
+		# scroll_combobox = Gtk.ComboBoxText()
+		# scroll_combobox.append('ctrl', _("Ctrl + Scroll"))
+		# scroll_combobox.append('scroll', _("Scroll"))
+		# scroll_combobox.set_active_id(self._settings.get_string('zoom-behavior'))
+		# scroll_combobox.connect('changed', self.on_combo_changed, 'zoom-behavior')
+		# w = self.row_from_widget(_("Action to zoom"), scroll_combobox)
+		# self.page_images.add(w)
+
+		# zoom_combobox = Gtk.ComboBoxText()
+		# zoom_combobox.append('100', _("100%"))
+		# zoom_combobox.append('opti', _("Optimal zoom"))
+		# zoom_combobox.set_active_id(self._settings.get_string('default-zoom'))
+		# zoom_combobox.connect('changed', self.on_combo_changed, 'default-zoom')
+		# w = self.row_from_widget(_("Default zoom"), zoom_combobox)
 		# self.page_images.add(w)
 
 		########################################################################
 		# Build the "tools" page ###############################################
 
-#		w = self.add_title(_("Appearance"), False)
-#		self.page_tools.add(w)
+		# w = self.row_from_label(_("Appearance"), False)
+		# self.page_tools.add(w)
 
-		w = self.add_from_bool(_("Show tools names"), 'show-labels')
+		w = self.row_from_bool(_("Show tools names"), 'show-labels')
 		self.page_tools.add(w)
 
-		w = self.add_from_bool(_("Use big icons"), 'big-icons')
+		w = self.row_from_bool(_("Use big icons"), 'big-icons')
 		self.page_tools.add(w)
 
-#		w = self.add_title(_("Bonus tools"), True)
-#		self.page_tools.add(w)
+		# w = self.row_from_label(_("Bonus tools"), True)
+		# self.page_tools.add(w)
 
-		# TODO
+		# w = self.row_for_AoS(_("Select by Color"), 'colorselect', 'disabled-tools')
+		# self.page_tools.add(w)
+
+		# w = self.row_for_AoS(_("Color Picker"), 'picker', 'disabled-tools')
+		# self.page_tools.add(w)
+
+		# w = self.row_for_AoS(_("Paint"), 'paint', 'disabled-tools')
+		# self.page_tools.add(w)
+
+		# w = self.row_for_AoS(_("Polygon"), 'polygon', 'disabled-tools')
+		# self.page_tools.add(w)
+
+		# w = self.row_for_AoS(_("Saturate"), 'saturate', 'disabled-tools')
+		# self.page_tools.add(w)
 
 		########################################################################
 		# Build the "advanced" page ############################################
 
-		w = self.add_title(_("Advanced options"), False)
+		w = self.row_from_label(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
-		w = self.add_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
+		w = self.row_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
 		self.page_advanced.add(w)
 
 		layout_combobox = Gtk.ComboBoxText()
@@ -120,27 +146,27 @@ class DrawingPrefsWindow(Gtk.Window):
 		if is_beta and self._settings.get_boolean('devel-only'):
 			layout_combobox.append('everything', _("Everything (testing only)"))
 		layout_combobox.set_active_id(self._settings.get_string('decorations'))
-		layout_combobox.connect('changed', self.on_layout_changed)
-		w = self.add_from_widget(_("Layout"), layout_combobox)
+		layout_combobox.connect('changed', self.on_combo_changed, 'decorations')
+		w = self.row_from_widget(_("Layout"), layout_combobox)
 		self.page_advanced.add(w)
 
 		if not is_beta:
 			self._settings.set_boolean('devel-only', False)
-		w = self.add_from_bool(_("Development features"), 'devel-only')
+		w = self.row_from_bool(_("Development features"), 'devel-only')
 		self.page_advanced.add(w)
 		if not is_beta:
 			w.set_visible(False)
 
 	############################################################################
 
-	def add_title(self, text, with_margin):
+	def row_from_label(self, text, with_margin):
 		label = Gtk.Label(label=('<b>'+text+'</b>'), halign=Gtk.Align.START, use_markup=True)
 		if with_margin:
 			label.set_margin_top(12)
 		label.set_visible(True)
 		return label
 
-	def add_from_widget(self, text, widget):
+	def row_from_widget(self, text, widget):
 		label = Gtk.Label(label=text)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 		box.pack_start(label, expand=False, fill=False, padding=0)
@@ -148,30 +174,48 @@ class DrawingPrefsWindow(Gtk.Window):
 		box.show_all()
 		return box
 
-	def add_from_bool(self, text, key):
+	def row_for_AoS(self, label, row_id, key):
+		btn = Gtk.CheckButton(label=label, visible=True)
+		array_of_strings = self._settings.get_strv(key)
+		btn.set_active(row_id not in array_of_strings)
+		btn.connect('toggled', self.on_aos_checkbtn_changed, key, row_id)
+		return btn
+
+	def row_from_bool(self, text, key):
 		switch = Gtk.Switch()
 		switch.set_active(self._settings.get_boolean(key))
 		switch.connect('notify::active', self.on_bool_changed, key)
-		return self.add_from_widget(text, switch)
+		return self.row_from_widget(text, switch)
 
 	def on_bool_changed(self, switch, state, key):
 		self._settings.set_boolean(key, switch.get_active())
 
-	def add_from_adj(self, text, key, adj):
+	def row_from_adj(self, text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
 		utilities_add_px_to_spinbutton(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
-		return self.add_from_widget(text, spinbtn)
+		return self.row_from_widget(text, spinbtn)
 
 	def on_adj_changed(self, spinbtn, key):
 		self._settings.set_int(key, spinbtn.get_value_as_int())
 
 	def on_background_changed(self, color_btn):
-		color = color_btn.get_rgba()
-		self._settings.set_strv('background-rgba', [str(color.red), \
-		                   str(color.green), str(color.blue), str(color.alpha)])
+		c = color_btn.get_rgba()
+		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
+		self._settings.set_strv('background-rgba', color_array)
 
-	def on_layout_changed(self, combobox):
-		self._settings.set_string('decorations', combobox.get_active_id())
+	def on_combo_changed(self, combobox, key):
+		self._settings.set_string(key, combobox.get_active_id())
+
+	def on_aos_checkbtn_changed(self, checkbtn, key, row_id):
+		array_of_strings = self._settings.get_strv(key)
+		if checkbtn.get_active():
+			array_of_strings.remove(row_id)
+		else:
+			array_of_strings.append(row_id)
+		self._settings.set_strv(key, array_of_strings)
+
+	############################################################################
+################################################################################
 

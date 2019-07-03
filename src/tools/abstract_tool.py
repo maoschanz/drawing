@@ -25,7 +25,8 @@ class ToolTemplate():
 		self.window = window
 		self.build_row()
 
-	# Actions
+	############################################################################
+	# Actions ##################################################################
 
 	def add_tool_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -48,7 +49,8 @@ class ToolTemplate():
 	def update_actions_state(self):
 		pass
 
-	# UI
+	############################################################################
+	# UI #######################################################################
 
 	def show_error(self, text):
 		self.window.prompt_message(True, text)
@@ -64,8 +66,8 @@ class ToolTemplate():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		builder = Gtk.Builder.new_from_resource( \
-		       '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui')
+		path = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
+		builder = Gtk.Builder.new_from_resource(path)
 		return builder.get_object('options-menu')
 
 	def get_options_widget(self):
@@ -84,8 +86,8 @@ class ToolTemplate():
 		                   tooltip_text=self.label, relief=Gtk.ReliefStyle.NONE)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		self.label_widget = Gtk.Label(label=self.label)
-		if self.window.decorations == 'csd-eos':
-			self.row.set_border_width(6)
+		# if self.window.decorations == 'csd-eos': # XXX faisable mais bug laid
+		# 	self.row.set_border_width(6)
 		if self.window._settings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
@@ -100,7 +102,8 @@ class ToolTemplate():
 	def adapt_to_window_size(self, available_width):
 		pass
 
-	# Activation or not
+	############################################################################
+	# Activation or not ########################################################
 
 	def on_tool_selected(self):
 		pass
@@ -115,7 +118,8 @@ class ToolTemplate():
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 
-	# History
+	############################################################################
+	# History ##################################################################
 
 	def do_tool_operation(self, operation):
 		pass
@@ -126,7 +130,8 @@ class ToolTemplate():
 		self.apply_to_pixbuf()
 		self.get_image().add_operation_to_history(operation)
 
-	# Selection
+	############################################################################
+	# Selection ################################################################
 
 	def get_selection(self):
 		return self.get_image().selection
@@ -143,7 +148,8 @@ class ToolTemplate():
 	def selection_has_been_used(self):
 		return self.get_selection().has_been_used
 
-	# Image management
+	############################################################################
+	# Image management #########################################################
 
 	def get_image(self):
 		return self.window.get_active_image()
@@ -163,7 +169,8 @@ class ToolTemplate():
 	def apply_to_pixbuf(self):
 		self.get_image().on_tool_finished()
 
-	# Signals handling
+	############################################################################
+	# Signals handling #########################################################
 
 	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, e_x, e_y):
 		pass
@@ -186,4 +193,5 @@ class ToolTemplate():
 			utilities_show_overlay_on_context(cairo_context, \
 			                self.get_image().get_dragged_selection_path(), True)
 
-
+	############################################################################
+################################################################################
