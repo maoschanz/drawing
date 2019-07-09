@@ -7,12 +7,12 @@
       <object class="GtkToolbar">
         <property name="visible">True</property>
         <property name="show-arrow">True</property>
-        <property name="icon-size">large-toolbar</property>
+        <property name="icon-size">small-toolbar</property>
         <child>
           <object class="GtkMenuToolButton" id="new_menu_btn">
             <property name="visible">True</property>
             <property name="action-name">win.new_tab</property>
-            <property name="icon-name">tab-new</property>
+            <property name="icon-name">tab-new-symbolic</property>
             <property name="tooltip-text" translatable="yes">New Image</property>
             <property name="label" translatable="yes">New Image</property>
           </object>
@@ -25,7 +25,7 @@
             <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action-name">win.open</property>
-            <property name="icon-name">document-open</property>
+            <property name="icon-name">document-open-symbolic</property>
             <property name="tooltip-text" translatable="yes">Open an image</property>
             <property name="label" translatable="yes">Open</property>
           </object>
@@ -42,7 +42,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action-name">win.import</property>
-            <property name="icon-name">insert-image</property>
+            <property name="icon-name">insert-image-symbolic</property>
             <property name="tooltip-text" translatable="yes">Import</property>
             <property name="label" translatable="yes">Import</property>
           </object>
@@ -54,7 +54,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action-name">win.paste</property>
-            <property name="icon-name">edit-paste</property>
+            <property name="icon-name">edit-paste-symbolic</property>
             <property name="tooltip-text" translatable="yes">Paste</property>
             <property name="label" translatable="yes">Paste</property>
           </object>
@@ -72,7 +72,7 @@
             <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action-name">win.undo</property>
-            <property name="icon-name">edit-undo</property>
+            <property name="icon-name">edit-undo-symbolic</property>
             <property name="tooltip-text" translatable="yes">Undo</property>
             <property name="label" translatable="yes">Undo</property>
           </object>
@@ -84,7 +84,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action-name">win.redo</property>
-            <property name="icon-name">edit-redo</property>
+            <property name="icon-name">edit-redo-symbolic</property>
             <property name="tooltip-text" translatable="yes">Redo</property>
             <property name="label" translatable="yes">Redo</property>
           </object>
@@ -96,7 +96,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action-name">win.properties</property>
-            <property name="icon-name">document-properties</property>
+            <property name="icon-name">document-properties-symbolic</property>
             <property name="tooltip-text" translatable="yes">Image properties</property>
             <property name="label" translatable="yes">Image properties</property>
           </object>
@@ -114,7 +114,7 @@
             <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action-name">win.save</property>
-            <property name="icon-name">document-save</property>
+            <property name="icon-name">document-save-symbolic</property>
             <property name="tooltip-text" translatable="yes">Save</property>
             <property name="label" translatable="yes">Save</property>
           </object>
@@ -126,7 +126,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action-name">win.print</property>
-            <property name="icon-name">document-print</property>
+            <property name="icon-name">document-print-symbolic</property>
             <property name="tooltip-text" translatable="yes">Print</property>
             <property name="label" translatable="yes">Print</property>
           </object>
@@ -143,7 +143,7 @@
           <object class="GtkToggleToolButton">
             <property name="visible">True</property>
             <property name="action-name">win.show_labels</property>
-            <property name="icon-name">view-list</property>
+            <property name="icon-name">view-list-symbolic</property>
             <property name="tooltip-text" translatable="yes">Show tools names</property>
             <property name="label" translatable="yes">Show tools names</property>
           </object>
@@ -155,7 +155,7 @@
           <object class="GtkToolButton">
             <property name="visible">True</property>
             <property name="action-name">app.settings</property>
-            <property name="icon-name">preferences-other</property>
+            <property name="icon-name">preferences-other-symbolic</property>
             <property name="tooltip-text" translatable="yes">Preferences</property>
             <property name="label" translatable="yes">Preferences</property>
           </object>
@@ -167,7 +167,7 @@
           <object class="GtkMenuToolButton" id="help_menu_btn">
             <property name="visible">True</property>
             <property name="action-name">app.help</property>
-            <property name="icon-name">help-faq</property>
+            <property name="icon-name">help-faq-symbolic</property>
             <property name="tooltip-text" translatable="yes">Help</property>
             <property name="label" translatable="yes">Help</property>
           </object>

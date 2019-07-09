@@ -285,7 +285,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		will be named 'action_name' (string), be created with the state 'default'
 		(boolean), and activating the action will trigger the method 'callback'."""
 		action = Gio.SimpleAction().new_stateful(action_name, None, \
-			GLib.Variant.new_boolean(default))
+		                                      GLib.Variant.new_boolean(default))
 		action.connect('change-state', callback)
 		self.add_action(action)
 
@@ -295,7 +295,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		(string), and changing the active target of the action will trigger the
 		method 'callback'."""
 		action = Gio.SimpleAction().new_stateful(action_name, \
-			GLib.VariantType.new('s'), GLib.Variant.new_string(default))
+		            GLib.VariantType.new('s'), GLib.Variant.new_string(default))
 		action.connect('change-state', callback)
 		self.add_action(action)
 
@@ -424,7 +424,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			return 'csd-eos'
 		elif 'Unity' in desktop_env:
 			return 'ssd-toolbar'
-		elif 'Cinnamon' in desktop_env or 'MATE' in desktop_env or 'XFCE' in desktop_env:
+		elif 'KDE' in desktop_env:
+			return 'ssd-toolbar-symbolic'
+		elif 'Cinnamon' in desktop_env:
+			return 'ssd-symbolic'
+		elif 'MATE' in desktop_env or 'XFCE' in desktop_env:
 			return 'ssd'
 		else:
 			return 'csd' # Use the GNOME layout if the desktop is unknown,
@@ -473,21 +477,30 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(True)
-			self.build_toolbar()
+			self.build_toolbar(True)
 		elif self.decorations == 'ssd-menubar':
 			self.set_show_menubar(True)
 		elif self.decorations == 'ssd-toolbar':
-			self.build_toolbar()
+			self.build_toolbar(False)
 			self.set_show_menubar(False)
+		elif self.decorations == 'ssd-toolbar-symbolic':
+			self.build_toolbar(True)
+			self.set_show_menubar(False)
+		elif self.decorations == 'ssd-symbolic':
+			self.build_toolbar(True)
+			self.set_show_menubar(True)
 		else: # self.decorations == 'ssd'
-			self.build_toolbar()
+			self.build_toolbar(False)
 			self.set_show_menubar(True)
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
 
-	def build_toolbar(self):
-		builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar.ui')
+	def build_toolbar(self, symbolic):
+		if symbolic:
+			builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar-symbolic.ui')
+		else:
+			builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar.ui')
 		toolbar = builder.get_object('toolbar')
 
 		# The toolbar has menus which need to be set manually

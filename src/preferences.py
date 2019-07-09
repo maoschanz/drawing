@@ -138,11 +138,21 @@ class DrawingPrefsWindow(Gtk.Window):
 		layout_combobox.append('auto', _("Automatic"))
 		layout_combobox.append('csd', _("Compact"))
 		layout_combobox.append('csd-eos', 'elementary OS')
+		# "Legacy" is about the window layout, it means menubar+toolbar, you can
+		# translate it like if it was "Traditional"
 		layout_combobox.append('ssd', _("Legacy"))
+		# SHORT STRING PLEASE
+		# "Legacy" is about the window layout, it means menubar+toolbar, you can
+		# translate it like if it was "Traditional". "symbolic" means the icons
+		# are in black or white.
+		layout_combobox.append('ssd-symbolic', _("Legacy (symbolic)"))
 		layout_combobox.append('ssd-menubar', _("Menubar only"))
 		layout_combobox.append('ssd-toolbar', _("Toolbar only"))
+		# SHORT STRING PLEASE
+		# "symbolic" means the icons are in black or white.
+		layout_combobox.append('ssd-toolbar-symbolic', _("Toolbar (symbolic)"))
 		if is_beta and self._settings.get_boolean('devel-only'):
-			layout_combobox.append('everything', _("Everything (testing only)"))
+			layout_combobox.append('everything', "Everything (testing only)")
 		layout_combobox.set_active_id(self._settings.get_string('decorations'))
 		layout_combobox.connect('changed', self.on_combo_changed, 'decorations')
 		w = self.row_from_widget(_("Layout"), layout_combobox)
