@@ -60,6 +60,24 @@
 
   <menu id="options-menu">
     <section>
+      <attribute name="label" translatable="yes">Font</attribute>
+      <item>
+        <attribute name="label">Sans</attribute>
+        <attribute name="action">win.text_font</attribute>
+        <attribute name="target">Sans</attribute>
+      </item>
+      <item>
+        <attribute name="label">Serif</attribute>
+        <attribute name="action">win.text_font</attribute>
+        <attribute name="target">Serif</attribute>
+      </item>
+      <item>
+        <attribute name="label">Mono</attribute>
+        <attribute name="action">win.text_font</attribute>
+        <attribute name="target">Mono</attribute>
+      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Italic</attribute>
         <attribute name="action">win.text_italic</attribute>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-10 17:56+0200\n"
+"POT-Creation-Date: 2019-07-10 18:22+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -1001,31 +1001,35 @@ msgstr "Подобный цвет"
 msgid "Insert here"
 msgstr "Вставить сюда"
 
-#: src/tools/ui/tool_text.ui:64
+#: src/tools/ui/tool_text.ui:63
+msgid "Font"
+msgstr "Шрифт"
+
+#: src/tools/ui/tool_text.ui:82
 msgid "Italic"
 msgstr ""
 
-#: src/tools/ui/tool_text.ui:68
+#: src/tools/ui/tool_text.ui:86
 msgid "Bold"
 msgstr ""
 
-#: src/tools/ui/tool_text.ui:73
+#: src/tools/ui/tool_text.ui:91
 #, fuzzy
 msgid "Background"
 msgstr "Фон по умолчанию"
 
-#: src/tools/ui/tool_text.ui:75 src/tools/classic_tools/tool_text.py:45
+#: src/tools/ui/tool_text.ui:93 src/tools/classic_tools/tool_text.py:50
 #, fuzzy
 msgid "No background"
 msgstr "Фон по умолчанию"
 
-#: src/tools/ui/tool_text.ui:80 src/tools/classic_tools/tool_text.py:49
+#: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:54
 #, fuzzy
 msgid "Secondary color rectangle"
 msgstr "Вторичный цвет"
 
-#: src/tools/ui/tool_text.ui:85 src/tools/classic_tools/tool_text.py:22
-#: src/tools/classic_tools/tool_text.py:47
+#: src/tools/ui/tool_text.ui:103 src/tools/classic_tools/tool_text.py:23
+#: src/tools/classic_tools/tool_text.py:52
 #, fuzzy
 msgid "Secondary color shadow"
 msgstr "Вторичный цвет"
@@ -1082,7 +1086,7 @@ msgstr "Выбор цвета"
 msgid "Rectangle options"
 msgstr "Варианты прямоугольника"
 
-#: src/tools/classic_tools/tool_text.py:59
+#: src/tools/classic_tools/tool_text.py:64
 #, fuzzy
 msgid "Font options"
 msgstr "Варианты линии"
@@ -1135,9 +1139,6 @@ msgstr "Масштабировать выделенное"
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "Масштабировать холст"
-
-#~ msgid "Font"
-#~ msgstr "Шрифт"
 
 #~ msgid "Summary"
 #~ msgstr "Краткое описание"

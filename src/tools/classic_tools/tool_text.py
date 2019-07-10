@@ -18,9 +18,11 @@ class ToolText(ToolTemplate):
 		self.should_cancel = False
 		self.use_size = True
 
+		self.font_fam = "Sans"
 		self.selected_background_id = 'shadow'
 		self.selected_background_label = _("Secondary color shadow")
 
+		self.add_tool_action_enum('text_font', 'Sans')
 		self.add_tool_action_boolean('text_bold', False)
 		self.add_tool_action_boolean('text_italic', False)
 		self.add_tool_action_enum('text_background', 'shadow')
@@ -37,6 +39,9 @@ class ToolText(ToolTemplate):
 		cancel_btn = builder.get_object('cancel_btn')
 		cancel_btn.connect('clicked', self.on_cancel)
 		self.entry.get_buffer().connect('changed', self.preview_text)
+
+	def set_font(self, *args):
+		self.font_fam = self.get_option_value('text_font')
 
 	def set_background_style(self, *args):
 		state_as_string = self.get_option_value('text_background')
@@ -84,7 +89,8 @@ class ToolText(ToolTemplate):
 		self.should_cancel = True
 
 		# TODO use the widget again, and cairo.ToyFontFace
-		self.font_fam = 'Serif'
+		self.set_font()
+
 		if self.get_option_value('text_italic'):
 			self.font_slant = cairo.FontSlant.ITALIC
 		else:
