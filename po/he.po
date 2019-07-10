@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-22 23:18+0200\n"
+"POT-Creation-Date: 2019-07-10 17:56+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -19,9 +19,10 @@ msgstr ""
 "X-Generator: Gtranslator 3.32.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
+#. Un peu idiot sans doute
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:157
-#: src/window.py:375
+#: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:163
+#: src/window.py:412
 msgid "Drawing"
 msgstr "ציור"
 
@@ -41,7 +42,7 @@ msgstr "Paint;שרטט;עיפרון;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/ui/win-menus.ui:215 src/window.py:676
+#: src/ui/win-menus.ui:215 src/window.py:733
 msgid "New Window"
 msgstr "חלון חדש"
 
@@ -55,7 +56,7 @@ msgstr "תמונה חדשה"
 msgid "Edit Image in Clipboard"
 msgstr "עריכת תמונה מהלוח"
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:7 src/main.py:271
+#: data/com.github.maoschanz.drawing.appdata.xml.in:7 src/main.py:261
 msgid "A drawing application for the GNOME desktop."
 msgstr "יישום ציור לשולחן עבודה GNOME."
 
@@ -69,7 +70,7 @@ msgid "It includes tools like:"
 msgstr "היישום מכיל כלים כגון:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:12
-#: src/tools/classic_tools/tool_pencil.py:12
+#: src/tools/classic_tools/tool_pencil.py:13
 msgid "Pencil"
 msgstr "עיפרון"
 
@@ -123,7 +124,7 @@ msgid "First stable version"
 msgstr "גרסה יציבה ראשונה"
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:44
+#: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid "Romain F. T."
 msgstr ""
 
@@ -152,7 +153,7 @@ msgstr "עזרה"
 msgid "About"
 msgstr "אודות"
 
-#: src/ui/app-menus.ui:40 src/ui/app-menus.ui:330
+#: src/ui/app-menus.ui:40
 msgid "Quit"
 msgstr "יציאה"
 
@@ -182,9 +183,9 @@ msgstr "פתיחת תמונה"
 
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:110 src/ui/headerbar.ui:111
 #: src/ui/headerbar.ui:123 src/ui/headerbar_eos.ui:157
-#: src/ui/headerbar_eos.ui:171 src/ui/headerbar_eos.ui:189
+#: src/ui/headerbar_eos.ui:170 src/ui/headerbar_eos.ui:188
 #: src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:749 src/window.py:794
+#: src/window.py:806 src/window.py:851
 msgid "Save"
 msgstr "שמירה"
 
@@ -218,7 +219,7 @@ msgstr "ביטול פעולה"
 
 #: src/ui/app-menus.ui:115 src/ui/headerbar.ui:74 src/ui/headerbar_eos.ui:120
 #: src/ui/shortcuts.ui:126 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
-#: src/headerbar.py:103
+#: src/headerbar.py:102
 msgid "Redo"
 msgstr "חידוש פעולה"
 
@@ -237,7 +238,7 @@ msgstr "גזירה"
 msgid "Copy"
 msgstr "העתקה"
 
-#: src/ui/app-menus.ui:143 src/ui/selection.ui:42 src/ui/shortcuts.ui:195
+#: src/ui/app-menus.ui:143 src/ui/selection.ui:42
 #: src/tools/ui/tool_select.ui:28
 msgid "Delete"
 msgstr "מחיקה"
@@ -250,7 +251,7 @@ msgstr "הדבקה"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/ui/win-menus.ui:39 src/ui/win-menus.ui:220 src/window.py:850
+#: src/ui/win-menus.ui:39 src/ui/win-menus.ui:220 src/window.py:910
 msgid "Import"
 msgstr "ייבוא"
 
@@ -322,13 +323,9 @@ msgstr "לך למטה"
 msgid "Go Right"
 msgstr "לך ימינה"
 
-#. #######################################################################
-#. Build the "tools" page ###############################################
-#. w = self.add_title(_("Appearance"), False)
-#. self.page_tools.add(w)
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:82 src/ui/win-menus.ui:160
-#: src/preferences.py:85
+#: src/preferences.py:105
 msgid "Show tools names"
 msgstr "הצג שמות כלים"
 
@@ -364,13 +361,17 @@ msgstr "_לוח ציור"
 msgid "Previous tool"
 msgstr "כלי קודם"
 
-#: src/ui/app-menus.ui:308 src/window.py:983 src/window.py:986
+#: src/ui/app-menus.ui:308 src/window.py:1043 src/window.py:1046
 msgid "_Options"
 msgstr "_אפשרויות"
 
 #: src/ui/app-menus.ui:312
 msgid "_Windows"
 msgstr "_חלונות"
+
+#: src/ui/app-menus.ui:330 src/ui/shortcuts.ui:51
+msgid "Quit all windows"
+msgstr "יציאה מכל החלונות"
 
 #: src/ui/app-menus.ui:338
 msgid "_Help"
@@ -408,7 +409,7 @@ msgid "Use this editor by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/ui/headerbar.ui:11 src/ui/headerbar.ui:18 src/ui/headerbar_eos.ui:29
-#: src/ui/toolbar.ui:30 src/window.py:697
+#: src/ui/toolbar.ui:30 src/window.py:754
 msgid "Open"
 msgstr "פתיחה"
 
@@ -422,12 +423,7 @@ msgstr "תמונה"
 msgid "Tools"
 msgstr "_כלים"
 
-#. w = self.add_title(_("Bonus tools"), True)
-#. self.page_tools.add(w)
-#. TODO
-#. #######################################################################
-#. Build the "advanced" page ############################################
-#: src/ui/preferences.ui:85 src/preferences.py:99
+#: src/ui/preferences.ui:85 src/preferences.py:133
 #, fuzzy
 msgid "Advanced options"
 msgstr "אפשרויות קשת"
@@ -440,7 +436,7 @@ msgstr "נתיב"
 msgid "Format"
 msgstr "תבנית"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:200
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:216
 msgid "Unsaved file"
 msgstr "קובץ לא שמור"
 
@@ -464,7 +460,7 @@ msgstr "רוחב"
 msgid "Height"
 msgstr "גובה"
 
-#: src/ui/properties.ui:224
+#: src/ui/properties.ui:224 src/utilities.py:191
 msgid "pixels"
 msgstr "פיקסלים"
 
@@ -487,12 +483,12 @@ msgid "Flip"
 msgstr "הפיכה"
 
 #: src/ui/selection.ui:56 src/tools/ui/tool_select.ui:45
-#: src/tools/canvas_tools/tool_crop.py:27
+#: src/tools/canvas_tools/tool_crop.py:29
 msgid "Crop"
 msgstr "חיתוך"
 
 #: src/ui/selection.ui:62 src/tools/ui/tool_select.ui:51
-#: src/tools/canvas_tools/tool_scale.py:27
+#: src/tools/canvas_tools/tool_scale.py:29
 msgid "Scale"
 msgstr "שינוי קנה מידה"
 
@@ -517,10 +513,6 @@ msgstr "כללי"
 #: src/ui/shortcuts.ui:30
 msgid "Main menu"
 msgstr "תפריט ראשי"
-
-#: src/ui/shortcuts.ui:51
-msgid "Quit all windows"
-msgstr "יציאה מכל החלונות"
 
 #: src/ui/shortcuts.ui:60
 msgid "Image"
@@ -556,6 +548,11 @@ msgstr "חזרה לכלי הקודם"
 msgid "Selection"
 msgstr "בחירה"
 
+#: src/ui/shortcuts.ui:195
+#, fuzzy
+msgid "Delete the selection"
+msgstr "שינוי קנה מידה של הבחירה"
+
 #: src/ui/shortcuts.ui:204
 msgid "Colors"
 msgstr "צבעים"
@@ -587,7 +584,7 @@ msgstr "גודל כלי"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:182 src/window.py:410 src/tools/abstract_tool.py:78
+#: src/ui/window.ui:182 src/window.py:455 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "אין אפשרויות"
 
@@ -607,77 +604,73 @@ msgstr "בחירה מהלוח"
 
 # I had to translate this to "Display the version and "about" dialog".
 # I hope this is in line with the original intent?
-#: src/main.py:57
+#: src/main.py:59
 msgid "Print the version and display the 'about' dialog"
 msgstr "הצג את הגרסה ואת מסך \"אודות\""
 
-#: src/main.py:60
+#: src/main.py:62
 msgid "Open a new window"
 msgstr "פתח חלון חדשה"
 
-#: src/main.py:62
+#: src/main.py:64
 msgid "Open a new tab"
 msgstr "פתח לשונית חדשה"
 
-#: src/main.py:64
+#: src/main.py:66
 #, fuzzy
 msgid "Edit the clipboard content"
 msgstr "ערוך את תכולת הלוח"
 
-#. Obviously, do not translate the command line.
-#: src/main.py:204
-#, python-brace-format
-msgid ""
-"Error opening this file. Did you mean\n"
-"flatpak run --file-forwarding {0} @@ {1} @@\n"
-"?"
+#. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
+#: src/main.py:259
+msgid "translator-credits"
+msgstr "moriel5"
+
+#: src/main.py:266
+msgid "Report bugs or ideas"
+msgstr "דווח באגים או רעיונות"
+
+#: src/main.py:318
+#, fuzzy, python-format
+msgid "Error opening this file. Did you mean %s ?"
 msgstr ""
 "שגיאה בפתיחת קובץ זה. האם התכוונת ל-\n"
 "flatpak run --file-forwarding {0} @@ {1}\n"
 "?"
 
-#. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
-#: src/main.py:269
-msgid "translator-credits"
-msgstr "moriel5"
-
-#: src/main.py:276
-msgid "Report bugs or ideas"
-msgstr "דווח באגים או רעיונות"
-
 # I had to to translate this string to roughly "Modifications will take effect from the next window opening.", as there is no closer equivalent in my opinion.
-#: src/window.py:360
+#: src/window.py:388
 msgid "Modifications will take effect in the next new window."
 msgstr "שינויים ייכנסו לפעולה בפתיחת החלון הבא."
 
-#: src/window.py:669
+#: src/window.py:726
 #, python-format
 msgid "Loading %s"
 msgstr "טוען %s"
 
-#: src/window.py:675
+#: src/window.py:732
 msgid "New Tab"
 msgstr "לשונית חדשה"
 
-#: src/window.py:677
+#: src/window.py:734
 msgid "Discard changes"
 msgstr "בטל שינויים"
 
-#: src/window.py:679 src/window.py:750
+#: src/window.py:736 src/window.py:807
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "ישנם שינויים אשר לא שמורים ל%s."
 
-#: src/window.py:681
+#: src/window.py:738
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "היכן ברצונך לפתוח את %s?"
 
-#: src/window.py:696
+#: src/window.py:753
 msgid "Open a picture"
 msgstr "פתיחת תמונה"
 
-#: src/window.py:697 src/window.py:748 src/window.py:794 src/window.py:850
+#: src/window.py:754 src/window.py:805 src/window.py:851 src/window.py:910
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -687,39 +680,39 @@ msgstr "פתיחת תמונה"
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/window.py:741 src/window.py:796
+#: src/window.py:798 src/window.py:853
 msgid "Untitled"
 msgstr "חסר שם"
 
-#: src/window.py:742
+#: src/window.py:799
 msgid "this picture"
 msgstr "תמונה זו"
 
-#: src/window.py:747
+#: src/window.py:804
 msgid "Discard"
 msgstr "מחיקת שינויים"
 
-#: src/window.py:768
+#: src/window.py:825
 msgid "All pictures"
 msgstr "כל התמונות"
 
-#: src/window.py:774
+#: src/window.py:831
 msgid "PNG images"
 msgstr "תמונות PNG"
 
-#: src/window.py:778
+#: src/window.py:835
 msgid "JPEG images"
 msgstr "תמונות JPEG"
 
-#: src/window.py:782
+#: src/window.py:839
 msgid "BMP images"
 msgstr "תמונות BMP"
 
-#: src/window.py:793
+#: src/window.py:850
 msgid "Save picture as…"
 msgstr "שמירת תמונה כ..."
 
-#: src/window.py:849
+#: src/window.py:909
 msgid "Import a picture"
 msgstr "יבא תמונה"
 
@@ -728,7 +721,7 @@ msgstr "יבא תמונה"
 msgid "Undo %s"
 msgstr "ביטול פעולה %s"
 
-#: src/headerbar.py:105
+#: src/headerbar.py:104
 #, python-format
 msgid "Redo %s"
 msgstr "חידוש פעולה %s"
@@ -759,44 +752,56 @@ msgstr "תמונות שנפתחו"
 msgid "Always add transparency"
 msgstr "תמיד להוסיף שקיפות"
 
-#: src/preferences.py:88
+#: src/preferences.py:108
 msgid "Use big icons"
 msgstr ""
 
-#: src/preferences.py:102
+#: src/preferences.py:136
 msgid "Preview size"
 msgstr "גודל תצוגה מקדימה"
 
-#: src/preferences.py:106
+#: src/preferences.py:140
 msgid "Automatic"
 msgstr "אוטומטי"
 
-#: src/preferences.py:107
+#: src/preferences.py:141
 msgid "Compact"
 msgstr "דחוס"
 
-#: src/preferences.py:109
+#. "Legacy" is about the window layout, it means menubar+toolbar, you can
+#. translate it like if it was "Traditional"
+#: src/preferences.py:145
 msgid "Legacy"
 msgstr "מסורתיבש"
 
-#: src/preferences.py:110
+#. SHORT STRING PLEASE
+#. "Legacy" is about the window layout, it means menubar+toolbar, you can
+#. translate it like if it was "Traditional". "symbolic" means the icons
+#. are in black or white.
+#: src/preferences.py:150
+msgid "Legacy (symbolic)"
+msgstr ""
+
+#: src/preferences.py:151
 msgid "Menubar only"
 msgstr "סרגל תפריט בלבד"
 
-#: src/preferences.py:111
+#: src/preferences.py:152
 msgid "Toolbar only"
 msgstr "סרגל כלים בלבד"
 
-# I had to translate this to "Everything (for testing only)"
-#: src/preferences.py:113
-msgid "Everything (testing only)"
-msgstr "הכל (לבחינה בלבד)"
+#. SHORT STRING PLEASE
+#. "symbolic" means the icons are in black or white.
+#: src/preferences.py:155
+#, fuzzy
+msgid "Toolbar (symbolic)"
+msgstr "סרגל כלים בלבד"
 
-#: src/preferences.py:116
+#: src/preferences.py:160
 msgid "Layout"
 msgstr "פריסה"
 
-#: src/preferences.py:121
+#: src/preferences.py:165
 msgid "Development features"
 msgstr "תכונות פיתוח"
 
@@ -839,15 +844,15 @@ msgstr "צורת פס"
 #: src/tools/classic_tools/tool_arc.py:35
 #: src/tools/classic_tools/tool_line.py:23
 #: src/tools/classic_tools/tool_line.py:35
-#: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:44
+#: src/tools/classic_tools/tool_pencil.py:20
+#: src/tools/classic_tools/tool_pencil.py:45
 msgid "Round"
 msgstr "עגול"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
 #: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
 #: src/tools/classic_tools/tool_line.py:32
-#: src/tools/classic_tools/tool_pencil.py:40
+#: src/tools/classic_tools/tool_pencil.py:41
 msgid "Square"
 msgstr "מרובע"
 
@@ -872,28 +877,28 @@ msgstr "סגנון"
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
 #: src/tools/ui/tool_pencil.ui:31 src/tools/classic_tools/tool_arc.py:50
 #: src/tools/classic_tools/tool_line.py:50
-#: src/tools/classic_tools/tool_pencil.py:59
+#: src/tools/classic_tools/tool_pencil.py:60
 msgid "Classic"
 msgstr "רגיל"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:44
 #: src/tools/ui/tool_pencil.ui:36 src/tools/classic_tools/tool_arc.py:44
 #: src/tools/classic_tools/tool_line.py:44
-#: src/tools/classic_tools/tool_pencil.py:53
+#: src/tools/classic_tools/tool_pencil.py:54
 msgid "Source color"
 msgstr "צבע מקור"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41 src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_line.py:47
-#: src/tools/classic_tools/tool_pencil.py:56
+#: src/tools/classic_tools/tool_pencil.py:57
 msgid "Eraser"
 msgstr "מחק"
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
 #: src/tools/ui/tool_pencil.ui:46 src/tools/classic_tools/tool_arc.py:41
 #: src/tools/classic_tools/tool_line.py:41
-#: src/tools/classic_tools/tool_pencil.py:50
+#: src/tools/classic_tools/tool_pencil.py:51
 msgid "Difference"
 msgstr "שוני"
 
@@ -974,7 +979,7 @@ msgstr "מחק והחלף"
 msgid "Clipping"
 msgstr ""
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:37
 msgid "Thin"
 msgstr "דק"
 
@@ -1022,13 +1027,34 @@ msgstr "צבע דומה"
 msgid "Insert here"
 msgstr "הכנס כאן"
 
-#: src/tools/ui/tool_text.ui:82 src/tools/ui/tool_text.ui:110
-msgid "Opaque background"
+#: src/tools/ui/tool_text.ui:64
+msgid "Italic"
+msgstr ""
+
+#: src/tools/ui/tool_text.ui:68
+msgid "Bold"
+msgstr ""
+
+#: src/tools/ui/tool_text.ui:73
+#, fuzzy
+msgid "Background"
 msgstr "רקע אטום"
 
-#: src/tools/ui/tool_text.ui:106
-msgid "Font"
-msgstr "גופן"
+#: src/tools/ui/tool_text.ui:75 src/tools/classic_tools/tool_text.py:45
+#, fuzzy
+msgid "No background"
+msgstr "רקע אטום"
+
+#: src/tools/ui/tool_text.ui:80 src/tools/classic_tools/tool_text.py:49
+#, fuzzy
+msgid "Secondary color rectangle"
+msgstr "צבע משנה"
+
+#: src/tools/ui/tool_text.ui:85 src/tools/classic_tools/tool_text.py:22
+#: src/tools/classic_tools/tool_text.py:47
+#, fuzzy
+msgid "Secondary color shadow"
+msgstr "צבע משנה"
 
 #: src/tools/classic_tools/tool_arc.py:53
 msgid "Arc options"
@@ -1038,7 +1064,7 @@ msgstr "אפשרויות קשת"
 #: src/tools/classic_tools/tool_arc.py:66
 #: src/tools/classic_tools/tool_line.py:63
 #: src/tools/classic_tools/tool_line.py:67
-#: src/tools/classic_tools/tool_pencil.py:71
+#: src/tools/classic_tools/tool_pencil.py:72
 msgid "With dashes"
 msgstr "עם קווים מפרידים"
 
@@ -1070,7 +1096,7 @@ msgstr "לחץ על אזור כדי  להחליף את צבעו לפי שקיפ�
 msgid "Polygon options"
 msgstr "אפשרויות מצולע"
 
-#: src/tools/classic_tools/tool_pencil.py:62
+#: src/tools/classic_tools/tool_pencil.py:63
 msgid "Pencil options"
 msgstr "אפשרויות עיפרון"
 
@@ -1081,6 +1107,11 @@ msgstr "בוחר צבעים"
 #: src/tools/classic_tools/tool_rectangle.py:33
 msgid "Rectangle options"
 msgstr "אפשרויות מלבן"
+
+#: src/tools/classic_tools/tool_text.py:59
+#, fuzzy
+msgid "Font options"
+msgstr "אין אפשרויות"
 
 #: src/tools/selection_tools/tool_select.py:20
 #: src/tools/selection_tools/tool_select.py:40
@@ -1109,11 +1140,11 @@ msgstr "גרור את הבחירה או לחץ לחיצה ימנית על לוח
 msgid "Select an area or right-click on the canvas"
 msgstr "גרור את הבחירה או לחץ לחיצה שמאלית על לוח הציור"
 
-#: src/tools/canvas_tools/tool_crop.py:49
+#: src/tools/canvas_tools/tool_crop.py:53
 msgid "Cropping the selection"
 msgstr "חיתוך הבחירה"
 
-#: src/tools/canvas_tools/tool_crop.py:51
+#: src/tools/canvas_tools/tool_crop.py:55
 msgid "Cropping the canvas"
 msgstr "חיתוך לוח הציור"
 
@@ -1125,13 +1156,20 @@ msgstr "סיבוב הבחירה"
 msgid "Rotating the canvas"
 msgstr "סיבוב לוח הציור"
 
-#: src/tools/canvas_tools/tool_scale.py:51
+#: src/tools/canvas_tools/tool_scale.py:56
 msgid "Scaling the selection"
 msgstr "שינוי קנה מידה של הבחירה"
 
-#: src/tools/canvas_tools/tool_scale.py:53
+#: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "שינוי קנה מידה של לוח הציור"
+
+# I had to translate this to "Everything (for testing only)"
+#~ msgid "Everything (testing only)"
+#~ msgstr "הכל (לבחינה בלבד)"
+
+#~ msgid "Font"
+#~ msgstr "גופן"
 
 #~ msgid "Basic"
 #~ msgstr "בסיסי"

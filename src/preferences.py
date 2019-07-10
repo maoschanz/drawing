@@ -101,6 +101,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		# w = self.row_from_label(_("Appearance"), False)
 		# self.page_tools.add(w)
 
+		pass
 		w = self.row_from_bool(_("Show tools names"), 'show-labels')
 		self.page_tools.add(w)
 
@@ -128,6 +129,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		########################################################################
 		# Build the "advanced" page ############################################
 
+		pass
 		w = self.row_from_label(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
