@@ -16,9 +16,14 @@ class ToolText(ToolTemplate):
 		self.x_begin = 0.0
 		self.y_begin = 0.0
 		self.should_cancel = False
+		self.use_size = True
 
-		self.add_tool_action_boolean('text_opaque_bg', False)
-		self.add_tool_action_boolean('text_shadow', True)
+		self.selected_background_id = 'shadow'
+		self.selected_background_label = _("Secondary color shadow")
+
+		self.add_tool_action_boolean('text_bold', False)
+		self.add_tool_action_boolean('text_italic', False)
+		self.add_tool_action_enum('text_background', 'shadow')
 
 		builder = Gtk.Builder().new_from_resource( \
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
@@ -33,27 +38,15 @@ class ToolText(ToolTemplate):
 		cancel_btn.connect('clicked', self.on_cancel)
 		self.entry.get_buffer().connect('changed', self.preview_text)
 
-		# Building the widget containing options
-		self.options_box = builder.get_object('options-widget')
-		self.font_widget = builder.get_object('font-chooser-widget')
-		# grid1 = self.font_widget.get_children()[0].get_children()[0]
-		# grid2 = grid1.get_children()[0].get_children()[0]
-		# children = grid2.get_children()
-		# children[0].set_visible(False)
-		# children[1].set_visible(False)
-		# children[2].set_visible(False)
-		# children[3].set_size_request (360, -1) # FIXME TODO issue #58
-		self.backg_switch = builder.get_object('backg-switch')
-		self.shadow_switch = builder.get_object('shadow-switch')
-
-		self.font_widget.set_font('Sans 36')
-		self.font_fam = self.font_widget.get_font()
-
-	def hide_row_label(self):
-		self.label_widget.set_visible(False)
-
-	def show_row_label(self):
-		self.label_widget.set_visible(True)
+	def set_background_style(self, *args):
+		state_as_string = self.get_option_value('text_background')
+		self.selected_background_id = state_as_string
+		if state_as_string == 'none':
+			self.selected_background_label = _("No background")
+		elif state_as_string == 'shadow':
+			self.selected_background_label = _("Secondary color shadow")
+		else:
+			self.selected_background_label = _("Secondary color rectangle")
 
 	def on_tool_selected(self):
 		# Ctrl+v can't paste text in the entry otherwise
@@ -63,47 +56,44 @@ class ToolText(ToolTemplate):
 		self.set_action_sensitivity('paste', True)
 
 	def get_options_label(self):
-		return self.font_widget.get_font()
+		return _("Font options")
 
-	def get_options_widget(self):
-		return self.options_box
+	def get_edition_status(self):
+		self.set_background_style()
+		# TODO + font ?
+		label = self.label + ' - ' + self.selected_background_label
+		return label
 
 	def give_back_control(self, preserve_selection):
 		if self.should_cancel:
 			self.on_cancel()
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, tool_width, \
+	                                 left_color, right_color, event_x, event_y):
 		if event.button == 1:
 			self.main_color = left_color
 			self.secondary_color = right_color
 		else:
 			self.main_color = right_color
 			self.secondary_color = left_color
+		self.tool_width = tool_width
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.x_begin = event_x
 		self.y_begin = event_y
 		self.should_cancel = True
 
-		self.font_fam = self.font_widget.get_font()
-		self.font_slant = cairo.FontSlant.NORMAL
-		self.font_weight = cairo.FontWeight.NORMAL
-		if 'Bold' in self.font_fam:
-			self.font_weight = cairo.FontWeight.BOLD
-		if 'Regular' in self.font_fam:
-			self.font_slant = cairo.FontSlant.NORMAL
-			self.font_weight = cairo.FontWeight.NORMAL
-		if 'Italic' in self.font_fam:
+		# TODO use the widget again, and cairo.ToyFontFace
+		self.font_fam = 'Serif'
+		if self.get_option_value('text_italic'):
 			self.font_slant = cairo.FontSlant.ITALIC
-		if 'Oblique' in self.font_fam:
-			self.font_slant = cairo.FontSlant.OBLIQUE
+		else:
+			self.font_slant = cairo.FontSlant.NORMAL
+		if self.get_option_value('text_bold'):
+			self.font_weight = cairo.FontWeight.BOLD
+		else:
+			self.font_weight = cairo.FontWeight.NORMAL
 
-		self.font_fam.replace('Bold', '')
-		self.font_fam.replace('Regular', '')
-		self.font_fam.replace('Italic', '')
-		self.font_fam.replace('Oblique', '')
-
-		self.tool_width = int(self.font_fam.split(' ')[-1])
 		if event is None: # TODO l'ouvrir à l'endroit précédent si clic droit ?
 			self.open_popover_at(int(event_x), int(event_y))
 		else:
@@ -164,8 +154,7 @@ class ToolText(ToolTemplate):
 			'font_size': self.tool_width,
 			'x': self.x_begin,
 			'y': self.y_begin,
-			'background': self.backg_switch.get_state(),
-			'shadow': self.shadow_switch.get_state(),
+			'background': self.selected_background_id,
 			'text': self.text_string
 		}
 		return operation
@@ -192,7 +181,7 @@ class ToolText(ToolTemplate):
 		text_y = operation['y']
 
 		for a_line in lines:
-			if operation['background']:
+			if operation['background'] == 'rectangle':
 				cairo_context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
 				cairo_context.move_to(text_x, text_y + (i+0.2)*font_size)
 				cairo_context.show_text( a_line )
@@ -204,7 +193,7 @@ class ToolText(ToolTemplate):
 				cairo_context.fill()
 				cairo_context.stroke()
 			actual_text_y = text_y + i*font_size
-			if operation['shadow']:
+			if operation['background'] == 'shadow':
 				cairo_context.set_source_rgba(snd_color.red, snd_color.green, \
 				                              snd_color.blue, snd_color.alpha)
 				if font_size < 32:

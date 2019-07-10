@@ -58,92 +58,33 @@
     </child>
   </object>
 
-  <object class="GtkPopover" id="options-widget">
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="margin">10</property>
-        <property name="spacing">10</property>
-        <property name="orientation">vertical</property>
-
-        <child>
-          <object class="GtkFontChooserWidget" id="font-chooser-widget">
-            <property name="visible">True</property>
-            <property name="show-preview-entry">False</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Opaque background</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="backg-switch">
-                <property name="visible">True</property>
-                <property name="action-name">win.text_opaque_bg</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Use a shadow</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSwitch" id="shadow-switch">
-                <property name="visible">True</property>
-                <property name="action-name">win.text_shadow</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-
-      </object>
-    </child>
-  </object>
-
   <menu id="options-menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">Font</attribute>
-        <attribute name="action">win.options_menu</attribute>
+        <attribute name="label" translatable="yes">Italic</attribute>
+        <attribute name="action">win.text_italic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Bold</attribute>
+        <attribute name="action">win.text_bold</attribute>
       </item>
     </section>
     <section>
+      <attribute name="label" translatable="yes">Background</attribute>
       <item>
-        <attribute name="label" translatable="yes">Opaque background</attribute>
-        <attribute name="action">win.text_opaque_bg</attribute>
+        <attribute name="label" translatable="yes">No background</attribute>
+        <attribute name="action">win.text_background</attribute>
+        <attribute name="target">none</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Use a shadow</attribute>
-        <attribute name="action">win.text_shadow</attribute>
+        <attribute name="label" translatable="yes">Secondary color rectangle</attribute>
+        <attribute name="action">win.text_background</attribute>
+        <attribute name="target">rectangle</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color shadow</attribute>
+        <attribute name="action">win.text_background</attribute>
+        <attribute name="target">shadow</attribute>
       </item>
     </section>
   </menu>
