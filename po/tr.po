@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-10 18:22+0200\n"
-"PO-Revision-Date: 2019-06-27 07:31+0300\n"
+"PO-Revision-Date: 2019-07-11 03:48+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -526,9 +526,8 @@ msgid "Selection"
 msgstr "Seçim"
 
 #: src/ui/shortcuts.ui:195
-#, fuzzy
 msgid "Delete the selection"
-msgstr "Seçimi ölçeklendir"
+msgstr "Seçimi sil"
 
 #: src/ui/shortcuts.ui:204
 msgid "Colors"
@@ -602,12 +601,9 @@ msgid "Report bugs or ideas"
 msgstr "Hata veya fikir bildirin"
 
 #: src/main.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr ""
-"Bu dosyayı açarken hata. Demek istediğin\n"
-"flatpak run --file-forwarding {0} @@ {1} @@\n"
-"?"
+msgstr "Bu dosyayı açarken hata. %s demek mi istediniz?"
 
 #: src/window.py:388
 msgid "Modifications will take effect in the next new window."
@@ -750,7 +746,7 @@ msgstr "Eski"
 #. are in black or white.
 #: src/preferences.py:150
 msgid "Legacy (symbolic)"
-msgstr ""
+msgstr "Eski (sembolik)"
 
 #: src/preferences.py:151
 msgid "Menubar only"
@@ -763,9 +759,8 @@ msgstr "Sadece araç çubuğu"
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
 #: src/preferences.py:155
-#, fuzzy
 msgid "Toolbar (symbolic)"
-msgstr "Sadece araç çubuğu"
+msgstr "Araç çubuğu (sembolik)"
 
 #: src/preferences.py:160
 msgid "Layout"
@@ -1002,32 +997,28 @@ msgstr "Yazı tipi"
 
 #: src/tools/ui/tool_text.ui:82
 msgid "Italic"
-msgstr ""
+msgstr "Italic"
 
 #: src/tools/ui/tool_text.ui:86
 msgid "Bold"
-msgstr ""
+msgstr "Kalın"
 
 #: src/tools/ui/tool_text.ui:91
-#, fuzzy
 msgid "Background"
-msgstr "Opak arka plan"
+msgstr "Arkaplan"
 
 #: src/tools/ui/tool_text.ui:93 src/tools/classic_tools/tool_text.py:50
-#, fuzzy
 msgid "No background"
-msgstr "Opak arka plan"
+msgstr "Arkaplan yok"
 
 #: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:54
-#, fuzzy
 msgid "Secondary color rectangle"
-msgstr "İkincil renk"
+msgstr "İkincil renk dikdörtgen"
 
 #: src/tools/ui/tool_text.ui:103 src/tools/classic_tools/tool_text.py:23
 #: src/tools/classic_tools/tool_text.py:52
-#, fuzzy
 msgid "Secondary color shadow"
-msgstr "İkincil renk"
+msgstr "İkincil renk gölge"
 
 #: src/tools/classic_tools/tool_arc.py:53
 msgid "Arc options"
@@ -1082,9 +1073,8 @@ msgid "Rectangle options"
 msgstr "Dikdörtgen seçenekleri"
 
 #: src/tools/classic_tools/tool_text.py:64
-#, fuzzy
 msgid "Font options"
-msgstr "Seçenek yok"
+msgstr "Yazıtipi seçenekleri"
 
 #: src/tools/selection_tools/tool_select.py:20
 #: src/tools/selection_tools/tool_select.py:40
