@@ -68,7 +68,7 @@ class AbstractCanvasTool(ToolTemplate):
 		if operation_is_selection:
 			self.get_selection().delete_temp()
 			pixbuf = self.get_image().get_temp_pixbuf().copy() # XXX copy ??
-			self.get_selection().set_pixbuf(pixbuf, False)
+			self.get_selection().set_pixbuf(pixbuf, False, False)
 			# FIXME n'a pas l'air particulièrement efficace sur les scales successifs
 		else:
 			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()

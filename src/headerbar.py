@@ -23,7 +23,7 @@ class DrawingAdaptativeHeaderBar():
 	__gtype_name__ = 'DrawingAdaptativeHeaderBar'
 
 	def __init__(self, is_eos):
-		self.is_short = True # This is reducing the complexity of resizing,
+		self.is_narrow = True # This is reducing the complexity of resizing,
 		# but its main goal is to avoid a GTK minor bug where the initial
 		# bunch of configure-event signals was sent to soon, so the popover
 		# was displayed a parallel universe when running the app on Wayland.
@@ -51,7 +51,7 @@ class DrawingAdaptativeHeaderBar():
 		self.long_main_menu = builder.get_object('long-window-menu')
 
 		# This one is the default to be coherent with the default value of
-		# self.is_short
+		# self.is_narrow
 		self.main_menu_btn.set_menu_model(self.long_main_menu)
 
 		if is_eos:
@@ -77,9 +77,9 @@ class DrawingAdaptativeHeaderBar():
 
 	def adapt_to_window_size(self):
 		can_expand = (self.header_bar.get_allocated_width() > self.limit_size)
-		incoherent = (can_expand == self.is_short)
+		incoherent = (can_expand == self.is_narrow)
 		if incoherent:
-			self.set_compact(not self.is_short)
+			self.set_compact(not self.is_narrow)
 
 	def set_compact(self, state):
 		if state:
@@ -89,7 +89,7 @@ class DrawingAdaptativeHeaderBar():
 		self.save_label.set_visible(not state)
 		self.save_icon.set_visible(state)
 		self.add_btn.set_visible(not state)
-		self.is_short = state
+		self.is_narrow = state
 
 	def set_undo_label(self, label):
 		if label is None:

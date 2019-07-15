@@ -113,6 +113,39 @@
         <style><class name="linked"/></style>
         <child>
           <object class="GtkButton">
+            <property name="action_name">win.import</property>
+            <property name="tooltip-text" translatable="yes">Import</property>
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">insert-image-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="action_name">win.paste</property>
+            <property name="tooltip-text" translatable="yes">Paste</property>
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">edit-paste-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <style><class name="linked"/></style>
+        <child>
+          <object class="GtkButton">
             <property name="action_name">win.selection_delete</property>
             <property name="tooltip-text" translatable="yes">Delete</property>
             <property name="visible">True</property>

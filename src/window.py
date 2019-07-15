@@ -174,6 +174,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			self.active_tool().row.set_active(True)
 
+	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
 
 	def build_new_image(self, *args):
@@ -258,6 +259,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.set_boolean('maximized', self.is_maximized())
 		return False
 
+	############################################################################
 	# GENERAL PURPOSE METHODS ##################################################
 
 	def connect_signals(self):
@@ -385,18 +387,22 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# WINDOW BARS ##############################################################
 
 	def on_layout_changed(self, *args):
-		self.prompt_message(False, _("Modifications will take effect in the next new window."))
-		self.set_titlebar(None)
 		if self.header_bar is not None:
-			is_short = self.header_bar.is_short
+			is_narrow = self.header_bar.is_narrow
 			self.header_bar = None
+		else:
+			is_narrow = False
 		toolbar = self.toolbar_box.get_children()
 		if len(toolbar) > 0:
 			toolbar[0].destroy()
+		self.header_bar = None
+		# self.prompt_message(False, _("Modifications will take effect in the next new window."))
 		self.set_ui_bars()
+		if self.header_bar is not None:
+			self.header_bar.set_compact(is_narrow)
+		else:
+			self.set_titlebar(None)
 		self.set_picture_title()
-		self.header_bar.set_compact(is_short)
-		# self.adapt_to_window_size() # XXX show all, which isn't what we want
 
 	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI

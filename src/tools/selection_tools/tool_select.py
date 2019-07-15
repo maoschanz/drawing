@@ -154,15 +154,18 @@ class ToolSelect(ToolTemplate):
 		elif self.behavior == 'freehand':
 			if self.draw_polygon(event_x, event_y):
 				self.restore_pixbuf()
-				self.get_selection().load_from_path(self.future_path)
-				if self.selection_is_active():
-					self.get_selection().show_popover(True)
-					# self.set_selection_has_been_used(False) # TODO
+				self.operation_type = 'op-define'
+				self.set_future_coords_for_free_path()
+				operation = self.build_operation()
+				self.apply_operation(operation)
+				self.get_selection().show_popover(True)
+				# self.set_selection_has_been_used(False) # TODO
 			else:
 				return # without updating the surface so the path is visible
 		elif self.behavior == 'color':
 			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
 			self.operation_type = 'op-define'
+			self.set_future_coords_for_free_path()
 			operation = self.build_operation()
 			self.apply_operation(operation)
 		elif self.behavior == 'drag':
@@ -236,7 +239,16 @@ class ToolSelect(ToolTemplate):
 		cairo_context.close_path()
 		self.future_path = cairo_context.copy_path()
 
-
+	def set_future_coords_for_free_path(self):
+		main_width = self.get_main_pixbuf().get_width()
+		main_height = self.get_main_pixbuf().get_height()
+		xmin, ymin = main_width, main_height
+		for pts in self.future_path:
+			if pts[1] is not ():
+				xmin = min(pts[1][0], xmin)
+				ymin = min(pts[1][1], ymin)
+		self.future_x = max(xmin, 0.0)
+		self.future_y = max(ymin, 0.0)
 
 
 
@@ -278,7 +290,7 @@ class ToolSelect(ToolTemplate):
 	def op_import(self, operation):
 		if operation['pixbuf'] is None:
 			return
-		self.get_selection().set_pixbuf(operation['pixbuf'].copy(), True)
+		self.get_selection().set_pixbuf(operation['pixbuf'].copy(), True, True)
 
 	def op_delete(self, operation):
 		if operation['initial_path'] is None:
