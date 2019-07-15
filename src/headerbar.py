@@ -73,23 +73,23 @@ class DrawingAdaptativeHeaderBar():
 			+ self.save_icon.get_preferred_width()[0] \
 			+ self.add_btn.get_preferred_width()[0]
 		self.limit_size = 3 * widgets_width # 100% arbitrary
+		# self.adapt_to_window_size() # XXX ferait sens mais ne semble pas efficace
 
 	def adapt_to_window_size(self):
-		if self.header_bar.get_allocated_width() < self.limit_size:
-			if not self.is_short:
-				self.is_short = True
-				self.compact(True)
-				self.main_menu_btn.set_menu_model(self.long_main_menu)
-		else:
-			if self.is_short:
-				self.is_short = False
-				self.compact(False)
-				self.main_menu_btn.set_menu_model(self.short_main_menu)
+		can_expand = (self.header_bar.get_allocated_width() > self.limit_size)
+		incoherent = (can_expand == self.is_short)
+		if incoherent:
+			self.set_compact(not self.is_short)
 
-	def compact(self, state):
+	def set_compact(self, state):
+		if state:
+			self.main_menu_btn.set_menu_model(self.long_main_menu)
+		else:
+			self.main_menu_btn.set_menu_model(self.short_main_menu)
 		self.save_label.set_visible(not state)
 		self.save_icon.set_visible(state)
 		self.add_btn.set_visible(not state)
+		self.is_short = state
 
 	def set_undo_label(self, label):
 		if label is None:

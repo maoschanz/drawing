@@ -8,7 +8,6 @@
       <object class="GtkMenuButton" id="add_btn">
         <property name="visible">False</property>
         <property name="valign">center</property>
-        <property name="tooltip_text" translatable="yes">Open</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -41,11 +40,12 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="valign">center</property>
+        <style><class name="linked"/></style>
         <child>
           <object class="GtkButton" id="undo_btn">
             <property name="visible">True</property>
             <property name="action_name">win.undo</property>
-            <property name="tooltip_text" translatable="yes">Undo</property>
+            <property name="tooltip-text" translatable="yes">Undo</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">edit-undo-symbolic</property>
@@ -58,7 +58,7 @@
         <!--   <object class="GtkButton" id="correct_btn"> -->
         <!--     <property name="visible">True</property> -->
         <!--     <property name="action_name">win.correct</property> -->
-        <!--     <property name="tooltip_text" translatable="yes">Correct</property> -->
+        <!--     <property name="tooltip-text" translatable="yes">Correct</property> -->
         <!--     <child> -->
         <!--       <object class="GtkImage"> -->
         <!--         <property name="icon-name">error-correct-symbolic</property> -->
@@ -71,7 +71,7 @@
           <object class="GtkButton" id="redo_btn">
             <property name="visible">True</property>
             <property name="action_name">win.redo</property>
-            <property name="tooltip_text" translatable="yes">Redo</property>
+            <property name="tooltip-text" translatable="yes">Redo</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">edit-redo-symbolic</property>
@@ -80,11 +80,10 @@
             </child>
           </object>
         </child>
-        <style>
-          <class name="linked"/>
-        </style>
       </object>
     </child>
+
+    <!-- -->
 
     <child>
       <object class="GtkMenuButton" id="main_menu_btn">
@@ -107,7 +106,6 @@
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
-        <property name="tooltip_text" translatable="yes">Save</property>
         <property name="label" translatable="yes">Save</property>
       </object>
       <packing>
@@ -120,7 +118,7 @@
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
-        <property name="tooltip_text" translatable="yes">Save</property>
+        <property name="tooltip-text" translatable="yes">Save</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">document-save-symbolic</property>

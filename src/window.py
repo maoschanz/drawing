@@ -387,14 +387,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_layout_changed(self, *args):
 		self.prompt_message(False, _("Modifications will take effect in the next new window."))
 		self.set_titlebar(None)
-		self.header_bar = None
-		self.has_good_limits = False
+		if self.header_bar is not None:
+			is_short = self.header_bar.is_short
+			self.header_bar = None
 		toolbar = self.toolbar_box.get_children()
 		if len(toolbar) > 0:
 			toolbar[0].destroy()
 		self.set_ui_bars()
 		self.set_picture_title()
-		self.adapt_to_window_size() # XXX show all, which isn't what we want
+		self.header_bar.set_compact(is_short)
+		# self.adapt_to_window_size() # XXX show all, which isn't what we want
 
 	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI
@@ -441,7 +443,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		according to the user's preference, which by default is 'auto'."""
 		self.has_good_limits = False
 		self.limit_size_bottom = 600
-		self.limit_size_header = 700
 
 		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
 		# so it's built from a string.
@@ -550,14 +551,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def init_adaptability(self):
 		"""Initialize limit_size_header and limit_size_bottom, which are 700 by
 		default, but are likely to actually be less wide."""
-		self.has_good_limits = True
-
-		# Bottom panel width limit
 		self.set_bottom_width_limit()
-
-		# Header bar width limit
 		if self.header_bar is not None:
 			self.header_bar.init_adaptability()
+		self.has_good_limits = True
 
 	def adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
