@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-10 18:22+0200\n"
+"POT-Creation-Date: 2019-07-16 00:15+0200\n"
 "PO-Revision-Date: 2019-06-15 22:14+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. Un peu idiot sans doute
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:6 src/main.py:163
-#: src/window.py:412
+#: src/window.py:420
 msgid "Drawing"
 msgstr "Zeichnung"
 
@@ -41,7 +41,7 @@ msgstr "Paint;Skizze;Bleistift;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/ui/win-menus.ui:215 src/window.py:733
+#: src/ui/win-menus.ui:215 src/window.py:736
 msgid "New Window"
 msgstr "Neues Fenster"
 
@@ -176,11 +176,10 @@ msgstr "Neues Bild aus der Zwischenablage"
 msgid "Open an image"
 msgstr "Ein Bild öffnen"
 
-#: src/ui/app-menus.ui:75 src/ui/headerbar.ui:110 src/ui/headerbar.ui:111
-#: src/ui/headerbar.ui:123 src/ui/headerbar_eos.ui:157
-#: src/ui/headerbar_eos.ui:170 src/ui/headerbar_eos.ui:188
-#: src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:806 src/window.py:851
+#: src/ui/app-menus.ui:75 src/ui/headerbar.ui:109 src/ui/headerbar.ui:121
+#: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
+#: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
+#: src/ui/toolbar.ui:119 src/window.py:809 src/window.py:854
 msgid "Save"
 msgstr "Speichern"
 
@@ -190,6 +189,7 @@ msgstr "Speichern als..."
 
 #: src/ui/app-menus.ui:85 src/ui/selection.ui:86 src/ui/win-menus.ui:76
 #: src/ui/win-menus.ui:132 src/tools/ui/tool_select.ui:76
+#: src/tools/ui/tool_select.ui:244
 msgid "Export as…"
 msgstr "Exportieren als..."
 
@@ -219,34 +219,36 @@ msgid "Redo"
 msgstr "Wiederherstellen"
 
 #: src/ui/app-menus.ui:126 src/ui/selection.ui:7 src/ui/shortcuts.ui:167
-#: src/tools/ui/tool_select.ui:7
+#: src/tools/ui/tool_select.ui:7 src/tools/ui/tool_select.ui:230
 msgid "Select all"
 msgstr "Alles auswählen"
 
 #: src/ui/app-menus.ui:133 src/ui/selection.ui:32 src/ui/shortcuts.ui:181
-#: src/tools/ui/tool_select.ui:18
+#: src/tools/ui/tool_select.ui:23 src/tools/ui/tool_select.ui:163
 msgid "Cut"
 msgstr "Ausschneiden"
 
 #: src/ui/app-menus.ui:138 src/ui/selection.ui:37 src/ui/shortcuts.ui:188
-#: src/tools/ui/tool_select.ui:23
+#: src/tools/ui/tool_select.ui:28 src/tools/ui/tool_select.ui:176
 msgid "Copy"
 msgstr "Kopieren"
 
 #: src/ui/app-menus.ui:143 src/ui/selection.ui:42
-#: src/tools/ui/tool_select.ui:28
+#: src/tools/ui/tool_select.ui:18 src/tools/ui/tool_select.ui:150
 msgid "Delete"
 msgstr "Löschen"
 
 #: src/ui/app-menus.ui:150 src/ui/headerbar_eos.ui:67 src/ui/selection.ui:17
 #: src/ui/shortcuts.ui:140 src/ui/toolbar.ui:58 src/ui/toolbar.ui:59
 #: src/ui/win-menus.ui:43 src/ui/win-menus.ui:224
+#: src/tools/ui/tool_select.ui:130
 msgid "Paste"
 msgstr "Einfügen"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/ui/win-menus.ui:39 src/ui/win-menus.ui:220 src/window.py:910
+#: src/ui/win-menus.ui:39 src/ui/win-menus.ui:220 src/window.py:913
+#: src/tools/ui/tool_select.ui:117
 msgid "Import"
 msgstr "Importieren"
 
@@ -345,7 +347,7 @@ msgstr "Leinwand"
 msgid "Previous tool"
 msgstr "Vorheriges Werkzeug"
 
-#: src/ui/app-menus.ui:308 src/window.py:1043 src/window.py:1046
+#: src/ui/app-menus.ui:308 src/window.py:1046 src/window.py:1049
 msgid "_Options"
 msgstr "_Optionen"
 
@@ -391,8 +393,8 @@ msgstr "Zurück zur Palette"
 msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
 
-#: src/ui/headerbar.ui:11 src/ui/headerbar.ui:18 src/ui/headerbar_eos.ui:29
-#: src/ui/toolbar.ui:30 src/window.py:754
+#: src/ui/headerbar.ui:17 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
+#: src/window.py:757
 msgid "Open"
 msgstr "Öffnen"
 
@@ -455,7 +457,7 @@ msgid "inches"
 msgstr "Zoll"
 
 #: src/ui/selection.ui:26 src/ui/shortcuts.ui:174
-#: src/tools/ui/tool_select.ui:11
+#: src/tools/ui/tool_select.ui:11 src/tools/ui/tool_select.ui:234
 msgid "Unselect"
 msgstr "Abwählen"
 
@@ -485,6 +487,7 @@ msgid "Saturate"
 msgstr "Sättigen"
 
 #: src/ui/selection.ui:82 src/tools/ui/tool_select.ui:72
+#: src/tools/ui/tool_select.ui:240
 msgid "Open As New Image"
 msgstr "Als neues Bild öffnen"
 
@@ -563,11 +566,11 @@ msgstr "Werkzeuggröße"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:182 src/window.py:455 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:182 src/window.py:462 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Keine Optionen"
 
-#: src/ui/window.ui:215 src/ui/window.ui:233
+#: src/ui/window.ui:215 src/ui/window.ui:233 src/tools/ui/tool_select.ui:208
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -612,38 +615,34 @@ msgstr ""
 "flatpak run --file-forwarding {0} @@ {1} @@\n"
 "?"
 
-#: src/window.py:388
-msgid "Modifications will take effect in the next new window."
-msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
-
-#: src/window.py:726
+#: src/window.py:729
 #, python-format
 msgid "Loading %s"
 msgstr "Wird geladen %s"
 
-#: src/window.py:732
+#: src/window.py:735
 msgid "New Tab"
 msgstr "Neuer Tab"
 
-#: src/window.py:734
+#: src/window.py:737
 msgid "Discard changes"
 msgstr "Änderungen verwerfen"
 
-#: src/window.py:736 src/window.py:807
+#: src/window.py:739 src/window.py:810
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Es gibt ungespeicherte Änderungen an %s"
 
-#: src/window.py:738
+#: src/window.py:741
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Wo möchten Sie %s öffnen?"
 
-#: src/window.py:753
+#: src/window.py:756
 msgid "Open a picture"
 msgstr "Ein Bild öffnen"
 
-#: src/window.py:754 src/window.py:805 src/window.py:851 src/window.py:910
+#: src/window.py:757 src/window.py:808 src/window.py:854 src/window.py:913
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -653,39 +652,39 @@ msgstr "Ein Bild öffnen"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/window.py:798 src/window.py:853
+#: src/window.py:801 src/window.py:856
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: src/window.py:799
+#: src/window.py:802
 msgid "this picture"
 msgstr "diesem Bild"
 
-#: src/window.py:804
+#: src/window.py:807
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/window.py:825
+#: src/window.py:828
 msgid "All pictures"
 msgstr "Alle Bilder"
 
-#: src/window.py:831
+#: src/window.py:834
 msgid "PNG images"
 msgstr "PNG-Bilder"
 
-#: src/window.py:835
+#: src/window.py:838
 msgid "JPEG images"
 msgstr "JPEG-Bilder"
 
-#: src/window.py:839
+#: src/window.py:842
 msgid "BMP images"
 msgstr "BMP-Bilder"
 
-#: src/window.py:850
+#: src/window.py:853
 msgid "Save picture as…"
 msgstr "Bild speichern als..."
 
-#: src/window.py:909
+#: src/window.py:912
 msgid "Import a picture"
 msgstr "Ein Bild importieren"
 
@@ -1090,27 +1089,27 @@ msgid "Font options"
 msgstr "Keine Optionen"
 
 #: src/tools/selection_tools/tool_select.py:20
-#: src/tools/selection_tools/tool_select.py:40
+#: src/tools/selection_tools/tool_select.py:50
 msgid "Rectangle selection"
 msgstr "Rechteckauswahl"
 
-#: src/tools/selection_tools/tool_select.py:43
+#: src/tools/selection_tools/tool_select.py:53
 msgid "Free selection"
 msgstr "Freie Auswahl"
 
-#: src/tools/selection_tools/tool_select.py:46
+#: src/tools/selection_tools/tool_select.py:56
 msgid "Color selection"
 msgstr "Farbauswahl"
 
-#: src/tools/selection_tools/tool_select.py:49
+#: src/tools/selection_tools/tool_select.py:59
 msgid "Selection options"
 msgstr "Auswahl-Optionen"
 
-#: src/tools/selection_tools/tool_select.py:55
+#: src/tools/selection_tools/tool_select.py:65
 msgid "Drag the selection or right-click on the canvas"
 msgstr "Auswahl ziehen oder Rechtsklick auf die Leinwand"
 
-#: src/tools/selection_tools/tool_select.py:57
+#: src/tools/selection_tools/tool_select.py:67
 msgid "Select an area or right-click on the canvas"
 msgstr "Bereich auswählen oder Rechtsklick auf die Leinwand"
 
@@ -1137,3 +1136,10 @@ msgstr "Auswahl skalieren"
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
+
+#, fuzzy
+#~ msgid "More actions"
+#~ msgstr "Keine Optionen"
+
+#~ msgid "Modifications will take effect in the next new window."
+#~ msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
