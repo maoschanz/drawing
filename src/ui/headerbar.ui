@@ -5,34 +5,36 @@
     <property name="show-close-button">True</property>
 
     <child>
-      <object class="GtkMenuButton" id="add_btn">
+      <object class="GtkMenuButton" id="new_btn">
         <property name="visible">False</property>
         <property name="valign">center</property>
+        <property name="tooltip-text" translatable="yes">New Image</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="spacing">10</property>
+            <property name="spacing">6</property>
             <child>
-              <object class="GtkLabel">
-                <property name="label" translatable="yes">Open</property>
+              <object class="GtkImage">
+                <property name="icon-name">document-new-symbolic</property>
                 <property name="visible">True</property>
-                <property name="margin-left">2</property>
               </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
             </child>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">pan-down-symbolic</property>
                 <property name="visible">True</property>
               </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
             </child>
           </object>
         </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="hidable_widget">
+        <property name="visible">True</property>
+        <property name="action_name">win.open</property>
+        <property name="label" translatable="yes">Open</property>
       </object>
     </child>
 

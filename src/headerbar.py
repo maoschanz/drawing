@@ -40,7 +40,10 @@ class DrawingAdaptativeHeaderBar():
 		# updating widgets' visibility when resizing.
 		self.save_label = builder.get_object('save_label')
 		self.save_icon = builder.get_object('save_icon')
-		self.add_btn = builder.get_object('add_btn')
+		# If is_eos, hidable_widget is a box with paste/import, else it's the
+		# "Open" button.
+		self.hidable_widget = builder.get_object('hidable_widget')
+		self.new_btn = builder.get_object('new_btn')
 		self.main_menu_btn = builder.get_object('main_menu_btn')
 
 		# Very high as a precaution, will be more precise later
@@ -54,13 +57,8 @@ class DrawingAdaptativeHeaderBar():
 		# self.is_narrow
 		self.main_menu_btn.set_menu_model(self.long_main_menu)
 
-		if is_eos:
-			new_btn = builder.get_object('new_btn')
-			add_menu = builder.get_object('new-image-menu')
-			new_btn.set_menu_model(add_menu)
-		else:
-			add_menu = builder.get_object('add-menu')
-			self.add_btn.set_menu_model(add_menu)
+		new_menu = builder.get_object('new-image-menu')
+		self.new_btn.set_menu_model(new_menu)
 
 		self.undo_btn = builder.get_object('undo_btn')
 		# self.correct_btn = builder.get_object('correct_btn')
@@ -70,9 +68,12 @@ class DrawingAdaptativeHeaderBar():
 		# Header bar width limit
 		self.header_bar.show_all()
 		widgets_width = self.save_label.get_preferred_width()[0] \
-			+ self.save_icon.get_preferred_width()[0] \
-			+ self.add_btn.get_preferred_width()[0]
-		self.limit_size = 3 * widgets_width # 100% arbitrary
+		               - self.save_icon.get_preferred_width()[0] \
+		                 + self.new_btn.get_preferred_width()[0] \
+		                + self.undo_btn.get_preferred_width()[0] \
+		                + self.redo_btn.get_preferred_width()[0] \
+		          + self.hidable_widget.get_preferred_width()[0]
+		self.limit_size = 2.5 * widgets_width # 100% arbitrary
 		# self.adapt_to_window_size() # XXX ferait sens mais ne semble pas efficace
 
 	def adapt_to_window_size(self):
@@ -88,7 +89,8 @@ class DrawingAdaptativeHeaderBar():
 			self.main_menu_btn.set_menu_model(self.short_main_menu)
 		self.save_label.set_visible(not state)
 		self.save_icon.set_visible(state)
-		self.add_btn.set_visible(not state)
+		self.hidable_widget.set_visible(not state)
+		self.new_btn.set_visible(not state)
 		self.is_narrow = state
 
 	def set_undo_label(self, label):

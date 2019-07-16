@@ -542,7 +542,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		action to ease the accelerator (shift+f10). This action could be
 		disable when the current panel doesn't contain the corresponding button,
 		but will not be."""
-		self.options_btn.set_active(not self.options_btn.get_active())
+		if not self.active_tool().implements_panel:
+			self.options_btn.set_active(not self.options_btn.get_active())
 
 	def set_bottom_width_limit(self): # XXX devrait se transmettre aux panneaux custom
 		if self.has_good_limits: # heureusement ils marchent assez bien tous seuls

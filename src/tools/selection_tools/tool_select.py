@@ -31,14 +31,14 @@ class ToolSelect(ToolTemplate):
 		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
 		# Special bottom panel TODO common to the 3 types
-		# builder = Gtk.Builder.new_from_resource( \
-		#                 '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
-		# self.bottom_panel = builder.get_object('bottom-panel')
-		# actions_menu = builder.get_object('actions-menu')
-		# builder.get_object('actions_btn').set_menu_model(actions_menu)
+		builder = Gtk.Builder.new_from_resource( \
+		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
+		self.bottom_panel = builder.get_object('bottom-panel')
+		actions_menu = builder.get_object('actions-menu')
+		builder.get_object('actions_btn').set_menu_model(actions_menu)
 
-		# self.window.bottom_panel_box.add(self.bottom_panel)
-		# self.implements_panel = True
+		self.window.bottom_panel_box.add(self.bottom_panel)
+		self.implements_panel = True
 
 	############################################################################
 	# UI implementations #######################################################
@@ -150,7 +150,7 @@ class ToolSelect(ToolTemplate):
 			self.operation_type = 'op-define'
 			operation = self.build_operation()
 			self.apply_operation(operation)
-			self.get_selection().show_popover(True)
+			# self.get_selection().show_popover(True)
 		elif self.behavior == 'freehand':
 			if self.draw_polygon(event_x, event_y):
 				self.restore_pixbuf()
@@ -158,7 +158,7 @@ class ToolSelect(ToolTemplate):
 				self.set_future_coords_for_free_path()
 				operation = self.build_operation()
 				self.apply_operation(operation)
-				self.get_selection().show_popover(True)
+				# self.get_selection().show_popover(True)
 				# self.set_selection_has_been_used(False) # TODO
 			else:
 				return # without updating the surface so the path is visible

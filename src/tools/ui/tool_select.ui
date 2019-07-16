@@ -77,6 +77,7 @@
         <attribute name="action">win.selection_export</attribute>
       </item>
     </section>
+
     <section>
       <attribute name="label" translatable="yes">Selection type</attribute>
       <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
@@ -188,15 +189,15 @@
 
     <child>
       <object class="GtkMenuButton" id="actions_btn">
-        <!-- TODO -->
+        <property name="tooltip-text" translatable="yes">Selection options</property>
         <!-- <property name="tooltip-text" translatable="yes">More actions</property> -->
         <property name="visible">True</property>
-        <!-- <child> -->
-        <!--   <object class="GtkImage"> -->
-        <!--     <property name="icon-name">view-more-symbolic</property> -->
-        <!--     <property name="visible">True</property> -->
-        <!--   </object> -->
-        <!-- </child> -->
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">view-more-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
       </object>
     </child>
 
@@ -225,6 +226,29 @@
   <!-- -->
 
   <menu id="actions-menu">
+    <section>
+      <attribute name="label" translatable="yes">Selection type</attribute>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <item>
+        <attribute name="label" translatable="yes">Rectangle</attribute>
+        <attribute name="action">win.selection_type</attribute>
+        <attribute name="target">rectangle</attribute>
+        <attribute name="verb-icon">tool-rectangle-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Freehand</attribute>
+        <attribute name="action">win.selection_type</attribute>
+        <attribute name="target">freehand</attribute>
+        <attribute name="verb-icon">tool-freeshape-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Similar color</attribute>
+        <attribute name="action">win.selection_type</attribute>
+        <attribute name="target">color</attribute>
+        <attribute name="verb-icon">tool-magic-symbolic</attribute>
+      </item>
+    </section>
+
     <section>
       <item>
         <attribute name="label" translatable="yes">Select all</attribute>

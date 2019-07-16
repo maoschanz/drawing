@@ -119,6 +119,7 @@
                     <child>
                       <object class="GtkMenuButton" id="color_menu_btn_l">
                         <property name="visible">True</property>
+                        <!-- <property name="relief">none</property> -->
                         <child>
                           <object class="GtkImage" id="l_btn_image">
                             <property name="visible">True</property>
@@ -129,6 +130,7 @@
                     <child>
                       <object class="GtkButton" id="color_btn_exc">
                         <property name="visible">True</property>
+                        <!-- <property name="relief">none</property> -->
                         <property name="action_name">win.exchange_color</property>
                         <property name="tooltip-text" translatable="yes">Exchange colors</property>
                         <child>
@@ -142,6 +144,7 @@
                     <child>
                       <object class="GtkMenuButton" id="color_menu_btn_r">
                         <property name="visible">True</property>
+                        <!-- <property name="relief">none</property> -->
                         <child>
                           <object class="GtkImage" id="r_btn_image">
                             <property name="visible">True</property>
@@ -168,6 +171,7 @@
                 <child>
                   <object class="GtkMenuButton" id="options_btn">
                     <property name="valign">center</property>
+                    <!-- <property name="relief">none</property> -->
                     <property name="visible">True</property>
                     <child>
                       <object class="GtkBox">
@@ -212,6 +216,7 @@
                 <child>
                   <object class="GtkToggleButton" id="minimap_btn">
                     <property name="valign">center</property>
+                    <!-- <property name="relief">none</property> -->
                     <property name="tooltip-text" translatable="yes">Preview</property>
                     <property name="visible">True</property>
                     <property name="action-name">win.toggle_preview</property>

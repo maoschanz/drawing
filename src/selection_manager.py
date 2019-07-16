@@ -49,7 +49,8 @@ class DrawingSelectionManager():
 		self.is_imported_data = False # this default value means nothing
 
 	def load_from_path(self, new_path):
-		"""comment needed because wow""" # TODO
+		"""Create a selection_pixbuf from a minimal part of the main surface by
+		erasing everything outside of the provided path."""
 		if new_path is None:
 			return
 		else:
@@ -114,6 +115,7 @@ class DrawingSelectionManager():
 		self.is_active = False
 		# self.image.use_stable_pixbuf() # XXX empêchait la suppression de la
 		       # sélection, mais peut-être que ça avait du sens que ce soit là ?
+		self.image.update_actions_state()
 		self.image.update()
 
 	def delete_temp(self):
