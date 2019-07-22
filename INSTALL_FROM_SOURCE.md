@@ -12,8 +12,8 @@ Dependencies:
 
 | Distribution | Package names | Packages for building |
 |--------------|---------------|-----------------------|
-| Debian       | `python3-gi python3-gi-cairo gir1.2-gtk-3.0` | `meson` |
-| ...          | `???` | `meson` |
+| Debian       | `python3-gi python3-gi-cairo gir1.2-gtk-3.0` | `meson appstream-util libglib2.0-dev-bin` |
+| ...          | `???` | `meson ??? ???` |
 
 (feel free to correct/complete)
 
