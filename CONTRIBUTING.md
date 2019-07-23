@@ -61,11 +61,46 @@ Concerning design, try to respect GNOME Human Interface Guidelines as much as po
 
 <!-- TODO explain the structure of the code here ? -->
 
-UML diagrams:
+The `data` directory contains data useless to the execution (app icons, desktop launcher, settings schemas, appdata, …).
+I know, it should contains the resources according to some people, but i don't care:
+resources used by the app (`.ui` files, in-app icons, …) are in `src`, along with the python code.
 
-![UML diagrams](docs/uml.png)
+- `main.py` defines the application, which has:
+    - a preferences window (`preferences.py`)
+    - a menubar (hidden with most layouts)
+    - an appmenu (for GNOME Shell <= 3.30)
+    - dialogs (about, shortcuts)
+    - some `GioAction`s
+    - implementations of CLI handling methods
+    - several **windows**
+- `window.py` defines a GtkApplicationWindow:
+    - the **properties** dialog (`proporties.py`) depends on the window
+    - a window's decorations can change quite a lot, which is partly handled by…
+        - `headerbar.py` for the headerbar
+        - `color_popover.py` for the color palettes (default bottom panel)
+        - `minimap.py` for the minimap, which shows a thumbnail of the currently opened image
+    - some `GioAction`s
+    - a window has several **tools**
+    - a window has several **images**
+- `image.py` defines an image, which contains:
+    - an "undo" history and a "redo" history
+    - a selection, managed by `selection_manager.py`
+    - a pixbuf (as an attribute), named `main_pixbuf`
+- **tools** are managed by a bunch of files in the `tools` directory. There are several types of tools:
+    - the selection translates users input into operations using the selection_manager
+    - the "canvas tools" can be applied the selection pixbuf or the main pixbuf
+    - the classic tools, draw on the main pixbuf using **`cairo`**
 
-- If you find some bullshit in the code, or don't understand it, feel free to ask me about it.
+In my opinion, he complexity of the code comes mainly from 2 points:
+
+- tools are window-wide, while operations, which are stored in the history, are image-wide
+- the interactions with the selection are ridiculously complex and numerous _(defining, explicit applying, explicit canceling, import, clipboard methods, cancelled use by other tools, confirmed use by other tools, deletion, implicit applying, implicit canceling, …)_
+
+<!-- UML diagrams: -->
+
+<!-- ![UML diagrams](docs/uml.png) -->
+
+>**If you find some bullshit in the code, or don't understand it, feel free to ask me about it.**
 
 ----
 

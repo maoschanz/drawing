@@ -41,7 +41,8 @@ class DrawingPrefsWindow(Gtk.Window):
 	def __init__(self, is_beta, wants_csd, **kwargs):
 		super().__init__(**kwargs)
 		if wants_csd:
-			header_bar = Gtk.HeaderBar(visible=True, show_close_button=True, title=_("Preferences"))
+			header_bar = Gtk.HeaderBar(visible=True, title=_("Preferences"), \
+			                                             show_close_button=True)
 			self.set_titlebar(header_bar)
 			self.content_area.remove(self.stack_switcher)
 			header_bar.set_custom_title(self.stack_switcher)
@@ -49,6 +50,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		########################################################################
 		# Build the "images" page ##############################################
 
+		pass
 		w = self.row_from_label(_("New images"), False)
 		self.page_images.add(w)
 

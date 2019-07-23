@@ -803,6 +803,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		fn = self.get_file_path()
 		if fn is None:
 			unsaved_file_name = _("Untitled") + '.png'
+			# Context: the sentence "There are unsaved modifications to %s."
 			display_name = _("this picture")
 		else:
 			unsaved_file_name = fn.split('/')[-1]
