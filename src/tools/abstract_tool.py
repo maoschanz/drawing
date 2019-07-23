@@ -189,7 +189,7 @@ class ToolTemplate():
 			return
 		# Very basic implementation
 		if self.selection_is_active():
-			self.get_selection().apply_selection_to_surface(cairo_context, True)
+			self.get_selection().show_selection_on_surface(cairo_context, True)
 			utilities_show_overlay_on_context(cairo_context, \
 			                self.get_image().get_dragged_selection_path(), True)
 

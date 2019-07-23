@@ -32,7 +32,8 @@
 
     <child>
       <object class="GtkButton" id="hidable_widget">
-        <property name="visible">True</property>
+        <property name="visible">False</property>
+        <property name="valign">center</property>
         <property name="action_name">win.open</property>
         <property name="label" translatable="yes">Open</property>
       </object>
@@ -117,7 +118,7 @@
 
     <child>
       <object class="GtkButton" id="save_icon">
-        <property name="visible">False</property>
+        <property name="visible">True</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
         <property name="tooltip-text" translatable="yes">Save</property>

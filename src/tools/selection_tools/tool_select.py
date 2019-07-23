@@ -36,9 +36,15 @@ class ToolSelect(ToolTemplate):
 		self.bottom_panel = builder.get_object('bottom-panel')
 		actions_menu = builder.get_object('actions-menu')
 		builder.get_object('actions_btn').set_menu_model(actions_menu)
-
+		self.import_box_narrow = builder.get_object('import_box_narrow')
+		self.import_box_long = builder.get_object('import_box_long')
+		self.minimap_label = builder.get_object('minimap_label')
+		self.minimap_arrow = builder.get_object('minimap_arrow')
+		self.minimap_icon = builder.get_object('minimap_icon')
 		self.window.bottom_panel_box.add(self.bottom_panel)
 		self.implements_panel = True
+		# self.needed_width_for_long = XXX TODO currently harcoded
+		self.needed_width_for_long = 400
 
 	############################################################################
 	# UI implementations #######################################################
@@ -67,6 +73,22 @@ class ToolSelect(ToolTemplate):
 			label = label + ' - ' +  _("Select an area or right-click on the canvas")
 		return label
 
+	def adapt_to_window_size(self, available_width):
+		# TODO calculer proprement needed_width_for_long à partir des tailles de
+		# chaque widget
+		# self.needed_width_for_long =
+		if self.needed_width_for_long > 0.8 * available_width:
+			self.compact_bottombar(True)
+		else:
+			self.compact_bottombar(False)
+
+	def compact_bottombar(self, state):
+		self.import_box_long.set_visible(not state)
+		self.minimap_label.set_visible(not state)
+		self.minimap_arrow.set_visible(not state)
+		self.import_box_narrow.set_visible(state)
+		self.minimap_icon.set_visible(state)
+
 	############################################################################
 	# Lifecycle implementations ################################################
 
@@ -75,8 +97,15 @@ class ToolSelect(ToolTemplate):
 		if not preserve_selection:
 			self.unselect_and_apply()
 
+	# def on_tool_selected(self, *args):
+		# XXX rien, vraiment ?
 
+	# def on_tool_unselected(self, *args):
+		# XXX rien, vraiment ?
 
+	# def cancel_ongoing_operation(self):
+	# 	self.get_image().selection.reset()
+	# 	return True
 
 	############################################################################
 	############################################################################
@@ -250,8 +279,6 @@ class ToolSelect(ToolTemplate):
 		self.future_x = max(xmin, 0.0)
 		self.future_y = max(ymin, 0.0)
 
-
-
 	############################################################################
 	# Operations management methods ############################################
 
@@ -282,8 +309,6 @@ class ToolSelect(ToolTemplate):
 		self.operation_type = 'op-define'
 		self.cursor_name = 'cross'
 		self.window.set_cursor(True)
-		self.get_selection().reset()
-		self.future_path = None
 
 	#####
 
@@ -300,22 +325,22 @@ class ToolSelect(ToolTemplate):
 
 	def op_drag(self, operation):
 		# print('drag to : ', operation['pixb_x'], operation['pixb_y'])
-		self.get_selection().selection_x = operation['pixb_x']
-		self.get_selection().selection_y = operation['pixb_y']
+		self.get_selection().set_coords(False, \
+		                               operation['pixb_x'], operation['pixb_y'])
 		self.non_destructive_show_modif()
 
 	def op_define(self, operation):
 		if operation['initial_path'] is None:
 			return
-		self.get_selection().selection_x = operation['pixb_x']
-		self.get_selection().selection_y = operation['pixb_y']
-		self.get_selection().temp_x = operation['pixb_x']
-		self.get_selection().temp_y = operation['pixb_y']
+		self.get_selection().set_coords(True, \
+		                               operation['pixb_x'], operation['pixb_y'])
 		self.get_selection().load_from_path(operation['initial_path'])
 
 	def op_apply(self):
 		cairo_context = cairo.Context(self.get_surface())
-		self.get_selection().apply_selection_to_surface(cairo_context, False)
+		self.get_selection().show_selection_on_surface(cairo_context, False)
+		self.get_selection().reset()
+		self.future_path = None
 
 	############################################################################
 	# Operations management implementations ####################################

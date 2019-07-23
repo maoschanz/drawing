@@ -34,16 +34,6 @@
         </section>
       </submenu>
     </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Import</attribute>
-        <attribute name="action">win.import</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Paste</attribute>
-        <attribute name="action">win.paste</attribute>
-      </item>
-    </section>
     <!-- <section> -->
     <!--   <item> -->
     <!--     <attribute name="label" translatable="yes">Unselect</attribute> -->
@@ -157,6 +147,13 @@
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
+        <attribute name="action">win.get_values</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
         <attribute name="label" translatable="yes">Show tools names</attribute>
         <attribute name="action">win.show_labels</attribute>
       </item>
@@ -219,8 +216,6 @@
         <attribute name="action">app.report_bug</attribute>
         <attribute name="hidden-when">action-missing</attribute>
       </item>
-    </section>
-    <section>
       <item>
         <attribute name="label" translatable="yes">About Drawing</attribute>
         <attribute name="action">app.about</attribute>

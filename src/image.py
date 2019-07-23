@@ -287,11 +287,11 @@ class DrawingImage(Gtk.Box):
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_operation_to_history(self, operation):
-		print('add_operation_to_history')
-		print(operation['tool_id'])
-		if operation['tool_id'] == 'select':
-			print(operation['operation_type'])
-		print('-----------------------------------')
+		# print('add_operation_to_history')
+		# print(operation['tool_id'])
+		# if operation['tool_id'] == 'select':
+		#	print(operation['operation_type'])
+		# print('-----------------------------------')
 		self._is_saved = False
 		self.undo_history.append(operation)
 		self.update_history_sensitivity()

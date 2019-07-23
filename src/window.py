@@ -92,11 +92,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
+		# self.resize(360, 680) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 		self.set_ui_bars()
 
 	def init_window_content(self, gfile, get_cb):
 		"""Initialize the window's content, such as the minimap, the color
-		popovers, the tools, their options, and a new default image."""
+		popovers, the tools, their options, and a new image. Depending on the
+		parameters, the new image can be imported from the clipboard, loaded
+		from a GioFile, or (else) it can be a blank image."""
 		self.tools = None
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
@@ -183,11 +186,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 
 	def build_image_from_clipboard(self, *args):
+		"""Open a new tab with the image in the clipboard. If the clipboard is
+		empty, the new image will be blank."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		self.build_new_tab(None, pixbuf)
 
 	def build_image_from_selection(self, *args):
+		"""Open a new tab with the image in the selection."""
 		pixbuf = self.get_active_image().selection.get_pixbuf()
 		self.build_new_tab(None, pixbuf)
 
@@ -356,7 +362,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
-		self.add_action_simple('apply_selection', self.action_apply_selection, None)
+		self.add_action_simple('apply_canvas_tool', self.action_apply_canvas_tool, None)
 
 		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
 
@@ -371,6 +377,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
+			self.add_action_simple('get_values', self.action_getvalues, None)
 
 		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
 		self.add_action(action)
@@ -548,7 +555,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_bottom_width_limit(self): # XXX devrait se transmettre aux panneaux custom
 		if self.has_good_limits: # heureusement ils marchent assez bien tous seuls
 			return
-		self.bottom_panel.show_all()
+		self.bottom_panel.show_all() # XXX vraiment ?
 		self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
 		                 self.thickness_spinbtn.get_preferred_width()[0] + \
 		                  self.options_long_box.get_preferred_width()[0] + \
@@ -574,23 +581,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.header_bar.adapt_to_window_size()
 
 		available_width = self.bottom_panel_box.get_allocated_width()
-		# print(available_width)
 		for tool_id in self.tools:
 			self.tools[tool_id].adapt_to_window_size(available_width)
-		if not self.active_tool().implements_panel:
-			if self.limit_size_bottom > 0.7 * available_width:
-				self.compact_bottombar(True)
-			else:
-				self.compact_bottombar(False)
+		should_shrink = self.limit_size_bottom > 0.7 * available_width
+		self.compact_bottombar(should_shrink)
 
 		# Update the scrollbars
 		self.get_active_image().add_deltas(0, 0, 0)
 
 	def compact_bottombar(self, state):
-		self.options_short_box.set_visible(state)
 		self.options_long_box.set_visible(not state)
 		self.minimap_label.set_visible(not state)
 		self.minimap_arrow.set_visible(not state)
+		self.options_short_box.set_visible(state)
 		self.minimap_icon.set_visible(state)
 
 	def hide_message(self, *args):
@@ -865,13 +868,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_print(self, *args):
 		self.get_active_image().print_image()
 
-	############################################################################
-	# SELECTION MANAGEMENT #####################################################
-
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
-			utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, gfile.get_path())
+			pb = self.get_active_image().main_pixbuf
+			utilities_save_pixbuf_at(pb, gfile.get_path())
+
+	############################################################################
+	# SELECTION MANAGEMENT #####################################################
+
+	def action_getvalues(self, *args):
+		self.get_active_image().selection.print_values()
 
 	def action_select_all(self, *args):
 		self.force_selection()
@@ -885,7 +892,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.action_delete()
 
 	def action_copy(self, *args):
-		self.get_active_image().selection.selection_has_been_used = True # XXX bizarre
+		# self.get_active_image().selection.selection_has_been_used = True # XXX bizarre
 		self.copy_operation()
 
 	def copy_operation(self):
@@ -936,7 +943,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def force_selection(self, *args):
 		self.get_selection_tool().row.set_active(True) # XXX appeler enable tool ?
 
-	def action_apply_selection(self, *args):
+	def action_apply_canvas_tool(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	############################################################################

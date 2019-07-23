@@ -36,12 +36,8 @@ class DrawingSelectionManager():
 		print('⇒ init pixbuf')
 		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
 
-		self.selection_x = 0
-		self.selection_y = 0
+		self.set_coords(True, 0, 0)
 		self.selection_path = None
-
-		self.temp_x = 0
-		self.temp_y = 0
 		self.temp_path = None
 
 		self.is_active = False
@@ -80,10 +76,11 @@ class DrawingSelectionManager():
 				ymax = max(pts[1][1], ymax)
 		xmax = min(xmax, main_width)
 		ymax = min(ymax, main_height)
-		xmin = max(xmin, 0.0) # If everything is right, this is selection_x
-		ymin = max(ymin, 0.0) # If everything is right, this is selection_y
-		# print(self.selection_x, xmin)
-		# print(self.selection_y, ymin)
+		xmin = int( max(xmin, 0.0) ) # If everything is right, this is selection_x
+		ymin = int( max(ymin, 0.0) ) # If everything is right, this is selection_y
+		if self.selection_x != xmin or self.selection_y != ymin:
+			self.image.window.prompt_message(True, "assertion failed, incoherent coords")
+			print(self.selection_x, xmin, self.selection_y, ymin)
 
 		# Actually store the pixbuf
 		print('⇒ load pixbuf')
@@ -91,6 +88,13 @@ class DrawingSelectionManager():
 		               int(xmin), int(ymin), int(xmax - xmin), int(ymax - ymin))
 		# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
 		self.image.update_actions_state()
+
+	def set_coords(self, temp_too, x, y):
+		self.selection_x = x
+		self.selection_y = y
+		if temp_too:
+			self.temp_x = x
+			self.temp_y = y
 
 	def set_pixbuf(self, pixbuf, use_import_param, is_imported_data):
 		if use_import_param:
@@ -106,11 +110,8 @@ class DrawingSelectionManager():
 	def reset(self):
 		print('⇒ reset pixbuf')
 		self.selection_pixbuf = None
-		self.selection_x = 0
-		self.selection_y = 0
 		self.selection_path = None
-		self.temp_x = 0
-		self.temp_y = 0
+		self.set_coords(True, 0, 0)
 		self.temp_path = None
 		self.is_active = False
 		# self.image.use_stable_pixbuf() # XXX empêchait la suppression de la
@@ -119,7 +120,10 @@ class DrawingSelectionManager():
 		self.image.update()
 
 	def delete_temp(self):
-		if self.temp_path is None or not self.is_active:
+		if self.temp_path is None:
+			return
+		if not self.is_active:
+			self.image.window.prompt_message(True, "delete_temp called while `is_active` is False")
 			return
 		cairo_context = cairo.Context(self.image.get_surface())
 		cairo_context.new_path()
@@ -133,15 +137,17 @@ class DrawingSelectionManager():
 		if self.selection_path is None:
 			return None
 		cairo_context = cairo.Context(self._get_surface())
+		delta_x = 0 - scroll_x + self.selection_x - self.temp_x
+		delta_y = 0 - scroll_y + self.selection_y - self.temp_y
 		for pts in self.selection_path:
 			if pts[1] is not ():
-				x = pts[1][0] - scroll_x + self.selection_x - self.temp_x
-				y = pts[1][1] - scroll_y + self.selection_y - self.temp_y
+				x = pts[1][0] + delta_x
+				y = pts[1][1] + delta_y
 				cairo_context.line_to(int(x), int(y))
 		cairo_context.close_path()
 		return cairo_context.copy_path()
 
-	def apply_selection_to_surface(self, cairo_context, with_scroll):
+	def show_selection_on_surface(self, cairo_context, with_scroll):
 		if self.selection_pixbuf is None:
 			return
 		if with_scroll:
@@ -175,6 +181,9 @@ class DrawingSelectionManager():
 		self.selection_path = cairo_context.copy_path()
 		if delete_path_content:
 			self._set_temp_path(cairo_context.copy_path())
+		else:
+			self.temp_x = self.selection_x
+			self.temp_y = self.selection_y
 		self.show_popover(False)
 		self.image.update_actions_state()
 		# self.image.window.get_selection_tool().update_surface() # XXX non, boucle infinie
@@ -223,10 +232,8 @@ class DrawingSelectionManager():
 			self._set_popover_position()
 			self.l_popover.popup()
 		elif state:
-			self.temp_x = self.r_popover.get_pointing_to()[1].x
-			self.temp_y = self.r_popover.get_pointing_to()[1].y
-			self.selection_x = self.r_popover.get_pointing_to()[1].x
-			self.selection_y = self.r_popover.get_pointing_to()[1].y
+			self.set_coords(True, self.r_popover.get_pointing_to()[1].x, \
+			                              self.r_popover.get_pointing_to()[1].y)
 			self.r_popover.popup()
 
 	def _set_popover_position(self):
@@ -241,6 +248,31 @@ class DrawingSelectionManager():
 		rectangle.height = 1
 		rectangle.width = 1
 		self.l_popover.set_pointing_to(rectangle)
+
+	############################################################################
+	# Debug ####################################################################
+
+	def print_values(self, *args):
+		"""Debug only. Is linked to the "troubleshoot selection" item in the
+		short hamburger menu."""
+		print("selection_x", self.selection_x)
+		print("selection_y", self.selection_y)
+		print("temp_x", self.temp_x)
+		print("temp_y", self.temp_y)
+		print("image.scroll_x", self.image.scroll_x)
+		print("image.scroll_y", self.image.scroll_y)
+
+		print("selection_path with scroll & temp deltas")
+		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x
+		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y
+		for pts in self.selection_path:
+			if pts[1] is not ():
+				x = pts[1][0] + delta_x
+				y = pts[1][1] + delta_y
+				print('\t', x, y)
+
+		print("has_been_used", self.has_been_used)
+		print("---------------------------------------------------------------")
 
 	############################################################################
 ################################################################################

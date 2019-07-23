@@ -35,13 +35,21 @@ class AbstractCanvasTool(ToolTemplate):
 		if self.centered_box is None:
 			return
 		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
-			self.needed_width_for_long = self.centered_box.get_preferred_width()[0] + \
-				self.cancel_btn.get_allocated_width() + \
-				self.apply_btn.get_allocated_width()
+			self.needed_width_for_long = self.apply_btn.get_allocated_width() + \
+			                      self.centered_box.get_preferred_width()[0] + \
+			                               self.cancel_btn.get_allocated_width()
 		if self.needed_width_for_long > 0.8 * available_width:
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+	############################################################################
+
+	def give_back_control(self, preserve_selection):
+		if not preserve_selection and self.selection_is_active():
+			self.on_apply_temp_pixbuf_tool_operation()
+			self.window.get_selection_tool().unselect_and_apply()
+		super().give_back_control(preserve_selection)
 
 	def update_temp_pixbuf(self):
 		operation = self.build_operation()
@@ -69,7 +77,7 @@ class AbstractCanvasTool(ToolTemplate):
 			self.get_selection().delete_temp()
 			pixbuf = self.get_image().get_temp_pixbuf().copy() # XXX copy ??
 			self.get_selection().set_pixbuf(pixbuf, False, False)
-			# FIXME n'a pas l'air particulièrement efficace sur les scales successifs
+			# XXX n'a pas l'air particulièrement efficace sur les scales successifs
 		else:
 			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.get_image().use_stable_pixbuf()
