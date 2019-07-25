@@ -4,22 +4,16 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_tool import ToolTemplate
-from .utilities import utilities_get_magic_path
 
-class ToolSelect(ToolTemplate):
-	__gtype_name__ = 'ToolSelect'
+class AbstractSelectionTool(ToolTemplate):
+	__gtype_name__ = 'AbstractSelectionTool'
 
-	closing_precision = 10
-
-	def __init__(self, window, **kwargs):
-		super().__init__('select', _("Selection"), 'edit-select-all-symbolic', window)
+	def __init__(self, tool_id, label, icon_name, window, **kwargs):
+		super().__init__(tool_id, label, icon_name, window)
+		self.menu_id = 2
 		self.use_color = False
 		self.accept_selection = True
 
-		self.selected_type_id = 'rectangle'
-		self.selected_type_label = _("Rectangle selection")
-		self.closing_x = 0
-		self.closing_y = 0
 		self.x_press = 0
 		self.y_press = 0
 		self.future_x = 0
@@ -27,10 +21,8 @@ class ToolSelect(ToolTemplate):
 		self.future_path = None
 		self.future_pixbuf = None
 		self.operation_type = None # 'op-define'
-		self.behavior = 'rectangle'
-		self.add_tool_action_enum('selection_type', self.selected_type_id)
 
-		# Special bottom panel TODO common to the 3 types
+		# Special bottom panel
 		builder = Gtk.Builder.new_from_resource( \
 		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
@@ -49,29 +41,17 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 	# UI implementations #######################################################
 
-	def set_active_type(self, *args):
-		selection_type = self.get_option_value('selection_type')
-		if selection_type == 'rectangle':
-			self.selected_type_id = 'rectangle'
-			self.selected_type_label = _("Rectangle selection")
-		elif selection_type == 'freehand':
-			self.selected_type_id = 'freehand'
-			self.selected_type_label = _("Free selection")
-		else:
-			self.selected_type_id = 'color'
-			self.selected_type_label = _("Color selection")
-
-	def get_options_label(self):
-		return _("Selection options")
-
 	def get_edition_status(self):
-		self.set_active_type()
-		label = self.selected_type_label
 		if self.selection_is_active():
-			label = label + ' - ' +  _("Drag the selection or right-click on the canvas")
+			label = _("Drag the selection or right-click on the canvas")
 		else:
-			label = label + ' - ' +  _("Select an area or right-click on the canvas")
+			label = _("Select an area or right-click on the canvas")
 		return label
+
+	def get_options_model(self):
+		path = '/com/github/maoschanz/drawing/tools/ui/tool_select.ui' # XXX
+		builder = Gtk.Builder.new_from_resource(path)
+		return builder.get_object('options-menu')
 
 	def adapt_to_window_size(self, available_width):
 		# TODO calculer proprement needed_width_for_long à partir des tailles de
@@ -117,12 +97,7 @@ class ToolSelect(ToolTemplate):
 			#else: # superflu
 			#	return 'cancel'
 		else:
-			if self.selected_type_id == 'color':
-				return 'color'
-			elif self.selected_type_id == 'freehand':
-				return 'freehand'
-			else:
-				return 'rectangle'
+			return 'define'
 		return 'cancel'
 
 	############################################################################
@@ -135,24 +110,16 @@ class ToolSelect(ToolTemplate):
 		if self.behavior == 'drag':
 			self.cursor_name = 'grabbing'
 			self.window.set_cursor(True)
-		# elif self.behavior == 'color':
-		# 	self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
-		elif self.behavior == 'freehand':
-			self.draw_polygon(event_x, event_y)
+		elif self.behavior == 'define':
+			self.press_define(event_x, event_y)
 		elif self.behavior == 'cancel':
 			self.unselect_and_apply()
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		if self.behavior == 'rectangle':
-			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
-			operation = self.build_operation()
-			self.do_tool_operation(operation) # FIXME ça pousse à load race de
-			# trucs inutiles vers le selection manager alors qu'on veut juste
-			# dessiner un path
-		elif self.behavior == 'freehand':
-			self.draw_polygon(event_x, event_y)
+		if self.behavior == 'define':
+			self.motion_define(event_x, event_y)
 		elif self.behavior == 'drag':
 			# self.drag_to(event_x, event_y)
 			pass # on modifie réellement les coordonnées, c'est pas une "vraie" preview
@@ -174,31 +141,19 @@ class ToolSelect(ToolTemplate):
 			self.get_selection().show_popover(True)
 			return
 		self.restore_pixbuf()
-		if self.behavior == 'rectangle':
-			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
-			self.operation_type = 'op-define'
-			operation = self.build_operation()
-			self.apply_operation(operation)
-			# self.get_selection().show_popover(True)
-		elif self.behavior == 'freehand':
-			if self.draw_polygon(event_x, event_y):
-				self.restore_pixbuf()
-				self.operation_type = 'op-define'
-				self.set_future_coords_for_free_path()
-				operation = self.build_operation()
-				self.apply_operation(operation)
-				# self.get_selection().show_popover(True)
-				# self.set_selection_has_been_used(False) # TODO
-			else:
-				return # without updating the surface so the path is visible
-		elif self.behavior == 'color':
-			self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
-			self.operation_type = 'op-define'
-			self.set_future_coords_for_free_path()
-			operation = self.build_operation()
-			self.apply_operation(operation)
+		if self.behavior == 'define':
+			self.release_define(surface, event_x, event_y)
 		elif self.behavior == 'drag':
 			self.drag_to(event_x, event_y)
+
+	def press_define(self, event_x, event_y):
+		pass # implemented by actual tools
+
+	def motion_define(self, event_x, event_y):
+		pass # implemented by actual tools
+
+	def release_define(self, surface, event_x, event_y):
+		pass # implemented by actual tools
 
 	def drag_to(self, event_x, event_y):
 		x = self.get_selection().selection_x
@@ -212,32 +167,6 @@ class ToolSelect(ToolTemplate):
 
 	############################################################################
 	# Path management ##########################################################
-
-	def draw_polygon(self, event_x, event_y):
-		"""This method is specific to the 'free selection' mode."""
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		cairo_context.set_dash([3, 3])
-		if self.future_path is None:
-			self.closing_x = event_x
-			self.closing_y = event_y
-			cairo_context.move_to(event_x, event_y)
-			self.future_path = cairo_context.copy_path()
-			return False
-		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
-		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
-			cairo_context.append_path(self.future_path)
-			cairo_context.close_path()
-			cairo_context.stroke_preserve()
-			self.future_path = cairo_context.copy_path()
-			return True
-		else:
-			cairo_context.append_path(self.future_path)
-			cairo_context.line_to(int(event_x), int(event_y))
-			cairo_context.stroke_preserve() # draw the line without closing the path
-			self.future_path = cairo_context.copy_path()
-			self.non_destructive_show_modif() # XXX
-			return False
 
 	def tool_select_all(self):
 		self.build_rectangle_path(0, 0, self.get_main_pixbuf().get_width(), \

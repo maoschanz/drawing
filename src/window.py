@@ -21,9 +21,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 from .tool_arc import ToolArc
 from .tool_circle import ToolCircle
-from .tool_crop import ToolCrop
 from .tool_experiment import ToolExperiment
-from .tool_flip import ToolFlip
 from .tool_freeshape import ToolFreeshape
 from .tool_line import ToolLine
 from .tool_paint import ToolPaint
@@ -31,11 +29,20 @@ from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
 from .tool_polygon import ToolPolygon
 from .tool_rectangle import ToolRectangle
+from .tool_text import ToolText
+
+from .tool_crop import ToolCrop
+from .tool_flip import ToolFlip
+from .tool_matrix import ToolMatrix
 from .tool_rotate import ToolRotate
 from .tool_saturate import ToolSaturate
 from .tool_scale import ToolScale
+
 from .tool_select import ToolSelect
-from .tool_text import ToolText
+
+from .rect_select import ToolRectSelect
+from .free_select import ToolFreeSelect
+from .color_select import ToolColorSelect
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
@@ -123,11 +130,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		disabled_tools_id = self._settings.get_strv('disabled-tools')
 		self.tools = {}
 		self.tools['pencil'] = ToolPencil(self)
-		self.tools['select'] = ToolSelect(self) # TODO
-		# self.tools['rectselect'] = ToolRectSelect(self)
-		# self.tools['freeselect'] = ToolFreeSelect(self)
-		# if 'colorselect' not in disabled_tools_id:
-		# 	self.tools['colorselect'] = ToolColorSelect(self)
+		self.tools['select'] = ToolSelect(self) # TODO encore harcodé
+		self.tools['rect_select'] = ToolRectSelect(self)
+		self.tools['free_select'] = ToolFreeSelect(self)
+		if 'color_select' not in disabled_tools_id:
+			self.tools['color_select'] = ToolColorSelect(self)
 		self.tools['text'] = ToolText(self)
 		if 'picker' not in disabled_tools_id:
 			self.tools['picker'] = ToolPicker(self)
@@ -142,6 +149,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['freeshape'] = ToolFreeshape(self)
 		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
+		self.tools['matrix'] = ToolMatrix(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
@@ -155,16 +163,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		# Global menubar
 		if not self.app.has_tools_in_menubar:
-			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
+			selection_tools_section = self.app.get_menubar().get_item_link(4, \
 			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
+			      Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
 			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
-			    Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
+			    Gio.MENU_LINK_SUBMENU).get_item_link(2, Gio.MENU_LINK_SECTION).get_item_link(0, \
 			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
 			for tool_id in self.tools:
-				if self.tools[tool_id].menu_id > 0:
-					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
-				else:
+				if self.tools[tool_id].menu_id == 0:
 					self.tools[tool_id].add_item_to_menu(drawing_tools_section)
+				elif self.tools[tool_id].menu_id == 1:
+					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
+				elif self.tools[tool_id].menu_id == 2:
+					self.tools[tool_id].add_item_to_menu(selection_tools_section)
 			self.app.has_tools_in_menubar = True
 
 		# Initialisation of options and menus
@@ -331,11 +343,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
 		self.add_action_simple('go_left', self.action_go_left, ['<Ctrl>Left'])
 		self.add_action_simple('go_right', self.action_go_right, ['<Ctrl>Right'])
-		if self._settings.get_boolean('devel-only'):
-			self.add_action_simple('zoom_in', self.action_zoom_in, ['<Ctrl>plus', '<Ctrl>KP_Add'])
-			self.add_action_simple('zoom_out', self.action_zoom_out, ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
-			self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
-			self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
+
+		self.add_action_simple('zoom_in', self.action_zoom_in, ['<Ctrl>plus', '<Ctrl>KP_Add'])
+		self.add_action_simple('zoom_out', self.action_zoom_out, ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
+		self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
+		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
 		self.add_action_simple('new_tab_selection', \

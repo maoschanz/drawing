@@ -34,8 +34,6 @@ class DrawingMinimap(Gtk.Popover):
 
 		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/minimap.ui')
 		box = builder.get_object('minimap_box')
-		if self.window._settings.get_boolean('devel-only'): # XXX à retirer
-			box.show_all()
 
 		self.zoom_scale = builder.get_object('zoom_scale')
 		self.zoom_scale.connect('value-changed', self.update_zoom_level)

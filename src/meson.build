@@ -58,10 +58,16 @@ drawing_sources = [
 
 	'tools/selection_tools/tool_select.py',
 
+	'tools/selection_tools/abstract_select.py',
+	'tools/selection_tools/rect_select.py',
+	'tools/selection_tools/free_select.py',
+	'tools/selection_tools/color_select.py',
+
 	'tools/canvas_tools/abstract_canvas_tool.py',
 
 	'tools/canvas_tools/tool_crop.py',
 	'tools/canvas_tools/tool_flip.py',
+	'tools/canvas_tools/tool_matrix.py',
 	'tools/canvas_tools/tool_rotate.py',
 	'tools/canvas_tools/tool_saturate.py',
 	'tools/canvas_tools/tool_scale.py'
