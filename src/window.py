@@ -145,7 +145,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
-		self.tools['flip'] = ToolFlip(self)
+		if 'flip' not in disabled_tools_id:
+			self.tools['flip'] = ToolFlip(self)
 		if 'saturate' not in disabled_tools_id:
 			self.tools['saturate'] = ToolSaturate(self)
 

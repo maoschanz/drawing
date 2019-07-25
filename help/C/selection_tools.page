@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="selection_tools">
+
+  <info>
+    <link type="guide" xref="index#tools"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name>Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Select a part of the image</desc>
+  </info>
+
+  <title>Selection</title>
+
+  <p>The <gui style="button">Select</gui> tool, which is available from the side
+  bar (along with <link xref="drawing_tools">the other tools</link>), allows you
+  to define a part of the image.</p>
+
+  <p>The selection can be created in various ways:</p>
+  <list>
+    <item>
+      <p>Select a rectangle area</p>
+    </item>
+    <item>
+      <p>Choose the <gui style="button">Freehand selection</gui>option and draw a freeshape</p>
+    </item>
+    <item>
+      <p><gui style="button">Import</gui> an existing file as your selection</p>
+    </item>
+    <item>
+      <p><gui style="button">Paste</gui> an image from your clipboard</p>
+    </item>
+  </list>
+
+  <p>Once the selection is defined, you can then perform various actions with
+  it:</p>
+  <list>
+    <item>
+      <p>Move it on the canvas.</p>
+    </item>
+    <item>
+      <p>Cut or copy it to the clipboard.</p>
+    </item>
+    <item>
+      <p>Edit it with <link xref="canvas_tools">tools</link>. You can access the
+      compatible tools with a right-click on the selection.</p>
+    </item>
+    <item>
+      <p>Delete it.</p>
+    </item>
+    <item>
+      <p>Open it as a new image.</p>
+    </item>
+    <item>
+      <p>Export it as a new file.</p>
+    </item>
+  </list>
+
+</page>

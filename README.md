@@ -6,7 +6,7 @@ This application is a basic image editor, similar to Microsoft Paint, but aiming
 
 PNG, JPEG and BMP files are supported.
 
-Besides GNOME, some more traditional design layouts are available too, as well as an [elementaryOS layout](./data/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./data/screenshots/librem_options.png).
+Besides GNOME, some more traditional design layouts are available too, as well as an [elementaryOS layout](./docs/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./docs/screenshots/librem_options.png).
 
 ### Available tools
 
@@ -19,16 +19,25 @@ Drawing tools:
 |Pencil     |Dashes, eraser, …|
 |Line       |Arrow, dashes, gradient …
 |Arc        |Arrow, dashes, …|
-|Insert text|Font and font size|
+|Insert text|Font, shadow, font size|
 |Rectangle  |Filling         |
 |Circle     |Regular circle or oval; Filling
 |Polygon    |Filling         |
 |Free shape |Filling         |
-|Selection  |Rectangle/free shape/adjacent color
 |Color picker|               |
 |Paint      |Remove a color  |
 
 <!--|Brush      |           |Not done yet-->
+
+
+<!-- Selection tools: -->
+The selection tool allows you to define an area (rectangle or free), which you can move, cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
+
+<!-- | Tool                   | Options        | -->
+<!-- |:----------------------:|:--------------:| -->
+<!-- |Rectangle selection     |Move, cut, copy, paste, edit with canvas tools, export, open as a new image -->
+<!-- |Free shape selection    | (same)         | -->
+<!-- |Adjacent color selection| (same)         | -->
 
 Canvas/selection edition tools:
 
@@ -62,22 +71,23 @@ Canvas/selection edition tools:
 
 ### Default user interface (for GNOME/Budgie)
 
-![GNOME/Budgie UI, here with the main menu opened](./data/screenshots/gnome_menu.png)
+![GNOME/Budgie UI, here with the main menu opened](./docs/screenshots/gnome_menu.png)
 
 More screenshots:
 
-- [Color chooser](./data/screenshots/gnome_colors.png)
-- [Open/Import menu](./data/screenshots/gnome_open.png), with several tabs opened
-- [The selection tool and its menu](./data/screenshots/gnome_selection.png)
-- [Drawing things a blank picture with tools](./data/screenshots/gnome_tools_preview.png), with the preview opened
-- [Inserting text](./data/screenshots/gnome_text.png)
-- [Adjusting the saturation](./data/screenshots/gnome_menu_saturation.png), with the main menu opened
+- [Color chooser](./docs/screenshots/gnome_colors.png)
+- [Open/Import menu](./docs/screenshots/gnome_new.png), with several tabs opened
+- [The selection tool and its menu](./docs/screenshots/gnome_selection.png)
+- [Drawing things a blank picture with tools](./docs/screenshots/gnome_tools_preview.png), with the preview opened
+- [Inserting text](./docs/screenshots/gnome_text.png)
+- [Adjusting the saturation](./docs/screenshots/gnome_menu_saturation.png), with the main menu opened
 
 ### Alternative user interfaces
 
-- [elementaryOS UI](./data/screenshots/elementary.png)
-- [MATE/Cinnamon UI](./data/screenshots/mate_scale.png)
-- The default "GNOME" UI can be resized to be [compatible with the Purism Librem 5 phone](./data/screenshots/librem_options.png). [Youtube screencast](https://www.youtube.com/watch?v=xwfDnPd5NDU)
+- [elementaryOS UI](./docs/screenshots/elementary.png)
+- [Cinnamon UI](./docs/screenshots/cinnamon.png)
+- [MATE UI](./docs/screenshots/mate_scale.png)
+- The default "GNOME" UI can be resized to be [compatible with the Purism Librem 5 phone](./docs/screenshots/librem_options.png). [Youtube screencast](https://www.youtube.com/watch?v=xwfDnPd5NDU)
 
 ----
 
@@ -91,7 +101,9 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Native packages
 
->**Warning:** I don't maintain these packages, and thus I don't know what versions they provide.
+- Debian: the package is provided [here](https://github.com/maoschanz/drawing/releases)
+
+>**Warning:** I don't maintain the following packages, and thus I don't know what versions they provide.
 
 - Fedora (29, 30 and Rawhide) ([COPR](https://copr.fedorainfracloud.org/coprs/atim/drawing/))
 - Arch and Manjaro ([AUR](https://aur.archlinux.org/packages/drawing-git/))

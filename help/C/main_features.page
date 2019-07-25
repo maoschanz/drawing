@@ -6,12 +6,10 @@
   <info>
     <link type="guide" xref="index#main"/>
     <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
-
     <credit type="author">
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-
     <desc>Opening and saving files.</desc>
   </info>
 
@@ -20,12 +18,46 @@
   <p>"Drawing" is a basic drawing application for the GNOME desktop, which can
   edit or create pictures (PNG, JPEG or BMP).</p>
   <p>Basic features are located in the header of the window, such as the
-  <gui style="button">Open</gui> menu, the <gui style="button">Save</gui>
+  <gui style="button">Open</gui> button, the <gui style="button">Save</gui>
   button, and the main menu.</p>
+
+  <section>
+    <title>The "New" menu</title>
+
+    <p>This menu allows you to create a new image. Several options are
+    available:</p>
+    <list>
+      <item>
+        <p>Create a new blank image, in a new tab.</p>
+      </item>
+      <item>
+        <p>Create a new image from the current <link xref="selection_tools">
+        selection</link>.</p>
+      </item>
+      <item>
+        <p>Create a new image from the clipboard content.</p>
+      </item>
+      <item>
+        <p>Open a new window with a new blank image.</p>
+      </item>
+    </list>
+    <p>If the window size is too small to display its button, the
+    <gui style="button">New</gui> menu is merged in the main menu.</p>
+  </section>
+
+  <section>
+    <title>The "Open" button</title>
+
+    <p>Open a picture file from your documents.</p>
+    <p>If the window size is too small to display its button, the
+    <gui style="button">Open</gui> menu is available in the main menu.</p>
+  </section>
 
   <section>
     <title>The main menu</title>
 
+    <media type="image" mime="image/png" width="450"
+    src="figures/screenshot_menu.png" its:translate="no"/>
     <list>
       <item>
         <p>Print the picture.</p>
@@ -43,37 +75,6 @@
         <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
       </item>
     </list>
-
-    <media type="image" mime="image/png" width="450"
-    src="figures/screenshot_menu.png" its:translate="no"/>
-  </section>
-
-  <section>
-    <title>The "open" menu</title>
-
-    <p>If the window size is too small to display its button, the
-    <gui style="button">Open</gui> menu is merged in the main menu. With
-    <link xref="preferences"> the elementaryOS layout</link>, this menu is partly
-    replaced by buttons.</p>
-
-    <list>
-      <item>
-        <p>Open a new window.</p>
-      </item>
-      <item>
-        <p>Open a new image. It can be a blank image, or an image created from the
-        clipboard content, or an image created from the current selection.</p>
-      </item>
-      <item>
-        <p>Open a picture file.</p>
-      </item>
-      <item>
-        <p>Import a picture into the currently edited one.</p>
-      </item>
-      <item>
-        <p>Paste a picture into the currently edited one.</p>
-      </item>
-    </list>
   </section>
 
   <section>
@@ -89,7 +90,7 @@
     <title>Preview</title>
 
     <p>In the bottom bar, the <gui style="button">Preview</gui> button (not
-    available with <link xref="selection_canvas">some tools</link>) displays a
+    available with <link xref="canvas_tools">some tools</link>) displays a
     thumbnail of the full picture you're editing.</p>
   </section>
 

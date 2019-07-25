@@ -95,6 +95,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_main', self.on_help_main, None)
 		self.add_action_simple('help_tools', self.on_help_tools, None)
 		self.add_action_simple('help_canvas', self.on_help_canvas, None)
+		self.add_action_simple('help_selection', self.on_help_selection, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 		self.add_action_enum('active-window', 0, self.change_active_win)
@@ -239,9 +240,14 @@ class Application(Gtk.Application):
 		self.show_help_page('/drawing_tools')
 
 	def on_help_canvas(self, *args):
-		"""Action callback, showing the 'selection and canvas' page of the user
+		"""Action callback, showing the 'canvas and selection tools' page of the
+		user help manual."""
+		self.show_help_page('/canvas_tools')
+
+	def on_help_selection(self, *args):
+		"""Action callback, showing the 'selection' page of the user
 		help manual."""
-		self.show_help_page('/selection_canvas')
+		self.show_help_page('/selection_tools')
 
 	def show_help_page(self, suffix):
 		win = self.props.active_window

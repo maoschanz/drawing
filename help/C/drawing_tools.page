@@ -6,12 +6,10 @@
   <info>
     <link type="guide" xref="index#tools"/>
     <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
-
     <credit type="author">
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-
     <desc>Draw with simple tools.</desc>
   </info>
 
@@ -27,12 +25,6 @@
       <p>Pencil: The pencil draws following the pointer, and according to the
       chosen color. Its options include the shape of the lead, and the edition
       mode: use the "eraser" mode to delete existing colors.</p>
-    </item>
-    <item>
-      <p>Selection: Define an area to delete, cut, copy, edit, or export.
-      Clicking on <gui style="menuitem">Paste</gui> or <gui style="menuitem">
-      Import</gui> will trigger this tool. The selection can be rectangle, have
-      a free shape, or automatically follow the color you clicked on.</p>
     </item>
     <item>
       <p>Circle and oval, with various filling options.</p>
@@ -69,7 +61,9 @@
     </item>
   </list>
 
-  <p><link xref="selection_canvas">Other tools</link> allow you to edit the
+  <p>The <link xref="selection_tools">selection tool</link> doesn't draw, but
+  its capabilities are very powerful and useful for any image manipulation.</p>
+  <p><link xref="canvas_tools">Other tools</link> allow you to transform the
   canvas or the selection.</p>
 
 </page>

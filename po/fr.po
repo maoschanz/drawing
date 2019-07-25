@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-23 03:02+0200\n"
+"POT-Creation-Date: 2019-07-25 20:40+0200\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -19,8 +19,8 @@ msgstr ""
 
 #. Un peu idiot sans doute
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:13 src/main.py:163
-#: src/window.py:427
+#: data/com.github.maoschanz.drawing.appdata.xml.in:13 src/main.py:164
+#: src/window.py:428
 msgid "Drawing"
 msgstr "Dessin"
 
@@ -40,7 +40,7 @@ msgstr "Paint;Croquis;Crayon;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:740
+#: src/window.py:741
 msgid "New Window"
 msgstr "Nouvelle fenêtre"
 
@@ -105,12 +105,12 @@ msgid "Preferences"
 msgstr "Préférences"
 
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:348 src/ui/win-menus.ui:82
-#: src/ui/win-menus.ui:167 src/ui/win-menus.ui:215
+#: src/ui/win-menus.ui:167 src/ui/win-menus.ui:220
 msgid "Report a bug"
 msgstr "Reporter un bug"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:341 src/ui/shortcuts.ui:37
-#: src/ui/win-menus.ui:87 src/ui/win-menus.ui:172 src/ui/win-menus.ui:208
+#: src/ui/win-menus.ui:87 src/ui/win-menus.ui:172 src/ui/win-menus.ui:213
 msgid "Shortcuts"
 msgstr "Raccourcis clavier"
 
@@ -150,7 +150,7 @@ msgstr "Ouvrir une image"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:814 src/window.py:859
+#: src/ui/toolbar.ui:119 src/window.py:815 src/window.py:860
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -217,7 +217,7 @@ msgstr "Coller"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:922 src/tools/ui/tool_select.ui:118
+#: src/window.py:923 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "Importer"
@@ -317,7 +317,7 @@ msgstr "_Canevas"
 msgid "Previous tool"
 msgstr "Outil précédent"
 
-#: src/ui/app-menus.ui:308 src/window.py:1055 src/window.py:1058
+#: src/ui/app-menus.ui:308 src/window.py:1056 src/window.py:1059
 msgid "_Options"
 msgstr "_Options"
 
@@ -349,8 +349,12 @@ msgstr "Aide sur les outils"
 msgid "Canvas and selection"
 msgstr "Canevas et sélection"
 
-#: src/ui/app-menus.ui:377 src/ui/win-menus.ui:95 src/ui/win-menus.ui:180
-#: src/ui/win-menus.ui:220
+#: src/ui/app-menus.ui:375 src/ui/win-menus.ui:206
+msgid "Help about selection"
+msgstr "Aide sur la sélection"
+
+#: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:180
+#: src/ui/win-menus.ui:225
 msgid "About Drawing"
 msgstr "À propos de Dessin"
 
@@ -363,7 +367,7 @@ msgid "Use this editor by default"
 msgstr "Utiliser cet éditeur par défaut"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:761
+#: src/window.py:762
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -375,7 +379,7 @@ msgstr "Images"
 msgid "Tools"
 msgstr "Outils"
 
-#: src/ui/preferences.ui:85 src/preferences.py:135
+#: src/ui/preferences.ui:85 src/preferences.py:138
 msgid "Advanced options"
 msgstr "Options avancées"
 
@@ -532,7 +536,7 @@ msgstr "Taille de l'outil"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:186 src/window.py:469 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:186 src/window.py:470 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Pas d'options"
 
@@ -571,51 +575,51 @@ msgid "Edit the clipboard content"
 msgstr "Éditer le contenu du presse-papier"
 
 #. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
-#: src/main.py:259
+#: src/main.py:265
 msgid "translator-credits"
 msgstr "Romain F. T."
 
-#: src/main.py:261
+#: src/main.py:267
 msgid "A drawing application for the GNOME desktop."
 msgstr "Une application de dessin pour le bureau GNOME."
 
-#: src/main.py:266
+#: src/main.py:272
 msgid "Report bugs or ideas"
 msgstr "Rapporter des bugs ou des idées"
 
-#: src/main.py:318
+#: src/main.py:324
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Erreur à l'ouverture de ce fichier. Vouliez-vous faire %s ?"
 
-#: src/window.py:733
+#: src/window.py:734
 #, python-format
 msgid "Loading %s"
 msgstr "Chargement de %s"
 
-#: src/window.py:739
+#: src/window.py:740
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
-#: src/window.py:741
+#: src/window.py:742
 msgid "Discard changes"
 msgstr "Abandonner les modifications"
 
-#: src/window.py:743 src/window.py:815
+#: src/window.py:744 src/window.py:816
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Il y a des modifications non-enregistrées à %s."
 
-#: src/window.py:745
+#: src/window.py:746
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Où souhaitez-vous ouvrir %s ?"
 
-#: src/window.py:760
+#: src/window.py:761
 msgid "Open a picture"
 msgstr "Ouvrir une image"
 
-#: src/window.py:761 src/window.py:813 src/window.py:859 src/window.py:922
+#: src/window.py:762 src/window.py:814 src/window.py:860 src/window.py:923
 #: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -625,40 +629,40 @@ msgstr "Ouvrir une image"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/window.py:805 src/window.py:861
+#: src/window.py:806 src/window.py:862
 msgid "Untitled"
 msgstr "Sans titre"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:807
+#: src/window.py:808
 msgid "this picture"
 msgstr "cette image"
 
-#: src/window.py:812
+#: src/window.py:813
 msgid "Discard"
 msgstr "Abandonner"
 
-#: src/window.py:833
+#: src/window.py:834
 msgid "All pictures"
 msgstr "Toutes les images"
 
-#: src/window.py:839
+#: src/window.py:840
 msgid "PNG images"
 msgstr "Images PNG"
 
-#: src/window.py:843
+#: src/window.py:844
 msgid "JPEG images"
 msgstr "Images JPEG"
 
-#: src/window.py:847
+#: src/window.py:848
 msgid "BMP images"
 msgstr "Images BMP"
 
-#: src/window.py:858
+#: src/window.py:859
 msgid "Save picture as…"
 msgstr "Enregistrer l'image sous…"
 
-#: src/window.py:921
+#: src/window.py:922
 msgid "Import a picture"
 msgstr "Importer une image"
 
@@ -700,21 +704,21 @@ msgstr "Ajouter de la transparence"
 msgid "Use big icons"
 msgstr "Utiliser de grosses icônes"
 
-#: src/preferences.py:138
+#: src/preferences.py:141
 msgid "Preview size"
 msgstr "Taille de l'aperçu"
 
-#: src/preferences.py:142
+#: src/preferences.py:145
 msgid "Automatic"
 msgstr "Automatique"
 
-#: src/preferences.py:143
+#: src/preferences.py:146
 msgid "Compact"
 msgstr "Compacte"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:147
+#: src/preferences.py:150
 msgid "Legacy"
 msgstr "Traditionnelle"
 
@@ -722,29 +726,29 @@ msgstr "Traditionnelle"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional". "symbolic" means the icons
 #. are in black or white.
-#: src/preferences.py:152
+#: src/preferences.py:155
 msgid "Legacy (symbolic)"
 msgstr "Tradi (pas moche)"
 
-#: src/preferences.py:153
+#: src/preferences.py:156
 msgid "Menubar only"
 msgstr "Barre de menus"
 
-#: src/preferences.py:154
+#: src/preferences.py:157
 msgid "Toolbar only"
 msgstr "Barre de boutons"
 
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
-#: src/preferences.py:157
+#: src/preferences.py:160
 msgid "Toolbar (symbolic)"
 msgstr "Boutons (pas moche)"
 
-#: src/preferences.py:162
+#: src/preferences.py:165
 msgid "Layout"
 msgstr "Organisation"
 
-#: src/preferences.py:167
+#: src/preferences.py:170
 msgid "Development features"
 msgstr "Fonctionnalités de test"
 

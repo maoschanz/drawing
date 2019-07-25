@@ -2,7 +2,8 @@
 
 ## Run as flatpak with GNOME Builder (recommended)
 
-- Clone this repo and open it as a project with GNOME Builder
+- Clone this repo (`git clone https://github.com/maoschanz/drawing.git`)
+- Open it as a project with GNOME Builder
 - Be sure the runtime is installed
 - Run it (or export it as a `.flatpak` bundle)
 
@@ -15,7 +16,7 @@ Dependencies:
 | Debian       | `python3-gi python3-gi-cairo gir1.2-gtk-3.0` | `meson appstream-util libglib2.0-dev-bin` |
 | ...          | `???` | `meson ??? ???` |
 
-(feel free to correct/complete)
+(feel free to complete with other distros)
 
 ```
 git clone https://github.com/maoschanz/drawing.git
@@ -25,6 +26,13 @@ cd _build
 ninja
 sudo ninja install
 ```
+
+The app can then be removed with:
+```
+sudo ninja uninstall
+```
+
+You can also build a debian package with the script `deb_package.sh` and install/uninstall it.
 
 ## With flatpak-builder (not recommended, that's just for me)
 

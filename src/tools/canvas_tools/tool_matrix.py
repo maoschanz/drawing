@@ -24,7 +24,7 @@ class ToolMatrix(AbstractCanvasTool):
 	__gtype_name__ = 'ToolMatrix'
 
 	def __init__(self, window):
-		super().__init__('matrix', _("???"), 'tool-matrix-symbolic', window)
+		super().__init__('matrix', _("Deformation"), 'tool-matrix-symbolic', window)
 		# self.cursor_name = ''
 		self.apply_to_selection = False
 
@@ -33,10 +33,19 @@ class ToolMatrix(AbstractCanvasTool):
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		# TODO
+		# le but est de remplacer :
+		# - rotate
+		# - flip
+		# - scale
+		# et d'introduire des features telles que :
+		# - l'inclinaison comme dans Microsoft Paint
+		# - les widgets sur la surface
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	# TODO
 		# ...
 
+	############################################################################
+################################################################################
 
