@@ -46,13 +46,20 @@
             <property name="visible">True</property>
             <property name="orientation">horizontal</property>
             <child>
-              <object class="GtkScrolledWindow" id="tools_scrollable_box">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="vscrollbar-policy">automatic</property>
+                <property name="vscrollbar-policy">external</property>
                 <property name="hscrollbar-policy">never</property>
-                <!-- <child> -->
-                <!--   the flowbox will move here if needed -->
-                <!-- </child> -->
+                <child>
+                  <object class="GtkBox" id="tools_scrollable_box">
+                    <property name="visible">True</property>
+                    <property name="expand">False</property>
+                    <property name="halign">center</property>
+                    <!-- <child> -->
+                    <!--   the flowbox will move here if needed -->
+                    <!-- </child> -->
+                  </object>
+                </child>
               </object>
             </child>
             <child>

@@ -634,17 +634,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
 		if visible:
-			if self.tools_panel.get_parent() is self.tools_nonscrollable_box:
-				self.tools_nonscrollable_box.remove(self.tools_panel)
-				self.tools_scrollable_box.add(self.tools_panel)
 			self.tools_panel.set_min_children_per_line(nb_tools)
+			self.tools_nonscrollable_box.remove(self.tools_panel)
+			self.tools_scrollable_box.add(self.tools_panel)
 		else:
-			if self.tools_panel.get_parent() is self.tools_scrollable_box:
-				self.tools_scrollable_box.remove(self.tools_panel)
-				self.tools_nonscrollable_box.add(self.tools_panel)
-				# FIXME largeur des boutons pétée
-			nb_tools = len(self.tools)
-			self.tools_panel.set_min_children_per_line( (nb_tools+(nb_tools % 3))/3 )
+			self.tools_scrollable_box.remove(self.tools_panel)
+			self.tools_nonscrollable_box.add(self.tools_panel)
+			nb_min = int( (nb_tools+(nb_tools % 3))/3 ) - 1
+			self.tools_panel.set_min_children_per_line(nb_min)
 		self.tools_panel.set_max_children_per_line(nb_tools)
 
 	def on_show_labels_setting_changed(self, *args):

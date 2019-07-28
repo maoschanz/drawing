@@ -44,7 +44,7 @@ class ToolSelect(ToolTemplate):
 		self.window.bottom_panel_box.add(self.bottom_panel)
 		self.implements_panel = True
 		# self.needed_width_for_long = XXX TODO currently harcoded
-		self.needed_width_for_long = 400
+		self.needed_width_for_long = 450
 
 	############################################################################
 	# UI implementations #######################################################

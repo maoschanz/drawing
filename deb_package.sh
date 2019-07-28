@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DISTRO="unstable" # TODO lister les valeurs possibles
+DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ? elementary ?)
 PACKAGE_NAME="drawing" # TODO et pour elementary ?
 VERSION="0.4"
 
