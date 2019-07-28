@@ -33,7 +33,6 @@ class DrawingSelectionManager():
 		self.l_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_l)
 
 	def init_pixbuf(self):
-		print('⇒ init pixbuf')
 		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
 
 		self.set_coords(True, 0, 0)
@@ -83,7 +82,6 @@ class DrawingSelectionManager():
 			print(self.selection_x, xmin, self.selection_y, ymin)
 
 		# Actually store the pixbuf
-		print('⇒ load pixbuf')
 		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
 		               int(xmin), int(ymin), int(xmax - xmin), int(ymax - ymin))
 		# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
@@ -100,7 +98,6 @@ class DrawingSelectionManager():
 		if use_import_param:
 			self.is_imported_data = is_imported_data
 		self.temp_path = None
-		print('⇒ set pixbuf')
 		self.selection_pixbuf = pixbuf
 		self._create_path_from_pixbuf(not self.is_imported_data)
 
@@ -108,7 +105,6 @@ class DrawingSelectionManager():
 		return self.selection_pixbuf
 
 	def reset(self):
-		print('⇒ reset pixbuf')
 		self.selection_pixbuf = None
 		self.selection_path = None
 		self.set_coords(True, 0, 0)

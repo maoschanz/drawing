@@ -976,9 +976,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		h = self.get_active_image().undo_history.copy()
 		self.get_active_image().undo_history = []
 		for op in h:
-			# print()
-			# print(op)
-			# print()
 			self.tools[op['tool_id']].apply_operation(op)
 		self.get_active_image().update()
 		self.get_active_image().update_history_sensitivity()

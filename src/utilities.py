@@ -54,8 +54,6 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 
 	(first_x, first_y) = (x, y)
 
-	print(str(x) + ' ' + str(y))
-
 	# 0 1 2
 	# 7   3
 	# 6 5 4
@@ -86,24 +84,16 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 				x = new_x+x_shift[direction]
 				y = new_y+y_shift[direction]
 				end_circle = True
-			else:
-				print('cas emmerdant')
 			j = j+1
 
 		direction = (direction+4) % 8
-		# print('direction:')
-		# print(direction)
 		if (new_x != -10):
 			cairo_context.line_to(x, y)
-		# else:
-		#	 print('TENTATIVE ABUSIVE D\'AJOUT')
-		#	 should_stop = True
 
 		if (i > 10) and (first_x-5 < x < first_x+5) and (first_y-5 < y < first_y+5):
 			should_stop = True
 
 		i = i + 1
-		# print('----------')
 
 		if i == 2000:
 			dialog, continue_id = launch_infinite_loop_dialog(window)
@@ -115,7 +105,6 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 				return
 
 	cairo_context.close_path()
-	# print('i: ' + str(i))
 	return cairo_context.copy_path()
 
 def launch_infinite_loop_dialog(window):

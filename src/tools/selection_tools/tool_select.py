@@ -324,7 +324,6 @@ class ToolSelect(ToolTemplate):
 		self.get_selection().delete_temp()
 
 	def op_drag(self, operation):
-		# print('drag to : ', operation['pixb_x'], operation['pixb_y'])
 		self.get_selection().set_coords(False, \
 		                               operation['pixb_x'], operation['pixb_y'])
 		self.non_destructive_show_modif()
@@ -364,7 +363,6 @@ class ToolSelect(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		print(operation['operation_type'])
 		if operation['operation_type'] == 'op-delete':
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > couper" ou "clic-droit > supprimer".
