@@ -103,9 +103,9 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 - Debian: the package is provided [here](https://github.com/maoschanz/drawing/releases)
 
->**Warning:** I don't maintain the following packages, and thus I don't know what versions they provide.
+>**Warning:** I don't maintain the following packages.
 
-- Fedora (29, 30 and Rawhide) ([COPR](https://copr.fedorainfracloud.org/coprs/atim/drawing/))
+- [Fedora](https://apps.fedoraproject.org/packages/drawing) (29, 30 and Rawhide): `sudo dnf install drawing`
 - Arch and Manjaro ([AUR](https://aur.archlinux.org/packages/drawing-git/))
 
 <!-- TODO Solus -->
@@ -115,3 +115,4 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 [See here](./INSTALL_FROM_SOURCE.md)
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
