@@ -56,8 +56,6 @@ drawing_sources = [
 	'tools/classic_tools/tool_rectangle.py',
 	'tools/classic_tools/tool_text.py',
 
-	'tools/selection_tools/tool_select.py',
-
 	'tools/selection_tools/abstract_select.py',
 	'tools/selection_tools/rect_select.py',
 	'tools/selection_tools/free_select.py',

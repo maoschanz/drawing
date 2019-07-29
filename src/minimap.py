@@ -36,6 +36,7 @@ class DrawingMinimap(Gtk.Popover):
 		box = builder.get_object('minimap_box')
 
 		self.zoom_scale = builder.get_object('zoom_scale')
+		self.zoom_scale.add_mark(100.0, Gtk.PositionType.TOP, None)
 		self.zoom_scale.connect('value-changed', self.update_zoom_level)
 
 		self.minimap_area = builder.get_object('minimap_area')

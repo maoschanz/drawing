@@ -1,4 +1,4 @@
-# tool_select.py
+# abstract_select.py
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
@@ -23,11 +23,9 @@ class AbstractSelectionTool(ToolTemplate):
 		self.operation_type = None # 'op-define'
 
 		# Special bottom panel
-		builder = Gtk.Builder.new_from_resource( \
-		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
+		path = '/com/github/maoschanz/drawing/ui/selection.ui'
+		builder = Gtk.Builder.new_from_resource(path)
 		self.bottom_panel = builder.get_object('bottom-panel')
-		actions_menu = builder.get_object('actions-menu')
-		builder.get_object('actions_btn').set_menu_model(actions_menu)
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')
 		self.minimap_label = builder.get_object('minimap_label')
@@ -49,7 +47,7 @@ class AbstractSelectionTool(ToolTemplate):
 		return label
 
 	def get_options_model(self):
-		path = '/com/github/maoschanz/drawing/tools/ui/tool_select.ui' # XXX
+		path = '/com/github/maoschanz/drawing/ui/selection.ui'
 		builder = Gtk.Builder.new_from_resource(path)
 		return builder.get_object('options-menu')
 

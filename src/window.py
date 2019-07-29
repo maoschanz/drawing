@@ -38,8 +38,6 @@ from .tool_rotate import ToolRotate
 from .tool_saturate import ToolSaturate
 from .tool_scale import ToolScale
 
-from .tool_select import ToolSelect
-
 from .rect_select import ToolRectSelect
 from .free_select import ToolFreeSelect
 from .color_select import ToolColorSelect
@@ -129,8 +127,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		and enable the default tool."""
 		disabled_tools_id = self._settings.get_strv('disabled-tools')
 		self.tools = {}
-		self.tools['pencil'] = ToolPencil(self)
-		self.tools['select'] = ToolSelect(self) # TODO encore harcodé
+		self.tools['pencil'] = ToolPencil(self) # XXX réfléchir à l'ordre ?
 		self.tools['rect_select'] = ToolRectSelect(self)
 		self.tools['free_select'] = ToolFreeSelect(self)
 		if 'color_select' not in disabled_tools_id:
@@ -944,9 +941,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			pixbuf = self.get_active_image().selection.get_pixbuf()
 			utilities_save_pixbuf_at(pixbuf, gfile.get_path())
 
-	def get_selection_tool(self):  # XXX réellement utile ?
-		if 'select' in self.tools:
-			return self.tools['select']
+	def get_selection_tool(self):
+		if 'rect_select' in self.tools:
+			return self.tools['rect_select']
+		elif 'free_select' in self.tools:
+			return self.tools['free_select']
+		elif 'color_select' in self.tools:
+			return self.tools['color_select']
 		else:
 			self.prompt_message(True, 'Required tool is not available')
 			return self.active_tool()
