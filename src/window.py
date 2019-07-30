@@ -331,11 +331,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
 		self.add_action_simple('go_left', self.action_go_left, ['<Ctrl>Left'])
 		self.add_action_simple('go_right', self.action_go_right, ['<Ctrl>Right'])
-		if self._settings.get_boolean('devel-only'):
-			self.add_action_simple('zoom_in', self.action_zoom_in, ['<Ctrl>plus', '<Ctrl>KP_Add'])
-			self.add_action_simple('zoom_out', self.action_zoom_out, ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
-			self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
-			self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
 		self.add_action_simple('new_tab_selection', \
@@ -1086,18 +1081,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_go_right(self, *args):
 		self.get_active_image().add_deltas(1, 0, 100)
-
-	def action_zoom_in(self, *args):
-		self.get_active_image().inc_zoom_level(50)
-
-	def action_zoom_out(self, *args):
-		self.get_active_image().inc_zoom_level(-50)
-
-	def action_zoom_100(self, *args):
-		self.get_active_image().set_zoom_level(100)
-
-	def action_zoom_opti(self, *args):
-		self.get_active_image().set_opti_zoom_level()
 
 	############################################################################
 ################################################################################

@@ -78,30 +78,8 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_bool(_("Always add transparency"), 'add-alpha')
 		self.page_images.add(w)
 
-		# w = self.row_from_label(_("Zoom"), True)
-		# self.page_images.add(w)
-
-		# scroll_combobox = Gtk.ComboBoxText()
-		# scroll_combobox.append('ctrl', _("Ctrl + Scroll"))
-		# scroll_combobox.append('scroll', _("Scroll"))
-		# scroll_combobox.set_active_id(self._settings.get_string('zoom-behavior'))
-		# scroll_combobox.connect('changed', self.on_combo_changed, 'zoom-behavior')
-		# w = self.row_from_widget(_("Action to zoom"), scroll_combobox)
-		# self.page_images.add(w)
-
-		# zoom_combobox = Gtk.ComboBoxText()
-		# zoom_combobox.append('100', _("100%"))
-		# zoom_combobox.append('opti', _("Optimal zoom"))
-		# zoom_combobox.set_active_id(self._settings.get_string('default-zoom'))
-		# zoom_combobox.connect('changed', self.on_combo_changed, 'default-zoom')
-		# w = self.row_from_widget(_("Default zoom"), zoom_combobox)
-		# self.page_images.add(w)
-
 		########################################################################
 		# Build the "tools" page ###############################################
-
-		# w = self.row_from_label(_("Appearance"), False)
-		# self.page_tools.add(w)
 
 		pass
 		w = self.row_from_bool(_("Show tools names"), 'show-labels')
@@ -109,27 +87,6 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		w = self.row_from_bool(_("Use big icons"), 'big-icons')
 		self.page_tools.add(w)
-
-		# w = self.row_from_label(_("Bonus tools"), True)
-		# self.page_tools.add(w)
-
-		# w = self.row_for_AoS(_("Select by Color"), 'colorselect', 'disabled-tools')
-		# self.page_tools.add(w)
-
-		# w = self.row_for_AoS(_("Color Picker"), 'picker', 'disabled-tools')
-		# self.page_tools.add(w)
-
-		# w = self.row_for_AoS(_("Paint"), 'paint', 'disabled-tools')
-		# self.page_tools.add(w)
-
-		# w = self.row_for_AoS(_("Polygon"), 'polygon', 'disabled-tools')
-		# self.page_tools.add(w)
-
-		# w = self.row_for_AoS(_("Flip"), 'flip', 'disabled-tools')
-		# self.page_tools.add(w)
-
-		# w = self.row_for_AoS(_("Saturate"), 'saturate', 'disabled-tools')
-		# self.page_tools.add(w)
 
 		########################################################################
 		# Build the "advanced" page ############################################
