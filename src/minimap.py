@@ -42,7 +42,7 @@ class DrawingMinimap(Gtk.Popover):
 		self.minimap_area = builder.get_object('minimap_area')
 		self.minimap_area.set_size(200, 200)
 		self.minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
-			Gdk.EventMask.BUTTON_RELEASE_MASK)
+		                                      Gdk.EventMask.BUTTON_RELEASE_MASK)
 		self.minimap_area.connect('draw', self.on_minimap_draw)
 		self.minimap_area.connect('button-press-event', self.on_minimap_press)
 		self.minimap_area.connect('button-release-event', self.on_minimap_release)
@@ -56,6 +56,7 @@ class DrawingMinimap(Gtk.Popover):
 		self.window.get_active_image().update()
 		zoom_label = str(int(self.zoom_scale.get_value())) + '%'
 		self.window.minimap_label.set_label(zoom_label)
+		self.update_minimap(False)
 
 	def update_zoom_scale(self, value):
 		self.zoom_scale.set_value(value * 100)
@@ -84,8 +85,10 @@ class DrawingMinimap(Gtk.Popover):
 	def get_main_pixbuf(self):
 		return self.window.get_active_image().main_pixbuf
 
-	def update_minimap(self, *args):
+	def update_minimap(self, force_update):
 		"""Update the overlay on the minimap, based on the scroll coordinates."""
+		if not self.get_relative_to().get_active() and not force_update:
+			return
 		x = self.window.get_active_image().scroll_x
 		y = self.window.get_active_image().scroll_y
 		w = self.preview_size
@@ -96,18 +99,19 @@ class DrawingMinimap(Gtk.Popover):
 			w = self.preview_size * (mpb_width/mpb_height)
 		else:
 			h = self.preview_size * (mpb_height/mpb_width)
+		main_area_width = self.window.get_active_image().get_allocated_width()
+		main_area_height = self.window.get_active_image().get_allocated_height()
+		zoom = self.window.get_active_image().zoom_level
+		visible_width = int(min(main_area_width, mpb_width - x) / zoom)
+		visible_height = int(min(main_area_height, mpb_height - y) / zoom)
+
 		self.mini_pixbuf = self.get_main_pixbuf().scale_simple(w, h, \
 		                                             GdkPixbuf.InterpType.TILES)
-		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf(self.mini_pixbuf, 0, None)
-		self.minimap_area.set_size_request(self.mini_surface.get_width(), \
-		                                         self.mini_surface.get_height())
+		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf( \
+		                                              self.mini_pixbuf, 0, None)
+		self.minimap_area.set_size_request(w, h)
 
-		visible_width = min(self.window.get_active_image().get_allocated_width(), \
-		                    mpb_width - x)
-		visible_height = min(self.window.get_active_image().get_allocated_height(), \
-		                     mpb_height - y)
-		if self.window.get_active_image().get_allocated_width() < mpb_width \
-		or self.window.get_active_image().get_allocated_height() < mpb_height:
+		if main_area_width < mpb_width * zoom or main_area_height < mpb_height * zoom:
 			mini_x = x * self.mini_pixbuf.get_width()/mpb_width
 			mini_y = y * self.mini_pixbuf.get_height()/mpb_height
 			mini_width = visible_width * self.mini_pixbuf.get_width()/mpb_width
@@ -127,3 +131,6 @@ class DrawingMinimap(Gtk.Popover):
 
 	def update_main_area(self):
 		self.window.get_active_image().update()
+
+	############################################################################
+################################################################################

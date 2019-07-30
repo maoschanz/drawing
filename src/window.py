@@ -820,7 +820,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		cancel_id = dialog.set_action(_("Cancel"), None, False)
 		save_id = dialog.set_action(_("Save"), None, True)
 		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
-		self.minimap.update_minimap()
+		self.minimap.update_minimap(True)
 		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
 		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
 		frame.add(image)
@@ -1086,7 +1086,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		preview_visible = not args[0].get_state()
 		if preview_visible:
 			self.minimap.popup()
-			self.minimap.update_minimap()
+			self.minimap.update_minimap(True)
 		else:
 			self.minimap.popdown()
 		args[0].set_state(GLib.Variant.new_boolean(preview_visible))

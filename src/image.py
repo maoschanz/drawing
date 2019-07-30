@@ -463,7 +463,7 @@ class DrawingImage(Gtk.Box):
 		incorrect_x = self.scroll_x + int(delta_x * factor)
 		incorrect_y = self.scroll_y + int(delta_y * factor)
 		self.correct_coords(incorrect_x, incorrect_y)
-		self.window.minimap.update_minimap()
+		self.window.minimap.update_minimap(False)
 
 	def correct_coords(self, incorrect_x, incorrect_y): # FIXME doesn't work with the zoom
 		allocated_width = self.drawing_area.get_allocated_width()
