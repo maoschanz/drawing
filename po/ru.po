@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-25 20:40+0200\n"
+"POT-Creation-Date: 2019-07-31 16:46+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #. Un peu idiot sans doute
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:13 src/main.py:164
-#: src/window.py:428
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:164
+#: src/window.py:423
 msgid "Drawing"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:741
+#: src/window.py:733
 msgid "New Window"
 msgstr "Новое окно"
 
@@ -56,47 +56,56 @@ msgstr "Новое изображение"
 msgid "Edit Image in Clipboard"
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14
+#: data/com.github.maoschanz.drawing.appdata.xml.in:15
 #, fuzzy
 msgid "A drawing application for the GNOME desktop"
 msgstr "Гафический редактор для рабочего стола GNOME."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:16
+#: data/com.github.maoschanz.drawing.appdata.xml.in:17
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:19
+#: data/com.github.maoschanz.drawing.appdata.xml.in:20
 #, fuzzy
 msgid "Pencil (with various options)"
 msgstr "Варианты карандаша"
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:20
+#: data/com.github.maoschanz.drawing.appdata.xml.in:21
 msgid "Selection (cut/copy/paste/drag/…)"
 msgstr "Выделение (вырезать/копировать/вставить/перетащить/…)"
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:21
+#: data/com.github.maoschanz.drawing.appdata.xml.in:22
 msgid "Line, Arc (with various options)"
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:22
+#: data/com.github.maoschanz.drawing.appdata.xml.in:23
 msgid "Shapes (rectangle, circle, polygon, …)"
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:23
+#: data/com.github.maoschanz.drawing.appdata.xml.in:24
 msgid "Text insertion"
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:24
+#: data/com.github.maoschanz.drawing.appdata.xml.in:25
 msgid "Resizing, cropping, rotating"
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:31
+#: data/com.github.maoschanz.drawing.appdata.xml.in:33
+#: data/com.github.maoschanz.drawing.appdata.xml.in:41
+msgid ""
+"Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
+"for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
+"image from the clipboard content, a smoother pencil, and various new "
+"translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:49
 msgid "First stable release, including a few basic tools."
 msgstr ""
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:45
+#: data/com.github.maoschanz.drawing.appdata.xml.in:55
 msgid "Romain F. T."
 msgstr ""
 
@@ -154,7 +163,7 @@ msgstr "Открыть изображение"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:815 src/window.py:860
+#: src/ui/toolbar.ui:119 src/window.py:807 src/window.py:852
 msgid "Save"
 msgstr "Сохранить"
 
@@ -221,7 +230,7 @@ msgstr "Вставить"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:923 src/tools/ui/tool_select.ui:118
+#: src/window.py:915 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "Импортировать"
@@ -286,7 +295,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:157
-#: src/preferences.py:107
+#: src/preferences.py:85
 msgid "Show tools names"
 msgstr "Показать названия инструментов"
 
@@ -302,7 +311,7 @@ msgstr "Основной цвет"
 msgid "Secondary color"
 msgstr "Вторичный цвет"
 
-#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:135
+#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:141
 msgid "Exchange colors"
 msgstr "Поменять цвета"
 
@@ -322,7 +331,7 @@ msgstr "_Холст"
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
-#: src/ui/app-menus.ui:308 src/window.py:1056 src/window.py:1059
+#: src/ui/app-menus.ui:308 src/window.py:1045 src/window.py:1048
 msgid "_Options"
 msgstr "_Опции"
 
@@ -374,7 +383,7 @@ msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:762
+#: src/window.py:754
 msgid "Open"
 msgstr "Открыть"
 
@@ -388,7 +397,7 @@ msgstr "Изображение"
 msgid "Tools"
 msgstr "_Инструменты"
 
-#: src/ui/preferences.ui:85 src/preferences.py:138
+#: src/ui/preferences.ui:85 src/preferences.py:95
 #, fuzzy
 msgid "Advanced options"
 msgstr "Варианты дуги"
@@ -425,7 +434,7 @@ msgstr "Ширина"
 msgid "Height"
 msgstr "Высота"
 
-#: src/ui/properties.ui:224 src/utilities.py:191
+#: src/ui/properties.ui:224 src/utilities.py:180
 msgid "pixels"
 msgstr "пиксели"
 
@@ -538,21 +547,22 @@ msgstr "Навигация"
 msgid "Toggle the preview"
 msgstr "Переключить предварительный просмотр"
 
-#: src/ui/window.ui:37
+#: src/ui/window.ui:36
 msgid "Error starting the application, please report this bug."
 msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
 
-#: src/ui/window.ui:165
+#: src/ui/window.ui:171
 msgid "Tool size"
 msgstr "Размер инструмента"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:186 src/window.py:470 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:192 src/window.py:465 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr ""
 
-#: src/ui/window.ui:220 src/ui/window.ui:238 src/tools/ui/tool_select.ui:259
+#. <property name="relief">none</property>
+#: src/ui/window.ui:226 src/ui/window.ui:244 src/tools/ui/tool_select.ui:259
 #: src/tools/ui/tool_select.ui:277
 msgid "Preview"
 msgstr "Предпросмотр"
@@ -608,35 +618,35 @@ msgstr ""
 "flatpak run --file-forwarding {0} @@ {1} @@\n"
 "?"
 
-#: src/window.py:734
+#: src/window.py:726
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#: src/window.py:740
+#: src/window.py:732
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: src/window.py:742
+#: src/window.py:734
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
-#: src/window.py:744 src/window.py:816
+#: src/window.py:736 src/window.py:808
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Несохраненные изменения в %s."
 
-#: src/window.py:746
+#: src/window.py:738
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:761
+#: src/window.py:753
 msgid "Open a picture"
 msgstr "Открыть изображение"
 
-#: src/window.py:762 src/window.py:814 src/window.py:860 src/window.py:923
-#: src/utilities.py:123 src/tools/ui/tool_crop.ui:27
+#: src/window.py:754 src/window.py:806 src/window.py:852 src/window.py:915
+#: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:115 src/tools/ui/tool_saturate.ui:20
@@ -645,40 +655,40 @@ msgstr "Открыть изображение"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/window.py:806 src/window.py:862
+#: src/window.py:798 src/window.py:854
 msgid "Untitled"
 msgstr "Без названия"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:808
+#: src/window.py:800
 msgid "this picture"
 msgstr "это изображение"
 
-#: src/window.py:813
+#: src/window.py:805
 msgid "Discard"
 msgstr "Сбросить"
 
-#: src/window.py:834
+#: src/window.py:826
 msgid "All pictures"
 msgstr "Все изображения"
 
-#: src/window.py:840
+#: src/window.py:832
 msgid "PNG images"
 msgstr "Изображения PNG"
 
-#: src/window.py:844
+#: src/window.py:836
 msgid "JPEG images"
 msgstr "Изображения JPEG"
 
-#: src/window.py:848
+#: src/window.py:840
 msgid "BMP images"
 msgstr "Изображения BMP"
 
-#: src/window.py:859
+#: src/window.py:851
 msgid "Save picture as…"
 msgstr "Сохранить изображение как..."
 
-#: src/window.py:922
+#: src/window.py:914
 msgid "Import a picture"
 msgstr "Импорт изображения"
 
@@ -716,25 +726,25 @@ msgstr "Открытые изображения"
 msgid "Always add transparency"
 msgstr "Всегда добавлять прозрачность"
 
-#: src/preferences.py:110
+#: src/preferences.py:88
 msgid "Use big icons"
 msgstr ""
 
-#: src/preferences.py:141
+#: src/preferences.py:98
 msgid "Preview size"
 msgstr "Размер предварительного просмотра"
 
-#: src/preferences.py:145
+#: src/preferences.py:102
 msgid "Automatic"
 msgstr "Автоматический"
 
-#: src/preferences.py:146
+#: src/preferences.py:103
 msgid "Compact"
 msgstr "Компактный"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:150
+#: src/preferences.py:107
 msgid "Legacy"
 msgstr "Старый"
 
@@ -742,30 +752,30 @@ msgstr "Старый"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional". "symbolic" means the icons
 #. are in black or white.
-#: src/preferences.py:155
+#: src/preferences.py:112
 msgid "Legacy (symbolic)"
 msgstr ""
 
-#: src/preferences.py:156
+#: src/preferences.py:113
 msgid "Menubar only"
 msgstr "Только панель меню"
 
-#: src/preferences.py:157
+#: src/preferences.py:114
 msgid "Toolbar only"
 msgstr "Только панель инструментов"
 
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
-#: src/preferences.py:160
+#: src/preferences.py:117
 #, fuzzy
 msgid "Toolbar (symbolic)"
 msgstr "Только панель инструментов"
 
-#: src/preferences.py:165
+#: src/preferences.py:122
 msgid "Layout"
 msgstr "Раскладка"
 
-#: src/preferences.py:170
+#: src/preferences.py:127
 msgid "Development features"
 msgstr ""
 
@@ -779,11 +789,11 @@ msgid ""
 "channel, optionally by replacing a color."
 msgstr ""
 
-#: src/utilities.py:124
+#: src/utilities.py:113
 msgid "Continue"
 msgstr "Продолжить"
 
-#: src/utilities.py:125
+#: src/utilities.py:114
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
 "This algorithm may not be able to manage the wanted area.\n"
