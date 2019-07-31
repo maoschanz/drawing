@@ -96,6 +96,11 @@ class DrawingImage(Gtk.Box):
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
 
+	def set_initial_zoom(self):
+		# if self.window._settings.get_string('default-zoom') == 'opti':
+		# 	self.set_opti_zoom_level()
+		pass # TODO ça plante car le widget n'est pas encore alloué
+
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')
 		height = self.window._settings.get_int('default-height')
@@ -116,6 +121,7 @@ class DrawingImage(Gtk.Box):
 		}
 		self.init_image()
 		self.restore_first_pixbuf()
+		self.set_initial_zoom()
 
 	def try_load_pixbuf(self, pixbuf):
 		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
@@ -134,6 +140,7 @@ class DrawingImage(Gtk.Box):
 		self.init_image()
 		self.restore_first_pixbuf()
 		self.update_title()
+		self.set_initial_zoom()
 
 	def restore_first_pixbuf(self):
 		"""Set the first saved pixbuf as the main_pixbuf. This is used to
@@ -179,6 +186,7 @@ class DrawingImage(Gtk.Box):
 		self.init_image()
 		self.restore_first_pixbuf()
 		self.update_title()
+		self.set_initial_zoom()
 
 	############################################################################
 	# Image title and tab management ###########################################
@@ -509,6 +517,8 @@ class DrawingImage(Gtk.Box):
 		h_ratio = self.drawing_area.get_allocated_width() / self.get_pixbuf_width()
 		v_ratio = self.drawing_area.get_allocated_height() / self.get_pixbuf_height()
 		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
+		print('self.drawing_area.get_allocated_width()', self.drawing_area.get_allocated_width())
+		print('opti', opti)
 		self.set_zoom_level(opti)
 
 	############################################################################

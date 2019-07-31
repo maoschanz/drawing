@@ -27,7 +27,6 @@ class ToolPaint(ToolTemplate):
 			return self.label
 
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		print("press")
 		if event.button == 1:
 			self.new_color = left_color
 		if event.button == 3:

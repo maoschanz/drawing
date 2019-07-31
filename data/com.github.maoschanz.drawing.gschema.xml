@@ -27,8 +27,7 @@
 			<description>Can be '100' or 'opti'.</description>
 		</key>
 		<key type="as" name="disabled-tools">
-			<default>[]</default>
-			<!-- <default>['color_select', 'picker', 'saturate', 'flip']</default> -->
+			<default>['color_select', 'picker', 'saturate', 'flip']</default>
 			<summary>Optional tools to disable</summary>
 			<description>A list of optional tools' id to disable. All tools are not
 			optional, but putting garbage in the list isn't catastrophic so try any id

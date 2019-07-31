@@ -99,6 +99,14 @@ class ToolTemplate():
 		self.row.add(box)
 		self.row.show_all()
 
+	def update_icon_size(self):
+		image = self.row.get_children()[0].get_children()[0]
+		if self.window._settings.get_boolean('big-icons'):
+			size = Gtk.IconSize.LARGE_TOOLBAR
+		else:
+			size = Gtk.IconSize.SMALL_TOOLBAR
+		image.set_from_icon_name(self.icon_name, size)
+
 	def adapt_to_window_size(self, available_width):
 		pass
 

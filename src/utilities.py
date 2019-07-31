@@ -51,10 +51,8 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		y = y - 1
 	y = y + 1 # sinon ça crashe ?
 	cairo_context.move_to(x, y)
-
 	(first_x, first_y) = (x, y)
-
-	print(str(x) + ' ' + str(y))
+	# print(str(x) + ' ' + str(y))
 
 	# 0 1 2
 	# 7   3
@@ -86,8 +84,8 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 				x = new_x+x_shift[direction]
 				y = new_y+y_shift[direction]
 				end_circle = True
-			else:
-				print('cas emmerdant')
+			# else:
+			# 	print('cas emmerdant')
 			j = j+1
 
 		direction = (direction+4) % 8

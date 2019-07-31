@@ -286,6 +286,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_btn.connect('toggled', self.update_option_label)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self._settings.connect('changed::decorations', self.on_layout_changed)
+		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
 	def add_action_simple(self, action_name, callback, shortcuts):
@@ -634,6 +635,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				self.tools[tool_id].row.join_group(group)
 			self.tools_panel.add(self.tools[tool_id].row)
 		self.on_show_labels_setting_changed()
+
+	def on_icon_size_changed(self, *args):
+		for tool_id in self.tools:
+			image = self.tools[tool_id].update_icon_size()
 
 	def set_tools_labels_visibility(self, visible):
 		"""Change the way tools are displayed in the side panel. Visible labels
