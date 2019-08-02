@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-25 20:40+0200\n"
-"PO-Revision-Date: 2019-06-15 22:14+0200\n"
+"PO-Revision-Date: 2019-08-02 11:02+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.32.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. Un peu idiot sans doute
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -56,19 +56,19 @@ msgid "Edit Image in Clipboard"
 msgstr "Bild in Zwischenablage bearbeiten"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14
-#, fuzzy
 msgid "A drawing application for the GNOME desktop"
-msgstr "Ein Zeichenprogramm für den GNOME-Desktop."
+msgstr "Ein Zeichenprogramm für den GNOME-Desktop"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:16
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
+"\"Zeichnung\" ist eine einfache Bildbearbeitung mit Unterstützung der "
+"Dateitypen PNG, JPEG und BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:19
-#, fuzzy
 msgid "Pencil (with various options)"
-msgstr "Bleistift-Optionen"
+msgstr "Bleistift (mit verschiedenen Optionen)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:20
 msgid "Selection (cut/copy/paste/drag/…)"
@@ -76,23 +76,23 @@ msgstr "Auswahl (Ausschneiden/Kopieren/Einfügen/Ziehen/...)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:21
 msgid "Line, Arc (with various options)"
-msgstr ""
+msgstr "Linie, Bogen (mit verschiedenen Optionen)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:22
 msgid "Shapes (rectangle, circle, polygon, …)"
-msgstr ""
+msgstr "Formen (Rechteck, Kreis, Vieleck, …)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:23
 msgid "Text insertion"
-msgstr ""
+msgstr "Texteingabe"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:24
 msgid "Resizing, cropping, rotating"
-msgstr ""
+msgstr "Größenänderung, Zuschneiden, Drehen"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:31
 msgid "First stable release, including a few basic tools."
-msgstr ""
+msgstr "Erste stabile Version; mit ein paar grundlegenden Werkzeugen."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
@@ -351,15 +351,13 @@ msgid "Canvas and selection"
 msgstr "Leinwand und Auswahl"
 
 #: src/ui/app-menus.ui:375 src/ui/win-menus.ui:206
-#, fuzzy
 msgid "Help about selection"
-msgstr "Hilfe zu Werkzeugen"
+msgstr "Hilfe zur Auswahl"
 
 #: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:180
 #: src/ui/win-menus.ui:225
-#, fuzzy
 msgid "About Drawing"
-msgstr "Über Drawing"
+msgstr "Über Zeichnung"
 
 #: src/ui/color_popover.ui:16 src/ui/color_popover.ui:31
 msgid "Back to the palette"
@@ -375,18 +373,16 @@ msgid "Open"
 msgstr "Öffnen"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Images"
-msgstr "Bild"
+msgstr "Bilder"
 
 #: src/ui/preferences.ui:72
 msgid "Tools"
 msgstr "Werkzeuge"
 
 #: src/ui/preferences.ui:85 src/preferences.py:138
-#, fuzzy
 msgid "Advanced options"
-msgstr "Bogen-Optionen"
+msgstr "Erweiterte Einstellungen"
 
 #: src/ui/properties.ui:20
 msgid "Path"
@@ -508,9 +504,8 @@ msgid "Selection"
 msgstr "Auswahl"
 
 #: src/ui/shortcuts.ui:195
-#, fuzzy
 msgid "Delete the selection"
-msgstr "Auswahl skalieren"
+msgstr "Auswahl löschen"
 
 #: src/ui/shortcuts.ui:204
 msgid "Colors"
@@ -561,13 +556,12 @@ msgid "From Clipboard"
 msgstr "Aus Zwischenablage"
 
 #: src/ui/win-menus.ui:150
-#, fuzzy
 msgid "Troubleshoot selection"
-msgstr "Farbauswahl"
+msgstr "Problembehandlung bei der Auswahl"
 
 #: src/main.py:59
 msgid "Print the version and display the 'about' dialog"
-msgstr ""
+msgstr "Version anzeigen und den \"Über\"-Dialog"
 
 #: src/main.py:62
 msgid "Open a new window"
@@ -595,12 +589,9 @@ msgid "Report bugs or ideas"
 msgstr "Fehler oder Ideen melden"
 
 #: src/main.py:324
-#, fuzzy, python-format
+#, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr ""
-"Fehler beim Öffnen dieser Datei. Meinen Sie\n"
-"flatpak run --file-forwarding {0} @@ {1} @@\n"
-"?"
+msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
 
 #: src/window.py:734
 #, python-format
@@ -738,7 +729,7 @@ msgstr "Altmodisch"
 #. are in black or white.
 #: src/preferences.py:155
 msgid "Legacy (symbolic)"
-msgstr ""
+msgstr "Altmodisch (einfarbig)"
 
 #: src/preferences.py:156
 msgid "Menubar only"
@@ -751,9 +742,8 @@ msgstr "Nur Werkzeugleiste"
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
 #: src/preferences.py:160
-#, fuzzy
 msgid "Toolbar (symbolic)"
-msgstr "Nur Werkzeugleiste"
+msgstr "Werkzeugleiste (einfarbig)"
 
 #: src/preferences.py:165
 msgid "Layout"
@@ -794,7 +784,7 @@ msgstr ""
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
-msgstr ""
+msgstr "Enden-Form"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -858,7 +848,7 @@ msgstr "Radiergummi"
 #: src/tools/classic_tools/tool_line.py:41
 #: src/tools/classic_tools/tool_pencil.py:51
 msgid "Difference"
-msgstr ""
+msgstr "Gegensätzlich"
 
 #: src/tools/ui/tool_circle.ui:5
 msgid "Shape"
@@ -935,7 +925,7 @@ msgstr "Verhalten"
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
-msgstr ""
+msgstr "Einkreisen und füllen"
 
 #: src/tools/ui/tool_paint.ui:12
 msgid "Erase and replace"
@@ -951,7 +941,7 @@ msgstr "Dünn"
 
 #: src/tools/ui/tool_pencil.ui:53
 msgid "Artificial smoothness"
-msgstr ""
+msgstr "Künstliche Glätte"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
@@ -1008,32 +998,28 @@ msgstr "Schriftart"
 
 #: src/tools/ui/tool_text.ui:82
 msgid "Italic"
-msgstr ""
+msgstr "Kursiv"
 
 #: src/tools/ui/tool_text.ui:86
 msgid "Bold"
-msgstr ""
+msgstr "Fett"
 
 #: src/tools/ui/tool_text.ui:91
-#, fuzzy
 msgid "Background"
-msgstr "Undurchsichtiger Hintergrund"
+msgstr "Hintergrund"
 
 #: src/tools/ui/tool_text.ui:93 src/tools/classic_tools/tool_text.py:50
-#, fuzzy
 msgid "No background"
-msgstr "Undurchsichtiger Hintergrund"
+msgstr "Ohne Hintergrund"
 
 #: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:54
-#, fuzzy
 msgid "Secondary color rectangle"
-msgstr "Zweitfarbe"
+msgstr "Zweitfarbe Rechteck"
 
 #: src/tools/ui/tool_text.ui:103 src/tools/classic_tools/tool_text.py:23
 #: src/tools/classic_tools/tool_text.py:52
-#, fuzzy
 msgid "Secondary color shadow"
-msgstr "Zweitfarbe"
+msgstr "Zweitfarbe Schatten"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Arc"
@@ -1073,15 +1059,16 @@ msgstr "Linien-Optionen"
 
 #: src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
-msgstr "Malen"
+msgstr "Füllen"
 
 #: src/tools/classic_tools/tool_paint.py:21
 msgid "Painting options"
-msgstr "Mal-Optionen"
+msgstr "Füll-Optionen"
 
 #: src/tools/classic_tools/tool_paint.py:25
 msgid "Click on an area to replace its color by transparency"
 msgstr ""
+"Klicken Sie auf einen Bereich, um dessen Farbe durch Transparenz zu ersetzen"
 
 #: src/tools/classic_tools/tool_polygon.py:13
 msgid "Polygon"
@@ -1112,9 +1099,8 @@ msgid "Text"
 msgstr "Text"
 
 #: src/tools/classic_tools/tool_text.py:64
-#, fuzzy
 msgid "Font options"
-msgstr "Keine Optionen"
+msgstr "Schriftart-Optionen"
 
 #: src/tools/selection_tools/tool_select.py:20
 #: src/tools/selection_tools/tool_select.py:56
