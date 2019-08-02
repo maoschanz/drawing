@@ -20,6 +20,7 @@ class ToolCircle(ToolTemplate):
 		self.selected_shape_id = 'circle'
 
 		self.add_tool_action_enum('circle_shape', 'circle')
+		self.add_tool_action_enum('filling_style', 'empty')
 
 	def set_active_style(self, *args):
 		state_as_string = self.get_option_value('filling_style')

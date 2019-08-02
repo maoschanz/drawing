@@ -19,7 +19,7 @@ class ToolPolygon(ToolTemplate):
 		self.selected_style_label = _("Filled (secondary color)")
 		self.selected_join_id = cairo.LineJoin.MITER
 
-		self.add_tool_action_enum('filling_style', 'secondary')
+		self.add_tool_action_enum('filling_style', 'empty')
 	# 	self.add_tool_action_enum('angle_style', 'miter')
 
 	# def set_angle_style(self, *args):

@@ -9,7 +9,7 @@ class ToolRectSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolRectSelect'
 
 	def __init__(self, window, **kwargs):
-		super().__init__('rect_select', _("Rectangle selection"), 'tool-select-symbolic', window)
+		super().__init__('rect_select', _("Rectangle selection"), 'tool-select-rect-symbolic', window)
 
 	def press_define(self, event_x, event_y):
 		pass

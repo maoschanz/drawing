@@ -103,7 +103,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Debian Sid and Ubuntu 19.04: a package is available [here](https://github.com/maoschanz/drawing/releases). _**WARNING:** there is no repo for it, you will **not** have updates, the recommended way to install is really [flatpak](https://flathub.org/apps/details/com.github.maoschanz.drawing)._
+- Ubuntu 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Fedora (official repo)](https://apps.fedoraproject.org/packages/drawing) (29, 30 and Rawhide): `sudo dnf install drawing`
 - Arch and Manjaro ([AUR](https://aur.archlinux.org/packages/drawing-git/))
 

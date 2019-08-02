@@ -9,7 +9,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolFreeSelect'
 
 	def __init__(self, window, **kwargs):
-		super().__init__('free_select', _("Free selection"), 'tool-????-symbolic', window)
+		super().__init__('free_select', _("Free selection"), 'tool-select-free-symbolic', window)
 		self.closing_precision = 10
 
 	def press_define(self, event_x, event_y):

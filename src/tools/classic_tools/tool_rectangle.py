@@ -17,7 +17,7 @@ class ToolRectangle(ToolTemplate):
 		self.selected_style_label = _("Filled (secondary color)")
 		self.selected_style_id = 'secondary'
 
-		self.add_tool_action_enum('filling_style', 'secondary')
+		self.add_tool_action_enum('filling_style', 'empty')
 
 	def set_filling_style(self, *args):
 		state_as_string = self.get_option_value('filling_style')

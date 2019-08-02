@@ -69,6 +69,8 @@ class DrawingImage(Gtk.Box):
 		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
 
+		self.ctrl_to_zoom = self.window._settings.get_string('zoom-behavior') == 'ctrl'
+
 	############################################################################
 	# Image initialization #####################################################
 
@@ -458,7 +460,14 @@ class DrawingImage(Gtk.Box):
 		return event_x, event_y
 
 	def on_scroll_on_area(self, area, event):
-		self.add_deltas(event.delta_x, event.delta_y, 10)
+		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
+		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
+		if (ctrl_is_used and self.ctrl_to_zoom) \
+		                        or (not ctrl_is_used and not self.ctrl_to_zoom):
+			event_x, event_y = self.get_event_coords(event)
+			self.scroll_to_point(event.delta_x, event.delta_y, event_x, event_y)
+		else:
+			self.add_deltas(event.delta_x, event.delta_y, 10)
 
 	def get_dragged_selection_path(self):
 		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
@@ -468,42 +477,61 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def add_deltas(self, delta_x, delta_y, factor):
-		incorrect_x = self.scroll_x + int(delta_x * factor)
-		incorrect_y = self.scroll_y + int(delta_y * factor)
-		self.correct_coords(incorrect_x, incorrect_y)
+		wanted_x = self.scroll_x + int(delta_x * factor)
+		wanted_y = self.scroll_y + int(delta_y * factor)
+		self.correct_coords(wanted_x, wanted_y)
 		self.window.minimap.update_minimap(False)
 
-	def correct_coords(self, incorrect_x, incorrect_y): # FIXME doesn't work with the zoom
-		allocated_width = self.drawing_area.get_allocated_width()
-		allocated_height = self.drawing_area.get_allocated_height()
+	def correct_coords(self, wanted_x, wanted_y):
+		available_w = self.drawing_area.get_allocated_width()
+		available_h = self.drawing_area.get_allocated_height()
 
-		# Forbid absurd values
-		if allocated_width < 2:
+		# Forbid absurd values # FIXME doesn't work with the zoom
+		if available_w < 2:
 			return
 		mpb_width = self.get_main_pixbuf().get_width()
 		mpb_height = self.get_main_pixbuf().get_height()
-		if incorrect_x + allocated_width > mpb_width:
-			incorrect_x = mpb_width - allocated_width
-		if incorrect_y + allocated_height > mpb_height:
-			incorrect_y = mpb_height - allocated_height
-		if incorrect_x < 0:
-			incorrect_x = 0
-		if incorrect_y < 0:
-			incorrect_y = 0
+		wanted_x = min(wanted_x, mpb_width - available_w)
+		wanted_y = min(wanted_y, mpb_height - available_h)
+		wanted_x = max(wanted_x, 0)
+		wanted_y = max(wanted_y, 0)
 
 		# Update the horizontal scrollbar
-		self.h_scrollbar.set_visible(allocated_width < mpb_width)
-		self.h_scrollbar.set_range(0, mpb_width)
-		self.h_scrollbar.get_adjustment().set_page_size(allocated_width)
-		self.h_scrollbar.set_value(incorrect_x)
-		self.scroll_x = self.h_scrollbar.get_value()
+		self.update_scrollbar(False, available_w, mpb_width, wanted_x)
 
 		# Update the vertical scrollbar
-		self.v_scrollbar.set_visible(allocated_height < mpb_height)
-		self.v_scrollbar.set_range(0, mpb_height)
-		self.v_scrollbar.get_adjustment().set_page_size(allocated_height)
-		self.v_scrollbar.set_value(incorrect_y)
-		self.scroll_y = self.v_scrollbar.get_value()
+		self.update_scrollbar(True, available_h, mpb_height, wanted_y)
+
+	def update_scrollbar(self, is_vertical, allocated_size, pixbuf_size, coord):
+		if is_vertical:
+			scrollbar = self.v_scrollbar
+		else:
+			scrollbar = self.h_scrollbar
+		scrollbar.set_visible(allocated_size < pixbuf_size)
+		scrollbar.set_range(0, pixbuf_size)
+		scrollbar.get_adjustment().set_page_size(allocated_size)
+		scrollbar.set_value(coord)
+		if is_vertical:
+			self.scroll_y = int(scrollbar.get_value())
+		else:
+			self.scroll_x = int(scrollbar.get_value())
+
+	def scroll_to_point(self, delta_x, delta_y, x, y):
+		# TODO pure bullshit but hard to test and fix since correct_coords is broken
+		good_delta = (delta_x + delta_y) * -5
+		self.inc_zoom_level(good_delta)
+		print('good_delta', good_delta)
+		print('zoom_level', self.zoom_level)
+		if good_delta > 0: # zooming in
+			fake_delta_x = x - self.scroll_x
+			fake_delta_y = y - self.scroll_y
+		else: # zooming out
+			fake_delta_x = self.scroll_x - x
+			fake_delta_y = self.scroll_y - y
+		print('scroll_*', self.scroll_x, self.scroll_y)
+		print('event_*', x, y)
+		print('fake_deltas', fake_delta_x, fake_delta_y)
+		self.add_deltas(fake_delta_x, fake_delta_y, min(1, 1/self.zoom_level))
 
 	def inc_zoom_level(self, delta):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
@@ -517,9 +545,11 @@ class DrawingImage(Gtk.Box):
 		h_ratio = self.drawing_area.get_allocated_width() / self.get_pixbuf_width()
 		v_ratio = self.drawing_area.get_allocated_height() / self.get_pixbuf_height()
 		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
-		print('self.drawing_area.get_allocated_width()', self.drawing_area.get_allocated_width())
-		print('opti', opti)
+		# print('self.drawing_area.get_allocated_width()', self.drawing_area.get_allocated_width())
+		# print('opti', opti) # FIXME
 		self.set_zoom_level(opti)
+		self.scroll_x = 0
+		self.scroll_y = 0
 
 	############################################################################
 	# Printing operations ######################################################
