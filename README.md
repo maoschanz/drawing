@@ -101,10 +101,11 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Native packages
 
-- Debian: the package is provided [here](https://github.com/maoschanz/drawing/releases)
-
 >**Warning:** I don't maintain the following packages, and thus I don't know what versions they provide.
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
+
+- Ubuntu 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - Fedora (29, 30 and Rawhide) ([COPR](https://copr.fedorainfracloud.org/coprs/atim/drawing/))
 - Arch and Manjaro ([AUR](https://aur.archlinux.org/packages/drawing-git/))
 
