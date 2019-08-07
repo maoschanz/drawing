@@ -418,7 +418,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		subtitle = self.active_tool().get_edition_status()
 
 		self.update_tabs_menu_section()
-		self.app.update_windows_menu_section() # Un peu idiot sans doute
+		# Uselessly idiot i guess
+		self.app.update_windows_menu_section()
 
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:

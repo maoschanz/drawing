@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-31 16:46+0200\n"
+"POT-Creation-Date: 2019-08-07 03:31+0200\n"
 "PO-Revision-Date: 2019-07-26 12:30+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -18,10 +18,9 @@ msgstr ""
 "X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Un peu idiot sans doute
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:164
-#: src/window.py:423
+#: src/window.py:424
 msgid "Drawing"
 msgstr "Tekenen"
 
@@ -41,7 +40,7 @@ msgstr "Verven;Schetsen;Potlood;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:733
+#: src/window.py:734
 msgid "New Window"
 msgstr "Nieuw venster"
 
@@ -66,32 +65,16 @@ msgstr ""
 "\"Tekenen\" is een eenvoudige afbeeldingsbewerker, met ondersteuning voor "
 "PNG, JPEG en BMP."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:20
-msgid "Pencil (with various options)"
-msgstr "Potlood (verschillende soorten)"
+#: data/com.github.maoschanz.drawing.appdata.xml.in:18
+msgid ""
+"It allows you to draw or edit pictures with tools such as pencil, line or "
+"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
+"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
+"rotating,…"
+msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:21
-msgid "Selection (cut/copy/paste/drag/…)"
-msgstr "Selectie (knippen/kopiëren/plakken/verslepen/...)"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in:22
-msgid "Line, Arc (with various options)"
-msgstr "Lijn, Boog (verschillende soorten)"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in:23
-msgid "Shapes (rectangle, circle, polygon, …)"
-msgstr "Vormen (vierkant, cirkel, veelhoek, ...)"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in:24
-msgid "Text insertion"
-msgstr "Tekst invoeren"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in:25
-msgid "Resizing, cropping, rotating"
-msgstr "Afmetingen wijzigen, bijsnijden, draaien"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in:33
-#: data/com.github.maoschanz.drawing.appdata.xml.in:41
+#: data/com.github.maoschanz.drawing.appdata.xml.in:29
+#: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -99,12 +82,12 @@ msgid ""
 "translations."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:49
+#: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid "First stable release, including a few basic tools."
 msgstr "Eerste stabiele uitgave met een paar basisgereedschappen."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:51
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
@@ -160,7 +143,7 @@ msgstr "Afbeelding openen"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:807 src/window.py:852
+#: src/ui/toolbar.ui:119 src/window.py:808 src/window.py:853
 msgid "Save"
 msgstr "Opslaan"
 
@@ -227,7 +210,7 @@ msgstr "Plakken"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:915 src/tools/ui/tool_select.ui:118
+#: src/window.py:916 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "Importeren"
@@ -327,7 +310,7 @@ msgstr "_Canvas"
 msgid "Previous tool"
 msgstr "Vorig gereedschap"
 
-#: src/ui/app-menus.ui:308 src/window.py:1045 src/window.py:1048
+#: src/ui/app-menus.ui:308 src/window.py:1046 src/window.py:1049
 msgid "_Options"
 msgstr "_Opties"
 
@@ -377,7 +360,7 @@ msgid "Use this editor by default"
 msgstr "Gebruik standaard deze bewerker"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:754
+#: src/window.py:755
 msgid "Open"
 msgstr "Openen"
 
@@ -546,7 +529,7 @@ msgstr "Gereedschapsgrootte"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:465 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:192 src/window.py:466 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Geen opties"
 
@@ -602,34 +585,34 @@ msgstr "Meld bugs of deel ideëen"
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Kan dit bestand niet openen. Bedoelde je %s?"
 
-#: src/window.py:726
+#: src/window.py:727
 #, python-format
 msgid "Loading %s"
 msgstr "Bezig met laden van %s"
 
-#: src/window.py:732
+#: src/window.py:733
 msgid "New Tab"
 msgstr "Nieuw tabblad"
 
-#: src/window.py:734
+#: src/window.py:735
 msgid "Discard changes"
 msgstr "Wijzigingen verwerpen"
 
-#: src/window.py:736 src/window.py:808
+#: src/window.py:737 src/window.py:809
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "%s bevat niet-opgeslagen wijzigingen."
 
-#: src/window.py:738
+#: src/window.py:739
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Waar wil je %s openen?"
 
-#: src/window.py:753
+#: src/window.py:754
 msgid "Open a picture"
 msgstr "Afbeeldingen openen"
 
-#: src/window.py:754 src/window.py:806 src/window.py:852 src/window.py:915
+#: src/window.py:755 src/window.py:807 src/window.py:853 src/window.py:916
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -639,40 +622,40 @@ msgstr "Afbeeldingen openen"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/window.py:798 src/window.py:854
+#: src/window.py:799 src/window.py:855
 msgid "Untitled"
 msgstr "Naamloos"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:800
+#: src/window.py:801
 msgid "this picture"
 msgstr "deze afbeelding"
 
-#: src/window.py:805
+#: src/window.py:806
 msgid "Discard"
 msgstr "Verwerpen"
 
-#: src/window.py:826
+#: src/window.py:827
 msgid "All pictures"
 msgstr "Alle afbeeldingen"
 
-#: src/window.py:832
+#: src/window.py:833
 msgid "PNG images"
 msgstr "PNG-afbeeldingen"
 
-#: src/window.py:836
+#: src/window.py:837
 msgid "JPEG images"
 msgstr "JPEG-afbeeldingen"
 
-#: src/window.py:840
+#: src/window.py:841
 msgid "BMP images"
 msgstr "BMP-afbeeldingen"
 
-#: src/window.py:851
+#: src/window.py:852
 msgid "Save picture as…"
 msgstr "Afbeelding opslaan als…"
 
-#: src/window.py:914
+#: src/window.py:915
 msgid "Import a picture"
 msgstr "Afbeelding importeren"
 
@@ -1155,6 +1138,24 @@ msgstr "Bezig met wijzigen van selectiegrootte"
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
+
+#~ msgid "Pencil (with various options)"
+#~ msgstr "Potlood (verschillende soorten)"
+
+#~ msgid "Selection (cut/copy/paste/drag/…)"
+#~ msgstr "Selectie (knippen/kopiëren/plakken/verslepen/...)"
+
+#~ msgid "Line, Arc (with various options)"
+#~ msgstr "Lijn, Boog (verschillende soorten)"
+
+#~ msgid "Shapes (rectangle, circle, polygon, …)"
+#~ msgstr "Vormen (vierkant, cirkel, veelhoek, ...)"
+
+#~ msgid "Text insertion"
+#~ msgstr "Tekst invoeren"
+
+#~ msgid "Resizing, cropping, rotating"
+#~ msgstr "Afmetingen wijzigen, bijsnijden, draaien"
 
 #~ msgid "Modifications will take effect in the next new window."
 #~ msgstr "De wijzigingen worden toegepast na een herstart."
