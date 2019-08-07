@@ -24,16 +24,27 @@ class DrawingAdaptativeBottomBar():
 	# Abstract class
 
 	def __init__(self, end_of_path):
-		self.is_narrow = True
-		builder = Gtk.Builder.new_from_resource(UI_PATH + end_of_path)
-		self.action_bar = builder.get_object('bottom-panel')
-
 		# Very high as a precaution, will be more precise later
 		self.limit_size = 700
+		self.is_narrow = True
+		self.widgets_narrow = []
+		self.widgets_wide = []
+		# TODO ? c'est tout ?
+
+		# à virer quand j'aurais implémenté
+		self.build_ui(end_of_path)
+		self.init_adaptability()
+
+	def build_ui(self, end_of_path):
+		builder = Gtk.Builder.new_from_resource(UI_PATH + end_of_path)
+		self.action_bar = builder.get_object('bottom-panel')
 		return builder # for implementations-specific widgets
 
 	def init_adaptability(self):
 		self.action_bar.show_all()
+		long_size = 0
+		for w in self.widgets_wide:
+			print(w.get_preferred_width())
 		# widgets_width = self.save_label.get_preferred_width()[0] \
 		#                - self.save_icon.get_preferred_width()[0] \
 		#                  + self.new_btn.get_preferred_width()[0] \

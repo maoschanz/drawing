@@ -2,7 +2,7 @@
 
 DISTRO="unstable" # TODO lister les valeurs possibles
 PACKAGE_NAME="drawing" # TODO et pour elementary ?
-VERSION="0.4"
+VERSION="0.5"
 
 # se souvenir du dossier courant (qui est la racine du projet)
 previous_dir=`pwd`
