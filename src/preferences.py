@@ -125,6 +125,9 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_for_AoS(_("Saturate"), 'saturate', 'disabled-tools')
 		self.page_tools.add(w)
 
+		w = self.row_for_AoS(_("Blur"), 'blur', 'disabled-tools')
+		self.page_tools.add(w)
+
 		########################################################################
 		# Build the "advanced" page ############################################
 

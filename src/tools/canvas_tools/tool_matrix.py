@@ -132,7 +132,7 @@ class ToolMatrix(AbstractCanvasTool):
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
+		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=operation['xx'], yx=operation['yx'], \
 		                 xy=operation['xy'], yy=operation['yy'], \
 		                 x0=operation['x0'], y0=operation['y0'])

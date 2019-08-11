@@ -48,6 +48,7 @@ Canvas/selection edition tools:
 |Scale      |Keep proportions or not
 |Rotate     |           |
 |Saturate   |           |
+|Blur   |           |
 
 <!-- |Matrix     |           |Not done yet -->
 
