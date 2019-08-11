@@ -31,6 +31,7 @@ from .tool_polygon import ToolPolygon
 from .tool_rectangle import ToolRectangle
 from .tool_text import ToolText
 
+from .tool_blur import ToolBlur
 from .tool_crop import ToolCrop
 from .tool_flip import ToolFlip
 from .tool_matrix import ToolMatrix
@@ -154,6 +155,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools['flip'] = ToolFlip(self)
 		if 'saturate' not in disabled_tools_id:
 			self.tools['saturate'] = ToolSaturate(self)
+		if 'blur' not in disabled_tools_id:
+			self.tools['blur'] = ToolBlur(self)
 
 		# Buttons for tools (in the side panel and the selection tool action bar)
 		self.build_tool_rows()

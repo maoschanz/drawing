@@ -240,3 +240,104 @@ def _next_arc(cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
 
 ################################################################################
 
+def utilities_fast_blur(surface, radius, iterations):
+	radius = int(radius)
+
+	# from https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
+	if radius < 1 or iterations < 1:
+		return
+
+	w = surface.get_width()
+	h = surface.get_height()
+	channels = 4 # XXX ou 3 dans le cas de RGB256 ???
+
+	if radius > w - 1 or radius > h - 1:
+		return
+
+	original = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
+	cairo_context = cairo.Context(original)
+	# cairo_context.set_operator(cairo.Operator.SOURCE)
+	cairo_context.set_source_surface(surface, 0, 0)
+	cairo_context.paint()
+	original.flush()
+	pixels = original.get_data()
+
+	buffer = [None] * (w * h * channels)
+	vmin = [None] * max(w, h)
+	vmax = [None] * max(w, h)
+	div = 2 * radius + 1
+	dv = [None] * (256 * div)
+	for i in range(0, len(dv)):
+		dv[i] = int(i / div)
+
+	while iterations > 0:
+		iterations = iterations - 1
+
+		for x in range(0, w):
+			vmin[x] = min(x + radius + 1, w - 1)
+			vmax[x] = max(x - radius, 0)
+		for y in range(0, h):
+			asum = 0
+			rsum = 0
+			gsum = 0
+			bsum = 0
+			cur_pixel = y * w * channels
+			asum = asum + radius * pixels[cur_pixel + 0]
+			rsum = rsum + radius * pixels[cur_pixel + 1]
+			gsum = gsum + radius * pixels[cur_pixel + 2]
+			bsum = bsum + radius * pixels[cur_pixel + 3]
+			for i in range(0, radius+1):
+				asum = asum + pixels[cur_pixel + 0]
+				rsum = rsum + pixels[cur_pixel + 1]
+				gsum = gsum + pixels[cur_pixel + 2]
+				bsum = bsum + pixels[cur_pixel + 3]
+				cur_pixel = cur_pixel + channels
+			cur_pixel = y * w * channels
+			for x in range(0, w):
+				p1 = (y * w + vmin[x]) * channels
+				p2 = (y * w + vmax[x]) * channels
+				buffer[cur_pixel + 0] = dv[asum]
+				buffer[cur_pixel + 1] = dv[rsum]
+				buffer[cur_pixel + 2] = dv[gsum]
+				buffer[cur_pixel + 3] = dv[bsum]
+				asum = asum + pixels[p1 + 0] - pixels[p2 + 0]
+				rsum = rsum + pixels[p1 + 1] - pixels[p2 + 1]
+				gsum = gsum + pixels[p1 + 2] - pixels[p2 + 2]
+				bsum = bsum + pixels[p1 + 3] - pixels[p2 + 3]
+				cur_pixel += channels
+
+		for y in range(0, h):
+			vmin[y] = min(y + radius + 1, h - 1) * w
+			vmax[y] = max (y - radius, 0) * w
+		for x in range(0, w):
+			asum = 0
+			rsum = 0
+			gsum = 0
+			bsum = 0
+			cur_pixel = x * channels
+			asum = asum + radius * buffer[cur_pixel + 0]
+			rsum = rsum + radius * buffer[cur_pixel + 1]
+			gsum = gsum + radius * buffer[cur_pixel + 2]
+			bsum = bsum + radius * buffer[cur_pixel + 3]
+			for i in range(0, radius+1):
+				asum = asum + buffer[cur_pixel + 0]
+				rsum = rsum + buffer[cur_pixel + 1]
+				gsum = gsum + buffer[cur_pixel + 2]
+				bsum = bsum + buffer[cur_pixel + 3]
+				cur_pixel = cur_pixel + w * channels
+			cur_pixel = x * channels
+			for y in range(0, h):
+				p1 = (x + vmin[y]) * channels
+				p2 = (x + vmax[y]) * channels
+				pixels[cur_pixel + 0] = dv[asum]
+				pixels[cur_pixel + 1] = dv[rsum]
+				pixels[cur_pixel + 2] = dv[gsum]
+				pixels[cur_pixel + 3] = dv[bsum]
+				asum = asum + buffer[p1 + 0] - buffer[p2 + 0]
+				rsum = rsum + buffer[p1 + 1] - buffer[p2 + 1]
+				gsum = gsum + buffer[p1 + 2] - buffer[p2 + 2]
+				bsum = bsum + buffer[p1 + 3] - buffer[p2 + 3]
+				cur_pixel = cur_pixel + w * channels
+	# TODO
+	# commentaires explicatifs
+	return original

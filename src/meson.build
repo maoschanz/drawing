@@ -63,6 +63,7 @@ drawing_sources = [
 
 	'tools/canvas_tools/abstract_canvas_tool.py',
 
+	'tools/canvas_tools/tool_blur.py',
 	'tools/canvas_tools/tool_crop.py',
 	'tools/canvas_tools/tool_flip.py',
 	'tools/canvas_tools/tool_matrix.py',

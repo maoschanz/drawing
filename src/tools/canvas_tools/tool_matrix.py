@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import cairo
+import cairo, math
 
 from .abstract_canvas_tool import AbstractCanvasTool
 
@@ -27,10 +27,14 @@ class ToolMatrix(AbstractCanvasTool):
 		super().__init__('matrix', _("Deformation"), 'tool-matrix-symbolic', window)
 		# self.cursor_name = ''
 		self.apply_to_selection = False
+		self.dont_update = False
 
 		builder = Gtk.Builder.new_from_resource( \
 		                '/com/github/maoschanz/drawing/tools/ui/tool_matrix.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
+
+		self.angle_spinbtn = builder.get_object('angle_spinbtn')
+		self.angle_spinbtn.connect('value-changed', self.on_angle_changed)
 
 		self.xx_spinbtn = builder.get_object('xx_spinbtn')
 		self.xx_spinbtn.connect('value-changed', self.on_coord_changed)
@@ -57,18 +61,59 @@ class ToolMatrix(AbstractCanvasTool):
 		# - scale
 		# et d'introduire des features telles que :
 		# - l'inclinaison comme dans Microsoft Paint
-		# - les widgets sur la surface
+		# - les widgets sur la surface ?
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	# TODO
 		# ...
 
+	def on_flip_h(self, *args):
+		self.dont_update = True
+		# TODO
+		self.dont_update = False
+		self.on_coord_changed()
 
+	def on_flip_v(self, *args):
+		self.dont_update = True
+		# TODO
+		self.dont_update = False
+		self.on_coord_changed()
+
+	def on_angle_changed(self, *args):
+		self.dont_update = True
+		angle = self.angle_spinbtn.get_value_as_int()
+		rad = math.pi * angle / 180
+		print(rad)
+		xx = math.cos(rad)
+		xy = math.sin(rad)
+		yx = -1 * math.sin(rad)
+		yy = math.cos(rad)
+		x0 = 0 # TODO
+		y0 = 0 # TODO
+		self.xx_spinbtn.set_value(xx * 100)
+		self.xy_spinbtn.set_value(xy * 100)
+		self.yx_spinbtn.set_value(yx * 100)
+		self.yy_spinbtn.set_value(yy * 100)
+		# self.x0_spinbtn.set_value(x0)
+		# self.y0_spinbtn.set_value(y0)
+
+		x_old = 100
+		y_old = 100
+		x_new = xx * x_old + xy * y_old + x0
+		y_new = yx * x_old + yy * y_old + y0
+		print(x_new, y_new)
+
+		self.dont_update = False
+		self.on_coord_changed()
 
 	def on_coord_changed(self, *args):
-		self.update_temp_pixbuf() # XXX no temp pixbuf but that method is just
-		# building and doing the operation anyway
+		if self.dont_update:
+			print('no update')
+			return
+		print('update:')
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def build_operation(self):
 		operation = {
@@ -77,8 +122,8 @@ class ToolMatrix(AbstractCanvasTool):
 			'yx': self.yx_spinbtn.get_value_as_int()/100,
 			'xy': self.xy_spinbtn.get_value_as_int()/100,
 			'yy': self.yy_spinbtn.get_value_as_int()/100,
-			'x0': self.x0_spinbtn.get_value_as_int()/100,
-			'y0': self.y0_spinbtn.get_value_as_int()/100
+			'x0': self.x0_spinbtn.get_value_as_int(),
+			'y0': self.y0_spinbtn.get_value_as_int()
 		}
 		return operation
 
@@ -87,7 +132,7 @@ class ToolMatrix(AbstractCanvasTool):
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
+		m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=operation['xx'], yx=operation['yx'], \
 		                 xy=operation['xy'], yy=operation['yy'], \
 		                 x0=operation['x0'], y0=operation['y0'])

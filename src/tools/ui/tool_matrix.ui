@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
 
+  <object class="GtkAdjustment" id="adj_angle">
+    <property name="lower">-360</property>
+    <property name="upper">360</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">20</property>
+    <property name="value">0</property>
+  </object>
   <object class="GtkAdjustment" id="adj_xx">
     <property name="lower">-100</property>
     <property name="upper">200</property>
@@ -30,15 +37,15 @@
     <property name="value">0</property>
   </object>
   <object class="GtkAdjustment" id="adj_x0">
-    <property name="lower">-100</property>
-    <property name="upper">200</property>
+    <property name="lower">-500</property>
+    <property name="upper">500</property>
     <property name="step_increment">1</property>
     <property name="page_increment">20</property>
     <property name="value">0</property>
   </object>
   <object class="GtkAdjustment" id="adj_y0">
-    <property name="lower">-100</property>
-    <property name="upper">200</property>
+    <property name="lower">-500</property>
+    <property name="upper">500</property>
     <property name="step_increment">1</property>
     <property name="page_increment">20</property>
     <property name="value">0</property>
@@ -128,16 +135,6 @@
         <property name="margin">10</property>
         <property name="spacing">10</property>
         <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="label">matrix coords</property>
-            <style><class name="dim-label"/></style>
-          </object>
-          <packing>
-            <property name="pack-type">start</property>
-          </packing>
-        </child>
 
         <child>
           <object class="GtkGrid">
@@ -173,35 +170,11 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="expand">False</property>
-                <property name="label">yx</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="yx_spinbtn">
-                <property name="visible">True</property>
-                <property name="wrap">True</property>
-                <property name="expand">False</property>
-                <property name="adjustment">adj_yx</property>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="expand">False</property>
                 <property name="label">xy</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">1</property>
               </packing>
             </child>
             <child>
@@ -213,7 +186,31 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="expand">False</property>
+                <property name="label">yx</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="yx_spinbtn">
+                <property name="visible">True</property>
+                <property name="wrap">True</property>
+                <property name="expand">False</property>
+                <property name="adjustment">adj_yx</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">2</property>
               </packing>
             </child>
 
@@ -225,7 +222,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">2</property>
+                <property name="top-attach">3</property>
               </packing>
             </child>
             <child>
@@ -237,7 +234,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">2</property>
+                <property name="top-attach">3</property>
               </packing>
             </child>
 
@@ -286,6 +283,41 @@
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">5</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">6</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="expand">False</property>
+                <property name="label">Angle</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="angle_spinbtn">
+                <property name="visible">True</property>
+                <property name="wrap">True</property>
+                <property name="expand">False</property>
+                <property name="adjustment">adj_angle</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
 
