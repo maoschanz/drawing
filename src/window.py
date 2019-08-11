@@ -18,6 +18,7 @@
 import os
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
+from .gi_composites import GtkTemplate
 
 from .tool_arc import ToolArc
 from .tool_circle import ToolCircle
@@ -50,41 +51,42 @@ from .utilities import utilities_add_px_to_spinbutton
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
-@Gtk.Template(resource_path=UI_PATH+'window.ui')
+@GtkTemplate(ui=UI_PATH+'window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
 
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	# Window empty widgets
-	tools_panel = Gtk.Template.Child()
-	toolbar_box = Gtk.Template.Child()
-	info_bar = Gtk.Template.Child()
-	info_label = Gtk.Template.Child()
-	notebook = Gtk.Template.Child()
-	bottom_panel_box = Gtk.Template.Child()
-	tools_scrollable_box = Gtk.Template.Child()
-	tools_nonscrollable_box = Gtk.Template.Child()
+	tools_panel = GtkTemplate.Child()
+	toolbar_box = GtkTemplate.Child()
+	info_bar = GtkTemplate.Child()
+	info_label = GtkTemplate.Child()
+	notebook = GtkTemplate.Child()
+	bottom_panel_box = GtkTemplate.Child()
+	tools_scrollable_box = GtkTemplate.Child()
+	tools_nonscrollable_box = GtkTemplate.Child()
 
 	# Default bottom panel
-	bottom_panel = Gtk.Template.Child()
-	color_box = Gtk.Template.Child()
-	color_menu_btn_l = Gtk.Template.Child()
-	color_menu_btn_r = Gtk.Template.Child()
-	l_btn_image = Gtk.Template.Child()
-	r_btn_image = Gtk.Template.Child()
-	thickness_spinbtn = Gtk.Template.Child()
-	options_btn = Gtk.Template.Child()
-	options_label = Gtk.Template.Child()
-	options_long_box = Gtk.Template.Child()
-	options_short_box = Gtk.Template.Child()
-	minimap_btn = Gtk.Template.Child()
-	minimap_icon = Gtk.Template.Child()
-	minimap_label = Gtk.Template.Child()
-	minimap_arrow = Gtk.Template.Child()
+	bottom_panel = GtkTemplate.Child()
+	color_box = GtkTemplate.Child()
+	color_menu_btn_l = GtkTemplate.Child()
+	color_menu_btn_r = GtkTemplate.Child()
+	l_btn_image = GtkTemplate.Child()
+	r_btn_image = GtkTemplate.Child()
+	thickness_spinbtn = GtkTemplate.Child()
+	options_btn = GtkTemplate.Child()
+	options_label = GtkTemplate.Child()
+	options_long_box = GtkTemplate.Child()
+	options_short_box = GtkTemplate.Child()
+	minimap_btn = GtkTemplate.Child()
+	minimap_icon = GtkTemplate.Child()
+	minimap_label = GtkTemplate.Child()
+	minimap_arrow = GtkTemplate.Child()
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
+		self.init_template()
 		self.app = kwargs['application']
 
 		self.header_bar = None

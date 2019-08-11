@@ -27,6 +27,7 @@ configure_file(
 
 drawing_sources = [
 	'__init__.py',
+	'gi_composites.py',
 
 	'main.py',
 	'window.py',

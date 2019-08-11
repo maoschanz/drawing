@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
+from .gi_composites import GtkTemplate
 import cairo
 
 from .utilities import utilities_save_pixbuf_at
@@ -28,18 +29,19 @@ class DrawingMotionBehavior():
 
 ################################################################################
 
-@Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/image.ui')
+@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
 class DrawingImage(Gtk.Box):
 	__gtype_name__ = 'DrawingImage'
 
-	drawing_area = Gtk.Template.Child()
-	h_scrollbar = Gtk.Template.Child()
-	v_scrollbar = Gtk.Template.Child()
+	drawing_area = GtkTemplate.Child()
+	h_scrollbar = GtkTemplate.Child()
+	v_scrollbar = GtkTemplate.Child()
 
 	CLOSING_PRECISION = 10
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
+		self.init_template()
 		self.window = window
 
 		self.gfile = None
