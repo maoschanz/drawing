@@ -104,26 +104,32 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_bool(_("Use big icons"), 'big-icons')
 		self.page_tools.add(w)
 
-		w = self.row_from_label(_("Bonus tools"), True)
+		w = self.row_from_label(_("Additional tools"), True)
 		self.page_tools.add(w)
 
-		w = self.row_for_AoS(_("Select by Color"), 'color_select', 'disabled-tools')
-		self.page_tools.add(w)
+		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
+		self.page_tools.add(flowbox)
+
+		w = self.row_for_AoS(_("Free selection"), 'free_select', 'disabled-tools')
+		flowbox.add(w)
+
+		w = self.row_for_AoS(_("Color selection"), 'color_select', 'disabled-tools')
+		flowbox.add(w)
 
 		w = self.row_for_AoS(_("Color Picker"), 'picker', 'disabled-tools')
-		self.page_tools.add(w)
+		flowbox.add(w)
 
 		w = self.row_for_AoS(_("Paint"), 'paint', 'disabled-tools')
-		self.page_tools.add(w)
+		flowbox.add(w)
 
 		w = self.row_for_AoS(_("Polygon"), 'polygon', 'disabled-tools')
-		self.page_tools.add(w)
+		flowbox.add(w)
 
 		w = self.row_for_AoS(_("Saturate"), 'saturate', 'disabled-tools')
-		self.page_tools.add(w)
+		flowbox.add(w)
 
 		w = self.row_for_AoS(_("Blur"), 'blur', 'disabled-tools')
-		self.page_tools.add(w)
+		flowbox.add(w)
 
 		########################################################################
 		# Build the "advanced" page ############################################

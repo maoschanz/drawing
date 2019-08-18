@@ -44,13 +44,11 @@ Canvas/selection edition tools:
 | Tool      | Options   |
 |:---------:|:---------:|
 |Crop*      |           |
-|Flip       |Horizontally or vertically
 |Scale      |Keep proportions or not
-|Rotate     |           |
+|Rotate     |Flip       |
 |Saturate   |           |
-|Blur   |           |
 
-<!-- |Matrix     |           |Not done yet -->
+<!-- |Blur       |           | -->
 
 \*Remark: The previewed picture isn't at the actual scale.
 
@@ -88,7 +86,7 @@ More screenshots:
 - [elementaryOS UI](./docs/screenshots/elementary.png)
 - [Cinnamon UI](./docs/screenshots/cinnamon.png)
 - [MATE UI](./docs/screenshots/mate_scale.png)
-- The default "GNOME" UI can be resized to be [compatible with the Purism Librem 5 phone](./docs/screenshots/librem_options.png). [Youtube screencast](https://www.youtube.com/watch?v=xwfDnPd5NDU)
+- The default "GNOME" UI can be resized to be compatible with the Purism Librem 5 phone. [Screenshot](./docs/screenshots/librem_options.png) and [screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2).
 
 ----
 
@@ -114,3 +112,4 @@ You can install it from flathub.org using the instructions on [this page](https:
 ### Unstable/nightly version
 
 [See here](./INSTALL_FROM_SOURCE.md)
+

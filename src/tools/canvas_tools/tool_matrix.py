@@ -25,10 +25,13 @@ class ToolMatrix(AbstractCanvasTool):
 	__gtype_name__ = 'ToolMatrix'
 
 	def __init__(self, window):
-		super().__init__('matrix', _("Deformation"), 'tool-matrix-symbolic', window)
+		super().__init__('matrix', _("Deformation"), 'applications-science-symbolic', window)
 		# self.cursor_name = ''
 		self.apply_to_selection = False
 		self.dont_update = False
+
+	def get_edition_status(self):
+		return "You're not supposed to use this tool (development only)."
 
 # TODO
 # le but est de remplacer :

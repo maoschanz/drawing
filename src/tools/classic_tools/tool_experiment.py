@@ -9,7 +9,7 @@ class ToolExperiment(AbstractClassicTool):
 	__gtype_name__ = 'ToolExperiment'
 
 	def __init__(self, window, **kwargs):
-		super().__init__('experiment', _("Experiment"), 'applications-science-symbolic', window)
+		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None

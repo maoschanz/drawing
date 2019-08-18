@@ -126,7 +126,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['freeshape'] = ToolFreeshape(self)
 		if self._settings.get_boolean('devel-only'):
 			self.tools['experiment'] = ToolExperiment(self)
-		self.tools['matrix'] = ToolMatrix(self)
+			self.tools['matrix'] = ToolMatrix(self)
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
