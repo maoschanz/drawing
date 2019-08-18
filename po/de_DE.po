@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-07 03:31+0200\n"
+"POT-Creation-Date: 2019-08-18 22:54+0200\n"
 "PO-Revision-Date: 2019-08-03 13:53+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:164
-#: src/window.py:424
+#: src/window.py:426
 msgid "Drawing"
 msgstr "Zeichnung"
 
@@ -40,7 +40,7 @@ msgstr "Paint;Skizze;Bleistift;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:734
+#: src/window.py:736
 msgid "New Window"
 msgstr "Neues Fenster"
 
@@ -74,7 +74,17 @@ msgid ""
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
-#: data/com.github.maoschanz.drawing.appdata.xml.in:37
+msgid ""
+"Version 0.4.3 includes new translations, and is compatible with older "
+"distributions such as Ubuntu 18.04 LTS."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:35
+msgid ""
+"Version 0.4.2 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:41
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -82,18 +92,18 @@ msgid ""
 "translations."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:45
+#: data/com.github.maoschanz.drawing.appdata.xml.in:49
 msgid "First stable release, including a few basic tools."
 msgstr "Erste stabile Version; mit ein paar grundlegenden Werkzeugen."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:51
+#: data/com.github.maoschanz.drawing.appdata.xml.in:55
 msgid "Romain F. T."
 msgstr ""
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:76
-#: src/ui/win-menus.ui:161 src/preferences.py:44
+#: src/ui/win-menus.ui:161 src/preferences.py:46
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -143,7 +153,7 @@ msgstr "Ein Bild öffnen"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:808 src/window.py:853
+#: src/ui/toolbar.ui:119 src/window.py:810 src/window.py:855
 msgid "Save"
 msgstr "Speichern"
 
@@ -210,7 +220,7 @@ msgstr "Einfügen"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:916 src/tools/ui/tool_select.ui:118
+#: src/window.py:918 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "Importieren"
@@ -274,7 +284,7 @@ msgstr "Nach rechts"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:157
-#: src/preferences.py:85
+#: src/preferences.py:87
 msgid "Show tools names"
 msgstr "Werkzeugnamen anzeigen"
 
@@ -310,7 +320,7 @@ msgstr "Leinwand"
 msgid "Previous tool"
 msgstr "Vorheriges Werkzeug"
 
-#: src/ui/app-menus.ui:308 src/window.py:1046 src/window.py:1049
+#: src/ui/app-menus.ui:308 src/window.py:1048 src/window.py:1051
 msgid "_Options"
 msgstr "_Optionen"
 
@@ -360,7 +370,7 @@ msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:755
+#: src/window.py:757
 msgid "Open"
 msgstr "Öffnen"
 
@@ -372,7 +382,7 @@ msgstr "Bilder"
 msgid "Tools"
 msgstr "Werkzeuge"
 
-#: src/ui/preferences.ui:85 src/preferences.py:95
+#: src/ui/preferences.ui:85 src/preferences.py:97
 msgid "Advanced options"
 msgstr "Erweiterte Einstellungen"
 
@@ -384,7 +394,7 @@ msgstr "Pfad"
 msgid "Format"
 msgstr "Format"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:216
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:218
 msgid "Unsaved file"
 msgstr "Nicht gespeicherte Datei"
 
@@ -529,7 +539,7 @@ msgstr "Werkzeuggröße"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:466 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:192 src/window.py:468 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Keine Optionen"
 
@@ -585,34 +595,34 @@ msgstr "Fehler oder Ideen melden"
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
 
-#: src/window.py:727
+#: src/window.py:729
 #, python-format
 msgid "Loading %s"
 msgstr "Wird geladen %s"
 
-#: src/window.py:733
+#: src/window.py:735
 msgid "New Tab"
 msgstr "Neuer Tab"
 
-#: src/window.py:735
+#: src/window.py:737
 msgid "Discard changes"
 msgstr "Änderungen verwerfen"
 
-#: src/window.py:737 src/window.py:809
+#: src/window.py:739 src/window.py:811
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Es gibt ungespeicherte Änderungen an %s"
 
-#: src/window.py:739
+#: src/window.py:741
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Wo möchten Sie %s öffnen?"
 
-#: src/window.py:754
+#: src/window.py:756
 msgid "Open a picture"
 msgstr "Ein Bild öffnen"
 
-#: src/window.py:755 src/window.py:807 src/window.py:853 src/window.py:916
+#: src/window.py:757 src/window.py:809 src/window.py:855 src/window.py:918
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -622,40 +632,40 @@ msgstr "Ein Bild öffnen"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/window.py:799 src/window.py:855
+#: src/window.py:801 src/window.py:857
 msgid "Untitled"
 msgstr "Unbenannt"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:801
+#: src/window.py:803
 msgid "this picture"
 msgstr "diesem Bild"
 
-#: src/window.py:806
+#: src/window.py:808
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/window.py:827
+#: src/window.py:829
 msgid "All pictures"
 msgstr "Alle Bilder"
 
-#: src/window.py:833
+#: src/window.py:835
 msgid "PNG images"
 msgstr "PNG-Bilder"
 
-#: src/window.py:837
+#: src/window.py:839
 msgid "JPEG images"
 msgstr "JPEG-Bilder"
 
-#: src/window.py:841
+#: src/window.py:843
 msgid "BMP images"
 msgstr "BMP-Bilder"
 
-#: src/window.py:852
+#: src/window.py:854
 msgid "Save picture as…"
 msgstr "Bild speichern als..."
 
-#: src/window.py:915
+#: src/window.py:917
 msgid "Import a picture"
 msgstr "Ein Bild importieren"
 
@@ -669,49 +679,49 @@ msgstr "Rückgängig %s"
 msgid "Redo %s"
 msgstr "Wiederherstellen %s"
 
-#: src/preferences.py:54
+#: src/preferences.py:56
 msgid "New images"
 msgstr "Neue Bilder"
 
-#: src/preferences.py:57
+#: src/preferences.py:59
 msgid "Default width"
 msgstr "Standardbreite"
 
-#: src/preferences.py:60
+#: src/preferences.py:62
 msgid "Default height"
 msgstr "Standardhöhe"
 
-#: src/preferences.py:72
+#: src/preferences.py:74
 msgid "Default background"
 msgstr "Standardhintergrund"
 
-#: src/preferences.py:75
+#: src/preferences.py:77
 msgid "Opened images"
 msgstr "Geöffnete Bilder"
 
-#: src/preferences.py:78
+#: src/preferences.py:80
 msgid "Always add transparency"
 msgstr "Immer Transparenz hinzufügen"
 
-#: src/preferences.py:88
+#: src/preferences.py:90
 msgid "Use big icons"
 msgstr "Große Symbole verwenden"
 
-#: src/preferences.py:98
+#: src/preferences.py:100
 msgid "Preview size"
 msgstr "Vorschaugröße"
 
-#: src/preferences.py:102
+#: src/preferences.py:104
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: src/preferences.py:103
+#: src/preferences.py:105
 msgid "Compact"
 msgstr "Kompakt"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:107
+#: src/preferences.py:109
 msgid "Legacy"
 msgstr "Altmodisch"
 
@@ -719,29 +729,29 @@ msgstr "Altmodisch"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional". "symbolic" means the icons
 #. are in black or white.
-#: src/preferences.py:112
+#: src/preferences.py:114
 msgid "Legacy (symbolic)"
 msgstr "Altmodisch (einfarbig)"
 
-#: src/preferences.py:113
+#: src/preferences.py:115
 msgid "Menubar only"
 msgstr "Nur Menüleiste"
 
-#: src/preferences.py:114
+#: src/preferences.py:116
 msgid "Toolbar only"
 msgstr "Nur Werkzeugleiste"
 
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
-#: src/preferences.py:117
+#: src/preferences.py:119
 msgid "Toolbar (symbolic)"
 msgstr "Werkzeugleiste (einfarbig)"
 
-#: src/preferences.py:122
+#: src/preferences.py:124
 msgid "Layout"
 msgstr "Layout"
 
-#: src/preferences.py:127
+#: src/preferences.py:129
 msgid "Development features"
 msgstr "Entwicklungsfunktionen"
 
