@@ -19,6 +19,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_canvas_tool import AbstractCanvasTool
+from .bottombar import DrawingAdaptativeBottomBar
 
 class ToolSaturate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSaturate'
@@ -28,17 +29,26 @@ class ToolSaturate(AbstractCanvasTool):
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
 
-		builder = Gtk.Builder.new_from_resource( \
-		              '/com/github/maoschanz/drawing/tools/ui/tool_saturate.ui')
-		self.bottom_panel = builder.get_object('bottom-panel')
+	def try_build_panel(self):
+		self.panel_id = 'saturate'
+		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
+	def build_bottom_panel(self):
+		bar = DrawingAdaptativeBottomBar()
+		builder = bar.build_ui('tools/ui/tool_saturate.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
 		self.saturation_btn = builder.get_object('sat_btn')
 		self.saturation_btn.connect('value-changed', self.on_sat_changed)
-
-		self.window.bottom_panel_box.add(self.bottom_panel)
+		#
+		#
+		return bar
 
 	def on_tool_selected(self, *args):
-		self.apply_to_selection = self.selection_is_active()
+		super().on_tool_selected()
 		self.saturation_btn.set_value(100.0)
 		self.on_sat_changed()
 

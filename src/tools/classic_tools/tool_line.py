@@ -3,10 +3,10 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_add_arrow_triangle
 
-class ToolLine(ToolTemplate):
+class ToolLine(AbstractClassicTool):
 	__gtype_name__ = 'ToolLine'
 
 	def __init__(self, window, **kwargs):
@@ -18,13 +18,7 @@ class ToolLine(ToolTemplate):
 		self.add_tool_action_boolean('is_arrow', False)
 		self.add_tool_action_boolean('use_gradient', False)
 		self.add_tool_action_enum('cairo_operator', 'over')
-
-		# Default values
-		self.selected_shape_label = _("Round")
-		self.selected_operator = cairo.Operator.OVER
-		self.selected_end_id = cairo.LineCap.ROUND
-		self.use_dashes = False
-		self.use_arrow = False
+		self.set_options_attributes() # Not optimal but more readable
 
 	def set_active_shape(self):
 		if self.get_option_value('line_shape') == 'square':
@@ -52,12 +46,15 @@ class ToolLine(ToolTemplate):
 	def get_options_label(self):
 		return _("Line options")
 
-	def get_edition_status(self): # TODO l'opérateur est important
+	def set_options_attributes(self):
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.use_gradient = self.get_option_value('use_gradient')
 		self.set_active_shape()
 		self.set_active_operator()
+
+	def get_edition_status(self): # TODO l'opérateur est important
+		self.set_options_attributes()
 		label = self.label + ' (' + self.selected_shape_label + ') '
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
@@ -71,6 +68,11 @@ class ToolLine(ToolTemplate):
 		self.x_press = 0.0
 		self.y_press = 0.0
 
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		self.x_press = event_x
+		self.y_press = event_y
+		self.set_common_values(event)
+
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
@@ -80,17 +82,6 @@ class ToolLine(ToolTemplate):
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
-
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 1:
-			self.main_color = left_color
-			self.sec_color = right_color
-		if event.button == 3:
-			self.main_color = right_color
-			self.sec_color = left_color
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -108,7 +99,7 @@ class ToolLine(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'rgba2': self.sec_color,
+			'rgba2': self.secondary_color,
 			'operator': self.selected_operator,
 			'line_width': self.tool_width,
 			'line_cap': self.selected_end_id,

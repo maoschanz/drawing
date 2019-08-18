@@ -250,18 +250,6 @@ class DrawingImage(Gtk.Box):
 			return self.gfile.get_path()
 
 	############################################################################
-	# Wrappers for window methods related to tools #############################
-
-	def active_tool(self):
-		return self.window.active_tool()
-
-	def get_right_rgba(self):
-		return self.window.color_popover_r.color_widget.get_rgba()
-
-	def get_left_rgba(self):
-		return self.window.color_popover_l.color_widget.get_rgba()
-
-	############################################################################
 	# History management #######################################################
 
 	def try_undo(self, *args):
@@ -314,6 +302,9 @@ class DrawingImage(Gtk.Box):
 		self.set_surface_as_stable_pixbuf() # XXX ici ou dans [Tool].apply_operation ?
 		self.update_actions_state()
 
+	############################################################################
+	# Misc ? ###################################################################
+
 	def set_action_sensitivity(self, action_name, state):
 		self.window.lookup_action(action_name).set_enabled(state)
 
@@ -326,6 +317,9 @@ class DrawingImage(Gtk.Box):
 		self.set_action_sensitivity('selection_export', state)
 		self.set_action_sensitivity('new_tab_selection', state)
 		self.active_tool().update_actions_state()
+
+	def active_tool(self):
+		return self.window.active_tool()
 
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
@@ -353,8 +347,7 @@ class DrawingImage(Gtk.Box):
 			return
 		self.motion_behavior = DrawingMotionBehavior.DRAW
 		self.active_tool().on_press_on_area(area, event, self.surface, \
-		                            self.window.thickness_spinbtn.get_value(), \
-		          self.get_left_rgba(), self.get_right_rgba(), event_x, event_y)
+		                                                       event_x, event_y)
 
 	def on_motion_on_area(self, area, event):
 		"""Signal callback. Executed when the mouse pointer moves upon

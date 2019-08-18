@@ -19,6 +19,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_canvas_tool import AbstractCanvasTool
+from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities import utilities_add_px_to_spinbutton
 
@@ -32,9 +33,18 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 
-		builder = Gtk.Builder.new_from_resource( \
-		                 '/com/github/maoschanz/drawing/tools/ui/tool_scale.ui')
-		self.bottom_panel = builder.get_object('bottom-panel')
+	def try_build_panel(self):
+		self.panel_id = 'scale'
+		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+
+	def build_bottom_panel(self):
+		bar = DrawingAdaptativeBottomBar()
+		builder = bar.build_ui('tools/ui/tool_scale.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
 		self.centered_box = builder.get_object('centered_box')
 		self.cancel_btn = builder.get_object('cancel_btn')
 		self.apply_btn = builder.get_object('apply_btn')
@@ -48,8 +58,9 @@ class ToolScale(AbstractCanvasTool):
 
 		self.proportions_btn = builder.get_object('proportions_btn')
 		self.proportions_btn.connect('toggled', self.set_keep_proportions)
-
-		self.window.bottom_panel_box.add(self.bottom_panel)
+		#
+		#
+		return bar
 
 	def get_edition_status(self):
 		if self.apply_to_selection:
@@ -65,7 +76,7 @@ class ToolScale(AbstractCanvasTool):
 			self.proportion = self.get_width()/self.get_height()
 
 	def on_tool_selected(self, *args):
-		self.apply_to_selection = self.selection_is_active()
+		super().on_tool_selected()
 		self.keep_proportions = False
 		if self.apply_to_selection:
 			w = self.get_selection_pixbuf().get_width()
@@ -97,16 +108,16 @@ class ToolScale(AbstractCanvasTool):
 	def get_height(self):
 		return self.height_btn.get_value_as_int()
 
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		self.x_press = event.x
+		self.y_press = event.y
+
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
 		self.width_btn.set_value(self.width_btn.get_value() + delta_x)
 		if not self.keep_proportions:
 			delta_y = event.y - self.y_press
 			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
-		self.x_press = event.x
-		self.y_press = event.y
-
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 

@@ -3,10 +3,10 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_generic_shape_tool_operation
 
-class ToolFreeshape(ToolTemplate):
+class ToolFreeshape(AbstractClassicTool):
 	__gtype_name__ = 'ToolFreeshape'
 
 	def __init__(self, window, **kwargs):
@@ -89,16 +89,10 @@ class ToolFreeshape(ToolTemplate):
 		self.restore_pixbuf()
 		self.draw_polygon(event_x, event_y)
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 3:
-			self.main_color = right_color
-			self.secondary_color = left_color
-		else:
-			self.main_color = left_color
-			self.secondary_color = right_color
+		self.set_common_values(event)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()

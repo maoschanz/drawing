@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_tool import ToolTemplate
+from .bottombar import DrawingAdaptativeBottomBar
 
 class AbstractSelectionTool(ToolTemplate):
 	__gtype_name__ = 'AbstractSelectionTool'
@@ -22,20 +23,6 @@ class AbstractSelectionTool(ToolTemplate):
 		self.future_pixbuf = None
 		self.operation_type = None # 'op-define'
 
-		# Special bottom panel
-		path = '/com/github/maoschanz/drawing/ui/selection.ui'
-		builder = Gtk.Builder.new_from_resource(path)
-		self.bottom_panel = builder.get_object('bottom-panel')
-		self.import_box_narrow = builder.get_object('import_box_narrow')
-		self.import_box_long = builder.get_object('import_box_long')
-		self.minimap_label = builder.get_object('minimap_label')
-		self.minimap_arrow = builder.get_object('minimap_arrow')
-		self.minimap_icon = builder.get_object('minimap_icon')
-		self.window.bottom_panel_box.add(self.bottom_panel)
-		self.implements_panel = True
-		# self.needed_width_for_long = XXX TODO currently harcoded
-		self.needed_width_for_long = 400
-
 	############################################################################
 	# UI implementations #######################################################
 
@@ -52,9 +39,8 @@ class AbstractSelectionTool(ToolTemplate):
 		return builder.get_object('options-menu')
 
 	def adapt_to_window_size(self, available_width):
-		# TODO calculer proprement needed_width_for_long à partir des tailles de
-		# chaque widget
-		# self.needed_width_for_long =
+		return
+		# TODO refaire proprement avec une implémentation de bottombar
 		if self.needed_width_for_long > 0.8 * available_width:
 			self.compact_bottombar(True)
 		else:
@@ -66,6 +52,13 @@ class AbstractSelectionTool(ToolTemplate):
 		self.minimap_arrow.set_visible(not state)
 		self.import_box_narrow.set_visible(state)
 		self.minimap_icon.set_visible(state)
+
+	def try_build_panel(self):
+		self.panel_id = 'selection'
+		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+
+	def build_bottom_panel(self):
+		return SelectionToolPanel(self.window)
 
 	############################################################################
 	# Lifecycle implementations ################################################
@@ -101,7 +94,7 @@ class AbstractSelectionTool(ToolTemplate):
 	############################################################################
 	# Signal callbacks implementations #########################################
 
-	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.behavior = self.get_press_behavior()
@@ -326,5 +319,37 @@ class AbstractSelectionTool(ToolTemplate):
 			self.op_drag(operation)
 			self.op_apply()
 
+	############################################################################
+################################################################################
+
+class SelectionToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'SelectionToolPanel'
+
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+		builder = self.build_ui('ui/selection.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
+		#
+
+		self.minimap_btn = builder.get_object('minimap_btn')
+		self.minimap_label = builder.get_object('minimap_label')
+		# .....
+		self.minimap_btn.show_all() # XXX
+
+	def update_for_new_tool(self, tool): # and the menu? XXX
+		pass # ?
+
+	def get_minimap_btn(self):
+		return self.minimap_btn
+
+	def set_minimap_label(self, label):
+		self.minimap_label.set_label(label)
+
+	############################################################################
 ################################################################################
 

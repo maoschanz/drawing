@@ -12,7 +12,6 @@ class ToolTemplate():
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id
-		self.implements_panel = False
 		self.accept_selection = False
 		self.use_color = True
 		self.menu_id = 0
@@ -24,6 +23,7 @@ class ToolTemplate():
 		self.has_ongoing_operation = False # TODO
 		self.window = window
 		self.build_row()
+		self.try_build_panel()
 
 	############################################################################
 	# Actions ##################################################################
@@ -52,15 +52,14 @@ class ToolTemplate():
 	############################################################################
 	# UI #######################################################################
 
-	def show_error(self, text):
-		self.window.prompt_message(True, text)
+	def show_error(self, error_text):
+		self.window.prompt_message(True, error_text)
 
-	def show_panel(self, visibility):
-		if self.implements_panel:
-			self.window.bottom_panel.set_visible(not visibility)
-			self.bottom_panel.set_visible(visibility)
-		else:
-			self.window.bottom_panel.set_visible(True)
+	def try_build_panel(self):
+		pass
+
+	def build_bottom_panel(self):
+		return None
 
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
@@ -203,3 +202,4 @@ class ToolTemplate():
 
 	############################################################################
 ################################################################################
+

@@ -25,7 +25,6 @@ class AbstractCanvasTool(ToolTemplate):
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
-		self.implements_panel = True
 		self.menu_id = 1
 		self.centered_box = None
 		self.needed_width_for_long = 0
@@ -42,6 +41,10 @@ class AbstractCanvasTool(ToolTemplate):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+	def on_tool_selected(self, *args):
+		super().on_tool_selected()
+		self.apply_to_selection = self.selection_is_active()
 
 	############################################################################
 

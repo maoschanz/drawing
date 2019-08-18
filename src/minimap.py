@@ -27,12 +27,12 @@ class DrawingMinimap(Gtk.Popover):
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)
 		self.window = window
-		self.minimap_btn = minimap_btn
 		self.preview_size = self.window._settings.get_int('preview-size')
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300)
 		self.mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/minimap.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                          '/com/github/maoschanz/drawing/ui/minimap.ui')
 		box = builder.get_object('minimap_box')
 
 		self.zoom_scale = builder.get_object('zoom_scale')
@@ -48,14 +48,14 @@ class DrawingMinimap(Gtk.Popover):
 		self.minimap_area.connect('button-release-event', self.on_minimap_release)
 
 		self.add(box)
-		self.set_relative_to(self.minimap_btn)
 		self.connect('closed', self.on_popover_dismissed)
+		self.set_relative_to(minimap_btn)
 
 	def update_zoom_level(self, *args):
 		self.window.get_active_image().zoom_level = self.zoom_scale.get_value()/100
 		self.window.get_active_image().update()
 		zoom_label = str(int(self.zoom_scale.get_value())) + '%'
-		self.window.minimap_label.set_label(zoom_label)
+		self.window.options_manager.set_minimap_label(zoom_label)
 		self.update_minimap(False)
 
 	def update_zoom_scale(self, value):
@@ -63,7 +63,7 @@ class DrawingMinimap(Gtk.Popover):
 
 	def on_popover_dismissed(self, *args):
 		"""Callback of the 'closed' signal, updating the state of the action."""
-		self.minimap_btn.set_active(False)
+		self.get_relative_to().set_active(False)
 
 	def on_minimap_draw(self, area, cairo_context):
 		"""Callback of the 'draw' signal, painting the area with the surface."""

@@ -25,6 +25,8 @@ class DrawingOptionsManager():
 		self.window = window
 		self.cached_value1 = None
 		self.cached_value2 = None
+		self.bottom_panels_dict = {}
+		self.active_bottom_panel = None
 
 	def add_tool_option_boolean(self, name, default):
 		if self.window.lookup_action(name) is not None:
@@ -72,4 +74,81 @@ class DrawingOptionsManager():
 		# Actually change the state to the new value.
 		args[0].set_state(GLib.Variant.new_string(new_value))
 		self.window.set_picture_title()
+
+	############################################################################
+
+	def try_add_bottom_panel(self, panel_id, calling_tool):
+		if panel_id not in self.bottom_panels_dict:
+			new_panel = calling_tool.build_bottom_panel()
+			if new_panel is None:
+				return
+			self.bottom_panels_dict[panel_id] = new_panel
+			self.window.bottom_panel_box.add(new_panel.action_bar)
+
+	def try_enable_panel(self, panel_id):
+		if panel_id == self.active_bottom_panel:
+			print("panneau déjà actif")
+			return
+		elif panel_id not in self.bottom_panels_dict:
+			print("panneau non présent")
+			return
+		else:
+			print("activation du panneau …")
+			self.active_bottom_panel = panel_id
+			for each_id in self.bottom_panels_dict:
+				if each_id == panel_id:
+					self.bottom_panels_dict[panel_id].action_bar.set_visible(True)
+				else:
+					self.bottom_panels_dict[each_id].action_bar.set_visible(False)
+			self.update_minimap()
+			print("… panneau activé")
+
+	def get_active_panel(self):
+		if self.active_bottom_panel is None:
+			return None # XXX encore des exceptions manuelles...
+		return self.bottom_panels_dict[self.active_bottom_panel]
+
+	def update_panel(self, tool):
+		self.bottom_panels_dict[tool.panel_id].update_for_new_tool(tool)
+
+	############################################################################
+
+	def set_minimap_label(self, label):
+		for panel_id in self.bottom_panels_dict:
+			self.bottom_panels_dict[panel_id].set_minimap_label(label)
+
+	def update_minimap(self):
+		btn = self.get_active_panel().get_minimap_btn()
+		if btn is not None:
+			self.window.minimap.set_relative_to(btn)
+		else:
+			print('minimap incorrecte')
+
+	############################################################################
+
+	def left_color_btn(self): # XXX hardcoded
+		return self.bottom_panels_dict['classic'].color_popover_l
+
+	def right_color_btn(self): # XXX hardcoded
+		return self.bottom_panels_dict['classic'].color_popover_r
+
+	def set_palette_setting(self, show_editor): # XXX hardcoded
+		self.bottom_panels_dict['classic'].set_palette_setting(show_editor)
+
+	def get_tool_width(self): # XXX hardcoded
+		return int(self.bottom_panels_dict['classic'].thickness_spinbtn.get_value())
+
+	def get_right_color(self): # XXX hardcoded
+		return self.right_color_btn().color_widget.get_rgba()
+
+	def get_left_color(self): # XXX hardcoded
+		return self.left_color_btn().color_widget.get_rgba()
+
+	def exchange_colors(self): # XXX hardcoded
+		left_c = self.get_left_color()
+		self.left_color_btn().color_widget.set_rgba(self.get_right_color())
+		self.right_color_btn().color_widget.set_rgba(left_c)
+
+	############################################################################
+################################################################################
 

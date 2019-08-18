@@ -3,16 +3,14 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 
-class ToolText(ToolTemplate):
+class ToolText(AbstractClassicTool):
 	__gtype_name__ = 'ToolText'
 
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
 
-		self.main_color = None
-		self.secondary_color = None
 		self.x_begin = 0.0
 		self.y_begin = 0.0
 		self.should_cancel = False
@@ -54,6 +52,7 @@ class ToolText(ToolTemplate):
 			self.selected_background_label = _("Secondary color rectangle")
 
 	def on_tool_selected(self):
+		super().on_tool_selected()
 		# Ctrl+v can't paste text in the entry otherwise
 		self.set_action_sensitivity('paste', False)
 
@@ -73,15 +72,8 @@ class ToolText(ToolTemplate):
 		if self.should_cancel:
 			self.on_cancel()
 
-	def on_press_on_area(self, area, event, surface, tool_width, \
-	                                 left_color, right_color, event_x, event_y):
-		if event.button == 1:
-			self.main_color = left_color
-			self.secondary_color = right_color
-		else:
-			self.main_color = right_color
-			self.secondary_color = left_color
-		self.tool_width = tool_width
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		self.set_common_values(event)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.x_begin = event_x

@@ -48,12 +48,6 @@
       <attribute name="display-hint">horizontal-buttons</attribute>
       <!-- FIXME incohérent avec l'idée de désactiver des outils -->
       <item>
-        <attribute name="label" translatable="yes">Flip</attribute>
-        <attribute name="action">win.active_tool</attribute>
-        <attribute name="target">flip</attribute>
-        <attribute name="verb-icon">tool-flip-symbolic</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">Crop</attribute>
         <attribute name="action">win.active_tool</attribute>
         <attribute name="target">crop</attribute>
@@ -326,7 +320,7 @@
     <!-- -->
 
     <child>
-      <object class="GtkToggleButton">
+      <object class="GtkToggleButton" id="minimap_btn">
         <property name="valign">center</property>
         <!-- <property name="relief">none</property> -->
         <property name="tooltip-text" translatable="yes">Preview</property>
@@ -347,8 +341,7 @@
             </child>
             <child>
               <object class="GtkLabel" id="minimap_label">
-                <property name="label" translatable="yes">Preview</property>
-                <!-- <property name="label">100%</property> TODO -->
+                <property name="label">100%</property>
                 <property name="visible">False</property>
               </object>
             </child>

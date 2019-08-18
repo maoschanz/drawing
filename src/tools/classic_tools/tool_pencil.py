@@ -3,11 +3,11 @@
 from gi.repository import Gtk, Gdk
 import cairo, math
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_smooth_path
 from .utilities import utilities_fast_blur
 
-class ToolPencil(ToolTemplate):
+class ToolPencil(AbstractClassicTool):
 	__gtype_name__ = 'ToolPencil'
 
 	def __init__(self, window, **kwargs):
@@ -15,7 +15,6 @@ class ToolPencil(ToolTemplate):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None
-		self.main_color = None
 		self.use_size = True
 
 		self.selected_shape_label = _("Round")
@@ -65,25 +64,24 @@ class ToolPencil(ToolTemplate):
 	def get_options_label(self):
 		return _("Pencil options")
 
-	def get_edition_status(self):
+	def set_options_attributes(self):
 		self.is_smooth = self.get_option_value('pencil_smooth')
 		self.is_blur = self.get_option_value('use_blur')
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.set_active_shape()
 		self.set_active_operator()
+
+	def get_edition_status(self):
+		self.set_options_attributes()
 		label = self.label + ' - ' + self.selected_shape_label
 		if self.use_dashes:
 			label = label + ' - ' + _("With dashes")
 		return label
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 3:
-			self.main_color = right_color
-		else:
-			self.main_color = left_color
+		self.set_common_values(event)
 		self._path = None
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
@@ -139,7 +137,6 @@ class ToolPencil(ToolTemplate):
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']
-		cairo_context.set_line_width(line_width)
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		if operation['use_dashes']:
@@ -148,8 +145,9 @@ class ToolPencil(ToolTemplate):
 			utilities_smooth_path(cairo_context, operation['path'])
 		else:
 			cairo_context.append_path(operation['path'])
-		cairo_context.stroke()
 		if operation['is_blur']:
+			cairo_context.set_line_width(2*line_width)
+			cairo_context.stroke()
 			radius = int(line_width/2)
 			# TODO only give the adequate rectangle, not the whole image, it's too slow!
 			b_surface = utilities_fast_blur(self.get_surface(), radius, 1)
@@ -158,3 +156,6 @@ class ToolPencil(ToolTemplate):
 			cairo_context.set_operator(cairo.Operator.OVER)
 			cairo_context.set_source_surface(b_surface, 0, 0)
 			cairo_context.paint()
+		else:
+			cairo_context.set_line_width(line_width)
+			cairo_context.stroke()

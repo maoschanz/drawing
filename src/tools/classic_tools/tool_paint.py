@@ -3,16 +3,15 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_get_magic_path
 from .utilities import utilities_get_rgb_for_xy
 
-class ToolPaint(ToolTemplate):
+class ToolPaint(AbstractClassicTool):
 	__gtype_name__ = 'ToolPaint'
 
 	def __init__(self, window, **kwargs):
 		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window)
-		self.new_color = None
 		self.magic_path = None
 		self.use_size = False
 		self.add_tool_action_enum('paint_algo', 'fill')
@@ -26,11 +25,8 @@ class ToolPaint(ToolTemplate):
 		else:
 			return self.label
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		if event.button == 1:
-			self.new_color = left_color
-		if event.button == 3:
-			self.new_color = right_color
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		self.set_common_values(event)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		# Guard clause: we can't paint outside of the surface
@@ -58,7 +54,7 @@ class ToolPaint(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'algo': self.get_option_value('paint_algo'),
-			'rgba': self.new_color,
+			'rgba': self.main_color,
 			'old_rgb': self.old_color,
 			'path': self.magic_path
 		}

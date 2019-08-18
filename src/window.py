@@ -33,7 +33,6 @@ from .tool_text import ToolText
 
 from .tool_blur import ToolBlur
 from .tool_crop import ToolCrop
-from .tool_flip import ToolFlip
 from .tool_matrix import ToolMatrix
 from .tool_rotate import ToolRotate
 from .tool_saturate import ToolSaturate
@@ -47,7 +46,6 @@ from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
 from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
-from .color_popover import DrawingColorPopover
 from .message_dialog import DrawingMessageDialog
 from .headerbar import DrawingAdaptativeHeaderBar
 
@@ -72,23 +70,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	tools_scrollable_box = Gtk.Template.Child()
 	tools_nonscrollable_box = Gtk.Template.Child()
 
-	# Default bottom panel
-	bottom_panel = Gtk.Template.Child()
-	color_box = Gtk.Template.Child()
-	color_menu_btn_l = Gtk.Template.Child()
-	color_menu_btn_r = Gtk.Template.Child()
-	l_btn_image = Gtk.Template.Child()
-	r_btn_image = Gtk.Template.Child()
-	thickness_spinbtn = Gtk.Template.Child()
-	options_btn = Gtk.Template.Child()
-	options_label = Gtk.Template.Child()
-	options_long_box = Gtk.Template.Child()
-	options_short_box = Gtk.Template.Child()
-	minimap_btn = Gtk.Template.Child()
-	minimap_icon = Gtk.Template.Child()
-	minimap_label = Gtk.Template.Child()
-	minimap_arrow = Gtk.Template.Child()
-
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
@@ -107,12 +88,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		parameters, the new image can be imported from the clipboard, loaded
 		from a GioFile, or (else) it can be a blank image."""
 		self.tools = None
-		self.minimap = DrawingMinimap(self, self.minimap_btn)
+		# self.minimap = DrawingMinimap(self, self.minimap_btn)
+		self.minimap = DrawingMinimap(self, None) # XXX
 		self.options_manager = DrawingOptionsManager(self)
-		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
-		utilities_add_px_to_spinbutton(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
 
-		self.build_color_buttons()
 		self.add_all_win_actions()
 		if get_cb:
 			self.build_image_from_clipboard()
@@ -151,8 +130,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools['crop'] = ToolCrop(self)
 		self.tools['scale'] = ToolScale(self)
 		self.tools['rotate'] = ToolRotate(self)
-		if 'flip' not in disabled_tools_id:
-			self.tools['flip'] = ToolFlip(self)
 		if 'saturate' not in disabled_tools_id:
 			self.tools['saturate'] = ToolSaturate(self)
 		if 'blur' not in disabled_tools_id:
@@ -266,12 +243,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if not self.get_active_image().try_close_tab():
 				return True
 
-		self._settings.set_int('last-size', int(self.thickness_spinbtn.get_value()))
+		self._settings.set_int('last-size', self.options_manager.get_tool_width())
 		self._settings.set_string('last-active-tool', self.active_tool_id)
-		rgba = self.color_popover_l.color_widget.get_rgba()
+		rgba = self.options_manager.get_left_color()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
 		self._settings.set_strv('last-left-rgba', rgba)
-		rgba = self.color_popover_r.color_widget.get_rgba()
+		rgba = self.options_manager.get_right_color()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
 		self._settings.set_strv('last-right-rgba', rgba)
 
@@ -286,7 +263,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.info_bar.connect('response', self.hide_message)
 		self.connect('delete-event', self.on_close)
 		self.connect('configure-event', self.adapt_to_window_size)
-		self.options_btn.connect('toggled', self.update_option_label)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self._settings.connect('changed::decorations', self.on_layout_changed)
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
@@ -500,7 +476,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_headerbar(True)
 			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(False)
-			# self.minimap_btn.set_border_width(6) # XXX faisable mais bof, et il faudrait l'annuler pour les autres
 		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar.header_bar)
@@ -563,18 +538,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		action to ease the accelerator (shift+f10). This action could be
 		disable when the current panel doesn't contain the corresponding button,
 		but will not be."""
-		if not self.active_tool().implements_panel:
-			self.options_btn.set_active(not self.options_btn.get_active())
+		# if not self.active_tool().implements_panel: # FIXME
+		# 	self.options_btn.set_active(not self.options_btn.get_active())
+		pass
 
-	def set_bottom_width_limit(self): # XXX devrait se transmettre aux panneaux custom
-		if self.has_good_limits: # heureusement ils marchent assez bien tous seuls
-			return
-		self.bottom_panel.show_all() # XXX vraiment ?
-		self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
-		                 self.thickness_spinbtn.get_preferred_width()[0] + \
-		                  self.options_long_box.get_preferred_width()[0] + \
-		                     self.minimap_label.get_preferred_width()[0]
-		self.bottom_panel.set_visible(not self.active_tool().implements_panel)
+	def set_bottom_width_limit(self): # FIXME devrait se transmettre aux panneaux custom
+		# if self.has_good_limits:
+		# 	return
+		# self.bottom_panel.show_all() # XXX vraiment ?
+		# self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
+		#                  self.thickness_spinbtn.get_preferred_width()[0] + \
+		#                   self.options_long_box.get_preferred_width()[0] + \
+		#                      self.minimap_label.get_preferred_width()[0]
+		# self.bottom_panel.set_visible(not self.active_tool().implements_panel)
+		pass
 
 	def init_adaptability(self):
 		"""Initialize limit_size_header and limit_size_bottom, which are 700 by
@@ -598,17 +575,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for tool_id in self.tools:
 			self.tools[tool_id].adapt_to_window_size(available_width)
 		should_shrink = self.limit_size_bottom > 0.7 * available_width
-		self.compact_bottombar(should_shrink)
+		# self.compact_bottombar(should_shrink) # FIXME
 
 		# Update the scrollbars
 		self.get_active_image().add_deltas(0, 0, 0)
-
-	def compact_bottombar(self, state):
-		self.options_long_box.set_visible(not state)
-		self.minimap_label.set_visible(not state)
-		self.minimap_arrow.set_visible(not state)
-		self.options_short_box.set_visible(state)
-		self.minimap_icon.set_visible(state)
 
 	def hide_message(self, *args):
 		self.prompt_message(False, '')
@@ -702,19 +672,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.update_bottom_panel()
-		self.color_box.set_sensitive(self.active_tool().use_color)
 		self.active_tool().on_tool_selected()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
 
 	def update_bottom_panel(self):
 		"""Show the correct bottom panel, with the correct tool options menu."""
+		self.options_manager.try_enable_panel(self.active_tool().panel_id)
+		self.options_manager.update_panel(self.active_tool())
 		self.build_options_menu()
-		if self.former_tool_id is not self.active_tool_id:
-			self.former_tool().show_panel(False)
-		self.active_tool().show_panel(True)
 		self.set_bottom_width_limit()
-		self.update_thickness_spinbtn_state()
 		self.adapt_to_window_size()
 
 	def active_tool(self):
@@ -725,6 +692,45 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def back_to_previous(self, *args):
 		self.tools[self.former_tool_id].row.set_active(True)
+
+	def active_panel(self):
+		return self.options_manager.get_active_panel()
+
+	def build_options_menu(self):
+		"""Build the active tool's option menus.
+		The first menu is the popover from the bottom bar. It can contain any
+		widget, or it can be build from a Gio.MenuModel
+		The second menu is build from a Gio.MenuModel and is in the menubar (not
+		available with all layouts)."""
+		widget = self.active_tool().get_options_widget()
+		model = self.active_tool().get_options_model()
+		label = self.active_tool().get_options_label()
+		if model is None:
+			self.app.get_menubar().remove(5)
+			self.app.get_menubar().insert_submenu(5, _("_Options"), self.placeholder_model)
+		else:
+			self.app.get_menubar().remove(5)
+			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
+		panel = self.active_panel()
+		if panel is not None:
+			panel.build_options_menu(widget, model, label)
+		else:
+			self.prompt_message(True, 'panel is none for label:' + label)
+
+	def action_use_editor(self, *args):
+		use_editor = not args[0].get_state()
+		self._settings.set_boolean('direct-color-edit', use_editor)
+		args[0].set_state(GLib.Variant.new_boolean(use_editor))
+		self.options_manager.set_palette_setting(use_editor)
+
+	def exchange_colors(self, *args):
+		self.options_manager.exchange_colors()
+
+	def action_color1(self, *args):
+		self.options_manager.left_color_btn().activate()
+
+	def action_color2(self, *args):
+		self.options_manager.right_color_btn().activate()
 
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################
@@ -1009,82 +1015,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.header_bar is not None:
 			self.header_bar.set_undo_label(undo_label)
 			self.header_bar.set_redo_label(redo_label)
-
-	############################################################################
-	# COLORS ###################################################################
-
-	def build_color_buttons(self):
-		"""Initialize the 2 color buttons and popovers with the 2 previously
-		memorized RGBA values."""
-		right_rgba = self._settings.get_strv('last-right-rgba')
-		r = float(right_rgba[0])
-		g = float(right_rgba[1])
-		b = float(right_rgba[2])
-		a = float(right_rgba[3])
-		right_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		left_rgba = self._settings.get_strv('last-left-rgba')
-		r = float(left_rgba[0])
-		g = float(left_rgba[1])
-		b = float(left_rgba[2])
-		a = float(left_rgba[3])
-		left_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, \
-		                                           self.r_btn_image, right_rgba)
-		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, \
-		                                           self.l_btn_image, left_rgba)
-
-	def action_use_editor(self, *args):
-		use_editor = not args[0].get_state()
-		self._settings.set_boolean('direct-color-edit', use_editor)
-		args[0].set_state(GLib.Variant.new_boolean(use_editor))
-		self.set_palette_setting()
-
-	def set_palette_setting(self, *args):
-		show_editor = self._settings.get_boolean('direct-color-edit')
-		self.color_popover_r.setting_changed(show_editor)
-		self.color_popover_l.setting_changed(show_editor)
-
-	def action_color1(self, *args):
-		self.color_menu_btn_l.activate()
-
-	def action_color2(self, *args):
-		self.color_menu_btn_r.activate()
-
-	def exchange_colors(self, *args):
-		left_c = self.color_popover_l.color_widget.get_rgba()
-		self.color_popover_l.color_widget.set_rgba(self.color_popover_r.color_widget.get_rgba())
-		self.color_popover_r.color_widget.set_rgba(left_c)
-
-	############################################################################
-	# TOOLS OPTIONS ############################################################
-
-	def update_thickness_spinbtn_state(self):
-		self.thickness_spinbtn.set_sensitive(self.active_tool().use_size)
-
-	def build_options_menu(self):
-		"""Build the active tool's option menus.
-		The first menu is the popover from the bottom bar. It can contain any
-		widget, or it can be build from a Gio.MenuModel
-		The second menu is build from a Gio.MenuModel and is in the menubar (not
-		available with all layouts)."""
-		widget = self.active_tool().get_options_widget()
-		model = self.active_tool().get_options_model()
-		if model is None:
-			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("_Options"), self.placeholder_model)
-		else:
-			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
-		if widget is not None:
-			self.options_btn.set_popover(widget)
-		elif model is not None:
-			self.options_btn.set_menu_model(model)
-		else:
-			self.options_btn.set_popover(None)
-		self.update_option_label()
-
-	def update_option_label(self, *args):
-		self.options_label.set_label(self.active_tool().get_options_label())
 
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################

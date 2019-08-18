@@ -27,23 +27,26 @@ configure_file(
 
 drawing_sources = [
 	'__init__.py',
-
 	'main.py',
+
 	'window.py',
-	'image.py',
-	'message_dialog.py',
-	'color_popover.py',
 	'options_manager.py',
 	'headerbar.py',
+	'bottombar.py',
 	'minimap.py',
-	'selection_manager.py',
-	'utilities.py',
+	'color_popover.py',
 
+	'image.py',
+	'selection_manager.py',
+
+	'utilities.py',
 	'properties.py',
 	'preferences.py',
+	'message_dialog.py',
 
 	'tools/abstract_tool.py',
 
+	'tools/classic_tools/abstract_classic_tool.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_circle.py',
 	'tools/classic_tools/tool_experiment.py',
@@ -62,10 +65,8 @@ drawing_sources = [
 	'tools/selection_tools/color_select.py',
 
 	'tools/canvas_tools/abstract_canvas_tool.py',
-
 	'tools/canvas_tools/tool_blur.py',
 	'tools/canvas_tools/tool_crop.py',
-	'tools/canvas_tools/tool_flip.py',
 	'tools/canvas_tools/tool_matrix.py',
 	'tools/canvas_tools/tool_rotate.py',
 	'tools/canvas_tools/tool_saturate.py',

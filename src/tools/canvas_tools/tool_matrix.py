@@ -19,6 +19,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo, math
 
 from .abstract_canvas_tool import AbstractCanvasTool
+from .bottombar import DrawingAdaptativeBottomBar
 
 class ToolMatrix(AbstractCanvasTool):
 	__gtype_name__ = 'ToolMatrix'
@@ -29,9 +30,22 @@ class ToolMatrix(AbstractCanvasTool):
 		self.apply_to_selection = False
 		self.dont_update = False
 
-		builder = Gtk.Builder.new_from_resource( \
-		                '/com/github/maoschanz/drawing/tools/ui/tool_matrix.ui')
-		self.bottom_panel = builder.get_object('bottom-panel')
+# TODO
+# le but est de remplacer :
+# - rotate
+# - flip
+# - scale
+# et d'introduire des features telles que :
+# - l'inclinaison comme dans Microsoft Paint
+# - les widgets sur la surface ?
+
+	def try_build_panel(self):
+		self.panel_id = 'matrix'
+		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+
+	def build_bottom_panel(self):
+		bar = DrawingAdaptativeBottomBar()
+		builder = bar.build_ui('tools/ui/tool_matrix.ui')
 
 		self.angle_spinbtn = builder.get_object('angle_spinbtn')
 		self.angle_spinbtn.connect('value-changed', self.on_angle_changed)
@@ -54,16 +68,7 @@ class ToolMatrix(AbstractCanvasTool):
 		self.y0_spinbtn = builder.get_object('y0_spinbtn')
 		self.y0_spinbtn.connect('value-changed', self.on_coord_changed)
 
-		# TODO
-		# le but est de remplacer :
-		# - rotate
-		# - flip
-		# - scale
-		# et d'introduire des features telles que :
-		# - l'inclinaison comme dans Microsoft Paint
-		# - les widgets sur la surface ?
-
-		self.window.bottom_panel_box.add(self.bottom_panel)
+		return bar
 
 	# TODO
 		# ...

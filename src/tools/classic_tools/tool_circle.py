@@ -3,10 +3,10 @@
 from gi.repository import Gtk, Gdk
 import cairo, math
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_generic_shape_tool_operation
 
-class ToolCircle(ToolTemplate):
+class ToolCircle(AbstractClassicTool):
 	__gtype_name__ = 'ToolCircle'
 
 	def __init__(self, window, **kwargs):
@@ -71,16 +71,10 @@ class ToolCircle(ToolTemplate):
 		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
 		self._path = cairo_context.copy_path()
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 3:
-			self.main_color = right_color
-			self.secondary_color = left_color
-		else:
-			self.main_color = left_color
-			self.secondary_color = right_color
+		self.set_common_values(event)
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()

@@ -17,13 +17,13 @@
 
 from gi.repository import Gtk, Gdk
 
-UI_PATH = '/com/github/maoschanz/drawing/ui/'
+RESOURCE_PATH = '/com/github/maoschanz/drawing/'
 
 class DrawingAdaptativeBottomBar():
 	__gtype_name__ = 'DrawingAdaptativeBottomBar'
 	# Abstract class
 
-	def __init__(self, end_of_path):
+	def __init__(self):
 		# Very high as a precaution, will be more precise later
 		self.limit_size = 700
 		self.is_narrow = True
@@ -31,14 +31,22 @@ class DrawingAdaptativeBottomBar():
 		self.widgets_wide = []
 		# TODO ? c'est tout ?
 
-		# à virer quand j'aurais implémenté
-		self.build_ui(end_of_path)
-		self.init_adaptability()
-
 	def build_ui(self, end_of_path):
-		builder = Gtk.Builder.new_from_resource(UI_PATH + end_of_path)
+		builder = Gtk.Builder.new_from_resource(RESOURCE_PATH + end_of_path)
 		self.action_bar = builder.get_object('bottom-panel')
 		return builder # for implementations-specific widgets
+
+	def build_options_menu(self, widget, model, label):
+		pass
+
+	def update_for_new_tool(self, tool): # and the menu? TODO
+		pass
+
+	def get_minimap_btn(self):
+		pass
+
+	def set_minimap_label(self, label):
+		pass
 
 	def init_adaptability(self):
 		self.action_bar.show_all()
@@ -69,6 +77,7 @@ class DrawingAdaptativeBottomBar():
 		# self.hidable_widget.set_visible(not state)
 		# self.new_btn.set_visible(not state)
 		# self.is_narrow = state
+		return
 
 ################################################################################
 

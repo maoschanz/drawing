@@ -3,9 +3,9 @@
 from gi.repository import Gtk, Gdk
 import cairo, math
 
-from .abstract_tool import ToolTemplate
+from .abstract_classic_tool import AbstractClassicTool
 
-class ToolExperiment(ToolTemplate):
+class ToolExperiment(AbstractClassicTool):
 	__gtype_name__ = 'ToolExperiment'
 
 	def __init__(self, window, **kwargs):
@@ -13,7 +13,6 @@ class ToolExperiment(ToolTemplate):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None
-		self.main_color = None
 		self.use_size = True
 
 		self.selected_mode = 'smooth2'
@@ -187,16 +186,12 @@ class ToolExperiment(ToolTemplate):
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		self.set_active_operator()
 		self.set_active_mode()
 		self.x_press = event_x
 		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 3:
-			self.main_color = right_color
-		else:
-			self.main_color = left_color
+		self.set_common_values(event)
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
