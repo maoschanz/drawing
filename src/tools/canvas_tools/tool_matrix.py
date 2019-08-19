@@ -29,9 +29,14 @@ class ToolMatrix(AbstractCanvasTool):
 		# self.cursor_name = ''
 		self.apply_to_selection = False
 		self.dont_update = False
+		self.add_tool_action_simple('matrix-reset', self.on_reset_values)
 
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
+
+	def on_tool_selected(self, *args):
+		super().on_tool_selected()
+		self.on_reset_values()
 
 # TODO
 # le but est de remplacer :
@@ -73,20 +78,31 @@ class ToolMatrix(AbstractCanvasTool):
 
 		return bar
 
-	# TODO
-		# ...
+	############################################################################
 
-	def on_flip_h(self, *args):
+	def on_reset_values(self, *args):
 		self.dont_update = True
-		# TODO
+		self.xx_spinbtn.set_value(100)
+		self.xy_spinbtn.set_value(0)
+		self.yx_spinbtn.set_value(0)
+		self.yy_spinbtn.set_value(100)
+		self.x0_spinbtn.set_value(0)
+		self.y0_spinbtn.set_value(0)
+		self.angle_spinbtn.set_value(0)
 		self.dont_update = False
 		self.on_coord_changed()
 
-	def on_flip_v(self, *args):
-		self.dont_update = True
+	# def on_flip_h(self, *args):
+	# 	self.dont_update = True
 		# TODO
-		self.dont_update = False
-		self.on_coord_changed()
+	# 	self.dont_update = False
+	# 	self.on_coord_changed()
+
+	# def on_flip_v(self, *args):
+	# 	self.dont_update = True
+		# TODO
+	# 	self.dont_update = False
+	# 	self.on_coord_changed()
 
 	def on_angle_changed(self, *args):
 		self.dont_update = True
@@ -126,6 +142,8 @@ class ToolMatrix(AbstractCanvasTool):
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
+			'is_selection': self.apply_to_selection,
+			'is_preview': True,
 			'xx': self.xx_spinbtn.get_value_as_int()/100,
 			'yx': self.yx_spinbtn.get_value_as_int()/100,
 			'xy': self.xy_spinbtn.get_value_as_int()/100,
@@ -139,15 +157,33 @@ class ToolMatrix(AbstractCanvasTool):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+
+		if operation['is_selection']:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+
+		w = source_surface.get_width()
+		h = source_surface.get_height()
+		# surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		surface = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
+		# surface = self.get_surface()
+
+		cairo_context = cairo.Context(surface)
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=operation['xx'], yx=operation['yx'], \
 		                 xy=operation['xy'], yy=operation['yy'], \
 		                 x0=operation['x0'], y0=operation['y0'])
 		cairo_context.transform(m)
-		cairo_context.set_source_surface(self.get_surface(), 0, 0) # FIXME scroll and zoom
+		cairo_context.set_source_surface(source_surface, 0, 0) # FIXME scroll and zoom
+		# FIXME c'est ce "0, 0" qui charcute certains angles de rotation
 		cairo_context.paint()
-		self.non_destructive_show_modif()
+
+		new_pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, \
+		                              surface.get_width(), surface.get_height())
+		self.get_image().set_temp_pixbuf(new_pixbuf)
+		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 
 	############################################################################
 ################################################################################

@@ -78,11 +78,18 @@
         <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
-        <!-- TODO -->
         <child>
           <object class="GtkMenuButton">
             <property name="popover">test_popover</property>
-            <property name="label">test</property>
+            <property name="label">values</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="action-name">win.matrix-reset</property>
+            <property name="label">reset</property>
             <property name="visible">True</property>
             <property name="valign">center</property>
           </object>

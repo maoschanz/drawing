@@ -42,17 +42,19 @@ class AbstractCanvasTool(ToolTemplate):
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
 
+	############################################################################
+
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.apply_to_selection = self.selection_is_active()
-
-	############################################################################
 
 	def give_back_control(self, preserve_selection):
 		if not preserve_selection and self.selection_is_active():
 			self.on_apply_temp_pixbuf_tool_operation()
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
+
+	############################################################################
 
 	def update_temp_pixbuf(self):
 		operation = self.build_operation()

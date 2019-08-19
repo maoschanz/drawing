@@ -50,7 +50,7 @@ from .message_dialog import DrawingMessageDialog
 from .headerbar import DrawingAdaptativeHeaderBar
 
 from .utilities import utilities_save_pixbuf_at
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -79,7 +79,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
-		# self.resize(360, 680) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+		# self.resize(360, 648) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+		# self.resize(720, 288) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 		self.set_ui_bars()
 
 	def init_window_content(self, gfile, get_cb):
@@ -780,7 +781,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
 		                     Gtk.FileChooserAction.OPEN, _("Open"), _("Cancel"))
-		self.add_filechooser_filters(file_chooser)
+		utilities_add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			gfile = file_chooser.get_file()
@@ -848,37 +849,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else: # cancel_id
 			return False
 
-	def add_filechooser_filters(self, dialog):
-		"""Add file filters for images to file chooser dialogs."""
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-
-		pngPictures = Gtk.FileFilter()
-		pngPictures.set_name(_("PNG images"))
-		pngPictures.add_mime_type('image/png')
-
-		jpegPictures = Gtk.FileFilter()
-		jpegPictures.set_name(_("JPEG images"))
-		jpegPictures.add_mime_type('image/jpeg')
-
-		bmpPictures = Gtk.FileFilter()
-		bmpPictures.set_name(_("BMP images"))
-		bmpPictures.add_mime_type('image/bmp')
-
-		dialog.add_filter(allPictures)
-		dialog.add_filter(pngPictures)
-		dialog.add_filter(jpegPictures)
-		dialog.add_filter(bmpPictures)
-
 	def file_chooser_save(self):
 		"""Opens an "save" file chooser dialog, and return a GioFile or None."""
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
-		self.add_filechooser_filters(file_chooser)
+		utilities_add_filechooser_filters(file_chooser)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 		response = file_chooser.run()
@@ -941,7 +917,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		as the selection."""
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))
-		self.add_filechooser_filters(file_chooser)
+		utilities_add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			self.force_selection()

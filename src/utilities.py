@@ -5,13 +5,7 @@ import cairo, math
 
 from .message_dialog import DrawingMessageDialog
 
-def utilities_get_rgb_for_xy(surface, x, y):
-	# Guard clause: we can't perform color picking outside of the surface
-	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
-		return [-1,-1,-1]
-	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
-	rgb_vals = screenshot.get_pixels()
-	return rgb_vals # array de 3 valeurs, de 0 à 255
+################################################################################
 
 def utilities_save_pixbuf_at(pixbuf, fn):
 	file_format = fn.split('.')[-1]
@@ -20,6 +14,43 @@ def utilities_save_pixbuf_at(pixbuf, fn):
 	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
 		file_format = 'png'
 	pixbuf.savev(fn, file_format, [None], [])
+
+def utilities_add_filechooser_filters(dialog):
+	"""Add file filters for images to file chooser dialogs."""
+	allPictures = Gtk.FileFilter()
+	allPictures.set_name(_("All pictures"))
+	allPictures.add_mime_type('image/png')
+	allPictures.add_mime_type('image/jpeg')
+	allPictures.add_mime_type('image/bmp')
+
+	pngPictures = Gtk.FileFilter()
+	pngPictures.set_name(_("PNG images"))
+	pngPictures.add_mime_type('image/png')
+
+	jpegPictures = Gtk.FileFilter()
+	jpegPictures.set_name(_("JPEG images"))
+	jpegPictures.add_mime_type('image/jpeg')
+
+	bmpPictures = Gtk.FileFilter()
+	bmpPictures.set_name(_("BMP images"))
+	bmpPictures.add_mime_type('image/bmp')
+
+	dialog.add_filter(allPictures)
+	dialog.add_filter(pngPictures)
+	dialog.add_filter(jpegPictures)
+	dialog.add_filter(bmpPictures)
+
+################################################################################
+
+def utilities_get_rgb_for_xy(surface, x, y):
+	# Guard clause: we can't perform color picking outside of the surface
+	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
+		return [-1,-1,-1]
+	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
+	rgb_vals = screenshot.get_pixels()
+	return rgb_vals # array de 3 valeurs, de 0 à 255
+
+################################################################################
 
 def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	if cairo_path is None:
@@ -163,23 +194,24 @@ def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y
 	cairo_context.stroke()
 
 def utilities_generic_shape_tool_operation(cairo_context, operation):
+	# XXX déplacer vers abstract_classic_tool ?
 	cairo_context.set_operator(operation['operator'])
 	cairo_context.set_line_width(operation['line_width'])
 	cairo_context.set_line_join(operation['line_join'])
-	rgba_main = operation['rgba_main']
-	rgba_secd = operation['rgba_secd']
+	rgba1 = operation['rgba_main']
+	rgba2 = operation['rgba_secd']
 	cairo_context.append_path(operation['path'])
 	filling = operation['filling']
 	if filling == 'secondary':
-		cairo_context.set_source_rgba(rgba_secd.red, rgba_secd.green, rgba_secd.blue, rgba_secd.alpha)
+		cairo_context.set_source_rgba(rgba2.red, rgba2.green, rgba2.blue, rgba2.alpha)
 		cairo_context.fill_preserve()
-		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+		cairo_context.set_source_rgba(rgba1.red, rgba1.green, rgba1.blue, rgba1.alpha)
 		cairo_context.stroke()
 	elif filling == 'filled':
-		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+		cairo_context.set_source_rgba(rgba1.red, rgba1.green, rgba1.blue, rgba1.alpha)
 		cairo_context.fill()
 	else:
-		cairo_context.set_source_rgba(rgba_main.red, rgba_main.green, rgba_main.blue, rgba_main.alpha)
+		cairo_context.set_source_rgba(rgba1.red, rgba1.green, rgba1.blue, rgba1.alpha)
 		cairo_context.stroke()
 
 def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
@@ -341,3 +373,6 @@ def utilities_fast_blur(surface, radius, iterations):
 	# TODO
 	# commentaires explicatifs
 	return original
+
+################################################################################
+
