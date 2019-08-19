@@ -50,22 +50,21 @@ resources used by the app (`.ui` files, in-app icons, …) are in `src`, along w
     - implementations of CLI handling methods
     - several **windows**
 - `window.py` defines a GtkApplicationWindow:
-    - the **properties** dialog (`proporties.py`) depends on the window
-    - a window's decorations can change quite a lot, which is partly handled by…
-        - `headerbar.py` for the headerbar
-        - `color_popover.py` for the color palettes (default bottom panel)
-        - `minimap.py` for the minimap, which shows a thumbnail of the currently opened image
+    - the **properties** dialog (`properties.py`) depends on the window
+    - a window's decorations can change quite a lot, which is partly handled by `headerbar.py` for the headerbar
     - some `GioAction`s
     - a window has several **tools**
     - a window has several **images**
+    - `minimap.py` for the minimap, which shows a thumbnail of the currently opened image
+    - each window has an **options_manager** (`options_manager.py`). It will display the correct bottom panel (`bottombar.py`) among the numerous bottom panels defined by **tools**, and manage tools' options. The most common bottom panel is using `color_popover.py` to provide a color selection menu.
 - `image.py` defines an image, which contains:
     - an "undo" history and a "redo" history
     - a selection, managed by `selection_manager.py`
     - a pixbuf (as an attribute), named `main_pixbuf`
 - **tools** are managed by a bunch of files in the `tools` directory. There are several types of tools:
-    - the selection translates users input into operations using the selection_manager
-    - the "canvas tools" can be applied the selection pixbuf or the main pixbuf
     - the classic tools, draw on the main pixbuf using **`cairo`**
+    - the selection tools translates the user's input into operations using the **selection_manager**
+    - the "canvas tools" can be applied the selection pixbuf or the main pixbuf
 
 In my opinion, he complexity of the code comes mainly from 2 points:
 
