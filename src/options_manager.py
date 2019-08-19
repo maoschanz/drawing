@@ -122,7 +122,7 @@ class DrawingOptionsManager():
 		if btn is not None:
 			self.window.minimap.set_relative_to(btn)
 		else:
-			print('minimap incorrecte')
+			print("minimap incorrectement positionnée")
 
 	############################################################################
 

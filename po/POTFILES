@@ -5,6 +5,8 @@ src/ui/app-menus.ui
 src/ui/color_popover.ui
 src/ui/headerbar.ui
 src/ui/headerbar_eos.ui
+src/ui/minimap.ui
+src/ui/panel_classic.ui
 src/ui/preferences.ui
 src/ui/properties.ui
 src/ui/selection.ui
@@ -13,20 +15,19 @@ src/ui/toolbar.ui
 src/ui/window.ui
 src/ui/win-menus.ui
 
-src/main.py
-src/window.py
+src/bottombar.py
 src/headerbar.py
-src/minimap.py
 src/image.py
+src/main.py
 src/preferences.py
 src/properties.py
-src/selection_manager.py
 src/utilities.py
+src/window.py
 
 src/tools/ui/tool_arc.ui
+src/tools/ui/tool_blur.ui
 src/tools/ui/tool_circle.ui
 src/tools/ui/tool_crop.ui
-src/tools/ui/tool_flip.ui
 src/tools/ui/tool_freeshape.ui
 src/tools/ui/tool_line.ui
 src/tools/ui/tool_paint.ui
@@ -36,7 +37,6 @@ src/tools/ui/tool_rectangle.ui
 src/tools/ui/tool_rotate.ui
 src/tools/ui/tool_saturate.ui
 src/tools/ui/tool_scale.ui
-src/tools/ui/tool_select.ui
 src/tools/ui/tool_text.ui
 
 src/tools/abstract_tool.py
@@ -52,10 +52,13 @@ src/tools/classic_tools/tool_picker.py
 src/tools/classic_tools/tool_rectangle.py
 src/tools/classic_tools/tool_text.py
 
-src/tools/selection_tools/tool_select.py
+src/tools/selection_tools/abstract_select.py
+src/tools/selection_tools/color_select.py
+src/tools/selection_tools/free_select.py
+src/tools/selection_tools/rect_select.py
 
+src/tools/canvas_tools/tool_blur.py
 src/tools/canvas_tools/tool_crop.py
-src/tools/canvas_tools/tool_flip.py
 src/tools/canvas_tools/tool_rotate.py
 src/tools/canvas_tools/tool_saturate.py
 src/tools/canvas_tools/tool_scale.py

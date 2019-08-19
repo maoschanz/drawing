@@ -70,3 +70,7 @@ class DrawingColorPopover(Gtk.Popover):
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.paint()
 		self.btn_image.set_from_surface(surface)
+
+	############################################################################
+################################################################################
+

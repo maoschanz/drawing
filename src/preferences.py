@@ -85,7 +85,7 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		zoom_combobox = Gtk.ComboBoxText()
 		zoom_combobox.append('100', _("100%"))
-		zoom_combobox.append('opti', _("Optimal zoom"))
+		zoom_combobox.append('opti', _("Optimal Zoom"))
 		zoom_combobox.set_active_id(self._settings.get_string('default-zoom'))
 		zoom_combobox.connect('changed', self.on_combo_changed, 'default-zoom')
 		w = self.row_from_widget(_("Default zoom"), zoom_combobox)

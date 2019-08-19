@@ -87,7 +87,7 @@ class Application(Gtk.Application):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs, None)
-		if self.is_beta():
+		if not self.is_beta():
 			self.add_action_simple('report_bug', self.on_report, None)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
