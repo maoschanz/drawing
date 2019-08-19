@@ -34,21 +34,6 @@ class ToolArc(AbstractClassicTool):
 			self.selected_end_id = cairo.LineCap.ROUND
 			self.selected_shape_label = _("Round")
 
-	def set_active_operator(self):
-		state_as_string = self.get_option_value('cairo_operator')
-		if state_as_string == 'difference':
-			self.selected_operator = cairo.Operator.DIFFERENCE
-			self.selected_operator_label = _("Difference")
-		elif state_as_string == 'source':
-			self.selected_operator = cairo.Operator.SOURCE
-			self.selected_operator_label = _("Source color")
-		elif state_as_string == 'clear':
-			self.selected_operator = cairo.Operator.CLEAR
-			self.selected_operator_label = _("Eraser")
-		else:
-			self.selected_operator = cairo.Operator.OVER
-			self.selected_operator_label = _("Classic")
-
 	def get_options_label(self):
 		return _("Arc options")
 
@@ -87,7 +72,7 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
 
 		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y)
+		operation = self.build_operation(event_x, event_y, True)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
@@ -102,15 +87,16 @@ class ToolArc(AbstractClassicTool):
 			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
 		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y)
+		operation = self.build_operation(event_x, event_y, False)
 		self.apply_operation(operation)
 		self.x_press = 0.0
 		self.y_press = 0.0
 
-	def build_operation(self, event_x, event_y):
+	def build_operation(self, event_x, event_y, is_preview):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
+			'is_preview': is_preview,
 			'operator': self.selected_operator,
 			'line_width': self.tool_width,
 			'line_cap': self.selected_end_id,
@@ -129,7 +115,6 @@ class ToolArc(AbstractClassicTool):
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])
 		#cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']
@@ -139,11 +124,18 @@ class ToolArc(AbstractClassicTool):
 		if operation['use_dashes']:
 			cairo_context.set_dash([2*line_width, 2*line_width])
 		cairo_context.append_path(operation['path'])
-		cairo_context.stroke()
+
+		self.stroke_with_operator(operation['operator'], cairo_context, \
+		                                    line_width, operation['is_preview'])
 
 		if operation['use_arrow']:
 			x_press = operation['x_press']
 			y_press = operation['y_press']
 			x_release = operation['x_release']
 			y_release = operation['y_release']
-			utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width)
+			utilities_add_arrow_triangle(cairo_context, x_release, y_release, \
+			                                       x_press, y_press, line_width)
+
+	############################################################################
+################################################################################
+

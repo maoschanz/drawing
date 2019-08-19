@@ -5,7 +5,6 @@ import cairo, math
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_smooth_path
-from .utilities import utilities_fast_blur
 
 class ToolPencil(AbstractClassicTool):
 	__gtype_name__ = 'ToolPencil'
@@ -23,13 +22,11 @@ class ToolPencil(AbstractClassicTool):
 		self.selected_operator = cairo.Operator.OVER
 		self.use_dashes = False
 		self.is_smooth = True
-		self.is_blur = False
 
 		self.add_tool_action_enum('pencil_shape', 'round')
 		self.add_tool_action_enum('cairo_operator', 'over')
 		self.add_tool_action_boolean('use_dashes', self.use_dashes)
 		self.add_tool_action_boolean('pencil_smooth', self.is_smooth)
-		self.add_tool_action_boolean('use_blur', self.is_blur)
 
 	def set_active_shape(self, *args):
 		state_as_string = self.get_option_value('pencil_shape')
@@ -46,27 +43,11 @@ class ToolPencil(AbstractClassicTool):
 			self.selected_join_id = cairo.LineJoin.ROUND
 			self.selected_shape_label = _("Round")
 
-	def set_active_operator(self, *args):
-		state_as_string = self.get_option_value('cairo_operator')
-		if state_as_string == 'difference':
-			self.selected_operator = cairo.Operator.DIFFERENCE
-			self.selected_operator_label = _("Difference")
-		elif state_as_string == 'source':
-			self.selected_operator = cairo.Operator.SOURCE
-			self.selected_operator_label = _("Source color")
-		elif state_as_string == 'clear':
-			self.selected_operator = cairo.Operator.CLEAR
-			self.selected_operator_label = _("Eraser")
-		else:
-			self.selected_operator = cairo.Operator.OVER
-			self.selected_operator_label = _("Classic")
-
 	def get_options_label(self):
 		return _("Pencil options")
 
 	def set_options_attributes(self):
 		self.is_smooth = self.get_option_value('pencil_smooth')
-		self.is_blur = self.get_option_value('use_blur')
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.set_active_shape()
 		self.set_active_operator()
@@ -98,13 +79,13 @@ class ToolPencil(AbstractClassicTool):
 		self.past_y = event_y
 
 		operation = self.build_operation()
-		operation['is_blur'] = False
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		operation = self.build_operation()
+		operation['is_preview'] = False
 		self.apply_operation(operation)
 
 	############################################################################
@@ -119,7 +100,7 @@ class ToolPencil(AbstractClassicTool):
 			'line_join': self.selected_join_id,
 			'use_dashes': self.use_dashes,
 			'is_smooth': self.is_smooth,
-			'is_blur': self.is_blur,
+			'is_preview': True,
 			'path': self._path
 		}
 		return operation
@@ -131,9 +112,6 @@ class ToolPencil(AbstractClassicTool):
 			return
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_operator(operation['operator'])
-		if operation['is_blur']:
-			cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']
@@ -145,17 +123,9 @@ class ToolPencil(AbstractClassicTool):
 			utilities_smooth_path(cairo_context, operation['path'])
 		else:
 			cairo_context.append_path(operation['path'])
-		if operation['is_blur']:
-			cairo_context.set_line_width(2*line_width)
-			cairo_context.stroke()
-			radius = int(line_width/2)
-			# TODO only give the adequate rectangle, not the whole image, it's too slow!
-			b_surface = utilities_fast_blur(self.get_surface(), radius, 1)
-			self.restore_pixbuf()
-			cairo_context = cairo.Context(self.get_surface())
-			cairo_context.set_operator(cairo.Operator.OVER)
-			cairo_context.set_source_surface(b_surface, 0, 0)
-			cairo_context.paint()
-		else:
-			cairo_context.set_line_width(line_width)
-			cairo_context.stroke()
+		self.stroke_with_operator(operation['operator'], cairo_context, \
+		                                    line_width, operation['is_preview'])
+
+	############################################################################
+################################################################################
+

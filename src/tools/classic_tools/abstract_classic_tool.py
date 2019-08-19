@@ -6,7 +6,9 @@ import cairo
 from .abstract_tool import ToolTemplate
 from .bottombar import DrawingAdaptativeBottomBar
 from .color_popover import DrawingColorPopover
+
 from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_fast_blur
 
 class AbstractClassicTool(ToolTemplate):
 	__gtype_name__ = 'AbstractClassicTool'
@@ -62,6 +64,24 @@ class AbstractClassicTool(ToolTemplate):
 			self.main_color = self.window.options_manager.get_right_color()
 			self.secondary_color = self.window.options_manager.get_left_color()
 
+	def set_active_operator(self, *args):
+		state_as_string = self.get_option_value('cairo_operator')
+		if state_as_string == 'difference':
+			self.selected_operator = cairo.Operator.DIFFERENCE
+			self.selected_operator_label = _("Difference")
+		elif state_as_string == 'source':
+			self.selected_operator = cairo.Operator.SOURCE
+			self.selected_operator_label = _("Source color")
+		elif state_as_string == 'clear':
+			self.selected_operator = cairo.Operator.CLEAR
+			self.selected_operator_label = _("Eraser")
+		elif state_as_string == 'dest_in':
+			self.selected_operator = cairo.Operator.DEST_IN
+			self.selected_operator_label = _("Blur")
+		else:
+			self.selected_operator = cairo.Operator.OVER
+			self.selected_operator_label = _("Classic")
+
 	############################################################################
 	# Path management ##########################################################
 
@@ -75,6 +95,27 @@ class AbstractClassicTool(ToolTemplate):
 
 	def do_tool_operation(self, operation):
 		pass
+
+	def stroke_with_operator(self, operator, cairo_context, line_width, is_preview):
+		cairo_context.set_operator(operator)
+		is_blur = (operator == cairo.Operator.DEST_IN)
+		if is_blur and is_preview:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+
+		if is_blur and not is_preview:
+			cairo_context.set_line_width(2*line_width)
+			cairo_context.stroke()
+			radius = int(line_width/2)
+			# TODO only give the adequate rectangle, not the whole image, it's too slow!
+			b_surface = utilities_fast_blur(self.get_surface(), radius, 1)
+			self.restore_pixbuf()
+			cairo_context = cairo.Context(self.get_surface())
+			cairo_context.set_operator(cairo.Operator.OVER)
+			cairo_context.set_source_surface(b_surface, 0, 0)
+			cairo_context.paint()
+		else:
+			cairo_context.set_line_width(line_width)
+			cairo_context.stroke()
 
 	############################################################################
 ################################################################################
@@ -152,3 +193,4 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 
 	############################################################################
 ################################################################################
+

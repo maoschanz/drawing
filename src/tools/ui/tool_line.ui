@@ -41,6 +41,11 @@
         <attribute name="target">over</attribute>
       </item>
       <item>
+        <attribute name="label" translatable="yes">Blur</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">dest_in</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Source color</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">source</attribute>

@@ -41,19 +41,10 @@ class ToolRotate(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = DrawingAdaptativeBottomBar()
-		builder = bar.build_ui('tools/ui/tool_rotate.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		self.angle_btn = builder.get_object('angle_btn')
-		self.angle_label = builder.get_object('angle_label')
+		panel = RotateToolPanel(self.window)
+		self.angle_btn = panel.angle_btn
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
-		#
-		#
-		return bar
+		return panel
 
 	def get_edition_status(self):
 		if self.apply_to_selection:
@@ -66,7 +57,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.flip_h = False
 		self.flip_v = False
 		self.angle_btn.set_value(0.0)
-		# TODO
+		# TODO dans le panel
 		# if self.apply_to_selection:
 		# 	self.angle_btn.set_visible(True)
 		# 	self.angle_label.set_visible(True)
@@ -143,3 +134,25 @@ class ToolRotate(AbstractCanvasTool):
 	############################################################################
 ################################################################################
 
+class RotateToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'RotateToolPanel'
+
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+		builder = self.build_ui('tools/ui/tool_rotate.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
+		#
+
+		self.angle_btn = builder.get_object('angle_btn')
+		self.angle_label = builder.get_object('angle_label')
+
+	# def ...(self, *args):
+	# 	... TODO
+
+	############################################################################
+################################################################################
