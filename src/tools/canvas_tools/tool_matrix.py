@@ -27,6 +27,8 @@ class ToolMatrix(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('matrix', _("Deformation"), 'applications-science-symbolic', window)
 		# self.cursor_name = ''
+		self.row.get_style_context().add_class('destructive-action')
+
 		self.apply_to_selection = False
 		self.dont_update = False
 		self.add_tool_action_simple('matrix-reset', self.on_reset_values)

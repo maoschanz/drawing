@@ -269,6 +269,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
+		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
+		self.notebook.connect('drag-data-received', self.on_data_dropped)
+		self.notebook.drag_dest_add_uri_targets()
+		# because drag_dest_add_image_targets don't work for files
+
 	def add_action_simple(self, action_name, callback, shortcuts):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
@@ -412,7 +417,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			main_title = self.get_active_image().update_title()
 		subtitle = self.active_tool().get_edition_status()
 
-		self.app.update_windows_menu_section() # Un peu idiot sans doute
 		self.update_tabs_menu_section()
 
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
@@ -920,10 +924,37 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		utilities_add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			self.force_selection()
-			fn = file_chooser.get_filename()
-			self.get_selection_tool().import_selection(GdkPixbuf.Pixbuf.new_from_file(fn))
+			self.import_from_path(file_chooser.get_filename())
 		file_chooser.destroy()
+
+	def import_from_path(self, file_path):
+		self.force_selection()
+		self.get_selection_tool().import_selection( \
+		                              GdkPixbuf.Pixbuf.new_from_file(file_path))
+
+	def on_data_dropped(self, widget, drag_context, x, y, data, info, time):
+		dialog = DrawingMessageDialog(self)
+		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		open_id = dialog.set_action(_("Open"), None, False)
+		import_id = dialog.set_action(_("Import"), None, True)
+		uris = data.get_uris()
+		if len(uris) == 1:
+			label = uris[0].split('/')[-1]
+		else:
+			label = _("these files")
+		dialog.add_string(_("What do you want to do with %s?") % label)
+		result = dialog.run()
+		dialog.destroy()
+		for uri in uris:
+			print(uri)
+			# FIXME valider l'URI TODO
+			if result == import_id:
+				f = Gio.File.new_for_uri(uri)
+				self.import_from_path(f.get_path())
+				return
+			elif result == open_id:
+				f = Gio.File.new_for_uri(uri)
+				self.build_new_tab(f, None)
 
 	def action_selection_export(self, *args):
 		gfile = self.file_chooser_save()

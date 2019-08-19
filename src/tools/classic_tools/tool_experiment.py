@@ -10,10 +10,11 @@ class ToolExperiment(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
+		self.use_size = True
+		self.row.get_style_context().add_class('destructive-action')
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None
-		self.use_size = True
 
 		self.selected_mode = 'smooth2'
 		self.selected_operator_label = "DIFFERENCE"
