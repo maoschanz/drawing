@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-18 22:54+0200\n"
-"PO-Revision-Date: 2019-07-11 03:48+0300\n"
+"POT-Creation-Date: 2019-08-19 16:08+0200\n"
+"PO-Revision-Date: 2019-08-19 10:03+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -55,14 +55,15 @@ msgid "Edit Image in Clipboard"
 msgstr "Panodaki Resmi Düzenle"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:15
-#, fuzzy
 msgid "A drawing application for the GNOME desktop"
-msgstr "GNOME masaüstü ortamı için çizim uygulaması."
+msgstr "GNOME masaüstü için çizim uygulaması"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:17
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
+"\"Drawing\", PNG, JPEG ve BMP dosya türlerini destekleyen temel bir resim "
+"düzenleyicidir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
 msgid ""
@@ -93,7 +94,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:49
 msgid "First stable release, including a few basic tools."
-msgstr ""
+msgstr "Birkaç temel araç içeren ilk kararlı sürüm."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:55
@@ -352,9 +353,8 @@ msgid "Canvas and selection"
 msgstr "Tuval ve seçim"
 
 #: src/ui/app-menus.ui:375 src/ui/win-menus.ui:206
-#, fuzzy
 msgid "Help about selection"
-msgstr "Araçlar hakkında yardım"
+msgstr "Seçim hakkında yardım"
 
 #: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:180
 #: src/ui/win-menus.ui:225
@@ -558,9 +558,8 @@ msgid "From Clipboard"
 msgstr "Panodan"
 
 #: src/ui/win-menus.ui:150
-#, fuzzy
 msgid "Troubleshoot selection"
-msgstr "Renk seçimi"
+msgstr "Seçimle ilgili sorunları giderme"
 
 #: src/main.py:59
 msgid "Print the version and display the 'about' dialog"
@@ -1148,13 +1147,6 @@ msgstr "Seçimi ölçeklendir"
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
-
-#, fuzzy
-#~ msgid "Pencil (with various options)"
-#~ msgstr "Fırça seçenekleri"
-
-#~ msgid "Selection (cut/copy/paste/drag/…)"
-#~ msgstr "Seçim (kes/kopyala/yapıştır/sürükle /…)"
 
 #~ msgid "Modifications will take effect in the next new window."
 #~ msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
