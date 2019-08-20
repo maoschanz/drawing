@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-19 18:37+0200\n"
-"PO-Revision-Date: 2019-08-03 13:53+0200\n"
+"PO-Revision-Date: 2019-08-20 20:22+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -72,6 +72,10 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating,…"
 msgstr ""
+"Es ermöglicht Ihnen, mit Werkzeugen, wie Bleistift, Linien oder Kurven (mit "
+"verschiedenen Optionen), Auswahl (Ausschneiden/Kopieren/Einfügen/Ziehen/…), "
+"Formen (Rechteck, Kreis, Vieleck, …) Texteingabe, Größenänderung, "
+"Zuschneiden, Drehen, usw. Bilder zu zeichnen oder zu bearbeiten."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
@@ -81,6 +85,12 @@ msgid ""
 "image from the clipboard content, a smoother pencil, and various new "
 "translations."
 msgstr ""
+"Version 0.4 bringt ein neues Symbol mit, enthält eine Vielzahl an "
+"Fehlerbehebungen und eine verbesserte Werkzeugleiste für die Ansichten "
+"\"Altmodisch\" und \"Nur Werkzeugleiste\". Weiterhin neu ist die "
+"Möglichkeit, ein Bild aus der Zwischenablage zu erstellen, es gibt einen "
+"weicheren Bleistift und verschiedene neue Übersetzungen sind ebenfalls "
+"dazugekommen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid "First stable release, including a few basic tools."
@@ -149,12 +159,12 @@ msgstr "Speichern"
 
 #: src/ui/app-menus.ui:80 src/ui/win-menus.ui:63 src/ui/win-menus.ui:119
 msgid "Save as…"
-msgstr "Speichern als..."
+msgstr "Speichern als…"
 
 #: src/ui/app-menus.ui:85 src/ui/selection.ui:87 src/ui/selection.ui:166
 #: src/ui/selection.ui:386 src/ui/win-menus.ui:66 src/ui/win-menus.ui:122
 msgid "Export as…"
-msgstr "Exportieren als..."
+msgstr "Exportieren als…"
 
 #: src/ui/app-menus.ui:92 src/ui/toolbar.ui:130 src/ui/toolbar.ui:131
 #: src/ui/win-menus.ui:50 src/ui/win-menus.ui:106
@@ -365,7 +375,7 @@ msgstr "Öffnen"
 
 #: src/ui/minimap.ui:72 src/preferences.py:87
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/panel_classic.ui:65 src/ui/panel_classic.ui:80
 msgid "Tool size"
@@ -466,7 +476,7 @@ msgstr "Sättigen"
 #: src/ui/selection.ui:75 src/preferences.py:131 src/tools/ui/tool_pencil.ui:53
 #: src/tools/canvas_tools/tool_blur.py:30
 msgid "Blur"
-msgstr ""
+msgstr "Verwischen"
 
 #: src/ui/selection.ui:83 src/ui/selection.ui:162 src/ui/selection.ui:382
 msgid "Open As New Image"
@@ -481,9 +491,8 @@ msgid "Flip"
 msgstr "Spiegeln"
 
 #: src/ui/selection.ui:308
-#, fuzzy
 msgid "More actions"
-msgstr "Keine Optionen"
+msgstr "Weitere Aktionen"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
@@ -542,9 +551,8 @@ msgid "Edit the secondary color (right click)"
 msgstr "Bearbeiten der Zweitfarbe (Rechtsklick)"
 
 #: src/ui/shortcuts.ui:231 src/preferences.py:75
-#, fuzzy
 msgid "Zoom"
-msgstr "Hineinzoomen"
+msgstr "Zoom"
 
 #: src/ui/shortcuts.ui:265
 msgid "Navigation"
@@ -632,24 +640,23 @@ msgstr "Standardhintergrund"
 
 #: src/preferences.py:79
 msgid "Ctrl + Scroll"
-msgstr ""
+msgstr "Strg + Scrollen"
 
 #: src/preferences.py:80
 msgid "Scroll"
-msgstr ""
+msgstr "Scrollen"
 
 #: src/preferences.py:83
 msgid "Action to zoom"
-msgstr ""
+msgstr "Aktion für Zoom"
 
 #: src/preferences.py:91
-#, fuzzy
 msgid "Default zoom"
-msgstr "Standardbreite"
+msgstr "Standard-Zoom"
 
 #: src/preferences.py:98
 msgid "Appearance"
-msgstr ""
+msgstr "Erscheinungsbild"
 
 #: src/preferences.py:104
 msgid "Use big icons"
@@ -657,7 +664,7 @@ msgstr "Große Symbole verwenden"
 
 #: src/preferences.py:107
 msgid "Additional tools"
-msgstr ""
+msgstr "Zusätzliche Werkzeuge"
 
 #: src/preferences.py:113 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -791,7 +798,7 @@ msgstr "Änderungen verwerfen"
 #: src/window.py:764 src/window.py:836
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Es gibt ungespeicherte Änderungen an %s"
+msgstr "Es gibt ungespeicherte Änderungen an %s."
 
 #: src/window.py:766
 #, python-format
@@ -833,7 +840,7 @@ msgstr "BMP-Bilder"
 
 #: src/window.py:879
 msgid "Save picture as…"
-msgstr "Bild speichern als..."
+msgstr "Bild speichern als…"
 
 #: src/window.py:942
 msgid "Import a picture"
@@ -909,11 +916,11 @@ msgstr "Gegensätzlich"
 
 #: src/tools/ui/tool_blur.ui:42
 msgid "Radius"
-msgstr ""
+msgstr "Radius"
 
 #: src/tools/ui/tool_blur.ui:50
 msgid "Blur radius (pixels)"
-msgstr ""
+msgstr "Unschärferadius (Pixel)"
 
 #: src/tools/ui/tool_blur.ui:60 src/tools/ui/tool_blur.ui:88
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:130
