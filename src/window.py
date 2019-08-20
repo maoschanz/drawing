@@ -792,6 +792,40 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.destroy()
 		return gfile
 
+	def on_data_dropped(self, widget, drag_context, x, y, data, info, time):
+		"""Signal callback: when files are dropped on `self.notebook`, a message
+		dialog is shown, asking if the user prefers to open them (one new tab
+		per image), or to import them (it will only import the first), or to
+		cancel (if the user dropped mistakenly)."""
+		dialog = DrawingMessageDialog(self)
+		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		open_id = dialog.set_action(_("Open"), None, False)
+		import_id = dialog.set_action(_("Import"), None, True)
+		uris = data.get_uris()
+		if len(uris) == 1:
+			label = uris[0].split('/')[-1]
+		else:
+			label = _("these files")
+		dialog.add_string(_("What do you want to do with %s?") % label)
+		result = dialog.run()
+		dialog.destroy()
+		for uri in uris:
+			# print(uri)
+			# valider l'URI TODO
+			if result == import_id:
+				f = Gio.File.new_for_uri(uri)
+				self.import_from_path(f.get_path())
+				return
+			elif result == open_id:
+				f = Gio.File.new_for_uri(uri)
+				self.build_new_tab(f, None)
+
+	def try_load_file(self, gfile):
+		if gfile is not None:
+			self.get_active_image().try_load_file(gfile)
+		self.set_picture_title() # often redundant but not useless
+		self.prompt_message(False, 'file successfully loaded')
+
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
 		successfully saved."""
@@ -814,12 +848,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if gfile is not None:
 			self.get_active_image().gfile = gfile
 			self.action_save()
-
-	def try_load_file(self, gfile):
-		if gfile is not None:
-			self.get_active_image().try_load_file(gfile)
-		self.set_picture_title() # often redundant but not useless
-		self.prompt_message(False, 'file successfully loaded')
 
 	def confirm_save_modifs(self):
 		"""Return True if the image can be closed/overwritten (whether it's saved
@@ -880,6 +908,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# SELECTION MANAGEMENT #####################################################
 
 	def action_getvalues(self, *args):
+		"""Development only"""
 		self.get_active_image().selection.print_values()
 
 	def action_select_all(self, *args):
@@ -894,7 +923,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.action_delete()
 
 	def action_copy(self, *args):
-		# self.get_active_image().selection.selection_has_been_used = True # XXX bizarre
 		self.copy_operation()
 
 	def copy_operation(self):
@@ -917,8 +945,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.active_tool().on_release_on_area(None, None, None, 100, 100)
 
 	def action_import(self, *args):
-		"""Handle the result of an "open" file chooser dialog, and import it
-		as the selection."""
+		"""Handle the result of an "open" file chooser dialog, and it will try
+		to import it as the selection."""
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))
 		utilities_add_filechooser_filters(file_chooser)
@@ -928,33 +956,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser.destroy()
 
 	def import_from_path(self, file_path):
+		"""Import a file as the selection pixbuf. Called by the 'win.import'
+		action and when an image is imported by drag-and-drop."""
 		self.force_selection()
-		self.get_selection_tool().import_selection( \
-		                              GdkPixbuf.Pixbuf.new_from_file(file_path))
-
-	def on_data_dropped(self, widget, drag_context, x, y, data, info, time):
-		dialog = DrawingMessageDialog(self)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		open_id = dialog.set_action(_("Open"), None, False)
-		import_id = dialog.set_action(_("Import"), None, True)
-		uris = data.get_uris()
-		if len(uris) == 1:
-			label = uris[0].split('/')[-1]
-		else:
-			label = _("these files")
-		dialog.add_string(_("What do you want to do with %s?") % label)
-		result = dialog.run()
-		dialog.destroy()
-		for uri in uris:
-			print(uri)
-			# FIXME valider l'URI TODO
-			if result == import_id:
-				f = Gio.File.new_for_uri(uri)
-				self.import_from_path(f.get_path())
-				return
-			elif result == open_id:
-				f = Gio.File.new_for_uri(uri)
-				self.build_new_tab(f, None)
+		pixbuf = GdkPixbuf.Pixbuf.new_from_file(file_path)
+		self.get_selection_tool().import_selection(pixbuf)
 
 	def action_selection_export(self, *args):
 		gfile = self.file_chooser_save()
