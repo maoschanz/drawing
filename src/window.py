@@ -94,7 +94,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
-		# self.resize(360, 680) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+		# self.resize(360, 648) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 		self.set_ui_bars()
 
 	def init_window_content(self, gfile, get_cb):
@@ -991,17 +991,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
 		memorized RGBA values."""
 		right_rgba = self._settings.get_strv('last-right-rgba')
-		r = float(right_rgba[0])
-		g = float(right_rgba[1])
-		b = float(right_rgba[2])
-		a = float(right_rgba[3])
-		right_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		left_rgba = self._settings.get_strv('last-left-rgba')
-		r = float(left_rgba[0])
-		g = float(left_rgba[1])
-		b = float(left_rgba[2])
-		a = float(left_rgba[3])
-		left_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, \
 		                                           self.r_btn_image, right_rgba)
 		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, \

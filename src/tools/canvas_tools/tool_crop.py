@@ -44,8 +44,10 @@ class ToolCrop(AbstractCanvasTool):
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
 		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+		self.width_btn.connect('value-changed', self.on_width_changed)
+		self.height_btn.connect('value-changed', self.on_height_changed)
+		
 		# FIXME X et Y ? top/bottom/left/right ? TODO
-
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def get_edition_status(self):
@@ -64,8 +66,6 @@ class ToolCrop(AbstractCanvasTool):
 			self.init_if_selection()
 		else:
 			self.init_if_main()
-		self.width_btn.connect('value-changed', self.on_width_changed)
-		self.height_btn.connect('value-changed', self.on_height_changed)
 		self.width_btn.set_value(self.original_width)
 		self.height_btn.set_value(self.original_height)
 

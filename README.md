@@ -27,17 +27,7 @@ Drawing tools:
 |Color picker|               |
 |Paint      |Remove a color  |
 
-<!--|Brush      |           |Not done yet-->
-
-
-<!-- Selection tools: -->
 The selection tool allows you to define an area (rectangle or free), which you can move, cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
-
-<!-- | Tool                   | Options        | -->
-<!-- |:----------------------:|:--------------:| -->
-<!-- |Rectangle selection     |Move, cut, copy, paste, edit with canvas tools, export, open as a new image -->
-<!-- |Free shape selection    | (same)         | -->
-<!-- |Adjacent color selection| (same)         | -->
 
 Canvas/selection edition tools:
 
@@ -49,19 +39,18 @@ Canvas/selection edition tools:
 |Rotate     |           |
 |Saturate   |           |
 
-<!-- |Matrix     |           |Not done yet -->
-
 \*Remark: The previewed picture isn't at the actual scale.
 
 ### Available languages
 
+- Brazilian portugese (thanks to [Antonio Hauren](https://github.com/haurenburu))
 - Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
 - Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
 - French
 - German (thanks to [Onno Giesmann](https://github.com/Etamuk))
 - Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
-- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo))
+- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella ))
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 
@@ -87,7 +76,7 @@ More screenshots:
 - [elementaryOS UI](./docs/screenshots/elementary.png)
 - [Cinnamon UI](./docs/screenshots/cinnamon.png)
 - [MATE UI](./docs/screenshots/mate_scale.png)
-- The default "GNOME" UI can be resized to be [compatible with the Purism Librem 5 phone](./docs/screenshots/librem_options.png). [Youtube screencast](https://www.youtube.com/watch?v=xwfDnPd5NDU)
+- The default "GNOME" UI can be resized to be compatible with the Purism Librem 5 phone. [Screenshot](./docs/screenshots/librem_options.png) and [screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2).
 
 ----
 
@@ -101,16 +90,11 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Native packages
 
->**Warning:** I don't maintain the following packages, and thus I don't know what versions they provide.
-
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
-- Fedora (29, 30 and Rawhide) ([COPR](https://copr.fedorainfracloud.org/coprs/atim/drawing/))
-- Arch and Manjaro ([AUR](https://aur.archlinux.org/packages/drawing-git/))
-
-<!-- TODO Solus -->
-<!-- etc. -->
+- Ubuntu 18.04 and 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- [Fedora (official repo)](https://apps.fedoraproject.org/packages/drawing) (29, 30 and Rawhide): `sudo dnf install drawing`
+- Arch and Manjaro ([Arch "Community" repos](https://www.archlinux.org/packages/community/any/drawing/))
 
 ### Unstable/nightly version
 

@@ -24,11 +24,18 @@ class DrawingColorPopover(Gtk.Popover):
 	def __init__(self, btn, image, initial_rgba, **kwargs):
 		super().__init__(**kwargs)
 
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/color_popover.ui')
+		builder = Gtk.Builder.new_from_resource( \
+		                    '/com/github/maoschanz/drawing/ui/color_popover.ui')
 		main_box = builder.get_object('main-box')
 		self.add(main_box)
 		btn.set_popover(self)
 		self.btn_image = image
+
+		r = float(initial_rgba[0])
+		g = float(initial_rgba[1])
+		b = float(initial_rgba[2])
+		a = float(initial_rgba[3])
+		initial_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 
 		self.color_widget = builder.get_object('color-widget')
 		self.color_widget.set_rgba(initial_rgba)
@@ -63,3 +70,7 @@ class DrawingColorPopover(Gtk.Popover):
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.paint()
 		self.btn_image.set_from_surface(surface)
+
+	############################################################################
+################################################################################
+

@@ -174,7 +174,7 @@ class ToolText(ToolTemplate):
 		font_fam = operation['font_fam']
 		font_slant = operation['font_slant']
 		font_weight = operation['font_weight']
-		font_size = operation['font_size']
+		font_size = operation['font_size'] * 3 # XXX totalement arbitraire
 		cairo_context.select_font_face(font_fam, font_slant, font_weight)
 		cairo_context.set_font_size(font_size)
 
