@@ -309,15 +309,11 @@ def utilities_fast_blur(surface, radius, iterations):
 			vmin[x] = min(x + radius + 1, w - 1)
 			vmax[x] = max(x - radius, 0)
 		for y in range(0, h):
-			asum = 0
-			rsum = 0
-			gsum = 0
-			bsum = 0
 			cur_pixel = y * w * channels
-			asum = asum + radius * pixels[cur_pixel + 0]
-			rsum = rsum + radius * pixels[cur_pixel + 1]
-			gsum = gsum + radius * pixels[cur_pixel + 2]
-			bsum = bsum + radius * pixels[cur_pixel + 3]
+			asum = radius * pixels[cur_pixel + 0]
+			rsum = radius * pixels[cur_pixel + 1]
+			gsum = radius * pixels[cur_pixel + 2]
+			bsum = radius * pixels[cur_pixel + 3]
 			for i in range(0, radius+1):
 				asum = asum + pixels[cur_pixel + 0]
 				rsum = rsum + pixels[cur_pixel + 1]
@@ -342,15 +338,11 @@ def utilities_fast_blur(surface, radius, iterations):
 			vmin[y] = min(y + radius + 1, h - 1) * w
 			vmax[y] = max (y - radius, 0) * w
 		for x in range(0, w):
-			asum = 0
-			rsum = 0
-			gsum = 0
-			bsum = 0
 			cur_pixel = x * channels
-			asum = asum + radius * buffer[cur_pixel + 0]
-			rsum = rsum + radius * buffer[cur_pixel + 1]
-			gsum = gsum + radius * buffer[cur_pixel + 2]
-			bsum = bsum + radius * buffer[cur_pixel + 3]
+			asum = radius * buffer[cur_pixel + 0]
+			rsum = radius * buffer[cur_pixel + 1]
+			gsum = radius * buffer[cur_pixel + 2]
+			bsum = radius * buffer[cur_pixel + 3]
 			for i in range(0, radius+1):
 				asum = asum + buffer[cur_pixel + 0]
 				rsum = rsum + buffer[cur_pixel + 1]

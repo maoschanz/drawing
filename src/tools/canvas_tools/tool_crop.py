@@ -39,24 +39,11 @@ class ToolCrop(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = DrawingAdaptativeBottomBar()
-		builder = bar.build_ui('tools/ui/tool_crop.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		self.centered_box = builder.get_object('centered_box')
-		self.cancel_btn = builder.get_object('cancel_btn')
-		self.apply_btn = builder.get_object('apply_btn')
-
-		self.height_btn = builder.get_object('height_btn')
-		self.width_btn = builder.get_object('width_btn')
-		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
-		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
-		# FIXME X et Y ? top/bottom/left/right ? TODO
-		#
-		#
+		bar = CropToolPanel(self.window)
+		self.height_btn = bar.height_btn
+		self.width_btn = bar.width_btn
+		self.width_btn.connect('value-changed', self.on_width_changed)
+		self.height_btn.connect('value-changed', self.on_height_changed)
 		return bar
 
 	def get_edition_status(self):
@@ -75,8 +62,6 @@ class ToolCrop(AbstractCanvasTool):
 			self.init_if_selection()
 		else:
 			self.init_if_main()
-		self.width_btn.connect('value-changed', self.on_width_changed)
-		self.height_btn.connect('value-changed', self.on_height_changed)
 		self.width_btn.set_value(self.original_width)
 		self.height_btn.set_value(self.original_height)
 
@@ -240,3 +225,36 @@ class ToolCrop(AbstractCanvasTool):
 		if not operation['is_selection'] and operation['is_preview']:
 			self.scale_temp_pixbuf_to_area(width, height)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
+	############################################################################
+################################################################################
+
+class CropToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'CropToolPanel'
+
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+		builder = self.build_ui('tools/ui/tool_crop.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
+		# self.centered_box = builder.get_object('centered_box')
+		# self.cancel_btn = builder.get_object('cancel_btn')
+		# self.apply_btn = builder.get_object('apply_btn')
+
+		self.height_btn = builder.get_object('height_btn')
+		self.width_btn = builder.get_object('width_btn')
+		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
+		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+		# TODO X et Y ? top/bottom/left/right ?
+		# ...
+
+	# def ...(self, *args):
+	# 	... TODO
+
+	############################################################################
+################################################################################
+

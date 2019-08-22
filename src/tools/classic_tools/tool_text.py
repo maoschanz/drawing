@@ -118,8 +118,8 @@ class ToolText(AbstractClassicTool):
 
 	def has_current_text(self):
 		self.text_string = self.entry.get_buffer().get_text( \
-		    self.entry.get_buffer().get_start_iter(), \
-		    self.entry.get_buffer().get_end_iter(), False)
+		                             self.entry.get_buffer().get_start_iter(), \
+		                          self.entry.get_buffer().get_end_iter(), False)
 		if self.text_string == '':
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
@@ -166,7 +166,7 @@ class ToolText(AbstractClassicTool):
 		font_fam = operation['font_fam']
 		font_slant = operation['font_slant']
 		font_weight = operation['font_weight']
-		font_size = operation['font_size']
+		font_size = operation['font_size'] * 3 # XXX totalement arbitraire
 		cairo_context.select_font_face(font_fam, font_slant, font_weight)
 		cairo_context.set_font_size(font_size)
 

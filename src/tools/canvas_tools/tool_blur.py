@@ -36,19 +36,10 @@ class ToolBlur(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = DrawingAdaptativeBottomBar()
-		builder = bar.build_ui('tools/ui/tool_blur.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		#
-
-		self.blur_btn = builder.get_object('blur_btn')
+		bar = BlurToolPanel(self.window)
+		self.blur_btn = bar.blur_btn
 		self.blur_btn.connect('activate', self.on_blur_changed)
 		# self.blur_btn.connect('value-changed', self.on_blur_changed)
-
 		return bar
 
 	def on_tool_selected(self, *args):
@@ -86,4 +77,26 @@ class ToolBlur(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(blurred_pixbuf)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 
+	############################################################################
+################################################################################
+
+class BlurToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'BlurToolPanel'
+
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+		builder = self.build_ui('tools/ui/tool_blur.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
+		self.blur_btn = builder.get_object('blur_btn')
+
+	# def ...(self, *args):
+	# 	... TODO
+
+	############################################################################
+################################################################################
 

@@ -34,17 +34,9 @@ class ToolSaturate(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = DrawingAdaptativeBottomBar()
-		builder = bar.build_ui('tools/ui/tool_saturate.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		self.saturation_btn = builder.get_object('sat_btn')
+		bar = SaturateToolPanel(self.window)
+		self.saturation_btn = bar.saturation_btn
 		self.saturation_btn.connect('value-changed', self.on_sat_changed)
-		#
-		#
 		return bar
 
 	def on_tool_selected(self, *args):
@@ -80,3 +72,27 @@ class ToolSaturate(AbstractCanvasTool):
 		temp = self.get_image().get_temp_pixbuf()
 		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
+	############################################################################
+################################################################################
+
+class SaturateToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'SaturateToolPanel'
+
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+		builder = self.build_ui('tools/ui/tool_saturate.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
+		self.saturation_btn = builder.get_object('sat_btn')
+
+	# def ...(self, *args):
+	# 	... TODO
+
+	############################################################################
+################################################################################
+

@@ -38,28 +38,13 @@ class ToolScale(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = DrawingAdaptativeBottomBar()
-		builder = bar.build_ui('tools/ui/tool_scale.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		self.centered_box = builder.get_object('centered_box')
-		self.cancel_btn = builder.get_object('cancel_btn')
-		self.apply_btn = builder.get_object('apply_btn')
-
-		self.width_btn = builder.get_object('width_btn')
-		self.height_btn = builder.get_object('height_btn')
+		bar = ScaleToolPanel(self.window)
+		self.width_btn = bar.width_btn
+		self.height_btn = bar.height_btn
+		self.proportions_btn = bar.proportions_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
-		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
-		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
-
-		self.proportions_btn = builder.get_object('proportions_btn')
 		self.proportions_btn.connect('toggled', self.set_keep_proportions)
-		#
-		#
 		return bar
 
 	def get_edition_status(self):
@@ -143,3 +128,36 @@ class ToolScale(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.scale_simple( \
 		   operation['width'], operation['height'], GdkPixbuf.InterpType.TILES))
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
+	############################################################################
+################################################################################
+
+class ScaleToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'ScaleToolPanel'
+
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+		builder = self.build_ui('tools/ui/tool_scale.ui')
+		# ... TODO
+		#
+		# bar.widgets_narrow = []
+		# bar.widgets_wide = []
+		#
+		# self.centered_box = builder.get_object('centered_box')
+		# self.cancel_btn = builder.get_object('cancel_btn')
+		# self.apply_btn = builder.get_object('apply_btn')
+
+		self.width_btn = builder.get_object('width_btn')
+		self.height_btn = builder.get_object('height_btn')
+		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
+		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+
+		self.proportions_btn = builder.get_object('proportions_btn')
+
+	# def ...(self, *args):
+	# 	... TODO
+
+	############################################################################
+################################################################################
+

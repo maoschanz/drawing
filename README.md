@@ -44,7 +44,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- Ubuntu 18.04 and 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Fedora (official repo)](https://apps.fedoraproject.org/packages/drawing) (29, 30 and Rawhide): `sudo dnf install drawing`
 - Arch and Manjaro ([Arch "Community" repos](https://www.archlinux.org/packages/community/any/drawing/))
 

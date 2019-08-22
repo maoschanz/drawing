@@ -146,7 +146,7 @@ class RotateToolPanel(DrawingAdaptativeBottomBar):
 		# bar.widgets_narrow = []
 		# bar.widgets_wide = []
 		#
-		#
+		# self.centered_box = builder.get_object('centered_box')
 
 		self.angle_btn = builder.get_object('angle_btn')
 		self.angle_label = builder.get_object('angle_label')
@@ -156,3 +156,4 @@ class RotateToolPanel(DrawingAdaptativeBottomBar):
 
 	############################################################################
 ################################################################################
+
