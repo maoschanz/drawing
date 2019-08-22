@@ -101,61 +101,41 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()
-		self.prompt_message(False, 'window successfully started')
 
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
-		disabled_tools_id = self._settings.get_strv('disabled-tools')
+		disabled_tools_ids = self._settings.get_strv('disabled-tools')
+		dev = self._settings.get_boolean('devel-only')
 		self.tools = {}
-		self.tools['pencil'] = ToolPencil(self) # XXX réfléchir à l'ordre ?
-		self.tools['rect_select'] = ToolRectSelect(self)
-		self.tools['free_select'] = ToolFreeSelect(self)
-		if 'color_select' not in disabled_tools_id:
-			self.tools['color_select'] = ToolColorSelect(self)
-		self.tools['text'] = ToolText(self)
-		if 'picker' not in disabled_tools_id:
-			self.tools['picker'] = ToolPicker(self)
-		if 'paint' not in disabled_tools_id:
-			self.tools['paint'] = ToolPaint(self)
-		self.tools['line'] = ToolLine(self)
-		self.tools['arc'] = ToolArc(self)
-		self.tools['rectangle'] = ToolRectangle(self)
-		self.tools['circle'] = ToolCircle(self)
-		if 'polygon' not in disabled_tools_id:
-			self.tools['polygon'] = ToolPolygon(self)
-		self.tools['freeshape'] = ToolFreeshape(self)
-		if self._settings.get_boolean('devel-only'):
-			self.tools['experiment'] = ToolExperiment(self)
-			self.tools['matrix'] = ToolMatrix(self)
-		self.tools['crop'] = ToolCrop(self)
-		self.tools['scale'] = ToolScale(self)
-		self.tools['rotate'] = ToolRotate(self)
-		if 'saturate' not in disabled_tools_id:
-			self.tools['saturate'] = ToolSaturate(self)
-		if 'blur' not in disabled_tools_id:
-			self.tools['blur'] = ToolBlur(self)
+		self.prompt_message(False, 'window has started, now loading tools')
+		# XXX réfléchir à l'ordre ?
+		self.load_tool('pencil', ToolPencil, disabled_tools_ids, dev)
+		self.load_tool('rect_select', ToolRectSelect, disabled_tools_ids, dev)
+		self.load_tool('free_select', ToolFreeSelect, disabled_tools_ids, dev)
+		self.load_tool('color_select', ToolColorSelect, disabled_tools_ids, dev)
+		self.load_tool('text', ToolText, disabled_tools_ids, dev)
+		self.load_tool('picker', ToolPicker, disabled_tools_ids, dev)
+		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
+		self.load_tool('line', ToolLine, disabled_tools_ids, dev)
+		self.load_tool('arc', ToolArc, disabled_tools_ids, dev)
+		self.load_tool('rectangle', ToolRectangle, disabled_tools_ids, dev)
+		self.load_tool('circle', ToolCircle, disabled_tools_ids, dev)
+		self.load_tool('polygon', ToolPolygon, disabled_tools_ids, dev)
+		self.load_tool('freeshape', ToolFreeshape, disabled_tools_ids, dev)
+		if dev:
+			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
+			self.load_tool('matrix', ToolMatrix, disabled_tools_ids, dev)
+		self.load_tool('crop', ToolCrop, disabled_tools_ids, dev)
+		self.load_tool('scale', ToolScale, disabled_tools_ids, dev)
+		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)
+		self.load_tool('saturate', ToolSaturate, disabled_tools_ids, dev)
+		self.load_tool('blur', ToolBlur, disabled_tools_ids, dev)
 
-		# Buttons for tools (in the side panel and the selection tool action bar)
+		# Side panel buttons for tools, and their menu-items if they don't exist
 		self.build_tool_rows()
-
-		# Global menubar
 		if not self.app.has_tools_in_menubar:
-			selection_tools_section = self.app.get_menubar().get_item_link(4, \
-			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
-			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
-			      Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
-			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
-			    Gio.MENU_LINK_SUBMENU).get_item_link(2, Gio.MENU_LINK_SECTION).get_item_link(0, \
-			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
-			for tool_id in self.tools:
-				if self.tools[tool_id].menu_id == 0:
-					self.tools[tool_id].add_item_to_menu(drawing_tools_section)
-				elif self.tools[tool_id].menu_id == 1:
-					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
-				elif self.tools[tool_id].menu_id == 2:
-					self.tools[tool_id].add_item_to_menu(selection_tools_section)
-			self.app.has_tools_in_menubar = True
+			self.build_menubar_tools_menu()
 
 		# Initialisation of options and menus
 		tool_id = self._settings.get_string('last-active-tool')
@@ -167,6 +147,43 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.enable_tool(tool_id)
 		else:
 			self.active_tool().row.set_active(True)
+
+	def build_tool_rows(self):
+		"""Adds each tool's button to the side panel."""
+		group = None
+		for tool_id in self.tools:
+			if group is None:
+				group = self.tools[tool_id].row
+			else:
+				self.tools[tool_id].row.join_group(group)
+			self.tools_panel.add(self.tools[tool_id].row)
+		self.on_show_labels_setting_changed()
+
+	def build_menubar_tools_menu(self):
+		selection_tools_section = self.app.get_menubar().get_item_link(4, \
+		          Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+		drawing_tools_section = self.app.get_menubar().get_item_link(4, \
+		          Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
+		canvas_tools_section = self.app.get_menubar().get_item_link(4, \
+		    Gio.MENU_LINK_SUBMENU).get_item_link(2, Gio.MENU_LINK_SECTION).get_item_link(0, \
+		          Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+		for tool_id in self.tools:
+			if self.tools[tool_id].menu_id == 0:
+				self.tools[tool_id].add_item_to_menu(drawing_tools_section)
+			elif self.tools[tool_id].menu_id == 1:
+				self.tools[tool_id].add_item_to_menu(canvas_tools_section)
+			elif self.tools[tool_id].menu_id == 2:
+				self.tools[tool_id].add_item_to_menu(selection_tools_section)
+		self.app.has_tools_in_menubar = True
+
+	def load_tool(self, tool_id, tool_class, disabled_tools_ids, dev):
+		if dev: # Simplest way to get a stack
+			self.tools[tool_id] = tool_class(self)
+		elif tool_id not in disabled_tools_ids:
+			try:
+				self.tools[tool_id] = tool_class(self)
+			except:
+				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
@@ -601,18 +618,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	############################################################################
 	# TOOLS PANEL ##############################################################
-
-	def build_tool_rows(self):
-		"""Adds each tool's button to the side panel, or to the selection's
-		bottom panel."""
-		group = None
-		for tool_id in self.tools:
-			if group is None:
-				group = self.tools[tool_id].row
-			else:
-				self.tools[tool_id].row.join_group(group)
-			self.tools_panel.add(self.tools[tool_id].row)
-		self.on_show_labels_setting_changed()
 
 	def on_icon_size_changed(self, *args):
 		for tool_id in self.tools:
