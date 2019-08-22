@@ -111,6 +111,9 @@ class DrawingOptionsManager():
 	def update_panel(self, tool):
 		self.bottom_panels_dict[tool.panel_id].update_for_new_tool(tool)
 
+	def adapt_to_window_size(self, available_width):
+		self.get_active_panel().adapt_to_window_size(available_width)
+
 	############################################################################
 
 	def set_minimap_label(self, label):

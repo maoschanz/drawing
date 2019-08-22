@@ -148,6 +148,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			self.active_tool().row.set_active(True)
 
+	def load_tool(self, tool_id, tool_class, disabled_tools_ids, dev):
+		"""Given its id and its python class, this method tries to load a tool,
+		and show an error message if the tool initialization failed."""
+		if dev: # Simplest way to get an error stack
+			self.tools[tool_id] = tool_class(self)
+		elif tool_id not in disabled_tools_ids:
+			try:
+				self.tools[tool_id] = tool_class(self)
+			except:
+				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
+
 	def build_tool_rows(self):
 		"""Adds each tool's button to the side panel."""
 		group = None
@@ -160,13 +171,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.on_show_labels_setting_changed()
 
 	def build_menubar_tools_menu(self):
-		selection_tools_section = self.app.get_menubar().get_item_link(4, \
-		          Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
-		drawing_tools_section = self.app.get_menubar().get_item_link(4, \
-		          Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
-		canvas_tools_section = self.app.get_menubar().get_item_link(4, \
-		    Gio.MENU_LINK_SUBMENU).get_item_link(2, Gio.MENU_LINK_SECTION).get_item_link(0, \
-		          Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
+		drawing_tools_section = self.get_menubar_item([[True, 4], [False, 1]])
+		path_description = [[True, 4], [False, 2], [True, 0], [False, 0]]
+		canvas_tools_section = self.get_menubar_item(path_description)
 		for tool_id in self.tools:
 			if self.tools[tool_id].menu_id == 0:
 				self.tools[tool_id].add_item_to_menu(drawing_tools_section)
@@ -175,15 +183,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			elif self.tools[tool_id].menu_id == 2:
 				self.tools[tool_id].add_item_to_menu(selection_tools_section)
 		self.app.has_tools_in_menubar = True
-
-	def load_tool(self, tool_id, tool_class, disabled_tools_ids, dev):
-		if dev: # Simplest way to get a stack
-			self.tools[tool_id] = tool_class(self)
-		elif tool_id not in disabled_tools_ids:
-			try:
-				self.tools[tool_id] = tool_class(self)
-			except:
-				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
@@ -225,8 +224,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
-		section = self.app.get_menubar().get_item_link(2, \
-		          Gio.MENU_LINK_SUBMENU).get_item_link(6, Gio.MENU_LINK_SECTION)
+		section = self.get_menubar_item([[True, 2], [False, 6]])
 		section.remove_all()
 		for page in self.notebook.get_children():
 			tab_title = page.update_title()
@@ -289,7 +287,20 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
 		self.notebook.connect('drag-data-received', self.on_data_dropped)
 		self.notebook.drag_dest_add_uri_targets()
-		# because drag_dest_add_image_targets don't work for files
+		# because drag_dest_add_image_targets doesn't work for files
+
+	def get_menubar_item(self, path_description):
+		"""Get an item of the app-wide menubar. The `path_description` object
+		is an array of [boolean, int] couples. The boolean means if we're
+		looking for a submenu, the int is an index."""
+		current_item = self.app.get_menubar()
+		for item in path_description:
+			if item[0]:
+				link_type = Gio.MENU_LINK_SUBMENU
+			else:
+				link_type = Gio.MENU_LINK_SECTION
+			current_item = current_item.get_item_link(item[1], link_type)
+		return current_item
 
 	def add_action_simple(self, action_name, callback, shortcuts):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -466,8 +477,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, title, toolbar, whatever)
 		according to the user's preference, which by default is 'auto'."""
-		self.has_good_limits = False
-		self.limit_size_bottom = 600
+		self.has_good_limits = False # XXX
 
 		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
 		# so it's built from a string.
@@ -578,26 +588,23 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def init_adaptability(self):
 		"""Initialize limit_size_header and limit_size_bottom, which are 700 by
 		default, but are likely to actually be less wide."""
-		self.set_bottom_width_limit()
+		self.set_bottom_width_limit() # XXX
 		if self.header_bar is not None:
 			self.header_bar.init_adaptability()
-		self.has_good_limits = True
+		self.has_good_limits = True # XXX
 
 	def adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
 		window size. If the current bottom panel isn't the default one, this
 		will call the tool method applying the new size to the tool panel."""
 		if not self.has_good_limits and self.get_allocated_width() > 700:
-			self.init_adaptability()
+			self.init_adaptability() # XXX
 
 		if self.header_bar is not None:
 			self.header_bar.adapt_to_window_size()
 
 		available_width = self.bottom_panel_box.get_allocated_width()
-		for tool_id in self.tools:
-			self.tools[tool_id].adapt_to_window_size(available_width)
-		should_shrink = self.limit_size_bottom > 0.7 * available_width
-		# self.compact_bottombar(should_shrink) # FIXME
+		self.options_manager.adapt_to_window_size(available_width)
 
 		# Update the scrollbars
 		self.get_active_image().add_deltas(0, 0, 0)

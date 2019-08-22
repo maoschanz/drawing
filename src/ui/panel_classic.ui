@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <!-- TODO remettre ça dans window.ui quand on sera bon -->
   <object class="GtkAdjustment" id="adjustment_size">
     <property name="lower">1</property>
     <property name="upper">80</property>
@@ -19,7 +18,6 @@
         <child>
           <object class="GtkMenuButton" id="color_menu_btn_l">
             <property name="visible">True</property>
-            <!-- <property name="relief">none</property> -->
             <child>
               <object class="GtkImage" id="l_btn_image">
                 <property name="visible">True</property>
@@ -30,7 +28,6 @@
         <child>
           <object class="GtkButton" id="color_btn_exc">
             <property name="visible">True</property>
-            <!-- <property name="relief">none</property> -->
             <property name="action_name">win.exchange_color</property>
             <property name="tooltip-text" translatable="yes">Exchange colors</property>
             <child>
@@ -44,7 +41,6 @@
         <child>
           <object class="GtkMenuButton" id="color_menu_btn_r">
             <property name="visible">True</property>
-            <!-- <property name="relief">none</property> -->
             <child>
               <object class="GtkImage" id="r_btn_image">
                 <property name="visible">True</property>
@@ -86,7 +82,6 @@ size-8-symbolic</property>
     <child>
       <object class="GtkMenuButton" id="options_btn">
         <property name="valign">center</property>
-        <!-- <property name="relief">none</property> -->
         <property name="visible">True</property>
         <child>
           <object class="GtkBox">
@@ -94,7 +89,7 @@ size-8-symbolic</property>
             <property name="spacing">10</property>
             <child>
               <object class="GtkBox" id="options_long_box">
-                <property name="visible">False</property>
+                <property name="visible">True</property>
                 <property name="spacing">10</property>
                 <child>
                   <object class="GtkLabel" id="options_label">
@@ -114,14 +109,9 @@ size-8-symbolic</property>
               </object>
             </child>
             <child>
-              <object class="GtkBox" id="options_short_box">
-                <property name="visible">False</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">view-more-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
+              <object class="GtkImage" id="options_short_box">
+                <property name="icon-name">view-more-symbolic</property>
+                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -132,7 +122,6 @@ size-8-symbolic</property>
       <object class="GtkToggleButton" id="minimap_btn">
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Preview</property>
-        <!-- <property name="relief">none</property> -->
         <property name="visible">True</property>
         <property name="action-name">win.toggle_preview</property>
         <child>
@@ -140,24 +129,15 @@ size-8-symbolic</property>
             <property name="visible">True</property>
             <property name="spacing">10</property>
             <child>
-              <object class="GtkImage" id="minimap_icon">
-                <property name="icon-name">zoom-fit-best-symbolic</property>
-                <property name="visible">False</property>
-              </object>
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="minimap_label">
                 <property name="label">100%</property>
-                <property name="visible">False</property>
+                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkImage" id="minimap_arrow">
                 <property name="icon-name">pan-down-symbolic</property>
-                <property name="visible">False</property>
+                <property name="visible">True</property>
               </object>
               <packing>
                 <property name="pack-type">end</property>

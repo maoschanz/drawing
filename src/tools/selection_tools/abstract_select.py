@@ -329,26 +329,31 @@ class SelectionToolPanel(DrawingAdaptativeBottomBar):
 		super().__init__()
 		self.window = window
 		builder = self.build_ui('ui/selection.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		#
-
+		self.import_box_narrow = builder.get_object('import_box_narrow')
+		self.import_box_long = builder.get_object('import_box_long')
+		self.cb_box_narrow = builder.get_object('cb_box_narrow')
+		self.actions_btn = builder.get_object('actions_btn')
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
-		# .....
-		self.minimap_btn.show_all() # XXX
-
-	def update_for_new_tool(self, tool): # and the menu? XXX
-		pass # ?
+		self.minimap_arrow = builder.get_object('minimap_arrow')
 
 	def get_minimap_btn(self):
 		return self.minimap_btn
 
 	def set_minimap_label(self, label):
 		self.minimap_label.set_label(label)
+
+	def init_adaptability(self):
+		super().init_adaptability()
+		# + implementation-specific instructions TODO
+
+	def set_compact(self, state):
+		super().set_compact(state)
+		self.import_box_narrow.set_visible(state)
+		self.import_box_long.set_visible(not state)
+		# self.cb_box_narrow.set_visible(state)
+		# self.cb_box_long.set_visible(not state)
+		self.minimap_arrow.set_visible(not state)
 
 	############################################################################
 ################################################################################

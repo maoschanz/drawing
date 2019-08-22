@@ -38,7 +38,7 @@ class ToolScale(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = ScaleToolPanel(self.window)
+		bar = ScaleToolPanel(self.window, self)
 		self.width_btn = bar.width_btn
 		self.height_btn = bar.height_btn
 		self.proportions_btn = bar.proportions_btn
@@ -135,19 +135,13 @@ class ToolScale(AbstractCanvasTool):
 class ScaleToolPanel(DrawingAdaptativeBottomBar):
 	__gtype_name__ = 'ScaleToolPanel'
 
-	def __init__(self, window):
+	def __init__(self, window, scale_tool):
 		super().__init__()
 		self.window = window
+		# knowing the tool is needed because the panel doesn't compact the same
+		# way if it's applied to the selection
+		self.scale_tool = scale_tool
 		builder = self.build_ui('tools/ui/tool_scale.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		# self.centered_box = builder.get_object('centered_box')
-		# self.cancel_btn = builder.get_object('cancel_btn')
-		# self.apply_btn = builder.get_object('apply_btn')
-
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')
 		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
@@ -155,8 +149,21 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 
 		self.proportions_btn = builder.get_object('proportions_btn')
 
-	# def ...(self, *args):
-	# 	... TODO
+	def init_adaptability(self):
+		super().init_adaptability()
+		# + implementation-specific instructions TODO
+
+	def set_compact(self, state):
+		super().set_compact(state)
+		if state:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
+		else:
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+		# if self.scale_tool.apply_to_selection:
+		# 	self.???.set_visible(state)
+		# else:
+		# 	self.???.set_visible(state)
 
 	############################################################################
 ################################################################################

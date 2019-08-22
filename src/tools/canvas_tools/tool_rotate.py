@@ -41,7 +41,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		panel = RotateToolPanel(self.window)
+		panel = RotateToolPanel(self.window, self)
 		self.angle_btn = panel.angle_btn
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
 		return panel
@@ -137,22 +137,35 @@ class ToolRotate(AbstractCanvasTool):
 class RotateToolPanel(DrawingAdaptativeBottomBar):
 	__gtype_name__ = 'RotateToolPanel'
 
-	def __init__(self, window):
+	def __init__(self, window, rotate_tool):
 		super().__init__()
 		self.window = window
+		# knowing the tool is needed because the panel doesn't compact the same
+		# way if it's applied to the selection
+		self.rotate_tool = rotate_tool
 		builder = self.build_ui('tools/ui/tool_rotate.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		# self.centered_box = builder.get_object('centered_box')
-
 		self.angle_btn = builder.get_object('angle_btn')
-		self.angle_label = builder.get_object('angle_label')
+		self.more_actions_btn = builder.get_object('more_actions_btn')
+		self.angle_box = builder.get_object('angle_box')
+		self.rotate_box = builder.get_object('rotate_box')
+		self.flip_box = builder.get_object('flip_box')
 
-	# def ...(self, *args):
-	# 	... TODO
+	def init_adaptability(self):
+		super().init_adaptability()
+		# + implementation-specific instructions TODO
+
+	def set_compact(self, state):
+		super().set_compact(state)
+		if self.rotate_tool.apply_to_selection:
+			self.more_actions_btn.set_visible(state)
+			self.angle_box.set_visible(True)
+			self.rotate_box.set_visible(not state)
+			self.flip_box.set_visible(not state)
+		else:
+			self.more_actions_btn.set_visible(False)
+			self.angle_box.set_visible(False)
+			self.rotate_box.set_visible(True)
+			self.flip_box.set_visible(True)
 
 	############################################################################
 ################################################################################

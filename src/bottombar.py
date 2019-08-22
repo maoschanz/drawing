@@ -27,13 +27,13 @@ class DrawingAdaptativeBottomBar():
 		# Very high as a precaution, will be more precise later
 		self.limit_size = 700
 		self.is_narrow = True
-		self.widgets_narrow = []
-		self.widgets_wide = []
-		# TODO ? c'est tout ?
 
 	def build_ui(self, end_of_path):
 		builder = Gtk.Builder.new_from_resource(RESOURCE_PATH + end_of_path)
 		self.action_bar = builder.get_object('bottom-panel')
+		self.cancel_btn = builder.get_object('cancel_btn') # may be None
+		self.centered_box = builder.get_object('centered_box') # may be None
+		self.apply_btn = builder.get_object('apply_btn') # may be None
 		return builder # for implementations-specific widgets
 
 	def build_options_menu(self, widget, model, label):
@@ -50,34 +50,19 @@ class DrawingAdaptativeBottomBar():
 
 	def init_adaptability(self):
 		self.action_bar.show_all()
-		long_size = 0
-		for w in self.widgets_wide:
-			print(w.get_preferred_width())
-		# widgets_width = self.save_label.get_preferred_width()[0] \
-		#                - self.save_icon.get_preferred_width()[0] \
-		#                  + self.new_btn.get_preferred_width()[0] \
-		#                 + self.undo_btn.get_preferred_width()[0] \
-		#                 + self.redo_btn.get_preferred_width()[0] \
-		#           + self.hidable_widget.get_preferred_width()[0]
-		# self.limit_size = 2.5 * widgets_width # 100% arbitrary
+		# + implementation-specific instructions
 
-	def adapt_to_window_size(self):
-		can_expand = (self.action_bar.get_allocated_width() > self.limit_size)
+	def adapt_to_window_size(self, allocated_width):
+		print('adapt_to_window_size')
+		can_expand = (allocated_width > self.limit_size)
 		incoherent = (can_expand == self.is_narrow)
 		if incoherent:
 			self.set_compact(not self.is_narrow)
 
-	def set_compact(self, state): # TODO state as an int
-		# if state:
-		# 	self.main_menu_btn.set_menu_model(self.long_main_menu)
-		# else:
-		# 	self.main_menu_btn.set_menu_model(self.short_main_menu)
-		# self.save_label.set_visible(not state)
-		# self.save_icon.set_visible(state)
-		# self.hidable_widget.set_visible(not state)
-		# self.new_btn.set_visible(not state)
-		# self.is_narrow = state
-		return
+	def set_compact(self, state):
+		self.is_narrow = state
+		# + implementation-specific instructions
 
+	############################################################################
 ################################################################################
 

@@ -127,12 +127,6 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		super().__init__()
 		self.window = window
 		builder = self.build_ui('ui/panel_classic.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		#
 
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
@@ -143,7 +137,8 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 
 		self.options_btn = builder.get_object('options_btn')
 		self.options_label = builder.get_object('options_label')
-		self.options_btn.show_all() # XXX
+		self.options_long_box = builder.get_object('options_long_box')
+		self.options_short_box = builder.get_object('options_short_box')
 
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
@@ -152,10 +147,9 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
-		# .....
-		self.minimap_btn.show_all() # XXX
+		self.minimap_arrow = builder.get_object('minimap_arrow')
 
-	def update_for_new_tool(self, tool): # and the menu? XXX
+	def update_for_new_tool(self, tool):
 		self.color_box.set_sensitive(tool.use_color)
 		self.thickness_scalebtn.set_sensitive(tool.use_size)
 		self.thickness_spinbtn.set_sensitive(tool.use_size)
@@ -189,7 +183,17 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 			self.options_btn.set_popover(None)
 		self.options_label.set_label(label)
 
+	def init_adaptability(self):
+		super().init_adaptability()
+		# + implementation-specific instructions TODO
 
+	def set_compact(self, state):
+		super().set_compact(state)
+		self.options_long_box.set_visible(not state)
+		self.options_short_box.set_visible(state)
+		self.thickness_scalebtn.set_visible(state)
+		self.thickness_spinbtn.set_visible(not state)
+		self.minimap_arrow.set_visible(not state)
 
 	############################################################################
 ################################################################################

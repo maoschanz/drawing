@@ -236,15 +236,6 @@ class CropToolPanel(DrawingAdaptativeBottomBar):
 		super().__init__()
 		self.window = window
 		builder = self.build_ui('tools/ui/tool_crop.ui')
-		# ... TODO
-		#
-		# bar.widgets_narrow = []
-		# bar.widgets_wide = []
-		#
-		# self.centered_box = builder.get_object('centered_box')
-		# self.cancel_btn = builder.get_object('cancel_btn')
-		# self.apply_btn = builder.get_object('apply_btn')
-
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
@@ -252,8 +243,21 @@ class CropToolPanel(DrawingAdaptativeBottomBar):
 		# TODO X et Y ? top/bottom/left/right ?
 		# ...
 
-	# def ...(self, *args):
-	# 	... TODO
+	def init_adaptability(self):
+		super().init_adaptability()
+		# + implementation-specific instructions TODO
+
+	def set_compact(self, state):
+		super().set_compact(state)
+		if state:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
+		else:
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+		# if self.scale_tool.apply_to_selection:
+		# 	self.???.set_visible(state)
+		# else:
+		# 	self.???.set_visible(state)
 
 	############################################################################
 ################################################################################

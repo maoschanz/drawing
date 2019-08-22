@@ -30,20 +30,6 @@ class AbstractCanvasTool(ToolTemplate):
 		self.needed_width_for_long = 0
 		self.accept_selection = True
 
-	def adapt_to_window_size(self, available_width):
-		if self.centered_box is None:
-			return
-		if self.centered_box.get_orientation() == Gtk.Orientation.HORIZONTAL:
-			self.needed_width_for_long = self.apply_btn.get_allocated_width() + \
-			                      self.centered_box.get_preferred_width()[0] + \
-			                               self.cancel_btn.get_allocated_width()
-		if self.needed_width_for_long > 0.8 * available_width:
-			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
-		else:
-			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-
-	############################################################################
-
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.apply_to_selection = self.selection_is_active()
@@ -111,4 +97,6 @@ class AbstractCanvasTool(ToolTemplate):
 	def on_draw(self, area, cairo_context):
 		pass # TODO FIXME pour l'instant pas d'overlay quand on modifie la sélection
 
+	############################################################################
+################################################################################
 
