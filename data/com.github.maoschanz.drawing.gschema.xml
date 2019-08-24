@@ -27,11 +27,9 @@
       <description>Can be '100' or 'opti'.</description>
     </key>
     <key type="as" name="disabled-tools">
-      <default>['color_select', 'picker', 'saturate', 'paint']</default>
+      <default>['color_select', 'picker', 'paint']</default>
       <summary>Optional tools to disable</summary>
-      <description>A list of optional tools' id to disable. All tools are not
-      optional, but putting garbage in the list isn't catastrophic so try any id
-      you want.</description>
+      <description>A list of optional tools' id to disable.</description>
     </key>
     <key type="i" name="preview-size">
       <default>330</default>

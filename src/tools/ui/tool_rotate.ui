@@ -33,7 +33,7 @@
     </child>
 
     <child type="center">
-      <object class="GtkBox">
+      <object class="GtkBox" id="centered_box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
 
@@ -58,7 +58,7 @@
         </child>
 
         <child>
-          <object class="GtkMenuButton" id="more_actions_btn">
+          <object class="GtkMenuButton" id="more_btn">
             <property name="visible">True</property>
             <property name="menu-model">actions-menu</property>
             <property name="valign">center</property>

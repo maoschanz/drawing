@@ -245,7 +245,10 @@ class CropToolPanel(DrawingAdaptativeBottomBar):
 
 	def init_adaptability(self):
 		super().init_adaptability()
-		# + implementation-specific instructions TODO
+		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
+		                    self.cancel_btn.get_preferred_width()[0] + \
+		                     self.apply_btn.get_preferred_width()[0]
+		self.set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)

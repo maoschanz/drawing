@@ -63,7 +63,10 @@ class DrawingMinimap(Gtk.Popover):
 
 	def on_popover_dismissed(self, *args):
 		"""Callback of the 'closed' signal, updating the state of the action."""
-		self.get_relative_to().set_active(False)
+		try:
+			self.get_relative_to().set_active(False)
+		except:
+			pass
 
 	def on_minimap_draw(self, area, cairo_context):
 		"""Callback of the 'draw' signal, painting the area with the surface."""
@@ -87,7 +90,7 @@ class DrawingMinimap(Gtk.Popover):
 
 	def update_minimap(self, force_update):
 		"""Update the overlay on the minimap, based on the scroll coordinates."""
-		if not self.get_relative_to().get_active() and not force_update:
+		if not self.get_visible() and not force_update:
 			return
 		x = self.window.get_active_image().scroll_x
 		y = self.window.get_active_image().scroll_y

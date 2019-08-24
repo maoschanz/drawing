@@ -26,7 +26,7 @@ class DrawingAdaptativeBottomBar():
 	def __init__(self):
 		# Very high as a precaution, will be more precise later
 		self.limit_size = 700
-		self.is_narrow = True
+		self.is_narrow = False
 
 	def build_ui(self, end_of_path):
 		builder = Gtk.Builder.new_from_resource(RESOURCE_PATH + end_of_path)
@@ -48,12 +48,19 @@ class DrawingAdaptativeBottomBar():
 	def set_minimap_label(self, label):
 		pass
 
+	def toggle_options_menu(self):
+		pass
+
 	def init_adaptability(self):
+		self.set_compact(False)
 		self.action_bar.show_all()
 		# + implementation-specific instructions
 
+	def set_limit_size(self, temp_limit_size):
+		self.limit_size = int(1.3 * temp_limit_size)
+		self.set_compact(True)
+
 	def adapt_to_window_size(self, allocated_width):
-		print('adapt_to_window_size')
 		can_expand = (allocated_width > self.limit_size)
 		incoherent = (can_expand == self.is_narrow)
 		if incoherent:

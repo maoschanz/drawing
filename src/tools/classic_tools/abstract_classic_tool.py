@@ -160,6 +160,9 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 	def set_minimap_label(self, label):
 		self.minimap_label.set_label(label)
 
+	def toggle_options_menu(self):
+		self.options_btn.set_active(not self.options_btn.get_active())
+
 	def build_color_buttons(self):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
 		memorized RGBA values."""
@@ -185,7 +188,11 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 
 	def init_adaptability(self):
 		super().init_adaptability()
-		# + implementation-specific instructions TODO
+		temp_limit_size = self.color_box.get_preferred_width()[0] + \
+		          self.thickness_spinbtn.get_preferred_width()[0] + \
+		           self.options_long_box.get_preferred_width()[0] + \
+		                self.minimap_btn.get_preferred_width()[0]
+		self.set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)

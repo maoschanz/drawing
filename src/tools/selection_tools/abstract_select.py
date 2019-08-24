@@ -343,9 +343,16 @@ class SelectionToolPanel(DrawingAdaptativeBottomBar):
 	def set_minimap_label(self, label):
 		self.minimap_label.set_label(label)
 
+	def toggle_options_menu(self):
+		self.actions_btn.set_active(not self.actions_btn.get_active())
+
 	def init_adaptability(self):
 		super().init_adaptability()
-		# + implementation-specific instructions TODO
+		temp_limit_size = self.import_box_long.get_preferred_width()[0] + \
+		                    self.cb_box_narrow.get_preferred_width()[0] + \
+		                      self.actions_btn.get_preferred_width()[0] + \
+		                      self.minimap_btn.get_preferred_width()[0]
+		self.set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)

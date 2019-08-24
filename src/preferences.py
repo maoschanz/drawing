@@ -122,15 +122,6 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_for_AoS(_("Paint"), 'paint', 'disabled-tools')
 		flowbox.add(w)
 
-		w = self.row_for_AoS(_("Polygon"), 'polygon', 'disabled-tools')
-		flowbox.add(w)
-
-		w = self.row_for_AoS(_("Saturate"), 'saturate', 'disabled-tools')
-		flowbox.add(w)
-
-		w = self.row_for_AoS(_("Blur"), 'blur', 'disabled-tools')
-		flowbox.add(w)
-
 		########################################################################
 		# Build the "advanced" page ############################################
 

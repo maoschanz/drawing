@@ -20,15 +20,12 @@ import os
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 from .tool_arc import ToolArc
-from .tool_circle import ToolCircle
 from .tool_experiment import ToolExperiment
-from .tool_freeshape import ToolFreeshape
 from .tool_line import ToolLine
 from .tool_paint import ToolPaint
 from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
-from .tool_polygon import ToolPolygon
-from .tool_rectangle import ToolRectangle
+from .tool_shape import ToolShape
 from .tool_text import ToolText
 
 from .tool_blur import ToolBlur
@@ -119,10 +116,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
 		self.load_tool('line', ToolLine, disabled_tools_ids, dev)
 		self.load_tool('arc', ToolArc, disabled_tools_ids, dev)
-		self.load_tool('rectangle', ToolRectangle, disabled_tools_ids, dev)
-		self.load_tool('circle', ToolCircle, disabled_tools_ids, dev)
-		self.load_tool('polygon', ToolPolygon, disabled_tools_ids, dev)
-		self.load_tool('freeshape', ToolFreeshape, disabled_tools_ids, dev)
+		self.load_tool('shape', ToolShape, disabled_tools_ids, dev)
 		if dev:
 			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
 			self.load_tool('matrix', ToolMatrix, disabled_tools_ids, dev)
@@ -477,7 +471,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, title, toolbar, whatever)
 		according to the user's preference, which by default is 'auto'."""
-		self.has_good_limits = False # XXX
+		self.has_good_limits = False # used by the bottom panels
 
 		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
 		# so it's built from a string.
@@ -570,35 +564,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		action to ease the accelerator (shift+f10). This action could be
 		disable when the current panel doesn't contain the corresponding button,
 		but will not be."""
-		# if not self.active_tool().implements_panel: # FIXME
-		# 	self.options_btn.set_active(not self.options_btn.get_active())
-		pass
-
-	def set_bottom_width_limit(self): # FIXME devrait se transmettre aux panneaux custom
-		# if self.has_good_limits:
-		# 	return
-		# self.bottom_panel.show_all() # XXX vraiment ?
-		# self.limit_size_bottom = self.color_box.get_preferred_width()[0] + \
-		#                  self.thickness_spinbtn.get_preferred_width()[0] + \
-		#                   self.options_long_box.get_preferred_width()[0] + \
-		#                      self.minimap_label.get_preferred_width()[0]
-		# self.bottom_panel.set_visible(not self.active_tool().implements_panel)
-		pass
-
-	def init_adaptability(self):
-		"""Initialize limit_size_header and limit_size_bottom, which are 700 by
-		default, but are likely to actually be less wide."""
-		self.set_bottom_width_limit() # XXX
-		if self.header_bar is not None:
-			self.header_bar.init_adaptability()
-		self.has_good_limits = True # XXX
+		self.options_manager.toggle_menu()
 
 	def adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
 		window size. If the current bottom panel isn't the default one, this
 		will call the tool method applying the new size to the tool panel."""
 		if not self.has_good_limits and self.get_allocated_width() > 700:
-			self.init_adaptability() # XXX
+			self.options_manager.init_adaptability()
+			if self.header_bar is not None:
+				self.header_bar.init_adaptability()
+			self.has_good_limits = True
 
 		if self.header_bar is not None:
 			self.header_bar.adapt_to_window_size()
@@ -688,8 +664,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().selection.show_popover(False)
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
-		self.update_bottom_panel()
 		self.active_tool().on_tool_selected()
+		self.update_bottom_panel()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
 
@@ -698,7 +674,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_manager.try_enable_panel(self.active_tool().panel_id)
 		self.options_manager.update_panel(self.active_tool())
 		self.build_options_menu()
-		self.set_bottom_width_limit()
 		self.adapt_to_window_size()
 
 	def active_tool(self):

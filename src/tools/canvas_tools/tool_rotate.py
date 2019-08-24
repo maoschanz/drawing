@@ -57,18 +57,8 @@ class ToolRotate(AbstractCanvasTool):
 		self.flip_h = False
 		self.flip_v = False
 		self.angle_btn.set_value(0.0)
-		# TODO dans le panel
-		# if self.apply_to_selection:
-		# 	self.angle_btn.set_visible(True)
-		# 	self.angle_label.set_visible(True)
-		# 	self.right_btn.set_visible(False)
-		# 	self.left_btn.set_visible(False)
-		# else:
-		# 	self.angle_btn.set_visible(False)
-		# 	self.angle_label.set_visible(False)
-		# 	self.right_btn.set_visible(True)
-		# 	self.left_btn.set_visible(True)
 		self.on_angle_changed()
+		# the panel is updated by the window according to self.apply_to_selection
 
 	def get_angle(self):
 		return self.angle_btn.get_value_as_int()
@@ -145,24 +135,34 @@ class RotateToolPanel(DrawingAdaptativeBottomBar):
 		self.rotate_tool = rotate_tool
 		builder = self.build_ui('tools/ui/tool_rotate.ui')
 		self.angle_btn = builder.get_object('angle_btn')
-		self.more_actions_btn = builder.get_object('more_actions_btn')
+		self.more_btn = builder.get_object('more_btn')
 		self.angle_box = builder.get_object('angle_box')
 		self.rotate_box = builder.get_object('rotate_box')
 		self.flip_box = builder.get_object('flip_box')
 
 	def init_adaptability(self):
 		super().init_adaptability()
-		# + implementation-specific instructions TODO
+		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
+		                    self.cancel_btn.get_preferred_width()[0] + \
+		                     self.apply_btn.get_preferred_width()[0]
+		self.set_limit_size(temp_limit_size)
+
+	def update_for_new_tool(self, tool):
+		self.set_compact(self.is_narrow)
+
+	def toggle_options_menu(self):
+		if self.more_btn.get_visible():
+			self.more_btn.set_active(not self.more_btn.get_active())
 
 	def set_compact(self, state):
 		super().set_compact(state)
 		if self.rotate_tool.apply_to_selection:
-			self.more_actions_btn.set_visible(state)
+			self.more_btn.set_visible(state)
 			self.angle_box.set_visible(True)
 			self.rotate_box.set_visible(not state)
 			self.flip_box.set_visible(not state)
 		else:
-			self.more_actions_btn.set_visible(False)
+			self.more_btn.set_visible(False)
 			self.angle_box.set_visible(False)
 			self.rotate_box.set_visible(True)
 			self.flip_box.set_visible(True)

@@ -193,27 +193,6 @@ def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y
 	cairo_context.fill_preserve()
 	cairo_context.stroke()
 
-def utilities_generic_shape_tool_operation(cairo_context, operation):
-	# XXX déplacer vers abstract_classic_tool ?
-	cairo_context.set_operator(operation['operator'])
-	cairo_context.set_line_width(operation['line_width'])
-	cairo_context.set_line_join(operation['line_join'])
-	rgba1 = operation['rgba_main']
-	rgba2 = operation['rgba_secd']
-	cairo_context.append_path(operation['path'])
-	filling = operation['filling']
-	if filling == 'secondary':
-		cairo_context.set_source_rgba(rgba2.red, rgba2.green, rgba2.blue, rgba2.alpha)
-		cairo_context.fill_preserve()
-		cairo_context.set_source_rgba(rgba1.red, rgba1.green, rgba1.blue, rgba1.alpha)
-		cairo_context.stroke()
-	elif filling == 'filled':
-		cairo_context.set_source_rgba(rgba1.red, rgba1.green, rgba1.blue, rgba1.alpha)
-		cairo_context.fill()
-	else:
-		cairo_context.set_source_rgba(rgba1.red, rgba1.green, rgba1.blue, rgba1.alpha)
-		cairo_context.stroke()
-
 def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
 	spinbutton.set_width_chars(width_chars + 3)
 	if unit == 'px':

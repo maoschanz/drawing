@@ -26,7 +26,7 @@ class DrawingOptionsManager():
 		self.cached_value1 = None
 		self.cached_value2 = None
 		self.bottom_panels_dict = {}
-		self.active_bottom_panel = None
+		self.active_panel = None
 
 	def add_tool_option_boolean(self, name, default):
 		if self.window.lookup_action(name) is not None:
@@ -86,7 +86,7 @@ class DrawingOptionsManager():
 			self.window.bottom_panel_box.add(new_panel.action_bar)
 
 	def try_enable_panel(self, panel_id):
-		if panel_id == self.active_bottom_panel:
+		if panel_id == self.active_panel:
 			print("panneau déjà actif")
 			return
 		elif panel_id not in self.bottom_panels_dict:
@@ -94,38 +94,51 @@ class DrawingOptionsManager():
 			return
 		else:
 			print("activation du panneau …")
-			self.active_bottom_panel = panel_id
-			for each_id in self.bottom_panels_dict:
-				if each_id == panel_id:
-					self.bottom_panels_dict[panel_id].action_bar.set_visible(True)
-				else:
-					self.bottom_panels_dict[each_id].action_bar.set_visible(False)
-			self.update_minimap()
+			self.active_panel = panel_id
+			self.show_active_panel()
+			self.update_minimap_position()
 			print("… panneau activé")
 
+	def show_active_panel(self):
+		for each_id in self.bottom_panels_dict:
+			if each_id == self.active_panel:
+				self.bottom_panels_dict[self.active_panel].action_bar.set_visible(True)
+			else:
+				self.bottom_panels_dict[each_id].action_bar.set_visible(False)
+
 	def get_active_panel(self):
-		if self.active_bottom_panel is None:
+		if self.active_panel is None:
 			return None # XXX encore des exceptions manuelles...
-		return self.bottom_panels_dict[self.active_bottom_panel]
+		return self.bottom_panels_dict[self.active_panel]
 
 	def update_panel(self, tool):
 		self.bottom_panels_dict[tool.panel_id].update_for_new_tool(tool)
+
+	############################################################################
+
+	def init_adaptability(self):
+		for panel_id in self.bottom_panels_dict:
+			self.bottom_panels_dict[panel_id].init_adaptability()
+		self.show_active_panel()
 
 	def adapt_to_window_size(self, available_width):
 		self.get_active_panel().adapt_to_window_size(available_width)
 
 	############################################################################
 
+	def toggle_menu(self):
+		self.get_active_panel().toggle_options_menu()
+
 	def set_minimap_label(self, label):
 		for panel_id in self.bottom_panels_dict:
 			self.bottom_panels_dict[panel_id].set_minimap_label(label)
 
-	def update_minimap(self):
+	def update_minimap_position(self):
 		btn = self.get_active_panel().get_minimap_btn()
 		if btn is not None:
 			self.window.minimap.set_relative_to(btn)
 		else:
-			print("minimap incorrectement positionnée")
+			self.window.minimap.set_relative_to(self.window.bottom_panel_box)
 
 	############################################################################
 
