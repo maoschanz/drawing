@@ -72,7 +72,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app = kwargs['application']
 
 		self.header_bar = None
-		self.main_menu_btn = None
+		self.fullscreen_menu = None
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -329,14 +329,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""This doesn't add all window-wide GioActions, but only the GioActions
 		which are here "by default", independently of any tool."""
 
-		# TODO ??
-		# action = Gio.PropertyAction.new('main_menu', self.main_menu_btn, 'active')
-		# self.window.add_action(action)
-		# self.window.app.set_accels_for_action('win.main_menu', ['F10'])
-
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
 		self.add_action_simple('properties', self.action_properties, None)
+		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
+		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
@@ -409,7 +406,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_window().set_cursor(cursor)
 
 	############################################################################
-	# WINDOW BARS ##############################################################
+	# WINDOW DECORATIONS AND LAYOUTS ###########################################
 
 	def on_layout_changed(self, *args):
 		if self.header_bar is not None:
@@ -556,8 +553,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.header_bar = DrawingAdaptativeHeaderBar(is_eos)
 
 	def action_main_menu(self, *args):
-		if self.main_menu_btn is not None:
-			self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
+		if self.header_bar is not None:
+			self.header_bar.toggle_menu()
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
@@ -598,6 +595,57 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def update_tabs_visibility(self):
 		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
+
+	############################################################################
+	# FULLSCREEN ###############################################################
+
+	def action_unfullscreen(self, *args):
+		# TODO connect to signals instead
+		self.unfullscreen()
+		# self.bottom_panel_box.set_visible(True) # TODO ?
+		self.tools_panel.set_visible(True)
+		self.toolbar_box.set_visible(True) # XXX not if it's empty
+		self.update_tabs_visibility()
+		self.fullscreen_menu = None # XXX vraiment dégueulasse
+		self.hide_message()
+
+	def action_fullscreen(self, *args):
+		# TODO connect to signals instead
+		self.build_fullscreen_menu()
+		self.fullscreen()
+		# self.bottom_panel_box.set_visible(False) # TODO ?
+		self.tools_panel.set_visible(False)
+		self.toolbar_box.set_visible(False)
+		self.notebook.set_show_tabs(False) # XXX broken if a new image is opened
+		self.prompt_message(True, _("Middle click to get controls, press 'Escape' to exit."))
+
+	def on_middle_click(self, event):
+		if not self.open_fullscreen_menu(event):
+			self.exchange_colors()
+
+	def open_fullscreen_menu(self, event):
+		if self.fullscreen_menu is None:
+			return False
+		rectangle = Gdk.Rectangle()
+		rectangle.x = event.x
+		rectangle.y = event.y
+		rectangle.height = 1
+		rectangle.width = 1
+		popover = Gtk.Popover.new_from_model(self.notebook, self.fullscreen_menu)
+		popover.set_pointing_to(rectangle)
+		popover.popup()
+		return True
+
+	def build_fullscreen_menu(self):
+		if self.fullscreen_menu is not None:
+			return
+		builder = Gtk.Builder.new_from_resource(UI_PATH + 'app-menus.ui')
+		self.fullscreen_menu = builder.get_object('fullscreen-menu')
+		tabs_list = self.get_menubar_item([[True, 2], [False, 6]])
+		self.fullscreen_menu.append_section(_("Opened images"), tabs_list)
+		tools_menu = self.get_menubar_item([[True, 4]])
+		section = self.fullscreen_menu.get_item_link(2, Gio.MENU_LINK_SECTION)
+		section.prepend_submenu(_("_Tools"), tools_menu)
 
 	############################################################################
 	# TOOLS PANEL ##############################################################

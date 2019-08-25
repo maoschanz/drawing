@@ -263,14 +263,24 @@
           </section>
         </submenu>
       </section>
+      <section id="view-tabs-section">
+        <!-- list of tabs -->
+      </section>
       <section>
         <item>
           <attribute name="label" translatable="yes">Show tools names</attribute>
           <attribute name="action">win.show_labels</attribute>
         </item>
       </section>
-      <section id="view-tabs-section">
-        <!-- list of tabs -->
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Fullscreen</attribute>
+          <attribute name="action">win.fullscreen</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Exit fullscreen</attribute>
+          <attribute name="action">win.unfullscreen</attribute>
+        </item>
       </section>
     </submenu>
 
@@ -301,7 +311,7 @@
       </section>
     </submenu>
 
-    <submenu>
+    <submenu id="tools-menu">
       <attribute name="label" translatable="yes">_Tools</attribute>
       <section>
       </section>
@@ -377,6 +387,50 @@
         </item>
       </section>
     </submenu>
+  </menu>
+
+  <!-- . -->
+
+  <!-- This menu isn't app-wide but needs some sections from the menubar to -->
+  <!-- be built, so it's quicker to load it from here -->
+  <menu id="fullscreen-menu">
+    <section>
+      <item>
+        <attribute name="action">win.unfullscreen</attribute>
+        <attribute name="label" translatable="yes">Exit fullscreen</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Undo</attribute>
+        <attribute name="action">win.undo</attribute>
+        <attribute name="verb-icon">edit-undo-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Redo</attribute>
+        <attribute name="action">win.redo</attribute>
+        <attribute name="verb-icon">edit-redo-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <!-- here will be a submenu of tools -->
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Save</attribute>
+        <attribute name="action">win.save</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Image</attribute>
+        <attribute name="action">win.new_tab</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Open an image</attribute>
+        <attribute name="action">win.open</attribute>
+      </item>
+    </section>
+    <!-- here will be a list of tabs -->
   </menu>
 
 </interface>

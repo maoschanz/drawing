@@ -376,7 +376,7 @@ class DrawingImage(Gtk.Box):
 		if self.motion_behavior == DrawingMotionBehavior.SLIP:
 			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
 			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
-				self.window.exchange_colors()
+				self.window.on_middle_click(event)
 			self.motion_behavior = DrawingMotionBehavior.HOVER
 			return
 		self.motion_behavior = DrawingMotionBehavior.HOVER
