@@ -68,7 +68,7 @@ class ToolBlur(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		blurred_surface = utilities_fast_blur(surface, blur_radius, 1)
+		blurred_surface = utilities_fast_blur(surface, blur_radius, 1, 0)
 		blurred_pixbuf = Gdk.pixbuf_get_from_surface(blurred_surface, 0, 0, \
 		              blurred_surface.get_width(), blurred_surface.get_height())
 		self.get_image().set_temp_pixbuf(blurred_pixbuf)

@@ -252,7 +252,13 @@ def _next_arc(cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
 
 ################################################################################
 
-def utilities_fast_blur(surface, radius, iterations):
+class BlurType():
+	BOX = 0
+	HORIZONTAL = 1
+	VERTICAL = 2
+	EXPERIMENTAL = 3
+
+def utilities_fast_blur(surface, radius, iterations, algotype):
 	radius = int(radius)
 	if radius < 1 or iterations < 1:
 		return
@@ -264,7 +270,8 @@ def utilities_fast_blur(surface, radius, iterations):
 
 	# this code a modified version of this https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
 	# main differences (aside of the language) is the poor attempt to use
-	# multithreading (i'm quite sure the access to buffers are not safe at all)
+	# multithreading (i'm quite sure the access to buffers are not safe at all).
+	# The 2 phases of the algo have been separated to allow directional blur.
 	original = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
 	cairo_context = cairo.Context(original)
 	# cairo_context.set_operator(cairo.Operator.SOURCE)
@@ -273,7 +280,7 @@ def utilities_fast_blur(surface, radius, iterations):
 	original.flush()
 	pixels = original.get_data()
 
-	buffer = [None] * (w * h * channels)
+	buffer0 = [None] * (w * h * channels)
 	vmin = [None] * max(w, h)
 	vmax = [None] * max(w, h)
 	div = 2 * radius + 1
@@ -281,22 +288,29 @@ def utilities_fast_blur(surface, radius, iterations):
 	for i in range(0, len(dv)):
 		dv[i] = int(i / div)
 
-	ALGO = 1
 	while iterations > 0:
 		iterations = iterations - 1
 		time0 = datetime.now()
-		print('begin fast blur, using algo n°', ALGO)
-		if ALGO == 1:
-			# 1 thread
-			_fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
-			# print('end of the 1st phase…', datetime.now() - time0)
-			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
-		elif ALGO == 3:
+		print('begin fast blur, using algo n°', algotype)
+		if algotype == BlurType.HORIZONTAL:
+			full_buff = _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv)
+			for i in range(0, len(full_buff)):
+				pixels[i] = full_buff[i] # XXX useful?
+		elif algotype == BlurType.VERTICAL:
+			for i in range(0, len(pixels)):
+				buffer0[i] = pixels[i] # XXX useful?
+			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+		elif algotype == BlurType.EXPERIMENTAL:
 			# 4+1 threads
-			# XXX TODO depsite being multithreaded, the first phase is slower
+			# XXX TODO despite being multithreaded, the first phase is slower than BlurType.BOX
 			full_buff = _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv)
 			# print('end of the 1st phase…', datetime.now() - time0)
 			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, full_buff, vmin, vmax, dv)
+		else: # if algotype == BlurType.BOX:
+			# no multi-threading
+			_fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+			# print('end of the 1st phase…', datetime.now() - time0)
+			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
 		time1 = datetime.now()
 		print('fast blur ended, total time:', time1 - time0)
 	return original
@@ -331,7 +345,7 @@ def _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv):
 		full_buffer += buffers[t]
 	return full_buffer
 
-def _blur_rows3(x, y0, y1, w, channels, radius, pixels, buffer, vmin, vmax, dv):
+def _blur_rows3(x, y0, y1, w, channels, radius, pixels, buff0, vmin, vmax, dv):
 	# print('row thread with', y0, y1, '(begin)')
 	diff = y0 * w * channels
 	for y in range(y0, y1):
@@ -350,10 +364,10 @@ def _blur_rows3(x, y0, y1, w, channels, radius, pixels, buffer, vmin, vmax, dv):
 		for x in range(0, w):
 			p1 = (y * w + vmin[x]) * channels
 			p2 = (y * w + vmax[x]) * channels
-			buffer[cur_pixel + 0] = dv[asum]
-			buffer[cur_pixel + 1] = dv[rsum]
-			buffer[cur_pixel + 2] = dv[gsum]
-			buffer[cur_pixel + 3] = dv[bsum]
+			buff0[cur_pixel + 0] = dv[asum]
+			buff0[cur_pixel + 1] = dv[rsum]
+			buff0[cur_pixel + 2] = dv[gsum]
+			buff0[cur_pixel + 3] = dv[bsum]
 			asum += pixels[p1 + 0] - pixels[p2 + 0]
 			rsum += pixels[p1 + 1] - pixels[p2 + 1]
 			gsum += pixels[p1 + 2] - pixels[p2 + 2]
@@ -364,7 +378,7 @@ def _blur_rows3(x, y0, y1, w, channels, radius, pixels, buffer, vmin, vmax, dv):
 ################################################################################
 # "only 1 thread" version ######################################################
 
-def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
 	for x in range(0, w):
 		vmin[x] = min(x + radius + 1, w - 1)
 		vmax[x] = max(x - radius, 0)
@@ -384,31 +398,31 @@ def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv
 		for x in range(0, w):
 			p1 = (y * w + vmin[x]) * channels
 			p2 = (y * w + vmax[x]) * channels
-			buffer[cur_pixel + 0] = dv[asum]
-			buffer[cur_pixel + 1] = dv[rsum]
-			buffer[cur_pixel + 2] = dv[gsum]
-			buffer[cur_pixel + 3] = dv[bsum]
+			buff0[cur_pixel + 0] = dv[asum]
+			buff0[cur_pixel + 1] = dv[rsum]
+			buff0[cur_pixel + 2] = dv[gsum]
+			buff0[cur_pixel + 3] = dv[bsum]
 			asum += pixels[p1 + 0] - pixels[p2 + 0]
 			rsum += pixels[p1 + 1] - pixels[p2 + 1]
 			gsum += pixels[p1 + 2] - pixels[p2 + 2]
 			bsum += pixels[p1 + 3] - pixels[p2 + 3]
 			cur_pixel += channels
 
-def _fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+def _fast_blur_2nd_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
 	for y in range(0, h):
 		vmin[y] = min(y + radius + 1, h - 1) * w
 		vmax[y] = max (y - radius, 0) * w
 	for x in range(0, w):
 		cur_pixel = x * channels
-		asum = radius * buffer[cur_pixel + 0]
-		rsum = radius * buffer[cur_pixel + 1]
-		gsum = radius * buffer[cur_pixel + 2]
-		bsum = radius * buffer[cur_pixel + 3]
+		asum = radius * buff0[cur_pixel + 0]
+		rsum = radius * buff0[cur_pixel + 1]
+		gsum = radius * buff0[cur_pixel + 2]
+		bsum = radius * buff0[cur_pixel + 3]
 		for i in range(0, radius+1):
-			asum += buffer[cur_pixel + 0]
-			rsum += buffer[cur_pixel + 1]
-			gsum += buffer[cur_pixel + 2]
-			bsum += buffer[cur_pixel + 3]
+			asum += buff0[cur_pixel + 0]
+			rsum += buff0[cur_pixel + 1]
+			gsum += buff0[cur_pixel + 2]
+			bsum += buff0[cur_pixel + 3]
 			cur_pixel += w * channels
 		cur_pixel = x * channels
 		for y in range(0, h):
@@ -418,10 +432,10 @@ def _fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv
 			pixels[cur_pixel + 1] = dv[rsum]
 			pixels[cur_pixel + 2] = dv[gsum]
 			pixels[cur_pixel + 3] = dv[bsum]
-			asum += buffer[p1 + 0] - buffer[p2 + 0]
-			rsum += buffer[p1 + 1] - buffer[p2 + 1]
-			gsum += buffer[p1 + 2] - buffer[p2 + 2]
-			bsum += buffer[p1 + 3] - buffer[p2 + 3]
+			asum += buff0[p1 + 0] - buff0[p2 + 0]
+			rsum += buff0[p1 + 1] - buff0[p2 + 1]
+			gsum += buff0[p1 + 2] - buff0[p2 + 2]
+			bsum += buff0[p1 + 3] - buff0[p2 + 3]
 			cur_pixel += w * channels
 
 ################################################################################
