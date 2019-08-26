@@ -179,7 +179,7 @@ class ToolTemplate():
 	############################################################################
 	# Signals handling #########################################################
 
-	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, e_x, e_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):

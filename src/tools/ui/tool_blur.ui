@@ -50,7 +50,20 @@
             <property name="tooltip_text" translatable="yes">Blur radius (pixels)</property>
           </object>
         </child>
-
+        <child>
+          <object class="GtkButton" id="preview_btn">
+            <property name="action_name">win.blur_preview</property>
+            <property name="tooltip-text" translatable="yes">Preview</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">image-x-generic-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
 
@@ -79,6 +92,12 @@
   <!-- -->
 
   <menu id="options-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Preview</attribute>
+        <attribute name="action">win.blur_preview</attribute>
+      </item>
+    </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">Cancel</attribute>

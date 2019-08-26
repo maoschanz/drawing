@@ -30,6 +30,7 @@ class ToolBlur(AbstractCanvasTool):
 		super().__init__('blur', _("Blur"), 'tool-blur-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self.apply_to_selection = False
+		self.add_tool_action_simple('blur_preview', self.on_blur_changed)
 
 	def try_build_panel(self):
 		self.panel_id = 'blur'
@@ -41,10 +42,6 @@ class ToolBlur(AbstractCanvasTool):
 		self.blur_btn.connect('activate', self.on_blur_changed)
 		# self.blur_btn.connect('value-changed', self.on_blur_changed)
 		return bar
-
-	def on_tool_selected(self, *args):
-		super().on_tool_selected()
-		self.on_blur_changed()
 
 	def get_blur_radius(self):
 		return int( self.blur_btn.get_value() )
