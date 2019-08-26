@@ -230,17 +230,14 @@ class Application(Gtk.Application):
 			self.about_dialog.destroy()
 		self.about_dialog = Gtk.AboutDialog(
 			transient_for=self.props.active_window,
-			copyright='© 2019 Romain F. T.',
-			authors=['Romain F. T.'],
+			copyright='© 2019 Romain F. T.', authors=['Romain F. T.'],
 			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
 			artists=['Tobias Bernard'],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
-			logo_icon_name=APP_ID,
-			version=str(self.version),
-			website=self.git_url,
-			website_label=_("Report bugs or ideas"))
+			logo_icon_name=APP_ID, version=str(self.version),
+			website=self.git_url, website_label=_("Report bugs or ideas"))
 		self.about_dialog.connect('response', self.widget_destroy)
 		self.about_dialog.run()
 

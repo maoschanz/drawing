@@ -66,7 +66,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 - French
 - German (thanks to [Onno Giesmann](https://github.com/Etamuk))
 - Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
-- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella ))
+- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella](https://github.com/albanobattistella))
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 
@@ -108,4 +108,6 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 - Saturate (increase or decrease saturation)
 
 ----
+
+[Donations (paypal)](https://paypal.me/maoschannz)
 
