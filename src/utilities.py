@@ -1,7 +1,7 @@
 # utilities.py
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import cairo, math
+import cairo, math, threading
 
 from .message_dialog import DrawingMessageDialog
 
@@ -251,20 +251,23 @@ def _next_arc(cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
 
 ################################################################################
 
+from datetime import datetime
+ALGO = 2
+
 def utilities_fast_blur(surface, radius, iterations):
 	radius = int(radius)
-
-	# from https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
 	if radius < 1 or iterations < 1:
 		return
-
 	w = surface.get_width()
 	h = surface.get_height()
 	channels = 4 # XXX ou 3 dans le cas de RGB256 ???
-
 	if radius > w - 1 or radius > h - 1:
 		return
 
+	# this code a modified version of this https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
+	# main differences (aside of the language) is the poor attempt to use
+	# multithreading (i'm quite sure the access to buffers for example are
+	# not safe at all)
 	original = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
 	cairo_context = cairo.Context(original)
 	# cairo_context.set_operator(cairo.Operator.SOURCE)
@@ -284,66 +287,288 @@ def utilities_fast_blur(surface, radius, iterations):
 	while iterations > 0:
 		iterations = iterations - 1
 
-		for x in range(0, w):
-			vmin[x] = min(x + radius + 1, w - 1)
-			vmax[x] = max(x - radius, 0)
-		for y in range(0, h):
-			cur_pixel = y * w * channels
-			asum = radius * pixels[cur_pixel + 0]
-			rsum = radius * pixels[cur_pixel + 1]
-			gsum = radius * pixels[cur_pixel + 2]
-			bsum = radius * pixels[cur_pixel + 3]
-			for i in range(0, radius+1):
-				asum = asum + pixels[cur_pixel + 0]
-				rsum = rsum + pixels[cur_pixel + 1]
-				gsum = gsum + pixels[cur_pixel + 2]
-				bsum = bsum + pixels[cur_pixel + 3]
-				cur_pixel = cur_pixel + channels
-			cur_pixel = y * w * channels
-			for x in range(0, w):
-				p1 = (y * w + vmin[x]) * channels
-				p2 = (y * w + vmax[x]) * channels
-				buffer[cur_pixel + 0] = dv[asum]
-				buffer[cur_pixel + 1] = dv[rsum]
-				buffer[cur_pixel + 2] = dv[gsum]
-				buffer[cur_pixel + 3] = dv[bsum]
-				asum = asum + pixels[p1 + 0] - pixels[p2 + 0]
-				rsum = rsum + pixels[p1 + 1] - pixels[p2 + 1]
-				gsum = gsum + pixels[p1 + 2] - pixels[p2 + 2]
-				bsum = bsum + pixels[p1 + 3] - pixels[p2 + 3]
-				cur_pixel += channels
+		print('ALGO:', ALGO)
+		print(w, h)
+		print('begin blur', datetime.now())
+		if ALGO == 1:
+			# 1 thread
+			# 42.9 à 46.6 = 3.7
+			# 41.3 à 45.3 = 4.0
+			# 18.9 à 22.4 = 3.5
+			_fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
+			print('new phase…', datetime.now())
+			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
+		elif ALGO == 2:
+			# 4+4 threads
+			# 2.9 à 7.5 = 4.6
+			# 49.8 à 54.4 = 4.6
+			# 56.0 à 0.5 = 4.5
+			_fast_blur_1st_phase2(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
+			print('new phase…', datetime.now())
+			_fast_blur_2nd_phase2(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
+		elif ALGO == 0:
+			# h+w threads
+			# 44.7 à 49.4 = 4.7
+			# 41.2 à 45.5 = 4.3
+			# 41.8 à 46.2 = 4.4
+			_fast_blur_1st_phase0(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
+			print('new phase…', datetime.now())
+			_fast_blur_2nd_phase0(w, h, channels, radius, pixels, buffer, vmin, vmax, dv)
+		else:
+			print('bruh moment')
+		print('blur ended', datetime.now())
 
-		for y in range(0, h):
-			vmin[y] = min(y + radius + 1, h - 1) * w
-			vmax[y] = max (y - radius, 0) * w
-		for x in range(0, w):
-			cur_pixel = x * channels
-			asum = radius * buffer[cur_pixel + 0]
-			rsum = radius * buffer[cur_pixel + 1]
-			gsum = radius * buffer[cur_pixel + 2]
-			bsum = radius * buffer[cur_pixel + 3]
-			for i in range(0, radius+1):
-				asum = asum + buffer[cur_pixel + 0]
-				rsum = rsum + buffer[cur_pixel + 1]
-				gsum = gsum + buffer[cur_pixel + 2]
-				bsum = bsum + buffer[cur_pixel + 3]
-				cur_pixel = cur_pixel + w * channels
-			cur_pixel = x * channels
-			for y in range(0, h):
-				p1 = (x + vmin[y]) * channels
-				p2 = (x + vmax[y]) * channels
-				pixels[cur_pixel + 0] = dv[asum]
-				pixels[cur_pixel + 1] = dv[rsum]
-				pixels[cur_pixel + 2] = dv[gsum]
-				pixels[cur_pixel + 3] = dv[bsum]
-				asum = asum + buffer[p1 + 0] - buffer[p2 + 0]
-				rsum = rsum + buffer[p1 + 1] - buffer[p2 + 1]
-				gsum = gsum + buffer[p1 + 2] - buffer[p2 + 2]
-				bsum = bsum + buffer[p1 + 3] - buffer[p2 + 3]
-				cur_pixel = cur_pixel + w * channels
-	# TODO
-	# commentaires explicatifs
+	# TODO add comments
 	return original
+
+################################################################################
+# "4 threads" version ##########################################################
+
+def _fast_blur_1st_phase2(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	NB_THREADS = 4
+	t1 = [None] * NB_THREADS
+	y_end = 0
+	y1 = int(h / NB_THREADS)
+	for x in range(0, w):
+		vmin[x] = min(x + radius + 1, w - 1)
+		vmax[x] = max(x - radius, 0)
+	for t in range(0, NB_THREADS):
+		y_start = y_end
+		y_end = (t+1) * y1
+		t1[t] = threading.Thread(target=_blur_rows, args=(x, y_start, y_end, \
+		                   w, channels, radius, pixels, buffer, vmin, vmax, dv))
+	for t in range(0, NB_THREADS):
+		t1[t].start()
+	# print('wait row threads')
+	for t in range(0, NB_THREADS):
+		t1[t].join()
+
+def _fast_blur_2nd_phase2(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	NB_THREADS = 4
+	t2 = [None] * NB_THREADS
+	x_end = 0
+	x1 = int(w / NB_THREADS)
+	# print('will launch col threads', datetime.now())
+	for y in range(0, h):
+		vmin[y] = min(y + radius + 1, h - 1) * w
+		vmax[y] = max (y - radius, 0) * w
+	for t in range(0, NB_THREADS):
+		x_start = x_end
+		x_end = (t+1) * x1
+		t2[t] = threading.Thread(target=_blur_cols, args=(x_start, x_end, y, \
+		                w, h, channels, radius, pixels, buffer, vmin, vmax, dv))
+	for t in range(0, NB_THREADS):
+		t2[t].start()
+	# print('wait col threads')
+	for t in range(0, NB_THREADS):
+		t2[t].join()
+
+def _blur_rows(x, y0, y1, w, channels, radius, pixels, buffer, vmin, vmax, dv):
+	# print('row thread with', y0, y1, '(begin)')
+	for y in range(y0, y1):
+		cur_pixel = y * w * channels
+		asum = radius * pixels[cur_pixel + 0]
+		rsum = radius * pixels[cur_pixel + 1]
+		gsum = radius * pixels[cur_pixel + 2]
+		bsum = radius * pixels[cur_pixel + 3]
+		for i in range(0, radius+1):
+			asum = asum + pixels[cur_pixel + 0]
+			rsum = rsum + pixels[cur_pixel + 1]
+			gsum = gsum + pixels[cur_pixel + 2]
+			bsum = bsum + pixels[cur_pixel + 3]
+			cur_pixel = cur_pixel + channels
+		cur_pixel = y * w * channels
+		for x in range(0, w):
+			p1 = (y * w + vmin[x]) * channels
+			p2 = (y * w + vmax[x]) * channels
+			buffer[cur_pixel + 0] = dv[asum]
+			buffer[cur_pixel + 1] = dv[rsum]
+			buffer[cur_pixel + 2] = dv[gsum]
+			buffer[cur_pixel + 3] = dv[bsum]
+			asum = asum + pixels[p1 + 0] - pixels[p2 + 0]
+			rsum = rsum + pixels[p1 + 1] - pixels[p2 + 1]
+			gsum = gsum + pixels[p1 + 2] - pixels[p2 + 2]
+			bsum = bsum + pixels[p1 + 3] - pixels[p2 + 3]
+			cur_pixel += channels
+	# print('row thread with', y0, y1, '(end)')
+
+def _blur_cols(x0, x1, y, w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	# print('col thread with', x0, x1, '(begin)')
+	for x in range(x0, x1):
+		cur_pixel = x * channels
+		asum = radius * buffer[cur_pixel + 0]
+		rsum = radius * buffer[cur_pixel + 1]
+		gsum = radius * buffer[cur_pixel + 2]
+		bsum = radius * buffer[cur_pixel + 3]
+		for i in range(0, radius+1):
+			asum = asum + buffer[cur_pixel + 0]
+			rsum = rsum + buffer[cur_pixel + 1]
+			gsum = gsum + buffer[cur_pixel + 2]
+			bsum = bsum + buffer[cur_pixel + 3]
+			cur_pixel = cur_pixel + w * channels
+		cur_pixel = x * channels
+		for y in range(0, h):
+			p1 = (x + vmin[y]) * channels
+			p2 = (x + vmax[y]) * channels
+			pixels[cur_pixel + 0] = dv[asum]
+			pixels[cur_pixel + 1] = dv[rsum]
+			pixels[cur_pixel + 2] = dv[gsum]
+			pixels[cur_pixel + 3] = dv[bsum]
+			asum = asum + buffer[p1 + 0] - buffer[p2 + 0]
+			rsum = rsum + buffer[p1 + 1] - buffer[p2 + 1]
+			gsum = gsum + buffer[p1 + 2] - buffer[p2 + 2]
+			bsum = bsum + buffer[p1 + 3] - buffer[p2 + 3]
+			cur_pixel = cur_pixel + w * channels
+	# print('col thread with', x0, x1, '(end)')
+
+################################################################################
+# "too much threads" version ###################################################
+
+def _fast_blur_1st_phase0(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	t1 = [None] * h
+	for x in range(0, w):
+		vmin[x] = min(x + radius + 1, w - 1)
+		vmax[x] = max(x - radius, 0)
+	for y in range(0, h):
+		t1[y] = threading.Thread(target=_blur_row, args=(x, y, w, channels, \
+			                            radius, pixels, buffer, vmin, vmax, dv))
+		t1[y].start()
+	# print('wait row threads')
+	for y in range(0, h):
+		t1[y].join()
+
+def _fast_blur_2nd_phase0(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	t2 = [None] * w
+	# print('will launch col threads', datetime.now())
+	for y in range(0, h):
+		vmin[y] = min(y + radius + 1, h - 1) * w
+		vmax[y] = max (y - radius, 0) * w
+	for x in range(0, w):
+		t2[x] = threading.Thread(target=_blur_column, args=(x, y, w, h, \
+			                  channels, radius, pixels, buffer, vmin, vmax, dv))
+		t2[x].start()
+	# print('wait col threads')
+	for x in range(0, w):
+		t2[x].join()
+
+def _blur_row(x, y, w, channels, radius, pixels, buffer, vmin, vmax, dv):
+	# print('thread row', y, 'begins')
+	cur_pixel = y * w * channels
+	asum = radius * pixels[cur_pixel + 0]
+	rsum = radius * pixels[cur_pixel + 1]
+	gsum = radius * pixels[cur_pixel + 2]
+	bsum = radius * pixels[cur_pixel + 3]
+	for i in range(0, radius+1):
+		asum = asum + pixels[cur_pixel + 0]
+		rsum = rsum + pixels[cur_pixel + 1]
+		gsum = gsum + pixels[cur_pixel + 2]
+		bsum = bsum + pixels[cur_pixel + 3]
+		cur_pixel = cur_pixel + channels
+	cur_pixel = y * w * channels
+	for x in range(0, w):
+		p1 = (y * w + vmin[x]) * channels
+		p2 = (y * w + vmax[x]) * channels
+		buffer[cur_pixel + 0] = dv[asum]
+		buffer[cur_pixel + 1] = dv[rsum]
+		buffer[cur_pixel + 2] = dv[gsum]
+		buffer[cur_pixel + 3] = dv[bsum]
+		asum = asum + pixels[p1 + 0] - pixels[p2 + 0]
+		rsum = rsum + pixels[p1 + 1] - pixels[p2 + 1]
+		gsum = gsum + pixels[p1 + 2] - pixels[p2 + 2]
+		bsum = bsum + pixels[p1 + 3] - pixels[p2 + 3]
+		cur_pixel += channels
+	# print('thread row', y, 'ends')
+
+def _blur_column(x, y, w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	# print('thread col', x, 'begins')
+	cur_pixel = x * channels
+	asum = radius * buffer[cur_pixel + 0]
+	rsum = radius * buffer[cur_pixel + 1]
+	gsum = radius * buffer[cur_pixel + 2]
+	bsum = radius * buffer[cur_pixel + 3]
+	for i in range(0, radius+1):
+		asum = asum + buffer[cur_pixel + 0]
+		rsum = rsum + buffer[cur_pixel + 1]
+		gsum = gsum + buffer[cur_pixel + 2]
+		bsum = bsum + buffer[cur_pixel + 3]
+		cur_pixel = cur_pixel + w * channels
+	cur_pixel = x * channels
+	for y in range(0, h):
+		p1 = (x + vmin[y]) * channels
+		p2 = (x + vmax[y]) * channels
+		pixels[cur_pixel + 0] = dv[asum]
+		pixels[cur_pixel + 1] = dv[rsum]
+		pixels[cur_pixel + 2] = dv[gsum]
+		pixels[cur_pixel + 3] = dv[bsum]
+		asum = asum + buffer[p1 + 0] - buffer[p2 + 0]
+		rsum = rsum + buffer[p1 + 1] - buffer[p2 + 1]
+		gsum = gsum + buffer[p1 + 2] - buffer[p2 + 2]
+		bsum = bsum + buffer[p1 + 3] - buffer[p2 + 3]
+		cur_pixel = cur_pixel + w * channels
+	# print('thread col', x, 'ends')
+
+################################################################################
+# "only 1 thread" version ######################################################
+
+def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	for x in range(0, w):
+		vmin[x] = min(x + radius + 1, w - 1)
+		vmax[x] = max(x - radius, 0)
+	for y in range(0, h):
+		cur_pixel = y * w * channels
+		asum = radius * pixels[cur_pixel + 0]
+		rsum = radius * pixels[cur_pixel + 1]
+		gsum = radius * pixels[cur_pixel + 2]
+		bsum = radius * pixels[cur_pixel + 3]
+		for i in range(0, radius+1):
+			asum = asum + pixels[cur_pixel + 0]
+			rsum = rsum + pixels[cur_pixel + 1]
+			gsum = gsum + pixels[cur_pixel + 2]
+			bsum = bsum + pixels[cur_pixel + 3]
+			cur_pixel = cur_pixel + channels
+		cur_pixel = y * w * channels
+		for x in range(0, w):
+			p1 = (y * w + vmin[x]) * channels
+			p2 = (y * w + vmax[x]) * channels
+			buffer[cur_pixel + 0] = dv[asum]
+			buffer[cur_pixel + 1] = dv[rsum]
+			buffer[cur_pixel + 2] = dv[gsum]
+			buffer[cur_pixel + 3] = dv[bsum]
+			asum = asum + pixels[p1 + 0] - pixels[p2 + 0]
+			rsum = rsum + pixels[p1 + 1] - pixels[p2 + 1]
+			gsum = gsum + pixels[p1 + 2] - pixels[p2 + 2]
+			bsum = bsum + pixels[p1 + 3] - pixels[p2 + 3]
+			cur_pixel += channels
+
+def _fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer, vmin, vmax, dv):
+	for y in range(0, h):
+		vmin[y] = min(y + radius + 1, h - 1) * w
+		vmax[y] = max (y - radius, 0) * w
+	for x in range(0, w):
+		cur_pixel = x * channels
+		asum = radius * buffer[cur_pixel + 0]
+		rsum = radius * buffer[cur_pixel + 1]
+		gsum = radius * buffer[cur_pixel + 2]
+		bsum = radius * buffer[cur_pixel + 3]
+		for i in range(0, radius+1):
+			asum = asum + buffer[cur_pixel + 0]
+			rsum = rsum + buffer[cur_pixel + 1]
+			gsum = gsum + buffer[cur_pixel + 2]
+			bsum = bsum + buffer[cur_pixel + 3]
+			cur_pixel = cur_pixel + w * channels
+		cur_pixel = x * channels
+		for y in range(0, h):
+			p1 = (x + vmin[y]) * channels
+			p2 = (x + vmax[y]) * channels
+			pixels[cur_pixel + 0] = dv[asum]
+			pixels[cur_pixel + 1] = dv[rsum]
+			pixels[cur_pixel + 2] = dv[gsum]
+			pixels[cur_pixel + 3] = dv[bsum]
+			asum = asum + buffer[p1 + 0] - buffer[p2 + 0]
+			rsum = rsum + buffer[p1 + 1] - buffer[p2 + 1]
+			gsum = gsum + buffer[p1 + 2] - buffer[p2 + 2]
+			bsum = bsum + buffer[p1 + 3] - buffer[p2 + 3]
+			cur_pixel = cur_pixel + w * channels
 
 ################################################################################
 
