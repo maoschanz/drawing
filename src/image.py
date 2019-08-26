@@ -92,6 +92,7 @@ class DrawingImage(Gtk.Box):
 		self.selection = DrawingSelectionManager(self)
 		
 		# History initialization
+		self.previous_pixbuf = None
 		self.undo_history = []
 		self.redo_history = []
 		self._is_saved = True
@@ -253,17 +254,36 @@ class DrawingImage(Gtk.Box):
 	# History management #######################################################
 
 	def try_undo(self, *args):
-		self.active_tool().cancel_ongoing_operation()
-		if len(self.undo_history) != 0:
-			self.redo_history.append(self.undo_history.pop())
 		# TODO implement operation_is_ongoing
 		# if self.window.operation_is_ongoing():
 		# 	self.active_tool().cancel_ongoing_operation()
 		# elif len(self.undo_history) != 0:
 		# 	self.redo_history.append(self.undo_history.pop())
+		self.active_tool().cancel_ongoing_operation()
+		if len(self.undo_history) != 0:
+			self.redo_history.append(self.undo_history.pop())
+		if self.previous_pixbuf is not None:
+			self.main_pixbuf = self.previous_pixbuf
+			self.previous_pixbuf = None
+			self.use_stable_pixbuf()
+			self.update()
+			self.update_history_sensitivity()
+		else:
+			self.rebuild_from_history()
 
 	def try_redo(self, *args):
-		self.undo_history.append(self.redo_history.pop())
+		operation = self.redo_history.pop()
+		self.window.tools[operation['tool_id']].apply_operation(operation)
+
+	def rebuild_from_history(self):
+		self.restore_first_pixbuf()
+		history = self.undo_history.copy()
+		self.undo_history = []
+		for op in history:
+			# print(op)
+			self.window.tools[op['tool_id']].simple_apply_operation(op)
+		self.update()
+		self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
 		can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
@@ -284,7 +304,11 @@ class DrawingImage(Gtk.Box):
 			redo_label = None
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
-	def add_operation_to_history(self, operation):
+	def add_pixbuf_to_history(self):
+		self.previous_pixbuf = self.main_pixbuf.copy()
+
+	def add_to_history(self, operation):
+		self.set_surface_as_stable_pixbuf()
 		# print('add_operation_to_history')
 		# print(operation['tool_id'])
 		# if operation['tool_id'] == 'select':
@@ -292,15 +316,6 @@ class DrawingImage(Gtk.Box):
 		# print('-----------------------------------')
 		self._is_saved = False
 		self.undo_history.append(operation)
-		self.update_history_sensitivity()
-
-	def on_tool_finished(self): # XXX malgré son nom, cette méthode est appelée
-		                        # (uniquement) par [Tool].apply_to_pixbuf
-		#self.redo_history = []
-		self.update_history_sensitivity()
-		self.update()
-		self.set_surface_as_stable_pixbuf() # XXX ici ou dans [Tool].apply_operation ?
-		self.update_actions_state()
 
 	############################################################################
 	# Misc ? ###################################################################

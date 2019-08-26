@@ -132,10 +132,16 @@ class ToolTemplate():
 		pass
 
 	def apply_operation(self, operation):
+		self.get_image().add_pixbuf_to_history()
+		self.simple_apply_operation(operation)
+		self.get_image().update_actions_state()
+		self.get_image().update_history_sensitivity()
+
+	def simple_apply_operation(self, operation):
+		"""Simpler apply_operation, for the "rebuild from history" method."""
 		self.do_tool_operation(operation)
+		self.get_image().add_to_history(operation)
 		self.non_destructive_show_modif()
-		self.apply_to_pixbuf()
-		self.get_image().add_operation_to_history(operation)
 
 	############################################################################
 	# Selection ################################################################
@@ -173,13 +179,10 @@ class ToolTemplate():
 	def restore_pixbuf(self):
 		self.get_image().use_stable_pixbuf()
 
-	def apply_to_pixbuf(self):
-		self.get_image().on_tool_finished()
-
 	############################################################################
 	# Signals handling #########################################################
 
-	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, e_x, e_y):
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		pass
 
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):

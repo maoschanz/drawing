@@ -1025,12 +1025,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_undo(self, *args):
 		self.get_active_image().try_undo()
-		self.action_rebuild()
 		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
-		self.action_rebuild()
 		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
 
 	def operation_is_ongoing(self): # TODO
@@ -1047,16 +1045,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_rebuild(self, *args): # XXX image method ?
 		"""Rebuild the image according to the history content."""
-		self.get_active_image().restore_first_pixbuf()
-		h = self.get_active_image().undo_history.copy()
-		self.get_active_image().undo_history = []
-		for op in h:
-			# print()
-			# print(op)
-			# print()
-			self.tools[op['tool_id']].apply_operation(op)
-		self.get_active_image().update()
-		self.get_active_image().update_history_sensitivity()
+		self.get_active_image().rebuild_from_history()
 
 	def update_history_actions_labels(self, undo_label, redo_label):
 		# TODO menubar
