@@ -257,8 +257,11 @@ class BlurType():
 	HORIZONTAL = 1
 	VERTICAL = 2
 	EXPERIMENTAL = 3
+	INVALID = 10
 
 def utilities_fast_blur(surface, radius, iterations, algotype):
+	if algotype == BlurType.INVALID:
+		return
 	radius = int(radius)
 	if radius < 1 or iterations < 1:
 		return

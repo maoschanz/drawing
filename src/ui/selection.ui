@@ -66,15 +66,9 @@
         <attribute name="verb-icon">tool-rotate-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Saturate</attribute>
+        <attribute name="label" translatable="yes">Apply filter</attribute>
         <attribute name="action">win.active_tool</attribute>
-        <attribute name="target">saturate</attribute>
-        <attribute name="verb-icon">tool-saturate-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Blur</attribute>
-        <attribute name="action">win.active_tool</attribute>
-        <attribute name="target">blur</attribute>
+        <attribute name="target">filters</attribute>
         <attribute name="verb-icon">tool-blur-symbolic</attribute>
       </item>
     </section>
@@ -150,10 +144,10 @@
           <attribute name="verb-icon">tool-rotate-symbolic</attribute>
         </item>
         <item>
-          <attribute name="label" translatable="yes">Saturate</attribute>
+          <attribute name="label" translatable="yes">Apply filter</attribute>
           <attribute name="action">win.active_tool</attribute>
-          <attribute name="target">saturate</attribute>
-          <attribute name="verb-icon">tool-saturate-symbolic</attribute>
+          <attribute name="target">filters</attribute>
+          <attribute name="verb-icon">tool-blur-symbolic</attribute>
         </item>
       </submenu>
     </section>
