@@ -28,11 +28,10 @@ from .tool_picker import ToolPicker
 from .tool_shape import ToolShape
 from .tool_text import ToolText
 
-from .tool_blur import ToolBlur
 from .tool_crop import ToolCrop
 from .tool_matrix import ToolMatrix
+from .tool_filters import ToolFilters
 from .tool_rotate import ToolRotate
-from .tool_saturate import ToolSaturate
 from .tool_scale import ToolScale
 
 from .rect_select import ToolRectSelect
@@ -123,8 +122,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.load_tool('crop', ToolCrop, disabled_tools_ids, dev)
 		self.load_tool('scale', ToolScale, disabled_tools_ids, dev)
 		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)
-		self.load_tool('saturate', ToolSaturate, disabled_tools_ids, dev)
-		self.load_tool('blur', ToolBlur, disabled_tools_ids, dev)
+		self.load_tool('filters', ToolFilters, disabled_tools_ids, dev)
 
 		# Side panel buttons for tools, and their menu-items if they don't exist
 		self.build_tool_rows()
@@ -167,8 +165,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_menubar_tools_menu(self):
 		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
 		drawing_tools_section = self.get_menubar_item([[True, 4], [False, 1]])
-		path_description = [[True, 4], [False, 2], [True, 0], [False, 0]]
-		canvas_tools_section = self.get_menubar_item(path_description)
+		canvas_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
 		for tool_id in self.tools:
 			if self.tools[tool_id].menu_id == 0:
 				self.tools[tool_id].add_item_to_menu(drawing_tools_section)
