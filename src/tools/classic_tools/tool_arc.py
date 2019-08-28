@@ -10,7 +10,7 @@ class ToolArc(AbstractClassicTool):
 	__gtype_name__ = 'ToolArc'
 
 	def __init__(self, window, **kwargs):
-		super().__init__('arc', _("Arc"), 'tool-arc-symbolic', window)
+		super().__init__('arc', _("Curve"), 'tool-arc-symbolic', window)
 		self.use_size = True
 
 		self.add_tool_action_enum('line_shape', 'round')
@@ -35,7 +35,7 @@ class ToolArc(AbstractClassicTool):
 			self.selected_shape_label = _("Round")
 
 	def get_options_label(self):
-		return _("Arc options")
+		return _("Curve options")
 
 	def get_edition_status(self): # TODO l'opérateur est important
 		self.use_dashes = self.get_option_value('use_dashes')

@@ -65,8 +65,8 @@ class ToolTemplate():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		path = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
-		builder = Gtk.Builder.new_from_resource(path)
+		fpath = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
+		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 
 	def get_options_widget(self):

@@ -32,7 +32,6 @@ def main(version):
 ################################################################################
 
 class Application(Gtk.Application):
-	about_dialog = None
 	shortcuts_window = None
 	prefs_window = None
 
@@ -45,7 +44,6 @@ class Application(Gtk.Application):
 		GLib.set_application_name('Drawing') # XXX drawing ?
 		GLib.set_prgname(APP_ID)
 		self.version = version
-		self.git_url = 'https://github.com/maoschanz/drawing'
 		self.has_tools_in_menubar = False
 
 		self.connect('startup', self.on_startup)
@@ -178,7 +176,8 @@ class Application(Gtk.Application):
 	def on_report(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
 		win = self.props.active_window
-		Gtk.show_uri_on_window(win, self.git_url + '/issues/new', Gdk.CURRENT_TIME)
+		url = 'https://github.com/maoschanz/drawing/issues/new'
+		Gtk.show_uri_on_window(win, url, Gdk.CURRENT_TIME)
 
 	def on_shortcuts(self, *args):
 		"""Action callback, showing the "shortcuts" dialog."""
@@ -226,10 +225,7 @@ class Application(Gtk.Application):
 
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
-		if self.about_dialog is not None:
-			self.about_dialog.destroy()
-		self.about_dialog = Gtk.AboutDialog(
-			transient_for=self.props.active_window,
+		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
 			copyright='© 2019 Romain F. T.', authors=['Romain F. T.'],
 			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
@@ -237,12 +233,10 @@ class Application(Gtk.Application):
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self.version),
-			website=self.git_url, website_label=_("Report bugs or ideas"))
-		self.about_dialog.connect('response', self.widget_destroy)
-		self.about_dialog.run()
-
-	def widget_destroy(self, widget, button):
-		widget.destroy()
+			website='https://maoschanz.github.io/drawing/',
+			website_label=_("Official webpage"))
+		about_dialog.run()
+		about_dialog.destroy()
 
 	def on_quit(self, *args):
 		"""Action callback, quitting the app."""

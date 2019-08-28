@@ -305,7 +305,8 @@ class DrawingImage(Gtk.Box):
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_pixbuf_to_history(self):
-		self.previous_pixbuf = self.main_pixbuf.copy()
+		# self.previous_pixbuf = self.main_pixbuf.copy()
+		pass # TODO
 
 	def add_to_history(self, operation):
 		self.set_surface_as_stable_pixbuf()
