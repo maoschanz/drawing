@@ -104,8 +104,7 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 - Crop (remark: the previewed picture isn't at the actual scale)
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
-- Blur
-- Saturate (increase or decrease saturation)
+- Filters (blur, increase or decrease saturation, invert colors, pixelate)
 
 ----
 
