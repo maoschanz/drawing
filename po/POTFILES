@@ -25,31 +25,24 @@ src/utilities.py
 src/window.py
 
 src/tools/ui/tool_arc.ui
-src/tools/ui/tool_blur.ui
-src/tools/ui/tool_circle.ui
 src/tools/ui/tool_crop.ui
-src/tools/ui/tool_freeshape.ui
+src/tools/ui/tool_filters.ui
 src/tools/ui/tool_line.ui
 src/tools/ui/tool_paint.ui
 src/tools/ui/tool_pencil.ui
-src/tools/ui/tool_polygon.ui
-src/tools/ui/tool_rectangle.ui
 src/tools/ui/tool_rotate.ui
-src/tools/ui/tool_saturate.ui
 src/tools/ui/tool_scale.ui
+src/tools/ui/tool_shape.ui
 src/tools/ui/tool_text.ui
 
 src/tools/abstract_tool.py
 
 src/tools/classic_tools/tool_arc.py
-src/tools/classic_tools/tool_circle.py
-src/tools/classic_tools/tool_freeshape.py
 src/tools/classic_tools/tool_line.py
 src/tools/classic_tools/tool_paint.py
-src/tools/classic_tools/tool_polygon.py
 src/tools/classic_tools/tool_pencil.py
 src/tools/classic_tools/tool_picker.py
-src/tools/classic_tools/tool_rectangle.py
+src/tools/classic_tools/tool_shape.py
 src/tools/classic_tools/tool_text.py
 
 src/tools/selection_tools/abstract_select.py
@@ -57,8 +50,7 @@ src/tools/selection_tools/color_select.py
 src/tools/selection_tools/free_select.py
 src/tools/selection_tools/rect_select.py
 
-src/tools/canvas_tools/tool_blur.py
 src/tools/canvas_tools/tool_crop.py
+src/tools/canvas_tools/tool_filters.py
 src/tools/canvas_tools/tool_rotate.py
-src/tools/canvas_tools/tool_saturate.py
 src/tools/canvas_tools/tool_scale.py
