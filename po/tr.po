@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-29 01:34+0200\n"
-"PO-Revision-Date: 2019-08-19 10:03+0300\n"
+"PO-Revision-Date: 2019-08-29 14:01+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -72,17 +72,25 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, ..."
 msgstr ""
+"Fırça, çizgi veya yay (çeşitli seçeneklerle), seçim (kes/kopyala/yapıştır/"
+"sürükle/…), şekiller (dikdörtgen, daire, çokgen,…), metin ekleme gibi "
+"araçlarla resim çizmenize veya düzenlemenize olanak sağlar. yeniden "
+"boyutlandırma, kırpma, döndürme, ..."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"Sürüm 0.4.3 yeni çeviriler içermektedir ve Ubuntu 18.04 LTS gibi daha eski "
+"dağıtımlarla uyumludur."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:43
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"Sürüm 0.4.2, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
+"içermektedir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:49
 msgid ""
@@ -91,6 +99,10 @@ msgid ""
 "image from the clipboard content, a smoother pencil, and various new "
 "translations."
 msgstr ""
+"Sürüm 0.4 yeni bir simge, sayısız hata düzeltmesi, \"eski\" ve \"yalnızca "
+"araç çubuğu\" düzenleri için geliştirilmiş bir araç çubuğu, pano içeriğinden "
+"görüntü oluşturmak için bir eylem, daha yumuşak bir fırça ve çeşitli yeni "
+"çeviriler sunar."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:57
 msgid "First stable release, including a few basic tools."
@@ -174,14 +186,12 @@ msgid "Print"
 msgstr "Yazdır"
 
 #: src/ui/app-menus.ui:109
-#, fuzzy
 msgid "Close Image"
-msgstr "Yeni Görüntü"
+msgstr "Görüntüyü Kapat"
 
 #: src/ui/app-menus.ui:114
-#, fuzzy
 msgid "Close Window"
-msgstr "Yeni Pencere"
+msgstr "Pencereyi Kapat"
 
 #: src/ui/app-menus.ui:119 src/ui/shortcuts.ui:65
 msgid "Quit all windows"
@@ -303,11 +313,11 @@ msgstr "Araç adlarını göster"
 #: src/ui/app-menus.ui:277 src/ui/shortcuts.ui:37 src/ui/win-menus.ui:61
 #: src/ui/win-menus.ui:122
 msgid "Fullscreen"
-msgstr ""
+msgstr "Tam ekran"
 
 #: src/ui/app-menus.ui:281 src/ui/app-menus.ui:398 src/ui/shortcuts.ui:44
 msgid "Exit fullscreen"
-msgstr ""
+msgstr "Tam ekrandan çık"
 
 #: src/ui/app-menus.ui:288
 msgid "_Colors"
@@ -385,7 +395,7 @@ msgstr "Aç"
 
 #: src/ui/minimap.ui:72 src/preferences.py:87
 msgid "100%"
-msgstr ""
+msgstr "%100"
 
 #: src/ui/panel_classic.ui:61 src/ui/panel_classic.ui:76
 msgid "Tool size"
@@ -482,9 +492,8 @@ msgid "Rotate"
 msgstr "Döndür"
 
 #: src/ui/selection.ui:69 src/ui/selection.ui:147
-#, fuzzy
 msgid "Apply a filter"
-msgstr "Bir dosya aç"
+msgstr "Süzgeci uygula"
 
 #: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:367
 msgid "Open As New Image"
@@ -499,9 +508,8 @@ msgid "Flip"
 msgstr "Çevir"
 
 #: src/ui/selection.ui:302
-#, fuzzy
 msgid "More actions"
-msgstr "Seçenek yok"
+msgstr "Daha fazla eylem"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
@@ -560,7 +568,6 @@ msgid "Edit the secondary color (right click)"
 msgstr "İkincil rengi düzenle (sağ tıkla)"
 
 #: src/ui/shortcuts.ui:245 src/preferences.py:75
-#, fuzzy
 msgid "Zoom"
 msgstr "Yakınlaştır"
 
@@ -625,7 +632,7 @@ msgstr "GNOME masaüstü ortamı için çizim uygulaması."
 
 #: src/main.py:237
 msgid "Official webpage"
-msgstr ""
+msgstr "Resmi sayfa"
 
 #: src/main.py:279
 #, python-format
@@ -650,24 +657,23 @@ msgstr "Öntanımlı arka plan"
 
 #: src/preferences.py:79
 msgid "Ctrl + Scroll"
-msgstr ""
+msgstr "Ctrl + Scroll"
 
 #: src/preferences.py:80
 msgid "Scroll"
-msgstr ""
+msgstr "Kaydırma"
 
 #: src/preferences.py:83
 msgid "Action to zoom"
-msgstr ""
+msgstr "Yakınlaştırmak için eylem"
 
 #: src/preferences.py:91
-#, fuzzy
 msgid "Default zoom"
-msgstr "Öntanımlı genişlik"
+msgstr "Öntanımlı yakınlaştırma"
 
 #: src/preferences.py:98
 msgid "Appearance"
-msgstr ""
+msgstr "Görünüm"
 
 #: src/preferences.py:104
 msgid "Use big icons"
@@ -675,7 +681,7 @@ msgstr "Büyük simgeler kullan"
 
 #: src/preferences.py:107
 msgid "Additional tools"
-msgstr ""
+msgstr "Ek araçlar"
 
 #: src/preferences.py:113 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -805,12 +811,12 @@ msgstr ""
 #: src/window.py:152
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Araç yüklenemedi: %s"
 
 #. XXX broken if a new image is opened
 #: src/window.py:617
 msgid "Middle click to get controls, press 'Escape' to exit."
-msgstr ""
+msgstr "Kontrolleri almak için orta tıklayın, çıkmak için 'Esc'ye basın."
 
 #: src/window.py:791
 #, python-format
@@ -840,14 +846,13 @@ msgid "Open a picture"
 msgstr "Bir resim aç"
 
 #: src/window.py:840
-#, fuzzy
 msgid "these files"
-msgstr "Kaydedilmemiş dosya"
+msgstr "bu dosyalar"
 
 #: src/window.py:841
-#, fuzzy, python-format
+#, python-format
 msgid "What do you want to do with %s?"
-msgstr "Nerede açmak istiyorsunuz %s?"
+msgstr "%s ile ne yapmak istersin?"
 
 #: src/window.py:891 src/window.py:922
 msgid "Untitled"
@@ -919,7 +924,7 @@ msgstr "Klasik"
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
 #: src/tools/canvas_tools/tool_filters.py:75
 msgid "Blur"
-msgstr ""
+msgstr "Bulanıklık"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41
@@ -944,9 +949,8 @@ msgid "Apply"
 msgstr "Onayla"
 
 #: src/tools/ui/tool_filters.ui:57 src/tools/canvas_tools/tool_filters.py:92
-#, fuzzy
 msgid "Select a filter…"
-msgstr "Tümünü seç"
+msgstr "Bir süzgeç seç…"
 
 #: src/tools/ui/tool_filters.ui:74 src/tools/ui/tool_filters.ui:82
 msgid "Saturation (%)"
@@ -954,35 +958,31 @@ msgstr "Doygunluk (%)"
 
 #: src/tools/ui/tool_filters.ui:88
 msgid "Radius"
-msgstr ""
+msgstr "Yarıçap"
 
 #: src/tools/ui/tool_filters.ui:96
 msgid "Blur radius (pixels)"
-msgstr ""
+msgstr "Bulanıklık yarıçapı (piksel)"
 
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:84
-#, fuzzy
 msgid "Saturation"
-msgstr "Doygunluk (%)"
+msgstr "Doygunluk"
 
 #: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:87
-#, fuzzy
 msgid "Pixelisation"
-msgstr "Konum"
+msgstr "Pikselleme"
 
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:90
-#, fuzzy
 msgid "Invert colors"
-msgstr "Renkleri değiş"
+msgstr "Renkleri ters çevir"
 
 #: src/tools/ui/tool_filters.ui:185 src/tools/canvas_tools/tool_filters.py:78
-#, fuzzy
 msgid "Horizontal blur"
-msgstr "Yatay çevir"
+msgstr "Yatay bulanıklık"
 
 #: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:81
 msgid "Vertical blur"
-msgstr ""
+msgstr "Dikey bulanıklık"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
@@ -1019,7 +1019,7 @@ msgstr "Açı (derece)"
 
 #: src/tools/ui/tool_rotate.ui:47
 msgid "Angle"
-msgstr ""
+msgstr "Açı"
 
 #: src/tools/ui/tool_rotate.ui:80 src/tools/ui/tool_rotate.ui:176
 msgid "Rotate left"
@@ -1110,12 +1110,11 @@ msgstr "İkincil renk gölge"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Curve"
-msgstr ""
+msgstr "Kavis"
 
 #: src/tools/classic_tools/tool_arc.py:38
-#, fuzzy
 msgid "Curve options"
-msgstr "Daire seçenekleri"
+msgstr "Kavis seçenekleri"
 
 #: src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_arc.py:51
@@ -1159,7 +1158,7 @@ msgstr "Biçim seçenekleri"
 
 #: src/tools/classic_tools/tool_shape.py:69
 msgid "Click on the shape's first point to close it."
-msgstr ""
+msgstr "Kapatmak için şeklin ilk noktasına tıklayın."
 
 #: src/tools/classic_tools/tool_text.py:12
 msgid "Text"
@@ -1191,7 +1190,7 @@ msgstr "Tuvali kırp"
 
 #: src/tools/canvas_tools/tool_filters.py:30
 msgid "Filters"
-msgstr ""
+msgstr "Süzgeçler"
 
 #: src/tools/canvas_tools/tool_rotate.py:51
 msgid "Rotating the selection"
