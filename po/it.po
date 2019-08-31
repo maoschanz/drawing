@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-29 01:34+0200\n"
-"PO-Revision-Date: 2019-08-06 21:15+0200\n"
+"PO-Revision-Date: 2019-08-31 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -72,17 +72,23 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, ..."
 msgstr ""
+"Ti permette di disegnare o modificare immagini con strumenti come matita, linea o"
+"arco (con varie opzioni), selezione (taglia/copia/incolla/trascina/ ...), forme"
+"rotazione, ..."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"La versione 0.4.3 include nuove traduzioni ed è compatibile con le versioni precedenti"
+"distribuzioni come Ubuntu 18.04 LTS."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:43
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"La versione 0.4.2 presenta diverse correzioni di bug minori e varie nuove traduzioni. "
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:49
 msgid ""
@@ -91,6 +97,11 @@ msgid ""
 "image from the clipboard content, a smoother pencil, and various new "
 "translations."
 msgstr ""
+"La versione 0.4 introduce una nuova icona, numerose correzioni di errori, una barra degli strumenti migliorata"
+"per i layout\"legacy\"e\" solo barra degli strumenti\", un'azione per la creazione di un"
+"immagine dal contenuto degli appunti, una matita più liscia e varie nuove"
+"traduzioni"
+
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:57
 msgid "First stable release, including a few basic tools."
@@ -303,11 +314,11 @@ msgstr "Mostra i nomi degli strumenti"
 #: src/ui/app-menus.ui:277 src/ui/shortcuts.ui:37 src/ui/win-menus.ui:61
 #: src/ui/win-menus.ui:122
 msgid "Fullscreen"
-msgstr ""
+msgstr "Schero Intero"
 
 #: src/ui/app-menus.ui:281 src/ui/app-menus.ui:398 src/ui/shortcuts.ui:44
 msgid "Exit fullscreen"
-msgstr ""
+msgstr "Uscire da Schermo Intero"
 
 #: src/ui/app-menus.ui:288
 msgid "_Colors"
@@ -385,7 +396,7 @@ msgstr "Apri"
 
 #: src/ui/minimap.ui:72 src/preferences.py:87
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/panel_classic.ui:61 src/ui/panel_classic.ui:76
 msgid "Tool size"
@@ -586,7 +597,7 @@ msgstr "Dagli Appunti"
 
 #: src/ui/win-menus.ui:159
 msgid "Troubleshoot selection"
-msgstr ""
+msgstr "Risolvere i problemi di selezione""
 
 #: src/headerbar.py:103
 #, python-format
@@ -625,7 +636,7 @@ msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
 
 #: src/main.py:237
 msgid "Official webpage"
-msgstr ""
+msgstr "Pagina Web ufficiale"
 
 #: src/main.py:279
 #, python-format
@@ -658,7 +669,7 @@ msgstr ""
 
 #: src/preferences.py:83
 msgid "Action to zoom"
-msgstr ""
+msgstr "Azione per lo zoom"
 
 #: src/preferences.py:91
 #, fuzzy
@@ -667,7 +678,7 @@ msgstr "Larghezza standard"
 
 #: src/preferences.py:98
 msgid "Appearance"
-msgstr ""
+msgstr "Aspetto"
 
 #: src/preferences.py:104
 msgid "Use big icons"
@@ -731,7 +742,7 @@ msgstr "Solo la barra strumenti"
 #. "symbolic" means the icons are in black or white.
 #: src/preferences.py:151
 msgid "Toolbar (symbolic)"
-msgstr ""
+msgstr "Barra degli strumenti (simbolica)"
 
 #: src/preferences.py:156
 msgid "Layout"
@@ -805,7 +816,7 @@ msgstr ""
 #: src/window.py:152
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Strumento di caricamento non riuscito: %s"
 
 #. XXX broken if a new image is opened
 #: src/window.py:617
@@ -954,11 +965,11 @@ msgstr "Saturazione (%)"
 
 #: src/tools/ui/tool_filters.ui:88
 msgid "Radius"
-msgstr ""
+msgstr "Raggio"
 
 #: src/tools/ui/tool_filters.ui:96
 msgid "Blur radius (pixels)"
-msgstr ""
+msgstr "Raggio di sfocatura (pixel)"
 
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:84
 #, fuzzy
@@ -982,7 +993,7 @@ msgstr "Ribalta orizzontalmente"
 
 #: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:81
 msgid "Vertical blur"
-msgstr ""
+msgstr "Sfocatura verticale"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
@@ -1019,7 +1030,7 @@ msgstr "Angolo (gradi)"
 
 #: src/tools/ui/tool_rotate.ui:47
 msgid "Angle"
-msgstr ""
+msgstr "Angolo"
 
 #: src/tools/ui/tool_rotate.ui:80 src/tools/ui/tool_rotate.ui:176
 msgid "Rotate left"
@@ -1110,12 +1121,12 @@ msgstr "Ombra di colore secondaria"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Curve"
-msgstr ""
+msgstr "Curva"
 
 #: src/tools/classic_tools/tool_arc.py:38
 #, fuzzy
 msgid "Curve options"
-msgstr "Opzioni cerchio"
+msgstr "Opzioni di curva"
 
 #: src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_arc.py:51
@@ -1191,7 +1202,7 @@ msgstr "Ritaglia la tela"
 
 #: src/tools/canvas_tools/tool_filters.py:30
 msgid "Filters"
-msgstr ""
+msgstr "Filtri"
 
 #: src/tools/canvas_tools/tool_rotate.py:51
 msgid "Rotating the selection"
