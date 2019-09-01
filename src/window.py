@@ -649,7 +649,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_icon_size_changed(self, *args):
 		for tool_id in self.tools:
-			image = self.tools[tool_id].update_icon_size()
+			self.tools[tool_id].update_icon_size()
 
 	def set_tools_labels_visibility(self, visible):
 		"""Change the way tools are displayed in the side panel. Visible labels
