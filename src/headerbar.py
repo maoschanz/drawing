@@ -93,6 +93,9 @@ class DrawingAdaptativeHeaderBar():
 		self.new_btn.set_visible(not state)
 		self.is_narrow = state
 
+	def toggle_menu(self):
+		self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
+
 	def set_undo_label(self, label):
 		if label is None:
 			self.undo_btn.set_tooltip_text(_("Undo"))

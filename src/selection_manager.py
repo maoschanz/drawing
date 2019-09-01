@@ -82,9 +82,16 @@ class DrawingSelectionManager():
 			print(self.selection_x, xmin, self.selection_y, ymin)
 
 		# Actually store the pixbuf
-		self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
-		               int(xmin), int(ymin), int(xmax - xmin), int(ymax - ymin))
-		# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
+		selection_width = int(xmax - xmin)
+		selection_height = int(ymax - ymin)
+		if selection_width > 0 and selection_height > 0:
+			print('⇒ load pixbuf')
+			self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
+			            int(xmin), int(ymin), selection_width, selection_height)
+			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
+			# avec un try except déjà ce serait pas mal
+		else:
+			self.reset()
 		self.image.update_actions_state()
 
 	def set_coords(self, temp_too, x, y):
@@ -240,7 +247,8 @@ class DrawingSelectionManager():
 		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
 		x = max(0, min(x, self.image.drawing_area.get_allocated_width()))
 		y = max(0, min(y, self.image.drawing_area.get_allocated_height()))
-		[rectangle.x, rectangle.y] = [x, y]
+		rectangle.x = x
+		rectangle.y = y
 		rectangle.height = 1
 		rectangle.width = 1
 		self.l_popover.set_pointing_to(rectangle)

@@ -52,8 +52,8 @@ class ToolTemplate():
 	############################################################################
 	# UI #######################################################################
 
-	def show_error(self, text):
-		self.window.prompt_message(True, text)
+	def show_error(self, error_text):
+		self.window.prompt_message(True, error_text)
 
 	def show_panel(self, visibility):
 		if self.implements_panel:
@@ -66,8 +66,8 @@ class ToolTemplate():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		path = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
-		builder = Gtk.Builder.new_from_resource(path)
+		fpath = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
+		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 
 	def get_options_widget(self):
@@ -98,6 +98,14 @@ class ToolTemplate():
 		box.add(self.label_widget)
 		self.row.add(box)
 		self.row.show_all()
+
+	def update_icon_size(self):
+		image = self.row.get_children()[0].get_children()[0]
+		if self.window._settings.get_boolean('big-icons'):
+			size = Gtk.IconSize.LARGE_TOOLBAR
+		else:
+			size = Gtk.IconSize.SMALL_TOOLBAR
+		image.set_from_icon_name(self.icon_name, size)
 
 	def adapt_to_window_size(self, available_width):
 		pass

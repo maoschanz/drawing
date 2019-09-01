@@ -134,6 +134,7 @@
     <!--   </item> -->
     <!-- </section> -->
     <section>
+    <!-- <attribute name="label" translatable="yes">Development features</attribute> -->
       <item>
         <attribute name="label" translatable="yes">Refresh</attribute>
         <attribute name="action">win.restore_pixbuf</attribute>
@@ -144,8 +145,6 @@
         <attribute name="action">win.rebuild_from_histo</attribute>
         <attribute name="hidden-when">action-missing</attribute>
       </item>
-    </section>
-    <section>
       <item>
         <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
         <attribute name="action">win.get_values</attribute>

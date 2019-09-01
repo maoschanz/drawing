@@ -126,8 +126,8 @@ class ToolText(ToolTemplate):
 
 	def has_current_text(self):
 		self.text_string = self.entry.get_buffer().get_text( \
-		    self.entry.get_buffer().get_start_iter(), \
-		    self.entry.get_buffer().get_end_iter(), False)
+		                             self.entry.get_buffer().get_start_iter(), \
+		                          self.entry.get_buffer().get_end_iter(), False)
 		if self.text_string == '':
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()

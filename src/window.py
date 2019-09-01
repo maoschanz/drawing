@@ -90,7 +90,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app = kwargs['application']
 
 		self.header_bar = None
-		self.main_menu_btn = None
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -122,40 +121,30 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
-		disabled_tools_id = self._settings.get_strv('disabled-tools')
+		disabled_tools_ids = self._settings.get_strv('disabled-tools')
+		dev = self._settings.get_boolean('devel-only')
 		self.tools = {}
-		self.tools['pencil'] = ToolPencil(self)
-		self.tools['select'] = ToolSelect(self) # TODO
-		# self.tools['rectselect'] = ToolRectSelect(self)
-		# self.tools['freeselect'] = ToolFreeSelect(self)
-		# if 'colorselect' not in disabled_tools_id:
-		# 	self.tools['colorselect'] = ToolColorSelect(self)
-		self.tools['text'] = ToolText(self)
-		if 'picker' not in disabled_tools_id:
-			self.tools['picker'] = ToolPicker(self)
-		if 'paint' not in disabled_tools_id:
-			self.tools['paint'] = ToolPaint(self)
-		self.tools['line'] = ToolLine(self)
-		self.tools['arc'] = ToolArc(self)
-		self.tools['rectangle'] = ToolRectangle(self)
-		self.tools['circle'] = ToolCircle(self)
-		if 'polygon' not in disabled_tools_id:
-			self.tools['polygon'] = ToolPolygon(self)
-		self.tools['freeshape'] = ToolFreeshape(self)
-		if self._settings.get_boolean('devel-only'):
-			self.tools['experiment'] = ToolExperiment(self)
-		self.tools['crop'] = ToolCrop(self)
-		self.tools['scale'] = ToolScale(self)
-		self.tools['rotate'] = ToolRotate(self)
-		if 'flip' not in disabled_tools_id:
-			self.tools['flip'] = ToolFlip(self)
-		if 'saturate' not in disabled_tools_id:
-			self.tools['saturate'] = ToolSaturate(self)
+		self.load_tool('pencil', ToolPencil, disabled_tools_ids, dev)
+		self.load_tool('select', ToolSelect, disabled_tools_ids, dev)
+		self.load_tool('text', ToolText, disabled_tools_ids, dev)
+		self.load_tool('picker', ToolPicker, disabled_tools_ids, dev)
+		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
+		self.load_tool('line', ToolLine, disabled_tools_ids, dev)
+		self.load_tool('arc', ToolArc, disabled_tools_ids, dev)
+		self.load_tool('rectangle', ToolRectangle, disabled_tools_ids, dev)
+		self.load_tool('circle', ToolCircle, disabled_tools_ids, dev)
+		self.load_tool('polygon', ToolPolygon, disabled_tools_ids, dev)
+		self.load_tool('freeshape', ToolFreeshape, disabled_tools_ids, dev)
+		if dev:
+			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
+		self.load_tool('crop', ToolCrop, disabled_tools_ids, dev)
+		self.load_tool('scale', ToolScale, disabled_tools_ids, dev)
+		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)
+		self.load_tool('flip', ToolFlip, disabled_tools_ids, dev)
+		self.load_tool('saturate', ToolSaturate, disabled_tools_ids, dev)
 
-		# Buttons for tools (in the side panel and the selection tool action bar)
+		# Side panel buttons for tools, and their menu-items if they don't exist
 		self.build_tool_rows()
-
-		# Global menubar
 		if not self.app.has_tools_in_menubar:
 			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
 			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
@@ -179,6 +168,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.enable_tool(tool_id)
 		else:
 			self.active_tool().row.set_active(True)
+
+	def load_tool(self, tool_id, tool_class, disabled_tools_ids, dev):
+		"""Given its id and its python class, this method tries to load a tool,
+		and show an error message if the tool initialization failed."""
+		if dev: # Simplest way to get an error stack
+			self.tools[tool_id] = tool_class(self)
+		elif tool_id not in disabled_tools_ids:
+			try:
+				self.tools[tool_id] = tool_class(self)
+			except:
+				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
@@ -279,6 +279,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_btn.connect('toggled', self.update_option_label)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self._settings.connect('changed::decorations', self.on_layout_changed)
+		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
 	def add_action_simple(self, action_name, callback, shortcuts):
@@ -313,11 +314,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def add_all_win_actions(self):
 		"""This doesn't add all window-wide GioActions, but only the GioActions
 		which are here "by default", independently of any tool."""
-
-		# TODO ??
-		# action = Gio.PropertyAction.new('main_menu', self.main_menu_btn, 'active')
-		# self.window.add_action(action)
-		# self.window.app.set_accels_for_action('win.main_menu', ['F10'])
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
@@ -485,7 +481,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.build_headerbar(True)
 			self.set_titlebar(self.header_bar.header_bar)
 			self.set_show_menubar(False)
-			# self.minimap_btn.set_border_width(6) # XXX faisable mais bof, et il faudrait l'annuler pour les autres
 		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
 			self.set_titlebar(self.header_bar.header_bar)
@@ -540,8 +535,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.header_bar = DrawingAdaptativeHeaderBar(is_eos)
 
 	def action_main_menu(self, *args):
-		if self.main_menu_btn is not None:
-			self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
+		if self.header_bar is not None:
+			self.header_bar.toggle_menu()
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
@@ -611,6 +606,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	############################################################################
 	# TOOLS PANEL ##############################################################
+
+	def on_icon_size_changed(self, *args):
+		for tool_id in self.tools:
+			self.tools[tool_id].update_icon_size()
 
 	def build_tool_rows(self):
 		"""Adds each tool's button to the side panel, or to the selection's
@@ -875,6 +874,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# SELECTION MANAGEMENT #####################################################
 
 	def action_getvalues(self, *args):
+		"""Development only"""
 		self.get_active_image().selection.print_values()
 
 	def action_select_all(self, *args):
