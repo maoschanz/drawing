@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 19:26+0200\n"
+"POT-Creation-Date: 2019-09-02 01:12+0200\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:164
-#: src/window.py:426
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:162
+#: src/window.py:422
 msgid "Drawing"
 msgstr "Dessin"
 
@@ -39,7 +39,7 @@ msgstr "Paint;Croquis;Crayon;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:736
+#: src/window.py:735
 msgid "New Window"
 msgstr "Nouvelle fenêtre"
 
@@ -78,20 +78,27 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
+"Version 0.4.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.4.4 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:35
+msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
 "La version 0.4.3 inclut de nouvelles traductions, et est compatible avec des "
 "distributions plus anciennes telles que Ubuntu 18.04 LTS."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:35
+#: data/com.github.maoschanz.drawing.appdata.xml.in:41
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "La version 0.4.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
 "nouvelles traductions."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:41
+#: data/com.github.maoschanz.drawing.appdata.xml.in:47
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -103,33 +110,33 @@ msgstr ""
 "action pour créer une image à partir d'une image contenue dans le presse-"
 "papier, et quelques nouvelles traductions."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:49
+#: data/com.github.maoschanz.drawing.appdata.xml.in:55
 msgid "First stable release, including a few basic tools."
 msgstr "Première version basique, incluant quelques outils basiques."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:61
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:76
-#: src/ui/win-menus.ui:161 src/preferences.py:46
+#: src/ui/win-menus.ui:160 src/preferences.py:46
 msgid "Preferences"
 msgstr "Préférences"
 
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:348 src/ui/win-menus.ui:82
-#: src/ui/win-menus.ui:167 src/ui/win-menus.ui:220
+#: src/ui/win-menus.ui:166 src/ui/win-menus.ui:219
 msgid "Report a bug"
 msgstr "Reporter un bug"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:341 src/ui/shortcuts.ui:37
-#: src/ui/win-menus.ui:87 src/ui/win-menus.ui:172 src/ui/win-menus.ui:213
+#: src/ui/win-menus.ui:87 src/ui/win-menus.ui:171 src/ui/win-menus.ui:212
 msgid "Shortcuts"
 msgstr "Raccourcis clavier"
 
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:44 src/ui/toolbar.ui:171
-#: src/ui/toolbar.ui:172 src/ui/win-menus.ui:92 src/ui/win-menus.ui:177
+#: src/ui/toolbar.ui:172 src/ui/win-menus.ui:92 src/ui/win-menus.ui:176
 msgid "Help"
 msgstr "Aide"
 
@@ -164,7 +171,7 @@ msgstr "Ouvrir une image"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:810 src/window.py:855
+#: src/ui/toolbar.ui:119 src/window.py:809 src/window.py:854
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -193,13 +200,13 @@ msgstr "É_dition"
 
 #: src/ui/app-menus.ui:110 src/ui/headerbar.ui:51 src/ui/headerbar_eos.ui:90
 #: src/ui/shortcuts.ui:119 src/ui/toolbar.ui:76 src/ui/toolbar.ui:77
-#: src/headerbar.py:98
+#: src/headerbar.py:101
 msgid "Undo"
 msgstr "Annuler"
 
 #: src/ui/app-menus.ui:115 src/ui/headerbar.ui:77 src/ui/headerbar_eos.ui:120
 #: src/ui/shortcuts.ui:126 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
-#: src/headerbar.py:104
+#: src/headerbar.py:107
 msgid "Redo"
 msgstr "Rétablir"
 
@@ -265,11 +272,11 @@ msgstr "Augmenter le zoom"
 msgid "Show the preview"
 msgstr "Montrer l'aperçu"
 
-#: src/ui/app-menus.ui:215 src/ui/win-menus.ui:138
+#: src/ui/app-menus.ui:215 src/ui/win-menus.ui:139
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: src/ui/app-menus.ui:221 src/ui/win-menus.ui:143
+#: src/ui/app-menus.ui:221 src/ui/win-menus.ui:144
 msgid "Rebuild from history"
 msgstr "Reconstruire depuis l'historique"
 
@@ -294,7 +301,7 @@ msgid "Go Right"
 msgstr "Aller à droite"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
-#: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:157
+#: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:156
 #: src/preferences.py:87
 msgid "Show tools names"
 msgstr "Afficher le nom des outils"
@@ -331,7 +338,7 @@ msgstr "_Canevas"
 msgid "Previous tool"
 msgstr "Outil précédent"
 
-#: src/ui/app-menus.ui:308 src/window.py:1048 src/window.py:1051
+#: src/ui/app-menus.ui:308 src/window.py:1038 src/window.py:1041
 msgid "_Options"
 msgstr "_Options"
 
@@ -351,24 +358,24 @@ msgstr "_Aide"
 msgid "Index"
 msgstr "Sommaire"
 
-#: src/ui/app-menus.ui:360 src/ui/win-menus.ui:191
+#: src/ui/app-menus.ui:360 src/ui/win-menus.ui:190
 msgid "Basic help"
 msgstr "Aide basique"
 
-#: src/ui/app-menus.ui:365 src/ui/win-menus.ui:196
+#: src/ui/app-menus.ui:365 src/ui/win-menus.ui:195
 msgid "Help about tools"
 msgstr "Aide sur les outils"
 
-#: src/ui/app-menus.ui:370 src/ui/win-menus.ui:201
+#: src/ui/app-menus.ui:370 src/ui/win-menus.ui:200
 msgid "Canvas and selection"
 msgstr "Canevas et sélection"
 
-#: src/ui/app-menus.ui:375 src/ui/win-menus.ui:206
+#: src/ui/app-menus.ui:375 src/ui/win-menus.ui:205
 msgid "Help about selection"
 msgstr "Aide sur la sélection"
 
-#: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:180
-#: src/ui/win-menus.ui:225
+#: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:179
+#: src/ui/win-menus.ui:224
 msgid "About Drawing"
 msgstr "À propos de Dessin"
 
@@ -381,7 +388,7 @@ msgid "Use this editor by default"
 msgstr "Utiliser cet éditeur par défaut"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:757
+#: src/window.py:756
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -550,7 +557,7 @@ msgstr "Taille de l'outil"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:468 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:192 src/window.py:464 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Pas d'options"
 
@@ -568,72 +575,77 @@ msgstr "À partir de la sélection"
 msgid "From Clipboard"
 msgstr "À partir du presse-papier"
 
-#: src/ui/win-menus.ui:150
+#: src/ui/win-menus.ui:149
 msgid "Troubleshoot selection"
 msgstr "Débuggage de la sélection"
 
-#: src/main.py:59
+#: src/main.py:57
 msgid "Print the version and display the 'about' dialog"
 msgstr "Afficher la version et le dialogue 'à propos'"
 
-#: src/main.py:62
+#: src/main.py:60
 msgid "Open a new window"
 msgstr "Ouvrir une nouvelle fenêtre"
 
-#: src/main.py:64
+#: src/main.py:62
 msgid "Open a new tab"
 msgstr "Ouvrir un nouvel onglet"
 
-#: src/main.py:66
+#: src/main.py:64
 msgid "Edit the clipboard content"
 msgstr "Éditer le contenu du presse-papier"
 
 #. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
-#: src/main.py:265
+#: src/main.py:260
 msgid "translator-credits"
 msgstr "Romain F. T."
 
-#: src/main.py:267
+#: src/main.py:262
 msgid "A drawing application for the GNOME desktop."
 msgstr "Une application de dessin pour le bureau GNOME."
 
-#: src/main.py:272
-msgid "Report bugs or ideas"
-msgstr "Rapporter des bugs ou des idées"
+#: src/main.py:266
+msgid "Official webpage"
+msgstr ""
 
-#: src/main.py:324
+#: src/main.py:315
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Erreur à l'ouverture de ce fichier. Vouliez-vous faire %s ?"
 
-#: src/window.py:729
+#: src/window.py:181
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr ""
+
+#: src/window.py:728
 #, python-format
 msgid "Loading %s"
 msgstr "Chargement de %s"
 
-#: src/window.py:735
+#: src/window.py:734
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
-#: src/window.py:737
+#: src/window.py:736
 msgid "Discard changes"
 msgstr "Abandonner les modifications"
 
-#: src/window.py:739 src/window.py:811
+#: src/window.py:738 src/window.py:810
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Il y a des modifications non-enregistrées à %s."
 
-#: src/window.py:741
+#: src/window.py:740
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Où souhaitez-vous ouvrir %s ?"
 
-#: src/window.py:756
+#: src/window.py:755
 msgid "Open a picture"
 msgstr "Ouvrir une image"
 
-#: src/window.py:757 src/window.py:809 src/window.py:855 src/window.py:918
+#: src/window.py:756 src/window.py:808 src/window.py:854 src/window.py:918
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -643,36 +655,36 @@ msgstr "Ouvrir une image"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/window.py:801 src/window.py:857
+#: src/window.py:800 src/window.py:856
 msgid "Untitled"
 msgstr "Sans titre"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:803
+#: src/window.py:802
 msgid "this picture"
 msgstr "cette image"
 
-#: src/window.py:808
+#: src/window.py:807
 msgid "Discard"
 msgstr "Abandonner"
 
-#: src/window.py:829
+#: src/window.py:828
 msgid "All pictures"
 msgstr "Toutes les images"
 
-#: src/window.py:835
+#: src/window.py:834
 msgid "PNG images"
 msgstr "Images PNG"
 
-#: src/window.py:839
+#: src/window.py:838
 msgid "JPEG images"
 msgstr "Images JPEG"
 
-#: src/window.py:843
+#: src/window.py:842
 msgid "BMP images"
 msgstr "Images BMP"
 
-#: src/window.py:854
+#: src/window.py:853
 msgid "Save picture as…"
 msgstr "Enregistrer l'image sous…"
 
@@ -680,12 +692,12 @@ msgstr "Enregistrer l'image sous…"
 msgid "Import a picture"
 msgstr "Importer une image"
 
-#: src/headerbar.py:100
+#: src/headerbar.py:103
 #, python-format
 msgid "Undo %s"
 msgstr "Annuler %s"
 
-#: src/headerbar.py:106
+#: src/headerbar.py:109
 #, python-format
 msgid "Redo %s"
 msgstr "Rétablir %s"
@@ -1136,11 +1148,11 @@ msgstr "Faites glisser la sélection ou faites un clic-droit sur le canevas"
 msgid "Select an area or right-click on the canvas"
 msgstr "Sélectionner une zone ou faites un clic-droit sur le canevas"
 
-#: src/tools/canvas_tools/tool_crop.py:53
+#: src/tools/canvas_tools/tool_crop.py:55
 msgid "Cropping the selection"
 msgstr "Recadrer la sélection"
 
-#: src/tools/canvas_tools/tool_crop.py:55
+#: src/tools/canvas_tools/tool_crop.py:57
 msgid "Cropping the canvas"
 msgstr "Recadrer le canevas"
 
@@ -1159,6 +1171,9 @@ msgstr "Redimensionner la sélection"
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
+
+#~ msgid "Report bugs or ideas"
+#~ msgstr "Rapporter des bugs ou des idées"
 
 #~ msgid "Modifications will take effect in the next new window."
 #~ msgstr ""

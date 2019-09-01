@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 19:26+0200\n"
+"POT-Creation-Date: 2019-09-02 01:12+0200\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
 "Last-Translator: Antonio HaureN <haurenburu@protonmail.com>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
@@ -19,8 +19,8 @@ msgstr ""
 "X-Generator: Gtranslator 3.32.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:164
-#: src/window.py:426
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:162
+#: src/window.py:422
 msgid "Drawing"
 msgstr "Drawing"
 
@@ -40,7 +40,7 @@ msgstr "Pintura;Esboço;Lapis;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:736
+#: src/window.py:735
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -72,53 +72,70 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, ..."
 msgstr ""
+"Deixa você desenhar ou editar imagens com ferramentas como lápis, linha ou "
+"arco (com diversas opções), seleção (corta/copia/cola/arrasta/…), formas "
+"(retângulo, circulo, polígono, …), inserir texto, redimensionar, aparar, "
+"rotacionar, ..."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
+msgid ""
+"Version 0.4.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"A versão 0.4.4 apresenta diversas correções de erros e várias traduções."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:35
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"A versão 0.4.3 inclúi novas traduções, e é compatível com distribuições "
+"antigas como o Ubuntu 18.04 LTS."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:35
+#: data/com.github.maoschanz.drawing.appdata.xml.in:41
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"A versão 0.4.2 apresenta diversas correções de erros e várias traduções."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:41
+#: data/com.github.maoschanz.drawing.appdata.xml.in:47
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
 "image from the clipboard content, a smoother pencil, and various new "
 "translations."
 msgstr ""
+"A versão 0.4 chega com um novo ícone, inúmeras correções, uma barra de "
+"ferramentas  melhorada para os leiautes \"tradicional\" e \"somente barra"
+"\" , a possibilidade de criar imagens do conteúdo da área de transferência, "
+"um lápis melhorado e diversas novas traduções."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:49
+#: data/com.github.maoschanz.drawing.appdata.xml.in:55
 msgid "First stable release, including a few basic tools."
 msgstr "Primeira versão estável, incluindo ferramentas básicas"
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:61
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:169 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:159 src/ui/toolbar.ui:160 src/ui/win-menus.ui:76
-#: src/ui/win-menus.ui:161 src/preferences.py:46
+#: src/ui/win-menus.ui:160 src/preferences.py:46
 msgid "Preferences"
 msgstr "Preferências"
 
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:348 src/ui/win-menus.ui:82
-#: src/ui/win-menus.ui:167 src/ui/win-menus.ui:220
+#: src/ui/win-menus.ui:166 src/ui/win-menus.ui:219
 msgid "Report a bug"
 msgstr "Reportar um bug"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:341 src/ui/shortcuts.ui:37
-#: src/ui/win-menus.ui:87 src/ui/win-menus.ui:172 src/ui/win-menus.ui:213
+#: src/ui/win-menus.ui:87 src/ui/win-menus.ui:171 src/ui/win-menus.ui:212
 msgid "Shortcuts"
 msgstr "Atalhos"
 
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:44 src/ui/toolbar.ui:171
-#: src/ui/toolbar.ui:172 src/ui/win-menus.ui:92 src/ui/win-menus.ui:177
+#: src/ui/toolbar.ui:172 src/ui/win-menus.ui:92 src/ui/win-menus.ui:176
 msgid "Help"
 msgstr "Ajuda"
 
@@ -153,7 +170,7 @@ msgstr "Abrir uma imagem"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:810 src/window.py:855
+#: src/ui/toolbar.ui:119 src/window.py:809 src/window.py:854
 msgid "Save"
 msgstr "Salvar"
 
@@ -182,13 +199,13 @@ msgstr "_Editar"
 
 #: src/ui/app-menus.ui:110 src/ui/headerbar.ui:51 src/ui/headerbar_eos.ui:90
 #: src/ui/shortcuts.ui:119 src/ui/toolbar.ui:76 src/ui/toolbar.ui:77
-#: src/headerbar.py:98
+#: src/headerbar.py:101
 msgid "Undo"
 msgstr "Desfazer"
 
 #: src/ui/app-menus.ui:115 src/ui/headerbar.ui:77 src/ui/headerbar_eos.ui:120
 #: src/ui/shortcuts.ui:126 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
-#: src/headerbar.py:104
+#: src/headerbar.py:107
 msgid "Redo"
 msgstr "Refazer"
 
@@ -255,11 +272,11 @@ msgstr "Aumentar zoom"
 msgid "Show the preview"
 msgstr "Mostrar preview"
 
-#: src/ui/app-menus.ui:215 src/ui/win-menus.ui:138
+#: src/ui/app-menus.ui:215 src/ui/win-menus.ui:139
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: src/ui/app-menus.ui:221 src/ui/win-menus.ui:143
+#: src/ui/app-menus.ui:221 src/ui/win-menus.ui:144
 msgid "Rebuild from history"
 msgstr "Refazer do histórico"
 
@@ -284,7 +301,7 @@ msgid "Go Right"
 msgstr "Ir para direita"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
-#: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:157
+#: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:156
 #: src/preferences.py:87
 msgid "Show tools names"
 msgstr "Mostrar nome das ferramentas"
@@ -321,7 +338,7 @@ msgstr "_Tela"
 msgid "Previous tool"
 msgstr "Ferramenta anterior"
 
-#: src/ui/app-menus.ui:308 src/window.py:1048 src/window.py:1051
+#: src/ui/app-menus.ui:308 src/window.py:1038 src/window.py:1041
 msgid "_Options"
 msgstr "_Opcoes"
 
@@ -341,24 +358,24 @@ msgstr "_Ajuda"
 msgid "Index"
 msgstr "Índice"
 
-#: src/ui/app-menus.ui:360 src/ui/win-menus.ui:191
+#: src/ui/app-menus.ui:360 src/ui/win-menus.ui:190
 msgid "Basic help"
 msgstr "Ajuda básica"
 
-#: src/ui/app-menus.ui:365 src/ui/win-menus.ui:196
+#: src/ui/app-menus.ui:365 src/ui/win-menus.ui:195
 msgid "Help about tools"
 msgstr "Ajuda sobre as ferramentas"
 
-#: src/ui/app-menus.ui:370 src/ui/win-menus.ui:201
+#: src/ui/app-menus.ui:370 src/ui/win-menus.ui:200
 msgid "Canvas and selection"
 msgstr "Tela e seleção"
 
-#: src/ui/app-menus.ui:375 src/ui/win-menus.ui:206
+#: src/ui/app-menus.ui:375 src/ui/win-menus.ui:205
 msgid "Help about selection"
 msgstr "Ajuda sobre seleção"
 
-#: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:180
-#: src/ui/win-menus.ui:225
+#: src/ui/app-menus.ui:382 src/ui/win-menus.ui:95 src/ui/win-menus.ui:179
+#: src/ui/win-menus.ui:224
 msgid "About Drawing"
 msgstr "Sobre o drawing"
 
@@ -371,7 +388,7 @@ msgid "Use this editor by default"
 msgstr "Usar esse editor por padrao"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:757
+#: src/window.py:756
 msgid "Open"
 msgstr "Abrir"
 
@@ -540,7 +557,7 @@ msgstr "Ferramenta de tamanho"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:468 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:192 src/window.py:464 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Sem opções"
 
@@ -558,72 +575,77 @@ msgstr "Da seleção"
 msgid "From Clipboard"
 msgstr "Do clipboard"
 
-#: src/ui/win-menus.ui:150
+#: src/ui/win-menus.ui:149
 msgid "Troubleshoot selection"
 msgstr "Resolver problemas de seleção"
 
-#: src/main.py:59
+#: src/main.py:57
 msgid "Print the version and display the 'about' dialog"
 msgstr "Mostrar versao e a janela 'sobre'"
 
-#: src/main.py:62
+#: src/main.py:60
 msgid "Open a new window"
 msgstr "Abrir uma nova janela"
 
-#: src/main.py:64
+#: src/main.py:62
 msgid "Open a new tab"
 msgstr "Abrir uma nova aba"
 
-#: src/main.py:66
+#: src/main.py:64
 msgid "Edit the clipboard content"
 msgstr "Editar conteúdo do clipboard"
 
 #. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
-#: src/main.py:265
+#: src/main.py:260
 msgid "translator-credits"
 msgstr "Antonio HaureN"
 
-#: src/main.py:267
+#: src/main.py:262
 msgid "A drawing application for the GNOME desktop."
 msgstr "Uma aplicacao de desenho para o ambiente GNOME"
 
-#: src/main.py:272
-msgid "Report bugs or ideas"
-msgstr "Reportar bugs ou ideias"
+#: src/main.py:266
+msgid "Official webpage"
+msgstr ""
 
-#: src/main.py:324
+#: src/main.py:315
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Erro ao abrir este arquivo. Você quis dizer %s ?"
 
-#: src/window.py:729
+#: src/window.py:181
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr ""
+
+#: src/window.py:728
 #, python-format
 msgid "Loading %s"
 msgstr "Carregando %s"
 
-#: src/window.py:735
+#: src/window.py:734
 msgid "New Tab"
 msgstr "Nova aba"
 
-#: src/window.py:737
+#: src/window.py:736
 msgid "Discard changes"
 msgstr "Discartar alterações"
 
-#: src/window.py:739 src/window.py:811
+#: src/window.py:738 src/window.py:810
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Há mudancas não salvas em %s."
 
-#: src/window.py:741
+#: src/window.py:740
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Onde voce quer abrir %s?"
 
-#: src/window.py:756
+#: src/window.py:755
 msgid "Open a picture"
 msgstr "Abrir uma imagem"
 
-#: src/window.py:757 src/window.py:809 src/window.py:855 src/window.py:918
+#: src/window.py:756 src/window.py:808 src/window.py:854 src/window.py:918
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -633,36 +655,36 @@ msgstr "Abrir uma imagem"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/window.py:801 src/window.py:857
+#: src/window.py:800 src/window.py:856
 msgid "Untitled"
 msgstr "Sem título"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:803
+#: src/window.py:802
 msgid "this picture"
 msgstr "Essa imagem"
 
-#: src/window.py:808
+#: src/window.py:807
 msgid "Discard"
 msgstr "Discartar"
 
-#: src/window.py:829
+#: src/window.py:828
 msgid "All pictures"
 msgstr "Todas as imagens"
 
-#: src/window.py:835
+#: src/window.py:834
 msgid "PNG images"
 msgstr "Imagens PNG"
 
-#: src/window.py:839
+#: src/window.py:838
 msgid "JPEG images"
 msgstr "Imagens JPEG"
 
-#: src/window.py:843
+#: src/window.py:842
 msgid "BMP images"
 msgstr "Imagens BMP"
 
-#: src/window.py:854
+#: src/window.py:853
 msgid "Save picture as…"
 msgstr "Salvar imagem como…"
 
@@ -670,12 +692,12 @@ msgstr "Salvar imagem como…"
 msgid "Import a picture"
 msgstr "Importar uma imagem"
 
-#: src/headerbar.py:100
+#: src/headerbar.py:103
 #, python-format
 msgid "Undo %s"
 msgstr "Desfazer %s"
 
-#: src/headerbar.py:106
+#: src/headerbar.py:109
 #, python-format
 msgid "Redo %s"
 msgstr "Refazer %s"
@@ -1126,11 +1148,11 @@ msgstr "Arraste a seleção ou o botão direito na tela"
 msgid "Select an area or right-click on the canvas"
 msgstr "Selecione uma área ou botão direito na tela"
 
-#: src/tools/canvas_tools/tool_crop.py:53
+#: src/tools/canvas_tools/tool_crop.py:55
 msgid "Cropping the selection"
 msgstr "Recortar a seleção"
 
-#: src/tools/canvas_tools/tool_crop.py:55
+#: src/tools/canvas_tools/tool_crop.py:57
 msgid "Cropping the canvas"
 msgstr "Recortar a tela"
 
@@ -1149,6 +1171,9 @@ msgstr "Redimencionar a seleção"
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
 msgstr "Redimencionar a tela"
+
+#~ msgid "Report bugs or ideas"
+#~ msgstr "Reportar bugs ou ideias"
 
 #~ msgid "Pencil (with various options)"
 #~ msgstr "Lápis (Com varias opções)"
