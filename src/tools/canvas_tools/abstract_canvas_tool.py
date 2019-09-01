@@ -50,7 +50,7 @@ class AbstractCanvasTool(ToolTemplate):
 		self.restore_pixbuf()
 		operation = self.build_operation()
 		self.apply_operation(operation)
-		self.window.force_selection()
+		self.window.back_to_previous()
 
 	def apply_operation(self, operation):
 		operation['is_preview'] = False
