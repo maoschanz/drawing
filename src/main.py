@@ -229,7 +229,7 @@ class Application(Gtk.Application):
 			copyright='© 2019 Romain F. T.', authors=['Romain F. T.'],
 			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
-			artists=['Tobias Bernard'],
+			artists=['Tobias Bernard', 'Romain F. T.'],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self.version),

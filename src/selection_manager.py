@@ -33,7 +33,7 @@ class DrawingSelectionManager():
 		self.l_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_l)
 
 	def init_pixbuf(self):
-		print('⇒ init pixbuf')
+		# print('⇒ init pixbuf')
 		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
 
 		self.set_coords(True, 0, 0)
@@ -58,8 +58,10 @@ class DrawingSelectionManager():
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.new_path()
 		cairo_context.append_path(self.selection_path)
-		if self.temp_path is None: # XXX condition utile??
+		if self.temp_path is None: # XXX condition utile?? on dirait bien
 			self._set_temp_path(cairo_context.copy_path())
+		# else:
+		# 	print('selection manager ligne 63')
 		cairo_context.fill()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
@@ -86,7 +88,7 @@ class DrawingSelectionManager():
 		selection_width = int(xmax - xmin)
 		selection_height = int(ymax - ymin)
 		if selection_width > 0 and selection_height > 0:
-			print('⇒ load pixbuf')
+			# print('⇒ load pixbuf')
 			self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
 			            int(xmin), int(ymin), selection_width, selection_height)
 			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
@@ -106,7 +108,7 @@ class DrawingSelectionManager():
 		if use_import_param:
 			self.is_imported_data = is_imported_data
 		self.temp_path = None
-		print('⇒ set pixbuf')
+		# print('⇒ set pixbuf')
 		self.selection_pixbuf = pixbuf
 		self._create_path_from_pixbuf(not self.is_imported_data)
 
@@ -114,7 +116,7 @@ class DrawingSelectionManager():
 		return self.selection_pixbuf
 
 	def reset(self):
-		print('⇒ reset pixbuf')
+		# print('⇒ reset pixbuf')
 		self.selection_pixbuf = None
 		self.selection_path = None
 		self.set_coords(True, 0, 0)
@@ -129,7 +131,6 @@ class DrawingSelectionManager():
 		if self.temp_path is None:
 			return
 		if not self.is_active:
-			self.image.window.prompt_message(True, "delete_temp called while `is_active` is False")
 			return
 		cairo_context = cairo.Context(self.image.get_surface())
 		cairo_context.new_path()
@@ -194,10 +195,10 @@ class DrawingSelectionManager():
 		self.image.update_actions_state()
 		# self.image.window.get_selection_tool().update_surface() # XXX non, boucle infinie
 
-	def _set_temp_path(self, path):
+	def _set_temp_path(self, new_path):
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
-		self.temp_path = path
+		self.temp_path = new_path
 		self.is_active = True
 
 	def point_is_in_selection(self, tested_x, tested_y):

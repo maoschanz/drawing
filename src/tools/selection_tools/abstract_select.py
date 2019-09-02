@@ -34,8 +34,8 @@ class AbstractSelectionTool(ToolTemplate):
 		return label
 
 	def get_options_model(self):
-		path = '/com/github/maoschanz/drawing/ui/selection.ui'
-		builder = Gtk.Builder.new_from_resource(path)
+		fpath = '/com/github/maoschanz/drawing/ui/selection.ui'
+		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 
 	def adapt_to_window_size(self, available_width):
@@ -112,8 +112,7 @@ class AbstractSelectionTool(ToolTemplate):
 		if self.behavior == 'define':
 			self.motion_define(event_x, event_y)
 		elif self.behavior == 'drag':
-			# self.drag_to(event_x, event_y)
-			pass # on modifie réellement les coordonnées, c'est pas une "vraie" preview
+			self.preview_drag_to(event_x, event_y)
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		x = event.x + self.get_image().scroll_x
@@ -155,6 +154,9 @@ class AbstractSelectionTool(ToolTemplate):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 		self.operation_type = 'op-define'
+
+	def preview_drag_to(self, event_x, event_y):
+		pass # TODO
 
 	############################################################################
 	# Path management ##########################################################
@@ -284,7 +286,7 @@ class AbstractSelectionTool(ToolTemplate):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		print(operation['operation_type'])
+		# print('operation_type', operation['operation_type'])
 		if operation['operation_type'] == 'op-delete':
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > couper" ou "clic-droit > supprimer".

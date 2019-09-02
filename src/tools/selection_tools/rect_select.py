@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_select import AbstractSelectionTool
+from .utilities import utilities_show_overlay_on_context
 
 class ToolRectSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolRectSelect'
@@ -16,10 +17,9 @@ class ToolRectSelect(AbstractSelectionTool):
 
 	def motion_define(self, event_x, event_y):
 		self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
-		operation = self.build_operation()
-		self.do_tool_operation(operation) # FIXME ça pousse à load race de
-		# trucs inutiles vers le selection manager alors qu'on veut juste
-		# dessiner un path
+		self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		utilities_show_overlay_on_context(cairo_context, self.future_path, True)
 
 	def release_define(self, surface, event_x, event_y):
 		self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
