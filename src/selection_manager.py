@@ -80,9 +80,10 @@ class DrawingSelectionManager():
 		ymax = min(ymax, main_height)
 		xmin = int( max(xmin, 0.0) ) # If everything is right, this is selection_x
 		ymin = int( max(ymin, 0.0) ) # If everything is right, this is selection_y
-		if self.selection_x != xmin or self.selection_y != ymin:
-			self.image.window.prompt_message(True, "assertion failed, incoherent coords")
-			print(self.selection_x, xmin, self.selection_y, ymin)
+		if self.selection_x < 0:
+			xmin = self.selection_x
+		if self.selection_y < 0:
+			ymin = self.selection_y
 
 		# Actually store the pixbuf
 		selection_width = int(xmax - xmin)
