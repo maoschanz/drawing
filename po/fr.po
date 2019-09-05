@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 21:49+0200\n"
+"POT-Creation-Date: 2019-09-05 23:30+0200\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -75,6 +75,14 @@ msgstr ""
 "crayon, trait ou arc (avec diverses options), sélection (couper/copier/"
 "coller/déplacer…), formes (rectangle, cercle, polygone, …), insertion de "
 "texte, redimensionnement, recadrage, rotation, ..."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:37
+#, fuzzy
+msgid ""
+"Version 0.4.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.4.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:43
 msgid ""
@@ -447,14 +455,14 @@ msgid "Add transparency"
 msgstr "Ajouter de la transparence"
 
 #: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
-#: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
-#: src/tools/ui/tool_scale.ui:78
+#: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:56
+#: src/tools/ui/tool_scale.ui:64
 msgid "Width"
 msgstr "Largeur"
 
 #: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:82
-#: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:97
-#: src/tools/ui/tool_scale.ui:105
+#: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:83
+#: src/tools/ui/tool_scale.ui:91
 msgid "Height"
 msgstr "Hauteur"
 
@@ -506,7 +514,7 @@ msgstr "Éditer"
 msgid "Flip"
 msgstr "Retourner"
 
-#: src/ui/selection.ui:302
+#: src/ui/selection.ui:302 src/tools/ui/tool_rotate.ui:64
 msgid "More actions"
 msgstr "Plus d'options"
 
@@ -787,8 +795,8 @@ msgstr "Images BMP"
 #: src/window.py:920 src/window.py:983 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:28
 #: src/tools/ui/tool_filters.ui:204 src/tools/ui/tool_rotate.ui:20
-#: src/tools/ui/tool_rotate.ui:203 src/tools/ui/tool_scale.ui:27
-#: src/tools/ui/tool_scale.ui:144 src/tools/ui/tool_text.ui:32
+#: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
+#: src/tools/ui/tool_scale.ui:163 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -943,8 +951,8 @@ msgstr "Différence"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:130
 #: src/tools/ui/tool_filters.ui:106 src/tools/ui/tool_filters.ui:208
-#: src/tools/ui/tool_rotate.ui:151 src/tools/ui/tool_rotate.ui:207
-#: src/tools/ui/tool_scale.ui:117 src/tools/ui/tool_scale.ui:148
+#: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
+#: src/tools/ui/tool_scale.ui:118 src/tools/ui/tool_scale.ui:167
 msgid "Apply"
 msgstr "Appliquer"
 
@@ -1021,25 +1029,38 @@ msgstr "Angle (degrés)"
 msgid "Angle"
 msgstr "Angle"
 
-#: src/tools/ui/tool_rotate.ui:81 src/tools/ui/tool_rotate.ui:177
+#: src/tools/ui/tool_rotate.ui:82 src/tools/ui/tool_rotate.ui:178
 msgid "Rotate left"
 msgstr "Pivoter à gauche"
 
-#: src/tools/ui/tool_rotate.ui:95 src/tools/ui/tool_rotate.ui:182
+#: src/tools/ui/tool_rotate.ui:96 src/tools/ui/tool_rotate.ui:183
 msgid "Rotate right"
 msgstr "Pivoter à droite"
 
-#: src/tools/ui/tool_rotate.ui:116 src/tools/ui/tool_rotate.ui:190
+#: src/tools/ui/tool_rotate.ui:117 src/tools/ui/tool_rotate.ui:191
 msgid "Flip horizontally"
 msgstr "Retourner horizontalement"
 
-#: src/tools/ui/tool_rotate.ui:130 src/tools/ui/tool_rotate.ui:195
+#: src/tools/ui/tool_rotate.ui:131 src/tools/ui/tool_rotate.ui:196
 msgid "Flip vertically"
 msgstr "Retourner verticalement"
 
-#: src/tools/ui/tool_scale.ui:51
+#: src/tools/ui/tool_scale.ui:99
+#, fuzzy
+msgid "More options"
+msgstr "Plus d'options"
+
+#: src/tools/ui/tool_scale.ui:143
 msgid "Keep proportions"
 msgstr "Conserver les proportions"
+
+#: src/tools/ui/tool_scale.ui:150
+msgid "Allow horizontal deformations"
+msgstr ""
+
+#: src/tools/ui/tool_scale.ui:155
+msgid "Allow vertical deformations"
+msgstr ""
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:46
 msgid "Rectangle"
@@ -1200,11 +1221,11 @@ msgstr "Pivoter la sélection"
 msgid "Rotating the canvas"
 msgstr "Pivoter le canevas"
 
-#: src/tools/canvas_tools/tool_scale.py:52
+#: src/tools/canvas_tools/tool_scale.py:53
 msgid "Scaling the selection"
 msgstr "Redimensionner la sélection"
 
-#: src/tools/canvas_tools/tool_scale.py:54
+#: src/tools/canvas_tools/tool_scale.py:55
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
 
