@@ -32,6 +32,9 @@ class ToolScale(AbstractCanvasTool):
 		self.keep_proportions = False
 		self.x_press = 0
 		self.y_press = 0
+		self.add_tool_action_boolean('scale-proportions', True)
+		# self.add_tool_action_boolean('scale-deformation-h', False) # TODO
+		# self.add_tool_action_boolean('scale-deformation-v', False) # TODO
 
 	def try_build_panel(self):
 		self.panel_id = 'scale'
@@ -41,10 +44,8 @@ class ToolScale(AbstractCanvasTool):
 		bar = ScaleToolPanel(self.window, self)
 		self.width_btn = bar.width_btn
 		self.height_btn = bar.height_btn
-		self.proportions_btn = bar.proportions_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
-		self.proportions_btn.connect('toggled', self.set_keep_proportions)
 		return bar
 
 	def get_edition_status(self):
@@ -55,32 +56,36 @@ class ToolScale(AbstractCanvasTool):
 
 	############################################################################
 
-	def set_keep_proportions(self, *args):
-		self.keep_proportions = self.proportions_btn.get_active()
+	def try_set_keep_proportions(self, *args):
+		# XXX this shit is a clue that this tool is not enough operation-ish
+		if self.keep_proportions == self.get_option_value('scale-proportions'):
+			return
+		self.keep_proportions = self.get_option_value('scale-proportions')
 		if self.keep_proportions:
 			self.proportion = self.get_width()/self.get_height()
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
-		self.keep_proportions = False
 		if self.apply_to_selection:
-			w = self.get_selection_pixbuf().get_width()
-			h = self.get_selection_pixbuf().get_height()
+			width = self.get_selection_pixbuf().get_width()
+			height = self.get_selection_pixbuf().get_height()
 		else:
-			w = self.get_image().get_pixbuf_width()
-			h = self.get_image().get_pixbuf_height()
-		self.width_btn.set_value(w)
-		self.height_btn.set_value(h)
-		self.keep_proportions = self.proportions_btn.get_active()
-		self.proportion = w/h
+			width = self.get_image().get_pixbuf_width()
+			height = self.get_image().get_pixbuf_height()
+		self.keep_proportions = self.get_option_value('scale-proportions')
+		self.proportion = width/height
+		self.width_btn.set_value(width)
+		self.height_btn.set_value(height)
 
 	def on_width_changed(self, *args):
+		self.try_set_keep_proportions()
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
 		self.update_temp_pixbuf()
 
 	def on_height_changed(self, *args):
+		self.try_set_keep_proportions()
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
@@ -142,12 +147,20 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 		# way if it's applied to the selection
 		self.scale_tool = scale_tool
 		builder = self.build_ui('tools/ui/tool_scale.ui')
+
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')
 		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
 		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
 
-		self.proportions_btn = builder.get_object('proportions_btn')
+		self.width_label = builder.get_object('width_label')
+		self.height_label = builder.get_object('height_label')
+
+		self.separator = builder.get_object('separator')
+		self.options_btn = builder.get_object('options_btn')
+
+	def toggle_options_menu(self):
+		self.options_btn.set_active(not self.options_btn.get_active())
 
 	def init_adaptability(self):
 		super().init_adaptability()
@@ -162,6 +175,9 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+		self.width_label.set_visible(not state)
+		self.height_label.set_visible(not state)
+		self.separator.set_visible(not state)
 
 		# if self.scale_tool.apply_to_selection:
 		# 	self.???.set_visible(state)

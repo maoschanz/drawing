@@ -47,26 +47,12 @@
         <property name="orientation">horizontal</property>
 
         <child>
-          <object class="GtkCheckButton" id="proportions_btn">
-            <property name="label" translatable="yes">Keep proportions</property>
-            <property name="active">True</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-          </object>
-        </child>
-
-        <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="spacing">10</property>
             <property name="orientation">horizontal</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="width_label">
                 <property name="label" translatable="yes">Width</property>
                 <property name="visible">True</property>
               </object>
@@ -82,7 +68,7 @@
         </child>
 
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkSeparator" id="separator">
             <property name="visible">True</property>
           </object>
         </child>
@@ -93,7 +79,7 @@
             <property name="spacing">10</property>
             <property name="orientation">horizontal</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="height_label">
                 <property name="label" translatable="yes">Height</property>
                 <property name="visible">True</property>
               </object>
@@ -103,6 +89,21 @@
                 <property name="visible">True</property>
                 <property name="adjustment">adj_height</property>
                 <property name="tooltip_text" translatable="yes">Height</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkMenuButton" id="options_btn">
+            <property name="tooltip-text" translatable="yes">More options</property>
+            <property name="menu-model">actions-menu</property>
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">view-more-symbolic</property>
+                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -136,9 +137,27 @@
   <!-- -->
 
   <menu id="options-menu">
-    <!-- <section> -->
-    <!--   TODO keep proportions or not -->
-    <!-- </section> -->
+    <section id="actions-menu">
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Keep proportions</attribute>
+          <attribute name="action">win.scale-proportions</attribute>
+          <!-- <attribute name="verb-icon">-symbolic</attribute> -->
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Allow horizontal deformations</attribute>
+          <attribute name="action">win.scale-deformation-h</attribute>
+          <!-- <attribute name="verb-icon">-symbolic</attribute> -->
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Allow vertical deformations</attribute>
+          <attribute name="action">win.scale-deformation-v</attribute>
+          <!-- <attribute name="verb-icon">-symbolic</attribute> -->
+        </item>
+      </section>
+    </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">Cancel</attribute>

@@ -122,37 +122,8 @@ class AbstractCanvasTool(ToolTemplate):
 		w = max(normal_w, source_w + p_x0)
 		h = max(normal_h, source_h + p_y0) # FIXME non toujours pas ?
 
-		print('w, h', w, h)
-
-
-		# w = int(source_surface.get_width() * w_coef)
-		# h = int(source_surface.get_height() * h_coef)
-		# p_x0 = (source_surface.get_width() - w)/2
-		# p_y0 = (source_surface.get_height() - h)/2
-		# p_x0 = max(0, p_x0)
-		# p_y0 = max(0, p_y0)
-		print( '---------------' )
-		w = int(w)
-		h = int(h)
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
+		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 		cairo_context = cairo.Context(new_surface)
-
-
-		# cairo_context.set_source_rgba(0.0, 0.0, 1.0, 0.5)
-		# cairo_context.move_to(0, 0)
-		# cairo_context.line_to(w, h) # trop loin
-		# cairo_context.stroke()
-
-		# cairo_context.set_source_rgba(0.0, 1.0, 0.0, 0.5)
-		# cairo_context.move_to(0, 0)
-		# cairo_context.line_to(normal_w, normal_h) # coordonnée du coin bas/droit de la surface qui tourne
-		# cairo_context.stroke()
-
-		# cairo_context.set_source_rgba(1.0, 0.0, 0.0, 0.5)
-		# cairo_context.move_to(0, 0)
-		# cairo_context.line_to(source_w, source_h) #coordonnée du coin bas/droit de la zone effacée
-		# cairo_context.stroke()
-
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=p_xx, yx=p_yx, xy=p_xy, yy=p_yy, x0=p_x0, y0=p_y0)
 		cairo_context.transform(m)

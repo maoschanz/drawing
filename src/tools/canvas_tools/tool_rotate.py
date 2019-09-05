@@ -151,12 +151,12 @@ class ToolRotate(AbstractCanvasTool):
 		if rad % (2 * math.pi) == 0:
 			x0 = 0
 			y0 = 0
-		elif rad < 0 and rad > math.pi/-2:
+		elif rad > math.pi/-2 and rad < math.pi/2:
 			x0 = height * yx
 			y0 = width * xy
-		elif rad > 0 and rad < math.pi/2:
-			x0 = height * yx
-			y0 = width * xy
+		# elif rad > math.pi/2 and rad < math.pi:
+		# 	x0 = height * yx
+		# 	y0 = width * xy
 		else:
 			self.window.prompt_message(True, 'bruh moment: angle bad')
 			x0 = height * yx # XXX

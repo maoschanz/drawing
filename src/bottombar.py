@@ -57,7 +57,7 @@ class DrawingAdaptativeBottomBar():
 		# + implementation-specific instructions
 
 	def set_limit_size(self, temp_limit_size):
-		self.limit_size = int(1.3 * temp_limit_size)
+		self.limit_size = int(1.2 * temp_limit_size)
 		self.set_compact(True)
 
 	def adapt_to_window_size(self, allocated_width):
