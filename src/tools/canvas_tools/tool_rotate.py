@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk
-import cairo
+import cairo, math
 
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
@@ -64,10 +64,12 @@ class ToolRotate(AbstractCanvasTool):
 		return self.angle_btn.get_value_as_int()
 
 	def on_right_clicked(self, *args):
-		self.angle_btn.set_value(self.get_angle() + 90)
+		angle = self.get_normalized_angle()
+		self.angle_btn.set_value(angle + 90)
 
 	def on_left_clicked(self, *args):
-		self.angle_btn.set_value(self.get_angle() - 90)
+		angle = self.get_normalized_angle()
+		self.angle_btn.set_value(angle - 90)
 
 	def on_vertical_clicked(self, *args):
 		self.flip_v = not self.flip_v
@@ -77,16 +79,14 @@ class ToolRotate(AbstractCanvasTool):
 		self.flip_h = not self.flip_h
 		self.update_temp_pixbuf()
 
+	def get_normalized_angle(self, *args):
+		angle = self.get_angle() % 360
+		angle = int(angle/90) * 90
+		print('get_normalized_angle', angle)
+		return angle
+
 	def on_angle_changed(self, *args):
-		angle = self.get_angle()
-		angle = angle % 360
-		if angle < 0:
-			angle += 180
-		if True:
-		# if not self.apply_to_selection:
-			angle = int(angle/90) * 90
-		if angle != self.get_angle():
-			self.angle_btn.set_value(angle)
+		# XXX pré-traitement ici ?
 		self.update_temp_pixbuf()
 
 	def build_operation(self):
@@ -111,15 +111,61 @@ class ToolRotate(AbstractCanvasTool):
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
 			source_pixbuf = self.get_main_pixbuf()
-		# TODO rotations plus fines (pour la sélection seulement)
-		# passer par un source_pixbuf.copy() si on ne fait plus de rotate_simple
-		new_pixbuf = source_pixbuf.rotate_simple(angle)
+
+		# print('angle0:', angle)
+		if angle % 90 == 0:
+			if angle < 0:
+				angle += 360
+			if angle == 360:
+				angle = 0
+			new_pixbuf = source_pixbuf.rotate_simple(angle)
+		else:
+			if angle < 180:
+				angle += 360
+			if angle > 180:
+				angle -= 360
+			# print('angle2:', angle)
+			source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+			p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = self.get_rotation_matrix( \
+			     angle, source_surface.get_width(), source_surface.get_height())
+			new_surface = self.get_deformed_surface(source_surface, \
+			                                 p_xx, p_yx, p_xy, p_yy, p_x0, p_y0)
+			new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
+			                  new_surface.get_width(), new_surface.get_height())
+
 		if flip_h:
 			new_pixbuf = new_pixbuf.flip(True)
 		if flip_v:
 			new_pixbuf = new_pixbuf.flip(False)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
+	def get_rotation_matrix(self, angle, width, height):
+		rad = math.pi * angle / 180
+		print('rad', rad)
+		xx = math.cos(rad)
+		xy = math.sin(rad)
+		yx = -1 * math.sin(rad)
+		yy = math.cos(rad)
+
+		if rad % (2 * math.pi) == 0:
+			x0 = 0
+			y0 = 0
+		elif rad < 0 and rad > math.pi/-2:
+			x0 = height * yx
+			y0 = width * xy
+		elif rad > 0 and rad < math.pi/2:
+			x0 = height * yx
+			y0 = width * xy
+		else:
+			self.window.prompt_message(True, 'bruh moment: angle bad')
+			x0 = height * yx # XXX
+			y0 = width * xy # XXX
+
+		x0 = max(0, x0)
+		y0 = max(0, y0)
+
+		return xx, yx, xy, yy, x0, y0
 
 	############################################################################
 ################################################################################

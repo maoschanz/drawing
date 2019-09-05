@@ -31,6 +31,8 @@ class ToolMatrix(AbstractCanvasTool):
 
 		self.apply_to_selection = False
 		self.dont_update = False
+		self.temp_w = 1
+		self.temp_h = 1
 		self.add_tool_action_simple('matrix-reset', self.on_reset_values)
 
 	def get_edition_status(self):
@@ -84,6 +86,14 @@ class ToolMatrix(AbstractCanvasTool):
 
 	def on_reset_values(self, *args):
 		self.dont_update = True
+
+		if self.apply_to_selection:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		self.temp_w = source_pixbuf.get_width()
+		self.temp_h = source_pixbuf.get_height()
+
 		self.xx_spinbtn.set_value(100)
 		self.xy_spinbtn.set_value(0)
 		self.yx_spinbtn.set_value(0)
@@ -110,34 +120,52 @@ class ToolMatrix(AbstractCanvasTool):
 		self.dont_update = True
 		angle = self.angle_spinbtn.get_value_as_int()
 		rad = math.pi * angle / 180
-		print(rad)
+		print('rad', rad)
 		xx = math.cos(rad)
 		xy = math.sin(rad)
 		yx = -1 * math.sin(rad)
 		yy = math.cos(rad)
-		x0 = 0 # TODO
-		y0 = 0 # TODO
+
+		# x0 = self.temp_w * yx # XXX
+		# y0 = self.temp_h * xy # XXX
+		if rad % (2 * math.pi) == 0:
+			x0 = 0
+			y0 = 0
+		elif rad < 0 and rad > math.pi/-2:
+			x0 = self.temp_h * yx
+			y0 = self.temp_w * xy
+		elif rad > 0 and rad < math.pi/2:
+			x0 = self.temp_h * yx
+			y0 = self.temp_w * xy
+		else:
+			self.window.prompt_message(True, 'bruh moment: angle bad')
+			x0 = self.temp_h * yx # XXX
+			y0 = self.temp_w * xy # XXX
+
+		x0 = max(0, x0)
+		y0 = max(0, y0)
+
 		self.xx_spinbtn.set_value(xx * 100)
 		self.xy_spinbtn.set_value(xy * 100)
 		self.yx_spinbtn.set_value(yx * 100)
 		self.yy_spinbtn.set_value(yy * 100)
-		# self.x0_spinbtn.set_value(x0)
-		# self.y0_spinbtn.set_value(y0)
+		self.x0_spinbtn.set_value(x0)
+		self.y0_spinbtn.set_value(y0)
 
-		x_old = 100
-		y_old = 100
-		x_new = xx * x_old + xy * y_old + x0
-		y_new = yx * x_old + yy * y_old + y0
-		print(x_new, y_new)
+		# x_old = 100
+		# y_old = 100
+		# x_new = xx * x_old + xy * y_old + x0
+		# y_new = yx * x_old + yy * y_old + y0
+		# print(x_new, y_new)
 
 		self.dont_update = False
 		self.on_coord_changed()
 
 	def on_coord_changed(self, *args):
 		if self.dont_update:
-			print('no update')
+			# print('no update')
 			return
-		print('update:')
+		# print('update:')
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
@@ -165,25 +193,12 @@ class ToolMatrix(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-
-		w = source_surface.get_width()
-		h = source_surface.get_height()
-		# surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		surface = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
-		# surface = self.get_surface()
-
-		cairo_context = cairo.Context(surface)
-		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
-		m = cairo.Matrix(xx=operation['xx'], yx=operation['yx'], \
-		                 xy=operation['xy'], yy=operation['yy'], \
-		                 x0=operation['x0'], y0=operation['y0'])
-		cairo_context.transform(m)
-		cairo_context.set_source_surface(source_surface, 0, 0) # FIXME scroll and zoom
-		# FIXME c'est ce "0, 0" qui charcute certains angles de rotation
-		cairo_context.paint()
-
-		new_pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, \
-		                              surface.get_width(), surface.get_height())
+		new_surface = self.get_deformed_surface(source_surface, \
+		                                     operation['xx'], operation['yx'], \
+		                                     operation['xy'], operation['yy'], \
+		                                     operation['x0'], operation['y0'])
+		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
+		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 

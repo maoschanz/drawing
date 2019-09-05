@@ -2,9 +2,9 @@
 <interface domain="drawing">
 
   <object class="GtkAdjustment" id="adj_angle">
-    <property name="lower">-90</property>
+    <property name="lower">-360</property>
     <property name="upper">360</property>
-    <property name="step_increment">10</property>
+    <property name="step_increment">1</property>
     <property name="page_increment">90</property>
     <property name="value">0</property>
   </object>
@@ -51,6 +51,7 @@
             <child>
               <object class="GtkSpinButton" id="angle_btn">
                 <property name="visible">True</property>
+                <property name="wrap">True</property>
                 <property name="adjustment">adj_angle</property>
               </object>
             </child>
