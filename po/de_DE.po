@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-01 23:53+0200\n"
-"PO-Revision-Date: 2019-08-03 13:53+0200\n"
+"PO-Revision-Date: 2019-09-05 21:10+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -82,11 +82,15 @@ msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"Die Version 0.4.3 beinhaltet neue Übersetzungen und ist kompatibel mit "
+"älteren Distributionen, wie zum Beispiel Ubuntu 18.04 LTS."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:43
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"Die Version 0.4.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
+"neue Übersetzungen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:49
 msgid ""
@@ -184,14 +188,12 @@ msgid "Print"
 msgstr "Drucken"
 
 #: src/ui/app-menus.ui:109
-#, fuzzy
 msgid "Close Image"
-msgstr "Neues Bild"
+msgstr "Bild schließen"
 
 #: src/ui/app-menus.ui:114
-#, fuzzy
 msgid "Close Window"
-msgstr "Neues Fenster"
+msgstr "Fenster schließen"
 
 #: src/ui/app-menus.ui:119 src/ui/shortcuts.ui:65
 msgid "Quit all windows"
@@ -313,11 +315,11 @@ msgstr "Werkzeugnamen anzeigen"
 #: src/ui/app-menus.ui:277 src/ui/shortcuts.ui:37 src/ui/win-menus.ui:61
 #: src/ui/win-menus.ui:122
 msgid "Fullscreen"
-msgstr ""
+msgstr "Vollbildansicht"
 
 #: src/ui/app-menus.ui:281 src/ui/app-menus.ui:398 src/ui/shortcuts.ui:44
 msgid "Exit fullscreen"
-msgstr ""
+msgstr "Vollbildansicht schließen"
 
 #: src/ui/app-menus.ui:288
 msgid "_Colors"
@@ -378,7 +380,7 @@ msgstr "Hilfe zur Auswahl"
 #: src/ui/app-menus.ui:382 src/ui/win-menus.ui:100 src/ui/win-menus.ui:189
 #: src/ui/win-menus.ui:234
 msgid "About Drawing"
-msgstr "Über Zeichnung"
+msgstr "Info zu Zeichnung"
 
 #: src/ui/color_popover.ui:16 src/ui/color_popover.ui:31
 msgid "Back to the palette"
@@ -492,9 +494,8 @@ msgid "Rotate"
 msgstr "Drehen"
 
 #: src/ui/selection.ui:69 src/ui/selection.ui:147
-#, fuzzy
 msgid "Apply a filter"
-msgstr "Eine Datei öffnen"
+msgstr "Einen Filter anwenden"
 
 #: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:367
 msgid "Open As New Image"
@@ -633,7 +634,7 @@ msgstr "Ein Zeichenprogramm für den GNOME-Desktop."
 
 #: src/main.py:237
 msgid "Official webpage"
-msgstr ""
+msgstr "Offizielle Internetseite"
 
 #: src/main.py:279
 #, python-format
@@ -814,12 +815,12 @@ msgstr ""
 #: src/window.py:152
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Fehler beim Laden des Werkzeugs: %s"
 
 #. XXX broken if a new image is opened
 #: src/window.py:617
 msgid "Middle click to get controls, press 'Escape' to exit."
-msgstr ""
+msgstr "Mittelklick, um Steuerung anzuzeigen, Taste ESC drücken für Beenden."
 
 #: src/window.py:791
 #, python-format
@@ -837,7 +838,7 @@ msgstr "Änderungen verwerfen"
 #: src/window.py:801 src/window.py:901
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Es gibt ungespeicherte Änderungen an %s."
+msgstr "Es gibt Änderungen an %s, die noch nicht gespeichert wurden."
 
 #: src/window.py:803
 #, python-format
@@ -849,14 +850,13 @@ msgid "Open a picture"
 msgstr "Ein Bild öffnen"
 
 #: src/window.py:840
-#, fuzzy
 msgid "these files"
-msgstr "Nicht gespeicherte Datei"
+msgstr "diese Dateien"
 
 #: src/window.py:841
-#, fuzzy, python-format
+#, python-format
 msgid "What do you want to do with %s?"
-msgstr "Wo möchten Sie %s öffnen?"
+msgstr "Was möchten Sie mit %s machen?"
 
 #: src/window.py:891 src/window.py:922
 msgid "Untitled"
@@ -928,7 +928,7 @@ msgstr "Klassisch"
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
 #: src/tools/canvas_tools/tool_filters.py:75
 msgid "Blur"
-msgstr ""
+msgstr "Verwischen"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41
@@ -953,9 +953,8 @@ msgid "Apply"
 msgstr "Anwenden"
 
 #: src/tools/ui/tool_filters.ui:57 src/tools/canvas_tools/tool_filters.py:92
-#, fuzzy
 msgid "Select a filter…"
-msgstr "Alles auswählen"
+msgstr "Wählen Sie einen Filter…"
 
 #: src/tools/ui/tool_filters.ui:74 src/tools/ui/tool_filters.ui:82
 msgid "Saturation (%)"
@@ -970,28 +969,24 @@ msgid "Blur radius (pixels)"
 msgstr "Unschärferadius (Pixel)"
 
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:84
-#, fuzzy
 msgid "Saturation"
-msgstr "Sättigung (%)"
+msgstr "Sättigung"
 
 #: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:87
-#, fuzzy
 msgid "Pixelisation"
-msgstr "Position"
+msgstr "Verpixelung"
 
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:90
-#, fuzzy
 msgid "Invert colors"
 msgstr "Farben tauschen"
 
 #: src/tools/ui/tool_filters.ui:185 src/tools/canvas_tools/tool_filters.py:78
-#, fuzzy
 msgid "Horizontal blur"
-msgstr "Horizontal spiegeln"
+msgstr "Horizontale Unschärfe"
 
 #: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:81
 msgid "Vertical blur"
-msgstr ""
+msgstr "Vertikale Unschärfe"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
@@ -1028,7 +1023,7 @@ msgstr "Winkel (Grad)"
 
 #: src/tools/ui/tool_rotate.ui:47
 msgid "Angle"
-msgstr ""
+msgstr "Winkel"
 
 #: src/tools/ui/tool_rotate.ui:80 src/tools/ui/tool_rotate.ui:176
 msgid "Rotate left"
@@ -1168,7 +1163,7 @@ msgstr "Form-Optionen"
 
 #: src/tools/classic_tools/tool_shape.py:69
 msgid "Click on the shape's first point to close it."
-msgstr ""
+msgstr "Klicken Sie auf den ersten Punkt der Form, um es zu schließen."
 
 #: src/tools/classic_tools/tool_text.py:12
 msgid "Text"
@@ -1200,7 +1195,7 @@ msgstr "Leinwand zuschneiden"
 
 #: src/tools/canvas_tools/tool_filters.py:30
 msgid "Filters"
-msgstr ""
+msgstr "Filter"
 
 #: src/tools/canvas_tools/tool_rotate.py:51
 msgid "Rotating the selection"
@@ -1221,11 +1216,54 @@ msgstr "Leinwand skalieren"
 #~ msgid "Close"
 #~ msgstr "Schließen"
 
+#~ msgid "_Canvas"
+#~ msgstr "Leinwand"
+
+#~ msgid "_Windows"
+#~ msgstr "_Fenster"
+
+#~ msgid "Saturate"
+#~ msgstr "Sättigen"
+
 #~ msgid "Report bugs or ideas"
 #~ msgstr "Fehler oder Ideen melden"
 
 #~ msgid "Filling"
 #~ msgstr "Füllung"
+
+#~ msgid "Arc"
+#~ msgstr "Bogen"
+
+#~ msgid "Arc options"
+#~ msgstr "Bogen-Optionen"
+
+#~ msgid "Polygon options"
+#~ msgstr "Vieleck-Optionen"
+
+#~ msgid "Rectangle options"
+#~ msgstr "Rechteck-Optionen"
+
+#, fuzzy
+#~ msgid "Optimal zoom"
+#~ msgstr "Optimaler Zoom"
+
+#~ msgid "Pencil (with various options)"
+#~ msgstr "Bleistift (mit verschiedenen Optionen)"
+
+#~ msgid "Selection (cut/copy/paste/drag/…)"
+#~ msgstr "Auswahl (Ausschneiden/Kopieren/Einfügen/Ziehen/...)"
+
+#~ msgid "Line, Arc (with various options)"
+#~ msgstr "Linie, Bogen (mit verschiedenen Optionen)"
+
+#~ msgid "Shapes (rectangle, circle, polygon, …)"
+#~ msgstr "Formen (Rechteck, Kreis, Vieleck, …)"
+
+#~ msgid "Text insertion"
+#~ msgstr "Texteingabe"
+
+#~ msgid "Resizing, cropping, rotating"
+#~ msgstr "Größenänderung, Zuschneiden, Drehen"
 
 #~ msgid "Selection type"
 #~ msgstr "Auswahltyp"
