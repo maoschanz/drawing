@@ -1,21 +1,21 @@
 # Dutch translation of "Drawing"
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Heimen Stoffels <vistausss@outlook.com>, 2019.
 #
+# Heimen Stoffels <vistausss@outlook.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-08 17:50+0200\n"
-"PO-Revision-Date: 2019-07-26 12:30+0200\n"
+"PO-Revision-Date: 2019-09-08 20:10+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: Dutch <vistausss@outlook.com>\n"
+"Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Lokalize 19.08.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -62,8 +62,8 @@ msgstr "Een tekenprogramma voor de GNOME-werkomgeving"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Tekenen\" is een eenvoudige afbeeldingsbewerker, met ondersteuning voor "
-"PNG, JPEG en BMP."
+"'Tekenen' is een eenvoudige afbeeldingsbewerker, met ondersteuning voor PNG,"
+" JPEG en BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
 msgid ""
@@ -72,6 +72,13 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, ..."
 msgstr ""
+"Het stelt je in staat om afbeeldingen te tekenen of bewerken met"
+" gereedschappen, zoals een "
+"potlood, lijn, boog (met verschillende mogelijkheden), selectie"
+" (knippen/kopiëren/plakken/verslepen/...), "
+"vormen (rechthoek, cirkel, polygoon, ...), tekst, herschaling, bijsnijden,"
+" draaien, "
+"..."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
@@ -82,34 +89,49 @@ msgid ""
 "producing shapes (circle, rectangle, polygon, …) have been merged into a "
 "single coherent 'shape' tool."
 msgstr ""
+"Versie 0.6 is een grote updae, met veer veranderingen: rechthoekselectie en "
+"vrije selectie zijn nu losse gereedschappen, afbeeldingen kunnen worden "
+"geïmporteerd of geopend middels slepen-en-neerzetten, het 'draai'gereedschap "
+"ondersteunt nu elke hoek en horizontaal en verticaal spiegelen, en"
+" verschillende "
+"gereedschappen zijn samengevoegd onder 'vorm'."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation and saturation."
 msgstr ""
+"'Verzadiging' is vervangen door 'Filters', een krachtiger gereedschap met "
+"mogelijkheden als vervaging, kleurem omdraaien, pixelvorming en verzadiging."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
+"De grootste verbetering is de mogelijkheid om in of uit te zoomen middels de"
+" minikaart, "
+"het trackpad of muiswiel."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
+"Versie 0.4.4 bevat verschillende kleine foutoplossingen en nieuwe vertalingen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:59
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"Versie 0.4.3 bevat nieuwe vertalingen en is compatibel met oudere distro's "
+"als Ubuntu 18.04."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:65
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"Versie 0.4.2 bevat verschillende kleine foutoplossingen en nieuwe vertalingen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:71
 msgid ""
@@ -118,6 +140,11 @@ msgid ""
 "image from the clipboard content, a smoother pencil, and various new "
 "translations."
 msgstr ""
+"Versie 0.4 heeft een nieuw pictogram, verschillende foutoplossingen, een"
+" verbeterde "
+"werkbalk in alle indelingen, een actie voor het creëren van een afbeelding"
+" uit de klembordinhoud. "
+"een vloeiender potlood en verschillende nieuwe vertalingen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:79
 msgid "First stable release, including a few basic tools."
@@ -137,7 +164,7 @@ msgstr "Voorkeuren"
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:348 src/ui/win-menus.ui:87
 #: src/ui/win-menus.ui:176 src/ui/win-menus.ui:229
 msgid "Report a bug"
-msgstr "Meld een bug"
+msgstr "Meld een fout (bug)"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:341 src/ui/shortcuts.ui:51
 #: src/ui/win-menus.ui:92 src/ui/win-menus.ui:181 src/ui/win-menus.ui:222
@@ -201,14 +228,12 @@ msgid "Print"
 msgstr "Afdrukken"
 
 #: src/ui/app-menus.ui:109
-#, fuzzy
 msgid "Close Image"
-msgstr "Nieuwe afbeelding"
+msgstr "Afbeelding sluiten"
 
 #: src/ui/app-menus.ui:114
-#, fuzzy
 msgid "Close Window"
-msgstr "Nieuw venster"
+msgstr "Venster sluiten"
 
 #: src/ui/app-menus.ui:119 src/ui/shortcuts.ui:65
 msgid "Quit all windows"
@@ -266,7 +291,7 @@ msgstr "Importeren"
 #: src/ui/app-menus.ui:182 src/ui/toolbar.ui:100 src/ui/toolbar.ui:101
 #: src/ui/win-menus.ui:55 src/ui/win-menus.ui:116 src/properties.py:27
 msgid "Image properties"
-msgstr "Afbeeldingseigenschappen"
+msgstr "Eigenschappen"
 
 #: src/ui/app-menus.ui:197
 msgid "_View"
@@ -330,11 +355,11 @@ msgstr "Gereedschapsnamen tonen"
 #: src/ui/app-menus.ui:277 src/ui/shortcuts.ui:37 src/ui/win-menus.ui:61
 #: src/ui/win-menus.ui:122
 msgid "Fullscreen"
-msgstr ""
+msgstr "Beeldvullend"
 
 #: src/ui/app-menus.ui:281 src/ui/app-menus.ui:398 src/ui/shortcuts.ui:44
 msgid "Exit fullscreen"
-msgstr ""
+msgstr "Beeldvullende modus verlaten"
 
 #: src/ui/app-menus.ui:288
 msgid "_Colors"
@@ -412,7 +437,7 @@ msgstr "Openen"
 
 #: src/ui/minimap.ui:72 src/preferences.py:87
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/panel_classic.ui:61 src/ui/panel_classic.ui:76
 msgid "Tool size"
@@ -454,7 +479,7 @@ msgstr "Formaat"
 
 #: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:221
 msgid "Unsaved file"
-msgstr "Niet-opgeslagen bestanden"
+msgstr "Niet-opgeslagen bestand"
 
 #: src/ui/properties.ui:87 src/properties.py:89
 msgid "Invalid format"
@@ -501,7 +526,7 @@ msgstr "Bijsnijden"
 #: src/ui/selection.ui:57 src/ui/selection.ui:135
 #: src/tools/canvas_tools/tool_scale.py:30
 msgid "Scale"
-msgstr "Grootte wijzigen"
+msgstr "Grootte aanpassen"
 
 #: src/ui/selection.ui:63 src/ui/selection.ui:141
 #: src/tools/canvas_tools/tool_rotate.py:28
@@ -509,9 +534,8 @@ msgid "Rotate"
 msgstr "Draaien"
 
 #: src/ui/selection.ui:69 src/ui/selection.ui:147
-#, fuzzy
 msgid "Apply a filter"
-msgstr "Bestand openen"
+msgstr "Filter toepassen"
 
 #: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:367
 msgid "Open As New Image"
@@ -526,9 +550,8 @@ msgid "Flip"
 msgstr "Omdraaien"
 
 #: src/ui/selection.ui:302 src/tools/ui/tool_rotate.ui:64
-#, fuzzy
 msgid "More actions"
-msgstr "Geen opties"
+msgstr "Meer acties"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
@@ -587,9 +610,8 @@ msgid "Edit the secondary color (right click)"
 msgstr "Alternatieve kleur bewerken (rechtermuisknop)"
 
 #: src/ui/shortcuts.ui:245 src/preferences.py:75
-#, fuzzy
 msgid "Zoom"
-msgstr "Inzoomen"
+msgstr "Zoomen"
 
 #: src/ui/shortcuts.ui:279
 msgid "Navigation"
@@ -627,7 +649,7 @@ msgstr "%s opnieuw toepassen"
 
 #: src/main.py:57
 msgid "Print the version and display the 'about' dialog"
-msgstr "Print te versie en toon het venster 'Over'"
+msgstr "Print de versie en toon het venster 'Over'"
 
 #: src/main.py:60
 msgid "Open a new window"
@@ -652,7 +674,7 @@ msgstr "Een tekenprogramma voor de GNOME-werkomgeving."
 
 #: src/main.py:237
 msgid "Official webpage"
-msgstr ""
+msgstr "Officiële website"
 
 #: src/main.py:279
 #, python-format
@@ -664,7 +686,7 @@ msgstr "Kan dit bestand niet openen. Bedoelde je %s?"
 #: src/minimap.py:64
 #, python-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
 
 #: src/preferences.py:54
 msgid "New images"
@@ -684,24 +706,23 @@ msgstr "Standaardachtergrond"
 
 #: src/preferences.py:79
 msgid "Ctrl + Scroll"
-msgstr ""
+msgstr "Ctrl + scrollen"
 
 #: src/preferences.py:80
 msgid "Scroll"
-msgstr ""
+msgstr "Scrollen"
 
 #: src/preferences.py:83
 msgid "Action to zoom"
-msgstr ""
+msgstr "Actie om te zoomen"
 
 #: src/preferences.py:91
-#, fuzzy
 msgid "Default zoom"
-msgstr "Standaardbreedte"
+msgstr "Standaard zoomniveau"
 
 #: src/preferences.py:98
 msgid "Appearance"
-msgstr ""
+msgstr "Uiterlijk"
 
 #: src/preferences.py:104
 msgid "Use big icons"
@@ -709,7 +730,7 @@ msgstr "Grote pictogrammen gebruiken"
 
 #: src/preferences.py:107
 msgid "Additional tools"
-msgstr ""
+msgstr "Extra gereedschappen"
 
 #: src/preferences.py:113 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -793,7 +814,7 @@ msgid ""
 "channel, optionally by replacing a color."
 msgstr ""
 "Deze laagindeling heeft geen ondersteuning voor doorzichtigheid. Je kunt een "
-"alfakanaal toevoegen, evt. door het vervangen van een kleur."
+"alfakanaal toevoegen, evt. door een kleur te vervangen."
 
 #: src/utilities.py:22
 msgid "All pictures"
@@ -832,19 +853,21 @@ msgid ""
 "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
 "Het gebied lijkt slecht afgemeten of is té complex.\n"
-"Dit algoritme kan mogelijk niet het gekozen gebied beheren.\n"
+"Dit algoritme kan het gekozen gebied mogelijk niet beheren.\n"
 "\n"
-"Wil je de handeling afbreken of het gereedschap tevergeefs door laten gaan?"
+"Wil je de handeling afbreken of het gereedschap tevergeefs laten doorgaan?"
 
 #: src/window.py:152
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Kan gereedschap niet laden: %s"
 
 #. XXX broken if a new image is opened
 #: src/window.py:617
 msgid "Middle click to get controls, press 'Escape' to exit."
 msgstr ""
+"Klik met de middelste muisknop om bediening te tonen; druk op 'Esc' om te"
+" sluiten."
 
 #: src/window.py:791
 #, python-format
@@ -874,14 +897,13 @@ msgid "Open a picture"
 msgstr "Afbeeldingen openen"
 
 #: src/window.py:840
-#, fuzzy
 msgid "these files"
-msgstr "Niet-opgeslagen bestanden"
+msgstr "deze bestanden"
 
 #: src/window.py:841
-#, fuzzy, python-format
+#, python-format
 msgid "What do you want to do with %s?"
-msgstr "Waar wil je %s openen?"
+msgstr "Wat wil je doen met %s?"
 
 #: src/window.py:891 src/window.py:922
 msgid "Untitled"
@@ -953,7 +975,7 @@ msgstr "Klassiek"
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
 #: src/tools/canvas_tools/tool_filters.py:75
 msgid "Blur"
-msgstr ""
+msgstr "Vervaging"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41
@@ -978,9 +1000,8 @@ msgid "Apply"
 msgstr "Toepassen"
 
 #: src/tools/ui/tool_filters.ui:57 src/tools/canvas_tools/tool_filters.py:92
-#, fuzzy
 msgid "Select a filter…"
-msgstr "Alles selecteren"
+msgstr "Kies een filter..."
 
 #: src/tools/ui/tool_filters.ui:74 src/tools/ui/tool_filters.ui:82
 msgid "Saturation (%)"
@@ -988,35 +1009,31 @@ msgstr "Verzadiging (%)"
 
 #: src/tools/ui/tool_filters.ui:88
 msgid "Radius"
-msgstr ""
+msgstr "Straal"
 
 #: src/tools/ui/tool_filters.ui:96
 msgid "Blur radius (pixels)"
-msgstr ""
+msgstr "Vervaagstraal"
 
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:84
-#, fuzzy
 msgid "Saturation"
-msgstr "Verzadiging (%)"
+msgstr "Verzadiging"
 
 #: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:87
-#, fuzzy
 msgid "Pixelisation"
-msgstr "Positie"
+msgstr "Pixelvorming"
 
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:90
-#, fuzzy
 msgid "Invert colors"
-msgstr "Kleuren omwisselen"
+msgstr "Kleuren omdraaien"
 
 #: src/tools/ui/tool_filters.ui:185 src/tools/canvas_tools/tool_filters.py:78
-#, fuzzy
 msgid "Horizontal blur"
-msgstr "Horizontaal omdraaien"
+msgstr "Horizontale vervaging"
 
 #: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:81
 msgid "Vertical blur"
-msgstr ""
+msgstr "Verticale vervaging"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
@@ -1053,7 +1070,7 @@ msgstr "Hoek (graden)"
 
 #: src/tools/ui/tool_rotate.ui:47
 msgid "Angle"
-msgstr ""
+msgstr "Hoek"
 
 #: src/tools/ui/tool_rotate.ui:82 src/tools/ui/tool_rotate.ui:178
 msgid "Rotate left"
@@ -1065,16 +1082,15 @@ msgstr "Naar rechts draaien"
 
 #: src/tools/ui/tool_rotate.ui:117 src/tools/ui/tool_rotate.ui:191
 msgid "Flip horizontally"
-msgstr "Horizontaal omdraaien"
+msgstr "Horizontaal spiegelen"
 
 #: src/tools/ui/tool_rotate.ui:131 src/tools/ui/tool_rotate.ui:196
 msgid "Flip vertically"
-msgstr "Verticaal omdraaien"
+msgstr "Verticaal spiegelen"
 
 #: src/tools/ui/tool_scale.ui:99
-#, fuzzy
 msgid "More options"
-msgstr "Geen opties"
+msgstr "Meer opties"
 
 #: src/tools/ui/tool_scale.ui:143
 msgid "Keep proportions"
@@ -1082,11 +1098,11 @@ msgstr "Afmetingen behouden"
 
 #: src/tools/ui/tool_scale.ui:150
 msgid "Allow horizontal deformations"
-msgstr ""
+msgstr "Horizontale vervorming toestaan"
 
 #: src/tools/ui/tool_scale.ui:155
 msgid "Allow vertical deformations"
-msgstr ""
+msgstr "Verticale vervorming toestaan"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:46
 msgid "Rectangle"
@@ -1157,12 +1173,11 @@ msgstr "Secundaire kleurschaduw"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Curve"
-msgstr ""
+msgstr "Boog"
 
 #: src/tools/classic_tools/tool_arc.py:38
-#, fuzzy
 msgid "Curve options"
-msgstr "Cirkelopties"
+msgstr "Boogopties"
 
 #: src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_arc.py:51
@@ -1207,7 +1222,7 @@ msgstr "Vormopties"
 
 #: src/tools/classic_tools/tool_shape.py:69
 msgid "Click on the shape's first point to close it."
-msgstr ""
+msgstr "Klik op het eerste punt om te sluiten."
 
 #: src/tools/classic_tools/tool_text.py:12
 msgid "Text"
@@ -1239,7 +1254,7 @@ msgstr "Bezig met bijsnijden van canvas"
 
 #: src/tools/canvas_tools/tool_filters.py:30
 msgid "Filters"
-msgstr ""
+msgstr "Filters"
 
 #: src/tools/canvas_tools/tool_rotate.py:51
 msgid "Rotating the selection"
