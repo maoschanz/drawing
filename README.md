@@ -14,7 +14,7 @@ Besides GNOME, some more traditional design layouts are available too, as well a
 
 ![GNOME/Budgie UI, here with the main menu opened](./docs/screenshots/gnome_menu.png)
 
-More screenshots:
+More screenshots (version 0.4.x):
 
 - [Color chooser](./docs/screenshots/gnome_colors.png)
 - [Open/Import menu](./docs/screenshots/gnome_new.png), with several tabs opened
@@ -82,10 +82,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 - Line (options: arrow, dashes, blur, gradient, …)
 - Arc (options: arrow, dashes, …)
 - Insert text (options: font, shadow, font size, …)
-- Rectangle (options: filling, …)
-- Circle (options: oval, filling, …)
-- Polygon (options: filling, …)
-- Free shape (options: filling, …)
+- Shape (rectangle/circle/oval/polygon/free shape, options: filling, …)
 - Color picker
 - Paint (options: remove a color, …)
 
