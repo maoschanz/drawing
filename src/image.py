@@ -87,6 +87,8 @@ class DrawingImage(Gtk.Box):
 		self.press2_y = 0.0
 		self.drag_scroll_x = 0.0
 		self.drag_scroll_y = 0.0
+		if self.window._settings.get_string('default-zoom') == 'opti':
+			self.set_opti_zoom_level()
 
 		# Selection initialization
 		self.selection = DrawingSelectionManager(self)
@@ -98,11 +100,6 @@ class DrawingImage(Gtk.Box):
 		self._is_saved = True
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
-
-	def set_initial_zoom(self):
-		# if self.window._settings.get_string('default-zoom') == 'opti':
-		# 	self.set_opti_zoom_level()
-		pass # TODO ça plante car le widget n'est pas encore alloué
 
 	def init_background(self, *args):
 		width = self.window._settings.get_int('default-width')
@@ -124,7 +121,6 @@ class DrawingImage(Gtk.Box):
 		}
 		self.init_image()
 		self.restore_first_pixbuf()
-		self.set_initial_zoom()
 
 	def try_load_pixbuf(self, pixbuf):
 		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
@@ -143,7 +139,6 @@ class DrawingImage(Gtk.Box):
 		self.init_image()
 		self.restore_first_pixbuf()
 		self.update_title()
-		self.set_initial_zoom()
 
 	def restore_first_pixbuf(self):
 		"""Set the first saved pixbuf as the main_pixbuf. This is used to
@@ -189,7 +184,6 @@ class DrawingImage(Gtk.Box):
 		self.init_image()
 		self.restore_first_pixbuf()
 		self.update_title()
-		self.set_initial_zoom()
 
 	############################################################################
 	# Image title and tab management ###########################################
@@ -241,8 +235,8 @@ class DrawingImage(Gtk.Box):
 		else:
 			return False
 
-	def set_tab_label(self, title):
-		self.tab_label.set_label(title)
+	def set_tab_label(self, title_text):
+		self.tab_label.set_label(title_text)
 
 	def get_file_path(self):
 		if self.gfile is None:
@@ -513,7 +507,7 @@ class DrawingImage(Gtk.Box):
 		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
 		if ctrl_is_used == self.ctrl_to_zoom:
 			event_x, event_y = self.get_event_coords(event)
-			self.scroll_to_point(event.delta_x, event.delta_y, event_x, event_y)
+			self.zoom_to_point(event.delta_x, event.delta_y, event.x, event.y)
 		else:
 			self.add_deltas(event.delta_x, event.delta_y, 10)
 
@@ -535,7 +529,7 @@ class DrawingImage(Gtk.Box):
 		available_w = self.get_widget_width()
 		available_h = self.get_widget_height()
 		if available_w < 2:
-			return # could be better
+			return # could be better handled
 
 		# Update the horizontal scrollbar
 		mpb_width = self.get_pixbuf_width()
@@ -550,8 +544,7 @@ class DrawingImage(Gtk.Box):
 		self.update_scrollbar(True, available_h, int(mpb_height), int(wanted_y))
 
 	def get_max_coord(self, mpb_size, available_size):
-		displayed_size = (available_size / self.zoom_level)
-		max_coord = mpb_size - displayed_size
+		max_coord = mpb_size - (available_size / self.zoom_level)
 		return max_coord
 
 	def update_scrollbar(self, is_vertical, allocated_size, pixbuf_size, coord):
@@ -568,21 +561,13 @@ class DrawingImage(Gtk.Box):
 		else:
 			self.scroll_x = int(scrollbar.get_value())
 
-	def scroll_to_point(self, delta_x, delta_y, x, y):
-		# TODO pure bullshit FIXME
-		good_delta = (delta_x + delta_y) * -5
-		self.inc_zoom_level(good_delta)
-		print('good_delta', good_delta)
-		print('zoom_level', self.zoom_level)
-		if good_delta > 0: # zooming in
-			fake_delta_x = x - self.scroll_x
-			fake_delta_y = y - self.scroll_y
-		else: # zooming out
-			fake_delta_x = self.scroll_x - x
-			fake_delta_y = self.scroll_y - y
-		print('scroll_*', self.scroll_x, self.scroll_y)
-		print('event_*', x, y)
-		print('fake_deltas', fake_delta_x, fake_delta_y)
+	def zoom_to_point(self, delta_x, delta_y, x, y):
+		zoom_delta = (delta_x + delta_y) * -5
+		self.inc_zoom_level(zoom_delta)
+		displayed_w = self.get_widget_width() / self.zoom_level
+		displayed_h = self.get_widget_height() / self.zoom_level
+		fake_delta_x = x - (displayed_w / 2)
+		fake_delta_y = y - (displayed_h / 2)
 		self.add_deltas(fake_delta_x, fake_delta_y, min(1, 1/self.zoom_level))
 
 	def inc_zoom_level(self, delta):
@@ -595,11 +580,17 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def set_opti_zoom_level(self):
-		h_ratio = self.drawing_area.get_allocated_width() / self.get_pixbuf_width()
-		v_ratio = self.drawing_area.get_allocated_height() / self.get_pixbuf_height()
-		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
-		# print('self.drawing_area.get_allocated_width()', self.drawing_area.get_allocated_width())
-		# print('opti', opti) # FIXME
+		allocated_width = self.get_widget_width()
+		allocated_height = self.get_widget_height()
+		if allocated_width == 1:
+			# FIXME because self.drawing_area might be not allocated yet
+			return
+			# allocated_width = 800
+			# allocated_height = 400
+			# FIXME but that hack can't update the minimap label
+		h_ratio = allocated_width / self.get_pixbuf_width()
+		v_ratio = allocated_height / self.get_pixbuf_height()
+		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some margin is cool
 		self.set_zoom_level(opti)
 		self.scroll_x = 0
 		self.scroll_y = 0
@@ -610,7 +601,7 @@ class DrawingImage(Gtk.Box):
 	def print_image(self):
 		op = Gtk.PrintOperation()
 		# FIXME the preview doesn't work, i guess it's because of flatpak ?
-		# I could connect to the 'preview' signal but that would be a hack
+		# I could connect to the 'preview' signal but that would be weird
 		op.connect('draw-page', self.do_draw_page)
 		op.connect('begin-print', self.do_begin_print)
 		op.connect('end-print', self.do_end_print)

@@ -579,9 +579,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.get_active_image().fake_scrollbar_update()
 
-	def update_image_scrollbars(self):
-		self.get_active_image().add_deltas(0, 0, 0)
-
 	def hide_message(self, *args):
 		self.prompt_message(False, '')
 

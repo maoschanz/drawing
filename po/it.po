@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-08 03:57+0200\n"
+"POT-Creation-Date: 2019-09-08 17:50+0200\n"
 "PO-Revision-Date: 2019-08-31 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -40,7 +40,7 @@ msgstr "Paint;Bozze;Matita;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:799
+#: src/window.py:798
 msgid "New Window"
 msgstr "Nuova finestra"
 
@@ -76,7 +76,29 @@ msgstr ""
 "linea oarco (con varie opzioni), selezione (taglia/copia/incolla/"
 "trascina/ ...), formerotazione, ..."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in:29
+msgid ""
+"Version 0.6 is a major update, with various important changes: rectangle "
+"selection and freehand selection are now distinct tools, images can be "
+"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
+"angle and handles horizontal or vertical flipping, and various tools "
+"producing shapes (circle, rectangle, polygon, …) have been merged into a "
+"single coherent 'shape' tool."
+msgstr ""
+
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
+msgid ""
+"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
+"with several types of blur, color inversion, pixelisation and saturation."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:42
+msgid ""
+"The most prominent new feature is the ability to zoom in (or out) on the "
+"image, using the minimap, the touchpad or the mouse wheel."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:53
 #, fuzzy
 msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
@@ -84,7 +106,7 @@ msgstr ""
 "La versione 0.4.2 presenta diverse correzioni di bug minori e varie nuove "
 "traduzioni. "
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:43
+#: data/com.github.maoschanz.drawing.appdata.xml.in:59
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
@@ -92,14 +114,14 @@ msgstr ""
 "La versione 0.4.3 include nuove traduzioni ed è compatibile con le versioni "
 "precedentidistribuzioni come Ubuntu 18.04 LTS."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:49
+#: data/com.github.maoschanz.drawing.appdata.xml.in:65
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "La versione 0.4.2 presenta diverse correzioni di bug minori e varie nuove "
 "traduzioni. "
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:71
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -111,12 +133,12 @@ msgstr ""
 "degli strumenti\", un'azione per la creazione di unimmagine dal contenuto "
 "degli appunti, una matita più liscia e varie nuovetraduzioni"
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:63
+#: data/com.github.maoschanz.drawing.appdata.xml.in:79
 msgid "First stable release, including a few basic tools."
 msgstr "Prima versione stabile, inclusi alcuni strumenti di base."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:69
+#: data/com.github.maoschanz.drawing.appdata.xml.in:85
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
@@ -174,7 +196,7 @@ msgstr "Apri un' immagine"
 #: src/ui/headerbar.ui:124 src/ui/headerbar_eos.ui:157
 #: src/ui/headerbar_eos.ui:170 src/ui/headerbar_eos.ui:188
 #: src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:901 src/window.py:921
+#: src/window.py:900 src/window.py:920
 msgid "Save"
 msgstr "Salva"
 
@@ -250,8 +272,8 @@ msgstr "Incolla"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:836
-#: src/window.py:984
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:835
+#: src/window.py:983
 msgid "Import"
 msgstr "Importa"
 
@@ -348,7 +370,7 @@ msgstr "Scambia i colori"
 msgid "Color editor by default"
 msgstr "Selettore colore standard"
 
-#: src/ui/app-menus.ui:315 src/window.py:646
+#: src/ui/app-menus.ui:315 src/window.py:645
 msgid "_Tools"
 msgstr "_Strumenti"
 
@@ -356,7 +378,7 @@ msgstr "_Strumenti"
 msgid "Previous tool"
 msgstr "Strumento precedente"
 
-#: src/ui/app-menus.ui:334 src/window.py:748 src/window.py:751
+#: src/ui/app-menus.ui:334 src/window.py:747 src/window.py:750
 msgid "_Options"
 msgstr "_Opzioni"
 
@@ -398,7 +420,7 @@ msgid "Use this editor by default"
 msgstr "Usa questo editor come predefinito"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:820 src/window.py:835
+#: src/window.py:819 src/window.py:834
 msgid "Open"
 msgstr "Apri"
 
@@ -444,7 +466,7 @@ msgstr "Percorso"
 msgid "Format"
 msgstr "Formato"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:227
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:221
 msgid "Unsaved file"
 msgstr "File non salvato"
 
@@ -769,7 +791,7 @@ msgstr "Livello"
 msgid "Development features"
 msgstr "Funzionalità in sviluppo"
 
-#: src/preferences.py:166 src/window.py:643
+#: src/preferences.py:166 src/window.py:642
 msgid "Opened images"
 msgstr "Immagini aperte"
 
@@ -805,8 +827,8 @@ msgstr "Immagini JPEG"
 msgid "BMP images"
 msgstr "Immagini BMP"
 
-#: src/utilities.py:153 src/window.py:820 src/window.py:834 src/window.py:900
-#: src/window.py:921 src/window.py:984 src/tools/ui/tool_crop.ui:27
+#: src/utilities.py:153 src/window.py:819 src/window.py:833 src/window.py:899
+#: src/window.py:920 src/window.py:983 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:28
 #: src/tools/ui/tool_filters.ui:204 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
@@ -836,65 +858,65 @@ msgid "Failed to load tool: %s"
 msgstr "Strumento di caricamento non riuscito: %s"
 
 #. XXX broken if a new image is opened
-#: src/window.py:618
+#: src/window.py:617
 msgid "Middle click to get controls, press 'Escape' to exit."
 msgstr ""
 
-#: src/window.py:792
+#: src/window.py:791
 #, python-format
 msgid "Loading %s"
 msgstr "Caricamento %s"
 
-#: src/window.py:798
+#: src/window.py:797
 msgid "New Tab"
 msgstr "Nuova Scheda"
 
-#: src/window.py:800
+#: src/window.py:799
 msgid "Discard changes"
 msgstr "Scarta le modifiche"
 
-#: src/window.py:802 src/window.py:902
+#: src/window.py:801 src/window.py:901
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Ci sono modifiche non salvate in %s."
 
-#: src/window.py:804
+#: src/window.py:803
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Dove vuoi aprire %s?"
 
-#: src/window.py:819
+#: src/window.py:818
 msgid "Open a picture"
 msgstr "Apri un'immagine"
 
-#: src/window.py:841
+#: src/window.py:840
 #, fuzzy
 msgid "these files"
 msgstr "File non salvato"
 
-#: src/window.py:842
+#: src/window.py:841
 #, fuzzy, python-format
 msgid "What do you want to do with %s?"
 msgstr "Dove vuoi aprire %s?"
 
-#: src/window.py:892 src/window.py:923
+#: src/window.py:891 src/window.py:922
 msgid "Untitled"
 msgstr "Nessun titolo"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:894
+#: src/window.py:893
 msgid "this picture"
 msgstr "questa immagine"
 
-#: src/window.py:899
+#: src/window.py:898
 msgid "Discard"
 msgstr "Scarta"
 
-#: src/window.py:920
+#: src/window.py:919
 msgid "Save picture as…"
 msgstr "Salva l'immagine come…"
 
-#: src/window.py:983
+#: src/window.py:982
 msgid "Import a picture"
 msgstr "Importa un'immagine"
 

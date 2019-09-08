@@ -178,8 +178,8 @@ class ToolCrop(AbstractCanvasTool):
 		self.get_image().temp_pixbuf = new_pixbuf
 
 	def scale_temp_pixbuf_to_area(self, width, height):
-		visible_w = self.get_image().get_allocated_width()
-		visible_h = self.get_image().get_allocated_height()
+		visible_w = self.get_image().get_widget_width()
+		visible_h = self.get_image().get_widget_height()
 		w_ratio = visible_w/width
 		h_ratio = visible_h/height
 		if w_ratio > 1.0 and h_ratio > 1.0:

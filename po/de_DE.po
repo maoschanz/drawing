@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 23:30+0200\n"
+"POT-Creation-Date: 2019-09-08 17:50+0200\n"
 "PO-Revision-Date: 2019-09-05 21:10+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:438
+#: src/window.py:439
 msgid "Drawing"
 msgstr "Zeichnung"
 
@@ -77,14 +77,36 @@ msgstr ""
 "Formen (Rechteck, Kreis, Vieleck, …) Texteingabe, Größenänderung, "
 "Zuschneiden, Drehen, usw. Bilder zu zeichnen oder zu bearbeiten."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in:29
+msgid ""
+"Version 0.6 is a major update, with various important changes: rectangle "
+"selection and freehand selection are now distinct tools, images can be "
+"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
+"angle and handles horizontal or vertical flipping, and various tools "
+"producing shapes (circle, rectangle, polygon, …) have been merged into a "
+"single coherent 'shape' tool."
+msgstr ""
+
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
+msgid ""
+"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
+"with several types of blur, color inversion, pixelisation and saturation."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:42
+msgid ""
+"The most prominent new feature is the ability to zoom in (or out) on the "
+"image, using the minimap, the touchpad or the mouse wheel."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
 "Die Version 0.4.4 enthält mehrere kleine Fehlerbehebungen und verschiedene "
 "neue Übersetzungen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:43
+#: data/com.github.maoschanz.drawing.appdata.xml.in:59
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
@@ -92,14 +114,14 @@ msgstr ""
 "Die Version 0.4.3 beinhaltet neue Übersetzungen und ist kompatibel mit "
 "älteren Distributionen, wie zum Beispiel Ubuntu 18.04 LTS."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:49
+#: data/com.github.maoschanz.drawing.appdata.xml.in:65
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "Die Version 0.4.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
 "neue Übersetzungen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:71
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -113,12 +135,12 @@ msgstr ""
 "weicheren Bleistift und verschiedene neue Übersetzungen sind ebenfalls "
 "dazugekommen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:63
+#: data/com.github.maoschanz.drawing.appdata.xml.in:79
 msgid "First stable release, including a few basic tools."
 msgstr "Erste stabile Version; mit ein paar grundlegenden Werkzeugen."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:69
+#: data/com.github.maoschanz.drawing.appdata.xml.in:85
 msgid "Romain F. T."
 msgstr ""
 
@@ -413,7 +435,7 @@ msgstr "Werkzeuggröße"
 #. used by the bottom panels
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/panel_classic.ui:96 src/window.py:479 src/tools/abstract_tool.py:79
+#: src/ui/panel_classic.ui:96 src/window.py:480 src/tools/abstract_tool.py:79
 msgid "No options"
 msgstr "Keine Optionen"
 
@@ -444,7 +466,7 @@ msgstr "Pfad"
 msgid "Format"
 msgstr "Format"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:227
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:221
 msgid "Unsaved file"
 msgstr "Nicht gespeicherte Datei"
 
@@ -647,6 +669,13 @@ msgstr "Offizielle Internetseite"
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
+
+#. This displays the zoom level, %s will be replaced with a number, while
+#. %% is just the symbol '%'
+#: src/minimap.py:64
+#, python-format
+msgid "%s%%"
+msgstr ""
 
 #: src/preferences.py:54
 msgid "New images"

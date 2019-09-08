@@ -105,8 +105,10 @@ class DrawingMinimap(Gtk.Popover):
 		pix_height = self.mini_pixbuf.get_height()
 		self.minimap_area.set_size_request(pix_width, pix_height)
 
-		show_overlay = image.get_show_overlay()
-		if show_overlay:
+		# TODO if possible, updating the overlay should be doable without first
+		# rebuilding the pixbuf and the surface. It's not very useful however
+		# since the guard clause prevent the update in most cases anyway.
+		if image.get_show_overlay():
 			size_ratio = image.get_minimap_ratio(pix_width)
 			mini_x = int(image.scroll_x * size_ratio)
 			mini_y = int(image.scroll_y * size_ratio)

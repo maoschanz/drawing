@@ -150,13 +150,13 @@ class Application(Gtk.Application):
 
 		elif options.contains('new-window'):
 			self.on_new_window()
-			for path in arguments:
-				f = self.get_valid_file(args[1], path)
+			for fpath in arguments:
+				f = self.get_valid_file(args[1], fpath)
 				if f is not None:
 					self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
-			for path in arguments:
-				f = self.get_valid_file(args[1], path)
+			for fpath in arguments:
+				f = self.get_valid_file(args[1], fpath)
 				if f is not None:
 					win = self.props.active_window
 					if not win:

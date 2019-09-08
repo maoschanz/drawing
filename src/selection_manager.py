@@ -194,7 +194,6 @@ class DrawingSelectionManager():
 			self.temp_y = self.selection_y
 		self.show_popover(False)
 		self.image.update_actions_state()
-		# self.image.window.get_selection_tool().update_surface() # XXX non, boucle infinie
 
 	def _set_temp_path(self, new_path):
 		self.temp_x = self.selection_x
@@ -250,10 +249,8 @@ class DrawingSelectionManager():
 		main_y = self.image.scroll_y
 		x = self.selection_x + self.selection_pixbuf.get_width()/2 - main_x
 		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
-		x = max(0, min(x, self.image.drawing_area.get_allocated_width()))
-		y = max(0, min(y, self.image.drawing_area.get_allocated_height()))
-		rectangle.x = x
-		rectangle.y = y
+		rectangle.x = max(0, min(x, self.image.get_widget_width()))
+		rectangle.y = max(0, min(y, self.image.get_widget_height()))
 		rectangle.height = 1
 		rectangle.width = 1
 		self.l_popover.set_pointing_to(rectangle)
