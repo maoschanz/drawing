@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-02 01:12+0200\n"
+"POT-Creation-Date: 2019-09-08 18:51+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -41,7 +41,7 @@ msgstr "Paint;שרטט;עיפרון;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:735
+#: src/window.py:734
 msgid "New Window"
 msgstr "חלון חדש"
 
@@ -161,7 +161,7 @@ msgstr "פתיחת תמונה"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:809 src/window.py:854
+#: src/ui/toolbar.ui:119 src/window.py:808 src/window.py:853
 msgid "Save"
 msgstr "שמירה"
 
@@ -228,7 +228,7 @@ msgstr "הדבקה"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:918 src/tools/ui/tool_select.ui:118
+#: src/window.py:917 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "ייבוא"
@@ -319,7 +319,7 @@ msgstr "צבע ראשי"
 msgid "Secondary color"
 msgstr "צבע משנה"
 
-#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:141
+#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:139
 msgid "Exchange colors"
 msgstr "החלף צבעים"
 
@@ -339,7 +339,7 @@ msgstr "_לוח ציור"
 msgid "Previous tool"
 msgstr "כלי קודם"
 
-#: src/ui/app-menus.ui:308 src/window.py:1038 src/window.py:1041
+#: src/ui/app-menus.ui:308 src/window.py:1037 src/window.py:1040
 msgid "_Options"
 msgstr "_אפשרויות"
 
@@ -392,7 +392,7 @@ msgid "Use this editor by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:756
+#: src/window.py:755
 msgid "Open"
 msgstr "פתיחה"
 
@@ -562,18 +562,18 @@ msgstr "הצג/הסתר תצוגה מקדימה"
 msgid "Error starting the application, please report this bug."
 msgstr "שגיאה בפתיחת היישום, נא לדווח באג זה."
 
-#: src/ui/window.ui:171
+#: src/ui/window.ui:168
 msgid "Tool size"
 msgstr "גודל כלי"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:464 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:188 src/window.py:464 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "אין אפשרויות"
 
 #. <property name="relief">none</property>
-#: src/ui/window.ui:226 src/ui/window.ui:244 src/tools/ui/tool_select.ui:259
+#: src/ui/window.ui:221 src/ui/window.ui:239 src/tools/ui/tool_select.ui:259
 #: src/tools/ui/tool_select.ui:277
 msgid "Preview"
 msgstr "תצוגה מקדימה"
@@ -638,34 +638,34 @@ msgstr ""
 msgid "Failed to load tool: %s"
 msgstr ""
 
-#: src/window.py:728
+#: src/window.py:727
 #, python-format
 msgid "Loading %s"
 msgstr "טוען %s"
 
-#: src/window.py:734
+#: src/window.py:733
 msgid "New Tab"
 msgstr "לשונית חדשה"
 
-#: src/window.py:736
+#: src/window.py:735
 msgid "Discard changes"
 msgstr "בטל שינויים"
 
-#: src/window.py:738 src/window.py:810
+#: src/window.py:737 src/window.py:809
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "ישנם שינויים אשר לא שמורים ל%s."
 
-#: src/window.py:740
+#: src/window.py:739
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "היכן ברצונך לפתוח את %s?"
 
-#: src/window.py:755
+#: src/window.py:754
 msgid "Open a picture"
 msgstr "פתיחת תמונה"
 
-#: src/window.py:756 src/window.py:808 src/window.py:854 src/window.py:918
+#: src/window.py:755 src/window.py:807 src/window.py:853 src/window.py:917
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -675,40 +675,40 @@ msgstr "פתיחת תמונה"
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/window.py:800 src/window.py:856
+#: src/window.py:799 src/window.py:855
 msgid "Untitled"
 msgstr "חסר שם"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:802
+#: src/window.py:801
 msgid "this picture"
 msgstr "תמונה זו"
 
-#: src/window.py:807
+#: src/window.py:806
 msgid "Discard"
 msgstr "מחיקת שינויים"
 
-#: src/window.py:828
+#: src/window.py:827
 msgid "All pictures"
 msgstr "כל התמונות"
 
-#: src/window.py:834
+#: src/window.py:833
 msgid "PNG images"
 msgstr "תמונות PNG"
 
-#: src/window.py:838
+#: src/window.py:837
 msgid "JPEG images"
 msgstr "תמונות JPEG"
 
-#: src/window.py:842
+#: src/window.py:841
 msgid "BMP images"
 msgstr "תמונות BMP"
 
-#: src/window.py:853
+#: src/window.py:852
 msgid "Save picture as…"
 msgstr "שמירת תמונה כ..."
 
-#: src/window.py:917
+#: src/window.py:916
 msgid "Import a picture"
 msgstr "יבא תמונה"
 
@@ -1202,13 +1202,6 @@ msgstr "שינוי קנה מידה של לוח הציור"
 
 #~ msgid "Report bugs or ideas"
 #~ msgstr "דווח באגים או רעיונות"
-
-#, fuzzy
-#~ msgid "Pencil (with various options)"
-#~ msgstr "אפשרויות עיפרון"
-
-#~ msgid "Selection (cut/copy/paste/drag/…)"
-#~ msgstr "בחירה (חתיכה/העתקה/הדבקה/גרירה/...)"
 
 #~ msgid "Basic"
 #~ msgstr "בסיסי"

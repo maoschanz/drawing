@@ -71,16 +71,6 @@ class ToolLine(ToolTemplate):
 		self.x_press = 0.0
 		self.y_press = 0.0
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(self.x_press, self.y_press)
-		cairo_context.line_to(event_x, event_y)
-
-		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y)
-		self.do_tool_operation(operation)
-
 	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
@@ -91,6 +81,16 @@ class ToolLine(ToolTemplate):
 		if event.button == 3:
 			self.main_color = right_color
 			self.sec_color = left_color
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		self.restore_pixbuf()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.move_to(self.x_press, self.y_press)
+		cairo_context.line_to(event_x, event_y)
+
+		self._path = cairo_context.copy_path()
+		operation = self.build_operation(event_x, event_y)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
@@ -155,4 +155,7 @@ class ToolLine(ToolTemplate):
 			y_release = operation['y_release']
 			utilities_add_arrow_triangle(cairo_context, x_release, y_release, \
 			                                       x_press, y_press, line_width)
+
+	############################################################################
+################################################################################
 

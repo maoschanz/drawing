@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-02 01:12+0200\n"
+"POT-Creation-Date: 2019-09-08 18:51+0200\n"
 "PO-Revision-Date: 2019-08-03 13:53+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -40,7 +40,7 @@ msgstr "Paint;Skizze;Bleistift;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:735
+#: src/window.py:734
 msgid "New Window"
 msgstr "Neues Fenster"
 
@@ -81,17 +81,23 @@ msgstr ""
 msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
+"Die Version 0.4.4 enthält mehrere kleine Fehlerbehebungen und verschiedene "
+"neue Übersetzungen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:35
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"Die Version 0.4.3 beinhaltet neue Übersetzungen und ist kompatibel mit "
+"älteren Distributionen, wie zum Beispiel Ubuntu 18.04 LTS."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:41
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"Die Version 0.4.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
+"neue Übersetzungen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:47
 msgid ""
@@ -168,19 +174,19 @@ msgstr "Ein Bild öffnen"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:809 src/window.py:854
+#: src/ui/toolbar.ui:119 src/window.py:808 src/window.py:853
 msgid "Save"
 msgstr "Speichern"
 
 #: src/ui/app-menus.ui:80 src/ui/win-menus.ui:63 src/ui/win-menus.ui:119
 msgid "Save as…"
-msgstr "Speichern als..."
+msgstr "Speichern als…"
 
 #: src/ui/app-menus.ui:85 src/ui/selection.ui:86 src/ui/win-menus.ui:66
 #: src/ui/win-menus.ui:122 src/tools/ui/tool_select.ui:76
 #: src/tools/ui/tool_select.ui:343
 msgid "Export as…"
-msgstr "Exportieren als..."
+msgstr "Exportieren als…"
 
 #: src/ui/app-menus.ui:92 src/ui/toolbar.ui:130 src/ui/toolbar.ui:131
 #: src/ui/win-menus.ui:50 src/ui/win-menus.ui:106
@@ -235,7 +241,7 @@ msgstr "Einfügen"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:918 src/tools/ui/tool_select.ui:118
+#: src/window.py:917 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "Importieren"
@@ -315,7 +321,7 @@ msgstr "Hauptfarbe"
 msgid "Secondary color"
 msgstr "Zweitfarbe"
 
-#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:141
+#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:139
 msgid "Exchange colors"
 msgstr "Farben tauschen"
 
@@ -335,7 +341,7 @@ msgstr "Leinwand"
 msgid "Previous tool"
 msgstr "Vorheriges Werkzeug"
 
-#: src/ui/app-menus.ui:308 src/window.py:1038 src/window.py:1041
+#: src/ui/app-menus.ui:308 src/window.py:1037 src/window.py:1040
 msgid "_Options"
 msgstr "_Optionen"
 
@@ -385,7 +391,7 @@ msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:756
+#: src/window.py:755
 msgid "Open"
 msgstr "Öffnen"
 
@@ -548,18 +554,18 @@ msgstr "Vorschau umschalten"
 msgid "Error starting the application, please report this bug."
 msgstr "Fehler beim Starten der Anwendung. Bitte diesen Fehler melden."
 
-#: src/ui/window.ui:171
+#: src/ui/window.ui:168
 msgid "Tool size"
 msgstr "Werkzeuggröße"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:464 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:188 src/window.py:464 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Keine Optionen"
 
 #. <property name="relief">none</property>
-#: src/ui/window.ui:226 src/ui/window.ui:244 src/tools/ui/tool_select.ui:259
+#: src/ui/window.ui:221 src/ui/window.ui:239 src/tools/ui/tool_select.ui:259
 #: src/tools/ui/tool_select.ui:277
 msgid "Preview"
 msgstr "Vorschau"
@@ -615,34 +621,34 @@ msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
 msgid "Failed to load tool: %s"
 msgstr ""
 
-#: src/window.py:728
+#: src/window.py:727
 #, python-format
 msgid "Loading %s"
 msgstr "Wird geladen %s"
 
-#: src/window.py:734
+#: src/window.py:733
 msgid "New Tab"
 msgstr "Neuer Tab"
 
-#: src/window.py:736
+#: src/window.py:735
 msgid "Discard changes"
 msgstr "Änderungen verwerfen"
 
-#: src/window.py:738 src/window.py:810
+#: src/window.py:737 src/window.py:809
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Es gibt ungespeicherte Änderungen an %s"
 
-#: src/window.py:740
+#: src/window.py:739
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Wo möchten Sie %s öffnen?"
 
-#: src/window.py:755
+#: src/window.py:754
 msgid "Open a picture"
 msgstr "Ein Bild öffnen"
 
-#: src/window.py:756 src/window.py:808 src/window.py:854 src/window.py:918
+#: src/window.py:755 src/window.py:807 src/window.py:853 src/window.py:917
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -652,40 +658,40 @@ msgstr "Ein Bild öffnen"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/window.py:800 src/window.py:856
+#: src/window.py:799 src/window.py:855
 msgid "Untitled"
 msgstr "Unbenannt"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:802
+#: src/window.py:801
 msgid "this picture"
 msgstr "diesem Bild"
 
-#: src/window.py:807
+#: src/window.py:806
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/window.py:828
+#: src/window.py:827
 msgid "All pictures"
 msgstr "Alle Bilder"
 
-#: src/window.py:834
+#: src/window.py:833
 msgid "PNG images"
 msgstr "PNG-Bilder"
 
-#: src/window.py:838
+#: src/window.py:837
 msgid "JPEG images"
 msgstr "JPEG-Bilder"
 
-#: src/window.py:842
+#: src/window.py:841
 msgid "BMP images"
 msgstr "BMP-Bilder"
 
-#: src/window.py:853
+#: src/window.py:852
 msgid "Save picture as…"
 msgstr "Bild speichern als..."
 
-#: src/window.py:917
+#: src/window.py:916
 msgid "Import a picture"
 msgstr "Ein Bild importieren"
 
@@ -1173,24 +1179,6 @@ msgstr "Leinwand skalieren"
 
 #~ msgid "Report bugs or ideas"
 #~ msgstr "Fehler oder Ideen melden"
-
-#~ msgid "Pencil (with various options)"
-#~ msgstr "Bleistift (mit verschiedenen Optionen)"
-
-#~ msgid "Selection (cut/copy/paste/drag/…)"
-#~ msgstr "Auswahl (Ausschneiden/Kopieren/Einfügen/Ziehen/...)"
-
-#~ msgid "Line, Arc (with various options)"
-#~ msgstr "Linie, Bogen (mit verschiedenen Optionen)"
-
-#~ msgid "Shapes (rectangle, circle, polygon, …)"
-#~ msgstr "Formen (Rechteck, Kreis, Vieleck, …)"
-
-#~ msgid "Text insertion"
-#~ msgstr "Texteingabe"
-
-#~ msgid "Resizing, cropping, rotating"
-#~ msgstr "Größenänderung, Zuschneiden, Drehen"
 
 #~ msgid "Modifications will take effect in the next new window."
 #~ msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."

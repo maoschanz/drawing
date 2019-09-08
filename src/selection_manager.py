@@ -77,15 +77,16 @@ class DrawingSelectionManager():
 		ymax = min(ymax, main_height)
 		xmin = int( max(xmin, 0.0) ) # If everything is right, this is selection_x
 		ymin = int( max(ymin, 0.0) ) # If everything is right, this is selection_y
-		if self.selection_x != xmin or self.selection_y != ymin:
-			self.image.window.prompt_message(True, "assertion failed, incoherent coords")
-			print(self.selection_x, xmin, self.selection_y, ymin)
+		if self.selection_x < 0:
+			xmin = self.selection_x
+		if self.selection_y < 0:
+			ymin = self.selection_y
 
 		# Actually store the pixbuf
 		selection_width = int(xmax - xmin)
 		selection_height = int(ymax - ymin)
 		if selection_width > 0 and selection_height > 0:
-			print('⇒ load pixbuf')
+			# print('⇒ load pixbuf')
 			self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
 			            int(xmin), int(ymin), selection_width, selection_height)
 			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
@@ -126,7 +127,7 @@ class DrawingSelectionManager():
 		if self.temp_path is None:
 			return
 		if not self.is_active:
-			self.image.window.prompt_message(True, "delete_temp called while `is_active` is False")
+			# self.image.window.prompt_message(True, "delete_temp called while `is_active` is False")
 			return
 		cairo_context = cairo.Context(self.image.get_surface())
 		cairo_context.new_path()
@@ -189,12 +190,11 @@ class DrawingSelectionManager():
 			self.temp_y = self.selection_y
 		self.show_popover(False)
 		self.image.update_actions_state()
-		# self.image.window.get_selection_tool().update_surface() # XXX non, boucle infinie
 
-	def _set_temp_path(self, path):
+	def _set_temp_path(self, new_path):
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
-		self.temp_path = path
+		self.temp_path = new_path
 		self.is_active = True
 
 	def point_is_in_selection(self, tested_x, tested_y):
@@ -245,10 +245,8 @@ class DrawingSelectionManager():
 		main_y = self.image.scroll_y
 		x = self.selection_x + self.selection_pixbuf.get_width()/2 - main_x
 		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
-		x = max(0, min(x, self.image.drawing_area.get_allocated_width()))
-		y = max(0, min(y, self.image.drawing_area.get_allocated_height()))
-		rectangle.x = x
-		rectangle.y = y
+		rectangle.x = max(0, min(x, self.image.get_widget_width()))
+		rectangle.y = max(0, min(y, self.image.get_widget_height()))
 		rectangle.height = 1
 		rectangle.width = 1
 		self.l_popover.set_pointing_to(rectangle)

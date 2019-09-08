@@ -385,7 +385,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_window().set_cursor(cursor)
 
 	############################################################################
-	# WINDOW BARS ##############################################################
+	# WINDOW DECORATIONS AND LAYOUTS ###########################################
 
 	def on_layout_changed(self, *args):
 		if self.header_bar is not None:
@@ -580,8 +580,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		should_shrink = self.limit_size_bottom > 0.7 * available_width
 		self.compact_bottombar(should_shrink)
 
-		# Update the scrollbars
-		self.get_active_image().add_deltas(0, 0, 0)
+		self.get_active_image().fake_scrollbar_update()
 
 	def compact_bottombar(self, state):
 		self.options_long_box.set_visible(not state)

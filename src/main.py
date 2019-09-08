@@ -179,13 +179,13 @@ class Application(Gtk.Application):
 
 		elif options.contains('new-window'):
 			self.on_new_window()
-			for path in arguments:
-				f = self.get_valid_file(args[1], path)
+			for fpath in arguments:
+				f = self.get_valid_file(args[1], fpath)
 				if f is not None:
 					self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
-			for path in arguments:
-				f = self.get_valid_file(args[1], path)
+			for fpath in arguments:
+				f = self.get_valid_file(args[1], fpath)
 				if f is not None:
 					win = self.props.active_window
 					if not win:
@@ -258,7 +258,7 @@ class Application(Gtk.Application):
 			copyright='© 2019 Romain F. T.', authors=['Romain F. T.'],
 			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
-			artists=['Tobias Bernard'],
+			artists=['Tobias Bernard', 'Romain F. T.'],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self.version),
@@ -310,7 +310,7 @@ class Application(Gtk.Application):
 				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
 				return f
 			else:
-				return None
+				return None # mainly when it's /app/bin/drawing
 		except:
 			err = _("Error opening this file. Did you mean %s ?")
 			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"

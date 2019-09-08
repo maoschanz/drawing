@@ -232,8 +232,8 @@ class DrawingImage(Gtk.Box):
 		else:
 			return False
 
-	def set_tab_label(self, title):
-		self.tab_label.set_label(title)
+	def set_tab_label(self, title_text):
+		self.tab_label.set_label(title_text)
 
 	def get_file_path(self):
 		if self.gfile is None:
@@ -420,8 +420,14 @@ class DrawingImage(Gtk.Box):
 			self.main_pixbuf = new_pixbuf
 			return True
 
+	def get_widget_width(self):
+		return self.drawing_area.get_allocated_width()
+
+	def get_widget_height(self):
+		return self.drawing_area.get_allocated_height()
+
 	############################################################################
-	# Temporary pixbuf management ########################
+	# Temporary pixbuf management ##############################################
 
 	def get_temp_pixbuf(self):
 		return self.temp_pixbuf
@@ -441,9 +447,12 @@ class DrawingImage(Gtk.Box):
 	############################################################################
 	# Scroll and zoom levels ###################################################
 
+	def fake_scrollbar_update(self):
+		self.add_deltas(0, 0, 0)
+
 	def get_event_coords(self, event):
-		event_x = (self.scroll_x + event.x) / self.zoom_level
-		event_y = (self.scroll_y + event.y) / self.zoom_level
+		event_x = self.scroll_x + (event.x / self.zoom_level)
+		event_y = self.scroll_y + (event.y / self.zoom_level)
 		return event_x, event_y
 
 	def on_scroll_on_area(self, area, event):
@@ -457,56 +466,71 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def add_deltas(self, delta_x, delta_y, factor):
-		incorrect_x = self.scroll_x + int(delta_x * factor)
-		incorrect_y = self.scroll_y + int(delta_y * factor)
-		self.correct_coords(incorrect_x, incorrect_y)
+		wanted_x = self.scroll_x + int(delta_x * factor)
+		wanted_y = self.scroll_y + int(delta_y * factor)
+		self.correct_coords(wanted_x, wanted_y)
 		self.window.minimap.update_minimap()
 
-	def correct_coords(self, incorrect_x, incorrect_y): # FIXME doesn't work with the zoom
-		allocated_width = self.drawing_area.get_allocated_width()
-		allocated_height = self.drawing_area.get_allocated_height()
-
-		# Forbid absurd values
-		if allocated_width < 2:
-			return
-		mpb_width = self.get_main_pixbuf().get_width()
-		mpb_height = self.get_main_pixbuf().get_height()
-		if incorrect_x + allocated_width > mpb_width:
-			incorrect_x = mpb_width - allocated_width
-		if incorrect_y + allocated_height > mpb_height:
-			incorrect_y = mpb_height - allocated_height
-		if incorrect_x < 0:
-			incorrect_x = 0
-		if incorrect_y < 0:
-			incorrect_y = 0
+	def correct_coords(self, wanted_x, wanted_y):
+		available_w = self.get_widget_width()
+		available_h = self.get_widget_height()
+		if available_w < 2:
+			return # could be better handled
 
 		# Update the horizontal scrollbar
-		self.h_scrollbar.set_visible(allocated_width < mpb_width)
-		self.h_scrollbar.set_range(0, mpb_width)
-		self.h_scrollbar.get_adjustment().set_page_size(allocated_width)
-		self.h_scrollbar.set_value(incorrect_x)
-		self.scroll_x = self.h_scrollbar.get_value()
+		mpb_width = self.get_pixbuf_width()
+		wanted_x = min(wanted_x, self.get_max_coord(mpb_width, available_w))
+		wanted_x = max(wanted_x, 0)
+		self.update_scrollbar(False, available_w, int(mpb_width), int(wanted_x))
 
 		# Update the vertical scrollbar
-		self.v_scrollbar.set_visible(allocated_height < mpb_height)
-		self.v_scrollbar.set_range(0, mpb_height)
-		self.v_scrollbar.get_adjustment().set_page_size(allocated_height)
-		self.v_scrollbar.set_value(incorrect_y)
-		self.scroll_y = self.v_scrollbar.get_value()
+		mpb_height = self.get_pixbuf_height()
+		wanted_y = min(wanted_y, self.get_max_coord(mpb_height, available_h))
+		wanted_y = max(wanted_y, 0)
+		self.update_scrollbar(True, available_h, int(mpb_height), int(wanted_y))
+
+	def get_max_coord(self, mpb_size, available_size):
+		max_coord = mpb_size - (available_size / self.zoom_level)
+		return max_coord
+
+	def update_scrollbar(self, is_vertical, allocated_size, pixbuf_size, coord):
+		if is_vertical:
+			scrollbar = self.v_scrollbar
+		else:
+			scrollbar = self.h_scrollbar
+		scrollbar.set_visible(allocated_size / self.zoom_level < pixbuf_size)
+		scrollbar.set_range(0, pixbuf_size)
+		scrollbar.get_adjustment().set_page_size(allocated_size / self.zoom_level)
+		scrollbar.set_value(coord)
+		if is_vertical:
+			self.scroll_y = int(scrollbar.get_value())
+		else:
+			self.scroll_x = int(scrollbar.get_value())
 
 	def inc_zoom_level(self, delta):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
 
 	def set_zoom_level(self, level):
-		self.zoom_level = (level/100)
+		self.zoom_level = (int(level)/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
+		self.fake_scrollbar_update()
 		self.update()
 
 	def set_opti_zoom_level(self):
-		h_ratio = self.drawing_area.get_allocated_width() / self.get_pixbuf_width()
-		v_ratio = self.drawing_area.get_allocated_height() / self.get_pixbuf_height()
-		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some little margin is cool
+		allocated_width = self.get_widget_width()
+		allocated_height = self.get_widget_height()
+		if allocated_width == 1:
+			# FIXME because self.drawing_area might be not allocated yet
+			return
+			# allocated_width = 800
+			# allocated_height = 400
+			# FIXME but that hack can't update the minimap label
+		h_ratio = allocated_width / self.get_pixbuf_width()
+		v_ratio = allocated_height / self.get_pixbuf_height()
+		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some margin is cool
 		self.set_zoom_level(opti)
+		self.scroll_x = 0
+		self.scroll_y = 0
 
 	############################################################################
 	# Printing operations ######################################################
@@ -514,7 +538,7 @@ class DrawingImage(Gtk.Box):
 	def print_image(self):
 		op = Gtk.PrintOperation()
 		# FIXME the preview doesn't work, i guess it's because of flatpak ?
-		# I could connect to the 'preview' signal but that would be a hack
+		# I could connect to the 'preview' signal but that would be weird
 		op.connect('draw-page', self.do_draw_page)
 		op.connect('begin-print', self.do_begin_print)
 		op.connect('end-print', self.do_end_print)

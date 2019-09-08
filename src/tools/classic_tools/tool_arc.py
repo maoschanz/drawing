@@ -71,6 +71,15 @@ class ToolArc(ToolTemplate):
 		self.x_press = 0.0
 		self.y_press = 0.0
 
+	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+		self.x_press = event_x
+		self.y_press = event_y
+		self.tool_width = tool_width
+		if event.button == 1:
+			self.main_color = left_color
+		if event.button == 3:
+			self.main_color = right_color
+
 	def on_motion_on_area(self, area, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
@@ -84,15 +93,6 @@ class ToolArc(ToolTemplate):
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
-
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
-		self.tool_width = tool_width
-		if event.button == 1:
-			self.main_color = left_color
-		if event.button == 3:
-			self.main_color = right_color
 
 	def on_release_on_area(self, area, event, surface, event_x, event_y):
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
@@ -151,3 +151,7 @@ class ToolArc(ToolTemplate):
 			x_release = operation['x_release']
 			y_release = operation['y_release']
 			utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width)
+
+	############################################################################
+################################################################################
+

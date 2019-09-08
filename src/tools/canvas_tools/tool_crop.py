@@ -175,15 +175,15 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			dest_x = max(-1 * x, 0)
 			dest_y = max(-1 * y, 0)
-		min_w = min(width, self.get_image().get_temp_pixbuf().get_width() - src_x)
-		min_h = min(height, self.get_image().get_temp_pixbuf().get_height() - src_y)
-		self.get_image().temp_pixbuf.copy_area(src_x, src_y, min_w, min_h, \
-		                                             new_pixbuf, dest_x, dest_y)
+		temp_p = self.get_image().get_temp_pixbuf()
+		min_w = min(width, temp_p.get_width() - src_x)
+		min_h = min(height, temp_p.get_height() - src_y)
+		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().temp_pixbuf = new_pixbuf
 
 	def scale_temp_pixbuf_to_area(self, width, height):
-		visible_w = self.get_image().get_allocated_width()
-		visible_h = self.get_image().get_allocated_height()
+		visible_w = self.get_image().get_widget_width()
+		visible_h = self.get_image().get_widget_height()
 		w_ratio = visible_w/width
 		h_ratio = visible_h/height
 		if w_ratio > 1.0 and h_ratio > 1.0:

@@ -51,6 +51,8 @@ class AbstractCanvasTool(ToolTemplate):
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
 
+	############################################################################
+
 	def update_temp_pixbuf(self):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
@@ -59,7 +61,10 @@ class AbstractCanvasTool(ToolTemplate):
 		self.restore_pixbuf()
 		operation = self.build_operation()
 		self.apply_operation(operation)
-		self.window.back_to_previous()
+		if self.apply_to_selection:
+			self.window.force_selection()
+		else:
+			self.window.back_to_previous()
 
 	def apply_operation(self, operation):
 		operation['is_preview'] = False
@@ -102,6 +107,8 @@ class AbstractCanvasTool(ToolTemplate):
 			                           self.get_image().get_temp_pixbuf(), 0, 0)
 			cairo_context.paint()
 		self.get_image().update()
+
+	############################################################################
 
 	def on_draw(self, area, cairo_context):
 		pass # TODO FIXME pour l'instant pas d'overlay quand on modifie la sélection

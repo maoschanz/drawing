@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-02 01:12+0200\n"
+"POT-Creation-Date: 2019-09-08 18:51+0200\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
-"Last-Translator: Antonio HaureN <haurenburu@protonmail.com>\n"
+"Last-Translator: Antonio Hauren <haurenburu@protonmail.com>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,11 @@ msgstr "com.github.maoschanz.drawing"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in:12
 msgid "Paint;Sketch;Pencil;"
-msgstr "Pintura;Esboço;Lapis;"
+msgstr "Pintura;Esboço;Lápis;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:315 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:735
+#: src/window.py:734
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -56,13 +56,13 @@ msgstr "Editar imagem do clipboard"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:15
 msgid "A drawing application for the GNOME desktop"
-msgstr "Uma aplicacao de desenho para o ambiente GNOME"
+msgstr "Uma aplicação de desenho para o ambiente GNOME"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:17
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Drawing\" e um simples editor de imagens, que suporta arquivos PNG,JPEG e "
+"\"Drawing\" é um simples editor de imagens, que suporta arquivos PNG,JPEG e "
 "BMP"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
@@ -170,7 +170,7 @@ msgstr "Abrir uma imagem"
 #: src/ui/app-menus.ui:75 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:99 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/window.py:809 src/window.py:854
+#: src/ui/toolbar.ui:119 src/window.py:808 src/window.py:853
 msgid "Save"
 msgstr "Salvar"
 
@@ -237,7 +237,7 @@ msgstr "Colar"
 
 #: src/ui/app-menus.ui:155 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/shortcuts.ui:147 src/ui/toolbar.ui:46 src/ui/toolbar.ui:47
-#: src/window.py:918 src/tools/ui/tool_select.ui:118
+#: src/window.py:917 src/tools/ui/tool_select.ui:118
 #: src/tools/ui/tool_select.ui:151
 msgid "Import"
 msgstr "Importar"
@@ -312,19 +312,19 @@ msgstr "_Cores"
 
 #: src/ui/app-menus.ui:265
 msgid "Main color"
-msgstr "Cor primaria"
+msgstr "Cor primária"
 
 #: src/ui/app-menus.ui:269
 msgid "Secondary color"
 msgstr "Cor secundária"
 
-#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:141
+#: src/ui/app-menus.ui:275 src/ui/shortcuts.ui:222 src/ui/window.ui:139
 msgid "Exchange colors"
 msgstr "Trocar cores"
 
 #: src/ui/app-menus.ui:282
 msgid "Color editor by default"
-msgstr "Cores padrões"
+msgstr "Cores padrão"
 
 #: src/ui/app-menus.ui:289
 msgid "_Tools"
@@ -338,9 +338,9 @@ msgstr "_Tela"
 msgid "Previous tool"
 msgstr "Ferramenta anterior"
 
-#: src/ui/app-menus.ui:308 src/window.py:1038 src/window.py:1041
+#: src/ui/app-menus.ui:308 src/window.py:1037 src/window.py:1040
 msgid "_Options"
-msgstr "_Opcoes"
+msgstr "_Opções"
 
 #: src/ui/app-menus.ui:312
 msgid "_Windows"
@@ -385,10 +385,10 @@ msgstr "Voltar para a paleta"
 
 #: src/ui/color_popover.ui:43
 msgid "Use this editor by default"
-msgstr "Usar esse editor por padrao"
+msgstr "Usar esse editor por padrão"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:756
+#: src/window.py:755
 msgid "Open"
 msgstr "Abrir"
 
@@ -451,7 +451,7 @@ msgstr "Polegadas"
 #: src/ui/selection.ui:26 src/ui/shortcuts.ui:174
 #: src/tools/ui/tool_select.ui:11 src/tools/ui/tool_select.ui:333
 msgid "Unselect"
-msgstr "Deselecionar"
+msgstr "Desselecionar"
 
 #: src/ui/selection.ui:50 src/tools/ui/tool_select.ui:39
 #: src/tools/canvas_tools/tool_flip.py:27
@@ -537,7 +537,7 @@ msgstr "Mudar cor principal (clique esquerdo)"
 
 #: src/ui/shortcuts.ui:215
 msgid "Edit the secondary color (right click)"
-msgstr "Mudar cor secundaria (clique direito)"
+msgstr "Mudar cor secundária (clique direito)"
 
 #: src/ui/shortcuts.ui:231
 msgid "Navigation"
@@ -551,18 +551,18 @@ msgstr "Alternar a pre visualização"
 msgid "Error starting the application, please report this bug."
 msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 
-#: src/ui/window.ui:171
+#: src/ui/window.ui:168
 msgid "Tool size"
 msgstr "Ferramenta de tamanho"
 
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/window.ui:192 src/window.py:464 src/tools/abstract_tool.py:80
+#: src/ui/window.ui:188 src/window.py:464 src/tools/abstract_tool.py:80
 msgid "No options"
 msgstr "Sem opções"
 
 #. <property name="relief">none</property>
-#: src/ui/window.ui:226 src/ui/window.ui:244 src/tools/ui/tool_select.ui:259
+#: src/ui/window.ui:221 src/ui/window.ui:239 src/tools/ui/tool_select.ui:259
 #: src/tools/ui/tool_select.ui:277
 msgid "Preview"
 msgstr "Previsualizar"
@@ -581,7 +581,7 @@ msgstr "Resolver problemas de seleção"
 
 #: src/main.py:57
 msgid "Print the version and display the 'about' dialog"
-msgstr "Mostrar versao e a janela 'sobre'"
+msgstr "Mostrar versão e a janela 'sobre'"
 
 #: src/main.py:60
 msgid "Open a new window"
@@ -598,15 +598,17 @@ msgstr "Editar conteúdo do clipboard"
 #. To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
 #: src/main.py:260
 msgid "translator-credits"
-msgstr "Antonio HaureN"
+msgstr ""
+"Antonio Hauren\n"
+"Luís Fernando Stürmer da Rosa"
 
 #: src/main.py:262
 msgid "A drawing application for the GNOME desktop."
-msgstr "Uma aplicacao de desenho para o ambiente GNOME"
+msgstr "Uma aplicação de desenho para o ambiente GNOME"
 
 #: src/main.py:266
 msgid "Official webpage"
-msgstr ""
+msgstr "Página oficial"
 
 #: src/main.py:315
 #, python-format
@@ -618,34 +620,34 @@ msgstr "Erro ao abrir este arquivo. Você quis dizer %s ?"
 msgid "Failed to load tool: %s"
 msgstr ""
 
-#: src/window.py:728
+#: src/window.py:727
 #, python-format
 msgid "Loading %s"
 msgstr "Carregando %s"
 
-#: src/window.py:734
+#: src/window.py:733
 msgid "New Tab"
 msgstr "Nova aba"
 
-#: src/window.py:736
+#: src/window.py:735
 msgid "Discard changes"
 msgstr "Discartar alterações"
 
-#: src/window.py:738 src/window.py:810
+#: src/window.py:737 src/window.py:809
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Há mudancas não salvas em %s."
 
-#: src/window.py:740
+#: src/window.py:739
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Onde voce quer abrir %s?"
 
-#: src/window.py:755
+#: src/window.py:754
 msgid "Open a picture"
 msgstr "Abrir uma imagem"
 
-#: src/window.py:756 src/window.py:808 src/window.py:854 src/window.py:918
+#: src/window.py:755 src/window.py:807 src/window.py:853 src/window.py:917
 #: src/utilities.py:112 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_flip.ui:10
 #: src/tools/ui/tool_flip.ui:92 src/tools/ui/tool_rotate.ui:20
@@ -655,40 +657,40 @@ msgstr "Abrir uma imagem"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/window.py:800 src/window.py:856
+#: src/window.py:799 src/window.py:855
 msgid "Untitled"
 msgstr "Sem título"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:802
+#: src/window.py:801
 msgid "this picture"
 msgstr "Essa imagem"
 
-#: src/window.py:807
+#: src/window.py:806
 msgid "Discard"
 msgstr "Discartar"
 
-#: src/window.py:828
+#: src/window.py:827
 msgid "All pictures"
 msgstr "Todas as imagens"
 
-#: src/window.py:834
+#: src/window.py:833
 msgid "PNG images"
 msgstr "Imagens PNG"
 
-#: src/window.py:838
+#: src/window.py:837
 msgid "JPEG images"
 msgstr "Imagens JPEG"
 
-#: src/window.py:842
+#: src/window.py:841
 msgid "BMP images"
 msgstr "Imagens BMP"
 
-#: src/window.py:853
+#: src/window.py:852
 msgid "Save picture as…"
 msgstr "Salvar imagem como…"
 
-#: src/window.py:917
+#: src/window.py:916
 msgid "Import a picture"
 msgstr "Importar uma imagem"
 
@@ -852,7 +854,7 @@ msgstr "Modo"
 #: src/tools/classic_tools/tool_line.py:50
 #: src/tools/classic_tools/tool_pencil.py:60
 msgid "Classic"
-msgstr "Classico"
+msgstr "Clássico"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_line.ui:44
 #: src/tools/ui/tool_pencil.ui:36 src/tools/classic_tools/tool_arc.py:44
@@ -1081,7 +1083,7 @@ msgstr "Linha"
 
 #: src/tools/classic_tools/tool_line.py:53
 msgid "Line options"
-msgstr "Opcoes da linha"
+msgstr "Opções da linha"
 
 #: src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
@@ -1158,7 +1160,7 @@ msgstr "Recortar a tela"
 
 #: src/tools/canvas_tools/tool_rotate.py:47
 msgid "Rotating the selection"
-msgstr "Girando a selecao"
+msgstr "Girar a seleção"
 
 #: src/tools/canvas_tools/tool_rotate.py:49
 msgid "Rotating the canvas"
@@ -1166,29 +1168,11 @@ msgstr "Girando a tela"
 
 #: src/tools/canvas_tools/tool_scale.py:56
 msgid "Scaling the selection"
-msgstr "Redimencionar a seleção"
+msgstr "Redimensionar a seleção"
 
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the canvas"
-msgstr "Redimencionar a tela"
+msgstr "Redimensionar a tela"
 
 #~ msgid "Report bugs or ideas"
 #~ msgstr "Reportar bugs ou ideias"
-
-#~ msgid "Pencil (with various options)"
-#~ msgstr "Lápis (Com varias opções)"
-
-#~ msgid "Selection (cut/copy/paste/drag/…)"
-#~ msgstr "Seleção (cortar/copiar/colar/arrastar/…)"
-
-#~ msgid "Line, Arc (with various options)"
-#~ msgstr "Linha, Arco (com varias opcoes)"
-
-#~ msgid "Shapes (rectangle, circle, polygon, …)"
-#~ msgstr "Formas (retângulo, circulo, polígono, …)"
-
-#~ msgid "Text insertion"
-#~ msgstr "Inserção de texto"
-
-#~ msgid "Resizing, cropping, rotating"
-#~ msgstr "Redimencionar, cortar, rotacionar"

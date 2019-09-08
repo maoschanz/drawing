@@ -133,15 +133,16 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	############################################################################
 
-	def row_from_label(self, text, with_margin):
-		label = Gtk.Label(label=('<b>'+text+'</b>'), halign=Gtk.Align.START, use_markup=True)
+	def row_from_label(self, label_text, with_margin):
+		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \
+		                                    label=('<b>' + label_text + '</b>'))
 		if with_margin:
 			label.set_margin_top(12)
 		label.set_visible(True)
 		return label
 
-	def row_from_widget(self, text, widget):
-		label = Gtk.Label(label=text)
+	def row_from_widget(self, label_text, widget):
+		label = Gtk.Label(label=label_text)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 		box.pack_start(label, expand=False, fill=False, padding=0)
 		box.pack_end(widget, expand=False, fill=False, padding=0)
@@ -155,21 +156,21 @@ class DrawingPrefsWindow(Gtk.Window):
 		btn.connect('toggled', self.on_aos_checkbtn_changed, key, row_id)
 		return btn
 
-	def row_from_bool(self, text, key):
+	def row_from_bool(self, label_text, key):
 		switch = Gtk.Switch()
 		switch.set_active(self._settings.get_boolean(key))
 		switch.connect('notify::active', self.on_bool_changed, key)
-		return self.row_from_widget(text, switch)
+		return self.row_from_widget(label_text, switch)
 
 	def on_bool_changed(self, switch, state, key):
 		self._settings.set_boolean(key, switch.get_active())
 
-	def row_from_adj(self, text, key, adj):
+	def row_from_adj(self, label_text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
 		utilities_add_px_to_spinbutton(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
-		return self.row_from_widget(text, spinbtn)
+		return self.row_from_widget(label_text, spinbtn)
 
 	def on_adj_changed(self, spinbtn, key):
 		self._settings.set_int(key, spinbtn.get_value_as_int())
