@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 23:30+0200\n"
-"PO-Revision-Date: 2019-09-05 21:10+0200\n"
+"POT-Creation-Date: 2019-09-08 03:57+0200\n"
+"PO-Revision-Date: 2019-09-08 15:46+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:438
+#: src/window.py:439
 msgid "Drawing"
 msgstr "Zeichnung"
 
@@ -40,7 +40,7 @@ msgstr "Paint;Skizze;Bleistift;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:798
+#: src/window.py:799
 msgid "New Window"
 msgstr "Neues Fenster"
 
@@ -176,7 +176,7 @@ msgstr "Ein Bild öffnen"
 #: src/ui/headerbar.ui:124 src/ui/headerbar_eos.ui:157
 #: src/ui/headerbar_eos.ui:170 src/ui/headerbar_eos.ui:188
 #: src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:900 src/window.py:920
+#: src/window.py:901 src/window.py:921
 msgid "Save"
 msgstr "Speichern"
 
@@ -250,8 +250,8 @@ msgstr "Einfügen"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:835
-#: src/window.py:983
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:836
+#: src/window.py:984
 msgid "Import"
 msgstr "Importieren"
 
@@ -348,7 +348,7 @@ msgstr "Farben tauschen"
 msgid "Color editor by default"
 msgstr "Farbwähler standardmäßig öffnen"
 
-#: src/ui/app-menus.ui:315 src/window.py:645
+#: src/ui/app-menus.ui:315 src/window.py:646
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
@@ -356,7 +356,7 @@ msgstr "_Werkzeuge"
 msgid "Previous tool"
 msgstr "Vorheriges Werkzeug"
 
-#: src/ui/app-menus.ui:334 src/window.py:747 src/window.py:750
+#: src/ui/app-menus.ui:334 src/window.py:748 src/window.py:751
 msgid "_Options"
 msgstr "_Optionen"
 
@@ -398,7 +398,7 @@ msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:819 src/window.py:834
+#: src/window.py:820 src/window.py:835
 msgid "Open"
 msgstr "Öffnen"
 
@@ -413,7 +413,7 @@ msgstr "Werkzeuggröße"
 #. used by the bottom panels
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/panel_classic.ui:96 src/window.py:479 src/tools/abstract_tool.py:79
+#: src/ui/panel_classic.ui:96 src/window.py:480 src/tools/abstract_tool.py:79
 msgid "No options"
 msgstr "Keine Optionen"
 
@@ -648,6 +648,13 @@ msgstr "Offizielle Internetseite"
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
 
+#. This displays the zoom level, %s will be replaced with a number, while
+#. %% is just the symbol '%'
+#: src/minimap.py:64
+#, python-format
+msgid "%s%%"
+msgstr "%s%%"
+
 #: src/preferences.py:54
 msgid "New images"
 msgstr "Neue Bilder"
@@ -756,7 +763,7 @@ msgstr "Layout"
 msgid "Development features"
 msgstr "Entwicklungsfunktionen"
 
-#: src/preferences.py:166 src/window.py:642
+#: src/preferences.py:166 src/window.py:643
 msgid "Opened images"
 msgstr "Geöffnete Bilder"
 
@@ -792,8 +799,8 @@ msgstr "JPEG-Bilder"
 msgid "BMP images"
 msgstr "BMP-Bilder"
 
-#: src/utilities.py:153 src/window.py:819 src/window.py:833 src/window.py:899
-#: src/window.py:920 src/window.py:983 src/tools/ui/tool_crop.ui:27
+#: src/utilities.py:153 src/window.py:820 src/window.py:834 src/window.py:900
+#: src/window.py:921 src/window.py:984 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:28
 #: src/tools/ui/tool_filters.ui:204 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
@@ -825,64 +832,64 @@ msgid "Failed to load tool: %s"
 msgstr "Fehler beim Laden des Werkzeugs: %s"
 
 #. XXX broken if a new image is opened
-#: src/window.py:617
+#: src/window.py:618
 msgid "Middle click to get controls, press 'Escape' to exit."
 msgstr "Mittelklick, um Steuerung anzuzeigen, Taste ESC drücken für Beenden."
 
-#: src/window.py:791
+#: src/window.py:792
 #, python-format
 msgid "Loading %s"
 msgstr "Wird geladen %s"
 
-#: src/window.py:797
+#: src/window.py:798
 msgid "New Tab"
 msgstr "Neuer Tab"
 
-#: src/window.py:799
+#: src/window.py:800
 msgid "Discard changes"
 msgstr "Änderungen verwerfen"
 
-#: src/window.py:801 src/window.py:901
+#: src/window.py:802 src/window.py:902
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Es gibt Änderungen an %s, die noch nicht gespeichert wurden."
 
-#: src/window.py:803
+#: src/window.py:804
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Wo möchten Sie %s öffnen?"
 
-#: src/window.py:818
+#: src/window.py:819
 msgid "Open a picture"
 msgstr "Ein Bild öffnen"
 
-#: src/window.py:840
+#: src/window.py:841
 msgid "these files"
 msgstr "diese Dateien"
 
-#: src/window.py:841
+#: src/window.py:842
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Was möchten Sie mit %s machen?"
 
-#: src/window.py:891 src/window.py:922
+#: src/window.py:892 src/window.py:923
 msgid "Untitled"
 msgstr "Unbenannt"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:893
+#: src/window.py:894
 msgid "this picture"
 msgstr "diesem Bild"
 
-#: src/window.py:898
+#: src/window.py:899
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/window.py:919
+#: src/window.py:920
 msgid "Save picture as…"
 msgstr "Bild speichern als…"
 
-#: src/window.py:982
+#: src/window.py:983
 msgid "Import a picture"
 msgstr "Ein Bild importieren"
 
@@ -1049,9 +1056,8 @@ msgid "Flip vertically"
 msgstr "Vertikal spiegeln"
 
 #: src/tools/ui/tool_scale.ui:99
-#, fuzzy
 msgid "More options"
-msgstr "Weitere Aktionen"
+msgstr "Weitere Optionen"
 
 #: src/tools/ui/tool_scale.ui:143
 msgid "Keep proportions"
@@ -1059,11 +1065,11 @@ msgstr "Verhältnisse beibehalten"
 
 #: src/tools/ui/tool_scale.ui:150
 msgid "Allow horizontal deformations"
-msgstr ""
+msgstr "Horizontale Verformungen zulassen"
 
 #: src/tools/ui/tool_scale.ui:155
 msgid "Allow vertical deformations"
-msgstr ""
+msgstr "Vertikale Verformungen zulassen"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:46
 msgid "Rectangle"
@@ -1236,11 +1242,54 @@ msgstr "Leinwand skalieren"
 #~ msgid "Close"
 #~ msgstr "Schließen"
 
+#~ msgid "_Canvas"
+#~ msgstr "Leinwand"
+
+#~ msgid "_Windows"
+#~ msgstr "_Fenster"
+
+#~ msgid "Saturate"
+#~ msgstr "Sättigen"
+
 #~ msgid "Report bugs or ideas"
 #~ msgstr "Fehler oder Ideen melden"
 
 #~ msgid "Filling"
 #~ msgstr "Füllung"
+
+#~ msgid "Arc"
+#~ msgstr "Bogen"
+
+#~ msgid "Arc options"
+#~ msgstr "Bogen-Optionen"
+
+#~ msgid "Polygon options"
+#~ msgstr "Vieleck-Optionen"
+
+#~ msgid "Rectangle options"
+#~ msgstr "Rechteck-Optionen"
+
+#, fuzzy
+#~ msgid "Optimal zoom"
+#~ msgstr "Optimaler Zoom"
+
+#~ msgid "Pencil (with various options)"
+#~ msgstr "Bleistift (mit verschiedenen Optionen)"
+
+#~ msgid "Selection (cut/copy/paste/drag/…)"
+#~ msgstr "Auswahl (Ausschneiden/Kopieren/Einfügen/Ziehen/...)"
+
+#~ msgid "Line, Arc (with various options)"
+#~ msgstr "Linie, Bogen (mit verschiedenen Optionen)"
+
+#~ msgid "Shapes (rectangle, circle, polygon, …)"
+#~ msgstr "Formen (Rechteck, Kreis, Vieleck, …)"
+
+#~ msgid "Text insertion"
+#~ msgstr "Texteingabe"
+
+#~ msgid "Resizing, cropping, rotating"
+#~ msgstr "Größenänderung, Zuschneiden, Drehen"
 
 #~ msgid "Selection type"
 #~ msgstr "Auswahltyp"
