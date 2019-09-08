@@ -23,6 +23,7 @@ from .utilities import utilities_show_overlay_on_context
 class DrawingMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrawingMinimap'
 	# TODO custom "move" cursor
+	# TODO "on_motion" method?
 
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)
@@ -52,9 +53,15 @@ class DrawingMinimap(Gtk.Popover):
 		self.set_relative_to(minimap_btn)
 
 	def update_zoom_level(self, *args):
-		self.window.get_active_image().zoom_level = self.zoom_scale.get_value()/100
-		self.window.get_active_image().update()
-		zoom_label = str(int(self.zoom_scale.get_value())) + '%'
+		zoom_value = self.zoom_scale.get_value()
+		self.window.get_active_image().zoom_level = zoom_value/100 # XXX superflu ?
+		self.window.get_active_image().update() # XXX superflu ?
+		self.set_zoom_label(zoom_value)
+
+	def set_zoom_label(self, int_value):
+		# This displays the zoom level, %s will be replaced with a number, while
+		# %% is just the symbol '%'
+		zoom_label = _("%s%%") % str(int(int_value))
 		self.window.options_manager.set_minimap_label(zoom_label)
 		self.update_minimap(False)
 
@@ -80,45 +87,32 @@ class DrawingMinimap(Gtk.Popover):
 
 	def on_minimap_release(self, area, event):
 		"""Callback of the 'button-release-event' signal."""
-		ratio = self.get_main_pixbuf().get_width()/self.mini_pixbuf.get_width()
-		delta_x = int((event.x - self.old_x) * ratio)
-		delta_y = int((event.y - self.old_y) * ratio)
-		self.window.get_active_image().add_deltas(delta_x, delta_y, 1)
-
-	def get_main_pixbuf(self):
-		return self.window.get_active_image().main_pixbuf
+		image = self.window.get_active_image()
+		size_ratio = image.get_minimap_ratio(self.mini_pixbuf.get_width())
+		delta_x = int((event.x - self.old_x) / size_ratio)
+		delta_y = int((event.y - self.old_y) / size_ratio)
+		image.add_deltas(delta_x, delta_y, 1)
 
 	def update_minimap(self, force_update):
 		"""Update the overlay on the minimap, based on the scroll coordinates."""
 		if not self.get_visible() and not force_update:
 			return
-		x = self.window.get_active_image().scroll_x
-		y = self.window.get_active_image().scroll_y
-		w = self.preview_size
-		h = self.preview_size
-		mpb_width = self.get_main_pixbuf().get_width()
-		mpb_height = self.get_main_pixbuf().get_height()
-		if mpb_height > mpb_width:
-			w = self.preview_size * (mpb_width/mpb_height)
-		else:
-			h = self.preview_size * (mpb_height/mpb_width)
-		main_area_width = self.window.get_active_image().get_allocated_width()
-		main_area_height = self.window.get_active_image().get_allocated_height()
-		zoom = self.window.get_active_image().zoom_level
-		visible_width = int(min(main_area_width, mpb_width - x) / zoom)
-		visible_height = int(min(main_area_height, mpb_height - y) / zoom)
-
-		self.mini_pixbuf = self.get_main_pixbuf().scale_simple(w, h, \
-		                                             GdkPixbuf.InterpType.TILES)
+		image = self.window.get_active_image()
+		self.mini_pixbuf = image.get_mini_pixbuf(self.preview_size)
 		self.mini_surface = Gdk.cairo_surface_create_from_pixbuf( \
 		                                              self.mini_pixbuf, 0, None)
-		self.minimap_area.set_size_request(w, h)
+		pix_width = self.mini_pixbuf.get_width()
+		pix_height = self.mini_pixbuf.get_height()
+		self.minimap_area.set_size_request(pix_width, pix_height)
 
-		if main_area_width < mpb_width * zoom or main_area_height < mpb_height * zoom:
-			mini_x = x * self.mini_pixbuf.get_width()/mpb_width
-			mini_y = y * self.mini_pixbuf.get_height()/mpb_height
-			mini_width = visible_width * self.mini_pixbuf.get_width()/mpb_width
-			mini_height = visible_height * self.mini_pixbuf.get_height()/mpb_height
+		show_overlay = image.get_show_overlay()
+		if show_overlay:
+			size_ratio = image.get_minimap_ratio(pix_width)
+			mini_x = int(image.scroll_x * size_ratio)
+			mini_y = int(image.scroll_y * size_ratio)
+			visible_width, visible_height = image.get_visible_size()
+			mini_width = int(visible_width * size_ratio)
+			mini_height = int(visible_height * size_ratio)
 			mini_context = cairo.Context(self.mini_surface)
 			mini_context.move_to(mini_x, mini_y)
 			mini_context.line_to(mini_x, mini_height + mini_y)
@@ -130,10 +124,7 @@ class DrawingMinimap(Gtk.Popover):
 		# else:
 		# 	???
 		self.minimap_area.queue_draw()
-		self.update_main_area()
-
-	def update_main_area(self):
-		self.window.get_active_image().update()
+		image.update()
 
 	############################################################################
 ################################################################################

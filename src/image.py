@@ -437,13 +437,14 @@ class DrawingImage(Gtk.Box):
 
 	def set_main_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
+			# FIXME wtf, throw something maybe???
 			return False
 		else:
 			self.main_pixbuf = new_pixbuf
 			return True
 
 	############################################################################
-	# Temporary pixbuf management ########################
+	# Temporary pixbuf management ##############################################
 
 	def get_temp_pixbuf(self):
 		return self.temp_pixbuf
@@ -461,24 +462,63 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	############################################################################
+	# Interaction with the minimap #############################################
+
+	def get_widget_width(self):
+		return self.drawing_area.get_allocated_width()
+
+	def get_widget_height(self):
+		return self.drawing_area.get_allocated_height()
+
+	def get_mini_pixbuf(self, preview_size):
+		mpb_width = self.get_pixbuf_width()
+		mpb_height = self.get_pixbuf_height()
+		if mpb_height > mpb_width:
+			mw = preview_size * (mpb_width/mpb_height)
+			mh = preview_size
+		else:
+			mw = preview_size
+			mh = preview_size * (mpb_height/mpb_width)
+		return self.main_pixbuf.scale_simple(mw, mh, GdkPixbuf.InterpType.TILES)
+
+	def get_show_overlay(self):
+		mpb_width = self.get_pixbuf_width()
+		mpb_height = self.get_pixbuf_height()
+		show_x = self.get_widget_width() < mpb_width * self.zoom_level
+		show_y = self.get_widget_height() < mpb_height * self.zoom_level
+		show_overlay = show_x or show_y
+		return show_overlay
+
+	def get_minimap_ratio(self, mini_width):
+		return mini_width/self.get_pixbuf_width()
+
+	def get_visible_size(self):
+		visible_width = int(self.get_widget_width() / self.zoom_level)
+		visible_height = int(self.get_widget_height() / self.zoom_level)
+		return visible_width, visible_height
+
+	############################################################################
 	# Scroll and zoom levels ###################################################
 
+	def fake_scrollbar_update(self):
+		self.add_deltas(0, 0, 0)
+
 	def get_event_coords(self, event):
-		event_x = (self.scroll_x + event.x) / self.zoom_level
-		event_y = (self.scroll_y + event.y) / self.zoom_level
+		event_x = self.scroll_x + (event.x / self.zoom_level)
+		event_y = self.scroll_y + (event.y / self.zoom_level)
 		return event_x, event_y
 
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
 		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
-		if (ctrl_is_used and self.ctrl_to_zoom) \
-		                        or (not ctrl_is_used and not self.ctrl_to_zoom):
+		if ctrl_is_used == self.ctrl_to_zoom:
 			event_x, event_y = self.get_event_coords(event)
 			self.scroll_to_point(event.delta_x, event.delta_y, event_x, event_y)
 		else:
 			self.add_deltas(event.delta_x, event.delta_y, 10)
 
 	def get_dragged_selection_path(self):
+		# XXX and the zoom? TODO
 		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
 
 	def on_scrollbar_value_change(self, scrollbar):
@@ -492,33 +532,36 @@ class DrawingImage(Gtk.Box):
 		self.window.minimap.update_minimap(False)
 
 	def correct_coords(self, wanted_x, wanted_y):
-		available_w = self.drawing_area.get_allocated_width()
-		available_h = self.drawing_area.get_allocated_height()
-
-		# Forbid absurd values # FIXME doesn't work with the zoom
+		available_w = self.get_widget_width()
+		available_h = self.get_widget_height()
 		if available_w < 2:
-			return
-		mpb_width = self.get_main_pixbuf().get_width()
-		mpb_height = self.get_main_pixbuf().get_height()
-		wanted_x = min(wanted_x, mpb_width - available_w)
-		wanted_y = min(wanted_y, mpb_height - available_h)
-		wanted_x = max(wanted_x, 0)
-		wanted_y = max(wanted_y, 0)
+			return # could be better
 
 		# Update the horizontal scrollbar
-		self.update_scrollbar(False, available_w, mpb_width, wanted_x)
+		mpb_width = self.get_pixbuf_width()
+		wanted_x = min(wanted_x, self.get_max_coord(mpb_width, available_w))
+		wanted_x = max(wanted_x, 0)
+		self.update_scrollbar(False, available_w, int(mpb_width), int(wanted_x))
 
 		# Update the vertical scrollbar
-		self.update_scrollbar(True, available_h, mpb_height, wanted_y)
+		mpb_height = self.get_pixbuf_height()
+		wanted_y = min(wanted_y, self.get_max_coord(mpb_height, available_h))
+		wanted_y = max(wanted_y, 0)
+		self.update_scrollbar(True, available_h, int(mpb_height), int(wanted_y))
+
+	def get_max_coord(self, mpb_size, available_size):
+		displayed_size = (available_size / self.zoom_level)
+		max_coord = mpb_size - displayed_size
+		return max_coord
 
 	def update_scrollbar(self, is_vertical, allocated_size, pixbuf_size, coord):
 		if is_vertical:
 			scrollbar = self.v_scrollbar
 		else:
 			scrollbar = self.h_scrollbar
-		scrollbar.set_visible(allocated_size < pixbuf_size)
+		scrollbar.set_visible(allocated_size / self.zoom_level < pixbuf_size)
 		scrollbar.set_range(0, pixbuf_size)
-		scrollbar.get_adjustment().set_page_size(allocated_size)
+		scrollbar.get_adjustment().set_page_size(allocated_size / self.zoom_level)
 		scrollbar.set_value(coord)
 		if is_vertical:
 			self.scroll_y = int(scrollbar.get_value())
@@ -526,7 +569,7 @@ class DrawingImage(Gtk.Box):
 			self.scroll_x = int(scrollbar.get_value())
 
 	def scroll_to_point(self, delta_x, delta_y, x, y):
-		# TODO pure bullshit but hard to test and fix since correct_coords is broken
+		# TODO pure bullshit FIXME
 		good_delta = (delta_x + delta_y) * -5
 		self.inc_zoom_level(good_delta)
 		print('good_delta', good_delta)
@@ -546,8 +589,9 @@ class DrawingImage(Gtk.Box):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
 
 	def set_zoom_level(self, level):
-		self.zoom_level = (level/100)
+		self.zoom_level = (int(level)/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
+		self.fake_scrollbar_update()
 		self.update()
 
 	def set_opti_zoom_level(self):

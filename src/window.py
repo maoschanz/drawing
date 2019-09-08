@@ -212,6 +212,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.change_active_tool_for(self.active_tool_id)
 		# On devrait être moins bourrin et conserver la sélection #FIXME
 		self.set_picture_title(args[1].update_title())
+		self.minimap.set_zoom_label(args[1].zoom_level * 100)
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
@@ -576,7 +577,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		available_width = self.bottom_panel_box.get_allocated_width()
 		self.options_manager.adapt_to_window_size(available_width)
 
-		# Update the scrollbars
+		self.get_active_image().fake_scrollbar_update()
+
+	def update_image_scrollbars(self):
 		self.get_active_image().add_deltas(0, 0, 0)
 
 	def hide_message(self, *args):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 23:30+0200\n"
+"POT-Creation-Date: 2019-09-08 03:57+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:438
+#: src/window.py:439
 msgid "Drawing"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:798
+#: src/window.py:799
 msgid "New Window"
 msgstr "Новое окно"
 
@@ -162,7 +162,7 @@ msgstr "Открыть изображение"
 #: src/ui/headerbar.ui:124 src/ui/headerbar_eos.ui:157
 #: src/ui/headerbar_eos.ui:170 src/ui/headerbar_eos.ui:188
 #: src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:900 src/window.py:920
+#: src/window.py:901 src/window.py:921
 msgid "Save"
 msgstr "Сохранить"
 
@@ -238,8 +238,8 @@ msgstr "Вставить"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:835
-#: src/window.py:983
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:836
+#: src/window.py:984
 msgid "Import"
 msgstr "Импортировать"
 
@@ -337,7 +337,7 @@ msgstr "Поменять цвета"
 msgid "Color editor by default"
 msgstr ""
 
-#: src/ui/app-menus.ui:315 src/window.py:645
+#: src/ui/app-menus.ui:315 src/window.py:646
 msgid "_Tools"
 msgstr "_Инструменты"
 
@@ -345,7 +345,7 @@ msgstr "_Инструменты"
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
-#: src/ui/app-menus.ui:334 src/window.py:747 src/window.py:750
+#: src/ui/app-menus.ui:334 src/window.py:748 src/window.py:751
 msgid "_Options"
 msgstr "_Опции"
 
@@ -389,7 +389,7 @@ msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:819 src/window.py:834
+#: src/window.py:820 src/window.py:835
 msgid "Open"
 msgstr "Открыть"
 
@@ -404,7 +404,7 @@ msgstr "Размер инструмента"
 #. used by the bottom panels
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/panel_classic.ui:96 src/window.py:479 src/tools/abstract_tool.py:79
+#: src/ui/panel_classic.ui:96 src/window.py:480 src/tools/abstract_tool.py:79
 msgid "No options"
 msgstr ""
 
@@ -651,6 +651,13 @@ msgstr ""
 "flatpak run --file-forwarding {0} @@ {1} @@\n"
 "?"
 
+#. This displays the zoom level, %s will be replaced with a number, while
+#. %% is just the symbol '%'
+#: src/minimap.py:64
+#, python-format
+msgid "%s%%"
+msgstr ""
+
 #: src/preferences.py:54
 msgid "New images"
 msgstr "Новые изображения"
@@ -761,7 +768,7 @@ msgstr "Раскладка"
 msgid "Development features"
 msgstr ""
 
-#: src/preferences.py:166 src/window.py:642
+#: src/preferences.py:166 src/window.py:643
 msgid "Opened images"
 msgstr "Открытые изображения"
 
@@ -795,8 +802,8 @@ msgstr "Изображения JPEG"
 msgid "BMP images"
 msgstr "Изображения BMP"
 
-#: src/utilities.py:153 src/window.py:819 src/window.py:833 src/window.py:899
-#: src/window.py:920 src/window.py:983 src/tools/ui/tool_crop.ui:27
+#: src/utilities.py:153 src/window.py:820 src/window.py:834 src/window.py:900
+#: src/window.py:921 src/window.py:984 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:28
 #: src/tools/ui/tool_filters.ui:204 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
@@ -822,65 +829,65 @@ msgid "Failed to load tool: %s"
 msgstr ""
 
 #. XXX broken if a new image is opened
-#: src/window.py:617
+#: src/window.py:618
 msgid "Middle click to get controls, press 'Escape' to exit."
 msgstr ""
 
-#: src/window.py:791
+#: src/window.py:792
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#: src/window.py:797
+#: src/window.py:798
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: src/window.py:799
+#: src/window.py:800
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
-#: src/window.py:801 src/window.py:901
+#: src/window.py:802 src/window.py:902
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Несохраненные изменения в %s."
 
-#: src/window.py:803
+#: src/window.py:804
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:818
+#: src/window.py:819
 msgid "Open a picture"
 msgstr "Открыть изображение"
 
-#: src/window.py:840
+#: src/window.py:841
 #, fuzzy
 msgid "these files"
 msgstr "Несохраненный файл"
 
-#: src/window.py:841
+#: src/window.py:842
 #, fuzzy, python-format
 msgid "What do you want to do with %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:891 src/window.py:922
+#: src/window.py:892 src/window.py:923
 msgid "Untitled"
 msgstr "Без названия"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:893
+#: src/window.py:894
 msgid "this picture"
 msgstr "это изображение"
 
-#: src/window.py:898
+#: src/window.py:899
 msgid "Discard"
 msgstr "Сбросить"
 
-#: src/window.py:919
+#: src/window.py:920
 msgid "Save picture as…"
 msgstr "Сохранить изображение как..."
 
-#: src/window.py:982
+#: src/window.py:983
 msgid "Import a picture"
 msgstr "Импорт изображения"
 
