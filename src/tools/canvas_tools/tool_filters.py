@@ -28,7 +28,7 @@ class ToolFilters(AbstractCanvasTool):
 
 	def __init__(self, window):
 		super().__init__('filters', _("Filters"), 'tool-blur-symbolic', window)
-		self.cursor_name = 'not-allowed'
+		self.cursor_name = 'pointer'
 		self.apply_to_selection = False
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
 		self.add_tool_action_enum('filters_type', 'none')
@@ -42,6 +42,9 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar = FiltersToolPanel(self.window, self)
 		self.bar.menu_btn.connect('notify::active', self.set_active_type)
 		return self.bar
+
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		self.on_filter_preview()
 
 	def on_filter_preview(self, *args):
 		self.set_active_type()

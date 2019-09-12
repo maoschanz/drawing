@@ -30,6 +30,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.apply_to_selection = False
 		self.flip_h = False
 		self.flip_v = False
+		self.angle_press = 0
 
 		self.add_tool_action_simple('rotate-clockwise', self.on_right_clicked)
 		self.add_tool_action_simple('rotate-counter-cw', self.on_left_clicked)
@@ -57,8 +58,36 @@ class ToolRotate(AbstractCanvasTool):
 		self.flip_h = False
 		self.flip_v = False
 		self.angle_btn.set_value(0.0)
-		self.on_angle_changed()
+		if self.apply_to_selection:
+			self.cursor_name = 'move'
+		else:
+			self.cursor_name = 'not-allowed'
 		# the panel is updated by the window according to self.apply_to_selection
+
+	############################################################################
+
+	def on_press_on_area(self, area, event, surface, event_x, event_y):
+		if not self.apply_to_selection:
+			return
+		delta_x0 = self.get_selection().selection_x - event_x
+		delta_y0 = self.get_selection().selection_y - event_y
+		press_as_degrees = (math.atan2(delta_x0, delta_y0) * 180) / math.pi
+		self.angle_press = self.get_angle() + int(press_as_degrees)
+
+	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+		if not self.apply_to_selection:
+			return
+		delta_x = self.get_selection().selection_x - event_x
+		delta_y = self.get_selection().selection_y - event_y
+		new_angle = ( math.atan2(delta_x, delta_y) * 180 ) / math.pi
+		self.angle_btn.set_value(int(new_angle) - self.angle_press)
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+
+	def on_release_on_area(self, area, event, surface, event_x, event_y):
+		self.on_motion_on_area(area, event, surface, event_x, event_y)
+
+	############################################################################
 
 	def get_angle(self):
 		return self.angle_btn.get_value_as_int()

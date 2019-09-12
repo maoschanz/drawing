@@ -1,4 +1,5 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+# ne sert à rien??
 
 desktop_file = i18n.merge_file(
 	input: 'com.github.maoschanz.drawing.desktop.in',
