@@ -26,7 +26,7 @@ class ToolRotate(AbstractCanvasTool):
 
 	def __init__(self, window):
 		super().__init__('rotate', _("Rotate"), 'tool-rotate-symbolic', window)
-		self.cursor_name = 'not-allowed'
+		self.cursor_name = 'pointer'
 		self.apply_to_selection = False
 		self.flip_h = False
 		self.flip_v = False
@@ -61,13 +61,17 @@ class ToolRotate(AbstractCanvasTool):
 		if self.apply_to_selection:
 			self.cursor_name = 'move'
 		else:
-			self.cursor_name = 'not-allowed'
+			self.cursor_name = 'pointer'
 		# the panel is updated by the window according to self.apply_to_selection
 
 	############################################################################
 
 	def on_press_on_area(self, area, event, surface, event_x, event_y):
 		if not self.apply_to_selection:
+			if event.button == 1:
+				self.on_left_clicked()
+			elif event.button == 3:
+				self.on_right_clicked()
 			return
 		delta_x0 = self.get_selection().selection_x - event_x
 		delta_y0 = self.get_selection().selection_y - event_y

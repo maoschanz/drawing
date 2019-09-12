@@ -62,15 +62,15 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 	total = red + green + blue
 	orange_coef = 0.0
 	lumin = total/3.0
-	print(lumin)
+	# print(lumin)
 	if green != 0:
 		orange_coef = (red/green) * lumin
 
 	if total != 0:
 		rgb_percents = [red/total, green/total, blue/total]
 	else:
-		rgb_percents = [33.3, 33.3, 33.3]
-	print(rgb_percents)
+		rgb_percents = [0.333, 0.333, 0.333]
+	# print(rgb_percents)
 
 	grey_coef_r = rgb_percents[0] * lumin / 3
 	grey_coef_g = rgb_percents[1] * lumin / 3

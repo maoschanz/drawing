@@ -121,35 +121,6 @@
       </packing>
     </child>
 
-    <child>
-      <object class="GtkButton" id="preview_btn_narrow">
-        <property name="action_name">win.filters_preview</property>
-        <property name="tooltip-text" translatable="yes">Preview</property>
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">image-x-generic-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkButton" id="preview_btn_long">
-        <property name="action_name">win.filters_preview</property>
-        <property name="label" translatable="yes">Preview</property>
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-      </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-
   </object>
 
   <!-- -->

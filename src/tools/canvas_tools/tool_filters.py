@@ -62,7 +62,8 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar.menu_btn.set_active(True)
 
 	def get_edition_status(self):
-		return self.label + ' - ' + self.type_label
+		return self.label + ' - ' + self.type_label + ' - ' + \
+		                  _("Click on the image to preview the selected filter")
 
 	def reset_type_values(self):
 		self.blur_algo = 10
@@ -164,8 +165,6 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.sat_btn = builder.get_object('sat_btn')
 		self.blur_label = builder.get_object('blur_label')
 		self.blur_btn = builder.get_object('blur_btn')
-		self.preview_btn_narrow = builder.get_object('preview_btn_narrow')
-		self.preview_btn_long = builder.get_object('preview_btn_long')
 
 	def toggle_options_menu(self):
 		self.menu_btn.set_active(not self.menu_btn.get_active())
@@ -190,8 +189,6 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		super().set_compact(state)
 		self.menu_label.set_visible(not state)
 		self.menu_icon.set_visible(state)
-		self.preview_btn_narrow.set_visible(state)
-		self.preview_btn_long.set_visible(not state)
 
 		blurring = (self.filters_tool.blur_algo != 10)
 		self.sat_label.set_visible(self.filters_tool.saturate and not state)
