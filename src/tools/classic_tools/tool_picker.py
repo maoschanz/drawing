@@ -20,9 +20,8 @@ class ToolPicker(AbstractClassicTool):
 			return # click outside of the surface
 		color = Gdk.RGBA(red=rgb_vals[0]/255, green=rgb_vals[1]/255, blue=rgb_vals[2]/255)
 		color.alpha = 1.0
-		if event.button == 3:
-			self.window.color_popover_r.color_widget.set_rgba(color)
-		elif event.button == 1:
-			self.window.color_popover_l.color_widget.set_rgba(color)
-
+		if event.button == 1:
+			self.window.options_manager.set_left_color(color)
+		elif event.button == 3:
+			self.window.options_manager.set_right_color(color)
 		self.window.back_to_previous()

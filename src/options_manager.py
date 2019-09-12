@@ -154,6 +154,12 @@ class DrawingOptionsManager():
 	def get_tool_width(self): # XXX hardcoded
 		return int(self.bottom_panels_dict['classic'].thickness_spinbtn.get_value())
 
+	def set_right_color(self, color): # XXX hardcoded
+		return self.right_color_btn().color_widget.set_rgba(color)
+
+	def set_left_color(self, color): # XXX hardcoded
+		return self.left_color_btn().color_widget.set_rgba(color)
+
 	def get_right_color(self): # XXX hardcoded
 		return self.right_color_btn().color_widget.get_rgba()
 

@@ -43,13 +43,88 @@ def utilities_add_filechooser_filters(dialog):
 
 ################################################################################
 
-def utilities_get_rgb_for_xy(surface, x, y):
+def utilities_get_rgb_for_xy(surface, x, y): # TODO use gdkpixbuf data to get an alpha
 	# Guard clause: we can't perform color picking outside of the surface
 	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
 		return [-1,-1,-1]
 	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
 	rgb_vals = screenshot.get_pixels()
 	return rgb_vals # array de 3 valeurs, de 0 à 255
+
+def utilities_get_rgba_name(red, green, blue, alpha):
+	color_string = ""
+	alpha_string = ""
+	if alpha == 0.0:
+		return _("Transparent")
+	elif alpha < 1.0:
+		alpha_string = ' - ' + _("%s%% transparent") % int(100 - alpha * 100)
+
+	total = red + green + blue
+	orange_coef = 0.0
+	lumin = total/3.0
+	print(lumin)
+	if green != 0:
+		orange_coef = (red/green) * lumin
+
+	if total != 0:
+		rgb_percents = [red/total, green/total, blue/total]
+	else:
+		rgb_percents = [33.3, 33.3, 33.3]
+	print(rgb_percents)
+
+	grey_coef_r = rgb_percents[0] * lumin / 3
+	grey_coef_g = rgb_percents[1] * lumin / 3
+	grey_coef_b = rgb_percents[2] * lumin / 3
+	is_grey = abs(grey_coef_r - grey_coef_g) < 0.01
+	is_grey = is_grey and abs(grey_coef_g - grey_coef_b) < 0.01
+	is_grey = is_grey and abs(grey_coef_b - grey_coef_r) < 0.01
+
+	if is_grey:
+		if lumin > 0.9:
+			color_string = _("White")
+		elif lumin < 0.1:
+			color_string = _("Black")
+		else:
+			color_string = _("Grey")
+			print('gris correct')
+
+	elif rgb_percents[0] > 0.5 and rgb_percents[1] > 0.2 and rgb_percents[1] < 0.4:
+		if orange_coef > 0.87:
+			color_string = _("Orange")
+		else:
+			color_string = _("Brown")
+
+	elif rgb_percents[0] > 0.4 and rgb_percents[1] < 0.3 and rgb_percents[2] < 0.3:
+		if lumin < 0.7 and rgb_percents[0] < 0.7:
+			color_string = _("Probably brown")
+		else:
+			color_string = _("Red")
+	elif rgb_percents[1] > 0.4 and rgb_percents[0] < 0.4 and rgb_percents[2] < 0.4:
+		color_string = _("Green")
+	elif rgb_percents[2] > 0.4 and rgb_percents[0] < 0.3 and rgb_percents[1] < 0.4:
+		color_string = _("Blue")
+
+	elif rgb_percents[0] > 0.3 and rgb_percents[1] > 0.3 and rgb_percents[2] < 0.3:
+		if rgb_percents[1] < 0.4:
+			color_string = _("Probably brown")
+		else:
+			color_string = _("Yellow")
+	elif rgb_percents[0] > 0.3 and rgb_percents[2] > 0.3 and rgb_percents[1] < 0.3:
+		if lumin > 0.6 and rgb_percents[1] < 0.1:
+			color_string = _("Magenta")
+		else:
+			color_string = _("Purple")
+	elif rgb_percents[1] > 0.3 and rgb_percents[2] > 0.3 and rgb_percents[0] < 0.2:
+		if lumin > 0.7:
+			color_string = _("Cyan")
+		else:
+			color_string = _("Probably turquoise")
+
+	else:
+		color_string = _("Unknown color name")
+
+	# print(color_string)
+	return (color_string + alpha_string)
 
 ################################################################################
 
