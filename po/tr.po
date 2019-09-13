@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-13 01:17+0200\n"
-"PO-Revision-Date: 2019-08-29 14:01+0300\n"
+"PO-Revision-Date: 2019-09-13 19:43+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -86,18 +86,29 @@ msgid ""
 "producing shapes (circle, rectangle, polygon, …) have been merged into a "
 "single coherent 'shape' tool."
 msgstr ""
+"0.6 sürümü çeşitli önemli değişiklikler içeren önemli bir güncellemedir: "
+"dikdörtgen seçimi ve serbest el seçimi artık farklı araçlardır, sürükle ve "
+"bırak yöntemiyle görüntüler alınabilir veya açılabilir, 'döndürme aracı' "
+"artık tüm açıları destekler ve yatay veya dikey çevirmeyi yönetir ve "
+"şekiller üreten çeşitli araçlar (daire, dikdörtgen, çokgen,…) tek bir "
+"tutarlı 'şekil' aracında birleştirilmiştir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation and saturation."
 msgstr ""
+"'Doygunluk' aracı, çeşitli bulanıklaştırma, renk değişimi, pikselleştirme ve "
+"doygunluk gibi daha güçlü bir araç olan 'süzgeçler' ile değiştirildi."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
+"En belirgin yeni özellik, mini harita, dokunmatik yüzey veya fare "
+"tekerleğini kullanarak görüntü üzerinde yakınlaştırma (veya uzaklaştırma) "
+"yeteneğidir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
@@ -672,7 +683,7 @@ msgstr "Bu dosyayı açarken hata. %s demek mi istediniz?"
 #: src/minimap.py:64
 #, python-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
 
 #: src/preferences.py:54
 msgid "New images"
@@ -819,75 +830,73 @@ msgid "BMP images"
 msgstr "BMP görüntüler"
 
 #: src/utilities.py:58
-#, fuzzy
 msgid "Transparent"
-msgstr "Şeffaflık ekle"
+msgstr "Şeffaf"
 
 #: src/utilities.py:60
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
-msgstr "Şeffaflık ekle"
+msgstr "%s%% şeffaf"
 
 #: src/utilities.py:84
 msgid "White"
-msgstr ""
+msgstr "Beyaz"
 
 #: src/utilities.py:86
 msgid "Black"
-msgstr ""
+msgstr "Siyah"
 
 #: src/utilities.py:88
 msgid "Grey"
-msgstr ""
+msgstr "Gri"
 
 #: src/utilities.py:93
 msgid "Orange"
-msgstr ""
+msgstr "Turuncu"
 
 #: src/utilities.py:95
 msgid "Brown"
-msgstr ""
+msgstr "Kahverengi"
 
 #: src/utilities.py:99 src/utilities.py:109
 msgid "Probably brown"
-msgstr ""
+msgstr "Açık kahvarengi"
 
 #: src/utilities.py:101
-#, fuzzy
 msgid "Red"
-msgstr "Yinele"
+msgstr "Kırmızı"
 
 #: src/utilities.py:103
 msgid "Green"
-msgstr ""
+msgstr "Yeşil"
 
 #: src/utilities.py:105
 msgid "Blue"
-msgstr ""
+msgstr "Mavi"
 
 #: src/utilities.py:111
 msgid "Yellow"
-msgstr ""
+msgstr "Sarı"
 
 #: src/utilities.py:114
 msgid "Magenta"
-msgstr ""
+msgstr "Eflatun"
 
 #: src/utilities.py:116
 msgid "Purple"
-msgstr ""
+msgstr "Mor"
 
 #: src/utilities.py:119
 msgid "Cyan"
-msgstr ""
+msgstr "Camgöbeği"
 
 #: src/utilities.py:121
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Açık turkuaz"
 
 #: src/utilities.py:124
 msgid "Unknown color name"
-msgstr ""
+msgstr "Bilinmeyen renk adı"
 
 #: src/utilities.py:228 src/window.py:819 src/window.py:833 src/window.py:899
 #: src/window.py:920 src/window.py:983 src/tools/ui/tool_crop.ui:27
@@ -1144,9 +1153,8 @@ msgid "Flip vertically"
 msgstr "Dikey çevir"
 
 #: src/tools/ui/tool_scale.ui:99
-#, fuzzy
 msgid "More options"
-msgstr "Daha fazla eylem"
+msgstr "Daha fazla seçenek"
 
 #: src/tools/ui/tool_scale.ui:143
 msgid "Keep proportions"
@@ -1154,11 +1162,11 @@ msgstr "Oranları koru"
 
 #: src/tools/ui/tool_scale.ui:150
 msgid "Allow horizontal deformations"
-msgstr ""
+msgstr "Yatay deformasyonlara izin ver"
 
 #: src/tools/ui/tool_scale.ui:155
 msgid "Allow vertical deformations"
-msgstr ""
+msgstr "Dikey deformasyonlara izin ver"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:46
 msgid "Rectangle"
@@ -1313,7 +1321,7 @@ msgstr "Süzgeçler"
 
 #: src/tools/canvas_tools/tool_filters.py:66
 msgid "Click on the image to preview the selected filter"
-msgstr ""
+msgstr "Seçilen süzgeci önizlemek için resme tıklayın"
 
 #: src/tools/canvas_tools/tool_rotate.py:52
 msgid "Rotating the selection"
