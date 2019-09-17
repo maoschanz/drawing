@@ -8,20 +8,19 @@ from .bottombar import DrawingAdaptativeBottomBar
 
 class AbstractSelectionTool(ToolTemplate):
 	__gtype_name__ = 'AbstractSelectionTool'
+	x_press = 0
+	y_press = 0
+	future_x = 0
+	future_y = 0
+	future_path = None
+	future_pixbuf = None
+	operation_type = None # 'op-define'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
 		self.menu_id = 2
 		self.use_color = False
 		self.accept_selection = True
-
-		self.x_press = 0
-		self.y_press = 0
-		self.future_x = 0
-		self.future_y = 0
-		self.future_path = None
-		self.future_pixbuf = None
-		self.operation_type = None # 'op-define'
 
 	############################################################################
 	# UI implementations #######################################################
@@ -94,10 +93,11 @@ class AbstractSelectionTool(ToolTemplate):
 	############################################################################
 	# Signal callbacks implementations #########################################
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.behavior = self.get_press_behavior()
+		# print('press', self.behavior, AbstractSelectionTool.future_path)
 		if self.behavior == 'drag':
 			self.cursor_name = 'grabbing'
 			self.window.set_cursor(True)
@@ -108,7 +108,7 @@ class AbstractSelectionTool(ToolTemplate):
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self.behavior == 'define':
 			self.motion_define(event_x, event_y)
 		elif self.behavior == 'drag':
@@ -125,7 +125,7 @@ class AbstractSelectionTool(ToolTemplate):
 			self.cursor_name = 'cross'
 		self.window.set_cursor(True)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		if event.button == 3:
 			self.get_selection().set_r_popover_position(event.x, event.y)
 			self.get_selection().show_popover(True)
@@ -178,7 +178,7 @@ class AbstractSelectionTool(ToolTemplate):
 		w = x1 - x0
 		h = y1 - y0
 		if w <= 0 or h <= 0:
-			self.future_path = None
+			# AbstractSelectionTool.future_path = None
 			return
 		self.future_x = x0
 		self.future_y = y0
@@ -188,13 +188,13 @@ class AbstractSelectionTool(ToolTemplate):
 		cairo_context.line_to(x1, y1)
 		cairo_context.line_to(x0, y1)
 		cairo_context.close_path()
-		self.future_path = cairo_context.copy_path()
+		AbstractSelectionTool.future_path = cairo_context.copy_path()
 
 	def set_future_coords_for_free_path(self):
 		main_width = self.get_main_pixbuf().get_width()
 		main_height = self.get_main_pixbuf().get_height()
 		xmin, ymin = main_width, main_height
-		for pts in self.future_path:
+		for pts in AbstractSelectionTool.future_path:
 			if pts[1] is not ():
 				xmin = min(pts[1][0], xmin)
 				ymin = min(pts[1][1], ymin)
@@ -262,7 +262,7 @@ class AbstractSelectionTool(ToolTemplate):
 		cairo_context = cairo.Context(self.get_surface())
 		self.get_selection().show_selection_on_surface(cairo_context, False)
 		self.get_selection().reset()
-		self.future_path = None
+		AbstractSelectionTool.future_path = None
 
 	############################################################################
 	# Operations management implementations ####################################
@@ -275,7 +275,7 @@ class AbstractSelectionTool(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'operation_type': self.operation_type,
-			'initial_path': self.future_path,
+			'initial_path': AbstractSelectionTool.future_path, # XXX .copy() ??
 			'pixbuf': pixbuf,
 			'pixb_x': int(self.future_x),
 			'pixb_y': int(self.future_y)

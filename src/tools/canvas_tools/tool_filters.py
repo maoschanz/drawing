@@ -43,7 +43,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar.menu_btn.connect('notify::active', self.set_active_type)
 		return self.bar
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.on_filter_preview()
 
 	def on_filter_preview(self, *args):

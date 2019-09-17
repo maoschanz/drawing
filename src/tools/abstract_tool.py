@@ -182,16 +182,16 @@ class ToolTemplate():
 	############################################################################
 	# Signals handling #########################################################
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		pass
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		pass
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		pass
 
 	def on_draw(self, area, cairo_context):

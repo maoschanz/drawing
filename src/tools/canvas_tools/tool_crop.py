@@ -108,11 +108,11 @@ class ToolCrop(AbstractCanvasTool):
 		self.cursor_name = cursor_name
 		self.window.set_cursor(True)
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
 		delta_y = event.y - self.y_press
 
@@ -157,7 +157,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.width_btn.set_value(self.width_btn.get_value() - delta)
 		self._x = self._x + delta
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.window.set_cursor(False)
 
 	def crop_temp_pixbuf(self, x, y, width, height, is_selection):

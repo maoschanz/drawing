@@ -72,10 +72,10 @@ class ToolText(AbstractClassicTool):
 		if self.should_cancel:
 			self.on_cancel()
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.x_begin = event_x
 		self.y_begin = event_y
 		self.should_cancel = True

@@ -25,17 +25,16 @@ class ToolPaint(AbstractClassicTool):
 		else:
 			return self.label
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		# Guard clause: we can't paint outside of the surface
 		if event_x < 0 or event_x > surface.get_width() \
 		or event_y < 0 or event_y > surface.get_height():
 			return
 
 		(x, y) = (int(event_x), int(event_y))
-
 		self.old_color = utilities_get_rgb_for_xy(surface, x, y)
 
 		if self.get_option_value('paint_algo') == 'fill':

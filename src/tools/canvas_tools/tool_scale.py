@@ -98,11 +98,11 @@ class ToolScale(AbstractCanvasTool):
 	def get_height(self):
 		return self.height_btn.get_value_as_int()
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
 		self.width_btn.set_value(self.width_btn.get_value() + delta_x)
 		if not self.keep_proportions:
@@ -110,6 +110,9 @@ class ToolScale(AbstractCanvasTool):
 			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
 		self.x_press = event.x
 		self.y_press = event.y
+
+	def on_release_on_area(self, event, surface, event_x, event_y):
+		self.on_motion_on_area(event, surface, event_x, event_y)
 
 	def build_operation(self):
 		operation = {

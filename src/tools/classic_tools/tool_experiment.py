@@ -187,14 +187,14 @@ class ToolExperiment(AbstractClassicTool):
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_active_operator()
 		self.set_active_mode()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event)
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		if self.past_x == -1.0:
@@ -211,7 +211,7 @@ class ToolExperiment(AbstractClassicTool):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		operation = self.build_operation()
@@ -403,5 +403,6 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.curve_to(nx1, ny1, nx2, ny2, x3, y3)
 		return x1, y1, x2, y2, x3, y3, x4, y4
 
-
+	############################################################################
+################################################################################
 

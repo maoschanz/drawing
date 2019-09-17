@@ -19,7 +19,7 @@ class ToolColorSelect(AbstractSelectionTool):
 		pass # implemented by actual tools
 
 	def release_define(self, surface, event_x, event_y):
-		self.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
+		AbstractSelectionTool.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
 		self.operation_type = 'op-define'
 		self.set_future_coords_for_free_path()
 		operation = self.build_operation()

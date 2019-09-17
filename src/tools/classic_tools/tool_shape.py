@@ -76,12 +76,12 @@ class ToolShape(AbstractClassicTool):
 
 	############################################################################
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event)
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'freeshape':
 			operation = self.add_point(event_x, event_y, True)
 		elif self.selected_shape_id == 'polygon':
@@ -96,7 +96,7 @@ class ToolShape(AbstractClassicTool):
 			operation = self.build_operation(self._path)
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'freeshape' or self.selected_shape_id == 'polygon':
 			operation = self.add_point(event_x, event_y, True)
 			if operation['closed']:

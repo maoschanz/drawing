@@ -14,7 +14,7 @@ class ToolPicker(AbstractClassicTool):
 	def get_options_model(self):
 		return None
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		rgb_vals = utilities_get_rgb_for_xy(surface, event_x, event_y)
 		if rgb_vals == [-1, -1, -1]:
 			return # click outside of the surface

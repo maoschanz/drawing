@@ -31,30 +31,33 @@ class ToolFreeSelect(AbstractSelectionTool):
 			return # without updating the surface so the path is visible
 
 	############################################################################
-	# Path management ##########################################################
 
 	def draw_polygon(self, event_x, event_y):
 		"""This method is specific to the 'free selection' mode."""
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		cairo_context.set_dash([3, 3])
-		if self.future_path is None:
+		if AbstractSelectionTool.future_path is None:
 			self.closing_x = event_x
 			self.closing_y = event_y
 			cairo_context.move_to(event_x, event_y)
-			self.future_path = cairo_context.copy_path()
+			AbstractSelectionTool.future_path = cairo_context.copy_path()
 			return False
-		if (max(event_x, self.closing_x) - min(event_x, self.closing_x) < self.closing_precision) \
-		and (max(event_y, self.closing_y) - min(event_y, self.closing_y) < self.closing_precision):
-			cairo_context.append_path(self.future_path)
+		delta_x = max(event_x, self.closing_x) - min(event_x, self.closing_x)
+		delta_y = max(event_y, self.closing_y) - min(event_y, self.closing_y)
+		if (delta_x < self.closing_precision) and (delta_y < self.closing_precision):
+			cairo_context.append_path(AbstractSelectionTool.future_path)
 			cairo_context.close_path()
 			cairo_context.stroke_preserve()
-			self.future_path = cairo_context.copy_path()
+			AbstractSelectionTool.future_path = cairo_context.copy_path()
 			return True
 		else:
-			cairo_context.append_path(self.future_path)
+			cairo_context.append_path(AbstractSelectionTool.future_path)
 			cairo_context.line_to(int(event_x), int(event_y))
 			cairo_context.stroke_preserve() # draw the line without closing the path
-			self.future_path = cairo_context.copy_path()
+			AbstractSelectionTool.future_path = cairo_context.copy_path()
 			self.non_destructive_show_modif() # XXX
 			return False
+
+	############################################################################
+################################################################################

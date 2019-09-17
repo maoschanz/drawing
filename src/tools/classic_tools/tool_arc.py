@@ -56,12 +56,12 @@ class ToolArc(AbstractClassicTool):
 		self.x_press = 0.0
 		self.y_press = 0.0
 
-	def on_press_on_area(self, area, event, surface, event_x, event_y):
+	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event)
 		self.x_press = event_x
 		self.y_press = event_y
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
@@ -75,7 +75,7 @@ class ToolArc(AbstractClassicTool):
 		operation = self.build_operation(event_x, event_y, True)
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
 			self.wait_points = (self.x_press, self.y_press, event_x, event_y)
 			return
