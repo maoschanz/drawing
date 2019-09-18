@@ -238,4 +238,48 @@
     </section>
   </menu>
 
+  <menu id="fullscreen-menu">
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Undo</attribute>
+        <attribute name="action">win.undo</attribute>
+        <attribute name="verb-icon">edit-undo-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Redo</attribute>
+        <attribute name="action">win.redo</attribute>
+        <attribute name="verb-icon">edit-redo-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="action">win.unfullscreen</attribute>
+        <attribute name="label" translatable="yes">Exit fullscreen</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">New Image</attribute>
+        <attribute name="action">win.new_tab</attribute>
+        <attribute name="verb-icon">document-new-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Open an image</attribute>
+        <attribute name="action">win.open</attribute>
+        <attribute name="verb-icon">document-open-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Save</attribute>
+        <attribute name="action">win.save</attribute>
+        <attribute name="verb-icon">document-save-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <!-- here will be a submenu of tools -->
+    </section>
+    <!-- here will be a list of tabs -->
+  </menu>
+
 </interface>

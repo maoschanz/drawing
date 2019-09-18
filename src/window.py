@@ -65,13 +65,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	bottom_panel_box = Gtk.Template.Child()
 	tools_scrollable_box = Gtk.Template.Child()
 	tools_nonscrollable_box = Gtk.Template.Child()
+	fullscreen_btn = Gtk.Template.Child()
+	fullscreen_icon = Gtk.Template.Child()
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
 
 		self.header_bar = None
-		self.fullscreen_menu = None
+		self.fullscreened = False
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -85,8 +87,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		parameters, the new image can be imported from the clipboard, loaded
 		from a GioFile, or (else) it can be a blank image."""
 		self.tools = None
-		# self.minimap = DrawingMinimap(self, self.minimap_btn)
-		self.minimap = DrawingMinimap(self, None) # XXX
+		self.minimap = DrawingMinimap(self, None)
 		self.options_manager = DrawingOptionsManager(self)
 
 		self.add_all_win_actions()
@@ -519,6 +520,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
+		self.set_fullscreen_menu()
+
+	def set_fullscreen_menu(self):
+		builder = Gtk.Builder.new_from_resource(UI_PATH + 'win-menus.ui')
+		fullscreen_menu = builder.get_object('fullscreen-menu')
+		tabs_list = self.get_menubar_item([[True, 2], [False, 6]])
+		fullscreen_menu.append_section(_("Opened images"), tabs_list)
+		tools_menu = self.get_menubar_item([[True, 4]])
+		section = fullscreen_menu.get_item_link(3, Gio.MENU_LINK_SECTION)
+		section.prepend_submenu(_("_Tools"), tools_menu)
+		self.fullscreen_btn.set_menu_model(fullscreen_menu)
 
 	def build_toolbar(self, symbolic):
 		if symbolic:
@@ -551,7 +563,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.header_bar = DrawingAdaptativeHeaderBar(is_eos)
 
 	def action_main_menu(self, *args):
-		if self.header_bar is not None:
+		if self.fullscreened:
+			self.fullscreen_btn.set_active(not self.fullscreen_btn.get_active())
+		elif self.header_bar is not None:
 			self.header_bar.toggle_menu()
 
 	def action_options_menu(self, *args):
@@ -591,7 +605,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			print('Drawing: ' + label)
 
 	def update_tabs_visibility(self):
-		self.notebook.set_show_tabs(self.notebook.get_n_pages() > 1)
+		should_show = (self.notebook.get_n_pages() > 1) and not self.fullscreened
+		self.notebook.set_show_tabs(should_show)
 
 	############################################################################
 	# FULLSCREEN ###############################################################
@@ -599,50 +614,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_unfullscreen(self, *args):
 		# TODO connect to signals instead
 		self.unfullscreen()
-		# self.bottom_panel_box.set_visible(True) # TODO ?
-		self.tools_panel.set_visible(True)
-		self.toolbar_box.set_visible(True) # XXX not if it's empty
-		self.update_tabs_visibility()
-		self.fullscreen_menu = None # XXX vraiment dégueulasse
-		self.hide_message()
+		self.set_fullscreen_state(False)
 
 	def action_fullscreen(self, *args):
-		# TODO connect to signals instead
-		self.build_fullscreen_menu()
+		# TODO connect to signals instead?
 		self.fullscreen()
-		# self.bottom_panel_box.set_visible(False) # TODO ?
-		self.tools_panel.set_visible(False)
-		self.toolbar_box.set_visible(False)
-		self.notebook.set_show_tabs(False) # XXX broken if a new image is opened
-		self.prompt_message(True, _("Middle click to get controls, press 'Escape' to exit."))
+		self.set_fullscreen_state(True)
 
-	def on_middle_click(self, event):
-		if not self.open_fullscreen_menu(event):
-			self.exchange_colors()
-
-	def open_fullscreen_menu(self, event):
-		if self.fullscreen_menu is None:
-			return False
-		rectangle = Gdk.Rectangle()
-		rectangle.x = event.x
-		rectangle.y = event.y
-		rectangle.height = 1
-		rectangle.width = 1
-		popover = Gtk.Popover.new_from_model(self.notebook, self.fullscreen_menu)
-		popover.set_pointing_to(rectangle)
-		popover.popup()
-		return True
-
-	def build_fullscreen_menu(self):
-		if self.fullscreen_menu is not None:
-			return
-		builder = Gtk.Builder.new_from_resource(UI_PATH + 'app-menus.ui')
-		self.fullscreen_menu = builder.get_object('fullscreen-menu')
-		tabs_list = self.get_menubar_item([[True, 2], [False, 6]])
-		self.fullscreen_menu.append_section(_("Opened images"), tabs_list)
-		tools_menu = self.get_menubar_item([[True, 4]])
-		section = self.fullscreen_menu.get_item_link(2, Gio.MENU_LINK_SECTION)
-		section.prepend_submenu(_("_Tools"), tools_menu)
+	def set_fullscreen_state(self, state):
+		self.fullscreened = state
+		self.tools_panel.set_visible(not state)
+		self.toolbar_box.set_visible(not state) # XXX not if not empty
+		self.fullscreen_btn.set_visible(state)
+		self.update_tabs_visibility()
 
 	############################################################################
 	# TOOLS PANEL ##############################################################
@@ -759,6 +743,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.set_boolean('direct-color-edit', use_editor)
 		args[0].set_state(GLib.Variant.new_boolean(use_editor))
 		self.options_manager.set_palette_setting(use_editor)
+
+	def on_middle_click(self, event):
+		self.exchange_colors()
 
 	def exchange_colors(self, *args):
 		self.options_manager.exchange_colors()

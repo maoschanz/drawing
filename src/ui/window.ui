@@ -9,7 +9,6 @@
   </object>
 
   <template class="DrawingWindow" parent="GtkApplicationWindow">
-    <!-- <property name="default-width">360</property> -->
     <property name="default-width">900</property>
     <property name="default-height">500</property>
     <child>
@@ -110,11 +109,46 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="bottom_panel_box">
-            <property name="orientation">vertical</property>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
             <property name="visible">True</property>
             <property name="expand">False</property>
-            <!-- Tools will add panels here -->
+            <child>
+              <object class="GtkMenuButton" id="fullscreen_btn">
+                <property name="visible">False</property>
+                <property name="valign">center</property>
+                <property name="margin-left">6</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkImage" id="fullscreen_icon">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <!-- <child> -->
+                    <!--   <object class="GtkImage"> -->
+                    <!--     <property name="icon-name">pan-down-symbolic</property> -->
+                    <!--     <property name="visible">True</property> -->
+                    <!--   </object> -->
+                    <!-- </child> -->
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="bottom_panel_box">
+                <property name="orientation">vertical</property>
+                <property name="visible">True</property>
+                <property name="expand">True</property>
+                <property name="halign">fill</property>
+
+                <!-- Tools will add panels here -->
+
+              </object>
+            </child>
           </object>
         </child>
       </object>
