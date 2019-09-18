@@ -1,14 +1,33 @@
-h1, h2, h3, h4, h5, h6, p, blockquote {
-  margin: 0;
-  padding: 0;
-}
 body {
-  font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
-  font-size: 13px;
+  font-family: "Cantarell", Cantarell, "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+  font-size: 14px;
   line-height: 18px;
   color: #737373;
   background-color: white;
-  margin: 10px 13px 10px 13px;
+  margin: 0px;
+}
+header {
+  background-color: #737373;
+  padding: 12px;
+}
+header h1 {
+  color: white;
+  font-family: Cantarell;
+}
+header h2 {
+  font-family: Cantarell;
+}
+header a, header a:hover {
+  color: white;
+  font-family: Cantarell;
+  font-weight: bold;
+}
+main {
+  margin: 8px;
+}
+h1, h2, h3, h4, h5, h6, p, blockquote {
+  margin: 0px;
+  padding: 0px;
 }
 table {
   margin: 10px 0 15px 0;
@@ -149,6 +168,7 @@ kbd {
   }
 }
 
+/* Style class used to get columns */
 .row {
   display: flex;
 }

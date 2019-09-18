@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page xmlns="http://projectmallard.org/1.0/"
       xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
-      id="canvas_tools">
+      id="tools_canvas">
 
   <info>
     <link type="guide" xref="index#tools"/>
     <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
-
     <credit type="author">
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-
     <desc>Transform the image canvas or the current selection</desc>
   </info>
 
   <title>Edit the canvas or the selection</title>
 
   <p>These tools are available from the side bar (along with
-  <link xref="drawing_tools">the other tools</link>), or from a right click on
-  the canvas while using the <gui style="button">Selection</gui> tool.</p>
+  <link xref="tools_classic">the other tools</link>), or from a right click on
+  a <gui style="button">selected area</gui>.</p>
   <p>If a selection is defined, these tools will have an effect on the selected
   area, otherwise they will have an effect on the picture as a whole.</p>
 
   <list>
     <item>
-      <p>Crop: change the size of the image, using the values in the bottom bar,
-      or with the left click. Once resized, the content of the former canvas can
-      be adjusted by moving it with the right-click. The previewed image might
-      not be at a 100% scale.</p>
+      <p>Crop: change the size of the image, by removing parts of it. The side
+      you're cripping is indicated by the mouse cursor, and changes depending on
+      the position of the mouse pointer on the canvas.</p>
+      <p>The exact size can be set using the values in the bottom bar.</p>
+      <p>Be careful, the previewed image might not be displayed at its actual
+      size with a 100% scale.</p>
     </item>
     <item>
       <p>Scale: resize the image, using the values in the bottom bar, or with
       the left click.</p>
     </item>
     <item>
-      <p>Rotate: change the orientation of the image, using the buttons in the
-      bottom bar.</p>
+      <p>Rotate: change the orientation of the image, or flip it, using the
+      buttons in the bottom bar.</p>
+      <p>If a selection is defined, you can freely choose the precise angle of
+      the rotation.</p>
     </item>
     <item>
-      <p>Flip: flip the image, using the buttons in the bottom bar.</p>
-    </item>
-    <item>
-      <p>Saturate: edit the saturation of the image, using the value in the
-      bottom bar.</p>
+      <p>Filters: you can apply a filter to the image or the selection. Click on
+      the picture to preview the selected filter.</p>
+      <p>The available filters include <gui style="menuitem">Saturation</gui>,
+      which allows you to increase of decrease the saturation of the image using
+      the widget in the bottom bar.</p>
       <media type="image" mime="image/png" width="450"
       src="figures/screenshot_saturate.png" its:translate="no"/>
       <p>A saturation bigger than 100% will boost the colors, a saturation
       smaller than 100% will produce a greyish image.</p>
+      <p>Notice also <gui style="menuitem">Blur</gui>
+      and several variations of it, where the blur radius can be modified too.
+      Be careful, applying blur to the image can take a few seconds.</p>
     </item>
   </list>
 

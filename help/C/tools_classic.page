@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page xmlns="http://projectmallard.org/1.0/"
       xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
-      id="drawing_tools">
+      id="tools_classic">
 
   <info>
     <link type="guide" xref="index#tools"/>
@@ -10,10 +10,10 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Draw with simple tools.</desc>
+    <desc>Draw with simple tools</desc>
   </info>
 
-  <title>Drawing tools</title>
+  <title>Classic tools</title>
 
   <p>Various tools are available, most of them use the selected color: drawing
   with a left click uses the left color, while drawing with a right click uses
@@ -27,16 +27,15 @@
       mode: use the "eraser" mode to delete existing colors.</p>
     </item>
     <item>
-      <p>Circle and oval, with various filling options.</p>
+      <p>Text: Insert text on the image. Don't forget to confirm the insertion
+      using the <gui style="button">Insert here</gui> button.</p>
     </item>
     <item>
-      <p>Rectangle, with various filling options.</p>
+      <p>Color picker: Select the color to use within the edited image.</p>
     </item>
     <item>
-      <p>Polygon, with various filling options.</p>
-    </item>
-    <item>
-      <p>Free shape, with various filling options.</p>
+      <p>Paint.</p>
+      <!-- TODO -->
     </item>
     <item>
       <p>Line: This tool can draw straight lines. Its options include the shape
@@ -49,21 +48,17 @@
       src="figures/screenshot_arc.png" its:translate="no"/>
     </item>
     <item>
-      <p>Text: Insert text on the image. Don't forget to confirm the insertion
-      using the <gui style="button">Insert here</gui> button.</p>
-    </item>
-    <item>
-      <p>Paint</p>
-      <!-- TODO -->
-    </item>
-    <item>
-      <p>Color picker: Select the color to use within the edited image.</p>
+      <p>Shapes: Available shapes include rectangle, oval, circle, polygon, and
+      free shape.</p>
+      <p>Polygons and free shapes can be drawn in several clicks. To close them,
+      do a last click at the position where you began the line.</p>
+      <p>Various filling options are available.</p>
     </item>
   </list>
 
-  <p>The <link xref="selection_tools">selection tool</link> doesn't draw, but
+  <p>The <link xref="tools_selection">selection tool</link> doesn't draw, but
   its capabilities are very powerful and useful for any image manipulation.</p>
-  <p><link xref="canvas_tools">Other tools</link> allow you to transform the
-  canvas or the selection.</p>
+  <p><link xref="tools_canvas">Other tools</link> allow you to transform the
+  canvas or the selected area.</p>
 
 </page>

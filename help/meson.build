@@ -4,9 +4,9 @@ gnome.yelp(meson.project_name(),
     'index.page',
     'main_features.page',
     'preferences.page',
-    'drawing_tools.page',
-    'selection_tools.page',
-    'canvas_tools.page',
+    'tools_classic.page',
+    'tools_selection.page',
+    'tools_canvas.page',
     'legal.xml'
   ],
   media: [
