@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 21:21+0200\n"
-"PO-Revision-Date: 2019-09-05 21:10+0200\n"
+"POT-Creation-Date: 2019-09-13 01:17+0200\n"
+"PO-Revision-Date: 2019-09-18 20:42+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -86,12 +86,21 @@ msgid ""
 "producing shapes (circle, rectangle, polygon, …) have been merged into a "
 "single coherent 'shape' tool."
 msgstr ""
+"Version 0.6 ist ein großes Update mit mehreren wichtigen Änderungen: Die "
+"Rechteck-Auswahl und die Freihand-Auswahl sind nun eigene Werkzeuge, Bilder "
+"können durch drag-and-drop (ziehen und ablegen) importiert werden und das "
+"Werkzeug 'Drehen' unterstützt nun jeden Winkel sowie horizontales und "
+"vertikales Drehen. Weiterhin wurden die verschiedenen Werkzeuge, die Formen "
+"(Kreis, Rechteck, Vieleck, …) erstellen, zusammengefasst zu einem einzelnen "
+"Werkzeug namens \"Form\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation and saturation."
 msgstr ""
+"Das Werkzeug 'Sättigung' wurde durch 'Filter' ersetzt, einem umfangreichen "
+"Werkzeug mit mehreren Arten Unschärfe, Farbumkehr, Verpixeln und Sättigung."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
@@ -102,6 +111,9 @@ msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
+"Die wohl markanteste neue Funktion ist die Möglichkeit, das Bild zu zoomen "
+"(kleiner oder größer). Das funktioniert über die Mini-Karte, Touchpad oder "
+"das Mausrad."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
@@ -162,7 +174,7 @@ msgstr "Einen Fehler melden"
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:341 src/ui/shortcuts.ui:51
 #: src/ui/win-menus.ui:92 src/ui/win-menus.ui:181 src/ui/win-menus.ui:222
 msgid "Shortcuts"
-msgstr "Kürzel"
+msgstr "Tastenkürzel"
 
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:58 src/ui/toolbar.ui:171
 #: src/ui/toolbar.ui:172 src/ui/win-menus.ui:97 src/ui/win-menus.ui:186
@@ -171,7 +183,7 @@ msgstr "Hilfe"
 
 #: src/ui/app-menus.ui:34
 msgid "About"
-msgstr "Über"
+msgstr "Info zu"
 
 #: src/ui/app-menus.ui:40
 msgid "Quit"
@@ -825,75 +837,77 @@ msgid "BMP images"
 msgstr "BMP-Bilder"
 
 #: src/utilities.py:58
-#, fuzzy
 msgid "Transparent"
-msgstr "Transparenz hinzufügen"
+msgstr "Transparenz"
 
 #: src/utilities.py:60
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
-msgstr "Transparenz hinzufügen"
+msgstr "%s%% Transparenz"
 
 #: src/utilities.py:84
 msgid "White"
-msgstr ""
+msgstr "Weiß"
 
 #: src/utilities.py:86
 msgid "Black"
-msgstr ""
+msgstr "Schwarz"
 
 #: src/utilities.py:88
 msgid "Grey"
-msgstr ""
+msgstr "Grau"
 
 #: src/utilities.py:93
 msgid "Orange"
-msgstr ""
+msgstr "Orange"
 
 #: src/utilities.py:95
 msgid "Brown"
-msgstr ""
+msgstr "Braun"
 
+# I need to see this "in work" in the app to understand the meaning of it. After that I will translate it.
 #: src/utilities.py:99 src/utilities.py:109
+#, fuzzy
 msgid "Probably brown"
-msgstr ""
+msgstr "Wahrscheinlich braun"
 
 #: src/utilities.py:101
-#, fuzzy
 msgid "Red"
-msgstr "Wiederherstellen"
+msgstr "Rot"
 
 #: src/utilities.py:103
 msgid "Green"
-msgstr ""
+msgstr "Grün"
 
 #: src/utilities.py:105
 msgid "Blue"
-msgstr ""
+msgstr "Blau"
 
 #: src/utilities.py:111
 msgid "Yellow"
-msgstr ""
+msgstr "Gelb"
 
 #: src/utilities.py:114
 msgid "Magenta"
-msgstr ""
+msgstr "Magenta"
 
 #: src/utilities.py:116
 msgid "Purple"
-msgstr ""
+msgstr "Violett"
 
 #: src/utilities.py:119
 msgid "Cyan"
-msgstr ""
+msgstr "Cyan"
 
+# I need to see this "in work" in the app to understand the meaning of it. After that I will translate it.
 #: src/utilities.py:121
+#, fuzzy
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Wahrscheinlich türkis"
 
 #: src/utilities.py:124
 msgid "Unknown color name"
-msgstr ""
+msgstr "Unbekannter Farbname"
 
 #: src/utilities.py:228 src/window.py:806 src/window.py:820 src/window.py:886
 #: src/window.py:907 src/window.py:970 src/tools/ui/tool_crop.ui:27
@@ -1312,7 +1326,7 @@ msgstr "Filter"
 
 #: src/tools/canvas_tools/tool_filters.py:66
 msgid "Click on the image to preview the selected filter"
-msgstr ""
+msgstr "Klicken Sie für eine Vorschau zum ausgewählten Filter auf das Bild"
 
 #: src/tools/canvas_tools/tool_rotate.py:52
 msgid "Rotating the selection"

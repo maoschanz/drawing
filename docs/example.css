@@ -7,8 +7,8 @@ body {
   margin: 0px;
 }
 header {
-  background-color: #737373;
-  padding: 12px;
+  background-color: #404040;
+  padding: 2px;
 }
 header h1 {
   color: white;
@@ -16,6 +16,7 @@ header h1 {
 }
 header h2 {
   font-family: Cantarell;
+  color: #737373;
 }
 header a, header a:hover {
   color: white;
@@ -23,7 +24,7 @@ header a, header a:hover {
   font-weight: bold;
 }
 main {
-  margin: 8px;
+  margin: 10px;
 }
 h1, h2, h3, h4, h5, h6, p, blockquote {
   margin: 0px;
@@ -154,9 +155,9 @@ kbd {
   -webkit-print-color-adjust: exact;
 }
 @media screen and (min-width: 914px) {
-  body {
+  main, .header_box {
     width: 854px;
-    margin:10px auto;
+    margin: 10px auto;
   }
 }
 @media print {
