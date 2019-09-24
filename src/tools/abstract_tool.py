@@ -81,8 +81,9 @@ class ToolTemplate():
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method stores it as
 		'self.row', but does not pack it in the bar, and does not return it."""
-		self.row = Gtk.RadioButton(draw_indicator=False, \
-		                   tooltip_text=self.label, relief=Gtk.ReliefStyle.NONE)
+		self.row = Gtk.RadioButton(relief=Gtk.ReliefStyle.NONE, \
+		                        draw_indicator=False, valign=Gtk.Align.CENTER, \
+		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		self.label_widget = Gtk.Label(label=self.label)
 		# if self.window.decorations == 'csd-eos': # XXX faisable mais bug laid
@@ -197,11 +198,11 @@ class ToolTemplate():
 	def on_draw(self, area, cairo_context):
 		if not self.accept_selection:
 			return
-		# Very basic implementation
+		# Basic implementation, tools should do it better to fit their needs
 		if self.selection_is_active():
 			self.get_selection().show_selection_on_surface(cairo_context, True)
-			utilities_show_overlay_on_context(cairo_context, \
-			                self.get_image().get_dragged_selection_path(), True)
+			dragged_path = self.get_image().get_dragged_selection_path()
+			utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################
 ################################################################################

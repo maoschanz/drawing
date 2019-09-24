@@ -90,6 +90,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.update_temp_pixbuf()
 
 	def on_unclicked_motion_on_area(self, event, surface):
+		print('93', event)
 		cursor_name = ''
 		if event.y < 0.3 * surface.get_height():
 			cursor_name = cursor_name + 'n'

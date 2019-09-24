@@ -33,8 +33,7 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 		self.add_tool_action_boolean('scale-proportions', True)
-		# self.add_tool_action_boolean('scale-deformation-h', False) # TODO
-		# self.add_tool_action_boolean('scale-deformation-v', False) # TODO
+		# self.add_tool_action_boolean('scale-deformation', False) # TODO
 
 	def try_build_panel(self):
 		self.panel_id = 'scale'

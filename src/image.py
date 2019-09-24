@@ -68,6 +68,8 @@ class DrawingImage(Gtk.Box):
 		# For the cursor
 		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
+		# [Option] automatic zoom level
+		self.drawing_area.connect('size-allocate', self.set_opti_zoom_level)
 
 		self.ctrl_to_zoom = self.window._settings.get_string('zoom-behavior') == 'ctrl'
 
@@ -88,8 +90,8 @@ class DrawingImage(Gtk.Box):
 		self.press2_y = 0.0
 		self.drag_scroll_x = 0.0
 		self.drag_scroll_y = 0.0
-		if self.window._settings.get_string('default-zoom') == 'opti':
-			self.set_opti_zoom_level()
+		self.zoom_is_auto = self.window._settings.get_boolean('auto-zoom')
+		# TODO peut être updaté quand la valeur de la clef change
 
 		# Selection initialization
 		self.selection = DrawingSelectionManager(self)
@@ -368,13 +370,12 @@ class DrawingImage(Gtk.Box):
 		If a button (not the mouse wheel) is pressed, the tool's method should
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
-		if not self._is_pressed:
-			return
 		event_x, event_y = self.get_event_coords(event)
 		if self.motion_behavior == DrawingMotionBehavior.HOVER:
 			# XXX ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 		elif self.motion_behavior == DrawingMotionBehavior.DRAW:
+			# implicitely impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
 			self.update()
 		else: # self.motion_behavior == DrawingMotionBehavior.SLIP:
@@ -585,7 +586,9 @@ class DrawingImage(Gtk.Box):
 		self.fake_scrollbar_update()
 		self.update()
 
-	def set_opti_zoom_level(self):
+	def set_opti_zoom_level(self, *args):
+		if not self.zoom_is_auto:
+			return
 		allocated_width = self.get_widget_width()
 		allocated_height = self.get_widget_height()
 		if allocated_width == 1:

@@ -8,10 +8,7 @@
 		"--share=ipc",
 		"--socket=x11",
 		"--socket=wayland",
-		"--filesystem=xdg-run/dconf",
-		"--filesystem=~/.config/dconf:ro",
-		"--talk-name=ca.desrt.dconf",
-		"--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+		"--metadata=X-DConf=migrate-path=/com/github/maoschanz/drawing/"
 	],
 	"modules" : [
 		{

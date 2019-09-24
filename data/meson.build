@@ -1,4 +1,4 @@
-pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+#pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 # ne sert à rien??
 
 desktop_file = i18n.merge_file(

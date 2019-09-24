@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-13 01:17+0200\n"
+"POT-Creation-Date: 2019-09-24 21:21+0200\n"
 "PO-Revision-Date: 2019-08-31 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:439
+#: src/window.py:440
 msgid "Drawing"
 msgstr "Disegno"
 
@@ -40,13 +40,13 @@ msgstr "Paint;Bozze;Matita;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:798
+#: src/window.py:785
 msgid "New Window"
 msgstr "Nuova finestra"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:50
-#: src/ui/app-menus.ui:423 src/ui/headerbar.ui:11 src/ui/headerbar_eos.ui:12
-#: src/ui/toolbar.ui:16 src/ui/toolbar.ui:17 src/ui/win-menus.ui:14
+#: src/ui/headerbar.ui:11 src/ui/headerbar_eos.ui:12 src/ui/toolbar.ui:16
+#: src/ui/toolbar.ui:17 src/ui/win-menus.ui:14 src/ui/win-menus.ui:264
 msgid "New Image"
 msgstr "Nuova immagine"
 
@@ -93,6 +93,10 @@ msgid ""
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
+msgid "A fullscreen mode is now available."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
@@ -186,16 +190,16 @@ msgstr "Nuova Immagine dalla Selezione"
 msgid "New Image From Clipboard"
 msgstr "Nuova Immagine dagli Appunti"
 
-#: src/ui/app-menus.ui:78 src/ui/app-menus.ui:427 src/ui/toolbar.ui:29
-#: src/ui/win-menus.ui:9
+#: src/ui/app-menus.ui:78 src/ui/toolbar.ui:29 src/ui/win-menus.ui:9
+#: src/ui/win-menus.ui:269
 msgid "Open an image"
 msgstr "Apri un' immagine"
 
-#: src/ui/app-menus.ui:85 src/ui/app-menus.ui:419 src/ui/headerbar.ui:112
-#: src/ui/headerbar.ui:124 src/ui/headerbar_eos.ui:157
-#: src/ui/headerbar_eos.ui:170 src/ui/headerbar_eos.ui:188
-#: src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118 src/ui/toolbar.ui:119
-#: src/window.py:900 src/window.py:920
+#: src/ui/app-menus.ui:85 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
+#: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
+#: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118
+#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:887
+#: src/window.py:907
 msgid "Save"
 msgstr "Salva"
 
@@ -231,15 +235,15 @@ msgstr "Chiudi tutte le finestre"
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: src/ui/app-menus.ui:130 src/ui/app-menus.ui:404 src/ui/headerbar.ui:51
-#: src/ui/headerbar_eos.ui:90 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:76
-#: src/ui/toolbar.ui:77 src/headerbar.py:101
+#: src/ui/app-menus.ui:130 src/ui/headerbar.ui:51 src/ui/headerbar_eos.ui:90
+#: src/ui/shortcuts.ui:133 src/ui/toolbar.ui:76 src/ui/toolbar.ui:77
+#: src/ui/win-menus.ui:245 src/headerbar.py:101
 msgid "Undo"
 msgstr "Annulla"
 
-#: src/ui/app-menus.ui:135 src/ui/app-menus.ui:409 src/ui/headerbar.ui:77
-#: src/ui/headerbar_eos.ui:120 src/ui/shortcuts.ui:140 src/ui/toolbar.ui:88
-#: src/ui/toolbar.ui:89 src/headerbar.py:107
+#: src/ui/app-menus.ui:135 src/ui/headerbar.ui:77 src/ui/headerbar_eos.ui:120
+#: src/ui/shortcuts.ui:140 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
+#: src/ui/win-menus.ui:250 src/headerbar.py:107
 msgid "Redo"
 msgstr "Ripeti"
 
@@ -271,8 +275,8 @@ msgstr "Incolla"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:835
-#: src/window.py:983
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:822
+#: src/window.py:970
 msgid "Import"
 msgstr "Importa"
 
@@ -286,7 +290,6 @@ msgid "_View"
 msgstr "_Vista"
 
 #: src/ui/app-menus.ui:200 src/ui/minimap.ui:38 src/ui/shortcuts.ui:249
-#: src/preferences.py:88
 msgid "Optimal Zoom"
 msgstr "Zoom Ottimale"
 
@@ -336,7 +339,7 @@ msgstr "Sposta a destra"
 
 #: src/ui/app-menus.ui:271 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:77 src/ui/win-menus.ui:166
-#: src/preferences.py:101
+#: src/preferences.py:96
 msgid "Show tools names"
 msgstr "Mostra i nomi degli strumenti"
 
@@ -345,7 +348,7 @@ msgstr "Mostra i nomi degli strumenti"
 msgid "Fullscreen"
 msgstr "Schero Intero"
 
-#: src/ui/app-menus.ui:281 src/ui/app-menus.ui:398 src/ui/shortcuts.ui:44
+#: src/ui/app-menus.ui:281 src/ui/shortcuts.ui:44 src/ui/win-menus.ui:258
 msgid "Exit fullscreen"
 msgstr "Uscire da Schermo Intero"
 
@@ -369,7 +372,7 @@ msgstr "Scambia i colori"
 msgid "Color editor by default"
 msgstr "Selettore colore standard"
 
-#: src/ui/app-menus.ui:315 src/window.py:645
+#: src/ui/app-menus.ui:315 src/window.py:532
 msgid "_Tools"
 msgstr "_Strumenti"
 
@@ -377,7 +380,7 @@ msgstr "_Strumenti"
 msgid "Previous tool"
 msgstr "Strumento precedente"
 
-#: src/ui/app-menus.ui:334 src/window.py:747 src/window.py:750
+#: src/ui/app-menus.ui:334 src/window.py:731 src/window.py:734
 msgid "_Options"
 msgstr "_Opzioni"
 
@@ -419,11 +422,11 @@ msgid "Use this editor by default"
 msgstr "Usa questo editor come predefinito"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:819 src/window.py:834
+#: src/window.py:806 src/window.py:821
 msgid "Open"
 msgstr "Apri"
 
-#: src/ui/minimap.ui:72 src/preferences.py:87
+#: src/ui/minimap.ui:72
 msgid "100%"
 msgstr "100%"
 
@@ -434,7 +437,7 @@ msgstr "Dimensione strumento"
 #. used by the bottom panels
 #. Loading a whole file in a GtkBuilder just for this looked ridiculous,
 #. so it's built from a string.
-#: src/ui/panel_classic.ui:96 src/window.py:480 src/tools/abstract_tool.py:79
+#: src/ui/panel_classic.ui:96 src/window.py:481 src/tools/abstract_tool.py:79
 msgid "No options"
 msgstr "Nessuna opzione"
 
@@ -452,7 +455,7 @@ msgstr "Immagini"
 msgid "Tools"
 msgstr "Strumenti"
 
-#: src/ui/preferences.ui:85 src/preferences.py:129
+#: src/ui/preferences.ui:85 src/preferences.py:124
 msgid "Advanced options"
 msgstr "Opzioni avanzate"
 
@@ -464,7 +467,7 @@ msgstr "Percorso"
 msgid "Format"
 msgstr "Formato"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:221
+#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:224
 msgid "Unsaved file"
 msgstr "File non salvato"
 
@@ -611,7 +614,7 @@ msgstr "Navigazione"
 msgid "Toggle the preview"
 msgstr "Mostra/nascondi anteprima"
 
-#: src/ui/window.ui:37
+#: src/ui/window.ui:36
 msgid "Error starting the application, please report this bug."
 msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
 
@@ -708,54 +711,54 @@ msgstr ""
 msgid "Action to zoom"
 msgstr "Azione per lo zoom"
 
-#: src/preferences.py:91
+#: src/preferences.py:86
 #, fuzzy
-msgid "Default zoom"
-msgstr "Larghezza standard"
+msgid "Automatic zoom level"
+msgstr "Automatico"
 
-#: src/preferences.py:98
+#: src/preferences.py:93
 msgid "Appearance"
 msgstr "Aspetto"
 
-#: src/preferences.py:104
+#: src/preferences.py:99
 msgid "Use big icons"
 msgstr "Usa icone grandi"
 
-#: src/preferences.py:107
+#: src/preferences.py:102
 msgid "Additional tools"
 msgstr ""
 
-#: src/preferences.py:113 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:108 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Selezione libera"
 
-#: src/preferences.py:116 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:111 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Selezione colore"
 
-#: src/preferences.py:119 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:114 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Selettore colore"
 
-#: src/preferences.py:122 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:117 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Dipingi"
 
-#: src/preferences.py:132
+#: src/preferences.py:127
 msgid "Preview size"
 msgstr "Dimensione anteprima"
 
-#: src/preferences.py:136
+#: src/preferences.py:131
 msgid "Automatic"
 msgstr "Automatico"
 
-#: src/preferences.py:137
+#: src/preferences.py:132
 msgid "Compact"
 msgstr "Compatto"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:141
+#: src/preferences.py:136
 msgid "Legacy"
 msgstr "Classico"
 
@@ -763,37 +766,37 @@ msgstr "Classico"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional". "symbolic" means the icons
 #. are in black or white.
-#: src/preferences.py:146
+#: src/preferences.py:141
 msgid "Legacy (symbolic)"
 msgstr "Classico (simbolico)"
 
-#: src/preferences.py:147
+#: src/preferences.py:142
 msgid "Menubar only"
 msgstr "Solo la barra menu"
 
-#: src/preferences.py:148
+#: src/preferences.py:143
 msgid "Toolbar only"
 msgstr "Solo la barra strumenti"
 
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
-#: src/preferences.py:151
+#: src/preferences.py:146
 msgid "Toolbar (symbolic)"
 msgstr "Barra degli strumenti (simbolica)"
 
-#: src/preferences.py:156
+#: src/preferences.py:151
 msgid "Layout"
 msgstr "Livello"
 
-#: src/preferences.py:161
+#: src/preferences.py:156
 msgid "Development features"
 msgstr "Funzionalità in sviluppo"
 
-#: src/preferences.py:166 src/window.py:642
+#: src/preferences.py:161 src/window.py:529
 msgid "Opened images"
 msgstr "Immagini aperte"
 
-#: src/preferences.py:169
+#: src/preferences.py:164
 msgid "Always add transparency"
 msgstr "Aggiungi sempre la trasparenza"
 
@@ -896,12 +899,12 @@ msgstr ""
 msgid "Unknown color name"
 msgstr ""
 
-#: src/utilities.py:228 src/window.py:819 src/window.py:833 src/window.py:899
-#: src/window.py:920 src/window.py:983 src/tools/ui/tool_crop.ui:27
+#: src/utilities.py:228 src/window.py:806 src/window.py:820 src/window.py:886
+#: src/window.py:907 src/window.py:970 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:28
 #: src/tools/ui/tool_filters.ui:175 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
-#: src/tools/ui/tool_scale.ui:163 src/tools/ui/tool_text.ui:32
+#: src/tools/ui/tool_scale.ui:156 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -921,71 +924,66 @@ msgstr ""
 "\n"
 "Vuoi interrompere l'operazione o vuoi forzare lo strumento?"
 
-#: src/window.py:152
+#: src/window.py:153
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Strumento di caricamento non riuscito: %s"
 
-#. XXX broken if a new image is opened
-#: src/window.py:617
-msgid "Middle click to get controls, press 'Escape' to exit."
-msgstr ""
-
-#: src/window.py:791
+#: src/window.py:778
 #, python-format
 msgid "Loading %s"
 msgstr "Caricamento %s"
 
-#: src/window.py:797
+#: src/window.py:784
 msgid "New Tab"
 msgstr "Nuova Scheda"
 
-#: src/window.py:799
+#: src/window.py:786
 msgid "Discard changes"
 msgstr "Scarta le modifiche"
 
-#: src/window.py:801 src/window.py:901
+#: src/window.py:788 src/window.py:888
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Ci sono modifiche non salvate in %s."
 
-#: src/window.py:803
+#: src/window.py:790
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Dove vuoi aprire %s?"
 
-#: src/window.py:818
+#: src/window.py:805
 msgid "Open a picture"
 msgstr "Apri un'immagine"
 
-#: src/window.py:840
+#: src/window.py:827
 #, fuzzy
 msgid "these files"
 msgstr "File non salvato"
 
-#: src/window.py:841
+#: src/window.py:828
 #, fuzzy, python-format
 msgid "What do you want to do with %s?"
 msgstr "Dove vuoi aprire %s?"
 
-#: src/window.py:891 src/window.py:922
+#: src/window.py:878 src/window.py:909
 msgid "Untitled"
 msgstr "Nessun titolo"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:893
+#: src/window.py:880
 msgid "this picture"
 msgstr "questa immagine"
 
-#: src/window.py:898
+#: src/window.py:885
 msgid "Discard"
 msgstr "Scarta"
 
-#: src/window.py:919
+#: src/window.py:906
 msgid "Save picture as…"
 msgstr "Salva l'immagine come…"
 
-#: src/window.py:982
+#: src/window.py:969
 msgid "Import a picture"
 msgstr "Importa un'immagine"
 
@@ -1058,7 +1056,7 @@ msgstr "Differenza"
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:130
 #: src/tools/ui/tool_filters.ui:106 src/tools/ui/tool_filters.ui:179
 #: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
-#: src/tools/ui/tool_scale.ui:118 src/tools/ui/tool_scale.ui:167
+#: src/tools/ui/tool_scale.ui:118 src/tools/ui/tool_scale.ui:160
 msgid "Apply"
 msgstr "Applica"
 
@@ -1165,12 +1163,8 @@ msgstr "Nessuna opzione"
 msgid "Keep proportions"
 msgstr "Mantieni le proporzioni"
 
-#: src/tools/ui/tool_scale.ui:150
-msgid "Allow horizontal deformations"
-msgstr ""
-
-#: src/tools/ui/tool_scale.ui:155
-msgid "Allow vertical deformations"
+#: src/tools/ui/tool_scale.ui:149
+msgid "Allow deformations"
 msgstr ""
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:46
@@ -1301,11 +1295,11 @@ msgstr "Testo"
 msgid "Font options"
 msgstr "Opzioni di testo"
 
-#: src/tools/selection_tools/abstract_select.py:31
+#: src/tools/selection_tools/abstract_select.py:30
 msgid "Drag the selection or right-click on the canvas"
 msgstr "Trascina la selezione o click destro sulla tela"
 
-#: src/tools/selection_tools/abstract_select.py:33
+#: src/tools/selection_tools/abstract_select.py:32
 msgid "Select an area or right-click on the canvas"
 msgstr "Seleziona un'area o click destro sulla tela"
 
@@ -1337,11 +1331,11 @@ msgstr "Rotazione della selezione"
 msgid "Rotating the canvas"
 msgstr "Rotazione della tela"
 
-#: src/tools/canvas_tools/tool_scale.py:53
+#: src/tools/canvas_tools/tool_scale.py:52
 msgid "Scaling the selection"
 msgstr "Ridimensionamento della selezione"
 
-#: src/tools/canvas_tools/tool_scale.py:55
+#: src/tools/canvas_tools/tool_scale.py:54
 msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
 
