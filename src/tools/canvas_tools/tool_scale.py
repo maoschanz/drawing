@@ -22,6 +22,7 @@ from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_show_handles_on_context
 
 class ToolScale(AbstractCanvasTool):
 	__gtype_name__ = 'ToolScale'
@@ -97,6 +98,8 @@ class ToolScale(AbstractCanvasTool):
 	def get_height(self):
 		return self.height_btn.get_value_as_int()
 
+	############################################################################
+
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
@@ -112,6 +115,22 @@ class ToolScale(AbstractCanvasTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
+
+	############################################################################
+
+	def on_draw(self, area, cairo_context):
+		if self.apply_to_selection:
+			# print('on_draw: yes')
+			x1 = self.get_selection().selection_x # XXX
+			y1 = self.get_selection().selection_y # XXX
+			x2 = x1 + self.get_width()
+			y2 = y1 + self.get_height()
+			x1, x2, y1, y2 = self.get_selection().correct_coords(x1, x2, y1, y2, False)
+			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		# else:
+		# 	print('on_draw: no')
+
+	############################################################################
 
 	def build_operation(self):
 		operation = {

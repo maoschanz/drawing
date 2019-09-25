@@ -22,6 +22,7 @@ from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_show_handles_on_context
 
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
@@ -74,8 +75,10 @@ class ToolCrop(AbstractCanvasTool):
 	def init_if_main(self):
 		self.original_width = self.get_image().get_pixbuf_width()
 		self.original_height = self.get_image().get_pixbuf_height()
-		self.width_btn.set_range(1, 10*self.original_width)
-		self.height_btn.set_range(1, 10*self.original_height)
+		self.width_btn.set_range(1, 10 * self.original_width)
+		self.height_btn.set_range(1, 10 * self.original_height)
+
+	############################################################################
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
@@ -90,7 +93,6 @@ class ToolCrop(AbstractCanvasTool):
 		self.update_temp_pixbuf()
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		print('93', event)
 		cursor_name = ''
 		if event.y < 0.3 * surface.get_height():
 			cursor_name = cursor_name + 'n'
@@ -160,6 +162,22 @@ class ToolCrop(AbstractCanvasTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.window.set_cursor(False)
+
+	############################################################################
+
+	def on_draw(self, area, cairo_context):
+		if self.apply_to_selection:
+			# print('on_draw: yes')
+			x1 = int(self._x)
+			y1 = int(self._y)
+			x2 = x1 + self.get_width()
+			y2 = y1 + self.get_height()
+			x1, x2, y1, y2 = self.get_selection().correct_coords(x1, x2, y1, y2, True)
+			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		# else:
+		# 	print('on_draw: no')
+
+	############################################################################
 
 	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)

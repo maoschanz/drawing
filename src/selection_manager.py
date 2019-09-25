@@ -141,12 +141,13 @@ class DrawingSelectionManager():
 		cairo_context.paint()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
-	def get_path_with_scroll(self, scroll_x, scroll_y):
+	def get_path_with_scroll(self):
 		if self.selection_path is None:
 			return None
+		# XXX and the zoom? TODO
 		cairo_context = cairo.Context(self._get_surface())
-		delta_x = 0 - scroll_x + self.selection_x - self.temp_x
-		delta_y = 0 - scroll_y + self.selection_y - self.temp_y
+		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x
+		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y
 		for pts in self.selection_path:
 			if pts[1] is not ():
 				x = pts[1][0] + delta_x
@@ -154,6 +155,18 @@ class DrawingSelectionManager():
 				cairo_context.line_to(int(x), int(y))
 		cairo_context.close_path()
 		return cairo_context.copy_path()
+
+	def correct_coords(self, x1, x2, y1, y2, with_selection_coords):
+		x1 -= self.image.scroll_x
+		x2 -= self.image.scroll_x
+		y1 -= self.image.scroll_y
+		y2 -= self.image.scroll_y
+		if with_selection_coords:
+			x1 += self.selection_x
+			x2 += self.selection_x
+			y1 += self.selection_y
+			y2 += self.selection_y
+		return x1, x2, y1, y2
 
 	def show_selection_on_surface(self, cairo_context, with_scroll):
 		if self.selection_pixbuf is None:

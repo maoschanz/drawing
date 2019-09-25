@@ -518,10 +518,6 @@ class DrawingImage(Gtk.Box):
 		else:
 			self.add_deltas(event.delta_x, event.delta_y, 10)
 
-	def get_dragged_selection_path(self):
-		# XXX and the zoom? TODO
-		return self.selection.get_path_with_scroll(self.scroll_x, self.scroll_y)
-
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self.h_scrollbar.get_value(), self.v_scrollbar.get_value())
 		self.update()

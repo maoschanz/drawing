@@ -170,8 +170,9 @@ class ToolShape(AbstractClassicTool):
 
 	def draw_circle(self, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())
-		rayon = math.sqrt((self.x_press - event_x)*(self.x_press - event_x) \
-		                    + (self.y_press - event_y)*(self.y_press - event_y))
+		delta_x2 = (self.x_press - event_x) * (self.x_press - event_x)
+		delta_y2 = (self.y_press - event_y) * (self.y_press - event_y)
+		rayon = math.sqrt(delta_x2 + delta_y2)
 		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
 		self._path = cairo_context.copy_path()
 
