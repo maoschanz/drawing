@@ -685,18 +685,23 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].row.set_active(True)
 
 	def enable_tool(self, new_tool_id):
-		"""Deactivate the formerly active tool, and activate `new_tool_id`."""
-		self.former_tool_id = self.active_tool_id
-		should_preserve_selection = self.tools[new_tool_id].accept_selection
-		self.former_tool().give_back_control(should_preserve_selection)
-		self.former_tool().on_tool_unselected()
-		self.get_active_image().selection.show_popover(False)
+		"""Activate the tool whose id is `new_tool_id`."""
+		self.disable_former_tool(new_tool_id)
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.active_tool().on_tool_selected()
+		self.update_fullscreen_icon()
 		self.update_bottom_panel()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
+
+	def disable_former_tool(self, future_tool_id):
+		"""Unactivate the formerly active tool."""
+		self.former_tool_id = self.active_tool_id
+		should_preserve_selection = self.tools[future_tool_id].accept_selection
+		self.former_tool().give_back_control(should_preserve_selection)
+		self.former_tool().on_tool_unselected()
+		self.get_active_image().selection.show_popover(False)
 
 	def update_bottom_panel(self):
 		"""Show the correct bottom panel, with the correct tool options menu."""
@@ -704,6 +709,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_manager.update_panel(self.active_tool())
 		self.build_options_menu()
 		self.adapt_to_window_size()
+
+	def update_fullscreen_icon(self):
+		"""Show the icon of the currently active tool on the button managing
+		fullscreen's main menu."""
+		name = self.active_tool().icon_name
+		img = Gtk.Image.new_from_icon_name(name, Gtk.IconSize.BUTTON)
+		self.fullscreen_btn.set_image(img)
 
 	def active_tool(self):
 		return self.tools[self.active_tool_id]

@@ -17,6 +17,14 @@
     <property name="value">100</property>
   </object>
 
+  <object class="GtkAdjustment" id="adj_transparency">
+    <property name="lower">0</property>
+    <property name="upper">100</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">30</property>
+    <property name="value">0</property>
+  </object>
+
   <!-- -->
 
   <object class="GtkActionBar" id="bottom-panel">
@@ -52,6 +60,7 @@
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
+                <property name="spacing">2</property>
                 <child>
                   <object class="GtkLabel" id="menu_label">
                     <property name="label" translatable="yes">Select a filter…</property>
@@ -61,6 +70,12 @@
                 <child>
                   <object class="GtkImage" id="menu_icon">
                     <property name="icon-name">view-more-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">pan-down-symbolic</property>
                     <property name="visible">True</property>
                   </object>
                 </child>
@@ -94,6 +109,20 @@
             <property name="visible">True</property>
             <property name="adjustment">adj_blur</property>
             <property name="tooltip_text" translatable="yes">Blur radius (pixels)</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="tspc_label">
+            <property name="label" translatable="yes">Transparency</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="tspc_btn">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_transparency</property>
+            <property name="tooltip_text" translatable="yes">Transparency (%)</property>
           </object>
         </child>
 
@@ -140,6 +169,11 @@
         </item>
       </section>
       <section>
+        <!-- <item> -->
+        <!--   <attribute name="label" translatable="yes">Transparency</attribute> -->
+        <!--   <attribute name="action">win.filters_type</attribute> -->
+        <!--   <attribute name="target">transparency</attribute> -->
+        <!-- </item> -->
         <item>
           <attribute name="label" translatable="yes">Invert colors</attribute>
           <attribute name="action">win.filters_type</attribute>

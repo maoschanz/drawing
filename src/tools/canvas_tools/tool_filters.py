@@ -62,14 +62,15 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar.menu_btn.set_active(True)
 
 	def get_edition_status(self):
-		return self.label + ' - ' + self.type_label + ' - ' + \
-		                  _("Click on the image to preview the selected filter")
+		tip_label = _("Click on the image to preview the selected filter")
+		return self.type_label + ' - ' + tip_label
 
 	def reset_type_values(self):
 		self.blur_algo = 10
 		self.saturate = False
 		self.pixelate = False
 		self.invert = False
+		self.transparency = False
 
 	def set_active_type(self, *args):
 		state_as_string = self.get_option_value('filters_type')
@@ -92,6 +93,9 @@ class ToolFilters(AbstractCanvasTool):
 		elif state_as_string == 'invert':
 			self.invert = True
 			self.type_label = _("Invert colors")
+		elif state_as_string == 'transparency':
+			self.transparency = True
+			self.type_label = _("Transparency")
 		else:
 			self.type_label = _("Select a filter…")
 		self.bar.on_filter_changed()
@@ -106,6 +110,7 @@ class ToolFilters(AbstractCanvasTool):
 			'pixelate': self.pixelate,
 			'invert': self.invert,
 			'saturate': self.saturate,
+			'transparency': self.transparency,
 			'blur_algo': self.blur_algo
 		}
 		return operation
@@ -123,10 +128,12 @@ class ToolFilters(AbstractCanvasTool):
 		if blur_algo != 10:
 			blur_radius = operation['radius']
 			surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-			blurred_surface = utilities_fast_blur(surface, blur_radius, 1, blur_algo)
-			blurred_pixbuf = Gdk.pixbuf_get_from_surface(blurred_surface, 0, 0, \
-			          blurred_surface.get_width(), blurred_surface.get_height())
+			b_surf = utilities_fast_blur(surface, blur_radius, 1, blur_algo)
+			blurred_pixbuf = Gdk.pixbuf_get_from_surface(b_surf, 0, 0, \
+			                            b_surf.get_width(), b_surf.get_height())
 			self.get_image().set_temp_pixbuf(blurred_pixbuf)
+		elif operation['transparency']:
+			pass # TODO
 		elif operation['invert']:
 			surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
 			cairo_context = cairo.Context(surface)
@@ -163,6 +170,8 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.menu_icon = builder.get_object('menu_icon')
 		self.sat_label = builder.get_object('sat_label')
 		self.sat_btn = builder.get_object('sat_btn')
+		self.tspc_label = builder.get_object('tspc_label')
+		self.tspc_btn = builder.get_object('tspc_btn')
 		self.blur_label = builder.get_object('blur_label')
 		self.blur_btn = builder.get_object('blur_btn')
 
@@ -174,6 +183,8 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.menu_icon.set_visible(False)
 		widgets_size = max( self.sat_label.get_preferred_width()[0] + \
 		                    self.sat_btn.get_preferred_width()[0], \
+		                    self.tspc_label.get_preferred_width()[0] + \
+		                    self.tspc_btn.get_preferred_width()[0], \
 		                    self.blur_label.get_preferred_width()[0] + \
 		                    self.blur_btn.get_preferred_width()[0])
 		temp_limit_size = self.menu_btn.get_preferred_width()[0] + 50 + \
@@ -191,6 +202,8 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.menu_icon.set_visible(state)
 
 		blurring = (self.filters_tool.blur_algo != 10)
+		self.tspc_label.set_visible(self.filters_tool.transparency and not state)
+		self.tspc_btn.set_visible(self.filters_tool.transparency)
 		self.sat_label.set_visible(self.filters_tool.saturate and not state)
 		self.sat_btn.set_visible(self.filters_tool.saturate)
 		self.blur_label.set_visible(blurring and not state)

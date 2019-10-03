@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 21:21+0200\n"
+"POT-Creation-Date: 2019-10-04 01:38+0200\n"
 "PO-Revision-Date: 2019-09-17 22:22+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -41,7 +41,7 @@ msgstr "Paint;Boceto;Lápiz;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:785
+#: src/window.py:797
 msgid "New Window"
 msgstr "Ventana nueva"
 
@@ -96,9 +96,11 @@ msgstr ""
 "única y más coherente herramienta de «formas»."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
+#, fuzzy
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
-"with several types of blur, color inversion, pixelisation and saturation."
+"with several types of blur, color inversion, pixelisation, saturation and "
+"transparency."
 msgstr ""
 "La herramienta «saturación» ha sido reemplazada por «filtros», una "
 "herramienta más potente con diferentes tipos de desenfoque, inversión de "
@@ -213,8 +215,8 @@ msgstr "Abrir una imagen"
 #: src/ui/app-menus.ui:85 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:887
-#: src/window.py:907
+#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:899
+#: src/window.py:919
 msgid "Save"
 msgstr "Guardar"
 
@@ -288,13 +290,13 @@ msgstr "Pegar"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:822
-#: src/window.py:970
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:834
+#: src/window.py:982
 msgid "Import"
 msgstr "Importar"
 
 #: src/ui/app-menus.ui:182 src/ui/toolbar.ui:100 src/ui/toolbar.ui:101
-#: src/ui/win-menus.ui:55 src/ui/win-menus.ui:116 src/properties.py:27
+#: src/ui/win-menus.ui:55 src/ui/win-menus.ui:116 src/properties.py:26
 msgid "Image properties"
 msgstr "Propiedades de imagen"
 
@@ -393,7 +395,7 @@ msgstr "_Herramientas"
 msgid "Previous tool"
 msgstr "Herramienta anterior"
 
-#: src/ui/app-menus.ui:334 src/window.py:731 src/window.py:734
+#: src/ui/app-menus.ui:334 src/window.py:743 src/window.py:746
 msgid "_Options"
 msgstr "_Opciones"
 
@@ -435,7 +437,7 @@ msgid "Use this editor by default"
 msgstr "Utilizar este editor de manera predeterminada"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:806 src/window.py:821
+#: src/window.py:818 src/window.py:833
 msgid "Open"
 msgstr "Abrir"
 
@@ -456,7 +458,7 @@ msgstr "Sin opciones"
 
 #. <property name="relief">none</property>
 #: src/ui/panel_classic.ui:124 src/ui/selection.ui:320
-#: src/tools/ui/tool_filters.ui:169
+#: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
 msgstr "Previsualización"
 
@@ -480,39 +482,40 @@ msgstr "Ruta"
 msgid "Format"
 msgstr "Formato"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:224
+#: src/ui/properties.ui:46
+#, fuzzy
+msgid "Colorspace"
+msgstr "Colores"
+
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:224
 msgid "Unsaved file"
 msgstr "Archivo no guardado"
 
-#: src/ui/properties.ui:87 src/properties.py:89
+#: src/ui/properties.ui:88 src/properties.py:83
 msgid "Invalid format"
 msgstr "Formato no válido"
 
-#: src/ui/properties.ui:134
-msgid "Add transparency"
-msgstr "Añadir transparencia"
-
-#: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
+#: src/ui/properties.ui:114 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:56
 #: src/tools/ui/tool_scale.ui:64
 msgid "Width"
 msgstr "Anchura"
 
-#: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:82
+#: src/ui/properties.ui:143 src/tools/ui/tool_crop.ui:82
 #: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:83
 #: src/tools/ui/tool_scale.ui:91
 msgid "Height"
 msgstr "Altura"
 
-#: src/ui/properties.ui:224 src/utilities.py:276
+#: src/ui/properties.ui:179 src/utilities.py:337
 msgid "pixels"
 msgstr "píxeles"
 
-#: src/ui/properties.ui:230
+#: src/ui/properties.ui:185
 msgid "centimeters"
 msgstr "centímetros"
 
-#: src/ui/properties.ui:236
+#: src/ui/properties.ui:191
 msgid "inches"
 msgstr "pulgadas"
 
@@ -522,12 +525,12 @@ msgid "Unselect"
 msgstr "Deseleccionar"
 
 #: src/ui/selection.ui:51 src/ui/selection.ui:129
-#: src/tools/canvas_tools/tool_crop.py:30
+#: src/tools/canvas_tools/tool_crop.py:31
 msgid "Crop"
 msgstr "Recortar"
 
 #: src/ui/selection.ui:57 src/ui/selection.ui:135
-#: src/tools/canvas_tools/tool_scale.py:30
+#: src/tools/canvas_tools/tool_scale.py:31
 msgid "Scale"
 msgstr "Escalar"
 
@@ -802,26 +805,6 @@ msgstr "Disposición"
 msgid "Development features"
 msgstr "Funcionalidades experimentales"
 
-#: src/preferences.py:161 src/window.py:529
-msgid "Opened images"
-msgstr "Imágenes abiertas"
-
-#: src/preferences.py:164
-msgid "Always add transparency"
-msgstr "Siempre añadir transparencia"
-
-#: src/properties.py:93
-msgid "This surface format already supports transparency."
-msgstr "El formato de imagen ya soporta transparencia."
-
-#: src/properties.py:96
-msgid ""
-"This surface format doesn't support transparency, you can add an alpha "
-"channel, optionally by replacing a color."
-msgstr ""
-"El formato de imagen no soporta transparencia; puede añadir un canal alfa, "
-"reemplazando opcionalmente un color."
-
 #: src/utilities.py:22
 msgid "All pictures"
 msgstr "Todas las imágenes"
@@ -907,20 +890,20 @@ msgstr "Probablemente turquesa"
 msgid "Unknown color name"
 msgstr "Nombre de color desconocido"
 
-#: src/utilities.py:228 src/window.py:806 src/window.py:820 src/window.py:886
-#: src/window.py:907 src/window.py:970 src/tools/ui/tool_crop.ui:27
-#: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:28
-#: src/tools/ui/tool_filters.ui:175 src/tools/ui/tool_rotate.ui:20
+#: src/utilities.py:289 src/window.py:818 src/window.py:832 src/window.py:898
+#: src/window.py:919 src/window.py:982 src/tools/ui/tool_crop.ui:27
+#: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:36
+#: src/tools/ui/tool_filters.ui:209 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
 #: src/tools/ui/tool_scale.ui:156 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/utilities.py:229
+#: src/utilities.py:290
 msgid "Continue"
 msgstr "Continuar"
 
-#: src/utilities.py:230
+#: src/utilities.py:291
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
 "This algorithm may not be able to manage the wanted area.\n"
@@ -937,60 +920,64 @@ msgstr ""
 msgid "Failed to load tool: %s"
 msgstr "Error al cargar la herramienta: %s"
 
-#: src/window.py:778
+#: src/window.py:529
+msgid "Opened images"
+msgstr "Imágenes abiertas"
+
+#: src/window.py:790
 #, python-format
 msgid "Loading %s"
 msgstr "Cargando %s"
 
-#: src/window.py:784
+#: src/window.py:796
 msgid "New Tab"
 msgstr "Pestaña nueva"
 
-#: src/window.py:786
+#: src/window.py:798
 msgid "Discard changes"
 msgstr "Descartar cambios"
 
-#: src/window.py:788 src/window.py:888
+#: src/window.py:800 src/window.py:900
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Hay cambios no guardados en «%s»."
 
-#: src/window.py:790
+#: src/window.py:802
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "¿Dónde quiere abrir «%s»?"
 
-#: src/window.py:805
+#: src/window.py:817
 msgid "Open a picture"
 msgstr "Abrir una imagen"
 
-#: src/window.py:827
+#: src/window.py:839
 msgid "these files"
 msgstr "estos archivos"
 
-#: src/window.py:828
+#: src/window.py:840
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "¿Qué quiere hacer con «%s»?"
 
-#: src/window.py:878 src/window.py:909
+#: src/window.py:890 src/window.py:921
 msgid "Untitled"
 msgstr "Sin título"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:880
+#: src/window.py:892
 msgid "this picture"
 msgstr "esta imagen"
 
-#: src/window.py:885
+#: src/window.py:897
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/window.py:906
+#: src/window.py:918
 msgid "Save picture as…"
 msgstr "Guardar imagen como…"
 
-#: src/window.py:969
+#: src/window.py:981
 msgid "Import a picture"
 msgstr "Importar una imagen"
 
@@ -1039,9 +1026,9 @@ msgstr "Modo"
 msgid "Classic"
 msgstr "Clásico"
 
-#: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:151
+#: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:185
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
-#: src/tools/canvas_tools/tool_filters.py:79
+#: src/tools/canvas_tools/tool_filters.py:80
 msgid "Blur"
 msgstr "Desenfoque"
 
@@ -1061,45 +1048,55 @@ msgid "Difference"
 msgstr "Diferencia"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:130
-#: src/tools/ui/tool_filters.ui:106 src/tools/ui/tool_filters.ui:179
+#: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
 #: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
 #: src/tools/ui/tool_scale.ui:118 src/tools/ui/tool_scale.ui:160
 msgid "Apply"
 msgstr "Aplicar"
 
-#: src/tools/ui/tool_filters.ui:57 src/tools/canvas_tools/tool_filters.py:96
+#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:100
 msgid "Select a filter…"
 msgstr "Seleccionar un filtro…"
 
-#: src/tools/ui/tool_filters.ui:74 src/tools/ui/tool_filters.ui:82
+#: src/tools/ui/tool_filters.ui:89 src/tools/ui/tool_filters.ui:97
 msgid "Saturation (%)"
 msgstr "Saturación (%)"
 
-#: src/tools/ui/tool_filters.ui:88
+#: src/tools/ui/tool_filters.ui:103
 msgid "Radius"
 msgstr "Radio"
 
-#: src/tools/ui/tool_filters.ui:96
+#: src/tools/ui/tool_filters.ui:111
 msgid "Blur radius (pixels)"
 msgstr "Radio de desenfoque (píxeles)"
 
-#: src/tools/ui/tool_filters.ui:132 src/tools/canvas_tools/tool_filters.py:88
+#: src/tools/ui/tool_filters.ui:117 src/tools/canvas_tools/tool_filters.py:98
+#, fuzzy
+msgid "Transparency"
+msgstr "Transparente"
+
+#: src/tools/ui/tool_filters.ui:125
+#, fuzzy
+msgid "Transparency (%)"
+msgstr "Transparente"
+
+#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:89
 msgid "Saturation"
 msgstr "Saturación"
 
-#: src/tools/ui/tool_filters.ui:137 src/tools/canvas_tools/tool_filters.py:91
+#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:92
 msgid "Pixelisation"
 msgstr "Pixelización"
 
-#: src/tools/ui/tool_filters.ui:144 src/tools/canvas_tools/tool_filters.py:94
+#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:95
 msgid "Invert colors"
 msgstr "Invertir colores"
 
-#: src/tools/ui/tool_filters.ui:156 src/tools/canvas_tools/tool_filters.py:82
+#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:83
 msgid "Horizontal blur"
 msgstr "Desenfoque horizontal"
 
-#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:85
+#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:86
 msgid "Vertical blur"
 msgstr "Desenfoque vertical"
 
@@ -1161,7 +1158,8 @@ msgid "More options"
 msgstr "Más opciones"
 
 #: src/tools/ui/tool_scale.ui:143
-msgid "Keep proportions"
+#, fuzzy
+msgid "Always keep proportions"
 msgstr "Mantener proporciones"
 
 #: src/tools/ui/tool_scale.ui:149
@@ -1310,11 +1308,11 @@ msgstr ""
 msgid "Rectangle selection"
 msgstr "Selección rectangular"
 
-#: src/tools/canvas_tools/tool_crop.py:51
+#: src/tools/canvas_tools/tool_crop.py:52
 msgid "Cropping the selection"
 msgstr "Recortando la selección"
 
-#: src/tools/canvas_tools/tool_crop.py:53
+#: src/tools/canvas_tools/tool_crop.py:54
 msgid "Cropping the canvas"
 msgstr "Recortando el lienzo"
 
@@ -1322,7 +1320,7 @@ msgstr "Recortando el lienzo"
 msgid "Filters"
 msgstr "Filtros"
 
-#: src/tools/canvas_tools/tool_filters.py:66
+#: src/tools/canvas_tools/tool_filters.py:65
 msgid "Click on the image to preview the selected filter"
 msgstr ""
 "Haga clic en la imagen para obtener una vista previa del filtro seleccionado"
@@ -1335,11 +1333,11 @@ msgstr "Girando la selección"
 msgid "Rotating the canvas"
 msgstr "Girando el lienzo"
 
-#: src/tools/canvas_tools/tool_scale.py:52
+#: src/tools/canvas_tools/tool_scale.py:53
 msgid "Scaling the selection"
 msgstr "Escalando la selección"
 
-#: src/tools/canvas_tools/tool_scale.py:54
+#: src/tools/canvas_tools/tool_scale.py:55
 msgid "Scaling the canvas"
 msgstr "Escalando el lienzo"
 

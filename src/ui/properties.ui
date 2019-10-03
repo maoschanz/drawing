@@ -41,13 +41,24 @@
         </child>
 
         <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Colorspace</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
           <object class="GtkLabel" id="label_path">
             <property name="visible">True</property>
             <property name="wrap">True</property>
             <property name="label" translatable="yes">Unsaved file</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
+            <style><class name="dim-label"/></style>
           </object>
           <packing>
             <property name="left-attach">1</property>
@@ -58,84 +69,28 @@
         </child>
 
         <child>
-          <object class="GtkLabel" id="label_format_file">
+          <object class="GtkLabel" id="label_file_format">
             <property name="visible">True</property>
             <property name="label" translatable="yes">Unsaved file</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
+            <style><class name="dim-label"/></style>
           </object>
           <packing>
             <property name="left-attach">1</property>
             <property name="top-attach">1</property>
-            <property name="width">1</property>
+            <property name="width">2</property>
             <property name="height">1</property>
           </packing>
         </child>
 
         <child>
-          <object class="GtkToggleButton" id="add_alpha_toggle">
+          <object class="GtkLabel" id="label_surface_colorspace">
             <property name="visible">True</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="spacing">2</property>
-                <child>
-                  <object class="GtkLabel" id="label_format_surface">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Invalid format</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">pan-down-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="pack-type">end</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="left-attach">2</property>
-            <property name="top-attach">1</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="label_alpha_info">
-            <property name="visible">False</property>
-            <property name="wrap">True</property>
-            <property name="label">an informative label about this feature</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
-            <property name="width">3</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkButton" id="add_alpha_button">
-            <property name="visible">False</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">Add transparency</property>
+            <property name="label" translatable="yes">Invalid format</property>
+            <style><class name="dim-label"/></style>
           </object>
           <packing>
             <property name="left-attach">1</property>
-            <property name="top-attach">3</property>
+            <property name="top-attach">2</property>
             <property name="width">2</property>
             <property name="height">1</property>
           </packing>

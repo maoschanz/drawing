@@ -158,12 +158,6 @@ class DrawingPrefsWindow(Gtk.Window):
 		if not is_beta:
 			w.set_visible(False)
 
-		w = self.row_from_label(_("Opened images"), True)
-		self.page_advanced.add(w)
-
-		w = self.row_from_bool(_("Always add transparency"), 'add-alpha')
-		self.page_advanced.add(w)
-
 	############################################################################
 
 	def row_from_label(self, label_text, with_margin):

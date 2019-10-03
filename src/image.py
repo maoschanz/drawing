@@ -126,7 +126,7 @@ class DrawingImage(Gtk.Box):
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
-		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
+		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
 		self.initial_operation = {
 			'tool_id': None,
