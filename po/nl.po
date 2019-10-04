@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-04 01:38+0200\n"
+"POT-Creation-Date: 2019-10-04 23:32+0200\n"
 "PO-Revision-Date: 2019-09-08 20:10+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:440
+#: src/window.py:454
 msgid "Drawing"
 msgstr "Tekenen"
 
@@ -40,7 +40,7 @@ msgstr "Verven;Schetsen;Potlood;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:797
+#: src/window.py:801
 msgid "New Window"
 msgstr "Nieuw venster"
 
@@ -117,12 +117,26 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
+"Version 0.4.5 features several minor bug fixes, and various new translations."
+msgstr ""
+"Versie 0.4.5 bevat verschillende kleine foutoplossingen en nieuwe "
+"vertalingen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+msgid ""
+"Clicking on both mouse buttons will no longer crash the tools, and the "
+"confusing UI for changing the colorspace has been deleted since it was "
+"causing bugs with the history."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:62
+msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
 "Versie 0.4.4 bevat verschillende kleine foutoplossingen en nieuwe "
 "vertalingen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:59
+#: data/com.github.maoschanz.drawing.appdata.xml.in:68
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
@@ -130,14 +144,14 @@ msgstr ""
 "Versie 0.4.3 bevat nieuwe vertalingen en is compatibel met oudere distro's "
 "als Ubuntu 18.04."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:65
+#: data/com.github.maoschanz.drawing.appdata.xml.in:74
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "Versie 0.4.2 bevat verschillende kleine foutoplossingen en nieuwe "
 "vertalingen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:71
+#: data/com.github.maoschanz.drawing.appdata.xml.in:80
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -149,12 +163,12 @@ msgstr ""
 "afbeelding uit de klembordinhoud. een vloeiender potlood en verschillende "
 "nieuwe vertalingen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:79
+#: data/com.github.maoschanz.drawing.appdata.xml.in:88
 msgid "First stable release, including a few basic tools."
 msgstr "Eerste stabiele uitgave met een paar basisgereedschappen."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:85
+#: data/com.github.maoschanz.drawing.appdata.xml.in:94
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
@@ -211,8 +225,8 @@ msgstr "Afbeelding openen"
 #: src/ui/app-menus.ui:85 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:899
-#: src/window.py:919
+#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:903
+#: src/window.py:923
 msgid "Save"
 msgstr "Opslaan"
 
@@ -221,7 +235,7 @@ msgid "Save as…"
 msgstr "Opslaan als…"
 
 #: src/ui/app-menus.ui:95 src/ui/selection.ui:81 src/ui/selection.ui:160
-#: src/ui/selection.ui:371 src/ui/win-menus.ui:71 src/ui/win-menus.ui:132
+#: src/ui/selection.ui:370 src/ui/win-menus.ui:71 src/ui/win-menus.ui:132
 msgid "Export as…"
 msgstr "Exporteren als…"
 
@@ -259,7 +273,7 @@ msgid "Redo"
 msgstr "Opnieuw"
 
 #: src/ui/app-menus.ui:146 src/ui/selection.ui:7 src/ui/selection.ui:93
-#: src/ui/selection.ui:357 src/ui/shortcuts.ui:181
+#: src/ui/selection.ui:356 src/ui/shortcuts.ui:181
 msgid "Select all"
 msgstr "Alles selecteren"
 
@@ -286,8 +300,8 @@ msgstr "Plakken"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:834
-#: src/window.py:982
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:838
+#: src/window.py:986
 msgid "Import"
 msgstr "Importeren"
 
@@ -383,7 +397,7 @@ msgstr "Kleuren omwisselen"
 msgid "Color editor by default"
 msgstr "Standaard kleuren bewerken"
 
-#: src/ui/app-menus.ui:315 src/window.py:532
+#: src/ui/app-menus.ui:315 src/window.py:536
 msgid "_Tools"
 msgstr "_Gereedschap"
 
@@ -391,7 +405,7 @@ msgstr "_Gereedschap"
 msgid "Previous tool"
 msgstr "Vorig gereedschap"
 
-#: src/ui/app-menus.ui:334 src/window.py:743 src/window.py:746
+#: src/ui/app-menus.ui:334 src/window.py:747 src/window.py:750
 msgid "_Options"
 msgstr "_Opties"
 
@@ -433,7 +447,7 @@ msgid "Use this editor by default"
 msgstr "Gebruik standaard deze bewerker"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:818 src/window.py:833
+#: src/window.py:822 src/window.py:837
 msgid "Open"
 msgstr "Openen"
 
@@ -446,14 +460,11 @@ msgid "Tool size"
 msgstr "Gereedschapsgrootte"
 
 #. used by the bottom panels
-#. Loading a whole file in a GtkBuilder just for this looked ridiculous,
-#. so it's built from a string.
-#: src/ui/panel_classic.ui:96 src/window.py:481 src/tools/abstract_tool.py:79
+#: src/ui/panel_classic.ui:96 src/window.py:487 src/tools/abstract_tool.py:79
 msgid "No options"
 msgstr "Geen opties"
 
-#. <property name="relief">none</property>
-#: src/ui/panel_classic.ui:124 src/ui/selection.ui:320
+#: src/ui/panel_classic.ui:124 src/ui/selection.ui:319
 #: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
 msgstr "Voorbeeld"
@@ -483,7 +494,7 @@ msgstr "Formaat"
 msgid "Colorspace"
 msgstr "Kleuren"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:224
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
 msgstr "Niet-opgeslagen bestand"
 
@@ -515,7 +526,7 @@ msgstr "centimeter"
 msgid "inches"
 msgstr "inch"
 
-#: src/ui/selection.ui:26 src/ui/selection.ui:97 src/ui/selection.ui:361
+#: src/ui/selection.ui:26 src/ui/selection.ui:97 src/ui/selection.ui:360
 #: src/ui/shortcuts.ui:188
 msgid "Unselect"
 msgstr "Selectie ongedaan maken"
@@ -539,7 +550,7 @@ msgstr "Draaien"
 msgid "Apply a filter"
 msgstr "Filter toepassen"
 
-#: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:367
+#: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:366
 msgid "Open As New Image"
 msgstr "Openen als nieuwe afbeelding"
 
@@ -886,8 +897,8 @@ msgstr ""
 msgid "Unknown color name"
 msgstr ""
 
-#: src/utilities.py:289 src/window.py:818 src/window.py:832 src/window.py:898
-#: src/window.py:919 src/window.py:982 src/tools/ui/tool_crop.ui:27
+#: src/utilities.py:289 src/window.py:822 src/window.py:836 src/window.py:902
+#: src/window.py:923 src/window.py:986 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:36
 #: src/tools/ui/tool_filters.ui:209 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
@@ -911,69 +922,69 @@ msgstr ""
 "\n"
 "Wil je de handeling afbreken of het gereedschap tevergeefs laten doorgaan?"
 
-#: src/window.py:153
+#: src/window.py:167
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Kan gereedschap niet laden: %s"
 
-#: src/window.py:529
+#: src/window.py:533
 msgid "Opened images"
 msgstr "Geopende afbeeldingen"
 
-#: src/window.py:790
+#: src/window.py:794
 #, python-format
 msgid "Loading %s"
 msgstr "Bezig met laden van %s"
 
-#: src/window.py:796
+#: src/window.py:800
 msgid "New Tab"
 msgstr "Nieuw tabblad"
 
-#: src/window.py:798
+#: src/window.py:802
 msgid "Discard changes"
 msgstr "Wijzigingen verwerpen"
 
-#: src/window.py:800 src/window.py:900
+#: src/window.py:804 src/window.py:904
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "%s bevat niet-opgeslagen wijzigingen."
 
-#: src/window.py:802
+#: src/window.py:806
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Waar wil je %s openen?"
 
-#: src/window.py:817
+#: src/window.py:821
 msgid "Open a picture"
 msgstr "Afbeeldingen openen"
 
-#: src/window.py:839
+#: src/window.py:843
 msgid "these files"
 msgstr "deze bestanden"
 
-#: src/window.py:840
+#: src/window.py:844
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Wat wil je doen met %s?"
 
-#: src/window.py:890 src/window.py:921
+#: src/window.py:894 src/window.py:925
 msgid "Untitled"
 msgstr "Naamloos"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:892
+#: src/window.py:896
 msgid "this picture"
 msgstr "deze afbeelding"
 
-#: src/window.py:897
+#: src/window.py:901
 msgid "Discard"
 msgstr "Verwerpen"
 
-#: src/window.py:918
+#: src/window.py:922
 msgid "Save picture as…"
 msgstr "Afbeelding opslaan als…"
 
-#: src/window.py:981
+#: src/window.py:985
 msgid "Import a picture"
 msgstr "Afbeelding importeren"
 
@@ -1024,7 +1035,7 @@ msgstr "Klassiek"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:185
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
-#: src/tools/canvas_tools/tool_filters.py:80
+#: src/tools/canvas_tools/tool_filters.py:85
 msgid "Blur"
 msgstr "Vervaging"
 
@@ -1050,7 +1061,7 @@ msgstr "Verschil"
 msgid "Apply"
 msgstr "Toepassen"
 
-#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:100
+#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:105
 msgid "Select a filter…"
 msgstr "Kies een filter..."
 
@@ -1066,7 +1077,8 @@ msgstr "Straal"
 msgid "Blur radius (pixels)"
 msgstr "Vervaagstraal"
 
-#: src/tools/ui/tool_filters.ui:117 src/tools/canvas_tools/tool_filters.py:98
+#: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:173
+#: src/tools/canvas_tools/tool_filters.py:103
 #, fuzzy
 msgid "Transparency"
 msgstr "Doorzichtigheid toevoegen"
@@ -1076,23 +1088,23 @@ msgstr "Doorzichtigheid toevoegen"
 msgid "Transparency (%)"
 msgstr "Doorzichtigheid toevoegen"
 
-#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:89
+#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:94
 msgid "Saturation"
 msgstr "Verzadiging"
 
-#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:92
+#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:97
 msgid "Pixelisation"
 msgstr "Pixelvorming"
 
-#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:95
+#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:100
 msgid "Invert colors"
 msgstr "Kleuren omdraaien"
 
-#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:83
+#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:88
 msgid "Horizontal blur"
 msgstr "Horizontale vervaging"
 
-#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:86
+#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:91
 msgid "Vertical blur"
 msgstr "Verticale vervaging"
 
@@ -1314,7 +1326,7 @@ msgstr "Bezig met bijsnijden van canvas"
 msgid "Filters"
 msgstr "Filters"
 
-#: src/tools/canvas_tools/tool_filters.py:65
+#: src/tools/canvas_tools/tool_filters.py:70
 msgid "Click on the image to preview the selected filter"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-04 01:38+0200\n"
+"POT-Creation-Date: 2019-10-04 23:32+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:440
+#: src/window.py:454
 msgid "Drawing"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:70 src/ui/shortcuts.ui:16 src/ui/win-menus.ui:32
-#: src/window.py:797
+#: src/window.py:801
 msgid "New Window"
 msgstr "Новое окно"
 
@@ -101,21 +101,33 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
+"Version 0.4.5 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+msgid ""
+"Clicking on both mouse buttons will no longer crash the tools, and the "
+"confusing UI for changing the colorspace has been deleted since it was "
+"causing bugs with the history."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:62
+msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:59
+#: data/com.github.maoschanz.drawing.appdata.xml.in:68
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:65
+#: data/com.github.maoschanz.drawing.appdata.xml.in:74
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:71
+#: data/com.github.maoschanz.drawing.appdata.xml.in:80
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -123,12 +135,12 @@ msgid ""
 "translations."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:79
+#: data/com.github.maoschanz.drawing.appdata.xml.in:88
 msgid "First stable release, including a few basic tools."
 msgstr ""
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:85
+#: data/com.github.maoschanz.drawing.appdata.xml.in:94
 msgid "Romain F. T."
 msgstr ""
 
@@ -187,8 +199,8 @@ msgstr "Открыть изображение"
 #: src/ui/app-menus.ui:85 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
 #: src/ui/headerbar_eos.ui:157 src/ui/headerbar_eos.ui:170
 #: src/ui/headerbar_eos.ui:188 src/ui/shortcuts.ui:113 src/ui/toolbar.ui:118
-#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:899
-#: src/window.py:919
+#: src/ui/toolbar.ui:119 src/ui/win-menus.ui:274 src/window.py:903
+#: src/window.py:923
 msgid "Save"
 msgstr "Сохранить"
 
@@ -197,7 +209,7 @@ msgid "Save as…"
 msgstr "Сохранить как…"
 
 #: src/ui/app-menus.ui:95 src/ui/selection.ui:81 src/ui/selection.ui:160
-#: src/ui/selection.ui:371 src/ui/win-menus.ui:71 src/ui/win-menus.ui:132
+#: src/ui/selection.ui:370 src/ui/win-menus.ui:71 src/ui/win-menus.ui:132
 msgid "Export as…"
 msgstr "Экспортировать как…"
 
@@ -237,7 +249,7 @@ msgid "Redo"
 msgstr "Вернуть"
 
 #: src/ui/app-menus.ui:146 src/ui/selection.ui:7 src/ui/selection.ui:93
-#: src/ui/selection.ui:357 src/ui/shortcuts.ui:181
+#: src/ui/selection.ui:356 src/ui/shortcuts.ui:181
 msgid "Select all"
 msgstr "Выбрать все"
 
@@ -264,8 +276,8 @@ msgstr "Вставить"
 
 #: src/ui/app-menus.ui:175 src/ui/headerbar_eos.ui:50 src/ui/selection.ui:13
 #: src/ui/selection.ui:179 src/ui/selection.ui:212 src/ui/shortcuts.ui:161
-#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:834
-#: src/window.py:982
+#: src/ui/toolbar.ui:46 src/ui/toolbar.ui:47 src/window.py:838
+#: src/window.py:986
 msgid "Import"
 msgstr "Импортировать"
 
@@ -362,7 +374,7 @@ msgstr "Поменять цвета"
 msgid "Color editor by default"
 msgstr ""
 
-#: src/ui/app-menus.ui:315 src/window.py:532
+#: src/ui/app-menus.ui:315 src/window.py:536
 msgid "_Tools"
 msgstr "_Инструменты"
 
@@ -370,7 +382,7 @@ msgstr "_Инструменты"
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
-#: src/ui/app-menus.ui:334 src/window.py:743 src/window.py:746
+#: src/ui/app-menus.ui:334 src/window.py:747 src/window.py:750
 msgid "_Options"
 msgstr "_Опции"
 
@@ -414,7 +426,7 @@ msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/ui/headerbar.ui:38 src/ui/headerbar_eos.ui:29 src/ui/toolbar.ui:30
-#: src/window.py:818 src/window.py:833
+#: src/window.py:822 src/window.py:837
 msgid "Open"
 msgstr "Открыть"
 
@@ -427,14 +439,11 @@ msgid "Tool size"
 msgstr "Размер инструмента"
 
 #. used by the bottom panels
-#. Loading a whole file in a GtkBuilder just for this looked ridiculous,
-#. so it's built from a string.
-#: src/ui/panel_classic.ui:96 src/window.py:481 src/tools/abstract_tool.py:79
+#: src/ui/panel_classic.ui:96 src/window.py:487 src/tools/abstract_tool.py:79
 msgid "No options"
 msgstr ""
 
-#. <property name="relief">none</property>
-#: src/ui/panel_classic.ui:124 src/ui/selection.ui:320
+#: src/ui/panel_classic.ui:124 src/ui/selection.ui:319
 #: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
 msgstr "Предварительный просмотр"
@@ -467,7 +476,7 @@ msgstr "Формат"
 msgid "Colorspace"
 msgstr "Цвета"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:224
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
 msgstr "Несохраненный файл"
 
@@ -499,7 +508,7 @@ msgstr "сантиметры"
 msgid "inches"
 msgstr "дюймы"
 
-#: src/ui/selection.ui:26 src/ui/selection.ui:97 src/ui/selection.ui:361
+#: src/ui/selection.ui:26 src/ui/selection.ui:97 src/ui/selection.ui:360
 #: src/ui/shortcuts.ui:188
 msgid "Unselect"
 msgstr "Снять выделение"
@@ -524,7 +533,7 @@ msgstr "Повернуть"
 msgid "Apply a filter"
 msgstr "Открыть файл"
 
-#: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:367
+#: src/ui/selection.ui:77 src/ui/selection.ui:156 src/ui/selection.ui:366
 #, fuzzy
 msgid "Open As New Image"
 msgstr "Новое изображение"
@@ -880,8 +889,8 @@ msgstr ""
 msgid "Unknown color name"
 msgstr ""
 
-#: src/utilities.py:289 src/window.py:818 src/window.py:832 src/window.py:898
-#: src/window.py:919 src/window.py:982 src/tools/ui/tool_crop.ui:27
+#: src/utilities.py:289 src/window.py:822 src/window.py:836 src/window.py:902
+#: src/window.py:923 src/window.py:986 src/tools/ui/tool_crop.ui:27
 #: src/tools/ui/tool_crop.ui:126 src/tools/ui/tool_filters.ui:36
 #: src/tools/ui/tool_filters.ui:209 src/tools/ui/tool_rotate.ui:20
 #: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
@@ -901,70 +910,70 @@ msgid ""
 "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
 
-#: src/window.py:153
+#: src/window.py:167
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr ""
 
-#: src/window.py:529
+#: src/window.py:533
 msgid "Opened images"
 msgstr "Открытые изображения"
 
-#: src/window.py:790
+#: src/window.py:794
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#: src/window.py:796
+#: src/window.py:800
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: src/window.py:798
+#: src/window.py:802
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
-#: src/window.py:800 src/window.py:900
+#: src/window.py:804 src/window.py:904
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Несохраненные изменения в %s."
 
-#: src/window.py:802
+#: src/window.py:806
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:817
+#: src/window.py:821
 msgid "Open a picture"
 msgstr "Открыть изображение"
 
-#: src/window.py:839
+#: src/window.py:843
 #, fuzzy
 msgid "these files"
 msgstr "Несохраненный файл"
 
-#: src/window.py:840
+#: src/window.py:844
 #, fuzzy, python-format
 msgid "What do you want to do with %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:890 src/window.py:921
+#: src/window.py:894 src/window.py:925
 msgid "Untitled"
 msgstr "Без названия"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:892
+#: src/window.py:896
 msgid "this picture"
 msgstr "это изображение"
 
-#: src/window.py:897
+#: src/window.py:901
 msgid "Discard"
 msgstr "Сбросить"
 
-#: src/window.py:918
+#: src/window.py:922
 msgid "Save picture as…"
 msgstr "Сохранить изображение как..."
 
-#: src/window.py:981
+#: src/window.py:985
 msgid "Import a picture"
 msgstr "Импорт изображения"
 
@@ -1015,7 +1024,7 @@ msgstr "Классический"
 
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:185
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
-#: src/tools/canvas_tools/tool_filters.py:80
+#: src/tools/canvas_tools/tool_filters.py:85
 msgid "Blur"
 msgstr ""
 
@@ -1041,7 +1050,7 @@ msgstr "Различия"
 msgid "Apply"
 msgstr "Применить"
 
-#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:100
+#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:105
 #, fuzzy
 msgid "Select a filter…"
 msgstr "Выбрать все"
@@ -1058,7 +1067,8 @@ msgstr ""
 msgid "Blur radius (pixels)"
 msgstr ""
 
-#: src/tools/ui/tool_filters.ui:117 src/tools/canvas_tools/tool_filters.py:98
+#: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:173
+#: src/tools/canvas_tools/tool_filters.py:103
 #, fuzzy
 msgid "Transparency"
 msgstr "Добавить прозрачность"
@@ -1068,27 +1078,27 @@ msgstr "Добавить прозрачность"
 msgid "Transparency (%)"
 msgstr "Добавить прозрачность"
 
-#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:89
+#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:94
 #, fuzzy
 msgid "Saturation"
 msgstr "Насыщенность (%)"
 
-#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:92
+#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:97
 #, fuzzy
 msgid "Pixelisation"
 msgstr "Издание"
 
-#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:95
+#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:100
 #, fuzzy
 msgid "Invert colors"
 msgstr "Поменять цвета"
 
-#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:83
+#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:88
 #, fuzzy
 msgid "Horizontal blur"
 msgstr "Перевернуть по горизонтали"
 
-#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:86
+#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:91
 msgid "Vertical blur"
 msgstr ""
 
@@ -1317,7 +1327,7 @@ msgstr "Обрезать холст"
 msgid "Filters"
 msgstr ""
 
-#: src/tools/canvas_tools/tool_filters.py:65
+#: src/tools/canvas_tools/tool_filters.py:70
 msgid "Click on the image to preview the selected filter"
 msgstr ""
 
