@@ -126,12 +126,8 @@ class DrawingImage(Gtk.Box):
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
-			'red': 0.0,
-			'green': 0.0,
-			'blue': 0.0,
-			'alpha': 0.0,
-			'width': pixbuf.get_width(),
-			'height': pixbuf.get_height()
+			'red': 0.0, 'green': 0.0, 'blue': 0.0, 'alpha': 0.0,
+			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
 		self.main_pixbuf = pixbuf
 		self.init_image()
@@ -165,23 +161,8 @@ class DrawingImage(Gtk.Box):
 
 	def try_load_file(self, gfile):
 		self.gfile = gfile
-		self.main_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
-			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
-		self.initial_operation = {
-			'tool_id': None,
-			'pixbuf': pixbuf,
-			'red': 0.0,
-			'green': 0.0,
-			'blue': 0.0,
-			'alpha': 0.0,
-			'width': pixbuf.get_width(),
-			'height': pixbuf.get_height()
-		}
-		self.init_image()
-		self.restore_first_pixbuf()
-		self.update_title()
+		self.try_load_pixbuf(pixbuf)
 
 	############################################################################
 	# Image title and tab management ###########################################
