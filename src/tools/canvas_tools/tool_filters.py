@@ -53,6 +53,9 @@ class ToolFilters(AbstractCanvasTool):
 	def get_saturation(self, *args):
 		return self.bar.sat_btn.get_value()/100
 
+	def get_transparency(self, *args):
+		return self.bar.tspc_btn.get_value()/100
+
 	def get_blur_radius(self, *args):
 		return int( self.bar.blur_btn.get_value() )
 
@@ -60,6 +63,8 @@ class ToolFilters(AbstractCanvasTool):
 		super().on_tool_selected()
 		self.set_active_type()
 		self.bar.menu_btn.set_active(True)
+		if self.blur_algo == 10:
+			self.on_filter_preview()
 
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
@@ -100,6 +105,8 @@ class ToolFilters(AbstractCanvasTool):
 			self.type_label = _("Select a filter…")
 		self.bar.on_filter_changed()
 
+	############################################################################
+
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
@@ -111,9 +118,39 @@ class ToolFilters(AbstractCanvasTool):
 			'invert': self.invert,
 			'saturate': self.saturate,
 			'transparency': self.transparency,
+			'transpercent': self.get_transparency(),
 			'blur_algo': self.blur_algo
 		}
 		return operation
+
+	def op_invert_color(self, source_pixbuf):
+		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		cairo_context = cairo.Context(surface)
+		cairo_context.set_operator(cairo.Operator.DIFFERENCE)
+		cairo_context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+		cairo_context.paint()
+		new_pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, \
+		                              surface.get_width(), surface.get_height())
+		self.get_image().set_temp_pixbuf(new_pixbuf)
+
+	def op_transparency(self, source_pixbuf, percent):
+		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		width = source_pixbuf.get_width()
+		height = source_pixbuf.get_height()
+		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
+		cairo_context = cairo.Context(new_surface)
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.set_source_surface(surface)
+		cairo_context.paint_with_alpha(1.0 - percent)
+		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
+		                      new_surface.get_width(), new_surface.get_height())
+		self.get_image().set_temp_pixbuf(new_pixbuf)
+
+	def op_blur(self, source_pixbuf, blur_algo, blur_radius):
+		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		bs = utilities_fast_blur(surface, blur_radius, 1, blur_algo)
+		bp = Gdk.pixbuf_get_from_surface(bs, 0, 0, bs.get_width(), bs.get_height())
+		self.get_image().set_temp_pixbuf(bp)
 
 	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
@@ -127,22 +164,12 @@ class ToolFilters(AbstractCanvasTool):
 		blur_algo = operation['blur_algo']
 		if blur_algo != 10:
 			blur_radius = operation['radius']
-			surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-			b_surf = utilities_fast_blur(surface, blur_radius, 1, blur_algo)
-			blurred_pixbuf = Gdk.pixbuf_get_from_surface(b_surf, 0, 0, \
-			                            b_surf.get_width(), b_surf.get_height())
-			self.get_image().set_temp_pixbuf(blurred_pixbuf)
+			self.op_blur(source_pixbuf, blur_algo, blur_radius)
 		elif operation['transparency']:
-			pass # TODO
+			percent = operation['transpercent']
+			self.op_transparency(source_pixbuf, percent)
 		elif operation['invert']:
-			surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-			cairo_context = cairo.Context(surface)
-			cairo_context.set_operator(cairo.Operator.DIFFERENCE)
-			cairo_context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
-			cairo_context.paint()
-			new_pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, \
-			                          surface.get_width(), surface.get_height())
-			self.get_image().set_temp_pixbuf(new_pixbuf)
+			self.op_invert_color(source_pixbuf)
 		else:
 			self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 			temp = self.get_image().get_temp_pixbuf()

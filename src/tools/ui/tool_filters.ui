@@ -20,8 +20,8 @@
   <object class="GtkAdjustment" id="adj_transparency">
     <property name="lower">0</property>
     <property name="upper">100</property>
-    <property name="step_increment">10</property>
-    <property name="page_increment">30</property>
+    <property name="step_increment">5</property>
+    <property name="page_increment">10</property>
     <property name="value">0</property>
   </object>
 
@@ -169,11 +169,11 @@
         </item>
       </section>
       <section>
-        <!-- <item> -->
-        <!--   <attribute name="label" translatable="yes">Transparency</attribute> -->
-        <!--   <attribute name="action">win.filters_type</attribute> -->
-        <!--   <attribute name="target">transparency</attribute> -->
-        <!-- </item> -->
+        <item>
+          <attribute name="label" translatable="yes">Transparency</attribute>
+          <attribute name="action">win.filters_type</attribute>
+          <attribute name="target">transparency</attribute>
+        </item>
         <item>
           <attribute name="label" translatable="yes">Invert colors</attribute>
           <attribute name="action">win.filters_type</attribute>
