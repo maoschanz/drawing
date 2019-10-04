@@ -50,6 +50,20 @@ from .utilities import utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
+PLACEHOLDER_UI_STRING = '''<?xml version="1.0"?>
+<interface>
+  <menu id="tool-placeholder">
+    <section>
+      <item>
+        <attribute name="action">none</attribute>
+        <attribute name="label">%s</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>'''
+
+################################################################################
+
 @Gtk.Template(resource_path=UI_PATH+'window.ui')
 class DrawingWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrawingWindow'
@@ -469,20 +483,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		according to the user's preference, which by default is 'auto'."""
 		self.has_good_limits = False # used by the bottom panels
 
+		builder = Gtk.Builder.new_from_string(PLACEHOLDER_UI_STRING \
+		                                                  % _("No options"), -1)
 		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
 		# so it's built from a string.
-		builder = Gtk.Builder.new_from_string('''
-<?xml version="1.0"?>
-<interface>
-  <menu id="tool-placeholder">
-    <section>
-      <item>
-        <attribute name="action">none</attribute>
-        <attribute name="label">''' + _("No options") + '''</attribute>
-      </item>
-    </section>
-  </menu>
-</interface>''', -1)
 		self.placeholder_model = builder.get_object('tool-placeholder')
 
 		# Remember the setting, so no need to restart this at each dialog.
