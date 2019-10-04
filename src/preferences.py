@@ -74,12 +74,6 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_widget(_("Default background"), background_color_btn)
 		self.page_images.add(w)
 
-		w = self.row_from_label(_("Opened images"), True)  # TODO move this section to "advanced"
-		self.page_images.add(w)
-
-		w = self.row_from_bool(_("Always add transparency"), 'add-alpha')
-		self.page_images.add(w)
-
 		########################################################################
 		# Build the "tools" page ###############################################
 

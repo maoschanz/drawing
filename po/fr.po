@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-08 18:51+0200\n"
+"POT-Creation-Date: 2019-10-04 23:01+0200\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -78,12 +78,28 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
+"Version 0.4.5 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.4.5 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:31
+msgid ""
+"Clicking on both mouse buttons will no longer crash the tools, and the "
+"confusing UI for changing the colorspace has been deleted since it was "
+"causing bugs with the history."
+msgstr "Cliquer sur les 2 boutons de la souris en même temps ne plantera plus "
+"les outils, et l'interface confuse pour changer l'encodage des couleurs a été "
+"retirée puisqu'elle causait des bugs avec l'historique."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:38
+msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
 "La version 0.4.4 comporte plusieurs correctifs de bugs mineurs, et diverses "
 "nouvelles traductions."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:35
+#: data/com.github.maoschanz.drawing.appdata.xml.in:44
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
@@ -91,14 +107,14 @@ msgstr ""
 "La version 0.4.3 inclut de nouvelles traductions, et est compatible avec des "
 "distributions plus anciennes telles que Ubuntu 18.04 LTS."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:41
+#: data/com.github.maoschanz.drawing.appdata.xml.in:50
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "La version 0.4.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
 "nouvelles traductions."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:47
+#: data/com.github.maoschanz.drawing.appdata.xml.in:56
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -110,12 +126,12 @@ msgstr ""
 "action pour créer une image à partir d'une image contenue dans le presse-"
 "papier, et quelques nouvelles traductions."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:64
 msgid "First stable release, including a few basic tools."
 msgstr "Première version basique, incluant quelques outils basiques."
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:61
+#: data/com.github.maoschanz.drawing.appdata.xml.in:70
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
@@ -244,7 +260,7 @@ msgid "Import"
 msgstr "Importer"
 
 #: src/ui/app-menus.ui:162 src/ui/toolbar.ui:100 src/ui/toolbar.ui:101
-#: src/ui/win-menus.ui:55 src/ui/win-menus.ui:111 src/properties.py:27
+#: src/ui/win-menus.ui:55 src/ui/win-menus.ui:111 src/properties.py:26
 msgid "Image properties"
 msgstr "Propriétés de l'image"
 
@@ -302,7 +318,7 @@ msgstr "Aller à droite"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:156
-#: src/preferences.py:87
+#: src/preferences.py:81
 msgid "Show tools names"
 msgstr "Afficher le nom des outils"
 
@@ -400,7 +416,7 @@ msgstr "Images"
 msgid "Tools"
 msgstr "Outils"
 
-#: src/ui/preferences.ui:85 src/preferences.py:97
+#: src/ui/preferences.ui:85 src/preferences.py:91
 msgid "Advanced options"
 msgstr "Options avancées"
 
@@ -412,39 +428,39 @@ msgstr "Chemin"
 msgid "Format"
 msgstr "Format"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:218
+#: src/ui/properties.ui:46
+msgid "Colorspace"
+msgstr "Encodage des couleurs"
+
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:219
 msgid "Unsaved file"
 msgstr "Fichier non enregistré"
 
-#: src/ui/properties.ui:87 src/properties.py:89
+#: src/ui/properties.ui:88 src/properties.py:83
 msgid "Invalid format"
 msgstr "Format invalide"
 
-#: src/ui/properties.ui:134
-msgid "Add transparency"
-msgstr "Ajouter de la transparence"
-
-#: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
+#: src/ui/properties.ui:114 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
 #: src/tools/ui/tool_scale.ui:78
 msgid "Width"
 msgstr "Largeur"
 
-#: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:82
+#: src/ui/properties.ui:143 src/tools/ui/tool_crop.ui:82
 #: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:97
 #: src/tools/ui/tool_scale.ui:105
 msgid "Height"
 msgstr "Hauteur"
 
-#: src/ui/properties.ui:224 src/utilities.py:180
+#: src/ui/properties.ui:179 src/utilities.py:180
 msgid "pixels"
 msgstr "pixels"
 
-#: src/ui/properties.ui:230
+#: src/ui/properties.ui:185
 msgid "centimeters"
 msgstr "centimètres"
 
-#: src/ui/properties.ui:236
+#: src/ui/properties.ui:191
 msgid "inches"
 msgstr "pouces"
 
@@ -606,7 +622,7 @@ msgstr "Une application de dessin pour le bureau GNOME."
 
 #: src/main.py:266
 msgid "Official webpage"
-msgstr ""
+msgstr "Site officiel"
 
 #: src/main.py:315
 #, python-format
@@ -616,7 +632,7 @@ msgstr "Erreur à l'ouverture de ce fichier. Vouliez-vous faire %s ?"
 #: src/window.py:181
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Erreur en chargeant l'outil : %s"
 
 #: src/window.py:727
 #, python-format
@@ -718,33 +734,25 @@ msgstr "Hauteur par défaut"
 msgid "Default background"
 msgstr "Arrière-plan par défaut"
 
-#: src/preferences.py:77
-msgid "Opened images"
-msgstr "Images ouvertes"
-
-#: src/preferences.py:80
-msgid "Always add transparency"
-msgstr "Ajouter de la transparence"
-
-#: src/preferences.py:90
+#: src/preferences.py:84
 msgid "Use big icons"
 msgstr "Utiliser de grosses icônes"
 
-#: src/preferences.py:100
+#: src/preferences.py:94
 msgid "Preview size"
 msgstr "Taille de l'aperçu"
 
-#: src/preferences.py:104
+#: src/preferences.py:98
 msgid "Automatic"
 msgstr "Automatique"
 
-#: src/preferences.py:105
+#: src/preferences.py:99
 msgid "Compact"
 msgstr "Compacte"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:109
+#: src/preferences.py:103
 msgid "Legacy"
 msgstr "Traditionnelle"
 
@@ -752,44 +760,31 @@ msgstr "Traditionnelle"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional". "symbolic" means the icons
 #. are in black or white.
-#: src/preferences.py:114
+#: src/preferences.py:108
 msgid "Legacy (symbolic)"
 msgstr "Tradi (pas moche)"
 
-#: src/preferences.py:115
+#: src/preferences.py:109
 msgid "Menubar only"
 msgstr "Barre de menus"
 
-#: src/preferences.py:116
+#: src/preferences.py:110
 msgid "Toolbar only"
 msgstr "Barre de boutons"
 
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
-#: src/preferences.py:119
+#: src/preferences.py:113
 msgid "Toolbar (symbolic)"
 msgstr "Boutons (pas moche)"
 
-#: src/preferences.py:124
+#: src/preferences.py:118
 msgid "Layout"
 msgstr "Organisation"
 
-#: src/preferences.py:129
+#: src/preferences.py:123
 msgid "Development features"
 msgstr "Fonctionnalités de test"
-
-#: src/properties.py:93
-msgid "This surface format already supports transparency."
-msgstr "Ce format de surface supporte déjà la transparence."
-
-#: src/properties.py:96
-msgid ""
-"This surface format doesn't support transparency, you can add an alpha "
-"channel, optionally by replacing a color."
-msgstr ""
-"Ce format de surface ne supporte pas la transparence, vous pouvez ajouter un "
-"canal alpha, optionnellement en remplaçant une couleur par de la "
-"transparence."
 
 #: src/utilities.py:113
 msgid "Continue"

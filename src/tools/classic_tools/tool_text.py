@@ -73,7 +73,7 @@ class ToolText(ToolTemplate):
 		if self.should_cancel:
 			self.on_cancel()
 
-	def on_press_on_area(self, area, event, surface, tool_width, \
+	def on_press_on_area(self, event, surface, tool_width, \
 	                                 left_color, right_color, event_x, event_y):
 		if event.button == 1:
 			self.main_color = left_color
@@ -83,7 +83,7 @@ class ToolText(ToolTemplate):
 			self.secondary_color = left_color
 		self.tool_width = tool_width
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.x_begin = event_x
 		self.y_begin = event_y
 		self.should_cancel = True

@@ -77,6 +77,7 @@ class DrawingImage(Gtk.Box):
 	def init_image(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
+		self._is_pressed = False
 
 		# Zoom and scroll initialization
 		self.zoom_level = 1.0
@@ -120,7 +121,7 @@ class DrawingImage(Gtk.Box):
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
-		if not pixbuf.get_has_alpha() and self.window._settings.get_boolean('add-alpha'):
+		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
 		self.initial_operation = {
 			'tool_id': None,
@@ -330,6 +331,8 @@ class DrawingImage(Gtk.Box):
 		"""Signal callback. Executed when a mouse button is pressed on
 		self.drawing_area, if the button is the mouse wheel the colors are
 		exchanged, otherwise the signal is transmitted to the selected tool."""
+		if self._is_pressed:
+			return
 		event_x, event_y = self.get_event_coords(event)
 		if event.button == 2:
 			self.motion_behavior = DrawingMotionBehavior.SLIP
@@ -339,9 +342,10 @@ class DrawingImage(Gtk.Box):
 			self.drag_scroll_y = event_y
 			return
 		self.motion_behavior = DrawingMotionBehavior.DRAW
-		self.active_tool().on_press_on_area(area, event, self.surface, \
+		self.active_tool().on_press_on_area(event, self.surface, \
 		                            self.window.thickness_spinbtn.get_value(), \
 		          self.get_left_rgba(), self.get_right_rgba(), event_x, event_y)
+		self._is_pressed = True
 
 	def on_motion_on_area(self, area, event):
 		"""Signal callback. Executed when the mouse pointer moves upon
@@ -354,7 +358,8 @@ class DrawingImage(Gtk.Box):
 			# XXX ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 		elif self.motion_behavior == DrawingMotionBehavior.DRAW:
-			self.active_tool().on_motion_on_area(area, event, self.surface, event_x, event_y)
+			# implicitely impossible if not self._is_pressed
+			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
 			self.update()
 		else: # self.motion_behavior == DrawingMotionBehavior.SLIP:
 			delta_x = int(self.drag_scroll_x - event_x)
@@ -375,8 +380,9 @@ class DrawingImage(Gtk.Box):
 			return
 		self.motion_behavior = DrawingMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
-		self.active_tool().on_release_on_area(area, event, self.surface, event_x, event_y)
+		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
 		self.window.set_picture_title()
+		self._is_pressed = False
 
 	def update(self):
 		self.drawing_area.queue_draw()

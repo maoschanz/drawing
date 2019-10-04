@@ -72,7 +72,7 @@ class ToolPencil(ToolTemplate):
 			label = label + ' - ' + _("With dashes")
 		return label
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.tool_width = tool_width
@@ -82,7 +82,7 @@ class ToolPencil(ToolTemplate):
 			self.main_color = left_color
 		self._path = None
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())
 		if self.past_x == -1.0:
 			(self.past_x, self.past_y) = (self.x_press, self.y_press)
@@ -98,7 +98,7 @@ class ToolPencil(ToolTemplate):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		operation = self.build_operation()

@@ -187,7 +187,7 @@ class ToolExperiment(ToolTemplate):
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.set_active_operator()
 		self.set_active_mode()
 		self.x_press = event_x
@@ -198,7 +198,7 @@ class ToolExperiment(ToolTemplate):
 		else:
 			self.main_color = left_color
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		if self.past_x == -1.0:
@@ -215,7 +215,7 @@ class ToolExperiment(ToolTemplate):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		operation = self.build_operation()

@@ -128,7 +128,7 @@ class ToolSelect(ToolTemplate):
 	############################################################################
 	# Signal callbacks implementations #########################################
 
-	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, lc, rc, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.behavior = self.get_press_behavior()
@@ -144,7 +144,7 @@ class ToolSelect(ToolTemplate):
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self.behavior == 'rectangle':
 			self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 			operation = self.build_operation()
@@ -168,7 +168,7 @@ class ToolSelect(ToolTemplate):
 			self.cursor_name = 'cross'
 		self.window.set_cursor(True)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		if event.button == 3:
 			self.get_selection().set_r_popover_position(event.x, event.y)
 			self.get_selection().show_popover(True)

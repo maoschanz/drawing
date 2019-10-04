@@ -85,11 +85,7 @@ class ToolFreeshape(ToolTemplate):
 		self._path = cairo_context.copy_path()
 		self.non_destructive_show_modif()
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		self.draw_polygon(event_x, event_y)
-
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.tool_width = tool_width
@@ -100,7 +96,11 @@ class ToolFreeshape(ToolTemplate):
 			self.main_color = left_color
 			self.secondary_color = right_color
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		self.restore_pixbuf()
+		self.draw_polygon(event_x, event_y)
+
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		finished = self.draw_polygon(event_x, event_y)
 		if finished:

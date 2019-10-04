@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
-import cairo
+from gi.repository import Gtk, GdkPixbuf
 
 class DrawingPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingPropertiesDialog'
@@ -32,35 +31,28 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 
 	def build_ui(self):
 		"""Fill the dialog with labels displaying correct informations."""
-		builder = Gtk.Builder.new_from_resource('/com/github/maoschanz/drawing/ui/properties.ui')
+		ui_path = '/com/github/maoschanz/drawing/ui/'
+		builder = Gtk.Builder.new_from_resource(ui_path + 'properties.ui')
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 
-		# Alpha channel
-
-		self.label_alpha_info = builder.get_object('label_alpha_info')
-
-		self.toggle_alpha = builder.get_object('add_alpha_toggle')
-		self.toggle_alpha.connect('toggled', self.set_alpha_widgets_visibility)
-
-		self.add_alpha_button = builder.get_object('add_alpha_button')
-		self.add_alpha_button.connect('clicked', self.add_alpha_to_image)
-
-		# Path and format
+		# Path and format ######################################################
 
 		label_path = builder.get_object('label_path')
-		label_format_file = builder.get_object('label_format_file')
-		self.label_format_surface = builder.get_object('label_format_surface')
+		label_format_file = builder.get_object('label_file_format')
 
 		if self._image.gfile is not None:
-			label_path.set_label(self._image.get_file_path())
-			(pb_format, width, height) = GdkPixbuf.Pixbuf.get_file_info( \
-			                                        self._image.get_file_path())
+			file_path = self._image.get_file_path()
+			label_path.set_label(file_path)
+			(pb_format, w, h) = GdkPixbuf.Pixbuf.get_file_info(file_path)
 			label_format_file.set_label(pb_format.get_name())
 
-		self.set_format_label()
+		# Colorspace ###########################################################
 
-		# Size (and size unit)
+		self.label_colorspace = builder.get_object('label_surface_colorspace')
+		self.set_colorspace_label()
+
+		# Size (and size unit) #################################################
 
 		self.label_width = builder.get_object('label_width')
 		self.label_height = builder.get_object('label_height')
@@ -71,13 +63,14 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		btn_cm = builder.get_object('units_cm')
 		btn_in.join_group(btn_px)
 		btn_cm.join_group(btn_px)
+		# TODO translatable units
 		btn_px.connect('toggled', self.set_unit, ' px')
 		btn_cm.connect('toggled', self.set_unit, ' cm')
 		btn_in.connect('toggled', self.set_unit, ' in')
 
 		self.set_size_labels()
 
-	def set_format_label(self):
+	def set_colorspace_label(self):
 		enum = {
 			0: 'ARGB32',
 			1: 'RGB24',
@@ -86,16 +79,10 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 			4: 'RGB16_565',
 			5: 'RGB30',
 		}
-		cairo_format = enum.get(self._image.get_surface().get_format(), _("Invalid format"))
-		self.label_format_surface.set_label(cairo_format)
-		if cairo_format is 'ARGB32':
-			self.label_alpha_info.set_label( \
-			            _("This surface format already supports transparency."))
-		else:
-			self.label_alpha_info.set_label( \
-			          _("This surface format doesn't support transparency, " + \
-			  "you can add an alpha channel, optionally by replacing a color."))
-		return cairo_format
+		cairo_format = self._image.get_surface().get_format()
+		colorspace_text = enum.get(cairo_format, _("Invalid format"))
+		self.label_colorspace.set_label(colorspace_text)
+		return colorspace_text
 
 	def set_size_labels(self):
 		"""Set the labels for picture width and height according to the selected
@@ -114,24 +101,9 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_width.set_label(str(width) + self.unit)
 		self.label_height.set_label(str(height) + self.unit)
 
-	def set_alpha_widgets_visibility(self, *args):
-		visible = args[0].get_active()
-		self.label_alpha_info.set_visible(visible)
-		if (self.set_format_label() is not 'ARGB32') or (not visible):
-			self.add_alpha_button.set_visible(visible)
-
 	def set_unit(self, *args):
 		self.unit = args[1]
 		self.set_size_labels()
 
-	def set_color_btn_sensitivity(self, *args):
-		want_color = self.switch_alpha_color.get_active()
-		self.button_alpha_color.set_sensitive(want_color)
-
-	def add_alpha_to_image(self, *args): # XXX not retained by history ?
-		self._image.main_pixbuf = self._image.main_pixbuf.add_alpha(False, 0, 0, 0)
-		self._image.use_stable_pixbuf()
-		self._image.update()
-		self.set_format_label()
-		self.add_alpha_button.set_visible(False)
-
+	############################################################################
+################################################################################

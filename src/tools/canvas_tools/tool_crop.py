@@ -78,8 +78,10 @@ class ToolCrop(AbstractCanvasTool):
 	def init_if_main(self):
 		self.original_width = self.get_image().get_pixbuf_width()
 		self.original_height = self.get_image().get_pixbuf_height()
-		self.width_btn.set_range(1, 10*self.original_width)
-		self.height_btn.set_range(1, 10*self.original_height)
+		self.width_btn.set_range(1, 10 * self.original_width)
+		self.height_btn.set_range(1, 10 * self.original_height)
+
+	############################################################################
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
@@ -112,11 +114,11 @@ class ToolCrop(AbstractCanvasTool):
 		self.cursor_name = cursor_name
 		self.window.set_cursor(True)
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
 		delta_y = event.y - self.y_press
 
@@ -161,7 +163,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.width_btn.set_value(self.width_btn.get_value() - delta)
 		self._x = self._x + delta
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.window.set_cursor(False)
 
 	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
@@ -229,3 +231,7 @@ class ToolCrop(AbstractCanvasTool):
 		if not operation['is_selection'] and operation['is_preview']:
 			self.scale_temp_pixbuf_to_area(width, height)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
+	############################################################################
+################################################################################
+

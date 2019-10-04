@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-08 18:51+0200\n"
+"POT-Creation-Date: 2019-10-04 23:01+0200\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
 "Last-Translator: Antonio Hauren <haurenburu@protonmail.com>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
@@ -79,11 +79,24 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
+"Version 0.4.5 features several minor bug fixes, and various new translations."
+msgstr ""
+"A versão 0.4.5 apresenta diversas correções de erros e várias traduções."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:31
+msgid ""
+"Clicking on both mouse buttons will no longer crash the tools, and the "
+"confusing UI for changing the colorspace has been deleted since it was "
+"causing bugs with the history."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in:38
+msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
 "A versão 0.4.4 apresenta diversas correções de erros e várias traduções."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:35
+#: data/com.github.maoschanz.drawing.appdata.xml.in:44
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
@@ -91,13 +104,13 @@ msgstr ""
 "A versão 0.4.3 inclúi novas traduções, e é compatível com distribuições "
 "antigas como o Ubuntu 18.04 LTS."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:41
+#: data/com.github.maoschanz.drawing.appdata.xml.in:50
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "A versão 0.4.2 apresenta diversas correções de erros e várias traduções."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:47
+#: data/com.github.maoschanz.drawing.appdata.xml.in:56
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
 "for the \"legacy\" and \"toolbar only\" layouts, an action for creating an "
@@ -109,12 +122,12 @@ msgstr ""
 "\" , a possibilidade de criar imagens do conteúdo da área de transferência, "
 "um lápis melhorado e diversas novas traduções."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in:55
+#: data/com.github.maoschanz.drawing.appdata.xml.in:64
 msgid "First stable release, including a few basic tools."
 msgstr "Primeira versão estável, incluindo ferramentas básicas"
 
 #. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in:61
+#: data/com.github.maoschanz.drawing.appdata.xml.in:70
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
@@ -243,7 +256,7 @@ msgid "Import"
 msgstr "Importar"
 
 #: src/ui/app-menus.ui:162 src/ui/toolbar.ui:100 src/ui/toolbar.ui:101
-#: src/ui/win-menus.ui:55 src/ui/win-menus.ui:111 src/properties.py:27
+#: src/ui/win-menus.ui:55 src/ui/win-menus.ui:111 src/properties.py:26
 msgid "Image properties"
 msgstr "Propiedades da imagem"
 
@@ -302,7 +315,7 @@ msgstr "Ir para direita"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:23 src/ui/toolbar.ui:147
 #: src/ui/toolbar.ui:148 src/ui/win-menus.ui:72 src/ui/win-menus.ui:156
-#: src/preferences.py:87
+#: src/preferences.py:81
 msgid "Show tools names"
 msgstr "Mostrar nome das ferramentas"
 
@@ -400,7 +413,7 @@ msgstr "Imagens"
 msgid "Tools"
 msgstr "Ferramentas"
 
-#: src/ui/preferences.ui:85 src/preferences.py:97
+#: src/ui/preferences.ui:85 src/preferences.py:91
 msgid "Advanced options"
 msgstr "Opções avançadas"
 
@@ -412,39 +425,40 @@ msgstr "Caminho"
 msgid "Format"
 msgstr "Formatar"
 
-#: src/ui/properties.ui:47 src/ui/properties.ui:63 src/image.py:218
+#: src/ui/properties.ui:46
+#, fuzzy
+msgid "Colorspace"
+msgstr "Cores"
+
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:219
 msgid "Unsaved file"
 msgstr "Arquivo não salvo"
 
-#: src/ui/properties.ui:87 src/properties.py:89
+#: src/ui/properties.ui:88 src/properties.py:83
 msgid "Invalid format"
 msgstr "Formato inválido"
 
-#: src/ui/properties.ui:134
-msgid "Add transparency"
-msgstr "Adicionar transparência"
-
-#: src/ui/properties.ui:159 src/tools/ui/tool_crop.ui:55
+#: src/ui/properties.ui:114 src/tools/ui/tool_crop.ui:55
 #: src/tools/ui/tool_crop.ui:63 src/tools/ui/tool_scale.ui:70
 #: src/tools/ui/tool_scale.ui:78
 msgid "Width"
 msgstr "Largura"
 
-#: src/ui/properties.ui:188 src/tools/ui/tool_crop.ui:82
+#: src/ui/properties.ui:143 src/tools/ui/tool_crop.ui:82
 #: src/tools/ui/tool_crop.ui:90 src/tools/ui/tool_scale.ui:97
 #: src/tools/ui/tool_scale.ui:105
 msgid "Height"
 msgstr "Altura"
 
-#: src/ui/properties.ui:224 src/utilities.py:180
+#: src/ui/properties.ui:179 src/utilities.py:180
 msgid "pixels"
 msgstr "Pixeis"
 
-#: src/ui/properties.ui:230
+#: src/ui/properties.ui:185
 msgid "centimeters"
 msgstr "Centímetros"
 
-#: src/ui/properties.ui:236
+#: src/ui/properties.ui:191
 msgid "inches"
 msgstr "Polegadas"
 
@@ -618,7 +632,7 @@ msgstr "Erro ao abrir este arquivo. Você quis dizer %s ?"
 #: src/window.py:181
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Falha ao carregar a ferramenta: %s"
 
 #: src/window.py:727
 #, python-format
@@ -720,33 +734,25 @@ msgstr "Altura padrão"
 msgid "Default background"
 msgstr "Fundo padrão"
 
-#: src/preferences.py:77
-msgid "Opened images"
-msgstr "Imagens abertas"
-
-#: src/preferences.py:80
-msgid "Always add transparency"
-msgstr "Sempre adicionar transparência"
-
-#: src/preferences.py:90
+#: src/preferences.py:84
 msgid "Use big icons"
 msgstr "Usar icones grandes"
 
-#: src/preferences.py:100
+#: src/preferences.py:94
 msgid "Preview size"
 msgstr "Previsualizar tamanho"
 
-#: src/preferences.py:104
+#: src/preferences.py:98
 msgid "Automatic"
 msgstr "Automático"
 
-#: src/preferences.py:105
+#: src/preferences.py:99
 msgid "Compact"
 msgstr "Compacto"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:109
+#: src/preferences.py:103
 msgid "Legacy"
 msgstr "Tradicional"
 
@@ -754,43 +760,31 @@ msgstr "Tradicional"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional". "symbolic" means the icons
 #. are in black or white.
-#: src/preferences.py:114
+#: src/preferences.py:108
 msgid "Legacy (symbolic)"
 msgstr "Tradicional (Simples)"
 
-#: src/preferences.py:115
+#: src/preferences.py:109
 msgid "Menubar only"
 msgstr "Apenas barra de menu"
 
-#: src/preferences.py:116
+#: src/preferences.py:110
 msgid "Toolbar only"
 msgstr "Apenas barra de ferramentas"
 
 #. SHORT STRING PLEASE
 #. "symbolic" means the icons are in black or white.
-#: src/preferences.py:119
+#: src/preferences.py:113
 msgid "Toolbar (symbolic)"
 msgstr "Barra de ferramentas (simples)"
 
-#: src/preferences.py:124
+#: src/preferences.py:118
 msgid "Layout"
 msgstr "Disposição"
 
-#: src/preferences.py:129
+#: src/preferences.py:123
 msgid "Development features"
 msgstr "Características de desenvolvimento"
-
-#: src/properties.py:93
-msgid "This surface format already supports transparency."
-msgstr "Esse formato já possui transparência"
-
-#: src/properties.py:96
-msgid ""
-"This surface format doesn't support transparency, you can add an alpha "
-"channel, optionally by replacing a color."
-msgstr ""
-"Esse formato não possui transparência, voce pode adicionar uma canal alfa,"
-"opcionalmente substituindo uma cor"
 
 #: src/utilities.py:113
 msgid "Continue"

@@ -82,8 +82,9 @@ class ToolTemplate():
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method stores it as
 		'self.row', but does not pack it in the bar, and does not return it."""
-		self.row = Gtk.RadioButton(draw_indicator=False, \
-		                   tooltip_text=self.label, relief=Gtk.ReliefStyle.NONE)
+		self.row = Gtk.RadioButton(relief=Gtk.ReliefStyle.NONE, \
+		                        draw_indicator=False, valign=Gtk.Align.CENTER, \
+		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		self.label_widget = Gtk.Label(label=self.label)
 		# if self.window.decorations == 'csd-eos': # XXX faisable mais bug laid
@@ -180,16 +181,16 @@ class ToolTemplate():
 	############################################################################
 	# Signals handling #########################################################
 
-	def on_press_on_area(self, area, event, surface, tool_width, lc, rc, e_x, e_y):
+	def on_press_on_area(self, event, surface, tool_width, lc, rc, e_x, e_y):
 		pass
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		pass
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		pass
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		pass
 
 	def on_draw(self, area, cairo_context):

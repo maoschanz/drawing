@@ -70,7 +70,7 @@ class ToolCircle(ToolTemplate):
 		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
 		self._path = cairo_context.copy_path()
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.tool_width = tool_width
@@ -81,7 +81,7 @@ class ToolCircle(ToolTemplate):
 			self.main_color = left_color
 			self.secondary_color = right_color
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		if self.selected_shape_id == 'oval':
 			self.draw_oval(event_x, event_y)
@@ -90,7 +90,7 @@ class ToolCircle(ToolTemplate):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self.selected_shape_id == 'oval':
 			self.draw_oval(event_x, event_y)
 		elif self.selected_shape_id == 'circle':

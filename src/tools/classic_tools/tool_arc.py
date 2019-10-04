@@ -71,7 +71,7 @@ class ToolArc(ToolTemplate):
 		self.x_press = 0.0
 		self.y_press = 0.0
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.tool_width = tool_width
@@ -80,7 +80,7 @@ class ToolArc(ToolTemplate):
 		if event.button == 3:
 			self.main_color = right_color
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
@@ -88,13 +88,13 @@ class ToolArc(ToolTemplate):
 			cairo_context.line_to(event_x, event_y)
 		else:
 			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
-			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
-
+			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
+			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
 			self.wait_points = (self.x_press, self.y_press, event_x, event_y)
 			return

@@ -50,7 +50,7 @@ class ToolRectangle(ToolTemplate):
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
-	def on_press_on_area(self, area, event, surface, tool_width, left_color, right_color, event_x, event_y):
+	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.tool_width = tool_width
@@ -61,13 +61,13 @@ class ToolRectangle(ToolTemplate):
 			self.main_color = left_color
 			self.secondary_color = right_color
 
-	def on_motion_on_area(self, area, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		self.build_rectangle(event_x, event_y)
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.build_rectangle(event_x, event_y)
 		self.x_press = 0.0
 		self.y_press = 0.0
