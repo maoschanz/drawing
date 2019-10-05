@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-04 23:32+0200\n"
-"PO-Revision-Date: 2019-09-18 20:42+0200\n"
+"PO-Revision-Date: 2019-10-05 20:46+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
-msgstr ""
+msgstr "Es gibt jetzt einen Vollbildmodus."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
@@ -130,6 +130,9 @@ msgid ""
 "confusing UI for changing the colorspace has been deleted since it was "
 "causing bugs with the history."
 msgstr ""
+"Die Werkzeuge stürzen beim Klicken auf beide Maustasten nicht mehr ab und "
+"die verwirrende Benutzeroberfläche für das Wechseln des Farbraumes wurde "
+"entfernt, da es auch Fehler im Verlauf verursachte."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:62
 msgid ""
@@ -494,9 +497,8 @@ msgid "Format"
 msgstr "Format"
 
 #: src/ui/properties.ui:46
-#, fuzzy
 msgid "Colorspace"
-msgstr "Farben"
+msgstr "Farbraum"
 
 #: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
@@ -734,9 +736,8 @@ msgid "Action to zoom"
 msgstr "Aktion für Zoom"
 
 #: src/preferences.py:86
-#, fuzzy
 msgid "Automatic zoom level"
-msgstr "Automatisch"
+msgstr "Automatischer Zoom-Level"
 
 #: src/preferences.py:93
 msgid "Appearance"
@@ -859,11 +860,10 @@ msgstr "Orange"
 msgid "Brown"
 msgstr "Braun"
 
-# I need to see this "in work" in the app to understand the meaning of it. After that I will translate it.
+# Note for me as translator: I need to see this "in work" in the app to understand the whole meaning of it. But I think the translation is good for the moment.
 #: src/utilities.py:99 src/utilities.py:109
-#, fuzzy
 msgid "Probably brown"
-msgstr "Wahrscheinlich braun"
+msgstr "Eher braun"
 
 #: src/utilities.py:101
 msgid "Red"
@@ -893,11 +893,10 @@ msgstr "Violett"
 msgid "Cyan"
 msgstr "Cyan"
 
-# I need to see this "in work" in the app to understand the meaning of it. After that I will translate it.
+# Note for me as translator: I need to see this "in work" in the app to understand the whole meaning of it. But I think the translation is good for the moment.
 #: src/utilities.py:121
-#, fuzzy
 msgid "Probably turquoise"
-msgstr "Wahrscheinlich türkis"
+msgstr "Eher türkis"
 
 #: src/utilities.py:124
 msgid "Unknown color name"
@@ -1172,9 +1171,8 @@ msgid "More options"
 msgstr "Weitere Optionen"
 
 #: src/tools/ui/tool_scale.ui:143
-#, fuzzy
 msgid "Always keep proportions"
-msgstr "Verhältnisse beibehalten"
+msgstr "Verhältnisse immer beibehalten"
 
 #: src/tools/ui/tool_scale.ui:149
 msgid "Allow deformations"
