@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-04 23:32+0200\n"
-"PO-Revision-Date: 2019-09-08 20:10+0200\n"
+"PO-Revision-Date: 2019-10-05 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.08.1\n"
+"X-Generator: Lokalize 19.11.70\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -94,18 +94,18 @@ msgstr ""
 "verschillende gereedschappen zijn samengevoegd onder 'vorm'."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
-#, fuzzy
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
 "'Verzadiging' is vervangen door 'Filters', een krachtiger gereedschap met "
-"mogelijkheden als vervaging, kleurem omdraaien, pixelvorming en verzadiging."
+"mogelijkheden als vervaging, kleuren omdraaien, pixelvorming, doorzichtigheid "
+"en verzadiging."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
-msgstr ""
+msgstr "Er is nu een beeldvullende modus."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
@@ -128,6 +128,10 @@ msgid ""
 "confusing UI for changing the colorspace has been deleted since it was "
 "causing bugs with the history."
 msgstr ""
+"Klikken met beide muisknoppen zorgt niet langer voor een crash. Het"
+" verwarrende "
+"uiterlijk van de kleurruimteaanpasser is weggehaald, aangezien dit botste met "
+"de geschiedenis."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:62
 msgid ""
@@ -490,9 +494,8 @@ msgid "Format"
 msgstr "Formaat"
 
 #: src/ui/properties.ui:46
-#, fuzzy
 msgid "Colorspace"
-msgstr "Kleuren"
+msgstr "Kleurruimte"
 
 #: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
@@ -730,9 +733,8 @@ msgid "Action to zoom"
 msgstr "Actie om te zoomen"
 
 #: src/preferences.py:86
-#, fuzzy
 msgid "Automatic zoom level"
-msgstr "Automatisch"
+msgstr "Automatisch zoomniveau"
 
 #: src/preferences.py:93
 msgid "Appearance"
@@ -827,75 +829,73 @@ msgid "BMP images"
 msgstr "BMP-afbeeldingen"
 
 #: src/utilities.py:58
-#, fuzzy
 msgid "Transparent"
-msgstr "Doorzichtigheid toevoegen"
+msgstr "Doorzichtig"
 
 #: src/utilities.py:60
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
-msgstr "Doorzichtigheid toevoegen"
+msgstr "%s%% doorzichtig"
 
 #: src/utilities.py:84
 msgid "White"
-msgstr ""
+msgstr "Wit"
 
 #: src/utilities.py:86
 msgid "Black"
-msgstr ""
+msgstr "Zwart"
 
 #: src/utilities.py:88
 msgid "Grey"
-msgstr ""
+msgstr "Grijs"
 
 #: src/utilities.py:93
 msgid "Orange"
-msgstr ""
+msgstr "Oranje"
 
 #: src/utilities.py:95
 msgid "Brown"
-msgstr ""
+msgstr "Bruin"
 
 #: src/utilities.py:99 src/utilities.py:109
 msgid "Probably brown"
-msgstr ""
+msgstr "Waarschijnlijk bruin"
 
 #: src/utilities.py:101
-#, fuzzy
 msgid "Red"
-msgstr "Opnieuw"
+msgstr "Rood"
 
 #: src/utilities.py:103
 msgid "Green"
-msgstr ""
+msgstr "Groen"
 
 #: src/utilities.py:105
 msgid "Blue"
-msgstr ""
+msgstr "Blauw"
 
 #: src/utilities.py:111
 msgid "Yellow"
-msgstr ""
+msgstr "Geel"
 
 #: src/utilities.py:114
 msgid "Magenta"
-msgstr ""
+msgstr "Magenta"
 
 #: src/utilities.py:116
 msgid "Purple"
-msgstr ""
+msgstr "Paars"
 
 #: src/utilities.py:119
 msgid "Cyan"
-msgstr ""
+msgstr "Groenblauw"
 
 #: src/utilities.py:121
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Waarschijnlijk turkoois"
 
 #: src/utilities.py:124
 msgid "Unknown color name"
-msgstr ""
+msgstr "Onbekende kleurnaam"
 
 #: src/utilities.py:289 src/window.py:822 src/window.py:836 src/window.py:902
 #: src/window.py:923 src/window.py:986 src/tools/ui/tool_crop.ui:27
@@ -1079,14 +1079,12 @@ msgstr "Vervaagstraal"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:173
 #: src/tools/canvas_tools/tool_filters.py:103
-#, fuzzy
 msgid "Transparency"
-msgstr "Doorzichtigheid toevoegen"
+msgstr "Doorzichtigheid"
 
 #: src/tools/ui/tool_filters.ui:125
-#, fuzzy
 msgid "Transparency (%)"
-msgstr "Doorzichtigheid toevoegen"
+msgstr "Doorzichtigheid (%)"
 
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:94
 msgid "Saturation"
@@ -1166,9 +1164,8 @@ msgid "More options"
 msgstr "Meer opties"
 
 #: src/tools/ui/tool_scale.ui:143
-#, fuzzy
 msgid "Always keep proportions"
-msgstr "Afmetingen behouden"
+msgstr "Afmetingen altijd behouden"
 
 #: src/tools/ui/tool_scale.ui:149
 msgid "Allow deformations"
@@ -1328,7 +1325,7 @@ msgstr "Filters"
 
 #: src/tools/canvas_tools/tool_filters.py:70
 msgid "Click on the image to preview the selected filter"
-msgstr ""
+msgstr "Klik op de afbeelding voor een voorvertoning van het gekozen filter"
 
 #: src/tools/canvas_tools/tool_rotate.py:52
 msgid "Rotating the selection"
