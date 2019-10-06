@@ -91,7 +91,7 @@ class DrawingImage(Gtk.Box):
 		self.drag_scroll_x = 0.0
 		self.drag_scroll_y = 0.0
 		self.zoom_is_auto = self.window._settings.get_boolean('auto-zoom')
-		# TODO peut être updaté quand la valeur de la clef change
+		# TODO doit être updaté quand la valeur de la clef change
 
 		# Selection initialization
 		self.selection = DrawingSelectionManager(self)

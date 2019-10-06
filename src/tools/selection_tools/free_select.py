@@ -11,6 +11,8 @@ class ToolFreeSelect(AbstractSelectionTool):
 	def __init__(self, window, **kwargs):
 		super().__init__('free_select', _("Free selection"), 'tool-select-free-symbolic', window)
 		self.closing_precision = 10
+		self.closing_x = 0.0
+		self.closing_y = 0.0
 
 	def press_define(self, event_x, event_y):
 		self.draw_polygon(event_x, event_y)

@@ -71,7 +71,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	# Window empty widgets
-	tools_panel = Gtk.Template.Child()
+	tools_flowbox = Gtk.Template.Child()
 	toolbar_box = Gtk.Template.Child()
 	info_bar = Gtk.Template.Child()
 	info_label = Gtk.Template.Child()
@@ -174,7 +174,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				group = self.tools[tool_id].row
 			else:
 				self.tools[tool_id].row.join_group(group)
-			self.tools_panel.add(self.tools[tool_id].row)
+			self.tools_flowbox.add(self.tools[tool_id].row)
 		self.on_show_labels_setting_changed()
 
 	def build_menubar_tools_menu(self):
@@ -214,6 +214,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
+		self.notebook.child_set_property(new_image, 'reorderable', True)
 		if gfile is not None:
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
@@ -627,7 +628,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def set_fullscreen_state(self, state):
 		self.fullscreened = state
-		self.tools_panel.set_visible(not state)
+		self.tools_flowbox.set_visible(not state)
 		self.toolbar_box.set_visible(not state) # XXX not if not empty
 		self.fullscreen_btn.set_visible(state)
 		self.update_tabs_visibility()
@@ -647,15 +648,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
 		if visible:
-			self.tools_panel.set_min_children_per_line(nb_tools)
-			self.tools_nonscrollable_box.remove(self.tools_panel)
-			self.tools_scrollable_box.add(self.tools_panel)
+			self.tools_flowbox.set_min_children_per_line(nb_tools)
+			self.tools_nonscrollable_box.remove(self.tools_flowbox)
+			self.tools_scrollable_box.add(self.tools_flowbox)
 		else:
-			self.tools_scrollable_box.remove(self.tools_panel)
-			self.tools_nonscrollable_box.add(self.tools_panel)
+			self.tools_scrollable_box.remove(self.tools_flowbox)
+			self.tools_nonscrollable_box.add(self.tools_flowbox)
 			nb_min = int( (nb_tools+(nb_tools % 3))/3 ) - 1
-			self.tools_panel.set_min_children_per_line(nb_min)
-		self.tools_panel.set_max_children_per_line(nb_tools)
+			self.tools_flowbox.set_min_children_per_line(nb_min)
+		self.tools_flowbox.set_max_children_per_line(nb_tools)
 
 	def on_show_labels_setting_changed(self, *args):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action

@@ -8,6 +8,7 @@ from .bottombar import DrawingAdaptativeBottomBar
 
 class AbstractSelectionTool(ToolTemplate):
 	__gtype_name__ = 'AbstractSelectionTool'
+	# FIXME breaks any multi-tab edition workflow!!!!
 	x_press = 0
 	y_press = 0
 	future_x = 0
