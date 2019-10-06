@@ -58,7 +58,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	# Window empty widgets
-	tools_panel = GtkTemplate.Child()
+	tools_flowbox = GtkTemplate.Child()
 	toolbar_box = GtkTemplate.Child()
 	info_bar = GtkTemplate.Child()
 	info_label = GtkTemplate.Child()
@@ -619,7 +619,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				group = self.tools[tool_id].row
 			else:
 				self.tools[tool_id].row.join_group(group)
-			self.tools_panel.add(self.tools[tool_id].row)
+			self.tools_flowbox.add(self.tools[tool_id].row)
 		self.on_show_labels_setting_changed()
 
 	def set_tools_labels_visibility(self, visible):
@@ -630,15 +630,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
 		if visible:
-			self.tools_panel.set_min_children_per_line(nb_tools)
-			self.tools_nonscrollable_box.remove(self.tools_panel)
-			self.tools_scrollable_box.add(self.tools_panel)
+			self.tools_flowbox.set_min_children_per_line(nb_tools)
+			self.tools_nonscrollable_box.remove(self.tools_flowbox)
+			self.tools_scrollable_box.add(self.tools_flowbox)
 		else:
-			self.tools_scrollable_box.remove(self.tools_panel)
-			self.tools_nonscrollable_box.add(self.tools_panel)
+			self.tools_scrollable_box.remove(self.tools_flowbox)
+			self.tools_nonscrollable_box.add(self.tools_flowbox)
 			nb_min = int( (nb_tools+(nb_tools % 3))/3 ) - 1
-			self.tools_panel.set_min_children_per_line(nb_min)
-		self.tools_panel.set_max_children_per_line(nb_tools)
+			self.tools_flowbox.set_min_children_per_line(nb_min)
+		self.tools_flowbox.set_max_children_per_line(nb_tools)
 
 	def on_show_labels_setting_changed(self, *args):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
