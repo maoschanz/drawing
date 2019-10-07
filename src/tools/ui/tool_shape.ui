@@ -38,19 +38,34 @@
     <section>
       <!-- <attribute name="label" translatable="yes">Filling</attribute> -->
       <item>
-        <attribute name="label" translatable="yes">Empty</attribute>
+        <attribute name="label" translatable="yes">Empty outline</attribute>
         <attribute name="action">win.shape_filling</attribute>
         <attribute name="target">empty</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Filled (main color)</attribute>
+        <attribute name="label" translatable="yes">Main color</attribute>
         <attribute name="action">win.shape_filling</attribute>
         <attribute name="target">filled</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Filled (secondary color)</attribute>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
         <attribute name="action">win.shape_filling</attribute>
         <attribute name="target">secondary</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Horizontal gradient</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">h-gradient</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Vertical gradient</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">v-gradient</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Radial gradient</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">r-gradient</attribute>
       </item>
     </section>
   </menu>

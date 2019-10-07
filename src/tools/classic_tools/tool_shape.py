@@ -34,11 +34,17 @@ class ToolShape(AbstractClassicTool):
 		state_as_string = self.get_option_value('shape_filling')
 		self.selected_style_id = state_as_string
 		if state_as_string == 'empty':
-			self.selected_style_label = _("Empty")
+			self.selected_style_label = _("Empty outline")
 		elif state_as_string == 'filled':
-			self.selected_style_label = _("Filled (main color)")
+			self.selected_style_label = _("Main color")
+		elif state_as_string == 'h-gradient':
+			self.selected_style_label = _("Horizontal gradient")
+		elif state_as_string == 'v-gradient':
+			self.selected_style_label = _("Vertical gradient")
+		elif state_as_string == 'r-gradient':
+			self.selected_style_label = _("Radial gradient")
 		else:
-			self.selected_style_label = _("Filled (secondary color)")
+			self.selected_style_label = _("Secondary color")
 
 	def set_active_shape(self, *args):
 		self.selected_shape_id = self.get_option_value('shape_type')
@@ -67,6 +73,7 @@ class ToolShape(AbstractClassicTool):
 		label = self.selected_shape_label + ' - ' + self.selected_style_label
 		if self.selected_shape_id == 'polygon' or self.selected_shape_id == 'freeshape':
 			instruction = _("Click on the shape's first point to close it.")
+			# TODO action 'shape_close'
 			label = label + ' - ' + instruction
 		return label
 
@@ -193,6 +200,32 @@ class ToolShape(AbstractClassicTool):
 		}
 		return operation
 
+	def get_pattern_h(self, xmin, xmax):
+		pattern = cairo.LinearGradient(xmin, 0.0, xmax, 0.0)
+		return pattern
+
+	def get_pattern_v(self, ymin, ymax):
+		pattern = cairo.LinearGradient(0.0, ymin, 0.0, ymax)
+		return pattern
+
+	def get_pattern_r(self, center_x, center_y, rad):
+		pattern = cairo.RadialGradient(center_x, center_y, 0.1 * rad, \
+		                               center_x, center_y, 0.9 * rad)
+		# the 2 centers could be 2 distinct points
+		return pattern
+
+	def fill_pattern(self, cairo_context, pattern, c1, c2):
+		pattern.add_color_stop_rgba(0.1, c1.red, c1.green, c1.blue, c1.alpha)
+		pattern.add_color_stop_rgba(0.9, c2.red, c2.green, c2.blue, c2.alpha)
+		cairo_context.set_source(pattern)
+		cairo_context.fill()
+
+	def fill_secondary(self, cairo_context, c1, c2):
+		cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+		cairo_context.fill_preserve()
+		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+		cairo_context.stroke()
+
 	def do_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
 			return
@@ -211,12 +244,29 @@ class ToolShape(AbstractClassicTool):
 			cairo_context.close_path()
 		filling = operation['filling']
 		if filling == 'secondary':
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
-			cairo_context.fill_preserve()
-		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-		if filling == 'filled':
+			self.fill_secondary(cairo_context, c1, c2)
+		elif filling == 'h-gradient':
+			x1, y1, x2, y2 = cairo_context.path_extents()
+			pattern = self.get_pattern_h(x1, x2)
+			self.fill_pattern(cairo_context, pattern, c1, c2)
+		elif filling == 'v-gradient':
+			x1, y1, x2, y2 = cairo_context.path_extents()
+			pattern = self.get_pattern_v(y1, y2)
+			self.fill_pattern(cairo_context, pattern, c1, c2)
+		elif filling == 'r-gradient':
+			x1, y1, x2, y2 = cairo_context.path_extents()
+			ddx = abs(x1 - x2) / 2
+			ddy = abs(y1 - y2) / 2
+			center_x = min(x1, x2) + ddx
+			center_y = min(y1, y2) + ddy
+			rad = max(ddx, ddy)
+			pattern = self.get_pattern_r(center_x, center_y, rad)
+			self.fill_pattern(cairo_context, pattern, c1, c2)
+		elif filling == 'filled':
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 			cairo_context.fill()
-		else:
+		else: # filling == 'empty':
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 			cairo_context.stroke()
 
 	############################################################################
