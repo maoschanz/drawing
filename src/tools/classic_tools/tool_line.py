@@ -109,17 +109,17 @@ class ToolLine(AbstractClassicTool):
 		cairo_context.set_line_cap(operation['line_cap'])
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
-		rgba = operation['rgba']
-		rgba2 = operation['rgba2']
+		c1 = operation['rgba']
+		c2 = operation['rgba2']
 		if operation['use_gradient']:
 			pattern = cairo.LinearGradient( \
 			                     operation['x_press'], operation['y_press'], \
 			                     operation['x_release'], operation['y_release'])
-			pattern.add_color_stop_rgba(0.1, rgba.red, rgba.green, rgba.blue, rgba.alpha)
-			pattern.add_color_stop_rgba(0.9, rgba2.red, rgba2.green, rgba2.blue, rgba2.alpha)
+			pattern.add_color_stop_rgba(0.1, c1.red, c1.green, c1.blue, c1.alpha)
+			pattern.add_color_stop_rgba(0.9, c2.red, c2.green, c2.blue, c2.alpha)
 			cairo_context.set_source(pattern)
 		else:
-			cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 		if operation['use_dashes']:
 			cairo_context.set_dash([2*line_width, 2*line_width])
 		cairo_context.append_path(operation['path'])

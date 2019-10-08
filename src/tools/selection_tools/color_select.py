@@ -13,14 +13,19 @@ class ToolColorSelect(AbstractSelectionTool):
 		super().__init__('color_select', _("Color selection"), 'tool-magic-symbolic', window)
 
 	def press_define(self, event_x, event_y):
-		pass # implemented by actual tools
+		pass
 
 	def motion_define(self, event_x, event_y):
-		pass # implemented by actual tools
+		pass
 
 	def release_define(self, surface, event_x, event_y):
-		AbstractSelectionTool.future_path = utilities_get_magic_path(surface, event_x, event_y, self.window, 1)
+		AbstractSelectionTool.future_path = utilities_get_magic_path(surface, \
+		                                       event_x, event_y, self.window, 1)
 		self.operation_type = 'op-define'
 		self.set_future_coords_for_free_path()
 		operation = self.build_operation()
 		self.apply_operation(operation)
+
+	############################################################################
+################################################################################
+

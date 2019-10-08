@@ -88,6 +88,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.header_bar = None
 		self.fullscreened = False
+		self.pointer_to_current_page = None # XXX this ridiculous hack allow to
+		                   # manage several tabs in a single window despite the
+		                                      # notebook widget being pure shit
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -150,7 +153,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			tool_id = 'pencil'
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		if tool_id == 'pencil':
+		if tool_id == 'pencil': # The "pencil" button is already active
 			self.enable_tool(tool_id)
 		else:
 			self.active_tool().row.set_active(True)
@@ -225,8 +228,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
-		self.change_active_tool_for(self.active_tool_id)
-		# On devrait être moins bourrin et conserver la sélection #FIXME
+		self.switch_to(self.active_tool_id, args[1])
+		print("changement d'image")
+		# On devrait être moins bourrin et conserver la sélection # FIXME
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
 
@@ -672,26 +676,29 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_change_active_tool(self, *args):
 		"""Action callback, doing nothing in some situations, thus avoiding
-		infinite loops. It calls `change_active_tool_for` with the correct value
+		infinite loops. It sets the correct `tool_id` using adequate methods
 		otherwise."""
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
+		if self.tools[state_as_string].row.get_active():
+			self.switch_to(state_as_string, None)
 		else:
-			self.change_active_tool_for(state_as_string)
+			self.tools[state_as_string].row.set_active(True)
 
-	def change_active_tool_for(self, tool_id):
-		"""Change the active_tool action state according to `tool_id`."""
+	def switch_to(self, tool_id, image_pointer):
+		"""Switch from the current tool to `tool_id` and to the current image to
+		`image_pointer`, which can be `None` if the image is not changing."""
+		self.pointer_to_current_page = None
 		action = self.lookup_action('active_tool')
-		if self.tools[tool_id].row.get_active():
-			action.set_state(GLib.Variant.new_string(tool_id))
-			self.enable_tool(tool_id)
-		else:
-			self.tools[tool_id].row.set_active(True)
+		action.set_state(GLib.Variant.new_string(tool_id))
+		self.disable_former_tool(tool_id)
+		self.pointer_to_current_page = image_pointer
+		self.enable_tool(tool_id)
+		self.pointer_to_current_page = None
 
 	def enable_tool(self, new_tool_id):
 		"""Activate the tool whose id is `new_tool_id`."""
-		self.disable_former_tool(new_tool_id)
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.active_tool().on_tool_selected()
@@ -701,7 +708,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 
 	def disable_former_tool(self, future_tool_id):
-		"""Unactivate the formerly active tool."""
+		"""Unactivate the active tool."""
 		self.former_tool_id = self.active_tool_id
 		should_preserve_selection = self.tools[future_tool_id].accept_selection
 		self.former_tool().give_back_control(should_preserve_selection)
@@ -780,7 +787,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		DrawingPropertiesDialog(self, self.get_active_image())
 
 	def get_active_image(self):
-		return self.notebook.get_nth_page(self.notebook.get_current_page())
+		if self.pointer_to_current_page is None:
+			return self.notebook.get_nth_page(self.notebook.get_current_page())
+		else:
+			return self.pointer_to_current_page
 
 	def get_file_path(self):
 		return self.get_active_image().get_file_path()

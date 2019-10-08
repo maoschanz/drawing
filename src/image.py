@@ -95,7 +95,7 @@ class DrawingImage(Gtk.Box):
 
 		# Selection initialization
 		self.selection = DrawingSelectionManager(self)
-		
+
 		# History initialization
 		self.previous_pixbuf = None
 		self.undo_history = []

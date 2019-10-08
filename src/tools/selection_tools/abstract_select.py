@@ -8,20 +8,28 @@ from .bottombar import DrawingAdaptativeBottomBar
 
 class AbstractSelectionTool(ToolTemplate):
 	__gtype_name__ = 'AbstractSelectionTool'
-	# FIXME breaks any multi-tab edition workflow!!!!
-	x_press = 0
-	y_press = 0
-	future_x = 0
-	future_y = 0
+	# x_press = 0
+	# y_press = 0
+	# future_x = 0
+	# future_y = 0
 	future_path = None
-	future_pixbuf = None
-	operation_type = None # 'op-define'
+	# future_pixbuf = None
+	# operation_type = None # 'op-define'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
 		self.menu_id = 2
 		self.use_color = False
 		self.accept_selection = True
+
+		# XXX ???????????? what should i do here
+		self.x_press = 0
+		self.y_press = 0
+		self.future_x = 0
+		self.future_y = 0
+		# self.future_path = None
+		self.future_pixbuf = None
+		self.operation_type = None # 'op-define'
 
 	############################################################################
 	# UI implementations #######################################################
@@ -68,10 +76,12 @@ class AbstractSelectionTool(ToolTemplate):
 		if not preserve_selection:
 			self.unselect_and_apply()
 
-	# def on_tool_selected(self, *args):
+	def on_tool_selected(self, *args):
+		print("selected", self.get_image())
 		# XXX rien, vraiment ?
 
-	# def on_tool_unselected(self, *args):
+	def on_tool_unselected(self, *args):
+		print("unselected", self.get_image())
 		# XXX rien, vraiment ?
 
 	# def cancel_ongoing_operation(self):
@@ -194,7 +204,7 @@ class AbstractSelectionTool(ToolTemplate):
 	def set_future_coords_for_free_path(self):
 		main_width = self.get_main_pixbuf().get_width()
 		main_height = self.get_main_pixbuf().get_height()
-		xmin, ymin = main_width, main_height
+		xmin, ymin = main_width, main_height # TODO cairo_context.path_extents()
 		for pts in AbstractSelectionTool.future_path:
 			if pts[1] is not ():
 				xmin = min(pts[1][0], xmin)
@@ -243,26 +253,28 @@ class AbstractSelectionTool(ToolTemplate):
 	def op_delete(self, operation):
 		if operation['initial_path'] is None:
 			return
-		self.get_selection().temp_path = operation['initial_path']
+		print("op delete (ligne 257)")
+		# self.get_selection()._set_temp_path(operation['initial_path']) # XXX 😬
+		# FIXME FIXME FIXME c'est bien là que ça merdoie mais faut un vrai
+		# remplacement sinon ça merdoie tout autant
 		self.get_selection().delete_temp()
 
-	def op_drag(self, operation):
-		# print('drag to : ', operation['pixb_x'], operation['pixb_y'])
-		self.get_selection().set_coords(False, \
-		                               operation['pixb_x'], operation['pixb_y'])
+	def op_drag(self, op):
+		# print('drag to : ', op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
 		self.non_destructive_show_modif()
 
-	def op_define(self, operation):
-		if operation['initial_path'] is None:
+	def op_define(self, op):
+		if op['initial_path'] is None:
 			return
-		self.get_selection().set_coords(True, \
-		                               operation['pixb_x'], operation['pixb_y'])
-		self.get_selection().load_from_path(operation['initial_path'])
+		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
+		self.get_selection().load_from_path(op['initial_path'])
 
 	def op_apply(self):
 		cairo_context = cairo.Context(self.get_surface())
 		self.get_selection().show_selection_on_surface(cairo_context, False)
 		self.get_selection().reset()
+		# self.future_path = None
 		AbstractSelectionTool.future_path = None
 
 	############################################################################
@@ -276,7 +288,7 @@ class AbstractSelectionTool(ToolTemplate):
 		operation = {
 			'tool_id': self.id,
 			'operation_type': self.operation_type,
-			'initial_path': AbstractSelectionTool.future_path, # XXX .copy() ??
+			'initial_path': AbstractSelectionTool.future_path,
 			'pixbuf': pixbuf,
 			'pixb_x': int(self.future_x),
 			'pixb_y': int(self.future_y)

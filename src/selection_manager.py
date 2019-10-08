@@ -48,9 +48,10 @@ class DrawingSelectionManager():
 		"""Create a selection_pixbuf from a minimal part of the main surface by
 		erasing everything outside of the provided path."""
 		if new_path is None:
-			return
+			return # TODO throw something goddammit
 		else:
 			self.selection_path = new_path
+			print(self, "affectation d'un path de sélection", self.image)
 
 		# Erase everything outside of the path
 		surface = Gdk.cairo_surface_create_from_pixbuf(self.image.get_main_pixbuf(), 0, None)
@@ -62,20 +63,13 @@ class DrawingSelectionManager():
 			self._set_temp_path(cairo_context.copy_path())
 		# else:
 		# 	print('selection manager ligne 63')
-		cairo_context.fill()
+		cairo_context.fill_preserve()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
 		# Find the coords to reduce the size of what will be stored
 		main_width = self.image.get_main_pixbuf().get_width()
 		main_height = self.image.get_main_pixbuf().get_height()
-		xmin, ymin = main_width, main_height
-		xmax, ymax = 0.0, 0.0
-		for pts in self.selection_path: # XXX cairo has a method for this
-			if pts[1] is not ():
-				xmin = min(pts[1][0], xmin)
-				xmax = max(pts[1][0], xmax)
-				ymin = min(pts[1][1], ymin)
-				ymax = max(pts[1][1], ymax)
+		xmin, ymin, xmax, ymax = cairo_context.path_extents()
 		xmax = min(xmax, main_width)
 		ymax = min(ymax, main_height)
 		xmin = int( max(xmin, 0.0) ) # If everything is right, this is selection_x
@@ -133,7 +127,7 @@ class DrawingSelectionManager():
 			return
 		if not self.is_active:
 			return
-		cairo_context = cairo.Context(self.image.get_surface())
+		cairo_context = self._get_context()
 		cairo_context.new_path()
 		cairo_context.append_path(self.temp_path)
 		cairo_context.clip()
@@ -143,9 +137,8 @@ class DrawingSelectionManager():
 
 	def get_path_with_scroll(self):
 		if self.selection_path is None:
-			return None
-		# XXX and the zoom? TODO
-		cairo_context = cairo.Context(self._get_surface())
+			return None # TODO throw something goddammit
+		cairo_context = self._get_context()
 		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x
 		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y
 		for pts in self.selection_path:
@@ -170,7 +163,7 @@ class DrawingSelectionManager():
 
 	def show_selection_on_surface(self, cairo_context, with_scroll):
 		if self.selection_pixbuf is None:
-			return
+			return # TODO throw something goddammit
 		if with_scroll:
 			x = self.selection_x - self.image.scroll_x
 			y = self.selection_y - self.image.scroll_y
@@ -190,10 +183,10 @@ class DrawingSelectionManager():
 		In the first case, the "delete_path_content" boolean parameter should be
 		true, so the temp_path will be cleared."""
 		if self.selection_pixbuf is None:
-			return
+			return # TODO throw something goddammit
 		self.has_been_used = True
 		self.is_active = True
-		cairo_context = cairo.Context(self._get_surface())
+		cairo_context = self._get_context()
 		cairo_context.move_to(self.selection_x, self.selection_y)
 		cairo_context.rel_line_to(self.selection_pixbuf.get_width(), 0)
 		cairo_context.rel_line_to(0, self.selection_pixbuf.get_height())
@@ -209,6 +202,7 @@ class DrawingSelectionManager():
 		self.image.update_actions_state()
 
 	def _set_temp_path(self, new_path):
+		print(self, "affectation d'un path temporaire :\n", new_path)
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
 		self.temp_path = new_path
@@ -219,10 +213,10 @@ class DrawingSelectionManager():
 		tested_y)" is in the path defining the selection. If such path doesn't
 		exist, it returns None."""
 		if not self.is_active:
-			return True
+			return True # TODO throw something goddammit
 		if self.selection_path is None:
-			return None
-		cairo_context = cairo.Context(self._get_surface())
+			return None # TODO throw something goddammit
+		cairo_context = self._get_context()
 		for pts in self.selection_path:
 			if pts[1] is not ():
 				x = pts[1][0] + self.selection_x - self.temp_x
@@ -230,8 +224,8 @@ class DrawingSelectionManager():
 				cairo_context.line_to(int(x), int(y))
 		return cairo_context.in_fill(tested_x, tested_y)
 
-	def _get_surface(self):
-		return self.image.surface
+	def _get_context(self):
+		return cairo.Context(self.image.surface)
 
 	############################################################################
 	# Popover menus management methods #########################################
@@ -252,14 +246,14 @@ class DrawingSelectionManager():
 			self._set_popover_position()
 			self.l_popover.popup()
 		elif state:
-			self.set_coords(True, self.r_popover.get_pointing_to()[1].x, \
-			                              self.r_popover.get_pointing_to()[1].y)
+			gdk_rect = self.r_popover.get_pointing_to()[1]
+			self.set_coords(True, gdk_rect.x, gdk_rect.y)
 			self.r_popover.popup()
 
 	def _set_popover_position(self):
 		rectangle = Gdk.Rectangle()
-		main_x = self.image.scroll_x
-		main_y = self.image.scroll_y
+		main_x = self.image.scroll_x # FIXME incorrect with the zoom
+		main_y = self.image.scroll_y # FIXME incorrect with the zoom
 		x = self.selection_x + self.selection_pixbuf.get_width()/2 - main_x
 		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
 		rectangle.x = max(0, min(x, self.image.get_widget_width()))
@@ -280,6 +274,7 @@ class DrawingSelectionManager():
 		print("temp_y", self.temp_y)
 		print("image.scroll_x", self.image.scroll_x)
 		print("image.scroll_y", self.image.scroll_y)
+		print("image.zoom_level", self.image.zoom_level)
 
 		print("selection_path with scroll & temp deltas")
 		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x
@@ -290,7 +285,7 @@ class DrawingSelectionManager():
 				y = pts[1][1] + delta_y
 				print('\t', x, y)
 
-		print("has_been_used", self.has_been_used)
+		print("has_been_used", self.has_been_used) # TODO not implemented
 		print("---------------------------------------------------------------")
 
 	############################################################################
