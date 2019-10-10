@@ -1,6 +1,6 @@
 project(
 	'drawing',
-	version: '0.4.6',
+	version: '0.4.7',
 	meson_version: '>= 0.45.0',
 )
 
