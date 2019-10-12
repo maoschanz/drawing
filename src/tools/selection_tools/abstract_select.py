@@ -72,6 +72,7 @@ class AbstractSelectionTool(ToolTemplate):
 	# Lifecycle implementations ################################################
 
 	def give_back_control(self, preserve_selection):
+		self.get_selection().hide_popovers()
 		# TODO tout le bazar sur has_been_used
 		if not preserve_selection:
 			self.unselect_and_apply()
@@ -137,9 +138,9 @@ class AbstractSelectionTool(ToolTemplate):
 		self.window.set_cursor(True)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
+		self.get_selection().set_popovers_position(event.x, event.y)
 		if event.button == 3:
-			self.get_selection().set_r_popover_position(event.x, event.y)
-			self.get_selection().show_popover(True)
+			self.get_selection().show_popover()
 			return
 		self.restore_pixbuf()
 		if self.behavior == 'define':
@@ -178,7 +179,7 @@ class AbstractSelectionTool(ToolTemplate):
 		self.operation_type = 'op-define'
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
-		self.get_selection().show_popover(True)
+		self.get_selection().show_popover()
 
 	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
 		cairo_context = cairo.Context(self.get_surface())

@@ -34,22 +34,18 @@ More screenshots (version 0.4.x):
 
 ## Installation
 
-### Stable version
+### Last stable version
 
 >**Recommended**
 
 You can install it from flathub.org using the instructions on [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
 
-### Native packages
+### Other packages available
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04 and 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
-- [Fedora (official repo)](https://apps.fedoraproject.org/packages/drawing) (29, 30 and Rawhide): `sudo dnf install drawing`
-- Arch and Manjaro ([Arch "Community" repos](https://www.archlinux.org/packages/community/any/drawing/))
-
-<!-- TODO Solus -->
-<!-- etc. -->
+- Ubuntu 18.04, 19.04 and 19.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- ["Snap" package](https://snapcraft.io/drawing)
 
 ### Unstable/nightly version
 

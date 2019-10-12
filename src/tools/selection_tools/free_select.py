@@ -27,7 +27,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 			self.set_future_coords_for_free_path()
 			operation = self.build_operation()
 			self.apply_operation(operation)
-			# self.get_selection().show_popover(True)
+			# self.get_selection().show_popover()
 			# self.set_selection_has_been_used(False) # TODO
 		else:
 			return # without updating the surface so the path is visible

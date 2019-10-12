@@ -713,7 +713,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		should_preserve_selection = self.tools[future_tool_id].accept_selection
 		self.former_tool().give_back_control(should_preserve_selection)
 		self.former_tool().on_tool_unselected()
-		self.get_active_image().selection.show_popover(False)
+		self.get_active_image().selection.hide_popovers()
 
 	def update_bottom_panel(self):
 		"""Show the correct bottom panel, with the correct tool options menu."""

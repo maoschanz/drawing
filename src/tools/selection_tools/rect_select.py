@@ -26,7 +26,7 @@ class ToolRectSelect(AbstractSelectionTool):
 		self.operation_type = 'op-define'
 		operation = self.build_operation()
 		self.apply_operation(operation)
-		# self.get_selection().show_popover(True)
+		# self.get_selection().show_popover()
 
 	############################################################################
 ################################################################################

@@ -33,11 +33,12 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('drawing', localedir)
 
 if __name__ == '__main__':
-    import gi
+	import gi
 
-    from gi.repository import Gio
-    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'drawing.gresource'))
-    resource._register()
+	from gi.repository import Gio
+	resource = Gio.Resource.load(os.path.join(pkgdatadir, 'drawing.gresource'))
+	resource._register()
 
-    from drawing import main
-    sys.exit(main.main(VERSION))
+	from drawing import main
+	sys.exit(main.main(VERSION))
+

@@ -27,14 +27,16 @@ class DrawingSelectionManager():
 
 		builder = Gtk.Builder.new_from_resource( \
 		                        '/com/github/maoschanz/drawing/ui/selection.ui')
-		menu_r = builder.get_object('right-click-menu')
-		self.r_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_r)
-		menu_l = builder.get_object('left-click-menu')
-		self.l_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_l)
+		menu_r = builder.get_object('inactive-selection-menu')
+		self.menu_if_inactive = Gtk.Popover.new_from_model(self.image, menu_r)
+		menu_l = builder.get_object('active-selection-menu')
+		self.menu_if_active = Gtk.Popover.new_from_model(self.image, menu_l)
+		self.set_popovers_position(1.0, 1.0)
 
 	def init_pixbuf(self):
 		# print('⇒ init pixbuf')
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, \
+		                                                          True, 8, 1, 1)
 
 		self.set_coords(True, 0, 0)
 		self.selection_path = None
@@ -52,9 +54,10 @@ class DrawingSelectionManager():
 		else:
 			self.selection_path = new_path
 			print(self, "affectation d'un path de sélection", self.image)
+		main_pixbuf = self.image.get_main_pixbuf()
 
 		# Erase everything outside of the path
-		surface = Gdk.cairo_surface_create_from_pixbuf(self.image.get_main_pixbuf(), 0, None)
+		surface = Gdk.cairo_surface_create_from_pixbuf(main_pixbuf, 0, None)
 		cairo_context = cairo.Context(surface)
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.new_path()
@@ -67,8 +70,8 @@ class DrawingSelectionManager():
 		cairo_context.set_operator(cairo.Operator.OVER)
 
 		# Find the coords to reduce the size of what will be stored
-		main_width = self.image.get_main_pixbuf().get_width()
-		main_height = self.image.get_main_pixbuf().get_height()
+		main_width = main_pixbuf.get_width()
+		main_height = main_pixbuf.get_height()
 		xmin, ymin, xmax, ymax = cairo_context.path_extents()
 		xmax = min(xmax, main_width)
 		ymax = min(ymax, main_height)
@@ -198,7 +201,7 @@ class DrawingSelectionManager():
 		else:
 			self.temp_x = self.selection_x
 			self.temp_y = self.selection_y
-		self.show_popover(False)
+		self.hide_popovers()
 		self.image.update_actions_state()
 
 	def _set_temp_path(self, new_path):
@@ -230,37 +233,28 @@ class DrawingSelectionManager():
 	############################################################################
 	# Popover menus management methods #########################################
 
-	def set_r_popover_position(self, x, y):
+	def set_popovers_position(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = int(x)
 		rectangle.y = int(y)
 		rectangle.height = 1
 		rectangle.width = 1
-		self.r_popover.set_relative_to(self.image)
-		self.r_popover.set_pointing_to(rectangle)
+		self.menu_if_inactive.set_pointing_to(rectangle)
+		self.menu_if_active.set_pointing_to(rectangle)
 
-	def show_popover(self, state):
-		self.l_popover.popdown()
-		self.r_popover.popdown()
-		if self.is_active and state:
-			self._set_popover_position()
-			self.l_popover.popup()
-		elif state:
-			gdk_rect = self.r_popover.get_pointing_to()[1]
+	def hide_popovers(self):
+		self.menu_if_active.popdown()
+		self.menu_if_inactive.popdown()
+
+	def show_popover(self):
+		if self.is_active:
+			self.menu_if_active.popup()
+		else:
+			gdk_rect = self.menu_if_inactive.get_pointing_to()[1]
+			# It's important to pre-set these coords as the selection coords,
+			# because right-click → import/paste shouldn't use (0, 0) as coords.
 			self.set_coords(True, gdk_rect.x, gdk_rect.y)
-			self.r_popover.popup()
-
-	def _set_popover_position(self):
-		rectangle = Gdk.Rectangle()
-		main_x = self.image.scroll_x # FIXME incorrect with the zoom
-		main_y = self.image.scroll_y # FIXME incorrect with the zoom
-		x = self.selection_x + self.selection_pixbuf.get_width()/2 - main_x
-		y = self.selection_y + self.selection_pixbuf.get_height()/2 - main_y
-		rectangle.x = max(0, min(x, self.image.get_widget_width()))
-		rectangle.y = max(0, min(y, self.image.get_widget_height()))
-		rectangle.height = 1
-		rectangle.width = 1
-		self.l_popover.set_pointing_to(rectangle)
+			self.menu_if_inactive.popup()
 
 	############################################################################
 	# Debug ####################################################################
