@@ -2,11 +2,14 @@
 
 ## A simple drawing application for Linux.
 
-This application is a basic image editor, similar to Microsoft Paint, but aiming at the GNOME desktop.
+This application is a basic image editor, similar to Microsoft Paint, but aiming
+at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
 
-Besides GNOME, some more traditional design layouts are available too, as well as an [elementaryOS layout](./docs/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./docs/screenshots/librem_options.png).
+Besides GNOME, some more traditional design layouts are available too, as well
+as an [elementaryOS layout](./docs/screenshots/elementary.png). It should also
+be compatible with [Purism's Librem 5 phone](./docs/screenshots/librem_options.png).
 
 ## Screenshots
 
@@ -70,7 +73,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Available tools
 
-(last update: version 0.5-unstable)
+(last update: **version 0.5-unstable**)
 
 #### Classic tools
 
@@ -84,7 +87,8 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 #### Selection tools
 
-These tools allow you to define an area (rectangle or free), which you can move, cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
+These tools allow you to define an area (rectangle or free), which you can move,
+cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
 
 - Rectangle selection
 - Free shape selection
@@ -97,7 +101,7 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 - Crop (remark: the previewed picture isn't at the actual scale)
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
-- Filters (blur, increase or decrease saturation, invert colors, pixelate)
+- Filters (blur, increase or decrease saturation, transparency, invert colors, pixelate, …)
 
 ----
 
