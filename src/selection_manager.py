@@ -40,20 +40,18 @@ class DrawingSelectionManager():
 
 		self.set_coords(True, 0, 0)
 		self.selection_path = None
-		self.temp_path = None
 
 		self.is_active = False
 		self.has_been_used = False
-		self.is_imported_data = False # this default value means nothing
 
 	def load_from_path(self, new_path):
 		"""Create a selection_pixbuf from a minimal part of the main surface by
 		erasing everything outside of the provided path."""
 		if new_path is None:
 			return # TODO throw something goddammit
-		else:
-			self.selection_path = new_path
-			print(self, "affectation d'un path de sélection", self.image)
+
+		self.selection_path = new_path
+		self.is_active = True
 		main_pixbuf = self.image.get_main_pixbuf()
 
 		# Erase everything outside of the path
@@ -62,10 +60,6 @@ class DrawingSelectionManager():
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.new_path()
 		cairo_context.append_path(self.selection_path)
-		if self.temp_path is None: # XXX condition utile?? on dirait bien
-			self._set_temp_path(cairo_context.copy_path())
-		# else:
-		# 	print('selection manager ligne 63')
 		cairo_context.fill_preserve()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
@@ -102,13 +96,10 @@ class DrawingSelectionManager():
 			self.temp_x = x
 			self.temp_y = y
 
-	def set_pixbuf(self, pixbuf, use_import_param, is_imported_data):
-		if use_import_param:
-			self.is_imported_data = is_imported_data
-		self.temp_path = None
+	def set_pixbuf(self, pixbuf):
 		# print('⇒ set pixbuf')
 		self.selection_pixbuf = pixbuf
-		self._create_path_from_pixbuf(not self.is_imported_data)
+		self._create_path_from_pixbuf()
 
 	def get_pixbuf(self):
 		return self.selection_pixbuf
@@ -118,25 +109,11 @@ class DrawingSelectionManager():
 		self.selection_pixbuf = None
 		self.selection_path = None
 		self.set_coords(True, 0, 0)
-		self.temp_path = None
 		self.is_active = False
 		# self.image.use_stable_pixbuf() # XXX empêchait la suppression de la
 		       # sélection, mais peut-être que ça avait du sens que ce soit là ?
 		self.image.update_actions_state()
 		self.image.update()
-
-	def delete_temp(self):
-		if self.temp_path is None:
-			return
-		if not self.is_active:
-			return
-		cairo_context = self._get_context()
-		cairo_context.new_path()
-		cairo_context.append_path(self.temp_path)
-		cairo_context.clip()
-		cairo_context.set_operator(cairo.Operator.CLEAR)
-		cairo_context.paint()
-		cairo_context.set_operator(cairo.Operator.OVER)
 
 	def get_path_with_scroll(self):
 		if self.selection_path is None:
@@ -178,16 +155,16 @@ class DrawingSelectionManager():
 
 	############################################################################
 
-	def _create_path_from_pixbuf(self, delete_path_content):
+	def _create_path_from_pixbuf(self):
 		"""This method creates a rectangle selection from the currently set
 		selection pixbuf.
 		It can be the result of an editing operation (crop, scale, etc.), or it
-		can be an imported picture (from a file or from the clipboard).
-		In the first case, the "delete_path_content" boolean parameter should be
-		true, so the temp_path will be cleared."""
+		can be an imported picture (from a file or from the clipboard)."""
 		if self.selection_pixbuf is None:
 			return # TODO throw something goddammit
 		self.has_been_used = True
+		self.temp_x = self.selection_x
+		self.temp_y = self.selection_y
 		self.is_active = True
 		cairo_context = self._get_context()
 		cairo_context.move_to(self.selection_x, self.selection_y)
@@ -196,20 +173,8 @@ class DrawingSelectionManager():
 		cairo_context.rel_line_to(-1 * self.selection_pixbuf.get_width(), 0)
 		cairo_context.close_path()
 		self.selection_path = cairo_context.copy_path()
-		if delete_path_content:
-			self._set_temp_path(cairo_context.copy_path())
-		else:
-			self.temp_x = self.selection_x
-			self.temp_y = self.selection_y
 		self.hide_popovers()
 		self.image.update_actions_state()
-
-	def _set_temp_path(self, new_path):
-		print(self, "affectation d'un path temporaire :\n", new_path)
-		self.temp_x = self.selection_x
-		self.temp_y = self.selection_y
-		self.temp_path = new_path
-		self.is_active = True
 
 	def point_is_in_selection(self, tested_x, tested_y):
 		"""Returns a boolean if the point whose coordinates are "(tested_x,

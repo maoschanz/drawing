@@ -249,16 +249,18 @@ class AbstractSelectionTool(ToolTemplate):
 	def op_import(self, operation):
 		if operation['pixbuf'] is None:
 			return
-		self.get_selection().set_pixbuf(operation['pixbuf'].copy(), True, True)
+		self.get_selection().set_pixbuf(operation['pixbuf'].copy())
 
-	def op_delete(self, operation):
+	def op_clean(self, operation):
 		if operation['initial_path'] is None:
 			return
-		print("op delete (ligne 257)")
-		# self.get_selection()._set_temp_path(operation['initial_path']) # XXX 😬
-		# FIXME FIXME FIXME c'est bien là que ça merdoie mais faut un vrai
-		# remplacement sinon ça merdoie tout autant
-		self.get_selection().delete_temp()
+		cairo_context = cairo.Context(self.get_surface())
+		cairo_context.new_path()
+		cairo_context.append_path(operation['initial_path'])
+		cairo_context.clip()
+		cairo_context.set_operator(cairo.Operator.CLEAR)
+		cairo_context.paint()
+		cairo_context.set_operator(cairo.Operator.OVER)
 
 	def op_drag(self, op):
 		# print('drag to : ', op['pixb_x'], op['pixb_y'])
@@ -305,9 +307,7 @@ class AbstractSelectionTool(ToolTemplate):
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > couper" ou "clic-droit > supprimer".
 			# On réinitialise le selection_manager.
-			self.op_delete(operation)
-			self.get_selection().reset() # the selection is reset here because
-			                          # op_delete is also used for the 'op-drag'
+			self.get_selection().reset()
 		elif operation['operation_type'] == 'op-import':
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > importer" ou "clic-droit > coller".
@@ -318,11 +318,11 @@ class AbstractSelectionTool(ToolTemplate):
 			# (rectangulaire ou non) par définition d'un path.
 			# On charge un pixbuf dans le selection_manager.
 			self.op_define(operation)
+			self.op_clean(operation)
 		elif operation['operation_type'] == 'op-drag':
 			# Prévisualisation d'opération, correspondant à la définition d'une
 			# sélection (rectangulaire ou non) par construction d'un path.
 			# On modifie les coordonnées connues du selection_manager.
-			self.op_delete(operation)
 			self.op_drag(operation)
 		elif operation['operation_type'] == 'op-apply':
 			# Opération instantanée correspondant à l'aperçu de l'op-drag, donc
@@ -331,7 +331,6 @@ class AbstractSelectionTool(ToolTemplate):
 			# On modifie les coordonnées connues du selection_manager.
 			if self.get_selection_pixbuf() is None:
 				return
-			self.op_delete(operation)
 			self.op_drag(operation)
 			self.op_apply()
 

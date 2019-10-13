@@ -290,9 +290,9 @@ class DrawingImage(Gtk.Box):
 		self.set_surface_as_stable_pixbuf()
 		# print('add_operation_to_history')
 		# print(operation['tool_id'])
-		# if operation['tool_id'] == 'select':
-		#	print(operation['operation_type'])
-		# print('-----------------------------------')
+		# if 'select' in operation['tool_id']:
+		# 	print(operation['operation_type'])
+		# 	print('-----------------------------------')
 		self._is_saved = False
 		self.undo_history.append(operation)
 

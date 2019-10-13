@@ -68,9 +68,8 @@ class AbstractCanvasTool(ToolTemplate):
 
 	def apply_temp(self, operation_is_selection):
 		if operation_is_selection:
-			self.get_selection().delete_temp()
 			pixbuf = self.get_image().get_temp_pixbuf().copy() # XXX copy ??
-			self.get_selection().set_pixbuf(pixbuf, False, False)
+			self.get_selection().set_pixbuf(pixbuf)
 			# XXX n'a pas l'air particulièrement efficace sur les scales successifs
 		else:
 			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
@@ -82,7 +81,6 @@ class AbstractCanvasTool(ToolTemplate):
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
-			self.get_selection().delete_temp()
 			Gdk.cairo_set_source_pixbuf(cairo_context, \
 			                            self.get_image().get_temp_pixbuf(), \
 			                            self.get_selection().selection_x, \
