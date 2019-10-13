@@ -42,7 +42,7 @@ class AbstractSelectionTool(ToolTemplate):
 		return label
 
 	def get_options_model(self):
-		fpath = '/com/github/maoschanz/drawing/ui/selection.ui'
+		fpath = '/com/github/maoschanz/drawing/ui/selection-menus.ui'
 		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 
@@ -343,7 +343,7 @@ class SelectionToolPanel(DrawingAdaptativeBottomBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('ui/selection.ui')
+		builder = self.build_ui('ui/selection-panel.ui')
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')
 		self.cb_box_narrow = builder.get_object('cb_box_narrow')
@@ -373,8 +373,6 @@ class SelectionToolPanel(DrawingAdaptativeBottomBar):
 		super().set_compact(state)
 		self.import_box_narrow.set_visible(state)
 		self.import_box_long.set_visible(not state)
-		# self.cb_box_narrow.set_visible(state)
-		# self.cb_box_long.set_visible(not state)
 		self.minimap_arrow.set_visible(not state)
 
 	############################################################################

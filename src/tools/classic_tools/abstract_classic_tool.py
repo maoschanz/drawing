@@ -126,7 +126,7 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('ui/panel_classic.ui')
+		builder = self.build_ui('ui/classic-panel.ui')
 
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')

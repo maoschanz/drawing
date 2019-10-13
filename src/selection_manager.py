@@ -26,7 +26,7 @@ class DrawingSelectionManager():
 		self.init_pixbuf()
 
 		builder = Gtk.Builder.new_from_resource( \
-		                        '/com/github/maoschanz/drawing/ui/selection.ui')
+		                  '/com/github/maoschanz/drawing/ui/selection-menus.ui')
 		menu_r = builder.get_object('inactive-selection-menu')
 		self.menu_if_inactive = Gtk.Popover.new_from_model(self.image, menu_r)
 		menu_l = builder.get_object('active-selection-menu')

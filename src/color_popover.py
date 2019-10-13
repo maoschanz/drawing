@@ -27,7 +27,7 @@ class DrawingColorPopover(Gtk.Popover):
 		super().__init__(**kwargs)
 
 		builder = Gtk.Builder.new_from_resource( \
-		                    '/com/github/maoschanz/drawing/ui/color_popover.ui')
+		                    '/com/github/maoschanz/drawing/ui/color-popover.ui')
 		main_box = builder.get_object('main-box')
 		self.add(main_box)
 		self.btn = btn

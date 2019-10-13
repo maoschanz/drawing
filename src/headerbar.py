@@ -25,10 +25,9 @@ class DrawingAdaptativeHeaderBar():
 	def __init__(self, is_eos):
 		self.is_narrow = True # This is reducing the complexity of resizing,
 		# but its main goal is to avoid a GTK minor bug where the initial
-		# bunch of configure-event signals was sent to soon, so the popover
-		# was displayed a parallel universe when running the app on Wayland.
+		# bunch of configure-event signals was sent to soon.
 		if is_eos:
-			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar_eos.ui')
+			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar-eos.ui')
 		else:
 			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar.ui')
 
