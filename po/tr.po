@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-04 23:32+0200\n"
-"PO-Revision-Date: 2019-09-13 19:43+0300\n"
+"PO-Revision-Date: 2019-10-13 08:25+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -94,18 +94,18 @@ msgstr ""
 "tutarlı 'şekil' aracında birleştirilmiştir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
-#, fuzzy
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
-"'Doygunluk' aracı, çeşitli bulanıklaştırma, renk değişimi, pikselleştirme ve "
-"doygunluk gibi daha güçlü bir araç olan 'süzgeçler' ile değiştirildi."
+"'Doygunluk' aracı, çeşitli bulanıklaştırma türleri, renk inversiyonu, "
+"pikselleştirme, doygunluk ve şeffaflık ile daha güçlü bir araç olan "
+"'süzgeçler' ile değiştirildi."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
-msgstr ""
+msgstr "Tam ekran kipi şimdi kullanılabilir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
@@ -129,6 +129,8 @@ msgid ""
 "confusing UI for changing the colorspace has been deleted since it was "
 "causing bugs with the history."
 msgstr ""
+"Her iki fare düğmesine de tıklayınca artık araçları engellemeyecek, kafa "
+"karıştıran arayüz geçmişe yönelik hatalara neden olduğu için silindi."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:62
 msgid ""
@@ -491,9 +493,8 @@ msgid "Format"
 msgstr "Biçim"
 
 #: src/ui/properties.ui:46
-#, fuzzy
 msgid "Colorspace"
-msgstr "Renkler"
+msgstr "Renk boşluğu"
 
 #: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
@@ -731,9 +732,8 @@ msgid "Action to zoom"
 msgstr "Yakınlaştırmak için eylem"
 
 #: src/preferences.py:86
-#, fuzzy
 msgid "Automatic zoom level"
-msgstr "Otomatik"
+msgstr "Otomatik yakınlaştırma seviyesi"
 
 #: src/preferences.py:93
 msgid "Appearance"
@@ -1078,14 +1078,12 @@ msgstr "Bulanıklık yarıçapı (piksel)"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:173
 #: src/tools/canvas_tools/tool_filters.py:103
-#, fuzzy
 msgid "Transparency"
-msgstr "Şeffaf"
+msgstr "Şeffaflık"
 
 #: src/tools/ui/tool_filters.ui:125
-#, fuzzy
 msgid "Transparency (%)"
-msgstr "Şeffaf"
+msgstr "Şeffaflık (%)"
 
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:94
 msgid "Saturation"
@@ -1165,9 +1163,8 @@ msgid "More options"
 msgstr "Daha fazla seçenek"
 
 #: src/tools/ui/tool_scale.ui:143
-#, fuzzy
 msgid "Always keep proportions"
-msgstr "Oranları koru"
+msgstr "Oranları her zaman koru"
 
 #: src/tools/ui/tool_scale.ui:149
 msgid "Allow deformations"
