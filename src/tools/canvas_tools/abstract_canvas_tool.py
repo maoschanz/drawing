@@ -98,7 +98,7 @@ class AbstractCanvasTool(ToolTemplate):
 	############################################################################
 
 	def on_draw(self, area, cairo_context):
-		pass # TODO FIXME pour l'instant pas d'overlay quand on modifie la sélection
+		pass
 
 	def get_deformed_surface(self, source_surface, p_xx, p_yx, p_xy, p_yy, p_x0, p_y0):
 		source_w = source_surface.get_width()

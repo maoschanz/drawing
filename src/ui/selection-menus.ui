@@ -7,6 +7,11 @@
         <attribute name="label" translatable="yes">Select all</attribute>
         <attribute name="action">win.select_all</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Close selection</attribute>
+        <attribute name="action">win.selection_close</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
     </section>
     <section>
       <item>
@@ -96,6 +101,10 @@
       <item>
         <attribute name="label" translatable="yes">Unselect</attribute>
         <attribute name="action">win.unselect</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Close selection</attribute>
+        <attribute name="action">win.selection_close</attribute>
       </item>
     </section>
     <section>

@@ -13,9 +13,21 @@ class ToolFreeSelect(AbstractSelectionTool):
 		self.closing_precision = 10
 		self.closing_x = 0.0
 		self.closing_y = 0.0
+		self.add_tool_action_simple('selection_close', self.force_close_polygon)
+		self.set_action_sensitivity('selection_close', False)
+
+	def on_tool_selected(self, *args):
+		super().on_tool_selected()
+
+	def on_tool_unselected(self, *args):
+		super().on_tool_unselected()
+		self.set_action_sensitivity('selection_close', False)
+
+	############################################################################
 
 	def press_define(self, event_x, event_y):
 		self.draw_polygon(event_x, event_y)
+		self.set_action_sensitivity('selection_close', True)
 
 	def motion_define(self, event_x, event_y):
 		self.draw_polygon(event_x, event_y)
@@ -28,11 +40,15 @@ class ToolFreeSelect(AbstractSelectionTool):
 			operation = self.build_operation()
 			self.apply_operation(operation)
 			# self.get_selection().show_popover()
-			# self.set_selection_has_been_used(False) # TODO
+			# self.set_selection_has_been_used(False) # TODO ?
+			self.set_action_sensitivity('selection_close', False)
 		else:
 			return # without updating the surface so the path is visible
 
 	############################################################################
+
+	def force_close_polygon(self, *args):
+		self.release_define(None, self.closing_x, self.closing_y)
 
 	def draw_polygon(self, event_x, event_y):
 		"""This method is specific to the 'free selection' mode."""

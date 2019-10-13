@@ -15,54 +15,56 @@ class ToolShape(AbstractClassicTool):
 		self._path = None
 
 		self.reset_temp_points()
-		self.selected_style_id = 'empty'
-		self.selected_style_label = _("Empty")
-		self.selected_join_id = cairo.LineJoin.ROUND
-		self.selected_shape_id = 'polygon'
-		self.selected_shape_label = _("Polygon")
+		self._style_id = 'empty'
+		self._style_label = _("Empty")
+		self._join_id = cairo.LineJoin.ROUND
+		self._shape_id = 'polygon'
+		self._shape_label = _("Polygon")
 
-		self.add_tool_action_enum('shape_type', self.selected_shape_id)
-		self.add_tool_action_enum('shape_filling', self.selected_style_id)
+		self.add_tool_action_enum('shape_type', self._shape_id)
+		self.add_tool_action_enum('shape_filling', self._style_id)
+		self.add_tool_action_simple('shape_close', self.force_close_polygon)
+		self.set_action_sensitivity('shape_close', False)
 
 	def reset_temp_points(self):
 		self.x_press = -1.0
 		self.y_press = -1.0
-		self.past_x = -1.0
-		self.past_y = -1.0
+		self.initial_x = -1.0
+		self.initial_y = -1.0
 
 	def set_filling_style(self):
 		state_as_string = self.get_option_value('shape_filling')
-		self.selected_style_id = state_as_string
+		self._style_id = state_as_string
 		if state_as_string == 'empty':
-			self.selected_style_label = _("Empty outline")
+			self._style_label = _("Empty outline")
 		elif state_as_string == 'filled':
-			self.selected_style_label = _("Main color")
+			self._style_label = _("Main color")
 		elif state_as_string == 'h-gradient':
-			self.selected_style_label = _("Horizontal gradient")
+			self._style_label = _("Horizontal gradient")
 		elif state_as_string == 'v-gradient':
-			self.selected_style_label = _("Vertical gradient")
+			self._style_label = _("Vertical gradient")
 		elif state_as_string == 'r-gradient':
-			self.selected_style_label = _("Radial gradient")
+			self._style_label = _("Radial gradient")
 		else:
-			self.selected_style_label = _("Secondary color")
+			self._style_label = _("Secondary color")
 
 	def set_active_shape(self, *args):
-		self.selected_shape_id = self.get_option_value('shape_type')
-		if self.selected_shape_id == 'rectangle':
-			self.selected_shape_label = _("Rectangle")
-			self.selected_join_id = cairo.LineJoin.MITER
-		elif self.selected_shape_id == 'oval':
-			self.selected_shape_label = _("Oval")
-			self.selected_join_id = cairo.LineJoin.ROUND
-		elif self.selected_shape_id == 'circle':
-			self.selected_shape_label = _("Circle")
-			self.selected_join_id = cairo.LineJoin.ROUND
-		elif self.selected_shape_id == 'polygon':
-			self.selected_shape_label = _("Polygon")
-			self.selected_join_id = cairo.LineJoin.MITER # BEVEL ?
+		self._shape_id = self.get_option_value('shape_type')
+		if self._shape_id == 'rectangle':
+			self._shape_label = _("Rectangle")
+			self._join_id = cairo.LineJoin.MITER
+		elif self._shape_id == 'oval':
+			self._shape_label = _("Oval")
+			self._join_id = cairo.LineJoin.ROUND
+		elif self._shape_id == 'circle':
+			self._shape_label = _("Circle")
+			self._join_id = cairo.LineJoin.ROUND
+		elif self._shape_id == 'polygon':
+			self._shape_label = _("Polygon")
+			self._join_id = cairo.LineJoin.MITER # BEVEL ?
 		else:
-			self.selected_shape_label = _("Free shape")
-			self.selected_join_id = cairo.LineJoin.ROUND
+			self._shape_label = _("Free shape")
+			self._join_id = cairo.LineJoin.ROUND
 
 	def get_options_label(self):
 		return _("Shape options")
@@ -70,11 +72,12 @@ class ToolShape(AbstractClassicTool):
 	def get_edition_status(self):
 		self.set_filling_style()
 		self.set_active_shape()
-		label = self.selected_shape_label + ' - ' + self.selected_style_label
-		if self.selected_shape_id == 'polygon' or self.selected_shape_id == 'freeshape':
+		label = self._shape_label + ' - ' + self._style_label
+		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
 			instruction = _("Click on the shape's first point to close it.")
-			# TODO action 'shape_close'
 			label = label + ' - ' + instruction
+		else:
+			self.set_action_sensitivity('shape_close', False)
 		return label
 
 	def give_back_control(self, preserve_selection):
@@ -89,23 +92,24 @@ class ToolShape(AbstractClassicTool):
 		self.set_common_values(event)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
-		if self.selected_shape_id == 'freeshape':
+		if self._shape_id == 'freeshape':
 			operation = self.add_point(event_x, event_y, True)
-		elif self.selected_shape_id == 'polygon':
+		elif self._shape_id == 'polygon':
 			operation = self.add_point(event_x, event_y, False)
 		else:
-			if self.selected_shape_id == 'rectangle':
+			if self._shape_id == 'rectangle':
 				self.build_rectangle(event_x, event_y)
-			elif self.selected_shape_id == 'oval':
+			elif self._shape_id == 'oval':
 				self.draw_oval(event_x, event_y)
-			elif self.selected_shape_id == 'circle':
+			elif self._shape_id == 'circle':
 				self.draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		if self.selected_shape_id == 'freeshape' or self.selected_shape_id == 'polygon':
+		if self._shape_id == 'freeshape' or self._shape_id == 'polygon':
 			operation = self.add_point(event_x, event_y, True)
+			self.set_action_sensitivity('shape_close', not operation['closed'])
 			if operation['closed']:
 				self.apply_operation(operation)
 				self.reset_temp_points()
@@ -113,11 +117,11 @@ class ToolShape(AbstractClassicTool):
 				self.do_tool_operation(operation)
 				self.non_destructive_show_modif()
 		else:
-			if self.selected_shape_id == 'rectangle':
+			if self._shape_id == 'rectangle':
 				self.build_rectangle(event_x, event_y)
-			elif self.selected_shape_id == 'oval':
+			elif self._shape_id == 'oval':
 				self.draw_oval(event_x, event_y)
-			elif self.selected_shape_id == 'circle':
+			elif self._shape_id == 'circle':
 				self.draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
 			self.apply_operation(operation)
@@ -125,12 +129,15 @@ class ToolShape(AbstractClassicTool):
 
 	############################################################################
 
+	def force_close_polygon(self, *args):
+		self.on_release_on_area(None, None, self.initial_x, self.initial_y)
+
 	def add_point(self, event_x, event_y, memorize):
 		"""Add a point to a shape (used by both freeshape and polygon)."""
 		cairo_context = cairo.Context(self.get_surface())
-		if self.past_x == -1.0:
+		if self.initial_x == -1.0:
 			# print('init polygon')
-			(self.past_x, self.past_y) = (self.x_press, self.y_press)
+			(self.initial_x, self.initial_y) = (self.x_press, self.y_press)
 			cairo_context.move_to(self.x_press, self.y_press)
 			self._path = cairo_context.copy_path()
 		else:
@@ -148,10 +155,10 @@ class ToolShape(AbstractClassicTool):
 		return operation
 
 	def should_close_shape(self, event_x, event_y):
-		if self.past_x == -1.0 or self.past_y == -1.0:
+		if self.initial_x == -1.0 or self.initial_y == -1.0:
 			return False
-		delta_x = max(event_x, self.past_x) - min(event_x, self.past_x)
-		delta_y = max(event_y, self.past_y) - min(event_y, self.past_y)
+		delta_x = max(event_x, self.initial_x) - min(event_x, self.initial_x)
+		delta_y = max(event_y, self.initial_y) - min(event_y, self.initial_y)
 		return (delta_x < self.tool_width and delta_y < self.tool_width)
 
 	############################################################################
@@ -191,10 +198,10 @@ class ToolShape(AbstractClassicTool):
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
 			'operator': cairo.Operator.OVER,
-			'line_join': self.selected_join_id,
+			'line_join': self._join_id,
 			'line_width': self.tool_width,
-			'filling': self.selected_style_id,
-			'smooth': (self.selected_shape_id == 'freeshape'),
+			'filling': self._style_id,
+			'smooth': (self._shape_id == 'freeshape'),
 			'closed': True,
 			'path': cairo_path
 		}

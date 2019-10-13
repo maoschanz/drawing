@@ -119,8 +119,8 @@ class DrawingSelectionManager():
 		if self.selection_path is None:
 			return None # TODO throw something goddammit
 		cairo_context = self._get_context()
-		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x
-		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y
+		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
+		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
 		for pts in self.selection_path:
 			if pts[1] is not ():
 				x = pts[1][0] + delta_x
@@ -187,8 +187,8 @@ class DrawingSelectionManager():
 		cairo_context = self._get_context()
 		for pts in self.selection_path:
 			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - self.temp_x
-				y = pts[1][1] + self.selection_y - self.temp_y
+				x = pts[1][0] + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
+				y = pts[1][1] + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
 				cairo_context.line_to(int(x), int(y))
 		return cairo_context.in_fill(tested_x, tested_y)
 

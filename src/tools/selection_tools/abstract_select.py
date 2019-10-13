@@ -6,6 +6,8 @@ import cairo
 from .abstract_tool import ToolTemplate
 from .bottombar import DrawingAdaptativeBottomBar
 
+from .utilities import utilities_show_overlay_on_context
+
 class AbstractSelectionTool(ToolTemplate):
 	__gtype_name__ = 'AbstractSelectionTool'
 	# x_press = 0
@@ -92,15 +94,37 @@ class AbstractSelectionTool(ToolTemplate):
 	############################################################################
 	############################################################################
 
-	def get_press_behavior(self):
-		if self.selection_is_active():
-			if self.get_selection().point_is_in_selection(self.x_press, self.y_press):
-				return 'drag'
-			#else: # superflu
-			#	return 'cancel'
-		else:
+	def get_press_behavior(self, event):
+		if event.button == 3:
+			return 'menu'
+		elif not self.selection_is_active():
 			return 'define'
-		return 'cancel'
+		elif self.get_selection().point_is_in_selection(self.x_press, self.y_press):
+			return 'drag'
+		else:
+			return 'cancel'
+
+	def press_define(self, event_x, event_y):
+		pass # implemented by actual tools
+
+	def motion_define(self, event_x, event_y):
+		pass # implemented by actual tools
+
+	def release_define(self, surface, event_x, event_y):
+		pass # implemented by actual tools
+
+	def drag_to(self, event_x, event_y):
+		x = self.get_selection().selection_x
+		y = self.get_selection().selection_y
+		self.future_x = x + event_x - self.x_press
+		self.future_y = y + event_y - self.y_press
+		self.operation_type = 'op-drag'
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+		self.operation_type = 'op-define'
+
+	def preview_drag_to(self, event_x, event_y):
+		pass # TODO ??
 
 	############################################################################
 	# Signal callbacks implementations #########################################
@@ -108,7 +132,7 @@ class AbstractSelectionTool(ToolTemplate):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.behavior = self.get_press_behavior()
+		self.behavior = self.get_press_behavior(event)
 		# print('press', self.behavior, AbstractSelectionTool.future_path)
 		if self.behavior == 'drag':
 			self.cursor_name = 'grabbing'
@@ -148,27 +172,14 @@ class AbstractSelectionTool(ToolTemplate):
 		elif self.behavior == 'drag':
 			self.drag_to(event_x, event_y)
 
-	def press_define(self, event_x, event_y):
-		pass # implemented by actual tools
-
-	def motion_define(self, event_x, event_y):
-		pass # implemented by actual tools
-
-	def release_define(self, surface, event_x, event_y):
-		pass # implemented by actual tools
-
-	def drag_to(self, event_x, event_y):
-		x = self.get_selection().selection_x
-		y = self.get_selection().selection_y
-		self.future_x = x + event_x - self.x_press
-		self.future_y = y + event_y - self.y_press
-		self.operation_type = 'op-drag'
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-		self.operation_type = 'op-define'
-
-	def preview_drag_to(self, event_x, event_y):
-		pass # TODO
+	def on_draw(self, area, cairo_context):
+		if not self.selection_is_active():
+			return
+		self.get_selection().show_selection_on_surface(cairo_context, True)
+		dragged_path = self.get_selection().get_path_with_scroll() # TODO i
+		# should give it something corresponding temporary selection_x/y when
+		# the selection is moving. Method not really use elsewhere.
+		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################
 	# Path management ##########################################################

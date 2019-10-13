@@ -198,11 +198,13 @@ class ToolTemplate():
 	def on_draw(self, area, cairo_context):
 		if not self.accept_selection:
 			return
-		# Basic implementation, tools should do it better to fit their needs
-		if self.selection_is_active():
-			self.get_selection().show_selection_on_surface(cairo_context, True)
-			dragged_path = self.get_selection().get_path_with_scroll()
-			utilities_show_overlay_on_context(cairo_context, dragged_path, True)
+		# Basic implementation, in fact never executed becaus tools needing it
+		# will do it better to fit their needs
+		if not self.selection_is_active():
+			return
+		self.get_selection().show_selection_on_surface(cairo_context, True)
+		dragged_path = self.get_selection().get_path_with_scroll() # XXX
+		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################
 ################################################################################
