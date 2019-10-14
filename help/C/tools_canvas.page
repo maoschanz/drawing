@@ -21,43 +21,53 @@
   <p>If a selection is defined, these tools will have an effect on the selected
   area, otherwise they will have an effect on the picture as a whole.</p>
 
-  <list>
-    <item>
-      <p>Crop: change the size of the image, by removing parts of it. The side
-      you're cripping is indicated by the mouse cursor, and changes depending on
-      the position of the mouse pointer on the canvas.</p>
-      <p>The exact size can be set using the values in the bottom bar.</p>
-      <p>Be careful, the previewed image might not be displayed at its actual
-      size with a 100% scale.</p>
-    </item>
-    <item>
-      <p>Scale: resize the image, using the values in the bottom bar, or with
-      the left click.</p>
-    </item>
-    <item>
-      <p>Rotate: change the orientation of the image, or flip it, using the
-      buttons in the bottom bar.</p>
-      <p>If a selection is defined, you can freely choose the precise angle of
-      the rotation.</p>
-    </item>
-    <item>
-      <p>Filters: you can apply a filter to the image or the selection. Click on
-      the picture to preview the selected filter.</p>
-      <p>The available filters include <gui style="menuitem">Saturation</gui>,
-      which allows you to increase of decrease the saturation of the image using
-      the widget in the bottom bar.</p>
-      <media type="image" mime="image/png" width="450"
-      src="figures/screenshot_saturate.png" its:translate="no"/>
-      <p>A saturation bigger than 100% will boost the colors, a saturation
-      smaller than 100% will produce a greyish image.</p>
-      <p>Notice also <gui style="menuitem">Blur</gui>
-      and several variations of it, where the blur radius can be modified too.
-      Be careful, applying blur to the image can take a few seconds.</p>
-    </item>
-  </list>
-
   <p>After finding the value you need, you have to apply the result with the
   <gui style="button">Apply</gui> button at the right. Otherwise you can cancel
   the edition with the <gui style="button">Cancel</gui> button at the left.</p>
+
+  <section>
+    <title>Crop</title>
+
+    <p>Change the size of the image, by removing parts of it. The side you're
+    cropping is indicated by the mouse cursor, and changes depending on the
+    position of the mouse pointer on the canvas.</p>
+    <p>The exact size can be set using the values in the bottom bar.</p>
+    <p>Be careful, the previewed image might not be displayed at its actual size
+    with a 100% scale.</p>
+  </section>
+
+  <section>
+    <title>Scale</title>
+
+    <p>Resize the image, using the mouse or the values in the bottom bar.</p>
+    <p>Proportions can be locked or not.</p>
+  </section>
+
+  <section>
+    <title>Rotate</title>
+
+    <p>Change the orientation of the image, or flip it, using the buttons in the
+    bottom bar.</p>
+    <p>If a selection is defined, you can freely choose the precise angle of the
+    rotation.</p>
+  </section>
+
+  <section>
+    <title>Filters</title>
+
+    <p>You can apply a filter to the image or the selection. Click on the
+    picture to preview the selected filter.</p>
+    <p>The available filters include <gui style="menuitem">Saturation</gui>,
+    which allows you to increase of decrease the saturation of the image using
+    the widget in the bottom bar.</p>
+    <media type="image" mime="image/png" width="80%"
+           src="figures/screenshot_saturate.png" its:translate="no"/>
+    <!-- TODO better image -->
+    <p>A saturation bigger than 100% will boost the colors, a saturation smaller
+    than 100% will produce a greyish image.</p>
+    <p>Notice also <gui style="menuitem">Blur</gui> and several variations of
+    it, where the blur radius can be modified too. Be careful, applying blur to
+    the image can take a few seconds.</p>
+  </section>
 
 </page>
