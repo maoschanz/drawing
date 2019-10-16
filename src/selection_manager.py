@@ -115,17 +115,14 @@ class DrawingSelectionManager():
 		self.image.update_actions_state()
 		self.image.update()
 
-	def get_path_with_scroll(self):
+	def get_path_with_scroll(self, tool_dx, tool_dy):
+		# le concept de cette méthode pue la merde
 		if self.selection_path is None:
 			return None # TODO throw something goddammit
-		cairo_context = self._get_context()
-		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
-		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
-		for pts in self.selection_path:
-			if pts[1] is not ():
-				x = pts[1][0] + delta_x
-				y = pts[1][1] + delta_y
-				cairo_context.line_to(int(x), int(y))
+		# FIXME pas bon avec le zoom ?
+		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
+		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
+		cairo_context = self._get_context_with_path(delta_x, delta_y)
 		cairo_context.close_path()
 		return cairo_context.copy_path()
 
@@ -141,15 +138,15 @@ class DrawingSelectionManager():
 			y2 += self.selection_y
 		return x1, x2, y1, y2
 
-	def show_selection_on_surface(self, cairo_context, with_scroll):
+	def show_selection_on_surface(self, cairo_context, with_scroll, tool_dx, tool_dy):
 		if self.selection_pixbuf is None:
 			return # TODO throw something goddammit
 		if with_scroll:
-			x = self.selection_x - self.image.scroll_x
-			y = self.selection_y - self.image.scroll_y
+			x = self.selection_x - self.image.scroll_x + tool_dx
+			y = self.selection_y - self.image.scroll_y + tool_dy
 		else:
-			x = self.selection_x
-			y = self.selection_y
+			x = self.selection_x + tool_dx
+			y = self.selection_y + tool_dy
 		Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf, x, y)
 		cairo_context.paint()
 
@@ -184,16 +181,22 @@ class DrawingSelectionManager():
 			return True # TODO throw something goddammit
 		if self.selection_path is None:
 			return None # TODO throw something goddammit
-		cairo_context = self._get_context()
-		for pts in self.selection_path:
-			if pts[1] is not ():
-				x = pts[1][0] + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
-				y = pts[1][1] + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
-				cairo_context.line_to(int(x), int(y))
+		delta_x = self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
+		delta_y = self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
+		cairo_context = self._get_context_with_path(delta_x, delta_y)
 		return cairo_context.in_fill(tested_x, tested_y)
 
 	def _get_context(self):
 		return cairo.Context(self.image.surface)
+
+	def _get_context_with_path(self, delta_x, delta_y):
+		cairo_context = self._get_context()
+		for pts in self.selection_path:
+			if pts[1] is not ():
+				x = pts[1][0] + delta_x
+				y = pts[1][1] + delta_y
+				cairo_context.line_to(int(x), int(y))
+		return cairo_context
 
 	############################################################################
 	# Popover menus management methods #########################################

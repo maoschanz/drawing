@@ -202,8 +202,9 @@ class ToolTemplate():
 		# will do it better to fit their needs
 		if not self.selection_is_active():
 			return
-		self.get_selection().show_selection_on_surface(cairo_context, True)
-		dragged_path = self.get_selection().get_path_with_scroll() # XXX
+		self.get_selection().show_selection_on_surface(cairo_context, True, 0, 0)
+		dragged_path = self.get_selection().get_path_with_scroll(0, 0)
+		# XXX non, pas "0, 0", mais c'est pas exécuté normalement
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################

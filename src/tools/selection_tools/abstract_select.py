@@ -27,6 +27,8 @@ class AbstractSelectionTool(ToolTemplate):
 		# XXX ???????????? what should i do here
 		self.x_press = 0
 		self.y_press = 0
+		self.local_dx = 0
+		self.local_dy = 0
 		self.future_x = 0
 		self.future_y = 0
 		# self.future_path = None
@@ -47,21 +49,6 @@ class AbstractSelectionTool(ToolTemplate):
 		fpath = '/com/github/maoschanz/drawing/ui/selection-menus.ui'
 		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
-
-	def adapt_to_window_size(self, available_width):
-		return
-		# TODO refaire proprement avec une implémentation de bottombar
-		if self.needed_width_for_long > 0.8 * available_width:
-			self.compact_bottombar(True)
-		else:
-			self.compact_bottombar(False)
-
-	def compact_bottombar(self, state):
-		self.import_box_long.set_visible(not state)
-		self.minimap_label.set_visible(not state)
-		self.minimap_arrow.set_visible(not state)
-		self.import_box_narrow.set_visible(state)
-		self.minimap_icon.set_visible(state)
 
 	def try_build_panel(self):
 		self.panel_id = 'selection'
@@ -124,7 +111,10 @@ class AbstractSelectionTool(ToolTemplate):
 		self.operation_type = 'op-define'
 
 	def preview_drag_to(self, event_x, event_y):
-		pass # TODO ??
+		self.local_dx = event_x - self.x_press
+		self.local_dy = event_y - self.y_press
+		print("selection local deltas", self.local_dx, self.local_dy)
+		self.non_destructive_show_modif()
 
 	############################################################################
 	# Signal callbacks implementations #########################################
@@ -175,9 +165,11 @@ class AbstractSelectionTool(ToolTemplate):
 	def on_draw(self, area, cairo_context):
 		if not self.selection_is_active():
 			return
-		self.get_selection().show_selection_on_surface(cairo_context, True)
-		dragged_path = self.get_selection().get_path_with_scroll() # TODO i
-		# should give it something corresponding temporary selection_x/y when
+		self.get_selection().show_selection_on_surface(cairo_context, True, \
+		                                           self.local_dx, self.local_dy)
+		dragged_path = self.get_selection().get_path_with_scroll(self.local_dx, \
+		                                                  self.local_dy) # TODO
+		# i should give it something corresponding temporary selection_x/y when
 		# the selection is moving. Method not really use elsewhere.
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
@@ -286,7 +278,8 @@ class AbstractSelectionTool(ToolTemplate):
 
 	def op_apply(self):
 		cairo_context = cairo.Context(self.get_surface())
-		self.get_selection().show_selection_on_surface(cairo_context, False)
+		self.get_selection().show_selection_on_surface(cairo_context, False, \
+		                                           self.local_dx, self.local_dy)
 		self.get_selection().reset()
 		# self.future_path = None
 		AbstractSelectionTool.future_path = None
@@ -334,6 +327,8 @@ class AbstractSelectionTool(ToolTemplate):
 			# Prévisualisation d'opération, correspondant à la définition d'une
 			# sélection (rectangulaire ou non) par construction d'un path.
 			# On modifie les coordonnées connues du selection_manager.
+			self.local_dx = 0
+			self.local_dy = 0
 			self.op_drag(operation)
 		elif operation['operation_type'] == 'op-apply':
 			# Opération instantanée correspondant à l'aperçu de l'op-drag, donc
