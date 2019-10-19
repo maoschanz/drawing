@@ -52,8 +52,8 @@ class DrawingImage(Gtk.Box):
 			Gdk.EventMask.SMOOTH_SCROLL_MASK | \
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
-		# Utiliser BUTTON_MOTION_MASK au lieu de POINTER_MOTION_MASK serait plus
-		# efficace mais moins puissant
+		# Utiliser BUTTON_MOTION_MASK au lieu de POINTER_MOTION_MASK serait
+		# moins complexe mais moins puissant
 
 		# For displaying things on the widget
 		self.drawing_area.connect('draw', self.on_draw)
@@ -104,10 +104,7 @@ class DrawingImage(Gtk.Box):
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
 
-	def init_background(self, *args):
-		width = self.window._settings.get_int('default-width')
-		height = self.window._settings.get_int('default-height')
-		background_rgba = self.window._settings.get_strv('background-rgba')
+	def init_background(self, width, height, background_rgba):
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
@@ -303,6 +300,7 @@ class DrawingImage(Gtk.Box):
 		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
+		# XXX à déléguer partiellement au selection_manager ?
 		state = self.selection.is_active
 		self.set_action_sensitivity('unselect', state)
 		self.set_action_sensitivity('selection_cut', state)
@@ -490,6 +488,21 @@ class DrawingImage(Gtk.Box):
 		event_y = self.scroll_y + (event.y / self.zoom_level)
 		return event_x, event_y
 
+	def get_corrected_coords(self, x1, x2, y1, y2, with_selection_coords):
+		# TODO comprendre à quoi sert cette méthode et la documenter
+		# FIXME incorrect avec le zoom
+		x1 -= self.scroll_x
+		x2 -= self.scroll_x
+		y1 -= self.scroll_y
+		y2 -= self.scroll_y
+		if with_selection_coords:
+			# XXX toujours appelé avec True mais bon ok
+			x1 += self.selection.selection_x
+			x2 += self.selection.selection_x
+			y1 += self.selection.selection_y
+			y2 += self.selection.selection_y
+		return x1, x2, y1, y2
+
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
 		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
@@ -582,7 +595,7 @@ class DrawingImage(Gtk.Box):
 		self.scroll_y = 0
 
 	############################################################################
-	# Printing operations ######################################################
+	# Printing #################################################################
 
 	def print_image(self):
 		op = Gtk.PrintOperation()

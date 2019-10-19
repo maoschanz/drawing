@@ -4,6 +4,7 @@ from gi.repository import Gtk, Gdk
 import cairo, math
 
 from .abstract_classic_tool import AbstractClassicTool
+from .utilities import utilities_smooth_path
 
 class ToolExperiment(AbstractClassicTool):
 	__gtype_name__ = 'ToolExperiment'
@@ -16,12 +17,12 @@ class ToolExperiment(AbstractClassicTool):
 		self.past_y = -1.0
 		self._path = None
 
-		self.selected_mode = 'smooth2'
+		self.selected_mode = 'smooth'
 		self.selected_operator_label = "DIFFERENCE"
 		self.selected_operator = cairo.Operator.DIFFERENCE
 
 		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
-		self.add_tool_action_enum('experiment_mode', 'smooth2')
+		self.add_tool_action_enum('experiment_mode', 'smooth')
 		self.add_tool_action_simple('experiment_macro_z', self.action_macro_z)
 		self.add_tool_action_simple('experiment_macro_scie', self.action_macro_scie)
 		self.add_tool_action_simple('experiment_macro_hexa1', self.action_macro_hexa1)
@@ -238,10 +239,7 @@ class ToolExperiment(AbstractClassicTool):
 		self.restore_pixbuf()
 		if operation['mode'] == 'dynamic':
 			self.op_dynamic(operation)
-		elif operation['mode'] == 'smooth1':
-			self.op_simple(operation)
-			self.op_smooth1(operation)
-		elif operation['mode'] == 'smooth2':
+		elif operation['mode'] == 'smooth':
 			self.op_simple(operation)
 			self.op_smooth2(operation)
 		else:
@@ -296,52 +294,6 @@ class ToolExperiment(AbstractClassicTool):
 			cairo_context.stroke()
 			cairo_context.move_to(int(future_x), int(future_y))
 
-	def op_smooth1(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		if operation['path'] is None:
-			return
-		# self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.set_operator(cairo.Operator.OVER)
-		cairo_context.set_line_width(operation['line_width'])
-		cairo_context.set_line_cap(operation['line_cap'])
-		cairo_context.set_line_join(operation['line_join'])
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-
-		past_x = None
-		past_y = None
-		current_x = None
-		current_y = None
-		future_x = None
-		future_y = None
-		for pts in operation['path']: # FIXME c'est de la merde mais osef
-			if pts[1] is ():
-				continue
-			if past_x is None:
-				past_x = int(pts[1][0])
-				past_y = int(pts[1][1])
-			elif current_x is None:
-				current_x = int(pts[1][0])
-				current_y = int(pts[1][1])
-			else: # if future_x is None:
-				future_x = int(pts[1][0])
-				future_y = int(pts[1][1])
-				cairo_context.curve_to(past_x, past_y, current_x, current_y, future_x, future_y)
-				past_x = None
-				past_y = None
-				current_x = None
-				current_y = None
-				future_x = None
-				future_y = None
-		if past_x is not None:
-			if current_x is None:
-				cairo_context.line_to(past_x, past_y)
-			else:
-				cairo_context.curve_to(past_x, past_y, current_x, current_y, current_x, current_y)
-		cairo_context.stroke()
-
 	def op_smooth2(self, operation):
 		if operation['tool_id'] != self.id:
 			return
@@ -355,53 +307,8 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.set_line_join(operation['line_join'])
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-
-		x1 = None
-		y1 = None
-		x2 = None
-		y2 = None
-		x3 = None
-		y3 = None
-		x4 = None
-		y4 = None
-		for pts in operation['path']:
-			if pts[1] is ():
-				continue
-			x1, y1, x2, y2, x3, y3, x4, y4 = self.next_arc(cairo_context, \
-			                       x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])
-		self.next_arc(cairo_context, x2, y2, x3, y3, x4, y4, None, None)
+		utilities_smooth_path(cairo_context, operation['path'])
 		cairo_context.stroke()
-
-	def next_point(self, x1, y1, x2, y2, dist):
-		coef = 0.1
-		dx = x2 - x1
-		dy = y2 - y1
-		angle = math.atan2(dy, dx)
-		nx = x2 + math.cos(angle) * dist * coef
-		ny = y2 + math.sin(angle) * dist * coef
-		return nx, ny
-
-	def next_arc(self, cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
-		if x2 is None or x3 is None:
-			# No drawing possible yet, just continue to the next point
-			return x1, y1, x2, y2, x3, y3, x4, y4
-		dist = math.sqrt( (x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3) )
-		if x1 is None and x4 is None:
-			cairo_context.move_to(x2, y2)
-			cairo_context.line_to(x3, y3)
-			return x1, y1, x2, y2, x3, y3, x4, y4
-		elif x1 is None:
-			nx1, ny1 = x2, y2
-			nx2, ny2 = self.next_point(x4, y4, x3, y3, dist)
-		elif x4 is None:
-			nx1, ny1 = self.next_point(x1, y1, x2, y2, dist)
-			nx2, ny2 = x3, y3
-		else:
-			nx1, ny1 = self.next_point(x1, y1, x2, y2, dist)
-			nx2, ny2 = self.next_point(x4, y4, x3, y3, dist)
-		cairo_context.move_to(x2, y2)
-		cairo_context.curve_to(nx1, ny1, nx2, ny2, x3, y3)
-		return x1, y1, x2, y2, x3, y3, x4, y4
 
 	############################################################################
 ################################################################################

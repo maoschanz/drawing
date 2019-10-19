@@ -223,7 +223,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
 		else:
-			new_image.init_background()
+			width = self._settings.get_int('default-width')
+			height = self._settings.get_int('default-height')
+			background_rgba = self._settings.get_strv('background-rgba')
+			new_image.init_background(width, height, background_rgba)
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 

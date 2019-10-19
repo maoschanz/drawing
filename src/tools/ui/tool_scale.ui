@@ -94,21 +94,6 @@
           </object>
         </child>
 
-        <child>
-          <object class="GtkMenuButton" id="options_btn">
-            <property name="tooltip-text" translatable="yes">More options</property>
-            <property name="menu-model">actions-menu</property>
-            <property name="valign">center</property>
-            <property name="halign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-more-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
       </object>
     </child>
 
@@ -132,6 +117,25 @@
         <property name="pack-type">end</property>
       </packing>
     </child>
+
+    <child>
+      <object class="GtkMenuButton" id="options_btn">
+        <property name="tooltip-text" translatable="yes">More options</property>
+        <property name="menu-model">actions-menu</property>
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">view-more-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
   </object>
 
   <!-- -->
