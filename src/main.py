@@ -24,6 +24,7 @@ from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
+APP_PATH = '/com/github/maoschanz/drawing/'
 
 def main(version):
 	app = Application(version)
@@ -65,14 +66,13 @@ class Application(Gtk.Application):
 		# TODO options pour le screenshot ?
 
 		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path('/com/github/maoschanz/drawing/icons')
-		icon_theme.add_resource_path('/com/github/maoschanz/drawing/tools/icons')
+		icon_theme.add_resource_path(APP_PATH + 'icons')
+		icon_theme.add_resource_path(APP_PATH + 'tools/icons')
 
 	def on_startup(self, *args):
 		"""Called only once, add app-wide menus and actions, and all accels."""
 		self.build_actions()
-		builder = Gtk.Builder.new_from_resource( \
-		                        '/com/github/maoschanz/drawing/ui/app-menus.ui')
+		builder = Gtk.Builder.new_from_resource(APP_PATH + 'ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		if self.prefers_app_menu():
@@ -183,8 +183,7 @@ class Application(Gtk.Application):
 		"""Action callback, showing the "shortcuts" dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-		builder = Gtk.Builder().new_from_resource( \
-		                        '/com/github/maoschanz/drawing/ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource(APP_PATH + 'ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
@@ -207,17 +206,17 @@ class Application(Gtk.Application):
 
 	def on_help_tools(self, *args):
 		"""Action callback, showing the 'tools' page of the user help manual."""
-		self.show_help_page('/drawing_tools')
+		self.show_help_page('/tools_classic')
 
 	def on_help_canvas(self, *args):
 		"""Action callback, showing the 'canvas and selection tools' page of the
 		user help manual."""
-		self.show_help_page('/canvas_tools')
+		self.show_help_page('/tools_canvas')
 
 	def on_help_selection(self, *args):
 		"""Action callback, showing the 'selection' page of the user
 		help manual."""
-		self.show_help_page('/selection_tools')
+		self.show_help_page('/tools_selection')
 
 	def show_help_page(self, suffix):
 		win = self.props.active_window
