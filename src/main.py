@@ -144,7 +144,7 @@ class Application(Gtk.Application):
 				self.on_new_window()
 			else:
 				win.present()
-				self.props.active_window.build_new_tab(None, None)
+				self.props.active_window.build_new_image()
 		elif len(arguments) == 1:
 			self.on_activate()
 
@@ -163,7 +163,7 @@ class Application(Gtk.Application):
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
-						self.props.active_window.build_new_tab(f, None)
+						self.props.active_window.build_new_tab(gfile=f)
 		# I don't even know if i should return something
 		return 0
 
