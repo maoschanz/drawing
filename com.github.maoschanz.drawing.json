@@ -10,16 +10,12 @@
 		"--socket=wayland",
 		"--metadata=X-DConf=migrate-path=/com/github/maoschanz/drawing/"
 	],
-	"modules" : [
-		{
-			"name" : "drawing",
-			"buildsystem" : "meson",
-			"sources" : [
-				{
-					"type" : "git",
-					"url" : "https://github.com/maoschanz/drawing"
-				}
-			]
-		}
-	]
+	"modules" : [{
+		"name" : "drawing",
+		"buildsystem" : "meson",
+		"sources" : [{
+			"type" : "git",
+			"url" : "https://github.com/maoschanz/drawing"
+		}]
+	}]
 }

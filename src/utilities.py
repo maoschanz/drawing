@@ -1,9 +1,8 @@
 # utilities.py
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo, math, threading
-from datetime import datetime
-
+from gi.repository import Gtk, Gdk, GdkPixbuf
+from datetime import datetime # Not actually needed, just to measure perfs XXX
 from .message_dialog import DrawingMessageDialog
 
 ################################################################################
@@ -331,6 +330,8 @@ def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y
 	cairo_context.stroke()
 
 def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
+	spinbutton.set_width_chars(width_chars + 2)
+	return # TODO trouver mieux
 	spinbutton.set_width_chars(width_chars + 3)
 	if unit == 'px':
 		spinbutton.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, 'unit-pixels-symbolic')
@@ -338,6 +339,7 @@ def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
 	spinbutton.set_icon_sensitive(Gtk.EntryIconPosition.SECONDARY, False)
 
 ################################################################################
+# Path smoothing ###############################################################
 
 def utilities_smooth_path(cairo_context, cairo_path):
 	x1 = None
@@ -387,6 +389,7 @@ def _next_arc(cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
 	return x1, y1, x2, y2, x3, y3, x4, y4
 
 ################################################################################
+# Blurring algorithms ##########################################################
 
 class BlurType():
 	BOX = 0
@@ -455,7 +458,7 @@ def utilities_fast_blur(surface, radius, iterations, algotype):
 	return original
 
 ################################################################################
-# mixed solution version #######################################################
+# mixed solution version
 
 def _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv):
 	NB_THREADS = 4
@@ -515,7 +518,7 @@ def _blur_rows3(x, y0, y1, w, channels, radius, pixels, buff0, vmin, vmax, dv):
 	# print('row thread with', y0, y1, '(end)')
 
 ################################################################################
-# "only 1 thread" version ######################################################
+# "only 1 thread" version
 
 def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
 	for x in range(0, w):

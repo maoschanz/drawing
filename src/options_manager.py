@@ -16,7 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import GLib
-import cairo
 
 class DrawingOptionsManager():
 	__gtype_name__ = 'DrawingOptionsManager'

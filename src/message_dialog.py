@@ -56,3 +56,5 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 		self.get_content_area().add(widget)
 		self.get_content_area().show_all()
 
+	############################################################################
+################################################################################

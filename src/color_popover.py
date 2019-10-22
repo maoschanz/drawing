@@ -15,9 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
 import cairo
-
+from gi.repository import Gtk, Gdk
 from .utilities import utilities_get_rgba_name
 
 class DrawingColorPopover(Gtk.Popover):

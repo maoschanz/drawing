@@ -31,7 +31,7 @@ More screenshots (version 0.4.x):
 - [elementaryOS UI](./docs/screenshots/elementary.png)
 - [Cinnamon UI](./docs/screenshots/cinnamon.png)
 - [MATE UI](./docs/screenshots/mate_scale.png)
-- The default "GNOME" UI can be resized to be compatible with the Purism Librem 5 phone. [Screenshot](./docs/screenshots/librem_options.png) and [screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2).
+- The default "GNOME" UI can be resized to be compatible with the Purism Librem 5 phone. [Screenshot](./docs/screenshots/librem_options.png) and [screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2, which is old).
 
 ----
 
@@ -81,7 +81,12 @@ You can install it from flathub.org using the instructions on [this page](https:
 - Line (options: arrow, dashes, blur, gradient, …)
 - Arc (options: arrow, dashes, …)
 - Insert text (options: font, shadow, font size, …)
-- Shape (rectangle/circle/oval/polygon/free shape, options: filling, …)
+- Shape (options: filling, gradient, …):
+	- rectangle
+	- circle
+	- oval
+	- polygon
+	- free shape
 - Color picker
 - Paint (options: remove a color, …)
 
@@ -98,10 +103,16 @@ cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
 
 These tools allow to edit the whole image, or to edit a selected part of it.
 
-- Crop (remark: the previewed picture isn't at the actual scale)
+- Crop
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
-- Filters (blur, increase or decrease saturation, transparency, invert colors, pixelate, …)
+- Filters:
+	- Blur
+	- Saturation (increase or decrease)
+	- Transparency
+	- Invert colors
+	- Pixelate
+	- …
 
 ----
 

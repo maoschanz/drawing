@@ -15,9 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 import cairo
-
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 from .utilities import utilities_save_pixbuf_at
 from .selection_manager import DrawingSelectionManager
 
@@ -489,6 +488,7 @@ class DrawingImage(Gtk.Box):
 		return event_x, event_y
 
 	def get_corrected_coords(self, x1, x2, y1, y2, with_selection_coords):
+		"""..."""
 		# TODO comprendre à quoi sert cette méthode et la documenter
 		# FIXME incorrect avec le zoom
 		x1 -= self.scroll_x

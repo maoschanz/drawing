@@ -11,19 +11,13 @@ assignees: ''
 
 <!--Describe the bug, clearly and concisely-->
 
+<!--If applicable, add screenshots to help explain your problem.-->
+
 ## Steps to reproduce the bug:
 
 1. ...
 2. ...
 3. ...
-
-## Expected behavior
-
-<!--A clear and concise description of what you expected to happen.-->
-
-## Screenshots
-
-<!--If applicable, add screenshots to help explain your problem.-->
 
 ----
 
@@ -34,9 +28,6 @@ assignees: ''
 - Device (desktop computer/tablet/phone/...):
 - OS:
 - Desktop environment:
-- Package format (flatpak, DEB, AUR ?):
+- Package format (flatpak, native package, snap?):
 - App version:
 
-## Additional context
-
-<!--Add any other context about the problem here.-->

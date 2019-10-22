@@ -16,7 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio, GLib, Gdk
-
 from .utilities import utilities_add_px_to_spinbutton
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
