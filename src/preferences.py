@@ -46,6 +46,8 @@ class DrawingPrefsWindow(Gtk.Window):
 			self.set_titlebar(header_bar)
 			self.content_area.remove(self.stack_switcher)
 			header_bar.set_custom_title(self.stack_switcher)
+		else:
+			self.stack_switcher.set_margin_top(12)
 
 		########################################################################
 		# Build the "images" page ##############################################
@@ -144,16 +146,20 @@ class DrawingPrefsWindow(Gtk.Window):
 		flowbox.add(w)
 		w = self.build_radio_btn("elementary OS", 'csd-eos', 'decorations', w0)
 		flowbox.add(w)
+		# "Legacy" is about the window layout, it means menubar+toolbar, you can
+		# translate it like if it was "Traditional"
 		w = self.build_radio_btn(_("Legacy"), 'ssd', 'decorations', w0)
 		flowbox.add(w)
-		w = self.build_radio_btn(_("Legacy (symbolic)"), 'ssd-symbolic', \
+		# "Legacy" is about the window layout, it means menubar+toolbar, you can
+		# translate it like if it was "Traditional"
+		w = self.build_radio_btn(_("Legacy (symbolic icons)"), 'ssd-symbolic', \
 		                                                      'decorations', w0)
 		flowbox.add(w)
 		w = self.build_radio_btn(_("Menubar only"), 'ssd-menubar', 'decorations', w0)
 		flowbox.add(w)
 		w = self.build_radio_btn(_("Toolbar only"), 'ssd-toolbar', 'decorations', w0)
 		flowbox.add(w)
-		w = self.build_radio_btn(_("Toolbar only (symbolic)"), \
+		w = self.build_radio_btn(_("Toolbar only (symbolic icons)"), \
 		                              'ssd-toolbar-symbolic', 'decorations', w0)
 		flowbox.add(w)
 		self._radio_are_active = True

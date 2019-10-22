@@ -40,6 +40,7 @@ from .color_select import ToolColorSelect
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
+from .custom_image import DrawingCustomImageDialog
 from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
 from .message_dialog import DrawingMessageDialog
@@ -91,6 +92,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.pointer_to_current_page = None # XXX this ridiculous hack allow to
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
+		self.active_tool_id = None
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -110,8 +112,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_all_win_actions()
 		if get_cb:
 			self.build_image_from_clipboard()
+		elif gfile is not None:
+			self.build_new_tab(gfile=gfile)
 		else:
-			self.build_new_tab(gfile, None)
+			self.build_new_image()
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()
@@ -198,22 +202,36 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image."""
-		self.build_new_tab(None, None)
-		self.set_picture_title()
+		width = self._settings.get_int('default-width')
+		height = self._settings.get_int('default-height')
+		rgba = self._settings.get_strv('background-rgba')
+		self.build_new_tab(width=width, height=height, background_rgba=rgba)
+		if self.active_tool_id is not None: # Tools might not be initialized yet
+			self.set_picture_title()
+
+	def build_new_custom(self, *args):
+		dialog = DrawingCustomImageDialog(self)
+		result = dialog.run()
+		if result == Gtk.ResponseType.OK:
+			width, height, rgba = dialog.get_values()
+			self.build_new_tab(width=width, height=height, background_rgba=rgba)
+			self.set_picture_title()
+		dialog.destroy()
 
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
 		empty, the new image will be blank."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
-		self.build_new_tab(None, pixbuf)
+		self.build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
 		pixbuf = self.get_active_image().selection.get_pixbuf()
-		self.build_new_tab(None, pixbuf)
+		self.build_new_tab(pixbuf=pixbuf)
 
-	def build_new_tab(self, gfile, pixbuf):
+	def build_new_tab(self, gfile=None, pixbuf=None, \
+		           width=200, height=200, background_rgba=[1.0, 0.0, 0.0, 1.0]):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
@@ -223,9 +241,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
 		else:
-			width = self._settings.get_int('default-width')
-			height = self._settings.get_int('default-height')
-			background_rgba = self._settings.get_strv('background-rgba')
 			new_image.init_background(width, height, background_rgba)
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
@@ -373,6 +388,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
+		self.add_action_simple('new_tab_custom', self.build_new_custom, None)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
@@ -822,7 +838,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
-				self.build_new_tab(gfile, None)
+				self.build_new_tab(gfile=gfile)
 			elif result == discard_id:
 				self.try_load_file(gfile)
 			elif result == new_window_id:
@@ -867,7 +883,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 				return
 			elif result == open_id:
 				f = Gio.File.new_for_uri(uri)
-				self.build_new_tab(f, None)
+				self.build_new_tab(gfile=f)
 
 	def try_load_file(self, gfile):
 		if gfile is not None:

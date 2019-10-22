@@ -43,6 +43,7 @@ drawing_sources = [
 	'properties.py',
 	'preferences.py',
 	'message_dialog.py',
+	'custom_image.py',
 
 	'tools/abstract_tool.py',
 
