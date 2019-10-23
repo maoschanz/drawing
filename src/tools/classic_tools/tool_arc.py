@@ -1,7 +1,7 @@
-# tool_arc.py
+# tool_curve.py
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_add_arrow_triangle
@@ -57,7 +57,7 @@ class ToolArc(AbstractClassicTool):
 		self.y_press = 0.0
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.set_common_values(event)
+		self.set_common_values(event.button)
 		self.x_press = event_x
 		self.y_press = event_y
 

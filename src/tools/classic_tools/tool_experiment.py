@@ -1,7 +1,7 @@
 # tool_experiment.py
 
-from gi.repository import Gtk, Gdk
 import cairo, math
+from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_smooth_path
@@ -23,10 +23,7 @@ class ToolExperiment(AbstractClassicTool):
 
 		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
 		self.add_tool_action_enum('experiment_mode', 'smooth')
-		self.add_tool_action_simple('experiment_macro_z', self.action_macro_z)
 		self.add_tool_action_simple('experiment_macro_scie', self.action_macro_scie)
-		self.add_tool_action_simple('experiment_macro_hexa1', self.action_macro_hexa1)
-		self.add_tool_action_simple('experiment_macro_hexa2', self.action_macro_hexa2)
 
 	def set_active_mode(self, *args):
 		state_as_string = self.get_option_value('experiment_mode')
@@ -122,15 +119,6 @@ class ToolExperiment(AbstractClassicTool):
 			self.selected_operator = cairo.Operator.HSL_LUMINOSITY
 			self.selected_operator_label = "HSL_LUMINOSITY"
 
-	def action_macro_z(self, *args):
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(200, 200)
-		cairo_context.line_to(400, 200)
-		cairo_context.line_to(200, 400)
-		cairo_context.line_to(400, 400)
-		self._path = cairo_context.copy_path()
-		self.macros_common()
-
 	def action_macro_scie(self, *args):
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.move_to(50, 50)
@@ -147,33 +135,8 @@ class ToolExperiment(AbstractClassicTool):
 		self._path = cairo_context.copy_path()
 		self.macros_common()
 
-	def action_macro_hexa1(self, *args):
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(100, 300)
-		cairo_context.line_to(200, 300)
-		cairo_context.line_to(250, 400)
-		cairo_context.line_to(200, 500)
-		cairo_context.line_to(100, 500)
-		cairo_context.line_to(50, 400)
-		cairo_context.line_to(100, 300)
-		self._path = cairo_context.copy_path()
-		self.macros_common()
-
-	def action_macro_hexa2(self, *args):
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(500, 300)
-		cairo_context.line_to(450, 400)
-		cairo_context.line_to(500, 500)
-		cairo_context.line_to(600, 500)
-		cairo_context.line_to(650, 400)
-		cairo_context.line_to(600, 300)
-		cairo_context.line_to(500, 300)
-		self._path = cairo_context.copy_path()
-		self.macros_common()
-
 	def macros_common(self):
-		self.tool_width = self.window.thickness_spinbtn.get_value()
-		self.main_color = self.get_image().get_left_rgba()
+		self.set_common_values(1)
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
@@ -193,7 +156,7 @@ class ToolExperiment(AbstractClassicTool):
 		self.set_active_mode()
 		self.x_press = event_x
 		self.y_press = event_y
-		self.set_common_values(event)
+		self.set_common_values(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()

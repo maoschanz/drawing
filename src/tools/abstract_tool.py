@@ -1,9 +1,11 @@
-# tools.py
+# abstract_tool.py
+#
+# GPL 3
 #
 # Super-class implemented and extended by all tools.
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
 
 from .utilities import utilities_show_overlay_on_context
 
@@ -204,7 +206,7 @@ class ToolTemplate():
 			return
 		self.get_selection().show_selection_on_surface(cairo_context, True, 0, 0)
 		dragged_path = self.get_selection().get_path_with_scroll(0, 0)
-		# XXX non, pas "0, 0", mais c'est pas exécuté normalement
+		# XXX non, pas "0, 0", mais ce code n'est jamais exécuté normalement
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################

@@ -1,7 +1,7 @@
 # tool_paint.py
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_get_magic_path
@@ -26,7 +26,7 @@ class ToolPaint(AbstractClassicTool):
 			return self.label
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.set_common_values(event)
+		self.set_common_values(event.button)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		# Guard clause: we can't paint outside of the surface

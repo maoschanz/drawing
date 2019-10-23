@@ -1016,12 +1016,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.get_selection_tool().import_selection(pixbuf)
 		else:
 			string =  cb.wait_for_text()
-			self.tools['text'].row.set_active(True)
-			self.tools['text'].set_string(string)
-			self.tools['text'].on_release_on_area(None, None, None, 100, 100)
+			self.tools['text'].force_text_tool(string)
 
 	def action_import(self, *args):
-		"""Handle the result of an "open" file chooser dialog, and it will try
+		"""Handle the result of an "open" file chooser dialog. It will then try
 		to import it as the selection."""
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))

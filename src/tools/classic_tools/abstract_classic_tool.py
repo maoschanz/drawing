@@ -1,7 +1,7 @@
 # abstract_select.py
 
-from gi.repository import Gtk
 import cairo
+from gi.repository import Gtk
 
 from .abstract_tool import ToolTemplate
 from .bottombar import DrawingAdaptativeBottomBar
@@ -25,22 +25,6 @@ class AbstractClassicTool(ToolTemplate):
 	############################################################################
 	# UI implementations #######################################################
 
-	def adapt_to_window_size(self, available_width):
-		return
-		self.needed_width_for_long = 400
-		# TODO refaire proprement avec une implémentation de bottombar
-		if self.needed_width_for_long > 0.8 * available_width:
-			self.compact_bottombar(True)
-		else:
-			self.compact_bottombar(False)
-
-	def compact_bottombar(self, state):
-		self.options_long_box.set_visible(not state)
-		self.minimap_label.set_visible(not state)
-		self.minimap_arrow.set_visible(not state)
-		self.options_short_box.set_visible(state)
-		self.minimap_icon.set_visible(state)
-
 	def try_build_panel(self):
 		self.panel_id = 'classic'
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
@@ -55,12 +39,12 @@ class AbstractClassicTool(ToolTemplate):
 	############################################################################
 	# ................................ #########################################
 
-	def set_common_values(self, event):
+	def set_common_values(self, event_btn):
 		self.tool_width = self.window.options_manager.get_tool_width()
-		if event.button == 1:
+		if event_btn == 1:
 			self.main_color = self.window.options_manager.get_left_color()
 			self.secondary_color = self.window.options_manager.get_right_color()
-		if event.button == 3:
+		if event_btn == 3:
 			self.main_color = self.window.options_manager.get_right_color()
 			self.secondary_color = self.window.options_manager.get_left_color()
 
@@ -81,11 +65,6 @@ class AbstractClassicTool(ToolTemplate):
 		else:
 			self.selected_operator = cairo.Operator.OVER
 			self.selected_operator_label = _("Classic")
-
-	############################################################################
-	# Path management ##########################################################
-
-	# TODO pour l'instant c'est dans utilities, ça doit ptêt y rester
 
 	############################################################################
 	# Operations management ####################################################

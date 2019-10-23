@@ -1,7 +1,7 @@
 # tool_pencil.py
 
-from gi.repository import Gtk, Gdk
 import cairo, math
+from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities import utilities_smooth_path
@@ -62,7 +62,7 @@ class ToolPencil(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.set_common_values(event)
+		self.set_common_values(event.button)
 		self._path = None
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
