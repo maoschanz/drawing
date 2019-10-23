@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+# Import libs
 import os
-
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
+# XXX wtf j'importe pas gi ??
 
+# Import tools
 from .tool_arc import ToolArc
 from .tool_experiment import ToolExperiment
 from .tool_line import ToolLine
@@ -38,6 +40,7 @@ from .rect_select import ToolRectSelect
 from .free_select import ToolFreeSelect
 from .color_select import ToolColorSelect
 
+# Other imports
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
 from .custom_image import DrawingCustomImageDialog
@@ -96,8 +99,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
-		# self.resize(360, 648) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
-		# self.resize(720, 288) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+		# self.resize(360, 648)
+		# self.resize(720, 288)
 		self.set_ui_bars()
 
 	def init_window_content(self, gfile, get_cb):
@@ -127,17 +130,17 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		dev = self._settings.get_boolean('devel-only')
 		self.tools = {}
 		self.prompt_message(False, 'window has started, now loading tools')
-		# XXX réfléchir à l'ordre ?
+		# The order might be improvable
 		self.load_tool('pencil', ToolPencil, disabled_tools_ids, dev)
+		self.load_tool('text', ToolText, disabled_tools_ids, dev)
 		self.load_tool('rect_select', ToolRectSelect, disabled_tools_ids, dev)
 		self.load_tool('free_select', ToolFreeSelect, disabled_tools_ids, dev)
-		self.load_tool('color_select', ToolColorSelect, disabled_tools_ids, dev)
-		self.load_tool('text', ToolText, disabled_tools_ids, dev)
-		self.load_tool('picker', ToolPicker, disabled_tools_ids, dev)
-		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
 		self.load_tool('line', ToolLine, disabled_tools_ids, dev)
 		self.load_tool('arc', ToolArc, disabled_tools_ids, dev)
 		self.load_tool('shape', ToolShape, disabled_tools_ids, dev)
+		self.load_tool('picker', ToolPicker, disabled_tools_ids, dev)
+		self.load_tool('color_select', ToolColorSelect, disabled_tools_ids, dev)
+		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
 		if dev:
 			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
 			self.load_tool('matrix', ToolMatrix, disabled_tools_ids, dev)
@@ -185,23 +188,21 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.on_show_labels_setting_changed()
 
 	def build_menubar_tools_menu(self):
-		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
-		drawing_tools_section = self.get_menubar_item([[True, 4], [False, 1]])
-		canvas_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
+		sections = [None, None, None]
+		sections[2] = self.get_menubar_item([[True, 4], [False, 0]])
+		sections[0] = self.get_menubar_item([[True, 4], [False, 1]])
+		sections[1] = self.get_menubar_item([[True, 4], [False, 2]])
 		for tool_id in self.tools:
-			if self.tools[tool_id].menu_id == 0:
-				self.tools[tool_id].add_item_to_menu(drawing_tools_section)
-			elif self.tools[tool_id].menu_id == 1:
-				self.tools[tool_id].add_item_to_menu(canvas_tools_section)
-			elif self.tools[tool_id].menu_id == 2:
-				self.tools[tool_id].add_item_to_menu(selection_tools_section)
+			tool = self.tools[tool_id]
+			tool.add_item_to_menu(sections[tool.menu_id])
 		self.app.has_tools_in_menubar = True
 
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
 
 	def build_new_image(self, *args):
-		"""Open a new tab with a drawable blank image."""
+		"""Open a new tab with a drawable blank image using the default values
+		defined by user's settings."""
 		width = self._settings.get_int('default-width')
 		height = self._settings.get_int('default-height')
 		rgba = self._settings.get_strv('background-rgba')
@@ -210,6 +211,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.set_picture_title()
 
 	def build_new_custom(self, *args):
+		"""Open a new tab with a drawable blank image using the custom values
+		defined by user's input."""
 		dialog = DrawingCustomImageDialog(self)
 		result = dialog.run()
 		if result == Gtk.ResponseType.OK:
@@ -422,9 +425,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
-		self.app.add_action_boolean('use_editor', \
-		                      self._settings.get_boolean('direct-color-edit'), \
-		                                                 self.action_use_editor)
+		editor = self._settings.get_boolean('direct-color-edit')
+		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
@@ -435,6 +437,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def set_cursor(self, is_custom):
+		"""Called by the tools at various occasions, this method updates the
+		mouse cursor according to `is_custom` (if False, use the default cursor)
+		and the active tool `cursor_name` attribute."""
 		if is_custom:
 			name = self.active_tool().cursor_name
 		else:
@@ -870,6 +875,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if len(uris) == 1:
 			label = uris[0].split('/')[-1]
 		else:
+			# Context for translation:
+			# "What do you want to do with *these files*?"
 			label = _("these files")
 		dialog.add_string(_("What do you want to do with %s?") % label)
 		result = dialog.run()
@@ -998,6 +1005,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().delete_selection()
 
 	def action_paste(self, *args):
+		"""By default, this action pastes an image, but if there is no image in
+		the clipboard, it will paste text using the text tool. Once the text
+		tool is active, this action is disabled to not interfer with the default
+		behavior of ctrl+v provided by the GTK text entry."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is not None:
@@ -1006,8 +1017,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			string =  cb.wait_for_text()
 			self.tools['text'].row.set_active(True)
-			self.active_tool().set_string(string)
-			self.active_tool().on_release_on_area(None, None, None, 100, 100)
+			self.tools['text'].set_string(string)
+			self.tools['text'].on_release_on_area(None, None, None, 100, 100)
 
 	def action_import(self, *args):
 		"""Handle the result of an "open" file chooser dialog, and it will try
@@ -1073,15 +1084,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().update()
 
-	def action_rebuild(self, *args): # XXX image method ?
+	def action_rebuild(self, *args):
 		"""Rebuild the image according to the history content."""
 		self.get_active_image().rebuild_from_history()
 
 	def update_history_actions_labels(self, undo_label, redo_label):
-		# TODO menubar
 		if self.header_bar is not None:
 			self.header_bar.set_undo_label(undo_label)
 			self.header_bar.set_redo_label(redo_label)
+		# TODO maybe update "undo" and "redo" items in the menubar
 
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################

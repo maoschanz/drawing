@@ -51,6 +51,8 @@ def utilities_get_rgb_for_xy(surface, x, y): # TODO use gdkpixbuf data to get an
 	return rgb_vals # array de 3 valeurs, de 0 à 255
 
 def utilities_get_rgba_name(red, green, blue, alpha):
+	"""To improve accessibility, it is useful to display the name of the colors.
+	Sadly, it's a mess to implement, and it's quite approximative."""
 	color_string = ""
 	alpha_string = ""
 	if alpha == 0.0:
@@ -128,8 +130,10 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 ################################################################################
 
 def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
+	"""Draw a blueish area on `cairo_context`, with or without dashes. This is
+	mainly used for the selection."""
 	if cairo_path is None:
-		return
+		return # TODO throw an exception
 	cairo_context.new_path()
 	cairo_context.set_line_width(1)
 	if has_dashes:
@@ -141,14 +145,17 @@ def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	cairo_context.stroke()
 
 def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2):
+	"""Request the drawing of handles for a rectangle pixbuf having the provided
+	coords. Handles are only decorative objects drawn on the surface to help the
+	user understand the rationale of tools without relying on the mouse cursor."""
 	rayon = min([(x2 - x1)/5, (y2 - y1)/5, 12])
-	height_h = True # XXX
+	lateral_handles = True # may be a parameter later
 
 	_draw_arc_handle(cairo_context, x1, y1, rayon, 'nw')
 	_draw_arc_handle(cairo_context, x2, y1, rayon, 'ne')
 	_draw_arc_handle(cairo_context, x2, y2, rayon, 'se')
 	_draw_arc_handle(cairo_context, x1, y2, rayon, 'sw')
-	if height_h:
+	if lateral_handles:
 		_draw_arc_handle(cairo_context, (x1+x2)/2, y1, rayon, 'n')
 		_draw_arc_handle(cairo_context, x2, (y1+y2)/2, rayon, 'e')
 		_draw_arc_handle(cairo_context, (x1+x2)/2, y2, rayon, 's')
@@ -166,6 +173,9 @@ def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2):
 	cairo_context.stroke()
 
 def _draw_arc_handle(cairo_context, x, y, rayon, orientation):
+	"""Draw a moon-like shape with the given orientation and radius. The coords
+	are the center of the shape. The orientation is an enumeration provided as a
+	string with the stupid n/nw/w/sw/s/se/e/ne format."""
 	if orientation == 'nw':
 		angle_1 = 0.5 * math.pi
 		angle_2 = 2.0 * math.pi
@@ -202,6 +212,8 @@ def _draw_arc_handle(cairo_context, x, y, rayon, orientation):
 	cairo_context.stroke()
 
 def utilities_get_magic_path(surface, x, y, window, coef):
+	"""This method tries to build a path defining an area of the same color. It
+	will mainly be used to paint this area, or to select it."""
 # TODO idée :
 # le délire ce serait de commencer un path petit, puis de l'étendre avec
 # cairo.Context.clip_extents() jusqu'à ce qu'on soit à fond.
@@ -239,13 +251,14 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 
 		j = 0
 		while (not end_circle) or (j < 8):
-			if (utilities_get_rgb_for_xy(surface, x+x_shift[direction], y+y_shift[direction]) == old_color) \
-			and (x+x_shift[direction] > 0) \
-			and (y+y_shift[direction] > 0) \
-			and (x+x_shift[direction] < surface.get_width()) \
-			and (y+y_shift[direction] < surface.get_height()-2): # ???
-				new_x = x+x_shift[direction]
-				new_y = y+y_shift[direction]
+			future_x = x+x_shift[direction]
+			future_y = y+y_shift[direction]
+			if (utilities_get_rgb_for_xy(surface, future_x, future_y) == old_color) \
+			and (future_x > 0) and (future_y > 0) \
+			and (future_x < surface.get_width()) \
+			and (future_y < surface.get_height()-2): # ???
+				new_x = future_x
+				new_y = future_y
 				direction = (direction+1) % 8
 			elif (x != new_x or y != new_y):
 				x = new_x+x_shift[direction]
@@ -342,6 +355,9 @@ def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
 # Path smoothing ###############################################################
 
 def utilities_smooth_path(cairo_context, cairo_path):
+	"""Extrapolate a path made of straight lines into a path made of curves. New
+	points are added according to the length of the line it replaces, the length
+	of the previous one, and the length of the next one."""
 	x1 = None
 	y1 = None
 	x2 = None
@@ -354,7 +370,7 @@ def utilities_smooth_path(cairo_context, cairo_path):
 		if pts[1] is ():
 			continue
 		x1, y1, x2, y2, x3, y3, x4, y4 = _next_arc(cairo_context, \
-		                       x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])
+		                           x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])
 	_next_arc(cairo_context, x2, y2, x3, y3, x4, y4, None, None)
 	# cairo_context.stroke()
 
@@ -399,6 +415,8 @@ class BlurType():
 	INVALID = 10
 
 def utilities_fast_blur(surface, radius, iterations, algotype):
+	"""This is the 'official' method to access the blur algorithms. The last
+	argument is an integer corresponding to a BlurType enumeration."""
 	if algotype == BlurType.INVALID:
 		return
 	radius = int(radius)
@@ -444,7 +462,7 @@ def utilities_fast_blur(surface, radius, iterations, algotype):
 			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
 		elif algotype == BlurType.EXPERIMENTAL:
 			# 4+1 threads
-			# XXX TODO despite being multithreaded, the first phase is slower than BlurType.BOX
+			# TODO despite being multithreaded, the first phase is slower than BlurType.BOX
 			full_buff = _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv)
 			# print('end of the 1st phase…', datetime.now() - time0)
 			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, full_buff, vmin, vmax, dv)
