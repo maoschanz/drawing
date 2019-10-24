@@ -251,13 +251,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_active_tab_changed(self, *args):
 		self.switch_to(self.active_tool_id, args[1])
 		print("changement d'image")
-		# On devrait être moins bourrin et conserver la sélection # FIXME
+		# On devrait être moins bourrin et conserver la sélection # TODO
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
-		section = self.get_menubar_item([[True, 2], [False, 6]])
+		section = self.get_menubar_item([[True, 2], [False, 1]])
 		section.remove_all()
 		for page in self.notebook.get_children():
 			tab_title = page.update_title()
@@ -558,7 +558,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_fullscreen_menu(self):
 		builder = Gtk.Builder.new_from_resource(UI_PATH + 'win-menus.ui')
 		fullscreen_menu = builder.get_object('fullscreen-menu')
-		tabs_list = self.get_menubar_item([[True, 2], [False, 6]])
+		tabs_list = self.get_menubar_item([[True, 2], [False, 1]])
 		fullscreen_menu.append_section(_("Opened images"), tabs_list)
 		tools_menu = self.get_menubar_item([[True, 4]])
 		section = fullscreen_menu.get_item_link(3, Gio.MENU_LINK_SECTION)
@@ -1127,6 +1127,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().set_zoom_level(100)
 
 	def action_zoom_opti(self, *args):
+		print('eeeeee')
 		self.get_active_image().set_opti_zoom_level()
 
 	############################################################################

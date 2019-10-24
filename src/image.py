@@ -68,7 +68,7 @@ class DrawingImage(Gtk.Box):
 		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
 		# [Option] automatic zoom level
-		self.drawing_area.connect('size-allocate', self.set_opti_zoom_level)
+		self.drawing_area.connect('size-allocate', self.on_opti_zoom_level)
 
 		self.ctrl_to_zoom = self.window._settings.get_string('zoom-behavior') == 'ctrl'
 
@@ -416,7 +416,7 @@ class DrawingImage(Gtk.Box):
 
 	def set_main_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			# FIXME wtf, throw something maybe???
+			# XXX wtf, throw something maybe???
 			return False
 		else:
 			self.main_pixbuf = new_pixbuf
@@ -576,13 +576,15 @@ class DrawingImage(Gtk.Box):
 		self.fake_scrollbar_update()
 		self.update()
 
+	def on_opti_zoom_level(self, *args):
+		if self.zoom_is_auto:
+			self.set_opti_zoom_level()
+
 	def set_opti_zoom_level(self, *args):
-		if not self.zoom_is_auto:
-			return
 		allocated_width = self.get_widget_width()
 		allocated_height = self.get_widget_height()
 		if allocated_width == 1:
-			# FIXME because self.drawing_area might be not allocated yet
+			# XXX because self.drawing_area might be not allocated yet
 			return
 			# allocated_width = 800
 			# allocated_height = 400

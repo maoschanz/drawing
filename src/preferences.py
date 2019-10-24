@@ -198,7 +198,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		btn = Gtk.RadioButton(label=label, visible=True, group=group)
 		active_id = self._settings.get_string(key)
 		btn.set_active(btn_id == active_id)
-		btn.connect('toggled', self.on_radio_btn_changed, key, btn_id) # FIXME
+		btn.connect('toggled', self.on_radio_btn_changed, key, btn_id)
 		return btn
 
 	def build_check_btn(self, label, row_id, key):

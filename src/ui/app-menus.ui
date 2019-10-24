@@ -202,50 +202,37 @@
       <attribute name="label" translatable="yes">_View</attribute>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Optimal Zoom</attribute>
-          <attribute name="action">win.zoom_opti</attribute>
-          <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Zoom Out</attribute>
-          <attribute name="action">win.zoom_out</attribute>
-          <attribute name="verb-icon">zoom-out-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Original Zoom</attribute>
-          <attribute name="action">win.zoom_100</attribute>
-          <attribute name="verb-icon">zoom-original-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Zoom In</attribute>
-          <attribute name="action">win.zoom_in</attribute>
-          <attribute name="verb-icon">zoom-in-symbolic</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
           <attribute name="label" translatable="yes">Show the preview</attribute>
           <attribute name="action">win.toggle_preview</attribute>
           <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
         </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Refresh</attribute>
-          <attribute name="action">win.restore_pixbuf</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
-          <attribute name="verb-icon">view-refresh-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Rebuild from history</attribute>
-          <attribute name="action">win.rebuild_from_histo</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
-          <attribute name="verb-icon">view-refresh-symbolic</attribute>
-        </item>
-      </section>
-      <section>
+        <submenu>
+          <attribute name="label" translatable="yes">Zoom</attribute>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Optimal Zoom</attribute>
+              <attribute name="action">win.zoom_opti</attribute>
+              <attribute name="verb-icon">zoom-fit-best-symbolic</attribute>
+            </item>
+          </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Zoom Out</attribute>
+              <attribute name="action">win.zoom_out</attribute>
+              <attribute name="verb-icon">zoom-out-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Original Zoom</attribute>
+              <attribute name="action">win.zoom_100</attribute>
+              <attribute name="verb-icon">zoom-original-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Zoom In</attribute>
+              <attribute name="action">win.zoom_in</attribute>
+              <attribute name="verb-icon">zoom-in-symbolic</attribute>
+            </item>
+          </section>
+        </submenu>
         <submenu>
           <attribute name="label" translatable="yes">Position</attribute>
           <section>
@@ -270,6 +257,20 @@
       </section>
       <section id="view-tabs-section">
         <!-- list of tabs -->
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Refresh</attribute>
+          <attribute name="action">win.restore_pixbuf</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rebuild from history</attribute>
+          <attribute name="action">win.rebuild_from_histo</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
       </section>
       <section>
         <item>
