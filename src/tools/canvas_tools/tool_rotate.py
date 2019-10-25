@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
 import cairo, math
+from gi.repository import Gtk, Gdk
 
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
@@ -76,15 +76,15 @@ class ToolRotate(AbstractCanvasTool):
 		delta_x0 = self.get_selection().selection_x - event_x
 		delta_y0 = self.get_selection().selection_y - event_y
 		press_as_degrees = (math.atan2(delta_x0, delta_y0) * 180) / math.pi
-		self.angle_press = self.get_angle() + int(press_as_degrees)
+		self.angle_press = self.get_angle() - int(press_as_degrees)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if not self.apply_to_selection:
 			return
 		delta_x = self.get_selection().selection_x - event_x
 		delta_y = self.get_selection().selection_y - event_y
-		new_angle = ( math.atan2(delta_x, delta_y) * 180 ) / math.pi
-		self.angle_btn.set_value(int(new_angle) - self.angle_press)
+		release_angle = ( math.atan2(delta_x, delta_y) * 180 ) / math.pi
+		self.angle_btn.set_value(int(release_angle) + self.angle_press)
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
@@ -106,27 +106,28 @@ class ToolRotate(AbstractCanvasTool):
 
 	def on_vertical_clicked(self, *args):
 		self.flip_v = not self.flip_v
-		self.update_temp_pixbuf()
+		self.build_and_do_op()
 
 	def on_horizontal_clicked(self, *args):
 		self.flip_h = not self.flip_h
-		self.update_temp_pixbuf()
+		self.build_and_do_op()
 
 	def get_normalized_angle(self, *args):
 		angle = self.get_angle() % 360
 		angle = int(angle/90) * 90
-		print('get_normalized_angle', angle)
 		return angle
 
 	def on_angle_changed(self, *args):
 		# XXX pré-traitement ici ?
-		self.update_temp_pixbuf()
+		self.build_and_do_op()
 
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
+			'local_dx': 0,
+			'local_dy': 0,
 			'angle': self.get_angle(),
 			'flip_h': self.flip_h,
 			'flip_v': self.flip_v
@@ -171,11 +172,11 @@ class ToolRotate(AbstractCanvasTool):
 		if flip_v:
 			new_pixbuf = new_pixbuf.flip(False)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
-		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+		self.common_end_operation(operation)
 
 	def get_rotation_matrix(self, angle, width, height):
 		rad = math.pi * angle / 180
-		print('rad', rad)
+		# print('rad', rad)
 		xx = math.cos(rad)
 		xy = math.sin(rad)
 		yx = -1 * math.sin(rad)

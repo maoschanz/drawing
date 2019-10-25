@@ -487,20 +487,27 @@ class DrawingImage(Gtk.Box):
 		event_y = self.scroll_y + (event.y / self.zoom_level)
 		return event_x, event_y
 
-	def get_corrected_coords(self, x1, x2, y1, y2, with_selection_coords):
-		"""..."""
-		# TODO comprendre à quoi sert cette méthode et la documenter
-		# FIXME incorrect avec le zoom
-		x1 -= self.scroll_x
-		x2 -= self.scroll_x
-		y1 -= self.scroll_y
-		y2 -= self.scroll_y
-		if with_selection_coords:
-			# XXX toujours appelé avec True mais bon ok
+	def get_corrected_coords(self, x1, x2, y1, y2, with_selection, with_zoom):
+		"""Do whatever coordinates conversions are needed by tools like `crop`
+		and `scale` to display things (selection pixbuf, mouse cursors on hover,
+		etc.) correctly enough."""
+		w = x2 - x1
+		h = y2 - y1
+		x1 = x1 - self.scroll_x
+		y1 = y1 - self.scroll_y
+		if with_selection:
+			# FIXME ne comprends pas les deltas locaux du crop ni du scale
 			x1 += self.selection.selection_x
-			x2 += self.selection.selection_x
 			y1 += self.selection.selection_y
-			y2 += self.selection.selection_y
+		x2 = x1 + w
+		y2 = y1 + h
+		if with_zoom:
+			x1 *= self.zoom_level
+			x2 *= self.zoom_level
+			y1 *= self.zoom_level
+			y2 *= self.zoom_level
+		# TODO use the same kind of transformation for the selection cursor when
+		# the zoom is not 1.0
 		return x1, x2, y1, y2
 
 	def on_scroll_on_area(self, area, event):

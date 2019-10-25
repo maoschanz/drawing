@@ -142,16 +142,46 @@
 
   <menu id="options-menu">
     <section id="actions-menu">
+      <!-- <section> -->
+      <!--   <item> -->
+      <!--     <attribute name="label" translatable="yes">Pixels</attribute> -->
+      <!--     <attribute name="action">win.scale-unit</attribute> -->
+      <!--     <attribute name="target">pixels</attribute> -->
+      <!--   </item> -->
+      <!--   <item> -->
+      <!--     <attribute name="label" translatable="yes">Percentage</attribute> -->
+      <!--     <attribute name="action">win.scale-unit</attribute> -->
+      <!--     <attribute name="target">percents</attribute> -->
+      <!--   </item> -->
+      <!-- </section> -->
       <section>
         <item>
           <attribute name="label" translatable="yes">Always keep proportions</attribute>
           <attribute name="action">win.scale-proportions</attribute>
         </item>
       </section>
+      <!-- <section> -->
+      <!--   <item> -->
+      <!--     <attribute name="label" translatable="yes">Allow deformations</attribute> -->
+      <!--     <attribute name="action">win.scale-deformation</attribute> -->
+      <!--   </item> -->
+      <!-- </section> -->
       <section>
+        <attribute name="display-hint">horizontal-buttons</attribute>
         <item>
-          <attribute name="label" translatable="yes">Allow deformations</attribute>
-          <attribute name="action">win.scale-deformation</attribute>
+          <attribute name="label" translatable="yes">Zoom Out</attribute>
+          <attribute name="action">win.zoom_out</attribute>
+          <attribute name="verb-icon">zoom-out-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Original Zoom</attribute>
+          <attribute name="action">win.zoom_100</attribute>
+          <attribute name="verb-icon">zoom-original-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Zoom In</attribute>
+          <attribute name="action">win.zoom_in</attribute>
+          <attribute name="verb-icon">zoom-in-symbolic</attribute>
         </item>
       </section>
     </section>

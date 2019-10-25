@@ -15,8 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 import cairo
+from gi.repository import Gtk, Gdk, GdkPixbuf
+
+class NoSelectionPixbufException(Exception):
+	def __init__(self, *args):
+		super().__init__("Exception: the selection pixbuf is empty.")
+
+class NoSelectionPathException(Exception):
+	def __init__(self, *args):
+		super().__init__("Exception: the selection path is empty.")
+
+################################################################################
 
 class DrawingSelectionManager():
 	__gtype_name__ = 'DrawingSelectionManager'
@@ -37,10 +47,8 @@ class DrawingSelectionManager():
 		# print('⇒ init pixbuf')
 		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, \
 		                                                          True, 8, 1, 1)
-
 		self.set_coords(True, 0, 0)
 		self.selection_path = None
-
 		self.is_active = False
 		self.has_been_used = False
 
@@ -48,7 +56,7 @@ class DrawingSelectionManager():
 		"""Create a selection_pixbuf from a minimal part of the main surface by
 		erasing everything outside of the provided path."""
 		if new_path is None:
-			return # TODO throw something goddammit
+			raise NoSelectionPathException()
 
 		self.selection_path = new_path
 		self.is_active = True
@@ -110,37 +118,23 @@ class DrawingSelectionManager():
 		self.selection_path = None
 		self.set_coords(True, 0, 0)
 		self.is_active = False
-		# self.image.use_stable_pixbuf() # XXX empêchait la suppression de la
-		       # sélection, mais peut-être que ça avait du sens que ce soit là ?
 		self.image.update_actions_state()
 		self.image.update()
 
 	def get_path_with_scroll(self, tool_dx, tool_dy):
 		# le concept de cette méthode pue la merde
 		if self.selection_path is None:
-			return None # TODO throw something goddammit
-		# FIXME pas bon avec le zoom ?
+			raise NoSelectionPathException()
+		# FIXME pas du tout bon avec le zoom ?
 		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
 		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
 		cairo_context = self._get_context_with_path(delta_x, delta_y)
 		cairo_context.close_path()
 		return cairo_context.copy_path()
 
-	def correct_coords(self, x1, x2, y1, y2, with_selection_coords):
-		x1 -= self.image.scroll_x
-		x2 -= self.image.scroll_x
-		y1 -= self.image.scroll_y
-		y2 -= self.image.scroll_y
-		if with_selection_coords:
-			x1 += self.selection_x
-			x2 += self.selection_x
-			y1 += self.selection_y
-			y2 += self.selection_y
-		return x1, x2, y1, y2
-
 	def show_selection_on_surface(self, cairo_context, with_scroll, tool_dx, tool_dy):
 		if self.selection_pixbuf is None:
-			return # TODO throw something goddammit
+			raise NoSelectionPixbufException()
 		if with_scroll:
 			x = self.selection_x - self.image.scroll_x + tool_dx
 			y = self.selection_y - self.image.scroll_y + tool_dy
@@ -158,7 +152,7 @@ class DrawingSelectionManager():
 		It can be the result of an editing operation (crop, scale, etc.), or it
 		can be an imported picture (from a file or from the clipboard)."""
 		if self.selection_pixbuf is None:
-			return # TODO throw something goddammit
+			raise NoSelectionPixbufException()
 		self.has_been_used = True
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
@@ -180,7 +174,7 @@ class DrawingSelectionManager():
 		if not self.is_active:
 			return True # TODO throw something goddammit
 		if self.selection_path is None:
-			return None # TODO throw something goddammit
+			raise NoSelectionPathException()
 		delta_x = self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
 		delta_y = self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
 		cairo_context = self._get_context_with_path(delta_x, delta_y)

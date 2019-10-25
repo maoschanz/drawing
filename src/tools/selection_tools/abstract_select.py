@@ -113,7 +113,6 @@ class AbstractSelectionTool(ToolTemplate):
 	def preview_drag_to(self, event_x, event_y):
 		self.local_dx = event_x - self.x_press
 		self.local_dy = event_y - self.y_press
-		print("selection local deltas", self.local_dx, self.local_dy)
 		self.non_destructive_show_modif()
 
 	############################################################################
@@ -123,7 +122,7 @@ class AbstractSelectionTool(ToolTemplate):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.behavior = self.get_press_behavior(event)
-		# print('press', self.behavior, AbstractSelectionTool.future_path)
+		# print('press', self.behavior)
 		if self.behavior == 'drag':
 			self.cursor_name = 'grabbing'
 			self.window.set_cursor(True)
@@ -239,7 +238,8 @@ class AbstractSelectionTool(ToolTemplate):
 
 	def unselect_and_apply(self):
 		if self.operation_type is None:
-			return
+			print('none') # FIXME le bug des outils de sélections incompatibles entre eux
+			return # TODO raise something goddammit
 		self.operation_type = 'op-apply'
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -251,12 +251,12 @@ class AbstractSelectionTool(ToolTemplate):
 
 	def op_import(self, operation):
 		if operation['pixbuf'] is None:
-			return
+			return # TODO raise something goddammit
 		self.get_selection().set_pixbuf(operation['pixbuf'].copy())
 
 	def op_clean(self, operation):
 		if operation['initial_path'] is None:
-			return
+			return # TODO raise something goddammit
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.new_path()
 		cairo_context.append_path(operation['initial_path'])
@@ -272,7 +272,7 @@ class AbstractSelectionTool(ToolTemplate):
 
 	def op_define(self, op):
 		if op['initial_path'] is None:
-			return
+			return # TODO raise something goddammit
 		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
 		self.get_selection().load_from_path(op['initial_path'])
 

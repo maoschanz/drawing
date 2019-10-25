@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_tool import ToolTemplate
 
@@ -42,9 +42,30 @@ class AbstractCanvasTool(ToolTemplate):
 
 	############################################################################
 
-	def update_temp_pixbuf(self):
+	def build_and_do_op(self):
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
+
+	def temp_preview(self, is_selection, local_dx, local_dy):
+		"""Part of the previewing methods shared by all canvas tools."""
+		cairo_context = cairo.Context(self.get_surface())
+		pixbuf = self.get_image().get_temp_pixbuf()
+		if is_selection:
+			cairo_context.set_source_surface(self.get_surface(), 0, 0)
+			cairo_context.paint()
+			x = self.get_selection().selection_x + local_dx
+			y = self.get_selection().selection_y + local_dy
+			Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
+			cairo_context.paint()
+		else:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
+			Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
+			cairo_context.paint()
+		self.get_image().update()
+
+	############################################################################
 
 	def on_apply_temp_pixbuf_tool_operation(self, *args):
 		self.restore_pixbuf()
@@ -60,42 +81,57 @@ class AbstractCanvasTool(ToolTemplate):
 		super().apply_operation(operation)
 		self.get_image().reset_temp()
 
-	def common_end_operation(self, is_preview, is_selection):
-		if is_preview:
-			self.temp_preview(is_selection)
+	def common_end_operation(self, op):
+		if op['is_preview']:
+			self.temp_preview(op['is_selection'], op['local_dx'], op['local_dy'])
 		else:
-			self.apply_temp(is_selection)
+			self.apply_temp(op['is_selection'], op['local_dx'], op['local_dy'])
 
-	def apply_temp(self, operation_is_selection):
+	def apply_temp(self, operation_is_selection, local_dx, local_dy):
 		if operation_is_selection:
-			pixbuf = self.get_image().get_temp_pixbuf().copy() # XXX copy ??
+			pixbuf = self.get_image().get_temp_pixbuf().copy() # copy ??
 			self.get_selection().set_pixbuf(pixbuf)
-			# XXX n'a pas l'air particulièrement efficace sur les scales successifs
+			x = self.get_selection().selection_x + local_dx
+			y = self.get_selection().selection_y + local_dy
+			self.get_selection().set_coords(True, x, y) # XXX si on reste sur
+			# True, l'overlay s'en trouve décalée, mais avec False ça nique tout
+			# au moment de la désélection
 		else:
 			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
 			self.get_image().use_stable_pixbuf()
 
-	def temp_preview(self, is_selection):
-		"""Part of the previewing methods shared by all canvas tools."""
-		cairo_context = cairo.Context(self.get_surface())
-		if is_selection:
-			cairo_context.set_source_surface(self.get_surface(), 0, 0)
-			cairo_context.paint()
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-			                            self.get_image().get_temp_pixbuf(), \
-			                            self.get_selection().selection_x, \
-			                            self.get_selection().selection_y)
-			cairo_context.paint()
-		else:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
-			Gdk.cairo_set_source_pixbuf(cairo_context, \
-			                           self.get_image().get_temp_pixbuf(), 0, 0)
-			cairo_context.paint()
-		self.get_image().update()
-
 	############################################################################
+
+	def get_handle_cursor_name(self, event_x, event_y):
+		"""Return the name of the accurate cursor for tools such as `scale` or
+		`crop`, with or without an active selection, depending on the size and
+		position of the resized/cropped area."""
+		height = self.get_image().temp_pixbuf.get_height()
+		width = self.get_image().temp_pixbuf.get_width()
+		w_left, w_right, h_top, h_bottom = self.get_image().get_corrected_coords(\
+		                     0, width, 0, height, self.apply_to_selection, True)
+		# Comment to help the debug:
+		h_top += 0.4 * height
+		h_bottom -= 0.4 * height
+		w_left += 0.4 * width
+		w_right -= 0.4 * width
+		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
+
+		cursor_name = ''
+		if event_y < h_top:
+			cursor_name = cursor_name + 'n'
+		elif event_y > h_bottom:
+			cursor_name = cursor_name + 's'
+		if event_x < w_left:
+			cursor_name = cursor_name + 'w'
+		elif event_x > w_right:
+			cursor_name = cursor_name + 'e'
+
+		if cursor_name == '':
+			cursor_name = 'not-allowed'
+		else:
+			cursor_name = cursor_name + '-resize'
+		return cursor_name
 
 	def on_draw(self, area, cairo_context):
 		pass

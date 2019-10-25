@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo, math
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
@@ -26,7 +26,6 @@ class ToolMatrix(AbstractCanvasTool):
 
 	def __init__(self, window):
 		super().__init__('matrix', _("Deformation"), 'applications-science-symbolic', window)
-		# self.cursor_name = ''
 		self.row.get_style_context().add_class('destructive-action')
 
 		self.apply_to_selection = False
@@ -41,15 +40,6 @@ class ToolMatrix(AbstractCanvasTool):
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.on_reset_values()
-
-# TODO
-# le but est de remplacer :
-# - rotate
-# - flip
-# - scale
-# et d'introduire des features telles que :
-# - l'inclinaison comme dans Microsoft Paint
-# - les widgets sur la surface ?
 
 	def try_build_panel(self):
 		self.panel_id = 'matrix'
@@ -103,18 +93,6 @@ class ToolMatrix(AbstractCanvasTool):
 		self.angle_spinbtn.set_value(0)
 		self.dont_update = False
 		self.on_coord_changed()
-
-	# def on_flip_h(self, *args):
-	# 	self.dont_update = True
-		# TODO
-	# 	self.dont_update = False
-	# 	self.on_coord_changed()
-
-	# def on_flip_v(self, *args):
-	# 	self.dont_update = True
-		# TODO
-	# 	self.dont_update = False
-	# 	self.on_coord_changed()
 
 	def on_angle_changed(self, *args):
 		self.dont_update = True
@@ -174,6 +152,8 @@ class ToolMatrix(AbstractCanvasTool):
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
+			'local_dx': 0,
+			'local_dy': 0,
 			'xx': self.xx_spinbtn.get_value_as_int()/100,
 			'yx': self.yx_spinbtn.get_value_as_int()/100,
 			'xy': self.xy_spinbtn.get_value_as_int()/100,
@@ -200,7 +180,7 @@ class ToolMatrix(AbstractCanvasTool):
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
-		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+		self.common_end_operation(operation)
 
 	############################################################################
 ################################################################################

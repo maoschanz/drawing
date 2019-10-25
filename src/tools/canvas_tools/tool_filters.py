@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
-
-from .utilities import utilities_fast_blur
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
+
+from .utilities import utilities_fast_blur
 
 class ToolFilters(AbstractCanvasTool):
 	__gtype_name__ = 'ToolFilters'
@@ -48,7 +48,7 @@ class ToolFilters(AbstractCanvasTool):
 
 	def on_filter_preview(self, *args):
 		self.set_active_type()
-		self.update_temp_pixbuf()
+		self.build_and_do_op()
 
 	def get_saturation(self, *args):
 		return self.bar.sat_btn.get_value()/100
@@ -112,12 +112,14 @@ class ToolFilters(AbstractCanvasTool):
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
+			'local_dx': 0,
+			'local_dy': 0,
 			'saturation': self.get_saturation(),
 			'radius': self.get_blur_radius(),
 			'pixelate': self.pixelate,
 			'invert': self.invert,
 			'saturate': self.saturate,
-			'transparency': self.transparency,
+			'use_transparency': self.transparency,
 			'transpercent': self.get_transparency(),
 			'blur_algo': self.blur_algo
 		}
@@ -165,7 +167,7 @@ class ToolFilters(AbstractCanvasTool):
 		if blur_algo != 10:
 			blur_radius = operation['radius']
 			self.op_blur(source_pixbuf, blur_algo, blur_radius)
-		elif operation['transparency']:
+		elif operation['use_transparency']:
 			percent = operation['transpercent']
 			self.op_transparency(source_pixbuf, percent)
 		elif operation['invert']:
@@ -179,7 +181,7 @@ class ToolFilters(AbstractCanvasTool):
 			elif operation['pixelate']:
 				source_pixbuf.saturate_and_pixelate(temp, 1, operation['pixelate'])
 
-		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+		self.common_end_operation(operation)
 
 	############################################################################
 ################################################################################
@@ -214,9 +216,10 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		                    self.tspc_btn.get_preferred_width()[0], \
 		                    self.blur_label.get_preferred_width()[0] + \
 		                    self.blur_btn.get_preferred_width()[0])
-		temp_limit_size = self.menu_btn.get_preferred_width()[0] + 50 + \
-		             widgets_size + self.cancel_btn.get_preferred_width()[0] + \
-		                                 self.apply_btn.get_preferred_width()[0]
+		temp_limit_size = self.menu_btn.get_preferred_width()[0] + \
+		                  50 + widgets_size + \
+		                  self.cancel_btn.get_preferred_width()[0] + \
+		                  self.apply_btn.get_preferred_width()[0]
 		self.set_limit_size(temp_limit_size)
 
 	def on_filter_changed(self):

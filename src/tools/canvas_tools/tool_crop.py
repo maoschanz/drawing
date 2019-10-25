@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
@@ -33,7 +33,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.apply_to_selection = False
 		self.x_press = 0
 		self.y_press = 0
-		self.move_instead_of_crop = False
+		self.unclicked = True
 
 	def try_build_panel(self):
 		self.panel_id = 'crop'
@@ -87,64 +87,12 @@ class ToolCrop(AbstractCanvasTool):
 		return self.height_btn.get_value_as_int()
 
 	def on_width_changed(self, *args):
-		self.update_temp_pixbuf()
+		if self.unclicked:
+			self.build_and_do_op()
 
 	def on_height_changed(self, *args):
-		self.update_temp_pixbuf()
-
-	def on_unclicked_motion_on_area(self, event, surface):
-		cursor_name = ''
-		if event.y < 0.3 * surface.get_height():
-			cursor_name = cursor_name + 'n'
-		elif event.y > 0.6 * surface.get_height():
-			cursor_name = cursor_name + 's'
-
-		if event.x < 0.3 * surface.get_width():
-			cursor_name = cursor_name + 'w'
-		elif event.x > 0.6 * surface.get_width():
-			cursor_name = cursor_name + 'e'
-
-		if cursor_name == '':
-			cursor_name = 'not-allowed'
-		else:
-			cursor_name = cursor_name + '-resize'
-		self.cursor_name = cursor_name
-		self.window.set_cursor(True)
-
-	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
-
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		delta_x = event.x - self.x_press
-		delta_y = event.y - self.y_press
-
-		if self.cursor_name == 'not-allowed':
-			return
-		elif self.cursor_name == 'n-resize':
-			self.move_north(delta_y)
-		elif self.cursor_name == 'ne-resize':
-			self.move_north(delta_y)
-			self.move_east(delta_x)
-		elif self.cursor_name == 'e-resize':
-			self.move_east(delta_x)
-		elif self.cursor_name == 'se-resize':
-			self.move_south(delta_y)
-			self.move_east(delta_x)
-		elif self.cursor_name == 's-resize':
-			self.move_south(delta_y)
-		elif self.cursor_name == 'sw-resize':
-			self.move_south(delta_y)
-			self.move_west(delta_x)
-		elif self.cursor_name == 'w-resize':
-			self.move_west(delta_x)
-		elif self.cursor_name == 'nw-resize':
-			self.move_north(delta_y)
-			self.move_west(delta_x)
-
-		self.x_press = event.x
-		self.y_press = event.y
-		self.update_temp_pixbuf()
+		if self.unclicked:
+			self.build_and_do_op()
 
 	def move_north(self, delta):
 		self.height_btn.set_value(self.height_btn.get_value() - delta)
@@ -160,22 +108,70 @@ class ToolCrop(AbstractCanvasTool):
 		self.width_btn.set_value(self.width_btn.get_value() - delta)
 		self._x = self._x + delta
 
+	############################################################################
+
+	def on_unclicked_motion_on_area(self, event, surface):
+		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
+		self.window.set_cursor(True)
+
+	def on_press_on_area(self, event, surface, event_x, event_y):
+		self.x_press = event.x
+		self.y_press = event.y
+		self.unclicked = False
+
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		delta_x = event.x - self.x_press
+		delta_y = event.y - self.y_press
+
+		if self.cursor_name == 'not-allowed':
+			return
+		else:
+			directions = self.cursor_name.replace('-resize', '')
+		if 'n' in directions:
+			self.move_north(delta_y)
+		if 's' in directions:
+			self.move_south(delta_y)
+		if 'w' in directions:
+			self.move_west(delta_x)
+		if 'e' in directions:
+			self.move_east(delta_x)
+
+		if self.apply_to_selection:
+			self._x = max(0, self._x)
+			self._y = max(0, self._y)
+
+		self.x_press = event.x
+		self.y_press = event.y
+		# self.build_and_do_op() # better UX but slower to compute
+		if not self.apply_to_selection:
+			self.build_and_do_op() # XXX ugly compromise
+
 	def on_release_on_area(self, event, surface, event_x, event_y):
+		self.unclicked = True
+		self.build_and_do_op()
 		self.window.set_cursor(False)
 
 	############################################################################
 
 	def on_draw(self, area, cairo_context):
+		# TODO factorisable
 		if self.apply_to_selection:
-			# print('on_draw: yes')
 			x1 = int(self._x)
 			y1 = int(self._y)
 			x2 = x1 + self.get_width()
 			y2 = y1 + self.get_height()
-			x1, x2, y1, y2 = self.get_selection().correct_coords(x1, x2, y1, y2, True)
+			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
+			                                                    y2, True, False)
 			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
-		# else:
-		# 	print('on_draw: no')
+			# XXX bien excepté les delta locaux
+		else:
+			x1 = 0
+			y1 = 0
+			x2 = self.get_width()
+			y2 = self.get_height()
+			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
+			                                                   y2, False, False)
+			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
 
 	############################################################################
 
@@ -211,16 +207,16 @@ class ToolCrop(AbstractCanvasTool):
 			nice_w = int(width * h_ratio)
 			nice_h = visible_h
 		pb = self.get_image().get_temp_pixbuf()
-		self.get_image().set_temp_pixbuf( \
-		            pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES))
+		new_pb = pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES)
+		self.get_image().set_temp_pixbuf(new_pb)
 
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
-			'x': int(self._x),
-			'y': int(self._y),
+			'local_dx': int(self._x),
+			'local_dy': int(self._y),
 			'width': self.get_width(),
 			'height': self.get_height()
 		}
@@ -230,8 +226,8 @@ class ToolCrop(AbstractCanvasTool):
 		if operation['tool_id'] != self.id:
 			return
 		self.restore_pixbuf()
-		x = operation['x']
-		y = operation['y']
+		x = operation['local_dx']
+		y = operation['local_dy']
 		width = operation['width']
 		height = operation['height']
 		if operation['is_selection']:
@@ -241,9 +237,9 @@ class ToolCrop(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		self.crop_temp_pixbuf(x, y, width, height, operation['is_selection'])
 
-		if not operation['is_selection'] and operation['is_preview']:
-			self.scale_temp_pixbuf_to_area(width, height)
-		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+		# if not operation['is_selection'] and operation['is_preview']:
+		# 	self.scale_temp_pixbuf_to_area(width, height)
+		self.common_end_operation(operation)
 
 	############################################################################
 ################################################################################
@@ -259,13 +255,19 @@ class CropToolPanel(DrawingAdaptativeBottomBar):
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
 		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
-		# TODO X et Y ? top/bottom/left/right ?
-		# ...
+		# XXX top/bottom/left/right ?
+
+		self.options_btn = builder.get_object('options_btn')
+
+		self.width_label = builder.get_object('width_label')
+		self.height_label = builder.get_object('height_label')
+		self.separator = builder.get_object('separator')
 
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
+		                   self.options_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self.set_limit_size(temp_limit_size)
 
@@ -275,8 +277,11 @@ class CropToolPanel(DrawingAdaptativeBottomBar):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+		self.width_label.set_visible(not state)
+		self.height_label.set_visible(not state)
+		self.separator.set_visible(not state)
 
-		# if self.scale_tool.apply_to_selection:
+		# if self.crop_tool.apply_to_selection:
 		# 	self.???.set_visible(state)
 		# else:
 		# 	self.???.set_visible(state)

@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
@@ -29,8 +29,10 @@ class ToolScale(AbstractCanvasTool):
 
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
-		self.cursor_name = 'se-resize'
+		self.cursor_name = 'not-allowed'
 		self.keep_proportions = False
+		self._x = 0
+		self._y = 0
 		self.x_press = 0
 		self.y_press = 0
 		self.add_tool_action_boolean('scale-proportions', True)
@@ -82,7 +84,7 @@ class ToolScale(AbstractCanvasTool):
 		if self.keep_proportions:
 			if self.proportion != self.get_width()/self.get_height():
 				self.height_btn.set_value(self.get_width()/self.proportion)
-		self.update_temp_pixbuf()
+		self.build_and_do_op()
 
 	def on_height_changed(self, *args):
 		self.try_set_keep_proportions()
@@ -90,7 +92,7 @@ class ToolScale(AbstractCanvasTool):
 			if self.proportion != self.get_width()/self.get_height():
 				self.width_btn.set_value(self.get_height()*self.proportion)
 		else:
-			self.update_temp_pixbuf()
+			self.build_and_do_op()
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
@@ -99,6 +101,10 @@ class ToolScale(AbstractCanvasTool):
 		return self.height_btn.get_value_as_int()
 
 	############################################################################
+
+	def on_unclicked_motion_on_area(self, event, surface):
+		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
+		self.window.set_cursor(True)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event.x
@@ -119,16 +125,24 @@ class ToolScale(AbstractCanvasTool):
 	############################################################################
 
 	def on_draw(self, area, cairo_context):
+		# TODO factorisable
 		if self.apply_to_selection:
-			# print('on_draw: yes')
-			x1 = self.get_selection().selection_x # XXX
-			y1 = self.get_selection().selection_y # XXX
+			x1 = int(self._x)
+			y1 = int(self._y)
 			x2 = x1 + self.get_width()
 			y2 = y1 + self.get_height()
-			x1, x2, y1, y2 = self.get_selection().correct_coords(x1, x2, y1, y2, False)
+			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
+			                                                    y2, True, False)
 			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
-		# else:
-		# 	print('on_draw: no')
+			# XXX bien excepté les delta locaux
+		else:
+			x1 = 0
+			y1 = 0
+			x2 = self.get_width()
+			y2 = self.get_height()
+			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
+			                                                   y2, False, False)
+			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
 
 	############################################################################
 
@@ -137,6 +151,8 @@ class ToolScale(AbstractCanvasTool):
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
+			'local_dx': int(self._x),
+			'local_dy': int(self._y),
 			'width': self.get_width(),
 			'height': self.get_height()
 		}
@@ -153,7 +169,7 @@ class ToolScale(AbstractCanvasTool):
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.scale_simple( \
 		   operation['width'], operation['height'], GdkPixbuf.InterpType.TILES))
-		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+		self.common_end_operation(operation)
 
 	############################################################################
 ################################################################################
@@ -174,11 +190,11 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
 		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
 
+		self.options_btn = builder.get_object('options_btn')
+
 		self.width_label = builder.get_object('width_label')
 		self.height_label = builder.get_object('height_label')
-
 		self.separator = builder.get_object('separator')
-		self.options_btn = builder.get_object('options_btn')
 
 	def toggle_options_menu(self):
 		self.options_btn.set_active(not self.options_btn.get_active())
@@ -187,6 +203,7 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
+		                   self.options_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self.set_limit_size(temp_limit_size)
 
