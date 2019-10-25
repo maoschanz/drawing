@@ -61,6 +61,8 @@ class DrawingCustomImageDialog(Gtk.Dialog):
 		self.default_checkbtn = builder.get_object('default_checkbtn')
 
 	def get_values(self):
+		"""Will be called from `self.appwindow` if the user clicks on "Create",
+		and returns the values set by the user."""
 		width = self.width_btn.get_value_as_int()
 		height = self.height_btn.get_value_as_int()
 		rgba = self.color_btn.get_rgba()

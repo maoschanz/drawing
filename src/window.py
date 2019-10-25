@@ -18,7 +18,6 @@
 # Import libs
 import os
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
-# XXX wtf j'importe pas gi ??
 
 # Import tools
 from .tool_arc import ToolArc
@@ -251,7 +250,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def on_active_tab_changed(self, *args):
 		self.switch_to(self.active_tool_id, args[1])
 		print("changement d'image")
-		# On devrait être moins bourrin et conserver la sélection # TODO
+		# On devrait être moins bourrin et conserver la sélection # XXX
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
 
@@ -263,6 +262,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			tab_title = page.update_title()
 			tab_index = self.notebook.page_num(page)
 			section.append(tab_title, 'win.active_tab(' + str(tab_index) + ')')
+
+	# def action_tab_left(self, *args):
+	# 	pass TODO
+
+	# def action_tab_right(self, *args):
+	# 	pass TODO
 
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
@@ -397,6 +402,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('new_tab_clipboard', \
 		                    self.build_image_from_clipboard, ['<Ctrl><Shift>o'])
 		self.add_action_simple('open', self.action_open, ['<Ctrl>o'])
+		# self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
+		# self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
 		self.add_action_simple('close', self.action_close_window, None)
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
@@ -1127,7 +1134,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().set_zoom_level(100)
 
 	def action_zoom_opti(self, *args):
-		print('eeeeee')
 		self.get_active_image().set_opti_zoom_level()
 
 	############################################################################

@@ -39,6 +39,8 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 			self.should_wrap = False
 
 	def set_action(self, label, style, is_default):
+		"""Add a button (with the specified style) to the message dialog and
+		returns the corresponding response id."""
 		self.min_action_index = self.min_action_index + 1
 		btn = self.add_button(label, self.min_action_index)
 		if style is not None:

@@ -50,8 +50,8 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		########################################################################
 		# Build the "images" page ##############################################
-
 		pass
+
 		w = self.row_from_label(_("New images"), False)
 		self.page_images.add(w)
 
@@ -89,8 +89,8 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		########################################################################
 		# Build the "tools" page ###############################################
-
 		pass
+
 		w = self.row_from_label(_("Appearance"), False)
 		self.page_tools.add(w)
 
@@ -117,8 +117,8 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		########################################################################
 		# Build the "advanced" page ############################################
-
 		pass
+
 		w = self.row_from_label(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
@@ -164,6 +164,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		self._radio_are_active = True
 
 	############################################################################
+	# Widgets building methods #################################################
 
 	def row_from_label(self, label_text, with_margin):
 		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \

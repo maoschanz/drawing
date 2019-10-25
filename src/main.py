@@ -49,7 +49,6 @@ class Application(Gtk.Application):
 
 		self.connect('startup', self.on_startup)
 		self.register(None)
-
 		self.connect('activate', self.on_activate)
 		self.connect('command-line', self.on_cli)
 
@@ -180,7 +179,7 @@ class Application(Gtk.Application):
 		Gtk.show_uri_on_window(win, url, Gdk.CURRENT_TIME)
 
 	def on_shortcuts(self, *args):
-		"""Action callback, showing the "shortcuts" dialog."""
+		"""Action callback, showing the 'shortcuts' dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
 		builder = Gtk.Builder().new_from_resource(APP_PATH + 'ui/shortcuts.ui')
@@ -205,7 +204,8 @@ class Application(Gtk.Application):
 		self.show_help_page('/main_features')
 
 	def on_help_tools(self, *args):
-		"""Action callback, showing the 'tools' page of the user help manual."""
+		"""Action callback, showing the 'classic tools' page of the user help
+		manual."""
 		self.show_help_page('/tools_classic')
 
 	def on_help_canvas(self, *args):
@@ -226,7 +226,8 @@ class Application(Gtk.Application):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
 			copyright='© 2019 Romain F. T.', authors=['Romain F. T.'],
-			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
+			# To tranlators: "translate" this by your name, it will be displayed
+			# in the "about" dialog
 			translator_credits=_("translator-credits"),
 			artists=['Tobias Bernard', 'Romain F. T.'],
 			comments=_("A drawing application for the GNOME desktop."),

@@ -19,6 +19,7 @@ from gi.repository import GLib
 
 class DrawingOptionsManager():
 	__gtype_name__ = 'DrawingOptionsManager'
+	# TODO this class should raise/catch exceptions instead of trusting me
 
 	def __init__(self, window):
 		self.window = window
@@ -26,6 +27,9 @@ class DrawingOptionsManager():
 		self.cached_value2 = None
 		self.bottom_panels_dict = {}
 		self.active_panel = None
+
+	############################################################################
+	# Gio.Action for tool options ##############################################
 
 	def add_tool_option_boolean(self, name, default):
 		if self.window.lookup_action(name) is not None:
@@ -51,8 +55,6 @@ class DrawingOptionsManager():
 		else:
 			return action.get_state()
 
-	############################################################################
-
 	def boolean_callback(self, *args):
 		new_value = args[1].get_boolean()
 		# current_value = args[0].get_state()
@@ -75,6 +77,7 @@ class DrawingOptionsManager():
 		self.window.set_picture_title()
 
 	############################################################################
+	# Bottom panels management #################################################
 
 	def try_add_bottom_panel(self, panel_id, calling_tool):
 		if panel_id not in self.bottom_panels_dict:
@@ -86,17 +89,14 @@ class DrawingOptionsManager():
 
 	def try_enable_panel(self, panel_id):
 		if panel_id == self.active_panel:
-			print("panneau déjà actif")
 			return
 		elif panel_id not in self.bottom_panels_dict:
-			print("panneau non présent")
+			# Shouldn't happen anyway
 			return
 		else:
-			print("activation du panneau …")
 			self.active_panel = panel_id
 			self.show_active_panel()
 			self.update_minimap_position()
-			print("… panneau activé")
 
 	def show_active_panel(self):
 		for each_id in self.bottom_panels_dict:
@@ -133,6 +133,7 @@ class DrawingOptionsManager():
 			self.bottom_panels_dict[panel_id].set_minimap_label(label)
 
 	def update_minimap_position(self):
+		"""Move the minimap popover to the currently active panel."""
 		btn = self.get_active_panel().get_minimap_btn()
 		if btn is not None:
 			self.window.minimap.set_relative_to(btn)
@@ -140,32 +141,36 @@ class DrawingOptionsManager():
 			self.window.minimap.set_relative_to(self.window.bottom_panel_box)
 
 	############################################################################
+	# Methods specific to the classic panel ####################################
 
-	def left_color_btn(self): # XXX hardcoded
-		return self.bottom_panels_dict['classic'].color_popover_l
+	def get_classic_panel(self): # XXX hardcoded
+		return self.bottom_panels_dict['classic']
 
-	def right_color_btn(self): # XXX hardcoded
-		return self.bottom_panels_dict['classic'].color_popover_r
+	def left_color_btn(self):
+		return self.get_classic_panel().color_popover_l
 
-	def set_palette_setting(self, show_editor): # XXX hardcoded
-		self.bottom_panels_dict['classic'].set_palette_setting(show_editor)
+	def right_color_btn(self):
+		return self.get_classic_panel().color_popover_r
 
-	def get_tool_width(self): # XXX hardcoded
-		return int(self.bottom_panels_dict['classic'].thickness_spinbtn.get_value())
+	def set_palette_setting(self, show_editor):
+		self.get_classic_panel().set_palette_setting(show_editor)
 
-	def set_right_color(self, color): # XXX hardcoded
+	def get_tool_width(self):
+		return int(self.get_classic_panel().thickness_spinbtn.get_value())
+
+	def set_right_color(self, color):
 		return self.right_color_btn().color_widget.set_rgba(color)
 
-	def set_left_color(self, color): # XXX hardcoded
+	def set_left_color(self, color):
 		return self.left_color_btn().color_widget.set_rgba(color)
 
-	def get_right_color(self): # XXX hardcoded
+	def get_right_color(self):
 		return self.right_color_btn().color_widget.get_rgba()
 
-	def get_left_color(self): # XXX hardcoded
+	def get_left_color(self):
 		return self.left_color_btn().color_widget.get_rgba()
 
-	def exchange_colors(self): # XXX hardcoded
+	def exchange_colors(self):
 		left_c = self.get_left_color()
 		self.left_color_btn().color_widget.set_rgba(self.get_right_color())
 		self.right_color_btn().color_widget.set_rgba(left_c)
