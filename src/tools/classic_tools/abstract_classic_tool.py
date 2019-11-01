@@ -7,7 +7,7 @@ from .abstract_tool import ToolTemplate
 from .bottombar import DrawingAdaptativeBottomBar
 from .color_popover import DrawingColorPopover
 
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 from .utilities import utilities_fast_blur
 
 class AbstractClassicTool(ToolTemplate):
@@ -122,7 +122,7 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
 		self.thickness_spinbtn.set_value(self.window._settings.get_int('last-size'))
-		utilities_add_px_to_spinbutton(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
+		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')

@@ -211,21 +211,23 @@ def _draw_arc_handle(cairo_context, x, y, rayon, orientation):
 	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	cairo_context.stroke()
 
+def utilities_get_magic_path2(surface, x, y, window, coef):
+	# TODO idée :
+	# le délire ce serait de commencer un path petit, puis de l'étendre avec
+	# cairo.Context.clip_extents() jusqu'à ce qu'on soit à fond.
+	# À partir de là on fait cairo.Context.paint()
+	pass
+
 def utilities_get_magic_path(surface, x, y, window, coef):
 	"""This method tries to build a path defining an area of the same color. It
 	will mainly be used to paint this area, or to select it."""
-# TODO idée :
-# le délire ce serait de commencer un path petit, puis de l'étendre avec
-# cairo.Context.clip_extents() jusqu'à ce qu'on soit à fond.
-# À partir de là on fait cairo.Context.paint()
+	cairo_context = cairo.Context(surface)
+	old_color = utilities_get_rgb_for_xy(surface, x, y)
 
 	# Cairo doesn't provide methods for what we want to do. I will have to
 	# define myself how to decide what should be filled.
 	# The heuristic here is that we create a hull containing the area of
 	# color we want to paint. We don't care about "enclaves" of other colors.
-	cairo_context = cairo.Context(surface)
-	old_color = utilities_get_rgb_for_xy(surface, x, y)
-
 	while (utilities_get_rgb_for_xy(surface, x, y) == old_color) and y > 0:
 		y = y - 1
 	y = y + 1 # sinon ça crashe ?
@@ -306,27 +308,27 @@ This algorithm may not be able to manage the wanted area.
 Do you want to abort the operation, or to let the tool struggle ?""") )
 	return dialog, continue_id
 
-def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width):
+def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	cairo_context.new_path()
 	cairo_context.set_line_width(line_width)
 	cairo_context.set_dash([1, 0])
-	cairo_context.move_to(x_release, y_release)
-	x_length = max(x_press, x_release) - min(x_press, x_release)
-	y_length = max(y_press, y_release) - min(y_press, y_release)
+	cairo_context.move_to(x2, y2)
+	x_length = max(x1, x2) - min(x1, x2)
+	y_length = max(y1, y2) - min(y1, y2)
 	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
 	arrow_width = math.log(line_length)
-	if (x_press - x_release) != 0:
-		delta = (y_press - y_release) / (x_press - x_release)
+	if (x1 - x2) != 0:
+		delta = (y1 - y2) / (x1 - x2)
 	else:
 		delta = 1.0
 
-	x_backpoint = (x_press + x_release)/2
-	y_backpoint = (y_press + y_release)/2
+	x_backpoint = (x1 + x2)/2
+	y_backpoint = (y1 + y2)/2
 	i = 0
 	while i < arrow_width:
 		i = i + 2
-		x_backpoint = (x_backpoint + x_release)/2
-		y_backpoint = (y_backpoint + y_release)/2
+		x_backpoint = (x_backpoint + x2)/2
+		y_backpoint = (y_backpoint + y2)/2
 
 	if delta < -1.5 or delta > 1.0:
 		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint)
@@ -342,14 +344,20 @@ def utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y
 	cairo_context.fill_preserve()
 	cairo_context.stroke()
 
-def utilities_add_px_to_spinbutton(spinbutton, width_chars, unit):
-	spinbutton.set_width_chars(width_chars + 2)
-	return # TODO trouver mieux
+def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
+	# spinbutton.set_width_chars(width_chars + 2)
+	# return # XXX trouver mieux
 	spinbutton.set_width_chars(width_chars + 3)
 	if unit == 'px':
-		spinbutton.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, 'unit-pixels-symbolic')
-		spinbutton.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, _("pixels"))
-	spinbutton.set_icon_sensitive(Gtk.EntryIconPosition.SECONDARY, False)
+		_add_spinbutton_icon(spinbutton, 'unit-pixels-symbolic', _("pixels"))
+	elif unit == '%':
+		_add_spinbutton_icon(spinbutton, 'unit-percents-symbolic', _("percents"))
+
+def _add_spinbutton_icon(spinbutton, icon, tooltip):
+	p = Gtk.EntryIconPosition.SECONDARY
+	spinbutton.set_icon_from_icon_name(p, icon)
+	spinbutton.set_icon_tooltip_text(p, tooltip)
+	spinbutton.set_icon_sensitive(p, False)
 
 ################################################################################
 # Path smoothing ###############################################################

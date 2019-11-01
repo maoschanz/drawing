@@ -22,6 +22,7 @@ from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities import utilities_fast_blur
+from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolFilters(AbstractCanvasTool):
 	__gtype_name__ = 'ToolFilters'
@@ -197,12 +198,18 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.menu_btn = builder.get_object('menu_btn')
 		self.menu_label = builder.get_object('menu_label')
 		self.menu_icon = builder.get_object('menu_icon')
+
 		self.sat_label = builder.get_object('sat_label')
 		self.sat_btn = builder.get_object('sat_btn')
+		utilities_add_unit_to_spinbtn(self.sat_btn, 3, '%')
+
 		self.tspc_label = builder.get_object('tspc_label')
 		self.tspc_btn = builder.get_object('tspc_btn')
+		utilities_add_unit_to_spinbtn(self.tspc_btn, 3, '%')
+
 		self.blur_label = builder.get_object('blur_label')
 		self.blur_btn = builder.get_object('blur_btn')
+		utilities_add_unit_to_spinbtn(self.blur_btn, 2, 'px')
 
 	def toggle_options_menu(self):
 		self.menu_btn.set_active(not self.menu_btn.get_active())

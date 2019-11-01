@@ -86,7 +86,7 @@
 
         <child>
           <object class="GtkLabel" id="sat_label">
-            <property name="label" translatable="yes">Saturation (%)</property>
+            <property name="label" translatable="yes">Saturation</property>
             <property name="visible">True</property>
           </object>
         </child>
@@ -94,13 +94,13 @@
           <object class="GtkSpinButton" id="sat_btn">
             <property name="visible">True</property>
             <property name="adjustment">adj_saturation</property>
-            <property name="tooltip_text" translatable="yes">Saturation (%)</property>
+            <property name="tooltip_text" translatable="yes">Saturation</property>
           </object>
         </child>
 
         <child>
           <object class="GtkLabel" id="blur_label">
-            <property name="label" translatable="yes">Radius</property>
+            <property name="label" translatable="yes">Blur radius</property>
             <property name="visible">True</property>
           </object>
         </child>
@@ -108,7 +108,7 @@
           <object class="GtkSpinButton" id="blur_btn">
             <property name="visible">True</property>
             <property name="adjustment">adj_blur</property>
-            <property name="tooltip_text" translatable="yes">Blur radius (pixels)</property>
+            <property name="tooltip_text" translatable="yes">Blur radius</property>
           </object>
         </child>
 
@@ -122,7 +122,7 @@
           <object class="GtkSpinButton" id="tspc_btn">
             <property name="visible">True</property>
             <property name="adjustment">adj_transparency</property>
-            <property name="tooltip_text" translatable="yes">Transparency (%)</property>
+            <property name="tooltip_text" translatable="yes">Transparency</property>
           </object>
         </child>
 

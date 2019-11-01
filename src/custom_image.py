@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 
 class DrawingCustomImageDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingCustomImageDialog'
@@ -40,12 +40,12 @@ class DrawingCustomImageDialog(Gtk.Dialog):
 		self.get_content_area().add(props_content_area)
 
 		self.width_btn = builder.get_object('spin_width')
-		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 		default_w = self.appwindow._settings.get_int('default-width')
 		self.width_btn.set_value(default_w)
 
 		self.height_btn = builder.get_object('spin_height')
-		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
 		default_h = self.appwindow._settings.get_int('default-height')
 		self.height_btn.set_value(default_h)
 
