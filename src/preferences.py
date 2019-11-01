@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio, GLib, Gdk
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
 
@@ -191,7 +191,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	def row_from_adj(self, label_text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
-		utilities_add_px_to_spinbutton(spinbtn, 4, 'px')
+		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
 		return self.row_from_widget(label_text, spinbtn)
 

@@ -21,7 +21,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 from .utilities import utilities_show_handles_on_context
 
 class ToolCrop(AbstractCanvasTool):
@@ -144,7 +144,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.y_press = event.y
 		# self.build_and_do_op() # better UX but slower to compute
 		if not self.apply_to_selection:
-			self.build_and_do_op() # XXX ugly compromise
+			self.build_and_do_op()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.unclicked = True
@@ -154,61 +154,22 @@ class ToolCrop(AbstractCanvasTool):
 	############################################################################
 
 	def on_draw(self, area, cairo_context):
-		# TODO factorisable
 		if self.apply_to_selection:
 			x1 = int(self._x)
 			y1 = int(self._y)
-			x2 = x1 + self.get_width()
-			y2 = y1 + self.get_height()
-			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
-			                                                    y2, True, False)
-			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
-			# XXX bien excepté les delta locaux
 		else:
 			x1 = 0
 			y1 = 0
-			x2 = self.get_width()
-			y2 = self.get_height()
-			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
-			                                                   y2, False, False)
-			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		x2 = x1 + self.get_width()
+		y2 = y1 + self.get_height()
+		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
+		                                         self.apply_to_selection, False)
+		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		# FIXME bien excepté les delta locaux : quand on rogne depuis le haut ou
+		# la gauche, les coordonées de référence des poignées ne sont plus
+		# correctes.
 
 	############################################################################
-
-	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		new_pixbuf.fill(0)
-		src_x = max(x, 0)
-		src_y = max(y, 0)
-		if is_selection:
-			dest_x = 0
-			dest_y = 0
-		else:
-			dest_x = max(-1 * x, 0)
-			dest_y = max(-1 * y, 0)
-		temp_p = self.get_image().get_temp_pixbuf()
-		min_w = min(width, temp_p.get_width() - src_x)
-		min_h = min(height, temp_p.get_height() - src_y)
-		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
-		self.get_image().temp_pixbuf = new_pixbuf
-
-	def scale_temp_pixbuf_to_area(self, width, height):
-		visible_w = self.get_image().get_widget_width()
-		visible_h = self.get_image().get_widget_height()
-		w_ratio = visible_w/width
-		h_ratio = visible_h/height
-		if w_ratio > 1.0 and h_ratio > 1.0:
-			nice_w = width
-			nice_h = height
-		elif visible_h/visible_w > height/width:
-			nice_w = visible_w
-			nice_h = int(height * w_ratio)
-		else:
-			nice_w = int(width * h_ratio)
-			nice_h = visible_h
-		pb = self.get_image().get_temp_pixbuf()
-		new_pb = pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES)
-		self.get_image().set_temp_pixbuf(new_pb)
 
 	def build_operation(self):
 		operation = {
@@ -236,10 +197,24 @@ class ToolCrop(AbstractCanvasTool):
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		self.crop_temp_pixbuf(x, y, width, height, operation['is_selection'])
-
-		# if not operation['is_selection'] and operation['is_preview']:
-		# 	self.scale_temp_pixbuf_to_area(width, height)
 		self.common_end_operation(operation)
+
+	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		new_pixbuf.fill(0)
+		src_x = max(x, 0)
+		src_y = max(y, 0)
+		if is_selection:
+			dest_x = 0
+			dest_y = 0
+		else:
+			dest_x = max(-1 * x, 0)
+			dest_y = max(-1 * y, 0)
+		temp_p = self.get_image().get_temp_pixbuf()
+		min_w = min(width, temp_p.get_width() - src_x)
+		min_h = min(height, temp_p.get_height() - src_y)
+		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
+		self.get_image().temp_pixbuf = new_pixbuf
 
 	############################################################################
 ################################################################################
@@ -253,8 +228,8 @@ class CropToolPanel(DrawingAdaptativeBottomBar):
 		builder = self.build_ui('tools/ui/tool_crop.ui')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
-		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
-		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 		# XXX top/bottom/left/right ?
 
 		self.options_btn = builder.get_object('options_btn')

@@ -21,7 +21,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 from .utilities import utilities_show_handles_on_context
 
 class ToolScale(AbstractCanvasTool):
@@ -30,13 +30,13 @@ class ToolScale(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'not-allowed'
-		self.keep_proportions = False
+		self.keep_proportions = True
 		self._x = 0
 		self._y = 0
 		self.x_press = 0
 		self.y_press = 0
-		self.add_tool_action_boolean('scale-proportions', True)
-		# self.add_tool_action_boolean('scale-deformation', False) # TODO
+		self.add_tool_action_boolean('scale-proportions', False)
+		# self.add_tool_action_boolean('scale-deformation', False) # TODO ?
 
 	def try_build_panel(self):
 		self.panel_id = 'scale'
@@ -58,16 +58,21 @@ class ToolScale(AbstractCanvasTool):
 
 	############################################################################
 
+	def should_set_value(self, *args):
+		current_prop = self.get_width() / self.get_height()
+		return self.keep_proportions and self.proportion != current_prop
+
 	def try_set_keep_proportions(self, *args):
-		# XXX this shit is a clue that this tool is not enough operation-ish
 		if self.keep_proportions == self.get_option_value('scale-proportions'):
 			return
 		self.keep_proportions = self.get_option_value('scale-proportions')
 		if self.keep_proportions:
-			self.proportion = self.get_width()/self.get_height()
+			self.proportion = self.get_width() / self.get_height()
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
+		self._x = 0
+		self._y = 0
 		if self.apply_to_selection:
 			width = self.get_selection_pixbuf().get_width()
 			height = self.get_selection_pixbuf().get_height()
@@ -81,16 +86,14 @@ class ToolScale(AbstractCanvasTool):
 
 	def on_width_changed(self, *args):
 		self.try_set_keep_proportions()
-		if self.keep_proportions:
-			if self.proportion != self.get_width()/self.get_height():
-				self.height_btn.set_value(self.get_width()/self.proportion)
+		if self.should_set_value():
+			self.height_btn.set_value(self.get_width() / self.proportion)
 		self.build_and_do_op()
 
 	def on_height_changed(self, *args):
 		self.try_set_keep_proportions()
-		if self.keep_proportions:
-			if self.proportion != self.get_width()/self.get_height():
-				self.width_btn.set_value(self.get_height()*self.proportion)
+		if self.should_set_value():
+			self.width_btn.set_value(self.get_height() * self.proportion)
 		else:
 			self.build_and_do_op()
 
@@ -111,38 +114,65 @@ class ToolScale(AbstractCanvasTool):
 		self.y_press = event.y
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
+		if self.cursor_name == 'not-allowed':
+			return
+		else:
+			directions = self.cursor_name.replace('-resize', '')
 		delta_x = event.x - self.x_press
-		self.width_btn.set_value(self.width_btn.get_value() + delta_x)
-		if not self.keep_proportions:
-			delta_y = event.y - self.y_press
-			self.height_btn.set_value(self.height_btn.get_value() + delta_y)
+		delta_y = event.y - self.y_press
 		self.x_press = event.x
 		self.y_press = event.y
 
+		height = self.get_height()
+		width = self.get_width()
+		if 'n' in directions:
+			height -= delta_y
+			self._y = self._y + delta_y
+		if 's' in directions:
+			height += delta_y
+		if 'w' in directions:
+			width -= delta_x
+			self._x = self._x + delta_x
+		if 'e' in directions:
+			width += delta_x
+
+		if self.apply_to_selection:
+			# XXX pas ce que je veux, mais ça limite la casse
+			self._x = min(self._x + self.get_width(), self._x)
+			self._y = min(self._y + self.get_height(), self._y)
+
+		if self.keep_proportions:
+			# XXX Les erreurs liées aux arrondis s'ajoutent et ça fait pas mal
+			# bouger la sélection alors que ça ne devrait pas
+			if abs(delta_y) > abs(delta_x):
+				self.height_btn.set_value(height)
+			else:
+				self.width_btn.set_value(width)
+		else:
+			self.height_btn.set_value(height)
+			self.width_btn.set_value(width)
+
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
+		self.build_and_do_op() # techniquement déjà fait
 
 	############################################################################
 
 	def on_draw(self, area, cairo_context):
-		# TODO factorisable
 		if self.apply_to_selection:
 			x1 = int(self._x)
 			y1 = int(self._y)
-			x2 = x1 + self.get_width()
-			y2 = y1 + self.get_height()
-			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
-			                                                    y2, True, False)
-			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
-			# XXX bien excepté les delta locaux
 		else:
 			x1 = 0
 			y1 = 0
-			x2 = self.get_width()
-			y2 = self.get_height()
-			x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, \
-			                                                   y2, False, False)
-			utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		x2 = x1 + self.get_width()
+		y2 = y1 + self.get_height()
+		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
+		                                         self.apply_to_selection, False)
+		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		# FIXME bien excepté les delta locaux : quand on rogne depuis le haut ou
+		# la gauche, les coordonées de référence des poignées ne sont plus
+		# correctes.
 
 	############################################################################
 
@@ -187,8 +217,8 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')
-		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
-		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 
 		self.options_btn = builder.get_object('options_btn')
 
