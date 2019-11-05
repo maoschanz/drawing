@@ -827,15 +827,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		return self.get_active_image().get_file_path()
 
 	def action_open(self, *args):
-		"""Handle the result of an "open" file chooser dialog, and open it
-		according to the user choice."""
+		"""Handle the result of an "open" file chooser dialog, and open it in
+		the current tab, or in a new one, or in a new window. The decision is
+		made depending on what's in the current tab, and (if any doubt)
+		according to the user explicit decision."""
 		gfile = self.file_chooser_open()
 		if gfile is None:
 			return
 		else:
-			self.prompt_message(True, _("Loading %s") % \
-			                                  (gfile.get_path().split('/')[-1]))
-		if self.get_active_image()._is_saved:
+			file_name = gfile.get_path().split('/')[-1]
+			self.prompt_message(True, _("Loading %s") % file_name)
+		if self.get_active_image().should_replace():
+			# If the current image is just a blank, unmodified canvas.
 			self.try_load_file(gfile)
 		else:
 			dialog = DrawingMessageDialog(self)
@@ -843,10 +846,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			new_window_id = dialog.set_action(_("New Window"), None, False)
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
-			dialog.add_string( _("There are unsaved modifications to %s.") % \
-			                self.get_active_image().get_filename_for_display() )
-			dialog.add_string( _("Where do you want to open %s?") %  \
-			                                 (gfile.get_path().split('/')[-1]) )
+			if not self.get_active_image()._is_saved:
+				dialog.add_string(_("There are unsaved modifications to %s.") % \
+				             self.get_active_image().get_filename_for_display())
+			dialog.add_string(_("Where do you want to open %s?") % file_name)
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:

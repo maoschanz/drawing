@@ -3,12 +3,12 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities import utilities_show_overlay_on_context
 
-class AbstractSelectionTool(ToolTemplate):
+class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
 	# x_press = 0
 	# y_press = 0

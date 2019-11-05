@@ -3,14 +3,14 @@
 import cairo
 from gi.repository import Gtk
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .bottombar import DrawingAdaptativeBottomBar
 from .color_popover import DrawingColorPopover
 
 from .utilities import utilities_add_unit_to_spinbtn
 from .utilities import utilities_fast_blur
 
-class AbstractClassicTool(ToolTemplate):
+class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):

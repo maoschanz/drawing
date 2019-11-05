@@ -18,9 +18,9 @@
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 
-class AbstractCanvasTool(ToolTemplate):
+class AbstractCanvasTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractCanvasTool'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):

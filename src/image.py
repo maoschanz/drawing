@@ -312,6 +312,11 @@ class DrawingImage(Gtk.Box):
 	def active_tool(self):
 		return self.window.active_tool()
 
+	def should_replace(self):
+		if len(self.undo_history) > 0:
+			return False
+		return self.initial_operation['pixbuf'] is None
+
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
