@@ -29,11 +29,11 @@
     <title>Crop</title>
 
     <p>Change the size of the image, by removing parts of it. The side you're
-    cropping is indicated by the mouse cursor, and changes depending on the
+    cropping is indicated by the mouse cursor: it changes depending on the
     position of the mouse pointer on the canvas.</p>
     <p>The exact size can be set using the values in the bottom bar.</p>
-    <p>Be careful, the previewed image might not be displayed at its actual size
-    with a 100% scale.</p>
+    <p>If your increasing the size of the image instead of decreasing it, you
+    may need to change the zoom level.</p>
   </section>
 
   <section>
@@ -58,16 +58,33 @@
 
     <p>You can apply a filter to the image or the selection. Click on the
     picture to preview the selected filter.</p>
-    <p>The available filters include <gui style="menuitem">Saturation</gui>,
-    which allows you to increase of decrease the saturation of the image using
-    the widget in the bottom bar.</p>
-    <media type="image" mime="image/png" width="80%"
-           src="figures/screenshot_saturate.png" its:translate="no"/>
-    <p>A saturation bigger than 100% will boost the colors, a saturation smaller
-    than 100% will produce a greyish image.</p>
-    <p>Notice also <gui style="menuitem">Blur</gui> and several variations of
-    it, where the blur radius can be modified too. Be careful, applying blur to
-    the image can take a few seconds.</p>
+    <list>
+      <item>
+        <p><gui style="menuitem">Saturation</gui> allows you to increase of
+        decrease the saturation of the image by modifying the number in the
+        bottom bar.</p>
+        <media type="image" mime="image/png" width="80%"
+               src="figures/screenshot_saturate.png" its:translate="no"/>
+        <p>A saturation bigger than 100% will boost the colors, a saturation
+        smaller than 100% will produce a greyish image.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Blur</gui>, and several variations of it, will
+        blur the image using a parametrable radius which be modified in the same
+        way.</p>
+        <p>Be careful, applying blur to the image can take a few seconds.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Pixelate</gui></p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Invert colors</gui></p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Transparency</gui> can make the image partly
+        translucent, according to the percentage in the bottom bar.</p>
+      </item>
+    </list>
   </section>
 
 </page>
