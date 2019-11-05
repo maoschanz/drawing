@@ -112,7 +112,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
 		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
-		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
+		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
 
 		self.build_color_buttons()
 		self.add_all_win_actions()

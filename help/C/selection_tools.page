@@ -15,48 +15,59 @@
 
   <title>Selection</title>
 
-  <p>The <gui style="button">Selection</gui> tool, which is available from the side
-  bar (along with <link xref="drawing_tools">the other tools</link>), allows you
-  to define a part of the image.</p>
+  <section>
+    <title>Selecting an area</title>
 
-  <p>The selection can be created in various ways:</p>
-  <list>
-    <item>
-      <p>Select a rectangle area</p>
-    </item>
-    <item>
-      <p>Choose the <gui style="button">Freehand selection</gui>option and draw a freeshape</p>
-    </item>
-    <item>
-      <p><gui style="button">Import</gui> an existing file as your selection</p>
-    </item>
-    <item>
-      <p><gui style="button">Paste</gui> an image from your clipboard</p>
-    </item>
-  </list>
+    <p>The <gui style="button">Selection</gui> tool, which is available from the
+    side bar (along with <link xref="drawing_tools">the other tools</link>),
+    allows you to define a part of the image for further manipulations.</p>
 
-  <p>Once the selection is defined, you can then perform various actions with
-  it:</p>
-  <list>
-    <item>
-      <p>Move it on the canvas.</p>
-    </item>
-    <item>
-      <p>Cut or copy it to the clipboard.</p>
-    </item>
-    <item>
-      <p>Edit it with <link xref="canvas_tools">tools</link>. You can access the
-      compatible tools with a right-click on the selection.</p>
-    </item>
-    <item>
-      <p>Delete it.</p>
-    </item>
-    <item>
-      <p>Open it as a new image.</p>
-    </item>
-    <item>
-      <p>Export it as a new file.</p>
-    </item>
-  </list>
+    <p>Depending on the option you choose in the bottom bar, you can select a
+    rectangle area or a freehand shape.</p>
+
+    <p>Aside of defining the contour of an area with the mouse, the selection
+    can also be created in various ways:</p>
+    <list>
+      <item>
+        <p><gui style="button">Import</gui> an existing file as your selection.</p>
+      </item>
+      <item>
+        <p><gui style="button">Paste</gui> an image from your clipboard.</p>
+      </item>
+      <item>
+        <p>Right-click, <gui style="menuitem">Select all</gui>.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Using the selection</title>
+
+    <p>Once the selection is defined, you can then perform various actions with
+    this area:</p>
+    <list>
+      <item>
+        <p>Move it on the canvas.</p>
+      </item>
+      <item>
+        <p>Cut or copy it to the clipboard.</p>
+      </item>
+      <item>
+        <p>Edit it with <link xref="canvas_tools">tools</link>. You can access
+        the compatible tools with a right-click on the selection.</p>
+      </item>
+      <item>
+        <p>Delete it.</p>
+      </item>
+      <item>
+        <p>Open it as a new image.</p>
+      </item>
+      <item>
+        <p>Export it as a new file.</p>
+      </item>
+    </list>
+    <p>Click outside of the selected area to unselect, or use the <gui
+    style="menuitem">Unselect</gui> menu item.</p>
+  </section>
 
 </page>

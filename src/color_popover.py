@@ -69,13 +69,13 @@ class DrawingColorPopover(Gtk.Popover):
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
 		cairo_context = cairo.Context(surface)
 		rgba = self.color_widget.get_rgba()
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		cairo_context.paint()
-		self.btn_image.set_from_surface(surface)
 		red = rgba.red
 		green = rgba.green
 		blue = rgba.blue
 		alpha = rgba.alpha
+		cairo_context.set_source_rgba(red, green, blue, alpha)
+		cairo_context.paint()
+		self.btn_image.set_from_surface(surface)
 		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
 		self.btn.set_tooltip_text(tooltip_string)
 

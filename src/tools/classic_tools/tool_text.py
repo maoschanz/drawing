@@ -79,7 +79,10 @@ class ToolText(AbstractAbstractTool):
 
 	def force_text_tool(self, string):
 		self.row.set_active(True)
-		self.set_common_values(1)
+		# XXX ugly, but better in future versions
+		self.main_color = self.window.color_popover_l.color_widget.get_rgba()
+		self.secondary_color = self.window.color_popover_r.color_widget.get_rgba()
+		self.tool_width = self.window.thickness_spinbtn.get_value_as_int()
 		self.on_release_on_area(None, None, 100, 100)
 		self.set_string(string)
 

@@ -6,12 +6,10 @@
   <info>
     <link type="guide" xref="index#tools"/>
     <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
-
     <credit type="author">
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-
     <desc>Transform the image canvas or the current selection</desc>
   </info>
 
@@ -19,40 +17,53 @@
 
   <p>These tools are available from the side bar (along with
   <link xref="drawing_tools">the other tools</link>), or from a right click on
-  the canvas while using the <gui style="button">Selection</gui> tool.</p>
+  a <link xref="selection_tools">selected area</link>.</p>
   <p>If a selection is defined, these tools will have an effect on the selected
   area, otherwise they will have an effect on the picture as a whole.</p>
-
-  <list>
-    <item>
-      <p>Crop: change the size of the image, using the values in the bottom bar,
-      or with the mouse. The cursor gives you an indication about the side of
-      the image affected if you click at given coordinates. The previewed image
-      might not be at a 100% scale.</p>
-    </item>
-    <item>
-      <p>Scale: resize the image, using the values in the bottom bar, or with
-      the left click.</p>
-    </item>
-    <item>
-      <p>Rotate: change the orientation of the image, using the buttons in the
-      bottom bar.</p>
-    </item>
-    <item>
-      <p>Flip: flip the image, using the buttons in the bottom bar.</p>
-    </item>
-    <item>
-      <p>Saturate: edit the saturation of the image, using the value in the
-      bottom bar.</p>
-      <media type="image" mime="image/png" width="80%"
-      src="figures/screenshot_saturate.png" its:translate="no"/>
-      <p>A saturation bigger than 100% will boost the colors, a saturation
-      smaller than 100% will produce a greyish image.</p>
-    </item>
-  </list>
 
   <p>After finding the value you need, you have to apply the result with the
   <gui style="button">Apply</gui> button at the right. Otherwise you can cancel
   the edition with the <gui style="button">Cancel</gui> button at the left.</p>
+
+  <section>
+    <title>Crop</title>
+
+    <p>Change the size of the image, by removing parts of it. The side you're
+    cropping is indicated by the mouse cursor: it changes depending on the
+    position of the mouse pointer on the canvas.</p>
+    <p>The exact size can be set using the values in the bottom bar.</p>
+    <p>The previewed image might not be at a 100% scale.</p>
+  </section>
+
+  <section>
+    <title>Scale</title>
+
+    <p>Resize the image, using the mouse or the values in the bottom bar.</p>
+    <p>Proportions can be locked or not.</p>
+    <!-- TODO illustration -->
+  </section>
+
+  <section>
+    <title>Rotate</title>
+
+    <p>Change the orientation of the image using the buttons in the bottom
+    bar.</p>
+  </section>
+
+  <section>
+    <title>Flip</title>
+
+    <p>Flip the image, horizontally or vertically, using the buttons in the
+    bottom bar.</p>
+  </section>
+
+  <section>
+    <title>Saturate</title>
+    <p>Change the saturation of the image, using the value in the bottom bar.</p>
+    <media type="image" mime="image/png" width="80%"
+           src="figures/screenshot_saturate.png" its:translate="no"/>
+    <p>A saturation bigger than 100% will boost the colors, a saturation smaller
+    than 100% will produce a greyish image.</p>
+  </section>
 
 </page>

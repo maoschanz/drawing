@@ -60,7 +60,6 @@ class DrawingAdaptativeHeaderBar():
 		self.new_btn.set_menu_model(new_menu)
 
 		self.undo_btn = builder.get_object('undo_btn')
-		# self.correct_btn = builder.get_object('correct_btn')
 		self.redo_btn = builder.get_object('redo_btn')
 
 	def init_adaptability(self):
