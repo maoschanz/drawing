@@ -40,6 +40,7 @@ drawing_sources = [
 	'selection_manager.py',
 	'utilities.py',
 
+	'custom_image.py',
 	'properties.py',
 	'preferences.py',
 

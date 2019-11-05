@@ -25,15 +25,14 @@
   </object>
 
   <template class="DrawingPrefsWindow" parent="GtkWindow">
-    <property name="default-width">350</property>
-    <property name="default-height">200</property>
+    <property name="default-width">500</property>
+    <property name="default-height">300</property>
     <property name="title" translatable="yes">Preferences</property>
 
     <child>
       <object class="GtkBox" id="content_area">
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
-        <property name="margin">12</property>
         <property name="spacing">12</property>
 
         <child>
@@ -54,6 +53,7 @@
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
+                <property name="margin">12</property>
               </object>
               <packing>
                 <property name="name">page2</property>
@@ -66,6 +66,7 @@
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
+                <property name="margin">12</property>
               </object>
               <packing>
                 <property name="name">page1</property>
@@ -74,10 +75,17 @@
             </child>
 
             <child>
-              <object class="GtkBox" id="page_advanced">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
+                <property name="expand">True</property>
+                <child>
+                  <object class="GtkBox" id="page_advanced">
+                    <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">12</property>
+                    <property name="margin">12</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="name">page3</property>

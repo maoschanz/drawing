@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
+from .utilities import utilities_get_rgba_name
 
 class DrawingColorPopover(Gtk.Popover):
 	__gtype_name__ = 'DrawingColorPopover'
@@ -25,10 +26,11 @@ class DrawingColorPopover(Gtk.Popover):
 		super().__init__(**kwargs)
 
 		builder = Gtk.Builder.new_from_resource( \
-		                    '/com/github/maoschanz/drawing/ui/color_popover.ui')
+		                    '/com/github/maoschanz/drawing/ui/color-popover.ui')
 		main_box = builder.get_object('main-box')
 		self.add(main_box)
-		btn.set_popover(self)
+		self.btn = btn
+		self.btn.set_popover(self)
 		self.btn_image = image
 
 		r = float(initial_rgba[0])
@@ -70,6 +72,12 @@ class DrawingColorPopover(Gtk.Popover):
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.paint()
 		self.btn_image.set_from_surface(surface)
+		red = rgba.red
+		green = rgba.green
+		blue = rgba.blue
+		alpha = rgba.alpha
+		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
+		self.btn.set_tooltip_text(tooltip_string)
 
 	############################################################################
 ################################################################################

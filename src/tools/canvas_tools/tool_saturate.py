@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
+from gi.repository import Gtk
 
 from .abstract_canvas_tool import AbstractCanvasTool
+
+from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolSaturate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSaturate'
@@ -33,6 +35,7 @@ class ToolSaturate(AbstractCanvasTool):
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.saturation_btn = builder.get_object('sat_btn')
+		utilities_add_unit_to_spinbtn(self.saturation_btn, 3, '%')
 		self.saturation_btn.connect('value-changed', self.on_sat_changed)
 
 		self.window.bottom_panel_box.add(self.bottom_panel)
@@ -70,3 +73,6 @@ class ToolSaturate(AbstractCanvasTool):
 		temp = self.get_image().get_temp_pixbuf()
 		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
+	############################################################################
+################################################################################

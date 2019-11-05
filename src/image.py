@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import cairo
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 from .gi_composites import GtkTemplate
-import cairo
 
 from .utilities import utilities_save_pixbuf_at
 from .selection_manager import DrawingSelectionManager
@@ -54,8 +54,8 @@ class DrawingImage(Gtk.Box):
 			Gdk.EventMask.SMOOTH_SCROLL_MASK | \
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
-		# Utiliser BUTTON_MOTION_MASK au lieu de POINTER_MOTION_MASK serait plus
-		# efficace mais moins puissant
+		# Utiliser BUTTON_MOTION_MASK au lieu de POINTER_MOTION_MASK serait
+		# moins complexe mais moins puissant
 
 		# For displaying things on the widget
 		self.drawing_area.connect('draw', self.on_draw)
@@ -99,10 +99,7 @@ class DrawingImage(Gtk.Box):
 		self.window.lookup_action('undo').set_enabled(False)
 		self.window.lookup_action('redo').set_enabled(False)
 
-	def init_background(self, *args):
-		width = self.window._settings.get_int('default-width')
-		height = self.window._settings.get_int('default-height')
-		background_rgba = self.window._settings.get_strv('background-rgba')
+	def init_background(self, width, height, background_rgba):
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
@@ -295,6 +292,11 @@ class DrawingImage(Gtk.Box):
 		self.set_action_sensitivity('selection_export', state)
 		self.set_action_sensitivity('new_tab_selection', state)
 		self.active_tool().update_actions_state()
+
+	def should_replace(self):
+		if len(self.undo_history) > 0:
+			return False
+		return self.initial_operation['pixbuf'] is None
 
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
@@ -503,11 +505,15 @@ class DrawingImage(Gtk.Box):
 		self.fake_scrollbar_update()
 		self.update()
 
-	def set_opti_zoom_level(self):
+	def on_opti_zoom_level(self, *args):
+		if self.zoom_is_auto:
+			self.set_opti_zoom_level()
+
+	def set_opti_zoom_level(self, *args):
 		allocated_width = self.get_widget_width()
 		allocated_height = self.get_widget_height()
 		if allocated_width == 1:
-			# FIXME because self.drawing_area might be not allocated yet
+			# XXX because self.drawing_area might be not allocated yet
 			return
 			# allocated_width = 800
 			# allocated_height = 400
@@ -520,7 +526,7 @@ class DrawingImage(Gtk.Box):
 		self.scroll_y = 0
 
 	############################################################################
-	# Printing operations ######################################################
+	# Printing #################################################################
 
 	def print_image(self):
 		op = Gtk.PrintOperation()

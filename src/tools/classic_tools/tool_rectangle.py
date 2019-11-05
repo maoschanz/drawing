@@ -3,10 +3,10 @@
 from gi.repository import Gtk, Gdk
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_generic_shape_tool_operation
 
-class ToolRectangle(ToolTemplate):
+class ToolRectangle(AbstractAbstractTool):
 	__gtype_name__ = 'ToolRectangle'
 
 	def __init__(self, window, **kwargs):

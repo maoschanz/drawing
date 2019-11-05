@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+# Import libs
 import os
-
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 from .gi_composites import GtkTemplate
 
+# Import tools
 from .tool_arc import ToolArc
 from .tool_circle import ToolCircle
 from .tool_crop import ToolCrop
@@ -40,6 +41,7 @@ from .tool_text import ToolText
 
 from .image import DrawingImage
 from .properties import DrawingPropertiesDialog
+from .custom_image import DrawingCustomImageDialog
 from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
 from .color_popover import DrawingColorPopover
@@ -47,7 +49,8 @@ from .message_dialog import DrawingMessageDialog
 from .headerbar import DrawingAdaptativeHeaderBar
 
 from .utilities import utilities_save_pixbuf_at
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
+from .utilities import utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -90,10 +93,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app = kwargs['application']
 
 		self.header_bar = None
+		self.pointer_to_current_page = None # XXX this ridiculous hack allow to
+		                   # manage several tabs in a single window despite the
+		                                      # notebook widget being pure shit
+		self.active_tool_id = None
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
-		# self.resize(360, 648) # XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+		# self.resize(360, 648)
 		self.set_ui_bars()
 
 	def init_window_content(self, gfile, get_cb):
@@ -105,14 +112,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.minimap = DrawingMinimap(self, self.minimap_btn)
 		self.options_manager = DrawingOptionsManager(self)
 		self.thickness_spinbtn.set_value(self._settings.get_int('last-size'))
-		utilities_add_px_to_spinbutton(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
+		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px') # XXX fonctionne mais c'est moche mdr
 
 		self.build_color_buttons()
 		self.add_all_win_actions()
 		if get_cb:
 			self.build_image_from_clipboard()
+		elif gfile is not None:
+			self.build_new_tab(gfile=gfile)
 		else:
-			self.build_new_tab(gfile, None)
+			self.build_new_image()
 		self.init_tools()
 		self.connect_signals()
 		self.set_picture_title()
@@ -146,17 +155,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Side panel buttons for tools, and their menu-items if they don't exist
 		self.build_tool_rows()
 		if not self.app.has_tools_in_menubar:
-			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
-			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
-			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
-			    Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
-			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
-			for tool_id in self.tools:
-				if self.tools[tool_id].menu_id > 0:
-					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
-				else:
-					self.tools[tool_id].add_item_to_menu(drawing_tools_section)
-			self.app.has_tools_in_menubar = True
+			self.build_menubar_tools_menu()
 
 		# Initialisation of options and menus
 		tool_id = self._settings.get_string('last-active-tool')
@@ -164,7 +163,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			tool_id = 'pencil'
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		if tool_id == 'pencil':
+		if tool_id == 'pencil': # The "pencil" button is already active
 			self.enable_tool(tool_id)
 		else:
 			self.active_tool().row.set_active(True)
@@ -180,41 +179,83 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			except:
 				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
+	def build_tool_rows(self):
+		"""Adds each tool's button to the side panel."""
+		group = None
+		for tool_id in self.tools:
+			if group is None:
+				group = self.tools[tool_id].row
+			else:
+				self.tools[tool_id].row.join_group(group)
+			self.tools_flowbox.add(self.tools[tool_id].row)
+		self.on_show_labels_setting_changed()
+
+	def build_menubar_tools_menu(self):
+			drawing_tools_section = self.app.get_menubar().get_item_link(4, \
+			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			canvas_tools_section = self.app.get_menubar().get_item_link(4, \
+			    Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION).get_item_link(0, \
+			      Gio.MENU_LINK_SUBMENU).get_item_link(0, Gio.MENU_LINK_SECTION)
+			for tool_id in self.tools:
+				if self.tools[tool_id].menu_id > 0:
+					self.tools[tool_id].add_item_to_menu(canvas_tools_section)
+				else:
+					self.tools[tool_id].add_item_to_menu(drawing_tools_section)
+			self.app.has_tools_in_menubar = True
+
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
 
 	def build_new_image(self, *args):
-		"""Open a new tab with a drawable blank image."""
-		self.build_new_tab(None, None)
-		self.set_picture_title()
+		"""Open a new tab with a drawable blank image using the default values
+		defined by user's settings."""
+		width = self._settings.get_int('default-width')
+		height = self._settings.get_int('default-height')
+		rgba = self._settings.get_strv('background-rgba')
+		self.build_new_tab(width=width, height=height, background_rgba=rgba)
+		if self.active_tool_id is not None: # Tools might not be initialized yet
+			self.set_picture_title()
+
+	def build_new_custom(self, *args):
+		"""Open a new tab with a drawable blank image using the custom values
+		defined by user's input."""
+		dialog = DrawingCustomImageDialog(self)
+		result = dialog.run()
+		if result == Gtk.ResponseType.OK:
+			width, height, rgba = dialog.get_values()
+			self.build_new_tab(width=width, height=height, background_rgba=rgba)
+			self.set_picture_title()
+		dialog.destroy()
 
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
 		empty, the new image will be blank."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
-		self.build_new_tab(None, pixbuf)
+		self.build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
 		pixbuf = self.get_active_image().selection.get_pixbuf()
-		self.build_new_tab(None, pixbuf)
+		self.build_new_tab(pixbuf=pixbuf)
 
-	def build_new_tab(self, gfile, pixbuf):
+	def build_new_tab(self, gfile=None, pixbuf=None, \
+		           width=200, height=200, background_rgba=[1.0, 0.0, 0.0, 1.0]):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrawingImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
+		self.notebook.child_set_property(new_image, 'reorderable', True)
 		if gfile is not None:
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
 		else:
-			new_image.init_background()
+			new_image.init_background(width, height, background_rgba)
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
-		self.change_active_tool_for(self.active_tool_id)
+		self.switch_to(self.active_tool_id, args[1])
 		# On devrait être moins bourrin et conserver la sélection #FIXME
 		self.set_picture_title(args[1].update_title())
 
@@ -282,6 +323,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
+		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
+		self.notebook.connect('drag-data-received', self.on_data_dropped)
+		self.notebook.drag_dest_add_uri_targets()
+		# because drag_dest_add_image_targets doesn't work for files
+
 	def add_action_simple(self, action_name, callback, shortcuts):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
@@ -331,6 +377,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('go_right', self.action_go_right, ['<Ctrl>Right'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
+		self.add_action_simple('new_tab_custom', self.build_new_custom, None)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
@@ -364,9 +411,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
-		self.app.add_action_boolean('use_editor', \
-		                      self._settings.get_boolean('direct-color-edit'), \
-		                                                 self.action_use_editor)
+		editor = self._settings.get_boolean('direct-color-edit')
+		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
@@ -377,6 +423,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action(action)
 
 	def set_cursor(self, is_custom):
+		"""Called by the tools at various occasions, this method updates the
+		mouse cursor according to `is_custom` (if False, use the default cursor)
+		and the active tool `cursor_name` attribute."""
 		if is_custom:
 			name = self.active_tool().cursor_name
 		else:
@@ -610,18 +659,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for tool_id in self.tools:
 			self.tools[tool_id].update_icon_size()
 
-	def build_tool_rows(self):
-		"""Adds each tool's button to the side panel, or to the selection's
-		bottom panel."""
-		group = None
-		for tool_id in self.tools:
-			if group is None:
-				group = self.tools[tool_id].row
-			else:
-				self.tools[tool_id].row.join_group(group)
-			self.tools_flowbox.add(self.tools[tool_id].row)
-		self.on_show_labels_setting_changed()
-
 	def set_tools_labels_visibility(self, visible):
 		"""Change the way tools are displayed in the side panel. Visible labels
 		mean the tools will be arranged in a scrollable list of buttons, else
@@ -654,37 +691,43 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_change_active_tool(self, *args):
 		"""Action callback, doing nothing in some situations, thus avoiding
-		infinite loops. It calls `change_active_tool_for` with the correct value
+		infinite loops. It sets the correct `tool_id` using adequate methods
 		otherwise."""
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
+		if self.tools[state_as_string].row.get_active():
+			self.switch_to(state_as_string, None)
 		else:
-			self.change_active_tool_for(state_as_string)
+			self.tools[state_as_string].row.set_active(True)
 
-	def change_active_tool_for(self, tool_id):
-		"""Change the active_tool action state according to `tool_id`."""
+	def switch_to(self, tool_id, image_pointer):
+		"""Switch from the current tool to `tool_id` and to the current image to
+		`image_pointer`, which can be `None` if the image is not changing."""
+		self.pointer_to_current_page = None
 		action = self.lookup_action('active_tool')
-		if self.tools[tool_id].row.get_active():
-			action.set_state(GLib.Variant.new_string(tool_id))
-			self.enable_tool(tool_id)
-		else:
-			self.tools[tool_id].row.set_active(True)
+		action.set_state(GLib.Variant.new_string(tool_id))
+		self.disable_former_tool(tool_id)
+		self.pointer_to_current_page = image_pointer
+		self.enable_tool(tool_id)
+		self.pointer_to_current_page = None
 
 	def enable_tool(self, new_tool_id):
-		"""Deactivate the formerly active tool, and activate `new_tool_id`."""
-		self.former_tool_id = self.active_tool_id
-		should_preserve_selection = self.tools[new_tool_id].accept_selection
-		self.former_tool().give_back_control(should_preserve_selection)
-		self.former_tool().on_tool_unselected()
-		self.get_active_image().selection.show_popover(False)
+		"""Activate the tool whose id is `new_tool_id`."""
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
-		self.update_bottom_panel()
-		self.color_box.set_sensitive(self.active_tool().use_color)
+		self.update_bottom_panel() # XXX après on_tool_selected sur master
 		self.active_tool().on_tool_selected()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
+
+	def disable_former_tool(self, future_tool_id):
+		"""Unactivate the active tool."""
+		self.former_tool_id = self.active_tool_id
+		should_preserve_selection = self.tools[future_tool_id].accept_selection
+		self.former_tool().give_back_control(should_preserve_selection)
+		self.former_tool().on_tool_unselected()
+		self.get_active_image().selection.show_popover(False)
 
 	def update_bottom_panel(self):
 		"""Show the correct bottom panel, with the correct tool options menu."""
@@ -694,6 +737,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.active_tool().show_panel(True)
 		self.set_bottom_width_limit()
 		self.update_thickness_spinbtn_state()
+		self.color_box.set_sensitive(self.active_tool().use_color)
 		self.adapt_to_window_size()
 
 	def active_tool(self):
@@ -712,21 +756,27 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		DrawingPropertiesDialog(self, self.get_active_image())
 
 	def get_active_image(self):
-		return self.notebook.get_nth_page(self.notebook.get_current_page())
+		if self.pointer_to_current_page is None:
+			return self.notebook.get_nth_page(self.notebook.get_current_page())
+		else:
+			return self.pointer_to_current_page
 
 	def get_file_path(self):
 		return self.get_active_image().get_file_path()
 
 	def action_open(self, *args):
-		"""Handle the result of an "open" file chooser dialog, and open it
-		according to the user choice."""
+		"""Handle the result of an "open" file chooser dialog, and open it in
+		the current tab, or in a new one, or in a new window. The decision is
+		made depending on what's in the current tab, and (if any doubt)
+		according to the user explicit decision."""
 		gfile = self.file_chooser_open()
 		if gfile is None:
 			return
 		else:
-			self.prompt_message(True, _("Loading %s") % \
-			                                  (gfile.get_path().split('/')[-1]))
-		if self.get_active_image()._is_saved:
+			file_name = gfile.get_path().split('/')[-1]
+			self.prompt_message(True, _("Loading %s") % file_name)
+		if self.get_active_image().should_replace():
+			# If the current image is just a blank, unmodified canvas.
 			self.try_load_file(gfile)
 		else:
 			dialog = DrawingMessageDialog(self)
@@ -734,14 +784,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			new_window_id = dialog.set_action(_("New Window"), None, False)
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
-			dialog.add_string( _("There are unsaved modifications to %s.") % \
-			                self.get_active_image().get_filename_for_display() )
-			dialog.add_string( _("Where do you want to open %s?") %  \
-			                                 (gfile.get_path().split('/')[-1]) )
+			if not self.get_active_image()._is_saved:
+				dialog.add_string(_("There are unsaved modifications to %s.") % \
+				             self.get_active_image().get_filename_for_display())
+			dialog.add_string(_("Where do you want to open %s?") % file_name)
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
-				self.build_new_tab(gfile, None)
+				self.build_new_tab(gfile=gfile)
 			elif result == discard_id:
 				self.try_load_file(gfile)
 			elif result == new_window_id:
@@ -753,12 +803,48 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Open a picture"), self,
 		                     Gtk.FileChooserAction.OPEN, _("Open"), _("Cancel"))
-		self.add_filechooser_filters(file_chooser)
+		utilities_add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			gfile = file_chooser.get_file()
 		file_chooser.destroy()
 		return gfile
+
+	def on_data_dropped(self, widget, drag_context, x, y, data, info, time):
+		"""Signal callback: when files are dropped on `self.notebook`, a message
+		dialog is shown, asking if the user prefers to open them (one new tab
+		per image), or to import them (it will only import the first), or to
+		cancel (if the user dropped mistakenly)."""
+		dialog = DrawingMessageDialog(self)
+		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		open_id = dialog.set_action(_("Open"), None, False)
+		import_id = dialog.set_action(_("Import"), None, True)
+		uris = data.get_uris()
+		if len(uris) == 1:
+			label = uris[0].split('/')[-1]
+		else:
+			# Context for translation:
+			# "What do you want to do with *these files*?"
+			label = _("these files")
+		dialog.add_string(_("What do you want to do with %s?") % label)
+		result = dialog.run()
+		dialog.destroy()
+		for uri in uris:
+			# print(uri)
+			# valider l'URI TODO
+			if result == import_id:
+				f = Gio.File.new_for_uri(uri)
+				self.import_from_path(f.get_path())
+				return
+			elif result == open_id:
+				f = Gio.File.new_for_uri(uri)
+				self.build_new_tab(gfile=f)
+
+	def try_load_file(self, gfile):
+		if gfile is not None:
+			self.get_active_image().try_load_file(gfile)
+		self.set_picture_title() # often redundant but not useless
+		self.prompt_message(False, 'file successfully loaded')
 
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
@@ -782,12 +868,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if gfile is not None:
 			self.get_active_image().gfile = gfile
 			self.action_save()
-
-	def try_load_file(self, gfile):
-		if gfile is not None:
-			self.get_active_image().try_load_file(gfile)
-		self.set_picture_title() # often redundant but not useless
-		self.prompt_message(False, 'file successfully loaded')
 
 	def confirm_save_modifs(self):
 		"""Return True if the image can be closed/overwritten (whether it's saved
@@ -821,37 +901,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else: # cancel_id
 			return False
 
-	def add_filechooser_filters(self, dialog):
-		"""Add file filters for images to file chooser dialogs."""
-		allPictures = Gtk.FileFilter()
-		allPictures.set_name(_("All pictures"))
-		allPictures.add_mime_type('image/png')
-		allPictures.add_mime_type('image/jpeg')
-		allPictures.add_mime_type('image/bmp')
-
-		pngPictures = Gtk.FileFilter()
-		pngPictures.set_name(_("PNG images"))
-		pngPictures.add_mime_type('image/png')
-
-		jpegPictures = Gtk.FileFilter()
-		jpegPictures.set_name(_("JPEG images"))
-		jpegPictures.add_mime_type('image/jpeg')
-
-		bmpPictures = Gtk.FileFilter()
-		bmpPictures.set_name(_("BMP images"))
-		bmpPictures.add_mime_type('image/bmp')
-
-		dialog.add_filter(allPictures)
-		dialog.add_filter(pngPictures)
-		dialog.add_filter(jpegPictures)
-		dialog.add_filter(bmpPictures)
-
 	def file_chooser_save(self):
 		"""Opens an "save" file chooser dialog, and return a GioFile or None."""
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
-		self.add_filechooser_filters(file_chooser)
+		utilities_add_filechooser_filters(file_chooser)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 		response = file_chooser.run()
@@ -888,7 +943,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.action_delete()
 
 	def action_copy(self, *args):
-		# self.get_active_image().selection.selection_has_been_used = True # XXX bizarre
 		self.copy_operation()
 
 	def copy_operation(self):
@@ -899,6 +953,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().delete_selection()
 
 	def action_paste(self, *args):
+		"""By default, this action pastes an image, but if there is no image in
+		the clipboard, it will paste text using the text tool. Once the text
+		tool is active, this action is disabled to not interfer with the default
+		behavior of ctrl+v provided by the GTK text entry."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is not None:
@@ -906,22 +964,25 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.get_selection_tool().import_selection(pixbuf)
 		else:
 			string =  cb.wait_for_text()
-			self.tools['text'].row.set_active(True)
-			self.active_tool().set_string(string)
-			self.active_tool().on_release_on_area(None, None, None, 100, 100)
+			self.tools['text'].force_text_tool(string)
 
 	def action_import(self, *args):
-		"""Handle the result of an "open" file chooser dialog, and import it
-		as the selection."""
+		"""Handle the result of an "open" file chooser dialog. It will then try
+		to import it as the selection."""
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))
-		self.add_filechooser_filters(file_chooser)
+		utilities_add_filechooser_filters(file_chooser)
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
-			self.force_selection()
-			fn = file_chooser.get_filename()
-			self.get_selection_tool().import_selection(GdkPixbuf.Pixbuf.new_from_file(fn))
+			self.import_from_path(file_chooser.get_filename())
 		file_chooser.destroy()
+
+	def import_from_path(self, file_path):
+		"""Import a file as the selection pixbuf. Called by the 'win.import'
+		action and when an image is imported by drag-and-drop."""
+		self.force_selection()
+		pixbuf = GdkPixbuf.Pixbuf.new_from_file(file_path)
+		self.get_selection_tool().import_selection(pixbuf)
 
 	def action_selection_export(self, *args):
 		gfile = self.file_chooser_save()

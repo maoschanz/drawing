@@ -25,10 +25,9 @@ class DrawingAdaptativeHeaderBar():
 	def __init__(self, is_eos):
 		self.is_narrow = True # This is reducing the complexity of resizing,
 		# but its main goal is to avoid a GTK minor bug where the initial
-		# bunch of configure-event signals was sent to soon, so the popover
-		# was displayed a parallel universe when running the app on Wayland.
+		# bunch of configure-event signals was sent to soon.
 		if is_eos:
-			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar_eos.ui')
+			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar-eos.ui')
 		else:
 			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar.ui')
 
@@ -74,7 +73,6 @@ class DrawingAdaptativeHeaderBar():
 		                + self.redo_btn.get_preferred_width()[0] \
 		          + self.hidable_widget.get_preferred_width()[0]
 		self.limit_size = 2.5 * widgets_width # 100% arbitrary
-		# self.adapt_to_window_size() # XXX ferait sens mais ne semble pas efficace
 
 	def adapt_to_window_size(self):
 		can_expand = (self.header_bar.get_allocated_width() > self.limit_size)
@@ -83,6 +81,10 @@ class DrawingAdaptativeHeaderBar():
 			self.set_compact(not self.is_narrow)
 
 	def set_compact(self, state):
+		"""Set the compactness of the headerbar: if the parameter is True, wide
+		widgets will be hidden in favor of narrow ones. Else, the opposite."""
+		# XXX Instead of a boolean, `state` could be an integer, which would be
+		# far more complex to handle, but would allow thinner granularity.
 		if state:
 			self.main_menu_btn.set_menu_model(self.long_main_menu)
 		else:

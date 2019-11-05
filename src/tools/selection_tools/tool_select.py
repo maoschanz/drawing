@@ -3,10 +3,10 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_get_magic_path
 
-class ToolSelect(ToolTemplate):
+class ToolSelect(AbstractAbstractTool):
 	__gtype_name__ = 'ToolSelect'
 
 	closing_precision = 10

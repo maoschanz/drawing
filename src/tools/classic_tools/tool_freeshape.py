@@ -1,12 +1,12 @@
 # tool_freeshape.py
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_generic_shape_tool_operation
 
-class ToolFreeshape(ToolTemplate):
+class ToolFreeshape(AbstractAbstractTool):
 	__gtype_name__ = 'ToolFreeshape'
 
 	def __init__(self, window, **kwargs):

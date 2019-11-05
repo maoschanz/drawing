@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+
+  <object class="GtkAdjustment" id="adj_width">
+    <property name="lower">1</property>
+    <property name="upper">4096</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <property name="value">10</property>
+  </object>
+
+  <object class="GtkAdjustment" id="adj_height">
+    <property name="lower">1</property>
+    <property name="upper">4096</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <property name="value">10</property>
+  </object>
+
+  <object class="GtkBox" id="props_content_area">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+    <property name="margin">10</property>
+    <property name="spacing">10</property>
+    <property name="expand">True</property>
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="column_spacing">25</property>
+        <property name="row_spacing">15</property>
+        <property name="halign">center</property>
+        <property name="column_homogeneous">False</property>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Width</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Height</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Background color</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkSpinButton" id="spin_width">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_width</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkSpinButton" id="spin_height">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_height</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkColorButton" id="color_btn">
+            <property name="visible">True</property>
+            <property name="use-alpha">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">2</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">4</property>
+            <property name="width">3</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkCheckButton" id="default_checkbtn">
+        <property name="halign">center</property>
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Use these settings by default</property>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+  </object>
+</interface>

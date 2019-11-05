@@ -1,12 +1,12 @@
 # tool_line.py
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_add_arrow_triangle
 
-class ToolLine(ToolTemplate):
+class ToolLine(AbstractAbstractTool):
 	__gtype_name__ = 'ToolLine'
 
 	def __init__(self, window, **kwargs):

@@ -46,28 +46,43 @@
   <menu id="menu-bar">
     <submenu>
       <attribute name="label" translatable="yes">_File</attribute>
-      <section>
-        <item>
-          <attribute name="action">win.new_tab</attribute>
-          <attribute name="label" translatable="yes">New Blank Image</attribute>
-          <attribute name="verb-icon">document-new-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">New Image From Selection</attribute>
-          <attribute name="verb-icon">edit-select-symbolic</attribute>
-          <attribute name="action">win.new_tab_selection</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
-          <attribute name="action">win.new_tab_clipboard</attribute>
-          <attribute name="verb-icon">edit-past-symbolic</attribute>
-        </item>
-      </section>
+      <submenu>
+        <attribute name="label" translatable="yes">New Image</attribute>
+        <section>
+          <item>
+            <attribute name="action">win.new_tab</attribute>
+            <attribute name="label" translatable="yes">New Blank Image</attribute>
+            <attribute name="verb-icon">document-new-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">New Image With Custom Size</attribute>
+            <attribute name="action">win.new_tab_custom</attribute>
+            <attribute name="verb-icon">document-new-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">New Image From Selection</attribute>
+            <attribute name="verb-icon">edit-select-symbolic</attribute>
+            <attribute name="action">win.new_tab_selection</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+            <attribute name="action">win.new_tab_clipboard</attribute>
+            <attribute name="verb-icon">edit-paste-symbolic</attribute>
+          </item>
+        </section>
+      </submenu>
       <section>
         <item>
           <attribute name="label" translatable="yes">Open an image</attribute>
           <attribute name="action">win.open</attribute>
           <attribute name="verb-icon">document-open-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Image properties</attribute>
+          <attribute name="action">win.properties</attribute>
+          <attribute name="verb-icon">document-properties-symbolic</attribute>
         </item>
       </section>
       <section>
@@ -155,13 +170,6 @@
           <attribute name="label" translatable="yes">Import</attribute>
           <attribute name="action">win.import</attribute>
           <attribute name="verb-icon">insert-image-symbolic</attribute>
-        </item>
-      </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Image properties</attribute>
-          <attribute name="action">win.properties</attribute>
-          <attribute name="verb-icon">document-properties-symbolic</attribute>
         </item>
       </section>
       <section>

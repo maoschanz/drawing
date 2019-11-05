@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkBox" id="toolbar">
-    <property name="visible">True</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkToolbar">
-        <property name="visible">True</property>
         <property name="show-arrow">True</property>
         <property name="icon-size">small-toolbar</property>
+        <style><class name="primary-toolbar"/></style>
         <child>
           <object class="GtkMenuToolButton" id="new_menu_btn">
-            <property name="visible">True</property>
             <property name="action-name">win.new_tab</property>
             <property name="icon-name">tab-new-symbolic</property>
             <property name="tooltip-text" translatable="yes">New Image</property>
@@ -22,7 +20,6 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action-name">win.open</property>
             <property name="icon-name">document-open-symbolic</property>
@@ -34,13 +31,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSeparatorToolItem">
-            <property name="visible">True</property>
-          </object>
+          <object class="GtkSeparatorToolItem" />
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="action-name">win.import</property>
             <property name="icon-name">insert-image-symbolic</property>
             <property name="tooltip-text" translatable="yes">Import</property>
@@ -52,7 +46,6 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="action-name">win.paste</property>
             <property name="icon-name">edit-paste-symbolic</property>
             <property name="tooltip-text" translatable="yes">Paste</property>
@@ -63,13 +56,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSeparatorToolItem">
-            <property name="visible">True</property>
-          </object>
+          <object class="GtkSeparatorToolItem" />
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action-name">win.undo</property>
             <property name="icon-name">edit-undo-symbolic</property>
@@ -82,7 +72,6 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="action-name">win.redo</property>
             <property name="icon-name">edit-redo-symbolic</property>
             <property name="tooltip-text" translatable="yes">Redo</property>
@@ -94,7 +83,6 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="action-name">win.properties</property>
             <property name="icon-name">document-properties-symbolic</property>
             <property name="tooltip-text" translatable="yes">Image properties</property>
@@ -105,13 +93,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSeparatorToolItem">
-            <property name="visible">True</property>
-          </object>
+          <object class="GtkSeparatorToolItem" />
         </child>
         <child>
           <object class="GtkMenuToolButton" id="save_menu_btn">
-            <property name="visible">True</property>
             <property name="is-important">True</property>
             <property name="action-name">win.save</property>
             <property name="icon-name">document-save-symbolic</property>
@@ -124,7 +109,6 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="action-name">win.print</property>
             <property name="icon-name">document-print-symbolic</property>
             <property name="tooltip-text" translatable="yes">Print</property>
@@ -135,13 +119,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSeparatorToolItem">
-            <property name="visible">True</property>
-          </object>
+          <object class="GtkSeparatorToolItem" />
         </child>
         <child>
           <object class="GtkToggleToolButton">
-            <property name="visible">True</property>
             <property name="action-name">win.show_labels</property>
             <property name="icon-name">view-list-symbolic</property>
             <property name="tooltip-text" translatable="yes">Show tools names</property>
@@ -153,7 +134,6 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="visible">True</property>
             <property name="action-name">app.settings</property>
             <property name="icon-name">preferences-other-symbolic</property>
             <property name="tooltip-text" translatable="yes">Preferences</property>
@@ -165,7 +145,6 @@
         </child>
         <child>
           <object class="GtkMenuToolButton" id="help_menu_btn">
-            <property name="visible">True</property>
             <property name="action-name">app.help</property>
             <property name="icon-name">help-faq-symbolic</property>
             <property name="tooltip-text" translatable="yes">Help</property>
@@ -175,15 +154,10 @@
             <property name="homogeneous">False</property>
           </packing>
         </child>
-        <style>
-          <class name="primary-toolbar"/>
-        </style>
       </object>
     </child>
     <child>
-      <object class="GtkSeparator">
-        <property name="visible">True</property>
-      </object>
+      <object class="GtkSeparator" />
     </child>
   </object>
 </interface>

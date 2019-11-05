@@ -2,10 +2,10 @@
 
 from gi.repository import Gtk, Gdk
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_get_rgb_for_xy
 
-class ToolPicker(ToolTemplate):
+class ToolPicker(AbstractAbstractTool):
 	__gtype_name__ = 'ToolPicker'
 
 	def __init__(self, window, **kwargs):

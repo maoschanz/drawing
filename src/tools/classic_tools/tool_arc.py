@@ -1,12 +1,12 @@
 # tool_arc.py
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_add_arrow_triangle
 
-class ToolArc(ToolTemplate):
+class ToolArc(AbstractAbstractTool):
 	__gtype_name__ = 'ToolArc'
 
 	def __init__(self, window, **kwargs):
@@ -102,7 +102,8 @@ class ToolArc(ToolTemplate):
 			self.restore_pixbuf()
 			cairo_context = cairo.Context(self.get_surface())
 			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
-			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
+			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
+			                       self.x_press, self.y_press, event_x, event_y)
 			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
 		self._path = cairo_context.copy_path()
@@ -150,7 +151,8 @@ class ToolArc(ToolTemplate):
 			y_press = operation['y_press']
 			x_release = operation['x_release']
 			y_release = operation['y_release']
-			utilities_add_arrow_triangle(cairo_context, x_release, y_release, x_press, y_press, line_width)
+			utilities_add_arrow_triangle(cairo_context, x_release, y_release, \
+			                                       x_press, y_press, line_width)
 
 	############################################################################
 ################################################################################

@@ -3,10 +3,10 @@
 from gi.repository import Gtk, Gdk
 import cairo, math
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_smooth_path
 
-class ToolPencil(ToolTemplate):
+class ToolPencil(AbstractAbstractTool):
 	__gtype_name__ = 'ToolPencil'
 
 	def __init__(self, window, **kwargs):

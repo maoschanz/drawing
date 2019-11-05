@@ -1,14 +1,16 @@
-# tools.py
+# abstract_tool.py
+#
+# GPL 3
 #
 # Super-class implemented and extended by all tools.
 
-from gi.repository import Gtk, Gdk
 import cairo
+from gi.repository import Gtk, Gdk
 
 from .utilities import utilities_show_overlay_on_context
 
-class ToolTemplate():
-	__gtype_name__ = 'ToolTemplate'
+class AbstractAbstractTool():
+	__gtype_name__ = 'AbstractAbstractTool'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		self.id = tool_id

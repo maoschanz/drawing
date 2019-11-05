@@ -1,13 +1,13 @@
 # tool_paint.py
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_get_magic_path
 from .utilities import utilities_get_rgb_for_xy
 
-class ToolPaint(ToolTemplate):
+class ToolPaint(AbstractAbstractTool):
 	__gtype_name__ = 'ToolPaint'
 
 	def __init__(self, window, **kwargs):
@@ -78,11 +78,13 @@ class ToolPaint(ToolTemplate):
 	############################################################################
 
 	def op_replace(self, operation):
-		"""Moins laid mais piêtre gestion des couleurs (semi-)transparentes en
-		dehors de la zone ciblée."""
+		"""Algorithmically less ugly than `op_fill`, but doesn't handle (semi-)
+		transparent colors correctly, even outside of the targeted area."""
+		# FIXME
 		if operation['path'] is None:
 			return
-		cairo_context = cairo.Context(self.get_surface())
+		surf = self.get_surface()
+		cairo_context = cairo.Context(surf)
 		rgba = operation['rgba']
 		old_rgb = operation['old_rgb']
 		cairo_context.set_source_rgba(255, 255, 255, 1.0)
@@ -90,8 +92,8 @@ class ToolPaint(ToolTemplate):
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.fill_preserve()
 
-		self.get_image().temp_pixbuf = Gdk.pixbuf_get_from_surface(self.get_surface(), \
-			0, 0, self.get_surface().get_width(), self.get_surface().get_height())
+		self.get_image().temp_pixbuf = Gdk.pixbuf_get_from_surface(surf, 0, 0, \
+		                                    surf.get_width(), surf.get_height())
 
 		tolerance = 10 # XXX
 		i = -1 * tolerance
@@ -102,7 +104,7 @@ class ToolPaint(ToolTemplate):
 			red = int( min(255, red) )
 			green = int( min(255, green) )
 			blue = int( min(255, blue) )
-			self.get_image().temp_pixbuf = self.get_image().temp_pixbuf.add_alpha(True, red, green, blue)
+			self.replace_temp_with_alpha(red, green, blue)
 			i = i+1
 		self.restore_pixbuf()
 		cairo_context2 = cairo.Context(self.get_surface())
@@ -114,7 +116,7 @@ class ToolPaint(ToolTemplate):
 		cairo_context2.set_operator(cairo.Operator.OVER)
 
 		Gdk.cairo_set_source_pixbuf(cairo_context2, \
-			self.get_image().get_temp_pixbuf(), 0, 0)
+		                               self.get_image().get_temp_pixbuf(), 0, 0)
 		cairo_context2.append_path(operation['path'])
 		cairo_context2.paint()
 		self.non_destructive_show_modif()
@@ -123,7 +125,8 @@ class ToolPaint(ToolTemplate):
 		cairo_context2.paint()
 
 	def op_fill(self, operation):
-		"""Simple mais laid et reposant sur la précision du path."""
+		"""Simple but ugly, and it's relying on the precision of the provided
+		path whose creation is based on shitty heurisctics."""
 		if operation['path'] is None:
 			return
 		cairo_context = cairo.Context(self.get_surface())
@@ -133,7 +136,7 @@ class ToolPaint(ToolTemplate):
 		cairo_context.fill()
 
 	def op_clipping(self, operation):
-		"""Remplacement de la couleur par du alpha."""
+		"""Replace the color with transparency by adding an alpha channel."""
 		old_rgb = operation['old_rgb']
 		r0 = old_rgb[0]
 		g0 = old_rgb[1]
@@ -148,7 +151,17 @@ class ToolPaint(ToolTemplate):
 						for k in range(-1 * margin, margin+1):
 							b = b0 + k
 							if b <= 255 and b >= 0:
-								self.get_image().main_pixbuf = \
-								 self.get_main_pixbuf().add_alpha(True, r, g, b)
+								self.replace_with_alpha(r, g, b)
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
+
+	def replace_main_with_alpha(self, red, green, blue):
+		self.get_image().main_pixbuf = self.get_main_pixbuf().add_alpha(True, \
+		                                                       red, green, blue)
+
+	def replace_temp_with_alpha(self, red, green, blue):
+		self.get_image().temp_pixbuf = self.get_image().temp_pixbuf.add_alpha( \
+		                                                 True, red, green, blue)
+
+	############################################################################
+################################################################################

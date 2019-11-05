@@ -18,7 +18,7 @@
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .gi_composites import GtkTemplate
 
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 
 SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
 
@@ -48,11 +48,13 @@ class DrawingPrefsWindow(Gtk.Window):
 			self.set_titlebar(header_bar)
 			self.content_area.remove(self.stack_switcher)
 			header_bar.set_custom_title(self.stack_switcher)
+		else:
+			self.stack_switcher.set_margin_top(12)
 
 		########################################################################
 		# Build the "images" page ##############################################
-
 		pass
+
 		w = self.row_from_label(_("New images"), False)
 		self.page_images.add(w)
 
@@ -76,8 +78,8 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		########################################################################
 		# Build the "tools" page ###############################################
-
 		pass
+
 		w = self.row_from_bool(_("Show tools names"), 'show-labels')
 		self.page_tools.add(w)
 
@@ -86,36 +88,12 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		########################################################################
 		# Build the "advanced" page ############################################
-
 		pass
+
 		w = self.row_from_label(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
 		w = self.row_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
-		self.page_advanced.add(w)
-
-		layout_combobox = Gtk.ComboBoxText()
-		layout_combobox.append('auto', _("Automatic"))
-		layout_combobox.append('csd', _("Compact"))
-		layout_combobox.append('csd-eos', 'elementary OS')
-		# "Legacy" is about the window layout, it means menubar+toolbar, you can
-		# translate it like if it was "Traditional"
-		layout_combobox.append('ssd', _("Legacy"))
-		# SHORT STRING PLEASE
-		# "Legacy" is about the window layout, it means menubar+toolbar, you can
-		# translate it like if it was "Traditional". "symbolic" means the icons
-		# are in black or white.
-		layout_combobox.append('ssd-symbolic', _("Legacy (symbolic)"))
-		layout_combobox.append('ssd-menubar', _("Menubar only"))
-		layout_combobox.append('ssd-toolbar', _("Toolbar only"))
-		# SHORT STRING PLEASE
-		# "symbolic" means the icons are in black or white.
-		layout_combobox.append('ssd-toolbar-symbolic', _("Toolbar (symbolic)"))
-		if is_beta and self._settings.get_boolean('devel-only'):
-			layout_combobox.append('everything', "Everything (testing only)")
-		layout_combobox.set_active_id(self._settings.get_string('decorations'))
-		layout_combobox.connect('changed', self.on_combo_changed, 'decorations')
-		w = self.row_from_widget(_("Layout"), layout_combobox)
 		self.page_advanced.add(w)
 
 		if not is_beta:
@@ -125,7 +103,39 @@ class DrawingPrefsWindow(Gtk.Window):
 		if not is_beta:
 			w.set_visible(False)
 
+		w = self.row_from_label(_("Layout"), True)
+		self.page_advanced.add(w)
+
+		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
+		self.page_advanced.add(flowbox)
+
+		self._radio_are_active = False
+		w0 = self.build_radio_btn(_("Automatic"), 'auto', 'decorations', None)
+		flowbox.add(w0)
+		w = self.build_radio_btn(_("Compact"), 'csd', 'decorations', w0)
+		flowbox.add(w)
+		w = self.build_radio_btn("elementary OS", 'csd-eos', 'decorations', w0)
+		flowbox.add(w)
+		# "Legacy" is about the window layout, it means menubar+toolbar, you can
+		# translate it like if it was "Traditional"
+		w = self.build_radio_btn(_("Legacy"), 'ssd', 'decorations', w0)
+		flowbox.add(w)
+		# "Legacy" is about the window layout, it means menubar+toolbar, you can
+		# translate it like if it was "Traditional"
+		w = self.build_radio_btn(_("Legacy (symbolic icons)"), 'ssd-symbolic', \
+		                                                      'decorations', w0)
+		flowbox.add(w)
+		w = self.build_radio_btn(_("Menubar only"), 'ssd-menubar', 'decorations', w0)
+		flowbox.add(w)
+		w = self.build_radio_btn(_("Toolbar only"), 'ssd-toolbar', 'decorations', w0)
+		flowbox.add(w)
+		w = self.build_radio_btn(_("Toolbar only (symbolic icons)"), \
+		                              'ssd-toolbar-symbolic', 'decorations', w0)
+		flowbox.add(w)
+		self._radio_are_active = True
+
 	############################################################################
+	# Widgets building methods #################################################
 
 	def row_from_label(self, label_text, with_margin):
 		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \
@@ -143,28 +153,37 @@ class DrawingPrefsWindow(Gtk.Window):
 		box.show_all()
 		return box
 
-	def row_for_AoS(self, label, row_id, key):
-		btn = Gtk.CheckButton(label=label, visible=True)
-		array_of_strings = self._settings.get_strv(key)
-		btn.set_active(row_id not in array_of_strings)
-		btn.connect('toggled', self.on_aos_checkbtn_changed, key, row_id)
-		return btn
-
 	def row_from_bool(self, label_text, key):
 		switch = Gtk.Switch()
 		switch.set_active(self._settings.get_boolean(key))
 		switch.connect('notify::active', self.on_bool_changed, key)
 		return self.row_from_widget(label_text, switch)
 
-	def on_bool_changed(self, switch, state, key):
-		self._settings.set_boolean(key, switch.get_active())
-
 	def row_from_adj(self, label_text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
-		utilities_add_px_to_spinbutton(spinbtn, 4, 'px')
+		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
 		return self.row_from_widget(label_text, spinbtn)
+
+	def build_radio_btn(self, label, btn_id, key, group):
+		btn = Gtk.RadioButton(label=label, visible=True, group=group)
+		active_id = self._settings.get_string(key)
+		btn.set_active(btn_id == active_id)
+		btn.connect('toggled', self.on_radio_btn_changed, key, btn_id)
+		return btn
+
+	def build_check_btn(self, label, row_id, key):
+		btn = Gtk.CheckButton(label=label, visible=True)
+		array_of_strings = self._settings.get_strv(key)
+		btn.set_active(row_id not in array_of_strings)
+		btn.connect('toggled', self.on_check_btn_changed, key, row_id)
+		return btn
+
+	############################################################################
+
+	def on_bool_changed(self, switch, state, key):
+		self._settings.set_boolean(key, switch.get_active())
 
 	def on_adj_changed(self, spinbtn, key):
 		self._settings.set_int(key, spinbtn.get_value_as_int())
@@ -177,13 +196,17 @@ class DrawingPrefsWindow(Gtk.Window):
 	def on_combo_changed(self, combobox, key):
 		self._settings.set_string(key, combobox.get_active_id())
 
-	def on_aos_checkbtn_changed(self, checkbtn, key, row_id):
+	def on_check_btn_changed(self, checkbtn, key, btn_id):
 		array_of_strings = self._settings.get_strv(key)
 		if checkbtn.get_active():
-			array_of_strings.remove(row_id)
+			array_of_strings.remove(btn_id)
 		else:
-			array_of_strings.append(row_id)
+			array_of_strings.append(btn_id)
 		self._settings.set_strv(key, array_of_strings)
+
+	def on_radio_btn_changed(self, radiobtn, key, btn_id):
+		if self._radio_are_active:
+			self._settings.set_string(key, btn_id)
 
 	############################################################################
 ################################################################################

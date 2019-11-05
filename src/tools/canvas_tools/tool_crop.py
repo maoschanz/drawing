@@ -20,7 +20,7 @@ import cairo
 
 from .abstract_canvas_tool import AbstractCanvasTool
 
-from .utilities import utilities_add_px_to_spinbutton
+from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
@@ -42,8 +42,8 @@ class ToolCrop(AbstractCanvasTool):
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
-		utilities_add_px_to_spinbutton(self.height_btn, 4, 'px')
-		utilities_add_px_to_spinbutton(self.width_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
+		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		

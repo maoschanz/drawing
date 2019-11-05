@@ -24,6 +24,7 @@ from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
+APP_PATH = '/com/github/maoschanz/drawing/'
 
 def main(version):
 	app = Application(version)
@@ -65,16 +66,15 @@ class Application(Gtk.Application):
 		# TODO options pour le screenshot ?
 
 		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path('/com/github/maoschanz/drawing/icons')
-		icon_theme.add_resource_path('/com/github/maoschanz/drawing/tools/icons')
+		icon_theme.add_resource_path(APP_PATH + 'icons')
+		icon_theme.add_resource_path(APP_PATH + 'tools/icons')
 
 		self.connect('window-removed', self.update_windows_menu_section)
 
 	def on_startup(self, *args):
 		"""Called only once, add app-wide menus and actions, and all accels."""
 		self.build_actions()
-		builder = Gtk.Builder.new_from_resource( \
-		                        '/com/github/maoschanz/drawing/ui/app-menus.ui')
+		builder = Gtk.Builder.new_from_resource(APP_PATH + 'ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		if self.prefers_app_menu():
@@ -115,14 +115,17 @@ class Application(Gtk.Application):
 		          Gio.MENU_LINK_SUBMENU).get_item_link(1, Gio.MENU_LINK_SECTION)
 		section.remove_all()
 		for window in self.get_windows():
+			title = window.get_title()
 			if not isinstance(window, Gtk.ApplicationWindow):
 				continue
-			elif window.get_title() is None:
+			elif title is None:
 				continue
 			else:
 				detailed_name = 'app.active-window(uint32 ' + \
 				                                      str(window.get_id()) + ')'
-				section.append(window.get_title(), detailed_name)
+				title = title.split(' - ')
+				title = title[1] + ' - ' + title[2]
+				section.append(title, detailed_name)
 
 	def open_window_with_content(self, gfile, get_cb):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
@@ -173,7 +176,7 @@ class Application(Gtk.Application):
 				self.on_new_window()
 			else:
 				win.present()
-				self.props.active_window.build_new_tab(None, None)
+				self.props.active_window.build_new_image()
 		elif len(arguments) == 1:
 			self.on_activate()
 
@@ -192,7 +195,7 @@ class Application(Gtk.Application):
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
-						self.props.active_window.build_new_tab(f, None)
+						self.props.active_window.build_new_tab(gfile=f)
 		# I don't even know if i should return something
 		return 0
 
@@ -209,11 +212,10 @@ class Application(Gtk.Application):
 		Gtk.show_uri_on_window(win, url, Gdk.CURRENT_TIME)
 
 	def on_shortcuts(self, *args):
-		"""Action callback, showing the "shortcuts" dialog."""
+		"""Action callback, showing the 'shortcuts' dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-		builder = Gtk.Builder().new_from_resource( \
-		                        '/com/github/maoschanz/drawing/ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource(APP_PATH + 'ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
@@ -256,7 +258,8 @@ class Application(Gtk.Application):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
 			copyright='© 2019 Romain F. T.', authors=['Romain F. T.'],
-			# To tranlators: "translate" this by your name, it will be displayed in the "about" dialog
+			# To tranlators: "translate" this by your name, it will be displayed
+			# in the "about" dialog
 			translator_credits=_("translator-credits"),
 			artists=['Tobias Bernard', 'Romain F. T.'],
 			comments=_("A drawing application for the GNOME desktop."),
