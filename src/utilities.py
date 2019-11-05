@@ -344,9 +344,9 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	cairo_context.fill_preserve()
 	cairo_context.stroke()
 
+################################################################################
+
 def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
-	# spinbutton.set_width_chars(width_chars + 2)
-	# return # XXX trouver mieux
 	spinbutton.set_width_chars(width_chars + 3)
 	if unit == 'px':
 		_add_spinbutton_icon(spinbutton, 'unit-pixels-symbolic', _("pixels"))
