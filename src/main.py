@@ -123,9 +123,12 @@ class Application(Gtk.Application):
 			else:
 				detailed_name = 'app.active-window(uint32 ' + \
 				                                      str(window.get_id()) + ')'
-				title = title.split(' - ')
-				title = title[1] + ' - ' + title[2]
-				section.append(title, detailed_name)
+				try:
+					title2 = title.split(' - ')
+					title2 = title2[1] + ' - ' + title2[2]
+				except Exception:
+					title2 = title
+				section.append(title2, detailed_name)
 
 	def open_window_with_content(self, gfile, get_cb):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb

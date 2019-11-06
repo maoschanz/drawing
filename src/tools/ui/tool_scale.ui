@@ -47,20 +47,6 @@
         <property name="orientation">horizontal</property>
 
         <child>
-          <object class="GtkCheckButton" id="proportions_btn">
-            <property name="label" translatable="yes">Keep proportions</property>
-            <property name="active">True</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-          </object>
-        </child>
-
-        <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="spacing">10</property>
@@ -105,6 +91,14 @@
                 <property name="tooltip_text" translatable="yes">Height</property>
               </object>
             </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkCheckButton" id="proportions_btn">
+            <property name="label" translatable="yes">Keep proportions</property>
+            <property name="active">True</property>
+            <property name="visible">True</property>
           </object>
         </child>
 
