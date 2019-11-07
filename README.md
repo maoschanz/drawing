@@ -1,18 +1,21 @@
-# Drawing
+# Drawing (branch 0.4.x)
 
 ## A simple drawing application for Linux.
 
-This application is a basic image editor, similar to Microsoft Paint, but aiming at the GNOME desktop.
+This application is a basic image editor, similar to Microsoft Paint, but aiming
+at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
 
-Besides GNOME, some more traditional design layouts are available too, as well as an [elementaryOS layout](./docs/screenshots/elementary.png). It should also be compatible with [Purism's Librem 5 phone](./docs/screenshots/librem_options.png).
+Besides GNOME, some more traditional design layouts are available too, as well
+as an elementaryOS layout. It should also be compatible with smartphone screens
+(Librem 5, Pine Phone, etc.)
 
 ### Available tools
 
 (and a few of their options)
 
-Drawing tools:
+Classic tools:
 
 | Tool      | Options        |
 |:---------:|:--------------:|
@@ -27,7 +30,8 @@ Drawing tools:
 |Color picker|               |
 |Paint      |Remove a color  |
 
-The selection tool allows you to define an area (rectangle or free), which you can move, cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
+The selection tool allows you to define an area (rectangle or free), which you
+can move, cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
 
 Canvas/selection edition tools:
 
@@ -58,25 +62,21 @@ Canvas/selection edition tools:
 
 ## Screenshots
 
-### Default user interface (for GNOME/Budgie)
+These screenshots show the main default user interface (for GNOME/Budgie), but
+there are other more traditional window layouts (with a menubar and/or a toolbar
+using diffent styles of icons).
 
-![GNOME/Budgie UI, here with the main menu opened](./docs/screenshots/gnome_menu.png)
+![The primary menu opened](./help/C/figures/screenshot_menu.png)
 
-More screenshots:
+![The options of the "arc" tool](./help/C/figures/screenshot_arc.png)
 
-- [Color chooser](./docs/screenshots/gnome_colors.png)
-- [Open/Import menu](./docs/screenshots/gnome_new.png), with several tabs opened
-- [The selection tool and its menu](./docs/screenshots/gnome_selection.png)
-- [Drawing things a blank picture with tools](./docs/screenshots/gnome_tools_preview.png), with the preview opened
-- [Inserting text](./docs/screenshots/gnome_text.png)
-- [Adjusting the saturation](./docs/screenshots/gnome_menu_saturation.png), with the main menu opened
+![Here part of the image is selected, and the selection menu is opened](./help/C/figures/screenshot_selection.png)
 
-### Alternative user interfaces
+![An example of a tool modifying the whole canvas](./help/C/figures/screenshot_saturate.png)
 
-- [elementaryOS UI](./docs/screenshots/elementary.png)
-- [Cinnamon UI](./docs/screenshots/cinnamon.png)
-- [MATE UI](./docs/screenshots/mate_scale.png)
-- The default "GNOME" UI can be resized to be compatible with the Purism Librem 5 phone. [Screenshot](./docs/screenshots/librem_options.png) and [screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2).
+The default "GNOME" UI can be resized to be compatible with the Purism Librem 5
+phone. [Screenshot](./docs/screenshots/librem_options.png) and
+[screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2).
 
 ----
 
@@ -92,9 +92,8 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04 and 19.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
-- [Fedora (official repo)](https://apps.fedoraproject.org/packages/drawing) (29, 30 and Rawhide): `sudo dnf install drawing`
-- Arch and Manjaro ([Arch "Community" repos](https://www.archlinux.org/packages/community/any/drawing/))
+- Ubuntu 18.04, 19.04 and 19.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- ["Snap" package](https://snapcraft.io/drawing)
 
 ### Unstable/nightly version
 

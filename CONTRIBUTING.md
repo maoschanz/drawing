@@ -15,7 +15,7 @@
 	- GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file.
 	- Install it with `flatpak install path/to/that/file`.
 - Run `git add . && git commit && git push`
-- Submit a "pull request"/"merge request" to my `0.4` branch.
+- Submit a "pull request"/"merge request".
 
 ----
 
