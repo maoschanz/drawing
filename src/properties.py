@@ -26,6 +26,9 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		                      transient_for=window, title=_("Image properties"))
 		self._image = image
 		self.build_ui()
+		if wants_csd:
+			subtitle = self._image.get_filename_for_display()
+			self.get_titlebar().set_subtitle(subtitle)
 		self.set_default_size(350, 200)
 		self.show()
 
