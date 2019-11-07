@@ -53,16 +53,15 @@ class Application(Gtk.Application):
 		self.connect('command-line', self.on_cli)
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE,
-		                     _("Print the version and display the 'about' dialog"),
-		                     None)
+		             GLib.OptionArg.NONE, _("Print the version and exit"), None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
-		# TODO options pour le screenshot ?
+		self.add_main_option('screenshot', b's', GLib.OptionFlags.NONE,
+		          GLib.OptionArg.NONE, _("Take a screenshot and edit it"), None)
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path(APP_PATH + 'icons')
@@ -124,47 +123,79 @@ class Application(Gtk.Application):
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
 
+		# XXX the following comment is wrong.
 		# Possible options are 'version', 'new-window', and 'new-tab', in this
 		# order: only one option can be applied, '-ntv' will be the same as '-v'.
 		options = args[1].get_options_dict()
 
 		if options.contains('version'):
 			print(_("Drawing") + ' ' + self.version)
-			self.on_about()
 		elif options.contains('edit-clipboard'):
-			self.open_window_with_content(None, True)
+			self._edit_clipboard(options.contains('new-window'))
+		elif options.contains('screenshot'):
+			self._edit_screenshot()
 
 		# If no file given as argument
-		elif options.contains('new-window') and len(arguments) == 1:
-			self.on_new_window()
-		elif options.contains('new-tab') and len(arguments) == 1:
-			win = self.props.active_window
-			if not win:
-				self.on_new_window()
-			else:
-				win.present()
-				self.props.active_window.build_new_image()
 		elif len(arguments) == 1:
-			self.on_activate()
+			if options.contains('new-window'):
+				self.on_new_window()
+			elif options.contains('new-tab'):
+				self._new_empty_tab()
+			else:
+				self.on_activate()
 
 		elif options.contains('new-window'):
 			self.on_new_window()
 			for fpath in arguments:
 				f = self.get_valid_file(args[1], fpath)
 				if f is not None:
-					self.open_window_with_content(f, False)
+					self.open_window_with_content(f, False) # XXX dépend si on
+					# fait -n ou -nt selon moi, et de toutes manières là on en
+					# ouvre trop car il y en a une au début de l'embranchement
 		else: # giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self.get_valid_file(args[1], fpath)
 				if f is not None:
-					win = self.props.active_window
-					if not win:
-						self.open_window_with_content(f, False)
-					else:
-						win.present()
-						self.props.active_window.build_new_tab(gfile=f)
+					self._new_tab_with_file(f)
 		# I don't even know if i should return something
 		return 0
+
+	def _edit_clipboard(self, in_new_window):
+		win = self.props.active_window
+		if not win or in_new_window:
+			self.open_window_with_content(None, True)
+		else:
+			win.present()
+			win.build_image_from_clipboard()
+
+	def _edit_screenshot(self):
+		# XXX shouldn't it be an action?
+		print("aaa")
+		time.sleep(1) # TODO paramétrable
+		print("eee")
+		# TODO prendre le screenshot
+		win = self.props.active_window
+		if not win:
+			self.on_new_window()
+		else:
+			win.present()
+			# win.???() # TODO que faire
+
+	def _new_empty_tab(self):
+		win = self.props.active_window
+		if not win:
+			self.on_new_window()
+		else:
+			win.present()
+			win.build_new_image()
+
+	def _new_tab_with_file(self, f):
+		win = self.props.active_window
+		if not win:
+			self.open_window_with_content(f, False)
+		else:
+			win.present()
+			self.props.active_window.build_new_tab(gfile=f)
 
 	# ACTIONS CALLBACKS ########################################################
 

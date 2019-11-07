@@ -34,6 +34,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	adj_width = Gtk.Template.Child()
 	adj_height = Gtk.Template.Child()
 	adj_preview = Gtk.Template.Child()
+	adj_screenshot = Gtk.Template.Child()
 
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
@@ -55,10 +56,12 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_label(_("New images"), False)
 		self.page_images.add(w)
 
-		w = self.row_from_adj(_("Default width"), 'default-width', self.adj_width)
+		w = self.row_from_adj(_("Default width"), 'default-width', \
+		                                                   self.adj_width, 'px')
 		self.page_images.add(w)
 
-		w = self.row_from_adj(_("Default height"), 'default-height', self.adj_height)
+		w = self.row_from_adj(_("Default height"), 'default-height', \
+		                                                  self.adj_height, 'px')
 		self.page_images.add(w)
 
 		background_color_btn = Gtk.ColorButton(use_alpha=True)
@@ -122,7 +125,8 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_label(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
-		w = self.row_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
+		w = self.row_from_adj(_("Preview size"), 'preview-size', \
+		                                                 self.adj_preview, 'px')
 		self.page_advanced.add(w)
 
 		if not is_beta:
@@ -131,6 +135,14 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.page_advanced.add(w)
 		if not is_beta:
 			w.set_visible(False)
+
+		w = self.row_from_label(_("Screenshot"), True)
+		self.page_advanced.add(w)
+
+		w = self.row_from_adj(_("Delay"), 'screenshot-delay', \
+		                                               self.adj_screenshot, 's')
+		w.set_tooltip_text(_("Recommended value: between 1 and 5 seconds"))
+		self.page_advanced.add(w)
 
 		w = self.row_from_label(_("Layout"), True)
 		self.page_advanced.add(w)
@@ -168,10 +180,9 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	def row_from_label(self, label_text, with_margin):
 		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \
-		                                    label=('<b>' + label_text + '</b>'))
+		                      visible=True, label=('<b>' + label_text + '</b>'))
 		if with_margin:
 			label.set_margin_top(12)
-		label.set_visible(True)
 		return label
 
 	def row_from_widget(self, label_text, widget):
@@ -188,10 +199,10 @@ class DrawingPrefsWindow(Gtk.Window):
 		switch.connect('notify::active', self.on_bool_changed, key)
 		return self.row_from_widget(label_text, switch)
 
-	def row_from_adj(self, label_text, key, adj):
+	def row_from_adj(self, label_text, key, adj, unit):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
-		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
+		utilities_add_unit_to_spinbtn(spinbtn, 4, unit) # XXX don't harcode this 4
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
 		return self.row_from_widget(label_text, spinbtn)
 
