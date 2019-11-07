@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import sys, gi
+import sys, gi, time
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
@@ -76,6 +76,32 @@ class Application(Gtk.Application):
 		if self.prefers_app_menu():
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
+
+		# XXX maybe here, maybe not
+		# self.init_screenshot_bullshit()
+
+	def init_screenshot_bullshit(self):
+		# from https://stackoverflow.com/a/56384206
+
+		dbus_path = '/com/github/maoschanz/drawing'
+		# dbus_object = GLib.Variant.new_object_path(dbus_path)
+		# self.proxy = Gio.DBusProxy.new_for_bus_sync(Gio.BusType.SESSION, \
+		#       Gio.DBusProxyFlags.NONE, None, 'org.freedesktop.portal.Desktop', \
+		#                     dbus_path, 'org.freedesktop.portal.Request', None)
+		# self.proxy.connect('g-signal', self.receive_screenshot)
+		self.proxy = Gio.DBusProxy.new_for_bus(Gio.BusType.SESSION, \
+		      Gio.DBusProxyFlags.NONE, None, 'org.freedesktop.portal.Desktop', \
+		                    dbus_path, 'org.freedesktop.portal.Request', None, \
+		                                          self.receive_screenshot, None)
+
+		# args = GLib.Variant('(sa{sv})', ("rrrrrtest", {}))
+		# args = GLib.Variant('(sa{sv})', (filename, {}))
+		# result = proxy.call_sync('Screenshot', args, \
+		#                                        Gio.DBusCallFlags.NONE, -1, None)
+		# request_handle = result.unpack()[0]
+		# self.bus.signal_subscribe("org.freedesktop.portal.Desktop", \
+		#          "org.freedesktop.portal.Request", "Response", request_handle, \
+		#        None, Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot)
 
 	def build_actions(self):
 		"""Add app-wide actions."""
@@ -168,19 +194,6 @@ class Application(Gtk.Application):
 			win.present()
 			win.build_image_from_clipboard()
 
-	def _edit_screenshot(self):
-		# XXX shouldn't it be an action?
-		print("aaa")
-		time.sleep(1) # TODO paramétrable
-		print("eee")
-		# TODO prendre le screenshot
-		win = self.props.active_window
-		if not win:
-			self.on_new_window()
-		else:
-			win.present()
-			# win.???() # TODO que faire
-
 	def _new_empty_tab(self):
 		win = self.props.active_window
 		if not win:
@@ -196,6 +209,75 @@ class Application(Gtk.Application):
 		else:
 			win.present()
 			self.props.active_window.build_new_tab(gfile=f)
+
+	# SCREENSHOTTING ###########################################################
+
+	def _edit_screenshot(self):
+		self.init_screenshot_bullshit()
+
+
+		# XXX shouldn't it be an action?
+		print("aaa")
+		time.sleep(1) # TODO paramétrable
+
+
+		# args = GLib.Variant('(sa{sv})', ("rrrrrtest", {}))
+		# args = GLib.Variant('(sa{sv})', (filename, {}))
+		# result = self.proxy.call_sync('Screenshot', args, \
+		#                                        Gio.DBusCallFlags.NONE, -1, None)
+		# request_handle = result.unpack()[0]
+		# self.bus.signal_subscribe("org.freedesktop.portal.Desktop", \
+		#          "org.freedesktop.portal.Request", "Response", request_handle, \
+		#        None, Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot)
+
+
+
+
+		print("eee")
+		# TODO prendre le screenshot
+		win = self.props.active_window
+		if not win:
+			self.on_new_window()
+		else:
+			win.present()
+			# win.???() # TODO que faire
+
+	def receive_screenshot(self, *args2): #c, s, p, i, sig, params):
+		print(args2)
+
+
+
+
+
+		args = GLib.Variant('(sa{sv})', ("rrrrrtest", {}))
+		# args = GLib.Variant('(sa{sv})', (filename, {}))
+		result = args2[0].call_sync('Screenshot', args, \
+		                                       Gio.DBusCallFlags.NONE, -1, None)
+		request_handle = result.unpack()[0]
+		self.bus.signal_subscribe("org.freedesktop.portal.Desktop", \
+		         "org.freedesktop.portal.Request", "Response", request_handle, \
+		       None, Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot)
+
+
+
+
+
+
+
+
+		return
+		# from https://stackoverflow.com/a/56384206
+		# if not isinstance(params, GLib.Variant):
+		# 	return
+		# response_code, results = params.unpack()
+		# SUCCESS = 0
+		# if response_code != SUCCESS or 'uri' not in results:
+		# 	print("Error taking screenshot") # TODO translatable and shown in infobar
+		# 	return
+		# parsed_uri = urlparse(results['uri'])
+		# assert parsed_uri.scheme == "file" # XXX try/except
+		# screenshot = unquote(parsed_uri.path)
+		# print(screenshot)
 
 	# ACTIONS CALLBACKS ########################################################
 
