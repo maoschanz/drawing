@@ -191,11 +191,12 @@ class Application(Gtk.Application):
 	def _edit_screenshot(self, app):
 		win = self.props.active_window
 		if not win:
-			self.on_new_window()
+			win = self.on_new_window()
 			# Because the portal requires the app to have a window
 			# XXX la cacher peut-être ?
 		self.cli_app = app
-		time.sleep(1) # TODO paramétrable XXX si utile
+		delay = win._settings.get_int('screenshot-delay')
+		time.sleep(delay) # XXX utile ?
 
 		bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
 		proxy = Gio.DBusProxy.new_sync(bus, Gio.DBusProxyFlags.NONE, None,
@@ -224,6 +225,7 @@ class Application(Gtk.Application):
 			win.present()
 		if useful_data[0] == 0:
 			weird_uri = useful_data[1]['uri']
+			# f = Gio.File.new_for_uri(weird_uri)
 			file_name = weird_uri.split('/')[-1] # XXX honteux
 			image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
 			true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
