@@ -189,6 +189,11 @@ class Application(Gtk.Application):
 
 	# XXX shouldn't it be an action?
 	def _edit_screenshot(self, app):
+		win = self.props.active_window
+		if not win:
+			self.on_new_window()
+			# Because the portal requires the app to have a window
+			# XXX la cacher peut-être ?
 		self.cli_app = app
 		time.sleep(1) # TODO paramétrable XXX si utile
 
@@ -206,12 +211,14 @@ class Application(Gtk.Application):
 		       Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot, None)
 
 	def receive_screenshot(self, *args):
-		useful_data = args[5]
+		useful_data = args[5] # TODO dans toute cette merde ya bien un truc
+		# mieux que l'URL ?
 		if useful_data[0] == 1:
 			# Action cancelled by the user
 			return
 		win = self.props.active_window
 		if not win:
+			# Should never happen
 			win = self.on_new_window()
 		else:
 			win.present()
