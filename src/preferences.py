@@ -139,10 +139,10 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_label(_("Screenshot"), True)
 		self.page_advanced.add(w)
 
-		w = self.row_from_adj(_("Delay"), 'screenshot-delay', \
-		                                               self.adj_screenshot, 's')
-		w.set_tooltip_text(_("Recommended value: between 1 and 5 seconds"))
-		self.page_advanced.add(w)
+		# w = self.row_from_adj(_("Delay"), 'screenshot-delay', \
+		#                                                self.adj_screenshot, 's')
+		# w.set_tooltip_text(_("Recommended value: between 1 and 5 seconds"))
+		# self.page_advanced.add(w)
 
 		w = self.row_from_label(_("Layout"), True)
 		self.page_advanced.add(w)

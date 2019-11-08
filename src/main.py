@@ -16,6 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, gi, time
+from urllib.parse import unquote
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
@@ -77,32 +78,6 @@ class Application(Gtk.Application):
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
 
-		# XXX maybe here, maybe not
-		# self.init_screenshot_bullshit()
-
-	def init_screenshot_bullshit(self):
-		# from https://stackoverflow.com/a/56384206
-
-		dbus_path = '/com/github/maoschanz/drawing'
-		# dbus_object = GLib.Variant.new_object_path(dbus_path)
-		# self.proxy = Gio.DBusProxy.new_for_bus_sync(Gio.BusType.SESSION, \
-		#       Gio.DBusProxyFlags.NONE, None, 'org.freedesktop.portal.Desktop', \
-		#                     dbus_path, 'org.freedesktop.portal.Request', None)
-		# self.proxy.connect('g-signal', self.receive_screenshot)
-		self.proxy = Gio.DBusProxy.new_for_bus(Gio.BusType.SESSION, \
-		      Gio.DBusProxyFlags.NONE, None, 'org.freedesktop.portal.Desktop', \
-		                    dbus_path, 'org.freedesktop.portal.Request', None, \
-		                                          self.receive_screenshot, None)
-
-		# args = GLib.Variant('(sa{sv})', ("rrrrrtest", {}))
-		# args = GLib.Variant('(sa{sv})', (filename, {}))
-		# result = proxy.call_sync('Screenshot', args, \
-		#                                        Gio.DBusCallFlags.NONE, -1, None)
-		# request_handle = result.unpack()[0]
-		# self.bus.signal_subscribe("org.freedesktop.portal.Desktop", \
-		#          "org.freedesktop.portal.Request", "Response", request_handle, \
-		#        None, Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot)
-
 	def build_actions(self):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
@@ -159,7 +134,7 @@ class Application(Gtk.Application):
 		elif options.contains('edit-clipboard'):
 			self._edit_clipboard(options.contains('new-window'))
 		elif options.contains('screenshot'):
-			self._edit_screenshot()
+			self._edit_screenshot(args[1])
 
 		# If no file given as argument
 		elif len(arguments) == 1:
@@ -212,72 +187,45 @@ class Application(Gtk.Application):
 
 	# SCREENSHOTTING ###########################################################
 
-	def _edit_screenshot(self):
-		self.init_screenshot_bullshit()
+	# XXX shouldn't it be an action?
+	def _edit_screenshot(self, app):
+		self.cli_app = app
+		time.sleep(1) # TODO paramétrable XXX si utile
 
+		bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
+		proxy = Gio.DBusProxy.new_sync(bus, Gio.DBusProxyFlags.NONE, None,
+				                         'org.freedesktop.portal.Desktop',
+				                      '/org/freedesktop/portal/desktop',
+				                'org.freedesktop.portal.Screenshot', None)
 
-		# XXX shouldn't it be an action?
-		print("aaa")
-		time.sleep(1) # TODO paramétrable
+		args = GLib.Variant('(sa{sv})', ('', {}))
+		res = proxy.call_sync('Screenshot', args, \
+		                             Gio.DBusCallFlags.NO_AUTO_START, 500, None)
+		response_id = bus.signal_subscribe('org.freedesktop.portal.Desktop', \
+		           'org.freedesktop.portal.Request', 'Response', res[0], None, \
+		       Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot, None)
 
-
-		# args = GLib.Variant('(sa{sv})', ("rrrrrtest", {}))
-		# args = GLib.Variant('(sa{sv})', (filename, {}))
-		# result = self.proxy.call_sync('Screenshot', args, \
-		#                                        Gio.DBusCallFlags.NONE, -1, None)
-		# request_handle = result.unpack()[0]
-		# self.bus.signal_subscribe("org.freedesktop.portal.Desktop", \
-		#          "org.freedesktop.portal.Request", "Response", request_handle, \
-		#        None, Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot)
-
-
-
-
-		print("eee")
-		# TODO prendre le screenshot
+	def receive_screenshot(self, *args):
+		useful_data = args[5]
+		if useful_data[0] == 1:
+			# Action cancelled by the user
+			return
 		win = self.props.active_window
 		if not win:
-			self.on_new_window()
+			win = self.on_new_window()
 		else:
 			win.present()
-			# win.???() # TODO que faire
-
-	def receive_screenshot(self, *args2): #c, s, p, i, sig, params):
-		print(args2)
-
-
-
-
-
-		args = GLib.Variant('(sa{sv})', ("rrrrrtest", {}))
-		# args = GLib.Variant('(sa{sv})', (filename, {}))
-		result = args2[0].call_sync('Screenshot', args, \
-		                                       Gio.DBusCallFlags.NONE, -1, None)
-		request_handle = result.unpack()[0]
-		self.bus.signal_subscribe("org.freedesktop.portal.Desktop", \
-		         "org.freedesktop.portal.Request", "Response", request_handle, \
-		       None, Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot)
-
-
-
-
-
-
-
-
-		return
-		# from https://stackoverflow.com/a/56384206
-		# if not isinstance(params, GLib.Variant):
-		# 	return
-		# response_code, results = params.unpack()
-		# SUCCESS = 0
-		# if response_code != SUCCESS or 'uri' not in results:
-		# 	print("Error taking screenshot") # TODO translatable and shown in infobar
-		# 	return
-		# parsed_uri = urlparse(results['uri'])
-		# assert parsed_uri.scheme == "file" # XXX try/except
-		# screenshot = unquote(parsed_uri.path)
-		# print(screenshot)
+		if useful_data[0] == 0:
+			weird_uri = useful_data[1]['uri']
+			file_name = weird_uri.split('/')[-1] # XXX honteux
+			image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+			true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
+			fpath = unquote(true_uri) # XXX honteux
+			f = self.get_valid_file(self.cli_app, fpath)
+			if f is not None:
+				self._new_tab_with_file(f)
+		elif useful_data[0] == 2:
+			win.prompt_message(True, _("Screenshot failed"))
 
 	# ACTIONS CALLBACKS ########################################################
 
