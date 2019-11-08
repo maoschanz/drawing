@@ -400,7 +400,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
-		                    self.build_image_from_clipboard, ['<Ctrl><Shift>o'])
+		                    self.build_image_from_clipboard, ['<Ctrl><Shift>v'])
 		self.add_action_simple('open', self.action_open, ['<Ctrl>o'])
 		# self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
 		# self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])

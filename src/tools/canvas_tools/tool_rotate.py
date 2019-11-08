@@ -58,6 +58,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.flip_h = False
 		self.flip_v = False
 		self.angle_btn.set_value(0.0)
+		self.build_and_do_op() # Show the temp_pixbuf before any event
 		if self.apply_to_selection:
 			self.cursor_name = 'move'
 		else:
