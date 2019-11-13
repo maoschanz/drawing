@@ -10,6 +10,7 @@ class ToolPicker(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
+		# self.use_color = False
 
 	def get_options_model(self):
 		return None

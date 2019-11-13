@@ -806,10 +806,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_manager.exchange_colors()
 
 	def action_color1(self, *args):
-		self.options_manager.left_color_btn().activate()
+		if self.active_tool().use_color:
+			self.options_manager.left_color_btn().btn.activate()
 
 	def action_color2(self, *args):
-		self.options_manager.right_color_btn().activate()
+		if self.active_tool().use_color:
+			self.options_manager.right_color_btn().btn.activate()
 
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################

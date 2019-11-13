@@ -21,7 +21,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
 		self.menu_id = 2
-		self.use_color = False
 		self.accept_selection = True
 
 		# XXX ???????????? what should i do here
