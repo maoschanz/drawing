@@ -16,6 +16,7 @@ class ToolExperiment(AbstractClassicTool):
 		self.past_x = -1.0
 		self.past_y = -1.0
 		self._path = None
+		self.use_antialias = True
 
 		self.selected_mode = 'smooth'
 		self.selected_operator_label = "DIFFERENCE"
@@ -24,100 +25,76 @@ class ToolExperiment(AbstractClassicTool):
 		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
 		self.add_tool_action_enum('experiment_mode', 'smooth')
 		self.add_tool_action_simple('experiment_macro_scie', self.action_macro_scie)
+		self.add_tool_action_boolean('experiment_antialias', self.use_antialias)
 
 	def set_active_mode(self, *args):
 		state_as_string = self.get_option_value('experiment_mode')
 		self.selected_mode =  state_as_string
 
+	def set_antialias(self, *args):
+		self.use_antialias = self.get_option_value('experiment_antialias')
+
 	def set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
 		if state_as_string == 'CLEAR':
 			self.selected_operator = cairo.Operator.CLEAR
-			self.selected_operator_label = "CLEAR"
 		elif state_as_string == 'SOURCE':
 			self.selected_operator = cairo.Operator.SOURCE
-			self.selected_operator_label = "SOURCE"
 		elif state_as_string == 'OVER':
 			self.selected_operator = cairo.Operator.OVER
-			self.selected_operator_label = "OVER"
 		elif state_as_string == 'IN':
 			self.selected_operator = cairo.Operator.IN
-			self.selected_operator_label = "IN"
 		elif state_as_string == 'OUT':
 			self.selected_operator = cairo.Operator.OUT
-			self.selected_operator_label = "OUT"
 		elif state_as_string == 'ATOP':
 			self.selected_operator = cairo.Operator.ATOP
-			self.selected_operator_label = "ATOP"
 		elif state_as_string == 'DEST':
 			self.selected_operator = cairo.Operator.DEST
-			self.selected_operator_label = "DEST"
 		elif state_as_string == 'DEST_OVER':
 			self.selected_operator = cairo.Operator.DEST_OVER
-			self.selected_operator_label = "DEST_OVER"
 		elif state_as_string == 'DEST_IN':
 			self.selected_operator = cairo.Operator.DEST_IN
-			self.selected_operator_label = "DEST_IN"
 		elif state_as_string == 'DEST_OUT':
 			self.selected_operator = cairo.Operator.DEST_OUT
-			self.selected_operator_label = "DEST_OUT"
 		elif state_as_string == 'DEST_ATOP':
 			self.selected_operator = cairo.Operator.DEST_ATOP
-			self.selected_operator_label = "DEST_ATOP"
 		elif state_as_string == 'XOR':
 			self.selected_operator = cairo.Operator.XOR
-			self.selected_operator_label = "XOR"
 		elif state_as_string == 'ADD':
 			self.selected_operator = cairo.Operator.ADD
-			self.selected_operator_label = "ADD"
 		elif state_as_string == 'SATURATE':
 			self.selected_operator = cairo.Operator.SATURATE
-			self.selected_operator_label = "SATURATE"
 		elif state_as_string == 'MULTIPLY':
 			self.selected_operator = cairo.Operator.MULTIPLY
-			self.selected_operator_label = "MULTIPLY"
 		elif state_as_string == 'SCREEN':
 			self.selected_operator = cairo.Operator.SCREEN
-			self.selected_operator_label = "SCREEN"
 		elif state_as_string == 'OVERLAY':
 			self.selected_operator = cairo.Operator.OVERLAY
-			self.selected_operator_label = "OVERLAY"
 		elif state_as_string == 'DARKEN':
 			self.selected_operator = cairo.Operator.DARKEN
-			self.selected_operator_label = "DARKEN"
 		elif state_as_string == 'LIGHTEN':
 			self.selected_operator = cairo.Operator.LIGHTEN
-			self.selected_operator_label = "LIGHTEN"
 		elif state_as_string == 'COLOR_DODGE':
 			self.selected_operator = cairo.Operator.COLOR_DODGE
-			self.selected_operator_label = "COLOR_DODGE"
 		elif state_as_string == 'COLOR_BURN':
 			self.selected_operator = cairo.Operator.COLOR_BURN
-			self.selected_operator_label = "COLOR_BURN"
 		elif state_as_string == 'HARD_LIGHT':
 			self.selected_operator = cairo.Operator.HARD_LIGHT
-			self.selected_operator_label = "HARD_LIGHT"
 		elif state_as_string == 'SOFT_LIGHT':
 			self.selected_operator = cairo.Operator.SOFT_LIGHT
-			self.selected_operator_label = "SOFT_LIGHT"
 		elif state_as_string == 'DIFFERENCE':
 			self.selected_operator = cairo.Operator.DIFFERENCE
-			self.selected_operator_label = "DIFFERENCE"
 		elif state_as_string == 'EXCLUSION':
 			self.selected_operator = cairo.Operator.EXCLUSION
-			self.selected_operator_label = "EXCLUSION"
 		elif state_as_string == 'HSL_HUE':
 			self.selected_operator = cairo.Operator.HSL_HUE
-			self.selected_operator_label = "HSL_HUE"
 		elif state_as_string == 'HSL_SATURATION':
 			self.selected_operator = cairo.Operator.HSL_SATURATION
-			self.selected_operator_label = "HSL_SATURATION"
 		elif state_as_string == 'HSL_COLOR':
 			self.selected_operator = cairo.Operator.HSL_COLOR
-			self.selected_operator_label = "HSL_COLOR"
 		elif state_as_string == 'HSL_LUMINOSITY':
 			self.selected_operator = cairo.Operator.HSL_LUMINOSITY
-			self.selected_operator_label = "HSL_LUMINOSITY"
+		self.selected_operator_label = state_as_string
 
 	def action_macro_scie(self, *args):
 		cairo_context = cairo.Context(self.get_surface())
@@ -143,6 +120,7 @@ class ToolExperiment(AbstractClassicTool):
 	def get_options_label(self):
 		self.set_active_operator()
 		self.set_active_mode()
+		self.set_antialias()
 		if self.selected_mode == 'simple':
 			return self.selected_operator_label
 		else:
@@ -154,6 +132,7 @@ class ToolExperiment(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_active_operator()
 		self.set_active_mode()
+		self.set_antialias()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event.button)
@@ -190,6 +169,7 @@ class ToolExperiment(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'line_cap': cairo.LineCap.ROUND,
 			'line_join': cairo.LineJoin.ROUND,
+			'antialias': self.use_antialias,
 			'path': self._path
 		}
 		return operation
@@ -200,21 +180,21 @@ class ToolExperiment(AbstractClassicTool):
 		if operation['path'] is None:
 			return
 		self.restore_pixbuf()
-		if operation['mode'] == 'dynamic':
-			self.op_dynamic(operation)
-		elif operation['mode'] == 'smooth':
-			self.op_simple(operation)
-			self.op_smooth2(operation)
-		else:
-			self.op_simple(operation)
-
-	def op_simple(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		if operation['path'] is None:
-			return
-		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
+		if operation['antialias']:
+			cairo_context.set_antialias(cairo.Antialias.DEFAULT)
+		else:
+			cairo_context.set_antialias(cairo.Antialias.NONE)
+
+		if operation['mode'] == 'dynamic':
+			self.op_dynamic(operation, cairo_context)
+		elif operation['mode'] == 'smooth':
+			self.op_simple(operation, cairo_context)
+			self.op_smooth2(operation, cairo_context)
+		else:
+			self.op_simple(operation, cairo_context)
+
+	def op_simple(self, operation, cairo_context):
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
@@ -224,19 +204,12 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
 
-	def op_dynamic(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		if operation['path'] is None:
-			return
-		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+	def op_dynamic(self, operation, cairo_context):
 		cairo_context.set_operator(cairo.Operator.SOURCE)
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-
 		line_width = 0
 		for pts in operation['path']:
 			if pts[1] is ():
@@ -257,13 +230,7 @@ class ToolExperiment(AbstractClassicTool):
 			cairo_context.stroke()
 			cairo_context.move_to(int(future_x), int(future_y))
 
-	def op_smooth2(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		if operation['path'] is None:
-			return
-		# self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+	def op_smooth2(self, operation, cairo_context):
 		cairo_context.set_operator(cairo.Operator.OVER)
 		cairo_context.set_line_width(operation['line_width'])
 		cairo_context.set_line_cap(operation['line_cap'])
