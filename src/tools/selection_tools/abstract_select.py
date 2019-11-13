@@ -176,11 +176,12 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	# Path management ##########################################################
 
 	def tool_select_all(self):
-		self.build_rectangle_path(0, 0, self.get_main_pixbuf().get_width(), \
-		                                    self.get_main_pixbuf().get_height())
+		total_w = self.get_main_pixbuf().get_width()
+		total_h = self.get_main_pixbuf().get_height()
+		self.build_rectangle_path(0, 0, total_w, total_h)
 		self.operation_type = 'op-define'
 		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		self.apply_operation(operation)
 		self.get_selection().show_popover()
 
 	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
@@ -260,9 +261,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.new_path()
 		cairo_context.append_path(operation['initial_path'])
-		cairo_context.clip()
 		cairo_context.set_operator(cairo.Operator.CLEAR)
-		cairo_context.paint()
+		cairo_context.fill()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
 	def op_drag(self, op):
