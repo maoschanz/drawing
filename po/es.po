@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-02 00:53+0100\n"
+"POT-Creation-Date: 2019-11-15 20:20+0100\n"
 "PO-Revision-Date: 2019-09-17 22:22+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -40,14 +40,14 @@ msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Boceto;Lápiz;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
-#: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:39
-#: src/window.py:843
+#: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
+#: src/window.py:848
 msgid "New Window"
 msgstr "Ventana nueva"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:50
-#: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:13
-#: src/ui/toolbar.ui:14 src/ui/win-menus.ui:14 src/ui/win-menus.ui:271
+#: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
+#: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:270
 msgid "New Image"
 msgstr "Imagen nueva"
 
@@ -131,23 +131,23 @@ msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:194 src/ui/preferences.ui:30
-#: src/ui/toolbar.ui:138 src/ui/toolbar.ui:139 src/ui/win-menus.ui:88
-#: src/ui/win-menus.ui:177 src/preferences.py:43
+#: src/ui/toolbar.ui:139 src/ui/toolbar.ui:140 src/ui/win-menus.ui:87
+#: src/ui/win-menus.ui:176 src/preferences.py:43
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:364 src/ui/win-menus.ui:94
-#: src/ui/win-menus.ui:183 src/ui/win-menus.ui:236
+#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:364 src/ui/win-menus.ui:93
+#: src/ui/win-menus.ui:182 src/ui/win-menus.ui:235
 msgid "Report a bug"
 msgstr "Informar de un fallo"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:357 src/ui/shortcuts.ui:52
-#: src/ui/win-menus.ui:99 src/ui/win-menus.ui:188 src/ui/win-menus.ui:229
+#: src/ui/win-menus.ui:98 src/ui/win-menus.ui:187 src/ui/win-menus.ui:228
 msgid "Shortcuts"
 msgstr "Atajos"
 
-#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:59 src/ui/toolbar.ui:149
-#: src/ui/toolbar.ui:150 src/ui/win-menus.ui:104 src/ui/win-menus.ui:193
+#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:59 src/ui/toolbar.ui:150
+#: src/ui/toolbar.ui:151 src/ui/win-menus.ui:103 src/ui/win-menus.ui:192
 msgid "Help"
 msgstr "Ayuda"
 
@@ -167,52 +167,51 @@ msgstr "_Archivo"
 msgid "New Blank Image"
 msgstr "Nueva imagen en blanco"
 
-#. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:58 src/ui/win-menus.ui:22 src/custom_image.py:27
+#: src/ui/app-menus.ui:58 src/ui/win-menus.ui:21 src/custom_image.py:27
 #, fuzzy
 msgid "New Image With Custom Size"
 msgstr "Nueva imagen desde la selección"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:86 src/ui/win-menus.ui:27
+#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:86 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
 msgstr "Nueva imagen desde la selección"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:93 src/ui/win-menus.ui:32
+#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:93 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
 msgstr "Nueva imagen desde el portapapeles"
 
-#: src/ui/app-menus.ui:83 src/ui/toolbar.ui:25 src/ui/win-menus.ui:9
-#: src/ui/win-menus.ui:276
+#: src/ui/app-menus.ui:83 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
+#: src/ui/win-menus.ui:275
 msgid "Open an image"
 msgstr "Abrir una imagen"
 
-#: src/ui/app-menus.ui:90 src/ui/toolbar.ui:87 src/ui/toolbar.ui:88
-#: src/ui/win-menus.ui:62 src/ui/win-menus.ui:123 src/properties.py:26
+#: src/ui/app-menus.ui:90 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
+#: src/ui/win-menus.ui:61 src/ui/win-menus.ui:122 src/properties.py:26
 msgid "Image properties"
 msgstr "Propiedades de imagen"
 
-#: src/ui/app-menus.ui:97 src/ui/headerbar.ui:112 src/ui/headerbar.ui:124
-#: src/ui/headerbar-eos.ui:157 src/ui/headerbar-eos.ui:170
-#: src/ui/headerbar-eos.ui:188 src/ui/shortcuts.ui:114 src/ui/toolbar.ui:102
-#: src/ui/toolbar.ui:103 src/ui/win-menus.ui:281 src/window.py:947
-#: src/window.py:967
+#: src/ui/app-menus.ui:97 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
+#: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
+#: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:114 src/ui/toolbar.ui:103
+#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:280 src/utilities.py:31
+#: src/window.py:952 src/window.py:972
 msgid "Save"
 msgstr "Guardar"
 
-#: src/ui/app-menus.ui:102 src/ui/win-menus.ui:75 src/ui/win-menus.ui:136
+#: src/ui/app-menus.ui:102 src/ui/win-menus.ui:74 src/ui/win-menus.ui:135
 msgid "Save as…"
 msgstr "Guardar como…"
 
 #: src/ui/app-menus.ui:107 src/ui/selection-menus.ui:86
 #: src/ui/selection-menus.ui:169 src/ui/selection-panel.ui:180
-#: src/ui/win-menus.ui:78 src/ui/win-menus.ui:139
+#: src/ui/win-menus.ui:77 src/ui/win-menus.ui:138
 msgid "Export as…"
 msgstr "Exportar como…"
 
-#: src/ui/app-menus.ui:114 src/ui/toolbar.ui:113 src/ui/toolbar.ui:114
-#: src/ui/win-menus.ui:57 src/ui/win-menus.ui:118
+#: src/ui/app-menus.ui:114 src/ui/toolbar.ui:114 src/ui/toolbar.ui:115
+#: src/ui/win-menus.ui:56 src/ui/win-menus.ui:117
 msgid "Print"
 msgstr "Imprimir"
 
@@ -233,14 +232,14 @@ msgid "_Edit"
 msgstr "_Editar"
 
 #: src/ui/app-menus.ui:142 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
-#: src/ui/shortcuts.ui:134 src/ui/toolbar.ui:65 src/ui/toolbar.ui:66
-#: src/ui/win-menus.ui:252 src/headerbar.py:103
+#: src/ui/shortcuts.ui:134 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
+#: src/ui/win-menus.ui:251 src/headerbar.py:102
 msgid "Undo"
 msgstr "Deshacer"
 
-#: src/ui/app-menus.ui:147 src/ui/headerbar.ui:77 src/ui/headerbar-eos.ui:120
-#: src/ui/shortcuts.ui:141 src/ui/toolbar.ui:76 src/ui/toolbar.ui:77
-#: src/ui/win-menus.ui:257 src/headerbar.py:109
+#: src/ui/app-menus.ui:147 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
+#: src/ui/shortcuts.ui:141 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
+#: src/ui/win-menus.ui:256 src/headerbar.py:108
 msgid "Redo"
 msgstr "Rehacer"
 
@@ -269,15 +268,15 @@ msgstr "Eliminar"
 
 #: src/ui/app-menus.ui:182 src/ui/headerbar-eos.ui:67
 #: src/ui/selection-menus.ui:22 src/ui/selection-panel.ui:28
-#: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:155 src/ui/toolbar.ui:50
-#: src/ui/toolbar.ui:51
+#: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:155 src/ui/toolbar.ui:51
+#: src/ui/toolbar.ui:52
 msgid "Paste"
 msgstr "Pegar"
 
 #: src/ui/app-menus.ui:187 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
-#: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:39
-#: src/ui/toolbar.ui:40 src/window.py:880 src/window.py:1032
+#: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:40
+#: src/ui/toolbar.ui:41 src/window.py:885 src/window.py:1037
 msgid "Import"
 msgstr "Importar"
 
@@ -332,26 +331,26 @@ msgstr "Ir abajo"
 msgid "Go Right"
 msgstr "Ir a la derecha"
 
-#: src/ui/app-menus.ui:273 src/ui/win-menus.ui:156
+#: src/ui/app-menus.ui:273 src/ui/win-menus.ui:155
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: src/ui/app-menus.ui:279 src/ui/win-menus.ui:161
+#: src/ui/app-menus.ui:279 src/ui/win-menus.ui:160
 msgid "Rebuild from history"
 msgstr "Reconstruir desde el historial"
 
-#: src/ui/app-menus.ui:287 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:127
-#: src/ui/toolbar.ui:128 src/ui/win-menus.ui:84 src/ui/win-menus.ui:173
+#: src/ui/app-menus.ui:287 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
+#: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:172
 #: src/preferences.py:97
 msgid "Show tools names"
 msgstr "Mostrar nombres de herramientas"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:68
-#: src/ui/win-menus.ui:129
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:67
+#: src/ui/win-menus.ui:128
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: src/ui/app-menus.ui:297 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:265
+#: src/ui/app-menus.ui:297 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:264
 msgid "Exit fullscreen"
 msgstr "Salir de pantalla completa"
 
@@ -397,24 +396,24 @@ msgstr "Ay_uda"
 msgid "Index"
 msgstr "Índice"
 
-#: src/ui/app-menus.ui:376 src/ui/win-menus.ui:207
+#: src/ui/app-menus.ui:376 src/ui/win-menus.ui:206
 msgid "Basic help"
 msgstr "Ayuda básica"
 
-#: src/ui/app-menus.ui:381 src/ui/win-menus.ui:212
+#: src/ui/app-menus.ui:381 src/ui/win-menus.ui:211
 msgid "Help about tools"
 msgstr "Ayuda acerca de las herramientas"
 
-#: src/ui/app-menus.ui:386 src/ui/win-menus.ui:217
+#: src/ui/app-menus.ui:386 src/ui/win-menus.ui:216
 msgid "Canvas and selection"
 msgstr "Lienzo y selección"
 
-#: src/ui/app-menus.ui:391 src/ui/win-menus.ui:222
+#: src/ui/app-menus.ui:391 src/ui/win-menus.ui:221
 msgid "Help about selection"
 msgstr "Ayuda acerca de la selección"
 
-#: src/ui/app-menus.ui:398 src/ui/win-menus.ui:107 src/ui/win-menus.ui:196
-#: src/ui/win-menus.ui:241
+#: src/ui/app-menus.ui:398 src/ui/win-menus.ui:106 src/ui/win-menus.ui:195
+#: src/ui/win-menus.ui:240
 msgid "About Drawing"
 msgstr "Acerca de Drawing"
 
@@ -462,8 +461,8 @@ msgstr "Fondo"
 msgid "Use these settings by default"
 msgstr "Utilizar este editor de manera predeterminada"
 
-#: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:26
-#: src/window.py:864 src/window.py:879
+#: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
+#: src/window.py:869 src/window.py:884
 msgid "Open"
 msgstr "Abrir"
 
@@ -479,7 +478,7 @@ msgstr "Imágenes"
 msgid "Tools"
 msgstr "Herramientas"
 
-#: src/ui/preferences.ui:92 src/preferences.py:122
+#: src/ui/preferences.ui:93 src/preferences.py:122
 msgid "Advanced options"
 msgstr "Opciones avanzadas"
 
@@ -496,15 +495,15 @@ msgstr "Formato"
 msgid "Colorspace"
 msgstr "Colores"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:201
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
 msgid "Unsaved file"
 msgstr "Archivo no guardado"
 
-#: src/ui/properties.ui:88 src/properties.py:83
+#: src/ui/properties.ui:88 src/properties.py:86
 msgid "Invalid format"
 msgstr "Formato no válido"
 
-#: src/ui/properties.ui:179 src/utilities.py:352
+#: src/ui/properties.ui:179 src/utilities.py:372
 msgid "pixels"
 msgstr "píxeles"
 
@@ -635,17 +634,17 @@ msgstr "Conmutar previsualización"
 msgid "Error starting the application, please report this bug."
 msgstr "Error al iniciar la aplicación; por favor, informe acerca del fallo."
 
-#: src/ui/win-menus.ui:166
+#: src/ui/win-menus.ui:165
 msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
 
-#: src/custom_image.py:33 src/utilities.py:303 src/window.py:864
-#: src/window.py:878 src/window.py:946 src/window.py:967 src/window.py:1032
-#: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
-#: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
-#: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
-#: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:190
-#: src/tools/ui/tool_text.ui:32
+#: src/custom_image.py:33 src/utilities.py:30 src/utilities.py:324
+#: src/window.py:869 src/window.py:883 src/window.py:951 src/window.py:972
+#: src/window.py:1037 src/tools/ui/tool_crop.ui:27
+#: src/tools/ui/tool_crop.ui:167 src/tools/ui/tool_filters.ui:36
+#: src/tools/ui/tool_filters.ui:209 src/tools/ui/tool_rotate.ui:20
+#: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
+#: src/tools/ui/tool_scale.ui:190 src/tools/ui/tool_text.ui:32
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -653,12 +652,12 @@ msgstr "Cancelar"
 msgid "Create"
 msgstr ""
 
-#: src/headerbar.py:105
+#: src/headerbar.py:104
 #, python-format
 msgid "Undo %s"
 msgstr "Deshacer %s"
 
-#: src/headerbar.py:111
+#: src/headerbar.py:110
 #, python-format
 msgid "Redo %s"
 msgstr "Rehacer %s"
@@ -814,108 +813,120 @@ msgstr "Solo barra de herramientas"
 msgid "Toolbar only (symbolic icons)"
 msgstr "Barra de herramientas (símbolos)"
 
-#: src/utilities.py:21
+#: src/utilities.py:32
+msgid "This file format doesn't support transparent colors."
+msgstr ""
+
+#: src/utilities.py:33
+#, fuzzy
+msgid "Do you want to save anyway ?"
+msgstr "¿Dónde quiere abrir «%s»?"
+
+#: src/utilities.py:42
 msgid "All pictures"
 msgstr "Todas las imágenes"
 
-#: src/utilities.py:27
+#: src/utilities.py:48
 msgid "PNG images"
 msgstr "Imágenes PNG"
 
-#: src/utilities.py:31
+#: src/utilities.py:52
 msgid "JPEG images"
 msgstr "Imágenes JPEG"
 
-#: src/utilities.py:35
+#: src/utilities.py:56
 msgid "BMP images"
 msgstr "Imágenes BMP"
 
-#: src/utilities.py:59
+#: src/utilities.py:80
 msgid "Transparent"
 msgstr "Transparente"
 
-#: src/utilities.py:61
+#: src/utilities.py:82
 #, python-format
 msgid "%s%% transparent"
 msgstr "%s%% transparente"
 
-#: src/utilities.py:85
+#: src/utilities.py:106
 msgid "White"
 msgstr "Blanco"
 
-#: src/utilities.py:87
+#: src/utilities.py:108
 msgid "Black"
 msgstr "Negro"
 
-#: src/utilities.py:89
+#: src/utilities.py:110
 msgid "Grey"
 msgstr "Gris"
 
-#: src/utilities.py:94
+#: src/utilities.py:115
 msgid "Orange"
 msgstr "Naranja"
 
-#: src/utilities.py:96
+#: src/utilities.py:117
 msgid "Brown"
 msgstr "Marrón"
 
-#: src/utilities.py:100 src/utilities.py:110
+#: src/utilities.py:121 src/utilities.py:131
 msgid "Probably brown"
 msgstr "Probablemente marrón"
 
-#: src/utilities.py:102
+#: src/utilities.py:123
 msgid "Red"
 msgstr "Rojo"
 
-#: src/utilities.py:104
+#: src/utilities.py:125
 msgid "Green"
 msgstr "Verde"
 
-#: src/utilities.py:106
+#: src/utilities.py:127
 msgid "Blue"
 msgstr "Azul"
 
-#: src/utilities.py:112
+#: src/utilities.py:133
 msgid "Yellow"
 msgstr "Amarillo"
 
-#: src/utilities.py:115
+#: src/utilities.py:136
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/utilities.py:117
+#: src/utilities.py:138
 msgid "Purple"
 msgstr "Morado"
 
-#: src/utilities.py:120
+#: src/utilities.py:141
 msgid "Cyan"
 msgstr "Cian"
 
-#: src/utilities.py:122
+#: src/utilities.py:143
 msgid "Probably turquoise"
 msgstr "Probablemente turquesa"
 
-#: src/utilities.py:125
+#: src/utilities.py:146
 msgid "Unknown color name"
 msgstr "Nombre de color desconocido"
 
-#: src/utilities.py:304
+#: src/utilities.py:325
 msgid "Continue"
 msgstr "Continuar"
 
-#: src/utilities.py:305
-msgid ""
-"The area seems poorly delimited, or is very complex.\n"
-"This algorithm may not be able to manage the wanted area.\n"
-"\n"
-"Do you want to abort the operation, or to let the tool struggle ?"
+#: src/utilities.py:326
+msgid "The area seems poorly delimited, or is very complex."
 msgstr ""
-"El área parece estar delineada deficientemente o es altamente compleja.\n"
-"Es posible que este algoritmo no sea capaz de rellenar el área deseada.\n"
-"\n"
+"El área parece estar delineada deficientemente o es altamente compleja."
+
+#: src/utilities.py:327
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr ""
+"Es posible que este algoritmo no sea capaz de rellenar el área deseada."
+
+#: src/utilities.py:328
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
 "¿Quiere cancelar la operación o permitir que la herramienta lo intente?"
 
-#: src/utilities.py:354
+#: src/utilities.py:374
 msgid "percents"
 msgstr ""
 
@@ -928,62 +939,62 @@ msgstr "Error al cargar la herramienta: %s"
 msgid "Opened images"
 msgstr "Imágenes abiertas"
 
-#: src/window.py:836
+#: src/window.py:841
 #, python-format
 msgid "Loading %s"
 msgstr "Cargando %s"
 
-#: src/window.py:842
+#: src/window.py:847
 msgid "New Tab"
 msgstr "Pestaña nueva"
 
-#: src/window.py:844
+#: src/window.py:849
 msgid "Discard changes"
 msgstr "Descartar cambios"
 
-#: src/window.py:846 src/window.py:948
+#: src/window.py:852 src/window.py:953
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Hay cambios no guardados en «%s»."
 
-#: src/window.py:848
+#: src/window.py:854
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "¿Dónde quiere abrir «%s»?"
 
-#: src/window.py:863
+#: src/window.py:868
 msgid "Open a picture"
 msgstr "Abrir una imagen"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:887
+#: src/window.py:892
 msgid "these files"
 msgstr "estos archivos"
 
-#: src/window.py:888
+#: src/window.py:893
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "¿Qué quiere hacer con «%s»?"
 
-#: src/window.py:938 src/window.py:969
+#: src/window.py:943 src/window.py:974
 msgid "Untitled"
 msgstr "Sin título"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:940
+#: src/window.py:945
 msgid "this picture"
 msgstr "esta imagen"
 
-#: src/window.py:945
+#: src/window.py:950
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/window.py:966
+#: src/window.py:971
 msgid "Save picture as…"
 msgstr "Guardar imagen como…"
 
-#: src/window.py:1031
+#: src/window.py:1036
 msgid "Import a picture"
 msgstr "Importar una imagen"
 
@@ -1300,13 +1311,13 @@ msgstr "Texto"
 msgid "Font options"
 msgstr "Opciones de tipo de letra"
 
-#: src/tools/selection_tools/abstract_select.py:43
+#: src/tools/selection_tools/abstract_select.py:42
 msgid "Drag the selection or right-click on the canvas"
 msgstr ""
 "Arrastre la selección o haga clic con el botón secundario del ratón en el "
 "lienzo"
 
-#: src/tools/selection_tools/abstract_select.py:45
+#: src/tools/selection_tools/abstract_select.py:44
 msgid "Select an area or right-click on the canvas"
 msgstr ""
 "Seleccione un área o haga clic con el botón secundario del ratón en el lienzo"
@@ -1347,9 +1358,6 @@ msgstr "Escalando la selección"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Escalando el lienzo"
-
-#~ msgid "Allow deformations"
-#~ msgstr "Permitir deformación"
 
 #~ msgid "Default zoom"
 #~ msgstr "Ampliación predeterminada"
