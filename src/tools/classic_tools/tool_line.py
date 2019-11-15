@@ -4,7 +4,7 @@ import cairo
 from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_add_arrow_triangle
+from .utilities_tools import utilities_add_arrow_triangle
 
 class ToolLine(AbstractClassicTool):
 	__gtype_name__ = 'ToolLine'

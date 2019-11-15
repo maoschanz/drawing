@@ -8,7 +8,7 @@ from .bottombar import DrawingAdaptativeBottomBar
 from .color_popover import DrawingColorPopover
 
 from .utilities import utilities_add_unit_to_spinbtn
-from .utilities import utilities_fast_blur
+from .utilities_tools import utilities_fast_blur
 
 class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'

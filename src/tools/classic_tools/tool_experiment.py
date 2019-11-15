@@ -4,7 +4,7 @@ import cairo, math
 from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_smooth_path
+from .utilities_tools import utilities_smooth_path
 
 class ToolExperiment(AbstractClassicTool):
 	__gtype_name__ = 'ToolExperiment'

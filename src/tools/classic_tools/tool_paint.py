@@ -4,8 +4,8 @@ import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_get_magic_path
-from .utilities import utilities_get_rgb_for_xy
+from .utilities_tools import utilities_get_magic_path
+from .utilities_tools import utilities_get_rgb_for_xy
 
 class ToolPaint(AbstractClassicTool):
 	__gtype_name__ = 'ToolPaint'

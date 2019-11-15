@@ -3,7 +3,7 @@
 from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_get_rgb_for_xy
+from .utilities_tools import utilities_get_rgb_for_xy
 
 class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'

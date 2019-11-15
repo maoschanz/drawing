@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_select import AbstractSelectionTool
-from .utilities import utilities_get_magic_path
+from .utilities_tools import utilities_get_magic_path
 
 class ToolColorSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolColorSelect'

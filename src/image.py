@@ -122,7 +122,7 @@ class DrawingImage(Gtk.Box):
 
 	def try_load_pixbuf(self, pixbuf):
 		if not pixbuf.get_has_alpha():
-			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
+			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,

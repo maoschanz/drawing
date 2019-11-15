@@ -21,7 +21,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
-from .utilities import utilities_fast_blur
+from .utilities_tools import utilities_fast_blur
 from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolFilters(AbstractCanvasTool):

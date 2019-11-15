@@ -22,7 +22,7 @@ from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities import utilities_add_unit_to_spinbtn
-from .utilities import utilities_show_handles_on_context
+from .utilities_tools import utilities_show_handles_on_context
 
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'

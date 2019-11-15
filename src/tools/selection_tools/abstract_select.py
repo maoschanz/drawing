@@ -6,7 +6,7 @@ import cairo
 from .abstract_tool import AbstractAbstractTool
 from .bottombar import DrawingAdaptativeBottomBar
 
-from .utilities import utilities_show_overlay_on_context
+from .utilities_tools import utilities_show_overlay_on_context
 
 class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
