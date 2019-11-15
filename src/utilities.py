@@ -7,13 +7,34 @@ from .message_dialog import DrawingMessageDialog
 
 ################################################################################
 
-def utilities_save_pixbuf_at(pixbuf, fn):
-	file_format = fn.split('.')[-1]
+def utilities_save_pixbuf_at(pixbuf, fpath, window):
+	# Build a short string which will be recognized as a file format by the
+	# GdkPixbuf.savev method
+	file_format = fpath.split('.')[-1]
 	if file_format in ['jpeg', 'jpg', 'jpe']:
 		file_format = 'jpeg'
 	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
 		file_format = 'png'
-	pixbuf.savev(fn, file_format, [None], [])
+	# Ask the user what to do concerning formats with no alpha channel
+	# if file_format not in ['png']:
+	# 	user_agrees = _ask_overwrite_alpha(window)
+	# 	if not user_agrees:
+	# 		return
+			# TODO instead of returning, an error should be thrown, and each
+			# call to this method (all are in window.py) should try/catch
+	# Actually save the pixbuf to the given file path
+	pixbuf.savev(fpath, file_format, [None], [])
+
+def _ask_overwrite_alpha(window):
+	dialog = DrawingMessageDialog(window)
+	cancel_id = dialog.set_action(_("Cancel"), None, False)
+	continue_id = dialog.set_action(_("Save"), None, True)
+	dialog.add_string(_("This file format doesn't support transparent colors."))
+	dialog.add_string(_("Do you want to save anyway ?""") )
+	result = dialog.run()
+	# TODO récupérer le changement de alpha ?
+	dialog.destroy()
+	return result == continue_id
 
 def utilities_add_filechooser_filters(dialog):
 	"""Add file filters for images to file chooser dialogs."""
@@ -302,10 +323,9 @@ def launch_infinite_loop_dialog(window):
 	dialog = DrawingMessageDialog(window)
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
 	continue_id = dialog.set_action(_("Continue"), None, True)
-	dialog.add_string( _("""The area seems poorly delimited, or is very complex.
-This algorithm may not be able to manage the wanted area.
-
-Do you want to abort the operation, or to let the tool struggle ?""") )
+	dialog.add_string(_("The area seems poorly delimited, or is very complex."))
+	dialog.add_string(_("This algorithm may not be able to manage the wanted area."))
+	dialog.add_string(_("Do you want to abort the operation, or to let the tool struggle ?"))
 	return dialog, continue_id
 
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):

@@ -17,7 +17,6 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
-from .utilities import utilities_save_pixbuf_at
 from .selection_manager import DrawingSelectionManager
 
 class DrawingMotionBehavior():

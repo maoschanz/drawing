@@ -922,7 +922,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.get_active_image().gfile = gfile
 				fn = self.get_file_path()
-		utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn)
+		utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn, self)
 		self.get_active_image().post_save()
 		self.set_picture_title()
 		return True
@@ -986,7 +986,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_at(pb, gfile.get_path())
+			utilities_save_pixbuf_at(pb, gfile.get_path(), self)
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -1052,7 +1052,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pixbuf = self.get_active_image().selection.get_pixbuf()
-			utilities_save_pixbuf_at(pixbuf, gfile.get_path())
+			utilities_save_pixbuf_at(pixbuf, gfile.get_path(), self)
 
 	def get_selection_tool(self):
 		if 'rect_select' in self.tools:

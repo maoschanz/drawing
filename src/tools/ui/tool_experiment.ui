@@ -18,6 +18,11 @@
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">dynamic</attribute>
       </item>
+      <!-- <item> -->
+      <!--   <attribute name="label">Pinceau à motif</attribute> -->
+      <!--   <attribute name="action">win.experiment_mode</attribute> -->
+      <!--   <attribute name="target">pattern</attribute> -->
+      <!-- </item> -->
     </section>
     <section>
       <attribute name="label">Actions</attribute>
@@ -51,6 +56,8 @@
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">ATOP</attribute>
           </item>
+        </section>
+        <section>
           <item>
             <attribute name="label">DEST</attribute>
             <attribute name="action">win.experiment_operator</attribute>
@@ -66,6 +73,8 @@
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">DEST_OUT</attribute>
           </item>
+        </section>
+        <section>
           <item>
             <attribute name="label">XOR</attribute>
             <attribute name="action">win.experiment_operator</attribute>
