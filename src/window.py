@@ -436,6 +436,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
+			self.add_action_simple('reload_file', self.action_reload, None)
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 			self.add_action_simple('get_values', self.action_getvalues, None)
@@ -827,6 +828,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def get_file_path(self):
 		return self.get_active_image().get_file_path()
+
+	def action_reload(self, *args):
+		gfile = self.get_active_image().gfile
+		if gfile is None:
+			return
+		self.try_load_file(gfile)
 
 	def action_open(self, *args):
 		"""Handle the result of an "open" file chooser dialog, and open it in

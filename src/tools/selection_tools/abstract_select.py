@@ -230,6 +230,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.operation_type = 'op-define'
 
 	def import_selection(self, pixbuf):
+		self.unselect_and_apply()
 		self.future_pixbuf = pixbuf
 		self.operation_type = 'op-import'
 		operation = self.build_operation()
