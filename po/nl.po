@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-15 20:20+0100\n"
+"POT-Creation-Date: 2019-11-17 15:32+0100\n"
 "PO-Revision-Date: 2019-11-03 14:16+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:132
-#: src/window.py:490
+#: src/window.py:499
 msgid "Drawing"
 msgstr "Tekenen"
 
@@ -40,13 +40,13 @@ msgstr "Verven;Schetsen;Potlood;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
-#: src/window.py:848
+#: src/window.py:863
 msgid "New Window"
 msgstr "Nieuw venster"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:50
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
-#: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:270
+#: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:265
 msgid "New Image"
 msgstr "Nieuwe afbeelding"
 
@@ -127,24 +127,24 @@ msgstr ""
 msgid "Romain F. T."
 msgstr "Romain F. T."
 
-#: src/ui/app-menus.ui:15 src/ui/app-menus.ui:194 src/ui/preferences.ui:30
+#: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:139 src/ui/toolbar.ui:140 src/ui/win-menus.ui:87
-#: src/ui/win-menus.ui:176 src/preferences.py:43
+#: src/ui/win-menus.ui:171 src/preferences.py:43
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:364 src/ui/win-menus.ui:93
-#: src/ui/win-menus.ui:182 src/ui/win-menus.ui:235
+#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:370 src/ui/win-menus.ui:93
+#: src/ui/win-menus.ui:177 src/ui/win-menus.ui:230
 msgid "Report a bug"
 msgstr "Meld een fout (bug)"
 
-#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:357 src/ui/shortcuts.ui:52
-#: src/ui/win-menus.ui:98 src/ui/win-menus.ui:187 src/ui/win-menus.ui:228
+#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:363 src/ui/shortcuts.ui:52
+#: src/ui/win-menus.ui:98 src/ui/win-menus.ui:182 src/ui/win-menus.ui:223
 msgid "Shortcuts"
 msgstr "Sneltoetsen"
 
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:59 src/ui/toolbar.ui:150
-#: src/ui/toolbar.ui:151 src/ui/win-menus.ui:103 src/ui/win-menus.ui:192
+#: src/ui/toolbar.ui:151 src/ui/win-menus.ui:103 src/ui/win-menus.ui:187
 msgid "Help"
 msgstr "Hulp"
 
@@ -179,237 +179,242 @@ msgid "New Image From Clipboard"
 msgstr "Nieuwe afbeelding van klembord"
 
 #: src/ui/app-menus.ui:83 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
-#: src/ui/win-menus.ui:275
+#: src/ui/win-menus.ui:270
 msgid "Open an image"
 msgstr "Afbeelding openen"
 
-#: src/ui/app-menus.ui:90 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
+#: src/ui/app-menus.ui:88 src/ui/win-menus.ui:145
+#, fuzzy
+msgid "Reload file"
+msgstr "Bestand openen"
+
+#: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:122 src/properties.py:26
 msgid "Image properties"
 msgstr "Eigenschappen"
 
-#: src/ui/app-menus.ui:97 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
+#: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
 #: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:114 src/ui/toolbar.ui:103
-#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:280 src/utilities.py:31
-#: src/window.py:952 src/window.py:972
+#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:275 src/utilities.py:121
+#: src/window.py:967 src/window.py:987
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/ui/app-menus.ui:102 src/ui/win-menus.ui:74 src/ui/win-menus.ui:135
+#: src/ui/app-menus.ui:108 src/ui/win-menus.ui:74 src/ui/win-menus.ui:135
 msgid "Save as…"
 msgstr "Opslaan als…"
 
-#: src/ui/app-menus.ui:107 src/ui/selection-menus.ui:86
+#: src/ui/app-menus.ui:113 src/ui/selection-menus.ui:86
 #: src/ui/selection-menus.ui:169 src/ui/selection-panel.ui:180
 #: src/ui/win-menus.ui:77 src/ui/win-menus.ui:138
 msgid "Export as…"
 msgstr "Exporteren als…"
 
-#: src/ui/app-menus.ui:114 src/ui/toolbar.ui:114 src/ui/toolbar.ui:115
+#: src/ui/app-menus.ui:120 src/ui/toolbar.ui:114 src/ui/toolbar.ui:115
 #: src/ui/win-menus.ui:56 src/ui/win-menus.ui:117
 msgid "Print"
 msgstr "Afdrukken"
 
-#: src/ui/app-menus.ui:121
+#: src/ui/app-menus.ui:127
 msgid "Close Image"
 msgstr "Afbeelding sluiten"
 
-#: src/ui/app-menus.ui:126
+#: src/ui/app-menus.ui:132
 msgid "Close Window"
 msgstr "Venster sluiten"
 
-#: src/ui/app-menus.ui:131 src/ui/shortcuts.ui:66
+#: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:66
 msgid "Quit all windows"
 msgstr "Alle vensters sluiten"
 
-#: src/ui/app-menus.ui:139
+#: src/ui/app-menus.ui:145
 msgid "_Edit"
 msgstr "B_ewerken"
 
-#: src/ui/app-menus.ui:142 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
+#: src/ui/app-menus.ui:148 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
 #: src/ui/shortcuts.ui:134 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
-#: src/ui/win-menus.ui:251 src/headerbar.py:102
+#: src/ui/win-menus.ui:246 src/headerbar.py:102
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: src/ui/app-menus.ui:147 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
+#: src/ui/app-menus.ui:153 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
 #: src/ui/shortcuts.ui:141 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
-#: src/ui/win-menus.ui:256 src/headerbar.py:108
+#: src/ui/win-menus.ui:251 src/headerbar.py:108
 msgid "Redo"
 msgstr "Opnieuw"
 
-#: src/ui/app-menus.ui:158 src/ui/selection-menus.ui:7
+#: src/ui/app-menus.ui:158 src/ui/win-menus.ui:155
+msgid "Rebuild from history"
+msgstr "Opnieuw laden uit geschiedenis"
+
+#: src/ui/app-menus.ui:170 src/ui/selection-menus.ui:7
 #: src/ui/selection-menus.ui:98 src/ui/selection-panel.ui:162
 #: src/ui/shortcuts.ui:182
 msgid "Select all"
 msgstr "Alles selecteren"
 
-#: src/ui/app-menus.ui:165 src/ui/selection-menus.ui:37
+#: src/ui/app-menus.ui:177 src/ui/selection-menus.ui:37
 #: src/ui/selection-menus.ui:117 src/ui/selection-panel.ui:82
 #: src/ui/shortcuts.ui:196
 msgid "Cut"
 msgstr "Knippen"
 
-#: src/ui/app-menus.ui:170 src/ui/selection-menus.ui:42
+#: src/ui/app-menus.ui:182 src/ui/selection-menus.ui:42
 #: src/ui/selection-menus.ui:122 src/ui/selection-panel.ui:95
 #: src/ui/shortcuts.ui:203
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: src/ui/app-menus.ui:175 src/ui/selection-menus.ui:47
+#: src/ui/app-menus.ui:187 src/ui/selection-menus.ui:47
 #: src/ui/selection-menus.ui:112 src/ui/selection-panel.ui:69
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/ui/app-menus.ui:182 src/ui/headerbar-eos.ui:67
+#: src/ui/app-menus.ui:194 src/ui/headerbar-eos.ui:67
 #: src/ui/selection-menus.ui:22 src/ui/selection-panel.ui:28
 #: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:155 src/ui/toolbar.ui:51
 #: src/ui/toolbar.ui:52
 msgid "Paste"
 msgstr "Plakken"
 
-#: src/ui/app-menus.ui:187 src/ui/headerbar-eos.ui:50
+#: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:40
-#: src/ui/toolbar.ui:41 src/window.py:885 src/window.py:1037
+#: src/ui/toolbar.ui:41 src/window.py:900 src/window.py:1052
 msgid "Import"
 msgstr "Importeren"
 
-#: src/ui/app-menus.ui:202
+#: src/ui/app-menus.ui:214
 msgid "_View"
 msgstr "_Beeld"
 
-#: src/ui/app-menus.ui:205
+#: src/ui/app-menus.ui:217
 msgid "Show the preview"
 msgstr "Voorbeeld tonen"
 
-#: src/ui/app-menus.ui:210 src/ui/shortcuts.ui:246 src/preferences.py:76
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:76
 msgid "Zoom"
 msgstr "Zoomen"
 
-#: src/ui/app-menus.ui:213 src/ui/minimap.ui:38 src/ui/shortcuts.ui:250
+#: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:250
 msgid "Optimal Zoom"
 msgstr "Optimaal zoomen"
 
-#: src/ui/app-menus.ui:220 src/ui/minimap.ui:83 src/ui/shortcuts.ui:257
-#: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:172
+#: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:257
+#: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
 msgstr "Uitzoomen"
 
-#: src/ui/app-menus.ui:225 src/ui/shortcuts.ui:264
-#: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:177
+#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:264
+#: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
 msgstr "Oorspronkelijk zoomniveau"
 
-#: src/ui/app-menus.ui:230 src/ui/minimap.ui:55 src/ui/shortcuts.ui:271
-#: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:182
+#: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:271
+#: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
 msgstr "Inzoomen"
 
-#: src/ui/app-menus.ui:237
+#: src/ui/app-menus.ui:249
 msgid "Position"
 msgstr "Positie"
 
-#: src/ui/app-menus.ui:240 src/ui/shortcuts.ui:291
+#: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:291
 msgid "Go Left"
 msgstr "Ga naar links"
 
-#: src/ui/app-menus.ui:244 src/ui/shortcuts.ui:298
+#: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:298
 msgid "Go Up"
 msgstr "Ga omhoog"
 
-#: src/ui/app-menus.ui:248 src/ui/shortcuts.ui:305
+#: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:305
 msgid "Go Down"
 msgstr "Ga omlaag"
 
-#: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:312
+#: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:312
 msgid "Go Right"
 msgstr "Ga naar rechts"
 
-#: src/ui/app-menus.ui:273 src/ui/win-menus.ui:155
+#: src/ui/app-menus.ui:285 src/ui/win-menus.ui:150
 msgid "Refresh"
 msgstr "Verversen"
 
-#: src/ui/app-menus.ui:279 src/ui/win-menus.ui:160
-msgid "Rebuild from history"
-msgstr "Opnieuw laden uit geschiedenis"
-
-#: src/ui/app-menus.ui:287 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
-#: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:172
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
+#: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:167
 #: src/preferences.py:97
 msgid "Show tools names"
 msgstr "Gereedschapsnamen tonen"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:67
+#: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:67
 #: src/ui/win-menus.ui:128
 msgid "Fullscreen"
 msgstr "Beeldvullend"
 
-#: src/ui/app-menus.ui:297 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:264
+#: src/ui/app-menus.ui:303 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:259
 msgid "Exit fullscreen"
 msgstr "Beeldvullende modus verlaten"
 
-#: src/ui/app-menus.ui:304
+#: src/ui/app-menus.ui:310
 msgid "_Colors"
 msgstr "_Kleuren"
 
-#: src/ui/app-menus.ui:307 src/tools/ui/tool_shape.ui:46
+#: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
 #: src/tools/classic_tools/tool_shape.py:41
 msgid "Main color"
 msgstr "Hoofdkleur"
 
-#: src/ui/app-menus.ui:311 src/tools/ui/tool_shape.ui:51
+#: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
 #: src/tools/classic_tools/tool_shape.py:49
 msgid "Secondary color"
 msgstr "Alternatieve kleur"
 
-#: src/ui/app-menus.ui:317 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:237
+#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:237
 msgid "Exchange colors"
 msgstr "Kleuren omwisselen"
 
-#: src/ui/app-menus.ui:324
+#: src/ui/app-menus.ui:330
 msgid "Color editor by default"
 msgstr "Standaard kleuren bewerken"
 
-#: src/ui/app-menus.ui:331 src/window.py:572
+#: src/ui/app-menus.ui:337 src/window.py:581
 msgid "_Tools"
 msgstr "_Gereedschap"
 
-#: src/ui/app-menus.ui:343
+#: src/ui/app-menus.ui:349
 msgid "Previous tool"
 msgstr "Vorig gereedschap"
 
-#: src/ui/app-menus.ui:350 src/window.py:786 src/window.py:789
+#: src/ui/app-menus.ui:356 src/window.py:795 src/window.py:798
 msgid "_Options"
 msgstr "_Opties"
 
-#: src/ui/app-menus.ui:354
+#: src/ui/app-menus.ui:360
 msgid "_Help"
 msgstr "_Hulp"
 
-#: src/ui/app-menus.ui:371
+#: src/ui/app-menus.ui:377
 msgid "Index"
 msgstr "Index"
 
-#: src/ui/app-menus.ui:376 src/ui/win-menus.ui:206
+#: src/ui/app-menus.ui:382 src/ui/win-menus.ui:201
 msgid "Basic help"
 msgstr "Basale hulp"
 
-#: src/ui/app-menus.ui:381 src/ui/win-menus.ui:211
+#: src/ui/app-menus.ui:387 src/ui/win-menus.ui:206
 msgid "Help about tools"
 msgstr "Hulp over gereedschappen"
 
-#: src/ui/app-menus.ui:386 src/ui/win-menus.ui:216
+#: src/ui/app-menus.ui:392 src/ui/win-menus.ui:211
 msgid "Canvas and selection"
 msgstr "Canvas en selectie"
 
-#: src/ui/app-menus.ui:391 src/ui/win-menus.ui:221
+#: src/ui/app-menus.ui:397 src/ui/win-menus.ui:216
 msgid "Help about selection"
 msgstr "Hulp omtrent selecties"
 
-#: src/ui/app-menus.ui:398 src/ui/win-menus.ui:106 src/ui/win-menus.ui:195
-#: src/ui/win-menus.ui:240
+#: src/ui/app-menus.ui:404 src/ui/win-menus.ui:106 src/ui/win-menus.ui:190
+#: src/ui/win-menus.ui:235
 msgid "About Drawing"
 msgstr "Over Drawing"
 
@@ -418,7 +423,7 @@ msgid "Tool size"
 msgstr "Gereedschapsgrootte"
 
 #. used by the bottom panels
-#: src/ui/classic-panel.ui:96 src/window.py:523 src/tools/abstract_tool.py:81
+#: src/ui/classic-panel.ui:96 src/window.py:532 src/tools/abstract_tool.py:81
 msgid "No options"
 msgstr "Geen opties"
 
@@ -456,7 +461,7 @@ msgid "Use these settings by default"
 msgstr "Deze instellingen standaard gebruiken"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
-#: src/window.py:869 src/window.py:884
+#: src/window.py:884 src/window.py:899
 msgid "Open"
 msgstr "Openen"
 
@@ -496,7 +501,7 @@ msgstr "Niet-opgeslagen bestand"
 msgid "Invalid format"
 msgstr "Ongeldig formaat"
 
-#: src/ui/properties.ui:179 src/utilities.py:372
+#: src/ui/properties.ui:179 src/utilities.py:159
 msgid "pixels"
 msgstr "pixels"
 
@@ -626,17 +631,17 @@ msgstr "Voorbeeld tonen/verbergen"
 msgid "Error starting the application, please report this bug."
 msgstr "Kan de toepassing niet starten. Meld deze bug."
 
-#: src/ui/win-menus.ui:165
+#: src/ui/win-menus.ui:160
 msgid "Troubleshoot selection"
 msgstr "Problemen oplossen met selecties"
 
-#: src/custom_image.py:33 src/utilities.py:30 src/utilities.py:324
-#: src/window.py:869 src/window.py:883 src/window.py:951 src/window.py:972
-#: src/window.py:1037 src/tools/ui/tool_crop.ui:27
-#: src/tools/ui/tool_crop.ui:167 src/tools/ui/tool_filters.ui:36
-#: src/tools/ui/tool_filters.ui:209 src/tools/ui/tool_rotate.ui:20
-#: src/tools/ui/tool_rotate.ui:204 src/tools/ui/tool_scale.ui:27
-#: src/tools/ui/tool_scale.ui:190 src/tools/ui/tool_text.ui:32
+#: src/custom_image.py:33 src/utilities.py:120 src/window.py:884
+#: src/window.py:898 src/window.py:966 src/window.py:987 src/window.py:1052
+#: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
+#: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
+#: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
+#: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:205
+#: src/tools/ui/tool_text.ui:32 src/tools/utilities_tools.py:191
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -800,118 +805,101 @@ msgstr "Alleen werkbalk"
 msgid "Toolbar only (symbolic icons)"
 msgstr "Werkbalk (symbolische pictogrammen)"
 
-#: src/utilities.py:32
-msgid "This file format doesn't support transparent colors."
-msgstr ""
-
-#: src/utilities.py:33
-#, fuzzy
-msgid "Do you want to save anyway ?"
-msgstr "Waar wil je %s openen?"
-
-#: src/utilities.py:42
-msgid "All pictures"
-msgstr "Alle afbeeldingen"
-
-#: src/utilities.py:48
-msgid "PNG images"
-msgstr "PNG-afbeeldingen"
-
-#: src/utilities.py:52
-msgid "JPEG images"
-msgstr "JPEG-afbeeldingen"
-
-#: src/utilities.py:56
-msgid "BMP images"
-msgstr "BMP-afbeeldingen"
-
-#: src/utilities.py:80
+#: src/utilities.py:14
 msgid "Transparent"
 msgstr "Doorzichtig"
 
-#: src/utilities.py:82
+#: src/utilities.py:16
 #, python-format
 msgid "%s%% transparent"
 msgstr "%s%% doorzichtig"
 
-#: src/utilities.py:106
+#: src/utilities.py:40
 msgid "White"
 msgstr "Wit"
 
-#: src/utilities.py:108
+#: src/utilities.py:42
 msgid "Black"
 msgstr "Zwart"
 
-#: src/utilities.py:110
+#: src/utilities.py:44
 msgid "Grey"
 msgstr "Grijs"
 
-#: src/utilities.py:115
+#: src/utilities.py:49
 msgid "Orange"
 msgstr "Oranje"
 
-#: src/utilities.py:117
+#: src/utilities.py:51
 msgid "Brown"
 msgstr "Bruin"
 
-#: src/utilities.py:121 src/utilities.py:131
+#: src/utilities.py:55 src/utilities.py:65
 msgid "Probably brown"
 msgstr "Waarschijnlijk bruin"
 
-#: src/utilities.py:123
+#: src/utilities.py:57
 msgid "Red"
 msgstr "Rood"
 
-#: src/utilities.py:125
+#: src/utilities.py:59
 msgid "Green"
 msgstr "Groen"
 
-#: src/utilities.py:127
+#: src/utilities.py:61
 msgid "Blue"
 msgstr "Blauw"
 
-#: src/utilities.py:133
+#: src/utilities.py:67
 msgid "Yellow"
 msgstr "Geel"
 
-#: src/utilities.py:136
+#: src/utilities.py:70
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/utilities.py:138
+#: src/utilities.py:72
 msgid "Purple"
 msgstr "Paars"
 
-#: src/utilities.py:141
+#: src/utilities.py:75
 msgid "Cyan"
 msgstr "Groenblauw"
 
-#: src/utilities.py:143
+#: src/utilities.py:77
 msgid "Probably turquoise"
 msgstr "Waarschijnlijk turkoois"
 
-#: src/utilities.py:146
+#: src/utilities.py:80
 msgid "Unknown color name"
 msgstr "Onbekende kleurnaam"
 
-#: src/utilities.py:325
-msgid "Continue"
-msgstr "Doorgaan"
-
-#: src/utilities.py:326
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Het gebied lijkt slecht afgemeten of is té complex."
-
-#: src/utilities.py:327
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Dit algoritme kan het gekozen gebied mogelijk niet beheren."
-
-#: src/utilities.py:328
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
+#: src/utilities.py:122
+msgid "This file format doesn't support transparent colors."
 msgstr ""
-"Wil je de handeling afbreken of het gereedschap tevergeefs laten doorgaan?"
 
-#: src/utilities.py:374
+#: src/utilities.py:123
+#, fuzzy
+msgid "Do you want to save anyway ?"
+msgstr "Waar wil je %s openen?"
+
+#: src/utilities.py:132
+msgid "All pictures"
+msgstr "Alle afbeeldingen"
+
+#: src/utilities.py:138
+msgid "PNG images"
+msgstr "PNG-afbeeldingen"
+
+#: src/utilities.py:142
+msgid "JPEG images"
+msgstr "JPEG-afbeeldingen"
+
+#: src/utilities.py:146
+msgid "BMP images"
+msgstr "BMP-afbeeldingen"
+
+#: src/utilities.py:161
 msgid "percents"
 msgstr "procent"
 
@@ -920,66 +908,70 @@ msgstr "procent"
 msgid "Failed to load tool: %s"
 msgstr "Kan gereedschap niet laden: %s"
 
-#: src/window.py:569
+#: src/window.py:485
+msgid "Modifications will take effect in the next new window."
+msgstr "De wijzigingen worden toegepast na een herstart."
+
+#: src/window.py:578
 msgid "Opened images"
 msgstr "Geopende afbeeldingen"
 
-#: src/window.py:841
+#: src/window.py:856
 #, python-format
 msgid "Loading %s"
 msgstr "Bezig met laden van %s"
 
-#: src/window.py:847
+#: src/window.py:862
 msgid "New Tab"
 msgstr "Nieuw tabblad"
 
-#: src/window.py:849
+#: src/window.py:864
 msgid "Discard changes"
 msgstr "Wijzigingen verwerpen"
 
-#: src/window.py:852 src/window.py:953
+#: src/window.py:867 src/window.py:968
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "%s bevat niet-opgeslagen wijzigingen."
 
-#: src/window.py:854
+#: src/window.py:869
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Waar wil je %s openen?"
 
-#: src/window.py:868
+#: src/window.py:883
 msgid "Open a picture"
 msgstr "Afbeeldingen openen"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:892
+#: src/window.py:907
 msgid "these files"
 msgstr "deze bestanden"
 
-#: src/window.py:893
+#: src/window.py:908
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Wat wil je doen met %s?"
 
-#: src/window.py:943 src/window.py:974
+#: src/window.py:958 src/window.py:989
 msgid "Untitled"
 msgstr "Naamloos"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:945
+#: src/window.py:960
 msgid "this picture"
 msgstr "deze afbeelding"
 
-#: src/window.py:950
+#: src/window.py:965
 msgid "Discard"
 msgstr "Verwerpen"
 
-#: src/window.py:971
+#: src/window.py:986
 msgid "Save picture as…"
 msgstr "Afbeelding opslaan als…"
 
-#: src/window.py:1036
+#: src/window.py:1051
 msgid "Import a picture"
 msgstr "Afbeelding importeren"
 
@@ -1052,7 +1044,7 @@ msgstr "Verschil"
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
 #: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
-#: src/tools/ui/tool_scale.ui:103 src/tools/ui/tool_scale.ui:194
+#: src/tools/ui/tool_scale.ui:103 src/tools/ui/tool_scale.ui:209
 msgid "Apply"
 msgstr "Toepassen"
 
@@ -1147,7 +1139,7 @@ msgstr "Horizontaal spiegelen"
 msgid "Flip vertically"
 msgstr "Verticaal spiegelen"
 
-#: src/tools/ui/tool_scale.ui:159
+#: src/tools/ui/tool_scale.ui:159 src/tools/ui/tool_scale.ui:199
 msgid "Always keep proportions"
 msgstr "Afmetingen altijd behouden"
 
@@ -1224,6 +1216,23 @@ msgstr "Secundaire kleurrechthoek"
 #: src/tools/classic_tools/tool_text.py:53
 msgid "Secondary color shadow"
 msgstr "Secundaire kleurschaduw"
+
+#: src/tools/utilities_tools.py:192
+msgid "Continue"
+msgstr "Doorgaan"
+
+#: src/tools/utilities_tools.py:193
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Het gebied lijkt slecht afgemeten of is té complex."
+
+#: src/tools/utilities_tools.py:194
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Dit algoritme kan het gekozen gebied mogelijk niet beheren."
+
+#: src/tools/utilities_tools.py:195
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+"Wil je de handeling afbreken of het gereedschap tevergeefs laten doorgaan?"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Curve"
@@ -1357,9 +1366,6 @@ msgstr "Bezig met wijzigen van canvasgrootte"
 
 #~ msgid "Selection options"
 #~ msgstr "Selectie-opties"
-
-#~ msgid "Modifications will take effect in the next new window."
-#~ msgstr "De wijzigingen worden toegepast na een herstart."
 
 #~ msgid "Summary"
 #~ msgstr "Samenvatting"
