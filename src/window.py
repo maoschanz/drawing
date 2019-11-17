@@ -320,6 +320,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self._settings.connect('changed::decorations', self.on_layout_changed)
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
+		# self._settings.connect('changed::*', self.show_info_settings)
+		# Preview size? Dev-only features? Zoom level?
+		self._settings.connect('changed::disabled-tools', self.show_info_settings)
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
 		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
@@ -468,13 +471,18 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if len(toolbar) > 0:
 			toolbar[0].destroy()
 		self.header_bar = None
-		# self.prompt_message(False, _("Modifications will take effect in the next new window."))
 		self.set_ui_bars()
 		if self.header_bar is not None:
 			self.header_bar.set_compact(is_narrow)
 		else:
 			self.set_titlebar(None)
 		self.set_picture_title()
+
+	def show_info_settings(self, *args):
+		"""This is executed when a setting changed but the method to apply it
+		immediatly in the current window doesn't exist."""
+		self.prompt_message(True, \
+		            _("Modifications will take effect in the next new window."))
 
 	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI
