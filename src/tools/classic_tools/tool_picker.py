@@ -14,7 +14,7 @@ class ToolPicker(AbstractAbstractTool):
 	def get_options_model(self):
 		return None
 
-	def on_release_on_area(self, area, event, surface, event_x, event_y):
+	def on_release_on_area(self, event, surface, event_x, event_y):
 		rgb_vals = utilities_get_rgb_for_xy(surface, event_x, event_y)
 		if rgb_vals == [-1, -1, -1]:
 			return # click outside of the surface
@@ -26,3 +26,6 @@ class ToolPicker(AbstractAbstractTool):
 			self.window.color_popover_l.color_widget.set_rgba(color)
 
 		self.window.back_to_previous()
+
+	############################################################################
+################################################################################
