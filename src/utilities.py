@@ -6,13 +6,36 @@ from .message_dialog import DrawingMessageDialog
 
 ################################################################################
 
-def utilities_save_pixbuf_at(pixbuf, fn):
-	file_format = fn.split('.')[-1]
+def utilities_save_pixbuf_to(pixbuf, fpath):
+	"""Save pixbuf to a given path, with the file format corresponding to the
+	end of the file name. Format with no support for alpha channel will be
+	modified so transparent pixels get replaced by white."""
+	# Build a short string which will be recognized as a file format by the
+	# GdkPixbuf.Pixbuf.savev method
+	file_format = fpath.split('.')[-1]
 	if file_format in ['jpeg', 'jpg', 'jpe']:
 		file_format = 'jpeg'
 	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
 		file_format = 'png'
-	pixbuf.savev(fn, file_format, [None], [])
+	# Handle formats with no alpha channel
+	if file_format not in ['png']:
+		width = pixbuf.get_width()
+		height = pixbuf.get_height()
+		# TODO ask the user if they want something else than white?
+		pattern_color1 = _rgb_as_hexadecimal_int(255, 255, 255)
+		pattern_color2 = _rgb_as_hexadecimal_int(255, 255, 255)
+		pixbuf = pixbuf.composite_color_simple(width, height, \
+		                                      GdkPixbuf.InterpType.TILES, 255, \
+		                                      8, pattern_color1, pattern_color2)
+	# Actually save the pixbuf to the given file path
+	pixbuf.savev(fpath, file_format, [None], [])
+
+def _rgb_as_hexadecimal_int(r, g, b):
+	"""The method GdkPixbuf.Pixbuf.composite_color_simple wants an hexadecimal
+	integer whose format is 0xaarrggbb so here are ugly binary operators."""
+	return (r << 16) + (g << 8) + b
+
+################################################################################
 
 def utilities_add_filechooser_filters(dialog):
 	"""Add file filters for images to file chooser dialogs."""

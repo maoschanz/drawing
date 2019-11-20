@@ -48,7 +48,7 @@ from .color_popover import DrawingColorPopover
 from .message_dialog import DrawingMessageDialog
 from .headerbar import DrawingAdaptativeHeaderBar
 
-from .utilities import utilities_save_pixbuf_at
+from .utilities import utilities_save_pixbuf_to
 from .utilities import utilities_add_unit_to_spinbtn
 from .utilities import utilities_add_filechooser_filters
 
@@ -858,7 +858,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.get_active_image().gfile = gfile
 				fn = self.get_file_path()
-		utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn)
+		utilities_save_pixbuf_to(self.get_active_image().main_pixbuf, fn)
 		self.get_active_image().post_save()
 		self.set_picture_title()
 		return True
@@ -922,7 +922,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_at(pb, gfile.get_path())
+			utilities_save_pixbuf_to(pb, gfile.get_path())
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -988,7 +988,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pixbuf = self.get_active_image().selection.get_pixbuf()
-			utilities_save_pixbuf_at(pixbuf, gfile.get_path())
+			utilities_save_pixbuf_to(pixbuf, gfile.get_path())
 
 	def get_selection_tool(self):  # XXX réellement utile ?
 		if 'select' in self.tools:
