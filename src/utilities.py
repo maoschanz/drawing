@@ -84,7 +84,10 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 ################################################################################
 
-def utilities_save_pixbuf_at(pixbuf, fpath, window):
+def utilities_save_pixbuf_to(pixbuf, fpath, window):
+	"""Save pixbuf to a given path, with the file format corresponding to the
+	end of the file name. Format with no support for alpha channel will be
+	modified so transparent pixels get replaced by white."""
 	# Build a short string which will be recognized as a file format by the
 	# GdkPixbuf.Pixbuf.savev method
 	file_format = fpath.split('.')[-1]
@@ -96,8 +99,8 @@ def utilities_save_pixbuf_at(pixbuf, fpath, window):
 	if file_format not in ['png']:
 		user_agrees = True #_ask_overwrite_alpha(window)
 		if not user_agrees:
+			# will never be raised since i don't invoke the dialog
 			raise Exception("User refused to save as %s" % file_format)
-			# FIXME each call to this method (all are in window.py) should try/catch
 		else:
 			width = pixbuf.get_width()
 			height = pixbuf.get_height()
@@ -111,20 +114,26 @@ def utilities_save_pixbuf_at(pixbuf, fpath, window):
 	pixbuf.savev(fpath, file_format, [None], [])
 
 def _rgb_as_hexadecimal_int(r, g, b):
-	# The method GdkPixbuf.Pixbuf.composite_color_simple wants an hexadecimal
-	# int whose format is 0xaarrggbb so here are ugly binary operators
+	"""The method GdkPixbuf.Pixbuf.composite_color_simple wants an hexadecimal
+	integer whose format is 0xaarrggbb so here are ugly binary operators."""
 	return (r << 16) + (g << 8) + b
 
 def _ask_overwrite_alpha(window):
+	"""This method is not used for now. The point is to warn the user about the
+	replacement of the alpha channel for JPG or BMP files, but it might annoy
+	users very quickly to see a dialog."""
 	dialog = DrawingMessageDialog(window)
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
 	continue_id = dialog.set_action(_("Save"), None, True)
 	dialog.add_string(_("This file format doesn't support transparent colors."))
 	dialog.add_string(_("Do you want to save anyway ?""") )
 	result = dialog.run()
-	# TODO récupérer le changement de alpha quand il y aura cette possibilité
+	# TODO récupérer les couleurs de remplacement spécifiées par l'utilisateur
+	# quand il y aura cette possibilité
 	dialog.destroy()
 	return result == continue_id
+
+################################################################################
 
 def utilities_add_filechooser_filters(dialog):
 	"""Add file filters for images to file chooser dialogs."""

@@ -26,3 +26,6 @@ class ToolPicker(AbstractClassicTool):
 		elif event.button == 3:
 			self.window.options_manager.set_right_color(color)
 		self.window.back_to_previous()
+
+	############################################################################
+################################################################################

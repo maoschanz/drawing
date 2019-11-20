@@ -121,7 +121,6 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 	y = y + 1 # sinon ça crashe ?
 	cairo_context.move_to(x, y)
 	(first_x, first_y) = (x, y)
-	# print(str(x) + ' ' + str(y))
 
 	# 0 1 2
 	# 7   3
@@ -138,7 +137,6 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		new_x = -10
 		new_y = -10
 		end_circle = False
-
 		j = 0
 		while (not end_circle) or (j < 8):
 			future_x = x+x_shift[direction]
@@ -159,8 +157,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 			j = j+1
 
 		direction = (direction+4) % 8
-		# print('direction:')
-		# print(direction)
+		# print('direction :', direction)
 		if (new_x != -10):
 			cairo_context.line_to(x, y)
 		# else:
@@ -171,8 +168,6 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 			should_stop = True
 
 		i = i + 1
-		# print('----------')
-
 		if i == 2000:
 			dialog, continue_id = launch_infinite_loop_dialog(window)
 			result = dialog.run()
@@ -238,14 +233,10 @@ def utilities_smooth_path(cairo_context, cairo_path):
 	"""Extrapolate a path made of straight lines into a path made of curves. New
 	points are added according to the length of the line it replaces, the length
 	of the previous one, and the length of the next one."""
-	x1 = None
-	y1 = None
-	x2 = None
-	y2 = None
-	x3 = None
-	y3 = None
-	x4 = None
-	y4 = None
+	x1 = y1 = None
+	x2 = y2 = None
+	x3 = y3 = None
+	x4 = y4 = None
 	for pts in cairo_path:
 		if pts[1] is ():
 			continue
@@ -304,12 +295,12 @@ def utilities_fast_blur(surface, radius, iterations, algotype):
 		return
 	w = surface.get_width()
 	h = surface.get_height()
-	channels = 4 # XXX ou 3 dans le cas de RGB256 ???
+	channels = 4 # ARGB
 	if radius > w - 1 or radius > h - 1:
 		return
 
 	# this code a modified version of this https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
-	# main differences (aside of the language) is the poor attempt to use
+	# the main differences (aside of the language) is the poor attempt to use
 	# multithreading (i'm quite sure the access to buffers are not safe at all).
 	# The 2 phases of the algo have been separated to allow directional blur.
 	original = cairo.ImageSurface(cairo.Format.ARGB32, w, h)

@@ -48,7 +48,7 @@ from .options_manager import DrawingOptionsManager
 from .message_dialog import DrawingMessageDialog
 from .headerbar import DrawingAdaptativeHeaderBar
 
-from .utilities import utilities_save_pixbuf_at
+from .utilities import utilities_save_pixbuf_to
 from .utilities import utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
@@ -937,7 +937,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.get_active_image().gfile = gfile
 				fn = self.get_file_path()
-		utilities_save_pixbuf_at(self.get_active_image().main_pixbuf, fn, self)
+		try:
+			pixb = self.get_active_image().main_pixbuf
+			utilities_save_pixbuf_to(pixb, fn, self)
+		except:
+			self.prompt_message(True, _("Failed to save %s") % fn)
+			return False
 		self.get_active_image().post_save()
 		self.set_picture_title()
 		return True
@@ -1000,8 +1005,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
-			pb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_at(pb, gfile.get_path(), self)
+			pixbuf = self.get_active_image().main_pixbuf
+			try:
+				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
+			except:
+				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -1064,10 +1072,14 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().import_selection(pixbuf)
 
 	def action_selection_export(self, *args):
+		# XXX very similar to action_export_as
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pixbuf = self.get_active_image().selection.get_pixbuf()
-			utilities_save_pixbuf_at(pixbuf, gfile.get_path(), self)
+			try:
+				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
+			except:
+				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 
 	def get_selection_tool(self):
 		if 'rect_select' in self.tools:
