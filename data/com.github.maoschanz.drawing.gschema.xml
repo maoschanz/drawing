@@ -37,6 +37,13 @@
       <summary>Preview size</summary>
       <description>Size of the bigger dimension of the preview (px).</description>
     </key>
+    <key type="s" name="replace-alpha">
+      <default>'white'</default>
+      <summary>What will replace transparent pixels if needed</summary>
+      <description>What will replace transparent pixels when saving to a format
+      not supporting it, such as JPG or BMP. It can be 'white', 'black', or
+      'checkboard'.</description>
+    </key>
     <key type="b" name="devel-only">
       <default>false</default>
       <summary>Experimental features</summary>

@@ -52,7 +52,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		# Build the "images" page ##############################################
 		pass
 
-		w = self.row_from_label(_("New images"), False)
+		w = self.new_section_title(_("New images"), False)
 		self.page_images.add(w)
 
 		w = self.row_from_adj(_("Default width"), 'default-width', self.adj_width)
@@ -73,7 +73,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_widget(_("Default background"), background_color_btn)
 		self.page_images.add(w)
 
-		w = self.row_from_label(_("Zoom"), True)
+		w = self.new_section_title(_("Zoom"), True)
 		self.page_images.add(w)
 
 		scroll_combobox = Gtk.ComboBoxText()
@@ -87,11 +87,29 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_bool(_("Automatic zoom level"), 'auto-zoom')
 		self.page_images.add(w)
 
+		w = self.new_section_title(_("Images saving"), True)
+		self.page_images.add(w)
+
+		w = self.row_from_widget(_("JPEG and BMP images can't handle " + \
+		     "transparency. If you save your images in these formats, what " + \
+		                 "do want to use to replace transparent pixels?"), None)
+		self.page_images.add(w)
+
+		alpha_combobox = Gtk.ComboBoxText()
+		alpha_combobox.append('white', _("White"))
+		alpha_combobox.append('black', _("Black"))
+		alpha_combobox.append('checkboard', _("Checkboard"))
+		# alpha_combobox.append('ask', _("Ask before saving"))
+		alpha_combobox.set_active_id(self._settings.get_string('replace-alpha'))
+		alpha_combobox.connect('changed', self.on_combo_changed, 'replace-alpha')
+		w = self.row_from_widget(_("Transparency replacement"), alpha_combobox)
+		self.page_images.add(w)
+
 		########################################################################
 		# Build the "tools" page ###############################################
 		pass
 
-		w = self.row_from_label(_("Appearance"), False)
+		w = self.new_section_title(_("Appearance"), False)
 		self.page_tools.add(w)
 
 		w = self.row_from_bool(_("Show tools names"), 'show-labels')
@@ -100,7 +118,12 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_bool(_("Use big icons"), 'big-icons')
 		self.page_tools.add(w)
 
-		w = self.row_from_label(_("Additional tools"), True)
+		w = self.new_section_title(_("Additional tools"), True)
+		self.page_tools.add(w)
+
+		w = self.row_from_widget(_("These tools are not as reliable and " + \
+		            "useful as they should be, so they are not all enabled " + \
+		                                                   "by default."), None)
 		self.page_tools.add(w)
 
 		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
@@ -119,7 +142,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		# Build the "advanced" page ############################################
 		pass
 
-		w = self.row_from_label(_("Advanced options"), False)
+		w = self.new_section_title(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
 		w = self.row_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
@@ -132,7 +155,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		if not is_beta:
 			w.set_visible(False)
 
-		w = self.row_from_label(_("Layout"), True)
+		w = self.new_section_title(_("Layout"), True)
 		self.page_advanced.add(w)
 
 		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
@@ -166,7 +189,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	############################################################################
 	# Widgets building methods #################################################
 
-	def row_from_label(self, label_text, with_margin):
+	def new_section_title(self, label_text, with_margin):
 		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \
 		                                    label=('<b>' + label_text + '</b>'))
 		if with_margin:
@@ -178,7 +201,11 @@ class DrawingPrefsWindow(Gtk.Window):
 		label = Gtk.Label(label=label_text)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 		box.pack_start(label, expand=False, fill=False, padding=0)
-		box.pack_end(widget, expand=False, fill=False, padding=0)
+		if widget is not None:
+			box.pack_end(widget, expand=False, fill=False, padding=0)
+		else:
+			label.set_line_wrap(True)
+			label.get_style_context().add_class('dim-label')
 		box.show_all()
 		return box
 

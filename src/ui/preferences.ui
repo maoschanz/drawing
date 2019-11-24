@@ -26,7 +26,7 @@
 
   <template class="DrawingPrefsWindow" parent="GtkWindow">
     <property name="default-width">500</property>
-    <property name="default-height">300</property>
+    <property name="default-height">480</property>
     <property name="title" translatable="yes">Preferences</property>
 
     <child>
@@ -49,11 +49,17 @@
             <property name="transition-type">crossfade</property>
 
             <child>
-              <object class="GtkBox" id="page_images">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <property name="margin">12</property>
+                <property name="expand">True</property>
+                <child>
+                  <object class="GtkBox" id="page_images">
+                    <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">12</property>
+                    <property name="margin">12</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="name">page2</property>

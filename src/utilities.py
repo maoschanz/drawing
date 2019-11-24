@@ -97,19 +97,23 @@ def utilities_save_pixbuf_to(pixbuf, fpath, window):
 		file_format = 'png'
 	# Ask the user what to do concerning formats with no alpha channel
 	if file_format not in ['png']:
-		user_agrees = True #_ask_overwrite_alpha(window)
-		if not user_agrees:
-			# will never be raised since i don't invoke the dialog
-			raise Exception("User refused to save as %s" % file_format)
-		else:
-			width = pixbuf.get_width()
-			height = pixbuf.get_height()
-			# TODO ask the user if they want something else than white?
+		replacement = window._settings.get_string('replace-alpha')
+		if replacement == 'ask':
+			replacement = _ask_overwrite_alpha(window) # TODO
+			# can't be called since i don't propose the setting yet
+		width = pixbuf.get_width()
+		height = pixbuf.get_height()
+		if replacement == 'white':
 			pattern_color1 = _rgb_as_hexadecimal_int(255, 255, 255)
 			pattern_color2 = _rgb_as_hexadecimal_int(255, 255, 255)
-			pixbuf = pixbuf.composite_color_simple(width, height, \
-			                                  GdkPixbuf.InterpType.TILES, 255, \
-			                                  8, pattern_color1, pattern_color2)
+		elif replacement == 'checkboard':
+			pattern_color1 = _rgb_as_hexadecimal_int(85, 85, 85)
+			pattern_color2 = _rgb_as_hexadecimal_int(170, 170, 170)
+		else: # if replacement == 'black':
+			pattern_color1 = _rgb_as_hexadecimal_int(0, 0, 0)
+			pattern_color2 = _rgb_as_hexadecimal_int(0, 0, 0)
+		pixbuf = pixbuf.composite_color_simple(width, height, \
+		     GdkPixbuf.InterpType.TILES, 255, 8, pattern_color1, pattern_color2)
 	# Actually save the pixbuf to the given file path
 	pixbuf.savev(fpath, file_format, [None], [])
 
@@ -128,10 +132,13 @@ def _ask_overwrite_alpha(window):
 	dialog.add_string(_("This file format doesn't support transparent colors."))
 	dialog.add_string(_("Do you want to save anyway ?""") )
 	result = dialog.run()
+	repl = 'white'
 	# TODO récupérer les couleurs de remplacement spécifiées par l'utilisateur
 	# quand il y aura cette possibilité
 	dialog.destroy()
-	return result == continue_id
+	if result != continue_id:
+		raise Exception("User refused to save as %s" % file_format)
+	return repl
 
 ################################################################################
 
