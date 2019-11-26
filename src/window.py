@@ -148,7 +148,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)
 		self.load_tool('filters', ToolFilters, disabled_tools_ids, dev)
 
-		# Side panel buttons for tools, and their menu-items if they don't exist
+		# Side panel buttons for tools, and their menubar items if they don't
+		# exist yet
 		self.build_tool_rows()
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()
@@ -385,7 +386,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 		self.add_action_boolean('show_labels', self._settings.get_boolean( \
-		                            'show-labels'), self.on_show_labels_changed)
+		                     'show-labels'), self.on_show_labels_action_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
@@ -706,7 +707,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
-	def on_show_labels_changed(self, *args):
+	def on_show_labels_action_changed(self, *args):
 		show_labels = not args[0].get_state()
 		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
@@ -797,10 +798,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.app.get_menubar().remove(5)
 			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
 		panel = self.active_panel()
-		if panel is not None:
+		if panel is not None: # XXX try/except
 			panel.build_options_menu(widget, model, label)
 		else:
-			self.prompt_message(True, 'panel is none for label:' + label)
+			self.prompt_message(False, 'panel is none for label: ' + label)
 
 	def action_use_editor(self, *args):
 		use_editor = not args[0].get_state()
@@ -991,6 +992,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
 		utilities_add_filechooser_filters(file_chooser)
+		# TODO use ~/Images by default if possible
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 		response = file_chooser.run()
@@ -1004,18 +1006,19 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_export_as(self, *args):
 		gfile = self.file_chooser_save()
-		if gfile is not None:
-			pixbuf = self.get_active_image().main_pixbuf
-			try:
-				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
-			except:
-				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
+		if gfile is None:
+			return
+		pixbuf = self.get_active_image().main_pixbuf
+		try:
+			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
+		except:
+			self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
 
 	def action_getvalues(self, *args):
-		"""Development only"""
+		"""Development only: helps debugging the selection."""
 		self.get_active_image().selection.print_values()
 
 	def action_select_all(self, *args):
@@ -1054,7 +1057,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.tools['text'].force_text_tool(string)
 
 	def action_import(self, *args):
-		"""Handle the result of an "open" file chooser dialog. It will then try
+		"""Handle the result of an 'open' file chooser dialog. It will then try
 		to import it as the selection."""
 		file_chooser = Gtk.FileChooserNative.new(_("Import a picture"), self,
 		                   Gtk.FileChooserAction.OPEN, _("Import"), _("Cancel"))
@@ -1066,7 +1069,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def import_from_path(self, file_path):
 		"""Import a file as the selection pixbuf. Called by the 'win.import'
-		action and when an image is imported by drag-and-drop."""
+		action or when an image is imported by drag-and-drop."""
 		self.force_selection()
 		pixbuf = GdkPixbuf.Pixbuf.new_from_file(file_path)
 		self.get_selection_tool().import_selection(pixbuf)
@@ -1129,7 +1132,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		if self.header_bar is not None:
 			self.header_bar.set_undo_label(undo_label)
 			self.header_bar.set_redo_label(redo_label)
-		# TODO maybe update "undo" and "redo" items in the menubar
+		# TODO maybe update "undo" and "redo" items in the menubar too
 
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################

@@ -99,8 +99,7 @@ def utilities_save_pixbuf_to(pixbuf, fpath, window):
 	if file_format not in ['png']:
 		replacement = window._settings.get_string('replace-alpha')
 		if replacement == 'ask':
-			replacement = _ask_overwrite_alpha(window) # TODO
-			# can't be called since i don't propose the setting yet
+			replacement = _ask_overwrite_alpha(window)
 		width = pixbuf.get_width()
 		height = pixbuf.get_height()
 		if replacement == 'white':
@@ -130,11 +129,19 @@ def _ask_overwrite_alpha(window):
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
 	continue_id = dialog.set_action(_("Save"), None, True)
 	dialog.add_string(_("This file format doesn't support transparent colors."))
-	dialog.add_string(_("Do you want to save anyway ?""") )
+
+	dialog.add_string(_("Replace transparency with:") )
+	alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
+	dialog.add_widget(alpha_combobox)
+	alpha_combobox.append('white', _("White"))
+	alpha_combobox.append('black', _("Black"))
+	alpha_combobox.append('checkboard', _("Checkboard"))
+	alpha_combobox.set_active_id('white') # If we run the dialog, it means the
+	# active preference IS 'ask', so there is no way we can set the value to
+	# something pertinent.
+
 	result = dialog.run()
-	repl = 'white'
-	# TODO récupérer les couleurs de remplacement spécifiées par l'utilisateur
-	# quand il y aura cette possibilité
+	repl = alpha_combobox.get_active_id()
 	dialog.destroy()
 	if result != continue_id:
 		raise Exception("User refused to save as %s" % file_format)

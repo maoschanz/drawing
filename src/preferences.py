@@ -99,7 +99,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		alpha_combobox.append('white', _("White"))
 		alpha_combobox.append('black', _("Black"))
 		alpha_combobox.append('checkboard', _("Checkboard"))
-		# alpha_combobox.append('ask', _("Ask before saving"))
+		alpha_combobox.append('ask', _("Ask before saving"))
 		alpha_combobox.set_active_id(self._settings.get_string('replace-alpha'))
 		alpha_combobox.connect('changed', self.on_combo_changed, 'replace-alpha')
 		w = self.row_from_widget(_("Transparency replacement"), alpha_combobox)

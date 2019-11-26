@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-24 17:51+0100\n"
+"POT-Creation-Date: 2019-11-26 18:04+0100\n"
 "PO-Revision-Date: 2019-09-17 22:22+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:132
-#: src/window.py:499
+#: src/window.py:500
 msgid "Drawing"
 msgstr "Drawing"
 
@@ -41,7 +41,7 @@ msgstr "Paint;Boceto;Lápiz;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
-#: src/window.py:863
+#: src/window.py:864
 msgid "New Window"
 msgstr "Ventana nueva"
 
@@ -200,8 +200,8 @@ msgstr "Propiedades de imagen"
 #: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
 #: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:114 src/ui/toolbar.ui:103
-#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:275 src/utilities.py:131
-#: src/window.py:972 src/window.py:992
+#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:275 src/utilities.py:130
+#: src/window.py:973 src/window.py:993
 msgid "Save"
 msgstr "Guardar"
 
@@ -285,7 +285,7 @@ msgstr "Pegar"
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:40
-#: src/ui/toolbar.ui:41 src/window.py:900 src/window.py:1060
+#: src/ui/toolbar.ui:41 src/window.py:901 src/window.py:1063
 msgid "Import"
 msgstr "Importar"
 
@@ -346,7 +346,7 @@ msgstr "Actualizar"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
 #: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:167
-#: src/preferences.py:114
+#: src/preferences.py:115
 msgid "Show tools names"
 msgstr "Mostrar nombres de herramientas"
 
@@ -381,7 +381,7 @@ msgstr "Intercambiar colores"
 msgid "Color editor by default"
 msgstr "Editor de colores predeterminado"
 
-#: src/ui/app-menus.ui:337 src/window.py:581
+#: src/ui/app-menus.ui:337 src/window.py:582
 msgid "_Tools"
 msgstr "_Herramientas"
 
@@ -389,7 +389,7 @@ msgstr "_Herramientas"
 msgid "Previous tool"
 msgstr "Herramienta anterior"
 
-#: src/ui/app-menus.ui:356 src/window.py:795 src/window.py:798
+#: src/ui/app-menus.ui:356 src/window.py:796 src/window.py:799
 msgid "_Options"
 msgstr "_Opciones"
 
@@ -427,7 +427,7 @@ msgid "Tool size"
 msgstr "Tamaño de herramienta"
 
 #. used by the bottom panels
-#: src/ui/classic-panel.ui:96 src/window.py:532 src/tools/abstract_tool.py:81
+#: src/ui/classic-panel.ui:96 src/window.py:533 src/tools/abstract_tool.py:81
 msgid "No options"
 msgstr "Sin opciones"
 
@@ -467,7 +467,7 @@ msgid "Use these settings by default"
 msgstr "Utilizar este editor de manera predeterminada"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
-#: src/window.py:884 src/window.py:899
+#: src/window.py:885 src/window.py:900
 msgid "Open"
 msgstr "Abrir"
 
@@ -483,7 +483,7 @@ msgstr "Imágenes"
 msgid "Tools"
 msgstr "Herramientas"
 
-#: src/ui/preferences.ui:99 src/preferences.py:144
+#: src/ui/preferences.ui:99 src/preferences.py:145
 msgid "Advanced options"
 msgstr "Opciones avanzadas"
 
@@ -508,7 +508,7 @@ msgstr "Archivo no guardado"
 msgid "Invalid format"
 msgstr "Formato no válido"
 
-#: src/ui/properties.ui:179 src/utilities.py:175
+#: src/ui/properties.ui:179 src/utilities.py:182
 msgid "pixels"
 msgstr "píxeles"
 
@@ -643,8 +643,8 @@ msgstr "Error al iniciar la aplicación; por favor, informe acerca del fallo."
 msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
 
-#: src/custom_image.py:33 src/utilities.py:130 src/window.py:884
-#: src/window.py:898 src/window.py:971 src/window.py:992 src/window.py:1060
+#: src/custom_image.py:33 src/utilities.py:129 src/window.py:885
+#: src/window.py:899 src/window.py:972 src/window.py:993 src/window.py:1063
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
 #: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
@@ -755,99 +755,103 @@ msgid ""
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
 
-#: src/preferences.py:99 src/utilities.py:40
+#: src/preferences.py:99 src/utilities.py:40 src/utilities.py:136
 msgid "White"
 msgstr "Blanco"
 
-#: src/preferences.py:100 src/utilities.py:42
+#: src/preferences.py:100 src/utilities.py:42 src/utilities.py:137
 msgid "Black"
 msgstr "Negro"
 
-#: src/preferences.py:101
+#: src/preferences.py:101 src/utilities.py:138
 msgid "Checkboard"
 msgstr ""
 
-#: src/preferences.py:104
+#: src/preferences.py:102
+msgid "Ask before saving"
+msgstr ""
+
+#: src/preferences.py:105
 #, fuzzy
 msgid "Transparency replacement"
 msgstr "Transparente"
 
-#: src/preferences.py:111
+#: src/preferences.py:112
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: src/preferences.py:117
+#: src/preferences.py:118
 msgid "Use big icons"
 msgstr "Usar iconos grandes"
 
-#: src/preferences.py:120
+#: src/preferences.py:121
 msgid "Additional tools"
 msgstr "Herramientas adicionales"
 
-#: src/preferences.py:123
+#: src/preferences.py:124
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
 
-#: src/preferences.py:131 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:132 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Selección libre"
 
-#: src/preferences.py:133 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:134 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Selección por color"
 
-#: src/preferences.py:135 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:136 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Selector de color"
 
-#: src/preferences.py:137 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:138 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Relleno"
 
-#: src/preferences.py:147
+#: src/preferences.py:148
 msgid "Preview size"
 msgstr "Tamaño de previsualización"
 
-#: src/preferences.py:152
+#: src/preferences.py:153
 msgid "Development features"
 msgstr "Funcionalidades experimentales"
 
-#: src/preferences.py:157
+#: src/preferences.py:158
 msgid "Layout"
 msgstr "Disposición"
 
-#: src/preferences.py:164
+#: src/preferences.py:165
 msgid "Automatic"
 msgstr "Automático"
 
-#: src/preferences.py:166
+#: src/preferences.py:167
 msgid "Compact"
 msgstr "Compacto"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:172
+#: src/preferences.py:173
 msgid "Legacy"
 msgstr "Tradicional"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you can
 #. translate it like if it was "Traditional"
-#: src/preferences.py:176
+#: src/preferences.py:177
 #, fuzzy
 msgid "Legacy (symbolic icons)"
 msgstr "Tradicional (símbolos)"
 
-#: src/preferences.py:179
+#: src/preferences.py:180
 msgid "Menubar only"
 msgstr "Solo barra de menús"
 
-#: src/preferences.py:181
+#: src/preferences.py:182
 msgid "Toolbar only"
 msgstr "Solo barra de herramientas"
 
-#: src/preferences.py:183
+#: src/preferences.py:184
 #, fuzzy
 msgid "Toolbar only (symbolic icons)"
 msgstr "Barra de herramientas (símbolos)"
@@ -913,109 +917,109 @@ msgstr "Probablemente turquesa"
 msgid "Unknown color name"
 msgstr "Nombre de color desconocido"
 
-#: src/utilities.py:132
+#: src/utilities.py:131
 msgid "This file format doesn't support transparent colors."
 msgstr ""
 
 #: src/utilities.py:133
-#, fuzzy
-msgid "Do you want to save anyway ?"
-msgstr "¿Dónde quiere abrir «%s»?"
+msgid "Replace transparency with:"
+msgstr ""
 
-#: src/utilities.py:148
+#: src/utilities.py:155
 msgid "All pictures"
 msgstr "Todas las imágenes"
 
-#: src/utilities.py:154
+#: src/utilities.py:161
 msgid "PNG images"
 msgstr "Imágenes PNG"
 
-#: src/utilities.py:158
+#: src/utilities.py:165
 msgid "JPEG images"
 msgstr "Imágenes JPEG"
 
-#: src/utilities.py:162
+#: src/utilities.py:169
 msgid "BMP images"
 msgstr "Imágenes BMP"
 
-#: src/utilities.py:177
+#: src/utilities.py:184
 msgid "percents"
 msgstr ""
 
-#: src/window.py:176
+#: src/window.py:177
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Error al cargar la herramienta: %s"
 
-#: src/window.py:485
+#: src/window.py:486
 msgid "Modifications will take effect in the next new window."
 msgstr "Los cambios tendrán efecto en la próxima ventana nueva."
 
-#: src/window.py:578
+#: src/window.py:579
 msgid "Opened images"
 msgstr "Imágenes abiertas"
 
-#: src/window.py:856
+#: src/window.py:857
 #, python-format
 msgid "Loading %s"
 msgstr "Cargando %s"
 
-#: src/window.py:862
+#: src/window.py:863
 msgid "New Tab"
 msgstr "Pestaña nueva"
 
-#: src/window.py:864
+#: src/window.py:865
 msgid "Discard changes"
 msgstr "Descartar cambios"
 
-#: src/window.py:867 src/window.py:973
+#: src/window.py:868 src/window.py:974
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Hay cambios no guardados en «%s»."
 
-#: src/window.py:869
+#: src/window.py:870
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "¿Dónde quiere abrir «%s»?"
 
-#: src/window.py:883
+#: src/window.py:884
 msgid "Open a picture"
 msgstr "Abrir una imagen"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:907
+#: src/window.py:908
 msgid "these files"
 msgstr "estos archivos"
 
-#: src/window.py:908
+#: src/window.py:909
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "¿Qué quiere hacer con «%s»?"
 
-#: src/window.py:944 src/window.py:1012 src/window.py:1082
+#: src/window.py:945 src/window.py:1015 src/window.py:1085
 #, fuzzy, python-format
 msgid "Failed to save %s"
 msgstr "Error al cargar la herramienta: %s"
 
-#: src/window.py:963 src/window.py:994
+#. TODO use ~/Images by default if possible
+#: src/window.py:964 src/window.py:996
 msgid "Untitled"
 msgstr "Sin título"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:965
+#: src/window.py:966
 msgid "this picture"
 msgstr "esta imagen"
 
-#: src/window.py:970
+#: src/window.py:971
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/window.py:991
+#: src/window.py:992
 msgid "Save picture as…"
 msgstr "Guardar imagen como…"
 
-#: src/window.py:1059
+#: src/window.py:1062
 msgid "Import a picture"
 msgstr "Importar una imagen"
 
@@ -1398,6 +1402,10 @@ msgstr "Escalando la selección"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Escalando el lienzo"
+
+#, fuzzy
+#~ msgid "Do you want to save anyway ?"
+#~ msgstr "¿Dónde quiere abrir «%s»?"
 
 #, fuzzy
 #~ msgid "Saved images"
