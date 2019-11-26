@@ -91,6 +91,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_tools', self.on_help_tools, None)
 		self.add_action_simple('help_canvas', self.on_help_canvas, None)
 		self.add_action_simple('help_selection', self.on_help_selection, None)
+		self.add_action_simple('help_prefs', self.on_help_prefs, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
@@ -191,7 +192,8 @@ class Application(Gtk.Application):
 		if self.prefs_window is not None:
 			self.prefs_window.destroy()
 		wants_csd = not 'ssd' in self.props.active_window.decorations
-		self.prefs_window = DrawingPrefsWindow(self.is_beta(), wants_csd)
+		self.prefs_window = DrawingPrefsWindow(self.is_beta(), wants_csd, \
+		                                                       application=self)
 		self.prefs_window.present()
 
 	def on_help_index(self, *args):
@@ -214,9 +216,14 @@ class Application(Gtk.Application):
 		self.show_help_page('/tools_canvas')
 
 	def on_help_selection(self, *args):
-		"""Action callback, showing the 'selection' page of the user
-		help manual."""
+		"""Action callback, showing the 'selection tools' page of the user help
+		manual."""
 		self.show_help_page('/tools_selection')
+
+	def on_help_prefs(self, *args):
+		"""Action callback, showing the 'preferences' page of the user help
+		manual."""
+		self.show_help_page('/preferences')
 
 	def show_help_page(self, suffix):
 		win = self.props.active_window

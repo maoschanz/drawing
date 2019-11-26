@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-26 18:04+0100\n"
+"POT-Creation-Date: 2019-11-26 20:58+0100\n"
 "PO-Revision-Date: 2019-11-16 13:51+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:132
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
 #: src/window.py:500
 msgid "Drawing"
 msgstr "Zeichnung"
@@ -295,7 +295,7 @@ msgstr "_Ansicht"
 msgid "Show the preview"
 msgstr "Vorschau anzeigen"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:76
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:89
 msgid "Zoom"
 msgstr "Zoom"
 
@@ -344,7 +344,7 @@ msgstr "Aktualisieren"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
 #: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:167
-#: src/preferences.py:115
+#: src/preferences.py:110
 msgid "Show tools names"
 msgstr "Werkzeugnamen anzeigen"
 
@@ -479,7 +479,7 @@ msgstr "Bilder"
 msgid "Tools"
 msgstr "Werkzeuge"
 
-#: src/ui/preferences.ui:99 src/preferences.py:145
+#: src/ui/preferences.ui:99 src/preferences.py:138
 msgid "Advanced options"
 msgstr "Erweiterte Einstellungen"
 
@@ -679,19 +679,19 @@ msgstr "Inhalt der Zwischenablage bearbeiten"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
-#: src/main.py:231
+#: src/main.py:238
 msgid "translator-credits"
 msgstr "Onno Giesmann"
 
-#: src/main.py:233
+#: src/main.py:240
 msgid "A drawing application for the GNOME desktop."
 msgstr "Ein Zeichenprogramm für den GNOME-Desktop."
 
-#: src/main.py:237
+#: src/main.py:244
 msgid "Official webpage"
 msgstr "Offizielle Internetseite"
 
-#: src/main.py:279
+#: src/main.py:286
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
@@ -719,130 +719,125 @@ msgstr "Standardhöhe"
 msgid "Default background"
 msgstr "Standardhintergrund"
 
-#: src/preferences.py:80
-msgid "Ctrl + Scroll"
-msgstr "Strg + Scrollen"
-
-#: src/preferences.py:81
-msgid "Scroll"
-msgstr "Scrollen"
-
-#: src/preferences.py:84
-msgid "Action to zoom"
-msgstr "Aktion für Zoom"
-
-#: src/preferences.py:87
-msgid "Automatic zoom level"
-msgstr "Automatischer Zoom-Level"
-
-#: src/preferences.py:90
+#: src/preferences.py:76
 #, fuzzy
 msgid "Images saving"
 msgstr "Bilder"
 
-#: src/preferences.py:93
+#: src/preferences.py:79
 msgid ""
 "JPEG and BMP images can't handle transparency. If you save your images in "
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
 
-#: src/preferences.py:99 src/utilities.py:40 src/utilities.py:136
+#: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
 msgstr "Weiß"
 
-#: src/preferences.py:100 src/utilities.py:42 src/utilities.py:137
+#: src/preferences.py:84 src/utilities.py:42 src/utilities.py:137
 msgid "Black"
 msgstr "Schwarz"
 
-#: src/preferences.py:101 src/utilities.py:138
+#: src/preferences.py:84 src/utilities.py:138
 #, fuzzy
 msgid "Checkboard"
 msgstr "Tastatur"
 
-#: src/preferences.py:102
+#: src/preferences.py:84
 msgid "Ask before saving"
 msgstr ""
 
-#: src/preferences.py:105
-#, fuzzy
-msgid "Transparency replacement"
-msgstr "Transparenz"
+#: src/preferences.py:93
+msgid "Ctrl + Scroll"
+msgstr "Strg + Scrollen"
 
-#: src/preferences.py:112
+#: src/preferences.py:94
+msgid "Scroll"
+msgstr "Scrollen"
+
+#: src/preferences.py:97
+msgid "Action to zoom"
+msgstr "Aktion für Zoom"
+
+#: src/preferences.py:100
+msgid "Automatic zoom level"
+msgstr "Automatischer Zoom-Level"
+
+#: src/preferences.py:107
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
-#: src/preferences.py:118
+#: src/preferences.py:113
 msgid "Use big icons"
 msgstr "Große Symbole verwenden"
 
-#: src/preferences.py:121
+#: src/preferences.py:116
 msgid "Additional tools"
 msgstr "Zusätzliche Werkzeuge"
 
-#: src/preferences.py:124
+#: src/preferences.py:119
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
 
-#: src/preferences.py:132 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Freie Auswahl"
 
-#: src/preferences.py:134 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:127 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Farbauswahl"
 
-#: src/preferences.py:136 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:129 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Farbwähler"
 
-#: src/preferences.py:138 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:131 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Füllen"
 
-#: src/preferences.py:148
+#: src/preferences.py:141
 msgid "Preview size"
 msgstr "Vorschaugröße"
 
-#: src/preferences.py:153
+#: src/preferences.py:146
 msgid "Development features"
 msgstr "Entwicklungsfunktionen"
 
-#: src/preferences.py:158
+#: src/preferences.py:151
 msgid "Layout"
 msgstr "Layout"
 
-#: src/preferences.py:165
+#: src/preferences.py:154
+msgid "The recommended value is \"Automatic\"."
+msgstr ""
+
+#: src/preferences.py:157
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: src/preferences.py:167
+#: src/preferences.py:157
 msgid "Compact"
 msgstr "Kompakt"
 
-#. "Legacy" is about the window layout, it means menubar+toolbar, you can
-#. translate it like if it was "Traditional"
-#: src/preferences.py:173
+#: src/preferences.py:158
 msgid "Legacy"
 msgstr "Altmodisch"
 
-#. "Legacy" is about the window layout, it means menubar+toolbar, you can
-#. translate it like if it was "Traditional"
-#: src/preferences.py:177
+#: src/preferences.py:158
 msgid "Legacy (symbolic icons)"
 msgstr "Traditionell (einfarbig)"
 
-#: src/preferences.py:180
+#: src/preferences.py:158
 msgid "Menubar only"
 msgstr "Nur Menüleiste"
 
-#: src/preferences.py:182
+#: src/preferences.py:159
 msgid "Toolbar only"
 msgstr "Nur Werkzeugleiste"
 
-#: src/preferences.py:184
+#: src/preferences.py:159
 msgid "Toolbar only (symbolic icons)"
 msgstr "Nur Werkzeugleiste (einfarbig)"
 
@@ -1385,6 +1380,10 @@ msgstr "Auswahl skalieren"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
+
+#, fuzzy
+#~ msgid "Transparency replacement"
+#~ msgstr "Transparenz"
 
 #~ msgid "Do you want to save anyway ?"
 #~ msgstr "Möchten Sie es trotzdem speichern?"
