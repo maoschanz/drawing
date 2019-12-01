@@ -22,6 +22,7 @@ from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
 from .utilities_tools import utilities_fast_blur
+from .utilities_tools import BlurType
 from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolFilters(AbstractCanvasTool):
@@ -64,7 +65,7 @@ class ToolFilters(AbstractCanvasTool):
 		super().on_tool_selected()
 		self.set_active_type()
 		self.bar.menu_btn.set_active(True)
-		if self.blur_algo == 10:
+		if self.blur_algo == BlurType.INVALID:
 			self.on_filter_preview()
 
 	def get_edition_status(self):
@@ -72,7 +73,7 @@ class ToolFilters(AbstractCanvasTool):
 		return self.type_label + ' - ' + tip_label
 
 	def reset_type_values(self):
-		self.blur_algo = 10
+		self.blur_algo = BlurType.INVALID
 		self.saturate = False
 		self.pixelate = False
 		self.invert = False
@@ -82,13 +83,13 @@ class ToolFilters(AbstractCanvasTool):
 		state_as_string = self.get_option_value('filters_type')
 		self.reset_type_values()
 		if state_as_string == 'blur':
-			self.blur_algo = 0
+			self.blur_algo = BlurType.AUTO # BlurType.PX_BOX
 			self.type_label =  _("Blur")
 		elif state_as_string == 'h_blur':
-			self.blur_algo = 1
+			self.blur_algo = BlurType.PX_HORIZONTAL
 			self.type_label = _("Horizontal blur")
 		elif state_as_string == 'v_blur':
-			self.blur_algo = 2
+			self.blur_algo = BlurType.PX_VERTICAL
 			self.type_label = _("Vertical blur")
 		elif state_as_string == 'saturation':
 			self.saturate = True
@@ -151,7 +152,7 @@ class ToolFilters(AbstractCanvasTool):
 
 	def op_blur(self, source_pixbuf, blur_algo, blur_radius):
 		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		bs = utilities_fast_blur(surface, blur_radius, 1, blur_algo)
+		bs = utilities_fast_blur(surface, blur_radius, blur_algo)
 		bp = Gdk.pixbuf_get_from_surface(bs, 0, 0, bs.get_width(), bs.get_height())
 		self.get_image().set_temp_pixbuf(bp)
 
@@ -165,7 +166,7 @@ class ToolFilters(AbstractCanvasTool):
 			source_pixbuf = self.get_main_pixbuf()
 
 		blur_algo = operation['blur_algo']
-		if blur_algo != 10:
+		if blur_algo != BlurType.INVALID:
 			blur_radius = operation['radius']
 			self.op_blur(source_pixbuf, blur_algo, blur_radius)
 		elif operation['use_transparency']:
@@ -176,7 +177,6 @@ class ToolFilters(AbstractCanvasTool):
 		else:
 			self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 			temp = self.get_image().get_temp_pixbuf()
-			# source_pixbuf.saturate_and_pixelate(temp, operation['saturation'], operation['pixelate'])
 			if operation['saturate']:
 				source_pixbuf.saturate_and_pixelate(temp, operation['saturation'], False)
 			elif operation['pixelate']:
@@ -238,7 +238,7 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.menu_label.set_visible(not state)
 		self.menu_icon.set_visible(state)
 
-		blurring = (self.filters_tool.blur_algo != 10)
+		blurring = (self.filters_tool.blur_algo != BlurType.INVALID)
 		self.tspc_label.set_visible(self.filters_tool.transparency and not state)
 		self.tspc_btn.set_visible(self.filters_tool.transparency)
 		self.sat_label.set_visible(self.filters_tool.saturate and not state)

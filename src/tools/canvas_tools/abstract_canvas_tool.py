@@ -136,7 +136,11 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def on_draw(self, area, cairo_context):
 		pass
 
-	def get_deformed_surface(self, source_surface, p_xx, p_yx, p_xy, p_yy, p_x0, p_y0):
+	def get_deformed_surface(self, source_surface, coefs):
+		"""Use cairo.Matrix to apply a transformation to `source_surface` using
+		the coefficients in `coefs` and return a new surface with the result."""
+		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
+
 		source_w = source_surface.get_width()
 		source_h = source_surface.get_height()
 		# w = p_xx * source_w + p_xy * 0 + p_x0

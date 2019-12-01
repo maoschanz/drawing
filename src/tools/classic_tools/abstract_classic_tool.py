@@ -86,7 +86,8 @@ class AbstractClassicTool(AbstractAbstractTool):
 			cairo_context.stroke()
 			radius = int(line_width/2)
 			# TODO only give the adequate rectangle, not the whole image, it's too slow!
-			b_surface = utilities_fast_blur(self.get_surface(), radius, 1, 0)
+			b_surface = utilities_fast_blur(self.get_surface(), radius, 0)
+			# where 0 == BlurType.AUTO
 			self.restore_pixbuf()
 			cairo_context = cairo.Context(self.get_surface())
 			cairo_context.set_operator(cairo.Operator.OVER)

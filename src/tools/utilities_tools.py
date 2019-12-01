@@ -279,20 +279,32 @@ def _next_arc(cairo_context, x1, y1, x2, y2, x3, y3, x4, y4):
 # Blurring algorithms ##########################################################
 
 class BlurType():
-	BOX = 0
-	HORIZONTAL = 1
-	VERTICAL = 2
-	EXPERIMENTAL = 3
-	INVALID = 10
+	INVALID = -1
+	AUTO = 0
+	PX_BOX = 1
+	PX_HORIZONTAL = 2
+	PX_VERTICAL = 3
+	PX_BOX_MULTI = 4
+	CAIRO_BOX = 5
+	CAIRO_HORIZONTAL = 6
+	CAIRO_VERTICAL = 7
 
-def utilities_fast_blur(surface, radius, iterations, algotype):
+def utilities_fast_blur(surface, radius, algotype):
 	"""This is the 'official' method to access the blur algorithms. The last
-	argument is an integer corresponding to a BlurType enumeration."""
+	argument is an integer corresponding to the BlurType enumeration."""
+	radius = int(radius)
+	if radius < 1:
+		return
+
 	if algotype == BlurType.INVALID:
 		return
-	radius = int(radius)
-	if radius < 1 or iterations < 1:
-		return
+	elif algotype == BlurType.AUTO:
+		algotype = BlurType.PX_BOX
+		# if radius > 6:
+		# 	algotype = BlurType.PX_BOX
+		# else:
+		# 	algotype = BlurType.CAIRO_BOX
+
 	w = surface.get_width()
 	h = surface.get_height()
 	channels = 4 # ARGB
@@ -319,37 +331,48 @@ def utilities_fast_blur(surface, radius, iterations, algotype):
 	for i in range(0, len(dv)):
 		dv[i] = int(i / div)
 
+	iterations = 1
 	while iterations > 0:
 		iterations = iterations - 1
 		time0 = datetime.now()
 		print('begin fast blur, using algo n°', algotype)
-		if algotype == BlurType.HORIZONTAL:
-			full_buff = _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv)
-			for i in range(0, len(full_buff)):
-				pixels[i] = full_buff[i] # XXX useful?
-		elif algotype == BlurType.VERTICAL:
+		if algotype == BlurType.PX_HORIZONTAL:
+			_fast_blur_1st_phase(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+			for i in range(0, len(buffer0)):
+				pixels[i] = buffer0[i] # XXX useful?
+		elif algotype == BlurType.PX_VERTICAL:
 			for i in range(0, len(pixels)):
 				buffer0[i] = pixels[i] # XXX useful?
-			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
-		elif algotype == BlurType.EXPERIMENTAL:
-			# 4+1 threads
-			# TODO despite being multithreaded, the first phase is slower than BlurType.BOX
-			full_buff = _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv)
+			_fast_blur_2nd_phase(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+		elif algotype == BlurType.PX_BOX:
+			_fast_blur_1st_phase(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
 			# print('end of the 1st phase…', datetime.now() - time0)
-			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, full_buff, vmin, vmax, dv)
-		else: # if algotype == BlurType.BOX:
-			# no multi-threading
-			_fast_blur_1st_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+			_fast_blur_2nd_phase(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+
+		elif algotype == BlurType.PX_BOX_MULTI:
+			full_buff = _fast_blur_1st_phase_multi(w, h, channels, radius, \
+			                                             pixels, vmin, vmax, dv)
 			# print('end of the 1st phase…', datetime.now() - time0)
-			_fast_blur_2nd_phase1(w, h, channels, radius, pixels, buffer0, vmin, vmax, dv)
+			_fast_blur_2nd_phase(w, h, channels, radius, pixels, full_buff, vmin, vmax, dv)
+
+		elif algotype == BlurType.CAIRO_BOX:
+			original = _cairo_blur(radius, original)
+		else:
+			pass # pas encore implémenté
+
 		time1 = datetime.now()
 		print('fast blur ended, total time:', time1 - time0)
 	return original
 
 ################################################################################
-# mixed solution version
+# this code a modified version of a naïve approach to box blur, copied from
+# here: https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
+# the main differences (aside of the language) is the poor attempt to use
+# multithreading (i'm quite sure the access to buffers are not safe at all)
+# during the first phase. Multithreading of the second phase has not been tried
+# since this multithreaded version is slower than _fast_blur_1st_phase
 
-def _fast_blur_1st_phase3(w, h, channels, radius, pixels, vmin, vmax, dv):
+def _fast_blur_1st_phase_multi(w, h, channels, radius, pixels, vmin, vmax, dv):
 	NB_THREADS = 4
 	t1 = [None] * NB_THREADS
 	full_buffer = []
@@ -407,9 +430,11 @@ def _blur_rows3(x, y0, y1, w, channels, radius, pixels, buff0, vmin, vmax, dv):
 	# print('row thread with', y0, y1, '(end)')
 
 ################################################################################
-# "only 1 thread" version
+# this code a modified version of a naïve approach to box blur, copied from
+# here: https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
+# The 2 phases of the algo have been separated to allow directional blur.
 
-def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
+def _fast_blur_1st_phase(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
 	for x in range(0, w):
 		vmin[x] = min(x + radius + 1, w - 1)
 		vmax[x] = max(x - radius, 0)
@@ -439,7 +464,7 @@ def _fast_blur_1st_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv)
 			bsum += pixels[p1 + 3] - pixels[p2 + 3]
 			cur_pixel += channels
 
-def _fast_blur_2nd_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
+def _fast_blur_2nd_phase(w, h, channels, radius, pixels, buff0, vmin, vmax, dv):
 	for y in range(0, h):
 		vmin[y] = min(y + radius + 1, h - 1) * w
 		vmax[y] = max (y - radius, 0) * w
@@ -468,6 +493,31 @@ def _fast_blur_2nd_phase1(w, h, channels, radius, pixels, buff0, vmin, vmax, dv)
 			gsum += buff0[p1 + 2] - buff0[p2 + 2]
 			bsum += buff0[p1 + 3] - buff0[p2 + 3]
 			cur_pixel += w * channels
+
+################################################################################
+# Failed attempt to produce a blurred image using cairo. I mean ok, the image is
+# blurred, and with amazing performances, but the quality is not convincing and
+# the result when the area has (semi-)transparency actually sucks.
+
+def _cairo_blur(radius, surface):
+	for i in range(3): # XXX dégueulasse mdrrr
+		surface = _cairo_directional_blur(surface, radius, surface, True)
+		surface = _cairo_directional_blur(surface, radius, surface, False)
+	return surface
+
+def _cairo_directional_blur(source_surf, radius, target_surf, is_vertical):
+	cairo_context = cairo.Context(target_surf)
+	step = max(1, int(radius / 6))
+	alpha = step / radius
+	# XXX l'alpha n'est pas correct
+	for i in range(-1 * radius, radius, step):
+		if is_vertical:
+			cairo_context.set_source_surface(source_surf, 0, i)
+		else:
+			cairo_context.set_source_surface(source_surf, i, 0)
+		cairo_context.paint_with_alpha(alpha)
+	target_surf.flush()
+	return target_surf
 
 ################################################################################
 

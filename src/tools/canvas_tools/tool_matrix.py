@@ -173,10 +173,9 @@ class ToolMatrix(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		new_surface = self.get_deformed_surface(source_surface, \
-		                                     operation['xx'], operation['yx'], \
-		                                     operation['xy'], operation['yy'], \
-		                                     operation['x0'], operation['y0'])
+		coefs = [ operation['xx'], operation['yx'], operation['xy'], \
+		                     operation['yy'], operation['x0'], operation['y0'] ]
+		new_surface = self.get_deformed_surface(source_surface, coefs)
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
