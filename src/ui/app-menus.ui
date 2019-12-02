@@ -77,6 +77,12 @@
           <attribute name="action">win.open</attribute>
           <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
+        <item>
+          <attribute name="label" translatable="yes">Reload file</attribute>
+          <attribute name="action">win.reload_file</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
       </section>
       <section>
         <item>

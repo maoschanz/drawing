@@ -368,7 +368,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 		self.add_action_boolean('show_labels', self._settings.get_boolean( \
-		                            'show-labels'), self.on_show_labels_changed)
+		                     'show-labels'), self.on_show_labels_action_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
@@ -415,6 +415,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
+			self.add_action_simple('reload_file', self.action_reload, None)
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 			self.add_action_simple('get_values', self.action_getvalues, None)
@@ -666,13 +667,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for tool_id in self.tools:
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
+		parent_box = self.tools_flowbox.get_parent()
 		if visible:
 			self.tools_flowbox.set_min_children_per_line(nb_tools)
-			self.tools_nonscrollable_box.remove(self.tools_flowbox)
-			self.tools_scrollable_box.add(self.tools_flowbox)
+			if parent_box == self.tools_nonscrollable_box:
+				self.tools_nonscrollable_box.remove(self.tools_flowbox)
+				self.tools_scrollable_box.add(self.tools_flowbox)
 		else:
-			self.tools_scrollable_box.remove(self.tools_flowbox)
-			self.tools_nonscrollable_box.add(self.tools_flowbox)
+			if parent_box == self.tools_scrollable_box:
+				self.tools_scrollable_box.remove(self.tools_flowbox)
+				self.tools_nonscrollable_box.add(self.tools_flowbox)
 			nb_min = int( (nb_tools+(nb_tools % 3))/3 ) - 1
 			self.tools_flowbox.set_min_children_per_line(nb_min)
 		self.tools_flowbox.set_max_children_per_line(nb_tools)
@@ -681,7 +685,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
-	def on_show_labels_changed(self, *args):
+	def on_show_labels_action_changed(self, *args):
 		show_labels = not args[0].get_state()
 		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
@@ -763,6 +767,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def get_file_path(self):
 		return self.get_active_image().get_file_path()
+
+	def action_reload(self, *args):
+		gfile = self.get_active_image().gfile
+		if gfile is not None:
+			self.try_load_file(gfile)
 
 	def action_open(self, *args):
 		"""Handle the result of an "open" file chooser dialog, and open it in

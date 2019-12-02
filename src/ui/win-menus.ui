@@ -142,6 +142,11 @@
     <section>
     <!-- <attribute name="label" translatable="yes">Development features</attribute> -->
       <item>
+        <attribute name="label" translatable="yes">Reload file</attribute>
+        <attribute name="action">win.reload_file</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Refresh</attribute>
         <attribute name="action">win.restore_pixbuf</attribute>
         <attribute name="hidden-when">action-missing</attribute>
