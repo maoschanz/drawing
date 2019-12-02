@@ -692,13 +692,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for tool_id in self.tools:
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
+		parent_box = self.tools_flowbox.get_parent())
 		if visible:
 			self.tools_flowbox.set_min_children_per_line(nb_tools)
-			self.tools_nonscrollable_box.remove(self.tools_flowbox)
-			self.tools_scrollable_box.add(self.tools_flowbox)
+			if parent_box == self.tools_nonscrollable_box:
+				self.tools_nonscrollable_box.remove(self.tools_flowbox)
+				self.tools_scrollable_box.add(self.tools_flowbox)
 		else:
-			self.tools_scrollable_box.remove(self.tools_flowbox)
-			self.tools_nonscrollable_box.add(self.tools_flowbox)
+			if parent_box == self.tools_scrollable_box:
+				self.tools_scrollable_box.remove(self.tools_flowbox)
+				self.tools_nonscrollable_box.add(self.tools_flowbox)
 			nb_min = int( (nb_tools+(nb_tools % 3))/3 ) - 1
 			self.tools_flowbox.set_min_children_per_line(nb_min)
 		self.tools_flowbox.set_max_children_per_line(nb_tools)
@@ -840,9 +843,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def action_reload(self, *args):
 		gfile = self.get_active_image().gfile
-		if gfile is None:
-			return
-		self.try_load_file(gfile)
+		if gfile is not None:
+			self.try_load_file(gfile)
 
 	def action_open(self, *args):
 		"""Handle the result of an "open" file chooser dialog, and open it in
@@ -929,30 +931,33 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
 		successfully saved."""
-		fn = self.get_file_path()
-		if fn is None: # Newly created and never saved image
+		if self.get_file_path() is None: # Newly created and never saved image
 			gfile = self.file_chooser_save()
-			if gfile is None:
-				# The user pressed "cancel" or closed the file chooser dialog
-				return False
-			else:
-				self.get_active_image().gfile = gfile
-				fn = self.get_file_path()
+		else:
+			gfile = self.get_active_image().gfile
+		return self.save_gfile(gfile)
+
+	def action_save_as(self, *args):
+		gfile = self.file_chooser_save()
+		self.save_gfile(gfile)
+
+	def save_gfile(self, gfile):
+		"""Do everything needed to save the currently active image's pixbuf to
+		the Gio.File object given as argument."""
+		if gfile is None:
+			# The user pressed "cancel" or closed the file chooser dialog
+			return False
+		fn = gfile.get_path()
 		try:
 			pixb = self.get_active_image().main_pixbuf
 			utilities_save_pixbuf_to(pixb, fn, self)
+			self.get_active_image().gfile = gfile
 		except:
-			self.prompt_message(True, _("Failed to save %s") % fn)
+			self.prompt_message(False, _("Failed to save %s") % fn)
 			return False
 		self.get_active_image().post_save()
 		self.set_picture_title()
 		return True
-
-	def action_save_as(self, *args):
-		gfile = self.file_chooser_save()
-		if gfile is not None:
-			self.get_active_image().gfile = gfile
-			self.action_save()
 
 	def confirm_save_modifs(self):
 		"""Return True if the image can be closed/overwritten (whether it's saved
