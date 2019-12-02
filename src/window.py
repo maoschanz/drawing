@@ -692,7 +692,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		for tool_id in self.tools:
 			self.tools[tool_id].label_widget.set_visible(visible)
 		nb_tools = len(self.tools)
-		parent_box = self.tools_flowbox.get_parent())
+		parent_box = self.tools_flowbox.get_parent()
 		if visible:
 			self.tools_flowbox.set_min_children_per_line(nb_tools)
 			if parent_box == self.tools_nonscrollable_box:

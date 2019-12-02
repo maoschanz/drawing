@@ -116,7 +116,7 @@ class ToolMatrix(AbstractCanvasTool):
 			x0 = self.temp_h * yx
 			y0 = self.temp_w * xy
 		else:
-			self.window.prompt_message(True, 'bruh moment: angle bad')
+			self.show_error('bruh moment: angle bad')
 			x0 = self.temp_h * yx # XXX
 			y0 = self.temp_w * xy # XXX
 

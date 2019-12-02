@@ -188,7 +188,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		                                                    Gtk.IconSize.BUTTON)
 		help_btn.set_valign(Gtk.Align.CENTER)
 		help_btn.set_relief(Gtk.ReliefStyle.NONE)
-		help_btn.connect('clicked', self.get_application().on_help_prefs)
+		help_btn.set_action_name('app.help_prefs')
 		return self.row_from_widget(label_text, help_btn, True)
 
 	def row_from_widget(self, label_text, widget, wrap_and_dim):

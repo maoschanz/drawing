@@ -67,11 +67,17 @@ class ToolText(AbstractClassicTool):
 
 	def on_tool_selected(self):
 		super().on_tool_selected()
-		# Ctrl+v can't paste text in the entry otherwise
+		# Usual text entry shortcuts don't work otherwise
 		self.set_action_sensitivity('paste', False)
+		self.set_action_sensitivity('select_all', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('selection_copy', False)
 
 	def on_tool_unselected(self):
 		self.set_action_sensitivity('paste', True)
+		self.set_action_sensitivity('select_all', True)
+		self.set_action_sensitivity('selection_cut', True)
+		self.set_action_sensitivity('selection_copy', True)
 
 	def give_back_control(self, preserve_selection):
 		if self.should_cancel:
