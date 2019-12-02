@@ -3,13 +3,14 @@
 from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_get_rgb_for_xy
+from .utilities_tools import utilities_get_rgb_for_xy
 
 class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'
 
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
+		# self.use_color = False
 
 	def get_options_model(self):
 		return None
@@ -25,3 +26,6 @@ class ToolPicker(AbstractClassicTool):
 		elif event.button == 3:
 			self.window.options_manager.set_right_color(color)
 		self.window.back_to_previous()
+
+	############################################################################
+################################################################################

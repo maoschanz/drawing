@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import cairo
 
 from .abstract_select import AbstractSelectionTool
-from .utilities import utilities_show_overlay_on_context
+from .utilities_tools import utilities_show_overlay_on_context
 
 class ToolRectSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolRectSelect'

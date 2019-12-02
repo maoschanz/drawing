@@ -84,6 +84,12 @@
           <attribute name="action">win.open</attribute>
           <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
+        <item>
+          <attribute name="label" translatable="yes">Reload file</attribute>
+          <attribute name="action">win.reload_file</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
+        </item>
       </section>
       <section>
         <item>
@@ -147,6 +153,12 @@
           <attribute name="label" translatable="yes">Redo</attribute>
           <attribute name="action">win.redo</attribute>
           <attribute name="verb-icon">edit-redo-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Rebuild from history</attribute>
+          <attribute name="action">win.rebuild_from_histo</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>
       </section>
       <section>
@@ -272,12 +284,6 @@
         <item>
           <attribute name="label" translatable="yes">Refresh</attribute>
           <attribute name="action">win.restore_pixbuf</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
-          <attribute name="verb-icon">view-refresh-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Rebuild from history</attribute>
-          <attribute name="action">win.rebuild_from_histo</attribute>
           <attribute name="hidden-when">action-missing</attribute>
           <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>

@@ -4,7 +4,7 @@ import cairo
 from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_add_arrow_triangle
+from .utilities_tools import utilities_add_arrow_triangle
 
 class ToolArc(AbstractClassicTool):
 	__gtype_name__ = 'ToolArc'
@@ -42,7 +42,7 @@ class ToolArc(AbstractClassicTool):
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.set_active_shape()
 		self.set_active_operator()
-		label = self.label + ' (' + self.selected_shape_label + ') '
+		label = self.label + ' (' + self.selected_shape_label + ') ' # XXX inconsistence
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
 		elif self.use_arrow:
@@ -69,8 +69,8 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.line_to(event_x, event_y)
 		else:
 			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
-			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
-
+			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
+			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y, True)
 		self.do_tool_operation(operation)
@@ -83,7 +83,8 @@ class ToolArc(AbstractClassicTool):
 			self.restore_pixbuf()
 			cairo_context = cairo.Context(self.get_surface())
 			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
-			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], self.x_press, self.y_press, event_x, event_y)
+			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
+			                       self.x_press, self.y_press, event_x, event_y)
 			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 
 		self._path = cairo_context.copy_path()

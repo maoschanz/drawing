@@ -15,11 +15,21 @@
 
   <title>Preferences</title>
 
+  <p>The preferences dialog is splitted into 3 tabs.</p>
+
   <section>
     <title>Image</title>
 
-    <p>The preferences dialog allows you to set the size and color of the
-    default canvas displayed when creating a new file.</p>
+    <p>Here you can choose the size and color of the default canvas displayed
+    when creating a new file.</p>
+
+    <p>When a file is saved to the JPEG or the BMP file format, the transparency
+    can't be kept. The application has to replace all transparent pixels with
+    something else: it can be white, black, or a checkboard of greys.</p>
+    <p>If the replacement you want depends on the image, it's also possible to
+    open a dialog every time you save an image to one of these file formats: the
+    choices available in that dialog will also be white, black, or a checkboard
+    of greys.</p>
 
     <p>You can also set how you want to zoom on the image: it can be with
     <key>Ctrl</key> and the mouse wheel, or only with the mouse wheel.</p>
@@ -48,8 +58,11 @@
     "Compact" layout, designed for the GNOME desktop, is well tested. Other
     options include the "elementary OS" layout, designed for the elementary OS
     desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
+    <p>"Symbolic icons" means that the icons are monochrome (black if you use a
+    light theme, or white if you use a dark theme.</p>
 
-    <p>You can also set the size of the thumbnail preview.</p>
+    <p>You can also set the size of the thumbnail preview, but using a bigger
+    preview is not recommended for technical reasons.</p>
   </section>
 
 </page>

@@ -17,7 +17,6 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
-from .utilities import utilities_save_pixbuf_at
 from .selection_manager import DrawingSelectionManager
 
 class DrawingMotionBehavior():
@@ -123,7 +122,7 @@ class DrawingImage(Gtk.Box):
 
 	def try_load_pixbuf(self, pixbuf):
 		if not pixbuf.get_has_alpha():
-			pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
+			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
@@ -172,19 +171,15 @@ class DrawingImage(Gtk.Box):
 		"""Build the GTK widget displayed as the tab title."""
 		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
 		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
-		return self.build_title_widget_common(self.tab_label)
-
-	def build_title_widget_common(self, self_label):
-		# "common" because it could be nice to have a epiphany-like menu
 		tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
 		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
 		btn.set_relief(Gtk.ReliefStyle.NONE)
 		btn.connect('clicked', self.try_close_tab)
 		if self.window.decorations == 'csd-eos':
 			tab_title.pack_start(btn, expand=False, fill=False, padding=0)
-			tab_title.pack_end(self_label, expand=True, fill=True, padding=0)
+			tab_title.pack_end(self.tab_label, expand=True, fill=True, padding=0)
 		else:
-			tab_title.pack_start(self_label, expand=True, fill=True, padding=0)
+			tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
 			tab_title.pack_end(btn, expand=False, fill=False, padding=0)
 		tab_title.show_all()
 		return tab_title
@@ -311,6 +306,11 @@ class DrawingImage(Gtk.Box):
 
 	def active_tool(self):
 		return self.window.active_tool()
+
+	def should_replace(self):
+		if len(self.undo_history) > 0:
+			return False
+		return self.initial_operation['pixbuf'] is None
 
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################

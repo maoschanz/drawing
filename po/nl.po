@@ -8,7 +8,6 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-26 20:58+0100\n"
-"PO-Revision-Date: 2019-12-02 19:57+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <kde-i18n-doc@kde.org>\n"
 "Language: nl_NL\n"
@@ -184,8 +183,9 @@ msgid "Open an image"
 msgstr "Afbeelding openen"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:145
+
 msgid "Reload file"
-msgstr "Bestand herladen"
+msgstr "Bestand openen"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:122 src/properties.py:26
@@ -721,13 +721,11 @@ msgid "Images saving"
 msgstr "Afbeeldingen opslaan"
 
 #: src/preferences.py:79
-msgid ""
-"JPEG and BMP images can't handle transparency. If you save your images in "
-"these formats, what do want to use to replace transparent pixels?"
-msgstr ""
-"JPEG- en BMP-afbeeldingen kunnen niet omgaan met doorzichtigheid. Als je "
-"afbeeldingen opslaan in deze formaten, wat wil je dan gebruiken om "
-"doorzichtige pixels te vervangen?"
+msgid "JPEG and BMP images can't handle transparency. If you save your images in 
+these formats, what do want to use to replace transparent pixels?"
+msgstr "JPEG- en BMP-afbeeldingen kunnen niet omgaan met doorzichtigheid. Als je 
+afbeeldingen opslaan in deze formaten, wat wil je dan gebruiken om "
+doorzichtige pixels te vervangen?"
 
 #: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
@@ -738,12 +736,16 @@ msgid "Black"
 msgstr "Zwart"
 
 #: src/preferences.py:84 src/utilities.py:138
+
 msgid "Checkboard"
 msgstr "Schaakbord"
 
 #: src/preferences.py:84
 msgid "Ask before saving"
 msgstr "Vragen alvorens op te slaan"
+
+msgid "Checkboard"
+msgstr "Toetsenbord"
 
 #: src/preferences.py:93
 msgid "Ctrl + Scroll"
@@ -774,12 +776,10 @@ msgid "Additional tools"
 msgstr "Extra gereedschappen"
 
 #: src/preferences.py:119
-msgid ""
-"These tools are not as reliable and useful as they should be, so they are "
-"not all enabled by default."
-msgstr ""
-"Deze gereedschappen zijn niet zo handig en betrouwbaar als zou moeten, dus "
-"zijn ze niet allemaal ingeschakeld."
+msgid "These tools are not as reliable and useful as they should be, so they are 
+not all enabled by default."
+msgstr "Deze gereedschappen zijn niet zo handig en betrouwbaar als zou moeten, dus 
+zijn ze niet allemaal ingeschakeld."
 
 #: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -926,6 +926,22 @@ msgstr "JPEG-afbeeldingen"
 msgid "BMP images"
 msgstr "BMP-afbeeldingen"
 
+#: src/utilities.py:155
+msgid "All pictures"
+msgstr "Alle afbeeldingen"
+
+#: src/utilities.py:161
+msgid "PNG images"
+msgstr "PNG-afbeeldingen"
+
+#: src/utilities.py:165
+msgid "JPEG images"
+msgstr "JPEG-afbeeldingen"
+
+#: src/utilities.py:169
+msgid "BMP images"
+msgstr "BMP-afbeeldingen"
+
 #: src/utilities.py:184
 msgid "percents"
 msgstr "procent"
@@ -982,7 +998,6 @@ msgid "What do you want to do with %s?"
 msgstr "Wat wil je doen met %s?"
 
 #: src/window.py:945 src/window.py:1015 src/window.py:1085
-#, python-format
 msgid "Failed to save %s"
 msgstr "Kan %s niet opslaan"
 

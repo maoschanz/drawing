@@ -4,7 +4,7 @@ import cairo
 from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities import utilities_add_arrow_triangle
+from .utilities_tools import utilities_add_arrow_triangle
 
 class ToolLine(AbstractClassicTool):
 	__gtype_name__ = 'ToolLine'
@@ -40,7 +40,7 @@ class ToolLine(AbstractClassicTool):
 
 	def get_edition_status(self): # TODO l'opérateur est important
 		self.set_options_attributes()
-		label = self.label + ' (' + self.selected_shape_label + ') '
+		label = self.label + ' (' + self.selected_shape_label + ') ' # XXX inconsistence
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
 		elif self.use_arrow:

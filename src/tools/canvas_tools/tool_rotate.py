@@ -58,6 +58,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.flip_h = False
 		self.flip_v = False
 		self.angle_btn.set_value(0.0)
+		self.build_and_do_op() # Show the temp_pixbuf before any event
 		if self.apply_to_selection:
 			self.cursor_name = 'move'
 		else:
@@ -118,7 +119,8 @@ class ToolRotate(AbstractCanvasTool):
 		return angle
 
 	def on_angle_changed(self, *args):
-		# XXX pré-traitement ici ?
+		if self.get_angle() == 360 or self.get_angle() == -360:
+			self.angle_btn.set_value(0)
 		self.build_and_do_op()
 
 	def build_operation(self):
@@ -146,60 +148,49 @@ class ToolRotate(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 
-		# print('angle0:', angle)
-		if angle % 90 == 0:
-			if angle < 0:
-				angle += 360
-			if angle == 360:
-				angle = 0
-			new_pixbuf = source_pixbuf.rotate_simple(angle)
-		else:
-			if angle < 180:
-				angle += 360
-			if angle > 180:
-				angle -= 360
-			# print('angle2:', angle)
-			source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-			p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = self.get_rotation_matrix( \
-			     angle, source_surface.get_width(), source_surface.get_height())
-			new_surface = self.get_deformed_surface(source_surface, \
-			                                 p_xx, p_yx, p_xy, p_yy, p_x0, p_y0)
+		if angle < 0:
+			angle += 360
+		gdk_rotation = int(angle / 90) * 90
+		cairo_rotation = angle % 90
+		# print('angle:', angle)
+		# print('gdk_rotation:', gdk_rotation)
+		# print('cairo_rotation:', cairo_rotation)
+
+		# Image rotation, using methods from both GdkPixbuf.Pixbuf and (if
+		# needed) cairo.Context
+		new_pixbuf = source_pixbuf.rotate_simple(gdk_rotation)
+		if cairo_rotation != 0:
+			surface0 = Gdk.cairo_surface_create_from_pixbuf(new_pixbuf, 0, None)
+			coefs = self.get_rotation_matrix(cairo_rotation, \
+			                        surface0.get_width(), surface0.get_height())
+			new_surface = self.get_deformed_surface(surface0, coefs)
 			new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 			                  new_surface.get_width(), new_surface.get_height())
 
+		# Image flipping (horizontal or vertical "mirroring")
 		if flip_h:
 			new_pixbuf = new_pixbuf.flip(True)
 		if flip_v:
 			new_pixbuf = new_pixbuf.flip(False)
+
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
 
 	def get_rotation_matrix(self, angle, width, height):
+		"""Transform an angle (in degrees) to the xx/yx/xy/yy coefs expected by
+		cairo. Due to previously performed modifications to the data, the angle
+		will be between 0 (excluded) and 90 (excluded)."""
 		rad = math.pi * angle / 180
-		# print('rad', rad)
+
 		xx = math.cos(rad)
 		xy = math.sin(rad)
 		yx = -1 * math.sin(rad)
 		yy = math.cos(rad)
 
-		if rad % (2 * math.pi) == 0:
-			x0 = 0
-			y0 = 0
-		elif rad > math.pi/-2 and rad < math.pi/2:
-			x0 = height * yx
-			y0 = width * xy
-		# elif rad > math.pi/2 and rad < math.pi:
-		# 	x0 = height * yx
-		# 	y0 = width * xy
-		else:
-			self.window.prompt_message(True, 'bruh moment: angle bad')
-			x0 = height * yx # XXX
-			y0 = width * xy # XXX
+		x0 = max(0, height * yx)
+		y0 = max(0, width * xy)
 
-		x0 = max(0, x0)
-		y0 = max(0, y0)
-
-		return xx, yx, xy, yy, x0, y0
+		return [xx, yx, xy, yy, x0, y0]
 
 	############################################################################
 ################################################################################

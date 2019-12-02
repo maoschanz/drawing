@@ -46,13 +46,13 @@ class DrawingPrefsWindow(Gtk.Window):
 			self.content_area.remove(self.stack_switcher)
 			header_bar.set_custom_title(self.stack_switcher)
 		else:
-			self.stack_switcher.set_margin_top(12)
+			self.stack_switcher.set_margin_top(10)
 
 		########################################################################
 		# Build the "images" page ##############################################
 		pass
 
-		w = self.row_from_label(_("New images"), False)
+		w = self.new_section_title(_("New images"), False)
 		self.page_images.add(w)
 
 		w = self.row_from_adj(_("Default width"), 'default-width', self.adj_width)
@@ -61,19 +61,32 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_adj(_("Default height"), 'default-height', self.adj_height)
 		self.page_images.add(w)
 
-		background_color_btn = Gtk.ColorButton(use_alpha=True)
+		bg_color_btn = Gtk.ColorButton(use_alpha=True)
 		background_rgba = self._settings.get_strv('background-rgba')
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
 		a = float(background_rgba[3])
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		background_color_btn.set_rgba(color)
-		background_color_btn.connect('color-set', self.on_background_changed)
-		w = self.row_from_widget(_("Default background"), background_color_btn)
+		bg_color_btn.set_rgba(color)
+		bg_color_btn.connect('color-set', self.on_background_changed)
+		w = self.row_from_widget(_("Default background"), bg_color_btn, False)
 		self.page_images.add(w)
 
-		w = self.row_from_label(_("Zoom"), True)
+		w = self.new_section_title(_("Images saving"), True)
+		self.page_images.add(w)
+
+		w = self.row_for_help_label(_("JPEG and BMP images can't handle " + \
+		     "transparency. If you save your images in these formats, what " + \
+		                       "do want to use to replace transparent pixels?"))
+		self.page_images.add(w)
+
+		labels = [_("White"), _("Black"), _("Checkboard"), _("Ask before saving")]
+		ids = ['white', 'black', 'checkboard', 'ask']
+		w = self.new_radio_flowbox('replace-alpha', labels, ids)
+		self.page_images.add(w)
+
+		w = self.new_section_title(_("Zoom"), True)
 		self.page_images.add(w)
 
 		scroll_combobox = Gtk.ComboBoxText()
@@ -81,7 +94,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		scroll_combobox.append('scroll', _("Scroll"))
 		scroll_combobox.set_active_id(self._settings.get_string('zoom-behavior'))
 		scroll_combobox.connect('changed', self.on_combo_changed, 'zoom-behavior')
-		w = self.row_from_widget(_("Action to zoom"), scroll_combobox)
+		w = self.row_from_widget(_("Action to zoom"), scroll_combobox, False)
 		self.page_images.add(w)
 
 		w = self.row_from_bool(_("Automatic zoom level"), 'auto-zoom')
@@ -91,7 +104,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		# Build the "tools" page ###############################################
 		pass
 
-		w = self.row_from_label(_("Appearance"), False)
+		w = self.new_section_title(_("Appearance"), False)
 		self.page_tools.add(w)
 
 		w = self.row_from_bool(_("Show tools names"), 'show-labels')
@@ -100,12 +113,15 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_from_bool(_("Use big icons"), 'big-icons')
 		self.page_tools.add(w)
 
-		w = self.row_from_label(_("Additional tools"), True)
+		w = self.new_section_title(_("Additional tools"), True)
+		self.page_tools.add(w)
+
+		w = self.row_for_help_label(_("These tools are not as reliable and " + \
+		   "useful as they should be, so they are not all enabled by default."))
 		self.page_tools.add(w)
 
 		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
 		self.page_tools.add(flowbox)
-
 		w = self.build_check_btn(_("Free selection"), 'free_select', 'disabled-tools')
 		flowbox.add(w)
 		w = self.build_check_btn(_("Color selection"), 'color_select', 'disabled-tools')
@@ -119,7 +135,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		# Build the "advanced" page ############################################
 		pass
 
-		w = self.row_from_label(_("Advanced options"), False)
+		w = self.new_section_title(_("Advanced options"), False)
 		self.page_advanced.add(w)
 
 		w = self.row_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
@@ -132,41 +148,24 @@ class DrawingPrefsWindow(Gtk.Window):
 		if not is_beta:
 			w.set_visible(False)
 
-		w = self.row_from_label(_("Layout"), True)
+		w = self.new_section_title(_("Layout"), True)
 		self.page_advanced.add(w)
 
-		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
-		self.page_advanced.add(flowbox)
+		w = self.row_for_help_label(_("The recommended value is \"Automatic\"."))
+		self.page_advanced.add(w)
 
-		self._radio_are_active = False
-		w0 = self.build_radio_btn(_("Automatic"), 'auto', 'decorations', None)
-		flowbox.add(w0)
-		w = self.build_radio_btn(_("Compact"), 'csd', 'decorations', w0)
-		flowbox.add(w)
-		w = self.build_radio_btn("elementary OS", 'csd-eos', 'decorations', w0)
-		flowbox.add(w)
-		# "Legacy" is about the window layout, it means menubar+toolbar, you can
-		# translate it like if it was "Traditional"
-		w = self.build_radio_btn(_("Legacy"), 'ssd', 'decorations', w0)
-		flowbox.add(w)
-		# "Legacy" is about the window layout, it means menubar+toolbar, you can
-		# translate it like if it was "Traditional"
-		w = self.build_radio_btn(_("Legacy (symbolic icons)"), 'ssd-symbolic', \
-		                                                      'decorations', w0)
-		flowbox.add(w)
-		w = self.build_radio_btn(_("Menubar only"), 'ssd-menubar', 'decorations', w0)
-		flowbox.add(w)
-		w = self.build_radio_btn(_("Toolbar only"), 'ssd-toolbar', 'decorations', w0)
-		flowbox.add(w)
-		w = self.build_radio_btn(_("Toolbar only (symbolic icons)"), \
-		                              'ssd-toolbar-symbolic', 'decorations', w0)
-		flowbox.add(w)
-		self._radio_are_active = True
+		labels = [_("Automatic"), _("Compact"), "elementary OS", \
+		         _("Legacy"), _("Legacy (symbolic icons)"), _("Menubar only"), \
+		                  _("Toolbar only"), _("Toolbar only (symbolic icons)")]
+		ids = ['auto', 'csd', 'csd-eos', 'ssd', 'ssd-symbolic', 'ssd-menubar', \
+		                                  'ssd-toolbar', 'ssd-toolbar-symbolic']
+		w = self.new_radio_flowbox('decorations', labels, ids)
+		self.page_advanced.add(w)
 
 	############################################################################
 	# Widgets building methods #################################################
 
-	def row_from_label(self, label_text, with_margin):
+	def new_section_title(self, label_text, with_margin):
 		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \
 		                                    label=('<b>' + label_text + '</b>'))
 		if with_margin:
@@ -174,11 +173,33 @@ class DrawingPrefsWindow(Gtk.Window):
 		label.set_visible(True)
 		return label
 
-	def row_from_widget(self, label_text, widget):
+	def new_radio_flowbox(self, setting_key, labels, ids):
+		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
+		self._radio_are_active = False
+		w0 = None
+		for i in range(len(labels)):
+			w0 = self.build_radio_btn(labels[i], ids[i], setting_key, w0)
+			flowbox.add(w0)
+		self._radio_are_active = True
+		return flowbox
+
+	def row_for_help_label(self, label_text):
+		help_btn = Gtk.Button.new_from_icon_name('help-faq-symbolic', \
+		                                                    Gtk.IconSize.BUTTON)
+		help_btn.set_valign(Gtk.Align.CENTER)
+		help_btn.set_relief(Gtk.ReliefStyle.NONE)
+		help_btn.connect('clicked', self.get_application().on_help_prefs)
+		return self.row_from_widget(label_text, help_btn, True)
+
+	def row_from_widget(self, label_text, widget, wrap_and_dim):
 		label = Gtk.Label(label=label_text)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 		box.pack_start(label, expand=False, fill=False, padding=0)
-		box.pack_end(widget, expand=False, fill=False, padding=0)
+		if widget is not None:
+			box.pack_end(widget, expand=False, fill=False, padding=0)
+		if wrap_and_dim:
+			label.set_line_wrap(True)
+			label.get_style_context().add_class('dim-label')
 		box.show_all()
 		return box
 
@@ -186,14 +207,14 @@ class DrawingPrefsWindow(Gtk.Window):
 		switch = Gtk.Switch()
 		switch.set_active(self._settings.get_boolean(key))
 		switch.connect('notify::active', self.on_bool_changed, key)
-		return self.row_from_widget(label_text, switch)
+		return self.row_from_widget(label_text, switch, False)
 
 	def row_from_adj(self, label_text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
 		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
-		return self.row_from_widget(label_text, spinbtn)
+		return self.row_from_widget(label_text, spinbtn, False)
 
 	def build_radio_btn(self, label, btn_id, key, group):
 		btn = Gtk.RadioButton(label=label, visible=True, group=group)

@@ -3,20 +3,20 @@
 import cairo
 from gi.repository import Gtk
 
-from .abstract_tool import ToolTemplate
+from .abstract_tool import AbstractAbstractTool
 from .bottombar import DrawingAdaptativeBottomBar
 from .color_popover import DrawingColorPopover
 
 from .utilities import utilities_add_unit_to_spinbtn
-from .utilities import utilities_fast_blur
+from .utilities_tools import utilities_fast_blur
 
-class AbstractClassicTool(ToolTemplate):
+class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
 		self.menu_id = 0
-		self.use_color = True # TODO inutile maintenant ?
+		self.use_color = True
 		self.accept_selection = False
 		self.tool_width = 1
 		self.main_color = None
@@ -86,7 +86,8 @@ class AbstractClassicTool(ToolTemplate):
 			cairo_context.stroke()
 			radius = int(line_width/2)
 			# TODO only give the adequate rectangle, not the whole image, it's too slow!
-			b_surface = utilities_fast_blur(self.get_surface(), radius, 1, 0)
+			b_surface = utilities_fast_blur(self.get_surface(), radius, 0)
+			# where 0 == BlurType.AUTO
 			self.restore_pixbuf()
 			cairo_context = cairo.Context(self.get_surface())
 			cairo_context.set_operator(cairo.Operator.OVER)

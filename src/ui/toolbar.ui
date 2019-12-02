@@ -6,6 +6,7 @@
       <object class="GtkToolbar">
         <property name="show-arrow">True</property>
         <property name="icon-size">large-toolbar</property>
+        <style><class name="primary-toolbar"/></style>
         <child>
           <object class="GtkMenuToolButton" id="new_menu_btn">
             <property name="action-name">win.new_tab</property>

@@ -1,14 +1,17 @@
 #!/bin/bash
 
-DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ? elementary ?)
-PACKAGE_NAME="drawing" # TODO et pour elementary ?
+DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ?
+# elementary ? mint ?) il est probable qu'on s'en tape, car si ce script est
+# fait pour un usage local, les vraies distros changent ça comme des grandes.
+PACKAGE_NAME="drawing" # TODO et pour elementary ? osef je pense, flemme.
 VERSION="0.5"
 
 echo "targeted distribution: $DISTRO"
 echo "package name: $PACKAGE_NAME"
 echo "package version: $VERSION"
 echo ""
-echo "Is it correct? [Return/^C]" # XXX ptêt écrasé dans la suite des opérations ?
+echo "Is it correct? [Return/^C]" # XXX de toutes manières, les valeurs sont
+# ptêt écrasées dans la suite des opérations ?
 read confirmation
 
 # se souvenir du dossier courant (qui est la racine du projet) pour y amener le paquet à la fin

@@ -15,23 +15,9 @@ be compatible with [Purism's Librem 5 phone](./docs/screenshots/librem_options.p
 
 ### Default user interface (for GNOME/Budgie)
 
-![GNOME/Budgie UI, here with the main menu opened](./docs/screenshots/gnome_menu.png)
+![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/gnome_menu.png)
 
-More screenshots (version 0.4.x):
-
-- [Color chooser](./docs/screenshots/gnome_colors.png)
-- [Open/Import menu](./docs/screenshots/gnome_new.png), with several tabs opened
-- [The selection tool and its menu](./docs/screenshots/gnome_selection.png)
-- [Drawing things a blank picture with tools](./docs/screenshots/gnome_tools_preview.png), with the preview opened
-- [Inserting text](./docs/screenshots/gnome_text.png)
-- [Adjusting the saturation](./docs/screenshots/gnome_menu_saturation.png), with the main menu opened
-
-### Alternative user interfaces
-
-- [elementaryOS UI](./docs/screenshots/elementary.png)
-- [Cinnamon UI](./docs/screenshots/cinnamon.png)
-- [MATE UI](./docs/screenshots/mate_scale.png)
-- The default "GNOME" UI can be resized to be compatible with the Purism Librem 5 phone. [Screenshot](./docs/screenshots/librem_options.png) and [screencast on Youtube](https://www.youtube.com/watch?v=xwfDnPd5NDU) (version 0.2, which is old).
+[More screenshots](https://maoschanz.github.io/drawing/gallery.html)
 
 ----
 
@@ -48,7 +34,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
 - Ubuntu 18.04, 19.04 and 19.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
-- ["Snap" package](https://snapcraft.io/drawing)
+<!-- - ["Snap" package](https://snapcraft.io/drawing) -->
 
 ### Unstable/nightly version
 

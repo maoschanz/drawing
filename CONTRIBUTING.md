@@ -33,13 +33,17 @@
 - Good comments explain *why* the code does it, if a comment needs to explain *what* it does, the code is probably bad.
 - I like `GAction`s and i've added wrapper methods for using them, try to use that instead of directly connecting buttons/menu-items to a method.
 
-Concerning design, try to respect GNOME Human Interface Guidelines as much as possible, while making your feature available from the (hidden by default) menubar.
+Concerning design, try to respect GNOME Human Interface Guidelines as much as
+possible, while making your feature available from the (hidden by default) menubar.
 
 ### Explanation of the code
 
-The `data` directory contains data useless to the execution (app icons, desktop launcher, settings schemas, appdata, …).
-I know, it should contains the resources according to some people, but i don't care:
-resources used by the app (`.ui` files, in-app icons, …) are in `src`, along with the python code.
+The `data` directory contains data useless to the execution (app icons, desktop
+launcher, settings schemas, appdata, …).
+
+I know, it should contains the resources according to some people, but i don't
+care: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
+along with the python code.
 
 - `main.py` defines the application, which has:
     - a preferences window (`preferences.py`)
