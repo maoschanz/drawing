@@ -388,6 +388,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('show_labels', self._settings.get_boolean( \
 		                     'show-labels'), self.on_show_labels_action_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
+		# self.add_action_boolean('antialiasing', self._settings.get_boolean( \
+		#                    'antialiasing'), self.on_antialiasing_action_changed)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -825,6 +827,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_color2(self, *args):
 		if self.active_tool().use_color:
 			self.options_manager.right_color_btn().btn.activate()
+
+	def on_antialiasing_action_changed(self, *args):
+		pass # TODO
 
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################

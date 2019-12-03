@@ -578,7 +578,8 @@ class DrawingImage(Gtk.Box):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
 
 	def set_zoom_level(self, level):
-		self.zoom_level = (int(level)/100)
+		normalized_zoom_level = max(min(level, 400), 20)
+		self.zoom_level = (int(normalized_zoom_level)/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
 		self.fake_scrollbar_update()
 		self.update()

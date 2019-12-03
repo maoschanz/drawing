@@ -131,6 +131,12 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.build_check_btn(_("Paint"), 'paint', 'disabled-tools')
 		flowbox.add(w)
 
+		# w = self.new_section_title(_("Behavior"), True)
+		# self.page_tools.add(w)
+
+		# w = self.row_from_bool(_("Use antialiasing"), 'antialiasing')
+		# self.page_tools.add(w)
+
 		########################################################################
 		# Build the "advanced" page ############################################
 		pass
