@@ -1001,8 +1001,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
-		utilities_add_filechooser_filters(file_chooser)
 		# TODO use ~/Images by default if possible
+		utilities_add_filechooser_filters(file_chooser)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 		response = file_chooser.run()
