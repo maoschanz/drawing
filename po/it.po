@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-04 14:41+0100\n"
-"PO-Revision-Date: 2019-11-20 18:15+0200\n"
+"PO-Revision-Date: 2019-12-04 21:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -186,9 +186,8 @@ msgid "Open an image"
 msgstr "Apri un' immagine"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
-#, fuzzy
 msgid "Reload file"
-msgstr "Apri un file"
+msgstr "Ricarica file"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
@@ -219,9 +218,8 @@ msgid "Print"
 msgstr "Stampa"
 
 #: src/ui/app-menus.ui:127
-#, fuzzy
 msgid "Close Image"
-msgstr "Nuova immagine"
+msgstr "Chiudi immagine"
 
 #: src/ui/app-menus.ui:132
 msgid "Close Window"
@@ -297,9 +295,8 @@ msgid "Show the preview"
 msgstr "Mostra anteprima"
 
 #: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:89
-#, fuzzy
 msgid "Zoom"
-msgstr "Ingrandisci"
+msgstr "Zoom"
 
 #: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:250
 msgid "Optimal Zoom"
@@ -724,15 +721,16 @@ msgid "Default background"
 msgstr "Sfondo preimpostato"
 
 #: src/preferences.py:76
-#, fuzzy
 msgid "Images saving"
-msgstr "Immagini"
+msgstr "Salvataggio immagini"
 
 #: src/preferences.py:79
 msgid ""
 "JPEG and BMP images can't handle transparency. If you save your images in "
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
+"Le immagini JPEG e BMP non possono gestire la trasparenza. Se salvi le immagini in "
+"questi formati, che cosa vuoi utilizzare per sostituire i pixel trasparenti?
 
 #: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
@@ -749,7 +747,7 @@ msgstr "Tastiera"
 
 #: src/preferences.py:84
 msgid "Ask before saving"
-msgstr ""
+msgstr "Chiedi prima di salvare"
 
 #: src/preferences.py:93
 msgid "Ctrl + Scroll"
@@ -784,6 +782,8 @@ msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
+"Questi strumenti non sono così affidabili e utili come dovrebbero essere, quindi non sono"
+"tutti abilitati per impostazione predefinita."
 
 #: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -815,7 +815,7 @@ msgstr "Livello"
 
 #: src/preferences.py:160
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "Il valore consigliato è \"Automatico\"."
 
 #: src/preferences.py:163
 msgid "Automatic"
@@ -912,7 +912,7 @@ msgstr "Questo formato di file non supporta i colori trasparenti."
 
 #: src/utilities.py:133
 msgid "Replace transparency with:"
-msgstr ""
+msgstr "Sostituisci la trasparenza con:"
 
 #: src/utilities.py:155
 msgid "All pictures"
@@ -1379,16 +1379,14 @@ msgstr "Ridimensionamento della selezione"
 msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
 
-#, fuzzy
 #~ msgid "Transparency replacement"
-#~ msgstr "Trasparenza"
+#~ msgstr "Sostituzione della trasparenza"
 
 #~ msgid "Do you want to save anyway ?"
 #~ msgstr "Vuoi salvare comunque ?"
 
-#, fuzzy
 #~ msgid "Saved images"
-#~ msgstr "Salve come"
+#~ msgstr "Salve immagini"
 
 #~ msgid "Close"
 #~ msgstr "Chiudi"
