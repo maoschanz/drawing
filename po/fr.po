@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 14:41+0100\n"
+"POT-Creation-Date: 2019-12-07 21:20+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -139,12 +139,12 @@ msgstr "Préférences"
 msgid "Report a bug"
 msgstr "Reporter un bug"
 
-#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:52
+#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:31
 #: src/ui/win-menus.ui:102 src/ui/win-menus.ui:190 src/ui/win-menus.ui:231
 msgid "Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:59 src/ui/toolbar.ui:150
+#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:150
 #: src/ui/toolbar.ui:151 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
 msgstr "Aide"
@@ -161,7 +161,7 @@ msgstr "Quitter"
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:79 src/ui/win-menus.ui:17
+#: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
 msgid "New Blank Image"
 msgstr "Nouvelle image vierge"
 
@@ -170,12 +170,12 @@ msgid "New Image With Custom Size"
 msgstr "Nouvelle image avec taille personnalisée"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:86 src/ui/win-menus.ui:26
+#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
 msgstr "À partir de la sélection"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:93 src/ui/win-menus.ui:31
+#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
 msgstr "À partir du presse-papier"
 
@@ -195,7 +195,7 @@ msgstr "Propriétés de l'image"
 
 #: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
-#: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:114 src/ui/toolbar.ui:103
+#: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:106 src/ui/toolbar.ui:103
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:130
 #: src/window.py:983 src/window.py:1003
 msgid "Save"
@@ -224,7 +224,7 @@ msgstr "Fermer l'image"
 msgid "Close Window"
 msgstr "Fermer la fenêtre"
 
-#: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:66
+#: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:45
 msgid "Quit all windows"
 msgstr "Quitter toutes les fenêtres"
 
@@ -233,13 +233,13 @@ msgid "_Edit"
 msgstr "É_dition"
 
 #: src/ui/app-menus.ui:148 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
-#: src/ui/shortcuts.ui:134 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
+#: src/ui/shortcuts.ui:58 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
 #: src/ui/win-menus.ui:254 src/headerbar.py:102
 msgid "Undo"
 msgstr "Annuler"
 
 #: src/ui/app-menus.ui:153 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
-#: src/ui/shortcuts.ui:141 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
+#: src/ui/shortcuts.ui:65 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
 #: src/ui/win-menus.ui:259 src/headerbar.py:108
 msgid "Redo"
 msgstr "Rétablir"
@@ -250,19 +250,19 @@ msgstr "Reconstruire depuis l'historique"
 
 #: src/ui/app-menus.ui:170 src/ui/selection-menus.ui:7
 #: src/ui/selection-menus.ui:98 src/ui/selection-panel.ui:162
-#: src/ui/shortcuts.ui:182
+#: src/ui/shortcuts.ui:187
 msgid "Select all"
 msgstr "Sélectionner tout"
 
 #: src/ui/app-menus.ui:177 src/ui/selection-menus.ui:37
 #: src/ui/selection-menus.ui:117 src/ui/selection-panel.ui:82
-#: src/ui/shortcuts.ui:196
+#: src/ui/shortcuts.ui:208
 msgid "Cut"
 msgstr "Couper"
 
 #: src/ui/app-menus.ui:182 src/ui/selection-menus.ui:42
 #: src/ui/selection-menus.ui:122 src/ui/selection-panel.ui:95
-#: src/ui/shortcuts.ui:203
+#: src/ui/shortcuts.ui:215
 msgid "Copy"
 msgstr "Copier"
 
@@ -273,15 +273,15 @@ msgstr "Supprimer"
 
 #: src/ui/app-menus.ui:194 src/ui/headerbar-eos.ui:67
 #: src/ui/selection-menus.ui:22 src/ui/selection-panel.ui:28
-#: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:155 src/ui/toolbar.ui:51
+#: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:222 src/ui/toolbar.ui:51
 #: src/ui/toolbar.ui:52
 msgid "Paste"
 msgstr "Coller"
 
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
-#: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:40
-#: src/ui/toolbar.ui:41 src/window.py:908 src/window.py:1073
+#: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
+#: src/window.py:908 src/window.py:1073
 msgid "Import"
 msgstr "Importer"
 
@@ -293,25 +293,25 @@ msgstr "_Affichage"
 msgid "Show the preview"
 msgstr "Montrer l'aperçu"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:89
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:89
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:250
+#: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:242
 msgid "Optimal Zoom"
 msgstr "Zoom optimal"
 
-#: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:257
+#: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
 #: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
 msgstr "Diminuer le zoom"
 
-#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:264
+#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256
 #: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
 msgstr "Zoom original"
 
-#: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:271
+#: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
 #: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
 msgstr "Augmenter le zoom"
@@ -320,19 +320,19 @@ msgstr "Augmenter le zoom"
 msgid "Position"
 msgstr "Position"
 
-#: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:291
+#: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:303
 msgid "Go Left"
 msgstr "Aller à gauche"
 
-#: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:298
+#: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:310
 msgid "Go Up"
 msgstr "Aller vers le haut"
 
-#: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:305
+#: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:317
 msgid "Go Down"
 msgstr "Aller vers le bas"
 
-#: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:312
+#: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:324
 msgid "Go Right"
 msgstr "Aller à droite"
 
@@ -340,18 +340,18 @@ msgstr "Aller à droite"
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:128
 #: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:110
 msgid "Show tools names"
 msgstr "Afficher le nom des outils"
 
-#: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:67
+#: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:272 src/ui/win-menus.ui:67
 #: src/ui/win-menus.ui:132
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: src/ui/app-menus.ui:303 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:267
+#: src/ui/app-menus.ui:303 src/ui/win-menus.ui:267
 msgid "Exit fullscreen"
 msgstr "Quitter le plein écran"
 
@@ -369,7 +369,7 @@ msgstr "Couleur principale"
 msgid "Secondary color"
 msgstr "Couleur secondaire"
 
-#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:237
+#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
 msgid "Exchange colors"
 msgstr "Échanger les couleurs"
 
@@ -473,7 +473,7 @@ msgstr "100%"
 msgid "Images"
 msgstr "Images"
 
-#: src/ui/preferences.ui:79
+#: src/ui/preferences.ui:79 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr "Outils"
 
@@ -519,7 +519,7 @@ msgid "Close selection"
 msgstr "Fermer la sélection"
 
 #: src/ui/selection-menus.ui:31 src/ui/selection-menus.ui:102
-#: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:189
+#: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:194
 msgid "Unselect"
 msgstr "Déselectionner"
 
@@ -567,63 +567,75 @@ msgstr "Clavier"
 msgid "General"
 msgstr "Général"
 
-#: src/ui/shortcuts.ui:31
+#: src/ui/shortcuts.ui:24
 msgid "Main menu"
 msgstr "Menu principal"
 
-#: src/ui/shortcuts.ui:75
+#: src/ui/shortcuts.ui:54
+msgid "Editing"
+msgstr "Édition"
+
+#: src/ui/shortcuts.ui:74
 msgid "Image"
 msgstr "Image"
 
-#: src/ui/shortcuts.ui:100
+#: src/ui/shortcuts.ui:99
 msgid "Open a file"
 msgstr "Ouvrir un fichier"
 
-#: src/ui/shortcuts.ui:107
-msgid "Close the active image"
-msgstr "Fermer l'image active"
-
-#: src/ui/shortcuts.ui:121
+#: src/ui/shortcuts.ui:113
 msgid "Save as"
 msgstr "Enregistrer sous"
 
-#: src/ui/shortcuts.ui:130
-msgid "Edition"
-msgstr "Édition"
+#: src/ui/shortcuts.ui:120
+msgid "Close the active image"
+msgstr "Fermer l'image active"
 
-#: src/ui/shortcuts.ui:148
+#: src/ui/shortcuts.ui:140
 msgid "Options menu"
 msgstr "Menu des options"
 
-#: src/ui/shortcuts.ui:169
+#: src/ui/shortcuts.ui:147
 msgid "Back to previous tool"
 msgstr "Revenir à l'outil précédent"
 
-#: src/ui/shortcuts.ui:178
-msgid "Selection"
-msgstr "Sélection"
-
-#: src/ui/shortcuts.ui:210
-msgid "Delete the selection"
-msgstr "Effacer la sélection"
-
-#: src/ui/shortcuts.ui:219
+#: src/ui/shortcuts.ui:156
 msgid "Colors"
 msgstr "Couleurs"
 
-#: src/ui/shortcuts.ui:223
+#: src/ui/shortcuts.ui:160
 msgid "Edit the main color (left click)"
 msgstr "Modifier la couleur principale (clic gauche)"
 
-#: src/ui/shortcuts.ui:230
+#: src/ui/shortcuts.ui:167
 msgid "Edit the secondary color (right click)"
 msgstr "Modifier la couleur secondaire (clic droit)"
 
-#: src/ui/shortcuts.ui:280
+#: src/ui/shortcuts.ui:183
+msgid "Selection"
+msgstr "Sélection"
+
+#: src/ui/shortcuts.ui:201
+msgid "Delete the selection"
+msgstr "Effacer la sélection"
+
+#: src/ui/shortcuts.ui:229
+msgid "Import a file as the selection"
+msgstr "Importer un fichier en tant que sélection"
+
+#: src/ui/shortcuts.ui:276
+msgid "Enter fullscreen mode"
+msgstr "Entrer en mode plein écran"
+
+#: src/ui/shortcuts.ui:283
+msgid "Exit fullscreen mode"
+msgstr "Quitter le mode plein écran"
+
+#: src/ui/shortcuts.ui:292
 msgid "Navigation"
 msgstr "Navigation"
 
-#: src/ui/shortcuts.ui:284
+#: src/ui/shortcuts.ui:296
 msgid "Toggle the preview"
 msgstr "Afficher l'aperçu"
 
@@ -1036,10 +1048,8 @@ msgid "Use dashes"
 msgstr "Utiliser des pointillés"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:47
-#: src/tools/classic_tools/tool_arc.py:49
-#: src/tools/classic_tools/tool_line.py:45
-#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_arc.py:48
+#: src/tools/classic_tools/tool_line.py:46
 msgid "Arrow"
 msgstr "Flèche"
 
@@ -1275,12 +1285,15 @@ msgstr "Courbe"
 msgid "Curve options"
 msgstr "Options de courbe"
 
-#: src/tools/classic_tools/tool_arc.py:47
-#: src/tools/classic_tools/tool_arc.py:51
-#: src/tools/classic_tools/tool_line.py:45
-#: src/tools/classic_tools/tool_line.py:49
+#: src/tools/classic_tools/tool_arc.py:46
+#: src/tools/classic_tools/tool_line.py:44
+msgid "Dashed arrow"
+msgstr "Flèche en pointillés"
+
+#: src/tools/classic_tools/tool_arc.py:50
+#: src/tools/classic_tools/tool_line.py:48
 #: src/tools/classic_tools/tool_pencil.py:59
-msgid "With dashes"
+msgid "Dashed"
 msgstr "En pointillés"
 
 #: src/tools/classic_tools/tool_line.py:13

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 14:41+0100\n"
+"POT-Creation-Date: 2019-12-07 21:20+0100\n"
 "PO-Revision-Date: 2019-12-07 00:00+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -60,8 +60,8 @@ msgstr "Et tegneprogram til GNOME-skrivebordet"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG og "
-"BMP."
+"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG "
+"og BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
 msgid ""
@@ -71,9 +71,9 @@ msgid ""
 "rotating, ..."
 msgstr ""
 "Det giver dig mulighed for at tegne og redigere billeder med værktøjer såsom "
-"blyant, linje eller bue (med diverse valgmuligheder), markering "
-"(klip/kopiér/indsæt/træk/ …), former (rektangel, cirkel, polygon …), "
-"indsættelse af tekst, tilpasning af størrelse, beskæring, drejning ..."
+"blyant, linje eller bue (med diverse valgmuligheder), markering (klip/kopiér/"
+"indsæt/træk/ …), former (rektangel, cirkel, polygon …), indsættelse af "
+"tekst, tilpasning af størrelse, beskæring, drejning ..."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
@@ -85,11 +85,11 @@ msgid ""
 "single coherent 'shape' tool."
 msgstr ""
 "Version 0.6 er en større opdatering med diverse vigtige ændringer: "
-"rektangel- og frihåndsmarkering er nu selvstændige værktøjer, "
-"billeder kan importeres eller åbnes med træk-og-slip, værktøjet \"drej\" "
-"understøtter nu alle vinkler og håndterer vandret og lodret vending, og "
-"diverse værktøjer til at skabe former (cirkel, rektangel, polygon …) er "
-"blevet lagt sammen i værktøjet \"form\"."
+"rektangel- og frihåndsmarkering er nu selvstændige værktøjer, billeder kan "
+"importeres eller åbnes med træk-og-slip, værktøjet \"drej\" understøtter nu "
+"alle vinkler og håndterer vandret og lodret vending, og diverse værktøjer "
+"til at skabe former (cirkel, rektangel, polygon …) er blevet lagt sammen i "
+"værktøjet \"form\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
@@ -136,12 +136,12 @@ msgstr "Præferencer"
 msgid "Report a bug"
 msgstr "Rapportér en fejl"
 
-#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:52
+#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:31
 #: src/ui/win-menus.ui:102 src/ui/win-menus.ui:190 src/ui/win-menus.ui:231
 msgid "Shortcuts"
 msgstr "Genveje"
 
-#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:59 src/ui/toolbar.ui:150
+#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:150
 #: src/ui/toolbar.ui:151 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
 msgstr "Hjælp"
@@ -158,7 +158,7 @@ msgstr "Afslut"
 msgid "_File"
 msgstr "_Fil"
 
-#: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:79 src/ui/win-menus.ui:17
+#: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
 msgid "New Blank Image"
 msgstr "Nyt tomt billede"
 
@@ -167,12 +167,12 @@ msgid "New Image With Custom Size"
 msgstr "Nyt billede med tilpasset størrelse"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:86 src/ui/win-menus.ui:26
+#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
 msgstr "Nyt billede fra markering"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:93 src/ui/win-menus.ui:31
+#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
 msgstr "Nyt billede fra udklipsholder"
 
@@ -192,7 +192,7 @@ msgstr "Billedegenskaber"
 
 #: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
-#: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:114 src/ui/toolbar.ui:103
+#: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:106 src/ui/toolbar.ui:103
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:130
 #: src/window.py:983 src/window.py:1003
 msgid "Save"
@@ -221,7 +221,7 @@ msgstr "Luk billede"
 msgid "Close Window"
 msgstr "Luk vindue"
 
-#: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:66
+#: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:45
 msgid "Quit all windows"
 msgstr "Afslut alle vinduer"
 
@@ -230,13 +230,13 @@ msgid "_Edit"
 msgstr "_Rediger"
 
 #: src/ui/app-menus.ui:148 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
-#: src/ui/shortcuts.ui:134 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
+#: src/ui/shortcuts.ui:58 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
 #: src/ui/win-menus.ui:254 src/headerbar.py:102
 msgid "Undo"
 msgstr "Fortryd"
 
 #: src/ui/app-menus.ui:153 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
-#: src/ui/shortcuts.ui:141 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
+#: src/ui/shortcuts.ui:65 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
 #: src/ui/win-menus.ui:259 src/headerbar.py:108
 msgid "Redo"
 msgstr "Omgør"
@@ -247,19 +247,19 @@ msgstr "Genbyg fra historik"
 
 #: src/ui/app-menus.ui:170 src/ui/selection-menus.ui:7
 #: src/ui/selection-menus.ui:98 src/ui/selection-panel.ui:162
-#: src/ui/shortcuts.ui:182
+#: src/ui/shortcuts.ui:187
 msgid "Select all"
 msgstr "Markér alt"
 
 #: src/ui/app-menus.ui:177 src/ui/selection-menus.ui:37
 #: src/ui/selection-menus.ui:117 src/ui/selection-panel.ui:82
-#: src/ui/shortcuts.ui:196
+#: src/ui/shortcuts.ui:208
 msgid "Cut"
 msgstr "Klip"
 
 #: src/ui/app-menus.ui:182 src/ui/selection-menus.ui:42
 #: src/ui/selection-menus.ui:122 src/ui/selection-panel.ui:95
-#: src/ui/shortcuts.ui:203
+#: src/ui/shortcuts.ui:215
 msgid "Copy"
 msgstr "Kopiér"
 
@@ -270,15 +270,15 @@ msgstr "Slet"
 
 #: src/ui/app-menus.ui:194 src/ui/headerbar-eos.ui:67
 #: src/ui/selection-menus.ui:22 src/ui/selection-panel.ui:28
-#: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:155 src/ui/toolbar.ui:51
+#: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:222 src/ui/toolbar.ui:51
 #: src/ui/toolbar.ui:52
 msgid "Paste"
 msgstr "Indsæt"
 
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
-#: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:40
-#: src/ui/toolbar.ui:41 src/window.py:908 src/window.py:1073
+#: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
+#: src/window.py:908 src/window.py:1073
 msgid "Import"
 msgstr "Importér"
 
@@ -290,25 +290,25 @@ msgstr "_Vis"
 msgid "Show the preview"
 msgstr "Vis forhåndsvisningen"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:89
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:89
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:250
+#: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:242
 msgid "Optimal Zoom"
 msgstr "Optimal zoom"
 
-#: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:257
+#: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
 #: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
 msgstr "Zoom ud"
 
-#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:264
+#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256
 #: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
 msgstr "Oprindelig zoom"
 
-#: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:271
+#: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
 #: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
 msgstr "Zoom ind"
@@ -317,19 +317,19 @@ msgstr "Zoom ind"
 msgid "Position"
 msgstr "Position"
 
-#: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:291
+#: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:303
 msgid "Go Left"
 msgstr "Gå til venstre"
 
-#: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:298
+#: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:310
 msgid "Go Up"
 msgstr "Gå op"
 
-#: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:305
+#: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:317
 msgid "Go Down"
 msgstr "Gå ned"
 
-#: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:312
+#: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:324
 msgid "Go Right"
 msgstr "Gå til højre"
 
@@ -337,18 +337,18 @@ msgstr "Gå til højre"
 msgid "Refresh"
 msgstr "Opdater"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:128
 #: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:110
 msgid "Show tools names"
 msgstr "Vis værktøjernes navne"
 
-#: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:67
+#: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:272 src/ui/win-menus.ui:67
 #: src/ui/win-menus.ui:132
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: src/ui/app-menus.ui:303 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:267
+#: src/ui/app-menus.ui:303 src/ui/win-menus.ui:267
 msgid "Exit fullscreen"
 msgstr "Afslut fuldskærm"
 
@@ -366,7 +366,7 @@ msgstr "Primær farve"
 msgid "Secondary color"
 msgstr "Sekundær farve"
 
-#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:237
+#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
 msgid "Exchange colors"
 msgstr "Byt om på farverne"
 
@@ -470,7 +470,7 @@ msgstr "100 %"
 msgid "Images"
 msgstr "Billeder"
 
-#: src/ui/preferences.ui:79
+#: src/ui/preferences.ui:79 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr "Værktøjer"
 
@@ -516,7 +516,7 @@ msgid "Close selection"
 msgstr "Luk markering"
 
 #: src/ui/selection-menus.ui:31 src/ui/selection-menus.ui:102
-#: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:189
+#: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:194
 msgid "Unselect"
 msgstr "Fjern markering"
 
@@ -564,63 +564,79 @@ msgstr "Tastatur"
 msgid "General"
 msgstr "Generelt"
 
-#: src/ui/shortcuts.ui:31
+#: src/ui/shortcuts.ui:24
 msgid "Main menu"
 msgstr "Hovedmenu"
 
-#: src/ui/shortcuts.ui:75
+#: src/ui/shortcuts.ui:54
+#, fuzzy
+msgid "Editing"
+msgstr "Redigering"
+
+#: src/ui/shortcuts.ui:74
 msgid "Image"
 msgstr "Billede"
 
-#: src/ui/shortcuts.ui:100
+#: src/ui/shortcuts.ui:99
 msgid "Open a file"
 msgstr "Åbn en fil"
 
-#: src/ui/shortcuts.ui:107
-msgid "Close the active image"
-msgstr "Luk det aktive billede"
-
-#: src/ui/shortcuts.ui:121
+#: src/ui/shortcuts.ui:113
 msgid "Save as"
 msgstr "Gem som"
 
-#: src/ui/shortcuts.ui:130
-msgid "Edition"
-msgstr "Redigering"
+#: src/ui/shortcuts.ui:120
+msgid "Close the active image"
+msgstr "Luk det aktive billede"
 
-#: src/ui/shortcuts.ui:148
+#: src/ui/shortcuts.ui:140
 msgid "Options menu"
 msgstr "Valgmulighedsmenu"
 
-#: src/ui/shortcuts.ui:169
+#: src/ui/shortcuts.ui:147
 msgid "Back to previous tool"
 msgstr "Tilbage til forrige værktøj"
 
-#: src/ui/shortcuts.ui:178
-msgid "Selection"
-msgstr "Markering"
-
-#: src/ui/shortcuts.ui:210
-msgid "Delete the selection"
-msgstr "Slet markeringen"
-
-#: src/ui/shortcuts.ui:219
+#: src/ui/shortcuts.ui:156
 msgid "Colors"
 msgstr "Farver"
 
-#: src/ui/shortcuts.ui:223
+#: src/ui/shortcuts.ui:160
 msgid "Edit the main color (left click)"
 msgstr "Rediger den primære farve (venstreklik)"
 
-#: src/ui/shortcuts.ui:230
+#: src/ui/shortcuts.ui:167
 msgid "Edit the secondary color (right click)"
 msgstr "Rediger den sekundære farve (højreklik)"
 
-#: src/ui/shortcuts.ui:280
+#: src/ui/shortcuts.ui:183
+msgid "Selection"
+msgstr "Markering"
+
+#: src/ui/shortcuts.ui:201
+msgid "Delete the selection"
+msgstr "Slet markeringen"
+
+#: src/ui/shortcuts.ui:229
+#, fuzzy
+msgid "Import a file as the selection"
+msgstr "Drejer markeringen"
+
+#: src/ui/shortcuts.ui:276
+#, fuzzy
+msgid "Enter fullscreen mode"
+msgstr "Afslut fuldskærm"
+
+#: src/ui/shortcuts.ui:283
+#, fuzzy
+msgid "Exit fullscreen mode"
+msgstr "Afslut fuldskærm"
+
+#: src/ui/shortcuts.ui:292
 msgid "Navigation"
 msgstr "Navigation"
 
-#: src/ui/shortcuts.ui:284
+#: src/ui/shortcuts.ui:296
 msgid "Toggle the preview"
 msgstr "Forhåndsvisning til/fra"
 
@@ -1032,10 +1048,8 @@ msgid "Use dashes"
 msgstr "Stiplet"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:47
-#: src/tools/classic_tools/tool_arc.py:49
-#: src/tools/classic_tools/tool_line.py:45
-#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_arc.py:48
+#: src/tools/classic_tools/tool_line.py:46
 msgid "Arrow"
 msgstr "Pil"
 
@@ -1270,13 +1284,16 @@ msgstr "Kurve"
 msgid "Curve options"
 msgstr "Valgmuligheder for kurve"
 
-#: src/tools/classic_tools/tool_arc.py:47
-#: src/tools/classic_tools/tool_arc.py:51
-#: src/tools/classic_tools/tool_line.py:45
-#: src/tools/classic_tools/tool_line.py:49
+#: src/tools/classic_tools/tool_arc.py:46
+#: src/tools/classic_tools/tool_line.py:44
+msgid "Dashed arrow"
+msgstr ""
+
+#: src/tools/classic_tools/tool_arc.py:50
+#: src/tools/classic_tools/tool_line.py:48
 #: src/tools/classic_tools/tool_pencil.py:59
-msgid "With dashes"
-msgstr "Stiplet"
+msgid "Dashed"
+msgstr ""
 
 #: src/tools/classic_tools/tool_line.py:13
 msgid "Line"
@@ -1369,3 +1386,6 @@ msgstr "Skalerer markeringen"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Skalerer lærredet"
+
+#~ msgid "With dashes"
+#~ msgstr "Stiplet"
