@@ -1,21 +1,19 @@
-# SOME DESCRIPTIVE TITLE.
+# Danish translation for Drawing
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# scootergrisen, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-04 14:41+0100\n"
-"PO-Revision-Date: 2019-12-04 21:15+0200\n"
-"Last-Translator: Albano Battistella\n"
-"Language-Team: Italian\n"
-"Language: it\n"
+"PO-Revision-Date: 2019-12-07 00:00+0200\n"
+"Last-Translator: scootergrisen\n"
+"Language-Team: Danish\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -26,7 +24,7 @@ msgstr "Drawing"
 
 #: data/com.github.maoschanz.drawing.desktop.in:4
 msgid "Simple drawing utility"
-msgstr "Semplice applicazione per il disegno"
+msgstr "Simpelt tegneredskab"
 
 #. Icon name, do not translate
 #: data/com.github.maoschanz.drawing.desktop.in:7
@@ -36,34 +34,34 @@ msgstr "com.github.maoschanz.drawing"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in:12
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Colore;Bozze;Matita;"
+msgstr "Paint;Tegn;Blyant;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
 #: src/window.py:871
 msgid "New Window"
-msgstr "Nuova finestra"
+msgstr "Nyt vindue"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:50
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
 #: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:273
 msgid "New Image"
-msgstr "Nuova Immagine"
+msgstr "Nyt billede"
 
 #: data/com.github.maoschanz.drawing.desktop.in:26
 msgid "Edit Image in Clipboard"
-msgstr "Modifica l'Immagine negli Appunti"
+msgstr "Rediger billede i udklipsholder"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:15
 msgid "A drawing application for the GNOME desktop"
-msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
+msgstr "Et tegneprogram til GNOME-skrivebordet"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:17
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Drawing\" è un editor di immagini di base, che supporta i tipi di file "
-"PNG, JPEG e BMP."
+"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG og "
+"BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
 msgid ""
@@ -72,9 +70,10 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, ..."
 msgstr ""
-"Ti permette di disegnare o modificare immagini con strumenti come matita, "
-"linea oarco (con varie opzioni), selezione (taglia/copia/incolla/trascina/"
-"…), forme,rotazione, ..."
+"Det giver dig mulighed for at tegne og redigere billeder med værktøjer såsom "
+"blyant, linje eller bue (med diverse valgmuligheder), markering "
+"(klip/kopiér/indsæt/træk/ …), former (rektangel, cirkel, polygon …), "
+"indsættelse af tekst, tilpasning af størrelse, beskæring, drejning ..."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
@@ -85,13 +84,12 @@ msgid ""
 "producing shapes (circle, rectangle, polygon, …) have been merged into a "
 "single coherent 'shape' tool."
 msgstr ""
-"La versione 0.6 è un aggiornamento importante, con varie importanti "
-"modifiche: rettangolo la selezione e la selezione a mano libera sono ora "
-"strumenti distinti, le immagini possono essere importate o aperte usando il "
-"trascinamento della selezione, lo strumento 'ruota' ora supporta qualsiasi "
-"inclinazione e impugnatura di lanci orizzontali o verticali e vari strumenti "
-"la produzione di forme (cerchio, rettangolo, poligono, …) è stata fusa in un "
-"strumento unico 'forma' coerente."
+"Version 0.6 er en større opdatering med diverse vigtige ændringer: "
+"rektangel- og frihåndsmarkering er nu selvstændige værktøjer, "
+"billeder kan importeres eller åbnes med træk-og-slip, værktøjet \"drej\" "
+"understøtter nu alle vinkler og håndterer vandret og lodret vending, og "
+"diverse værktøjer til at skabe former (cirkel, rektangel, polygon …) er "
+"blevet lagt sammen i værktøjet \"form\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
@@ -99,29 +97,28 @@ msgid ""
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
-"Lo strumento 'saturare' è stato sostituito da 'filtri', uno strumento più "
-"potente con diversi tipi di sfocatura, inversione del colore, "
-"pixelizzazione, saturazione e trasparenza."
+"Værktøjet \"Saturate\" er blevet erstattet af \"filtre\", som er et mere "
+"kraftfuldt værktøj med adskillige typer sløring, farveinvertering, "
+"pixelering, farvemætning og gennemsigtighed."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
-msgstr "È ora disponibile una modalità a schermo intero."
+msgstr "Fuldskærmstilstand er nu tilgængelig."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
-"La nuova caratteristica più importante è la possibilità di ingrandire (o "
-"ridurre) l'immagine, usando la minimappa, il touchpad o la rotellina del "
-"mouse."
+"Den mest fremtrædende nye funktionalitet er muligheden for at zoome ind "
+"(eller ud) på billedet, med minikortet, touchpaden eller musehjulet."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
 "Version 0.4.8 features several minor bug fixes, and various new translations."
 msgstr ""
-"La versione 0.4.8 presenta diverse correzioni di bug minori e varie nuove "
-"traduzioni. "
+"Version 0.4.8 har adskillige mindre fejlrettelser og diverse nye "
+"oversættelser."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:60
@@ -132,67 +129,66 @@ msgstr "Romain F. T."
 #: src/ui/toolbar.ui:139 src/ui/toolbar.ui:140 src/ui/win-menus.ui:91
 #: src/ui/win-menus.ui:179 src/preferences.py:43
 msgid "Preferences"
-msgstr "Preferenze"
+msgstr "Præferencer"
 
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:376 src/ui/win-menus.ui:97
 #: src/ui/win-menus.ui:185 src/ui/win-menus.ui:238
 msgid "Report a bug"
-msgstr "Invia una bug"
+msgstr "Rapportér en fejl"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:52
 #: src/ui/win-menus.ui:102 src/ui/win-menus.ui:190 src/ui/win-menus.ui:231
 msgid "Shortcuts"
-msgstr "Scorciatoie"
+msgstr "Genveje"
 
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:59 src/ui/toolbar.ui:150
 #: src/ui/toolbar.ui:151 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
-msgstr "Aiuto"
+msgstr "Hjælp"
 
 #: src/ui/app-menus.ui:34
 msgid "About"
-msgstr "Informazioni"
+msgstr "Om"
 
 #: src/ui/app-menus.ui:40
 msgid "Quit"
-msgstr "Esci"
+msgstr "Afslut"
 
 #: src/ui/app-menus.ui:48
 msgid "_File"
-msgstr "_File"
+msgstr "_Fil"
 
 #: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:79 src/ui/win-menus.ui:17
 msgid "New Blank Image"
-msgstr "Nuova Immagine Vuota"
+msgstr "Nyt tomt billede"
 
 #: src/ui/app-menus.ui:58 src/ui/win-menus.ui:21 src/custom_image.py:27
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "Nuova Immagine dalla Selezione"
+msgstr "Nyt billede med tilpasset størrelse"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:86 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
-msgstr "Nuova Immagine dalla Selezione"
+msgstr "Nyt billede fra markering"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:93 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
-msgstr "Nuova Immagine dagli Appunti"
+msgstr "Nyt billede fra udklipsholder"
 
 #: src/ui/app-menus.ui:83 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:278
 msgid "Open an image"
-msgstr "Apri un' immagine"
+msgstr "Åbn et billede"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
 msgid "Reload file"
-msgstr "Ricarica file"
+msgstr "Genindlæs fil"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
 msgid "Image properties"
-msgstr "Proprietà immagine"
+msgstr "Billedegenskaber"
 
 #: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
@@ -200,99 +196,99 @@ msgstr "Proprietà immagine"
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:130
 #: src/window.py:983 src/window.py:1003
 msgid "Save"
-msgstr "Salva"
+msgstr "Gem"
 
 #: src/ui/app-menus.ui:108 src/ui/win-menus.ui:74 src/ui/win-menus.ui:139
 msgid "Save as…"
-msgstr "Salva come…"
+msgstr "Gem som …"
 
 #: src/ui/app-menus.ui:113 src/ui/selection-menus.ui:86
 #: src/ui/selection-menus.ui:169 src/ui/selection-panel.ui:180
 #: src/ui/win-menus.ui:77 src/ui/win-menus.ui:142
 msgid "Export as…"
-msgstr "Esporta come…"
+msgstr "Eksportér som …"
 
 #: src/ui/app-menus.ui:120 src/ui/toolbar.ui:114 src/ui/toolbar.ui:115
 #: src/ui/win-menus.ui:56 src/ui/win-menus.ui:121
 msgid "Print"
-msgstr "Stampa"
+msgstr "Udskriv"
 
 #: src/ui/app-menus.ui:127
 msgid "Close Image"
-msgstr "Chiudi immagine"
+msgstr "Luk billede"
 
 #: src/ui/app-menus.ui:132
 msgid "Close Window"
-msgstr "Chiudi finestra"
+msgstr "Luk vindue"
 
 #: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:66
 msgid "Quit all windows"
-msgstr "Chiudi tutte le finestre"
+msgstr "Afslut alle vinduer"
 
 #: src/ui/app-menus.ui:145
 msgid "_Edit"
-msgstr "_Modifica"
+msgstr "_Rediger"
 
 #: src/ui/app-menus.ui:148 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
 #: src/ui/shortcuts.ui:134 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
 #: src/ui/win-menus.ui:254 src/headerbar.py:102
 msgid "Undo"
-msgstr "Annulla"
+msgstr "Fortryd"
 
 #: src/ui/app-menus.ui:153 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
 #: src/ui/shortcuts.ui:141 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
 #: src/ui/win-menus.ui:259 src/headerbar.py:108
 msgid "Redo"
-msgstr "Ripeti"
+msgstr "Omgør"
 
 #: src/ui/app-menus.ui:158 src/ui/win-menus.ui:159
 msgid "Rebuild from history"
-msgstr "Ricrea dalla cronologia"
+msgstr "Genbyg fra historik"
 
 #: src/ui/app-menus.ui:170 src/ui/selection-menus.ui:7
 #: src/ui/selection-menus.ui:98 src/ui/selection-panel.ui:162
 #: src/ui/shortcuts.ui:182
 msgid "Select all"
-msgstr "Seleziona tutto"
+msgstr "Markér alt"
 
 #: src/ui/app-menus.ui:177 src/ui/selection-menus.ui:37
 #: src/ui/selection-menus.ui:117 src/ui/selection-panel.ui:82
 #: src/ui/shortcuts.ui:196
 msgid "Cut"
-msgstr "Taglia"
+msgstr "Klip"
 
 #: src/ui/app-menus.ui:182 src/ui/selection-menus.ui:42
 #: src/ui/selection-menus.ui:122 src/ui/selection-panel.ui:95
 #: src/ui/shortcuts.ui:203
 msgid "Copy"
-msgstr "Copia"
+msgstr "Kopiér"
 
 #: src/ui/app-menus.ui:187 src/ui/selection-menus.ui:47
 #: src/ui/selection-menus.ui:112 src/ui/selection-panel.ui:69
 msgid "Delete"
-msgstr "Elimina"
+msgstr "Slet"
 
 #: src/ui/app-menus.ui:194 src/ui/headerbar-eos.ui:67
 #: src/ui/selection-menus.ui:22 src/ui/selection-panel.ui:28
 #: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:155 src/ui/toolbar.ui:51
 #: src/ui/toolbar.ui:52
 msgid "Paste"
-msgstr "Incolla"
+msgstr "Indsæt"
 
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/shortcuts.ui:162 src/ui/toolbar.ui:40
 #: src/ui/toolbar.ui:41 src/window.py:908 src/window.py:1073
 msgid "Import"
-msgstr "Importa"
+msgstr "Importér"
 
 #: src/ui/app-menus.ui:214
 msgid "_View"
-msgstr "_Vista"
+msgstr "_Vis"
 
 #: src/ui/app-menus.ui:217
 msgid "Show the preview"
-msgstr "Mostra anteprima"
+msgstr "Vis forhåndsvisningen"
 
 #: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:246 src/preferences.py:89
 msgid "Zoom"
@@ -300,341 +296,341 @@ msgstr "Zoom"
 
 #: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:250
 msgid "Optimal Zoom"
-msgstr "Zoom Ottimale"
+msgstr "Optimal zoom"
 
 #: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:257
 #: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
-msgstr "Rimpicciolisci"
+msgstr "Zoom ud"
 
 #: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:264
 #: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
-msgstr "Zoom Originale"
+msgstr "Oprindelig zoom"
 
 #: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:271
 #: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
-msgstr "Ingrandisci"
+msgstr "Zoom ind"
 
 #: src/ui/app-menus.ui:249
 msgid "Position"
-msgstr "Posizione"
+msgstr "Position"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:291
 msgid "Go Left"
-msgstr "Sposta a sinistra"
+msgstr "Gå til venstre"
 
 #: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:298
 msgid "Go Up"
-msgstr "Sposta in su"
+msgstr "Gå op"
 
 #: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:305
 msgid "Go Down"
-msgstr "Sposta in basso"
+msgstr "Gå ned"
 
 #: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:312
 msgid "Go Right"
-msgstr "Sposta a destra"
+msgstr "Gå til højre"
 
 #: src/ui/app-menus.ui:285 src/ui/win-menus.ui:154
 msgid "Refresh"
-msgstr "Aggiorna"
+msgstr "Opdater"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:24 src/ui/toolbar.ui:128
 #: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:110
 msgid "Show tools names"
-msgstr "Mostra i nomi degli strumenti"
+msgstr "Vis værktøjernes navne"
 
 #: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:38 src/ui/win-menus.ui:67
 #: src/ui/win-menus.ui:132
 msgid "Fullscreen"
-msgstr "Schero Intero"
+msgstr "Fuldskærm"
 
 #: src/ui/app-menus.ui:303 src/ui/shortcuts.ui:45 src/ui/win-menus.ui:267
 msgid "Exit fullscreen"
-msgstr "Uscire da Schermo Intero"
+msgstr "Afslut fuldskærm"
 
 #: src/ui/app-menus.ui:310
 msgid "_Colors"
-msgstr "_Colori"
+msgstr "Farv_er"
 
 #: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
 #: src/tools/classic_tools/tool_shape.py:41
 msgid "Main color"
-msgstr "Colore primario"
+msgstr "Primær farve"
 
 #: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
 #: src/tools/classic_tools/tool_shape.py:49
 msgid "Secondary color"
-msgstr "Colore secondario"
+msgstr "Sekundær farve"
 
 #: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:237
 msgid "Exchange colors"
-msgstr "Scambia i colori"
+msgstr "Byt om på farverne"
 
 #: src/ui/app-menus.ui:330
 msgid "Color editor by default"
-msgstr "Selettore colore standard"
+msgstr "Farveeditor som standard"
 
 #: src/ui/app-menus.ui:337 src/window.py:584
 msgid "_Tools"
-msgstr "_Strumenti"
+msgstr "Værk_tøjer"
 
 #: src/ui/app-menus.ui:355
 msgid "Previous tool"
-msgstr "Strumento precedente"
+msgstr "Forrige værktøj"
 
 #: src/ui/app-menus.ui:362 src/window.py:801 src/window.py:804
 msgid "_Options"
-msgstr "_Opzioni"
+msgstr "Valg_muligheder"
 
 #: src/ui/app-menus.ui:366
 msgid "_Help"
-msgstr "_Aiuto"
+msgstr "_Hjælp"
 
 #: src/ui/app-menus.ui:383
 msgid "Index"
-msgstr "Indice"
+msgstr "Indeks"
 
 #: src/ui/app-menus.ui:388 src/ui/win-menus.ui:209
 msgid "Basic help"
-msgstr "Aiuto generico"
+msgstr "Grundlæggende hjælp"
 
 #: src/ui/app-menus.ui:393 src/ui/win-menus.ui:214
 msgid "Help about tools"
-msgstr "Aiuto sugli strumenti"
+msgstr "Hjælp til værktøjer"
 
 #: src/ui/app-menus.ui:398 src/ui/win-menus.ui:219
 msgid "Canvas and selection"
-msgstr "Tela e selezione"
+msgstr "Lærred og markering"
 
 #: src/ui/app-menus.ui:403 src/ui/win-menus.ui:224
 msgid "Help about selection"
-msgstr "Aiuto sugli selezione"
+msgstr "Hjælp til markering"
 
 #: src/ui/app-menus.ui:410 src/ui/win-menus.ui:110 src/ui/win-menus.ui:198
 #: src/ui/win-menus.ui:243
 msgid "About Drawing"
-msgstr "Informazioni su Drawing"
+msgstr "Om Drawing"
 
 #: src/ui/classic-panel.ui:61 src/ui/classic-panel.ui:76
 msgid "Tool size"
-msgstr "Dimensione strumento"
+msgstr "Værktøjsstørrelse"
 
 #. used by the bottom panels
 #: src/ui/classic-panel.ui:96 src/window.py:535 src/tools/abstract_tool.py:81
 msgid "No options"
-msgstr "Nessuna opzione"
+msgstr "Ingen valgmuligheder"
 
 #: src/ui/classic-panel.ui:124 src/ui/selection-panel.ui:125
 #: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
-msgstr "Anteprima"
+msgstr "Forhåndsvisning"
 
 #: src/ui/color-popover.ui:16 src/ui/color-popover.ui:31
 msgid "Back to the palette"
-msgstr "Ritorna alla tavolozza"
+msgstr "Tilbage til paletten"
 
 #: src/ui/color-popover.ui:43
 msgid "Use this editor by default"
-msgstr "Usa questo editor come predefinito"
+msgstr "Brug editoren som standard"
 
 #: src/ui/custom-image.ui:38 src/ui/properties.ui:114
 #: src/tools/ui/tool_crop.ui:55 src/tools/ui/tool_crop.ui:63
 #: src/tools/ui/tool_scale.ui:56 src/tools/ui/tool_scale.ui:64
 msgid "Width"
-msgstr "Larghezza"
+msgstr "Bredde"
 
 #: src/ui/custom-image.ui:52 src/ui/properties.ui:143
 #: src/tools/ui/tool_crop.ui:82 src/tools/ui/tool_crop.ui:90
 #: src/tools/ui/tool_scale.ui:83 src/tools/ui/tool_scale.ui:91
 msgid "Height"
-msgstr "Altezza"
+msgstr "Højde"
 
 #: src/ui/custom-image.ui:66
 msgid "Background color"
-msgstr "Colore sfondo"
+msgstr "Baggrundsfarve"
 
 #: src/ui/custom-image.ui:134
 msgid "Use these settings by default"
-msgstr "Utilizzare queste impostazioni come predefinita"
+msgstr "Brug indstillingerne som standard"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
 #: src/window.py:892 src/window.py:907
 msgid "Open"
-msgstr "Apri"
+msgstr "Åbn"
 
 #: src/ui/minimap.ui:72
 msgid "100%"
-msgstr "100%"
+msgstr "100 %"
 
 #: src/ui/preferences.ui:66
 msgid "Images"
-msgstr "Immagini"
+msgstr "Billeder"
 
 #: src/ui/preferences.ui:79
 msgid "Tools"
-msgstr "Strumenti"
+msgstr "Værktøjer"
 
 #: src/ui/preferences.ui:99 src/preferences.py:144
 msgid "Advanced options"
-msgstr "Opzioni avanzate"
+msgstr "Avancerede valgmuligheder"
 
 #: src/ui/properties.ui:20
 msgid "Path"
-msgstr "Percorso"
+msgstr "Sti"
 
 #: src/ui/properties.ui:33
 msgid "Format"
-msgstr "Formato"
+msgstr "Format"
 
 #: src/ui/properties.ui:46
 msgid "Colorspace"
-msgstr "Spazio colore"
+msgstr "Farverum"
 
 #: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
 msgid "Unsaved file"
-msgstr "File non salvato"
+msgstr "Ikke gemt"
 
 #: src/ui/properties.ui:88 src/properties.py:86
 msgid "Invalid format"
-msgstr "Formato non valido"
+msgstr "Ugyldigt format"
 
 #: src/ui/properties.ui:179 src/utilities.py:182
 msgid "pixels"
-msgstr "pixel"
+msgstr "pixels"
 
 #: src/ui/properties.ui:185
 msgid "centimeters"
-msgstr "centimetri"
+msgstr "centimeter"
 
 #: src/ui/properties.ui:191
 msgid "inches"
-msgstr "pollici"
+msgstr "inch"
 
 #: src/ui/selection-menus.ui:11 src/ui/selection-menus.ui:106
 #: src/ui/selection-panel.ui:170
 msgid "Close selection"
-msgstr "Chiudi selezione"
+msgstr "Luk markering"
 
 #: src/ui/selection-menus.ui:31 src/ui/selection-menus.ui:102
 #: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:189
 msgid "Unselect"
-msgstr "Deseleziona"
+msgstr "Fjern markering"
 
 #: src/ui/selection-menus.ui:56 src/ui/selection-menus.ui:138
 #: src/tools/canvas_tools/tool_crop.py:31
 msgid "Crop"
-msgstr "Ritaglia"
+msgstr "Beskær"
 
 #: src/ui/selection-menus.ui:62 src/ui/selection-menus.ui:144
 #: src/tools/canvas_tools/tool_scale.py:31
 msgid "Scale"
-msgstr "Scala"
+msgstr "Skaler"
 
 #: src/ui/selection-menus.ui:68 src/ui/selection-menus.ui:150
 #: src/tools/canvas_tools/tool_rotate.py:28
 msgid "Rotate"
-msgstr "Ruota"
+msgstr "Drej"
 
 #: src/ui/selection-menus.ui:74 src/ui/selection-menus.ui:156
 msgid "Apply a filter"
-msgstr "Applica un filtro"
+msgstr "Anvend et filter"
 
 #: src/ui/selection-menus.ui:82 src/ui/selection-menus.ui:165
 #: src/ui/selection-panel.ui:176
 msgid "Open As New Image"
-msgstr "Apri Come Nuova immagine"
+msgstr "Åbn som nyt billede"
 
 #: src/ui/selection-menus.ui:129
 msgid "Edit"
-msgstr "Modifica"
+msgstr "Rediger"
 
 #: src/ui/selection-menus.ui:132
 msgid "Flip"
-msgstr "Ribalta"
+msgstr "Vend"
 
 #: src/ui/selection-panel.ui:110 src/tools/ui/tool_rotate.ui:64
 msgid "More actions"
-msgstr "Più azioni"
+msgstr "Flere handlinger"
 
 #: src/ui/shortcuts.ui:8
 msgid "Keyboard"
-msgstr "Tastiera"
+msgstr "Tastatur"
 
 #: src/ui/shortcuts.ui:13
 msgid "General"
-msgstr "Generale"
+msgstr "Generelt"
 
 #: src/ui/shortcuts.ui:31
 msgid "Main menu"
-msgstr "Menu principale"
+msgstr "Hovedmenu"
 
 #: src/ui/shortcuts.ui:75
 msgid "Image"
-msgstr "Immagine"
+msgstr "Billede"
 
 #: src/ui/shortcuts.ui:100
 msgid "Open a file"
-msgstr "Apri un file"
+msgstr "Åbn en fil"
 
 #: src/ui/shortcuts.ui:107
 msgid "Close the active image"
-msgstr "Chiudi l'immagine attiva"
+msgstr "Luk det aktive billede"
 
 #: src/ui/shortcuts.ui:121
 msgid "Save as"
-msgstr "Salve come"
+msgstr "Gem som"
 
 #: src/ui/shortcuts.ui:130
 msgid "Edition"
-msgstr "Modifica"
+msgstr "Redigering"
 
 #: src/ui/shortcuts.ui:148
 msgid "Options menu"
-msgstr "Menu opzioni"
+msgstr "Valgmulighedsmenu"
 
 #: src/ui/shortcuts.ui:169
 msgid "Back to previous tool"
-msgstr "Ritorna allo strumento precedente"
+msgstr "Tilbage til forrige værktøj"
 
 #: src/ui/shortcuts.ui:178
 msgid "Selection"
-msgstr "Selezione"
+msgstr "Markering"
 
 #: src/ui/shortcuts.ui:210
 msgid "Delete the selection"
-msgstr "Elimina la selezione"
+msgstr "Slet markeringen"
 
 #: src/ui/shortcuts.ui:219
 msgid "Colors"
-msgstr "Colori"
+msgstr "Farver"
 
 #: src/ui/shortcuts.ui:223
 msgid "Edit the main color (left click)"
-msgstr "Modifica il colore primario (click sinistro)"
+msgstr "Rediger den primære farve (venstreklik)"
 
 #: src/ui/shortcuts.ui:230
 msgid "Edit the secondary color (right click)"
-msgstr "Modifica il colore secondario (click destro)"
+msgstr "Rediger den sekundære farve (højreklik)"
 
 #: src/ui/shortcuts.ui:280
 msgid "Navigation"
-msgstr "Navigazione"
+msgstr "Navigation"
 
 #: src/ui/shortcuts.ui:284
 msgid "Toggle the preview"
-msgstr "Mostra/nascondi anteprima"
+msgstr "Forhåndsvisning til/fra"
 
 #: src/ui/window.ui:36
 msgid "Error starting the application, please report this bug."
-msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
+msgstr "Fejl ved start af programmet. Rapportér venligst fejlen."
 
 #: src/ui/win-menus.ui:164
 msgid "Troubleshoot selection"
-msgstr "Risolvere i problemi di selezione"
+msgstr "Fejlsøg markering"
 
 #: src/custom_image.py:33 src/utilities.py:129 src/window.py:892
 #: src/window.py:906 src/window.py:982 src/window.py:1003 src/window.py:1073
@@ -644,247 +640,244 @@ msgstr "Risolvere i problemi di selezione"
 #: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:205
 #: src/tools/ui/tool_text.ui:32 src/tools/utilities_tools.py:186
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Annuller"
 
 #: src/custom_image.py:34
 msgid "Create"
-msgstr "Crea"
+msgstr "Opret"
 
 #: src/headerbar.py:104
 #, python-format
 msgid "Undo %s"
-msgstr "Annulla %s"
+msgstr "Fortryd %s"
 
 #: src/headerbar.py:110
 #, python-format
 msgid "Redo %s"
-msgstr "Ripeti %s"
+msgstr "Omgør %s"
 
 #: src/main.py:57
 msgid "Print the version and display the 'about' dialog"
-msgstr "Stampa la versione e mostra la finestra 'informazioni'"
+msgstr "Vis versionen og \"om\"-dialogen"
 
 #: src/main.py:60
 msgid "Open a new window"
-msgstr "Apri una nuova finestra"
+msgstr "Åbn et nyt vindue"
 
 #: src/main.py:62
 msgid "Open a new tab"
-msgstr "Apri una nuova scheda"
+msgstr "Åbn et nyt faneblad"
 
 #: src/main.py:64
 msgid "Edit the clipboard content"
-msgstr "Modifica il contenuto degli appunti"
+msgstr "Rediger udklipsholderens indhold"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 #: src/main.py:238
 msgid "translator-credits"
-msgstr ""
-"Jimmy S.\n"
-"Albano Battistella"
+msgstr "scootergrisen"
 
 #: src/main.py:240
 msgid "A drawing application for the GNOME desktop."
-msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
+msgstr "Et tegneprogram til GNOME-skrivebordet."
 
 #: src/main.py:244
 msgid "Official webpage"
-msgstr "Pagina Web Ufficiale"
+msgstr "Officiel webside"
 
 #: src/main.py:286
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr "Errore nell'apertura del file. Intendevi %s ?"
+msgstr "Fejl ved åbning af filen. Mente du %s?"
 
 #. This displays the zoom level, %s will be replaced with a number, while
 #. %% is just the symbol '%'
 #: src/minimap.py:63
 #, python-format
 msgid "%s%%"
-msgstr "%s%%"
+msgstr "%s %%"
 
 #: src/preferences.py:55
 msgid "New images"
-msgstr "Nuova immagini"
+msgstr "Nye billeder"
 
 #: src/preferences.py:58
 msgid "Default width"
-msgstr "Larghezza standard"
+msgstr "Standardbredde"
 
 #: src/preferences.py:61
 msgid "Default height"
-msgstr "Altezza standard"
+msgstr "Standardhøjde"
 
 #: src/preferences.py:73
 msgid "Default background"
-msgstr "Sfondo preimpostato"
+msgstr "Standardbaggrund"
 
 #: src/preferences.py:76
 msgid "Images saving"
-msgstr "Salvataggio immagini"
+msgstr "Når billeder gemmes"
 
 #: src/preferences.py:79
 msgid ""
 "JPEG and BMP images can't handle transparency. If you save your images in "
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
-"Le immagini JPEG e BMP non possono gestire la trasparenza. Se salvi le immagini in "
-"questi formati, che cosa vuoi utilizzare per sostituire i pixel trasparenti?
+"JPEG- og BMP-billeder kan ikke håndtere gennemsigtighed. Hvis du gemmer dine "
+"billeder i disse formater, hvad skal så erstatte de gennemsigtige pixels?"
 
 #: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
-msgstr "Bianco"
+msgstr "Hvid"
 
 #: src/preferences.py:84 src/utilities.py:42 src/utilities.py:137
 msgid "Black"
-msgstr "Nero"
+msgstr "Sort"
 
 #: src/preferences.py:84 src/utilities.py:138
-#, fuzzy
 msgid "Checkboard"
-msgstr "Tastiera"
+msgstr "Skakbræt"
 
 #: src/preferences.py:84
 msgid "Ask before saving"
-msgstr "Chiedi prima di salvare"
+msgstr "Spørg inden der gemmes"
 
 #: src/preferences.py:93
 msgid "Ctrl + Scroll"
-msgstr ""
+msgstr "Ctrl + Rul"
 
 #: src/preferences.py:94
 msgid "Scroll"
-msgstr ""
+msgstr "Rul"
 
 #: src/preferences.py:97
 msgid "Action to zoom"
-msgstr "Azione per lo zoom"
+msgstr "Handling for at zoome"
 
 #: src/preferences.py:100
 msgid "Automatic zoom level"
-msgstr "Livello di zoom automatico"
+msgstr "Automatisk zoomniveau"
 
 #: src/preferences.py:107
 msgid "Appearance"
-msgstr "Aspetto"
+msgstr "Udseende"
 
 #: src/preferences.py:113
 msgid "Use big icons"
-msgstr "Usa icone grandi"
+msgstr "Brug store ikoner"
 
 #: src/preferences.py:116
 msgid "Additional tools"
-msgstr "Strumenti aggiuntivi"
+msgstr "Yderligere værktøjer"
 
 #: src/preferences.py:119
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
-"Questi strumenti non sono così affidabili e utili come dovrebbero essere, quindi non sono"
-"tutti abilitati per impostazione predefinita."
+"Disse værktøjer er ikke så pålidelige og nyttige som de burde være, så de er "
+"ikke allesammen aktiveret som standard."
 
 #: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
-msgstr "Selezione libera"
+msgstr "Fri markering"
 
 #: src/preferences.py:127 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
-msgstr "Selezione colore"
+msgstr "Farvemarkering"
 
 #: src/preferences.py:129 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
-msgstr "Selettore colore"
+msgstr "Farvevælger"
 
 #: src/preferences.py:131 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
-msgstr "Dipingi"
+msgstr "Malerbøtte"
 
 #: src/preferences.py:147
 msgid "Preview size"
-msgstr "Dimensione anteprima"
+msgstr "Størrelse på forhåndsvisning"
 
 #: src/preferences.py:152
 msgid "Development features"
-msgstr "Funzionalità in sviluppo"
+msgstr "Udviklingsfunktionaliteter"
 
 #: src/preferences.py:157
 msgid "Layout"
-msgstr "Livello"
+msgstr "Layout"
 
 #: src/preferences.py:160
 msgid "The recommended value is \"Automatic\"."
-msgstr "Il valore consigliato è \"Automatico\"."
+msgstr "Den anbefalede værdi er \"Automatisk\"."
 
 #: src/preferences.py:163
 msgid "Automatic"
-msgstr "Automatico"
+msgstr "Automatisk"
 
 #: src/preferences.py:163
 msgid "Compact"
-msgstr "Compatto"
+msgstr "Kompakt"
 
 #: src/preferences.py:164
 msgid "Legacy"
-msgstr "Classico"
+msgstr "Udgået"
 
 #: src/preferences.py:164
 msgid "Legacy (symbolic icons)"
-msgstr "Classico (icone simboliche)"
+msgstr "Udgået (symbolske ikoner)"
 
 #: src/preferences.py:164
 msgid "Menubar only"
-msgstr "Solo la barra menu"
+msgstr "Kun menulinje"
 
 #: src/preferences.py:165
 msgid "Toolbar only"
-msgstr "Solo la barra strumenti"
+msgstr "Kun værktøjslinje"
 
 #: src/preferences.py:165
 msgid "Toolbar only (symbolic icons)"
-msgstr "Solo barra degli strumenti (icone simboliche)"
+msgstr "Kun værktøjslinje (symbolske ikoner)"
 
 #: src/utilities.py:14
 msgid "Transparent"
-msgstr "Trasparente"
+msgstr "Gennemsigtig"
 
 #: src/utilities.py:16
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
-msgstr "%s%% trasparente"
+msgstr "%s %% gennemsigtig"
 
 #: src/utilities.py:44
 msgid "Grey"
-msgstr "Grigio"
+msgstr "Grå"
 
 #: src/utilities.py:49
 msgid "Orange"
-msgstr "Arancio"
+msgstr "Orange"
 
 #: src/utilities.py:51
 msgid "Brown"
-msgstr "Marrone"
+msgstr "Brun"
 
 #: src/utilities.py:55 src/utilities.py:65
 msgid "Probably brown"
-msgstr "Probabilmente marrone"
+msgstr "Formodentlig brun"
 
 #: src/utilities.py:57
 msgid "Red"
-msgstr "Rosso"
+msgstr "Rød"
 
 #: src/utilities.py:59
 msgid "Green"
-msgstr "Verde"
+msgstr "Grøn"
 
 #: src/utilities.py:61
 msgid "Blue"
-msgstr "Blu"
+msgstr "Blå"
 
 #: src/utilities.py:67
 msgid "Yellow"
-msgstr "Giallo"
+msgstr "Gul"
 
 #: src/utilities.py:70
 msgid "Magenta"
@@ -892,129 +885,129 @@ msgstr "Magenta"
 
 #: src/utilities.py:72
 msgid "Purple"
-msgstr "Viola"
+msgstr "Lilla"
 
 #: src/utilities.py:75
 msgid "Cyan"
-msgstr "Ciano"
+msgstr "Cyan"
 
 #: src/utilities.py:77
 msgid "Probably turquoise"
-msgstr "Probabilmente turchese"
+msgstr "Formodentlig turkis"
 
 #: src/utilities.py:80
 msgid "Unknown color name"
-msgstr "Nome colore sconosciuto"
+msgstr "Ukendt farvenavn"
 
 #: src/utilities.py:131
 msgid "This file format doesn't support transparent colors."
-msgstr "Questo formato di file non supporta i colori trasparenti."
+msgstr "Filformatet understøtter ikke gennemsigtige farver."
 
 #: src/utilities.py:133
 msgid "Replace transparency with:"
-msgstr "Sostituisci la trasparenza con:"
+msgstr "Erstat gennemsigtighed med:"
 
 #: src/utilities.py:155
 msgid "All pictures"
-msgstr "Tutte le immagini"
+msgstr "Alle billeder"
 
 #: src/utilities.py:161
 msgid "PNG images"
-msgstr "Immagini PNG"
+msgstr "PNG-billeder"
 
 #: src/utilities.py:165
 msgid "JPEG images"
-msgstr "Immagini JPEG"
+msgstr "JPEG-billeder"
 
 #: src/utilities.py:169
 msgid "BMP images"
-msgstr "Immagini BMP"
+msgstr "BMP-billeder"
 
 #: src/utilities.py:184
 msgid "percents"
-msgstr "percentuali"
+msgstr "procent"
 
 #: src/window.py:177
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr "Strumento di caricamento non riuscito: %s"
+msgstr "Kunne ikke indlæse værktøj: %s"
 
 #: src/window.py:488
 msgid "Modifications will take effect in the next new window."
-msgstr "Le modifiche avranno effetto dalla prossima nuova finestra."
+msgstr "Ændringerne træder i kraft i det næste nye vindue."
 
 #: src/window.py:581
 msgid "Opened images"
-msgstr "Immagini aperte"
+msgstr "Åbne billeder"
 
 #: src/window.py:864
 #, python-format
 msgid "Loading %s"
-msgstr "Caricamento %s"
+msgstr "Indlæser %s"
 
 #: src/window.py:870
 msgid "New Tab"
-msgstr "Nuova Scheda"
+msgstr "Nyt faneblad"
 
 #: src/window.py:872
 msgid "Discard changes"
-msgstr "Scarta le modifiche"
+msgstr "Forkast ændringerne"
 
 #: src/window.py:875 src/window.py:984
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Ci sono modifiche non salvate in %s."
+msgstr "Der er ændringer i %s som ikke er blevet gemt."
 
 #: src/window.py:877
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr "Dove vuoi aprire %s?"
+msgstr "Hvor vil du åbne %s?"
 
 #: src/window.py:891
 msgid "Open a picture"
-msgstr "Apri un'immagine"
+msgstr "Åbn et billede"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
 #: src/window.py:915
 msgid "these files"
-msgstr "questi file"
+msgstr "disse filer"
 
 #: src/window.py:916
-#, fuzzy, python-format
+#, python-format
 msgid "What do you want to do with %s?"
-msgstr "Cosa vuoi fare con %s?"
+msgstr "Hvad vil du gøre med %s?"
 
 #: src/window.py:961 src/window.py:1025 src/window.py:1095
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Strumento di caricamento non riuscito: %s"
+msgstr "Kunne ikke gemme %s"
 
 #: src/window.py:974 src/window.py:1006
 msgid "Untitled"
-msgstr "Senza titolo"
+msgstr "Unavngivet"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/window.py:976
 msgid "this picture"
-msgstr "questa immagine"
+msgstr "dette billede"
 
 #: src/window.py:981
 msgid "Discard"
-msgstr "Scarta"
+msgstr "Forkast"
 
 #: src/window.py:1002
 msgid "Save picture as…"
-msgstr "Salva l'immagine come…"
+msgstr "Gem billede som …"
 
 #: src/window.py:1072
 msgid "Import a picture"
-msgstr "Importa un'immagine"
+msgstr "Importér et billede"
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
-msgstr "Forma primaria"
+msgstr "Linjens form"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -1024,19 +1017,19 @@ msgstr "Forma primaria"
 #: src/tools/classic_tools/tool_pencil.py:19
 #: src/tools/classic_tools/tool_pencil.py:44
 msgid "Round"
-msgstr "Tondo"
+msgstr "Rund"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
 #: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
 #: src/tools/classic_tools/tool_line.py:26
 #: src/tools/classic_tools/tool_pencil.py:40
 msgid "Square"
-msgstr "Quadrato"
+msgstr "Firkantet"
 
 #: src/tools/ui/tool_arc.ui:24 src/tools/ui/tool_line.ui:24
 #: src/tools/ui/tool_pencil.ui:24
 msgid "Use dashes"
-msgstr "Usa tratti"
+msgstr "Stiplet"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
 #: src/tools/classic_tools/tool_arc.py:47
@@ -1044,239 +1037,238 @@ msgstr "Usa tratti"
 #: src/tools/classic_tools/tool_line.py:45
 #: src/tools/classic_tools/tool_line.py:47
 msgid "Arrow"
-msgstr "Freccia"
+msgstr "Pil"
 
 #: src/tools/ui/tool_arc.ui:33 src/tools/ui/tool_line.ui:37
 #: src/tools/ui/tool_pencil.ui:29
 msgid "Mode"
-msgstr "Modalità"
+msgstr "Tilstand"
 
 #: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
 #: src/tools/ui/tool_pencil.ui:31
 msgid "Classic"
-msgstr "Classico"
+msgstr "Klassisk"
 
 #. BlurType.PX_BOX
 #: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:185
 #: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
 #: src/tools/canvas_tools/tool_filters.py:87
 msgid "Blur"
-msgstr "Sfocatura"
+msgstr "Sløring"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41
 msgid "Source color"
-msgstr "Colore sorgente"
+msgstr "Kildefarve"
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
 #: src/tools/ui/tool_pencil.ui:46
 msgid "Eraser"
-msgstr "Gomma"
+msgstr "Viskelæder"
 
 #: src/tools/ui/tool_arc.ui:55 src/tools/ui/tool_line.ui:59
 #: src/tools/ui/tool_pencil.ui:51
 msgid "Difference"
-msgstr "Differenza"
+msgstr "Forskelle"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
 #: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
 #: src/tools/ui/tool_scale.ui:103 src/tools/ui/tool_scale.ui:209
 msgid "Apply"
-msgstr "Applica"
+msgstr "Anvend"
 
 #: src/tools/ui/tool_crop.ui:122 src/tools/ui/tool_scale.ui:123
 msgid "More options"
-msgstr "Più opzioni"
+msgstr "Flere valgmuligheder"
 
 #: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:107
 msgid "Select a filter…"
-msgstr "Seleziona un filtro..."
+msgstr "Vælg et filter …"
 
 #: src/tools/ui/tool_filters.ui:89 src/tools/ui/tool_filters.ui:97
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:96
 msgid "Saturation"
-msgstr "Saturazione"
+msgstr "Farvemætning"
 
 #: src/tools/ui/tool_filters.ui:103 src/tools/ui/tool_filters.ui:111
 msgid "Blur radius"
-msgstr "Raggio di sfocatura"
+msgstr "Sløringsradius"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:125
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:105
 msgid "Transparency"
-msgstr "Trasparenza"
+msgstr "Gennemsigtighed"
 
 #: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:99
 msgid "Pixelisation"
-msgstr "Pixelizzazione"
+msgstr "Pixelering"
 
 #: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:102
 msgid "Invert colors"
-msgstr "Inverti i colori"
+msgstr "Invertér farver"
 
 #: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:90
 msgid "Horizontal blur"
-msgstr "Sfocatura orizzontalmente"
+msgstr "Vandret sløring"
 
 #: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:93
 msgid "Vertical blur"
-msgstr "Sfocatura verticale"
+msgstr "Lodret sløring"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
-msgstr "Gradiente di colore"
+msgstr "Farvegradient"
 
 #: src/tools/ui/tool_paint.ui:5
 msgid "Behavior"
-msgstr "Comportamento"
+msgstr "Opførsel"
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
-msgstr "Accerchia e riempi"
+msgstr "Omring og udfyld"
 
 #: src/tools/ui/tool_paint.ui:12
 msgid "Erase and replace"
-msgstr "Cancella e sostituisci"
+msgstr "Slet og erstat"
 
 #: src/tools/ui/tool_paint.ui:19
 msgid "Clipping"
-msgstr "Ritaglio"
+msgstr "Klipning"
 
 #: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
 msgid "Thin"
-msgstr "Sottile"
+msgstr "Tynd"
 
 #: src/tools/ui/tool_pencil.ui:58
 msgid "Artificial smoothness"
-msgstr "Levigatezza artificiale"
+msgstr "Kunstig jævnhed"
 
 #: src/tools/ui/tool_rotate.ui:44
 msgid "Angle (degrees)"
-msgstr "Angolo (gradi)"
+msgstr "Vinkel (grader)"
 
 #: src/tools/ui/tool_rotate.ui:47
 msgid "Angle"
-msgstr "Angolo"
+msgstr "Vinkel"
 
 #: src/tools/ui/tool_rotate.ui:82 src/tools/ui/tool_rotate.ui:178
 msgid "Rotate left"
-msgstr "Ruota a sinistra"
+msgstr "Drej til venstre"
 
 #: src/tools/ui/tool_rotate.ui:96 src/tools/ui/tool_rotate.ui:183
 msgid "Rotate right"
-msgstr "Ruota a destra"
+msgstr "Drej til højre"
 
 #: src/tools/ui/tool_rotate.ui:117 src/tools/ui/tool_rotate.ui:191
 msgid "Flip horizontally"
-msgstr "Ribalta orizzontalmente"
+msgstr "Vend vandret"
 
 #: src/tools/ui/tool_rotate.ui:131 src/tools/ui/tool_rotate.ui:196
 msgid "Flip vertically"
-msgstr "Ribalta verticalmente"
+msgstr "Vend lodret"
 
 #: src/tools/ui/tool_scale.ui:159 src/tools/ui/tool_scale.ui:199
 msgid "Always keep proportions"
-msgstr "Mantieni sempre le proporzioni"
+msgstr "Bevar altid størrelsesforhold"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:54
 msgid "Rectangle"
-msgstr "Rettangolo"
+msgstr "Rektangel"
 
 #: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:57
 msgid "Oval"
-msgstr "Ovale"
+msgstr "Oval"
 
 #: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:22
 #: src/tools/classic_tools/tool_shape.py:63
 msgid "Polygon"
-msgstr "Poligono"
+msgstr "Polygon"
 
 #: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:66
 msgid "Free shape"
-msgstr "Forma libera"
+msgstr "Fri form"
 
 #: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:60
 msgid "Circle"
-msgstr "Cerchio"
+msgstr "Cirkel"
 
 #: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:39
 msgid "Empty outline"
-msgstr "Contorno vuoto"
+msgstr "Tomt omrids"
 
 #: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:43
 msgid "Horizontal gradient"
-msgstr "Gradiente orizzontale"
+msgstr "Vandret gradient"
 
 #: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:45
 msgid "Vertical gradient"
-msgstr "Gradiente verticale"
+msgstr "Lodret gradient"
 
 #: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:47
 msgid "Radial gradient"
-msgstr "Gradiente radiale"
+msgstr "Radial gradient"
 
 #: src/tools/ui/tool_shape.ui:73
 msgid "Close shape"
-msgstr "Chiudi forma"
+msgstr "Luk form"
 
 #: src/tools/ui/tool_text.ui:45 src/tools/ui/tool_text.ui:46
 msgid "Insert here"
-msgstr "Inserisci qui"
+msgstr "Indsæt her"
 
 #: src/tools/ui/tool_text.ui:63
 msgid "Font"
-msgstr "Carattere"
+msgstr "Skrifttype"
 
 #: src/tools/ui/tool_text.ui:82
 msgid "Italic"
-msgstr "Italic"
+msgstr "Kursiv"
 
 #: src/tools/ui/tool_text.ui:86
 msgid "Bold"
-msgstr "Grassetto"
+msgstr "Fed"
 
 #: src/tools/ui/tool_text.ui:91
 msgid "Background"
-msgstr "Sfondo"
+msgstr "Baggrund"
 
 #: src/tools/ui/tool_text.ui:93 src/tools/classic_tools/tool_text.py:51
 msgid "No background"
-msgstr "Nessuno sfondo"
+msgstr "Ingen baggrund"
 
 #: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:55
 msgid "Secondary color rectangle"
-msgstr "Rettangolo di colore secondario"
+msgstr "Sekundær farve som rektangel"
 
 #: src/tools/ui/tool_text.ui:103 src/tools/classic_tools/tool_text.py:21
 #: src/tools/classic_tools/tool_text.py:53
 msgid "Secondary color shadow"
-msgstr "Ombra di colore secondaria"
+msgstr "Sekundær farve som skygge"
 
 #: src/tools/utilities_tools.py:187
 msgid "Continue"
-msgstr "Continua"
+msgstr "Fortsæt"
 
 #: src/tools/utilities_tools.py:188
 msgid "The area seems poorly delimited, or is very complex."
-msgstr "L'area sembra essere insufficientemente limitata, o molto complessa."
+msgstr "Området ser ud til at være dårligt afgrænset eller meget komplekst."
 
 #: src/tools/utilities_tools.py:189
 msgid "This algorithm may not be able to manage the wanted area."
-msgstr ""
-"Questo algoritmo potrebbe non essere in grado di gestire l'area desiderata."
+msgstr "Algoritmen er måske ikke i stand til at håndtere det ønskede område."
 
 #: src/tools/utilities_tools.py:190
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Vuoi interrompere l'operazione o vuoi forzare lo strumento?"
+msgstr "Vil du afbryde handlingen eller lade værktøjet knokle?"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Curve"
-msgstr "Curva"
+msgstr "Kurve"
 
 #: src/tools/classic_tools/tool_arc.py:38
 msgid "Curve options"
-msgstr "Opzioni di curva"
+msgstr "Valgmuligheder for kurve"
 
 #: src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_arc.py:51
@@ -1284,136 +1276,96 @@ msgstr "Opzioni di curva"
 #: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "With dashes"
-msgstr "Con tratti"
+msgstr "Stiplet"
 
 #: src/tools/classic_tools/tool_line.py:13
 msgid "Line"
-msgstr "Linea"
+msgstr "Linje"
 
 #: src/tools/classic_tools/tool_line.py:32
 msgid "Line options"
-msgstr "Opzioni linea"
+msgstr "Valgmuligheder for linje"
 
 #: src/tools/classic_tools/tool_paint.py:20
 msgid "Painting options"
-msgstr "Opzioni pittura"
+msgstr "Valgmuligheder for malerbøtte"
 
 #: src/tools/classic_tools/tool_paint.py:24
 msgid "Click on an area to replace its color by transparency"
-msgstr "Clicca su un'area per sostituire il suo colore con la trasparenza"
+msgstr "Klik på et område for at erstatte dets farve med gennemsigtighed"
 
 #: src/tools/classic_tools/tool_pencil.py:13
 msgid "Pencil"
-msgstr "Matita"
+msgstr "Blyant"
 
 #: src/tools/classic_tools/tool_pencil.py:47
 msgid "Pencil options"
-msgstr "Opzioni matita"
+msgstr "Valgmuligheder for blyant"
 
 #: src/tools/classic_tools/tool_shape.py:13
 msgid "Shape"
-msgstr "Forma"
+msgstr "Form"
 
 #: src/tools/classic_tools/tool_shape.py:19
 msgid "Empty"
-msgstr "Vuoto"
+msgstr "Tom"
 
 #: src/tools/classic_tools/tool_shape.py:70
 msgid "Shape options"
-msgstr "Opzioni forma"
+msgstr "Valgmuligheder for form"
 
 #: src/tools/classic_tools/tool_shape.py:77
 msgid "Click on the shape's first point to close it."
-msgstr "Fai clic sul primo punto della forma per chiuderla."
+msgstr "Klik på formens første punkt for at lukke den."
 
 #: src/tools/classic_tools/tool_text.py:12
 msgid "Text"
-msgstr "Testo"
+msgstr "Tekst"
 
 #: src/tools/classic_tools/tool_text.py:58
 msgid "Font options"
-msgstr "Opzioni di testo"
+msgstr "Valgmuligheder for skrifttype"
 
 #: src/tools/selection_tools/abstract_select.py:42
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Trascina la selezione o click destro sulla tela"
+msgstr "Træk markeringen eller højreklik på lærredet"
 
 #: src/tools/selection_tools/abstract_select.py:44
 msgid "Select an area or right-click on the canvas"
-msgstr "Seleziona un'area o click destro sulla tela"
+msgstr "Vælg et område eller højreklik på lærredet"
 
 #: src/tools/selection_tools/rect_select.py:13
 msgid "Rectangle selection"
-msgstr "Selezione rettangolare"
+msgstr "Rektangelmarkering"
 
 #: src/tools/canvas_tools/tool_crop.py:52
 msgid "Cropping the selection"
-msgstr "Ritaglia la selezione"
+msgstr "Beskær markeringen"
 
 #: src/tools/canvas_tools/tool_crop.py:54
 msgid "Cropping the canvas"
-msgstr "Ritaglia la tela"
+msgstr "Beskærer lærredet"
 
 #: src/tools/canvas_tools/tool_filters.py:32
 msgid "Filters"
-msgstr "Filtri"
+msgstr "Filtre"
 
 #: src/tools/canvas_tools/tool_filters.py:72
 msgid "Click on the image to preview the selected filter"
-msgstr ""
-"Fai clic sull'immagine per visualizzare l'anteprima del filtro selezionato"
+msgstr "Klik på billedet for at forhåndsvise det valgte filter"
 
 #: src/tools/canvas_tools/tool_rotate.py:52
 msgid "Rotating the selection"
-msgstr "Rotazione della selezione"
+msgstr "Drejer markeringen"
 
 #: src/tools/canvas_tools/tool_rotate.py:54
 msgid "Rotating the canvas"
-msgstr "Rotazione della tela"
+msgstr "Drejer lærredet"
 
 #: src/tools/canvas_tools/tool_scale.py:55
 msgid "Scaling the selection"
-msgstr "Ridimensionamento della selezione"
+msgstr "Skalerer markeringen"
 
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
-msgstr "Ridimensionamento della tela"
-
-#~ msgid "Transparency replacement"
-#~ msgstr "Sostituzione della trasparenza"
-
-#~ msgid "Do you want to save anyway ?"
-#~ msgstr "Vuoi salvare comunque ?"
-
-#~ msgid "Saved images"
-#~ msgstr "Salve immagini"
-
-#~ msgid "Close"
-#~ msgstr "Chiudi"
-
-#~ msgid "Report bugs or ideas"
-#~ msgstr "Invia segnalazioni o idee"
-
-#~ msgid "Filling"
-#~ msgstr "Riempimento"
-
-#~ msgid "Freehand"
-#~ msgstr "Mano libera"
-
-#~ msgid "Similar color"
-#~ msgstr "Color simile"
-
-#~ msgid "Selection options"
-#~ msgstr "Opzioni selezione"
-
-#~ msgid "Summary"
-#~ msgstr "Sommario"
-
-#~ msgid "Similar color selection"
-#~ msgstr "Selezione colore simile"
-
-#~ msgid "Selection actions"
-#~ msgstr "Azioni di selezione"
-
-#~ msgid "Add"
-#~ msgstr "Aggiungi"
+msgstr "Skalerer lærredet"
