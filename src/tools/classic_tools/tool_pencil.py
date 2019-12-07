@@ -54,9 +54,9 @@ class ToolPencil(AbstractClassicTool):
 
 	def get_edition_status(self):
 		self.set_options_attributes()
-		label = self.label + ' - ' + self.selected_shape_label
+		label = self.label # TODO l'opérateur est important
 		if self.use_dashes:
-			label = label + ' - ' + _("With dashes")
+			label = label + ' - ' + _("Dashed")
 		return label
 
 	def on_press_on_area(self, event, surface, event_x, event_y):

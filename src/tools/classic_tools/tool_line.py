@@ -40,13 +40,12 @@ class ToolLine(AbstractClassicTool):
 
 	def get_edition_status(self): # TODO l'opérateur est important
 		self.set_options_attributes()
-		label = self.label + ' (' + self.selected_shape_label + ') ' # XXX inconsistence
 		if self.use_arrow and self.use_dashes:
-			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
+			label = self.label + ' - ' + _("Dashed arrow")
 		elif self.use_arrow:
-			label = label + ' - ' + _("Arrow")
+			label = self.label + ' - ' + _("Arrow")
 		elif self.use_dashes:
-			label = label + ' - ' + _("With dashes")
+			label = self.label + ' - ' + _("Dashed")
 		return label
 
 	def give_back_control(self, preserve_selection):

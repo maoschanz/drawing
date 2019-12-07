@@ -48,6 +48,9 @@ class DrawingAdaptativeBottomBar():
 	def set_minimap_label(self, label):
 		pass
 
+	def hide_options_menu(self):
+		pass
+
 	def toggle_options_menu(self):
 		pass
 

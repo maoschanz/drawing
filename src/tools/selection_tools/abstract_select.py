@@ -367,6 +367,9 @@ class SelectionToolPanel(DrawingAdaptativeBottomBar):
 	def toggle_options_menu(self):
 		self.actions_btn.set_active(not self.actions_btn.get_active())
 
+	def hide_options_menu(self):
+		self.actions_btn.set_active(False)
+
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.import_box_long.get_preferred_width()[0] + \

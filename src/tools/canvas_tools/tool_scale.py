@@ -229,6 +229,9 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 	def toggle_options_menu(self):
 		self.options_btn.set_active(not self.options_btn.get_active())
 
+	def hide_options_menu(self):
+		self.options_btn.set_active(False)
+
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \

@@ -225,6 +225,9 @@ class RotateToolPanel(DrawingAdaptativeBottomBar):
 		if self.more_btn.get_visible():
 			self.more_btn.set_active(not self.more_btn.get_active())
 
+	def hide_options_menu(self):
+		self.more_btn.set_active(False)
+
 	def set_compact(self, state):
 		super().set_compact(state)
 		if self.rotate_tool.apply_to_selection:

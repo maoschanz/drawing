@@ -60,10 +60,11 @@ class DrawingOptionsManager():
 		# current_value = args[0].get_state()
 		args[0].set_state(GLib.Variant.new_boolean(new_value))
 		self.window.set_picture_title()
+		self.get_active_panel().hide_options_menu()
 
 	def enum_callback(self, *args):
-		"""This callback is simple but can't handle both menuitems and
-		radiobuttons. It is only good for menuitems and modelbuttons."""
+		"""This callback is simple but can't handle both menu-items and
+		radio-buttons. It is only good for menu-items and model-buttons."""
 		new_value = args[1].get_string()
 		current_value = args[0].get_state().get_string()
 
@@ -75,6 +76,7 @@ class DrawingOptionsManager():
 		# Actually change the state to the new value.
 		args[0].set_state(GLib.Variant.new_string(new_value))
 		self.window.set_picture_title()
+		self.get_active_panel().hide_options_menu()
 
 	############################################################################
 	# Bottom panels management #################################################

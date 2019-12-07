@@ -214,6 +214,9 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 	def toggle_options_menu(self):
 		self.menu_btn.set_active(not self.menu_btn.get_active())
 
+	def hide_options_menu(self):
+		self.menu_btn.set_active(False)
+
 	def init_adaptability(self):
 		super().init_adaptability()
 		self.menu_icon.set_visible(False)

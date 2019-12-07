@@ -143,6 +143,9 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 	def toggle_options_menu(self):
 		self.options_btn.set_active(not self.options_btn.get_active())
 
+	def hide_options_menu(self):
+		self.options_btn.set_active(False)
+
 	def build_color_buttons(self):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
 		memorized RGBA values."""
