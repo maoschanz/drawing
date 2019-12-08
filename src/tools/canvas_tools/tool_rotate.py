@@ -74,16 +74,18 @@ class ToolRotate(AbstractCanvasTool):
 			elif event.button == 3:
 				self.on_right_clicked()
 			return
-		delta_x0 = self.get_selection().selection_x - event_x
-		delta_y0 = self.get_selection().selection_y - event_y
+		center_x, center_y = self.get_selection().get_center_coords()
+		delta_x0 = center_x - event_x
+		delta_y0 = center_y - event_y
 		press_as_degrees = (math.atan2(delta_x0, delta_y0) * 180) / math.pi
 		self.angle_press = self.get_angle() - int(press_as_degrees)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if not self.apply_to_selection:
 			return
-		delta_x = self.get_selection().selection_x - event_x
-		delta_y = self.get_selection().selection_y - event_y
+		center_x, center_y = self.get_selection().get_center_coords()
+		delta_x = center_x - event_x
+		delta_y = center_y - event_y
 		release_angle = ( math.atan2(delta_x, delta_y) * 180 ) / math.pi
 		self.angle_btn.set_value(int(release_angle) + self.angle_press)
 		operation = self.build_operation()

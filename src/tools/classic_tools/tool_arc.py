@@ -42,12 +42,13 @@ class ToolArc(AbstractClassicTool):
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.set_active_shape()
 		self.set_active_operator()
+		label = self.label
 		if self.use_arrow and self.use_dashes:
-			label = self.label + ' - ' + _("Dashed arrow")
+			label = label + ' - ' + _("Dashed arrow")
 		elif self.use_arrow:
-			label = self.label + ' - ' + _("Arrow")
+			label = label + ' - ' + _("Arrow")
 		elif self.use_dashes:
-			label = self.label + ' - ' + _("Dashed")
+			label = label + ' - ' + _("Dashed")
 		return label
 
 	def give_back_control(self, preserve_selection):

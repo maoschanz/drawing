@@ -144,6 +144,12 @@ class DrawingSelectionManager():
 		Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf, x, y)
 		cairo_context.paint()
 
+	def get_center_coords(self):
+		"""Return the coords of the center of the selection."""
+		w = self.selection_pixbuf.get_width()
+		h = self.selection_pixbuf.get_height()
+		return self.selection_x + w / 2, self.selection_y + h / 2
+
 	############################################################################
 
 	def _create_path_from_pixbuf(self):

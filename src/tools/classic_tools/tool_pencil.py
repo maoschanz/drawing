@@ -54,7 +54,7 @@ class ToolPencil(AbstractClassicTool):
 
 	def get_edition_status(self):
 		self.set_options_attributes()
-		label = self.label # TODO l'opérateur est important
+		label = self.label # ajouter l'opérateur cairo
 		if self.use_dashes:
 			label = label + ' - ' + _("Dashed")
 		return label

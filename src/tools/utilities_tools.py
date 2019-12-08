@@ -198,7 +198,9 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	x_length = max(x1, x2) - min(x1, x2)
 	y_length = max(y1, y2) - min(y1, y2)
 	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
-	arrow_width = math.log(line_length) # XXX do i have to ensure it's > 0 ??
+	if line_length == 0:
+		return
+	arrow_width = math.log(line_length)
 	if (x1 - x2) != 0:
 		delta = (y1 - y2) / (x1 - x2)
 	else:
