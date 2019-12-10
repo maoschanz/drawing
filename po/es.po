@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-07 21:20+0100\n"
-"PO-Revision-Date: 2019-09-17 22:22+0100\n"
+"PO-Revision-Date: 2019-12-10 11:27+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
@@ -96,7 +96,6 @@ msgstr ""
 "única y más coherente herramienta de «formas»."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
-#, fuzzy
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation, saturation and "
@@ -104,11 +103,11 @@ msgid ""
 msgstr ""
 "La herramienta «saturación» ha sido reemplazada por «filtros», una "
 "herramienta más potente con diferentes tipos de desenfoque, inversión de "
-"color, pixelación y saturación."
+"color, pixelación, saturación y transparencia."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
-msgstr ""
+msgstr "Ahora está disponible un modo de pantalla completa."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
@@ -168,19 +167,18 @@ msgid "New Blank Image"
 msgstr "Nueva imagen en blanco"
 
 #: src/ui/app-menus.ui:58 src/ui/win-menus.ui:21 src/custom_image.py:27
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "Nueva imagen desde la selección"
+msgstr "Nueva imagen de tamaño personalizado"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
-msgstr "Nueva imagen desde la selección"
+msgstr "Desde la selección"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
-msgstr "Nueva imagen desde el portapapeles"
+msgstr "Desde el portapapeles"
 
 #: src/ui/app-menus.ui:83 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:278
@@ -188,9 +186,8 @@ msgid "Open an image"
 msgstr "Abrir una imagen"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
-#, fuzzy
 msgid "Reload file"
-msgstr "Abrir un archivo"
+msgstr "Recargar archivo"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
@@ -457,14 +454,12 @@ msgid "Height"
 msgstr "Altura"
 
 #: src/ui/custom-image.ui:66
-#, fuzzy
 msgid "Background color"
-msgstr "Fondo"
+msgstr "Color de fondo"
 
 #: src/ui/custom-image.ui:134
-#, fuzzy
 msgid "Use these settings by default"
-msgstr "Utilizar este editor de manera predeterminada"
+msgstr "Utilizar estos ajustes de manera predeterminada"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
 #: src/window.py:892 src/window.py:907
@@ -496,9 +491,8 @@ msgid "Format"
 msgstr "Formato"
 
 #: src/ui/properties.ui:46
-#, fuzzy
 msgid "Colorspace"
-msgstr "Colores"
+msgstr "Espacio de color"
 
 #: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
 msgid "Unsaved file"
@@ -522,9 +516,8 @@ msgstr "pulgadas"
 
 #: src/ui/selection-menus.ui:11 src/ui/selection-menus.ui:106
 #: src/ui/selection-panel.ui:170
-#, fuzzy
 msgid "Close selection"
-msgstr "Selección por color"
+msgstr "Cerrar selección"
 
 #: src/ui/selection-menus.ui:31 src/ui/selection-menus.ui:102
 #: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:194
@@ -569,7 +562,7 @@ msgstr "Más acciones"
 
 #: src/ui/shortcuts.ui:8
 msgid "Keyboard"
-msgstr ""
+msgstr "Teclado"
 
 #: src/ui/shortcuts.ui:13
 msgid "General"
@@ -580,7 +573,6 @@ msgid "Main menu"
 msgstr "Menú principal"
 
 #: src/ui/shortcuts.ui:54
-#, fuzzy
 msgid "Editing"
 msgstr "Edición"
 
@@ -629,19 +621,16 @@ msgid "Delete the selection"
 msgstr "Borrar la selección"
 
 #: src/ui/shortcuts.ui:229
-#, fuzzy
 msgid "Import a file as the selection"
-msgstr "Girando la selección"
+msgstr "Importar un archivo como selección"
 
 #: src/ui/shortcuts.ui:276
-#, fuzzy
 msgid "Enter fullscreen mode"
-msgstr "Salir de pantalla completa"
+msgstr "Ingresar al modo de pantalla completa"
 
 #: src/ui/shortcuts.ui:283
-#, fuzzy
 msgid "Exit fullscreen mode"
-msgstr "Salir de pantalla completa"
+msgstr "Salir del modo de pantalla completa"
 
 #: src/ui/shortcuts.ui:292
 msgid "Navigation"
@@ -671,7 +660,7 @@ msgstr "Cancelar"
 
 #: src/custom_image.py:34
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #: src/headerbar.py:104
 #, python-format
@@ -744,15 +733,17 @@ msgid "Default background"
 msgstr "Fondo predeterminado"
 
 #: src/preferences.py:76
-#, fuzzy
 msgid "Images saving"
-msgstr "Imágenes"
+msgstr "Guardado de imágenes"
 
 #: src/preferences.py:79
 msgid ""
 "JPEG and BMP images can't handle transparency. If you save your images in "
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
+"Las imágenes en formato JPEG y BMP no soportan transparencia. Si quiere "
+"guardar la imagen en alguno de estos formatos, ¿qué quiere utilizar para "
+"reemplezar los píxeles transparentes?"
 
 #: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
@@ -764,11 +755,11 @@ msgstr "Negro"
 
 #: src/preferences.py:84 src/utilities.py:138
 msgid "Checkboard"
-msgstr ""
+msgstr "Patrón de cuadrícula"
 
 #: src/preferences.py:84
 msgid "Ask before saving"
-msgstr ""
+msgstr "Preguntar antes de guardar"
 
 #: src/preferences.py:93
 msgid "Ctrl + Scroll"
@@ -783,9 +774,8 @@ msgid "Action to zoom"
 msgstr "Atajo para la ampliación"
 
 #: src/preferences.py:100
-#, fuzzy
 msgid "Automatic zoom level"
-msgstr "Automático"
+msgstr "Nivel de ampliación automático"
 
 #: src/preferences.py:107
 msgid "Appearance"
@@ -804,6 +794,8 @@ msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
+"Estas herramientas no son tan confiables y útiles como deberían ser, por lo "
+"que no todas están habilitadas de forma predeterminada."
 
 #: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -835,7 +827,7 @@ msgstr "Disposición"
 
 #: src/preferences.py:160
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "El valor recomendado es «Automático»."
 
 #: src/preferences.py:163
 msgid "Automatic"
@@ -850,7 +842,6 @@ msgid "Legacy"
 msgstr "Tradicional"
 
 #: src/preferences.py:164
-#, fuzzy
 msgid "Legacy (symbolic icons)"
 msgstr "Tradicional (símbolos)"
 
@@ -863,7 +854,6 @@ msgid "Toolbar only"
 msgstr "Solo barra de herramientas"
 
 #: src/preferences.py:165
-#, fuzzy
 msgid "Toolbar only (symbolic icons)"
 msgstr "Barra de herramientas (símbolos)"
 
@@ -930,11 +920,11 @@ msgstr "Nombre de color desconocido"
 
 #: src/utilities.py:131
 msgid "This file format doesn't support transparent colors."
-msgstr ""
+msgstr "Este formato de archivo no soporta colores transparentes."
 
 #: src/utilities.py:133
 msgid "Replace transparency with:"
-msgstr ""
+msgstr "Reemplazar la transparencia con:"
 
 #: src/utilities.py:155
 msgid "All pictures"
@@ -954,7 +944,7 @@ msgstr "Imágenes BMP"
 
 #: src/utilities.py:184
 msgid "percents"
-msgstr ""
+msgstr "porcentaje"
 
 #: src/window.py:177
 #, python-format
@@ -1008,9 +998,9 @@ msgid "What do you want to do with %s?"
 msgstr "¿Qué quiere hacer con «%s»?"
 
 #: src/window.py:961 src/window.py:1025 src/window.py:1095
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Error al cargar la herramienta: %s"
+msgstr "Error al guardar %s"
 
 #: src/window.py:974 src/window.py:1006
 msgid "Untitled"
@@ -1119,15 +1109,13 @@ msgid "Saturation"
 msgstr "Saturación"
 
 #: src/tools/ui/tool_filters.ui:103 src/tools/ui/tool_filters.ui:111
-#, fuzzy
 msgid "Blur radius"
-msgstr "Radio de desenfoque (píxeles)"
+msgstr "Radio de desenfoque"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:125
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:105
-#, fuzzy
 msgid "Transparency"
-msgstr "Transparente"
+msgstr "Transparencia"
 
 #: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:99
 msgid "Pixelisation"
@@ -1198,9 +1186,8 @@ msgid "Flip vertically"
 msgstr "Voltear verticalmente"
 
 #: src/tools/ui/tool_scale.ui:159 src/tools/ui/tool_scale.ui:199
-#, fuzzy
 msgid "Always keep proportions"
-msgstr "Mantener proporciones"
+msgstr "Mantener proporción"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:54
 msgid "Rectangle"
@@ -1225,27 +1212,23 @@ msgstr "Círculo"
 
 #: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:39
 msgid "Empty outline"
-msgstr ""
+msgstr "Sin relleno"
 
 #: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:43
-#, fuzzy
 msgid "Horizontal gradient"
-msgstr "Desenfoque horizontal"
+msgstr "Degradado horizontal"
 
 #: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:45
-#, fuzzy
 msgid "Vertical gradient"
-msgstr "Desenfoque vertical"
+msgstr "Degradado vertical"
 
 #: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:47
-#, fuzzy
 msgid "Radial gradient"
-msgstr "Degradado"
+msgstr "Degradado radial"
 
 #: src/tools/ui/tool_shape.ui:73
-#, fuzzy
 msgid "Close shape"
-msgstr "Cerrar imagen"
+msgstr "Cerrar forma"
 
 #: src/tools/ui/tool_text.ui:45 src/tools/ui/tool_text.ui:46
 msgid "Insert here"
@@ -1310,13 +1293,13 @@ msgstr "Opciones de curva"
 #: src/tools/classic_tools/tool_arc.py:46
 #: src/tools/classic_tools/tool_line.py:44
 msgid "Dashed arrow"
-msgstr ""
+msgstr "Flecha discontinua"
 
 #: src/tools/classic_tools/tool_arc.py:50
 #: src/tools/classic_tools/tool_line.py:48
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
-msgstr ""
+msgstr "Discontinua"
 
 #: src/tools/classic_tools/tool_line.py:13
 msgid "Line"
