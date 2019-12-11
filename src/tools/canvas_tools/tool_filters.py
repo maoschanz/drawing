@@ -157,9 +157,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(bp)
 
 	def do_tool_operation(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		self.restore_pixbuf()
+		super().do_tool_operation(operation)
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:

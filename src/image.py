@@ -222,16 +222,17 @@ class DrawingImage(Gtk.Box):
 	############################################################################
 	# History management #######################################################
 
+	def _operation_is_ongoing(self):
+		return self.active_tool().has_ongoing_operation()
+
 	def try_undo(self, *args):
-		# TODO implement operation_is_ongoing
-		# if self.window.operation_is_ongoing():
-		# 	self.active_tool().cancel_ongoing_operation()
-		# elif len(self.undo_history) != 0:
-		# 	self.redo_history.append(self.undo_history.pop())
-		self.active_tool().cancel_ongoing_operation()
+		if self._operation_is_ongoing():
+			self.active_tool().cancel_ongoing_operation()
+			return
 		if len(self.undo_history) != 0:
 			self.redo_history.append(self.undo_history.pop())
 		if self.previous_pixbuf is not None:
+			# TODO better pixbuf-based history
 			self.main_pixbuf = self.previous_pixbuf
 			self.previous_pixbuf = None
 			self.use_stable_pixbuf()
@@ -255,22 +256,23 @@ class DrawingImage(Gtk.Box):
 		self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
-		can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
+		can_undo = ( len(self.undo_history) != 0 ) or self._operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
-		# self.update_history_actions_labels() # TODO
+		# self.update_history_actions_labels()
 
 	def update_history_actions_labels(self):
-		undo_label = self.undo_history[-1:]
-		redo_label = self.redo_history[-1:]
-		if len(undo_label) > 0:
-			undo_label = undo_label[0]['tool_id'] # TODO store a translatable label
-		else:
-			undo_label = None
-		if len(redo_label) > 0:
-			redo_label = redo_label[0]['tool_id'] # TODO store a translatable label
-		else:
-			redo_label = None
+		undoable_action = self.undo_history[-1:]
+		redoable_action = self.redo_history[-1:]
+		undo_label = None
+		redo_label = None
+		if self._operation_is_ongoing():
+			# XXX pointless: the method is called at application of the operation
+			undo_label = self.active_tool().tool_id # TODO get a translatable label
+		elif len(undoable_action) > 0:
+			undo_label = undoable_action[0]['tool_id'] # TODO store a translatable label
+		if len(redoable_action) > 0:
+			redo_label = redoable_action[0]['tool_id'] # TODO store a translatable label
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_pixbuf_to_history(self):

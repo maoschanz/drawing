@@ -22,7 +22,7 @@ class AbstractAbstractTool():
 		self.tool_width = 10
 		self.cursor_name = 'cell'
 		self.use_size = False
-		self.has_ongoing_operation = False # TODO
+		self._ongoing_operation = False
 		self.window = window
 		self.build_row()
 		self.try_build_panel()
@@ -122,7 +122,15 @@ class AbstractAbstractTool():
 		pass
 
 	def cancel_ongoing_operation(self):
-		pass
+		self.on_tool_unselected()
+		self.give_back_control(self.accept_selection) # XXX pas sûr
+		self.on_tool_selected()
+		self.restore_pixbuf()
+		self.non_destructive_show_modif()
+		self._ongoing_operation = False
+
+	def has_ongoing_operation(self):
+		return self._ongoing_operation
 
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
@@ -132,7 +140,10 @@ class AbstractAbstractTool():
 	# History ##################################################################
 
 	def do_tool_operation(self, operation):
-		pass
+		if operation['tool_id'] != self.id:
+			raise Exception("Can't apply operation: invalid tool id")
+		self.restore_pixbuf()
+		self._ongoing_operation = True
 
 	def apply_operation(self, operation):
 		self.get_image().add_pixbuf_to_history()
@@ -141,8 +152,9 @@ class AbstractAbstractTool():
 		self.get_image().update_history_sensitivity()
 
 	def simple_apply_operation(self, operation):
-		"""Simpler apply_operation, for the "rebuild from history" method."""
+		"""Simpler apply_operation, for the 'rebuild from history' method."""
 		self.do_tool_operation(operation)
+		self._ongoing_operation = False
 		self.get_image().add_to_history(operation)
 		self.non_destructive_show_modif()
 

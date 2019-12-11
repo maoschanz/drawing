@@ -61,21 +61,21 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def give_back_control(self, preserve_selection):
 		self.get_selection().hide_popovers()
-		# TODO tout le bazar sur has_been_used
+		# TODO tout le bazar sur has_been_used??
 		if not preserve_selection:
 			self.unselect_and_apply()
 
-	def on_tool_selected(self, *args):
-		print("selected", self.get_image())
-		# XXX rien, vraiment ?
+	# def on_tool_selected(self, *args):
+	# 	pass
 
-	def on_tool_unselected(self, *args):
-		print("unselected", self.get_image())
-		# XXX rien, vraiment ?
+	# def on_tool_unselected(self, *args):
+	# 	pass
 
-	# def cancel_ongoing_operation(self):
-	# 	self.get_image().selection.reset()
-	# 	return True
+	def cancel_ongoing_operation(self):
+		pass # TODO could cancel an unapplied dragging
+
+	def has_ongoing_operation(self):
+		return False
 
 	############################################################################
 	############################################################################
@@ -218,11 +218,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	############################################################################
 	# Operations management methods ############################################
 
-	def update_surface(self):
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-		self.non_destructive_show_modif()
-
 	def delete_selection(self):
 		self.operation_type = 'op-delete'
 		operation = self.build_operation()
@@ -303,9 +298,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		self.restore_pixbuf()
+		super().do_tool_operation(operation)
 		# print('operation_type', operation['operation_type'])
 		if operation['operation_type'] == 'op-delete':
 			# Opération instantanée (sans preview), correspondant à une action

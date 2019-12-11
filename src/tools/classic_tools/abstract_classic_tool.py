@@ -69,11 +69,11 @@ class AbstractClassicTool(AbstractAbstractTool):
 	############################################################################
 	# Operations management ####################################################
 
-	def build_operation(self):
-		pass
+	# def build_operation(self):
+	# 	pass
 
-	def do_tool_operation(self, operation):
-		pass
+	# def do_tool_operation(self, operation):
+	# 	super().do_tool_operation(operation)
 
 	def stroke_with_operator(self, operator, cairo_context, line_width, is_preview):
 		cairo_context.set_operator(operator)

@@ -1102,7 +1102,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		elif 'color_select' in self.tools:
 			return self.tools['color_select']
 		else:
-			self.prompt_message(True, 'Required tool is not available')
+			self.prompt_message(True, _("Required tool is not available"))
 			return self.active_tool()
 
 	def force_selection(self, *args):
@@ -1121,14 +1121,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
 		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
-
-	def operation_is_ongoing(self): # TODO
-		# if self.active_tool() is self.get_selection_tool():
-		# 	is_ongoing = self.active_tool().selection.selection_has_been_used
-		# else:
-		# 	is_ongoing = self.active_tool().has_ongoing_operation
-		# return is_ongoing
-		return False
 
 	def action_restore(self, *args):
 		self.get_active_image().use_stable_pixbuf()

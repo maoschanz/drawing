@@ -106,11 +106,9 @@ class ToolPencil(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		if operation['tool_id'] != self.id:
-			return
+		super().do_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])

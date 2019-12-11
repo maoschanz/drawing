@@ -112,9 +112,7 @@ class ToolArc(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		self.restore_pixbuf()
+		super().do_tool_operation(operation)
 		cairo_context = cairo.Context(self.get_surface())
 		cairo_context.set_line_cap(operation['line_cap'])
 		#cairo_context.set_line_join(operation['line_join'])

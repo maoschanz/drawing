@@ -62,9 +62,7 @@ class ToolPaint(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		self.restore_pixbuf()
+		super().do_tool_operation(operation)
 
 		if operation['algo'] == 'replace':
 			self.op_replace(operation)
