@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Something doesn't work
 title: ''
 labels: bug
 assignees: ''
@@ -9,7 +9,7 @@ assignees: ''
 
 ## Description
 
-<!--Describe the bug, clearly and concisely-->
+<!--Describe the bug: what doesn't work?-->
 
 <!--If applicable, add screenshots to help explain your problem.-->
 
