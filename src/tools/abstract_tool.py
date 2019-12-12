@@ -88,8 +88,6 @@ class AbstractAbstractTool():
 		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		self.label_widget = Gtk.Label(label=self.label)
-		# if self.window.decorations == 'csd-eos': # XXX faisable mais bug laid
-		# 	self.row.set_border_width(6)
 		if self.window._settings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
@@ -100,6 +98,13 @@ class AbstractAbstractTool():
 		box.add(self.label_widget)
 		self.row.add(box)
 		self.row.show_all()
+
+	def set_show_label(self, label_visible):
+		self.label_widget.set_visible(label_visible)
+		if label_visible:
+			self.row.get_children()[0].set_halign(Gtk.Align.START)
+		else:
+			self.row.get_children()[0].set_halign(Gtk.Align.CENTER)
 
 	def update_icon_size(self):
 		image = self.row.get_children()[0].get_children()[0]

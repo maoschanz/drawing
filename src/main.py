@@ -42,7 +42,7 @@ class Application(Gtk.Application):
 		super().__init__(application_id=APP_ID,
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
-		GLib.set_application_name('Drawing') # XXX drawing ?
+		GLib.set_application_name(_("Drawing"))
 		GLib.set_prgname(APP_ID)
 		self.version = version
 		self.has_tools_in_menubar = False

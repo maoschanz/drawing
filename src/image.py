@@ -256,6 +256,7 @@ class DrawingImage(Gtk.Box):
 		self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
+		# XXX never called while an operation is ongoing
 		can_undo = ( len(self.undo_history) != 0 ) or self._operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
