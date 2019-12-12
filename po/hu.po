@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-05 17:36+0100\n"
-"PO-Revision-Date: 2019-12-10 08:41+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2019-12-12 11:00+0100\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,8 @@ msgstr "Rajzoló alkalmazás a GNOME asztali környezethez"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
+"A „Drawing” (Rajzolás) alkalmazás egy egyszerű, PNG, JPEG és BMP fájltípusok "
+"támogatásával rendelkező képszerkesztő program."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
 msgid ""
@@ -70,6 +72,10 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, ..."
 msgstr ""
+"Segítségével képeket rajzolhat és szerkeszthet a következő eszközökkel: "
+"ceruza, vonal, körív (számos beállítási lehetőséggel), kiválasztás (kivágás, "
+"másolás, beillesztés, áthúzás), alakzatok (négyszög, kör, poligon), szöveg, "
+"átméretezés, vágás, forgatás, …"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
@@ -77,17 +83,24 @@ msgid ""
 "images with drag-and-drop, and don't close saved but non-blank images when "
 "opening a new image."
 msgstr ""
+"Az „Új kép egyedi mérettel” művelet elérhetővé tétele. Képek importja vagy "
+"megnyitása húzd és ejtsd megoldással. Új kép megnyitásakor nem zárja be a "
+"mentett nem üres képeket."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:32
 msgid ""
 "The UI of the preferences window, the toolbar, the spinbuttons and the "
 "menubar have been improved."
 msgstr ""
+"Továbbfejlesztett felhasználói felületet kapott a beállítások ablak, az "
+"eszköztár, a gombok és amenüsor."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:38
 msgid ""
 "Version 0.4.5 features several minor bug fixes, and various new translations."
 msgstr ""
+"A 0.4.5 verzió számos kisebb hibajavítást, és új felhasználói felület nyelvi "
+"fordításokat hozott."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:40
 msgid ""
@@ -95,22 +108,31 @@ msgid ""
 "confusing UI for changing the colorspace has been deleted since it was "
 "causing bugs with the history."
 msgstr ""
+"Mindkét egérgombbal történő kattintás esetén már nem omlik össze a program. "
+"A zavaró színtér választáshoz tartozó felölet törölve lett, mert hibákat "
+"okozott az előzményekkel kapcsolatban."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:47
 msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
+"A 0.4.4 verzió számos kisebb hibajavítást, és új felhasználói felület nyelvi "
+"fordításokat hozott."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
 "distributions such as Ubuntu 18.04 LTS."
 msgstr ""
+"A 0.4.3 verzió kompatibilis a régebbi terjesztésekkel, mint az Ubuntu 18.04 "
+"LTS kiadása. Ez a verzió számos kisebb hibajavítást hozott."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:59
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"A 0.4.2 verzió számos kisebb hibajavítást, és új felhasználói felület nyelvi "
+"fordításokat hozott."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:65
 msgid ""
@@ -119,10 +141,14 @@ msgid ""
 "image from the clipboard content, a smoother pencil, and various new "
 "translations."
 msgstr ""
+"A 0.4 verzió új ikonokat, számos hibajavítást, továbbfejlesztett „Örökölt” "
+"és „Csak eszköztár ”eszköztárakat, vágólapról történő kép létrehozást, "
+"finomabb ceruza eszközt, és új felhasználói felület nyelvi fordításokat "
+"hozott."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:73
 msgid "First stable release, including a few basic tools."
-msgstr ""
+msgstr "Az első stabil kiadás, ami néhány alap eszközt tartalmazott."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:79
@@ -168,17 +194,17 @@ msgstr "Új üres kép"
 
 #: src/ui/app-menus.ui:58 src/ui/win-menus.ui:21 src/custom_image.py:27
 msgid "New Image With Custom Size"
-msgstr ""
+msgstr "Új kép egyedi mérettel"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:71 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
-msgstr ""
+msgstr "Új kép készítése a kijelölés alapján"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
-msgstr ""
+msgstr "Új kép készítése a vágólapról"
 
 #: src/ui/app-menus.ui:76 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
 msgid "Open an image"
@@ -380,7 +406,7 @@ msgstr "Súgó"
 
 #: src/ui/app-menus.ui:373 src/ui/win-menus.ui:201
 msgid "Help about tools"
-msgstr ""
+msgstr "Súgó az eszközökről"
 
 #: src/ui/app-menus.ui:378 src/ui/win-menus.ui:206
 msgid "Canvas and selection"
@@ -388,7 +414,7 @@ msgstr "Rajzvászon és kijelölés"
 
 #: src/ui/app-menus.ui:383 src/ui/win-menus.ui:211
 msgid "Help about selection"
-msgstr ""
+msgstr "Súgó a kiválasztásról"
 
 #: src/ui/app-menus.ui:390 src/ui/win-menus.ui:101 src/ui/win-menus.ui:185
 #: src/ui/win-menus.ui:230
@@ -397,11 +423,11 @@ msgstr "Rajzolás alkalmazás névjegye"
 
 #: src/ui/color-popover.ui:16 src/ui/color-popover.ui:31
 msgid "Back to the palette"
-msgstr ""
+msgstr "Vissza a palettához"
 
 #: src/ui/color-popover.ui:43
 msgid "Use this editor by default"
-msgstr ""
+msgstr "Legyen ez az lapértelmezett szerkesztő"
 
 #: src/ui/custom-image.ui:38 src/ui/properties.ui:114
 #: src/tools/ui/tool_crop.ui:55 src/tools/ui/tool_crop.ui:63
@@ -421,7 +447,7 @@ msgstr "Háttérszín"
 
 #: src/ui/custom-image.ui:134
 msgid "Use these settings by default"
-msgstr ""
+msgstr "Ezek legyenek az alapértelmezett beállítások"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
 #: src/window.py:805 src/window.py:820
@@ -505,7 +531,7 @@ msgstr "Telítettség"
 #: src/ui/selection.ui:82 src/tools/ui/tool_select.ui:72
 #: src/tools/ui/tool_select.ui:339
 msgid "Open As New Image"
-msgstr ""
+msgstr "Megnyitás új képként"
 
 #: src/ui/shortcuts.ui:12
 msgid "General"
@@ -541,7 +567,7 @@ msgstr "Beállítások menü"
 
 #: src/ui/shortcuts.ui:154
 msgid "Back to previous tool"
-msgstr ""
+msgstr "Vissza az előző eszközhöz"
 
 #: src/ui/shortcuts.ui:163 src/tools/selection_tools/tool_select.py:15
 msgid "Selection"
@@ -557,11 +583,11 @@ msgstr "Színek"
 
 #: src/ui/shortcuts.ui:208
 msgid "Edit the main color (left click)"
-msgstr ""
+msgstr "Elsődleges szín szerkesztése (bal kattintás)"
 
 #: src/ui/shortcuts.ui:215
 msgid "Edit the secondary color (right click)"
-msgstr ""
+msgstr "Másodlagos szín szerkesztése (jobb kattintás)"
 
 #: src/ui/shortcuts.ui:231
 msgid "Navigation"
@@ -569,11 +595,13 @@ msgstr "Navigáció"
 
 #: src/ui/shortcuts.ui:235
 msgid "Toggle the preview"
-msgstr ""
+msgstr "Előnézet megjelenítése"
 
 #: src/ui/window.ui:36
 msgid "Error starting the application, please report this bug."
 msgstr ""
+"Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
+"hibát a fejlesztőknek!"
 
 #: src/ui/window.ui:168
 msgid "Tool size"
@@ -583,7 +611,7 @@ msgstr "Eszközméret"
 #. so it's built from a string.
 #: src/ui/window.ui:188 src/window.py:513 src/tools/abstract_tool.py:82
 msgid "No options"
-msgstr ""
+msgstr "Nincs beállítás"
 
 #. <property name="relief">none</property>
 #: src/ui/window.ui:221 src/ui/window.ui:239 src/tools/ui/tool_select.ui:259
@@ -593,7 +621,7 @@ msgstr "Előnézet"
 
 #: src/ui/win-menus.ui:155
 msgid "Troubleshoot selection"
-msgstr ""
+msgstr "Hibakeresés"
 
 #: src/custom_image.py:33 src/window.py:805 src/window.py:819 src/window.py:887
 #: src/window.py:908 src/window.py:973 src/utilities.py:219
@@ -612,7 +640,7 @@ msgstr "Létrehozás"
 
 #: src/main.py:58
 msgid "Print the version and display the 'about' dialog"
-msgstr ""
+msgstr "Kiírja a verziószámot és megjeleníti a „névjegy” párbeszédablakot"
 
 #: src/main.py:61
 msgid "Open a new window"
@@ -644,11 +672,12 @@ msgstr "Hivatalos weboldal"
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr ""
+"Hiba történt a fájl megnyitása során. Próbálja meg a(z) %s fájlt megnyitni?"
 
 #: src/window.py:180
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Nem sikerült betölteni az eszközt: %s"
 
 #: src/window.py:777
 #, python-format
@@ -666,12 +695,12 @@ msgstr "Módosítások elvetése"
 #: src/window.py:788 src/window.py:889
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr ""
+msgstr "Mentetlen változtatások vannak a következőhöz: %s."
 
 #: src/window.py:790
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr ""
+msgstr "Hova kívánja megnyitni a(z) %s képfájlt?"
 
 #: src/window.py:804
 msgid "Open a picture"
@@ -686,7 +715,7 @@ msgstr "ezek a fájlok"
 #: src/window.py:829
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr ""
+msgstr "Mit szeretne tenni a(z) %s képpel?"
 
 #: src/window.py:879 src/window.py:910
 msgid "Untitled"
@@ -737,7 +766,7 @@ msgstr "Alapértelmezett háttér"
 
 #: src/preferences.py:86
 msgid "Use big icons"
-msgstr ""
+msgstr "Nagy ikonok"
 
 #: src/preferences.py:96
 msgid "Preview size"
@@ -745,7 +774,7 @@ msgstr "Előnézet mérete"
 
 #: src/preferences.py:101
 msgid "Development features"
-msgstr ""
+msgstr "Fejlesztés"
 
 #: src/preferences.py:106
 msgid "Layout"
@@ -769,19 +798,19 @@ msgstr "Örökölt"
 #. translate it like if it was "Traditional"
 #: src/preferences.py:125
 msgid "Legacy (symbolic icons)"
-msgstr ""
+msgstr "Örökölt (szimbolikus ikonok)"
 
 #: src/preferences.py:128
 msgid "Menubar only"
-msgstr ""
+msgstr "Csak menüsor"
 
 #: src/preferences.py:130
 msgid "Toolbar only"
-msgstr ""
+msgstr "Csak eszköztár"
 
 #: src/preferences.py:132
 msgid "Toolbar only (symbolic icons)"
-msgstr ""
+msgstr "Csak eszköztár (szimbolikus ikonok)"
 
 #: src/utilities.py:20
 msgid "All pictures"
@@ -806,7 +835,7 @@ msgstr "Átlátszó"
 #: src/utilities.py:60
 #, python-format
 msgid "%s%% transparent"
-msgstr ""
+msgstr "%s%% átlátszó"
 
 #: src/utilities.py:84
 msgid "White"
@@ -830,7 +859,7 @@ msgstr "Barna"
 
 #: src/utilities.py:99 src/utilities.py:109
 msgid "Probably brown"
-msgstr ""
+msgstr "Talán barna"
 
 #: src/utilities.py:101
 msgid "Red"
@@ -862,11 +891,11 @@ msgstr "Ciánkék"
 
 #: src/utilities.py:121
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Talán türkizkék"
 
 #: src/utilities.py:124
 msgid "Unknown color name"
-msgstr ""
+msgstr "Ismeretlen szín név"
 
 #: src/utilities.py:220
 msgid "Continue"
@@ -879,6 +908,11 @@ msgid ""
 "\n"
 "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
+"A terület rosszul elhatárolható, vagy nagyon komplex.\n"
+"Ez az algoritmus lehet, hogy nem lesz képes kezelni a kívánt területet.\n"
+"\n"
+"Meg kívánja szakítani a műveletet, vagy az eszköz próbálja meg legjobb "
+"tudása szerint elvégezni a feladatot?"
 
 #: src/utilities.py:292
 msgid "percents"
@@ -887,7 +921,7 @@ msgstr "százalék"
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
-msgstr ""
+msgstr "Alakzat"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -910,7 +944,7 @@ msgstr "Négyzet"
 #: src/tools/ui/tool_arc.ui:24 src/tools/ui/tool_line.ui:24
 #: src/tools/ui/tool_pencil.ui:24
 msgid "Use dashes"
-msgstr ""
+msgstr "Vonalkázás"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
 #: src/tools/classic_tools/tool_arc.py:62
@@ -937,7 +971,7 @@ msgstr "Klasszikus"
 #: src/tools/classic_tools/tool_line.py:44
 #: src/tools/classic_tools/tool_pencil.py:54
 msgid "Source color"
-msgstr ""
+msgstr "Forrás szín"
 
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41 src/tools/classic_tools/tool_arc.py:47
@@ -955,7 +989,7 @@ msgstr "Különbség"
 
 #: src/tools/ui/tool_circle.ui:5
 msgid "Shape"
-msgstr "Alak"
+msgstr "Alakzat"
 
 #: src/tools/ui/tool_circle.ui:7 src/tools/classic_tools/tool_circle.py:44
 msgid "Oval"
@@ -969,7 +1003,7 @@ msgstr "Kör"
 #: src/tools/ui/tool_circle.ui:18 src/tools/ui/tool_freeshape.ui:5
 #: src/tools/ui/tool_polygon.ui:5 src/tools/ui/tool_rectangle.ui:5
 msgid "Filling"
-msgstr ""
+msgstr "Kitöltés"
 
 #: src/tools/ui/tool_circle.ui:20 src/tools/ui/tool_freeshape.ui:7
 #: src/tools/ui/tool_polygon.ui:7 src/tools/ui/tool_rectangle.ui:7
@@ -1020,7 +1054,7 @@ msgstr "Függőleges tükrözés"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
-msgstr ""
+msgstr "Színátmenet"
 
 #: src/tools/ui/tool_paint.ui:5
 msgid "Behavior"
@@ -1028,7 +1062,7 @@ msgstr "Viselkedés"
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
-msgstr ""
+msgstr "Kitöltés"
 
 #: src/tools/ui/tool_paint.ui:12
 msgid "Erase and replace"
@@ -1044,7 +1078,7 @@ msgstr "Vékony"
 
 #: src/tools/ui/tool_pencil.ui:53
 msgid "Artificial smoothness"
-msgstr ""
+msgstr "Mesterséges finomítás"
 
 #: src/tools/ui/tool_rotate.ui:42
 msgid "Rotate left"
@@ -1052,7 +1086,7 @@ msgstr "Forgatás balra"
 
 #: src/tools/ui/tool_rotate.ui:56 src/tools/ui/tool_rotate.ui:64
 msgid "Angle (degrees)"
-msgstr ""
+msgstr "Szög (fok)"
 
 #: src/tools/ui/tool_rotate.ui:70
 msgid "Rotate right"
@@ -1117,20 +1151,20 @@ msgstr "Nincs háttér"
 
 #: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:55
 msgid "Secondary color rectangle"
-msgstr ""
+msgstr "Téglalap másodlagos színnel"
 
 #: src/tools/ui/tool_text.ui:103 src/tools/classic_tools/tool_text.py:21
 #: src/tools/classic_tools/tool_text.py:53
 msgid "Secondary color shadow"
-msgstr ""
+msgstr "Másodlagos szín-árnyék"
 
 #: src/tools/classic_tools/tool_arc.py:13
 msgid "Arc"
-msgstr ""
+msgstr "Körív"
 
 #: src/tools/classic_tools/tool_arc.py:53
 msgid "Arc options"
-msgstr ""
+msgstr "Körív beállítások"
 
 #: src/tools/classic_tools/tool_arc.py:62
 #: src/tools/classic_tools/tool_arc.py:66
@@ -1138,7 +1172,7 @@ msgstr ""
 #: src/tools/classic_tools/tool_line.py:67
 #: src/tools/classic_tools/tool_pencil.py:72
 msgid "With dashes"
-msgstr ""
+msgstr "Vonalkázás"
 
 #: src/tools/classic_tools/tool_circle.py:38
 msgid "Circle options"
@@ -1170,7 +1204,7 @@ msgstr "Festés beállítások"
 
 #: src/tools/classic_tools/tool_paint.py:25
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "Kattintson egy területre, hogy a színét átlátszóra cserélje"
 
 #: src/tools/classic_tools/tool_polygon.py:13
 msgid "Polygon"
@@ -1220,18 +1254,20 @@ msgstr "Színválasztó"
 #: src/tools/selection_tools/tool_select.py:71
 msgid "Drag the selection or right-click on the canvas"
 msgstr ""
+"Húzza át a kiválasztást, vagy kattintson a jobb egérgombbal a rajzvászonra"
 
 #: src/tools/selection_tools/tool_select.py:73
 msgid "Select an area or right-click on the canvas"
 msgstr ""
+"Válasszon ki egy területet, vagy kattintson a jobb egérgombbal a rajzvászonra"
 
 #: src/tools/canvas_tools/tool_crop.py:55
 msgid "Cropping the selection"
-msgstr ""
+msgstr "Kijelölés vágása"
 
 #: src/tools/canvas_tools/tool_crop.py:57
 msgid "Cropping the canvas"
-msgstr ""
+msgstr "Rajzvászon vágása"
 
 #: src/tools/canvas_tools/tool_rotate.py:47
 msgid "Rotating the selection"
@@ -1249,11 +1285,46 @@ msgstr "Kijelölés átméretezése"
 msgid "Scaling the canvas"
 msgstr "Rajzvászon átméretezése"
 
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "A 0.6 verzió egy nagyobb frissítés, számos fontosabb javítást tartalmaz: "
+#~ "négyszögletű kijelölés és szabadkézi kiválasztást most már külön eszköz. "
+#~ "A képek megnyithatóak és importálhatóak húz és ejtsd módszerrel. A "
+#~ "„Forgatás” eszköz most már bármilyen szögű elforgatás és a vízszintes, "
+#~ "illetve a függőleges tükrözést is támogatja. Az alakzatokat képző "
+#~ "eszközök (kör, négyszög, poligon, …) össze lettek vonva egy „Alakzat”nevű "
+#~ "eszközzé."
+
+#~ msgid ""
+#~ "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
+#~ "with several types of blur, color inversion, pixelisation, saturation and "
+#~ "transparency."
+#~ msgstr ""
+#~ "A „Telítettség” eszköz le lett cserélve a „Szűrők”-re, amely sokkal "
+#~ "hatékonyabb és számos effektus kínál: elmosást, szín invertálást, "
+#~ "pixelesítést, telítettség valamint átlátszóság állítást."
+
 #~ msgid "A fullscreen mode is now available."
 #~ msgstr "Teljes képernyős mód elérhető."
 
+#~ msgid ""
+#~ "The most prominent new feature is the ability to zoom in (or out) on the "
+#~ "image, using the minimap, the touchpad or the mouse wheel."
+#~ msgstr ""
+#~ "A legfontosabb újítás, hogy a minitérkép segítségével nagyítható (vagy "
+#~ "kicsinyíthető) a kép a érintőtábla és az egérgörgő segítségével."
+
 #~ msgid "Reload file"
 #~ msgstr "Fájl újratöltése"
+
+#~ msgid "Close Image"
+#~ msgstr "Kép bezárása"
 
 #~ msgid "Close Window"
 #~ msgstr "Ablak bezárása"
@@ -1270,6 +1341,9 @@ msgstr "Rajzvászon átméretezése"
 #~ msgid "100%"
 #~ msgstr "100%"
 
+#~ msgid "Close selection"
+#~ msgstr "Kijelölés lezárása"
+
 #~ msgid "Apply a filter"
 #~ msgstr "Szűrő alkalmazása"
 
@@ -1279,11 +1353,31 @@ msgstr "Rajzvászon átméretezése"
 #~ msgid "Keyboard"
 #~ msgstr "Billentyűzet"
 
+#~ msgid "Import a file as the selection"
+#~ msgstr "Fájl importálása kijelölésként"
+
+#~ msgid "Enter fullscreen mode"
+#~ msgstr "Belépés a teljes képernyős módba"
+
+#~ msgid "Exit fullscreen mode"
+#~ msgstr "Kilépés a teljes képernyős módból"
+
 #~ msgid "%s%%"
 #~ msgstr "%s%%"
 
 #~ msgid "Images saving"
 #~ msgstr "Képek mentése"
+
+#~ msgid ""
+#~ "JPEG and BMP images can't handle transparency. If you save your images in "
+#~ "these formats, what do want to use to replace transparent pixels?"
+#~ msgstr ""
+#~ "A JPEG és BMP fájlformátumok nem támogatják az átlátszóságot. Amennyiben "
+#~ "ilyen formátumban menti a képeket, milyen színre legyenek lecserélve az "
+#~ "átlátszó képpontok?"
+
+#~ msgid "Checkboard"
+#~ msgstr "Kockás"
 
 #~ msgid "Ask before saving"
 #~ msgstr "Kérdés mentés előtt"
@@ -1294,6 +1388,9 @@ msgstr "Rajzvászon átméretezése"
 #~ msgid "Scroll"
 #~ msgstr "Görgetés"
 
+#~ msgid "Action to zoom"
+#~ msgstr "Nagyítási művelet"
+
 #~ msgid "Automatic zoom level"
 #~ msgstr "Automatikus nagyítás"
 
@@ -1303,11 +1400,45 @@ msgstr "Rajzvászon átméretezése"
 #~ msgid "Additional tools"
 #~ msgstr "További eszközök"
 
+#~ msgid ""
+#~ "These tools are not as reliable and useful as they should be, so they are "
+#~ "not all enabled by default."
+#~ msgstr ""
+#~ "Ezek az eszközök még nem annyira megbízhatóak és használhatóak, mint "
+#~ "amennyire lenniük kellene, ezért alapértelmezés szerint nincsenek "
+#~ "bekapcsolva."
+
+#~ msgid "The recommended value is \"Automatic\"."
+#~ msgstr "Az ajánlott érték: „Automatikus”."
+
+#~ msgid "This file format doesn't support transparent colors."
+#~ msgstr "Ez a fájlformátum nem támogatja az átlátszó „színt”."
+
+#~ msgid "Replace transparency with:"
+#~ msgstr "Átlátszóság helyettesítése ezzel:"
+
+#~ msgid "Modifications will take effect in the next new window."
+#~ msgstr ""
+#~ "A beállított módosítások a következő megnyitott új ablaknál jutnak "
+#~ "érvényre."
+
+#~ msgid "Opened images"
+#~ msgstr "Megnyitott képek"
+
+#~ msgid "Failed to save %s"
+#~ msgstr "%s mentése meghiúsult"
+
 #~ msgid "Blur"
 #~ msgstr "Elmosás"
 
+#~ msgid "More options"
+#~ msgstr "További lehetőségek"
+
 #~ msgid "Select a filter…"
 #~ msgstr "Válassza ki a szűrőt…"
+
+#~ msgid "Blur radius"
+#~ msgstr "Elmosás sugara"
 
 #~ msgid "Transparency"
 #~ msgstr "Átlátszóság"
@@ -1327,6 +1458,9 @@ msgstr "Rajzvászon átméretezése"
 #~ msgid "Angle"
 #~ msgstr "Szög"
 
+#~ msgid "Empty outline"
+#~ msgstr "Nincs körvonal"
+
 #~ msgid "Horizontal gradient"
 #~ msgstr "Vízszintes színátmenet"
 
@@ -1339,8 +1473,32 @@ msgstr "Rajzvászon átméretezése"
 #~ msgid "Close shape"
 #~ msgstr "Alak bezárása"
 
+#~ msgid "The area seems poorly delimited, or is very complex."
+#~ msgstr "A terület rosszul elhatárolható, vagy nagyon komplex."
+
+#~ msgid "This algorithm may not be able to manage the wanted area."
+#~ msgstr ""
+#~ "Ez az algoritmus lehet, hogy nem lesz képes kezelni a kívánt területet."
+
+#~ msgid "Do you want to abort the operation, or to let the tool struggle ?"
+#~ msgstr ""
+#~ "Meg kívánja szakítani a műveletet, vagy az eszköz próbálja meg legjobb "
+#~ "tudása szerint elvégezni a feladatot?"
+
 #~ msgid "Curve"
 #~ msgstr "Görbe"
 
+#~ msgid "Dashed arrow"
+#~ msgstr "Szaggatott nyíl"
+
+#~ msgid "Dashed"
+#~ msgstr "Szaggatott"
+
+#~ msgid "Click on the shape's first point to close it."
+#~ msgstr "Az alakzat bezárásához kattintson az első pontjára."
+
 #~ msgid "Filters"
 #~ msgstr "Szűrők"
+
+#~ msgid "Click on the image to preview the selected filter"
+#~ msgstr "Kattintson a képre a kiválasztott szűrő előnézetéhez"
