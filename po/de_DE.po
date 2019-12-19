@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-13 00:49+0100\n"
-"PO-Revision-Date: 2019-11-16 13:51+0100\n"
+"POT-Creation-Date: 2019-12-19 19:26+0100\n"
+"PO-Revision-Date: 2019-12-18 22:49+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -186,9 +186,8 @@ msgid "Open an image"
 msgstr "Ein Bild öffnen"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
-#, fuzzy
 msgid "Reload file"
-msgstr "Eine Datei öffnen"
+msgstr "Datei neu laden"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
@@ -574,7 +573,6 @@ msgid "Main menu"
 msgstr "Hauptmenü"
 
 #: src/ui/shortcuts.ui:54
-#, fuzzy
 msgid "Editing"
 msgstr "Bearbeitung"
 
@@ -622,20 +620,18 @@ msgstr "Auswahl"
 msgid "Delete the selection"
 msgstr "Auswahl löschen"
 
+# Will have to see this in the program to know the meaning.
 #: src/ui/shortcuts.ui:229
-#, fuzzy
 msgid "Import a file as the selection"
-msgstr "Auswahl drehen"
+msgstr ""
 
 #: src/ui/shortcuts.ui:276
-#, fuzzy
 msgid "Enter fullscreen mode"
-msgstr "Vollbildansicht schließen"
+msgstr "Vollbildansicht starten"
 
 #: src/ui/shortcuts.ui:283
-#, fuzzy
 msgid "Exit fullscreen mode"
-msgstr "Vollbildansicht schließen"
+msgstr "Vollbildansicht beenden"
 
 #: src/ui/shortcuts.ui:292
 msgid "Navigation"
@@ -736,15 +732,17 @@ msgid "Default background"
 msgstr "Standardhintergrund"
 
 #: src/preferences.py:76
-#, fuzzy
 msgid "Images saving"
-msgstr "Bilder"
+msgstr "Speichern von Bildern"
 
 #: src/preferences.py:79
 msgid ""
 "JPEG and BMP images can't handle transparency. If you save your images in "
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
+"JPEG- und BMP-Bilder unterstützen keine Transparenz. Wenn Sie Ihre Bilder in "
+"diesem Format speichern möchten, werden die transparenten Pixel ersetzt. Was "
+"möchten Sie dafür nutzen?"
 
 #: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
@@ -755,13 +753,12 @@ msgid "Black"
 msgstr "Schwarz"
 
 #: src/preferences.py:84 src/utilities.py:138
-#, fuzzy
 msgid "Checkboard"
-msgstr "Tastatur"
+msgstr "Schachbrett"
 
 #: src/preferences.py:84
 msgid "Ask before saving"
-msgstr ""
+msgstr "Vor dem Speichern fragen"
 
 #: src/preferences.py:93
 msgid "Ctrl + Scroll"
@@ -796,6 +793,8 @@ msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
+"Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein "
+"sollten. Daher sind nicht alle standardmäßig aktiviert."
 
 #: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -827,7 +826,7 @@ msgstr "Layout"
 
 #: src/preferences.py:160
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "Der empfohlene Wert ist \"Automatisch\"."
 
 #: src/preferences.py:163
 msgid "Automatic"
@@ -926,7 +925,7 @@ msgstr "Dieses Dateiformat unterstützt keine transparenten Farben."
 
 #: src/utilities.py:133
 msgid "Replace transparency with:"
-msgstr ""
+msgstr "Transparenz ersetzen mit:"
 
 #: src/utilities.py:155
 msgid "All pictures"
@@ -1000,9 +999,9 @@ msgid "What do you want to do with %s?"
 msgstr "Was möchten Sie mit %s machen?"
 
 #: src/window.py:961 src/window.py:1025 src/window.py:1095
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Fehler beim Laden des Werkzeugs: %s"
+msgstr "Speichern von %s fehlgeschlagen"
 
 #: src/window.py:974 src/window.py:1006
 msgid "Untitled"
@@ -1301,13 +1300,13 @@ msgstr "Bogen-Optionen"
 #: src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_line.py:45
 msgid "Dashed arrow"
-msgstr ""
+msgstr "Gestrichelter Pfeil"
 
 #: src/tools/classic_tools/tool_arc.py:51
 #: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
-msgstr ""
+msgstr "Gestrichelt"
 
 #: src/tools/classic_tools/tool_line.py:13
 msgid "Line"
