@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-07 21:20+0100\n"
+"POT-Creation-Date: 2019-12-13 00:49+0100\n"
 "PO-Revision-Date: 2019-11-16 13:51+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -19,8 +19,8 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:502
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
+#: src/main.py:133 src/window.py:502
 msgid "Drawing"
 msgstr "Zeichnung"
 
@@ -1025,6 +1025,11 @@ msgstr "Bild speichern als…"
 msgid "Import a picture"
 msgstr "Ein Bild importieren"
 
+#: src/window.py:1105
+#, fuzzy
+msgid "Required tool is not available"
+msgstr "Es gibt jetzt einen Vollbildmodus."
+
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
@@ -1053,8 +1058,8 @@ msgid "Use dashes"
 msgstr "Gestrichelt"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:48
-#: src/tools/classic_tools/tool_line.py:46
+#: src/tools/classic_tools/tool_arc.py:49
+#: src/tools/classic_tools/tool_line.py:47
 msgid "Arrow"
 msgstr "Pfeil"
 
@@ -1293,13 +1298,13 @@ msgstr "Bogen"
 msgid "Curve options"
 msgstr "Bogen-Optionen"
 
-#: src/tools/classic_tools/tool_arc.py:46
-#: src/tools/classic_tools/tool_line.py:44
+#: src/tools/classic_tools/tool_arc.py:47
+#: src/tools/classic_tools/tool_line.py:45
 msgid "Dashed arrow"
 msgstr ""
 
-#: src/tools/classic_tools/tool_arc.py:50
-#: src/tools/classic_tools/tool_line.py:48
+#: src/tools/classic_tools/tool_arc.py:51
+#: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
 msgstr ""

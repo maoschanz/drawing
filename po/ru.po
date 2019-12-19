@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-07 21:20+0100\n"
+"POT-Creation-Date: 2019-12-13 00:49+0100\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -20,8 +20,8 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:502
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
+#: src/main.py:133 src/window.py:502
 msgid "Drawing"
 msgstr ""
 
@@ -1028,6 +1028,10 @@ msgstr "Сохранить изображение как..."
 msgid "Import a picture"
 msgstr "Импорт изображения"
 
+#: src/window.py:1105
+msgid "Required tool is not available"
+msgstr ""
+
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
@@ -1056,8 +1060,8 @@ msgid "Use dashes"
 msgstr "Использовать тире"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:48
-#: src/tools/classic_tools/tool_line.py:46
+#: src/tools/classic_tools/tool_arc.py:49
+#: src/tools/classic_tools/tool_line.py:47
 msgid "Arrow"
 msgstr "Указатель"
 
@@ -1310,13 +1314,13 @@ msgstr ""
 msgid "Curve options"
 msgstr "Варианты окружности"
 
-#: src/tools/classic_tools/tool_arc.py:46
-#: src/tools/classic_tools/tool_line.py:44
+#: src/tools/classic_tools/tool_arc.py:47
+#: src/tools/classic_tools/tool_line.py:45
 msgid "Dashed arrow"
 msgstr ""
 
-#: src/tools/classic_tools/tool_arc.py:50
-#: src/tools/classic_tools/tool_line.py:48
+#: src/tools/classic_tools/tool_arc.py:51
+#: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
 msgstr ""

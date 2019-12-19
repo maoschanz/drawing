@@ -101,11 +101,11 @@ class ToolRotate(AbstractCanvasTool):
 
 	def on_right_clicked(self, *args):
 		angle = self.get_normalized_angle()
-		self.angle_btn.set_value(angle + 90)
+		self.angle_btn.set_value(angle - 90)
 
 	def on_left_clicked(self, *args):
 		angle = self.get_normalized_angle()
-		self.angle_btn.set_value(angle - 90)
+		self.angle_btn.set_value(angle + 90)
 
 	def on_vertical_clicked(self, *args):
 		self.flip_v = not self.flip_v

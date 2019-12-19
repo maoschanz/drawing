@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-07 21:20+0100\n"
+"POT-Creation-Date: 2019-12-13 00:49+0100\n"
 "PO-Revision-Date: 2019-12-10 13:57+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -20,8 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:502
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
+#: src/main.py:133 src/window.py:502
 msgid "Drawing"
 msgstr "Drawing"
 
@@ -1023,6 +1023,11 @@ msgstr "Guardar imagen como…"
 msgid "Import a picture"
 msgstr "Importar una imagen"
 
+#: src/window.py:1105
+#, fuzzy
+msgid "Required tool is not available"
+msgstr "Ahora está disponible un modo de pantalla completa."
+
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
@@ -1051,8 +1056,8 @@ msgid "Use dashes"
 msgstr "Utilizar trazos"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:48
-#: src/tools/classic_tools/tool_line.py:46
+#: src/tools/classic_tools/tool_arc.py:49
+#: src/tools/classic_tools/tool_line.py:47
 msgid "Arrow"
 msgstr "Flecha"
 
@@ -1290,13 +1295,13 @@ msgstr "Curva"
 msgid "Curve options"
 msgstr "Opciones de curva"
 
-#: src/tools/classic_tools/tool_arc.py:46
-#: src/tools/classic_tools/tool_line.py:44
+#: src/tools/classic_tools/tool_arc.py:47
+#: src/tools/classic_tools/tool_line.py:45
 msgid "Dashed arrow"
 msgstr "Flecha discontinua"
 
-#: src/tools/classic_tools/tool_arc.py:50
-#: src/tools/classic_tools/tool_line.py:48
+#: src/tools/classic_tools/tool_arc.py:51
+#: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
 msgstr "Discontinua"

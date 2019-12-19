@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-07 21:20+0100\n"
+"POT-Creation-Date: 2019-12-13 00:49+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
-#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:133
-#: src/window.py:502
+#: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
+#: src/main.py:133 src/window.py:502
 msgid "Drawing"
 msgstr "Dessin"
 
@@ -1020,6 +1020,10 @@ msgstr "Enregistrer l'image sous…"
 msgid "Import a picture"
 msgstr "Importer une image"
 
+#: src/window.py:1105
+msgid "Required tool is not available"
+msgstr "L'outil requis n'est pas disponible"
+
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Lead shape"
@@ -1048,8 +1052,8 @@ msgid "Use dashes"
 msgstr "Utiliser des pointillés"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:48
-#: src/tools/classic_tools/tool_line.py:46
+#: src/tools/classic_tools/tool_arc.py:49
+#: src/tools/classic_tools/tool_line.py:47
 msgid "Arrow"
 msgstr "Flèche"
 
@@ -1285,13 +1289,13 @@ msgstr "Courbe"
 msgid "Curve options"
 msgstr "Options de courbe"
 
-#: src/tools/classic_tools/tool_arc.py:46
-#: src/tools/classic_tools/tool_line.py:44
+#: src/tools/classic_tools/tool_arc.py:47
+#: src/tools/classic_tools/tool_line.py:45
 msgid "Dashed arrow"
 msgstr "Flèche en pointillés"
 
-#: src/tools/classic_tools/tool_arc.py:50
-#: src/tools/classic_tools/tool_line.py:48
+#: src/tools/classic_tools/tool_arc.py:51
+#: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
 msgstr "En pointillés"
