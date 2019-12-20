@@ -9,7 +9,7 @@ PNG, JPEG and BMP files are supported.
 
 Besides GNOME, some more traditional design layouts are available too, as well
 as an elementaryOS layout. It should also be compatible with smartphone screens
-(Librem 5, Pine Phone, etc.)
+(Librem 5, PinePhone, etc.)
 
 ### Available tools
 
@@ -31,7 +31,8 @@ Classic tools:
 |Paint      |Remove a color  |
 
 The selection tool allows you to define an area (rectangle or free), which you
-can move, cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
+can move, cut, copy, paste, edit with canvas tools, export, open as a new image,
+etc.
 
 Canvas/selection edition tools:
 
@@ -47,14 +48,18 @@ Canvas/selection edition tools:
 
 ### Available languages
 
-- Brazilian portugese (thanks to [Antonio Hauren](https://github.com/haurenburu))
+- Brazilian portuguese (thanks to [Antonio Hauren](https://github.com/haurenburu))
 - Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
+- Danish (thanks to [scootergrisen](https://github.com/scootergrisen))
 - Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
+- Finnish (thanks to [MahtiAnkka](https://github.com/mahtiankka))
 - French
 - German (thanks to [Onno Giesmann](https://github.com/Etamuk))
 - Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
-- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella ))
+- Hungarian (thanks to [KAMI911](https://github.com/kami911))
+- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella))
+- Polish (thanks to [Piotr Komur](https://github.com/pkomur))
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 

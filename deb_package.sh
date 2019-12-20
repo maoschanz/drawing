@@ -2,7 +2,7 @@
 
 DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ? elementary ?)
 PACKAGE_NAME="drawing" # TODO et pour elementary ?
-VERSION="0.4.4"
+VERSION="0.4.10"
 
 echo "targeted distribution: $DISTRO"
 echo "package name: $PACKAGE_NAME"
