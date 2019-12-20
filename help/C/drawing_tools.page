@@ -23,8 +23,11 @@
   <list>
     <item>
       <p>Pencil: The pencil draws following the pointer, and according to the
-      chosen color. Its options include the shape of the lead, and the edition
-      mode: use the "eraser" mode to delete existing colors.</p>
+      chosen color.</p>
+      <p>Its options include the shape of the lead, the use of dashes, and the
+      edition mode: the "classic" mode applies the color of the pencil on top of
+      the image's pixels, the "source color" mode replaces the pixels by the
+      selected color, and the "eraser" mode delete existing colors.</p>
     </item>
     <item>
       <p>Circle and oval, with various filling options.</p>
@@ -33,14 +36,18 @@
       <p>Rectangle, with various filling options.</p>
     </item>
     <item>
-      <p>Polygon, with various filling options.</p>
+      <p>Polygon, with various filling options. You have to click on the first
+      point of the polygon to close its shape, which applies it to the image.</p>
     </item>
     <item>
-      <p>Free shape, with various filling options.</p>
+      <p>Free shape, with various filling options. You have to click on the
+      first point of the shape to close its shape, which applies it to the
+      image.</p>
     </item>
     <item>
       <p>Line: This tool can draw straight lines. Its options include the shape
-      of the lead, the use of dashes, and the possibility to draw arrows.</p>
+      of the lead, the use of dashes, the possibility to draw arrows, and the
+      edition mode (some of these options are common with the pencil tool).</p>
     </item>
     <item>
       <p>Arc: This tool can draw arcs. Its options include the shape of the
@@ -55,8 +62,7 @@
       Insert here</gui> button.</p>
     </item>
     <item>
-      <p>Paint</p>
-      <!-- TODO -->
+      <p>Paint: this tool is not reliable, don't use it.</p>
     </item>
     <item>
       <p>Color picker: Select the color to use within the edited image.</p>
