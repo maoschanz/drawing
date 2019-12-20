@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-19 19:26+0100\n"
-"PO-Revision-Date: 2019-12-20 11:40+0100\n"
+"PO-Revision-Date: 2019-12-20 11:57+0100\n"
 "Language-Team: Piotr Komur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -406,7 +406,7 @@ msgstr "O programie"
 
 #: src/ui/classic-panel.ui:61 src/ui/classic-panel.ui:76
 msgid "Tool size"
-msgstr ""
+msgstr "Rozmiar narządzia"
 
 #. used by the bottom panels
 #: src/ui/classic-panel.ui:96 src/window.py:535 src/tools/abstract_tool.py:81
@@ -583,7 +583,7 @@ msgstr ""
 
 #: src/ui/shortcuts.ui:147
 msgid "Back to previous tool"
-msgstr ""
+msgstr "Powrót do poprzedniego narzędzia"
 
 #: src/ui/shortcuts.ui:156
 msgid "Colors"
@@ -591,11 +591,11 @@ msgstr "Kolory"
 
 #: src/ui/shortcuts.ui:160
 msgid "Edit the main color (left click)"
-msgstr ""
+msgstr "Edytuj kolor podstawowy (lewy przycisk myszy)"
 
 #: src/ui/shortcuts.ui:167
 msgid "Edit the secondary color (right click)"
-msgstr ""
+msgstr "Edytuj kolor dodatkowy (prawy przycisk myszy)"
 
 #: src/ui/shortcuts.ui:183
 msgid "Selection"
@@ -607,7 +607,7 @@ msgstr "Usuń zaznaczenie"
 
 #: src/ui/shortcuts.ui:229
 msgid "Import a file as the selection"
-msgstr ""
+msgstr "Importuj plik jako zaznaczenie"
 
 #: src/ui/shortcuts.ui:276
 msgid "Enter fullscreen mode"
@@ -615,7 +615,7 @@ msgstr ""
 
 #: src/ui/shortcuts.ui:283
 msgid "Exit fullscreen mode"
-msgstr ""
+msgstr "Opuść tryb pełnoekranowy"
 
 #: src/ui/shortcuts.ui:292
 msgid "Navigation"
@@ -671,13 +671,13 @@ msgstr "Otwórz w nowej zakładce"
 
 #: src/main.py:64
 msgid "Edit the clipboard content"
-msgstr ""
+msgstr "Edytuj zawartość schowka"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 #: src/main.py:238
 msgid "translator-credits"
-msgstr ""
+msgstr "Piotr Komur"
 
 #: src/main.py:240
 msgid "A drawing application for the GNOME desktop."
@@ -1062,7 +1062,7 @@ msgstr "Rozmycie"
 #: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
 #: src/tools/ui/tool_pencil.ui:41
 msgid "Source color"
-msgstr ""
+msgstr "Aktywny kolor"
 
 #: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
 #: src/tools/ui/tool_pencil.ui:46
@@ -1072,7 +1072,7 @@ msgstr "Gumka"
 #: src/tools/ui/tool_arc.ui:55 src/tools/ui/tool_line.ui:59
 #: src/tools/ui/tool_pencil.ui:51
 msgid "Difference"
-msgstr ""
+msgstr "Różnica"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
@@ -1096,7 +1096,7 @@ msgstr "Nasycenie"
 
 #: src/tools/ui/tool_filters.ui:103 src/tools/ui/tool_filters.ui:111
 msgid "Blur radius"
-msgstr ""
+msgstr "Stopień rozmycia"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:125
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:105
@@ -1190,7 +1190,7 @@ msgstr "Wielokąt"
 
 #: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:66
 msgid "Free shape"
-msgstr ""
+msgstr "Dowolny kształt"
 
 #: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:60
 msgid "Circle"
@@ -1214,7 +1214,7 @@ msgstr "Kołowy gradient"
 
 #: src/tools/ui/tool_shape.ui:73
 msgid "Close shape"
-msgstr ""
+msgstr "Zamknij"
 
 #: src/tools/ui/tool_text.ui:45 src/tools/ui/tool_text.ui:46
 msgid "Insert here"
@@ -1294,7 +1294,7 @@ msgstr "Opcje linii"
 
 #: src/tools/classic_tools/tool_paint.py:20
 msgid "Painting options"
-msgstr ""
+msgstr "Opcje malowania"
 
 #: src/tools/classic_tools/tool_paint.py:24
 msgid "Click on an area to replace its color by transparency"
@@ -1346,11 +1346,11 @@ msgstr "Zaznaczanie (prostokątem)"
 
 #: src/tools/canvas_tools/tool_crop.py:52
 msgid "Cropping the selection"
-msgstr ""
+msgstr "Przycinanie zaznaczenia"
 
 #: src/tools/canvas_tools/tool_crop.py:54
 msgid "Cropping the canvas"
-msgstr ""
+msgstr "Przycinanie płótna"
 
 #: src/tools/canvas_tools/tool_filters.py:32
 msgid "Filters"
@@ -1358,7 +1358,7 @@ msgstr "Filtry"
 
 #: src/tools/canvas_tools/tool_filters.py:72
 msgid "Click on the image to preview the selected filter"
-msgstr ""
+msgstr "Kliknij obraz, aby podejrzeć działanie wybranego filtru."
 
 #: src/tools/canvas_tools/tool_rotate.py:52
 msgid "Rotating the selection"
