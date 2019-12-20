@@ -68,10 +68,10 @@ class ToolRotate(AbstractCanvasTool):
 		return self.angle_btn.get_value_as_int()
 
 	def on_right_clicked(self, *args):
-		self.angle_btn.set_value(self.get_angle() + 90)
+		self.angle_btn.set_value(self.get_angle() - 90)
 
 	def on_left_clicked(self, *args):
-		self.angle_btn.set_value(self.get_angle() - 90)
+		self.angle_btn.set_value(self.get_angle() + 90)
 
 	def on_angle_changed(self, *args):
 		angle = self.get_angle()

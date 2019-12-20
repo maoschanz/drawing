@@ -16,37 +16,20 @@ class ToolFreeshape(AbstractAbstractTool):
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		(self.past_x, self.past_y) = (-1.0, -1.0)
 		self.selected_style_id = 'secondary'
-		self.selected_style_label = _("Filled (secondary color)")
 		self.selected_join_id = cairo.LineJoin.ROUND
 
 		self.add_tool_action_enum('filling_style', 'secondary')
-	# 	self.add_tool_action_enum('angle_style', 'round')
-
-	# def set_angle_style(self, *args):
-	# 	state_as_string = self.get_option_value('angle_style')
-	# 	if state_as_string == 'bevel':
-	# 		self.selected_join_id = cairo.LineJoin.BEVEL
-	# 	elif state_as_string == 'miter':
-	# 		self.selected_join_id = cairo.LineJoin.MITER
-	# 	else:
-	# 		self.selected_join_id = cairo.LineJoin.ROUND
 
 	def set_filling_style(self):
 		state_as_string = self.get_option_value('filling_style')
 		self.selected_style_id = state_as_string
-		if state_as_string == 'empty':
-			self.selected_style_label = _("Empty")
-		elif state_as_string == 'filled':
-			self.selected_style_label = _("Filled (main color)")
-		else:
-			self.selected_style_label = _("Filled (secondary color)")
 
 	def get_options_label(self):
 		return _("Shape options")
 
 	def get_edition_status(self):
 		self.set_filling_style()
-		label = self.label + ' - ' + self.selected_style_label
+		label = self.label + ' - ' + _("Click on the shape's first point to close it.")
 		return label
 
 	def give_back_control(self, preserve_selection):
@@ -109,6 +92,8 @@ class ToolFreeshape(AbstractAbstractTool):
 			(self.x_press, self.y_press) = (-1.0, -1.0)
 			(self.past_x, self.past_y) = (-1.0, -1.0)
 
+	############################################################################
+
 	def build_operation(self, cairo_path):
 		operation = {
 			'tool_id': self.id,
@@ -129,3 +114,5 @@ class ToolFreeshape(AbstractAbstractTool):
 		cairo_context = cairo.Context(self.get_surface())
 		utilities_generic_shape_tool_operation(cairo_context, operation)
 
+	############################################################################
+################################################################################

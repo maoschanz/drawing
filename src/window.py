@@ -665,7 +665,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		mean the tools will be arranged in a scrollable list of buttons, else
 		they will be in an adaptative flowbox."""
 		for tool_id in self.tools:
-			self.tools[tool_id].label_widget.set_visible(visible)
+			self.tools[tool_id].set_show_label(visible)
 		nb_tools = len(self.tools)
 		parent_box = self.tools_flowbox.get_parent()
 		if visible:
