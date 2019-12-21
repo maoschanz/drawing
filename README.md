@@ -44,15 +44,20 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Available languages
 
-- Brazilian portugese (thanks to [Antonio Hauren](https://github.com/haurenburu))
+- Brazilian portuguese (thanks to [Antonio Hauren](https://github.com/haurenburu))
 - Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
+- Danish (thanks to [scootergrisen](https://github.com/scootergrisen))
 - Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
+- Finnish (thanks to [MahtiAnkka](https://github.com/mahtiankka))
 - French
 - German (thanks to [Onno Giesmann](https://github.com/Etamuk))
 - Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
-- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella](https://github.com/albanobattistella))
+- Hungarian (thanks to [Kálmán „KAMI” Szalai](https://github.com/kami911))
+- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella))
+- Polish (thanks to [Piotr Komur](https://github.com/pkomur))
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
+- Swedish (thanks to [Åke Engelbrektson](https://github.com/eson57))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
 
 ----
