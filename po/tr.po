@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-21 19:50+0100\n"
-"PO-Revision-Date: 2019-11-01 16:29+0300\n"
+"PO-Revision-Date: 2019-12-22 02:04+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -185,9 +185,8 @@ msgid "Open an image"
 msgstr "Bir görüntü aç"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
-#, fuzzy
 msgid "Reload file"
-msgstr "Bir dosya aç"
+msgstr "Yeniden yükle"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
@@ -573,9 +572,8 @@ msgid "Main menu"
 msgstr "Ana menü"
 
 #: src/ui/shortcuts.ui:54
-#, fuzzy
 msgid "Editing"
-msgstr "Baskı"
+msgstr "Düzenleniyor"
 
 #: src/ui/shortcuts.ui:74
 msgid "Image"
@@ -622,19 +620,16 @@ msgid "Delete the selection"
 msgstr "Seçimi sil"
 
 #: src/ui/shortcuts.ui:229
-#, fuzzy
 msgid "Import a file as the selection"
-msgstr "Seçimi döndür"
+msgstr "Bir dosyayı seçim olarak al"
 
 #: src/ui/shortcuts.ui:276
-#, fuzzy
 msgid "Enter fullscreen mode"
-msgstr "Tam ekrandan çık"
+msgstr "Tam ekran kipine gir"
 
 #: src/ui/shortcuts.ui:283
-#, fuzzy
 msgid "Exit fullscreen mode"
-msgstr "Tam ekrandan çık"
+msgstr "Tam ekran kipinden çık"
 
 #: src/ui/shortcuts.ui:292
 msgid "Navigation"
@@ -735,15 +730,17 @@ msgid "Default background"
 msgstr "Öntanımlı arka plan"
 
 #: src/preferences.py:76
-#, fuzzy
 msgid "Images saving"
-msgstr "Görüntüler"
+msgstr "Görüntüler kayediliyor"
 
 #: src/preferences.py:79
 msgid ""
 "JPEG and BMP images can't handle transparency. If you save your images in "
 "these formats, what do want to use to replace transparent pixels?"
 msgstr ""
+"JPEG ve BMP görüntülerinden saydamlık kaldıramaz. Görüntülerinizi bu "
+"biçimlerde kaydederseniz, saydam pikselleri değiştirmek için ne kullanmak "
+"istersiniz?"
 
 #: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
 msgid "White"
@@ -754,13 +751,12 @@ msgid "Black"
 msgstr "Siyah"
 
 #: src/preferences.py:84 src/utilities.py:138
-#, fuzzy
 msgid "Checkboard"
-msgstr "Klavye"
+msgstr "Panoya yaz"
 
 #: src/preferences.py:84
 msgid "Ask before saving"
-msgstr ""
+msgstr "Kaydetmeden önce sor"
 
 #: src/preferences.py:93
 msgid "Ctrl + Scroll"
@@ -795,6 +791,8 @@ msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
+"Bu araçlar olması gerektiği kadar güvenilir ve kullanışlı değildir, bu "
+"nedenle hepsi varsayılan olarak etkin değildir."
 
 #: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
@@ -826,7 +824,7 @@ msgstr "Düzen"
 
 #: src/preferences.py:160
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "Önerilen değer \"Otomatik\" tir."
 
 #: src/preferences.py:163
 msgid "Automatic"
@@ -919,11 +917,11 @@ msgstr "Bilinmeyen renk adı"
 
 #: src/utilities.py:131
 msgid "This file format doesn't support transparent colors."
-msgstr ""
+msgstr "Bu dosya biçimi saydam renkleri desteklemiyor."
 
 #: src/utilities.py:133
 msgid "Replace transparency with:"
-msgstr ""
+msgstr "Şeffaflığı şununla değiştir:"
 
 #: src/utilities.py:155
 msgid "All pictures"
@@ -943,7 +941,7 @@ msgstr "BMP görüntüler"
 
 #: src/utilities.py:184
 msgid "percents"
-msgstr ""
+msgstr "yüzdeler"
 
 #: src/window.py:177
 #, python-format
@@ -997,9 +995,9 @@ msgid "What do you want to do with %s?"
 msgstr "%s ile ne yapmak istersin?"
 
 #: src/window.py:961 src/window.py:1025 src/window.py:1095
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Araç yüklenemedi: %s"
+msgstr "Kaydedilemedi %s"
 
 #: src/window.py:974 src/window.py:1006
 msgid "Untitled"
@@ -1023,9 +1021,8 @@ msgid "Import a picture"
 msgstr "Bir resmi içe aktar"
 
 #: src/window.py:1105
-#, fuzzy
 msgid "Required tool is not available"
-msgstr "Tam ekran kipi şimdi kullanılabilir."
+msgstr "Gerekli araç kullanılamıyor"
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
@@ -1113,9 +1110,8 @@ msgid "Saturation"
 msgstr "Doygunluk"
 
 #: src/tools/ui/tool_filters.ui:103 src/tools/ui/tool_filters.ui:111
-#, fuzzy
 msgid "Blur radius"
-msgstr "Bulanıklık yarıçapı (piksel)"
+msgstr "Bulanıklık yarıçapı"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:125
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:105
@@ -1296,13 +1292,13 @@ msgstr "Kavis seçenekleri"
 #: src/tools/classic_tools/tool_arc.py:47
 #: src/tools/classic_tools/tool_line.py:45
 msgid "Dashed arrow"
-msgstr ""
+msgstr "Kesikli ok"
 
 #: src/tools/classic_tools/tool_arc.py:51
 #: src/tools/classic_tools/tool_line.py:49
 #: src/tools/classic_tools/tool_pencil.py:59
 msgid "Dashed"
-msgstr ""
+msgstr "Kesik"
 
 #: src/tools/classic_tools/tool_line.py:13
 msgid "Line"
