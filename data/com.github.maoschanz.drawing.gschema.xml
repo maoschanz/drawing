@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="drawing">
-  <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
+  <!-- <enum id="com.github.maoschanz.drawing.enum_decorations"> -->
+  <!--   TODO -->
+  <!--   <value nick="auto" value="0"/> -->
+  <!--   <value nick="csd" value="1"/> -->
+  <!--   <value nick="csd-eos" value="2"/> -->
+  <!--   <value nick="ssd" value="3"/> -->
+  <!--   <value nick="ssd-symbolic" value="4"/> -->
+  <!--   <value nick="ssd-toolbar" value="5"/> -->
+  <!--   <value nick="ssd-toolbar-symbolic" value="6"/> -->
+  <!--   <value nick="ssd-menubar" value="7"/> -->
+  <!--   <value nick="everything" value="8"/> -->
+  <!-- </enum> -->
 
+  <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
     <!-- Actual options -->
-    <key type="b" name="big-icons">
-      <default>false</default>
-      <summary>Use large icons</summary>
-      <description>Use 24px symbolic icons instead of 16px. It's an accessibility
-      feature which is off by default because it makes icons blurry.</description>
-    </key>
     <key type="s" name="decorations">
+    <!-- <key name="option" enum="com.github.maoschanz.drawing.enum_decorations"> -->
       <default>'auto'</default>
       <summary>Type of window decorations</summary>
       <description>Can be 'auto', 'csd', 'csd-eos', 'ssd', 'ssd-toolbar',
       'ssd-symbolic', 'ssd-toolbar-symbolic', 'ssd-menubar' or 'everything'.
       </description>
+    </key>
+    <key type="b" name="big-icons">
+      <default>false</default>
+      <summary>Use large icons</summary>
+      <description>Use 24px symbolic icons instead of 16px. It's an
+      accessibility feature which is off by default because it can make icons
+      blurry.</description>
     </key>
     <key type="s" name="zoom-behavior">
       <default>'ctrl'</default>
@@ -67,11 +81,16 @@
       <description>Default height of a new image (px).</description>
     </key>
 
-    <!-- Window state -->
+    <!-- Remembered state of the window -->
     <key type="b" name="maximized">
       <default>false</default>
       <summary>State of the window</summary>
       <description>The state of the last closed window.</description>
+    </key>
+    <key type="b" name="show-labels">
+      <default>false</default>
+      <summary>Wide side panel</summary>
+      <description>Visibility of tools' labels in the side panel.</description>
     </key>
     <key type="s" name="last-active-tool">
       <default>'pencil'</default>
@@ -79,6 +98,8 @@
       <description>The id of the last active tool, saved when closing a
       window.</description>
     </key>
+
+    <!-- Tools options state -->
     <key type="as" name="last-right-rgba">
       <default>['1.0', '1.0', '0.0', '0.5']</default>
       <summary>Last right-click color</summary>
@@ -88,8 +109,8 @@
     <key type="as" name="last-left-rgba">
       <default>['0.8', '0.0', '0.0', '1.0']</default>
       <summary>Last left-click color</summary>
-      <description>The last edition color for the left click, saved when
-      closing a window.</description>
+      <description>The last edition color for the left click, saved when closing
+      a window.</description>
     </key>
     <key type="i" name="last-size">
       <default>5</default>
@@ -102,10 +123,11 @@
       <description>If a click on the color button should display directly
       the complete color selector.</description>
     </key>
-    <key type="b" name="show-labels">
-      <default>false</default>
-      <summary>Wide side panel</summary>
-      <description>Visibility of tools' labels in the side panel.</description>
+    <key type="s" name="last-active-shape">
+      <default>'polygon'</default>
+      <summary>Default active shape</summary>
+      <description>The id of the last active shape from the "shape" tool, saved
+      when closing a window.</description>
     </key>
   </schema>
 </schemalist>

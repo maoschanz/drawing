@@ -15,14 +15,15 @@ class ToolShape(AbstractClassicTool):
 		self._path = None
 
 		self.reset_temp_points()
+
+		self._shape_id = self.get_settings().get_string('last-active-shape')
+		self.add_tool_action_enum('shape_type', self._shape_id)
+		self.set_active_shape()
+
 		self._style_id = 'empty'
 		self._style_label = _("Empty")
-		self._join_id = cairo.LineJoin.ROUND
-		self._shape_id = 'polygon'
-		self._shape_label = _("Polygon")
-
-		self.add_tool_action_enum('shape_type', self._shape_id)
 		self.add_tool_action_enum('shape_filling', self._style_id)
+
 		self.add_tool_action_simple('shape_close', self.force_close_polygon)
 		self.set_action_sensitivity('shape_close', False)
 
@@ -173,6 +174,7 @@ class ToolShape(AbstractClassicTool):
 
 	def draw_oval(self, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())
+		# TODO c'est nul à chier
 		x2 = (self.x_press + event_x)/2
 		y2 = (self.y_press + event_y)/2
 		cairo_context.curve_to(self.x_press, y2, self.x_press, event_y, x2, event_y)
@@ -222,6 +224,8 @@ class ToolShape(AbstractClassicTool):
 		return pattern
 
 	def fill_pattern(self, cairo_context, pattern, c1, c2):
+		"""Fill the shape defined by the context with a gradient from c1 to c2
+		according to the given pattern."""
 		pattern.add_color_stop_rgba(0.1, c1.red, c1.green, c1.blue, c1.alpha)
 		pattern.add_color_stop_rgba(0.9, c2.red, c2.green, c2.blue, c2.alpha)
 		cairo_context.set_source(pattern)
@@ -247,6 +251,7 @@ class ToolShape(AbstractClassicTool):
 			cairo_context.append_path(operation['path'])
 		if operation['closed']:
 			cairo_context.close_path()
+
 		filling = operation['filling']
 		if filling == 'secondary':
 			self.fill_secondary(cairo_context, c1, c2)

@@ -306,6 +306,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		rgba = self.options_manager.get_right_color()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
 		self._settings.set_strv('last-right-rgba', rgba)
+		shape_name = self.options_manager.get_value('shape_type')
+		self._settings.set_string('last-active-shape', shape_name)
 
 		self._settings.set_boolean('maximized', self.is_maximized())
 		return False

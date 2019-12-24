@@ -28,7 +28,7 @@ class AbstractAbstractTool():
 		self.try_build_panel()
 
 	############################################################################
-	# Actions ##################################################################
+	# Actions for tool's options ###############################################
 
 	def add_tool_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -50,6 +50,9 @@ class AbstractAbstractTool():
 
 	def update_actions_state(self):
 		pass
+
+	def get_settings(self):
+		return self.window._settings
 
 	############################################################################
 	# UI #######################################################################
@@ -88,7 +91,7 @@ class AbstractAbstractTool():
 		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		self.label_widget = Gtk.Label(label=self.label)
-		if self.window._settings.get_boolean('big-icons'):
+		if self.get_settings().get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR
@@ -108,7 +111,7 @@ class AbstractAbstractTool():
 
 	def update_icon_size(self):
 		image = self.row.get_children()[0].get_children()[0]
-		if self.window._settings.get_boolean('big-icons'):
+		if self.get_settings().get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR
