@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-21 19:50+0100\n"
+"POT-Creation-Date: 2019-12-30 21:15+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
-#: src/main.py:133 src/window.py:502
+#: src/main.py:130 src/window.py:504
 msgid "Drawing"
 msgstr "Rajzolás"
 
@@ -39,12 +39,12 @@ msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Sketch;Pencil;Festés;Rajzolás;Skicc;Ceruza;Ecset;Festő"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
-#: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
-#: src/window.py:871
+#: src/ui/app-menus.ui:81 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
+#: src/window.py:873
 msgid "New Window"
 msgstr "Új ablak"
 
-#: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:50
+#: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:56
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
 #: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:273
 msgid "New Image"
@@ -133,12 +133,12 @@ msgstr "Romain F. T."
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:376 src/ui/win-menus.ui:97
+#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:410 src/ui/win-menus.ui:97
 #: src/ui/win-menus.ui:185 src/ui/win-menus.ui:238
 msgid "Report a bug"
 msgstr "Hibajelentés küldése"
 
-#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:31
+#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:403 src/ui/shortcuts.ui:31
 #: src/ui/win-menus.ui:102 src/ui/win-menus.ui:190 src/ui/win-menus.ui:231
 msgid "Shortcuts"
 msgstr "Gyorsbillentyűk"
@@ -160,28 +160,28 @@ msgstr "Kilépés"
 msgid "_File"
 msgstr "_Fájl"
 
-#: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
+#: src/ui/app-menus.ui:51 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
+#: src/ui/win-menus.ui:278
+msgid "Open an image"
+msgstr "Képfájl megnyitása"
+
+#: src/ui/app-menus.ui:60 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
 msgid "New Blank Image"
 msgstr "Új üres kép"
 
-#: src/ui/app-menus.ui:58 src/ui/win-menus.ui:21 src/custom_image.py:27
+#: src/ui/app-menus.ui:64 src/ui/win-menus.ui:21 src/custom_image.py:27
 msgid "New Image With Custom Size"
 msgstr "Új kép egyedi mérettel"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
+#: src/ui/app-menus.ui:69 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
 msgstr "Új kép készítése a kijelölés alapján"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
+#: src/ui/app-menus.ui:74 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
 msgstr "Új kép készítése a vágólapról"
-
-#: src/ui/app-menus.ui:83 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
-#: src/ui/win-menus.ui:278
-msgid "Open an image"
-msgstr "Képfájl megnyitása"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
 msgid "Reload file"
@@ -196,7 +196,7 @@ msgstr "Képtulajdonságok"
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
 #: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:106 src/ui/toolbar.ui:103
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:130
-#: src/window.py:983 src/window.py:1003
+#: src/window.py:985 src/window.py:1005
 msgid "Save"
 msgstr "Mentés"
 
@@ -280,7 +280,7 @@ msgstr "Beillesztés"
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
-#: src/window.py:908 src/window.py:1073
+#: src/window.py:910 src/window.py:1075
 msgid "Import"
 msgstr "Importálás"
 
@@ -359,83 +359,118 @@ msgid "_Colors"
 msgstr "_Színek"
 
 #: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
-#: src/tools/classic_tools/tool_shape.py:41
+#: src/tools/classic_tools/tool_shape.py:42
 msgid "Main color"
 msgstr "Elsődleges szín"
 
 #: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
-#: src/tools/classic_tools/tool_shape.py:49
+#: src/tools/classic_tools/tool_shape.py:50
 msgid "Secondary color"
 msgstr "Másodlagos szín"
 
-#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
-msgid "Exchange colors"
-msgstr "Színek megcserélése"
-
-#: src/ui/app-menus.ui:330
+#: src/ui/app-menus.ui:323
 msgid "Color editor by default"
 msgstr "Alapértelmezett szín szerkesztő"
 
-#: src/ui/app-menus.ui:337 src/window.py:584
+#: src/ui/app-menus.ui:329 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
+msgid "Exchange colors"
+msgstr "Színek megcserélése"
+
+#: src/ui/app-menus.ui:336
+#, fuzzy
+msgid "Color application mode"
+msgstr "Színválasztó"
+
+#: src/ui/app-menus.ui:338 src/ui/color-popover.ui:35
+msgid "Classic"
+msgstr "Klasszikus"
+
+#: src/ui/app-menus.ui:343
+msgid "Source color"
+msgstr "Forrás szín"
+
+#: src/ui/app-menus.ui:348
+msgid "Difference"
+msgstr "Különbség"
+
+#: src/ui/app-menus.ui:355
+msgid "Don't use the colors but…"
+msgstr ""
+
+#. BlurType.PX_BOX
+#: src/ui/app-menus.ui:357 src/tools/ui/tool_filters.ui:185
+#: src/tools/canvas_tools/tool_filters.py:87
+msgid "Blur"
+msgstr "Elmosás"
+
+#: src/ui/app-menus.ui:362
+msgid "Eraser"
+msgstr "Radír"
+
+#: src/ui/app-menus.ui:371 src/window.py:586
 msgid "_Tools"
 msgstr "_Eszközök"
 
-#: src/ui/app-menus.ui:355
+#: src/ui/app-menus.ui:389
 msgid "Previous tool"
 msgstr "Előző szeköz"
 
-#: src/ui/app-menus.ui:362 src/window.py:801 src/window.py:804
+#: src/ui/app-menus.ui:396 src/window.py:803 src/window.py:806
 msgid "_Options"
 msgstr "_Beállítások"
 
-#: src/ui/app-menus.ui:366
+#: src/ui/app-menus.ui:400
 msgid "_Help"
 msgstr "_Súgó"
 
-#: src/ui/app-menus.ui:383
+#: src/ui/app-menus.ui:417
 msgid "Index"
 msgstr "Index"
 
-#: src/ui/app-menus.ui:388 src/ui/win-menus.ui:209
+#: src/ui/app-menus.ui:422 src/ui/win-menus.ui:209
 msgid "Basic help"
 msgstr "Súgó"
 
-#: src/ui/app-menus.ui:393 src/ui/win-menus.ui:214
+#: src/ui/app-menus.ui:427 src/ui/win-menus.ui:214
 msgid "Help about tools"
 msgstr "Súgó az eszközökről"
 
-#: src/ui/app-menus.ui:398 src/ui/win-menus.ui:219
+#: src/ui/app-menus.ui:432 src/ui/win-menus.ui:219
 msgid "Canvas and selection"
 msgstr "Rajzvászon és kijelölés"
 
-#: src/ui/app-menus.ui:403 src/ui/win-menus.ui:224
+#: src/ui/app-menus.ui:437 src/ui/win-menus.ui:224
 msgid "Help about selection"
 msgstr "Súgó a kiválasztásról"
 
-#: src/ui/app-menus.ui:410 src/ui/win-menus.ui:110 src/ui/win-menus.ui:198
+#: src/ui/app-menus.ui:444 src/ui/win-menus.ui:110 src/ui/win-menus.ui:198
 #: src/ui/win-menus.ui:243
 msgid "About Drawing"
 msgstr "Rajzolás alkalmazás névjegye"
 
-#: src/ui/classic-panel.ui:61 src/ui/classic-panel.ui:76
+#: src/ui/classic-panel.ui:59 src/ui/classic-panel.ui:74
 msgid "Tool size"
 msgstr "Eszközméret"
 
 #. used by the bottom panels
-#: src/ui/classic-panel.ui:96 src/window.py:535 src/tools/abstract_tool.py:81
+#: src/ui/classic-panel.ui:94 src/window.py:537 src/tools/abstract_tool.py:84
 msgid "No options"
 msgstr "Nincs beállítás"
 
-#: src/ui/classic-panel.ui:124 src/ui/selection-panel.ui:125
+#: src/ui/classic-panel.ui:122 src/ui/selection-panel.ui:125
 #: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
 msgstr "Előnézet"
 
-#: src/ui/color-popover.ui:16 src/ui/color-popover.ui:31
+#: src/ui/color-popover.ui:27
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+#: src/ui/color-popover.ui:67 src/ui/color-popover.ui:81
 msgid "Back to the palette"
 msgstr "Vissza a palettához"
 
-#: src/ui/color-popover.ui:43
+#: src/ui/color-popover.ui:93
 msgid "Use this editor by default"
 msgstr "Legyen ez az lapértelmezett szerkesztő"
 
@@ -460,7 +495,7 @@ msgid "Use these settings by default"
 msgstr "Ezek legyenek az alapértelmezett beállítások"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
-#: src/window.py:892 src/window.py:907
+#: src/window.py:894 src/window.py:909
 msgid "Open"
 msgstr "Megnyitás"
 
@@ -648,8 +683,8 @@ msgstr ""
 msgid "Troubleshoot selection"
 msgstr "Hibakeresés"
 
-#: src/custom_image.py:33 src/utilities.py:129 src/window.py:892
-#: src/window.py:906 src/window.py:982 src/window.py:1003 src/window.py:1073
+#: src/custom_image.py:33 src/utilities.py:129 src/window.py:894
+#: src/window.py:908 src/window.py:984 src/window.py:1005 src/window.py:1075
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
 #: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
@@ -672,37 +707,38 @@ msgstr "„%s” _visszavonása"
 msgid "Redo %s"
 msgstr "„%s” újra"
 
-#: src/main.py:57
-msgid "Print the version and display the 'about' dialog"
-msgstr "Kiírja a verziószámot és megjeleníti a „névjegy” párbeszédablakot"
+#: src/main.py:56
+#, fuzzy
+msgid "Show the app version"
+msgstr "Előnézet megjelenítése"
 
-#: src/main.py:60
+#: src/main.py:58
 msgid "Open a new window"
 msgstr "Megnyitás új ablakban"
 
-#: src/main.py:62
+#: src/main.py:60
 msgid "Open a new tab"
 msgstr "Új lap megnyitása"
 
-#: src/main.py:64
+#: src/main.py:62
 msgid "Edit the clipboard content"
 msgstr "Kép szerkesztése a vágólapról"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
-#: src/main.py:238
+#: src/main.py:235
 msgid "translator-credits"
 msgstr "Kálmán „KAMI” Szalai <kami911@gmail.com>, 2019"
 
-#: src/main.py:240
+#: src/main.py:237
 msgid "A drawing application for the GNOME desktop."
 msgstr "Rajzoló alkalmazás a GNOME asztali környezethez."
 
-#: src/main.py:244
+#: src/main.py:241
 msgid "Official webpage"
 msgstr "Hivatalos weboldal"
 
-#: src/main.py:286
+#: src/main.py:283
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr ""
@@ -951,103 +987,104 @@ msgstr "százalék"
 msgid "Failed to load tool: %s"
 msgstr "Nem sikerült betölteni az eszközt: %s"
 
-#: src/window.py:488
+#: src/window.py:490
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 "A beállított módosítások a következő megnyitott új ablaknál jutnak érvényre."
 
-#: src/window.py:581
+#: src/window.py:583
 msgid "Opened images"
 msgstr "Megnyitott képek"
 
-#: src/window.py:864
+#: src/window.py:866
 #, python-format
 msgid "Loading %s"
 msgstr "%s fájl betöltése"
 
-#: src/window.py:870
+#: src/window.py:872
 msgid "New Tab"
 msgstr "Új lap"
 
-#: src/window.py:872
+#: src/window.py:874
 msgid "Discard changes"
 msgstr "Módosítások elvetése"
 
-#: src/window.py:875 src/window.py:984
+#: src/window.py:877 src/window.py:986
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Mentetlen változtatások vannak a következőhöz: %s."
 
-#: src/window.py:877
+#: src/window.py:879
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Hova kívánja megnyitni a(z) %s képfájlt?"
 
-#: src/window.py:891
+#: src/window.py:893
 msgid "Open a picture"
 msgstr "Kép megnyitása"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:915
+#: src/window.py:917
 msgid "these files"
 msgstr "ezek a fájlok"
 
-#: src/window.py:916
+#: src/window.py:918
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Mit szeretne tenni a(z) %s képpel?"
 
-#: src/window.py:961 src/window.py:1025 src/window.py:1095
+#: src/window.py:963 src/window.py:1027 src/window.py:1097
 #, python-format
 msgid "Failed to save %s"
 msgstr "%s mentése meghiúsult"
 
-#: src/window.py:974 src/window.py:1006
+#: src/window.py:976 src/window.py:1008
 msgid "Untitled"
 msgstr "Névtelen"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:976
+#: src/window.py:978
 msgid "this picture"
 msgstr "ez a kép"
 
-#: src/window.py:981
+#: src/window.py:983
 msgid "Discard"
 msgstr "Eldobás"
 
-#: src/window.py:1002
+#: src/window.py:1004
 msgid "Save picture as…"
 msgstr "Kép mentése másként…"
 
-#: src/window.py:1072
+#: src/window.py:1074
 msgid "Import a picture"
 msgstr "Kép importálása"
 
-#: src/window.py:1105
+#: src/window.py:1107
 #, fuzzy
 msgid "Required tool is not available"
 msgstr "Teljes képernyős mód elérhető."
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
-msgid "Lead shape"
+#, fuzzy
+msgid "Line shape"
 msgstr "Alakzat"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
-#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:22
-#: src/tools/classic_tools/tool_arc.py:35
-#: src/tools/classic_tools/tool_line.py:29
+#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:21
+#: src/tools/classic_tools/tool_arc.py:33
+#: src/tools/classic_tools/tool_line.py:28
 #: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:44
+#: src/tools/classic_tools/tool_pencil.py:42
 msgid "Round"
 msgstr "Kerekítés"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
-#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
-#: src/tools/classic_tools/tool_line.py:26
-#: src/tools/classic_tools/tool_pencil.py:40
+#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:30
+#: src/tools/classic_tools/tool_line.py:25
+#: src/tools/classic_tools/tool_pencil.py:38
 msgid "Square"
 msgstr "Négyzet"
 
@@ -1057,42 +1094,10 @@ msgid "Use dashes"
 msgstr "Vonalkázás"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:49
-#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_arc.py:46
+#: src/tools/classic_tools/tool_line.py:45
 msgid "Arrow"
 msgstr "Nyíl"
-
-#: src/tools/ui/tool_arc.ui:33 src/tools/ui/tool_line.ui:37
-#: src/tools/ui/tool_pencil.ui:29
-msgid "Mode"
-msgstr "Üzemmód"
-
-#: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
-#: src/tools/ui/tool_pencil.ui:31
-msgid "Classic"
-msgstr "Klasszikus"
-
-#. BlurType.PX_BOX
-#: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:185
-#: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
-#: src/tools/canvas_tools/tool_filters.py:87
-msgid "Blur"
-msgstr "Elmosás"
-
-#: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
-#: src/tools/ui/tool_pencil.ui:41
-msgid "Source color"
-msgstr "Forrás szín"
-
-#: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
-#: src/tools/ui/tool_pencil.ui:46
-msgid "Eraser"
-msgstr "Radír"
-
-#: src/tools/ui/tool_arc.ui:55 src/tools/ui/tool_line.ui:59
-#: src/tools/ui/tool_pencil.ui:51
-msgid "Difference"
-msgstr "Különbség"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
@@ -1159,11 +1164,11 @@ msgstr "Törlés és csere"
 msgid "Clipping"
 msgstr "Vágás"
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
 msgid "Thin"
 msgstr "Vékony"
 
-#: src/tools/ui/tool_pencil.ui:58
+#: src/tools/ui/tool_pencil.ui:30
 msgid "Artificial smoothness"
 msgstr "Mesterséges finomítás"
 
@@ -1195,40 +1200,39 @@ msgstr "Függőleges tükrözés"
 msgid "Always keep proportions"
 msgstr "Arányok megtartása"
 
-#: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:54
+#: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:55
 msgid "Rectangle"
 msgstr "Téglalap"
 
-#: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:57
+#: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:58
 msgid "Oval"
 msgstr "Ovális"
 
-#: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:22
-#: src/tools/classic_tools/tool_shape.py:63
+#: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:64
 msgid "Polygon"
 msgstr "Sokszög"
 
-#: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:66
+#: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:67
 msgid "Free shape"
 msgstr "Szabad alakzat"
 
-#: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:60
+#: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:61
 msgid "Circle"
 msgstr "Kör"
 
-#: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:39
+#: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:40
 msgid "Empty outline"
 msgstr "Nincs körvonal"
 
-#: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:43
+#: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:44
 msgid "Horizontal gradient"
 msgstr "Vízszintes színátmenet"
 
-#: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:45
+#: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:46
 msgid "Vertical gradient"
 msgstr "Függőleges színátmenet"
 
-#: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:47
+#: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:48
 msgid "Radial gradient"
 msgstr "Sugaras színátmenet"
 
@@ -1292,18 +1296,18 @@ msgstr ""
 msgid "Curve"
 msgstr "Görbe"
 
-#: src/tools/classic_tools/tool_arc.py:38
+#: src/tools/classic_tools/tool_arc.py:36
 msgid "Curve options"
 msgstr "Görbe beállítások"
 
-#: src/tools/classic_tools/tool_arc.py:47
-#: src/tools/classic_tools/tool_line.py:45
+#: src/tools/classic_tools/tool_arc.py:44
+#: src/tools/classic_tools/tool_line.py:43
 msgid "Dashed arrow"
 msgstr "Szaggatott nyíl"
 
-#: src/tools/classic_tools/tool_arc.py:51
-#: src/tools/classic_tools/tool_line.py:49
-#: src/tools/classic_tools/tool_pencil.py:59
+#: src/tools/classic_tools/tool_arc.py:48
+#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_pencil.py:56
 msgid "Dashed"
 msgstr "Szaggatott"
 
@@ -1311,7 +1315,7 @@ msgstr "Szaggatott"
 msgid "Line"
 msgstr "Vonal"
 
-#: src/tools/classic_tools/tool_line.py:32
+#: src/tools/classic_tools/tool_line.py:31
 msgid "Line options"
 msgstr "Vonal beállítások"
 
@@ -1327,7 +1331,7 @@ msgstr "Kattintson egy területre, hogy a színét átlátszóra cserélje"
 msgid "Pencil"
 msgstr "Ceruza"
 
-#: src/tools/classic_tools/tool_pencil.py:47
+#: src/tools/classic_tools/tool_pencil.py:45
 msgid "Pencil options"
 msgstr "Ceruza beállítások"
 
@@ -1335,15 +1339,15 @@ msgstr "Ceruza beállítások"
 msgid "Shape"
 msgstr "Alakzat"
 
-#: src/tools/classic_tools/tool_shape.py:19
+#: src/tools/classic_tools/tool_shape.py:24
 msgid "Empty"
 msgstr "Kiürítés"
 
-#: src/tools/classic_tools/tool_shape.py:70
+#: src/tools/classic_tools/tool_shape.py:71
 msgid "Shape options"
 msgstr "Alakzat beállítások"
 
-#: src/tools/classic_tools/tool_shape.py:77
+#: src/tools/classic_tools/tool_shape.py:78
 msgid "Click on the shape's first point to close it."
 msgstr "Az alakzat bezárásához kattintson az első pontjára."
 
@@ -1400,6 +1404,12 @@ msgstr "Kijelölés átméretezése"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Rajzvászon átméretezése"
+
+#~ msgid "Print the version and display the 'about' dialog"
+#~ msgstr "Kiírja a verziószámot és megjeleníti a „névjegy” párbeszédablakot"
+
+#~ msgid "Mode"
+#~ msgstr "Üzemmód"
 
 #~ msgid "Close"
 #~ msgstr "Bezár"

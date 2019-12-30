@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-21 19:50+0100\n"
+"POT-Creation-Date: 2019-12-30 21:15+0100\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
-#: src/main.py:133 src/window.py:502
+#: src/main.py:130 src/window.py:504
 msgid "Drawing"
 msgstr ""
 
@@ -40,12 +40,12 @@ msgid "Paint;Sketch;Pencil;"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
-#: src/ui/app-menus.ui:75 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
-#: src/window.py:871
+#: src/ui/app-menus.ui:81 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
+#: src/window.py:873
 msgid "New Window"
 msgstr "Новое окно"
 
-#: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:50
+#: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:56
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
 #: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:273
 msgid "New Image"
@@ -115,12 +115,12 @@ msgstr ""
 msgid "Preferences"
 msgstr "Параметры"
 
-#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:376 src/ui/win-menus.ui:97
+#: src/ui/app-menus.ui:20 src/ui/app-menus.ui:410 src/ui/win-menus.ui:97
 #: src/ui/win-menus.ui:185 src/ui/win-menus.ui:238
 msgid "Report a bug"
 msgstr "Сообщить об ошибке"
 
-#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:369 src/ui/shortcuts.ui:31
+#: src/ui/app-menus.ui:26 src/ui/app-menus.ui:403 src/ui/shortcuts.ui:31
 #: src/ui/win-menus.ui:102 src/ui/win-menus.ui:190 src/ui/win-menus.ui:231
 msgid "Shortcuts"
 msgstr "Комбинации клавиш"
@@ -142,31 +142,31 @@ msgstr "Завершить"
 msgid "_File"
 msgstr "_Файл\t"
 
-#: src/ui/app-menus.ui:54 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
+#: src/ui/app-menus.ui:51 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
+#: src/ui/win-menus.ui:278
+msgid "Open an image"
+msgstr "Открыть изображение"
+
+#: src/ui/app-menus.ui:60 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
 #, fuzzy
 msgid "New Blank Image"
 msgstr "Новое изображение"
 
-#: src/ui/app-menus.ui:58 src/ui/win-menus.ui:21 src/custom_image.py:27
+#: src/ui/app-menus.ui:64 src/ui/win-menus.ui:21 src/custom_image.py:27
 #, fuzzy
 msgid "New Image With Custom Size"
 msgstr "Прямоугольное выделение"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:63 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
+#: src/ui/app-menus.ui:69 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
 #, fuzzy
 msgid "New Image From Selection"
 msgstr "Прямоугольное выделение"
 
 #. you can omit the "New image" in the translation
-#: src/ui/app-menus.ui:68 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
+#: src/ui/app-menus.ui:74 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
 msgstr ""
-
-#: src/ui/app-menus.ui:83 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
-#: src/ui/win-menus.ui:278
-msgid "Open an image"
-msgstr "Открыть изображение"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
 #, fuzzy
@@ -182,7 +182,7 @@ msgstr "Свойства изображения"
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
 #: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:106 src/ui/toolbar.ui:103
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:130
-#: src/window.py:983 src/window.py:1003
+#: src/window.py:985 src/window.py:1005
 msgid "Save"
 msgstr "Сохранить"
 
@@ -268,7 +268,7 @@ msgstr "Вставить"
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
-#: src/window.py:908 src/window.py:1073
+#: src/window.py:910 src/window.py:1075
 msgid "Import"
 msgstr "Импортировать"
 
@@ -348,85 +348,120 @@ msgid "_Colors"
 msgstr "_Цвета\t"
 
 #: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
-#: src/tools/classic_tools/tool_shape.py:41
+#: src/tools/classic_tools/tool_shape.py:42
 msgid "Main color"
 msgstr "Основной цвет"
 
 #: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
-#: src/tools/classic_tools/tool_shape.py:49
+#: src/tools/classic_tools/tool_shape.py:50
 msgid "Secondary color"
 msgstr "Вторичный цвет"
 
-#: src/ui/app-menus.ui:323 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
-msgid "Exchange colors"
-msgstr "Поменять цвета"
-
-#: src/ui/app-menus.ui:330
+#: src/ui/app-menus.ui:323
 msgid "Color editor by default"
 msgstr ""
 
-#: src/ui/app-menus.ui:337 src/window.py:584
+#: src/ui/app-menus.ui:329 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
+msgid "Exchange colors"
+msgstr "Поменять цвета"
+
+#: src/ui/app-menus.ui:336
+#, fuzzy
+msgid "Color application mode"
+msgstr "Выбор цвета"
+
+#: src/ui/app-menus.ui:338 src/ui/color-popover.ui:35
+msgid "Classic"
+msgstr "Классический"
+
+#: src/ui/app-menus.ui:343
+msgid "Source color"
+msgstr "Цвет источника"
+
+#: src/ui/app-menus.ui:348
+msgid "Difference"
+msgstr "Различия"
+
+#: src/ui/app-menus.ui:355
+msgid "Don't use the colors but…"
+msgstr ""
+
+#. BlurType.PX_BOX
+#: src/ui/app-menus.ui:357 src/tools/ui/tool_filters.ui:185
+#: src/tools/canvas_tools/tool_filters.py:87
+msgid "Blur"
+msgstr ""
+
+#: src/ui/app-menus.ui:362
+msgid "Eraser"
+msgstr "Ластик"
+
+#: src/ui/app-menus.ui:371 src/window.py:586
 msgid "_Tools"
 msgstr "_Инструменты"
 
-#: src/ui/app-menus.ui:355
+#: src/ui/app-menus.ui:389
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
-#: src/ui/app-menus.ui:362 src/window.py:801 src/window.py:804
+#: src/ui/app-menus.ui:396 src/window.py:803 src/window.py:806
 msgid "_Options"
 msgstr "_Опции"
 
-#: src/ui/app-menus.ui:366
+#: src/ui/app-menus.ui:400
 msgid "_Help"
 msgstr "_Справка"
 
-#: src/ui/app-menus.ui:383
+#: src/ui/app-menus.ui:417
 msgid "Index"
 msgstr ""
 
-#: src/ui/app-menus.ui:388 src/ui/win-menus.ui:209
+#: src/ui/app-menus.ui:422 src/ui/win-menus.ui:209
 msgid "Basic help"
 msgstr ""
 
-#: src/ui/app-menus.ui:393 src/ui/win-menus.ui:214
+#: src/ui/app-menus.ui:427 src/ui/win-menus.ui:214
 msgid "Help about tools"
 msgstr ""
 
-#: src/ui/app-menus.ui:398 src/ui/win-menus.ui:219
+#: src/ui/app-menus.ui:432 src/ui/win-menus.ui:219
 #, fuzzy
 msgid "Canvas and selection"
 msgstr "Масштабировать выделенное"
 
-#: src/ui/app-menus.ui:403 src/ui/win-menus.ui:224
+#: src/ui/app-menus.ui:437 src/ui/win-menus.ui:224
 #, fuzzy
 msgid "Help about selection"
 msgstr "Масштабировать выделенное"
 
-#: src/ui/app-menus.ui:410 src/ui/win-menus.ui:110 src/ui/win-menus.ui:198
+#: src/ui/app-menus.ui:444 src/ui/win-menus.ui:110 src/ui/win-menus.ui:198
 #: src/ui/win-menus.ui:243
 msgid "About Drawing"
 msgstr "О Drawing"
 
-#: src/ui/classic-panel.ui:61 src/ui/classic-panel.ui:76
+#: src/ui/classic-panel.ui:59 src/ui/classic-panel.ui:74
 msgid "Tool size"
 msgstr "Размер инструмента"
 
 #. used by the bottom panels
-#: src/ui/classic-panel.ui:96 src/window.py:535 src/tools/abstract_tool.py:81
+#: src/ui/classic-panel.ui:94 src/window.py:537 src/tools/abstract_tool.py:84
 msgid "No options"
 msgstr ""
 
-#: src/ui/classic-panel.ui:124 src/ui/selection-panel.ui:125
+#: src/ui/classic-panel.ui:122 src/ui/selection-panel.ui:125
 #: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#: src/ui/color-popover.ui:16 src/ui/color-popover.ui:31
+#: src/ui/color-popover.ui:27
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+#: src/ui/color-popover.ui:67 src/ui/color-popover.ui:81
 msgid "Back to the palette"
 msgstr "Назад к палитре"
 
-#: src/ui/color-popover.ui:43
+#: src/ui/color-popover.ui:93
 msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
@@ -453,7 +488,7 @@ msgid "Use these settings by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
-#: src/window.py:892 src/window.py:907
+#: src/window.py:894 src/window.py:909
 msgid "Open"
 msgstr "Открыть"
 
@@ -651,8 +686,8 @@ msgstr "Ошибка при запуске приложения, пожалуй�
 msgid "Troubleshoot selection"
 msgstr "Выбор цвета"
 
-#: src/custom_image.py:33 src/utilities.py:129 src/window.py:892
-#: src/window.py:906 src/window.py:982 src/window.py:1003 src/window.py:1073
+#: src/custom_image.py:33 src/utilities.py:129 src/window.py:894
+#: src/window.py:908 src/window.py:984 src/window.py:1005 src/window.py:1075
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
 #: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
@@ -675,37 +710,38 @@ msgstr "Отменить"
 msgid "Redo %s"
 msgstr "Вернуть"
 
-#: src/main.py:57
-msgid "Print the version and display the 'about' dialog"
-msgstr ""
+#: src/main.py:56
+#, fuzzy
+msgid "Show the app version"
+msgstr "Предварительный просмотр"
 
-#: src/main.py:60
+#: src/main.py:58
 msgid "Open a new window"
 msgstr "Открыть новое окно"
 
-#: src/main.py:62
+#: src/main.py:60
 msgid "Open a new tab"
 msgstr "Открыть новую вкладку"
 
-#: src/main.py:64
+#: src/main.py:62
 msgid "Edit the clipboard content"
 msgstr ""
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
-#: src/main.py:238
+#: src/main.py:235
 msgid "translator-credits"
 msgstr "Artem Polishchuk <ego.cordatus@gmail.com>, 2019."
 
-#: src/main.py:240
+#: src/main.py:237
 msgid "A drawing application for the GNOME desktop."
 msgstr "Гафический редактор для рабочего стола GNOME."
 
-#: src/main.py:244
+#: src/main.py:241
 msgid "Official webpage"
 msgstr ""
 
-#: src/main.py:286
+#: src/main.py:283
 #, fuzzy, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr ""
@@ -955,102 +991,103 @@ msgstr ""
 msgid "Failed to load tool: %s"
 msgstr ""
 
-#: src/window.py:488
+#: src/window.py:490
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
 
-#: src/window.py:581
+#: src/window.py:583
 msgid "Opened images"
 msgstr "Открытые изображения"
 
-#: src/window.py:864
+#: src/window.py:866
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#: src/window.py:870
+#: src/window.py:872
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: src/window.py:872
+#: src/window.py:874
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
-#: src/window.py:875 src/window.py:984
+#: src/window.py:877 src/window.py:986
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Несохраненные изменения в %s."
 
-#: src/window.py:877
+#: src/window.py:879
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:891
+#: src/window.py:893
 msgid "Open a picture"
 msgstr "Открыть изображение"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:915
+#: src/window.py:917
 #, fuzzy
 msgid "these files"
 msgstr "Несохраненный файл"
 
-#: src/window.py:916
+#: src/window.py:918
 #, fuzzy, python-format
 msgid "What do you want to do with %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py:961 src/window.py:1025 src/window.py:1095
+#: src/window.py:963 src/window.py:1027 src/window.py:1097
 #, python-format
 msgid "Failed to save %s"
 msgstr ""
 
-#: src/window.py:974 src/window.py:1006
+#: src/window.py:976 src/window.py:1008
 msgid "Untitled"
 msgstr "Без названия"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:976
+#: src/window.py:978
 msgid "this picture"
 msgstr "это изображение"
 
-#: src/window.py:981
+#: src/window.py:983
 msgid "Discard"
 msgstr "Сбросить"
 
-#: src/window.py:1002
+#: src/window.py:1004
 msgid "Save picture as…"
 msgstr "Сохранить изображение как…"
 
-#: src/window.py:1072
+#: src/window.py:1074
 msgid "Import a picture"
 msgstr "Импорт изображения"
 
-#: src/window.py:1105
+#: src/window.py:1107
 msgid "Required tool is not available"
 msgstr ""
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
-msgid "Lead shape"
-msgstr ""
+#, fuzzy
+msgid "Line shape"
+msgstr "Свободная форма"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
-#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:22
-#: src/tools/classic_tools/tool_arc.py:35
-#: src/tools/classic_tools/tool_line.py:29
+#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:21
+#: src/tools/classic_tools/tool_arc.py:33
+#: src/tools/classic_tools/tool_line.py:28
 #: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:44
+#: src/tools/classic_tools/tool_pencil.py:42
 msgid "Round"
 msgstr "Круглый"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
-#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:32
-#: src/tools/classic_tools/tool_line.py:26
-#: src/tools/classic_tools/tool_pencil.py:40
+#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:30
+#: src/tools/classic_tools/tool_line.py:25
+#: src/tools/classic_tools/tool_pencil.py:38
 msgid "Square"
 msgstr "Квадратный"
 
@@ -1060,42 +1097,10 @@ msgid "Use dashes"
 msgstr "Использовать тире"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:49
-#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_arc.py:46
+#: src/tools/classic_tools/tool_line.py:45
 msgid "Arrow"
 msgstr "Указатель"
-
-#: src/tools/ui/tool_arc.ui:33 src/tools/ui/tool_line.ui:37
-#: src/tools/ui/tool_pencil.ui:29
-msgid "Mode"
-msgstr "Режим"
-
-#: src/tools/ui/tool_arc.ui:35 src/tools/ui/tool_line.ui:39
-#: src/tools/ui/tool_pencil.ui:31
-msgid "Classic"
-msgstr "Классический"
-
-#. BlurType.PX_BOX
-#: src/tools/ui/tool_arc.ui:40 src/tools/ui/tool_filters.ui:185
-#: src/tools/ui/tool_line.ui:44 src/tools/ui/tool_pencil.ui:36
-#: src/tools/canvas_tools/tool_filters.py:87
-msgid "Blur"
-msgstr ""
-
-#: src/tools/ui/tool_arc.ui:45 src/tools/ui/tool_line.ui:49
-#: src/tools/ui/tool_pencil.ui:41
-msgid "Source color"
-msgstr "Цвет источника"
-
-#: src/tools/ui/tool_arc.ui:50 src/tools/ui/tool_line.ui:54
-#: src/tools/ui/tool_pencil.ui:46
-msgid "Eraser"
-msgstr "Ластик"
-
-#: src/tools/ui/tool_arc.ui:55 src/tools/ui/tool_line.ui:59
-#: src/tools/ui/tool_pencil.ui:51
-msgid "Difference"
-msgstr "Различия"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
@@ -1170,11 +1175,11 @@ msgstr "Стереть и заменить"
 msgid "Clipping"
 msgstr ""
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:36
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
 msgid "Thin"
 msgstr "Тонкий"
 
-#: src/tools/ui/tool_pencil.ui:58
+#: src/tools/ui/tool_pencil.ui:30
 msgid "Artificial smoothness"
 msgstr ""
 
@@ -1207,42 +1212,41 @@ msgstr "Перевернуть по вертикали"
 msgid "Always keep proportions"
 msgstr "Сохранять пропорции"
 
-#: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:54
+#: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:55
 msgid "Rectangle"
 msgstr "Прямоугольник"
 
-#: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:57
+#: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:58
 msgid "Oval"
 msgstr "Овальный"
 
-#: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:22
-#: src/tools/classic_tools/tool_shape.py:63
+#: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:64
 msgid "Polygon"
 msgstr "Полигон"
 
-#: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:66
+#: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:67
 msgid "Free shape"
 msgstr "Свободная форма"
 
-#: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:60
+#: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:61
 msgid "Circle"
 msgstr "Круг"
 
-#: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:39
+#: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:40
 msgid "Empty outline"
 msgstr ""
 
-#: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:43
+#: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:44
 #, fuzzy
 msgid "Horizontal gradient"
 msgstr "Перевернуть по горизонтали"
 
-#: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:45
+#: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:46
 #, fuzzy
 msgid "Vertical gradient"
 msgstr "Выбор цвета"
 
-#: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:47
+#: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:48
 #, fuzzy
 msgid "Radial gradient"
 msgstr "Выбор цвета"
@@ -1309,19 +1313,19 @@ msgstr ""
 msgid "Curve"
 msgstr ""
 
-#: src/tools/classic_tools/tool_arc.py:38
+#: src/tools/classic_tools/tool_arc.py:36
 #, fuzzy
 msgid "Curve options"
 msgstr "Варианты окружности"
 
-#: src/tools/classic_tools/tool_arc.py:47
-#: src/tools/classic_tools/tool_line.py:45
+#: src/tools/classic_tools/tool_arc.py:44
+#: src/tools/classic_tools/tool_line.py:43
 msgid "Dashed arrow"
 msgstr ""
 
-#: src/tools/classic_tools/tool_arc.py:51
-#: src/tools/classic_tools/tool_line.py:49
-#: src/tools/classic_tools/tool_pencil.py:59
+#: src/tools/classic_tools/tool_arc.py:48
+#: src/tools/classic_tools/tool_line.py:47
+#: src/tools/classic_tools/tool_pencil.py:56
 msgid "Dashed"
 msgstr ""
 
@@ -1329,7 +1333,7 @@ msgstr ""
 msgid "Line"
 msgstr "Линия"
 
-#: src/tools/classic_tools/tool_line.py:32
+#: src/tools/classic_tools/tool_line.py:31
 msgid "Line options"
 msgstr "Варианты линии"
 
@@ -1345,7 +1349,7 @@ msgstr "Щелкните на область, чтобы заменить ее �
 msgid "Pencil"
 msgstr "Карандаш"
 
-#: src/tools/classic_tools/tool_pencil.py:47
+#: src/tools/classic_tools/tool_pencil.py:45
 msgid "Pencil options"
 msgstr "Варианты карандаша"
 
@@ -1353,15 +1357,15 @@ msgstr "Варианты карандаша"
 msgid "Shape"
 msgstr "Фигура"
 
-#: src/tools/classic_tools/tool_shape.py:19
+#: src/tools/classic_tools/tool_shape.py:24
 msgid "Empty"
 msgstr "Пустой"
 
-#: src/tools/classic_tools/tool_shape.py:70
+#: src/tools/classic_tools/tool_shape.py:71
 msgid "Shape options"
 msgstr "Фарианты формы"
 
-#: src/tools/classic_tools/tool_shape.py:77
+#: src/tools/classic_tools/tool_shape.py:78
 msgid "Click on the shape's first point to close it."
 msgstr ""
 
@@ -1417,6 +1421,9 @@ msgstr "Масштабировать выделенное"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Масштабировать холст"
+
+#~ msgid "Mode"
+#~ msgstr "Режим"
 
 #~ msgid "Close"
 #~ msgstr "Закрыть"
