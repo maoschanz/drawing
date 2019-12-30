@@ -17,7 +17,6 @@ class ToolLine(AbstractClassicTool):
 		self.add_tool_action_boolean('use_dashes', False)
 		self.add_tool_action_boolean('is_arrow', False)
 		self.add_tool_action_boolean('use_gradient', False)
-		self.add_tool_action_enum('cairo_operator', 'over')
 		self.set_options_attributes() # Not optimal but more readable
 
 	def set_active_shape(self):
@@ -36,7 +35,6 @@ class ToolLine(AbstractClassicTool):
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.use_gradient = self.get_option_value('use_gradient')
 		self.set_active_shape()
-		self.set_active_operator()
 
 	def get_edition_status(self): # TODO l'opérateur est important
 		self.set_options_attributes()
@@ -85,7 +83,7 @@ class ToolLine(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba': self.main_color,
 			'rgba2': self.secondary_color,
-			'operator': self.selected_operator,
+			'operator': self.get_operator_enum(),
 			'line_width': self.tool_width,
 			'line_cap': self.selected_end_id,
 			'use_dashes': self.use_dashes,

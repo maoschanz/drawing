@@ -16,11 +16,9 @@ class ToolArc(AbstractClassicTool):
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', False)
 		self.add_tool_action_boolean('is_arrow', False)
-		self.add_tool_action_enum('cairo_operator', 'over')
 
 		# Default values
 		self.selected_shape_label = _("Round")
-		self.selected_operator = cairo.Operator.OVER
 		self.selected_end_id = cairo.LineCap.ROUND
 		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
 		self.use_dashes = False
@@ -37,11 +35,10 @@ class ToolArc(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Curve options")
 
-	def get_edition_status(self): # TODO l'opérateur est important
+	def get_edition_status(self):
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.set_active_shape()
-		self.set_active_operator()
 		label = self.label
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Dashed arrow")
@@ -98,7 +95,7 @@ class ToolArc(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba': self.main_color,
 			'is_preview': is_preview,
-			'operator': self.selected_operator,
+			'operator': self.get_operator_enum(),
 			'line_width': self.tool_width,
 			'line_cap': self.selected_end_id,
 			'use_dashes': self.use_dashes,

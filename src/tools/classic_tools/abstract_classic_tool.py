@@ -48,23 +48,8 @@ class AbstractClassicTool(AbstractAbstractTool):
 			self.main_color = self.window.options_manager.get_right_color()
 			self.secondary_color = self.window.options_manager.get_left_color()
 
-	def set_active_operator(self, *args):
-		state_as_string = self.get_option_value('cairo_operator')
-		if state_as_string == 'difference':
-			self.selected_operator = cairo.Operator.DIFFERENCE
-			self.selected_operator_label = _("Difference")
-		elif state_as_string == 'source':
-			self.selected_operator = cairo.Operator.SOURCE
-			self.selected_operator_label = _("Source color")
-		elif state_as_string == 'clear':
-			self.selected_operator = cairo.Operator.CLEAR
-			self.selected_operator_label = _("Eraser")
-		elif state_as_string == 'dest_in':
-			self.selected_operator = cairo.Operator.DEST_IN
-			self.selected_operator_label = _("Blur")
-		else:
-			self.selected_operator = cairo.Operator.OVER
-			self.selected_operator_label = _("Classic")
+	def get_operator_enum(self):
+		return self.window.options_manager.get_operator()[0]
 
 	############################################################################
 	# Operations management ####################################################
@@ -111,9 +96,7 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
-		self.r_btn_image = builder.get_object('r_btn_image')
-		self.l_btn_image = builder.get_object('l_btn_image')
-		self.build_color_buttons()
+		self.build_color_buttons(builder)
 
 		self.options_btn = builder.get_object('options_btn')
 		self.options_label = builder.get_object('options_label')
@@ -145,16 +128,35 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 
 	def hide_options_menu(self):
 		self.options_btn.set_active(False)
+		self.color_popover_r.update_mode()
+		self.color_popover_l.update_mode()
 
-	def build_color_buttons(self):
+	def set_operator(self, op_as_string):
+		if op_as_string == 'difference':
+			self.selected_operator_enum = cairo.Operator.DIFFERENCE
+			self.selected_operator_label = _("Difference")
+		elif op_as_string == 'source':
+			self.selected_operator_enum = cairo.Operator.SOURCE
+			self.selected_operator_label = _("Source color")
+		elif op_as_string == 'clear':
+			self.selected_operator_enum = cairo.Operator.CLEAR
+			self.selected_operator_label = _("Eraser")
+		elif op_as_string == 'dest_in':
+			self.selected_operator_enum = cairo.Operator.DEST_IN
+			self.selected_operator_label = _("Blur")
+		else:
+			self.selected_operator_enum = cairo.Operator.OVER
+			self.selected_operator_label = _("Classic")
+
+	def build_color_buttons(self, builder):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
 		memorized RGBA values."""
 		right_rgba = self.window._settings.get_strv('last-right-rgba')
 		left_rgba = self.window._settings.get_strv('last-left-rgba')
 		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, \
-		                                           self.r_btn_image, right_rgba)
+		      builder.get_object('r_btn_image'), right_rgba, False, self.window)
 		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, \
-		                                           self.l_btn_image, left_rgba)
+		        builder.get_object('l_btn_image'), left_rgba, True, self.window)
 
 	def set_palette_setting(self, show_editor):
 		self.color_popover_r.setting_changed(show_editor)

@@ -46,44 +46,44 @@
   <menu id="menu-bar">
     <submenu>
       <attribute name="label" translatable="yes">_File</attribute>
-      <submenu>
-        <attribute name="label" translatable="yes">New Image</attribute>
-        <section>
-          <item>
-            <attribute name="action">win.new_tab</attribute>
-            <attribute name="label" translatable="yes">New Blank Image</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">New Image With Custom Size</attribute>
-            <attribute name="action">win.new_tab_custom</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">New Image From Selection</attribute>
-            <attribute name="verb-icon">edit-select-symbolic</attribute>
-            <attribute name="action">win.new_tab_selection</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
-            <attribute name="action">win.new_tab_clipboard</attribute>
-            <attribute name="verb-icon">edit-paste-symbolic</attribute>
-          </item>
-        </section>
-        <section>
-          <item>
-            <attribute name="label" translatable="yes">New Window</attribute>
-            <attribute name="action">app.new_window</attribute>
-            <attribute name="verb-icon">document-new-symbolic</attribute>
-          </item>
-        </section>
-      </submenu>
       <section>
         <item>
           <attribute name="label" translatable="yes">Open an image</attribute>
           <attribute name="action">win.open</attribute>
           <attribute name="verb-icon">document-open-symbolic</attribute>
         </item>
+        <submenu>
+          <attribute name="label" translatable="yes">New Image</attribute>
+          <section>
+            <item>
+              <attribute name="action">win.new_tab</attribute>
+              <attribute name="label" translatable="yes">New Blank Image</attribute>
+              <attribute name="verb-icon">document-new-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">New Image With Custom Size</attribute>
+              <attribute name="action">win.new_tab_custom</attribute>
+              <attribute name="verb-icon">document-new-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">New Image From Selection</attribute>
+              <attribute name="verb-icon">edit-select-symbolic</attribute>
+              <attribute name="action">win.new_tab_selection</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">New Image From Clipboard</attribute>
+              <attribute name="action">win.new_tab_clipboard</attribute>
+              <attribute name="verb-icon">edit-paste-symbolic</attribute>
+            </item>
+          </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">New Window</attribute>
+              <attribute name="action">app.new_window</attribute>
+              <attribute name="verb-icon">document-new-symbolic</attribute>
+            </item>
+          </section>
+        </submenu>
         <item>
           <attribute name="label" translatable="yes">Reload file</attribute>
           <attribute name="action">win.reload_file</attribute>
@@ -320,16 +320,50 @@
       </section>
       <section>
         <item>
+          <attribute name="label" translatable="yes">Color editor by default</attribute>
+          <attribute name="action">app.use_editor</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
           <attribute name="label" translatable="yes">Exchange colors</attribute>
           <attribute name="action">win.exchange_color</attribute>
           <attribute name="verb-icon">network-transmit-receive-symbolic</attribute>
         </item>
       </section>
-      <section>
-        <item>
-          <attribute name="label" translatable="yes">Color editor by default</attribute>
-          <attribute name="action">app.use_editor</attribute>
-        </item>
+      <section id="operator-menu">
+        <section>
+          <attribute name="label" translatable="yes">Color application mode</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Classic</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">over</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Source color</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">source</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">difference</attribute>
+          </item>
+          <!-- TODO autres ? -->
+        </section>
+        <section>
+          <attribute name="label" translatable="yes">Don't use the colors but…</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Blur</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">dest_in</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Eraser</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">clear</attribute>
+          </item>
+        </section>
       </section>
     </submenu>
 

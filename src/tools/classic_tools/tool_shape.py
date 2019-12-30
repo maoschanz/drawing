@@ -131,6 +131,7 @@ class ToolShape(AbstractClassicTool):
 	############################################################################
 
 	def force_close_polygon(self, *args):
+		self.set_common_values(1)
 		self.on_release_on_area(None, None, self.initial_x, self.initial_y)
 
 	def add_point(self, event_x, event_y, memorize):
@@ -175,6 +176,7 @@ class ToolShape(AbstractClassicTool):
 	def draw_oval(self, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())
 		# TODO c'est nul à chier
+		# https://stackoverflow.com/a/20582153
 		x2 = (self.x_press + event_x)/2
 		y2 = (self.y_press + event_y)/2
 		cairo_context.curve_to(self.x_press, y2, self.x_press, event_y, x2, event_y)
@@ -199,7 +201,7 @@ class ToolShape(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
-			'operator': cairo.Operator.OVER,
+			'operator': self.get_operator_enum(),
 			'line_join': self._join_id,
 			'line_width': self.tool_width,
 			'filling': self._style_id,

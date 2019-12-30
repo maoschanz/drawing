@@ -33,33 +33,5 @@
         <attribute name="action">win.use_gradient</attribute>
       </item>
     </section>
-    <section>
-      <attribute name="label" translatable="yes">Mode</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Classic</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">over</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Blur</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">dest_in</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Source color</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">source</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Eraser</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">clear</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Difference</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">difference</attribute>
-      </item>
-    </section>
   </menu>
 </interface>

@@ -152,7 +152,7 @@ class ToolPaint(AbstractClassicTool):
 						for k in range(-1 * margin, margin+1):
 							b = b0 + k
 							if b <= 255 and b >= 0:
-								self.replace_with_alpha(r, g, b)
+								self.replace_main_with_alpha(r, g, b)
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 

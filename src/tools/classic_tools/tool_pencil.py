@@ -19,12 +19,10 @@ class ToolPencil(AbstractClassicTool):
 		self.selected_shape_label = _("Round")
 		self.selected_cap_id = cairo.LineCap.ROUND
 		self.selected_join_id = cairo.LineCap.ROUND
-		self.selected_operator = cairo.Operator.OVER
 		self.use_dashes = False
 		self.is_smooth = True
 
 		self.add_tool_action_enum('pencil_shape', 'round')
-		self.add_tool_action_enum('cairo_operator', 'over')
 		self.add_tool_action_boolean('use_dashes', self.use_dashes)
 		self.add_tool_action_boolean('pencil_smooth', self.is_smooth)
 
@@ -50,7 +48,6 @@ class ToolPencil(AbstractClassicTool):
 		self.is_smooth = self.get_option_value('pencil_smooth')
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.set_active_shape()
-		self.set_active_operator()
 
 	def get_edition_status(self):
 		self.set_options_attributes()
@@ -94,7 +91,7 @@ class ToolPencil(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'operator': self.selected_operator,
+			'operator': self.get_operator_enum(),
 			'line_width': self.tool_width,
 			'line_cap': self.selected_cap_id,
 			'line_join': self.selected_join_id,

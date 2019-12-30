@@ -53,16 +53,13 @@ class Application(Gtk.Application):
 		self.connect('command-line', self.on_cli)
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE,
-		                     _("Print the version and display the 'about' dialog"),
-		                     None)
+		                     GLib.OptionArg.NONE, _("Show the app version"), None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
-		# TODO options pour le screenshot ?
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path(APP_PATH + '/icons')

@@ -6,6 +6,57 @@
     <property name="spacing">10</property>
     <property name="orientation">vertical</property>
     <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="spacing">10</property>
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkLabel" id="popover-title">
+            <property name="visible">True</property>
+            <property name="label">set by python code</property>
+            <style><class name="dim-label"/></style>
+          </object>
+          <packing>
+            <!-- XXX because the popover menu has to be available on smartphones -->
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="operator-menu-btn">
+            <property name="visible">True</property>
+            <property name="tooltip-text" translatable="yes">How the color will be applied to the existing pixels</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="spacing">10</property>
+                <child>
+                  <object class="GtkLabel" id="operator-label">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Classic</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">pan-down-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkColorChooserWidget" id="color-widget">
+        <property name="visible">True</property>
+        <property name="use-alpha">True</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkBox" id="editor-box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
@@ -14,7 +65,6 @@
           <object class="GtkButton" id="back-btn">
             <property name="visible">True</property>
             <property name="tooltip-text" translatable="yes">Back to the palette</property>
-            <!-- TODO si ça ne gène pas la version normale, on peut tenter d'appliquer le style d'elementary -->
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -42,18 +92,12 @@
           <object class="GtkCheckButton">
             <property name="label" translatable="yes">Use this editor by default</property>
             <property name="visible">True</property>
-            <property name="action_name">app.use_editor</property>
+            <property name="action-name">app.use_editor</property>
           </object>
           <packing>
             <property name="pack-type">end</property>
           </packing>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkColorChooserWidget" id="color-widget">
-        <property name="visible">True</property>
-        <property name="use-alpha">True</property>
       </object>
     </child>
   </object>
