@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-30 21:15+0100\n"
+"POT-Creation-Date: 2020-01-11 04:39+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -129,7 +129,7 @@ msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
-#: src/ui/toolbar.ui:139 src/ui/toolbar.ui:140 src/ui/win-menus.ui:91
+#: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
 #: src/ui/win-menus.ui:179 src/preferences.py:43
 msgid "Preferences"
 msgstr "Préférences"
@@ -144,8 +144,8 @@ msgstr "Reporter un bug"
 msgid "Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:150
-#: src/ui/toolbar.ui:151 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
+#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:186
+#: src/ui/toolbar.ui:187 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
 msgstr "Aide"
 
@@ -302,17 +302,20 @@ msgid "Optimal Zoom"
 msgstr "Zoom optimal"
 
 #: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
-#: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
+#: src/ui/toolbar.ui:128 src/ui/toolbar.ui:129 src/tools/ui/tool_crop.ui:145
+#: src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
 msgstr "Diminuer le zoom"
 
-#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256
-#: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
+#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256 src/ui/toolbar.ui:139
+#: src/ui/toolbar.ui:140 src/tools/ui/tool_crop.ui:150
+#: src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
 msgstr "Zoom original"
 
 #: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
-#: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
+#: src/ui/toolbar.ui:150 src/ui/toolbar.ui:151 src/tools/ui/tool_crop.ui:155
+#: src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
 msgstr "Augmenter le zoom"
 
@@ -340,8 +343,8 @@ msgstr "Aller à droite"
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:128
-#: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
+#: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:110
 msgid "Show tools names"
 msgstr "Afficher le nom des outils"
@@ -359,15 +362,13 @@ msgstr "Quitter le plein écran"
 msgid "_Colors"
 msgstr "_Couleurs"
 
-#: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
-#: src/tools/classic_tools/tool_shape.py:42
-msgid "Main color"
-msgstr "Couleur principale"
+#: src/ui/app-menus.ui:313
+msgid "Edit Main Color…"
+msgstr "Éditer la couleur principale…"
 
-#: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
-#: src/tools/classic_tools/tool_shape.py:50
-msgid "Secondary color"
-msgstr "Couleur secondaire"
+#: src/ui/app-menus.ui:317
+msgid "Edit Secondary Color…"
+msgstr "Éditer la couleur secondaire…"
 
 #: src/ui/app-menus.ui:323
 msgid "Color editor by default"
@@ -1215,6 +1216,14 @@ msgstr "Cercle"
 #: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:40
 msgid "Empty outline"
 msgstr "Contour vide"
+
+#: src/tools/ui/tool_shape.ui:46 src/tools/classic_tools/tool_shape.py:42
+msgid "Main color"
+msgstr "Couleur principale"
+
+#: src/tools/ui/tool_shape.ui:51 src/tools/classic_tools/tool_shape.py:50
+msgid "Secondary color"
+msgstr "Couleur secondaire"
 
 #: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:44
 msgid "Horizontal gradient"

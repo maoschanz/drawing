@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-30 21:15+0100\n"
+"POT-Creation-Date: 2020-01-11 04:39+0100\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
 "Last-Translator: Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
@@ -48,7 +48,7 @@ msgstr "Nova janela"
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
 #: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:273
 msgid "New Image"
-msgstr "Nova imagem"
+msgstr "Nova Imagem"
 
 #: data/com.github.maoschanz.drawing.desktop.in:26
 msgid "Edit Image in Clipboard"
@@ -116,7 +116,7 @@ msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
-#: src/ui/toolbar.ui:139 src/ui/toolbar.ui:140 src/ui/win-menus.ui:91
+#: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
 #: src/ui/win-menus.ui:179 src/preferences.py:43
 msgid "Preferences"
 msgstr "Preferências"
@@ -131,8 +131,8 @@ msgstr "Reportar um bug"
 msgid "Shortcuts"
 msgstr "Atalhos"
 
-#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:150
-#: src/ui/toolbar.ui:151 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
+#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:186
+#: src/ui/toolbar.ui:187 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
 msgstr "Ajuda"
 
@@ -173,9 +173,8 @@ msgid "New Image From Clipboard"
 msgstr "Nova imagem do clipboard"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
-#, fuzzy
 msgid "Reload file"
-msgstr "Abrir um arquivo"
+msgstr "Recarregar Arquivo"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
@@ -295,17 +294,20 @@ msgid "Optimal Zoom"
 msgstr "Zoom ótico"
 
 #: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
-#: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
+#: src/ui/toolbar.ui:128 src/ui/toolbar.ui:129 src/tools/ui/tool_crop.ui:145
+#: src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
 msgstr "Reduzir zoom"
 
-#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256
-#: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
+#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256 src/ui/toolbar.ui:139
+#: src/ui/toolbar.ui:140 src/tools/ui/tool_crop.ui:150
+#: src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
 msgstr "Zoom original"
 
 #: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
-#: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
+#: src/ui/toolbar.ui:150 src/ui/toolbar.ui:151 src/tools/ui/tool_crop.ui:155
+#: src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
 msgstr "Aumentar zoom"
 
@@ -333,8 +335,8 @@ msgstr "Ir para direita"
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:128
-#: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
+#: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:110
 msgid "Show tools names"
 msgstr "Mostrar nome das ferramentas"
@@ -352,14 +354,14 @@ msgstr "Sair da tela cheia"
 msgid "_Colors"
 msgstr "_Cores"
 
-#: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
-#: src/tools/classic_tools/tool_shape.py:42
-msgid "Main color"
+#: src/ui/app-menus.ui:313
+#, fuzzy
+msgid "Edit Main Color…"
 msgstr "Cor primária"
 
-#: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
-#: src/tools/classic_tools/tool_shape.py:50
-msgid "Secondary color"
+#: src/ui/app-menus.ui:317
+#, fuzzy
+msgid "Edit Secondary Color…"
 msgstr "Cor secundária"
 
 #: src/ui/app-menus.ui:323
@@ -712,7 +714,7 @@ msgstr "Refazer %s"
 #: src/main.py:56
 #, fuzzy
 msgid "Show the app version"
-msgstr "Mostrar preview"
+msgstr "Mostrar versão"
 
 #: src/main.py:58
 msgid "Open a new window"
@@ -1235,6 +1237,14 @@ msgstr "Circulo"
 msgid "Empty outline"
 msgstr ""
 
+#: src/tools/ui/tool_shape.ui:46 src/tools/classic_tools/tool_shape.py:42
+msgid "Main color"
+msgstr "Cor primária"
+
+#: src/tools/ui/tool_shape.ui:51 src/tools/classic_tools/tool_shape.py:50
+msgid "Secondary color"
+msgstr "Cor secundária"
+
 #: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:44
 #, fuzzy
 msgid "Horizontal gradient"
@@ -1416,12 +1426,6 @@ msgstr "Redimensionar a seleção"
 msgid "Scaling the canvas"
 msgstr "Redimensionar a tela"
 
-#~ msgid "Print the version and display the 'about' dialog"
-#~ msgstr "Mostrar versão e a janela 'sobre'"
-
-#~ msgid "Mode"
-#~ msgstr "Modo"
-
 #~ msgid "Close"
 #~ msgstr "Fechar"
 
@@ -1433,9 +1437,6 @@ msgstr "Redimensionar a tela"
 
 #~ msgid "Selection type"
 #~ msgstr "Tipo de seleção"
-
-#~ msgid "Freehand"
-#~ msgstr "Mão livre"
 
 #~ msgid "Similar color"
 #~ msgstr "Cor semelhante"

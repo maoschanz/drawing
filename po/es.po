@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-30 21:15+0100\n"
+"POT-Creation-Date: 2020-01-11 04:39+0100\n"
 "PO-Revision-Date: 2019-12-10 13:57+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -130,7 +130,7 @@ msgid "Romain F. T."
 msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
-#: src/ui/toolbar.ui:139 src/ui/toolbar.ui:140 src/ui/win-menus.ui:91
+#: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
 #: src/ui/win-menus.ui:179 src/preferences.py:43
 msgid "Preferences"
 msgstr "Preferencias"
@@ -145,8 +145,8 @@ msgstr "Informar de un fallo"
 msgid "Shortcuts"
 msgstr "Atajos"
 
-#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:150
-#: src/ui/toolbar.ui:151 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
+#: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:186
+#: src/ui/toolbar.ui:187 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
 msgstr "Ayuda"
 
@@ -303,17 +303,20 @@ msgid "Optimal Zoom"
 msgstr "Ampliación óptima"
 
 #: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
-#: src/tools/ui/tool_crop.ui:145 src/tools/ui/tool_scale.ui:166
+#: src/ui/toolbar.ui:128 src/ui/toolbar.ui:129 src/tools/ui/tool_crop.ui:145
+#: src/tools/ui/tool_scale.ui:166
 msgid "Zoom Out"
 msgstr "Alejar"
 
-#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256
-#: src/tools/ui/tool_crop.ui:150 src/tools/ui/tool_scale.ui:171
+#: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256 src/ui/toolbar.ui:139
+#: src/ui/toolbar.ui:140 src/tools/ui/tool_crop.ui:150
+#: src/tools/ui/tool_scale.ui:171
 msgid "Original Zoom"
 msgstr "Ampliación original"
 
 #: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
-#: src/tools/ui/tool_crop.ui:155 src/tools/ui/tool_scale.ui:176
+#: src/ui/toolbar.ui:150 src/ui/toolbar.ui:151 src/tools/ui/tool_crop.ui:155
+#: src/tools/ui/tool_scale.ui:176
 msgid "Zoom In"
 msgstr "Acercar"
 
@@ -341,8 +344,8 @@ msgstr "Ir a la derecha"
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:128
-#: src/ui/toolbar.ui:129 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
+#: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
+#: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:110
 msgid "Show tools names"
 msgstr "Mostrar nombres de herramientas"
@@ -360,14 +363,14 @@ msgstr "Salir de pantalla completa"
 msgid "_Colors"
 msgstr "_Colores"
 
-#: src/ui/app-menus.ui:313 src/tools/ui/tool_shape.ui:46
-#: src/tools/classic_tools/tool_shape.py:42
-msgid "Main color"
+#: src/ui/app-menus.ui:313
+#, fuzzy
+msgid "Edit Main Color…"
 msgstr "Color principal"
 
-#: src/ui/app-menus.ui:317 src/tools/ui/tool_shape.ui:51
-#: src/tools/classic_tools/tool_shape.py:50
-msgid "Secondary color"
+#: src/ui/app-menus.ui:317
+#, fuzzy
+msgid "Edit Secondary Color…"
 msgstr "Color secundario"
 
 #: src/ui/app-menus.ui:323
@@ -708,9 +711,8 @@ msgid "Redo %s"
 msgstr "Rehacer %s"
 
 #: src/main.py:56
-#, fuzzy
 msgid "Show the app version"
-msgstr "Mostrar la previsualización"
+msgstr "Muestra la versión"
 
 #: src/main.py:58
 msgid "Open a new window"
@@ -1223,6 +1225,14 @@ msgstr "Círculo"
 msgid "Empty outline"
 msgstr "Sin relleno"
 
+#: src/tools/ui/tool_shape.ui:46 src/tools/classic_tools/tool_shape.py:42
+msgid "Main color"
+msgstr "Color principal"
+
+#: src/tools/ui/tool_shape.ui:51 src/tools/classic_tools/tool_shape.py:50
+msgid "Secondary color"
+msgstr "Color secundario"
+
 #: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:44
 msgid "Horizontal gradient"
 msgstr "Degradado horizontal"
@@ -1405,9 +1415,6 @@ msgstr "Escalando la selección"
 #: src/tools/canvas_tools/tool_scale.py:57
 msgid "Scaling the canvas"
 msgstr "Escalando el lienzo"
-
-#~ msgid "Print the version and display the 'about' dialog"
-#~ msgstr "Muestra la versión y el diálogo «Acerca de»"
 
 #~ msgid "Mode"
 #~ msgstr "Modo"
