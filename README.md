@@ -68,11 +68,13 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 #### Classic tools
 
-- Pencil (options: dashes, blur, eraser, …)
-- Line (options: arrow, dashes, blur, gradient, …)
-- Arc (options: arrow, dashes, …)
+(options: colors, blur, eraser, size, …)
+
+- Pencil (options: dashes, …)
+- Line (options: arrow, dashes, gradient, …)
+- Curve (options: arrow, dashes, …)
 - Insert text (options: font, shadow, font size, …)
-- Shape (options: filling, gradient, …):
+- Shape (options: filling style, gradient, …):
 	- rectangle
 	- circle
 	- oval
@@ -98,7 +100,7 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
 - Filters:
-	- Blur
+	- Blur (various types)
 	- Saturation (increase or decrease)
 	- Transparency
 	- Invert colors

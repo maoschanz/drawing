@@ -4,7 +4,7 @@ How to contribute to Drawing
 
 # If you want to translate the app
 
-> I assume this will be the most usual contribution so i detail:
+I assume this will be the most usual contribution so i detail a little
 
 ## If the translation doesn't exist at all
 
@@ -49,11 +49,13 @@ ask me about it.**
 - Good comments explain *why* the code does it, if a comment needs to explain *what* it does, the code is probably bad.
 - I like `GAction`s and i've added wrapper methods for using them, try to use that instead of directly connecting buttons/menu-items to a method.
 
-Concerning design, try to respect GNOME Human Interface Guidelines as much as
-possible, while making your feature available from the (hidden by default)
-menubar. If you're contributing to an alternative layout ("elementary OS",
-"Cinnamon", …), just be sure to not hurt the UX with the GNOME layout (since it
-is used on smartphone, it has to stay very resizable).
+Concerning design, try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
+as much as possible, while making your feature available from the menubar. The
+menubar is hidden in most cases, but it should contains as many `GAction`s as
+possible for testing purposes (and also because searchable menus still exist).
+If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
+any other), just be sure to not hurt the UX with the GNOME layout (since it's
+the one used on smartphone, it has to stay very resizable).
 
 ## Explanation of the code
 
@@ -91,10 +93,15 @@ with the python code.
 
 The tools are managed by a bunch of files in the `src/tools` directory.
 
-All tools inherit from **abstract** classes defining common methods. First of
-all, `src/tools/abstract_tool.py` defines how the tool will be added in the UI,
-provides several wrappers to add options, to access the pixbufs, to add an
-operation to the edition history, etc. Other common features, when they don't
+>The relationship between the window & the tools is a **State** design pattern.
+
+The active tool's methods are called from the window's (or the current image's)
+code regardless of what tool is active. To achieve that, all tools inherit from
+**abstract** classes defining common methods.
+
+First of all, `src/tools/abstract_tool.py` defines how the tool will be added in
+the UI, provides several wrappers to add options, to access the pixbufs, to add
+an operation to the edition history, etc. Other common features, when they don't
 depend on the image or the tool at all (such as blurring, computing some paths,
 displaying an overlay on the image (for the selection for example)), may be
 provided by `src/tools/utilities_tools.py`.
@@ -104,7 +111,7 @@ tool is in:
 
 - the classic tools, draw on the main pixbuf using **`cairo`**
 - the selection tools translates the user's input into operations using the image's **selection_manager**
-- the "canvas tools" can be applied the selection pixbuf or the main pixbuf (scale/crop/rotate/filters/…) and will use the image's `temp_pixbuf` attribute to store a preview of their changes. These tools have to be explicitely applied by the user.
+- the "canvas tools" (scale/crop/rotate/filters/…) can be applied to the selection pixbuf or the main pixbuf, and will use the image's `temp_pixbuf` attribute to store a preview of their changes. These tools have to be explicitely applied by the user.
 
 In my opinion, the complexity of the code comes mainly from 2 points:
 

@@ -122,6 +122,42 @@
           <object class="GtkSeparatorToolItem" />
         </child>
         <child>
+          <object class="GtkToolButton">
+            <property name="action-name">win.zoom_out</property>
+            <property name="icon-name">zoom-out</property>
+            <property name="tooltip-text" translatable="yes">Zoom Out</property>
+            <property name="label" translatable="yes">Zoom Out</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="action-name">win.zoom_100</property>
+            <property name="icon-name">zoom-original</property>
+            <property name="tooltip-text" translatable="yes">Original Zoom</property>
+            <property name="label" translatable="yes">Original Zoom</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="action-name">win.zoom_in</property>
+            <property name="icon-name">zoom-in</property>
+            <property name="tooltip-text" translatable="yes">Zoom In</property>
+            <property name="label" translatable="yes">Zoom In</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparatorToolItem" />
+        </child>
+        <child>
           <object class="GtkToggleToolButton">
             <property name="action-name">win.show_labels</property>
             <property name="icon-name">view-list</property>

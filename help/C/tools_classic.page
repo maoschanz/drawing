@@ -15,59 +15,117 @@
 
   <title>Classic tools</title>
 
-  <p>Various tools are available, most of them use the selected color: drawing
-  with a left click uses the left color, while drawing with a right click uses
-  the right color. The tool size and options are also important, and are
-  available in the bottom bar.</p>
+  <p>Draw on the image with the color and options you selected!</p>
 
-  <list>
-    <item>
-      <p>Pencil: The pencil draws following the pointer, and according to the
-      chosen color. Its options include the shape of the lead, and the edition
-      mode: use the "eraser" mode to delete existing colors.</p>
-      <!-- TODO explain options -->
-    </item>
-    <item>
-      <p>Text: Insert text on the image. For better contrast, the text can use
-      the secondary color for its shadow, or as a rectangle background.</p>
-      <!-- TODO explain options -->
-      <p>Don't forget to confirm the insertion using the <gui style="button">
-      Insert here</gui> button.</p>
-    </item>
-    <item>
-      <p>Color picker: Select the color to use within the edited image.</p>
-    </item>
-    <item>
-      <p>Paint. This tool tries to paint an area with a color, which doesn't
-      always work as expected so this tool is disabled by default.</p>
-    </item>
-    <item>
-      <p>Line: This tool can draw straight lines. Its options include the shape
-      of the lead, the use of dashes, and the possibility to draw arrows.</p>
-      <!-- TODO explain options -->
-    </item>
-    <item>
-      <p>Arc: This tool can draw arcs. Its options include the shape of the
-      lead, the use of dashes, and the possibility to draw arrows.</p>
-      <media type="image" mime="image/png" width="80%"
-             src="figures/screenshot_arc.png" its:translate="no"/>
-      <!-- TODO explain options -->
-    </item>
-    <item>
-      <p>Shapes: Available shapes include rectangle, oval, circle, polygon, and
-      free shape.</p>
-      <p>Polygons and free shapes can be drawn in several clicks. To close them,
-      do a last click at the position where you began the line, or use the
-      <gui style="menuitem">Close shape</gui> menu item.</p>
-      <p>Various filling options are available, with or without an outline,
-      using a plain color or a gradient.</p>
-      <!-- TODO explain options -->
-    </item>
-  </list>
+  <section>
+    <title>Color and size</title>
 
-  <p>The <link xref="tools_selection">selection tool</link> doesn't draw, but
-  its capabilities are very powerful and useful for any image manipulation.</p>
-  <p><link xref="tools_canvas">Other tools</link> allow you to transform the
-  canvas or the selected area.</p>
+    <p>The options for the tool you're using are located at the right of the
+    bottom bar: there are two colors, the tool size, and a menu (whose content
+    changes depending on the tool).</p>
+    <p>The color of the left button corresponds to the left click, and is
+    labeled "Main color", while the color at the right is the "Secondary color".
+    Clicking on these buttons to change their respective colors.</p>
+    <!-- TODO illustrations: the color palette and the color editor -->
+    <p>At the top of the palette, you can select the way the color will be
+    applied to the image:</p>
+    <list>
+      <item>
+        <p>Classic: ...</p>
+      </item>
+      <item>
+        <p>Source color: ...</p>
+      </item>
+      <item>
+        <p>Difference: ...</p>
+      </item>
+      <item>
+        <p>Blur: ...</p>
+      </item>
+      <item>
+        <p>Eraser: ...</p>
+      </item>
+    </list>
+    <p>If the color you want isn't listed, click the <gui style="button">+</gui>
+    button to use the color editor.</p>
+    <p>An optional <gui style="button">Color Picker</gui> tool can also help you
+    to select a color. While the color picker from within the color editor can
+    select a RGB color anywhere on the screen, the <gui style="menuitem">Color
+    Picker</gui> tool support translucent colors but only works for pixels from
+    the image.</p>
+  </section>
+
+  <section>
+    <title>Draw things</title>
+
+    <p>Most options here concern concern the ends of the line: it can be rounded
+    or square, or an arrow.</p>
+    <p>You can also draw a dashed lines.</p>
+    <list>
+      <item>
+        <p>Pencil: The pencil draws following the pointer, and according to the
+        chosen color. Don't forget you can use the "eraser" mode from the color
+        menu to delete existing colors!</p>
+      </item>
+      <item>
+        <p>Line: This tool can draw straight lines. Its options also include
+        using a gradient from the main color to the secondary color. Don't
+        forget you can use the "blur" mode from the color menu to hide text!</p>
+      </item>
+      <item>
+        <p>Curve: This tool can draw Bézier curves. Two clicks are required, if
+        you only click once to draw a straight line, that line is drawn
+        temporarily until a second click.</p>
+        <media type="image" mime="image/png" width="80%"
+               src="figures/screenshot_arc.png" its:translate="no"/>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Insert text</title>
+
+    <p>With the <gui style="menuitem">Text</gui> tool, you can insert text on
+    the image. A few formatting options are available in the options menu, such
+    as "italic", "bold", or a basic font type option.</p>
+    <p>For better contrast, the text can be displayed on a rectangle background,
+    or on a shadow whose color is the secondary color you chose.</p>
+    <p>Don't forget to confirm the insertion using the <gui style="button">
+    Insert here</gui> button.</p>
+    <!-- TODO illustration -->
+  </section>
+
+  <section>
+    <title>Fill an area</title>
+
+    <p>...paint, shapes?</p>
+    <!-- TODO illustration -->
+
+    <list>
+      <item>
+        <p>Shapes: Available shapes include rectangle, oval, circle, polygon, and
+        free shape.</p>
+        <p>Polygons and free shapes can be drawn in several clicks. To close them,
+        do a last click at the position where you began the line, or use the
+        <gui style="menuitem">Close shape</gui> menu item.</p>
+        <p>Various filling options are available, with or without an outline,
+        using a plain color or a gradient.</p>
+        <!-- TODO explain options -->
+      </item>
+      <item>
+        <p>Paint. This tool tries to paint an area with a color, which doesn't
+        always work as expected so this tool is disabled by default.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>See also</title>
+
+    <p>The <link xref="tools_selection">selection tools</link> don't draw, but
+    their capabilities are very powerful and useful for any image editing.</p>
+    <p><link xref="tools_canvas">Other tools</link> allow you to transform the
+    canvas or the selected area.</p>
+  </section>
 
 </page>
