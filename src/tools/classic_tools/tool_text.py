@@ -199,13 +199,12 @@ class ToolText(AbstractClassicTool):
 			if operation['background'] == 'rectangle':
 				self.op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
 				                                                 text_y, a_line)
-			actual_text_y = text_y + i*font_size
+			actual_text_y = text_y + i * font_size
 			if operation['background'] == 'shadow':
 				self.op_bg_shadow(cairo_context, c2, font_size, text_x, \
 				                                          actual_text_y, a_line)
 			####################################################################
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, \
-			                                                        c1.alpha)
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 			cairo_context.move_to(text_x, actual_text_y)
 			cairo_context.show_text( a_line )
 			i = i + 1

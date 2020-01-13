@@ -5,7 +5,7 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_tools import utilities_get_magic_path
-from .utilities_tools import utilities_get_rgb_for_xy
+from .utilities_tools import utilities_get_rgba_for_xy
 
 class ToolPaint(AbstractClassicTool):
 	__gtype_name__ = 'ToolPaint'
@@ -35,7 +35,7 @@ class ToolPaint(AbstractClassicTool):
 			return
 
 		(x, y) = (int(event_x), int(event_y))
-		self.old_color = utilities_get_rgb_for_xy(surface, x, y)
+		self.old_color = utilities_get_rgba_for_xy(surface, x, y)
 
 		if self.get_option_value('paint_algo') == 'fill':
 			self.magic_path = utilities_get_magic_path(surface, x, y, self.window, 1)
@@ -56,7 +56,7 @@ class ToolPaint(AbstractClassicTool):
 			# 'x': x,
 			# 'y': y,
 			'rgba': self.main_color,
-			'old_rgb': self.old_color,
+			'old_rgba': self.old_color,
 			'path': self.magic_path
 		}
 		return operation
@@ -82,7 +82,7 @@ class ToolPaint(AbstractClassicTool):
 		surf = self.get_surface()
 		cairo_context = cairo.Context(surf)
 		rgba = operation['rgba']
-		old_rgb = operation['old_rgb']
+		old_rgba = operation['old_rgba']
 		cairo_context.set_source_rgba(255, 255, 255, 1.0)
 		cairo_context.append_path(operation['path'])
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
@@ -94,9 +94,9 @@ class ToolPaint(AbstractClassicTool):
 		tolerance = 10 # XXX
 		i = -1 * tolerance
 		while i < tolerance:
-			red = max(0, old_rgb[0]+i)
-			green = max(0, old_rgb[1]+i)
-			blue = max(0, old_rgb[2]+i)
+			red = max(0, old_rgba[0]+i)
+			green = max(0, old_rgba[1]+i)
+			blue = max(0, old_rgba[2]+i)
 			red = int( min(255, red) )
 			green = int( min(255, green) )
 			blue = int( min(255, blue) )
@@ -138,23 +138,33 @@ class ToolPaint(AbstractClassicTool):
 
 	def op_clipping(self, operation):
 		"""Replace the color with transparency by adding an alpha channel."""
-		old_rgb = operation['old_rgb']
-		r0 = old_rgb[0]
-		g0 = old_rgb[1]
-		b0 = old_rgb[2]
+		old_rgba = operation['old_rgba']
+		r0 = old_rgba[0]
+		g0 = old_rgba[1]
+		b0 = old_rgba[2]
+		# XXX and the alpha channel ? pas l'air possible en fait
 		margin = 0 # TODO as an option ? is not elegant but is powerful
-		for i in range(-1 * margin, margin+1):
-			r = r0 + i
-			if r <= 255 and r >= 0:
-				for j in range(-1 * margin, margin+1):
-					g = g0 + j
-					if g <= 255 and g >= 0:
-						for k in range(-1 * margin, margin+1):
-							b = b0 + k
-							if b <= 255 and b >= 0:
-								self.replace_main_with_alpha(r, g, b)
+		self._clip_red(margin, r0, g0, b0)
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
+
+	def _clip_red(self, margin, r0, g0, b0):
+		for i in range(-1 * margin, margin + 1):
+			r = r0 + i
+			if r <= 255 and r >= 0:
+				self._clip_green(margin, r, g0, b0)
+
+	def _clip_green(self, margin, r, g0, b0):
+		for i in range(-1 * margin, margin + 1):
+			g = g0 + i
+			if g <= 255 and g >= 0:
+				self._clip_blue(margin, r, g, b0)
+
+	def _clip_blue(self, margin, r, g, b0):
+		for i in range(-1 * margin, margin + 1):
+			b = b0 + i
+			if b <= 255 and b >= 0:
+				self.replace_main_with_alpha(r, g, b)
 
 	def replace_main_with_alpha(self, red, green, blue):
 		self.get_image().main_pixbuf = self.get_main_pixbuf().add_alpha(True, \

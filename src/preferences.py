@@ -81,9 +81,14 @@ class DrawingPrefsWindow(Gtk.Window):
 		                       "do want to use to replace transparent pixels?"))
 		self.page_images.add(w)
 
-		labels = [_("White"), _("Black"), _("Checkboard"), _("Ask before saving")]
-		ids = ['white', 'black', 'checkboard', 'ask']
-		w = self.new_radio_flowbox('replace-alpha', labels, ids)
+		alpha_dict = {
+			'white': _("White"),
+			'black': _("Black"),
+			'checkboard': _("Checkboard"),
+			'nothing': _("Nothing"),
+			'ask': _("Ask before saving")
+		}
+		w = self.new_radio_flowbox('replace-alpha', alpha_dict)
 		self.page_images.add(w)
 
 		w = self.new_section_title(_("Zoom"), True)
@@ -160,12 +165,17 @@ class DrawingPrefsWindow(Gtk.Window):
 		w = self.row_for_help_label(_("The recommended value is \"Automatic\"."))
 		self.page_advanced.add(w)
 
-		labels = [_("Automatic"), _("Compact"), "elementary OS", \
-		         _("Legacy"), _("Legacy (symbolic icons)"), _("Menubar only"), \
-		                  _("Toolbar only"), _("Toolbar only (symbolic icons)")]
-		ids = ['auto', 'csd', 'csd-eos', 'ssd', 'ssd-symbolic', 'ssd-menubar', \
-		                                  'ssd-toolbar', 'ssd-toolbar-symbolic']
-		w = self.new_radio_flowbox('decorations', labels, ids)
+		layouts_dict = {
+			'auto': _("Automatic"),
+			'csd': _("Compact"),
+			'csd-eos': _("elementary OS"),
+			'ssd': _("Legacy"),
+			'ssd-symbolic': _("Legacy (symbolic icons)"),
+			'ssd-menubar': _("Menubar only"),
+			'ssd-toolbar': _("Toolbar only"),
+			'ssd-toolbar-symbolic': _("Toolbar only (symbolic icons)")
+		}
+		w = self.new_radio_flowbox('decorations', layouts_dict)
 		self.page_advanced.add(w)
 
 	############################################################################
@@ -179,12 +189,12 @@ class DrawingPrefsWindow(Gtk.Window):
 		label.set_visible(True)
 		return label
 
-	def new_radio_flowbox(self, setting_key, labels, ids):
+	def new_radio_flowbox(self, setting_key, labels_dict):
 		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
 		self._radio_are_active = False
 		w0 = None
-		for i in range(len(labels)):
-			w0 = self.build_radio_btn(labels[i], ids[i], setting_key, w0)
+		for id0 in labels_dict:
+			w0 = self.build_radio_btn(labels_dict[id0], id0, setting_key, w0)
 			flowbox.add(w0)
 		self._radio_are_active = True
 		return flowbox

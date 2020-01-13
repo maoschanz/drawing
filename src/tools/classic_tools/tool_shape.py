@@ -90,7 +90,8 @@ class ToolShape(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.set_common_values(event.button)
+		self.last_mouse_btn = event.button
+		self.set_common_values(self.last_mouse_btn)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape':
@@ -131,7 +132,7 @@ class ToolShape(AbstractClassicTool):
 	############################################################################
 
 	def force_close_polygon(self, *args):
-		self.set_common_values(1)
+		self.set_common_values(self.last_mouse_btn)
 		self.on_release_on_area(None, None, self.initial_x, self.initial_y)
 
 	def add_point(self, event_x, event_y, memorize):

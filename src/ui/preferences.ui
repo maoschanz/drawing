@@ -62,20 +62,26 @@
                 </child>
               </object>
               <packing>
-                <property name="name">page2</property>
+                <property name="name">page_images</property>
                 <property name="title" translatable="yes">Images</property>
               </packing>
             </child>
 
             <child>
-              <object class="GtkBox" id="page_tools">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">10</property>
-                <property name="margin">10</property>
+                <property name="expand">True</property>
+                <child>
+                  <object class="GtkBox" id="page_tools">
+                    <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
+                    <property name="margin">10</property>
+                  </object>
+                </child>
               </object>
               <packing>
-                <property name="name">page1</property>
+                <property name="name">page_tools</property>
                 <property name="title" translatable="yes">Tools</property>
               </packing>
             </child>
@@ -94,7 +100,7 @@
                 </child>
               </object>
               <packing>
-                <property name="name">page3</property>
+                <property name="name">page_advanced</property>
                 <property name="icon-name">view-more-horizontal-symbolic</property>
                 <property name="title" translatable="yes">Advanced options</property>
               </packing>
