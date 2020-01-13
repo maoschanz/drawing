@@ -65,6 +65,8 @@ PLACEHOLDER_UI_STRING = '''<?xml version="1.0"?>
   </menu>
 </interface>'''
 
+DEFAULT_TOOL_ID = 'pencil'
+
 ################################################################################
 
 @Gtk.Template(resource_path=UI_PATH+'window.ui')
@@ -157,10 +159,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		# Initialisation of options and menus
 		tool_id = self._settings.get_string('last-active-tool')
 		if tool_id not in self.tools:
-			tool_id = 'pencil'
+			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		if tool_id == 'pencil': # The "pencil" button is already active
+		if tool_id == DEFAULT_TOOL_ID: # The "pencil" button is already active
 			self.enable_tool(tool_id)
 		else:
 			self.active_tool().row.set_active(True)
@@ -180,11 +182,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Adds each tool's button to the side panel."""
 		group = None
 		for tool_id in self.tools:
+			row = self.tools[tool_id].row
 			if group is None:
-				group = self.tools[tool_id].row
+				group = row
 			else:
-				self.tools[tool_id].row.join_group(group)
-			self.tools_flowbox.add(self.tools[tool_id].row)
+				row.join_group(group)
+			self.tools_flowbox.add(row)
+			row.get_parent().set_can_focus(False)
 		self.on_show_labels_setting_changed()
 
 	def build_menubar_tools_menu(self):
@@ -424,7 +428,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
-		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl>u'])
+		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl><Shift>a'])
 		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
 		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
 		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
@@ -434,7 +438,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('force_selection', self.force_selection, None)
 		self.add_action_simple('apply_canvas_tool', self.action_apply_canvas_tool, None)
 
-		self.add_action_enum('active_tool', 'pencil', self.on_change_active_tool)
+		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
 		self.add_action_simple('main_color', self.action_color1, ['<Ctrl>l'])
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
@@ -447,7 +451,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.add_action_simple('reload_file', self.action_reload, None)
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
-			self.add_action_simple('get_values', self.action_getvalues, None)
+			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
 
 		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
 		self.add_action(action)
@@ -1032,6 +1036,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def action_getvalues(self, *args):
 		"""Development only: helps debugging the selection."""
 		self.get_active_image().selection.print_values()
+		# self.show_all()
+		# print("Focused widget:", self.get_focus())
+		# print(self.get_focus().get_path().to_string())
 
 	def action_select_all(self, *args):
 		self.force_selection()
