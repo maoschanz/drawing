@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="drawing">
-  <!-- <enum id="com.github.maoschanz.drawing.enum_decorations"> -->
-  <!--   TODO -->
-  <!--   <value nick="auto" value="0"/> -->
-  <!--   <value nick="csd" value="1"/> -->
-  <!--   <value nick="csd-eos" value="2"/> -->
-  <!--   <value nick="ssd" value="3"/> -->
-  <!--   <value nick="ssd-symbolic" value="4"/> -->
-  <!--   <value nick="ssd-toolbar" value="5"/> -->
-  <!--   <value nick="ssd-toolbar-symbolic" value="6"/> -->
-  <!--   <value nick="ssd-menubar" value="7"/> -->
-  <!--   <value nick="everything" value="8"/> -->
-  <!-- </enum> -->
 
   <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
     <!-- Actual options -->
     <key type="s" name="decorations">
-    <!-- <key name="option" enum="com.github.maoschanz.drawing.enum_decorations"> -->
       <default>'auto'</default>
       <summary>Type of window decorations</summary>
       <description>Can be 'auto', 'csd', 'csd-eos', 'ssd', 'ssd-toolbar',
@@ -54,9 +41,14 @@
     <key type="s" name="replace-alpha">
       <default>'white'</default>
       <summary>What will replace transparent pixels if needed</summary>
-      <description>What will replace transparent pixels when saving to a format
-      not supporting it, such as JPG or BMP. It can be 'white', 'black', or
-      'checkboard'.</description>
+      <description>
+        What will replace transparent pixels when saving to a file format not
+        supporting it, such as JPG or BMP. It can be 'white', 'black', 'ask'
+        (the value isn't memorized and a dialog is prompted each time),
+        'nothing' (the alpha channel is removed, which usually replace deleted
+        areas with black but preserves semi-transparent colors' saturation), or
+        'checkboard'.
+      </description>
     </key>
     <key type="b" name="devel-only">
       <default>false</default>
