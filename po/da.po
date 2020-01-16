@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-11 04:39+0100\n"
+"POT-Creation-Date: 2020-01-16 22:30+0100\n"
 "PO-Revision-Date: 2019-12-08 00:00+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
-#: src/main.py:130 src/window.py:504
+#: src/main.py:130 src/window.py:508
 msgid "Drawing"
 msgstr "Drawing"
 
@@ -38,7 +38,7 @@ msgstr "Paint;Tegn;Blyant;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:81 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
-#: src/window.py:873
+#: src/window.py:877
 msgid "New Window"
 msgstr "Nyt vindue"
 
@@ -193,8 +193,8 @@ msgstr "Billedegenskaber"
 #: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
 #: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:106 src/ui/toolbar.ui:103
-#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:130
-#: src/window.py:985 src/window.py:1005
+#: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:135
+#: src/window.py:989 src/window.py:1009
 msgid "Save"
 msgstr "Gem"
 
@@ -278,7 +278,7 @@ msgstr "Indsæt"
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
-#: src/window.py:910 src/window.py:1075
+#: src/window.py:914 src/window.py:1082
 msgid "Import"
 msgstr "Importér"
 
@@ -290,7 +290,7 @@ msgstr "_Vis"
 msgid "Show the preview"
 msgstr "Vis forhåndsvisningen"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:89
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:94
 msgid "Zoom"
 msgstr "Zoom"
 
@@ -300,19 +300,19 @@ msgstr "Optimal zoom"
 
 #: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
 #: src/ui/toolbar.ui:128 src/ui/toolbar.ui:129 src/tools/ui/tool_crop.ui:145
-#: src/tools/ui/tool_scale.ui:166
+#: src/tools/ui/tool_scale.ui:181
 msgid "Zoom Out"
 msgstr "Zoom ud"
 
 #: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256 src/ui/toolbar.ui:139
 #: src/ui/toolbar.ui:140 src/tools/ui/tool_crop.ui:150
-#: src/tools/ui/tool_scale.ui:171
+#: src/tools/ui/tool_scale.ui:186
 msgid "Original Zoom"
 msgstr "Oprindelig zoom"
 
 #: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
 #: src/ui/toolbar.ui:150 src/ui/toolbar.ui:151 src/tools/ui/tool_crop.ui:155
-#: src/tools/ui/tool_scale.ui:176
+#: src/tools/ui/tool_scale.ui:191
 msgid "Zoom In"
 msgstr "Zoom ind"
 
@@ -342,7 +342,7 @@ msgstr "Opdater"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
 #: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
-#: src/preferences.py:110
+#: src/preferences.py:115
 msgid "Show tools names"
 msgstr "Vis værktøjernes navne"
 
@@ -408,7 +408,7 @@ msgstr "Sløring"
 msgid "Eraser"
 msgstr "Viskelæder"
 
-#: src/ui/app-menus.ui:371 src/window.py:586
+#: src/ui/app-menus.ui:371 src/window.py:590
 msgid "_Tools"
 msgstr "Værk_tøjer"
 
@@ -416,7 +416,7 @@ msgstr "Værk_tøjer"
 msgid "Previous tool"
 msgstr "Forrige værktøj"
 
-#: src/ui/app-menus.ui:396 src/window.py:803 src/window.py:806
+#: src/ui/app-menus.ui:396 src/window.py:807 src/window.py:810
 msgid "_Options"
 msgstr "Valg_muligheder"
 
@@ -454,7 +454,7 @@ msgid "Tool size"
 msgstr "Værktøjsstørrelse"
 
 #. used by the bottom panels
-#: src/ui/classic-panel.ui:94 src/window.py:537 src/tools/abstract_tool.py:84
+#: src/ui/classic-panel.ui:94 src/window.py:541 src/tools/abstract_tool.py:84
 msgid "No options"
 msgstr "Ingen valgmuligheder"
 
@@ -496,7 +496,7 @@ msgid "Use these settings by default"
 msgstr "Brug indstillingerne som standard"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
-#: src/window.py:894 src/window.py:909
+#: src/window.py:898 src/window.py:913
 msgid "Open"
 msgstr "Åbn"
 
@@ -508,11 +508,11 @@ msgstr "100 %"
 msgid "Images"
 msgstr "Billeder"
 
-#: src/ui/preferences.ui:79 src/ui/shortcuts.ui:129
+#: src/ui/preferences.ui:85 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr "Værktøjer"
 
-#: src/ui/preferences.ui:99 src/preferences.py:144
+#: src/ui/preferences.ui:105 src/preferences.py:149
 msgid "Advanced options"
 msgstr "Avancerede valgmuligheder"
 
@@ -536,7 +536,7 @@ msgstr "Ikke gemt"
 msgid "Invalid format"
 msgstr "Ugyldigt format"
 
-#: src/ui/properties.ui:179 src/utilities.py:182
+#: src/ui/properties.ui:179 src/utilities.py:188
 msgid "pixels"
 msgstr "pixels"
 
@@ -682,12 +682,12 @@ msgstr "Fejl ved start af programmet. Rapportér venligst fejlen."
 msgid "Troubleshoot selection"
 msgstr "Fejlsøg markering"
 
-#: src/custom_image.py:33 src/utilities.py:129 src/window.py:894
-#: src/window.py:908 src/window.py:984 src/window.py:1005 src/window.py:1075
+#: src/custom_image.py:33 src/utilities.py:134 src/window.py:898
+#: src/window.py:912 src/window.py:988 src/window.py:1009 src/window.py:1082
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
 #: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
-#: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:205
+#: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:235
 #: src/tools/ui/tool_text.ui:32 src/tools/utilities_tools.py:186
 msgid "Cancel"
 msgstr "Annuller"
@@ -777,51 +777,55 @@ msgstr ""
 "JPEG- og BMP-billeder kan ikke håndtere gennemsigtighed. Hvis du gemmer dine "
 "billeder i disse formater, hvad skal så erstatte de gennemsigtige pixels?"
 
-#: src/preferences.py:84 src/utilities.py:40 src/utilities.py:136
+#: src/preferences.py:85 src/utilities.py:40 src/utilities.py:141
 msgid "White"
 msgstr "Hvid"
 
-#: src/preferences.py:84 src/utilities.py:42 src/utilities.py:137
+#: src/preferences.py:86 src/utilities.py:42 src/utilities.py:142
 msgid "Black"
 msgstr "Sort"
 
-#: src/preferences.py:84 src/utilities.py:138
+#: src/preferences.py:87 src/utilities.py:143
 msgid "Checkboard"
 msgstr "Skakbræt"
 
-#: src/preferences.py:84
+#: src/preferences.py:88 src/utilities.py:144
+msgid "Nothing"
+msgstr ""
+
+#: src/preferences.py:89
 msgid "Ask before saving"
 msgstr "Spørg inden der gemmes"
 
-#: src/preferences.py:93
+#: src/preferences.py:98
 msgid "Ctrl + Scroll"
 msgstr "Ctrl + Rul"
 
-#: src/preferences.py:94
+#: src/preferences.py:99
 msgid "Scroll"
 msgstr "Rul"
 
-#: src/preferences.py:97
+#: src/preferences.py:102
 msgid "Action to zoom"
 msgstr "Handling for at zoome"
 
-#: src/preferences.py:100
+#: src/preferences.py:105
 msgid "Automatic zoom level"
 msgstr "Automatisk zoomniveau"
 
-#: src/preferences.py:107
+#: src/preferences.py:112
 msgid "Appearance"
 msgstr "Udseende"
 
-#: src/preferences.py:113
+#: src/preferences.py:118
 msgid "Use big icons"
 msgstr "Brug store ikoner"
 
-#: src/preferences.py:116
+#: src/preferences.py:121
 msgid "Additional tools"
 msgstr "Yderligere værktøjer"
 
-#: src/preferences.py:119
+#: src/preferences.py:124
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
@@ -829,63 +833,67 @@ msgstr ""
 "Disse værktøjer er ikke så pålidelige og nyttige som de burde være, så de er "
 "ikke allesammen aktiveret som standard."
 
-#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:130 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Fri markering"
 
-#: src/preferences.py:127 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:132 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Farvemarkering"
 
-#: src/preferences.py:129 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:134 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Farvevælger"
 
-#: src/preferences.py:131 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:136 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Malerbøtte"
 
-#: src/preferences.py:147
+#: src/preferences.py:152
 msgid "Preview size"
 msgstr "Størrelse på forhåndsvisning"
 
-#: src/preferences.py:152
+#: src/preferences.py:157
 msgid "Development features"
 msgstr "Udviklingsfunktionaliteter"
 
-#: src/preferences.py:157
+#: src/preferences.py:162
 msgid "Layout"
 msgstr "Layout"
 
-#: src/preferences.py:160
+#: src/preferences.py:165
 msgid "The recommended value is \"Automatic\"."
 msgstr "Den anbefalede værdi er \"Automatisk\"."
 
-#: src/preferences.py:163
+#: src/preferences.py:169
 msgid "Automatic"
 msgstr "Automatisk"
 
-#: src/preferences.py:163
+#: src/preferences.py:170
 msgid "Compact"
 msgstr "Kompakt"
 
-#: src/preferences.py:164
+#: src/preferences.py:171
+msgid "elementary OS"
+msgstr ""
+
+#: src/preferences.py:172
 msgid "Legacy"
 msgstr "Udgået"
 
-#: src/preferences.py:164
+#: src/preferences.py:173
 msgid "Legacy (symbolic icons)"
 msgstr "Udgået (symbolske ikoner)"
 
-#: src/preferences.py:164
+#: src/preferences.py:174
 msgid "Menubar only"
 msgstr "Kun menulinje"
 
-#: src/preferences.py:165
+#: src/preferences.py:175
 msgid "Toolbar only"
 msgstr "Kun værktøjslinje"
 
-#: src/preferences.py:165
+#: src/preferences.py:176
 msgid "Toolbar only (symbolic icons)"
 msgstr "Kun værktøjslinje (symbolske ikoner)"
 
@@ -950,112 +958,112 @@ msgstr "Formodentlig turkis"
 msgid "Unknown color name"
 msgstr "Ukendt farvenavn"
 
-#: src/utilities.py:131
+#: src/utilities.py:136
 msgid "This file format doesn't support transparent colors."
 msgstr "Filformatet understøtter ikke gennemsigtige farver."
 
-#: src/utilities.py:133
+#: src/utilities.py:138
 msgid "Replace transparency with:"
 msgstr "Erstat gennemsigtighed med:"
 
-#: src/utilities.py:155
+#: src/utilities.py:161
 msgid "All pictures"
 msgstr "Alle billeder"
 
-#: src/utilities.py:161
+#: src/utilities.py:167
 msgid "PNG images"
 msgstr "PNG-billeder"
 
-#: src/utilities.py:165
+#: src/utilities.py:171
 msgid "JPEG images"
 msgstr "JPEG-billeder"
 
-#: src/utilities.py:169
+#: src/utilities.py:175
 msgid "BMP images"
 msgstr "BMP-billeder"
 
-#: src/utilities.py:184
+#: src/utilities.py:190
 msgid "percents"
 msgstr "procent"
 
-#: src/window.py:177
+#: src/window.py:179
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Kunne ikke indlæse værktøj: %s"
 
-#: src/window.py:490
+#: src/window.py:494
 msgid "Modifications will take effect in the next new window."
 msgstr "Ændringerne træder i kraft i det næste nye vindue."
 
-#: src/window.py:583
+#: src/window.py:587
 msgid "Opened images"
 msgstr "Åbne billeder"
 
-#: src/window.py:866
+#: src/window.py:870
 #, python-format
 msgid "Loading %s"
 msgstr "Indlæser %s"
 
-#: src/window.py:872
+#: src/window.py:876
 msgid "New Tab"
 msgstr "Nyt faneblad"
 
-#: src/window.py:874
+#: src/window.py:878
 msgid "Discard changes"
 msgstr "Forkast ændringerne"
 
-#: src/window.py:877 src/window.py:986
+#: src/window.py:881 src/window.py:990
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Der er ændringer i %s som ikke er blevet gemt."
 
-#: src/window.py:879
+#: src/window.py:883
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Hvor vil du åbne %s?"
 
-#: src/window.py:893
+#: src/window.py:897
 msgid "Open a picture"
 msgstr "Åbn et billede"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:917
+#: src/window.py:921
 msgid "these files"
 msgstr "disse filer"
 
-#: src/window.py:918
+#: src/window.py:922
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Hvad vil du gøre med %s?"
 
-#: src/window.py:963 src/window.py:1027 src/window.py:1097
+#: src/window.py:967 src/window.py:1031 src/window.py:1104
 #, python-format
 msgid "Failed to save %s"
 msgstr "Kunne ikke gemme %s"
 
-#: src/window.py:976 src/window.py:1008
+#: src/window.py:980 src/window.py:1012
 msgid "Untitled"
 msgstr "Unavngivet"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:978
+#: src/window.py:982
 msgid "this picture"
 msgstr "dette billede"
 
-#: src/window.py:983
+#: src/window.py:987
 msgid "Discard"
 msgstr "Forkast"
 
-#: src/window.py:1004
+#: src/window.py:1008
 msgid "Save picture as…"
 msgstr "Gem billede som …"
 
-#: src/window.py:1074
+#: src/window.py:1081
 msgid "Import a picture"
 msgstr "Importér et billede"
 
-#: src/window.py:1107
+#: src/window.py:1114
 #, fuzzy
 msgid "Required tool is not available"
 msgstr "Fuldskærmstilstand er nu tilgængelig."
@@ -1097,7 +1105,7 @@ msgstr "Pil"
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
 #: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
-#: src/tools/ui/tool_scale.ui:103 src/tools/ui/tool_scale.ui:209
+#: src/tools/ui/tool_scale.ui:103 src/tools/ui/tool_scale.ui:239
 msgid "Apply"
 msgstr "Anvend"
 
@@ -1191,9 +1199,25 @@ msgstr "Vend vandret"
 msgid "Flip vertically"
 msgstr "Vend lodret"
 
-#: src/tools/ui/tool_scale.ui:159 src/tools/ui/tool_scale.ui:199
-msgid "Always keep proportions"
+#: src/tools/ui/tool_scale.ui:158 src/tools/ui/tool_scale.ui:213
+#, fuzzy
+msgid "Keep proportions"
 msgstr "Bevar altid størrelsesforhold"
+
+#. Context for translations: "Always [keep proportions]"
+#: src/tools/ui/tool_scale.ui:161 src/tools/ui/tool_scale.ui:216
+msgid "Always"
+msgstr ""
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+#: src/tools/ui/tool_scale.ui:167 src/tools/ui/tool_scale.ui:222
+msgid "When scaling from corners"
+msgstr ""
+
+#. Context for translations: "Never [keep proportions]"
+#: src/tools/ui/tool_scale.ui:173 src/tools/ui/tool_scale.ui:228
+msgid "Never"
+msgstr ""
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:55
 msgid "Rectangle"
@@ -1263,18 +1287,24 @@ msgstr "Fed"
 msgid "Background"
 msgstr "Baggrund"
 
-#: src/tools/ui/tool_text.ui:93 src/tools/classic_tools/tool_text.py:51
+#: src/tools/ui/tool_text.ui:94 src/tools/classic_tools/tool_text.py:51
 msgid "No background"
 msgstr "Ingen baggrund"
 
-#: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:55
-msgid "Secondary color rectangle"
-msgstr "Sekundær farve som rektangel"
+#: src/tools/ui/tool_text.ui:100 src/tools/classic_tools/tool_text.py:53
+msgid "Shadow"
+msgstr ""
 
-#: src/tools/ui/tool_text.ui:103 src/tools/classic_tools/tool_text.py:21
-#: src/tools/classic_tools/tool_text.py:53
-msgid "Secondary color shadow"
-msgstr "Sekundær farve som skygge"
+#: src/tools/ui/tool_text.ui:106 src/tools/classic_tools/tool_text.py:21
+#: src/tools/classic_tools/tool_text.py:55
+#, fuzzy
+msgid "Outline"
+msgstr "Tomt omrids"
+
+#: src/tools/ui/tool_text.ui:112 src/tools/classic_tools/tool_text.py:57
+#, fuzzy
+msgid "Rectangle background"
+msgstr "Standardbaggrund"
 
 #: src/tools/utilities_tools.py:187
 msgid "Continue"
@@ -1355,7 +1385,7 @@ msgstr "Klik på formens første punkt for at lukke den."
 msgid "Text"
 msgstr "Tekst"
 
-#: src/tools/classic_tools/tool_text.py:58
+#: src/tools/classic_tools/tool_text.py:60
 msgid "Font options"
 msgstr "Valgmuligheder for skrifttype"
 
@@ -1395,13 +1425,19 @@ msgstr "Drej markeringen"
 msgid "Rotating the canvas"
 msgstr "Drej lærredet"
 
-#: src/tools/canvas_tools/tool_scale.py:55
+#: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the selection"
 msgstr "Skaler markeringen"
 
-#: src/tools/canvas_tools/tool_scale.py:57
+#: src/tools/canvas_tools/tool_scale.py:60
 msgid "Scaling the canvas"
 msgstr "Skaler lærredet"
+
+#~ msgid "Secondary color rectangle"
+#~ msgstr "Sekundær farve som rektangel"
+
+#~ msgid "Secondary color shadow"
+#~ msgstr "Sekundær farve som skygge"
 
 #~ msgid "Mode"
 #~ msgstr "Tilstand"
