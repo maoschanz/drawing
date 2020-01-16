@@ -89,20 +89,30 @@
     </section>
     <section>
       <attribute name="label" translatable="yes">Background</attribute>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
       <item>
         <attribute name="label" translatable="yes">No background</attribute>
         <attribute name="action">win.text_background</attribute>
         <attribute name="target">none</attribute>
+        <!-- <attribute name="verb-icon">text-nobg-symbolic</attribute> -->
       </item>
       <item>
-        <attribute name="label" translatable="yes">Secondary color rectangle</attribute>
-        <attribute name="action">win.text_background</attribute>
-        <attribute name="target">rectangle</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Secondary color shadow</attribute>
+        <attribute name="label" translatable="yes">Shadow</attribute>
         <attribute name="action">win.text_background</attribute>
         <attribute name="target">shadow</attribute>
+        <!-- <attribute name="verb-icon">text-shadow-symbolic</attribute> -->
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Outline</attribute>
+        <attribute name="action">win.text_background</attribute>
+        <attribute name="target">outline</attribute>
+        <!-- <attribute name="verb-icon">text-outline-symbolic</attribute> -->
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rectangle background</attribute>
+        <attribute name="action">win.text_background</attribute>
+        <attribute name="target">rectangle</attribute>
+        <!-- <attribute name="verb-icon">text-rectbg-symbolic</attribute> -->
       </item>
     </section>
   </menu>

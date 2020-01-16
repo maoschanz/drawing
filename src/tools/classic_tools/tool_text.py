@@ -17,18 +17,18 @@ class ToolText(AbstractClassicTool):
 		self.use_size = True
 
 		self.font_fam = "Sans"
-		self.selected_background_id = 'shadow'
-		self.selected_background_label = _("Secondary color shadow")
+		self.background_id = 'outline'
+		self.background_label = _("Outline")
 
-		self.add_tool_action_enum('text_font', 'Sans')
+		self.add_tool_action_enum('text_font', self.font_fam)
 		self.add_tool_action_boolean('text_bold', False)
 		self.add_tool_action_boolean('text_italic', False)
-		self.add_tool_action_enum('text_background', 'shadow')
+		self.add_tool_action_enum('text_background', self.background_id)
 
 		builder = Gtk.Builder().new_from_resource( \
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
 
-		# Popover for text insertion TODO widgets on the surface ?
+		# Popover for text insertion TODO widgets on the GtkLayout ?
 		self.popover = builder.get_object('insertion-popover')
 		self.entry = builder.get_object('entry')
 		self.entry.set_size_request(100, 50)
@@ -46,13 +46,15 @@ class ToolText(AbstractClassicTool):
 
 	def set_background_style(self, *args):
 		state_as_string = self.get_option_value('text_background')
-		self.selected_background_id = state_as_string
+		self.background_id = state_as_string
 		if state_as_string == 'none':
-			self.selected_background_label = _("No background")
+			self.background_label = _("No background")
 		elif state_as_string == 'shadow':
-			self.selected_background_label = _("Secondary color shadow")
+			self.background_label = _("Shadow")
+		elif state_as_string == 'outline':
+			self.background_label = _("Outline")
 		else:
-			self.selected_background_label = _("Secondary color rectangle")
+			self.background_label = _("Rectangle background")
 
 	def get_options_label(self):
 		return _("Font options")
@@ -60,7 +62,7 @@ class ToolText(AbstractClassicTool):
 	def get_edition_status(self):
 		self.set_background_style()
 		# TODO + font ?
-		label = self.label + ' - ' + self.selected_background_label
+		label = self.label + ' - ' + self.font_fam + ' - ' + self.background_label
 		return label
 
 	############################################################################
@@ -172,7 +174,7 @@ class ToolText(AbstractClassicTool):
 			'font_size': self.tool_width,
 			'x': self.x_begin,
 			'y': self.y_begin,
-			'background': self.selected_background_id,
+			'background': self.background_id,
 			'text': self.text_string
 		}
 		return operation
@@ -195,40 +197,49 @@ class ToolText(AbstractClassicTool):
 		text_x = int(operation['x'])
 		text_y = int(operation['y'])
 
-		for a_line in lines:
+		for line_text in lines:
+			####################################################################
+			# Draw background for the line #####################################
+			line_y = text_y + i * font_size
 			if operation['background'] == 'rectangle':
 				self.op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
-				                                                 text_y, a_line)
-			actual_text_y = text_y + i * font_size
-			if operation['background'] == 'shadow':
+				                                              text_y, line_text)
+			elif operation['background'] == 'shadow':
 				self.op_bg_shadow(cairo_context, c2, font_size, text_x, \
-				                                          actual_text_y, a_line)
+				                                              line_y, line_text)
+			elif operation['background'] == 'outline':
+				self.op_bg_outline(cairo_context, c2, font_size, text_x, \
+				                                              line_y, line_text)
 			####################################################################
+			# Draw text for the line #####################################
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-			cairo_context.move_to(text_x, actual_text_y)
-			cairo_context.show_text( a_line )
+			cairo_context.move_to(text_x, line_y)
+			cairo_context.show_text( line_text )
 			i = i + 1
 		self.non_destructive_show_modif()
 
 	def op_bg_shadow(self, context, color, font_size, text_x, text_y, line):
 		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
-		if font_size < 32:
-			context.move_to(text_x+1, text_y+1)
-			context.show_text( line )
-		else:
-			context.move_to(text_x+2, text_y+2)
-			context.show_text( line )
-			context.move_to(text_x-1, text_y-1)
-			context.show_text( line )
+		dist = max(min(int(font_size/18), 4), 1)
+		context.move_to(text_x + dist, text_y + dist)
+		context.show_text(line)
+
+	def op_bg_outline(self, context, color, font_size, text_x, text_y, line):
+		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
+		dist = max(min(int(font_size/18), 8), 1)
+		for dx in range(-dist, dist):
+			for dy in range(-dist, dist):
+				context.move_to(text_x + dx, text_y + dy)
+				context.show_text(line)
 
 	def op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
 		# XXX i think cairo.Context.font_extents is supposed to help me
 		context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
-		first_y = int(text_y + (i+0.2)*font_size)
+		first_y = int(text_y + (i + 0.2) * font_size)
 		context.move_to(text_x, first_y)
-		context.show_text( line )
-		context.rel_line_to(0, (-1)*font_size)
-		context.line_to(text_x, int(text_y + (i-0.8)*font_size))
+		context.show_text(line)
+		context.rel_line_to(0, (-1) * font_size)
+		context.line_to(text_x, int(text_y + (i - 0.8) * font_size))
 		context.line_to(text_x, first_y)
 		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
 		context.fill()
