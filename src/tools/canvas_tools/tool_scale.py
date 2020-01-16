@@ -129,8 +129,8 @@ class ToolScale(AbstractCanvasTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event.x
 		self.y_press = event.y
-		self._x2 = self.get_width()
-		self._y2 = self.get_height()
+		self._x2 = self._x + self.get_width()
+		self._y2 = self._y + self.get_height()
 		self.directions = self.cursor_name.replace('-resize', '')
 		self.set_keep_proportions()
 
@@ -155,15 +155,13 @@ class ToolScale(AbstractCanvasTool):
 		if 'e' in self.directions:
 			width += delta_x
 
-		if self.apply_to_selection:
-			# XXX pas ce que je veux, mais ça limite la casse
-			self._x = min(self._x + self.get_width(), self._x)
-			self._y = min(self._y + self.get_height(), self._y)
+		if self.apply_to_selection and self.keep_proportions:
+			if 'w' in self.directions:
+				self._x = self._x2 - width
+			if 'n' in self.directions:
+				self._y = self._y2 - height
 
 		if self.keep_proportions:
-			# XXX Les erreurs liées aux arrondis s'ajoutent et ça fait pas mal
-			# bouger la sélection alors que ça ne devrait pas
-			# TODO do something with self._x2 and self._y2 to fix it
 			if abs(delta_y) > abs(delta_x):
 				self.height_btn.set_value(height)
 			else:
@@ -175,7 +173,7 @@ class ToolScale(AbstractCanvasTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
 		self.directions = ''
-		self.build_and_do_op() # techniquement déjà fait
+		self.build_and_do_op() # technically already done
 
 	############################################################################
 
@@ -192,8 +190,9 @@ class ToolScale(AbstractCanvasTool):
 		                                         self.apply_to_selection, False)
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
 		# FIXME bien excepté les delta locaux : quand on rogne depuis le haut ou
-		# la gauche, les coordonées de référence des poignées ne sont plus
+		# la gauche, les coordonnées de référence des poignées ne sont plus
 		# correctes.
+		# Ça impacte aussi l'overlay après application des changements.
 
 	############################################################################
 
@@ -229,9 +228,9 @@ class ScaleToolPanel(DrawingAdaptativeBottomBar):
 	def __init__(self, window, scale_tool):
 		super().__init__()
 		self.window = window
-		# knowing the tool is needed because the panel doesn't compact the same
-		# way if it's applied to the selection
-		self.scale_tool = scale_tool
+		# future possible improvement: the panel may not compact the same way if
+		# the manipulation concerns the selection.
+		#self.scale_tool = scale_tool
 		builder = self.build_ui('tools/ui/tool_scale.ui')
 
 		self.width_btn = builder.get_object('width_btn')
