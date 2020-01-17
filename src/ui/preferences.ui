@@ -53,10 +53,14 @@
                 <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
-                  <object class="GtkBox" id="page_images">
+                  <object class="GtkGrid" id="page_images">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">10</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">start</property>
+                    <property name="expand">True</property>
+                    <property name="column-homogeneous">False</property>
+                    <property name="row-spacing">10</property>
+                    <property name="column-spacing">16</property>
                     <property name="margin">10</property>
                   </object>
                 </child>
@@ -72,10 +76,14 @@
                 <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
-                  <object class="GtkBox" id="page_tools">
+                  <object class="GtkGrid" id="page_tools">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">10</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">start</property>
+                    <property name="expand">True</property>
+                    <property name="column-homogeneous">False</property>
+                    <property name="row-spacing">10</property>
+                    <property name="column-spacing">16</property>
                     <property name="margin">10</property>
                   </object>
                 </child>
@@ -91,10 +99,14 @@
                 <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
-                  <object class="GtkBox" id="page_advanced">
+                  <object class="GtkGrid" id="page_advanced">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">10</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">start</property>
+                    <property name="expand">True</property>
+                    <property name="column-homogeneous">False</property>
+                    <property name="row-spacing">10</property>
+                    <property name="column-spacing">16</property>
                     <property name="margin">10</property>
                   </object>
                 </child>

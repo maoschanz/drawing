@@ -35,6 +35,8 @@ class DrawingPrefsWindow(Gtk.Window):
 	adj_height = Gtk.Template.Child()
 	adj_preview = Gtk.Template.Child()
 
+	_current_grid = None
+	_grid_attach_cpt = 0
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	def __init__(self, is_beta, wants_csd, **kwargs):
@@ -48,19 +50,19 @@ class DrawingPrefsWindow(Gtk.Window):
 		else:
 			self.stack_switcher.set_margin_top(10)
 
-		########################################################################
-		# Build the "images" page ##############################################
-		pass
+		self.page_builder_images()
+		self.page_builder_tools()
+		self.page_builder_advanced(is_beta)
 
-		w = self.new_section_title(_("New images"), False)
-		self.page_images.add(w)
+	############################################################################
 
-		w = self.row_from_adj(_("Default width"), 'default-width', self.adj_width)
-		self.page_images.add(w)
+	def page_builder_images(self):
+		"""Adds the widget to the grid of the 'images' page."""
+		self.set_current_grid(self.page_images)
 
-		w = self.row_from_adj(_("Default height"), 'default-height', self.adj_height)
-		self.page_images.add(w)
-
+		self.add_section_title(_("New images"))
+		self.add_adj(_("Default width"), 'default-width', self.adj_width)
+		self.add_adj(_("Default height"), 'default-height', self.adj_height)
 		bg_color_btn = Gtk.ColorButton(use_alpha=True)
 		background_rgba = self._settings.get_strv('background-rgba')
 		r = float(background_rgba[0])
@@ -70,17 +72,13 @@ class DrawingPrefsWindow(Gtk.Window):
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		bg_color_btn.set_rgba(color)
 		bg_color_btn.connect('color-set', self.on_background_changed)
-		w = self.row_from_widget(_("Default background"), bg_color_btn, False)
-		self.page_images.add(w)
+		self.add_row(_("Default background"), bg_color_btn)
 
-		w = self.new_section_title(_("Images saving"), True)
-		self.page_images.add(w)
-
-		w = self.row_for_help_label(_("JPEG and BMP images can't handle " + \
-		     "transparency. If you save your images in these formats, what " + \
-		                       "do want to use to replace transparent pixels?"))
-		self.page_images.add(w)
-
+		self.add_section_separator()
+		self.add_section_title(_("Images saving"))
+		self.add_help(_("JPEG and BMP images can't handle transparency. " + \
+		                "If you save your images in these formats, what " + \
+		                  "do want to use to replace transparent pixels?"))
 		alpha_dict = {
 			'white': _("White"),
 			'black': _("Black"),
@@ -88,83 +86,56 @@ class DrawingPrefsWindow(Gtk.Window):
 			'nothing': _("Nothing"),
 			'ask': _("Ask before saving")
 		}
-		w = self.new_radio_flowbox('replace-alpha', alpha_dict)
-		self.page_images.add(w)
+		w = self.add_radio_flowbox('replace-alpha', alpha_dict)
 
-		w = self.new_section_title(_("Zoom"), True)
-		self.page_images.add(w)
-
+		self.add_section_separator()
+		self.add_section_title(_("Zoom"))
 		scroll_combobox = Gtk.ComboBoxText()
 		scroll_combobox.append('ctrl', _("Ctrl + Scroll"))
 		scroll_combobox.append('scroll', _("Scroll"))
 		scroll_combobox.set_active_id(self._settings.get_string('zoom-behavior'))
 		scroll_combobox.connect('changed', self.on_combo_changed, 'zoom-behavior')
-		w = self.row_from_widget(_("Action to zoom"), scroll_combobox, False)
-		self.page_images.add(w)
+		self.add_row(_("Action to zoom"), scroll_combobox)
+		self.add_switch(_("Automatic zoom level"), 'auto-zoom')
 
-		w = self.row_from_bool(_("Automatic zoom level"), 'auto-zoom')
-		self.page_images.add(w)
+	def page_builder_tools(self):
+		"""Adds the widget to the grid of the 'tools' page."""
+		self.set_current_grid(self.page_tools)
 
-		########################################################################
-		# Build the "tools" page ###############################################
-		pass
+		self.add_section_title(_("Appearance"))
+		self.add_switch(_("Show tools names"), 'show-labels')
+		self.add_switch(_("Use big icons"), 'big-icons')
 
-		w = self.new_section_title(_("Appearance"), False)
-		self.page_tools.add(w)
+		self.add_section_separator()
+		self.add_section_title(_("Additional tools"))
+		self.add_help(_("These tools are not as reliable and useful as " + \
+		       "they should be, so they are not all enabled by default."))
+		tools_dict = {
+			'free_select': _("Free selection"),
+			'color_select': _("Color selection"),
+			'picker': _("Color Picker"),
+			'paint': _("Paint")
+		}
+		self.add_check_flowbox('disabled-tools', tools_dict)
 
-		w = self.row_from_bool(_("Show tools names"), 'show-labels')
-		self.page_tools.add(w)
+		# self.add_section_separator()
+		# self.add_section_title(_("Behavior"))
+		# self.add_switch(_("Use antialiasing"), 'antialiasing')
 
-		w = self.row_from_bool(_("Use big icons"), 'big-icons')
-		self.page_tools.add(w)
+	def page_builder_advanced(self, is_beta):
+		"""Adds the widget to the grid of the 'advanced' page."""
+		self.set_current_grid(self.page_advanced)
 
-		w = self.new_section_title(_("Additional tools"), True)
-		self.page_tools.add(w)
-
-		w = self.row_for_help_label(_("These tools are not as reliable and " + \
-		   "useful as they should be, so they are not all enabled by default."))
-		self.page_tools.add(w)
-
-		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
-		self.page_tools.add(flowbox)
-		w = self.build_check_btn(_("Free selection"), 'free_select', 'disabled-tools')
-		flowbox.add(w)
-		w = self.build_check_btn(_("Color selection"), 'color_select', 'disabled-tools')
-		flowbox.add(w)
-		w = self.build_check_btn(_("Color Picker"), 'picker', 'disabled-tools')
-		flowbox.add(w)
-		w = self.build_check_btn(_("Paint"), 'paint', 'disabled-tools')
-		flowbox.add(w)
-
-		# w = self.new_section_title(_("Behavior"), True)
-		# self.page_tools.add(w)
-
-		# w = self.row_from_bool(_("Use antialiasing"), 'antialiasing')
-		# self.page_tools.add(w)
-
-		########################################################################
-		# Build the "advanced" page ############################################
-		pass
-
-		w = self.new_section_title(_("Advanced options"), False)
-		self.page_advanced.add(w)
-
-		w = self.row_from_adj(_("Preview size"), 'preview-size', self.adj_preview)
-		self.page_advanced.add(w)
-
-		if not is_beta:
+		self.add_section_title(_("Advanced options"))
+		self.add_adj(_("Preview size"), 'preview-size', self.adj_preview)
+		if is_beta:
+			self.add_switch(_("Development features"), 'devel-only')
+		else:
 			self._settings.set_boolean('devel-only', False)
-		w = self.row_from_bool(_("Development features"), 'devel-only')
-		self.page_advanced.add(w)
-		if not is_beta:
-			w.set_visible(False)
 
-		w = self.new_section_title(_("Layout"), True)
-		self.page_advanced.add(w)
-
-		w = self.row_for_help_label(_("The recommended value is \"Automatic\"."))
-		self.page_advanced.add(w)
-
+		self.add_section_separator()
+		self.add_section_title(_("Layout"))
+		self.add_help(_("The recommended value is \"Automatic\"."))
 		layouts_dict = {
 			'auto': _("Automatic"),
 			'csd': _("Compact"),
@@ -175,62 +146,62 @@ class DrawingPrefsWindow(Gtk.Window):
 			'ssd-toolbar': _("Toolbar only"),
 			'ssd-toolbar-symbolic': _("Toolbar only (symbolic icons)")
 		}
-		w = self.new_radio_flowbox('decorations', layouts_dict)
-		self.page_advanced.add(w)
+		self.add_radio_flowbox('decorations', layouts_dict)
 
 	############################################################################
-	# Widgets building methods #################################################
+	# Generic methods to build and pack widgets ################################
 
-	def new_section_title(self, label_text, with_margin):
+	def add_section_separator(self):
+		self.attach_large(Gtk.Separator())
+
+	def add_section_title(self, label_text):
 		label = Gtk.Label(halign=Gtk.Align.START, use_markup=True, \
 		                                    label=('<b>' + label_text + '</b>'))
-		if with_margin:
-			label.set_margin_top(12)
-		label.set_visible(True)
-		return label
+		self.attach_large(label)
 
-	def new_radio_flowbox(self, setting_key, labels_dict):
-		flowbox = Gtk.FlowBox(visible=True, selection_mode=Gtk.SelectionMode.NONE)
+	def add_help(self, label_text):
+		help_btn = Gtk.Button.new_from_icon_name('help-faq-symbolic', \
+		                                                    Gtk.IconSize.BUTTON)
+		help_btn.set_valign(Gtk.Align.CENTER)
+		help_btn.set_relief(Gtk.ReliefStyle.NONE)
+		help_btn.set_action_name('app.help_prefs')
+
+		label = Gtk.Label(label=label_text)
+		label.set_line_wrap(True)
+		label.get_style_context().add_class('dim-label')
+
+		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+		box.pack_start(label, expand=False, fill=False, padding=0)
+		box.pack_end(help_btn, expand=False, fill=False, padding=0)
+		box.show_all()
+		self.attach_large(box)
+
+	def add_row(self, label_text, widget):
+		label = Gtk.Label(label=label_text)
+		self.attach_two(label, widget)
+
+	def add_switch(self, label_text, key):
+		switch = Gtk.Switch()
+		switch.set_active(self._settings.get_boolean(key))
+		switch.connect('notify::active', self.on_bool_changed, key)
+		self.add_row(label_text, switch)
+
+	def add_adj(self, label_text, key, adj):
+		spinbtn = Gtk.SpinButton(adjustment=adj)
+		spinbtn.set_value(self._settings.get_int(key))
+		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
+		spinbtn.connect('value-changed', self.on_adj_changed, key)
+		self.add_row(label_text, spinbtn)
+
+	def add_radio_flowbox(self, setting_key, labels_dict):
+		flowbox = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, expand=True)
 		self._radio_are_active = False
 		w0 = None
 		for id0 in labels_dict:
 			w0 = self.build_radio_btn(labels_dict[id0], id0, setting_key, w0)
 			flowbox.add(w0)
 		self._radio_are_active = True
-		return flowbox
-
-	def row_for_help_label(self, label_text):
-		help_btn = Gtk.Button.new_from_icon_name('help-faq-symbolic', \
-		                                                    Gtk.IconSize.BUTTON)
-		help_btn.set_valign(Gtk.Align.CENTER)
-		help_btn.set_relief(Gtk.ReliefStyle.NONE)
-		help_btn.set_action_name('app.help_prefs')
-		return self.row_from_widget(label_text, help_btn, True)
-
-	def row_from_widget(self, label_text, widget, wrap_and_dim):
-		label = Gtk.Label(label=label_text)
-		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-		box.pack_start(label, expand=False, fill=False, padding=0)
-		if widget is not None:
-			box.pack_end(widget, expand=False, fill=False, padding=0)
-		if wrap_and_dim:
-			label.set_line_wrap(True)
-			label.get_style_context().add_class('dim-label')
-		box.show_all()
-		return box
-
-	def row_from_bool(self, label_text, key):
-		switch = Gtk.Switch()
-		switch.set_active(self._settings.get_boolean(key))
-		switch.connect('notify::active', self.on_bool_changed, key)
-		return self.row_from_widget(label_text, switch, False)
-
-	def row_from_adj(self, label_text, key, adj):
-		spinbtn = Gtk.SpinButton(adjustment=adj)
-		spinbtn.set_value(self._settings.get_int(key))
-		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
-		spinbtn.connect('value-changed', self.on_adj_changed, key)
-		return self.row_from_widget(label_text, spinbtn, False)
+		self.attach_large(flowbox)
 
 	def build_radio_btn(self, label, btn_id, key, group):
 		btn = Gtk.RadioButton(label=label, visible=True, group=group)
@@ -238,6 +209,13 @@ class DrawingPrefsWindow(Gtk.Window):
 		btn.set_active(btn_id == active_id)
 		btn.connect('toggled', self.on_radio_btn_changed, key, btn_id)
 		return btn
+
+	def add_check_flowbox(self, setting_key, labels_dict):
+		flowbox = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, expand=True)
+		for id0 in labels_dict:
+			w0 = self.build_check_btn(labels_dict[id0], id0, setting_key)
+			flowbox.add(w0)
+		self.attach_large(flowbox)
 
 	def build_check_btn(self, label, row_id, key):
 		btn = Gtk.CheckButton(label=label, visible=True)
@@ -247,17 +225,13 @@ class DrawingPrefsWindow(Gtk.Window):
 		return btn
 
 	############################################################################
+	# Generic callbacks ########################################################
 
 	def on_bool_changed(self, switch, state, key):
 		self._settings.set_boolean(key, switch.get_active())
 
 	def on_adj_changed(self, spinbtn, key):
 		self._settings.set_int(key, spinbtn.get_value_as_int())
-
-	def on_background_changed(self, color_btn):
-		c = color_btn.get_rgba()
-		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
-		self._settings.set_strv('background-rgba', color_array)
 
 	def on_combo_changed(self, combobox, key):
 		self._settings.set_string(key, combobox.get_active_id())
@@ -273,6 +247,39 @@ class DrawingPrefsWindow(Gtk.Window):
 	def on_radio_btn_changed(self, radiobtn, key, btn_id):
 		if self._radio_are_active:
 			self._settings.set_string(key, btn_id)
+
+	############################################################################
+	# Custom callbacks #########################################################
+
+	def on_background_changed(self, color_btn):
+		c = color_btn.get_rgba()
+		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
+		self._settings.set_strv('background-rgba', color_array)
+
+	############################################################################
+	# Low-level packing ########################################################
+
+	def attach_two(self, widget1, widget2):
+		widget1.set_halign(Gtk.Align.END)
+		widget2.set_halign(Gtk.Align.START)
+		widget1.set_visible(True)
+		widget2.set_visible(True)
+		self._current_grid.attach(widget1, 0, self._grid_attach_cpt, 1, 1)
+		self._current_grid.attach(widget2, 1, self._grid_attach_cpt, 1, 1)
+		self.update_grid_cpt()
+
+	def attach_large(self, widget):
+		# widget.set_halign(Gtk.Align.FILL)
+		widget.set_visible(True)
+		self._current_grid.attach(widget, 0, self._grid_attach_cpt, 2, 1)
+		self.update_grid_cpt()
+
+	def update_grid_cpt(self):
+		self._grid_attach_cpt = self._grid_attach_cpt + 1
+
+	def set_current_grid(self, grid):
+		self._current_grid = grid
+		self._grid_attach_cpt = 0
 
 	############################################################################
 ################################################################################

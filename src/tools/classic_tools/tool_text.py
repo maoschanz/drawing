@@ -211,7 +211,7 @@ class ToolText(AbstractClassicTool):
 				self.op_bg_outline(cairo_context, c2, font_size, text_x, \
 				                                              line_y, line_text)
 			####################################################################
-			# Draw text for the line #####################################
+			# Draw text for the line ###########################################
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 			cairo_context.move_to(text_x, line_y)
 			cairo_context.show_text( line_text )
