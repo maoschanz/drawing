@@ -177,8 +177,19 @@ class DrawingImage(Gtk.Box):
 		else:
 			tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
 			tab_title.pack_end(btn, expand=False, fill=False, padding=0)
-		tab_title.show_all()
-		return tab_title
+		eb = Gtk.EventBox()
+		eb.connect('button-press-event', self.on_tab_title_clicked)
+		eb.add(tab_title)
+		eb.show_all()
+		return eb
+	
+	def on_tab_title_clicked(self, widget, event_button):
+		if event_button.type == Gdk.EventType.BUTTON_PRESS and\
+			event_button.button == Gdk.BUTTON_MIDDLE:
+			self.try_close_tab()
+			# Click event was handled by this function, do not propagate
+			return True
+		return False
 
 	def update_title(self):
 		main_title = self.get_filename_for_display()
