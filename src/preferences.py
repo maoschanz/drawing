@@ -86,17 +86,15 @@ class DrawingPrefsWindow(Gtk.Window):
 			'nothing': _("Nothing"),
 			'ask': _("Ask before saving")
 		}
-		w = self.add_radio_flowbox('replace-alpha', alpha_dict)
+		self.add_radio_flowbox('replace-alpha', alpha_dict)
 
 		self.add_section_separator()
-		self.add_section_title(_("Zoom"))
-		scroll_combobox = Gtk.ComboBoxText()
-		scroll_combobox.append('ctrl', _("Ctrl + Scroll"))
-		scroll_combobox.append('scroll', _("Scroll"))
-		scroll_combobox.set_active_id(self._settings.get_string('zoom-behavior'))
-		scroll_combobox.connect('changed', self.on_combo_changed, 'zoom-behavior')
-		self.add_row(_("Action to zoom"), scroll_combobox)
-		self.add_switch(_("Automatic zoom level"), 'auto-zoom')
+		self.add_section_title(_("Action to zoom"))
+		zoom_dict = {
+			'ctrl': _("Ctrl + Scroll"),
+			'scroll': _("Scroll")
+		}
+		self.add_radio_flowbox('zoom-behavior', zoom_dict)
 
 	def page_builder_tools(self):
 		"""Adds the widget to the grid of the 'tools' page."""
@@ -232,9 +230,6 @@ class DrawingPrefsWindow(Gtk.Window):
 
 	def on_adj_changed(self, spinbtn, key):
 		self._settings.set_int(key, spinbtn.get_value_as_int())
-
-	def on_combo_changed(self, combobox, key):
-		self._settings.set_string(key, combobox.get_active_id())
 
 	def on_check_btn_changed(self, checkbtn, key, btn_id):
 		array_of_strings = self._settings.get_strv(key)

@@ -1171,10 +1171,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().add_deltas(1, 0, 100)
 
 	def action_zoom_in(self, *args):
-		self.get_active_image().inc_zoom_level(50)
+		self.get_active_image().inc_zoom_level(25)
 
 	def action_zoom_out(self, *args):
-		self.get_active_image().inc_zoom_level(-50)
+		self.get_active_image().inc_zoom_level(-25)
 
 	def action_zoom_100(self, *args):
 		self.get_active_image().set_zoom_level(100)

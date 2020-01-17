@@ -66,8 +66,6 @@ class DrawingImage(Gtk.Box):
 		# For the cursor
 		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
-		# [Option] automatic zoom level
-		self.drawing_area.connect('size-allocate', self.on_opti_zoom_level)
 
 		self.ctrl_to_zoom = self.window._settings.get_string('zoom-behavior') == 'ctrl'
 
@@ -88,8 +86,6 @@ class DrawingImage(Gtk.Box):
 		self.press2_y = 0.0
 		self.drag_scroll_x = 0.0
 		self.drag_scroll_y = 0.0
-		self.zoom_is_auto = self.window._settings.get_boolean('auto-zoom')
-		# TODO doit être updaté quand la valeur de la clef change
 
 		# Selection initialization
 		self.selection = DrawingSelectionManager(self)
@@ -586,10 +582,6 @@ class DrawingImage(Gtk.Box):
 		self.window.minimap.update_zoom_scale(self.zoom_level)
 		self.fake_scrollbar_update()
 		self.update()
-
-	def on_opti_zoom_level(self, *args):
-		if self.zoom_is_auto:
-			self.set_opti_zoom_level()
 
 	def set_opti_zoom_level(self, *args):
 		allocated_width = self.get_widget_width()
