@@ -54,6 +54,20 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)
 
+	# Each page_* attribute is a GtkGrid. The page_builder_* methods declare
+	# their grid to be the currently filled one, and reset the counter.
+	# Then, the page_builder_* methods will call the add_* methods, who will
+	# build accurate widgets to be packed on the grid by the attach_* methods.
+
+	############################################################################
+
+	def set_current_grid(self, grid):
+		self._current_grid = grid
+		self._grid_attach_cpt = 0
+
+	def update_grid_cpt(self):
+		self._grid_attach_cpt = self._grid_attach_cpt + 1
+
 	############################################################################
 
 	def page_builder_images(self):
@@ -76,8 +90,8 @@ class DrawingPrefsWindow(Gtk.Window):
 
 		self.add_section_separator()
 		self.add_section_title(_("Images saving"))
-		self.add_help(_("JPEG and BMP images can't handle transparency. " + \
-		                "If you save your images in these formats, what " + \
+		self.add_help(_("JPEG and BMP images can't handle transparency.") + \
+		        " " + _("If you save your images in these formats, what " + \
 		                  "do want to use to replace transparent pixels?"))
 		alpha_dict = {
 			'white': _("White"),
@@ -89,12 +103,11 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.add_radio_flowbox('replace-alpha', alpha_dict)
 
 		self.add_section_separator()
-		self.add_section_title(_("Action to zoom"))
-		zoom_dict = {
-			'ctrl': _("Ctrl + Scroll"),
-			'scroll': _("Scroll")
-		}
-		self.add_radio_flowbox('zoom-behavior', zoom_dict)
+		self.add_section_title(_("Zoom"))
+		zoom_help = _("You can zoom with Ctrl+scrolling, or only scrolling.") + \
+		  " " + _("Using keyboard shortcuts or touch gestures is possible too.")
+		self.add_help(zoom_help)
+		self.add_switch(_("Use 'Ctrl' to zoom"), 'ctrl-zoom')
 
 	def page_builder_tools(self):
 		"""Adds the widget to the grid of the 'tools' page."""
@@ -162,7 +175,7 @@ class DrawingPrefsWindow(Gtk.Window):
 		                                                    Gtk.IconSize.BUTTON)
 		help_btn.set_valign(Gtk.Align.CENTER)
 		help_btn.set_relief(Gtk.ReliefStyle.NONE)
-		help_btn.set_action_name('app.help_prefs')
+		help_btn.set_action_name('app.help_prefs') # could be a parameter
 
 		label = Gtk.Label(label=label_text)
 		label.set_line_wrap(True)
@@ -264,17 +277,9 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.update_grid_cpt()
 
 	def attach_large(self, widget):
-		# widget.set_halign(Gtk.Align.FILL)
 		widget.set_visible(True)
 		self._current_grid.attach(widget, 0, self._grid_attach_cpt, 2, 1)
 		self.update_grid_cpt()
-
-	def update_grid_cpt(self):
-		self._grid_attach_cpt = self._grid_attach_cpt + 1
-
-	def set_current_grid(self, grid):
-		self._current_grid = grid
-		self._grid_attach_cpt = 0
 
 	############################################################################
 ################################################################################

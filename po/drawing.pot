@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-16 22:30+0100\n"
+"POT-Creation-Date: 2020-01-17 16:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
-#: src/ui/win-menus.ui:179 src/preferences.py:43
+#: src/ui/win-menus.ui:179 src/preferences.py:45
 msgid "Preferences"
 msgstr ""
 
@@ -272,7 +272,7 @@ msgstr ""
 msgid "Show the preview"
 msgstr ""
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:94
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:106
 msgid "Zoom"
 msgstr ""
 
@@ -324,7 +324,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
 #: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
-#: src/preferences.py:115
+#: src/preferences.py:117
 msgid "Show tools names"
 msgstr ""
 
@@ -483,15 +483,15 @@ msgstr ""
 msgid "100%"
 msgstr ""
 
-#: src/ui/preferences.ui:66
+#: src/ui/preferences.ui:70
 msgid "Images"
 msgstr ""
 
-#: src/ui/preferences.ui:85 src/ui/shortcuts.ui:129
+#: src/ui/preferences.ui:93 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr ""
 
-#: src/ui/preferences.ui:105 src/preferences.py:149
+#: src/ui/preferences.ui:117 src/preferences.py:140
 msgid "Advanced options"
 msgstr ""
 
@@ -507,7 +507,7 @@ msgstr ""
 msgid "Colorspace"
 msgstr ""
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:192
 msgid "Unsaved file"
 msgstr ""
 
@@ -515,15 +515,15 @@ msgstr ""
 msgid "Invalid format"
 msgstr ""
 
-#: src/ui/properties.ui:179 src/utilities.py:188
+#: src/ui/properties.ui:176 src/utilities.py:188
 msgid "pixels"
 msgstr ""
 
-#: src/ui/properties.ui:185
+#: src/ui/properties.ui:182
 msgid "centimeters"
 msgstr ""
 
-#: src/ui/properties.ui:191
+#: src/ui/properties.ui:188
 msgid "inches"
 msgstr ""
 
@@ -727,69 +727,69 @@ msgstr ""
 msgid "%s%%"
 msgstr ""
 
-#: src/preferences.py:55
+#: src/preferences.py:77
 msgid "New images"
 msgstr ""
 
-#: src/preferences.py:58
+#: src/preferences.py:78
 msgid "Default width"
 msgstr ""
 
-#: src/preferences.py:61
+#: src/preferences.py:79
 msgid "Default height"
 msgstr ""
 
-#: src/preferences.py:73
+#: src/preferences.py:89
 msgid "Default background"
 msgstr ""
 
-#: src/preferences.py:76
+#: src/preferences.py:92
 msgid "Images saving"
 msgstr ""
 
-#: src/preferences.py:79
-msgid ""
-"JPEG and BMP images can't handle transparency. If you save your images in "
-"these formats, what do want to use to replace transparent pixels?"
+#: src/preferences.py:93
+msgid "JPEG and BMP images can't handle transparency."
 msgstr ""
 
-#: src/preferences.py:85 src/utilities.py:40 src/utilities.py:141
+#: src/preferences.py:94
+msgid ""
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
+msgstr ""
+
+#: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
 msgstr ""
 
-#: src/preferences.py:86 src/utilities.py:42 src/utilities.py:142
+#: src/preferences.py:98 src/utilities.py:42 src/utilities.py:142
 msgid "Black"
 msgstr ""
 
-#: src/preferences.py:87 src/utilities.py:143
+#: src/preferences.py:99 src/utilities.py:143
 msgid "Checkboard"
 msgstr ""
 
-#: src/preferences.py:88 src/utilities.py:144
+#: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
 msgstr ""
 
-#: src/preferences.py:89
+#: src/preferences.py:101
 msgid "Ask before saving"
 msgstr ""
 
-#: src/preferences.py:98
-msgid "Ctrl + Scroll"
+#: src/preferences.py:107
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr ""
 
-#: src/preferences.py:99
-msgid "Scroll"
+#: src/preferences.py:108
+msgid "Using keyboard shortcuts or touch gestures is possible too."
 msgstr ""
 
-#: src/preferences.py:102
-msgid "Action to zoom"
+#: src/preferences.py:110
+msgid "Use 'Ctrl' to zoom"
 msgstr ""
 
-#: src/preferences.py:105
-msgid "Automatic zoom level"
-msgstr ""
-
-#: src/preferences.py:112
+#: src/preferences.py:116
 msgid "Appearance"
 msgstr ""
 
@@ -801,73 +801,73 @@ msgstr ""
 msgid "Additional tools"
 msgstr ""
 
-#: src/preferences.py:124
+#: src/preferences.py:122
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
 
-#: src/preferences.py:130 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr ""
 
-#: src/preferences.py:132 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:126 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr ""
 
-#: src/preferences.py:134 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:127 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr ""
 
-#: src/preferences.py:136 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:128 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr ""
 
-#: src/preferences.py:152
+#: src/preferences.py:141
 msgid "Preview size"
 msgstr ""
 
-#: src/preferences.py:157
+#: src/preferences.py:143
 msgid "Development features"
 msgstr ""
 
-#: src/preferences.py:162
+#: src/preferences.py:148
 msgid "Layout"
 msgstr ""
 
-#: src/preferences.py:165
+#: src/preferences.py:149
 msgid "The recommended value is \"Automatic\"."
 msgstr ""
 
-#: src/preferences.py:169
+#: src/preferences.py:151
 msgid "Automatic"
 msgstr ""
 
-#: src/preferences.py:170
+#: src/preferences.py:152
 msgid "Compact"
 msgstr ""
 
-#: src/preferences.py:171
+#: src/preferences.py:153
 msgid "elementary OS"
 msgstr ""
 
-#: src/preferences.py:172
+#: src/preferences.py:154
 msgid "Legacy"
 msgstr ""
 
-#: src/preferences.py:173
+#: src/preferences.py:155
 msgid "Legacy (symbolic icons)"
 msgstr ""
 
-#: src/preferences.py:174
+#: src/preferences.py:156
 msgid "Menubar only"
 msgstr ""
 
-#: src/preferences.py:175
+#: src/preferences.py:157
 msgid "Toolbar only"
 msgstr ""
 
-#: src/preferences.py:176
+#: src/preferences.py:158
 msgid "Toolbar only (symbolic icons)"
 msgstr ""
 

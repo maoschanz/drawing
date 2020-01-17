@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-16 22:30+0100\n"
+"POT-Creation-Date: 2020-01-17 16:29+0100\n"
 "PO-Revision-Date: 2019-12-31 13:47+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
-#: src/ui/win-menus.ui:179 src/preferences.py:43
+#: src/ui/win-menus.ui:179 src/preferences.py:45
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -294,7 +294,7 @@ msgstr "_Ansicht"
 msgid "Show the preview"
 msgstr "Vorschau anzeigen"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:94
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:106
 msgid "Zoom"
 msgstr "Zoom"
 
@@ -346,7 +346,7 @@ msgstr "Aktualisieren"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
 #: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
-#: src/preferences.py:115
+#: src/preferences.py:117
 msgid "Show tools names"
 msgstr "Werkzeugnamen anzeigen"
 
@@ -507,15 +507,15 @@ msgstr "Öffnen"
 msgid "100%"
 msgstr "100%"
 
-#: src/ui/preferences.ui:66
+#: src/ui/preferences.ui:70
 msgid "Images"
 msgstr "Bilder"
 
-#: src/ui/preferences.ui:85 src/ui/shortcuts.ui:129
+#: src/ui/preferences.ui:93 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr "Werkzeuge"
 
-#: src/ui/preferences.ui:105 src/preferences.py:149
+#: src/ui/preferences.ui:117 src/preferences.py:140
 msgid "Advanced options"
 msgstr "Erweiterte Einstellungen"
 
@@ -531,7 +531,7 @@ msgstr "Format"
 msgid "Colorspace"
 msgstr "Farbraum"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:192
 msgid "Unsaved file"
 msgstr "Nicht gespeicherte Datei"
 
@@ -539,15 +539,15 @@ msgstr "Nicht gespeicherte Datei"
 msgid "Invalid format"
 msgstr "Ungültiges Format"
 
-#: src/ui/properties.ui:179 src/utilities.py:188
+#: src/ui/properties.ui:176 src/utilities.py:188
 msgid "pixels"
 msgstr "Pixel"
 
-#: src/ui/properties.ui:185
+#: src/ui/properties.ui:182
 msgid "centimeters"
 msgstr "Zentimeter"
 
-#: src/ui/properties.ui:191
+#: src/ui/properties.ui:188
 msgid "inches"
 msgstr "Zoll"
 
@@ -752,72 +752,73 @@ msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
 msgid "%s%%"
 msgstr "%s%%"
 
-#: src/preferences.py:55
+#: src/preferences.py:77
 msgid "New images"
 msgstr "Neue Bilder"
 
-#: src/preferences.py:58
+#: src/preferences.py:78
 msgid "Default width"
 msgstr "Standardbreite"
 
-#: src/preferences.py:61
+#: src/preferences.py:79
 msgid "Default height"
 msgstr "Standardhöhe"
 
-#: src/preferences.py:73
+#: src/preferences.py:89
 msgid "Default background"
 msgstr "Standardhintergrund"
 
-#: src/preferences.py:76
+#: src/preferences.py:92
 msgid "Images saving"
 msgstr "Speichern von Bildern"
 
-#: src/preferences.py:79
+#: src/preferences.py:93
+msgid "JPEG and BMP images can't handle transparency."
+msgstr ""
+
+#: src/preferences.py:94
+#, fuzzy
 msgid ""
-"JPEG and BMP images can't handle transparency. If you save your images in "
-"these formats, what do want to use to replace transparent pixels?"
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
 msgstr ""
 "JPEG- und BMP-Bilder unterstützen keine Transparenz. Wenn Sie Ihre Bilder in "
 "diesem Format speichern möchten, werden die transparenten Pixel ersetzt. Was "
 "möchten Sie dafür nutzen?"
 
-#: src/preferences.py:85 src/utilities.py:40 src/utilities.py:141
+#: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
 msgstr "Weiß"
 
-#: src/preferences.py:86 src/utilities.py:42 src/utilities.py:142
+#: src/preferences.py:98 src/utilities.py:42 src/utilities.py:142
 msgid "Black"
 msgstr "Schwarz"
 
-#: src/preferences.py:87 src/utilities.py:143
+#: src/preferences.py:99 src/utilities.py:143
 msgid "Checkboard"
 msgstr "Schachbrett"
 
-#: src/preferences.py:88 src/utilities.py:144
+#: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
 msgstr ""
 
-#: src/preferences.py:89
+#: src/preferences.py:101
 msgid "Ask before saving"
 msgstr "Vor dem Speichern fragen"
 
-#: src/preferences.py:98
-msgid "Ctrl + Scroll"
-msgstr "Strg + Scrollen"
+#: src/preferences.py:107
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr ""
 
-#: src/preferences.py:99
-msgid "Scroll"
-msgstr "Scrollen"
+#: src/preferences.py:108
+msgid "Using keyboard shortcuts or touch gestures is possible too."
+msgstr ""
 
-#: src/preferences.py:102
-msgid "Action to zoom"
-msgstr "Aktion für Zoom"
+#: src/preferences.py:110
+msgid "Use 'Ctrl' to zoom"
+msgstr ""
 
-#: src/preferences.py:105
-msgid "Automatic zoom level"
-msgstr "Automatischer Zoom-Level"
-
-#: src/preferences.py:112
+#: src/preferences.py:116
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
@@ -829,7 +830,7 @@ msgstr "Große Symbole verwenden"
 msgid "Additional tools"
 msgstr "Zusätzliche Werkzeuge"
 
-#: src/preferences.py:124
+#: src/preferences.py:122
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
@@ -837,67 +838,67 @@ msgstr ""
 "Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein "
 "sollten. Daher sind nicht alle standardmäßig aktiviert."
 
-#: src/preferences.py:130 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Freie Auswahl"
 
-#: src/preferences.py:132 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:126 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Farbauswahl"
 
-#: src/preferences.py:134 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:127 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Farbwähler"
 
-#: src/preferences.py:136 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:128 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Füllen"
 
-#: src/preferences.py:152
+#: src/preferences.py:141
 msgid "Preview size"
 msgstr "Vorschaugröße"
 
-#: src/preferences.py:157
+#: src/preferences.py:143
 msgid "Development features"
 msgstr "Entwicklungsfunktionen"
 
-#: src/preferences.py:162
+#: src/preferences.py:148
 msgid "Layout"
 msgstr "Layout"
 
-#: src/preferences.py:165
+#: src/preferences.py:149
 msgid "The recommended value is \"Automatic\"."
 msgstr "Der empfohlene Wert ist \"Automatisch\"."
 
-#: src/preferences.py:169
+#: src/preferences.py:151
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: src/preferences.py:170
+#: src/preferences.py:152
 msgid "Compact"
 msgstr "Kompakt"
 
-#: src/preferences.py:171
+#: src/preferences.py:153
 msgid "elementary OS"
 msgstr ""
 
-#: src/preferences.py:172
+#: src/preferences.py:154
 msgid "Legacy"
 msgstr "Altmodisch"
 
-#: src/preferences.py:173
+#: src/preferences.py:155
 msgid "Legacy (symbolic icons)"
 msgstr "Traditionell (einfarbig)"
 
-#: src/preferences.py:174
+#: src/preferences.py:156
 msgid "Menubar only"
 msgstr "Nur Menüleiste"
 
-#: src/preferences.py:175
+#: src/preferences.py:157
 msgid "Toolbar only"
 msgstr "Nur Werkzeugleiste"
 
-#: src/preferences.py:176
+#: src/preferences.py:158
 msgid "Toolbar only (symbolic icons)"
 msgstr "Nur Werkzeugleiste (einfarbig)"
 
@@ -1297,7 +1298,7 @@ msgstr "Ohne Hintergrund"
 
 #: src/tools/ui/tool_text.ui:100 src/tools/classic_tools/tool_text.py:53
 msgid "Shadow"
-msgstr ""
+msgstr "Schatten"
 
 #: src/tools/ui/tool_text.ui:106 src/tools/classic_tools/tool_text.py:21
 #: src/tools/classic_tools/tool_text.py:55
@@ -1442,17 +1443,14 @@ msgstr "Auswahl skalieren"
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
 
-#~ msgid "Secondary color rectangle"
-#~ msgstr "Zweitfarbe Rechteck"
+#~ msgid "Ctrl + Scroll"
+#~ msgstr "Strg + Scrollen"
 
-#~ msgid "Secondary color shadow"
-#~ msgstr "Zweitfarbe Schatten"
+#~ msgid "Scroll"
+#~ msgstr "Scrollen"
 
-#~ msgid "Do you want to save anyway ?"
-#~ msgstr "Möchten Sie es trotzdem speichern?"
-
-#~ msgid "Default zoom"
-#~ msgstr "Standard-Zoom"
+#~ msgid "Action to zoom"
+#~ msgstr "Aktion für Zoom"
 
 #~ msgid "Close"
 #~ msgstr "Schließen"

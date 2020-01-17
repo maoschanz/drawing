@@ -24,7 +24,7 @@
     when creating a new file.</p>
 
     <p>When a file is saved to the JPEG or the BMP file format, the transparency
-    can't be kept. The application has to replace all transparent pixels with
+    can't be kept. The application can replace the transparent pixels with
     something else: it can be white, black, or a checkboard of greys.</p>
     <p>If the replacement you want depends on the image, it's also possible to
     open a dialog every time you save an image to one of these file formats: the
@@ -33,10 +33,22 @@
 
     <p>You can also set how you want to zoom on the image: it can be with
     <key>Ctrl</key> and the mouse wheel, or only with the mouse wheel.</p>
-    <!-- <p>optimal zoom.</p> -->
   </section>
 
-<!-- TODO illustration(s) ? -->
+  <section>
+    <table rules="colgroups">
+      <tr>
+        <td>
+          <media type="image" mime="image/png" width="100%"
+                 src="figures/screenshot_prefs_images.png" its:translate="no" />
+        </td>
+        <td>
+          <media type="image" mime="image/png" width="100%"
+                 src="figures/screenshot_prefs_tools.png" its:translate="no" />
+        </td>
+      </tr>
+    </table>
+  </section>
 
   <section>
     <title><link xref="tools_classic">Tools</link></title>

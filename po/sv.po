@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-16 22:30+0100\n"
+"POT-Creation-Date: 2020-01-17 16:29+0100\n"
 "PO-Revision-Date: 2020-01-11 13:40+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -127,7 +127,7 @@ msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
-#: src/ui/win-menus.ui:179 src/preferences.py:43
+#: src/ui/win-menus.ui:179 src/preferences.py:45
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -290,7 +290,7 @@ msgstr "Vi_sa"
 msgid "Show the preview"
 msgstr "Visa förhandsgranskningen"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:94
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:106
 msgid "Zoom"
 msgstr "Zoom"
 
@@ -342,7 +342,7 @@ msgstr "Uppdatera"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
 #: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
-#: src/preferences.py:115
+#: src/preferences.py:117
 msgid "Show tools names"
 msgstr "Visa verktygsnamn"
 
@@ -501,15 +501,15 @@ msgstr "Öppna"
 msgid "100%"
 msgstr "100%"
 
-#: src/ui/preferences.ui:66
+#: src/ui/preferences.ui:70
 msgid "Images"
 msgstr "Bilder"
 
-#: src/ui/preferences.ui:85 src/ui/shortcuts.ui:129
+#: src/ui/preferences.ui:93 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr "Verktyg"
 
-#: src/ui/preferences.ui:105 src/preferences.py:149
+#: src/ui/preferences.ui:117 src/preferences.py:140
 msgid "Advanced options"
 msgstr "Avancerade alternativ"
 
@@ -525,7 +525,7 @@ msgstr "Format"
 msgid "Colorspace"
 msgstr "Färgrymd"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:192
 msgid "Unsaved file"
 msgstr "Osparad fil"
 
@@ -533,15 +533,15 @@ msgstr "Osparad fil"
 msgid "Invalid format"
 msgstr "Ogiltigt format"
 
-#: src/ui/properties.ui:179 src/utilities.py:188
+#: src/ui/properties.ui:176 src/utilities.py:188
 msgid "pixels"
 msgstr "pixlar"
 
-#: src/ui/properties.ui:185
+#: src/ui/properties.ui:182
 msgid "centimeters"
 msgstr "centimeter"
 
-#: src/ui/properties.ui:191
+#: src/ui/properties.ui:188
 msgid "inches"
 msgstr "tum"
 
@@ -745,72 +745,73 @@ msgstr "Kunde inte öppna den här filen. Menade du %s ?"
 msgid "%s%%"
 msgstr "%s%%"
 
-#: src/preferences.py:55
+#: src/preferences.py:77
 msgid "New images"
 msgstr "Nya bilder"
 
-#: src/preferences.py:58
+#: src/preferences.py:78
 msgid "Default width"
 msgstr "Standardbredd"
 
-#: src/preferences.py:61
+#: src/preferences.py:79
 msgid "Default height"
 msgstr "Standardhöjd"
 
-#: src/preferences.py:73
+#: src/preferences.py:89
 msgid "Default background"
 msgstr "Standardbakgrund"
 
-#: src/preferences.py:76
+#: src/preferences.py:92
 msgid "Images saving"
 msgstr "Spara bilder"
 
-#: src/preferences.py:79
+#: src/preferences.py:93
+msgid "JPEG and BMP images can't handle transparency."
+msgstr ""
+
+#: src/preferences.py:94
+#, fuzzy
 msgid ""
-"JPEG and BMP images can't handle transparency. If you save your images in "
-"these formats, what do want to use to replace transparent pixels?"
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
 msgstr ""
 "JPEG- och BMP-bilder kan inte hantera transparens. Vad vill du använda för "
 "att ersätta transparenta bildpunkter, om du sparar dina bilder i dessa "
 "format?"
 
-#: src/preferences.py:85 src/utilities.py:40 src/utilities.py:141
+#: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
 msgstr "Vit"
 
-#: src/preferences.py:86 src/utilities.py:42 src/utilities.py:142
+#: src/preferences.py:98 src/utilities.py:42 src/utilities.py:142
 msgid "Black"
 msgstr "Svart"
 
-#: src/preferences.py:87 src/utilities.py:143
+#: src/preferences.py:99 src/utilities.py:143
 msgid "Checkboard"
 msgstr "Schackrutigt"
 
-#: src/preferences.py:88 src/utilities.py:144
+#: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
 msgstr ""
 
-#: src/preferences.py:89
+#: src/preferences.py:101
 msgid "Ask before saving"
 msgstr "Fråga innan något sparas"
 
-#: src/preferences.py:98
-msgid "Ctrl + Scroll"
-msgstr "Ctrl + Skroll"
+#: src/preferences.py:107
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr ""
 
-#: src/preferences.py:99
-msgid "Scroll"
-msgstr "Skrolla"
+#: src/preferences.py:108
+msgid "Using keyboard shortcuts or touch gestures is possible too."
+msgstr ""
 
-#: src/preferences.py:102
-msgid "Action to zoom"
-msgstr "Zoomåtgärd"
+#: src/preferences.py:110
+msgid "Use 'Ctrl' to zoom"
+msgstr ""
 
-#: src/preferences.py:105
-msgid "Automatic zoom level"
-msgstr "Automatisk zoomnivå"
-
-#: src/preferences.py:112
+#: src/preferences.py:116
 msgid "Appearance"
 msgstr "Utseende"
 
@@ -822,7 +823,7 @@ msgstr "Använd stora ikoner"
 msgid "Additional tools"
 msgstr "Ytterligare verktyg"
 
-#: src/preferences.py:124
+#: src/preferences.py:122
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
@@ -830,67 +831,67 @@ msgstr ""
 "Dessa verktyg är inte lika tillförlitliga och användbara som de skall vara, "
 "så alla är inte aktiverade som standard."
 
-#: src/preferences.py:130 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Fri markering"
 
-#: src/preferences.py:132 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:126 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Färgval"
 
-#: src/preferences.py:134 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:127 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Färgväljare"
 
-#: src/preferences.py:136 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:128 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Måla"
 
-#: src/preferences.py:152
+#: src/preferences.py:141
 msgid "Preview size"
 msgstr "Storlek på förhandsgranskning"
 
-#: src/preferences.py:157
+#: src/preferences.py:143
 msgid "Development features"
 msgstr "Utvecklingsfunktioner"
 
-#: src/preferences.py:162
+#: src/preferences.py:148
 msgid "Layout"
 msgstr "Layout"
 
-#: src/preferences.py:165
+#: src/preferences.py:149
 msgid "The recommended value is \"Automatic\"."
 msgstr "Det rekommenderade värdet är \"Automatisk\"."
 
-#: src/preferences.py:169
+#: src/preferences.py:151
 msgid "Automatic"
 msgstr "Automatisk"
 
-#: src/preferences.py:170
+#: src/preferences.py:152
 msgid "Compact"
 msgstr "Kompakt"
 
-#: src/preferences.py:171
+#: src/preferences.py:153
 msgid "elementary OS"
 msgstr ""
 
-#: src/preferences.py:172
+#: src/preferences.py:154
 msgid "Legacy"
 msgstr "Standard"
 
-#: src/preferences.py:173
+#: src/preferences.py:155
 msgid "Legacy (symbolic icons)"
 msgstr "Standard (symboliska ikoner)"
 
-#: src/preferences.py:174
+#: src/preferences.py:156
 msgid "Menubar only"
 msgstr "Endast menyfält"
 
-#: src/preferences.py:175
+#: src/preferences.py:157
 msgid "Toolbar only"
 msgstr "Endast verktygsfält"
 
-#: src/preferences.py:176
+#: src/preferences.py:158
 msgid "Toolbar only (symbolic icons)"
 msgstr "Endast verktygsfält (symboliska ikoner)"
 
@@ -1428,11 +1429,14 @@ msgstr "Skalar markering"
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
 
-#~ msgid "Secondary color rectangle"
-#~ msgstr "Sekundär färgrektangel"
+#~ msgid "Ctrl + Scroll"
+#~ msgstr "Ctrl + Skroll"
 
-#~ msgid "Secondary color shadow"
-#~ msgstr "Sekundär färgskugga"
+#~ msgid "Scroll"
+#~ msgstr "Skrolla"
+
+#~ msgid "Action to zoom"
+#~ msgstr "Zoomåtgärd"
 
 #~ msgid "Close"
 #~ msgstr "Stäng"

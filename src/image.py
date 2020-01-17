@@ -50,8 +50,8 @@ class DrawingImage(Gtk.Box):
 			Gdk.EventMask.SMOOTH_SCROLL_MASK | \
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
-		# Utiliser BUTTON_MOTION_MASK au lieu de POINTER_MOTION_MASK serait
-		# moins complexe mais moins puissant
+		# Using BUTTON_MOTION_MASK instead of POINTER_MOTION_MASK would be less
+		# algorithmically complex but powerful enough.
 
 		# For displaying things on the widget
 		self.drawing_area.connect('draw', self.on_draw)
@@ -67,7 +67,7 @@ class DrawingImage(Gtk.Box):
 		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
 
-		self.ctrl_to_zoom = self.window._settings.get_string('zoom-behavior') == 'ctrl'
+		self.ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
 
 	############################################################################
 	# Image initialization #####################################################
@@ -252,7 +252,7 @@ class DrawingImage(Gtk.Box):
 		self.update_history_sensitivity()
 
 	def update_history_sensitivity(self):
-		# XXX never called while an operation is ongoing
+		# XXX never called while an operation is ongoing so that's stupid
 		can_undo = ( len(self.undo_history) != 0 ) or self._operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
@@ -263,13 +263,14 @@ class DrawingImage(Gtk.Box):
 		redoable_action = self.redo_history[-1:]
 		undo_label = None
 		redo_label = None
+		# TODO store/get translatable labels instead of tool_ids (issue #42)
 		if self._operation_is_ongoing():
 			# XXX pointless: the method is called at application of the operation
-			undo_label = self.active_tool().tool_id # TODO get a translatable label
+			undo_label = self.active_tool().tool_id
 		elif len(undoable_action) > 0:
-			undo_label = undoable_action[0]['tool_id'] # TODO store a translatable label
+			undo_label = undoable_action[0]['tool_id']
 		if len(redoable_action) > 0:
-			redo_label = redoable_action[0]['tool_id'] # TODO store a translatable label
+			redo_label = redoable_action[0]['tool_id']
 		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_pixbuf_to_history(self):
@@ -396,12 +397,12 @@ class DrawingImage(Gtk.Box):
 		self.update()
 
 	def set_surface_as_stable_pixbuf(self):
-		# print('image/379: set_surface_as_stable_pixbuf')
+		# print('image.py: set_surface_as_stable_pixbuf')
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
 		                    self.surface.get_width(), self.surface.get_height())
 
 	def use_stable_pixbuf(self):
-		# print('image/384: use_stable_pixbuf')
+		# print('image.py: use_stable_pixbuf')
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 
 	def get_main_pixbuf(self):
@@ -586,12 +587,6 @@ class DrawingImage(Gtk.Box):
 	def set_opti_zoom_level(self, *args):
 		allocated_width = self.get_widget_width()
 		allocated_height = self.get_widget_height()
-		if allocated_width == 1:
-			# XXX because self.drawing_area might be not allocated yet
-			return
-			# allocated_width = 800
-			# allocated_height = 400
-			# FIXME but that hack can't update the minimap label
 		h_ratio = allocated_width / self.get_pixbuf_width()
 		v_ratio = allocated_height / self.get_pixbuf_height()
 		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some margin is cool
@@ -615,14 +610,16 @@ class DrawingImage(Gtk.Box):
 		pass
 
 	def do_draw_page(self, op, print_ctx, page_num):
-		# XXX TODO if it's too big for one page ?
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
-		print_ctx.get_cairo_context().paint()
+		# TODO if it's too big for one page ?
+		cairo_context = print_ctx.get_cairo_context()
+		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
+		cairo_context.paint()
 
 	def do_begin_print(self, op, print_ctx):
 		op.set_n_pages(1)
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
-		print_ctx.get_cairo_context().paint()
+		cairo_context = print_ctx.get_cairo_context()
+		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
+		cairo_context.paint()
 
 	############################################################################
 ################################################################################

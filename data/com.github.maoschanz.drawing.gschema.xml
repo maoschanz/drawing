@@ -17,10 +17,10 @@
       accessibility feature which is off by default because it can make icons
       blurry.</description>
     </key>
-    <key type="s" name="zoom-behavior">
-      <default>'ctrl'</default>
-      <summary>Action to perform to zoom</summary>
-      <description>Can be 'ctrl' or 'scroll'.</description>
+    <key type="b" name="ctrl-zoom">
+      <default>true</default>
+      <summary>Use ctrl to zoom.</summary>
+      <description>User can zoom with scrolling or ctrl+scrolling.</description>
     </key>
     <key type="as" name="disabled-tools">
       <default>['color_select', 'picker', 'paint']</default>

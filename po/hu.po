@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-16 22:30+0100\n"
+"POT-Creation-Date: 2020-01-17 16:29+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -129,7 +129,7 @@ msgstr "Romain F. T."
 
 #: src/ui/app-menus.ui:15 src/ui/app-menus.ui:206 src/ui/preferences.ui:30
 #: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
-#: src/ui/win-menus.ui:179 src/preferences.py:43
+#: src/ui/win-menus.ui:179 src/preferences.py:45
 msgid "Preferences"
 msgstr "Beállítások"
 
@@ -292,7 +292,7 @@ msgstr "_Nézet"
 msgid "Show the preview"
 msgstr "Előnézet megjelenítése"
 
-#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:94
+#: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:106
 msgid "Zoom"
 msgstr "Nagyítás"
 
@@ -344,7 +344,7 @@ msgstr "Frissítés"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
 #: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
-#: src/preferences.py:115
+#: src/preferences.py:117
 msgid "Show tools names"
 msgstr "Eszközök neveinek megjelenítése"
 
@@ -506,15 +506,15 @@ msgstr "Megnyitás"
 msgid "100%"
 msgstr "100%"
 
-#: src/ui/preferences.ui:66
+#: src/ui/preferences.ui:70
 msgid "Images"
 msgstr "Képek"
 
-#: src/ui/preferences.ui:85 src/ui/shortcuts.ui:129
+#: src/ui/preferences.ui:93 src/ui/shortcuts.ui:129
 msgid "Tools"
 msgstr "Eszközök"
 
-#: src/ui/preferences.ui:105 src/preferences.py:149
+#: src/ui/preferences.ui:117 src/preferences.py:140
 msgid "Advanced options"
 msgstr "Haladó beállítások"
 
@@ -530,7 +530,7 @@ msgstr "Formátum"
 msgid "Colorspace"
 msgstr "Színtér"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:196
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:192
 msgid "Unsaved file"
 msgstr "Mentetlen fájl"
 
@@ -538,15 +538,15 @@ msgstr "Mentetlen fájl"
 msgid "Invalid format"
 msgstr "Érvénytelen formátuma"
 
-#: src/ui/properties.ui:179 src/utilities.py:188
+#: src/ui/properties.ui:176 src/utilities.py:188
 msgid "pixels"
 msgstr "képpont"
 
-#: src/ui/properties.ui:185
+#: src/ui/properties.ui:182
 msgid "centimeters"
 msgstr "centiméter"
 
-#: src/ui/properties.ui:191
+#: src/ui/properties.ui:188
 msgid "inches"
 msgstr "hüvelyk"
 
@@ -754,72 +754,73 @@ msgstr ""
 msgid "%s%%"
 msgstr "%s%%"
 
-#: src/preferences.py:55
+#: src/preferences.py:77
 msgid "New images"
 msgstr "Új képek"
 
-#: src/preferences.py:58
+#: src/preferences.py:78
 msgid "Default width"
 msgstr "Alapértelmezett szélesség"
 
-#: src/preferences.py:61
+#: src/preferences.py:79
 msgid "Default height"
 msgstr "Alapértelmezett magasság"
 
-#: src/preferences.py:73
+#: src/preferences.py:89
 msgid "Default background"
 msgstr "Alapértelmezett háttér"
 
-#: src/preferences.py:76
+#: src/preferences.py:92
 msgid "Images saving"
 msgstr "Képek mentése"
 
-#: src/preferences.py:79
+#: src/preferences.py:93
+msgid "JPEG and BMP images can't handle transparency."
+msgstr ""
+
+#: src/preferences.py:94
+#, fuzzy
 msgid ""
-"JPEG and BMP images can't handle transparency. If you save your images in "
-"these formats, what do want to use to replace transparent pixels?"
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
 msgstr ""
 "A JPEG és BMP fájlformátumok nem támogatják az átlátszóságot. Amennyiben "
 "ilyen formátumban menti a képeket, milyen színre legyenek lecserélve az "
 "átlátszó képpontok?"
 
-#: src/preferences.py:85 src/utilities.py:40 src/utilities.py:141
+#: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
 msgstr "Fehér"
 
-#: src/preferences.py:86 src/utilities.py:42 src/utilities.py:142
+#: src/preferences.py:98 src/utilities.py:42 src/utilities.py:142
 msgid "Black"
 msgstr "Fekete"
 
-#: src/preferences.py:87 src/utilities.py:143
+#: src/preferences.py:99 src/utilities.py:143
 msgid "Checkboard"
 msgstr "Kockás"
 
-#: src/preferences.py:88 src/utilities.py:144
+#: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
 msgstr ""
 
-#: src/preferences.py:89
+#: src/preferences.py:101
 msgid "Ask before saving"
 msgstr "Kérdés mentés előtt"
 
-#: src/preferences.py:98
-msgid "Ctrl + Scroll"
-msgstr "Ctrl és görgetés"
+#: src/preferences.py:107
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr ""
 
-#: src/preferences.py:99
-msgid "Scroll"
-msgstr "Görgetés"
+#: src/preferences.py:108
+msgid "Using keyboard shortcuts or touch gestures is possible too."
+msgstr ""
 
-#: src/preferences.py:102
-msgid "Action to zoom"
-msgstr "Nagyítási művelet"
+#: src/preferences.py:110
+msgid "Use 'Ctrl' to zoom"
+msgstr ""
 
-#: src/preferences.py:105
-msgid "Automatic zoom level"
-msgstr "Automatikus nagyítás"
-
-#: src/preferences.py:112
+#: src/preferences.py:116
 msgid "Appearance"
 msgstr "Megjelenés"
 
@@ -831,7 +832,7 @@ msgstr "Nagy ikonok"
 msgid "Additional tools"
 msgstr "További eszközök"
 
-#: src/preferences.py:124
+#: src/preferences.py:122
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
@@ -840,67 +841,67 @@ msgstr ""
 "amennyire lenniük kellene, ezért alapértelmezés szerint nincsenek "
 "bekapcsolva."
 
-#: src/preferences.py:130 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Szabad kijelölés"
 
-#: src/preferences.py:132 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:126 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Színválasztó"
 
-#: src/preferences.py:134 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:127 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Színpipetta"
 
-#: src/preferences.py:136 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:128 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Festés"
 
-#: src/preferences.py:152
+#: src/preferences.py:141
 msgid "Preview size"
 msgstr "Előnézet mérete"
 
-#: src/preferences.py:157
+#: src/preferences.py:143
 msgid "Development features"
 msgstr "Fejlesztés"
 
-#: src/preferences.py:162
+#: src/preferences.py:148
 msgid "Layout"
 msgstr "Elrendezés"
 
-#: src/preferences.py:165
+#: src/preferences.py:149
 msgid "The recommended value is \"Automatic\"."
 msgstr "Az ajánlott érték: „Automatikus”."
 
-#: src/preferences.py:169
+#: src/preferences.py:151
 msgid "Automatic"
 msgstr "Automatikus"
 
-#: src/preferences.py:170
+#: src/preferences.py:152
 msgid "Compact"
 msgstr "Tömör"
 
-#: src/preferences.py:171
+#: src/preferences.py:153
 msgid "elementary OS"
 msgstr ""
 
-#: src/preferences.py:172
+#: src/preferences.py:154
 msgid "Legacy"
 msgstr "Örökölt"
 
-#: src/preferences.py:173
+#: src/preferences.py:155
 msgid "Legacy (symbolic icons)"
 msgstr "Örökölt (szimbolikus ikonok)"
 
-#: src/preferences.py:174
+#: src/preferences.py:156
 msgid "Menubar only"
 msgstr "Csak menüsor"
 
-#: src/preferences.py:175
+#: src/preferences.py:157
 msgid "Toolbar only"
 msgstr "Csak eszköztár"
 
-#: src/preferences.py:176
+#: src/preferences.py:158
 msgid "Toolbar only (symbolic icons)"
 msgstr "Csak eszköztár (szimbolikus ikonok)"
 
@@ -1446,14 +1447,20 @@ msgstr "Kijelölés átméretezése"
 msgid "Scaling the canvas"
 msgstr "Rajzvászon átméretezése"
 
+#~ msgid "Ctrl + Scroll"
+#~ msgstr "Ctrl és görgetés"
+
+#~ msgid "Scroll"
+#~ msgstr "Görgetés"
+
+#~ msgid "Action to zoom"
+#~ msgstr "Nagyítási művelet"
+
 #~ msgid "Secondary color rectangle"
 #~ msgstr "Téglalap másodlagos színnel"
 
 #~ msgid "Secondary color shadow"
 #~ msgstr "Másodlagos szín-árnyék"
-
-#~ msgid "Print the version and display the 'about' dialog"
-#~ msgstr "Kiírja a verziószámot és megjeleníti a „névjegy” párbeszédablakot"
 
 #~ msgid "Mode"
 #~ msgstr "Üzemmód"
@@ -1463,15 +1470,6 @@ msgstr "Rajzvászon átméretezése"
 
 #~ msgid "Filling"
 #~ msgstr "Kitöltés"
-
-#~ msgid "Filled (main color)"
-#~ msgstr "Kitöltés (elsődleges szín)"
-
-#~ msgid "Filled (secondary color)"
-#~ msgstr "Kitöltés (másodlagos szín)"
-
-#~ msgid "Selection type"
-#~ msgstr "Kijelölés típusa"
 
 #~ msgid "Freehand"
 #~ msgstr "Szabadkézi"
