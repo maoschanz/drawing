@@ -112,7 +112,7 @@ class ToolPaint(AbstractClassicTool):
 		cairo_context2.set_operator(cairo.Operator.OVER)
 
 		Gdk.cairo_set_source_pixbuf(cairo_context2, \
-		                               self.get_image().get_temp_pixbuf(), 0, 0)
+		                                     self.get_image().temp_pixbuf, 0, 0)
 		cairo_context2.append_path(operation['path'])
 		cairo_context2.paint()
 		self.non_destructive_show_modif()
@@ -167,12 +167,12 @@ class ToolPaint(AbstractClassicTool):
 				self.replace_main_with_alpha(r, g, b)
 
 	def replace_main_with_alpha(self, red, green, blue):
-		self.get_image().main_pixbuf = self.get_main_pixbuf().add_alpha(True, \
-		                                                       red, green, blue)
+		new_pixbuf = self.get_main_pixbuf().add_alpha(True, red, green, blue)
+		self.get_image().set_main_pixbuf(new_pixbuf)
 
 	def replace_temp_with_alpha(self, red, green, blue):
-		self.get_image().temp_pixbuf = self.get_image().temp_pixbuf.add_alpha( \
-		                                                 True, red, green, blue)
+		new_pixbuf = self.get_image().temp_pixbuf.add_alpha(True, red, green, blue)
+		self.get_image().set_temp_pixbuf(new_pixbuf)
 
 	############################################################################
 ################################################################################

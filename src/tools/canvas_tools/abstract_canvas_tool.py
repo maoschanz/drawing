@@ -49,7 +49,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def temp_preview(self, is_selection, local_dx, local_dy):
 		"""Part of the previewing methods shared by all canvas tools."""
 		cairo_context = cairo.Context(self.get_surface())
-		pixbuf = self.get_image().get_temp_pixbuf()
+		pixbuf = self.get_image().temp_pixbuf
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
@@ -88,16 +88,17 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.apply_temp(op['is_selection'], op['local_dx'], op['local_dy'])
 
 	def apply_temp(self, operation_is_selection, local_dx, local_dy):
+		new_pixbuf = self.get_image().temp_pixbuf.copy()
 		if operation_is_selection:
-			pixbuf = self.get_image().get_temp_pixbuf().copy() # copy ??
-			self.get_selection().set_pixbuf(pixbuf)
+			# TODO déplacer le code qui suit dans selection_manager.py
+			self.get_selection().set_pixbuf(new_pixbuf)
 			x = self.get_selection().selection_x + local_dx
 			y = self.get_selection().selection_y + local_dy
 			self.get_selection().set_coords(True, x, y) # XXX si on reste sur
 			# True, l'overlay s'en trouve décalée, mais avec False ça nique tout
 			# au moment de la désélection
 		else:
-			self.get_image().main_pixbuf = self.get_image().get_temp_pixbuf().copy()
+			self.get_image().set_main_pixbuf(new_pixbuf)
 			self.get_image().use_stable_pixbuf()
 
 	############################################################################

@@ -174,7 +174,7 @@ class ToolFilters(AbstractCanvasTool):
 			self.op_invert_color(source_pixbuf)
 		else:
 			self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-			temp = self.get_image().get_temp_pixbuf()
+			temp = self.get_image().temp_pixbuf
 			if operation['saturate']:
 				source_pixbuf.saturate_and_pixelate(temp, operation['saturation'], False)
 			elif operation['pixelate']:

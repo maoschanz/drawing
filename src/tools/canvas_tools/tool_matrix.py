@@ -104,8 +104,6 @@ class ToolMatrix(AbstractCanvasTool):
 		yx = -1 * math.sin(rad)
 		yy = math.cos(rad)
 
-		# x0 = self.temp_w * yx # XXX
-		# y0 = self.temp_h * xy # XXX
 		if rad % (2 * math.pi) == 0:
 			x0 = 0
 			y0 = 0
@@ -116,9 +114,9 @@ class ToolMatrix(AbstractCanvasTool):
 			x0 = self.temp_h * yx
 			y0 = self.temp_w * xy
 		else:
-			self.show_error('bruh moment: angle bad')
-			x0 = self.temp_h * yx # XXX
-			y0 = self.temp_w * xy # XXX
+			self.show_error('angle not supported')
+			x0 = self.temp_h * yx
+			y0 = self.temp_w * xy
 
 		x0 = max(0, x0)
 		y0 = max(0, y0)
@@ -141,9 +139,7 @@ class ToolMatrix(AbstractCanvasTool):
 
 	def on_coord_changed(self, *args):
 		if self.dont_update:
-			# print('no update')
 			return
-		# print('update:')
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 

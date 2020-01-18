@@ -194,7 +194,7 @@ class AbstractAbstractTool():
 		return self.get_image().get_surface()
 
 	def get_main_pixbuf(self):
-		return self.get_image().get_main_pixbuf()
+		return self.get_image().main_pixbuf
 
 	def non_destructive_show_modif(self):
 		self.get_image().update()

@@ -60,7 +60,7 @@ class DrawingSelectionManager():
 
 		self.selection_path = new_path
 		self.is_active = True
-		main_pixbuf = self.image.get_main_pixbuf()
+		main_pixbuf = self.image.main_pixbuf
 
 		# Erase everything outside of the path
 		surface = Gdk.cairo_surface_create_from_pixbuf(main_pixbuf, 0, None)

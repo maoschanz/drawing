@@ -165,29 +165,31 @@ class DrawingImage(Gtk.Box):
 
 	def build_tab_widget(self):
 		"""Build the GTK widget displayed as the tab title."""
-		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
-		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
-		tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
+		# The tab can be closed with a button.
 		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
 		btn.set_relief(Gtk.ReliefStyle.NONE)
 		btn.connect('clicked', self.try_close_tab)
+		# The title is a label. Middle-clicking on it closes the tab too.
+		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
+		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
+		event_box = Gtk.EventBox()
+		event_box.add(self.tab_label)
+		event_box.connect('button-press-event', self.on_tab_title_clicked)
+		# These widgets are packed in a regular box, which is returned.
+		tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
 		if self.window.decorations == 'csd-eos':
 			tab_title.pack_start(btn, expand=False, fill=False, padding=0)
-			tab_title.pack_end(self.tab_label, expand=True, fill=True, padding=0)
+			tab_title.pack_end(event_box, expand=True, fill=True, padding=0)
 		else:
-			tab_title.pack_start(self.tab_label, expand=True, fill=True, padding=0)
+			tab_title.pack_start(event_box, expand=True, fill=True, padding=0)
 			tab_title.pack_end(btn, expand=False, fill=False, padding=0)
-		eb = Gtk.EventBox()
-		eb.connect('button-press-event', self.on_tab_title_clicked)
-		eb.add(tab_title)
-		eb.show_all()
-		return eb
+		tab_title.show_all()
+		return tab_title
 	
 	def on_tab_title_clicked(self, widget, event_button):
-		if event_button.type == Gdk.EventType.BUTTON_PRESS and\
-			event_button.button == Gdk.BUTTON_MIDDLE:
+		if event_button.type == Gdk.EventType.BUTTON_PRESS \
+		and event_button.button == Gdk.BUTTON_MIDDLE:
 			self.try_close_tab()
-			# Click event was handled by this function, do not propagate
 			return True
 		return False
 
@@ -264,7 +266,7 @@ class DrawingImage(Gtk.Box):
 
 	def update_history_sensitivity(self):
 		# XXX never called while an operation is ongoing so that's stupid
-		can_undo = ( len(self.undo_history) != 0 ) or self._operation_is_ongoing()
+		can_undo = (len(self.undo_history) != 0) or self._operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
 		# self.update_history_actions_labels()
@@ -391,6 +393,10 @@ class DrawingImage(Gtk.Box):
 		self._is_pressed = False
 
 	def update(self):
+		# print('image.py: drawing_area.queue_draw')
+		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
+		# l'utilisation pour les trop grandes images, il faudrait n'update que
+		# la partie qui change, ou au pire que la partie affichée
 		self.drawing_area.queue_draw()
 
 	def get_surface(self):
@@ -414,10 +420,10 @@ class DrawingImage(Gtk.Box):
 
 	def use_stable_pixbuf(self):
 		# print('image.py: use_stable_pixbuf')
+		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
+		# l'utilisation pour les trop grandes images, il faudrait n'update que
+		# la partie qui change, ou au pire que la partie affichée
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
-
-	def get_main_pixbuf(self):
-		return self.main_pixbuf
 
 	def get_pixbuf_width(self):
 		return self.main_pixbuf.get_width()
@@ -425,26 +431,23 @@ class DrawingImage(Gtk.Box):
 	def get_pixbuf_height(self):
 		return self.main_pixbuf.get_height()
 
+	# TODO utiliser ça en interne à image.py
 	def set_main_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			# XXX wtf, throw something maybe???
-			return False
+			# XXX maybe throw something instead
+			print("new_pixbuf is None, no change to main_pixbuf will be applied")
 		else:
 			self.main_pixbuf = new_pixbuf
-			return True
 
 	############################################################################
 	# Temporary pixbuf management ##############################################
 
-	def get_temp_pixbuf(self):
-		return self.temp_pixbuf
-
 	def set_temp_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			return False
+			# XXX maybe throw something instead
+			print("new_pixbuf is None, no change to temp_pixbuf will be applied")
 		else:
 			self.temp_pixbuf = new_pixbuf
-			return True
 
 	def reset_temp(self):
 		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)

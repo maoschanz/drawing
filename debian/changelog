@@ -1,5 +1,27 @@
 drawing (0.5) unstable; urgency=low
 
-  * Unstable version, do not use
+  * UNSTABLE VERSION, DO NOT USE. SOME FEATURES ARE BACKPORTED TO 0.4.x, SOME ARE NOT.
+  * images can be imported or opened using drag-and-drop (0.4)
+  * "new image with custom size" action (0.4)
+  * remove colorspace modification for the properties dialog (0.4)
+  * transparency replacement setting and dialog (0.4)
+  * add "outline" option to the text tool (TODO 0.4.11)
+  * close tabs with middle-click (#164 raggesilver) (TODO 0.4.11)
+  * remove the "windows" menu from the menubar
+  * refactor bottom panels management to allow several tools to share the same panels
+  * rectangle selection, freehand selection, and color selection, are now distinct tools
+  * the 'rotate' tool now supports any angle and handles horizontal or vertical flipping
+  * the tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool
+  * "close shape" action for the 'shape' tool
+  * "close selection" action for the 'free selection' tool
+  * the 'saturate' tool has been replaced by 'filters'
+  * add several types of blur to 'filters'
+  * add color inversion, pixelisation, saturation and parametrized transparency to 'filters'
+  * a fullscreen mode is now available
+  * ability to zoom in (or out) on the image, using the minimap, the touchpad or the mouse wheel
+  * move the "mode" selection to the colors menus
+  * rewrite the user help manual
+  * add "additional tools" to the preferences window
+  * rewrite the preferences window to use (scrollable) grids
 
  -- Romain F. T. <rrroschan@gmail.com>  Mon, 22 Jul 2019 00:18:12 +0100

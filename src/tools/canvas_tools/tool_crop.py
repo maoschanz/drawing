@@ -208,11 +208,11 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			dest_x = max(-1 * x, 0)
 			dest_y = max(-1 * y, 0)
-		temp_p = self.get_image().get_temp_pixbuf()
+		temp_p = self.get_image().temp_pixbuf
 		min_w = min(width, temp_p.get_width() - src_x)
 		min_h = min(height, temp_p.get_height() - src_y)
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
-		self.get_image().temp_pixbuf = new_pixbuf
+		self.get_image().set_temp_pixbuf(new_pixbuf)
 
 	############################################################################
 ################################################################################
