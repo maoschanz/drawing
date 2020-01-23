@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Onno Giesmann <nutzer3105@gmail.com>, 2019.
+# Onno Giesmann <nutzer3105@gmail.com>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-17 16:29+0100\n"
-"PO-Revision-Date: 2019-12-31 13:47+0100\n"
+"PO-Revision-Date: 2020-01-19 20:24+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -364,14 +364,12 @@ msgid "_Colors"
 msgstr "_Farben"
 
 #: src/ui/app-menus.ui:313
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "Hauptfarbe"
+msgstr "Hauptfarbe bearbeiten…"
 
 #: src/ui/app-menus.ui:317
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "Zweitfarbe"
+msgstr "Zweitfarbe bearbeiten…"
 
 #: src/ui/app-menus.ui:323
 msgid "Color editor by default"
@@ -774,17 +772,15 @@ msgstr "Speichern von Bildern"
 
 #: src/preferences.py:93
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "JPEG- und BMP-Bilder unterstützen keine Transparenz."
 
 #: src/preferences.py:94
-#, fuzzy
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"JPEG- und BMP-Bilder unterstützen keine Transparenz. Wenn Sie Ihre Bilder in "
-"diesem Format speichern möchten, werden die transparenten Pixel ersetzt. Was "
-"möchten Sie dafür nutzen?"
+"Wenn Sie Ihre Bilder in diesem Format speichern möchten, werden die "
+"transparenten Pixel ersetzt. Was möchten Sie dafür nutzen?"
 
 #: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
@@ -800,7 +796,7 @@ msgstr "Schachbrett"
 
 #: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
-msgstr ""
+msgstr "Nichts"
 
 #: src/preferences.py:101
 msgid "Ask before saving"
@@ -808,15 +804,17 @@ msgstr "Vor dem Speichern fragen"
 
 #: src/preferences.py:107
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr ""
+msgstr "Sie können Zoomen mit STR+Scrollen oder nur mit Scrollen"
 
 #: src/preferences.py:108
 msgid "Using keyboard shortcuts or touch gestures is possible too."
 msgstr ""
+"Die Benutzung von Tastenkombinationen oder Touch-Gesten sind ebenfalls "
+"möglich."
 
 #: src/preferences.py:110
 msgid "Use 'Ctrl' to zoom"
-msgstr ""
+msgstr "'STRG' für Zoomen nutzen"
 
 #: src/preferences.py:116
 msgid "Appearance"
@@ -880,7 +878,7 @@ msgstr "Kompakt"
 
 #: src/preferences.py:153
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #: src/preferences.py:154
 msgid "Legacy"
@@ -1077,7 +1075,7 @@ msgstr "Benötigtes Werkzeug ist nicht verfügbar"
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Line shape"
-msgstr "Enden-Form"
+msgstr "Linienform"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -1205,24 +1203,23 @@ msgid "Flip vertically"
 msgstr "Vertikal spiegeln"
 
 #: src/tools/ui/tool_scale.ui:158 src/tools/ui/tool_scale.ui:213
-#, fuzzy
 msgid "Keep proportions"
-msgstr "Verhältnisse immer beibehalten"
+msgstr "Verhältnisse beibehalten"
 
 #. Context for translations: "Always [keep proportions]"
 #: src/tools/ui/tool_scale.ui:161 src/tools/ui/tool_scale.ui:216
 msgid "Always"
-msgstr ""
+msgstr "Immer"
 
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/tools/ui/tool_scale.ui:167 src/tools/ui/tool_scale.ui:222
 msgid "When scaling from corners"
-msgstr ""
+msgstr "Beim Skalieren an den Ecken"
 
 #. Context for translations: "Never [keep proportions]"
 #: src/tools/ui/tool_scale.ui:173 src/tools/ui/tool_scale.ui:228
 msgid "Never"
-msgstr ""
+msgstr "Nie"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:55
 msgid "Rectangle"
@@ -1302,14 +1299,12 @@ msgstr "Schatten"
 
 #: src/tools/ui/tool_text.ui:106 src/tools/classic_tools/tool_text.py:21
 #: src/tools/classic_tools/tool_text.py:55
-#, fuzzy
 msgid "Outline"
-msgstr "Leere Außenlinie"
+msgstr "Außenlinie"
 
 #: src/tools/ui/tool_text.ui:112 src/tools/classic_tools/tool_text.py:57
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Standardhintergrund"
+msgstr "Rechteckiger Hintergrund"
 
 #: src/tools/utilities_tools.py:187
 msgid "Continue"
@@ -1469,3 +1464,24 @@ msgstr "Leinwand skalieren"
 
 #~ msgid "Selection options"
 #~ msgstr "Auswahl-Optionen"
+
+#~ msgid "Automatic zoom level"
+#~ msgstr "Automatischer Zoom-Level"
+
+#~ msgid "Secondary color rectangle"
+#~ msgstr "Zweitfarbe Rechteck"
+
+#~ msgid "Secondary color shadow"
+#~ msgstr "Zweitfarbe Schatten"
+
+#~ msgid "Print the version and display the 'about' dialog"
+#~ msgstr "Version anzeigen sowie den \"Info\"-Dialog"
+
+#~ msgid "Mode"
+#~ msgstr "Modus"
+
+#~ msgid "Do you want to save anyway ?"
+#~ msgstr "Möchten Sie es trotzdem speichern?"
+
+#~ msgid "Default zoom"
+#~ msgstr "Standard-Zoom"

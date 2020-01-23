@@ -1,13 +1,14 @@
 # Danish translation for Drawing
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# scootergrisen, 2019.
+# scootergrisen, 2019-2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-17 16:29+0100\n"
-"PO-Revision-Date: 2019-12-08 00:00+0200\n"
+"PO-Revision-Date: 2020-01-19 04:42+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -71,9 +72,9 @@ msgid ""
 "rotating, …"
 msgstr ""
 "Det giver dig mulighed for at tegne og redigere billeder med værktøjer såsom "
-"blyant, linje eller bue (med diverse valgmuligheder), markering (klip/kopiér/"
-"indsæt/træk/ …), former (rektangel, cirkel, polygon …), indsættelse af "
-"tekst, tilpasning af størrelse, beskæring, drejning …"
+"blyant, linje eller bue (med diverse valgmuligheder), markering "
+"(klip/kopiér/indsæt/træk/ …), former (rektangel, cirkel, polygon …), "
+"indsættelse af tekst, tilpasning af størrelse, beskæring, drejning …"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
@@ -360,14 +361,12 @@ msgid "_Colors"
 msgstr "Farv_er"
 
 #: src/ui/app-menus.ui:313
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "Primær farve"
+msgstr "Rediger primær farve …"
 
 #: src/ui/app-menus.ui:317
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "Sekundær farve"
+msgstr "Rediger sekundær farve …"
 
 #: src/ui/app-menus.ui:323
 msgid "Color editor by default"
@@ -378,9 +377,8 @@ msgid "Exchange colors"
 msgstr "Byt om på farverne"
 
 #: src/ui/app-menus.ui:336
-#, fuzzy
 msgid "Color application mode"
-msgstr "Farvemarkering"
+msgstr "Farvepåføringstilstand"
 
 #: src/ui/app-menus.ui:338 src/ui/color-popover.ui:35
 msgid "Classic"
@@ -396,7 +394,7 @@ msgstr "Forskelle"
 
 #: src/ui/app-menus.ui:355
 msgid "Don't use the colors but…"
-msgstr ""
+msgstr "Brug ikke farverne men …"
 
 #. BlurType.PX_BOX
 #: src/ui/app-menus.ui:357 src/tools/ui/tool_filters.ui:185
@@ -465,7 +463,7 @@ msgstr "Forhåndsvisning"
 
 #: src/ui/color-popover.ui:27
 msgid "How the color will be applied to the existing pixels"
-msgstr ""
+msgstr "Hvordan farven påføres de eksisterende pixels"
 
 #: src/ui/color-popover.ui:67 src/ui/color-popover.ui:81
 msgid "Back to the palette"
@@ -707,9 +705,8 @@ msgid "Redo %s"
 msgstr "Omgør %s"
 
 #: src/main.py:56
-#, fuzzy
 msgid "Show the app version"
-msgstr "Vis versionen"
+msgstr "Vis programversionen"
 
 #: src/main.py:58
 msgid "Open a new window"
@@ -771,16 +768,15 @@ msgstr "Når billeder gemmes"
 
 #: src/preferences.py:93
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "JPEG- og BMP-billeder kan ikke håndtere gennemsigtighed."
 
 #: src/preferences.py:94
-#, fuzzy
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"JPEG- og BMP-billeder kan ikke håndtere gennemsigtighed. Hvis du gemmer dine "
-"billeder i disse formater, hvad skal så erstatte de gennemsigtige pixels?"
+"Hvis du gemmer dine billeder i disse formater, hvad skal så erstatte de "
+"gennemsigtige pixels?"
 
 #: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
@@ -796,7 +792,7 @@ msgstr "Skakbræt"
 
 #: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
-msgstr ""
+msgstr "Intet"
 
 #: src/preferences.py:101
 msgid "Ask before saving"
@@ -804,15 +800,15 @@ msgstr "Spørg inden der gemmes"
 
 #: src/preferences.py:107
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr ""
+msgstr "Du kan zoome med Ctrl+rulning eller kun rulning."
 
 #: src/preferences.py:108
 msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr ""
+msgstr "Og med tastaturgenveje eller touchbevægelser."
 
 #: src/preferences.py:110
 msgid "Use 'Ctrl' to zoom"
-msgstr ""
+msgstr "Brug 'Ctrl' til at zoome"
 
 #: src/preferences.py:116
 msgid "Appearance"
@@ -876,7 +872,7 @@ msgstr "Kompakt"
 
 #: src/preferences.py:153
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #: src/preferences.py:154
 msgid "Legacy"
@@ -1065,13 +1061,11 @@ msgid "Import a picture"
 msgstr "Importér et billede"
 
 #: src/window.py:1114
-#, fuzzy
 msgid "Required tool is not available"
-msgstr "Fuldskærmstilstand er nu tilgængelig."
+msgstr "Krævet værktøj er ikke tilgængeligt"
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
-#, fuzzy
 msgid "Line shape"
 msgstr "Linjens form"
 
@@ -1201,24 +1195,23 @@ msgid "Flip vertically"
 msgstr "Vend lodret"
 
 #: src/tools/ui/tool_scale.ui:158 src/tools/ui/tool_scale.ui:213
-#, fuzzy
 msgid "Keep proportions"
-msgstr "Bevar altid størrelsesforhold"
+msgstr "Bevar størrelsesforhold"
 
 #. Context for translations: "Always [keep proportions]"
 #: src/tools/ui/tool_scale.ui:161 src/tools/ui/tool_scale.ui:216
 msgid "Always"
-msgstr ""
+msgstr "Altid"
 
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/tools/ui/tool_scale.ui:167 src/tools/ui/tool_scale.ui:222
 msgid "When scaling from corners"
-msgstr ""
+msgstr "Ved skalering fra hjørner"
 
 #. Context for translations: "Never [keep proportions]"
 #: src/tools/ui/tool_scale.ui:173 src/tools/ui/tool_scale.ui:228
 msgid "Never"
-msgstr ""
+msgstr "Aldrig"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:55
 msgid "Rectangle"
@@ -1294,18 +1287,16 @@ msgstr "Ingen baggrund"
 
 #: src/tools/ui/tool_text.ui:100 src/tools/classic_tools/tool_text.py:53
 msgid "Shadow"
-msgstr ""
+msgstr "Skygge"
 
 #: src/tools/ui/tool_text.ui:106 src/tools/classic_tools/tool_text.py:21
 #: src/tools/classic_tools/tool_text.py:55
-#, fuzzy
 msgid "Outline"
-msgstr "Tomt omrids"
+msgstr "Omrids"
 
 #: src/tools/ui/tool_text.ui:112 src/tools/classic_tools/tool_text.py:57
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Standardbaggrund"
+msgstr "Rektangelbaggrund"
 
 #: src/tools/utilities_tools.py:187
 msgid "Continue"
@@ -1433,21 +1424,3 @@ msgstr "Skaler markeringen"
 #: src/tools/canvas_tools/tool_scale.py:60
 msgid "Scaling the canvas"
 msgstr "Skaler lærredet"
-
-#~ msgid "Ctrl + Scroll"
-#~ msgstr "Ctrl + Rul"
-
-#~ msgid "Scroll"
-#~ msgstr "Rul"
-
-#~ msgid "Action to zoom"
-#~ msgstr "Handling for at zoome"
-
-#~ msgid "Secondary color rectangle"
-#~ msgstr "Sekundær farve som rektangel"
-
-#~ msgid "Secondary color shadow"
-#~ msgstr "Sekundær farve som skygge"
-
-#~ msgid "Mode"
-#~ msgstr "Tilstand"
