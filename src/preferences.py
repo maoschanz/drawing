@@ -122,6 +122,8 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.add_help(_("These tools are not as reliable and useful as " + \
 		       "they should be, so they are not all enabled by default."))
 		tools_dict = {
+			'eraser': _("Eraser"),
+			'highlight': _("Highlighter"),
 			'free_select': _("Free selection"),
 			'color_select': _("Color selection"),
 			'picker': _("Color Picker"),

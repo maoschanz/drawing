@@ -191,7 +191,7 @@ class DrawingImage(Gtk.Box):
 		and event_button.button == Gdk.BUTTON_MIDDLE:
 			self.try_close_tab()
 			return True
-		return False
+		return False # This callback HAS TO return a boolean
 
 	def update_title(self):
 		main_title = self.get_filename_for_display()

@@ -1,6 +1,6 @@
 # tool_picker.py
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_tools import utilities_get_rgba_for_xy
@@ -10,6 +10,7 @@ class ToolPicker(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
+		self.use_size = False
 
 	def get_options_model(self):
 		return None

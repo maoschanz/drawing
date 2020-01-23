@@ -14,7 +14,6 @@ class ToolText(AbstractClassicTool):
 		self.x_begin = 0.0
 		self.y_begin = 0.0
 		self.should_cancel = False
-		self.use_size = True
 
 		self.font_fam = "Sans"
 		self.background_id = 'outline'

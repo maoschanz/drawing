@@ -50,7 +50,9 @@ drawing_sources = [
 
 	'tools/classic_tools/abstract_classic_tool.py',
 	'tools/classic_tools/tool_arc.py',
+	'tools/classic_tools/tool_eraser.py',
 	'tools/classic_tools/tool_experiment.py',
+	'tools/classic_tools/tool_highlight.py',
 	'tools/classic_tools/tool_line.py',
 	'tools/classic_tools/tool_paint.py',
 	'tools/classic_tools/tool_pencil.py',

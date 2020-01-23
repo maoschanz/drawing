@@ -21,7 +21,6 @@ class AbstractAbstractTool():
 		self.icon_name = icon_name
 		self.tool_width = 10
 		self.cursor_name = 'cell'
-		self.use_size = False
 		self._ongoing_operation = False
 		self.window = window
 		self.build_row()

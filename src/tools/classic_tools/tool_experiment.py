@@ -1,7 +1,6 @@
 # tool_experiment.py
 
 import cairo, math
-from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_tools import utilities_smooth_path
@@ -11,7 +10,6 @@ class ToolExperiment(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
-		self.use_size = True
 		self.row.get_style_context().add_class('destructive-action')
 		self.past_x = -1.0
 		self.past_y = -1.0

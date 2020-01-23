@@ -21,7 +21,9 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 # Import tools
 from .tool_arc import ToolArc
+from .tool_eraser import ToolEraser
 from .tool_experiment import ToolExperiment
+from .tool_highlight import ToolHighlighter
 from .tool_line import ToolLine
 from .tool_paint import ToolPaint
 from .tool_pencil import ToolPencil
@@ -133,6 +135,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.prompt_message(False, 'window has started, now loading tools')
 		# The order might be improvable
 		self.load_tool('pencil', ToolPencil, disabled_tools_ids, dev)
+		self.load_tool('eraser', ToolEraser, disabled_tools_ids, dev)
+		self.load_tool('highlight', ToolHighlighter, disabled_tools_ids, dev)
 		self.load_tool('text', ToolText, disabled_tools_ids, dev)
 		self.load_tool('rect_select', ToolRectSelect, disabled_tools_ids, dev)
 		self.load_tool('free_select', ToolFreeSelect, disabled_tools_ids, dev)

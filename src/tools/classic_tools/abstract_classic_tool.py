@@ -17,6 +17,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		super().__init__(tool_id, label, icon_name, window)
 		self.menu_id = 0
 		self.use_color = True
+		self.use_size = True
 		self.accept_selection = False
 		self.tool_width = 1
 		self.main_color = None

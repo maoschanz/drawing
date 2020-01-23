@@ -1,7 +1,6 @@
 # tool_line.py
 
 import cairo
-from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_tools import utilities_add_arrow_triangle
@@ -11,7 +10,6 @@ class ToolLine(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'tool-line-symbolic', window)
-		self.use_size = True
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', False)

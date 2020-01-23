@@ -1,7 +1,6 @@
 # tool_shape.py
 
 import cairo, math
-from gi.repository import Gtk, Gdk
 
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_tools import utilities_smooth_path
@@ -11,9 +10,7 @@ class ToolShape(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Shape"), 'tool-freeshape-symbolic', window)
-		self.use_size = True
 		self._path = None
-
 		self.reset_temp_points()
 
 		self._shape_id = self.get_settings().get_string('last-active-shape')
