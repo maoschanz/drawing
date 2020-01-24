@@ -111,3 +111,4 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 
 [Donations (paypal)](https://paypal.me/maoschannz)
 
+the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic)
