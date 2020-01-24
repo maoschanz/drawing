@@ -18,7 +18,7 @@ class ToolRectSelect(AbstractSelectionTool):
 	def motion_define(self, event_x, event_y):
 		self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		utilities_show_overlay_on_context(cairo_context, AbstractSelectionTool.future_path, True)
 
 	def release_define(self, surface, event_x, event_y):

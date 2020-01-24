@@ -48,7 +48,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 	def temp_preview(self, is_selection, local_dx, local_dy):
 		"""Part of the previewing methods shared by all canvas tools."""
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		pixbuf = self.get_image().temp_pixbuf
 		if is_selection:
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)

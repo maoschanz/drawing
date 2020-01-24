@@ -180,7 +180,7 @@ class ToolText(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		super().do_tool_operation(operation)
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 
 		font_fam = operation['font_fam']
 		font_slant = operation['font_slant']

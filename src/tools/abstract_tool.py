@@ -192,6 +192,9 @@ class AbstractAbstractTool():
 	def get_surface(self):
 		return self.get_image().get_surface()
 
+	def get_context(self):
+		return cairo.Context(self.get_surface())
+
 	def get_main_pixbuf(self):
 		return self.get_image().main_pixbuf
 

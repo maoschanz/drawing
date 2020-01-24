@@ -29,7 +29,7 @@ class ToolFilters(AbstractCanvasTool):
 	__gtype_name__ = 'ToolFilters'
 
 	def __init__(self, window):
-		super().__init__('filters', _("Filters"), 'tool-blur-symbolic', window)
+		super().__init__('filters', _("Filters"), 'tool-filters-symbolic', window)
 		self.cursor_name = 'pointer'
 		self.apply_to_selection = False
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
@@ -44,6 +44,8 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar = FiltersToolPanel(self.window, self)
 		self.bar.menu_btn.connect('notify::active', self.set_active_type)
 		return self.bar
+
+	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.on_filter_preview()
@@ -208,6 +210,8 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.blur_label = builder.get_object('blur_label')
 		self.blur_btn = builder.get_object('blur_btn')
 		utilities_add_unit_to_spinbtn(self.blur_btn, 2, 'px')
+
+	############################################################################
 
 	def toggle_options_menu(self):
 		self.menu_btn.set_active(not self.menu_btn.get_active())

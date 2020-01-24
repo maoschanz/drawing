@@ -184,7 +184,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().show_popover()
 
 	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		x0 = int( min(press_x, release_x) )
 		y0 = int( min(press_y, release_y) )
 		x1 = int( max(press_x, release_x) )
@@ -253,7 +253,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def op_clean(self, operation):
 		if operation['initial_path'] is None:
 			return # TODO raise something goddammit
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.new_path()
 		cairo_context.append_path(operation['initial_path'])
 		cairo_context.set_operator(cairo.Operator.CLEAR)
@@ -272,7 +272,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().load_from_path(op['initial_path'])
 
 	def op_apply(self):
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		self.get_selection().show_selection_on_surface(cairo_context, False, \
 		                                           self.local_dx, self.local_dy)
 		self.get_selection().reset()

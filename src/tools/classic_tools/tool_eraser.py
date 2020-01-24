@@ -38,7 +38,7 @@ class ToolEraser(ToolPencil):
 
 		if operation['path'] is None:
 			return
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.set_line_cap(cairo.LineCap.ROUND)
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)
 		line_width = operation['line_width']

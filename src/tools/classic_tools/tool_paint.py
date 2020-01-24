@@ -103,7 +103,7 @@ class ToolPaint(AbstractClassicTool):
 			self.replace_temp_with_alpha(red, green, blue)
 			i = i+1
 		self.restore_pixbuf()
-		cairo_context2 = cairo.Context(self.get_surface())
+		cairo_context2 = self.get_context()
 
 		cairo_context2.append_path(operation['path'])
 		cairo_context2.set_operator(cairo.Operator.CLEAR)
@@ -125,7 +125,7 @@ class ToolPaint(AbstractClassicTool):
 		path whose creation is based on shitty heurisctics."""
 		if operation['path'] is None:
 			return
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.append_path(operation['path'])

@@ -95,7 +95,7 @@ class ToolExperiment(AbstractClassicTool):
 		self.selected_operator_label = state_as_string
 
 	def action_macro_scie(self, *args):
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.move_to(50, 50)
 		cairo_context.line_to(100, 150)
 		cairo_context.line_to(150, 50)
@@ -137,7 +137,7 @@ class ToolExperiment(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		if self.past_x == -1.0:
 			(self.past_x, self.past_y) = (self.x_press, self.y_press)
 			cairo_context.move_to(self.x_press, self.y_press)
@@ -176,7 +176,7 @@ class ToolExperiment(AbstractClassicTool):
 		super().do_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		if operation['antialias']:
 			cairo_context.set_antialias(cairo.Antialias.DEFAULT)
 		else:

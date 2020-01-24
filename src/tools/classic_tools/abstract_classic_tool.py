@@ -75,7 +75,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 			b_surface = utilities_fast_blur(self.get_surface(), radius, 0)
 			# where 0 == BlurType.AUTO
 			self.restore_pixbuf()
-			cairo_context = cairo.Context(self.get_surface())
+			cairo_context = self.get_context()
 			cairo_context.set_operator(cairo.Operator.OVER)
 			cairo_context.set_source_surface(b_surface, 0, 0)
 			cairo_context.paint()

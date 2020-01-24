@@ -25,7 +25,7 @@ class ToolMatrix(AbstractCanvasTool):
 	__gtype_name__ = 'ToolMatrix'
 
 	def __init__(self, window):
-		super().__init__('matrix', _("Deformation"), 'applications-science-symbolic', window)
+		super().__init__('matrix', _("Deformation"), 'tool-deformation-symbolic', window)
 		self.row.get_style_context().add_class('destructive-action')
 
 		self.apply_to_selection = False

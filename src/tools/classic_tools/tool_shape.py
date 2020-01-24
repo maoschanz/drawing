@@ -51,6 +51,9 @@ class ToolShape(AbstractClassicTool):
 		if self._shape_id == 'rectangle':
 			self._shape_label = _("Rectangle")
 			self._join_id = cairo.LineJoin.MITER
+		elif self._shape_id == 'roundedrect':
+			self._shape_label = _("Rounded rectangle")
+			self._join_id = cairo.LineJoin.ROUND
 		elif self._shape_id == 'oval':
 			self._shape_label = _("Oval")
 			self._join_id = cairo.LineJoin.ROUND
@@ -98,6 +101,8 @@ class ToolShape(AbstractClassicTool):
 		else:
 			if self._shape_id == 'rectangle':
 				self.build_rectangle(event_x, event_y)
+			elif self._shape_id == 'roundedrect':
+				self.build_roundedrect(event_x, event_y)
 			elif self._shape_id == 'oval':
 				self.draw_oval(event_x, event_y)
 			elif self._shape_id == 'circle':
@@ -118,6 +123,8 @@ class ToolShape(AbstractClassicTool):
 		else:
 			if self._shape_id == 'rectangle':
 				self.build_rectangle(event_x, event_y)
+			elif self._shape_id == 'roundedrect':
+				self.build_roundedrect(event_x, event_y)
 			elif self._shape_id == 'oval':
 				self.draw_oval(event_x, event_y)
 			elif self._shape_id == 'circle':
@@ -134,7 +141,7 @@ class ToolShape(AbstractClassicTool):
 
 	def add_point(self, event_x, event_y, memorize):
 		"""Add a point to a shape (used by both freeshape and polygon)."""
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		if self.initial_x == -1.0:
 			# print('init polygon')
 			(self.initial_x, self.initial_y) = (self.x_press, self.y_press)
@@ -164,17 +171,31 @@ class ToolShape(AbstractClassicTool):
 	############################################################################
 
 	def build_rectangle(self, event_x, event_y):
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.move_to(self.x_press, self.y_press)
 		cairo_context.line_to(self.x_press, event_y)
 		cairo_context.line_to(event_x, event_y)
 		cairo_context.line_to(event_x, self.y_press)
 		self._path = cairo_context.copy_path()
 
+	def build_roundedrect(self, event_x, event_y):
+		cairo_context = self.get_context()
+		a = min(self.x_press, event_x)
+		b = max(self.x_press, event_x)
+		c = min(self.y_press, event_y)
+		d = max(self.y_press, event_y)
+		radius = min(d - c, b - a) / 6 # c'est arbitraire
+		pi2 = math.pi / 2
+		cairo_context.arc(a + radius, c + radius, radius, 2 * pi2, 3 * pi2)
+		cairo_context.arc(b - radius, c + radius, radius, 3 * pi2, 4 * pi2)
+		cairo_context.arc(b - radius, d - radius, radius, 0 * pi2, 1 * pi2)
+		cairo_context.arc(a + radius, d - radius, radius, 1 * pi2, 2 * pi2)
+		cairo_context.close_path()
+		self._path = cairo_context.copy_path()
+
 	def draw_oval(self, event_x, event_y):
-		cairo_context = cairo.Context(self.get_surface())
-		# TODO c'est nul à chier
-		# https://stackoverflow.com/a/20582153
+		cairo_context = self.get_context()
+		# TODO faire ça : https://www.cairographics.org/cookbook/ellipses/
 		x2 = (self.x_press + event_x)/2
 		y2 = (self.y_press + event_y)/2
 		cairo_context.curve_to(self.x_press, y2, self.x_press, event_y, x2, event_y)
@@ -182,14 +203,15 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.curve_to(event_x, y2, event_x, self.y_press, x2, self.y_press)
 		cairo_context.curve_to(x2, self.y_press, self.x_press, self.y_press, \
 		                                                       self.x_press, y2)
+		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
 	def draw_circle(self, event_x, event_y):
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		delta_x2 = (self.x_press - event_x) * (self.x_press - event_x)
 		delta_y2 = (self.y_press - event_y) * (self.y_press - event_y)
 		rayon = math.sqrt(delta_x2 + delta_y2)
-		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
+		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2 * math.pi)
 		self._path = cairo_context.copy_path()
 
 	############################################################################
@@ -239,7 +261,7 @@ class ToolShape(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		super().do_tool_operation(operation)
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_width(operation['line_width'])
 		cairo_context.set_line_join(operation['line_join'])

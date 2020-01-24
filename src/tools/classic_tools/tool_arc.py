@@ -58,7 +58,7 @@ class ToolArc(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
 			cairo_context.move_to(self.x_press, self.y_press)
 			cairo_context.line_to(event_x, event_y)
@@ -76,7 +76,7 @@ class ToolArc(AbstractClassicTool):
 			return
 		else:
 			self.restore_pixbuf()
-			cairo_context = cairo.Context(self.get_surface())
+			cairo_context = self.get_context()
 			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
 			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
@@ -108,7 +108,7 @@ class ToolArc(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		super().do_tool_operation(operation)
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.set_line_cap(operation['line_cap'])
 		#cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']

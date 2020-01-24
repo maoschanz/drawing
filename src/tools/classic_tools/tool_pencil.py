@@ -56,7 +56,7 @@ class ToolPencil(AbstractClassicTool):
 		self._path = None
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		if self._path is None:
 			cairo_context.move_to(self.x_press, self.y_press)
 		else:
@@ -91,7 +91,7 @@ class ToolPencil(AbstractClassicTool):
 		super().do_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']

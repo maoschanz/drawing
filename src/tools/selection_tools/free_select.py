@@ -52,7 +52,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 
 	def draw_polygon(self, event_x, event_y):
 		"""This method is specific to the 'free selection' mode."""
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		cairo_context.set_dash([3, 3])
 		if AbstractSelectionTool.future_path is None:

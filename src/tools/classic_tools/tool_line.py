@@ -56,7 +56,7 @@ class ToolLine(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.move_to(self.x_press, self.y_press)
 		cairo_context.line_to(event_x, event_y)
 
@@ -66,7 +66,7 @@ class ToolLine(AbstractClassicTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.move_to(self.x_press, self.y_press)
 		cairo_context.line_to(event_x, event_y)
 
@@ -98,7 +98,7 @@ class ToolLine(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		super().do_tool_operation(operation)
-		cairo_context = cairo.Context(self.get_surface())
+		cairo_context = self.get_context()
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])
 		line_width = operation['line_width']
