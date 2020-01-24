@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-17 16:29+0100\n"
+"POT-Creation-Date: 2020-01-24 04:09+0100\n"
 "PO-Revision-Date: 2020-01-19 06:23+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
-#: src/main.py:130 src/window.py:508
+#: src/main.py:130 src/window.py:512
 msgid "Drawing"
 msgstr "Drawing"
 
@@ -40,13 +40,14 @@ msgstr "Paint;Måla;Rita;Penna;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:81 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
-#: src/window.py:877
+#: src/window.py:881
 msgid "New Window"
 msgstr "Nytt fönster"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:56
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
-#: src/ui/toolbar.ui:15 src/ui/win-menus.ui:14 src/ui/win-menus.ui:273
+#: src/ui/toolbar.ui:15 src/ui/window.ui:95 src/ui/win-menus.ui:14
+#: src/ui/win-menus.ui:273
 msgid "New Image"
 msgstr "Ny bild"
 
@@ -194,7 +195,7 @@ msgstr "Bildegenskaper"
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
 #: src/ui/headerbar-eos.ui:173 src/ui/shortcuts.ui:106 src/ui/toolbar.ui:103
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:135
-#: src/window.py:989 src/window.py:1009
+#: src/window.py:993 src/window.py:1013
 msgid "Save"
 msgstr "Spara"
 
@@ -278,7 +279,7 @@ msgstr "Klistra in"
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
-#: src/window.py:914 src/window.py:1082
+#: src/window.py:918 src/window.py:1086
 msgid "Import"
 msgstr "Importera"
 
@@ -397,15 +398,15 @@ msgstr "Använd inte dessa färger, men…"
 
 #. BlurType.PX_BOX
 #: src/ui/app-menus.ui:357 src/tools/ui/tool_filters.ui:185
-#: src/tools/canvas_tools/tool_filters.py:87
+#: src/tools/canvas_tools/tool_filters.py:89
 msgid "Blur"
 msgstr "Oskärpa"
 
-#: src/ui/app-menus.ui:362
+#: src/ui/app-menus.ui:362 src/preferences.py:125
 msgid "Eraser"
 msgstr "Suddgummi"
 
-#: src/ui/app-menus.ui:371 src/window.py:590
+#: src/ui/app-menus.ui:371 src/window.py:594
 msgid "_Tools"
 msgstr "_Verktyg"
 
@@ -413,7 +414,7 @@ msgstr "_Verktyg"
 msgid "Previous tool"
 msgstr "Föregående verktyg"
 
-#: src/ui/app-menus.ui:396 src/window.py:807 src/window.py:810
+#: src/ui/app-menus.ui:396 src/window.py:811 src/window.py:814
 msgid "_Options"
 msgstr "A_lternativ"
 
@@ -451,7 +452,7 @@ msgid "Tool size"
 msgstr "Verktygsstorlek"
 
 #. used by the bottom panels
-#: src/ui/classic-panel.ui:94 src/window.py:541 src/tools/abstract_tool.py:84
+#: src/ui/classic-panel.ui:94 src/window.py:545 src/tools/abstract_tool.py:83
 msgid "No options"
 msgstr "Inga alternativ"
 
@@ -493,7 +494,7 @@ msgid "Use these settings by default"
 msgstr "Använd dessa inställningar som standard"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
-#: src/window.py:898 src/window.py:913
+#: src/window.py:902 src/window.py:917
 msgid "Open"
 msgstr "Öppna"
 
@@ -509,7 +510,7 @@ msgstr "Bilder"
 msgid "Tools"
 msgstr "Verktyg"
 
-#: src/ui/preferences.ui:117 src/preferences.py:140
+#: src/ui/preferences.ui:117 src/preferences.py:142
 msgid "Advanced options"
 msgstr "Avancerade alternativ"
 
@@ -525,7 +526,7 @@ msgstr "Format"
 msgid "Colorspace"
 msgstr "Färgrymd"
 
-#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:192
+#: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
 msgstr "Osparad fil"
 
@@ -679,13 +680,13 @@ msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
 msgid "Troubleshoot selection"
 msgstr "Felsök markering"
 
-#: src/custom_image.py:33 src/utilities.py:134 src/window.py:898
-#: src/window.py:912 src/window.py:988 src/window.py:1009 src/window.py:1082
+#: src/custom_image.py:33 src/utilities.py:134 src/window.py:902
+#: src/window.py:916 src/window.py:992 src/window.py:1013 src/window.py:1086
 #: src/tools/ui/tool_crop.ui:27 src/tools/ui/tool_crop.ui:167
 #: src/tools/ui/tool_filters.ui:36 src/tools/ui/tool_filters.ui:209
 #: src/tools/ui/tool_rotate.ui:20 src/tools/ui/tool_rotate.ui:204
 #: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:235
-#: src/tools/ui/tool_text.ui:32 src/tools/utilities_tools.py:186
+#: src/tools/ui/tool_text.ui:30 src/tools/utilities_tools.py:186
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -829,67 +830,71 @@ msgstr ""
 "Dessa verktyg är inte lika tillförlitliga och användbara som de skall vara, "
 "så alla är inte aktiverade som standard."
 
-#: src/preferences.py:125 src/tools/selection_tools/free_select.py:12
+#: src/preferences.py:126
+msgid "Highlighter"
+msgstr ""
+
+#: src/preferences.py:127 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
 msgstr "Fri markering"
 
-#: src/preferences.py:126 src/tools/selection_tools/color_select.py:13
+#: src/preferences.py:128 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
 msgstr "Färgval"
 
-#: src/preferences.py:127 src/tools/classic_tools/tool_picker.py:12
+#: src/preferences.py:129 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
 msgstr "Färgväljare"
 
-#: src/preferences.py:128 src/tools/classic_tools/tool_paint.py:14
+#: src/preferences.py:130 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
 msgstr "Måla"
 
-#: src/preferences.py:141
+#: src/preferences.py:143
 msgid "Preview size"
 msgstr "Storlek på förhandsgranskning"
 
-#: src/preferences.py:143
+#: src/preferences.py:145
 msgid "Development features"
 msgstr "Utvecklingsfunktioner"
 
-#: src/preferences.py:148
+#: src/preferences.py:150
 msgid "Layout"
 msgstr "Layout"
 
-#: src/preferences.py:149
+#: src/preferences.py:151
 msgid "The recommended value is \"Automatic\"."
 msgstr "Det rekommenderade värdet är \"Automatisk\"."
 
-#: src/preferences.py:151
+#: src/preferences.py:153
 msgid "Automatic"
 msgstr "Automatisk"
 
-#: src/preferences.py:152
+#: src/preferences.py:154
 msgid "Compact"
 msgstr "Kompakt"
 
-#: src/preferences.py:153
+#: src/preferences.py:155
 msgid "elementary OS"
 msgstr "elementary OS"
 
-#: src/preferences.py:154
+#: src/preferences.py:156
 msgid "Legacy"
 msgstr "Standard"
 
-#: src/preferences.py:155
+#: src/preferences.py:157
 msgid "Legacy (symbolic icons)"
 msgstr "Standard (symboliska ikoner)"
 
-#: src/preferences.py:156
+#: src/preferences.py:158
 msgid "Menubar only"
 msgstr "Endast menyfält"
 
-#: src/preferences.py:157
+#: src/preferences.py:159
 msgid "Toolbar only"
 msgstr "Endast verktygsfält"
 
-#: src/preferences.py:158
+#: src/preferences.py:160
 msgid "Toolbar only (symbolic icons)"
 msgstr "Endast verktygsfält (symboliska ikoner)"
 
@@ -982,84 +987,84 @@ msgstr "BMP-bilder"
 msgid "percents"
 msgstr "procent"
 
-#: src/window.py:179
+#: src/window.py:183
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Kunde inte läsa in verktyg: %s"
 
-#: src/window.py:494
+#: src/window.py:498
 msgid "Modifications will take effect in the next new window."
 msgstr "Ändringarna tillämpas i nästa nya fönster."
 
-#: src/window.py:587
+#: src/window.py:591
 msgid "Opened images"
 msgstr "Öppna bilder"
 
-#: src/window.py:870
+#: src/window.py:874
 #, python-format
 msgid "Loading %s"
 msgstr "Läser in %s"
 
-#: src/window.py:876
+#: src/window.py:880
 msgid "New Tab"
 msgstr "Ny flik"
 
-#: src/window.py:878
+#: src/window.py:882
 msgid "Discard changes"
 msgstr "Kassera ändringar"
 
-#: src/window.py:881 src/window.py:990
+#: src/window.py:885 src/window.py:994
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Det finns osparade ändringar i %s."
 
-#: src/window.py:883
+#: src/window.py:887
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Var vill du öppna %s?"
 
-#: src/window.py:897
+#: src/window.py:901
 msgid "Open a picture"
 msgstr "Öppna en bild"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
-#: src/window.py:921
+#: src/window.py:925
 msgid "these files"
 msgstr "dessa filer"
 
-#: src/window.py:922
+#: src/window.py:926
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Vad vill du göra med %s?"
 
-#: src/window.py:967 src/window.py:1031 src/window.py:1104
+#: src/window.py:971 src/window.py:1035 src/window.py:1108
 #, python-format
 msgid "Failed to save %s"
 msgstr "Kunde inte spara %s"
 
-#: src/window.py:980 src/window.py:1012
+#: src/window.py:984 src/window.py:1016
 msgid "Untitled"
 msgstr "Namnlös"
 
 #. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py:982
+#: src/window.py:986
 msgid "this picture"
 msgstr "denna bild"
 
-#: src/window.py:987
+#: src/window.py:991
 msgid "Discard"
 msgstr "Kassera"
 
-#: src/window.py:1008
+#: src/window.py:1012
 msgid "Save picture as…"
 msgstr "Spara bild som…"
 
-#: src/window.py:1081
+#: src/window.py:1085
 msgid "Import a picture"
 msgstr "Importera en bild"
 
-#: src/window.py:1114
+#: src/window.py:1118
 msgid "Required tool is not available"
 msgstr "Det erforderliga verktyget är inte tillgängligt"
 
@@ -1070,18 +1075,18 @@ msgstr "Linjeform"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
-#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:21
-#: src/tools/classic_tools/tool_arc.py:33
-#: src/tools/classic_tools/tool_line.py:28
-#: src/tools/classic_tools/tool_pencil.py:19
-#: src/tools/classic_tools/tool_pencil.py:42
+#: src/tools/ui/tool_pencil.ui:7 src/tools/classic_tools/tool_arc.py:19
+#: src/tools/classic_tools/tool_arc.py:31
+#: src/tools/classic_tools/tool_line.py:26
+#: src/tools/classic_tools/tool_pencil.py:15
+#: src/tools/classic_tools/tool_pencil.py:36
 msgid "Round"
 msgstr "Rund"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
-#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:30
-#: src/tools/classic_tools/tool_line.py:25
-#: src/tools/classic_tools/tool_pencil.py:38
+#: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:28
+#: src/tools/classic_tools/tool_line.py:23
+#: src/tools/classic_tools/tool_pencil.py:32
 msgid "Square"
 msgstr "Kvadrat"
 
@@ -1091,8 +1096,8 @@ msgid "Use dashes"
 msgstr "Streckad"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
-#: src/tools/classic_tools/tool_arc.py:46
-#: src/tools/classic_tools/tool_line.py:45
+#: src/tools/classic_tools/tool_arc.py:44
+#: src/tools/classic_tools/tool_line.py:43
 msgid "Arrow"
 msgstr "Pil"
 
@@ -1107,12 +1112,12 @@ msgstr "Tillämpa"
 msgid "More options"
 msgstr "Fler alternativ"
 
-#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:107
+#: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:109
 msgid "Select a filter…"
 msgstr "Välj ett filter…"
 
 #: src/tools/ui/tool_filters.ui:89 src/tools/ui/tool_filters.ui:97
-#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:96
+#: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:98
 msgid "Saturation"
 msgstr "Mättnad"
 
@@ -1121,23 +1126,23 @@ msgid "Blur radius"
 msgstr "Oskärperadie"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:125
-#: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:105
+#: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:107
 msgid "Transparency"
 msgstr "Transparens"
 
-#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:99
+#: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:101
 msgid "Pixelisation"
 msgstr "Pixelisering"
 
-#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:102
+#: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:104
 msgid "Invert colors"
 msgstr "Invertera färger"
 
-#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:90
+#: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:92
 msgid "Horizontal blur"
 msgstr "Horisontell oskärpa"
 
-#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:93
+#: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:95
 msgid "Vertical blur"
 msgstr "Vertikal oskärpa"
 
@@ -1161,13 +1166,9 @@ msgstr "Sudda och ersätt"
 msgid "Clipping"
 msgstr "Klippning"
 
-#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:34
+#: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:28
 msgid "Thin"
 msgstr "Tunn"
-
-#: src/tools/ui/tool_pencil.ui:30
-msgid "Artificial smoothness"
-msgstr "Artificiell utjämning"
 
 #: src/tools/ui/tool_rotate.ui:44
 msgid "Angle (degrees)"
@@ -1212,88 +1213,93 @@ msgstr "Vid skalning från hörnen"
 msgid "Never"
 msgstr "Aldrig"
 
-#: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:55
+#: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:52
 msgid "Rectangle"
 msgstr "Rektangel"
 
-#: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:58
+#: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:55
+#, fuzzy
+msgid "Rounded rectangle"
+msgstr "Rektangel"
+
+#: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:58
 msgid "Oval"
 msgstr "Oval"
 
-#: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:64
+#: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:64
 msgid "Polygon"
 msgstr "Polygon"
 
-#: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:67
+#: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:67
 msgid "Free shape"
 msgstr "Fri figur"
 
-#: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:61
+#: src/tools/ui/tool_shape.ui:38 src/tools/classic_tools/tool_shape.py:61
 msgid "Circle"
 msgstr "Cirkel"
 
-#: src/tools/ui/tool_shape.ui:41 src/tools/classic_tools/tool_shape.py:40
+#: src/tools/ui/tool_shape.ui:47 src/tools/classic_tools/tool_shape.py:37
 msgid "Empty outline"
 msgstr "Tom disposition"
 
-#: src/tools/ui/tool_shape.ui:46 src/tools/classic_tools/tool_shape.py:42
+#: src/tools/ui/tool_shape.ui:52 src/tools/classic_tools/tool_shape.py:39
 msgid "Main color"
 msgstr "Primär färg"
 
-#: src/tools/ui/tool_shape.ui:51 src/tools/classic_tools/tool_shape.py:50
+#: src/tools/ui/tool_shape.ui:57 src/tools/classic_tools/tool_shape.py:47
 msgid "Secondary color"
 msgstr "Sekundär färg"
 
-#: src/tools/ui/tool_shape.ui:56 src/tools/classic_tools/tool_shape.py:44
+#: src/tools/ui/tool_shape.ui:62 src/tools/classic_tools/tool_shape.py:41
 msgid "Horizontal gradient"
 msgstr "Horisontell toning"
 
-#: src/tools/ui/tool_shape.ui:61 src/tools/classic_tools/tool_shape.py:46
+#: src/tools/ui/tool_shape.ui:67 src/tools/classic_tools/tool_shape.py:43
 msgid "Vertical gradient"
 msgstr "Vertikal toning"
 
-#: src/tools/ui/tool_shape.ui:66 src/tools/classic_tools/tool_shape.py:48
+#: src/tools/ui/tool_shape.ui:72 src/tools/classic_tools/tool_shape.py:45
 msgid "Radial gradient"
 msgstr "Radiell toning"
 
-#: src/tools/ui/tool_shape.ui:73
+#: src/tools/ui/tool_shape.ui:79
 msgid "Close shape"
 msgstr "Stäng figur"
 
-#: src/tools/ui/tool_text.ui:45 src/tools/ui/tool_text.ui:46
+#: src/tools/ui/tool_text.ui:43 src/tools/ui/tool_text.ui:44
 msgid "Insert here"
 msgstr "Infoga här"
 
-#: src/tools/ui/tool_text.ui:63
+#: src/tools/ui/tool_text.ui:61
 msgid "Font"
 msgstr "Teckensnitt"
 
-#: src/tools/ui/tool_text.ui:82
+#: src/tools/ui/tool_text.ui:80
 msgid "Italic"
 msgstr "Kursiv"
 
-#: src/tools/ui/tool_text.ui:86
+#: src/tools/ui/tool_text.ui:84
 msgid "Bold"
 msgstr "Fet"
 
-#: src/tools/ui/tool_text.ui:91
+#: src/tools/ui/tool_text.ui:89
 msgid "Background"
 msgstr "Bakgrund"
 
-#: src/tools/ui/tool_text.ui:94 src/tools/classic_tools/tool_text.py:51
+#: src/tools/ui/tool_text.ui:92 src/tools/classic_tools/tool_text.py:50
 msgid "No background"
 msgstr "Ingen bakgrund"
 
-#: src/tools/ui/tool_text.ui:100 src/tools/classic_tools/tool_text.py:53
+#: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:52
 msgid "Shadow"
 msgstr "Skugga"
 
-#: src/tools/ui/tool_text.ui:106 src/tools/classic_tools/tool_text.py:21
-#: src/tools/classic_tools/tool_text.py:55
+#: src/tools/ui/tool_text.ui:104 src/tools/classic_tools/tool_text.py:20
+#: src/tools/classic_tools/tool_text.py:54
 msgid "Outline"
 msgstr "Kontur"
 
-#: src/tools/ui/tool_text.ui:112 src/tools/classic_tools/tool_text.py:57
+#: src/tools/ui/tool_text.ui:110 src/tools/classic_tools/tool_text.py:56
 msgid "Rectangle background"
 msgstr "Rektangelbakgrund"
 
@@ -1313,30 +1319,30 @@ msgstr "Denna algoritm kanske inte kan hantera det önskade området."
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
 
-#: src/tools/classic_tools/tool_arc.py:13
+#: src/tools/classic_tools/tool_arc.py:12
 msgid "Curve"
 msgstr "Kurva"
 
-#: src/tools/classic_tools/tool_arc.py:36
+#: src/tools/classic_tools/tool_arc.py:34
 msgid "Curve options"
 msgstr "Kurvalternativ"
 
-#: src/tools/classic_tools/tool_arc.py:44
-#: src/tools/classic_tools/tool_line.py:43
+#: src/tools/classic_tools/tool_arc.py:42
+#: src/tools/classic_tools/tool_line.py:41
 msgid "Dashed arrow"
 msgstr "Streckad pil"
 
-#: src/tools/classic_tools/tool_arc.py:48
-#: src/tools/classic_tools/tool_line.py:47
-#: src/tools/classic_tools/tool_pencil.py:56
+#: src/tools/classic_tools/tool_arc.py:46
+#: src/tools/classic_tools/tool_line.py:45
+#: src/tools/classic_tools/tool_pencil.py:49
 msgid "Dashed"
 msgstr "Streckad"
 
-#: src/tools/classic_tools/tool_line.py:13
+#: src/tools/classic_tools/tool_line.py:12
 msgid "Line"
 msgstr "Linje"
 
-#: src/tools/classic_tools/tool_line.py:31
+#: src/tools/classic_tools/tool_line.py:29
 msgid "Line options"
 msgstr "Linjealternativ"
 
@@ -1348,19 +1354,19 @@ msgstr "Målningsalternativ"
 msgid "Click on an area to replace its color by transparency"
 msgstr "Klicka på ett område för att byta ut färgen mot transparens"
 
-#: src/tools/classic_tools/tool_pencil.py:13
+#: src/tools/classic_tools/tool_pencil.py:12
 msgid "Pencil"
 msgstr "Penna"
 
-#: src/tools/classic_tools/tool_pencil.py:45
+#: src/tools/classic_tools/tool_pencil.py:39
 msgid "Pencil options"
 msgstr "Pennalternativ"
 
-#: src/tools/classic_tools/tool_shape.py:13
+#: src/tools/classic_tools/tool_shape.py:12
 msgid "Shape"
 msgstr "Figur"
 
-#: src/tools/classic_tools/tool_shape.py:24
+#: src/tools/classic_tools/tool_shape.py:21
 msgid "Empty"
 msgstr "Tom"
 
@@ -1376,7 +1382,7 @@ msgstr "Klicka på figurens första punkt för att stänga den."
 msgid "Text"
 msgstr "Text"
 
-#: src/tools/classic_tools/tool_text.py:60
+#: src/tools/classic_tools/tool_text.py:59
 msgid "Font options"
 msgstr "Teckensnittsalternativ"
 
@@ -1404,7 +1410,7 @@ msgstr "Beskär arbetsytan"
 msgid "Filters"
 msgstr "Filter"
 
-#: src/tools/canvas_tools/tool_filters.py:72
+#: src/tools/canvas_tools/tool_filters.py:74
 msgid "Click on the image to preview the selected filter"
 msgstr "Klicka på bilden för att granska det valda filtret"
 
@@ -1423,15 +1429,6 @@ msgstr "Skalar markering"
 #: src/tools/canvas_tools/tool_scale.py:60
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
-
-#~ msgid "Ctrl + Scroll"
-#~ msgstr "Ctrl + Skroll"
-
-#~ msgid "Scroll"
-#~ msgstr "Skrolla"
-
-#~ msgid "Action to zoom"
-#~ msgstr "Zoomåtgärd"
 
 #~ msgid "Close"
 #~ msgstr "Stäng"
