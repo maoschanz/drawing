@@ -1,7 +1,21 @@
 # tool_shape.py
+#
+# Copyright 2018-2020 Romain F. T.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo, math
-
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_tools import utilities_smooth_path
 
@@ -10,7 +24,6 @@ class ToolShape(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Shape"), 'tool-freeshape-symbolic', window)
-		self._path = None
 		self.reset_temp_points()
 
 		self._shape_id = self.get_settings().get_string('last-active-shape')
@@ -25,6 +38,7 @@ class ToolShape(AbstractClassicTool):
 		self.set_action_sensitivity('shape_close', False)
 
 	def reset_temp_points(self):
+		self._path = None
 		self.x_press = -1.0
 		self.y_press = -1.0
 		self.initial_x = -1.0
@@ -43,7 +57,7 @@ class ToolShape(AbstractClassicTool):
 			self._style_label = _("Vertical gradient")
 		elif state_as_string == 'r-gradient':
 			self._style_label = _("Radial gradient")
-		else:
+		else: # if state_as_string == 'secondary':
 			self._style_label = _("Secondary color")
 
 	def set_active_shape(self, *args):
@@ -195,14 +209,13 @@ class ToolShape(AbstractClassicTool):
 
 	def draw_oval(self, event_x, event_y):
 		cairo_context = self.get_context()
-		# TODO faire ça : https://www.cairographics.org/cookbook/ellipses/
-		x2 = (self.x_press + event_x)/2
-		y2 = (self.y_press + event_y)/2
-		cairo_context.curve_to(self.x_press, y2, self.x_press, event_y, x2, event_y)
-		cairo_context.curve_to(x2, event_y, event_x, event_y, event_x, y2)
-		cairo_context.curve_to(event_x, y2, event_x, self.y_press, x2, self.y_press)
-		cairo_context.curve_to(x2, self.y_press, self.x_press, self.y_press, \
-		                                                       self.x_press, y2)
+		saved_matrix = cairo_context.get_matrix()
+		halfw = (self.x_press - event_x) / 2
+		halfh = (self.y_press - event_y) / 2
+		cairo_context.translate(event_x + halfw, event_y + halfh)
+		cairo_context.scale(halfw, halfh)
+		cairo_context.arc(0, 0, 1, 0, 2 * math.pi)
+		cairo_context.set_matrix(saved_matrix)
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 

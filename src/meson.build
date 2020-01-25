@@ -49,6 +49,7 @@ drawing_sources = [
 	'tools/utilities_tools.py',
 
 	'tools/classic_tools/abstract_classic_tool.py',
+	'tools/classic_tools/classic_panel.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_eraser.py',
 	'tools/classic_tools/tool_experiment.py',
@@ -61,6 +62,7 @@ drawing_sources = [
 	'tools/classic_tools/tool_text.py',
 
 	'tools/selection_tools/abstract_select.py',
+	'tools/selection_tools/selection_panel.py',
 	'tools/selection_tools/rect_select.py',
 	'tools/selection_tools/free_select.py',
 	'tools/selection_tools/color_select.py',

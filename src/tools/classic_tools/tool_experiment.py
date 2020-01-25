@@ -17,8 +17,8 @@ class ToolExperiment(AbstractClassicTool):
 		self.use_antialias = True
 
 		self.selected_mode = 'smooth'
-		self.selected_operator_label = "DIFFERENCE"
-		self.selected_operator = cairo.Operator.DIFFERENCE
+		self._operator_label = "DIFFERENCE"
+		self._operator = cairo.Operator.DIFFERENCE
 
 		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
 		self.add_tool_action_enum('experiment_mode', 'smooth')
@@ -35,64 +35,64 @@ class ToolExperiment(AbstractClassicTool):
 	def set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
 		if state_as_string == 'CLEAR':
-			self.selected_operator = cairo.Operator.CLEAR
+			self._operator = cairo.Operator.CLEAR
 		elif state_as_string == 'SOURCE':
-			self.selected_operator = cairo.Operator.SOURCE
+			self._operator = cairo.Operator.SOURCE
 		elif state_as_string == 'OVER':
-			self.selected_operator = cairo.Operator.OVER
+			self._operator = cairo.Operator.OVER
 		elif state_as_string == 'IN':
-			self.selected_operator = cairo.Operator.IN
+			self._operator = cairo.Operator.IN
 		elif state_as_string == 'OUT':
-			self.selected_operator = cairo.Operator.OUT
+			self._operator = cairo.Operator.OUT
 		elif state_as_string == 'ATOP':
-			self.selected_operator = cairo.Operator.ATOP
+			self._operator = cairo.Operator.ATOP
 		elif state_as_string == 'DEST':
-			self.selected_operator = cairo.Operator.DEST
+			self._operator = cairo.Operator.DEST
 		elif state_as_string == 'DEST_OVER':
-			self.selected_operator = cairo.Operator.DEST_OVER
+			self._operator = cairo.Operator.DEST_OVER
 		elif state_as_string == 'DEST_IN':
-			self.selected_operator = cairo.Operator.DEST_IN
+			self._operator = cairo.Operator.DEST_IN
 		elif state_as_string == 'DEST_OUT':
-			self.selected_operator = cairo.Operator.DEST_OUT
+			self._operator = cairo.Operator.DEST_OUT
 		elif state_as_string == 'DEST_ATOP':
-			self.selected_operator = cairo.Operator.DEST_ATOP
+			self._operator = cairo.Operator.DEST_ATOP
 		elif state_as_string == 'XOR':
-			self.selected_operator = cairo.Operator.XOR
+			self._operator = cairo.Operator.XOR
 		elif state_as_string == 'ADD':
-			self.selected_operator = cairo.Operator.ADD
+			self._operator = cairo.Operator.ADD
 		elif state_as_string == 'SATURATE':
-			self.selected_operator = cairo.Operator.SATURATE
+			self._operator = cairo.Operator.SATURATE
 		elif state_as_string == 'MULTIPLY':
-			self.selected_operator = cairo.Operator.MULTIPLY
+			self._operator = cairo.Operator.MULTIPLY
 		elif state_as_string == 'SCREEN':
-			self.selected_operator = cairo.Operator.SCREEN
+			self._operator = cairo.Operator.SCREEN
 		elif state_as_string == 'OVERLAY':
-			self.selected_operator = cairo.Operator.OVERLAY
+			self._operator = cairo.Operator.OVERLAY
 		elif state_as_string == 'DARKEN':
-			self.selected_operator = cairo.Operator.DARKEN
+			self._operator = cairo.Operator.DARKEN
 		elif state_as_string == 'LIGHTEN':
-			self.selected_operator = cairo.Operator.LIGHTEN
+			self._operator = cairo.Operator.LIGHTEN
 		elif state_as_string == 'COLOR_DODGE':
-			self.selected_operator = cairo.Operator.COLOR_DODGE
+			self._operator = cairo.Operator.COLOR_DODGE
 		elif state_as_string == 'COLOR_BURN':
-			self.selected_operator = cairo.Operator.COLOR_BURN
+			self._operator = cairo.Operator.COLOR_BURN
 		elif state_as_string == 'HARD_LIGHT':
-			self.selected_operator = cairo.Operator.HARD_LIGHT
+			self._operator = cairo.Operator.HARD_LIGHT
 		elif state_as_string == 'SOFT_LIGHT':
-			self.selected_operator = cairo.Operator.SOFT_LIGHT
+			self._operator = cairo.Operator.SOFT_LIGHT
 		elif state_as_string == 'DIFFERENCE':
-			self.selected_operator = cairo.Operator.DIFFERENCE
+			self._operator = cairo.Operator.DIFFERENCE
 		elif state_as_string == 'EXCLUSION':
-			self.selected_operator = cairo.Operator.EXCLUSION
+			self._operator = cairo.Operator.EXCLUSION
 		elif state_as_string == 'HSL_HUE':
-			self.selected_operator = cairo.Operator.HSL_HUE
+			self._operator = cairo.Operator.HSL_HUE
 		elif state_as_string == 'HSL_SATURATION':
-			self.selected_operator = cairo.Operator.HSL_SATURATION
+			self._operator = cairo.Operator.HSL_SATURATION
 		elif state_as_string == 'HSL_COLOR':
-			self.selected_operator = cairo.Operator.HSL_COLOR
+			self._operator = cairo.Operator.HSL_COLOR
 		elif state_as_string == 'HSL_LUMINOSITY':
-			self.selected_operator = cairo.Operator.HSL_LUMINOSITY
-		self.selected_operator_label = state_as_string
+			self._operator = cairo.Operator.HSL_LUMINOSITY
+		self._operator_label = state_as_string
 
 	def action_macro_scie(self, *args):
 		cairo_context = self.get_context()
@@ -120,7 +120,7 @@ class ToolExperiment(AbstractClassicTool):
 		self.set_active_mode()
 		self.set_antialias()
 		if self.selected_mode == 'simple':
-			return self.selected_operator_label
+			return self._operator_label
 		else:
 			return self.selected_mode
 
@@ -162,7 +162,7 @@ class ToolExperiment(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'operator': self.selected_operator,
+			'operator': self._operator,
 			'mode': self.selected_mode,
 			'line_width': self.tool_width,
 			'line_cap': cairo.LineCap.ROUND,

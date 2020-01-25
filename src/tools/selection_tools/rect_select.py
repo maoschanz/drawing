@@ -1,7 +1,19 @@
-# tool_select.py
-
-from gi.repository import Gtk, Gdk, GdkPixbuf
-import cairo
+# rect_select.py
+#
+# Copyright 2018-2020 Romain F. T.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .abstract_select import AbstractSelectionTool
 from .utilities_tools import utilities_show_overlay_on_context
@@ -19,7 +31,8 @@ class ToolRectSelect(AbstractSelectionTool):
 		self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 		self.restore_pixbuf()
 		cairo_context = self.get_context()
-		utilities_show_overlay_on_context(cairo_context, AbstractSelectionTool.future_path, True)
+		utilities_show_overlay_on_context(cairo_context, \
+		                                AbstractSelectionTool.future_path, True)
 
 	def release_define(self, surface, event_x, event_y):
 		self.build_rectangle_path(self.x_press, self.y_press, event_x, event_y)

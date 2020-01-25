@@ -180,8 +180,8 @@ class DrawingOptionsManager():
 	def get_operator(self):
 		op_as_string = self.get_value('cairo_operator')
 		self.get_classic_panel().set_operator(op_as_string)
-		enum = self.get_classic_panel().selected_operator_enum
-		label = self.get_classic_panel().selected_operator_label
+		enum = self.get_classic_panel()._operator_enum
+		label = self.get_classic_panel()._operator_label
 		return enum, label
 
 	############################################################################
