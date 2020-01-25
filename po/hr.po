@@ -1,32 +1,33 @@
-# Drawing Türkçe çeviri.
-# Copyright (C) 2019
+# Croatian translation of Drawing.
+# Copyright (C) 2018-2020 Romain F. T.
 # This file is distributed under the same license as the drawing package.
-# Serdar Sağlam <teknomobil@yandex.com>, 2018, 2019, 2020.
+# Milo Ivir <mail@milotype.de>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-24 04:09+0100\n"
-"PO-Revision-Date: 2020-01-24 22:15+0300\n"
-"Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
-"Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
-"Language: tr\n"
+"POT-Creation-Date: 2020-01-24 17:39+0100\n"
+"PO-Revision-Date: 2020-01-24 21:28+0100\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.12\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: hr\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in:3
 #: data/com.github.maoschanz.drawing.appdata.xml.in:14 src/main.py:45
 #: src/main.py:130 src/window.py:512
 msgid "Drawing"
-msgstr "Çizim"
+msgstr "Crtanje"
 
 #: data/com.github.maoschanz.drawing.desktop.in:4
 msgid "Simple drawing utility"
-msgstr "Basit çizim aracı"
+msgstr "Jednostavan program za crtanje"
 
 #. Icon name, do not translate
 #: data/com.github.maoschanz.drawing.desktop.in:7
@@ -36,35 +37,34 @@ msgstr "com.github.maoschanz.drawing"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in:12
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Çizim;Boyama;Karakalem;"
+msgstr "Paint;Skiciranje;Olovka;"
 
 #: data/com.github.maoschanz.drawing.desktop.in:18 src/ui/app-menus.ui:9
 #: src/ui/app-menus.ui:81 src/ui/shortcuts.ui:17 src/ui/win-menus.ui:38
 #: src/window.py:881
 msgid "New Window"
-msgstr "Yeni Pencere"
+msgstr "Novi prozor"
 
 #: data/com.github.maoschanz.drawing.desktop.in:22 src/ui/app-menus.ui:56
 #: src/ui/headerbar.ui:20 src/ui/headerbar-eos.ui:12 src/ui/toolbar.ui:14
 #: src/ui/toolbar.ui:15 src/ui/window.ui:95 src/ui/win-menus.ui:14
 #: src/ui/win-menus.ui:273
 msgid "New Image"
-msgstr "Yeni Görüntü"
+msgstr "Nova slika"
 
 #: data/com.github.maoschanz.drawing.desktop.in:26
 msgid "Edit Image in Clipboard"
-msgstr "Panodaki Resmi Düzenle"
+msgstr "Uredi sliku u međuspremniku"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:15
 msgid "A drawing application for the GNOME desktop"
-msgstr "GNOME masaüstü için çizim uygulaması"
+msgstr "Program za crtanje za GNOME desktop"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:17
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Drawing\", PNG, JPEG ve BMP dosya türlerini destekleyen temel bir resim "
-"düzenleyicidir."
+"„Crtanje” je osnovni uređivač slika, podržava PNG, JPEG i BMP datoteke."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:18
 msgid ""
@@ -73,10 +73,10 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, …"
 msgstr ""
-"Fırça, çizgi veya yay (çeşitli seçeneklerle), seçim (kes/kopyala/yapıştır/"
-"sürükle/…), şekiller (dikdörtgen, daire, çokgen,…), metin ekleme gibi "
-"araçlarla resim çizmenize veya düzenlemenize olanak sağlar. yeniden "
-"boyutlandırma, kırpma, döndürme, …"
+"Omogućuje crtanje ili uređivanje slika pomoću alata kao što su olovka, "
+"linija ili luk (s različitim opcijama), odabir (izrezivanje/kopiranje/"
+"umetanje/povlačenje/…), oblici (pravokutnik, krug, poligon, …), umetanje "
+"teksta, mijenjanje veličine, rezanje, rotiranje, …"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:29
 msgid ""
@@ -87,12 +87,12 @@ msgid ""
 "producing shapes (circle, rectangle, polygon, …) have been merged into a "
 "single coherent 'shape' tool."
 msgstr ""
-"0.6 sürümü çeşitli önemli değişiklikler içeren önemli bir güncellemedir: "
-"dikdörtgen seçimi ve serbest el seçimi artık farklı araçlardır, sürükle ve "
-"bırak yöntemiyle görüntüler alınabilir veya açılabilir, 'döndürme aracı' "
-"artık tüm açıları destekler ve yatay veya dikey çevirmeyi yönetir ve "
-"şekiller üreten çeşitli araçlar (daire, dikdörtgen, çokgen,…) tek bir "
-"tutarlı 'şekil' aracında birleştirilmiştir."
+"Verzija 0.6 je značajna nadogradnja, s različitim važnim promjenama: "
+"pravokutni odabir i prostoručni odabir su sada različiti alati, slike se "
+"mogu uvesti ili otvoriti pomoću funkcije povuci-i-ispusti, alat „okretanje” "
+"sada podržava bilo koji kut i podržava vodoravno ili okomito preokretanje, a "
+"razni alati koji proizvode oblike (krug, pravokutnik, mnogokut, …) spojeni "
+"su u jedan koherentan alat „Oblik”."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:37
 msgid ""
@@ -100,29 +100,27 @@ msgid ""
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
-"'Doygunluk' aracı, çeşitli bulanıklaştırma türleri, renk inversiyonu, "
-"pikselleştirme, doygunluk ve şeffaflık ile daha güçlü bir araç olan "
-"'süzgeçler' ile değiştirildi."
+"Alat „zasićenost” zamijenjen je „filterima”, moćnijim alatom s nekoliko "
+"vrsta zamućenja, inverzija boja, pikselizacije, zasićenja i prozirnosti."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:42
 msgid "A fullscreen mode is now available."
-msgstr "Tam ekran kipi şimdi kullanılabilir."
+msgstr "Sada postoji cjeloekranski prikaz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:45
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
-"En belirgin yeni özellik, mini harita, dokunmatik yüzey veya fare "
-"tekerleğini kullanarak görüntü üzerinde yakınlaştırma (veya uzaklaştırma) "
-"yeteneğidir."
+"Najistaknutija nova funkcija je mogućnost zumiranja slike pomoću mini-karte, "
+"touchpada ili kotača miša."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in:53
 msgid ""
 "Version 0.4.8 features several minor bug fixes, and various new translations."
 msgstr ""
-"Sürüm 0.4.8, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
-"içermektedir."
+"Verzija 0.4.8 sadrži nekoliko ispravki manjih programskih grešaka i razne "
+"nove prijevode."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in:60
@@ -133,66 +131,66 @@ msgstr "Romain F. T."
 #: src/ui/toolbar.ui:175 src/ui/toolbar.ui:176 src/ui/win-menus.ui:91
 #: src/ui/win-menus.ui:179 src/preferences.py:45
 msgid "Preferences"
-msgstr "Tercihler"
+msgstr "Postavke"
 
 #: src/ui/app-menus.ui:20 src/ui/app-menus.ui:410 src/ui/win-menus.ui:97
 #: src/ui/win-menus.ui:185 src/ui/win-menus.ui:238
 msgid "Report a bug"
-msgstr "Hata bildir"
+msgstr "Prijavi grešku"
 
 #: src/ui/app-menus.ui:26 src/ui/app-menus.ui:403 src/ui/shortcuts.ui:31
 #: src/ui/win-menus.ui:102 src/ui/win-menus.ui:190 src/ui/win-menus.ui:231
 msgid "Shortcuts"
-msgstr "Kısayollar"
+msgstr "Prečaci"
 
 #: src/ui/app-menus.ui:30 src/ui/shortcuts.ui:38 src/ui/toolbar.ui:186
 #: src/ui/toolbar.ui:187 src/ui/win-menus.ui:107 src/ui/win-menus.ui:195
 msgid "Help"
-msgstr "Yardım"
+msgstr "Pomoć"
 
 #: src/ui/app-menus.ui:34
 msgid "About"
-msgstr "Hakkında"
+msgstr "Informacije"
 
 #: src/ui/app-menus.ui:40
 msgid "Quit"
-msgstr "Çıkış"
+msgstr "Izlaz"
 
 #: src/ui/app-menus.ui:48
 msgid "_File"
-msgstr "_Dosya"
+msgstr "_Datoteka"
 
 #: src/ui/app-menus.ui:51 src/ui/toolbar.ui:26 src/ui/win-menus.ui:9
 #: src/ui/win-menus.ui:278
 msgid "Open an image"
-msgstr "Bir görüntü aç"
+msgstr "Otvori sliku"
 
 #: src/ui/app-menus.ui:60 src/ui/shortcuts.ui:78 src/ui/win-menus.ui:17
 msgid "New Blank Image"
-msgstr "Yeni Boş Görüntü"
+msgstr "Nova prazna slika"
 
 #: src/ui/app-menus.ui:64 src/ui/win-menus.ui:21 src/custom_image.py:27
 msgid "New Image With Custom Size"
-msgstr "Özel Boyutlu Yeni Görüntü"
+msgstr "Nova slika prilagođene veličine"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:69 src/ui/shortcuts.ui:85 src/ui/win-menus.ui:26
 msgid "New Image From Selection"
-msgstr "Seçimden Yeni Görüntü"
+msgstr "iz odabira"
 
 #. you can omit the "New image" in the translation
 #: src/ui/app-menus.ui:74 src/ui/shortcuts.ui:92 src/ui/win-menus.ui:31
 msgid "New Image From Clipboard"
-msgstr "Panodan Yeni Görüntü"
+msgstr "iz međuspremnika"
 
 #: src/ui/app-menus.ui:88 src/ui/win-menus.ui:149
 msgid "Reload file"
-msgstr "Yeniden yükle"
+msgstr "Ponovo učitaj datoteku"
 
 #: src/ui/app-menus.ui:96 src/ui/toolbar.ui:88 src/ui/toolbar.ui:89
 #: src/ui/win-menus.ui:61 src/ui/win-menus.ui:126 src/properties.py:26
 msgid "Image properties"
-msgstr "Görüntü özellikleri"
+msgstr "Svojstva slike"
 
 #: src/ui/app-menus.ui:103 src/ui/headerbar.ui:99 src/ui/headerbar.ui:111
 #: src/ui/headerbar-eos.ui:142 src/ui/headerbar-eos.ui:155
@@ -200,488 +198,488 @@ msgstr "Görüntü özellikleri"
 #: src/ui/toolbar.ui:104 src/ui/win-menus.ui:283 src/utilities.py:135
 #: src/window.py:993 src/window.py:1013
 msgid "Save"
-msgstr "Kaydet"
+msgstr "Spremi"
 
 #: src/ui/app-menus.ui:108 src/ui/win-menus.ui:74 src/ui/win-menus.ui:139
 msgid "Save as…"
-msgstr "Farklı kaydet…"
+msgstr "Spremi kao …"
 
 #: src/ui/app-menus.ui:113 src/ui/selection-menus.ui:86
 #: src/ui/selection-menus.ui:169 src/ui/selection-panel.ui:180
 #: src/ui/win-menus.ui:77 src/ui/win-menus.ui:142
 msgid "Export as…"
-msgstr "Farklı aktar…"
+msgstr "Izvezi kao …"
 
 #: src/ui/app-menus.ui:120 src/ui/toolbar.ui:114 src/ui/toolbar.ui:115
 #: src/ui/win-menus.ui:56 src/ui/win-menus.ui:121
 msgid "Print"
-msgstr "Yazdır"
+msgstr "Ispis"
 
 #: src/ui/app-menus.ui:127
 msgid "Close Image"
-msgstr "Görüntüyü Kapat"
+msgstr "Zatvori sliku"
 
 #: src/ui/app-menus.ui:132
 msgid "Close Window"
-msgstr "Pencereyi Kapat"
+msgstr "Zatvori prozor"
 
 #: src/ui/app-menus.ui:137 src/ui/shortcuts.ui:45
 msgid "Quit all windows"
-msgstr "Tüm pencerelerden çık"
+msgstr "Zatvori sve prozore"
 
 #: src/ui/app-menus.ui:145
 msgid "_Edit"
-msgstr "_Düzenle"
+msgstr "_Uredi"
 
 #: src/ui/app-menus.ui:148 src/ui/headerbar.ui:51 src/ui/headerbar-eos.ui:90
 #: src/ui/shortcuts.ui:58 src/ui/toolbar.ui:66 src/ui/toolbar.ui:67
 #: src/ui/win-menus.ui:254 src/headerbar.py:102
 msgid "Undo"
-msgstr "Geri al"
+msgstr "Poništi"
 
 #: src/ui/app-menus.ui:153 src/ui/headerbar.ui:64 src/ui/headerbar-eos.ui:105
 #: src/ui/shortcuts.ui:65 src/ui/toolbar.ui:77 src/ui/toolbar.ui:78
 #: src/ui/win-menus.ui:259 src/headerbar.py:108
 msgid "Redo"
-msgstr "Yinele"
+msgstr "Ponovi"
 
 #: src/ui/app-menus.ui:158 src/ui/win-menus.ui:159
 msgid "Rebuild from history"
-msgstr "Geçmişten yeniden oluştur"
+msgstr "Izgradi ponovo iz kronologije"
 
 #: src/ui/app-menus.ui:170 src/ui/selection-menus.ui:7
 #: src/ui/selection-menus.ui:98 src/ui/selection-panel.ui:162
 #: src/ui/shortcuts.ui:187
 msgid "Select all"
-msgstr "Tümünü seç"
+msgstr "Otvori sve"
 
 #: src/ui/app-menus.ui:177 src/ui/selection-menus.ui:37
 #: src/ui/selection-menus.ui:117 src/ui/selection-panel.ui:82
 #: src/ui/shortcuts.ui:208
 msgid "Cut"
-msgstr "Kes"
+msgstr "Izreži"
 
 #: src/ui/app-menus.ui:182 src/ui/selection-menus.ui:42
 #: src/ui/selection-menus.ui:122 src/ui/selection-panel.ui:95
 #: src/ui/shortcuts.ui:215
 msgid "Copy"
-msgstr "Kopyala"
+msgstr "Kopiraj"
 
 #: src/ui/app-menus.ui:187 src/ui/selection-menus.ui:47
 #: src/ui/selection-menus.ui:112 src/ui/selection-panel.ui:69
 msgid "Delete"
-msgstr "Sil"
+msgstr "Izbriši"
 
 #: src/ui/app-menus.ui:194 src/ui/headerbar-eos.ui:67
 #: src/ui/selection-menus.ui:22 src/ui/selection-panel.ui:28
 #: src/ui/selection-panel.ui:55 src/ui/shortcuts.ui:222 src/ui/toolbar.ui:51
 #: src/ui/toolbar.ui:52
 msgid "Paste"
-msgstr "Yapıştır"
+msgstr "Umetni"
 
 #: src/ui/app-menus.ui:199 src/ui/headerbar-eos.ui:50
 #: src/ui/selection-menus.ui:18 src/ui/selection-panel.ui:15
 #: src/ui/selection-panel.ui:48 src/ui/toolbar.ui:40 src/ui/toolbar.ui:41
 #: src/window.py:918 src/window.py:1086
 msgid "Import"
-msgstr "İçeri aktar"
+msgstr "Uvoz"
 
 #: src/ui/app-menus.ui:214
 msgid "_View"
-msgstr "_Görünüm"
+msgstr "_Prikaz"
 
 #: src/ui/app-menus.ui:217
 msgid "Show the preview"
-msgstr "Önizlemeyi göster"
+msgstr "Prikaži pretpregled"
 
 #: src/ui/app-menus.ui:222 src/ui/shortcuts.ui:238 src/preferences.py:106
 msgid "Zoom"
-msgstr "Yakınlaştır"
+msgstr "Zumiranje"
 
 #: src/ui/app-menus.ui:225 src/ui/minimap.ui:38 src/ui/shortcuts.ui:242
 msgid "Optimal Zoom"
-msgstr "İdeal Yakınlık"
+msgstr "Optimalno zumiranje"
 
 #: src/ui/app-menus.ui:232 src/ui/minimap.ui:83 src/ui/shortcuts.ui:249
 #: src/ui/toolbar.ui:128 src/ui/toolbar.ui:129 src/tools/ui/tool_crop.ui:145
 #: src/tools/ui/tool_scale.ui:181
 msgid "Zoom Out"
-msgstr "Uzaklaştır"
+msgstr "Smanji prikaz"
 
 #: src/ui/app-menus.ui:237 src/ui/shortcuts.ui:256 src/ui/toolbar.ui:139
 #: src/ui/toolbar.ui:140 src/tools/ui/tool_crop.ui:150
 #: src/tools/ui/tool_scale.ui:186
 msgid "Original Zoom"
-msgstr "Orijinal Yakınlık"
+msgstr "Izvorno zumiranje"
 
 #: src/ui/app-menus.ui:242 src/ui/minimap.ui:55 src/ui/shortcuts.ui:263
 #: src/ui/toolbar.ui:150 src/ui/toolbar.ui:151 src/tools/ui/tool_crop.ui:155
 #: src/tools/ui/tool_scale.ui:191
 msgid "Zoom In"
-msgstr "Yakınlaştır"
+msgstr "Povećaj prikaz"
 
 #: src/ui/app-menus.ui:249
 msgid "Position"
-msgstr "Konum"
+msgstr "Pozicija"
 
 #: src/ui/app-menus.ui:252 src/ui/shortcuts.ui:303
 msgid "Go Left"
-msgstr "Sola Git"
+msgstr "Idi lijevo"
 
 #: src/ui/app-menus.ui:256 src/ui/shortcuts.ui:310
 msgid "Go Up"
-msgstr "Yukarı Git"
+msgstr "Idi gore"
 
 #: src/ui/app-menus.ui:260 src/ui/shortcuts.ui:317
 msgid "Go Down"
-msgstr "Aşağı Git"
+msgstr "Idi dolje"
 
 #: src/ui/app-menus.ui:264 src/ui/shortcuts.ui:324
 msgid "Go Right"
-msgstr "Sağa Git"
+msgstr "Idi desno"
 
 #: src/ui/app-menus.ui:285 src/ui/win-menus.ui:154
 msgid "Refresh"
-msgstr "Yenile"
+msgstr "Aktualiziraj"
 
 #: src/ui/app-menus.ui:293 src/ui/shortcuts.ui:133 src/ui/toolbar.ui:164
 #: src/ui/toolbar.ui:165 src/ui/win-menus.ui:83 src/ui/win-menus.ui:171
 #: src/preferences.py:117
 msgid "Show tools names"
-msgstr "Araç adlarını göster"
+msgstr "Prikaži imena alata"
 
 #: src/ui/app-menus.ui:299 src/ui/shortcuts.ui:272 src/ui/win-menus.ui:67
 #: src/ui/win-menus.ui:132
 msgid "Fullscreen"
-msgstr "Tam ekran"
+msgstr "Cjeloekranski prikaz"
 
 #: src/ui/app-menus.ui:303 src/ui/win-menus.ui:267
 msgid "Exit fullscreen"
-msgstr "Tam ekrandan çık"
+msgstr "Zatvori cjeloekranski prikaz"
 
 #: src/ui/app-menus.ui:310
 msgid "_Colors"
-msgstr "_Renkler"
+msgstr "_Boje"
 
 #: src/ui/app-menus.ui:313
 msgid "Edit Main Color…"
-msgstr "Ana Rengi Düzenle…"
+msgstr "Uredi glavnu boju …"
 
 #: src/ui/app-menus.ui:317
 msgid "Edit Secondary Color…"
-msgstr "İkincil Rengi Düzenle…"
+msgstr "Uredi sporednu boju …"
 
 #: src/ui/app-menus.ui:323
 msgid "Color editor by default"
-msgstr "Öntanımlı renk düzenleyici"
+msgstr "Uređivač boja standardno"
 
 #: src/ui/app-menus.ui:329 src/ui/classic-panel.ui:32 src/ui/shortcuts.ui:174
 msgid "Exchange colors"
-msgstr "Renkleri değiş"
+msgstr "Zamijeni boje"
 
 #: src/ui/app-menus.ui:336
 msgid "Color application mode"
-msgstr "Renk uygulama kipi"
+msgstr "Modus programa boja"
 
 #: src/ui/app-menus.ui:338 src/ui/color-popover.ui:35
 msgid "Classic"
-msgstr "Klasik"
+msgstr "Klasično"
 
 #: src/ui/app-menus.ui:343
 msgid "Source color"
-msgstr "Kaynak renk"
+msgstr "Boja izvora"
 
 #: src/ui/app-menus.ui:348
 msgid "Difference"
-msgstr "Farklılık"
+msgstr "Razlika"
 
 #: src/ui/app-menus.ui:355
 msgid "Don't use the colors but…"
-msgstr "Renkleri kullanmayın ama…"
+msgstr "Ne koristi boje, već …"
 
 #. BlurType.PX_BOX
 #: src/ui/app-menus.ui:357 src/tools/ui/tool_filters.ui:185
 #: src/tools/canvas_tools/tool_filters.py:89
 msgid "Blur"
-msgstr "Bulanıklık"
+msgstr "Zamuti"
 
 #: src/ui/app-menus.ui:362 src/preferences.py:125
 msgid "Eraser"
-msgstr "Silgi"
+msgstr "Gumica"
 
 #: src/ui/app-menus.ui:371 src/window.py:594
 msgid "_Tools"
-msgstr "_Araçlar"
+msgstr "_Alati"
 
 #: src/ui/app-menus.ui:389
 msgid "Previous tool"
-msgstr "Önceki araç"
+msgstr "Prethodni alat"
 
 #: src/ui/app-menus.ui:396 src/window.py:811 src/window.py:814
 msgid "_Options"
-msgstr "_Seçenekler"
+msgstr "_Opcije"
 
 #: src/ui/app-menus.ui:400
 msgid "_Help"
-msgstr "_Yardım"
+msgstr "_Pomoć"
 
 #: src/ui/app-menus.ui:417
 msgid "Index"
-msgstr "İndeks"
+msgstr "Indeks"
 
 #: src/ui/app-menus.ui:422 src/ui/win-menus.ui:209
 msgid "Basic help"
-msgstr "Basit yardım"
+msgstr "Osnovna pomoć"
 
 #: src/ui/app-menus.ui:427 src/ui/win-menus.ui:214
 msgid "Help about tools"
-msgstr "Araçlar hakkında yardım"
+msgstr "Pomoć za alate"
 
 #: src/ui/app-menus.ui:432 src/ui/win-menus.ui:219
 msgid "Canvas and selection"
-msgstr "Tuval ve seçim"
+msgstr "Platno i odabir"
 
 #: src/ui/app-menus.ui:437 src/ui/win-menus.ui:224
 msgid "Help about selection"
-msgstr "Seçim hakkında yardım"
+msgstr "Pomoć za odabir"
 
 #: src/ui/app-menus.ui:444 src/ui/win-menus.ui:110 src/ui/win-menus.ui:198
 #: src/ui/win-menus.ui:243
 msgid "About Drawing"
-msgstr "Çizim Hakkında"
+msgstr "O programu Crtanje"
 
 #: src/ui/classic-panel.ui:59 src/ui/classic-panel.ui:74
 msgid "Tool size"
-msgstr "Araç boyutu"
+msgstr "Veličina alata"
 
 #. used by the bottom panels
 #: src/ui/classic-panel.ui:94 src/window.py:545 src/tools/abstract_tool.py:83
 msgid "No options"
-msgstr "Seçenek yok"
+msgstr "Bez opcija"
 
 #: src/ui/classic-panel.ui:122 src/ui/selection-panel.ui:125
 #: src/tools/ui/tool_filters.ui:203
 msgid "Preview"
-msgstr "Önizlenim"
+msgstr "Pretpregled"
 
 #: src/ui/color-popover.ui:27
 msgid "How the color will be applied to the existing pixels"
-msgstr "Rengin mevcut piksellere nasıl uygulanacağı"
+msgstr "Način primjene boje na postojeće pikslove"
 
 #: src/ui/color-popover.ui:67 src/ui/color-popover.ui:81
 msgid "Back to the palette"
-msgstr "Palete geri dön"
+msgstr "Natrag na paletu"
 
 #: src/ui/color-popover.ui:93
 msgid "Use this editor by default"
-msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
+msgstr "Standardno koristi ovaj uređivač"
 
 #: src/ui/custom-image.ui:38 src/ui/properties.ui:114
 #: src/tools/ui/tool_crop.ui:55 src/tools/ui/tool_crop.ui:63
 #: src/tools/ui/tool_scale.ui:56 src/tools/ui/tool_scale.ui:64
 msgid "Width"
-msgstr "Genişlik"
+msgstr "Širina"
 
 #: src/ui/custom-image.ui:52 src/ui/properties.ui:143
 #: src/tools/ui/tool_crop.ui:82 src/tools/ui/tool_crop.ui:90
 #: src/tools/ui/tool_scale.ui:83 src/tools/ui/tool_scale.ui:91
 msgid "Height"
-msgstr "Yükseklik"
+msgstr "Visina"
 
 #: src/ui/custom-image.ui:66
 msgid "Background color"
-msgstr "Arkaplan rengi"
+msgstr "Boja pozadine"
 
 #: src/ui/custom-image.ui:134
 msgid "Use these settings by default"
-msgstr "Bu ayarları varsayılan olarak kullan"
+msgstr "Standardno koristi ove postavke"
 
 #: src/ui/headerbar.ui:12 src/ui/headerbar-eos.ui:29 src/ui/toolbar.ui:27
 #: src/window.py:902 src/window.py:917
 msgid "Open"
-msgstr "Aç"
+msgstr "Otvori"
 
 #: src/ui/minimap.ui:72
 msgid "100%"
-msgstr "%100"
+msgstr "100 %"
 
 #: src/ui/preferences.ui:70
 msgid "Images"
-msgstr "Görüntüler"
+msgstr "Slike"
 
 #: src/ui/preferences.ui:93 src/ui/shortcuts.ui:129
 msgid "Tools"
-msgstr "Araçlar"
+msgstr "Alati"
 
 #: src/ui/preferences.ui:117 src/preferences.py:142
 msgid "Advanced options"
-msgstr "Gelişmiş seçenekler"
+msgstr "Napredne opcije"
 
 #: src/ui/properties.ui:20
 msgid "Path"
-msgstr "Yol"
+msgstr "Staza"
 
 #: src/ui/properties.ui:33
 msgid "Format"
-msgstr "Biçim"
+msgstr "Format"
 
 #: src/ui/properties.ui:46
 msgid "Colorspace"
-msgstr "Renk boşluğu"
+msgstr "Prostor boje"
 
 #: src/ui/properties.ui:60 src/ui/properties.ui:74 src/image.py:205
 msgid "Unsaved file"
-msgstr "Kaydedilmemiş dosya"
+msgstr "Nespremljena datoteka"
 
 #: src/ui/properties.ui:88 src/properties.py:86
 msgid "Invalid format"
-msgstr "Geçersiz biçim"
+msgstr "Neispravan format"
 
 #: src/ui/properties.ui:176 src/utilities.py:188
 msgid "pixels"
-msgstr "piksel"
+msgstr "pikslova"
 
 #: src/ui/properties.ui:182
 msgid "centimeters"
-msgstr "santimetre"
+msgstr "centimetara"
 
 #: src/ui/properties.ui:188
 msgid "inches"
-msgstr "inç"
+msgstr "inča"
 
 #: src/ui/selection-menus.ui:11 src/ui/selection-menus.ui:106
 #: src/ui/selection-panel.ui:170
 msgid "Close selection"
-msgstr "Seçimi kapat"
+msgstr "Zatvori odabir"
 
 #: src/ui/selection-menus.ui:31 src/ui/selection-menus.ui:102
 #: src/ui/selection-panel.ui:166 src/ui/shortcuts.ui:194
 msgid "Unselect"
-msgstr "Seçimi kaldır"
+msgstr "Odznači odabir"
 
 #: src/ui/selection-menus.ui:56 src/ui/selection-menus.ui:138
 #: src/tools/canvas_tools/tool_crop.py:31
 msgid "Crop"
-msgstr "Kırp"
+msgstr "Odreži"
 
 #: src/ui/selection-menus.ui:62 src/ui/selection-menus.ui:144
 #: src/tools/canvas_tools/tool_scale.py:31
 msgid "Scale"
-msgstr "Ölçek"
+msgstr "Skaliraj"
 
 #: src/ui/selection-menus.ui:68 src/ui/selection-menus.ui:150
 #: src/tools/canvas_tools/tool_rotate.py:28
 msgid "Rotate"
-msgstr "Döndür"
+msgstr "Okreni"
 
 #: src/ui/selection-menus.ui:74 src/ui/selection-menus.ui:156
 msgid "Apply a filter"
-msgstr "Süzgeci uygula"
+msgstr "Primijeni filtar"
 
 #: src/ui/selection-menus.ui:82 src/ui/selection-menus.ui:165
 #: src/ui/selection-panel.ui:176
 msgid "Open As New Image"
-msgstr "Yeni Görüntü Olarak Aç"
+msgstr "Otvori kao novu sliku"
 
 #: src/ui/selection-menus.ui:129
 msgid "Edit"
-msgstr "Düzenle"
+msgstr "Uredi"
 
 #: src/ui/selection-menus.ui:132
 msgid "Flip"
-msgstr "Çevir"
+msgstr "Preokreni"
 
 #: src/ui/selection-panel.ui:110 src/tools/ui/tool_rotate.ui:64
 msgid "More actions"
-msgstr "Daha fazla eylem"
+msgstr "Daljnje radnje"
 
 #: src/ui/shortcuts.ui:8
 msgid "Keyboard"
-msgstr "Klavye"
+msgstr "Tipkovnica"
 
 #: src/ui/shortcuts.ui:13
 msgid "General"
-msgstr "Genel"
+msgstr "Opće"
 
 #: src/ui/shortcuts.ui:24
 msgid "Main menu"
-msgstr "Ana menü"
+msgstr "Glavni izbornik"
 
 #: src/ui/shortcuts.ui:54
 msgid "Editing"
-msgstr "Düzenleniyor"
+msgstr "Uređivanje"
 
 #: src/ui/shortcuts.ui:74
 msgid "Image"
-msgstr "Görüntü"
+msgstr "Slika"
 
 #: src/ui/shortcuts.ui:99
 msgid "Open a file"
-msgstr "Bir dosya aç"
+msgstr "Otvori datoteku"
 
 #: src/ui/shortcuts.ui:113
 msgid "Save as"
-msgstr "Farklı kaydet"
+msgstr "Spremi kao"
 
 #: src/ui/shortcuts.ui:120
 msgid "Close the active image"
-msgstr "Aktif resmi kapat"
+msgstr "Zatvori aktivnu sliku"
 
 #: src/ui/shortcuts.ui:140
 msgid "Options menu"
-msgstr "Seçenekler menüsü"
+msgstr "Izbornik opcija"
 
 #: src/ui/shortcuts.ui:147
 msgid "Back to previous tool"
-msgstr "Önceki araca dön"
+msgstr "Natrag na prethodni alat"
 
 #: src/ui/shortcuts.ui:156
 msgid "Colors"
-msgstr "Renkler"
+msgstr "Boje"
 
 #: src/ui/shortcuts.ui:160
 msgid "Edit the main color (left click)"
-msgstr "Ana rengi düzenle (sol tıkla)"
+msgstr "Uredi glavnu boju (lijevi klik)"
 
 #: src/ui/shortcuts.ui:167
 msgid "Edit the secondary color (right click)"
-msgstr "İkincil rengi düzenle (sağ tıkla)"
+msgstr "Uredi sporednu boju (desni klik)"
 
 #: src/ui/shortcuts.ui:183
 msgid "Selection"
-msgstr "Seçim"
+msgstr "Odabir"
 
 #: src/ui/shortcuts.ui:201
 msgid "Delete the selection"
-msgstr "Seçimi sil"
+msgstr "Izbriši odabir"
 
 #: src/ui/shortcuts.ui:229
 msgid "Import a file as the selection"
-msgstr "Bir dosyayı seçim olarak al"
+msgstr "Uvezi datoteku kao odabir"
 
 #: src/ui/shortcuts.ui:276
 msgid "Enter fullscreen mode"
-msgstr "Tam ekran kipine gir"
+msgstr "Otvori cjeloekranski prikaz"
 
 #: src/ui/shortcuts.ui:283
 msgid "Exit fullscreen mode"
-msgstr "Tam ekran kipinden çık"
+msgstr "Zatvori cjeloekranski prikaz"
 
 #: src/ui/shortcuts.ui:292
 msgid "Navigation"
-msgstr "Gezinti"
+msgstr "Navigacija"
 
 #: src/ui/shortcuts.ui:296
 msgid "Toggle the preview"
-msgstr "Önizlemeyi değiştir"
+msgstr "Uključi/isključi pretpregled"
 
 #: src/ui/window.ui:36
 msgid "Error starting the application, please report this bug."
-msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
+msgstr "Greška pri pokretanju programa. Prijavi grešku."
 
 #: src/ui/win-menus.ui:164
 msgid "Troubleshoot selection"
-msgstr "Seçimle ilgili sorunları giderme"
+msgstr "Ispravi problem s odabirom"
 
 #: src/custom_image.py:33 src/utilities.py:134 src/window.py:902
 #: src/window.py:916 src/window.py:992 src/window.py:1013 src/window.py:1086
@@ -691,392 +689,390 @@ msgstr "Seçimle ilgili sorunları giderme"
 #: src/tools/ui/tool_scale.ui:27 src/tools/ui/tool_scale.ui:235
 #: src/tools/ui/tool_text.ui:30 src/tools/utilities_tools.py:186
 msgid "Cancel"
-msgstr "İptal"
+msgstr "Odustani"
 
 #: src/custom_image.py:34
 msgid "Create"
-msgstr "Oluştur"
+msgstr "Stvori"
 
 #: src/headerbar.py:104
 #, python-format
 msgid "Undo %s"
-msgstr "Geri al %s"
+msgstr "Poništi %s"
 
 #: src/headerbar.py:110
 #, python-format
 msgid "Redo %s"
-msgstr "Yinele %s"
+msgstr "Ponovi %s"
 
 #: src/main.py:56
 msgid "Show the app version"
-msgstr "Uygulama sürümünü göster"
+msgstr "Prikaži verziju programa"
 
 #: src/main.py:58
 msgid "Open a new window"
-msgstr "Yeni bir pencere aç"
+msgstr "Otvori novi prozor"
 
 #: src/main.py:60
 msgid "Open a new tab"
-msgstr "Yeni bir sekmede aç"
+msgstr "Otvori novu karticu"
 
 #: src/main.py:62
 msgid "Edit the clipboard content"
-msgstr "Pano içeriğini düzenle"
+msgstr "Uredi sadržaj međuspremnika"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 #: src/main.py:235
 msgid "translator-credits"
-msgstr "Serdar Sağlam <teknomobil@yandex.com>"
+msgstr "Milo Ivir <mail@milotype.de>, 2020."
 
 #: src/main.py:237
 msgid "A drawing application for the GNOME desktop."
-msgstr "GNOME masaüstü ortamı için çizim uygulaması."
+msgstr "Program za crtanje za GNOME desktop."
 
 #: src/main.py:241
 msgid "Official webpage"
-msgstr "Resmi sayfa"
+msgstr "Službena web-stranica"
 
 #: src/main.py:283
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr "Bu dosyayı açarken hata. %s demek mi istediniz?"
+msgstr "Greška pri otvaranju datoteke. Jesi li mislio/la na %s?"
 
 #. This displays the zoom level, %s will be replaced with a number, while
 #. %% is just the symbol '%'
 #: src/minimap.py:63
 #, python-format
 msgid "%s%%"
-msgstr "%s%%"
+msgstr "%s %%"
 
 #: src/preferences.py:77
 msgid "New images"
-msgstr "Yeni görüntüler"
+msgstr "Nove slike"
 
 #: src/preferences.py:78
 msgid "Default width"
-msgstr "Öntanımlı genişlik"
+msgstr "Standardna širina"
 
 #: src/preferences.py:79
 msgid "Default height"
-msgstr "Öntanımlı yükseklik"
+msgstr "Standardna visina"
 
 #: src/preferences.py:89
 msgid "Default background"
-msgstr "Öntanımlı arka plan"
+msgstr "Standardna pozadina"
 
 #: src/preferences.py:92
 msgid "Images saving"
-msgstr "Görüntüler kayediliyor"
+msgstr "Spremanje slika"
 
 #: src/preferences.py:93
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "JPEG ve BMP görüntüleri saydamlığı desteklemez."
+msgstr "JPEG i BMP slike ne podržavaju prozirnost."
 
 #: src/preferences.py:94
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Resimlerinizi bu biçimlerde kaydederseniz, şeffaf pikselleri değiştirmek "
-"için ne kullanmak istersiniz?"
+"Ako spremiš slike u ovim formatima, što želiš koristiti kao zamjenu za "
+"prozirne pikslove?"
 
 #: src/preferences.py:97 src/utilities.py:40 src/utilities.py:141
 msgid "White"
-msgstr "Beyaz"
+msgstr "Bijelu boju"
 
 #: src/preferences.py:98 src/utilities.py:42 src/utilities.py:142
 msgid "Black"
-msgstr "Siyah"
+msgstr "Crnu boju"
 
 #: src/preferences.py:99 src/utilities.py:143
 msgid "Checkboard"
-msgstr "Panoya yaz"
+msgstr "Šahovnicu"
 
 #: src/preferences.py:100 src/utilities.py:144
 msgid "Nothing"
-msgstr "Hiç"
+msgstr "Ništa"
 
 #: src/preferences.py:101
 msgid "Ask before saving"
-msgstr "Kaydetmeden önce sor"
+msgstr "Pitaj prije spremanja"
 
 #: src/preferences.py:107
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr ""
-"Ctrl+kaydırma ile veya yalnızca kaydırma ile yakınlaştırma yapabilirsiniz."
+msgstr "Možeš zumirati pomoću Ctrl+klizanje ili samo klizanje."
 
 #: src/preferences.py:108
 msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr ""
-"Klavye kısayollarını veya dokunma hareketlerini kullanmak da mümkündür."
+msgstr "Također je moguće kosristiti prečace na tipkovnici ili dodirne geste."
 
 #: src/preferences.py:110
 msgid "Use 'Ctrl' to zoom"
-msgstr "Yakınlaştırma için 'Ctrl' tuşunu kullan"
+msgstr "Koristi „Ctrl” za zumiranje"
 
 #: src/preferences.py:116
 msgid "Appearance"
-msgstr "Görünüm"
+msgstr "Izgled"
 
 #: src/preferences.py:118
 msgid "Use big icons"
-msgstr "Büyük simgeler kullan"
+msgstr "Koristi velike ikone"
 
 #: src/preferences.py:121
 msgid "Additional tools"
-msgstr "Ek araçlar"
+msgstr "Dodatni alati"
 
 #: src/preferences.py:122
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
-"Bu araçlar olması gerektiği kadar güvenilir ve kullanışlı değildir, bu "
-"nedenle hepsi varsayılan olarak etkin değildir."
+"Ovi alati nisu toliko pouzdani i korisni kao što bi trebali biti, stoga se "
+"standardno ne aktiviraju svi."
 
 #: src/preferences.py:126
 msgid "Highlighter"
-msgstr "İşaretleyici"
+msgstr "Isticanje"
 
 #: src/preferences.py:127 src/tools/selection_tools/free_select.py:12
 msgid "Free selection"
-msgstr "Serbest seçim"
+msgstr "Prostoručni odabir"
 
 #: src/preferences.py:128 src/tools/selection_tools/color_select.py:13
 msgid "Color selection"
-msgstr "Renk seçimi"
+msgstr "Odabir bojom"
 
 #: src/preferences.py:129 src/tools/classic_tools/tool_picker.py:12
 msgid "Color Picker"
-msgstr "Renk Seçici"
+msgstr "Biranje boje"
 
 #: src/preferences.py:130 src/tools/classic_tools/tool_paint.py:14
 msgid "Paint"
-msgstr "Boya"
+msgstr "Boja"
 
 #: src/preferences.py:143
 msgid "Preview size"
-msgstr "Önizleme boyutu"
+msgstr "Veličina pretpregleda"
 
 #: src/preferences.py:145
 msgid "Development features"
-msgstr "Geliştirilmiş özellikler"
+msgstr "Funkcije u razvoju"
 
 #: src/preferences.py:150
 msgid "Layout"
-msgstr "Düzen"
+msgstr "Raspored"
 
 #: src/preferences.py:151
 msgid "The recommended value is \"Automatic\"."
-msgstr "Önerilen değer \"Otomatik\" tir."
+msgstr "Preporučena vrijednost je „Automatski”."
 
 #: src/preferences.py:153
 msgid "Automatic"
-msgstr "Otomatik"
+msgstr "Automatski"
 
 #: src/preferences.py:154
 msgid "Compact"
-msgstr "Yoğun"
+msgstr "Kompaktni"
 
 #: src/preferences.py:155
 msgid "elementary OS"
-msgstr "Elementary OS"
+msgstr "elementary OS"
 
 #: src/preferences.py:156
 msgid "Legacy"
-msgstr "Eski"
+msgstr "Stari"
 
 #: src/preferences.py:157
 msgid "Legacy (symbolic icons)"
-msgstr "Eski (sembolik simgeler)"
+msgstr "Stari (ikone sa simbolima)"
 
 #: src/preferences.py:158
 msgid "Menubar only"
-msgstr "Sadece menü çubuğu"
+msgstr "Samo traka izbornika"
 
 #: src/preferences.py:159
 msgid "Toolbar only"
-msgstr "Sadece araç çubuğu"
+msgstr "Samo traka alata"
 
 #: src/preferences.py:160
 msgid "Toolbar only (symbolic icons)"
-msgstr "Sadece araç çubuğu (sembolik simgeler)"
+msgstr "Samo traka alata (ikone sa simbolima)"
 
 #: src/utilities.py:14
 msgid "Transparent"
-msgstr "Şeffaf"
+msgstr "Prozirno"
 
 #: src/utilities.py:16
 #, python-format
 msgid "%s%% transparent"
-msgstr "%s%% şeffaf"
+msgstr "%s %% prozirno"
 
 #: src/utilities.py:44
 msgid "Grey"
-msgstr "Gri"
+msgstr "Siva"
 
 #: src/utilities.py:49
 msgid "Orange"
-msgstr "Turuncu"
+msgstr "Narančasta"
 
 #: src/utilities.py:51
 msgid "Brown"
-msgstr "Kahverengi"
+msgstr "Smeđa"
 
 #: src/utilities.py:55 src/utilities.py:65
 msgid "Probably brown"
-msgstr "Açık kahvarengi"
+msgstr "Vjerojatno smeđa"
 
 #: src/utilities.py:57
 msgid "Red"
-msgstr "Kırmızı"
+msgstr "Crvena"
 
 #: src/utilities.py:59
 msgid "Green"
-msgstr "Yeşil"
+msgstr "Zelena"
 
 #: src/utilities.py:61
 msgid "Blue"
-msgstr "Mavi"
+msgstr "Plava"
 
 #: src/utilities.py:67
 msgid "Yellow"
-msgstr "Sarı"
+msgstr "Žuta"
 
 #: src/utilities.py:70
 msgid "Magenta"
-msgstr "Eflatun"
+msgstr "Magenta"
 
 #: src/utilities.py:72
 msgid "Purple"
-msgstr "Mor"
+msgstr "Ljubičasta"
 
 #: src/utilities.py:75
 msgid "Cyan"
-msgstr "Camgöbeği"
+msgstr "Cijan"
 
 #: src/utilities.py:77
 msgid "Probably turquoise"
-msgstr "Açık turkuaz"
+msgstr "Vjerojatno tirkizna"
 
 #: src/utilities.py:80
 msgid "Unknown color name"
-msgstr "Bilinmeyen renk adı"
+msgstr "Nepoznato ime boje"
 
 #: src/utilities.py:136
 msgid "This file format doesn't support transparent colors."
-msgstr "Bu dosya biçimi saydam renkleri desteklemiyor."
+msgstr "Ovaj datotečni format ne podržava prozirne boje."
 
 #: src/utilities.py:138
 msgid "Replace transparency with:"
-msgstr "Şeffaflığı şununla değiştir:"
+msgstr "Zamijeni prozirnost s:"
 
 #: src/utilities.py:161
 msgid "All pictures"
-msgstr "Tüm resimler"
+msgstr "Sve slike"
 
 #: src/utilities.py:167
 msgid "PNG images"
-msgstr "PNG görüntüler"
+msgstr "PNG slike"
 
 #: src/utilities.py:171
 msgid "JPEG images"
-msgstr "JPEG görüntüler"
+msgstr "JPEG slike"
 
 #: src/utilities.py:175
 msgid "BMP images"
-msgstr "BMP görüntüler"
+msgstr "BMP slike"
 
 #: src/utilities.py:190
 msgid "percents"
-msgstr "yüzdeler"
+msgstr "postoci"
 
 #: src/window.py:183
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr "Araç yüklenemedi: %s"
+msgstr "Neuspjelo učitavanje alata: %s"
 
 #: src/window.py:498
 msgid "Modifications will take effect in the next new window."
-msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
+msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 
 #: src/window.py:591
 msgid "Opened images"
-msgstr "Açılan görüntüler"
+msgstr "Otvorene slike"
 
 #: src/window.py:874
 #, python-format
 msgid "Loading %s"
-msgstr "Yükleniyor %s"
+msgstr "Učitava se %s"
 
 #: src/window.py:880
 msgid "New Tab"
-msgstr "Yeni Sekme"
+msgstr "Nova kartica"
 
 #: src/window.py:882
 msgid "Discard changes"
-msgstr "Değişiklikleri yoksay"
+msgstr "Odbaci promjene"
 
 #: src/window.py:885 src/window.py:994
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "%s üstünde kaydedilmemiş değişiklikler."
+msgstr "%s sadrži nespremljene promjene."
 
 #: src/window.py:887
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr "Nerede açmak istiyorsunuz %s?"
+msgstr "Gdje želiš otvoriti %s?"
 
 #: src/window.py:901
 msgid "Open a picture"
-msgstr "Bir resim aç"
+msgstr "Otvori jednu sliku"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
 #: src/window.py:925
 msgid "these files"
-msgstr "bu dosyalar"
+msgstr "ovim datotekama"
 
 #: src/window.py:926
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "%s ile ne yapmak istersin?"
+msgstr "Što želiš uraditi s %s?"
 
 #: src/window.py:971 src/window.py:1035 src/window.py:1108
 #, python-format
 msgid "Failed to save %s"
-msgstr "Kaydedilemedi %s"
+msgstr "Neuspjelo spremanje %s"
 
 #: src/window.py:984 src/window.py:1016
 msgid "Untitled"
-msgstr "Başlıksız"
+msgstr "Bezimeno"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/window.py:986
 msgid "this picture"
-msgstr "bu resim"
+msgstr "Ova slika"
 
 #: src/window.py:991
 msgid "Discard"
-msgstr "Yoksay"
+msgstr "Odbaci"
 
 #: src/window.py:1012
 msgid "Save picture as…"
-msgstr "Resmi farklı kaydet…"
+msgstr "Spremi sliku kao …"
 
 #: src/window.py:1085
 msgid "Import a picture"
-msgstr "Bir resmi içe aktar"
+msgstr "Uvezi jednu sliku"
 
 #: src/window.py:1118
 msgid "Required tool is not available"
-msgstr "Gerekli araç kullanılamıyor"
+msgstr "Potrebni alat nije dostupan"
 
 #: src/tools/ui/tool_arc.ui:5 src/tools/ui/tool_line.ui:5
 #: src/tools/ui/tool_pencil.ui:5
 msgid "Line shape"
-msgstr "Fırça şekli"
+msgstr "Oblik crte"
 
 #. Default values
 #: src/tools/ui/tool_arc.ui:7 src/tools/ui/tool_line.ui:7
@@ -1086,145 +1082,145 @@ msgstr "Fırça şekli"
 #: src/tools/classic_tools/tool_pencil.py:15
 #: src/tools/classic_tools/tool_pencil.py:36
 msgid "Round"
-msgstr "Yuvarlak"
+msgstr "Oblo"
 
 #: src/tools/ui/tool_arc.ui:17 src/tools/ui/tool_line.ui:17
 #: src/tools/ui/tool_pencil.ui:17 src/tools/classic_tools/tool_arc.py:28
 #: src/tools/classic_tools/tool_line.py:23
 #: src/tools/classic_tools/tool_pencil.py:32
 msgid "Square"
-msgstr "Kare"
+msgstr "Kvardatično"
 
 #: src/tools/ui/tool_arc.ui:24 src/tools/ui/tool_line.ui:24
 #: src/tools/ui/tool_pencil.ui:24
 msgid "Use dashes"
-msgstr "Kısa çizgiler"
+msgstr "Koristi crtice"
 
 #: src/tools/ui/tool_arc.ui:28 src/tools/ui/tool_line.ui:28
 #: src/tools/classic_tools/tool_arc.py:44
 #: src/tools/classic_tools/tool_line.py:43
 msgid "Arrow"
-msgstr "Oklar"
+msgstr "Strelica"
 
 #: src/tools/ui/tool_crop.ui:102 src/tools/ui/tool_crop.ui:171
 #: src/tools/ui/tool_filters.ui:135 src/tools/ui/tool_filters.ui:213
 #: src/tools/ui/tool_rotate.ui:152 src/tools/ui/tool_rotate.ui:208
 #: src/tools/ui/tool_scale.ui:103 src/tools/ui/tool_scale.ui:239
 msgid "Apply"
-msgstr "Onayla"
+msgstr "Primijeni"
 
 #: src/tools/ui/tool_crop.ui:122 src/tools/ui/tool_scale.ui:123
 msgid "More options"
-msgstr "Daha fazla seçenek"
+msgstr "Daljnje opcije"
 
 #: src/tools/ui/tool_filters.ui:66 src/tools/canvas_tools/tool_filters.py:109
 msgid "Select a filter…"
-msgstr "Bir süzgeç seç…"
+msgstr "Odaberi filtar …"
 
 #: src/tools/ui/tool_filters.ui:89 src/tools/ui/tool_filters.ui:97
 #: src/tools/ui/tool_filters.ui:161 src/tools/canvas_tools/tool_filters.py:98
 msgid "Saturation"
-msgstr "Doygunluk"
+msgstr "Zasićenost"
 
 #: src/tools/ui/tool_filters.ui:103 src/tools/ui/tool_filters.ui:111
 msgid "Blur radius"
-msgstr "Bulanıklık yarıçapı"
+msgstr "Područje zamućivanja"
 
 #: src/tools/ui/tool_filters.ui:117 src/tools/ui/tool_filters.ui:125
 #: src/tools/ui/tool_filters.ui:173 src/tools/canvas_tools/tool_filters.py:107
 msgid "Transparency"
-msgstr "Şeffaflık"
+msgstr "Prozirnost"
 
 #: src/tools/ui/tool_filters.ui:166 src/tools/canvas_tools/tool_filters.py:101
 msgid "Pixelisation"
-msgstr "Pikselleme"
+msgstr "Pikselizacija"
 
 #: src/tools/ui/tool_filters.ui:178 src/tools/canvas_tools/tool_filters.py:104
 msgid "Invert colors"
-msgstr "Renkleri ters çevir"
+msgstr "Invertiraj boje"
 
 #: src/tools/ui/tool_filters.ui:190 src/tools/canvas_tools/tool_filters.py:92
 msgid "Horizontal blur"
-msgstr "Yatay bulanıklık"
+msgstr "Vodoravno zamućivanje"
 
 #: src/tools/ui/tool_filters.ui:195 src/tools/canvas_tools/tool_filters.py:95
 msgid "Vertical blur"
-msgstr "Dikey bulanıklık"
+msgstr "Okomito zamućivanje"
 
 #: src/tools/ui/tool_line.ui:32
 msgid "Color gradient"
-msgstr "Geçiş rengi"
+msgstr "Prijelaz boje"
 
 #: src/tools/ui/tool_paint.ui:5
 msgid "Behavior"
-msgstr "Davranış"
+msgstr "Način"
 
 #: src/tools/ui/tool_paint.ui:7
 msgid "Encircle and fill"
-msgstr "Çevrele ve doldur"
+msgstr "Okruži i ispuni"
 
 #: src/tools/ui/tool_paint.ui:12
 msgid "Erase and replace"
-msgstr "Temizle ve değiştir"
+msgstr "Izbriši i zamijeni"
 
 #: src/tools/ui/tool_paint.ui:19
 msgid "Clipping"
-msgstr "Kırpma"
+msgstr "Rezanje"
 
 #: src/tools/ui/tool_pencil.ui:12 src/tools/classic_tools/tool_pencil.py:28
 msgid "Thin"
-msgstr "İnce"
+msgstr "Tanko"
 
 #: src/tools/ui/tool_rotate.ui:44
 msgid "Angle (degrees)"
-msgstr "Açı (derece)"
+msgstr "Kut (u stupnjevima)"
 
 #: src/tools/ui/tool_rotate.ui:47
 msgid "Angle"
-msgstr "Açı"
+msgstr "Kut"
 
 #: src/tools/ui/tool_rotate.ui:82 src/tools/ui/tool_rotate.ui:178
 msgid "Rotate left"
-msgstr "Sola döndür"
+msgstr "Okreni lijevo"
 
 #: src/tools/ui/tool_rotate.ui:96 src/tools/ui/tool_rotate.ui:183
 msgid "Rotate right"
-msgstr "Sağa döndür"
+msgstr "Okreni desno"
 
 #: src/tools/ui/tool_rotate.ui:117 src/tools/ui/tool_rotate.ui:191
 msgid "Flip horizontally"
-msgstr "Yatay çevir"
+msgstr "Preokreni vodoravno"
 
 #: src/tools/ui/tool_rotate.ui:131 src/tools/ui/tool_rotate.ui:196
 msgid "Flip vertically"
-msgstr "Dikey çevir"
+msgstr "Preokreni okomito"
 
 #: src/tools/ui/tool_scale.ui:158 src/tools/ui/tool_scale.ui:213
 msgid "Keep proportions"
-msgstr "Oranları koru"
+msgstr "Zadrži omjere"
 
 #. Context for translations: "Always [keep proportions]"
 #: src/tools/ui/tool_scale.ui:161 src/tools/ui/tool_scale.ui:216
 msgid "Always"
-msgstr "Sürekli"
+msgstr "Uvijek"
 
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/tools/ui/tool_scale.ui:167 src/tools/ui/tool_scale.ui:222
 msgid "When scaling from corners"
-msgstr "Köşe ölçeği yaparken"
+msgstr "Pri skaliranju iz kutova"
 
 #. Context for translations: "Never [keep proportions]"
 #: src/tools/ui/tool_scale.ui:173 src/tools/ui/tool_scale.ui:228
 msgid "Never"
-msgstr "Asla"
+msgstr "Nikada"
 
 #: src/tools/ui/tool_shape.ui:8 src/tools/classic_tools/tool_shape.py:52
 msgid "Rectangle"
-msgstr "Dikdörtgen"
+msgstr "Pravokutnik"
 
 #: src/tools/ui/tool_shape.ui:14 src/tools/classic_tools/tool_shape.py:55
 msgid "Rounded rectangle"
-msgstr "Yuvarlanmış dikdörtgen"
+msgstr "Obli pravokutnik"
 
 #: src/tools/ui/tool_shape.ui:20 src/tools/classic_tools/tool_shape.py:58
 msgid "Oval"
@@ -1232,229 +1228,206 @@ msgstr "Oval"
 
 #: src/tools/ui/tool_shape.ui:26 src/tools/classic_tools/tool_shape.py:64
 msgid "Polygon"
-msgstr "Çokgen"
+msgstr "Mnogokut"
 
 #: src/tools/ui/tool_shape.ui:32 src/tools/classic_tools/tool_shape.py:67
 msgid "Free shape"
-msgstr "Serbest biçim"
+msgstr "Prostoručni oblik"
 
 #: src/tools/ui/tool_shape.ui:38 src/tools/classic_tools/tool_shape.py:61
 msgid "Circle"
-msgstr "Daire"
+msgstr "Krug"
 
 #: src/tools/ui/tool_shape.ui:47 src/tools/classic_tools/tool_shape.py:37
 msgid "Empty outline"
-msgstr "Boş anahat"
+msgstr "Prazna kontura"
 
 #: src/tools/ui/tool_shape.ui:52 src/tools/classic_tools/tool_shape.py:39
 msgid "Main color"
-msgstr "Ana renk"
+msgstr "Glavna boja"
 
 #: src/tools/ui/tool_shape.ui:57 src/tools/classic_tools/tool_shape.py:47
 msgid "Secondary color"
-msgstr "İkincil renk"
+msgstr "Sporedna boja"
 
 #: src/tools/ui/tool_shape.ui:62 src/tools/classic_tools/tool_shape.py:41
 msgid "Horizontal gradient"
-msgstr "Yatay gradyan"
+msgstr "Vodoravan prijelaz"
 
 #: src/tools/ui/tool_shape.ui:67 src/tools/classic_tools/tool_shape.py:43
 msgid "Vertical gradient"
-msgstr "Dikey gradyan"
+msgstr "Okomit prijelaz"
 
 #: src/tools/ui/tool_shape.ui:72 src/tools/classic_tools/tool_shape.py:45
 msgid "Radial gradient"
-msgstr "Radyal gradyan"
+msgstr "Kružni prijelaz"
 
 #: src/tools/ui/tool_shape.ui:79
 msgid "Close shape"
-msgstr "Şekli kapat"
+msgstr "Zatvori oblik"
 
 #: src/tools/ui/tool_text.ui:43 src/tools/ui/tool_text.ui:44
 msgid "Insert here"
-msgstr "Buraya ekle"
+msgstr "Umetni ovdje"
 
 #: src/tools/ui/tool_text.ui:61
 msgid "Font"
-msgstr "Yazı tipi"
+msgstr "Font"
 
 #: src/tools/ui/tool_text.ui:80
 msgid "Italic"
-msgstr "Italic"
+msgstr "Kurziv"
 
 #: src/tools/ui/tool_text.ui:84
 msgid "Bold"
-msgstr "Kalın"
+msgstr "Podebljano"
 
 #: src/tools/ui/tool_text.ui:89
 msgid "Background"
-msgstr "Arkaplan"
+msgstr "Pozadina"
 
 #: src/tools/ui/tool_text.ui:92 src/tools/classic_tools/tool_text.py:50
 msgid "No background"
-msgstr "Arkaplan yok"
+msgstr "Bez pozadine"
 
 #: src/tools/ui/tool_text.ui:98 src/tools/classic_tools/tool_text.py:52
 msgid "Shadow"
-msgstr "Gölge"
+msgstr "Sjena"
 
 #: src/tools/ui/tool_text.ui:104 src/tools/classic_tools/tool_text.py:20
 #: src/tools/classic_tools/tool_text.py:54
 msgid "Outline"
-msgstr "Dış çizgi"
+msgstr "Kontura"
 
 #: src/tools/ui/tool_text.ui:110 src/tools/classic_tools/tool_text.py:56
 msgid "Rectangle background"
-msgstr "Dikdörtgen arka plan"
+msgstr "Pravokutna pozadina"
 
 #: src/tools/utilities_tools.py:187
 msgid "Continue"
-msgstr "Devam"
+msgstr "Nastavi"
 
 #: src/tools/utilities_tools.py:188
 msgid "The area seems poorly delimited, or is very complex."
-msgstr "Alan çok sınırlı görünüyor veya çok karmaşık."
+msgstr "Čini se da je područje loše ograničeno ili je vrlo složeno."
 
 #: src/tools/utilities_tools.py:189
 msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Bu algoritma istenen alanı yönetemeyebilir."
+msgstr "Ovaj algoritam možda neće moći upravljati željenim područjem."
 
 #: src/tools/utilities_tools.py:190
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
-"İşlemi iptal etmek mi yoksa aracın denemesine izin vermek mi istiyorsunuz?"
+"Želiš li prekinuti operaciju ili pustiti da se alat nastavi boriti sa "
+"zadatkom?"
 
 #: src/tools/classic_tools/tool_arc.py:12
 msgid "Curve"
-msgstr "Kavis"
+msgstr "Krivulja"
 
 #: src/tools/classic_tools/tool_arc.py:34
 msgid "Curve options"
-msgstr "Kavis seçenekleri"
+msgstr "Opcije za krivulje"
 
 #: src/tools/classic_tools/tool_arc.py:42
 #: src/tools/classic_tools/tool_line.py:41
 msgid "Dashed arrow"
-msgstr "Kesikli ok"
+msgstr "Iscrtkana strelica"
 
 #: src/tools/classic_tools/tool_arc.py:46
 #: src/tools/classic_tools/tool_line.py:45
 #: src/tools/classic_tools/tool_pencil.py:49
 msgid "Dashed"
-msgstr "Kesik"
+msgstr "Iscrtkano"
 
 #: src/tools/classic_tools/tool_line.py:12
 msgid "Line"
-msgstr "Çizgi"
+msgstr "Crta"
 
 #: src/tools/classic_tools/tool_line.py:29
 msgid "Line options"
-msgstr "Çizgi seçenekleri"
+msgstr "Opcije za crtu"
 
 #: src/tools/classic_tools/tool_paint.py:20
 msgid "Painting options"
-msgstr "Boyama seçenekleri"
+msgstr "Opcije za crtanje"
 
 #: src/tools/classic_tools/tool_paint.py:24
 msgid "Click on an area to replace its color by transparency"
-msgstr "Rengi saydamlıkla değiştirmek için bir alana tıkla"
+msgstr "Klikni na područje, čiju boju želiš zamijeniti s prozirnošću"
 
 #: src/tools/classic_tools/tool_pencil.py:12
 msgid "Pencil"
-msgstr "Fırça"
+msgstr "Olovka"
 
 #: src/tools/classic_tools/tool_pencil.py:39
 msgid "Pencil options"
-msgstr "Fırça seçenekleri"
+msgstr "Opcije za olovku"
 
 #: src/tools/classic_tools/tool_shape.py:12
 msgid "Shape"
-msgstr "Şekil"
+msgstr "Oblik"
 
 #: src/tools/classic_tools/tool_shape.py:21
 msgid "Empty"
-msgstr "Boş"
+msgstr "Prazno"
 
 #: src/tools/classic_tools/tool_shape.py:71
 msgid "Shape options"
-msgstr "Biçim seçenekleri"
+msgstr "Opcije za oblik"
 
 #: src/tools/classic_tools/tool_shape.py:78
 msgid "Click on the shape's first point to close it."
-msgstr "Kapatmak için şeklin ilk noktasına tıklayın."
+msgstr "Za zatvaranje oblika, klikni na njegovu prvu točku."
 
 #: src/tools/classic_tools/tool_text.py:12
 msgid "Text"
-msgstr "Metin"
+msgstr "Tekst"
 
 #: src/tools/classic_tools/tool_text.py:59
 msgid "Font options"
-msgstr "Yazıtipi seçenekleri"
+msgstr "Opcije za fontove"
 
 #: src/tools/selection_tools/abstract_select.py:42
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Seçimi sürükle veya tuval üzerine sağ tıkla"
+msgstr "Povuci odabir ili klikni desnom tipkom na platno"
 
 #: src/tools/selection_tools/abstract_select.py:44
 msgid "Select an area or right-click on the canvas"
-msgstr "Bir alan seç veya tuval üzerine sağ tıkla"
+msgstr "Odaberi područje ili klikni desnom tipkom na platno"
 
 #: src/tools/selection_tools/rect_select.py:13
 msgid "Rectangle selection"
-msgstr "Dikdörtgen seçim"
+msgstr "Pravokutan odabir"
 
 #: src/tools/canvas_tools/tool_crop.py:52
 msgid "Cropping the selection"
-msgstr "Seçimi kırp"
+msgstr "Rezanje odabira"
 
 #: src/tools/canvas_tools/tool_crop.py:54
 msgid "Cropping the canvas"
-msgstr "Tuvali kırp"
+msgstr "Rezanje platna"
 
 #: src/tools/canvas_tools/tool_filters.py:32
 msgid "Filters"
-msgstr "Süzgeçler"
+msgstr "Filtri"
 
 #: src/tools/canvas_tools/tool_filters.py:74
 msgid "Click on the image to preview the selected filter"
-msgstr "Seçilen süzgeci önizlemek için resme tıklayın"
+msgstr "Klikni na sliku za pretprikaz odabranog filtra"
 
 #: src/tools/canvas_tools/tool_rotate.py:52
 msgid "Rotating the selection"
-msgstr "Seçimi döndür"
+msgstr "Okretanje odabira"
 
 #: src/tools/canvas_tools/tool_rotate.py:54
 msgid "Rotating the canvas"
-msgstr "Tuvali döndür"
+msgstr "Okretanje platna"
 
 #: src/tools/canvas_tools/tool_scale.py:58
 msgid "Scaling the selection"
-msgstr "Seçimi ölçeklendir"
+msgstr "Skaliranje odabira"
 
 #: src/tools/canvas_tools/tool_scale.py:60
 msgid "Scaling the canvas"
-msgstr "Tuvali ölçeklendir"
-
-#~ msgid "Close"
-#~ msgstr "Kapat"
-
-#~ msgid "Report bugs or ideas"
-#~ msgstr "Hata veya fikir bildirin"
-
-#~ msgid "Filling"
-#~ msgstr "Dolgu"
-
-#~ msgid "Freehand"
-#~ msgstr "Düzensiz"
-
-#~ msgid "Similar color"
-#~ msgstr "Benzer renk"
-
-#~ msgid "Selection options"
-#~ msgstr "Seçici seçenekleri"
-
-#~ msgid "Summary"
-#~ msgstr "Özet"
-
-#~ msgid "Similar color selection"
-#~ msgstr "Benzer renk seçimi"
+msgstr "Skaliranje platna"
