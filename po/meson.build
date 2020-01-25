@@ -1,1 +1,1 @@
-i18n.gettext('drawing', preset: 'glib')
+i18n.gettext('drawing', args: '--no-location', preset: 'glib')

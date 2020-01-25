@@ -235,7 +235,8 @@ class Application(Gtk.Application):
 			translator_credits=_("translator-credits"),
 			# To translators: it's credits for the icons, consider that "Art
 			# Libre" is proper name
-			artists=['Tobias Bernard', 'Romain F. T.', _("GNOME's Art Libre icon set")],
+			artists=['Tobias Bernard', 'Romain F. T.',
+			                           _("GNOME's Art Libre icon set authors")],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self.version),

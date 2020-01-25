@@ -31,6 +31,7 @@ class DrawingCustomImageDialog(Gtk.Dialog):
 
 	def build_ui(self):
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+		# Context: Create a new image
 		btn = self.add_button(_("Create"), Gtk.ResponseType.OK)
 		btn.get_style_context().add_class('suggested-action')
 

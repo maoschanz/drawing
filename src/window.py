@@ -539,7 +539,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, title, toolbar, whatever)
 		according to the user's preference, which by default is 'auto'."""
-		self.has_good_limits = False # used by the bottom panels
+		self.has_good_width_limits = False
 
 		builder = Gtk.Builder.new_from_string(PLACEHOLDER_UI_STRING \
 		                                                  % _("No options"), -1)
@@ -641,11 +641,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Adapts the headerbar (if any) and the default bottom panel to the new
 		window size. If the current bottom panel isn't the default one, this
 		will call the tool method applying the new size to the tool panel."""
-		if not self.has_good_limits and self.get_allocated_width() > 700:
+		if not self.has_good_width_limits and self.get_allocated_width() > 700:
 			self.options_manager.init_adaptability()
 			if self.header_bar is not None:
 				self.header_bar.init_adaptability()
-			self.has_good_limits = True
+			self.has_good_width_limits = True
 
 		if self.header_bar is not None:
 			self.header_bar.adapt_to_window_size()
@@ -877,7 +877,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			self.try_load_file(gfile)
 		else:
 			dialog = DrawingMessageDialog(self)
+			# Context: answer to "where do you want to open the image?"
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
+			# Context: answer to "where do you want to open the image?"
 			new_window_id = dialog.set_action(_("New Window"), None, False)
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
