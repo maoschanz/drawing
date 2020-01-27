@@ -17,10 +17,8 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
-
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
-
 from .utilities import utilities_add_unit_to_spinbtn
 from .utilities_tools import utilities_show_handles_on_context
 
@@ -209,8 +207,7 @@ class ToolScale(AbstractCanvasTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
-
+		self.start_tool_operation(operation)
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:

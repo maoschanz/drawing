@@ -49,8 +49,7 @@ class ToolEraser(ToolPencil):
 		return operation
 
 	def do_tool_operation(self, operation):
-		AbstractClassicTool.do_tool_operation(self, operation)
-
+		self.start_tool_operation(operation)
 		if operation['path'] is None:
 			return
 		cairo_context = self.get_context()

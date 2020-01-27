@@ -102,7 +102,7 @@ class ToolPencil(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		if operation['path'] is None:
 			return
 		cairo_context = self.get_context()

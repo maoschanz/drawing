@@ -828,7 +828,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.exchange_colors()
 
 	def exchange_colors(self, *args):
-		self.options_manager.exchange_colors()
+		if self.active_tool().use_color:
+			self.options_manager.exchange_colors()
 
 	def action_color1(self, *args):
 		if self.active_tool().use_color:

@@ -82,11 +82,6 @@ class ToolText(AbstractClassicTool):
 
 	def on_tool_selected(self):
 		super().on_tool_selected()
-		# Usual text entry shortcuts don't work otherwise
-		self.set_action_sensitivity('paste', False)
-		self.set_action_sensitivity('select_all', False)
-		self.set_action_sensitivity('selection_cut', False)
-		self.set_action_sensitivity('selection_copy', False)
 
 	def on_tool_unselected(self):
 		self.set_action_sensitivity('paste', True)
@@ -116,9 +111,7 @@ class ToolText(AbstractClassicTool):
 		self.x_begin = event_x
 		self.y_begin = event_y
 		self.should_cancel = True
-
-		# TODO use the widget again, and cairo.ToyFontFace
-		self.set_font()
+		self.set_font() # TODO use the widget again, and cairo.ToyFontFace
 
 		if self.get_option_value('text_italic'):
 			self.font_slant = cairo.FontSlant.ITALIC
@@ -133,6 +126,12 @@ class ToolText(AbstractClassicTool):
 			self.open_popover_at(int(event_x), int(event_y))
 		else:
 			self.open_popover_at(int(event.x), int(event.y))
+
+		# Usual text entry shortcuts don't work otherwise
+		self.set_action_sensitivity('paste', False)
+		self.set_action_sensitivity('select_all', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('selection_copy', False)
 
 	def open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
@@ -152,6 +151,10 @@ class ToolText(AbstractClassicTool):
 			operation = self.build_operation()
 			self.apply_operation(operation)
 			self.set_string('')
+		self.set_action_sensitivity('paste', True)
+		self.set_action_sensitivity('select_all', True)
+		self.set_action_sensitivity('selection_cut', True)
+		self.set_action_sensitivity('selection_copy', True)
 
 	def has_current_text(self):
 		b = self.entry.get_buffer()
@@ -193,7 +196,7 @@ class ToolText(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		cairo_context = self.get_context()
 
 		font_fam = operation['font_fam']

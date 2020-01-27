@@ -139,7 +139,7 @@ class ToolRotate(AbstractCanvasTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		angle = operation['angle']
 		flip_h = operation['flip_h']
 		flip_v = operation['flip_v']

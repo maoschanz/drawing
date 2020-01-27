@@ -311,7 +311,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		# print('operation_type', operation['operation_type'])
 		if operation['operation_type'] == 'op-delete':
 			# Opération instantanée (sans preview), correspondant à une action

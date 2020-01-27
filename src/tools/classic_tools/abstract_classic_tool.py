@@ -16,11 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-
 from .abstract_tool import AbstractAbstractTool
 from .classic_panel import ClassicToolPanel
-
-from .utilities_tools import utilities_fast_blur
+from .blurring import utilities_fast_blur
 
 class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
@@ -31,7 +29,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.use_color = True
 		self.use_size = True
 		self.accept_selection = False
-		self.tool_width = 1
+		self.tool_width = 10
 		self.main_color = None
 		self.secondary_color = None
 
@@ -46,7 +44,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		return ClassicToolPanel(self.window)
 
 	def on_tool_selected(self):
-		# TODO update the label/menu/size/sensitivity/etc.
+		# XXX shouldn't i update the label/menu/size/sensitivity/etc. here?
 		pass
 
 	############################################################################
@@ -71,7 +69,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 	# 	pass
 
 	# def do_tool_operation(self, operation):
-	# 	super().do_tool_operation(operation)
+	# 	pass
 
 	def stroke_with_operator(self, operator, cairo_context, line_width, is_preview):
 		cairo_context.set_operator(operator)

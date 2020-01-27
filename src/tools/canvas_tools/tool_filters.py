@@ -17,12 +17,10 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
-
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
-
-from .utilities_tools import utilities_fast_blur
-from .utilities_tools import BlurType
+from .blurring import utilities_fast_blur
+from .blurring import BlurType
 from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolFilters(AbstractCanvasTool):
@@ -159,7 +157,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(bp)
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:

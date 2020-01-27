@@ -76,7 +76,7 @@ class ToolPaint(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 
 		if operation['algo'] == 'replace':
 			self.op_replace(operation)

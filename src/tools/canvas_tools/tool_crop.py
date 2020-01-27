@@ -184,7 +184,7 @@ class ToolCrop(AbstractCanvasTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		x = operation['local_dx']
 		y = operation['local_dy']
 		width = operation['width']

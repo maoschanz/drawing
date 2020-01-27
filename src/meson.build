@@ -46,6 +46,7 @@ drawing_sources = [
 	'custom_image.py',
 
 	'tools/abstract_tool.py',
+	'tools/blurring.py',
 	'tools/utilities_tools.py',
 
 	'tools/classic_tools/abstract_classic_tool.py',

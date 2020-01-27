@@ -160,7 +160,7 @@ class ToolMatrix(AbstractCanvasTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()

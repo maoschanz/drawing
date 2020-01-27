@@ -16,8 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk
-
+from gi.repository import Gtk
 from .utilities_tools import utilities_show_overlay_on_context
 
 class AbstractAbstractTool():
@@ -25,16 +24,19 @@ class AbstractAbstractTool():
 	__gtype_name__ = 'AbstractAbstractTool'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
+		# The tool's identity
 		self.id = tool_id
-		self.accept_selection = False
-		self.use_color = False
 		self.menu_id = 0
 		self.label = label
 		self.icon_name = icon_name
-		self.tool_width = 10
+		# The options it supports
+		self.accept_selection = False
+		self.use_color = False
+		# Misc
+		self.window = window
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
-		self.window = window
+		# Once everything is set, build the UI
 		self.build_row()
 		self.try_build_panel()
 
@@ -60,7 +62,11 @@ class AbstractAbstractTool():
 		self.get_image().set_action_sensitivity(action_name, state)
 
 	def update_actions_state(self):
-		pass
+		# self.set_action_sensitivity('main_color', self.use_color)
+		# self.set_action_sensitivity('secondary_color', self.use_color)
+		# self.set_action_sensitivity('exchange_color', self.use_color)
+		# self.set_action_sensitivity('cairo_operator', self.use_color)
+		pass # TODO erreur à la fermeture de la fenêtre si décommenté
 
 	def get_settings(self):
 		return self.window._settings
@@ -159,8 +165,11 @@ class AbstractAbstractTool():
 	# History ##################################################################
 
 	def do_tool_operation(self, operation):
+		pass
+
+	def start_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
-			raise Exception("Can't apply operation: invalid tool id")
+			raise Exception("Can't apply operation: %s is an tool" % self.id)
 		self.restore_pixbuf()
 		self._ongoing_operation = True
 

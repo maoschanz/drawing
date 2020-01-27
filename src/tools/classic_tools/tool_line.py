@@ -98,7 +98,7 @@ class ToolLine(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		super().do_tool_operation(operation)
+		self.start_tool_operation(operation)
 		cairo_context = self.get_context()
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_cap(operation['line_cap'])
