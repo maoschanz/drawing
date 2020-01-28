@@ -25,63 +25,76 @@ class ToolText(AbstractClassicTool):
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
 
-		self.x_begin = 0.0
-		self.y_begin = 0.0
-		self.should_cancel = False
+		self._text_x = 0.0
+		self._text_y = 0.0
+		self._should_cancel = False
+		self._last_click_btn = 1
 
-		self.font_fam = "Sans"
-		self.background_id = 'outline'
-		self.background_label = _("Outline")
+		self._font_fam = "Sans"
+		self._bg_id = 'outline'
+		self._bg_label = _("Outline")
 
-		self.add_tool_action_enum('text_font', self.font_fam)
-		self.add_tool_action_boolean('text_bold', False)
-		self.add_tool_action_boolean('text_italic', False)
-		self.add_tool_action_enum('text_background', self.background_id)
+		self.add_tool_action_enum('text-font', self._font_fam)
+		self.add_tool_action_boolean('text-bold', False)
+		self.add_tool_action_boolean('text-italic', False)
+		self.add_tool_action_enum('text-background', self._bg_id)
+		# TODO actions sensitivity?
+		self.add_tool_action_simple('text-cancel', self._on_cancel)
+		self.add_tool_action_simple('text-preview', self._force_refresh)
+		self.add_tool_action_simple('text-insert', self._on_insert_text)
 
 		builder = Gtk.Builder().new_from_resource( \
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
 
-		# Popover for text insertion TODO widgets on the GtkLayout ?
+		# Widgets for text insertion
 		self.popover = builder.get_object('insertion-popover')
+		# self._widget = builder.get_object('insertion-widget')
 		self.entry = builder.get_object('entry')
 		self.entry.set_size_request(100, 50)
-		insert_btn = builder.get_object('insert_btn')
-		insert_btn.connect('clicked', self.on_insert_text)
-		cancel_btn = builder.get_object('cancel_btn')
-		cancel_btn.connect('clicked', self.on_cancel)
-		self.entry.get_buffer().connect('changed', self.preview_text)
+		self.entry.get_buffer().connect('changed', self._preview_text)
+		self._hide_entry()
 
 	############################################################################
 	# Options ##################################################################
 
-	def set_font(self, *args):
-		self.font_fam = self.get_option_value('text_font')
-
-	def set_background_style(self, *args):
-		state_as_string = self.get_option_value('text_background')
-		self.background_id = state_as_string
-		if state_as_string == 'none':
-			self.background_label = _("No background")
-		elif state_as_string == 'shadow':
-			self.background_label = _("Shadow")
-		elif state_as_string == 'outline':
-			self.background_label = _("Outline")
+	def _set_font_options(self, *args):
+		# TODO ? use the widget again, and cairo.ToyFontFace
+		self._font_fam = self.get_option_value('text-font')
+		if self.get_option_value('text-italic'):
+			self._font_slant = cairo.FontSlant.ITALIC
 		else:
-			self.background_label = _("Rectangle background")
+			self._font_slant = cairo.FontSlant.NORMAL
+		if self.get_option_value('text-bold'):
+			self._font_weight = cairo.FontWeight.BOLD
+		else:
+			self._font_weight = cairo.FontWeight.NORMAL
+
+	def _set_background_style(self, *args):
+		state_as_string = self.get_option_value('text-background')
+		self._bg_id = state_as_string
+		if state_as_string == 'none':
+			self._bg_label = _("No background")
+		elif state_as_string == 'shadow':
+			self._bg_label = _("Shadow")
+		elif state_as_string == 'outline':
+			self._bg_label = _("Outline")
+		else:
+			self._bg_label = _("Rectangle background")
 
 	def get_options_label(self):
 		return _("Font options")
 
 	def get_edition_status(self):
-		self.set_background_style()
-		# TODO + font ?
-		label = self.label + ' - ' + self.font_fam + ' - ' + self.background_label
+		self._set_background_style()
+		# TODO + _set_font_options here ?
+		label = self.label + ' - ' + self._font_fam + ' - ' + self._bg_label
 		return label
 
 	############################################################################
 
 	def on_tool_selected(self):
 		super().on_tool_selected()
+		self._last_click_btn = 1
 
 	def on_tool_unselected(self):
 		self.set_action_sensitivity('paste', True)
@@ -90,42 +103,32 @@ class ToolText(AbstractClassicTool):
 		self.set_action_sensitivity('selection_copy', True)
 
 	def give_back_control(self, preserve_selection):
-		if self.should_cancel:
-			self.on_cancel()
+		if self._should_cancel:
+			self._on_cancel()
 
 	def force_text_tool(self, string):
 		self.row.set_active(True)
-		self.set_common_values(1)
+		self.set_common_values(self._last_click_btn)
 		self.on_release_on_area(None, None, 100, 100)
-		self.set_string(string)
+		self._set_string(string)
 
-	def set_string(self, string):
+	def _set_string(self, string):
 		self.entry.get_buffer().set_text(string, -1)
 
 	############################################################################
 
-	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.set_common_values(event.button)
+	# TODO better way to move the fucking text
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self.x_begin = event_x
-		self.y_begin = event_y
-		self.should_cancel = True
-		self.set_font() # TODO use the widget again, and cairo.ToyFontFace
+		self._last_click_btn = event.button
+		self._should_cancel = True
+		self.set_common_values(self._last_click_btn)
+		self._text_x = event_x
+		self._text_y = event_y
+		self._set_font_options()
 
-		if self.get_option_value('text_italic'):
-			self.font_slant = cairo.FontSlant.ITALIC
-		else:
-			self.font_slant = cairo.FontSlant.NORMAL
-		if self.get_option_value('text_bold'):
-			self.font_weight = cairo.FontWeight.BOLD
-		else:
-			self.font_weight = cairo.FontWeight.NORMAL
-
-		if event is None: # TODO l'ouvrir à l'endroit précédent si clic droit ?
-			self.open_popover_at(int(event_x), int(event_y))
-		else:
-			self.open_popover_at(int(event.x), int(event.y))
+		self._open_popover_at(int(event.x), int(event.y))
+		# self._open_widget_at(int(event_x), int(event_y))
 
 		# Usual text entry shortcuts don't work otherwise
 		self.set_action_sensitivity('paste', False)
@@ -133,7 +136,7 @@ class ToolText(AbstractClassicTool):
 		self.set_action_sensitivity('selection_cut', False)
 		self.set_action_sensitivity('selection_copy', False)
 
-	def open_popover_at(self, x, y):
+	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = x
 		rectangle.y = y
@@ -143,20 +146,44 @@ class ToolText(AbstractClassicTool):
 		self.popover.set_relative_to(self.get_image())
 		self.popover.popup()
 		self.entry.grab_focus()
-		self.preview_text()
+		self._preview_text()
 
-	def on_insert_text(self, *args):
+	# def _open_widget_at(self, x, y):
+	# 	"""Unused method because it just doesn't work: the button propagates the
+	# 	click event and the widgets are zoomed in/out"""
+	# 	self._widget.set_visible(True)
+	# 	parent_layout = self._widget.get_parent()
+	# 	if parent_layout is None:
+	# 		self.get_image().drawing_area.put(self._widget, x, y)
+	# 	elif parent_layout == self.get_image().drawing_area:
+	# 		parent_layout.move(self._widget, x, y)
+	# 	else:
+	# 		parent_layout.remove(self._widget)
+	# 		self.get_image().drawing_area.put(self._widget, x, y)
+	# 	self.entry.grab_focus()
+	# 	self._preview_text()
+
+	def _hide_entry(self):
+		# self._widget.set_visible(False)
 		self.popover.popdown()
-		if self.has_current_text():
+
+	def _force_refresh(self, *args):
+		self.set_common_values(self._last_click_btn)
+		self._set_font_options()
+		self._preview_text()
+
+	def _on_insert_text(self, *args):
+		self._hide_entry()
+		if self._has_current_text():
 			operation = self.build_operation()
 			self.apply_operation(operation)
-			self.set_string('')
+			self._set_string('')
 		self.set_action_sensitivity('paste', True)
 		self.set_action_sensitivity('select_all', True)
 		self.set_action_sensitivity('selection_cut', True)
 		self.set_action_sensitivity('selection_copy', True)
 
-	def has_current_text(self):
+	def _has_current_text(self):
 		b = self.entry.get_buffer()
 		self.text_string = b.get_text(b.get_start_iter(), b.get_end_iter(), False)
 		if self.text_string == '':
@@ -166,16 +193,15 @@ class ToolText(AbstractClassicTool):
 		else:
 			return True
 
-	def preview_text(self, *args):
-		if self.has_current_text():
+	def _preview_text(self, *args):
+		if self._has_current_text():
 			operation = self.build_operation()
 			self.do_tool_operation(operation)
 
-	def on_cancel(self, *args):
-		self.restore_pixbuf()
-		self.popover.popdown()
-		self.set_string('')
-		self.should_cancel = False
+	def _on_cancel(self, *args):
+		self._hide_entry()
+		self._set_string('')
+		self._should_cancel = False
 
 	############################################################################
 
@@ -184,13 +210,13 @@ class ToolText(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba1': self.main_color,
 			'rgba2': self.secondary_color,
-			'font_fam': self.font_fam,
-			'font_slant': self.font_slant,
-			'font_weight': self.font_weight,
+			'_font_fam': self._font_fam,
+			'_font_slant': self._font_slant,
+			'_font_weight': self._font_weight,
 			'font_size': self.tool_width,
-			'x': self.x_begin,
-			'y': self.y_begin,
-			'background': self.background_id,
+			'x': self._text_x,
+			'y': self._text_y,
+			'background': self._bg_id,
 			'text': self.text_string
 		}
 		return operation
@@ -199,11 +225,11 @@ class ToolText(AbstractClassicTool):
 		self.start_tool_operation(operation)
 		cairo_context = self.get_context()
 
-		font_fam = operation['font_fam']
-		font_slant = operation['font_slant']
-		font_weight = operation['font_weight']
+		_font_fam = operation['_font_fam']
+		_font_slant = operation['_font_slant']
+		_font_weight = operation['_font_weight']
 		font_size = operation['font_size'] * 3 # XXX totalement arbitraire
-		cairo_context.select_font_face(font_fam, font_slant, font_weight)
+		cairo_context.select_font_face(_font_fam, _font_slant, _font_weight)
 		cairo_context.set_font_size(font_size)
 
 		lines = operation['text'].split('\n')
@@ -218,13 +244,13 @@ class ToolText(AbstractClassicTool):
 			# Draw background for the line #####################################
 			line_y = text_y + i * font_size
 			if operation['background'] == 'rectangle':
-				self.op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
+				self._op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
 				                                              text_y, line_text)
 			elif operation['background'] == 'shadow':
-				self.op_bg_shadow(cairo_context, c2, font_size, text_x, \
+				self._op_bg_shadow(cairo_context, c2, font_size, text_x, \
 				                                              line_y, line_text)
 			elif operation['background'] == 'outline':
-				self.op_bg_outline(cairo_context, c2, font_size, text_x, \
+				self._op_bg_outline(cairo_context, c2, font_size, text_x, \
 				                                              line_y, line_text)
 			####################################################################
 			# Draw text for the line ###########################################
@@ -234,13 +260,13 @@ class ToolText(AbstractClassicTool):
 			i = i + 1
 		self.non_destructive_show_modif()
 
-	def op_bg_shadow(self, context, color, font_size, text_x, text_y, line):
+	def _op_bg_shadow(self, context, color, font_size, text_x, text_y, line):
 		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
 		dist = max(min(int(font_size/18), 4), 1)
 		context.move_to(text_x + dist, text_y + dist)
 		context.show_text(line)
 
-	def op_bg_outline(self, context, color, font_size, text_x, text_y, line):
+	def _op_bg_outline(self, context, color, font_size, text_x, text_y, line):
 		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
 		dist = max(min(int(font_size/18), 8), 1)
 		for dx in range(-dist, dist):
@@ -248,7 +274,7 @@ class ToolText(AbstractClassicTool):
 				context.move_to(text_x + dx, text_y + dy)
 				context.show_text(line)
 
-	def op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
+	def _op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
 		# XXX i think cairo.Context.font_extents is supposed to help me
 		context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
 		first_y = int(text_y + (i + 0.2) * font_size)

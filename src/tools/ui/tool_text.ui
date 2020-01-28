@@ -3,7 +3,7 @@
   <object class="GtkPopover" id="insertion-popover">
     <property name="visible">True</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="insertion-widget">
         <property name="visible">True</property>
         <property name="margin">2</property>
         <property name="spacing">2</property>
@@ -23,10 +23,10 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="orientation">horizontal</property>
-            <style><class name="linked"/></style>
             <child>
-              <object class="GtkButton" id="cancel_btn">
+              <object class="GtkButton">
                 <property name="visible">True</property>
+                <property name="action-name">win.text-cancel</property>
                 <property name="tooltip_text" translatable="yes">Cancel</property>
                 <child>
                   <object class="GtkImage">
@@ -37,19 +37,32 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton" id="insert_btn">
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="action-name">win.text-preview</property>
+                <property name="tooltip_text" translatable="yes">Preview</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">view-refresh-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
                 <property name="visible">True</property>
                 <property name="expand">True</property>
+                <property name="action-name">win.text-insert</property>
                 <property name="tooltip_text" translatable="yes">Insert here</property>
                 <property name="label" translatable="yes">Insert here</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
+                <style><class name="suggested-action"/></style>
               </object>
               <packing>
                 <property name="pack-type">end</property>
               </packing>
             </child>
+            <style><class name="linked"/></style>
           </object>
         </child>
       </object>
@@ -61,56 +74,73 @@
       <attribute name="label" translatable="yes">Font</attribute>
       <item>
         <attribute name="label">Sans</attribute>
-        <attribute name="action">win.text_font</attribute>
+        <attribute name="action">win.text-font</attribute>
         <attribute name="target">Sans</attribute>
       </item>
       <item>
         <attribute name="label">Serif</attribute>
-        <attribute name="action">win.text_font</attribute>
+        <attribute name="action">win.text-font</attribute>
         <attribute name="target">Serif</attribute>
       </item>
       <item>
         <attribute name="label">Mono</attribute>
-        <attribute name="action">win.text_font</attribute>
+        <attribute name="action">win.text-font</attribute>
         <attribute name="target">Mono</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">Italic</attribute>
-        <attribute name="action">win.text_italic</attribute>
+        <attribute name="action">win.text-italic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Bold</attribute>
-        <attribute name="action">win.text_bold</attribute>
+        <attribute name="action">win.text-bold</attribute>
       </item>
     </section>
     <section>
-      <attribute name="label" translatable="yes">Background</attribute>
-      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <submenu>
+        <attribute name="label" translatable="yes">Background</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">No background</attribute>
+            <attribute name="action">win.text-background</attribute>
+            <attribute name="target">none</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Shadow</attribute>
+            <attribute name="action">win.text-background</attribute>
+            <attribute name="target">shadow</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Outline</attribute>
+            <attribute name="action">win.text-background</attribute>
+            <attribute name="target">outline</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Rectangle background</attribute>
+            <attribute name="action">win.text-background</attribute>
+            <attribute name="target">rectangle</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="label" translatable="yes">No background</attribute>
-        <attribute name="action">win.text_background</attribute>
-        <attribute name="target">none</attribute>
-        <!-- <attribute name="verb-icon">text-nobg-symbolic</attribute> -->
+        <attribute name="label" translatable="yes">Cancel</attribute>
+        <attribute name="action">win.text-cancel</attribute>
+        <attribute name="verb-icon">window-close-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Shadow</attribute>
-        <attribute name="action">win.text_background</attribute>
-        <attribute name="target">shadow</attribute>
-        <!-- <attribute name="verb-icon">text-shadow-symbolic</attribute> -->
+        <attribute name="label" translatable="yes">Preview</attribute>
+        <attribute name="action">win.text-preview</attribute>
+        <attribute name="verb-icon">view-refresh-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Outline</attribute>
-        <attribute name="action">win.text_background</attribute>
-        <attribute name="target">outline</attribute>
-        <!-- <attribute name="verb-icon">text-outline-symbolic</attribute> -->
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Rectangle background</attribute>
-        <attribute name="action">win.text_background</attribute>
-        <attribute name="target">rectangle</attribute>
-        <!-- <attribute name="verb-icon">text-rectbg-symbolic</attribute> -->
+        <attribute name="label" translatable="yes">Insert here</attribute>
+        <attribute name="action">win.text-insert</attribute>
+        <attribute name="verb-icon">insert-text-symbolic</attribute>
       </item>
     </section>
   </menu>

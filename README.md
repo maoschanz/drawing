@@ -33,7 +33,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04, 19.04 and 19.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- Ubuntu 18.04, 19.10 and 20.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - ["Snap" package](https://snapcraft.io/drawing)
 
 ### Unstable/nightly version
@@ -76,6 +76,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 - Insert text (options: font, shadow, font size, …)
 - Shape (options: filling style, gradient, …):
 	- rectangle
+	- rounded rectangle
 	- circle
 	- oval
 	- polygon
