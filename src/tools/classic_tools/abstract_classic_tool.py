@@ -1,4 +1,4 @@
-# abstract_select.py
+# abstract_classic_tool.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -32,6 +32,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.tool_width = 10
 		self.main_color = None
 		self.secondary_color = None
+		# self._use_antialias = True
 
 	############################################################################
 	# UI implementations #######################################################
@@ -48,9 +49,10 @@ class AbstractClassicTool(AbstractAbstractTool):
 		pass
 
 	############################################################################
-	# ................................ #########################################
+	# Options ##################################################################
 
 	def set_common_values(self, event_btn):
+		# self._use_antialias = self.get_option_value('antialias')
 		self.tool_width = self.window.options_manager.get_tool_width()
 		if event_btn == 1:
 			self.main_color = self.window.options_manager.get_left_color()
@@ -63,35 +65,33 @@ class AbstractClassicTool(AbstractAbstractTool):
 		return self.window.options_manager.get_operator()[0]
 
 	############################################################################
-	# Operations management ####################################################
+	# Operations common methods ################################################
 
-	# def build_operation(self):
-	# 	pass
-
-	# def do_tool_operation(self, operation):
-	# 	pass
-
-	def stroke_with_operator(self, operator, cairo_context, line_width, is_preview):
-		cairo_context.set_operator(operator)
+	def stroke_with_operator(self, operator, context, line_width, is_preview):
+		context.set_operator(operator)
+		# if use_antialias: # à ajouter comme paramètre de cette méthode
+		# 	context.set_antialias(cairo.Antialias.DEFAULT)
+		# else:
+		# 	context.set_antialias(cairo.Antialias.NONE)
 		is_blur = (operator == cairo.Operator.DEST_IN)
 		if is_blur and is_preview:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
+			context.set_operator(cairo.Operator.CLEAR)
 
 		if is_blur and not is_preview:
-			cairo_context.set_line_width(2*line_width)
-			cairo_context.stroke()
+			context.set_line_width(2*line_width)
+			context.stroke()
 			radius = int(line_width/2)
 			# TODO only give the adequate rectangle, not the whole image, it's too slow!
 			b_surface = utilities_fast_blur(self.get_surface(), radius, 0)
 			# where 0 == BlurType.AUTO
 			self.restore_pixbuf()
-			cairo_context = self.get_context()
-			cairo_context.set_operator(cairo.Operator.OVER)
-			cairo_context.set_source_surface(b_surface, 0, 0)
-			cairo_context.paint()
+			context = self.get_context()
+			context.set_operator(cairo.Operator.OVER)
+			context.set_source_surface(b_surface, 0, 0)
+			context.paint()
 		else:
-			cairo_context.set_line_width(line_width)
-			cairo_context.stroke()
+			context.set_line_width(line_width)
+			context.stroke()
 
 	############################################################################
 ################################################################################

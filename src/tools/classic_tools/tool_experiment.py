@@ -11,28 +11,40 @@ class ToolExperiment(AbstractClassicTool):
 	def __init__(self, window, **kwargs):
 		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
 		self.row.get_style_context().add_class('destructive-action')
-		self.past_x = -1.0
-		self.past_y = -1.0
 		self._path = None
-		self.use_antialias = True
 
-		self.selected_mode = 'smooth'
+		self._use_antialias = True
+		self._selected_mode = 'smooth'
 		self._operator_label = "DIFFERENCE"
 		self._operator = cairo.Operator.DIFFERENCE
 
 		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
 		self.add_tool_action_enum('experiment_mode', 'smooth')
-		self.add_tool_action_simple('experiment_macro_scie', self.action_macro_scie)
-		self.add_tool_action_boolean('experiment_antialias', self.use_antialias)
+		self.add_tool_action_simple('experiment_macro_scie', self._macro_scie)
+		self.add_tool_action_boolean('experiment_antialias', self._use_antialias)
 
-	def set_active_mode(self, *args):
+	def get_edition_status(self):
+		return "You're not supposed to use this tool (development only)."
+
+	def get_options_label(self):
+		self._set_active_operator()
+		self._set_active_mode()
+		self._set_antialias()
+		if self._selected_mode == 'simple':
+			return self._operator_label
+		else:
+			return self._selected_mode
+
+	############################################################################
+
+	def _set_active_mode(self, *args):
 		state_as_string = self.get_option_value('experiment_mode')
-		self.selected_mode =  state_as_string
+		self._selected_mode =  state_as_string
 
-	def set_antialias(self, *args):
-		self.use_antialias = self.get_option_value('experiment_antialias')
+	def _set_antialias(self, *args):
+		self._use_antialias = self.get_option_value('experiment_antialias')
 
-	def set_active_operator(self, *args):
+	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
 		if state_as_string == 'CLEAR':
 			self._operator = cairo.Operator.CLEAR
@@ -94,7 +106,9 @@ class ToolExperiment(AbstractClassicTool):
 			self._operator = cairo.Operator.HSL_LUMINOSITY
 		self._operator_label = state_as_string
 
-	def action_macro_scie(self, *args):
+	############################################################################
+
+	def _macro_scie(self, *args):
 		cairo_context = self.get_context()
 		cairo_context.move_to(50, 50)
 		cairo_context.line_to(100, 150)
@@ -115,59 +129,48 @@ class ToolExperiment(AbstractClassicTool):
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
-	def get_options_label(self):
-		self.set_active_operator()
-		self.set_active_mode()
-		self.set_antialias()
-		if self.selected_mode == 'simple':
-			return self._operator_label
-		else:
-			return self.selected_mode
-
-	def get_edition_status(self):
-		return "You're not supposed to use this tool (development only)."
+	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.set_active_operator()
-		self.set_active_mode()
-		self.set_antialias()
+		self._set_active_operator()
+		self._set_active_mode()
+		self._set_antialias()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event.button)
+		self._path = None
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		self.restore_pixbuf()
+	def _add_point(self, event_x, event_y):
 		cairo_context = self.get_context()
-		if self.past_x == -1.0:
-			(self.past_x, self.past_y) = (self.x_press, self.y_press)
+		if self._path is None:
 			cairo_context.move_to(self.x_press, self.y_press)
-			self._path = cairo_context.copy_path()
 		else:
 			cairo_context.append_path(self._path)
 		cairo_context.line_to(event_x, event_y)
 		self._path = cairo_context.copy_path()
-		self.past_x = event_x
-		self.past_y = event_y
 
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		self._add_point(event_x, event_y)
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self.past_x = -1.0
-		self.past_y = -1.0
+		self._add_point(event_x, event_y)
 		operation = self.build_operation()
 		self.apply_operation(operation)
+
+	############################################################################
 
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
 			'operator': self._operator,
-			'mode': self.selected_mode,
+			'mode': self._selected_mode,
 			'line_width': self.tool_width,
 			'line_cap': cairo.LineCap.ROUND,
 			'line_join': cairo.LineJoin.ROUND,
-			'antialias': self.use_antialias,
+			'antialias': self._use_antialias,
 			'path': self._path
 		}
 		return operation
@@ -177,6 +180,11 @@ class ToolExperiment(AbstractClassicTool):
 		if operation['path'] is None:
 			return
 		cairo_context = self.get_context()
+		cairo_context.set_line_cap(operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join'])
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+
 		if operation['antialias']:
 			cairo_context.set_antialias(cairo.Antialias.DEFAULT)
 		else:
@@ -192,20 +200,18 @@ class ToolExperiment(AbstractClassicTool):
 
 	def op_simple(self, operation, cairo_context):
 		cairo_context.set_operator(operation['operator'])
-		cairo_context.set_line_cap(operation['line_cap'])
-		cairo_context.set_line_join(operation['line_join'])
 		cairo_context.set_line_width(operation['line_width'])
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
 
+	def op_dynamic2(self, operation, cairo_context):
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		line_width = 0
+		for pts in operation['path']:
+			pass # TODO tracer plusieurs paths les uns sur les autres
+
 	def op_dynamic(self, operation, cairo_context):
 		cairo_context.set_operator(cairo.Operator.SOURCE)
-		cairo_context.set_line_cap(operation['line_cap'])
-		cairo_context.set_line_join(operation['line_join'])
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		line_width = 0
 		for pts in operation['path']:
 			if pts[1] is ():
@@ -229,10 +235,6 @@ class ToolExperiment(AbstractClassicTool):
 	def op_smooth2(self, operation, cairo_context):
 		cairo_context.set_operator(cairo.Operator.OVER)
 		cairo_context.set_line_width(operation['line_width'])
-		cairo_context.set_line_cap(operation['line_cap'])
-		cairo_context.set_line_join(operation['line_join'])
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		utilities_smooth_path(cairo_context, operation['path'])
 		cairo_context.stroke()
 

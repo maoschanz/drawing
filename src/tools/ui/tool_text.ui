@@ -3,7 +3,7 @@
   <object class="GtkPopover" id="insertion-popover">
     <property name="visible">True</property>
     <child>
-      <object class="GtkBox" id="insertion-widget">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="margin">2</property>
         <property name="spacing">2</property>
@@ -68,6 +68,8 @@
       </object>
     </child>
   </object>
+
+  <!-- -->
 
   <menu id="options-menu">
     <section>

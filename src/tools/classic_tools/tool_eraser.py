@@ -42,8 +42,8 @@ class ToolEraser(ToolPencil):
 		operation = {
 			'tool_id': self.id,
 			'line_width': self.tool_width,
-			'line_cap': self.selected_cap_id,
-			'line_join': self.selected_join_id,
+			'line_cap': self._cap_id,
+			'line_join': self._join_id,
 			'path': self._path
 		}
 		return operation

@@ -26,42 +26,41 @@ class ToolPencil(AbstractClassicTool):
 		super().__init__('pencil', _("Pencil"), 'tool-pencil-symbolic', window)
 		self._path = None
 
-		self.selected_shape_label = _("Round")
-		self.selected_cap_id = cairo.LineCap.ROUND
-		self.selected_join_id = cairo.LineCap.ROUND
-		self.use_dashes = False
+		self._shape_label = _("Round")
+		self._cap_id = cairo.LineCap.ROUND
+		self._join_id = cairo.LineCap.ROUND
+		self._use_dashes = False
 
 		self.add_tool_action_enum('pencil_shape', 'round')
-		self.add_tool_action_boolean('use_dashes', self.use_dashes)
+		self.add_tool_action_boolean('use_dashes', self._use_dashes)
 
-	def set_active_shape(self, *args):
+	def _set_active_shape(self, *args):
 		state_as_string = self.get_option_value('pencil_shape')
 		if state_as_string == 'thin':
-			self.selected_cap_id = cairo.LineCap.BUTT
-			self.selected_join_id = cairo.LineJoin.BEVEL
-			self.selected_shape_label = _("Thin")
+			self._cap_id = cairo.LineCap.BUTT
+			self._join_id = cairo.LineJoin.BEVEL
+			self._shape_label = _("Thin")
 		elif state_as_string == 'square':
-			self.selected_cap_id = cairo.LineCap.SQUARE
-			self.selected_join_id = cairo.LineJoin.MITER
-			self.selected_shape_label = _("Square")
+			self._cap_id = cairo.LineCap.SQUARE
+			self._join_id = cairo.LineJoin.MITER
+			self._shape_label = _("Square")
 		else:
-			self.selected_cap_id = cairo.LineCap.ROUND
-			self.selected_join_id = cairo.LineJoin.ROUND
-			self.selected_shape_label = _("Round")
+			self._cap_id = cairo.LineCap.ROUND
+			self._join_id = cairo.LineJoin.ROUND
+			self._shape_label = _("Round")
 
 	def get_options_label(self):
 		return _("Pencil options")
 
-	def set_options_attributes(self):
-		self.use_dashes = self.get_option_value('use_dashes')
-		self.set_active_shape()
-
 	def get_edition_status(self):
-		self.set_options_attributes()
-		label = self.label # ajouter l'opérateur cairo
-		if self.use_dashes:
+		self._use_dashes = self.get_option_value('use_dashes')
+		self._set_active_shape()
+		label = self.label
+		if self._use_dashes:
 			label = label + ' - ' + _("Dashed")
 		return label
+
+	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
@@ -69,7 +68,7 @@ class ToolPencil(AbstractClassicTool):
 		self.set_common_values(event.button)
 		self._path = None
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def _add_point(self, event_x, event_y):
 		cairo_context = self.get_context()
 		if self._path is None:
 			cairo_context.move_to(self.x_press, self.y_press)
@@ -77,10 +76,14 @@ class ToolPencil(AbstractClassicTool):
 			cairo_context.append_path(self._path)
 		cairo_context.line_to(event_x, event_y)
 		self._path = cairo_context.copy_path()
+
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		self._add_point(event_x, event_y)
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
+		self._add_point(event_x, event_y)
 		operation = self.build_operation()
 		operation['is_preview'] = False
 		self.apply_operation(operation)
@@ -93,9 +96,9 @@ class ToolPencil(AbstractClassicTool):
 			'rgba': self.main_color,
 			'operator': self.get_operator_enum(),
 			'line_width': self.tool_width,
-			'line_cap': self.selected_cap_id,
-			'line_join': self.selected_join_id,
-			'use_dashes': self.use_dashes,
+			'line_cap': self._cap_id,
+			'line_join': self._join_id,
+			'use_dashes': self._use_dashes,
 			'is_preview': True,
 			'path': self._path
 		}

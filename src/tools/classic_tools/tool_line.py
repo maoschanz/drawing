@@ -31,33 +31,33 @@ class ToolLine(AbstractClassicTool):
 		self.add_tool_action_boolean('use_dashes', False)
 		self.add_tool_action_boolean('is_arrow', False)
 		self.add_tool_action_boolean('use_gradient', False)
-		self.set_options_attributes() # Not optimal but more readable
+		self._set_options_attributes() # Not optimal but more readable
 
-	def set_active_shape(self):
+	def _set_active_shape(self):
 		if self.get_option_value('line_shape') == 'square':
-			self.selected_end_id = cairo.LineCap.BUTT
-			self.selected_shape_label = _("Square")
+			self._cap_id = cairo.LineCap.BUTT
+			self._shape_label = _("Square")
 		else:
-			self.selected_end_id = cairo.LineCap.ROUND
-			self.selected_shape_label = _("Round")
+			self._cap_id = cairo.LineCap.ROUND
+			self._shape_label = _("Round")
 
 	def get_options_label(self):
 		return _("Line options")
 
-	def set_options_attributes(self):
-		self.use_dashes = self.get_option_value('use_dashes')
-		self.use_arrow = self.get_option_value('is_arrow')
-		self.use_gradient = self.get_option_value('use_gradient')
-		self.set_active_shape()
+	def _set_options_attributes(self):
+		self._use_dashes = self.get_option_value('use_dashes')
+		self._use_arrow = self.get_option_value('is_arrow')
+		self._use_gradient = self.get_option_value('use_gradient')
+		self._set_active_shape()
 
 	def get_edition_status(self):
-		self.set_options_attributes()
+		self._set_options_attributes()
 		label = self.label
-		if self.use_arrow and self.use_dashes:
+		if self._use_arrow and self._use_dashes:
 			label = label + ' - ' + _("Dashed arrow")
-		elif self.use_arrow:
+		elif self._use_arrow:
 			label = label + ' - ' + _("Arrow")
-		elif self.use_dashes:
+		elif self._use_dashes:
 			label = label + ' - ' + _("Dashed")
 		return label
 
@@ -85,10 +85,10 @@ class ToolLine(AbstractClassicTool):
 			'rgba2': self.secondary_color,
 			'operator': self.get_operator_enum(),
 			'line_width': self.tool_width,
-			'line_cap': self.selected_end_id,
-			'use_dashes': self.use_dashes,
-			'use_arrow': self.use_arrow,
-			'use_gradient': self.use_gradient,
+			'line_cap': self._cap_id,
+			'use_dashes': self._use_dashes,
+			'use_arrow': self._use_arrow,
+			'use_gradient': self._use_gradient,
 			'is_preview': is_preview,
 			'x_release': event_x,
 			'y_release': event_y,

@@ -47,11 +47,10 @@ class ToolText(AbstractClassicTool):
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
 
 		# Widgets for text insertion
-		self.popover = builder.get_object('insertion-popover')
-		# self._widget = builder.get_object('insertion-widget')
-		self.entry = builder.get_object('entry')
-		self.entry.set_size_request(100, 50)
-		self.entry.get_buffer().connect('changed', self._preview_text)
+		self._popover = builder.get_object('insertion-popover')
+		self._entry = builder.get_object('entry')
+		self._entry.set_size_request(100, 50)
+		self._entry.get_buffer().connect('changed', self._preview_text)
 		self._hide_entry()
 
 	############################################################################
@@ -86,7 +85,7 @@ class ToolText(AbstractClassicTool):
 
 	def get_edition_status(self):
 		self._set_background_style()
-		# TODO + _set_font_options here ?
+		self._set_font_options()
 		label = self.label + ' - ' + self._font_fam + ' - ' + self._bg_label
 		return label
 
@@ -113,11 +112,11 @@ class ToolText(AbstractClassicTool):
 		self._set_string(string)
 
 	def _set_string(self, string):
-		self.entry.get_buffer().set_text(string, -1)
+		self._entry.get_buffer().set_text(string, -1)
 
 	############################################################################
 
-	# TODO better way to move the fucking text
+	# XXX better way to move the text ?
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._last_click_btn = event.button
@@ -125,10 +124,9 @@ class ToolText(AbstractClassicTool):
 		self.set_common_values(self._last_click_btn)
 		self._text_x = event_x
 		self._text_y = event_y
-		self._set_font_options()
+		# self._set_font_options()
 
 		self._open_popover_at(int(event.x), int(event.y))
-		# self._open_widget_at(int(event_x), int(event_y))
 
 		# Usual text entry shortcuts don't work otherwise
 		self.set_action_sensitivity('paste', False)
@@ -142,34 +140,18 @@ class ToolText(AbstractClassicTool):
 		rectangle.y = y
 		rectangle.height = 1
 		rectangle.width = 1
-		self.popover.set_pointing_to(rectangle)
-		self.popover.set_relative_to(self.get_image())
-		self.popover.popup()
-		self.entry.grab_focus()
+		self._popover.set_pointing_to(rectangle)
+		self._popover.set_relative_to(self.get_image())
+		self._popover.popup()
+		self._entry.grab_focus()
 		self._preview_text()
 
-	# def _open_widget_at(self, x, y):
-	# 	"""Unused method because it just doesn't work: the button propagates the
-	# 	click event and the widgets are zoomed in/out"""
-	# 	self._widget.set_visible(True)
-	# 	parent_layout = self._widget.get_parent()
-	# 	if parent_layout is None:
-	# 		self.get_image().drawing_area.put(self._widget, x, y)
-	# 	elif parent_layout == self.get_image().drawing_area:
-	# 		parent_layout.move(self._widget, x, y)
-	# 	else:
-	# 		parent_layout.remove(self._widget)
-	# 		self.get_image().drawing_area.put(self._widget, x, y)
-	# 	self.entry.grab_focus()
-	# 	self._preview_text()
-
 	def _hide_entry(self):
-		# self._widget.set_visible(False)
-		self.popover.popdown()
+		self._popover.popdown()
 
 	def _force_refresh(self, *args):
 		self.set_common_values(self._last_click_btn)
-		self._set_font_options()
+		# self._set_font_options()
 		self._preview_text()
 
 	def _on_insert_text(self, *args):
@@ -184,7 +166,7 @@ class ToolText(AbstractClassicTool):
 		self.set_action_sensitivity('selection_copy', True)
 
 	def _has_current_text(self):
-		b = self.entry.get_buffer()
+		b = self._entry.get_buffer()
 		self.text_string = b.get_text(b.get_start_iter(), b.get_end_iter(), False)
 		if self.text_string == '':
 			self.restore_pixbuf()

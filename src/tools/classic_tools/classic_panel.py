@@ -35,7 +35,7 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
-		self.build_color_buttons(builder)
+		self._build_color_buttons(builder)
 
 		self.options_btn = builder.get_object('options_btn')
 		self.options_label = builder.get_object('options_label')
@@ -114,7 +114,7 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 			self._operator_enum = cairo.Operator.OVER
 			self._operator_label = _("Classic")
 
-	def build_color_buttons(self, builder):
+	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
 		memorized RGBA values."""
 		right_rgba = self.window._settings.get_strv('last-right-rgba')
