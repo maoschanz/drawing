@@ -306,17 +306,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			if not self.get_active_image().try_close_tab():
 				return True
 
-		self._settings.set_int('last-size', self.options_manager.get_tool_width())
+		self.options_manager.remember_options()
 		self._settings.set_string('last-active-tool', self.active_tool_id)
-		rgba = self.options_manager.get_left_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self._settings.set_strv('last-left-rgba', rgba)
-		rgba = self.options_manager.get_right_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self._settings.set_strv('last-right-rgba', rgba)
-		shape_name = self.options_manager.get_value('shape_type')
-		self._settings.set_string('last-active-shape', shape_name)
-
 		self._settings.set_boolean('maximized', self.is_maximized())
 		return False
 
@@ -400,6 +391,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 		# self.add_action_boolean('antialiasing', self._settings.get_boolean( \
 		#                    'antialiasing'), self.on_antialiasing_action_changed)
+		# XXX rudement plus simple si c'est via l'option_manager
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -476,7 +468,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_layout_changed(self, *args):
 		if self.header_bar is not None:
-			is_narrow = self.header_bar.is_narrow
+			is_narrow = self.header_bar._is_narrow
 			self.header_bar = None
 		else:
 			is_narrow = False
@@ -511,8 +503,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
 		if self.header_bar is not None:
-			self.header_bar.header_bar.set_title(main_title)
-			self.header_bar.header_bar.set_subtitle(subtitle)
+			self.header_bar.set_titles(main_title, subtitle)
 
 	def get_auto_decorations(self):
 		"""Return the decorations setting based on the XDG_CURRENT_DESKTOP
@@ -554,15 +545,15 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 		if self.decorations == 'csd':
 			self.build_headerbar(False)
-			self.set_titlebar(self.header_bar.header_bar)
+			self.set_titlebar(self.header_bar._widget)
 			self.set_show_menubar(False)
 		elif self.decorations == 'csd-eos':
 			self.build_headerbar(True)
-			self.set_titlebar(self.header_bar.header_bar)
+			self.set_titlebar(self.header_bar._widget)
 			self.set_show_menubar(False)
 		elif self.decorations == 'everything': # devel-only
 			self.build_headerbar(False)
-			self.set_titlebar(self.header_bar.header_bar)
+			self.set_titlebar(self.header_bar._widget)
 			self.set_show_menubar(True)
 			self.build_toolbar(True)
 		elif self.decorations == 'ssd-menubar':
@@ -824,20 +815,16 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		args[0].set_state(GLib.Variant.new_boolean(use_editor))
 		self.options_manager.set_palette_setting(use_editor)
 
-	def on_middle_click(self, event):
-		self.exchange_colors()
-
 	def exchange_colors(self, *args):
-		if self.active_tool().use_color:
-			self.options_manager.exchange_colors()
+		self.options_manager.get_classic_panel().middle_click_action()
 
 	def action_color1(self, *args):
 		if self.active_tool().use_color:
-			self.options_manager.left_color_btn().btn.activate()
+			self.options_manager.left_color_btn().open()
 
 	def action_color2(self, *args):
 		if self.active_tool().use_color:
-			self.options_manager.right_color_btn().btn.activate()
+			self.options_manager.right_color_btn().open()
 
 	def on_antialiasing_action_changed(self, *args):
 		pass # TODO

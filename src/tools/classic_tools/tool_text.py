@@ -25,8 +25,6 @@ class ToolText(AbstractClassicTool):
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
 
-		self._text_x = 0.0
-		self._text_y = 0.0
 		self._should_cancel = False
 		self._last_click_btn = 1
 
@@ -122,8 +120,8 @@ class ToolText(AbstractClassicTool):
 		self._last_click_btn = event.button
 		self._should_cancel = True
 		self.set_common_values(self._last_click_btn)
-		self._text_x = event_x
-		self._text_y = event_y
+		self.x_press = event_x
+		self.y_press = event_y
 		# self._set_font_options()
 
 		self._open_popover_at(int(event.x), int(event.y))
@@ -196,8 +194,8 @@ class ToolText(AbstractClassicTool):
 			'_font_slant': self._font_slant,
 			'_font_weight': self._font_weight,
 			'font_size': self.tool_width,
-			'x': self._text_x,
-			'y': self._text_y,
+			'x': self.x_press,
+			'y': self.y_press,
 			'background': self._bg_id,
 			'text': self.text_string
 		}

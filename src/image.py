@@ -95,8 +95,8 @@ class DrawingImage(Gtk.Box):
 		self.undo_history = []
 		self.redo_history = []
 		self._is_saved = True
-		self.window.lookup_action('undo').set_enabled(False)
-		self.window.lookup_action('redo').set_enabled(False)
+		self.set_action_sensitivity('undo', False)
+		self.set_action_sensitivity('redo', False)
 
 	def init_background(self, width, height, background_rgba):
 		r = float(background_rgba[0])
@@ -267,8 +267,8 @@ class DrawingImage(Gtk.Box):
 	def update_history_sensitivity(self):
 		# XXX never called while an operation is ongoing so that's stupid
 		can_undo = (len(self.undo_history) != 0) or self._operation_is_ongoing()
-		self.window.lookup_action('undo').set_enabled(can_undo)
-		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
+		self.set_action_sensitivity('undo', can_undo)
+		self.set_action_sensitivity('redo', len(self.redo_history) != 0)
 		# self.update_history_actions_labels()
 
 	def update_history_actions_labels(self):
@@ -383,7 +383,7 @@ class DrawingImage(Gtk.Box):
 		if self.motion_behavior == DrawingMotionBehavior.SLIP:
 			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
 			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
-				self.window.on_middle_click(event)
+				self.window.options_manager.on_middle_click()
 			self.motion_behavior = DrawingMotionBehavior.HOVER
 			return
 		self.motion_behavior = DrawingMotionBehavior.HOVER

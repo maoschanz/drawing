@@ -36,6 +36,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.add_tool_action_simple('rotate-counter-cw', self.on_left_clicked)
 		self.add_tool_action_simple('rotate-flip-h', self.on_horizontal_clicked)
 		self.add_tool_action_simple('rotate-flip-v', self.on_vertical_clicked)
+		# self.add_tool_action_enum('rotate-unit', 'degrees') # TODO ?
 
 	def try_build_panel(self):
 		self.panel_id = 'rotate'
@@ -219,7 +220,7 @@ class RotateToolPanel(DrawingAdaptativeBottomBar):
 		self.set_limit_size(temp_limit_size)
 
 	def update_for_new_tool(self, tool):
-		self.set_compact(self.is_narrow)
+		self.set_compact(self._is_narrow)
 
 	def toggle_options_menu(self):
 		if self.more_btn.get_visible():

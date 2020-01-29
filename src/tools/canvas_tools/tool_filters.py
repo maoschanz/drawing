@@ -32,7 +32,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.apply_to_selection = False
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
 		self.add_tool_action_enum('filters_type', 'none')
-		self.reset_type_values()
+		self._reset_type_values()
 
 	def try_build_panel(self):
 		self.panel_id = 'filters'
@@ -40,48 +40,25 @@ class ToolFilters(AbstractCanvasTool):
 
 	def build_bottom_panel(self):
 		self.bar = FiltersToolPanel(self.window, self)
-		self.bar.menu_btn.connect('notify::active', self.set_active_type)
+		self.bar.menu_btn.connect('notify::active', self._set_active_type)
 		return self.bar
-
-	############################################################################
-
-	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.on_filter_preview()
-
-	def on_filter_preview(self, *args):
-		self.set_active_type()
-		self.build_and_do_op()
-
-	def get_saturation(self, *args):
-		return self.bar.sat_btn.get_value()/100
-
-	def get_transparency(self, *args):
-		return self.bar.tspc_btn.get_value()/100
-
-	def get_blur_radius(self, *args):
-		return int( self.bar.blur_btn.get_value() )
-
-	def on_tool_selected(self, *args):
-		super().on_tool_selected()
-		self.set_active_type()
-		self.bar.menu_btn.set_active(True)
-		if self.blur_algo == BlurType.INVALID:
-			self.on_filter_preview()
 
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
 		return self.type_label + ' - ' + tip_label
 
-	def reset_type_values(self):
+	############################################################################
+
+	def _reset_type_values(self):
 		self.blur_algo = BlurType.INVALID
 		self.saturate = False
 		self.pixelate = False
 		self.invert = False
 		self.transparency = False
 
-	def set_active_type(self, *args):
+	def _set_active_type(self, *args):
 		state_as_string = self.get_option_value('filters_type')
-		self.reset_type_values()
+		self._reset_type_values()
 		if state_as_string == 'blur':
 			self.blur_algo = BlurType.AUTO # BlurType.PX_BOX
 			self.type_label =  _("Blur")
@@ -93,7 +70,7 @@ class ToolFilters(AbstractCanvasTool):
 			self.type_label = _("Vertical blur")
 		elif state_as_string == 'saturation':
 			self.saturate = True
-			self.type_label = _("Saturation")
+			self.type_label = _("Change saturation")
 		elif state_as_string == 'pixels':
 			self.pixelate = True
 			self.type_label = _("Pixelisation")
@@ -102,10 +79,35 @@ class ToolFilters(AbstractCanvasTool):
 			self.type_label = _("Invert colors")
 		elif state_as_string == 'transparency':
 			self.transparency = True
-			self.type_label = _("Transparency")
+			self.type_label = _("Add transparency")
 		else:
 			self.type_label = _("Select a filter…")
 		self.bar.on_filter_changed()
+
+	def _get_saturation(self, *args):
+		return self.bar.sat_btn.get_value()/100
+
+	def _get_transparency(self, *args):
+		return self.bar.tspc_btn.get_value()/100
+
+	def _get_blur_radius(self, *args):
+		return self.bar.blur_btn.get_value_as_int()
+
+	############################################################################
+
+	def on_tool_selected(self, *args):
+		super().on_tool_selected()
+		self._set_active_type()
+		self.bar.menu_btn.set_active(True)
+		if self.blur_algo == BlurType.INVALID:
+			self.on_filter_preview()
+
+	def on_press_on_area(self, event, surface, event_x, event_y):
+		self.on_filter_preview()
+
+	def on_filter_preview(self, *args):
+		self._set_active_type()
+		self.build_and_do_op()
 
 	############################################################################
 
@@ -116,13 +118,13 @@ class ToolFilters(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': 0,
 			'local_dy': 0,
-			'saturation': self.get_saturation(),
-			'radius': self.get_blur_radius(),
+			'saturation': self._get_saturation(),
+			'radius': self._get_blur_radius(),
 			'pixelate': self.pixelate,
 			'invert': self.invert,
 			'saturate': self.saturate,
 			'use_transparency': self.transparency,
-			'transpercent': self.get_transparency(),
+			'transpercent': self._get_transparency(),
 			'blur_algo': self.blur_algo
 		}
 		return operation
@@ -233,8 +235,9 @@ class FiltersToolPanel(DrawingAdaptativeBottomBar):
 		self.set_limit_size(temp_limit_size)
 
 	def on_filter_changed(self):
-		self.set_compact(self.is_narrow)
+		self.set_compact(self._is_narrow)
 		self.window.set_picture_title()
+		self.menu_label.set_label(self.filters_tool.type_label)
 
 	def set_compact(self, state):
 		super().set_compact(state)

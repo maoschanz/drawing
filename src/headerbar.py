@@ -23,7 +23,7 @@ class DrawingAdaptativeHeaderBar():
 	__gtype_name__ = 'DrawingAdaptativeHeaderBar'
 
 	def __init__(self, is_eos):
-		self.is_narrow = True # This is reducing the complexity of resizing,
+		self._is_narrow = True # This is reducing the complexity of resizing,
 		# but its main goal is to avoid a GTK minor bug where the initial
 		# bunch of configure-event signals was sent to soon.
 		if is_eos:
@@ -32,52 +32,76 @@ class DrawingAdaptativeHeaderBar():
 			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar.ui')
 
 		# Composition over inheritance
-		self.header_bar = builder.get_object('header_bar')
+		self._widget = builder.get_object('header_bar')
 
 		# Code differences are kept minimal between the 2 cases: widgets will
 		# share similar names in order to both work with the same method
 		# updating widgets' visibility when resizing.
-		self.save_label = builder.get_object('save_label')
-		self.save_icon = builder.get_object('save_icon')
+		self._save_label = builder.get_object('save_label')
+		self._save_icon = builder.get_object('save_icon')
 		# If is_eos, hidable_widget is a box with paste/import, else it's the
 		# "Open" button.
-		self.hidable_widget = builder.get_object('hidable_widget')
-		self.new_btn = builder.get_object('new_btn')
-		self.main_menu_btn = builder.get_object('main_menu_btn')
+		self._hidable_widget = builder.get_object('hidable_widget')
+		self._new_btn = builder.get_object('new_btn')
+		self._main_menu_btn = builder.get_object('main_menu_btn')
 
-		# Very high as a precaution, will be more precise later
-		self.limit_size = 700
+		# Quite high as a precaution, will be more precise later
+		self._limit_size = 700
 
 		builder.add_from_resource(UI_PATH + 'win-menus.ui')
-		self.short_main_menu = builder.get_object('short-window-menu')
-		self.long_main_menu = builder.get_object('long-window-menu')
+		self._short_primary_menu = builder.get_object('short-window-menu')
+		self._long_primary_menu = builder.get_object('long-window-menu')
 
 		# This one is the default to be coherent with the default value of
-		# self.is_narrow
-		self.main_menu_btn.set_menu_model(self.long_main_menu)
+		# self._is_narrow
+		self._main_menu_btn.set_menu_model(self._long_primary_menu)
 
 		new_menu = builder.get_object('new-image-menu')
-		self.new_btn.set_menu_model(new_menu)
+		self._new_btn.set_menu_model(new_menu)
 
-		self.undo_btn = builder.get_object('undo_btn')
-		self.redo_btn = builder.get_object('redo_btn')
+		self._undo_btn = builder.get_object('undo_btn')
+		self._redo_btn = builder.get_object('redo_btn')
+
+	############################################################################
+
+	def set_titles(self, title_label, subtitle_label):
+		self._widget.set_title(title_label)
+		self._widget.set_subtitle(subtitle_label)
+
+	def toggle_menu(self):
+		self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
+
+	def set_undo_label(self, label):
+		if label is None:
+			self._undo_btn.set_tooltip_text(_("Undo"))
+		else:
+			self._undo_btn.set_tooltip_text(_("Undo %s") % label)
+
+	def set_redo_label(self, label):
+		if label is None:
+			self._redo_btn.set_tooltip_text(_("Redo"))
+		else:
+			self._redo_btn.set_tooltip_text(_("Redo %s") % label)
+
+	############################################################################
+	# Adaptability #############################################################
 
 	def init_adaptability(self):
 		# Header bar width limit
-		self.header_bar.show_all()
-		widgets_width = self.save_label.get_preferred_width()[0] \
-		               - self.save_icon.get_preferred_width()[0] \
-		                 + self.new_btn.get_preferred_width()[0] \
-		                + self.undo_btn.get_preferred_width()[0] \
-		                + self.redo_btn.get_preferred_width()[0] \
-		          + self.hidable_widget.get_preferred_width()[0]
-		self.limit_size = 2.5 * widgets_width # 100% arbitrary
+		self._widget.show_all()
+		widgets_width = self._save_label.get_preferred_width()[0] \
+		               - self._save_icon.get_preferred_width()[0] \
+		                 + self._new_btn.get_preferred_width()[0] \
+		                + self._undo_btn.get_preferred_width()[0] \
+		                + self._redo_btn.get_preferred_width()[0] \
+		          + self._hidable_widget.get_preferred_width()[0]
+		self._limit_size = 2.5 * widgets_width # 100% arbitrary
 
 	def adapt_to_window_size(self):
-		can_expand = (self.header_bar.get_allocated_width() > self.limit_size)
-		incoherent = (can_expand == self.is_narrow)
+		can_expand = (self._widget.get_allocated_width() > self._limit_size)
+		incoherent = (can_expand == self._is_narrow)
 		if incoherent:
-			self.set_compact(not self.is_narrow)
+			self.set_compact(not self._is_narrow)
 
 	def set_compact(self, state):
 		"""Set the compactness of the headerbar: if the parameter is True, wide
@@ -85,29 +109,14 @@ class DrawingAdaptativeHeaderBar():
 		# XXX Instead of a boolean, `state` could be an integer, which would be
 		# far more complex to handle, but would allow thinner granularity.
 		if state:
-			self.main_menu_btn.set_menu_model(self.long_main_menu)
+			self._main_menu_btn.set_menu_model(self._long_primary_menu)
 		else:
-			self.main_menu_btn.set_menu_model(self.short_main_menu)
-		self.save_label.set_visible(not state)
-		self.save_icon.set_visible(state)
-		self.hidable_widget.set_visible(not state)
-		self.new_btn.set_visible(not state)
-		self.is_narrow = state
-
-	def toggle_menu(self):
-		self.main_menu_btn.set_active(not self.main_menu_btn.get_active())
-
-	def set_undo_label(self, label):
-		if label is None:
-			self.undo_btn.set_tooltip_text(_("Undo"))
-		else:
-			self.undo_btn.set_tooltip_text(_("Undo %s") % label)
-
-	def set_redo_label(self, label):
-		if label is None:
-			self.redo_btn.set_tooltip_text(_("Redo"))
-		else:
-			self.redo_btn.set_tooltip_text(_("Redo %s") % label)
+			self._main_menu_btn.set_menu_model(self._short_primary_menu)
+		self._save_label.set_visible(not state)
+		self._save_icon.set_visible(state)
+		self._hidable_widget.set_visible(not state)
+		self._new_btn.set_visible(not state)
+		self._is_narrow = state
 
 ################################################################################
 

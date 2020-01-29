@@ -24,7 +24,7 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 		super().__init__(modal=True, transient_for=window, **kwargs)
 		self.set_resizable(True)
 		self.set_default_size(350, -1)
-		self.min_action_index = 0
+		self._min_action_index = 0
 
 		# The dialog has already a default empty label, with methods around it,
 		# but i don't care i'll add my widgets myself later.
@@ -41,13 +41,13 @@ class DrawingMessageDialog(Gtk.MessageDialog):
 	def set_action(self, label, style, is_default):
 		"""Add a button (with the specified style) to the message dialog and
 		returns the corresponding response id."""
-		self.min_action_index = self.min_action_index + 1
-		btn = self.add_button(label, self.min_action_index)
+		self._min_action_index = self._min_action_index + 1
+		btn = self.add_button(label, self._min_action_index)
 		if style is not None:
 			btn.get_style_context().add_class(style)
 		if is_default:
 			btn.grab_default()
-		return self.min_action_index
+		return self._min_action_index
 
 	def add_string(self, string):
 		label = Gtk.Label(label=string, wrap=self.should_wrap)

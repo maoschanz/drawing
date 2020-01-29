@@ -16,10 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-
 from .bottombar import DrawingAdaptativeBottomBar
 from .color_popover import DrawingColorPopover
-
 from .utilities import utilities_add_unit_to_spinbtn
 
 ################################################################################
@@ -67,8 +65,8 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 
 	def hide_options_menu(self):
 		self.options_btn.set_active(False)
-		self.color_popover_r.update_mode()
-		self.color_popover_l.update_mode()
+		self._color_r.update_mode()
+		self._color_l.update_mode()
 
 	def build_options_menu(self, widget, model, label):
 		if widget is not None:
@@ -96,6 +94,12 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		self.minimap_arrow.set_visible(not state)
 
 	############################################################################
+	# Colors ###################################################################
+
+	def middle_click_action(self):
+		left_color = self._color_l.color_widget.get_rgba()
+		self._color_l.color_widget.set_rgba(self._color_r.color_widget.get_rgba())
+		self._color_r.color_widget.set_rgba(left_color)
 
 	def set_operator(self, op_as_string):
 		if op_as_string == 'difference':
@@ -119,14 +123,14 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		memorized RGBA values."""
 		right_rgba = self.window._settings.get_strv('last-right-rgba')
 		left_rgba = self.window._settings.get_strv('last-left-rgba')
-		self.color_popover_r = DrawingColorPopover(self.color_menu_btn_r, \
+		self._color_r = DrawingColorPopover(self.color_menu_btn_r, \
 		      builder.get_object('r_btn_image'), right_rgba, False, self.window)
-		self.color_popover_l = DrawingColorPopover(self.color_menu_btn_l, \
+		self._color_l = DrawingColorPopover(self.color_menu_btn_l, \
 		        builder.get_object('l_btn_image'), left_rgba, True, self.window)
 
 	def set_palette_setting(self, show_editor):
-		self.color_popover_r.setting_changed(show_editor)
-		self.color_popover_l.setting_changed(show_editor)
+		self._color_r.editor_setting_changed(show_editor)
+		self._color_l.editor_setting_changed(show_editor)
 
 	############################################################################
 ################################################################################

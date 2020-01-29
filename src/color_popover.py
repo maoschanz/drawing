@@ -30,9 +30,9 @@ class DrawingColorPopover(Gtk.Popover):
 		builder = Gtk.Builder.new_from_resource(UI_PATH + 'color-popover.ui')
 		main_box = builder.get_object('main-box')
 		self.add(main_box)
-		self.btn = btn
-		self.btn.set_popover(self)
-		self.btn_image = thumbn
+		self._button = btn
+		self._button.set_popover(self)
+		self._thumbnail_image = thumbn
 		self.window = window
 
 		########################################################################
@@ -44,12 +44,12 @@ class DrawingColorPopover(Gtk.Popover):
 			title_label = _("Secondary color")
 		builder.get_object('popover-title').set_label(title_label)
 
-		self.operator_menu_btn = builder.get_object('operator-menu-btn')
-		builder2 = Gtk.Builder.new_from_resource(UI_PATH + 'app-menus.ui')
-		operator_menu_model = builder2.get_object('operator-menu')
-		self.operator_menu_btn.set_menu_model(operator_menu_model)
+		self._operator_menu_btn = builder.get_object('operator-menu-btn')
+		builder.add_from_resource(UI_PATH + 'app-menus.ui')
+		operator_menu_model = builder.get_object('operator-menu')
+		self._operator_menu_btn.set_menu_model(operator_menu_model)
 
-		self.operator_label = builder.get_object('operator-label')
+		self._operator_label = builder.get_object('operator-label')
 		self.window.options_manager.add_tool_option_enum('cairo_operator', 'over')
 
 		########################################################################
@@ -63,41 +63,29 @@ class DrawingColorPopover(Gtk.Popover):
 
 		self.color_widget = builder.get_object('color-widget')
 		self.color_widget.set_rgba(initial_rgba)
-		self.color_widget.connect('notify::rgba', self.set_color_btn)
-		self.color_widget.connect('notify::show-editor', self.update_nav_box)
+		self.color_widget.connect('notify::rgba', self._set_thumbail_color)
+		self.color_widget.connect('notify::show-editor', self._update_nav_box)
 
 		########################################################################
 		# Navigation box at the bottom #########################################
 
 		back_btn = builder.get_object('back-btn')
 		self.editor_box = builder.get_object('editor-box')
-		back_btn.connect('clicked', self.close_color_editor)
+		back_btn.connect('clicked', self._close_color_editor)
 
-		self.update_nav_box()
-		self.set_color_btn()
+		self._update_nav_box()
+		self._set_thumbail_color()
 		# self.update_mode() # XXX pas possible, on est en train de construire
 		             # le panneau on ne peut pas appeler l'option manager dessus
 
 	############################################################################
 
 	def update_mode(self):
-		self.operator_menu_btn.set_active(False)
-		operator_label = self.window.options_manager.get_operator()[1]
-		self.operator_label.set_label(operator_label)
+		self._operator_menu_btn.set_active(False)
+		operator_str = self.window.options_manager.get_operator()[1]
+		self._operator_label.set_label(operator_str)
 
-	def editor_setting_changed(self, show_editor):
-		self.color_widget.props.show_editor = show_editor
-		self.update_nav_box()
-
-	def close_color_editor(self, *args):
-		self.color_widget.props.show_editor = False
-
-	def update_nav_box(self, *args):
-		"""Update the visibility of navigation controls ('back to the palette'
-		and 'always use this editor')."""
-		self.editor_box.set_visible(self.color_widget.props.show_editor)
-
-	def set_color_btn(self, *args):
+	def _set_thumbail_color(self, *args):
 		"""Update the 'rgba' property of the GtkColorWidget and its preview."""
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
 		cairo_context = cairo.Context(surface)
@@ -108,10 +96,27 @@ class DrawingColorPopover(Gtk.Popover):
 		alpha = rgba.alpha
 		cairo_context.set_source_rgba(red, green, blue, alpha)
 		cairo_context.paint()
-		self.btn_image.set_from_surface(surface)
+		self._thumbnail_image.set_from_surface(surface)
 		# TODO mettre le mode aussi
 		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
-		self.btn.set_tooltip_text(tooltip_string)
+		self._button.set_tooltip_text(tooltip_string)
+
+	############################################################################
+
+	def editor_setting_changed(self, show_editor):
+		self.color_widget.props.show_editor = show_editor
+		self._update_nav_box()
+
+	def _close_color_editor(self, *args):
+		self.color_widget.props.show_editor = False
+
+	def open(self, *args):
+		self._button.activate()
+
+	def _update_nav_box(self, *args):
+		"""Update the visibility of navigation controls ('back to the palette'
+		and 'always use this editor')."""
+		self.editor_box.set_visible(self.color_widget.props.show_editor)
 
 	############################################################################
 ################################################################################

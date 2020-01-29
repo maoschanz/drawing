@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 
 RESOURCE_PATH = '/com/github/maoschanz/drawing/'
 
@@ -24,9 +24,9 @@ class DrawingAdaptativeBottomBar():
 	# Abstract class
 
 	def __init__(self):
-		# Very high as a precaution, will be more precise later
-		self.limit_size = 700
-		self.is_narrow = False
+		# Quite high as a precaution, will be more precise later
+		self._limit_size = 700
+		self._is_narrow = False
 
 	def build_ui(self, end_of_path):
 		builder = Gtk.Builder.new_from_resource(RESOURCE_PATH + end_of_path)
@@ -54,23 +54,26 @@ class DrawingAdaptativeBottomBar():
 	def toggle_options_menu(self):
 		pass
 
+	def middle_click_action(self):
+		pass
+
 	def init_adaptability(self):
 		self.set_compact(False)
 		self.action_bar.show_all()
 		# + implementation-specific instructions
 
 	def set_limit_size(self, temp_limit_size):
-		self.limit_size = int(1.2 * temp_limit_size)
+		self._limit_size = int(1.2 * temp_limit_size)
 		self.set_compact(True)
 
 	def adapt_to_window_size(self, allocated_width):
-		can_expand = (allocated_width > self.limit_size)
-		incoherent = (can_expand == self.is_narrow)
+		can_expand = (allocated_width > self._limit_size)
+		incoherent = (can_expand == self._is_narrow)
 		if incoherent:
-			self.set_compact(not self.is_narrow)
+			self.set_compact(not self._is_narrow)
 
 	def set_compact(self, state):
-		self.is_narrow = state
+		self._is_narrow = state
 		# + implementation-specific instructions
 
 	############################################################################

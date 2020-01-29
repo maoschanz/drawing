@@ -16,15 +16,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, gi
-
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
-
 from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
+BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new'
 
 def main(version):
 	app = Application(version)
@@ -36,7 +35,8 @@ class Application(Gtk.Application):
 	shortcuts_window = None
 	prefs_window = None
 
-	# INITIALIZATION ###########################################################
+	############################################################################
+	# Initialization ###########################################################
 
 	def __init__(self, version):
 		super().__init__(application_id=APP_ID,
@@ -44,7 +44,7 @@ class Application(Gtk.Application):
 
 		GLib.set_application_name(_("Drawing"))
 		GLib.set_prgname(APP_ID)
-		self.version = version
+		self._version = version
 		self.has_tools_in_menubar = False
 
 		self.connect('startup', self.on_startup)
@@ -67,7 +67,7 @@ class Application(Gtk.Application):
 
 	def on_startup(self, *args):
 		"""Called only once, add app-wide menus and actions, and all accels."""
-		self.build_actions()
+		self._build_actions()
 		builder = Gtk.Builder.new_from_resource(APP_PATH + '/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
@@ -75,11 +75,11 @@ class Application(Gtk.Application):
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
 
-	def build_actions(self):
+	def _build_actions(self):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs, None)
-		if not self.is_beta():
+		if self.is_beta():
 			self.add_action_simple('report_bug', self.on_report, None)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
@@ -92,7 +92,8 @@ class Application(Gtk.Application):
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
-	# WINDOWS AND CLI MANAGEMENT ###############################################
+	############################################################################
+	# Opening windows & CLI handling ###########################################
 
 	def open_window_with_content(self, gfile, get_cb):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
@@ -127,8 +128,11 @@ class Application(Gtk.Application):
 		options = args[1].get_options_dict()
 
 		if options.contains('version'):
-			print(_("Drawing") + ' ' + self.version)
-			self.on_about()
+			print(_("Drawing") + ' ' + self._version)
+			if self.is_beta():
+				print(_("This version isn't stable!"))
+			print()
+			print(_("Report bugs or ideas") + ' 👉️ ' + BUG_REPORT_URL)
 		elif options.contains('edit-clipboard'):
 			self.open_window_with_content(None, True)
 
@@ -148,12 +152,12 @@ class Application(Gtk.Application):
 		elif options.contains('new-window'):
 			self.on_new_window()
 			for fpath in arguments:
-				f = self.get_valid_file(args[1], fpath)
+				f = self._get_valid_file(args[1], fpath)
 				if f is not None:
 					self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
-				f = self.get_valid_file(args[1], fpath)
+				f = self._get_valid_file(args[1], fpath)
 				if f is not None:
 					win = self.props.active_window
 					if not win:
@@ -173,8 +177,7 @@ class Application(Gtk.Application):
 	def on_report(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
 		win = self.props.active_window
-		url = 'https://github.com/maoschanz/drawing/issues/new'
-		Gtk.show_uri_on_window(win, url, Gdk.CURRENT_TIME)
+		Gtk.show_uri_on_window(win, BUG_REPORT_URL, Gdk.CURRENT_TIME)
 
 	def on_shortcuts(self, *args):
 		"""Action callback, showing the 'shortcuts' dialog."""
@@ -195,53 +198,56 @@ class Application(Gtk.Application):
 
 	def on_help_index(self, *args):
 		"""Action callback, showing the index of user help manual."""
-		self.show_help_page('')
+		self._show_help_page('')
 
 	def on_help_main(self, *args):
 		"""Action callback, showing the 'basic features' page of the user help
 		manual."""
-		self.show_help_page('/main_features')
+		self._show_help_page('/main_features')
 
 	def on_help_tools(self, *args):
 		"""Action callback, showing the 'classic tools' page of the user help
 		manual."""
-		self.show_help_page('/tools_classic')
+		self._show_help_page('/tools_classic')
 
 	def on_help_canvas(self, *args):
 		"""Action callback, showing the 'canvas and selection tools' page of the
 		user help manual."""
-		self.show_help_page('/tools_canvas')
+		self._show_help_page('/tools_canvas')
 
 	def on_help_selection(self, *args):
 		"""Action callback, showing the 'selection tools' page of the user help
 		manual."""
-		self.show_help_page('/tools_selection')
+		self._show_help_page('/tools_selection')
 
 	def on_help_prefs(self, *args):
 		"""Action callback, showing the 'preferences' page of the user help
 		manual."""
-		self.show_help_page('/preferences')
+		self._show_help_page('/preferences')
 
-	def show_help_page(self, suffix):
+	def _show_help_page(self, suffix):
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
 
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
-			copyright='© 2018-2020 Romain F. T.', authors=['Romain F. T.'],
+			copyright="© 2018-2020 Romain F. T.", authors=["Romain F. T."],
 			# To tranlators: "translate" this by your name, it will be displayed
 			# in the "about" dialog
 			translator_credits=_("translator-credits"),
 			# To translators: it's credits for the icons, consider that "Art
 			# Libre" is proper name
-			artists=['Tobias Bernard', 'Romain F. T.',
-			                           _("GNOME's Art Libre icon set authors")],
+			artists=["Tobias Bernard", "Romain F. T.",
+			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
-			logo_icon_name=APP_ID, version=str(self.version),
+			logo_icon_name=APP_ID, version=str(self._version),
 			website='https://maoschanz.github.io/drawing/',
 			website_label=_("Official webpage"))
+		bug_report_btn = Gtk.LinkButton(halign=Gtk.Align.CENTER, visible=True, \
+		                    label=_("Report bugs or ideas"), uri=BUG_REPORT_URL)
+		# about_dialog.get_content_area().add(bug_report_btn) # should i?
 		about_dialog.run()
 		about_dialog.destroy()
 
@@ -249,13 +255,14 @@ class Application(Gtk.Application):
 		"""Action callback, quitting the app."""
 		self.quit()
 
-	# UTILITIES ################################################################
+	############################################################################
+	# Utilities ################################################################
 
 	def is_beta(self):
 		"""Tells is the app version is even or odd, odd versions being considered
 		as unstable versions. This affects available options and the style of
 		the headerbar."""
-		version_array = self.version.split('.')
+		version_array = self._version.split('.')
 		if (int(version_array[1]) * 5) % 10 == 5:
 			return True
 		else:
@@ -274,7 +281,8 @@ class Application(Gtk.Application):
 		action.connect('change-state', callback)
 		self.add_action(action)
 
-	def get_valid_file(self, app, path):
+	def _get_valid_file(self, app, path):
+		"""Creates a GioFile object if the path corresponds to an image."""
 		try:
 			f = app.create_file_for_arg(path)
 			if 'image/' in f.query_info('standard::*', \
@@ -285,6 +293,7 @@ class Application(Gtk.Application):
 		except:
 			err = _("Error opening this file. Did you mean %s ?")
 			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+			# XXX can happen without flatpak
 			command = command.format(APP_ID, path)
 			print(err % command)
 			return None

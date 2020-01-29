@@ -44,6 +44,11 @@ class SelectionToolPanel(DrawingAdaptativeBottomBar):
 	def hide_options_menu(self):
 		self.actions_btn.set_active(False)
 
+	def middle_click_action(self):
+		self.window.lookup_action('new_tab_selection').activate()
+
+	############################################################################
+
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.import_box_long.get_preferred_width()[0] + \

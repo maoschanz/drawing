@@ -25,11 +25,11 @@ class DrawingCustomImageDialog(Gtk.Dialog):
 		wants_csd = not ('ssd' in appwindow.decorations)
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 		         transient_for=appwindow, title=_("New Image With Custom Size"))
-		self.appwindow = appwindow
-		self.build_ui()
+		self._app_settings = appwindow._settings
+		self._build_ui()
 		self.set_default_size(450, 200)
 
-	def build_ui(self):
+	def _build_ui(self):
 		self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
 		# Context: Create a new image
 		btn = self.add_button(_("Create"), Gtk.ResponseType.OK)
@@ -40,38 +40,40 @@ class DrawingCustomImageDialog(Gtk.Dialog):
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 
-		self.width_btn = builder.get_object('spin_width')
-		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
-		default_w = self.appwindow._settings.get_int('default-width')
-		self.width_btn.set_value(default_w)
+		self._width_btn = builder.get_object('spin_width')
+		utilities_add_unit_to_spinbtn(self._width_btn, 4, 'px')
+		default_w = self._app_settings.get_int('default-width')
+		self._width_btn.set_value(default_w)
 
-		self.height_btn = builder.get_object('spin_height')
-		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
-		default_h = self.appwindow._settings.get_int('default-height')
-		self.height_btn.set_value(default_h)
+		self._height_btn = builder.get_object('spin_height')
+		utilities_add_unit_to_spinbtn(self._height_btn, 4, 'px')
+		default_h = self._app_settings.get_int('default-height')
+		self._height_btn.set_value(default_h)
 
-		self.color_btn = builder.get_object('color_btn')
-		background_rgba = self.appwindow._settings.get_strv('background-rgba')
+		self._color_btn = builder.get_object('color_btn')
+		background_rgba = self._app_settings.get_strv('background-rgba')
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
 		a = float(background_rgba[3])
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		self.color_btn.set_rgba(color)
+		self._color_btn.set_rgba(color)
 
-		self.default_checkbtn = builder.get_object('default_checkbtn')
+		self._default_checkbtn = builder.get_object('default_checkbtn')
+
+	############################################################################
 
 	def get_values(self):
-		"""Will be called from `self.appwindow` if the user clicks on "Create",
+		"""Will be called from the main window if the user clicks on "Create",
 		and returns the values set by the user."""
-		width = self.width_btn.get_value_as_int()
-		height = self.height_btn.get_value_as_int()
-		rgba = self.color_btn.get_rgba()
+		width = self._width_btn.get_value_as_int()
+		height = self._height_btn.get_value_as_int()
+		rgba = self._color_btn.get_rgba()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		if self.default_checkbtn.get_active():
-			self.appwindow._settings.set_int('default-width', width)
-			self.appwindow._settings.set_int('default-height', height)
-			self.appwindow._settings.set_strv('background-rgba', rgba)
+		if self._default_checkbtn.get_active():
+			self._app_settings.set_int('default-width', width)
+			self._app_settings.set_int('default-height', height)
+			self._app_settings.set_strv('background-rgba', rgba)
 		return width, height, rgba
 
 	############################################################################
