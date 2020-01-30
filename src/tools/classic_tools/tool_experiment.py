@@ -14,12 +14,43 @@ class ToolExperiment(AbstractClassicTool):
 		self._path = None
 
 		self._use_antialias = True
-		self._selected_mode = 'smooth'
+		self._operators_dict = {
+			'CLEAR': cairo.Operator.CLEAR,
+			'SOURCE': cairo.Operator.SOURCE,
+			'OVER': cairo.Operator.OVER,
+			'IN': cairo.Operator.IN,
+			'OUT': cairo.Operator.OUT,
+			'ATOP': cairo.Operator.ATOP,
+			'DEST': cairo.Operator.DEST,
+			'DEST_OVER': cairo.Operator.DEST_OVER,
+			'DEST_IN': cairo.Operator.DEST_IN,
+			'DEST_OUT': cairo.Operator.DEST_OUT,
+			'DEST_ATOP': cairo.Operator.DEST_ATOP,
+			'XOR': cairo.Operator.XOR,
+			'ADD': cairo.Operator.ADD,
+			'SATURATE': cairo.Operator.SATURATE,
+			'MULTIPLY': cairo.Operator.MULTIPLY,
+			'SCREEN': cairo.Operator.SCREEN,
+			'OVERLAY': cairo.Operator.OVERLAY,
+			'DARKEN': cairo.Operator.DARKEN,
+			'LIGHTEN': cairo.Operator.LIGHTEN,
+			'COLOR_DODGE': cairo.Operator.COLOR_DODGE,
+			'COLOR_BURN': cairo.Operator.COLOR_BURN,
+			'HARD_LIGHT': cairo.Operator.HARD_LIGHT,
+			'SOFT_LIGHT': cairo.Operator.SOFT_LIGHT,
+			'DIFFERENCE': cairo.Operator.DIFFERENCE,
+			'EXCLUSION': cairo.Operator.EXCLUSION,
+			'HSL_HUE': cairo.Operator.HSL_HUE,
+			'HSL_SATURATION': cairo.Operator.HSL_SATURATION,
+			'HSL_COLOR': cairo.Operator.HSL_COLOR,
+			'HSL_LUMINOSITY': cairo.Operator.HSL_LUMINOSITY
+		}
 		self._operator_label = "DIFFERENCE"
 		self._operator = cairo.Operator.DIFFERENCE
+		self._selected_mode = 'dynamic2'
 
-		self.add_tool_action_enum('experiment_operator', 'DIFFERENCE')
-		self.add_tool_action_enum('experiment_mode', 'smooth')
+		self.add_tool_action_enum('experiment_operator', self._operator_label)
+		self.add_tool_action_enum('experiment_mode', self._selected_mode)
 		self.add_tool_action_simple('experiment_macro_scie', self._macro_scie)
 		self.add_tool_action_boolean('experiment_antialias', self._use_antialias)
 
@@ -46,64 +77,7 @@ class ToolExperiment(AbstractClassicTool):
 
 	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
-		if state_as_string == 'CLEAR':
-			self._operator = cairo.Operator.CLEAR
-		elif state_as_string == 'SOURCE':
-			self._operator = cairo.Operator.SOURCE
-		elif state_as_string == 'OVER':
-			self._operator = cairo.Operator.OVER
-		elif state_as_string == 'IN':
-			self._operator = cairo.Operator.IN
-		elif state_as_string == 'OUT':
-			self._operator = cairo.Operator.OUT
-		elif state_as_string == 'ATOP':
-			self._operator = cairo.Operator.ATOP
-		elif state_as_string == 'DEST':
-			self._operator = cairo.Operator.DEST
-		elif state_as_string == 'DEST_OVER':
-			self._operator = cairo.Operator.DEST_OVER
-		elif state_as_string == 'DEST_IN':
-			self._operator = cairo.Operator.DEST_IN
-		elif state_as_string == 'DEST_OUT':
-			self._operator = cairo.Operator.DEST_OUT
-		elif state_as_string == 'DEST_ATOP':
-			self._operator = cairo.Operator.DEST_ATOP
-		elif state_as_string == 'XOR':
-			self._operator = cairo.Operator.XOR
-		elif state_as_string == 'ADD':
-			self._operator = cairo.Operator.ADD
-		elif state_as_string == 'SATURATE':
-			self._operator = cairo.Operator.SATURATE
-		elif state_as_string == 'MULTIPLY':
-			self._operator = cairo.Operator.MULTIPLY
-		elif state_as_string == 'SCREEN':
-			self._operator = cairo.Operator.SCREEN
-		elif state_as_string == 'OVERLAY':
-			self._operator = cairo.Operator.OVERLAY
-		elif state_as_string == 'DARKEN':
-			self._operator = cairo.Operator.DARKEN
-		elif state_as_string == 'LIGHTEN':
-			self._operator = cairo.Operator.LIGHTEN
-		elif state_as_string == 'COLOR_DODGE':
-			self._operator = cairo.Operator.COLOR_DODGE
-		elif state_as_string == 'COLOR_BURN':
-			self._operator = cairo.Operator.COLOR_BURN
-		elif state_as_string == 'HARD_LIGHT':
-			self._operator = cairo.Operator.HARD_LIGHT
-		elif state_as_string == 'SOFT_LIGHT':
-			self._operator = cairo.Operator.SOFT_LIGHT
-		elif state_as_string == 'DIFFERENCE':
-			self._operator = cairo.Operator.DIFFERENCE
-		elif state_as_string == 'EXCLUSION':
-			self._operator = cairo.Operator.EXCLUSION
-		elif state_as_string == 'HSL_HUE':
-			self._operator = cairo.Operator.HSL_HUE
-		elif state_as_string == 'HSL_SATURATION':
-			self._operator = cairo.Operator.HSL_SATURATION
-		elif state_as_string == 'HSL_COLOR':
-			self._operator = cairo.Operator.HSL_COLOR
-		elif state_as_string == 'HSL_LUMINOSITY':
-			self._operator = cairo.Operator.HSL_LUMINOSITY
+		self._operator = self._operators_dict[state_as_string]
 		self._operator_label = state_as_string
 
 	############################################################################
@@ -117,14 +91,16 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.line_to(250, 50)
 		cairo_context.line_to(300, 150)
 		cairo_context.line_to(350, 50)
-		cairo_context.line_to(400, 150)
+		cairo_context.line_to(375, 100)
+		cairo_context.line_to(400, 50)
+		cairo_context.line_to(425, 100)
 		cairo_context.line_to(450, 50)
 		cairo_context.line_to(500, 150)
 		cairo_context.line_to(550, 50)
 		self._path = cairo_context.copy_path()
-		self.macros_common()
+		self._macros_common()
 
-	def macros_common(self):
+	def _macros_common(self):
 		self.set_common_values(1)
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -157,6 +133,7 @@ class ToolExperiment(AbstractClassicTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
 		operation = self.build_operation()
+		operation['is_preview'] = False
 		self.apply_operation(operation)
 
 	############################################################################
@@ -171,6 +148,7 @@ class ToolExperiment(AbstractClassicTool):
 			'line_cap': cairo.LineCap.ROUND,
 			'line_join': cairo.LineJoin.ROUND,
 			'antialias': self._use_antialias,
+			'is_preview': True,
 			'path': self._path
 		}
 		return operation
@@ -192,11 +170,17 @@ class ToolExperiment(AbstractClassicTool):
 
 		if operation['mode'] == 'dynamic':
 			self.op_dynamic(operation, cairo_context)
+		elif operation['mode'] == 'dynamic2':
+			self.op_dynamic2(operation, cairo_context)
+		elif operation['mode'] == 'juxta':
+			self.op_juxta(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
 			self.op_simple(operation, cairo_context)
-			self.op_smooth2(operation, cairo_context)
+			self.op_smooth(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
+
+	############################################################################
 
 	def op_simple(self, operation, cairo_context):
 		cairo_context.set_operator(operation['operator'])
@@ -204,21 +188,41 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.append_path(operation['path'])
 		cairo_context.stroke()
 
-	def op_dynamic2(self, operation, cairo_context):
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		line_width = 0
-		for pts in operation['path']:
-			pass # TODO tracer plusieurs paths les uns sur les autres
+	def op_smooth(self, operation, cairo_context):
+		cairo_context.set_operator(cairo.Operator.OVER)
+		cairo_context.set_line_width(operation['line_width'])
+		utilities_smooth_path(cairo_context, operation['path'])
+		cairo_context.stroke()
+
+	############################################################################
+
+	def op_juxta(self, operation, cairo_context):
+		pass # TODO
+
+	############################################################################
 
 	def op_dynamic(self, operation, cairo_context):
 		cairo_context.set_operator(cairo.Operator.SOURCE)
+		SMOOTH = True
+		if SMOOTH:
+			utilities_smooth_path(cairo_context, operation['path'])
+			path = cairo_context.copy_path()
+		else:
+			path = operation['path']
 		line_width = 0
-		for pts in operation['path']:
-			if pts[1] is ():
+		cairo_context.new_path()
+
+		for pts in path:
+			if pts[0] == cairo.PathDataType.CURVE_TO:
+				future_x = pts[1][4]
+				future_y = pts[1][5]
+			elif pts[0] == cairo.PathDataType.LINE_TO:
+				future_x = pts[1][0]
+				future_y = pts[1][1]
+			else:
+				# all paths start with a cairo.PathDataType.MOVE_TO
 				continue
 			current_x, current_y = cairo_context.get_current_point()
-			future_x = pts[1][0]
-			future_y = pts[1][1]
 			dist = math.sqrt( (current_x - future_x) * (current_x - future_x) \
 			                 + (current_y - future_y) * (current_y - future_y) )
 			new_width = 1 + int( operation['line_width']/max(1, 0.05 * dist) )
@@ -226,17 +230,96 @@ class ToolExperiment(AbstractClassicTool):
 				line_width = new_width
 			else:
 				line_width = (new_width + line_width) / 2
-			# print(int(dist), line_width)
+			line_width = max(1, line_width)
 			cairo_context.set_line_width(line_width)
-			cairo_context.line_to(int(future_x), int(future_y))
+			self._add_segment(cairo_context, pts)
 			cairo_context.stroke()
-			cairo_context.move_to(int(future_x), int(future_y))
+			cairo_context.move_to(future_x, future_y)
 
-	def op_smooth2(self, operation, cairo_context):
+	def op_dynamic2(self, operation, cairo_context):
+		# TODO idée d'amélioration : plutôþ que des booléens, stocker des
+		# épaisseurs de trait, et les normaliser avant de tracer
 		cairo_context.set_operator(cairo.Operator.OVER)
-		cairo_context.set_line_width(operation['line_width'])
-		utilities_smooth_path(cairo_context, operation['path'])
+		line_width = operation['line_width']
+		dist_max = 1
+		SMOOTH = True
+		if SMOOTH:
+			utilities_smooth_path(cairo_context, operation['path'])
+			path = cairo_context.copy_path()
+		else:
+			path = operation['path']
+
+		length = 1
+		for pts in path:
+			length += 1
+		drawn = [True] * length
+		dist = 0
+
+		while dist_max < 500:
+			cairo_context.new_path()
+			cairo_context.set_line_width(line_width)
+			to_draw = [True] * length
+			i = 0
+			for pts in path:
+				i += 1
+				ok, future_x, future_y = self._future_point(pts)
+				if not ok:
+					continue
+				current_x, current_y = cairo_context.get_current_point()
+				dist = math.sqrt( (current_x - future_x) * (current_x - future_x) \
+				             + (current_y - future_y) * (current_y - future_y) )
+				if dist > dist_max:
+					to_draw[i] = False
+				cairo_context.move_to(future_x, future_y)
+
+			if to_draw == drawn:
+				dist_max = max(dist_max * 1.05, dist_max + 20)
+				continue
+			else:
+				line_width = min(line_width - 1, line_width * 0.95)
+				line_width = max(line_width, 1)
+
+			cairo_context.new_path()
+			empty = True
+			i = 0
+			for pts in path:
+				i += 1
+				ok, future_x, future_y = self._future_point(pts)
+				if not ok:
+					continue
+				current_x, current_y = cairo_context.get_current_point()
+				if to_draw[i]:
+					empty = False
+					self._add_segment(cairo_context, pts)
+				else:
+					if not empty:
+						cairo_context.stroke()
+						empty = True
+				cairo_context.move_to(int(future_x), int(future_y))
+			drawn = to_draw
+			cairo_context.new_path()
+		line_width = min(line_width - 1, line_width * 0.95)
+		line_width = max(line_width, 1)
+		cairo_context.set_line_width(line_width)
+		cairo_context.append_path(path)
 		cairo_context.stroke()
+		# XXX ce qui marche presque, bien que très laid, le principal problème
+		# est le dernier segment
+
+	def _add_segment(self, cairo_context, pts):
+		if pts[0] == cairo.PathDataType.CURVE_TO:
+			cairo_context.curve_to(pts[1][0], pts[1][1], pts[1][2], pts[1][3], \
+			                                             pts[1][4], pts[1][5])
+		elif pts[0] == cairo.PathDataType.LINE_TO:
+			cairo_context.line_to(pts[1][0], pts[1][1])
+
+	def _future_point(self, pts):
+		if pts[0] == cairo.PathDataType.CURVE_TO:
+			return True, pts[1][4], pts[1][5]
+		elif pts[0] == cairo.PathDataType.LINE_TO:
+			return True, pts[1][0], pts[1][1]
+		else: # all paths start with a cairo.PathDataType.MOVE_TO
+			return False, 0, 0
 
 	############################################################################
 ################################################################################

@@ -168,7 +168,8 @@ class Application(Gtk.Application):
 		# I don't even know if i should return something
 		return 0
 
-	# ACTIONS CALLBACKS ########################################################
+	############################################################################
+	# Actions callbacks ########################################################
 
 	def on_new_window(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
@@ -262,11 +263,7 @@ class Application(Gtk.Application):
 		"""Tells is the app version is even or odd, odd versions being considered
 		as unstable versions. This affects available options and the style of
 		the headerbar."""
-		version_array = self._version.split('.')
-		if (int(version_array[1]) * 5) % 10 == 5:
-			return True
-		else:
-			return False
+		return (int(self._version.split('.')[1]) * 5) % 10 == 5
 
 	def add_action_simple(self, action_name, callback, shortcuts):
 		action = Gio.SimpleAction.new(action_name, None)
