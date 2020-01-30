@@ -29,7 +29,6 @@ class ToolMatrix(AbstractCanvasTool):
 		self.row.get_style_context().add_class('destructive-action')
 
 		self.apply_to_selection = False
-		self.dont_update = False
 		self.temp_w = 1
 		self.temp_h = 1
 		self.add_tool_action_simple('matrix-reset', self.on_reset_values)
@@ -46,57 +45,21 @@ class ToolMatrix(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = DrawingAdaptativeBottomBar()
-		builder = bar.build_ui('tools/ui/tool_matrix.ui')
-
-		self.angle_spinbtn = builder.get_object('angle_spinbtn')
-		self.angle_spinbtn.connect('value-changed', self.on_angle_changed)
-
-		self.xx_spinbtn = builder.get_object('xx_spinbtn')
-		self.xx_spinbtn.connect('value-changed', self.on_coord_changed)
-
-		self.yx_spinbtn = builder.get_object('yx_spinbtn')
-		self.yx_spinbtn.connect('value-changed', self.on_coord_changed)
-
-		self.xy_spinbtn = builder.get_object('xy_spinbtn')
-		self.xy_spinbtn.connect('value-changed', self.on_coord_changed)
-
-		self.yy_spinbtn = builder.get_object('yy_spinbtn')
-		self.yy_spinbtn.connect('value-changed', self.on_coord_changed)
-
-		self.x0_spinbtn = builder.get_object('x0_spinbtn')
-		self.x0_spinbtn.connect('value-changed', self.on_coord_changed)
-
-		self.y0_spinbtn = builder.get_object('y0_spinbtn')
-		self.y0_spinbtn.connect('value-changed', self.on_coord_changed)
-
-		return bar
+		self.bar = SkewToolPanel(self.window, self)
+		return self.bar
 
 	############################################################################
 
 	def on_reset_values(self, *args):
-		self.dont_update = True
-
 		if self.apply_to_selection:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.temp_w = source_pixbuf.get_width()
 		self.temp_h = source_pixbuf.get_height()
+		self.bar.set_all_values(100, 0, 0, 100, 0, 0, 0)
 
-		self.xx_spinbtn.set_value(100)
-		self.xy_spinbtn.set_value(0)
-		self.yx_spinbtn.set_value(0)
-		self.yy_spinbtn.set_value(100)
-		self.x0_spinbtn.set_value(0)
-		self.y0_spinbtn.set_value(0)
-		self.angle_spinbtn.set_value(0)
-		self.dont_update = False
-		self.on_coord_changed()
-
-	def on_angle_changed(self, *args):
-		self.dont_update = True
-		angle = self.angle_spinbtn.get_value_as_int()
+	def new_angle(self, angle):
 		rad = math.pi * angle / 180
 		print('rad', rad)
 		xx = math.cos(rad)
@@ -121,27 +84,15 @@ class ToolMatrix(AbstractCanvasTool):
 		x0 = max(0, x0)
 		y0 = max(0, y0)
 
-		self.xx_spinbtn.set_value(xx * 100)
-		self.xy_spinbtn.set_value(xy * 100)
-		self.yx_spinbtn.set_value(yx * 100)
-		self.yy_spinbtn.set_value(yy * 100)
-		self.x0_spinbtn.set_value(x0)
-		self.y0_spinbtn.set_value(y0)
-
 		# x_old = 100
 		# y_old = 100
 		# x_new = xx * x_old + xy * y_old + x0
 		# y_new = yx * x_old + yy * y_old + y0
 		# print(x_new, y_new)
 
-		self.dont_update = False
-		self.on_coord_changed()
+		self.bar.set_all_values(xx * 100, xy * 100, yx * 100, yy * 100, x0, y0, angle)
 
-	def on_coord_changed(self, *args):
-		if self.dont_update:
-			return
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+	############################################################################
 
 	def build_operation(self):
 		operation = {
@@ -150,18 +101,17 @@ class ToolMatrix(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': 0,
 			'local_dy': 0,
-			'xx': self.xx_spinbtn.get_value_as_int()/100,
-			'yx': self.yx_spinbtn.get_value_as_int()/100,
-			'xy': self.xy_spinbtn.get_value_as_int()/100,
-			'yy': self.yy_spinbtn.get_value_as_int()/100,
-			'x0': self.x0_spinbtn.get_value_as_int(),
-			'y0': self.y0_spinbtn.get_value_as_int()
+			'xx': self.bar.xx_spinbtn.get_value_as_int()/100,
+			'yx': self.bar.yx_spinbtn.get_value_as_int()/100,
+			'xy': self.bar.xy_spinbtn.get_value_as_int()/100,
+			'yy': self.bar.yy_spinbtn.get_value_as_int()/100,
+			'x0': self.bar.x0_spinbtn.get_value_as_int(),
+			'y0': self.bar.y0_spinbtn.get_value_as_int()
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
 		self.start_tool_operation(operation)
-
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
@@ -177,4 +127,89 @@ class ToolMatrix(AbstractCanvasTool):
 
 	############################################################################
 ################################################################################
+
+class SkewToolPanel(DrawingAdaptativeBottomBar):
+	__gtype_name__ = 'SkewToolPanel'
+
+	def __init__(self, window, skew_tool):
+		super().__init__()
+		self.window = window
+		# knowing the tool is needed because the panel doesn't compact the same
+		# way if it's applied to the selection
+		self.skew_tool = skew_tool
+		self.dont_update = False
+
+		builder = self.build_ui('tools/ui/tool_matrix.ui')
+		self.values_btn = builder.get_object('values_btn')
+		self.xy_label = builder.get_object('xy_label')
+		self.yx_label = builder.get_object('yx_label')
+		self.separator = builder.get_object('separator')
+
+		self.angle_spinbtn = builder.get_object('angle_spinbtn')
+		self.angle_spinbtn.connect('value-changed', self.on_angle_changed)
+
+		self.xx_spinbtn = builder.get_object('xx_spinbtn')
+		self.yx_spinbtn = builder.get_object('yx_spinbtn')
+		self.xy_spinbtn = builder.get_object('xy_spinbtn')
+		self.yy_spinbtn = builder.get_object('yy_spinbtn')
+		self.x0_spinbtn = builder.get_object('x0_spinbtn')
+		self.y0_spinbtn = builder.get_object('y0_spinbtn')
+		self.xx_spinbtn.connect('value-changed', self.on_coord_changed)
+		self.yx_spinbtn.connect('value-changed', self.on_coord_changed)
+		self.xy_spinbtn.connect('value-changed', self.on_coord_changed)
+		self.yy_spinbtn.connect('value-changed', self.on_coord_changed)
+		self.x0_spinbtn.connect('value-changed', self.on_coord_changed)
+		self.y0_spinbtn.connect('value-changed', self.on_coord_changed)
+
+	def set_all_values(self, xx, xy, yx, yy, x0, y0, angle):
+		self.dont_update = True
+		self.xx_spinbtn.set_value(100)
+		self.xy_spinbtn.set_value(0)
+		self.yx_spinbtn.set_value(0)
+		self.yy_spinbtn.set_value(100)
+		self.x0_spinbtn.set_value(0)
+		self.y0_spinbtn.set_value(0)
+		self.angle_spinbtn.set_value(0)
+		self.dont_update = False
+		self.on_coord_changed()
+
+	def on_angle_changed(self, *args):
+		angle = self.angle_spinbtn.get_value_as_int()
+		self.skew_tool.new_angle(angle)
+		self.on_coord_changed()
+
+	def on_coord_changed(self, *args):
+		if self.dont_update:
+			return
+		self.skew_tool.build_and_do_op() # XXX yikes
+
+	def init_adaptability(self):
+		super().init_adaptability()
+		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
+		                    self.cancel_btn.get_preferred_width()[0] + \
+		                     self.apply_btn.get_preferred_width()[0]
+		self.set_limit_size(temp_limit_size)
+
+	def update_for_new_tool(self, tool):
+		self.set_compact(self._is_narrow)
+
+	def toggle_options_menu(self):
+		self.values_btn.set_active(not self.values_btn.get_active())
+
+	def hide_options_menu(self):
+		self.values_btn.set_active(False)
+
+	def set_compact(self, state):
+		super().set_compact(state)
+		if state:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
+		else:
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+		self.xy_label.set_visible(not state)
+		self.yx_label.set_visible(not state)
+		self.separator.set_visible(not state)
+
+	############################################################################
+################################################################################
+
 
