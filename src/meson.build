@@ -71,9 +71,9 @@ drawing_sources = [
 	'tools/canvas_tools/abstract_canvas_tool.py',
 	'tools/canvas_tools/tool_crop.py',
 	'tools/canvas_tools/tool_filters.py',
-	'tools/canvas_tools/tool_matrix.py',
 	'tools/canvas_tools/tool_rotate.py',
-	'tools/canvas_tools/tool_scale.py'
+	'tools/canvas_tools/tool_scale.py',
+	'tools/canvas_tools/tool_skew.py'
 ]
 
 install_data(drawing_sources, install_dir: moduledir)

@@ -17,7 +17,6 @@
 
 import cairo, math
 from gi.repository import Gtk, Gdk
-
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
 
@@ -27,7 +26,6 @@ class ToolRotate(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('rotate', _("Rotate"), 'tool-rotate-symbolic', window)
 		self.cursor_name = 'pointer'
-		self.apply_to_selection = False
 		self.flip_h = False
 		self.flip_v = False
 		self.angle_press = 0
@@ -43,7 +41,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		panel = RotateToolPanel(self.window, self)
+		panel = RotateToolPanel(self)
 		self.angle_btn = panel.angle_btn
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
 		return panel
@@ -199,9 +197,8 @@ class ToolRotate(AbstractCanvasTool):
 class RotateToolPanel(DrawingAdaptativeBottomBar):
 	__gtype_name__ = 'RotateToolPanel'
 
-	def __init__(self, window, rotate_tool):
+	def __init__(self, rotate_tool):
 		super().__init__()
-		self.window = window
 		# knowing the tool is needed because the panel doesn't compact the same
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool

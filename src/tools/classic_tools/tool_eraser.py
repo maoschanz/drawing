@@ -25,7 +25,7 @@ class ToolEraser(ToolPencil):
 
 	def __init__(self, window, **kwargs):
 		super().__init__(window)
-		# In the sense "a rubber eraser"
+		# In the meaning "a rubber eraser"
 		AbstractClassicTool.__init__(self, 'eraser', _("Eraser"), \
 		                                         'tool-eraser-symbolic', window)
 		self.use_color = False

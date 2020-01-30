@@ -44,7 +44,7 @@ class ToolScale(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = ScaleToolPanel(self.window, self)
+		bar = ScaleToolPanel(self)
 		self.width_btn = bar.width_btn
 		self.height_btn = bar.height_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -74,6 +74,7 @@ class ToolScale(AbstractCanvasTool):
 		self.proportion = width/height
 		self.width_btn.set_value(width)
 		self.height_btn.set_value(height)
+		self.build_and_do_op()
 
 	############################################################################
 
@@ -222,9 +223,8 @@ class ToolScale(AbstractCanvasTool):
 class ScaleToolPanel(DrawingAdaptativeBottomBar):
 	__gtype_name__ = 'ScaleToolPanel'
 
-	def __init__(self, window, scale_tool):
+	def __init__(self, scale_tool):
 		super().__init__()
-		self.window = window
 		# future possible improvement: the panel may not compact the same way if
 		# the manipulation concerns the selection.
 		#self.scale_tool = scale_tool

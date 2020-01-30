@@ -15,12 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
-
 from .abstract_canvas_tool import AbstractCanvasTool
 from .bottombar import DrawingAdaptativeBottomBar
-
 from .utilities import utilities_add_unit_to_spinbtn
 from .utilities_tools import utilities_show_handles_on_context
 
@@ -30,7 +27,6 @@ class ToolCrop(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
 		self.cursor_name = 'not-allowed'
-		self.apply_to_selection = False
 		self.x_press = 0
 		self.y_press = 0
 		self.unclicked = True
@@ -40,7 +36,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = CropToolPanel(self.window)
+		bar = CropToolPanel()
 		self.height_btn = bar.height_btn
 		self.width_btn = bar.width_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -65,6 +61,7 @@ class ToolCrop(AbstractCanvasTool):
 			self.init_if_main()
 		self.width_btn.set_value(self.original_width)
 		self.height_btn.set_value(self.original_height)
+		self.build_and_do_op()
 
 	def init_if_selection(self):
 		self.original_width = self.get_selection().selection_pixbuf.get_width()
@@ -220,9 +217,8 @@ class ToolCrop(AbstractCanvasTool):
 class CropToolPanel(DrawingAdaptativeBottomBar):
 	__gtype_name__ = 'CropToolPanel'
 
-	def __init__(self, window):
+	def __init__(self):
 		super().__init__()
-		self.window = window
 		builder = self.build_ui('tools/ui/tool_crop.ui')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')

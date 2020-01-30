@@ -32,10 +32,10 @@ from .tool_shape import ToolShape
 from .tool_text import ToolText
 
 from .tool_crop import ToolCrop
-from .tool_matrix import ToolMatrix
 from .tool_filters import ToolFilters
 from .tool_rotate import ToolRotate
 from .tool_scale import ToolScale
+from .tool_skew import ToolSkew
 
 from .rect_select import ToolRectSelect
 from .free_select import ToolFreeSelect
@@ -148,10 +148,10 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
 		if dev:
 			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
-			self.load_tool('matrix', ToolMatrix, disabled_tools_ids, dev)
 		self.load_tool('crop', ToolCrop, disabled_tools_ids, dev)
 		self.load_tool('scale', ToolScale, disabled_tools_ids, dev)
 		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)
+		self.load_tool('skew', ToolSkew, disabled_tools_ids, dev)
 		self.load_tool('filters', ToolFilters, disabled_tools_ids, dev)
 
 		# Side panel buttons for tools, and their menubar items if they don't

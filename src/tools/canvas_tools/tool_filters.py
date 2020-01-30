@@ -29,7 +29,6 @@ class ToolFilters(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('filters', _("Filters"), 'tool-filters-symbolic', window)
 		self.cursor_name = 'pointer'
-		self.apply_to_selection = False
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
 		self.add_tool_action_enum('filters_type', 'none')
 		self._reset_type_values()

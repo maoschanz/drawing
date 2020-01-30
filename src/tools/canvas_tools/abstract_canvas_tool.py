@@ -29,10 +29,17 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.centered_box = None
 		self.needed_width_for_long = 0
 		self.accept_selection = True
+		self.apply_to_selection = False
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.apply_to_selection = self.selection_is_active()
+
+	def update_actions_state(self, *args):
+		# Changing that in on_tool_selected would be overridden by image.py
+		self.set_action_sensitivity('selection_delete', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('unselect', False)
 
 	def give_back_control(self, preserve_selection):
 		if not preserve_selection and self.selection_is_active():
@@ -144,28 +151,20 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 		source_w = source_surface.get_width()
 		source_h = source_surface.get_height()
-		# w = p_xx * source_w + p_xy * 0 + p_x0
-		# h = p_yx * 0 + p_yy * source_h + p_y0
 		normal_w = p_xx * source_w + p_xy * source_h + p_x0
 		normal_h = p_yx * source_w + p_yy * source_h + p_y0
-		# w = abs( p_xx * source_w ) + abs( p_xy * source_h ) + p_x0
-		# h = abs( p_yx * source_w ) + abs( p_yy * source_h ) + p_y0
-
-		# print('source_w, source_h', source_w, source_h)
-		# print('normal_w, normal_h', normal_w, normal_h)
-		# print('p_x0, p_y0', p_x0, p_y0 )
-
-		# w = max(w, source_w) + p_x0
-		# h = max(h, source_h) + p_y0
-
 		w = max(normal_w, source_w + p_x0)
-		h = max(normal_h, source_h + p_y0) # FIXME non toujours pas ?
+		h = max(normal_h, source_h + p_y0) # XXX bof, pas sûr
 
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 		cairo_context = cairo.Context(new_surface)
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=p_xx, yx=p_yx, xy=p_xy, yy=p_yy, x0=p_x0, y0=p_y0)
-		cairo_context.transform(m)
+		try:
+			cairo_context.transform(m)
+		except:
+			self.show_error(_("Error: invalid values"))
+			return source_surface
 		cairo_context.set_source_surface(source_surface, 0, 0)
 		# FIXME scroll and zoom ?
 		cairo_context.paint()
