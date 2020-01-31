@@ -42,7 +42,6 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 			color_string = _("Black")
 		else:
 			color_string = _("Grey")
-			print('gris correct')
 
 	elif rgb_percents[0] > 0.5 and rgb_percents[1] > 0.2 and rgb_percents[1] < 0.4:
 		if orange_coef > 0.87:

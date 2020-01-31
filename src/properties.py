@@ -21,7 +21,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrawingPropertiesDialog'
 
 	def __init__(self, window, image):
-		wants_csd = not ('ssd' in window.decorations)
+		wants_csd = not ('ssd' in window.deco_layout)
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 		                      transient_for=window, title=_("Image properties"))
 		self._image = image

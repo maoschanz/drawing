@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkBox" id="toolbar">
-    <property name="orientation">vertical</property>
+    <property name="orientation">horizontal</property>
     <child>
       <object class="GtkToolbar">
         <property name="show-arrow">True</property>
@@ -123,6 +123,20 @@
         </child>
         <child>
           <object class="GtkToolButton">
+            <property name="action-name">win.fullscreen</property>
+            <property name="icon-name">view-fullscreen</property>
+            <property name="tooltip-text" translatable="yes">Fullscreen</property>
+            <property name="label" translatable="yes">Fullscreen</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparatorToolItem" />
+        </child>
+        <child>
+          <object class="GtkToolButton">
             <property name="action-name">win.zoom_out</property>
             <property name="icon-name">zoom-out</property>
             <property name="tooltip-text" translatable="yes">Zoom Out</property>
@@ -154,46 +168,22 @@
             <property name="homogeneous">False</property>
           </packing>
         </child>
-        <child>
-          <object class="GtkSeparatorToolItem" />
-        </child>
-        <child>
-          <object class="GtkToggleToolButton">
-            <property name="action-name">win.show_labels</property>
-            <property name="icon-name">view-list</property>
-            <property name="tooltip-text" translatable="yes">Show tools names</property>
-            <property name="label" translatable="yes">Show tools names</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToolButton">
-            <property name="action-name">app.settings</property>
-            <property name="icon-name">preferences-other</property>
-            <property name="tooltip-text" translatable="yes">Preferences</property>
-            <property name="label" translatable="yes">Preferences</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkMenuToolButton" id="help_menu_btn">
-            <property name="action-name">app.help</property>
-            <property name="icon-name">help-faq</property>
-            <property name="tooltip-text" translatable="yes">Help</property>
-            <property name="label" translatable="yes">Help</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
       </object>
     </child>
     <child>
-      <object class="GtkSeparator" />
+      <object class="GtkMenuButton" id="main_menu_btn">
+        <property name="relief">none</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">open-menu</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
     </child>
   </object>
 </interface>

@@ -48,7 +48,9 @@ from .custom_image import DrawingCustomImageDialog
 from .minimap import DrawingMinimap
 from .options_manager import DrawingOptionsManager
 from .message_dialog import DrawingMessageDialog
-from .headerbar import DrawingAdaptativeHeaderBar
+from .decorations_manager import DrawingDecorationsManager
+from .deco_headerbar import DrawingAdaptativeHeaderBar
+from .deco_toolbar import DrawingDecoToolbar
 
 from .utilities import utilities_save_pixbuf_to
 from .utilities import utilities_add_filechooser_filters
@@ -93,7 +95,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
 
-		self.header_bar = None
 		self.fullscreened = False
 		self.pointer_to_current_page = None # XXX this ridiculous hack allow to
 		                   # manage several tabs in a single window despite the
@@ -467,20 +468,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# WINDOW DECORATIONS AND LAYOUTS ###########################################
 
 	def on_layout_changed(self, *args):
-		if self.header_bar is not None:
-			is_narrow = self.header_bar._is_narrow
-			self.header_bar = None
-		else:
-			is_narrow = False
-		toolbar = self.toolbar_box.get_children()
-		if len(toolbar) > 0:
-			toolbar[0].destroy()
-		self.header_bar = None
+		is_narrow = self._decorations.remove_from_ui()
 		self.set_ui_bars()
-		if self.header_bar is not None:
-			self.header_bar.set_compact(is_narrow)
-		else:
-			self.set_titlebar(None)
+		self._decorations.set_compact(is_narrow)
 		self.set_picture_title()
 
 	def show_info_settings(self, *args):
@@ -498,12 +488,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			main_title = self.get_active_image().update_title()
 		subtitle = self.active_tool().get_edition_status()
-
 		self.update_tabs_menu_section()
-
-		self.set_title(_("Drawing") + ' - ' + main_title + ' - ' + subtitle)
-		if self.header_bar is not None:
-			self.header_bar.set_titles(main_title, subtitle)
+		self._decorations.set_titles(main_title, subtitle)
 
 	def get_auto_decorations(self):
 		"""Return the decorations setting based on the XDG_CURRENT_DESKTOP
@@ -539,37 +525,24 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.placeholder_model = builder.get_object('tool-placeholder')
 
 		# Remember the setting, so no need to restart this at each dialog.
-		self.decorations = self._settings.get_string('decorations')
-		if self.decorations == 'auto':
-			self.decorations = self.get_auto_decorations()
+		self.deco_layout = self._settings.get_string('decorations')
+		if self.deco_layout == 'auto':
+			self.deco_layout = self.get_auto_decorations()
 
-		if self.decorations == 'csd':
-			self.build_headerbar(False)
-			self.set_titlebar(self.header_bar._widget)
-			self.set_show_menubar(False)
-		elif self.decorations == 'csd-eos':
-			self.build_headerbar(True)
-			self.set_titlebar(self.header_bar._widget)
-			self.set_show_menubar(False)
-		elif self.decorations == 'everything': # devel-only
-			self.build_headerbar(False)
-			self.set_titlebar(self.header_bar._widget)
-			self.set_show_menubar(True)
-			self.build_toolbar(True)
-		elif self.decorations == 'ssd-menubar':
-			self.set_show_menubar(True)
-		elif self.decorations == 'ssd-toolbar':
-			self.build_toolbar(False)
-			self.set_show_menubar(False)
-		elif self.decorations == 'ssd-toolbar-symbolic':
-			self.build_toolbar(True)
-			self.set_show_menubar(False)
-		elif self.decorations == 'ssd-symbolic':
-			self.build_toolbar(True)
-			self.set_show_menubar(True)
-		else: # self.decorations == 'ssd'
-			self.build_toolbar(False)
-			self.set_show_menubar(True)
+		if self.deco_layout == 'csd':
+			self._decorations = DrawingAdaptativeHeaderBar(False, self)
+		elif self.deco_layout == 'csd-eos':
+			self._decorations = DrawingAdaptativeHeaderBar(True, self)
+		elif self.deco_layout == 'ssd-menubar':
+			self._decorations = DrawingDecorationsManager(self, True)
+		elif self.deco_layout == 'ssd-toolbar':
+			self._decorations = DrawingDecoToolbar(False, False, self)
+		elif self.deco_layout == 'ssd-toolbar-symbolic':
+			self._decorations = DrawingDecoToolbar(True, False, self)
+		elif self.deco_layout == 'ssd-symbolic':
+			self._decorations = DrawingDecoToolbar(True, True, self)
+		else: # self.deco_layout == 'ssd'
+			self._decorations = DrawingDecoToolbar(False, True, self)
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
@@ -585,41 +558,11 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		section.prepend_submenu(_("_Tools"), tools_menu)
 		self.fullscreen_btn.set_menu_model(fullscreen_menu)
 
-	def build_toolbar(self, symbolic):
-		if symbolic:
-			builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar-symbolic.ui')
-		else:
-			builder = Gtk.Builder.new_from_resource(UI_PATH + 'toolbar.ui')
-		toolbar = builder.get_object('toolbar')
-
-		# The toolbar has menus which need to be set manually
-		builder.add_from_resource(UI_PATH + 'win-menus.ui')
-
-		new_btn = builder.get_object('new_menu_btn')
-		new_menu = Gtk.Menu.new_from_model(builder.get_object('new-image-menu'))
-		new_btn.set_menu(new_menu)
-
-		save_btn = builder.get_object('save_menu_btn')
-		save_menu = Gtk.Menu.new_from_model(builder.get_object('save-section'))
-		save_btn.set_menu(save_menu)
-
-		help_btn = builder.get_object('help_menu_btn')
-		help_menu = Gtk.Menu.new_from_model(builder.get_object('help-section'))
-		help_btn.set_menu(help_menu)
-
-		self.toolbar_box.add(toolbar)
-		self.toolbar_box.show_all()
-
-	def build_headerbar(self, is_eos):
-		"""Build the window's headerbar. If "is_eos" is true, the headerbar will
-		follow elementaryOS guidelines, else it will follow GNOME guidelines."""
-		self.header_bar = DrawingAdaptativeHeaderBar(is_eos)
-
 	def action_main_menu(self, *args):
 		if self.fullscreened:
 			self.fullscreen_btn.set_active(not self.fullscreen_btn.get_active())
-		elif self.header_bar is not None:
-			self.header_bar.toggle_menu()
+		else:
+			self._decorations.toggle_menu()
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
@@ -634,12 +577,9 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		will call the tool method applying the new size to the tool panel."""
 		if not self.has_good_width_limits and self.get_allocated_width() > 700:
 			self.options_manager.init_adaptability()
-			if self.header_bar is not None:
-				self.header_bar.init_adaptability()
+			self._decorations.init_adaptability()
 			self.has_good_width_limits = True
-
-		if self.header_bar is not None:
-			self.header_bar.adapt_to_window_size()
+		self._decorations.adapt_to_window_size()
 
 		available_width = self.bottom_panel_box.get_allocated_width()
 		self.options_manager.adapt_to_window_size(available_width)
@@ -677,7 +617,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def set_fullscreen_state(self, state):
 		self.fullscreened = state
 		self.tools_flowbox.set_visible(not state)
-		self.toolbar_box.set_visible(not state) # XXX not if not empty
+		self.toolbar_box.set_visible(not state) # XXX not if empty!!
 		self.fullscreen_btn.set_visible(state)
 		self.update_tabs_visibility()
 
@@ -1134,9 +1074,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().rebuild_from_history()
 
 	def update_history_actions_labels(self, undo_label, redo_label):
-		if self.header_bar is not None:
-			self.header_bar.set_undo_label(undo_label)
-			self.header_bar.set_redo_label(redo_label)
+		self._decorations.set_undo_label(undo_label)
+		self._decorations.set_redo_label(redo_label)
 		# TODO maybe update "undo" and "redo" items in the menubar too
 
 	############################################################################

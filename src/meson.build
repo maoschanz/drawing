@@ -30,11 +30,12 @@ drawing_sources = [
 	'main.py',
 
 	'window.py',
+	'decorations_manager.py',
+	'deco_headerbar.py',
+	'deco_toolbar.py',
 	'options_manager.py',
-	'headerbar.py',
 	'bottombar.py',
 	'minimap.py',
-	'color_popover.py',
 
 	'image.py',
 	'selection_manager.py',
@@ -51,6 +52,7 @@ drawing_sources = [
 
 	'tools/classic_tools/abstract_classic_tool.py',
 	'tools/classic_tools/classic_panel.py',
+	'tools/classic_tools/color_popover.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_eraser.py',
 	'tools/classic_tools/tool_experiment.py',

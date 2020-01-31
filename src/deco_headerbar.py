@@ -15,24 +15,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
+from .decorations_manager import DrawingDecorationsManager
 
-UI_PATH = '/com/github/maoschanz/drawing/ui/'
-
-class DrawingAdaptativeHeaderBar():
+class DrawingAdaptativeHeaderBar(DrawingDecorationsManager):
 	__gtype_name__ = 'DrawingAdaptativeHeaderBar'
 
-	def __init__(self, is_eos):
+	def __init__(self, is_eos, window):
+		super().__init__(window, False)
 		self._is_narrow = True # This is reducing the complexity of resizing,
 		# but its main goal is to avoid a GTK minor bug where the initial
 		# bunch of configure-event signals was sent to soon.
-		if is_eos:
-			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar-eos.ui')
-		else:
-			builder = Gtk.Builder.new_from_resource(UI_PATH + 'headerbar.ui')
 
-		# Composition over inheritance
+		# Build the window's headerbar. If "is_eos" is true, the headerbar will
+		# follow elementaryOS guidelines, else it will follow GNOME guidelines.
+		if is_eos:
+			resource_path = self.UI_PATH + 'headerbar-eos.ui'
+		else:
+			resource_path = self.UI_PATH + 'headerbar.ui'
+		builder = Gtk.Builder.new_from_resource(resource_path)
 		self._widget = builder.get_object('header_bar')
+		window.set_titlebar(self._widget)
 
 		# Code differences are kept minimal between the 2 cases: widgets will
 		# share similar names in order to both work with the same method
@@ -48,7 +51,7 @@ class DrawingAdaptativeHeaderBar():
 		# Quite high as a precaution, will be more precise later
 		self._limit_size = 700
 
-		builder.add_from_resource(UI_PATH + 'win-menus.ui')
+		builder.add_from_resource(self.UI_PATH + 'win-menus.ui')
 		self._short_primary_menu = builder.get_object('short-window-menu')
 		self._long_primary_menu = builder.get_object('long-window-menu')
 
@@ -62,14 +65,15 @@ class DrawingAdaptativeHeaderBar():
 		self._undo_btn = builder.get_object('undo_btn')
 		self._redo_btn = builder.get_object('redo_btn')
 
+	def remove_from_ui(self):
+		return False
+
 	############################################################################
 
 	def set_titles(self, title_label, subtitle_label):
+		super().set_titles(title_label, subtitle_label)
 		self._widget.set_title(title_label)
 		self._widget.set_subtitle(subtitle_label)
-
-	def toggle_menu(self):
-		self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
 
 	def set_undo_label(self, label):
 		if label is None:
@@ -118,5 +122,6 @@ class DrawingAdaptativeHeaderBar():
 		self._new_btn.set_visible(not state)
 		self._is_narrow = state
 
+	############################################################################
 ################################################################################
 

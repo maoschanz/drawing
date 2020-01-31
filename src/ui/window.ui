@@ -19,6 +19,12 @@
           <object class="GtkBox" id="toolbar_box">
             <property name="orientation">vertical</property>
             <property name="visible">False</property>
+            <child>
+              <object class="GtkSeparator" />
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
           </object>
         </child>
         <child>

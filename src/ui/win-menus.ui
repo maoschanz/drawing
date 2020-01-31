@@ -199,36 +199,19 @@
     </section>
   </menu>
 
-  <menu id="help-section">
-    <!-- Used only for the toolbar layout, where app.help is already the action
-    assigned to the button. -->
+  <menu id="toolbar-menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">Basic help</attribute>
-        <attribute name="action">app.help_main</attribute>
-        <attribute name="verb-icon">help-faq-symbolic</attribute>
+        <attribute name="label" translatable="yes">Show tools names</attribute>
+        <attribute name="action">win.show_labels</attribute>
       </item>
+      <!-- <item> -->
+      <!--   <attribute name="label" translatable="yes">Use antialising</attribute> -->
+      <!--   <attribute name="action">win.antialiasing</attribute> -->
+      <!-- </item> -->
       <item>
-        <attribute name="label" translatable="yes">Help about tools</attribute>
-        <attribute name="action">app.help_tools</attribute>
-        <attribute name="verb-icon">help-faq-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Canvas and selection</attribute>
-        <attribute name="action">app.help_canvas</attribute>
-        <attribute name="verb-icon">help-faq-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Help about selection</attribute>
-        <attribute name="action">app.help_selection</attribute>
-        <attribute name="verb-icon">help-faq-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Shortcuts</attribute>
-        <attribute name="action">app.shortcuts</attribute>
-        <attribute name="verb-icon">input-keyboard-symbolic</attribute>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">app.settings</attribute>
       </item>
     </section>
     <section>
@@ -238,9 +221,16 @@
         <attribute name="hidden-when">action-missing</attribute>
       </item>
       <item>
+        <attribute name="label" translatable="yes">Shortcuts</attribute>
+        <attribute name="action">app.shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name="action">app.help</attribute>
+        <attribute name="label" translatable="yes">Help</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">About Drawing</attribute>
         <attribute name="action">app.about</attribute>
-        <attribute name="verb-icon">help-about-symbolic</attribute>
       </item>
     </section>
   </menu>
