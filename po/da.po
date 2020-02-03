@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2020-01-19 04:42+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -62,19 +62,22 @@ msgstr ""
 "tekst, tilpasning af størrelse, beskæring, drejning …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"Version 0.6 er en større opdatering med diverse vigtige ændringer: "
-"rektangel- og frihåndsmarkering er nu selvstændige værktøjer, billeder kan "
-"importeres eller åbnes med træk-og-slip, værktøjet \"drej\" understøtter nu "
-"alle vinkler og håndterer vandret og lodret vending, og diverse værktøjer "
-"til at skabe former (cirkel, rektangel, polygon …) er blevet lagt sammen i "
-"værktøjet \"form\"."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -315,24 +318,6 @@ msgstr "Hjælp til markering"
 msgid "About Drawing"
 msgstr "Om Drawing"
 
-msgid "Tool size"
-msgstr "Værktøjsstørrelse"
-
-msgid "No options"
-msgstr "Ingen valgmuligheder"
-
-msgid "Preview"
-msgstr "Forhåndsvisning"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr "Hvordan farven påføres de eksisterende pixels"
-
-msgid "Back to the palette"
-msgstr "Tilbage til paletten"
-
-msgid "Use this editor by default"
-msgstr "Brug editoren som standard"
-
 msgid "Width"
 msgstr "Bredde"
 
@@ -350,15 +335,6 @@ msgstr "Åbn"
 
 msgid "100%"
 msgstr "100 %"
-
-msgid "Images"
-msgstr "Billeder"
-
-msgid "Tools"
-msgstr "Værktøjer"
-
-msgid "Advanced options"
-msgstr "Avancerede valgmuligheder"
 
 msgid "Path"
 msgstr "Sti"
@@ -383,6 +359,15 @@ msgstr "centimeter"
 
 msgid "inches"
 msgstr "inch"
+
+msgid "Images"
+msgstr "Billeder"
+
+msgid "Tools"
+msgstr "Værktøjer"
+
+msgid "Advanced options"
+msgstr "Avancerede valgmuligheder"
 
 msgid "Close selection"
 msgstr "Luk markering"
@@ -410,15 +395,6 @@ msgstr "Filtre"
 
 msgid "Open As New Image"
 msgstr "Åbn som nyt billede"
-
-msgid "Edit"
-msgstr "Rediger"
-
-msgid "Flip"
-msgstr "Vend"
-
-msgid "More actions"
-msgstr "Flere handlinger"
 
 msgid "Keyboard"
 msgstr "Tastatur"
@@ -484,11 +460,11 @@ msgstr "Navigation"
 msgid "Toggle the preview"
 msgstr "Forhåndsvisning til/fra"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Fejl ved start af programmet. Rapportér venligst fejlen."
-
 msgid "Troubleshoot selection"
 msgstr "Fejlsøg markering"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Fejl ved start af programmet. Rapportér venligst fejlen."
 
 msgid "Cancel"
 msgstr "Annuller"
@@ -742,6 +718,9 @@ msgstr "Kunne ikke indlæse værktøj: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "Ændringerne træder i kraft i det næste nye vindue."
 
+msgid "No options"
+msgstr "Ingen valgmuligheder"
+
 msgid "Opened images"
 msgstr "Åbne billeder"
 
@@ -799,6 +778,36 @@ msgstr "Importér et billede"
 msgid "Required tool is not available"
 msgstr "Krævet værktøj er ikke tilgængeligt"
 
+msgid "Continue"
+msgstr "Fortsæt"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Området ser ud til at være dårligt afgrænset eller meget komplekst."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Algoritmen er måske ikke i stand til at håndtere det ønskede område."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Vil du afbryde handlingen eller lade værktøjet knokle?"
+
+msgid "Tool size"
+msgstr "Værktøjsstørrelse"
+
+msgid "Preview"
+msgstr "Forhåndsvisning"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr "Hvordan farven påføres de eksisterende pixels"
+
+msgid "Back to the palette"
+msgstr "Tilbage til paletten"
+
+msgid "Use this editor by default"
+msgstr "Brug editoren som standard"
+
+msgid "More actions"
+msgstr "Flere handlinger"
+
 msgid "Line shape"
 msgstr "Linjens form"
 
@@ -814,44 +823,6 @@ msgstr "Stiplet"
 
 msgid "Arrow"
 msgstr "Pil"
-
-msgid "Apply"
-msgstr "Anvend"
-
-msgid "More options"
-msgstr "Flere valgmuligheder"
-
-msgid "Select a filter…"
-msgstr "Vælg et filter …"
-
-msgid "Saturation"
-msgstr "Farvemætning"
-
-msgid "Blur radius"
-msgstr "Sløringsradius"
-
-msgid "Transparency"
-msgstr "Gennemsigtighed"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Farvemætning"
-
-msgid "Pixelisation"
-msgstr "Pixelering"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Gennemsigtighed"
-
-msgid "Invert colors"
-msgstr "Invertér farver"
-
-msgid "Horizontal blur"
-msgstr "Vandret sløring"
-
-msgid "Vertical blur"
-msgstr "Lodret sløring"
 
 msgid "Color gradient"
 msgstr "Farvegradient"
@@ -870,39 +841,6 @@ msgstr "Klipning"
 
 msgid "Thin"
 msgstr "Tynd"
-
-msgid "Angle (degrees)"
-msgstr "Vinkel (grader)"
-
-msgid "Angle"
-msgstr "Vinkel"
-
-msgid "Rotate left"
-msgstr "Drej til venstre"
-
-msgid "Rotate right"
-msgstr "Drej til højre"
-
-msgid "Flip horizontally"
-msgstr "Vend vandret"
-
-msgid "Flip vertically"
-msgstr "Vend lodret"
-
-msgid "Keep proportions"
-msgstr "Bevar størrelsesforhold"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr "Altid"
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr "Ved skalering fra hjørner"
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr "Aldrig"
 
 msgid "Rectangle"
 msgstr "Rektangel"
@@ -945,14 +883,6 @@ msgstr "Radial gradient"
 msgid "Close shape"
 msgstr "Luk form"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Vandret gradient"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Lodret gradient"
-
 msgid "Insert here"
 msgstr "Indsæt her"
 
@@ -980,17 +910,90 @@ msgstr "Omrids"
 msgid "Rectangle background"
 msgstr "Rektangelbaggrund"
 
-msgid "Continue"
-msgstr "Fortsæt"
+msgid "Edit"
+msgstr "Rediger"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Området ser ud til at være dårligt afgrænset eller meget komplekst."
+msgid "Flip"
+msgstr "Vend"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Algoritmen er måske ikke i stand til at håndtere det ønskede område."
+msgid "Apply"
+msgstr "Anvend"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Vil du afbryde handlingen eller lade værktøjet knokle?"
+msgid "More options"
+msgstr "Flere valgmuligheder"
+
+msgid "Select a filter…"
+msgstr "Vælg et filter …"
+
+msgid "Saturation"
+msgstr "Farvemætning"
+
+msgid "Blur radius"
+msgstr "Sløringsradius"
+
+msgid "Transparency"
+msgstr "Gennemsigtighed"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Farvemætning"
+
+msgid "Pixelisation"
+msgstr "Pixelering"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Gennemsigtighed"
+
+msgid "Invert colors"
+msgstr "Invertér farver"
+
+msgid "Horizontal blur"
+msgstr "Vandret sløring"
+
+msgid "Vertical blur"
+msgstr "Lodret sløring"
+
+msgid "Angle (degrees)"
+msgstr "Vinkel (grader)"
+
+msgid "Angle"
+msgstr "Vinkel"
+
+msgid "Rotate left"
+msgstr "Drej til venstre"
+
+msgid "Rotate right"
+msgstr "Drej til højre"
+
+msgid "Flip horizontally"
+msgstr "Vend vandret"
+
+msgid "Flip vertically"
+msgstr "Vend lodret"
+
+msgid "Keep proportions"
+msgstr "Bevar størrelsesforhold"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr "Altid"
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr "Ved skalering fra hjørner"
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr "Aldrig"
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Vandret gradient"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Lodret gradient"
 
 msgid "Curve"
 msgstr "Kurve"
@@ -1049,6 +1052,9 @@ msgstr "Vælg et område eller højreklik på lærredet"
 msgid "Rectangle selection"
 msgstr "Rektangelmarkering"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Beskær markeringen"
 
@@ -1069,6 +1075,21 @@ msgstr "Skaler markeringen"
 
 msgid "Scaling the canvas"
 msgstr "Skaler lærredet"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "Version 0.6 er en større opdatering med diverse vigtige ændringer: "
+#~ "rektangel- og frihåndsmarkering er nu selvstændige værktøjer, billeder "
+#~ "kan importeres eller åbnes med træk-og-slip, værktøjet \"drej\" "
+#~ "understøtter nu alle vinkler og håndterer vandret og lodret vending, og "
+#~ "diverse værktøjer til at skabe former (cirkel, rektangel, polygon …) er "
+#~ "blevet lagt sammen i værktøjet \"form\"."
 
 #~ msgid "Apply a filter"
 #~ msgstr "Anvend et filter"

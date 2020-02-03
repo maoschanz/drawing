@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2020-01-24 22:15+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -63,19 +63,22 @@ msgstr ""
 "boyutlandırma, kırpma, döndürme, …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"0.6 sürümü çeşitli önemli değişiklikler içeren önemli bir güncellemedir: "
-"dikdörtgen seçimi ve serbest el seçimi artık farklı araçlardır, sürükle ve "
-"bırak yöntemiyle görüntüler alınabilir veya açılabilir, 'döndürme aracı' "
-"artık tüm açıları destekler ve yatay veya dikey çevirmeyi yönetir ve "
-"şekiller üreten çeşitli araçlar (daire, dikdörtgen, çokgen,…) tek bir "
-"tutarlı 'şekil' aracında birleştirilmiştir."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -317,24 +320,6 @@ msgstr "Seçim hakkında yardım"
 msgid "About Drawing"
 msgstr "Çizim Hakkında"
 
-msgid "Tool size"
-msgstr "Araç boyutu"
-
-msgid "No options"
-msgstr "Seçenek yok"
-
-msgid "Preview"
-msgstr "Önizlenim"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr "Rengin mevcut piksellere nasıl uygulanacağı"
-
-msgid "Back to the palette"
-msgstr "Palete geri dön"
-
-msgid "Use this editor by default"
-msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
-
 msgid "Width"
 msgstr "Genişlik"
 
@@ -352,15 +337,6 @@ msgstr "Aç"
 
 msgid "100%"
 msgstr "%100"
-
-msgid "Images"
-msgstr "Görüntüler"
-
-msgid "Tools"
-msgstr "Araçlar"
-
-msgid "Advanced options"
-msgstr "Gelişmiş seçenekler"
 
 msgid "Path"
 msgstr "Yol"
@@ -385,6 +361,15 @@ msgstr "santimetre"
 
 msgid "inches"
 msgstr "inç"
+
+msgid "Images"
+msgstr "Görüntüler"
+
+msgid "Tools"
+msgstr "Araçlar"
+
+msgid "Advanced options"
+msgstr "Gelişmiş seçenekler"
 
 msgid "Close selection"
 msgstr "Seçimi kapat"
@@ -412,15 +397,6 @@ msgstr "Süzgeçler"
 
 msgid "Open As New Image"
 msgstr "Yeni Görüntü Olarak Aç"
-
-msgid "Edit"
-msgstr "Düzenle"
-
-msgid "Flip"
-msgstr "Çevir"
-
-msgid "More actions"
-msgstr "Daha fazla eylem"
 
 msgid "Keyboard"
 msgstr "Klavye"
@@ -486,11 +462,11 @@ msgstr "Gezinti"
 msgid "Toggle the preview"
 msgstr "Önizlemeyi değiştir"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
-
 msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
 
 msgid "Cancel"
 msgstr "İptal"
@@ -745,6 +721,9 @@ msgstr "Araç yüklenemedi: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
 
+msgid "No options"
+msgstr "Seçenek yok"
+
 msgid "Opened images"
 msgstr "Açılan görüntüler"
 
@@ -802,6 +781,37 @@ msgstr "Bir resmi içe aktar"
 msgid "Required tool is not available"
 msgstr "Gerekli araç kullanılamıyor"
 
+msgid "Continue"
+msgstr "Devam"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Alan çok sınırlı görünüyor veya çok karmaşık."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Bu algoritma istenen alanı yönetemeyebilir."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+"İşlemi iptal etmek mi yoksa aracın denemesine izin vermek mi istiyorsunuz?"
+
+msgid "Tool size"
+msgstr "Araç boyutu"
+
+msgid "Preview"
+msgstr "Önizlenim"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr "Rengin mevcut piksellere nasıl uygulanacağı"
+
+msgid "Back to the palette"
+msgstr "Palete geri dön"
+
+msgid "Use this editor by default"
+msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
+
+msgid "More actions"
+msgstr "Daha fazla eylem"
+
 msgid "Line shape"
 msgstr "Fırça şekli"
 
@@ -817,44 +827,6 @@ msgstr "Kısa çizgiler"
 
 msgid "Arrow"
 msgstr "Oklar"
-
-msgid "Apply"
-msgstr "Onayla"
-
-msgid "More options"
-msgstr "Daha fazla seçenek"
-
-msgid "Select a filter…"
-msgstr "Bir süzgeç seç…"
-
-msgid "Saturation"
-msgstr "Doygunluk"
-
-msgid "Blur radius"
-msgstr "Bulanıklık yarıçapı"
-
-msgid "Transparency"
-msgstr "Şeffaflık"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Doygunluk"
-
-msgid "Pixelisation"
-msgstr "Pikselleme"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Şeffaflık"
-
-msgid "Invert colors"
-msgstr "Renkleri ters çevir"
-
-msgid "Horizontal blur"
-msgstr "Yatay bulanıklık"
-
-msgid "Vertical blur"
-msgstr "Dikey bulanıklık"
 
 msgid "Color gradient"
 msgstr "Geçiş rengi"
@@ -873,39 +845,6 @@ msgstr "Kırpma"
 
 msgid "Thin"
 msgstr "İnce"
-
-msgid "Angle (degrees)"
-msgstr "Açı (derece)"
-
-msgid "Angle"
-msgstr "Açı"
-
-msgid "Rotate left"
-msgstr "Sola döndür"
-
-msgid "Rotate right"
-msgstr "Sağa döndür"
-
-msgid "Flip horizontally"
-msgstr "Yatay çevir"
-
-msgid "Flip vertically"
-msgstr "Dikey çevir"
-
-msgid "Keep proportions"
-msgstr "Oranları koru"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr "Sürekli"
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr "Köşe ölçeği yaparken"
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr "Asla"
 
 msgid "Rectangle"
 msgstr "Dikdörtgen"
@@ -947,14 +886,6 @@ msgstr "Radyal gradyan"
 msgid "Close shape"
 msgstr "Şekli kapat"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Yatay gradyan"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Dikey gradyan"
-
 msgid "Insert here"
 msgstr "Buraya ekle"
 
@@ -982,18 +913,90 @@ msgstr "Dış çizgi"
 msgid "Rectangle background"
 msgstr "Dikdörtgen arka plan"
 
-msgid "Continue"
-msgstr "Devam"
+msgid "Edit"
+msgstr "Düzenle"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Alan çok sınırlı görünüyor veya çok karmaşık."
+msgid "Flip"
+msgstr "Çevir"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Bu algoritma istenen alanı yönetemeyebilir."
+msgid "Apply"
+msgstr "Onayla"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-"İşlemi iptal etmek mi yoksa aracın denemesine izin vermek mi istiyorsunuz?"
+msgid "More options"
+msgstr "Daha fazla seçenek"
+
+msgid "Select a filter…"
+msgstr "Bir süzgeç seç…"
+
+msgid "Saturation"
+msgstr "Doygunluk"
+
+msgid "Blur radius"
+msgstr "Bulanıklık yarıçapı"
+
+msgid "Transparency"
+msgstr "Şeffaflık"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Doygunluk"
+
+msgid "Pixelisation"
+msgstr "Pikselleme"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Şeffaflık"
+
+msgid "Invert colors"
+msgstr "Renkleri ters çevir"
+
+msgid "Horizontal blur"
+msgstr "Yatay bulanıklık"
+
+msgid "Vertical blur"
+msgstr "Dikey bulanıklık"
+
+msgid "Angle (degrees)"
+msgstr "Açı (derece)"
+
+msgid "Angle"
+msgstr "Açı"
+
+msgid "Rotate left"
+msgstr "Sola döndür"
+
+msgid "Rotate right"
+msgstr "Sağa döndür"
+
+msgid "Flip horizontally"
+msgstr "Yatay çevir"
+
+msgid "Flip vertically"
+msgstr "Dikey çevir"
+
+msgid "Keep proportions"
+msgstr "Oranları koru"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr "Sürekli"
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr "Köşe ölçeği yaparken"
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr "Asla"
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Yatay gradyan"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Dikey gradyan"
 
 msgid "Curve"
 msgstr "Kavis"
@@ -1052,6 +1055,9 @@ msgstr "Bir alan seç veya tuval üzerine sağ tıkla"
 msgid "Rectangle selection"
 msgstr "Dikdörtgen seçim"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Seçimi kırp"
 
@@ -1072,6 +1078,21 @@ msgstr "Seçimi ölçeklendir"
 
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "0.6 sürümü çeşitli önemli değişiklikler içeren önemli bir güncellemedir: "
+#~ "dikdörtgen seçimi ve serbest el seçimi artık farklı araçlardır, sürükle "
+#~ "ve bırak yöntemiyle görüntüler alınabilir veya açılabilir, 'döndürme "
+#~ "aracı' artık tüm açıları destekler ve yatay veya dikey çevirmeyi yönetir "
+#~ "ve şekiller üreten çeşitli araçlar (daire, dikdörtgen, çokgen,…) tek bir "
+#~ "tutarlı 'şekil' aracında birleştirilmiştir."
 
 #~ msgid "Close"
 #~ msgstr "Kapat"

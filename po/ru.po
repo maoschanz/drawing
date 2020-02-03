@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -58,12 +58,21 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
+msgstr ""
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
 msgstr ""
 
 msgid ""
@@ -310,24 +319,6 @@ msgstr "Масштабировать выделенное"
 msgid "About Drawing"
 msgstr "О Drawing"
 
-msgid "Tool size"
-msgstr "Размер инструмента"
-
-msgid "No options"
-msgstr ""
-
-msgid "Preview"
-msgstr "Предпросмотр"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr ""
-
-msgid "Back to the palette"
-msgstr "Назад к палитре"
-
-msgid "Use this editor by default"
-msgstr "Использовать этот редактор по умолчанию"
-
 msgid "Width"
 msgstr "Ширина"
 
@@ -347,18 +338,6 @@ msgstr "Открыть"
 
 msgid "100%"
 msgstr ""
-
-#, fuzzy
-msgid "Images"
-msgstr "Изображение"
-
-#, fuzzy
-msgid "Tools"
-msgstr "_Инструменты"
-
-#, fuzzy
-msgid "Advanced options"
-msgstr "Варианты дуги"
 
 msgid "Path"
 msgstr "Путь"
@@ -384,6 +363,18 @@ msgstr "сантиметры"
 
 msgid "inches"
 msgstr "дюймы"
+
+#, fuzzy
+msgid "Images"
+msgstr "Изображение"
+
+#, fuzzy
+msgid "Tools"
+msgstr "_Инструменты"
+
+#, fuzzy
+msgid "Advanced options"
+msgstr "Варианты дуги"
 
 #, fuzzy
 msgid "Close selection"
@@ -413,16 +404,6 @@ msgstr ""
 #, fuzzy
 msgid "Open As New Image"
 msgstr "Новое изображение"
-
-msgid "Edit"
-msgstr "Правка"
-
-msgid "Flip"
-msgstr "Перевернуть"
-
-#, fuzzy
-msgid "More actions"
-msgstr "Варианты окружности"
 
 msgid "Keyboard"
 msgstr ""
@@ -491,12 +472,12 @@ msgstr "Навигация"
 msgid "Toggle the preview"
 msgstr "Переключить предварительный просмотр"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
-
 #, fuzzy
 msgid "Troubleshoot selection"
 msgstr "Выбор цвета"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
 
 msgid "Cancel"
 msgstr "Отмена"
@@ -753,6 +734,9 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
 
+msgid "No options"
+msgstr ""
+
 msgid "Opened images"
 msgstr "Открытые изображения"
 
@@ -811,6 +795,37 @@ msgstr "Импорт изображения"
 msgid "Required tool is not available"
 msgstr ""
 
+msgid "Continue"
+msgstr "Продолжить"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr ""
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr ""
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+
+msgid "Tool size"
+msgstr "Размер инструмента"
+
+msgid "Preview"
+msgstr "Предпросмотр"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+msgid "Back to the palette"
+msgstr "Назад к палитре"
+
+msgid "Use this editor by default"
+msgstr "Использовать этот редактор по умолчанию"
+
+#, fuzzy
+msgid "More actions"
+msgstr "Варианты окружности"
+
 #, fuzzy
 msgid "Line shape"
 msgstr "Свободная форма"
@@ -827,51 +842,6 @@ msgstr "Использовать тире"
 
 msgid "Arrow"
 msgstr "Указатель"
-
-msgid "Apply"
-msgstr "Применить"
-
-#, fuzzy
-msgid "More options"
-msgstr "Варианты окружности"
-
-#, fuzzy
-msgid "Select a filter…"
-msgstr "Выбрать все"
-
-#, fuzzy
-msgid "Saturation"
-msgstr "Насыщенность (%)"
-
-msgid "Blur radius"
-msgstr ""
-
-#, fuzzy
-msgid "Transparency"
-msgstr "Добавить прозрачность"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Насыщенность (%)"
-
-#, fuzzy
-msgid "Pixelisation"
-msgstr "Издание"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Добавить прозрачность"
-
-#, fuzzy
-msgid "Invert colors"
-msgstr "Поменять цвета"
-
-#, fuzzy
-msgid "Horizontal blur"
-msgstr "Перевернуть по горизонтали"
-
-msgid "Vertical blur"
-msgstr ""
 
 #, fuzzy
 msgid "Color gradient"
@@ -891,40 +861,6 @@ msgstr ""
 
 msgid "Thin"
 msgstr "Тонкий"
-
-msgid "Angle (degrees)"
-msgstr "Угол (градусы)"
-
-msgid "Angle"
-msgstr ""
-
-msgid "Rotate left"
-msgstr "Повернуть влево"
-
-msgid "Rotate right"
-msgstr "Повернуть вправо"
-
-msgid "Flip horizontally"
-msgstr "Перевернуть по горизонтали"
-
-msgid "Flip vertically"
-msgstr "Перевернуть по вертикали"
-
-#, fuzzy
-msgid "Keep proportions"
-msgstr "Сохранять пропорции"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr ""
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr ""
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr ""
 
 msgid "Rectangle"
 msgstr "Прямоугольник"
@@ -971,14 +907,6 @@ msgstr "Выбор цвета"
 msgid "Close shape"
 msgstr "Новое изображение"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Перевернуть по горизонтали"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Выбор цвета"
-
 msgid "Insert here"
 msgstr "Вставить сюда"
 
@@ -1009,17 +937,98 @@ msgstr ""
 msgid "Rectangle background"
 msgstr "Фон по умолчанию"
 
-msgid "Continue"
-msgstr "Продолжить"
+msgid "Edit"
+msgstr "Правка"
 
-msgid "The area seems poorly delimited, or is very complex."
+msgid "Flip"
+msgstr "Перевернуть"
+
+msgid "Apply"
+msgstr "Применить"
+
+#, fuzzy
+msgid "More options"
+msgstr "Варианты окружности"
+
+#, fuzzy
+msgid "Select a filter…"
+msgstr "Выбрать все"
+
+#, fuzzy
+msgid "Saturation"
+msgstr "Насыщенность (%)"
+
+msgid "Blur radius"
 msgstr ""
 
-msgid "This algorithm may not be able to manage the wanted area."
+#, fuzzy
+msgid "Transparency"
+msgstr "Добавить прозрачность"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Насыщенность (%)"
+
+#, fuzzy
+msgid "Pixelisation"
+msgstr "Издание"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Добавить прозрачность"
+
+#, fuzzy
+msgid "Invert colors"
+msgstr "Поменять цвета"
+
+#, fuzzy
+msgid "Horizontal blur"
+msgstr "Перевернуть по горизонтали"
+
+msgid "Vertical blur"
 msgstr ""
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgid "Angle (degrees)"
+msgstr "Угол (градусы)"
+
+msgid "Angle"
 msgstr ""
+
+msgid "Rotate left"
+msgstr "Повернуть влево"
+
+msgid "Rotate right"
+msgstr "Повернуть вправо"
+
+msgid "Flip horizontally"
+msgstr "Перевернуть по горизонтали"
+
+msgid "Flip vertically"
+msgstr "Перевернуть по вертикали"
+
+#, fuzzy
+msgid "Keep proportions"
+msgstr "Сохранять пропорции"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr ""
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr ""
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Перевернуть по горизонтали"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Выбор цвета"
 
 msgid "Curve"
 msgstr ""
@@ -1079,6 +1088,9 @@ msgstr "Выберите область или щелкните правой к�
 
 msgid "Rectangle selection"
 msgstr "Прямоугольное выделение"
+
+msgid "Error: invalid values"
+msgstr ""
 
 msgid "Cropping the selection"
 msgstr "Обрезать выделенное"

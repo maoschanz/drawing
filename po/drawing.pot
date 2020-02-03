@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,12 +56,21 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
+msgstr ""
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
 msgstr ""
 
 msgid ""
@@ -294,24 +303,6 @@ msgstr ""
 msgid "About Drawing"
 msgstr ""
 
-msgid "Tool size"
-msgstr ""
-
-msgid "No options"
-msgstr ""
-
-msgid "Preview"
-msgstr ""
-
-msgid "How the color will be applied to the existing pixels"
-msgstr ""
-
-msgid "Back to the palette"
-msgstr ""
-
-msgid "Use this editor by default"
-msgstr ""
-
 msgid "Width"
 msgstr ""
 
@@ -328,15 +319,6 @@ msgid "Open"
 msgstr ""
 
 msgid "100%"
-msgstr ""
-
-msgid "Images"
-msgstr ""
-
-msgid "Tools"
-msgstr ""
-
-msgid "Advanced options"
 msgstr ""
 
 msgid "Path"
@@ -361,6 +343,15 @@ msgid "centimeters"
 msgstr ""
 
 msgid "inches"
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Advanced options"
 msgstr ""
 
 msgid "Close selection"
@@ -388,15 +379,6 @@ msgid "Filters"
 msgstr ""
 
 msgid "Open As New Image"
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-msgid "Flip"
-msgstr ""
-
-msgid "More actions"
 msgstr ""
 
 msgid "Keyboard"
@@ -463,10 +445,10 @@ msgstr ""
 msgid "Toggle the preview"
 msgstr ""
 
-msgid "Error starting the application, please report this bug."
+msgid "Troubleshoot selection"
 msgstr ""
 
-msgid "Troubleshoot selection"
+msgid "Error starting the application, please report this bug."
 msgstr ""
 
 msgid "Cancel"
@@ -716,6 +698,9 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
+msgid "No options"
+msgstr ""
+
 msgid "Opened images"
 msgstr ""
 
@@ -773,6 +758,36 @@ msgstr ""
 msgid "Required tool is not available"
 msgstr ""
 
+msgid "Continue"
+msgstr ""
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr ""
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr ""
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+
+msgid "Tool size"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+msgid "Back to the palette"
+msgstr ""
+
+msgid "Use this editor by default"
+msgstr ""
+
+msgid "More actions"
+msgstr ""
+
 msgid "Line shape"
 msgstr ""
 
@@ -787,42 +802,6 @@ msgid "Use dashes"
 msgstr ""
 
 msgid "Arrow"
-msgstr ""
-
-msgid "Apply"
-msgstr ""
-
-msgid "More options"
-msgstr ""
-
-msgid "Select a filter…"
-msgstr ""
-
-msgid "Saturation"
-msgstr ""
-
-msgid "Blur radius"
-msgstr ""
-
-msgid "Transparency"
-msgstr ""
-
-msgid "Change saturation"
-msgstr ""
-
-msgid "Pixelisation"
-msgstr ""
-
-msgid "Add transparency"
-msgstr ""
-
-msgid "Invert colors"
-msgstr ""
-
-msgid "Horizontal blur"
-msgstr ""
-
-msgid "Vertical blur"
 msgstr ""
 
 msgid "Color gradient"
@@ -841,39 +820,6 @@ msgid "Clipping"
 msgstr ""
 
 msgid "Thin"
-msgstr ""
-
-msgid "Angle (degrees)"
-msgstr ""
-
-msgid "Angle"
-msgstr ""
-
-msgid "Rotate left"
-msgstr ""
-
-msgid "Rotate right"
-msgstr ""
-
-msgid "Flip horizontally"
-msgstr ""
-
-msgid "Flip vertically"
-msgstr ""
-
-msgid "Keep proportions"
-msgstr ""
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr ""
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr ""
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
 msgstr ""
 
 msgid "Rectangle"
@@ -916,12 +862,6 @@ msgstr ""
 msgid "Close shape"
 msgstr ""
 
-msgid "Horizontal deformation"
-msgstr ""
-
-msgid "Vertical deformation"
-msgstr ""
-
 msgid "Insert here"
 msgstr ""
 
@@ -949,16 +889,85 @@ msgstr ""
 msgid "Rectangle background"
 msgstr ""
 
-msgid "Continue"
+msgid "Edit"
 msgstr ""
 
-msgid "The area seems poorly delimited, or is very complex."
+msgid "Flip"
 msgstr ""
 
-msgid "This algorithm may not be able to manage the wanted area."
+msgid "Apply"
 msgstr ""
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgid "More options"
+msgstr ""
+
+msgid "Select a filter…"
+msgstr ""
+
+msgid "Saturation"
+msgstr ""
+
+msgid "Blur radius"
+msgstr ""
+
+msgid "Transparency"
+msgstr ""
+
+msgid "Change saturation"
+msgstr ""
+
+msgid "Pixelisation"
+msgstr ""
+
+msgid "Add transparency"
+msgstr ""
+
+msgid "Invert colors"
+msgstr ""
+
+msgid "Horizontal blur"
+msgstr ""
+
+msgid "Vertical blur"
+msgstr ""
+
+msgid "Angle (degrees)"
+msgstr ""
+
+msgid "Angle"
+msgstr ""
+
+msgid "Rotate left"
+msgstr ""
+
+msgid "Rotate right"
+msgstr ""
+
+msgid "Flip horizontally"
+msgstr ""
+
+msgid "Flip vertically"
+msgstr ""
+
+msgid "Keep proportions"
+msgstr ""
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr ""
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr ""
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr ""
+
+msgid "Horizontal deformation"
+msgstr ""
+
+msgid "Vertical deformation"
 msgstr ""
 
 msgid "Curve"
@@ -1016,6 +1025,9 @@ msgid "Select an area or right-click on the canvas"
 msgstr ""
 
 msgid "Rectangle selection"
+msgstr ""
+
+msgid "Error: invalid values"
 msgstr ""
 
 msgid "Cropping the selection"

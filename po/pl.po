@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2019-12-20 12:01+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -64,12 +64,21 @@ msgstr ""
 "tekst, wstawianie, zmiana rozmiaru, przycinanie, obrót, …."
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
+msgstr ""
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
 msgstr ""
 
 msgid ""
@@ -307,24 +316,6 @@ msgstr "Pomoc dla zaznaczania"
 msgid "About Drawing"
 msgstr "O programie"
 
-msgid "Tool size"
-msgstr "Rozmiar narządzia"
-
-msgid "No options"
-msgstr "Brak opcji"
-
-msgid "Preview"
-msgstr "Podgląd"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr ""
-
-msgid "Back to the palette"
-msgstr "Wróć do palety"
-
-msgid "Use this editor by default"
-msgstr ""
-
 msgid "Width"
 msgstr "Szerokość"
 
@@ -342,15 +333,6 @@ msgstr "Otwórz"
 
 msgid "100%"
 msgstr ""
-
-msgid "Images"
-msgstr "Obrazy"
-
-msgid "Tools"
-msgstr "Narzędzia"
-
-msgid "Advanced options"
-msgstr "Opcje zaawansowane"
 
 msgid "Path"
 msgstr "Ścieżka"
@@ -375,6 +357,15 @@ msgstr "centymetrów"
 
 msgid "inches"
 msgstr "cali"
+
+msgid "Images"
+msgstr "Obrazy"
+
+msgid "Tools"
+msgstr "Narzędzia"
+
+msgid "Advanced options"
+msgstr "Opcje zaawansowane"
 
 msgid "Close selection"
 msgstr "Zakończ zaznaczanie"
@@ -402,15 +393,6 @@ msgstr "Filtry"
 
 msgid "Open As New Image"
 msgstr "Otwórz jako nowy obraz"
-
-msgid "Edit"
-msgstr ""
-
-msgid "Flip"
-msgstr ""
-
-msgid "More actions"
-msgstr "Więcej poleceń"
 
 msgid "Keyboard"
 msgstr "Klawiatura"
@@ -476,10 +458,10 @@ msgstr ""
 msgid "Toggle the preview"
 msgstr ""
 
-msgid "Error starting the application, please report this bug."
+msgid "Troubleshoot selection"
 msgstr ""
 
-msgid "Troubleshoot selection"
+msgid "Error starting the application, please report this bug."
 msgstr ""
 
 msgid "Cancel"
@@ -736,6 +718,9 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
+msgid "No options"
+msgstr "Brak opcji"
+
 msgid "Opened images"
 msgstr "Otwórz obrazy"
 
@@ -793,6 +778,36 @@ msgstr "Importuj obraz"
 msgid "Required tool is not available"
 msgstr ""
 
+msgid "Continue"
+msgstr ""
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr ""
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr ""
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+
+msgid "Tool size"
+msgstr "Rozmiar narządzia"
+
+msgid "Preview"
+msgstr "Podgląd"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+msgid "Back to the palette"
+msgstr "Wróć do palety"
+
+msgid "Use this editor by default"
+msgstr ""
+
+msgid "More actions"
+msgstr "Więcej poleceń"
+
 #, fuzzy
 msgid "Line shape"
 msgstr "Kształt"
@@ -809,44 +824,6 @@ msgstr "Kreskowanie"
 
 msgid "Arrow"
 msgstr "Strzałka"
-
-msgid "Apply"
-msgstr "Zastosuj"
-
-msgid "More options"
-msgstr "Więcej opcji"
-
-msgid "Select a filter…"
-msgstr "Wybierz filtr…"
-
-msgid "Saturation"
-msgstr "Nasycenie"
-
-msgid "Blur radius"
-msgstr "Stopień rozmycia"
-
-msgid "Transparency"
-msgstr "Przeźroczystość"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Nasycenie"
-
-msgid "Pixelisation"
-msgstr "Pikselizacja"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Przeźroczystość"
-
-msgid "Invert colors"
-msgstr "Odwrócenie koloru"
-
-msgid "Horizontal blur"
-msgstr "Rozmycie poziome"
-
-msgid "Vertical blur"
-msgstr "Rozmycie pionowe"
 
 msgid "Color gradient"
 msgstr "Gradient koloru"
@@ -865,40 +842,6 @@ msgstr ""
 
 msgid "Thin"
 msgstr "Cienki"
-
-msgid "Angle (degrees)"
-msgstr "Kąt (stopnie)"
-
-msgid "Angle"
-msgstr "Kąt"
-
-msgid "Rotate left"
-msgstr "Obróć w lewo"
-
-msgid "Rotate right"
-msgstr "Obróć w prawo"
-
-msgid "Flip horizontally"
-msgstr "Odbij poziomo"
-
-msgid "Flip vertically"
-msgstr "Odbij pionowo"
-
-#, fuzzy
-msgid "Keep proportions"
-msgstr "Zachowaj proporcje"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr ""
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr ""
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr ""
 
 msgid "Rectangle"
 msgstr "Prostokąt"
@@ -941,14 +884,6 @@ msgstr "Kołowy gradient"
 msgid "Close shape"
 msgstr "Zamknij"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Poziomy gradient"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Pionowy gradient"
-
 msgid "Insert here"
 msgstr "Wstaw tutaj"
 
@@ -978,17 +913,91 @@ msgstr "Bez wypełnienia"
 msgid "Rectangle background"
 msgstr "Domyślne tło"
 
-msgid "Continue"
+msgid "Edit"
 msgstr ""
 
-msgid "The area seems poorly delimited, or is very complex."
+msgid "Flip"
 msgstr ""
 
-msgid "This algorithm may not be able to manage the wanted area."
+msgid "Apply"
+msgstr "Zastosuj"
+
+msgid "More options"
+msgstr "Więcej opcji"
+
+msgid "Select a filter…"
+msgstr "Wybierz filtr…"
+
+msgid "Saturation"
+msgstr "Nasycenie"
+
+msgid "Blur radius"
+msgstr "Stopień rozmycia"
+
+msgid "Transparency"
+msgstr "Przeźroczystość"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Nasycenie"
+
+msgid "Pixelisation"
+msgstr "Pikselizacja"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Przeźroczystość"
+
+msgid "Invert colors"
+msgstr "Odwrócenie koloru"
+
+msgid "Horizontal blur"
+msgstr "Rozmycie poziome"
+
+msgid "Vertical blur"
+msgstr "Rozmycie pionowe"
+
+msgid "Angle (degrees)"
+msgstr "Kąt (stopnie)"
+
+msgid "Angle"
+msgstr "Kąt"
+
+msgid "Rotate left"
+msgstr "Obróć w lewo"
+
+msgid "Rotate right"
+msgstr "Obróć w prawo"
+
+msgid "Flip horizontally"
+msgstr "Odbij poziomo"
+
+msgid "Flip vertically"
+msgstr "Odbij pionowo"
+
+#, fuzzy
+msgid "Keep proportions"
+msgstr "Zachowaj proporcje"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
 msgstr ""
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
 msgstr ""
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Poziomy gradient"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Pionowy gradient"
 
 msgid "Curve"
 msgstr "Krzywa"
@@ -1046,6 +1055,9 @@ msgstr ""
 
 msgid "Rectangle selection"
 msgstr "Zaznaczanie (prostokątem)"
+
+msgid "Error: invalid values"
+msgstr ""
 
 msgid "Cropping the selection"
 msgstr "Przycinanie zaznaczenia"

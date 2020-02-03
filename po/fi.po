@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2019-12-10 22:40+0200\n"
 "Last-Translator: Kimmo Kujansuu <kimmo.kujansuu@yahoo.com>\n"
 "Language-Team: suomi <>\n"
@@ -64,19 +64,22 @@ msgstr ""
 "rajaaminen, kiertäminen, …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"Versio 0.6 on merkittävä päivitys, johon sisältyy useita tärkeitä muutoksia: "
-"suorakulmion valinta ja vapaan käden valinta ovat nyt erillisiä työkaluja, "
-"kuvia voidaan tuoda tai avata vetämällä ja pudottamalla, kääntävä työkalu "
-"tukee nyt mitä tahansa kulmaa ja käsittelee vaaka- tai pystysuuntaista "
-"kääntöä ja muotoilua tuottavat työkalut (ympyrä, suorakulmio, monikulmio "
-"jne.) on sulautettu yhdeksi yhtenäiseksi 'muoto' -työkaluksi."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -319,24 +322,6 @@ msgstr "Ohje valinnasta"
 msgid "About Drawing"
 msgstr "Tietoja ohjelmasta"
 
-msgid "Tool size"
-msgstr "Työkalun koko"
-
-msgid "No options"
-msgstr "Ei vaihtoehtoja"
-
-msgid "Preview"
-msgstr "Esikatselu"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr ""
-
-msgid "Back to the palette"
-msgstr "Takaisin palettiin"
-
-msgid "Use this editor by default"
-msgstr "Käytä tätä editoria oletuksena"
-
 msgid "Width"
 msgstr "Leveys"
 
@@ -354,15 +339,6 @@ msgstr "Avaa"
 
 msgid "100%"
 msgstr "100%"
-
-msgid "Images"
-msgstr "Kuvat"
-
-msgid "Tools"
-msgstr "Työkalut"
-
-msgid "Advanced options"
-msgstr "Edistyneet asetukset"
 
 msgid "Path"
 msgstr "Polku"
@@ -387,6 +363,15 @@ msgstr "Senttimetriä"
 
 msgid "inches"
 msgstr "Tuumaa"
+
+msgid "Images"
+msgstr "Kuvat"
+
+msgid "Tools"
+msgstr "Työkalut"
+
+msgid "Advanced options"
+msgstr "Edistyneet asetukset"
 
 msgid "Close selection"
 msgstr "Sulje valinta"
@@ -414,15 +399,6 @@ msgstr "Suodattimet"
 
 msgid "Open As New Image"
 msgstr "Avaa uutena kuvana"
-
-msgid "Edit"
-msgstr "Muokkaa"
-
-msgid "Flip"
-msgstr "Peilaa"
-
-msgid "More actions"
-msgstr "Lisää toimintoja"
 
 msgid "Keyboard"
 msgstr "Näppäimistö"
@@ -488,11 +464,11 @@ msgstr "Navigaatio"
 msgid "Toggle the preview"
 msgstr "Vaihda esikatseluun"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
-
 msgid "Troubleshoot selection"
 msgstr "Vianmääritys"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
 
 msgid "Cancel"
 msgstr "Peru"
@@ -748,6 +724,9 @@ msgstr "Työkalun lataus epäonnistui: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "Muutokset tulevat voimaan seuraavassa uudessa ikkunassa."
 
+msgid "No options"
+msgstr "Ei vaihtoehtoja"
+
 msgid "Opened images"
 msgstr "Avatut kuvat"
 
@@ -806,6 +785,36 @@ msgstr "Tuo kuva"
 msgid "Required tool is not available"
 msgstr "Koko näytön tila on nyt saatavana."
 
+msgid "Continue"
+msgstr "Jatka"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Alue näyttää huonosti rajatulta tai erittäin monimutkaiselta."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Tämä algoritmi ei ehkä pysty hallitsemaan haluttua aluetta."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Haluatko keskeyttää toiminnan tai antaa työkalun taistella?"
+
+msgid "Tool size"
+msgstr "Työkalun koko"
+
+msgid "Preview"
+msgstr "Esikatselu"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+msgid "Back to the palette"
+msgstr "Takaisin palettiin"
+
+msgid "Use this editor by default"
+msgstr "Käytä tätä editoria oletuksena"
+
+msgid "More actions"
+msgstr "Lisää toimintoja"
+
 #, fuzzy
 msgid "Line shape"
 msgstr "Lyijykynän muoto"
@@ -822,44 +831,6 @@ msgstr "Käytä viivoja"
 
 msgid "Arrow"
 msgstr "Nuoli"
-
-msgid "Apply"
-msgstr "Käytä"
-
-msgid "More options"
-msgstr "Lisää vaihtoehtoja"
-
-msgid "Select a filter…"
-msgstr "Valitse suodatin…"
-
-msgid "Saturation"
-msgstr "Kylläisyys"
-
-msgid "Blur radius"
-msgstr "Hämärrä säde"
-
-msgid "Transparency"
-msgstr "Läpinäkyvyys"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Kylläisyys"
-
-msgid "Pixelisation"
-msgstr "Pikselöitymistä"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Läpinäkyvyys"
-
-msgid "Invert colors"
-msgstr "Käännä värit"
-
-msgid "Horizontal blur"
-msgstr "Vaaka hämärrys"
-
-msgid "Vertical blur"
-msgstr "Pystysuora hämärrys"
 
 msgid "Color gradient"
 msgstr "värikaltevuus"
@@ -878,40 +849,6 @@ msgstr "Lehtileike"
 
 msgid "Thin"
 msgstr "Ohut"
-
-msgid "Angle (degrees)"
-msgstr "Kulma (astetta)"
-
-msgid "Angle"
-msgstr "Kulma"
-
-msgid "Rotate left"
-msgstr "Kierrä vasemmalle"
-
-msgid "Rotate right"
-msgstr "Kierrä oikealle"
-
-msgid "Flip horizontally"
-msgstr "Peilaa vaaka suunnassa"
-
-msgid "Flip vertically"
-msgstr "Peilaa pystysuunnassa"
-
-#, fuzzy
-msgid "Keep proportions"
-msgstr "Säilytä aina mittasuhteet"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr ""
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr ""
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr ""
 
 msgid "Rectangle"
 msgstr "Suorakulmio"
@@ -954,14 +891,6 @@ msgstr "Säteinen liukuväri"
 msgid "Close shape"
 msgstr "Sulje muoto"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Vaakasuuntainen liukuväri"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Pystysuora liukuväri"
-
 msgid "Insert here"
 msgstr "Lisää tähän"
 
@@ -991,17 +920,91 @@ msgstr "Tyhjä ääriviiva"
 msgid "Rectangle background"
 msgstr "Oletustausta"
 
-msgid "Continue"
-msgstr "Jatka"
+msgid "Edit"
+msgstr "Muokkaa"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Alue näyttää huonosti rajatulta tai erittäin monimutkaiselta."
+msgid "Flip"
+msgstr "Peilaa"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Tämä algoritmi ei ehkä pysty hallitsemaan haluttua aluetta."
+msgid "Apply"
+msgstr "Käytä"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Haluatko keskeyttää toiminnan tai antaa työkalun taistella?"
+msgid "More options"
+msgstr "Lisää vaihtoehtoja"
+
+msgid "Select a filter…"
+msgstr "Valitse suodatin…"
+
+msgid "Saturation"
+msgstr "Kylläisyys"
+
+msgid "Blur radius"
+msgstr "Hämärrä säde"
+
+msgid "Transparency"
+msgstr "Läpinäkyvyys"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Kylläisyys"
+
+msgid "Pixelisation"
+msgstr "Pikselöitymistä"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Läpinäkyvyys"
+
+msgid "Invert colors"
+msgstr "Käännä värit"
+
+msgid "Horizontal blur"
+msgstr "Vaaka hämärrys"
+
+msgid "Vertical blur"
+msgstr "Pystysuora hämärrys"
+
+msgid "Angle (degrees)"
+msgstr "Kulma (astetta)"
+
+msgid "Angle"
+msgstr "Kulma"
+
+msgid "Rotate left"
+msgstr "Kierrä vasemmalle"
+
+msgid "Rotate right"
+msgstr "Kierrä oikealle"
+
+msgid "Flip horizontally"
+msgstr "Peilaa vaaka suunnassa"
+
+msgid "Flip vertically"
+msgstr "Peilaa pystysuunnassa"
+
+#, fuzzy
+msgid "Keep proportions"
+msgstr "Säilytä aina mittasuhteet"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr ""
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr ""
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr ""
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Vaakasuuntainen liukuväri"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Pystysuora liukuväri"
 
 msgid "Curve"
 msgstr "Käyrä"
@@ -1060,6 +1063,9 @@ msgstr "Valitse alue tai napsauta hiiren kakkospainikkeella alustaa"
 msgid "Rectangle selection"
 msgstr "Suorakulmion valinta"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Rajaa valintaan"
 
@@ -1080,6 +1086,22 @@ msgstr "Valinnan skaalaaminen"
 
 msgid "Scaling the canvas"
 msgstr "Alustan skaalaaminen"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "Versio 0.6 on merkittävä päivitys, johon sisältyy useita tärkeitä "
+#~ "muutoksia: suorakulmion valinta ja vapaan käden valinta ovat nyt "
+#~ "erillisiä työkaluja, kuvia voidaan tuoda tai avata vetämällä ja "
+#~ "pudottamalla, kääntävä työkalu tukee nyt mitä tahansa kulmaa ja "
+#~ "käsittelee vaaka- tai pystysuuntaista kääntöä ja muotoilua tuottavat "
+#~ "työkalut (ympyrä, suorakulmio, monikulmio jne.) on sulautettu yhdeksi "
+#~ "yhtenäiseksi 'muoto' -työkaluksi."
 
 #~ msgid "Apply a filter"
 #~ msgstr "Hyväksy suodatin"

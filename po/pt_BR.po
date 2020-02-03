@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
 "Last-Translator: Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
@@ -63,12 +63,21 @@ msgstr ""
 "rotacionar, …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
+msgstr ""
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
 msgstr ""
 
 msgid ""
@@ -312,24 +321,6 @@ msgstr "Ajuda sobre seleção"
 msgid "About Drawing"
 msgstr "Sobre o drawing"
 
-msgid "Tool size"
-msgstr "Ferramenta de tamanho"
-
-msgid "No options"
-msgstr "Sem opções"
-
-msgid "Preview"
-msgstr "Previsualizar"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr ""
-
-msgid "Back to the palette"
-msgstr "Voltar para a paleta"
-
-msgid "Use this editor by default"
-msgstr "Usar esse editor por padrão"
-
 msgid "Width"
 msgstr "Largura"
 
@@ -349,15 +340,6 @@ msgstr "Abrir"
 
 msgid "100%"
 msgstr ""
-
-msgid "Images"
-msgstr "Imagens"
-
-msgid "Tools"
-msgstr "Ferramentas"
-
-msgid "Advanced options"
-msgstr "Opções avançadas"
 
 msgid "Path"
 msgstr "Caminho"
@@ -383,6 +365,15 @@ msgstr "Centímetros"
 
 msgid "inches"
 msgstr "Polegadas"
+
+msgid "Images"
+msgstr "Imagens"
+
+msgid "Tools"
+msgstr "Ferramentas"
+
+msgid "Advanced options"
+msgstr "Opções avançadas"
 
 #, fuzzy
 msgid "Close selection"
@@ -411,16 +402,6 @@ msgstr "Filtros"
 
 msgid "Open As New Image"
 msgstr "Abrir como uma nova imagem"
-
-msgid "Edit"
-msgstr "Editar"
-
-msgid "Flip"
-msgstr "Virar"
-
-#, fuzzy
-msgid "More actions"
-msgstr "Mais ações"
 
 msgid "Keyboard"
 msgstr ""
@@ -490,11 +471,11 @@ msgstr "Navegação"
 msgid "Toggle the preview"
 msgstr "Alternar a pre visualização"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
-
 msgid "Troubleshoot selection"
 msgstr "Resolver problemas de seleção"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -751,6 +732,9 @@ msgstr "Falha ao carregar a ferramenta: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
+msgid "No options"
+msgstr "Sem opções"
+
 msgid "Opened images"
 msgstr "Imagens abertas"
 
@@ -808,6 +792,37 @@ msgstr "Importar uma imagem"
 msgid "Required tool is not available"
 msgstr ""
 
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Essa area parece mal delimitada, ou e muito complexa."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Esse algoritmo pode não ser capaz de gerir a area desejada."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Voce deseja cancelar essa operacao, ou deixar a ferramenta tentar ?"
+
+msgid "Tool size"
+msgstr "Ferramenta de tamanho"
+
+msgid "Preview"
+msgstr "Previsualizar"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+msgid "Back to the palette"
+msgstr "Voltar para a paleta"
+
+msgid "Use this editor by default"
+msgstr "Usar esse editor por padrão"
+
+#, fuzzy
+msgid "More actions"
+msgstr "Mais ações"
+
 #, fuzzy
 msgid "Line shape"
 msgstr "Forma"
@@ -824,6 +839,103 @@ msgstr "Usar traços"
 
 msgid "Arrow"
 msgstr "Flecha"
+
+msgid "Color gradient"
+msgstr "Gradiente de cor"
+
+msgid "Behavior"
+msgstr "Comportamento"
+
+msgid "Encircle and fill"
+msgstr "Cercar e preencher"
+
+msgid "Erase and replace"
+msgstr "Apagar e substituir"
+
+msgid "Clipping"
+msgstr "Recorte"
+
+msgid "Thin"
+msgstr "Fino"
+
+msgid "Rectangle"
+msgstr "Retângulo"
+
+#, fuzzy
+msgid "Rounded rectangle"
+msgstr "Retângulo"
+
+msgid "Oval"
+msgstr "Oval"
+
+msgid "Polygon"
+msgstr "Polígono"
+
+msgid "Free shape"
+msgstr "Forma livre"
+
+msgid "Circle"
+msgstr "Circulo"
+
+msgid "Empty outline"
+msgstr ""
+
+msgid "Main color"
+msgstr "Cor primária"
+
+#. if state_as_string == 'secondary':
+msgid "Secondary color"
+msgstr "Cor secundária"
+
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Borrar horizontalmente"
+
+#, fuzzy
+msgid "Vertical gradient"
+msgstr "Borrar verticalmente"
+
+#, fuzzy
+msgid "Radial gradient"
+msgstr "Gradiente de cor"
+
+#, fuzzy
+msgid "Close shape"
+msgstr "Nova imagem"
+
+msgid "Insert here"
+msgstr "Inserir aqui"
+
+msgid "Font"
+msgstr "Fonte"
+
+msgid "Italic"
+msgstr "Itálico"
+
+msgid "Bold"
+msgstr "Negrito"
+
+msgid "Background"
+msgstr "Fundo"
+
+msgid "No background"
+msgstr "Sem fundo"
+
+msgid "Shadow"
+msgstr "Sombra"
+
+msgid "Outline"
+msgstr ""
+
+#, fuzzy
+msgid "Rectangle background"
+msgstr "Fundo padrão"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Flip"
+msgstr "Virar"
 
 msgid "Apply"
 msgstr "Aplicar"
@@ -871,24 +983,6 @@ msgstr "Borrar horizontalmente"
 msgid "Vertical blur"
 msgstr "Borrar verticalmente"
 
-msgid "Color gradient"
-msgstr "Gradiente de cor"
-
-msgid "Behavior"
-msgstr "Comportamento"
-
-msgid "Encircle and fill"
-msgstr "Cercar e preencher"
-
-msgid "Erase and replace"
-msgstr "Apagar e substituir"
-
-msgid "Clipping"
-msgstr "Recorte"
-
-msgid "Thin"
-msgstr "Fino"
-
 msgid "Angle (degrees)"
 msgstr "Ângulo (graus)"
 
@@ -923,51 +1017,6 @@ msgstr ""
 msgid "Never"
 msgstr ""
 
-msgid "Rectangle"
-msgstr "Retângulo"
-
-#, fuzzy
-msgid "Rounded rectangle"
-msgstr "Retângulo"
-
-msgid "Oval"
-msgstr "Oval"
-
-msgid "Polygon"
-msgstr "Polígono"
-
-msgid "Free shape"
-msgstr "Forma livre"
-
-msgid "Circle"
-msgstr "Circulo"
-
-msgid "Empty outline"
-msgstr ""
-
-msgid "Main color"
-msgstr "Cor primária"
-
-#. if state_as_string == 'secondary':
-msgid "Secondary color"
-msgstr "Cor secundária"
-
-#, fuzzy
-msgid "Horizontal gradient"
-msgstr "Borrar horizontalmente"
-
-#, fuzzy
-msgid "Vertical gradient"
-msgstr "Borrar verticalmente"
-
-#, fuzzy
-msgid "Radial gradient"
-msgstr "Gradiente de cor"
-
-#, fuzzy
-msgid "Close shape"
-msgstr "Nova imagem"
-
 #, fuzzy
 msgid "Horizontal deformation"
 msgstr "Borrar horizontalmente"
@@ -975,46 +1024,6 @@ msgstr "Borrar horizontalmente"
 #, fuzzy
 msgid "Vertical deformation"
 msgstr "Borrar verticalmente"
-
-msgid "Insert here"
-msgstr "Inserir aqui"
-
-msgid "Font"
-msgstr "Fonte"
-
-msgid "Italic"
-msgstr "Itálico"
-
-msgid "Bold"
-msgstr "Negrito"
-
-msgid "Background"
-msgstr "Fundo"
-
-msgid "No background"
-msgstr "Sem fundo"
-
-msgid "Shadow"
-msgstr "Sombra"
-
-msgid "Outline"
-msgstr ""
-
-#, fuzzy
-msgid "Rectangle background"
-msgstr "Fundo padrão"
-
-msgid "Continue"
-msgstr "Continuar"
-
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Essa area parece mal delimitada, ou e muito complexa."
-
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Esse algoritmo pode não ser capaz de gerir a area desejada."
-
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Voce deseja cancelar essa operacao, ou deixar a ferramenta tentar ?"
 
 msgid "Curve"
 msgstr "Curva"
@@ -1073,6 +1082,9 @@ msgstr "Selecione uma área ou botão direito na tela"
 
 msgid "Rectangle selection"
 msgstr "Seleção em retângulo"
+
+msgid "Error: invalid values"
+msgstr ""
 
 msgid "Cropping the selection"
 msgstr "Recortar a seleção"

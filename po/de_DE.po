@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2020-02-03 16:08+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -63,20 +63,22 @@ msgstr ""
 "Texteingabe, Größenänderung, Zuschneiden, Drehen, usw.…"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"Version 0.6 ist ein großes Update mit mehreren wichtigen Änderungen: Die "
-"Rechteck-Auswahl und die Freihand-Auswahl sind nun eigene Werkzeuge, Bilder "
-"können durch drag-and-drop (ziehen und ablegen) importiert werden und das "
-"Werkzeug 'Drehen' unterstützt nun jeden Winkel sowie horizontales und "
-"vertikales Drehen. Weiterhin wurden die verschiedenen Werkzeuge, die Formen "
-"(Kreis, Rechteck, Vieleck, …) erstellen, zusammengefasst zu einem einzelnen "
-"Werkzeug namens \"Form\"."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -316,24 +318,6 @@ msgstr "Hilfe zur Auswahl"
 msgid "About Drawing"
 msgstr "Info zu Zeichnung"
 
-msgid "Tool size"
-msgstr "Werkzeuggröße"
-
-msgid "No options"
-msgstr "Keine Optionen"
-
-msgid "Preview"
-msgstr "Vorschau"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr "Wie die Farbe auf die vorhandenen Pixel angewendet wird"
-
-msgid "Back to the palette"
-msgstr "Zurück zur Palette"
-
-msgid "Use this editor by default"
-msgstr "Diesen Farbwähler standardmäßig nutzen"
-
 msgid "Width"
 msgstr "Breite"
 
@@ -351,15 +335,6 @@ msgstr "Öffnen"
 
 msgid "100%"
 msgstr "100%"
-
-msgid "Images"
-msgstr "Bilder"
-
-msgid "Tools"
-msgstr "Werkzeuge"
-
-msgid "Advanced options"
-msgstr "Erweiterte Einstellungen"
 
 msgid "Path"
 msgstr "Pfad"
@@ -384,6 +359,15 @@ msgstr "Zentimeter"
 
 msgid "inches"
 msgstr "Zoll"
+
+msgid "Images"
+msgstr "Bilder"
+
+msgid "Tools"
+msgstr "Werkzeuge"
+
+msgid "Advanced options"
+msgstr "Erweiterte Einstellungen"
 
 msgid "Close selection"
 msgstr "Auswahl schließen"
@@ -411,15 +395,6 @@ msgstr "Filter"
 
 msgid "Open As New Image"
 msgstr "Als neues Bild öffnen"
-
-msgid "Edit"
-msgstr "Bearbeiten"
-
-msgid "Flip"
-msgstr "Spiegeln"
-
-msgid "More actions"
-msgstr "Weitere Aktionen"
 
 msgid "Keyboard"
 msgstr "Tastatur"
@@ -486,11 +461,11 @@ msgstr "Steuerung"
 msgid "Toggle the preview"
 msgstr "Vorschau umschalten"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Fehler beim Starten der Anwendung. Bitte diesen Fehler melden."
-
 msgid "Troubleshoot selection"
 msgstr "Problembehandlung bei der Auswahl"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Fehler beim Starten der Anwendung. Bitte diesen Fehler melden."
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -747,6 +722,9 @@ msgstr "Fehler beim Laden des Werkzeugs: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
 
+msgid "No options"
+msgstr "Keine Optionen"
+
 msgid "Opened images"
 msgstr "Geöffnete Bilder"
 
@@ -804,6 +782,40 @@ msgstr "Ein Bild importieren"
 msgid "Required tool is not available"
 msgstr "Benötigtes Werkzeug ist nicht verfügbar"
 
+msgid "Continue"
+msgstr "Weiter"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Der Bereich scheint schlecht abgegrenzt zu sein oder ist sehr komplex."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr ""
+"Dieser Algorithmus ist möglicherweise nicht in der Lage, den gewünschten "
+"Bereich zu erkennen."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+"Möchten Sie den Vorgang abbrechen oder soll das Werkzeug es trotzdem "
+"versuchen?"
+
+msgid "Tool size"
+msgstr "Werkzeuggröße"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr "Wie die Farbe auf die vorhandenen Pixel angewendet wird"
+
+msgid "Back to the palette"
+msgstr "Zurück zur Palette"
+
+msgid "Use this editor by default"
+msgstr "Diesen Farbwähler standardmäßig nutzen"
+
+msgid "More actions"
+msgstr "Weitere Aktionen"
+
 msgid "Line shape"
 msgstr "Linienform"
 
@@ -819,42 +831,6 @@ msgstr "Gestrichelt"
 
 msgid "Arrow"
 msgstr "Pfeil"
-
-msgid "Apply"
-msgstr "Anwenden"
-
-msgid "More options"
-msgstr "Weitere Optionen"
-
-msgid "Select a filter…"
-msgstr "Wählen Sie einen Filter…"
-
-msgid "Saturation"
-msgstr "Sättigung"
-
-msgid "Blur radius"
-msgstr "Unschärferadius"
-
-msgid "Transparency"
-msgstr "Transparenz"
-
-msgid "Change saturation"
-msgstr "Sättigung ändern"
-
-msgid "Pixelisation"
-msgstr "Verpixelung"
-
-msgid "Add transparency"
-msgstr "Transparenz hinzufügen"
-
-msgid "Invert colors"
-msgstr "Farben tauschen"
-
-msgid "Horizontal blur"
-msgstr "Horizontale Unschärfe"
-
-msgid "Vertical blur"
-msgstr "Vertikale Unschärfe"
 
 msgid "Color gradient"
 msgstr "Farbverlauf"
@@ -873,39 +849,6 @@ msgstr "Ausschnitt"
 
 msgid "Thin"
 msgstr "Dünn"
-
-msgid "Angle (degrees)"
-msgstr "Winkel (Grad)"
-
-msgid "Angle"
-msgstr "Winkel"
-
-msgid "Rotate left"
-msgstr "Nach links drehen"
-
-msgid "Rotate right"
-msgstr "Nach rechts drehen"
-
-msgid "Flip horizontally"
-msgstr "Horizontal spiegeln"
-
-msgid "Flip vertically"
-msgstr "Vertikal spiegeln"
-
-msgid "Keep proportions"
-msgstr "Verhältnisse beibehalten"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr "Immer"
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr "Beim Skalieren an den Ecken"
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr "Nie"
 
 msgid "Rectangle"
 msgstr "Rechteck"
@@ -947,12 +890,6 @@ msgstr "Radialer Farbverlauf"
 msgid "Close shape"
 msgstr "Form schließen"
 
-msgid "Horizontal deformation"
-msgstr "Horizontale Verformung"
-
-msgid "Vertical deformation"
-msgstr "Vertikale Verformung"
-
 msgid "Insert here"
 msgstr "Hier einfügen"
 
@@ -980,21 +917,86 @@ msgstr "Außenlinie"
 msgid "Rectangle background"
 msgstr "Rechteckiger Hintergrund"
 
-msgid "Continue"
-msgstr "Weiter"
+msgid "Edit"
+msgstr "Bearbeiten"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Der Bereich scheint schlecht abgegrenzt zu sein oder ist sehr komplex."
+msgid "Flip"
+msgstr "Spiegeln"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr ""
-"Dieser Algorithmus ist möglicherweise nicht in der Lage, den gewünschten "
-"Bereich zu erkennen."
+msgid "Apply"
+msgstr "Anwenden"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-"Möchten Sie den Vorgang abbrechen oder soll das Werkzeug es trotzdem "
-"versuchen?"
+msgid "More options"
+msgstr "Weitere Optionen"
+
+msgid "Select a filter…"
+msgstr "Wählen Sie einen Filter…"
+
+msgid "Saturation"
+msgstr "Sättigung"
+
+msgid "Blur radius"
+msgstr "Unschärferadius"
+
+msgid "Transparency"
+msgstr "Transparenz"
+
+msgid "Change saturation"
+msgstr "Sättigung ändern"
+
+msgid "Pixelisation"
+msgstr "Verpixelung"
+
+msgid "Add transparency"
+msgstr "Transparenz hinzufügen"
+
+msgid "Invert colors"
+msgstr "Farben tauschen"
+
+msgid "Horizontal blur"
+msgstr "Horizontale Unschärfe"
+
+msgid "Vertical blur"
+msgstr "Vertikale Unschärfe"
+
+msgid "Angle (degrees)"
+msgstr "Winkel (Grad)"
+
+msgid "Angle"
+msgstr "Winkel"
+
+msgid "Rotate left"
+msgstr "Nach links drehen"
+
+msgid "Rotate right"
+msgstr "Nach rechts drehen"
+
+msgid "Flip horizontally"
+msgstr "Horizontal spiegeln"
+
+msgid "Flip vertically"
+msgstr "Vertikal spiegeln"
+
+msgid "Keep proportions"
+msgstr "Verhältnisse beibehalten"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr "Immer"
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr "Beim Skalieren an den Ecken"
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr "Nie"
+
+msgid "Horizontal deformation"
+msgstr "Horizontale Verformung"
+
+msgid "Vertical deformation"
+msgstr "Vertikale Verformung"
 
 msgid "Curve"
 msgstr "Bogen"
@@ -1054,6 +1056,9 @@ msgstr "Bereich auswählen oder Rechtsklick auf die Leinwand"
 msgid "Rectangle selection"
 msgstr "Rechteckauswahl"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Auswahl zuschneiden"
 
@@ -1074,6 +1079,22 @@ msgstr "Auswahl skalieren"
 
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "Version 0.6 ist ein großes Update mit mehreren wichtigen Änderungen: Die "
+#~ "Rechteck-Auswahl und die Freihand-Auswahl sind nun eigene Werkzeuge, "
+#~ "Bilder können durch drag-and-drop (ziehen und ablegen) importiert werden "
+#~ "und das Werkzeug 'Drehen' unterstützt nun jeden Winkel sowie horizontales "
+#~ "und vertikales Drehen. Weiterhin wurden die verschiedenen Werkzeuge, die "
+#~ "Formen (Kreis, Rechteck, Vieleck, …) erstellen, zusammengefasst zu einem "
+#~ "einzelnen Werkzeug namens \"Form\"."
 
 #~ msgid "Apply a filter"
 #~ msgstr "Einen Filter anwenden"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2020-01-24 21:28+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -63,19 +63,22 @@ msgstr ""
 "teksta, mijenjanje veličine, rezanje, rotiranje, …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"Verzija 0.6 je značajna nadogradnja, s različitim važnim promjenama: "
-"pravokutni odabir i prostoručni odabir su sada različiti alati, slike se "
-"mogu uvesti ili otvoriti pomoću funkcije povuci-i-ispusti, alat „okretanje” "
-"sada podržava bilo koji kut i podržava vodoravno ili okomito preokretanje, a "
-"razni alati koji proizvode oblike (krug, pravokutnik, mnogokut, …) spojeni "
-"su u jedan koherentan alat „Oblik”."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -315,24 +318,6 @@ msgstr "Pomoć za odabir"
 msgid "About Drawing"
 msgstr "O programu Crtanje"
 
-msgid "Tool size"
-msgstr "Veličina alata"
-
-msgid "No options"
-msgstr "Bez opcija"
-
-msgid "Preview"
-msgstr "Pretpregled"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr "Način primjene boje na postojeće pikslove"
-
-msgid "Back to the palette"
-msgstr "Natrag na paletu"
-
-msgid "Use this editor by default"
-msgstr "Standardno koristi ovaj uređivač"
-
 msgid "Width"
 msgstr "Širina"
 
@@ -350,15 +335,6 @@ msgstr "Otvori"
 
 msgid "100%"
 msgstr "100 %"
-
-msgid "Images"
-msgstr "Slike"
-
-msgid "Tools"
-msgstr "Alati"
-
-msgid "Advanced options"
-msgstr "Napredne opcije"
 
 msgid "Path"
 msgstr "Staza"
@@ -383,6 +359,15 @@ msgstr "centimetara"
 
 msgid "inches"
 msgstr "inča"
+
+msgid "Images"
+msgstr "Slike"
+
+msgid "Tools"
+msgstr "Alati"
+
+msgid "Advanced options"
+msgstr "Napredne opcije"
 
 msgid "Close selection"
 msgstr "Zatvori odabir"
@@ -410,15 +395,6 @@ msgstr "Filtri"
 
 msgid "Open As New Image"
 msgstr "Otvori kao novu sliku"
-
-msgid "Edit"
-msgstr "Uredi"
-
-msgid "Flip"
-msgstr "Preokreni"
-
-msgid "More actions"
-msgstr "Daljnje radnje"
 
 msgid "Keyboard"
 msgstr "Tipkovnica"
@@ -484,11 +460,11 @@ msgstr "Navigacija"
 msgid "Toggle the preview"
 msgstr "Uključi/isključi pretpregled"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Greška pri pokretanju programa. Prijavi grešku."
-
 msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Greška pri pokretanju programa. Prijavi grešku."
 
 msgid "Cancel"
 msgstr "Odustani"
@@ -742,6 +718,9 @@ msgstr "Neuspjelo učitavanje alata: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 
+msgid "No options"
+msgstr "Bez opcija"
+
 msgid "Opened images"
 msgstr "Otvorene slike"
 
@@ -799,6 +778,38 @@ msgstr "Uvezi jednu sliku"
 msgid "Required tool is not available"
 msgstr "Potrebni alat nije dostupan"
 
+msgid "Continue"
+msgstr "Nastavi"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Čini se da je područje loše ograničeno ili je vrlo složeno."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Ovaj algoritam možda neće moći upravljati željenim područjem."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+"Želiš li prekinuti operaciju ili pustiti da se alat nastavi boriti sa "
+"zadatkom?"
+
+msgid "Tool size"
+msgstr "Veličina alata"
+
+msgid "Preview"
+msgstr "Pretpregled"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr "Način primjene boje na postojeće pikslove"
+
+msgid "Back to the palette"
+msgstr "Natrag na paletu"
+
+msgid "Use this editor by default"
+msgstr "Standardno koristi ovaj uređivač"
+
+msgid "More actions"
+msgstr "Daljnje radnje"
+
 msgid "Line shape"
 msgstr "Oblik crte"
 
@@ -814,44 +825,6 @@ msgstr "Koristi crtice"
 
 msgid "Arrow"
 msgstr "Strelica"
-
-msgid "Apply"
-msgstr "Primijeni"
-
-msgid "More options"
-msgstr "Daljnje opcije"
-
-msgid "Select a filter…"
-msgstr "Odaberi filtar …"
-
-msgid "Saturation"
-msgstr "Zasićenost"
-
-msgid "Blur radius"
-msgstr "Područje zamućivanja"
-
-msgid "Transparency"
-msgstr "Prozirnost"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Zasićenost"
-
-msgid "Pixelisation"
-msgstr "Pikselizacija"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Prozirnost"
-
-msgid "Invert colors"
-msgstr "Invertiraj boje"
-
-msgid "Horizontal blur"
-msgstr "Vodoravno zamućivanje"
-
-msgid "Vertical blur"
-msgstr "Okomito zamućivanje"
 
 msgid "Color gradient"
 msgstr "Prijelaz boje"
@@ -870,39 +843,6 @@ msgstr "Rezanje"
 
 msgid "Thin"
 msgstr "Tanko"
-
-msgid "Angle (degrees)"
-msgstr "Kut (u stupnjevima)"
-
-msgid "Angle"
-msgstr "Kut"
-
-msgid "Rotate left"
-msgstr "Okreni lijevo"
-
-msgid "Rotate right"
-msgstr "Okreni desno"
-
-msgid "Flip horizontally"
-msgstr "Preokreni vodoravno"
-
-msgid "Flip vertically"
-msgstr "Preokreni okomito"
-
-msgid "Keep proportions"
-msgstr "Zadrži omjere"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr "Uvijek"
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr "Pri skaliranju iz kutova"
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr "Nikada"
 
 msgid "Rectangle"
 msgstr "Pravokutnik"
@@ -944,14 +884,6 @@ msgstr "Kružni prijelaz"
 msgid "Close shape"
 msgstr "Zatvori oblik"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Vodoravan prijelaz"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Okomit prijelaz"
-
 msgid "Insert here"
 msgstr "Umetni ovdje"
 
@@ -979,19 +911,90 @@ msgstr "Kontura"
 msgid "Rectangle background"
 msgstr "Pravokutna pozadina"
 
-msgid "Continue"
-msgstr "Nastavi"
+msgid "Edit"
+msgstr "Uredi"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Čini se da je područje loše ograničeno ili je vrlo složeno."
+msgid "Flip"
+msgstr "Preokreni"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Ovaj algoritam možda neće moći upravljati željenim područjem."
+msgid "Apply"
+msgstr "Primijeni"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-"Želiš li prekinuti operaciju ili pustiti da se alat nastavi boriti sa "
-"zadatkom?"
+msgid "More options"
+msgstr "Daljnje opcije"
+
+msgid "Select a filter…"
+msgstr "Odaberi filtar …"
+
+msgid "Saturation"
+msgstr "Zasićenost"
+
+msgid "Blur radius"
+msgstr "Područje zamućivanja"
+
+msgid "Transparency"
+msgstr "Prozirnost"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Zasićenost"
+
+msgid "Pixelisation"
+msgstr "Pikselizacija"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Prozirnost"
+
+msgid "Invert colors"
+msgstr "Invertiraj boje"
+
+msgid "Horizontal blur"
+msgstr "Vodoravno zamućivanje"
+
+msgid "Vertical blur"
+msgstr "Okomito zamućivanje"
+
+msgid "Angle (degrees)"
+msgstr "Kut (u stupnjevima)"
+
+msgid "Angle"
+msgstr "Kut"
+
+msgid "Rotate left"
+msgstr "Okreni lijevo"
+
+msgid "Rotate right"
+msgstr "Okreni desno"
+
+msgid "Flip horizontally"
+msgstr "Preokreni vodoravno"
+
+msgid "Flip vertically"
+msgstr "Preokreni okomito"
+
+msgid "Keep proportions"
+msgstr "Zadrži omjere"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr "Uvijek"
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr "Pri skaliranju iz kutova"
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr "Nikada"
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Vodoravan prijelaz"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Okomit prijelaz"
 
 msgid "Curve"
 msgstr "Krivulja"
@@ -1050,6 +1053,9 @@ msgstr "Odaberi područje ili klikni desnom tipkom na platno"
 msgid "Rectangle selection"
 msgstr "Pravokutan odabir"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Rezanje odabira"
 
@@ -1070,6 +1076,21 @@ msgstr "Skaliranje odabira"
 
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "Verzija 0.6 je značajna nadogradnja, s različitim važnim promjenama: "
+#~ "pravokutni odabir i prostoručni odabir su sada različiti alati, slike se "
+#~ "mogu uvesti ili otvoriti pomoću funkcije povuci-i-ispusti, alat "
+#~ "„okretanje” sada podržava bilo koji kut i podržava vodoravno ili okomito "
+#~ "preokretanje, a razni alati koji proizvode oblike (krug, pravokutnik, "
+#~ "mnogokut, …) spojeni su u jedan koherentan alat „Oblik”."
 
 #~ msgid "Apply a filter"
 #~ msgstr "Primijeni filtar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2020-01-19 06:23+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -62,19 +62,22 @@ msgstr ""
 "dra/…), textinfogning, storleksändring, beskärning, rotation, …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"Version 0,6 är en stor uppdatering, med diverse viktiga förändringar. "
-"Rektangelmarkering och frihandsmarkering är nu distinkta verktyg, bilder kan "
-"importeras eller öppnas med dra-och-släpp, rotationsverktyget stödjer nu "
-"alla vinklar och hanterar horisontell eller vertikal vändning. Olika verktyg "
-"som producerar former (cirkel, rektangel, polygon,…) har slagits samman till "
-"ett enda sammanhängande figurverktyg."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -314,24 +317,6 @@ msgstr "Hjälp om markering"
 msgid "About Drawing"
 msgstr "Om Drawing"
 
-msgid "Tool size"
-msgstr "Verktygsstorlek"
-
-msgid "No options"
-msgstr "Inga alternativ"
-
-msgid "Preview"
-msgstr "Förhandsgranska"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr "Hur färgen tillämpas på befintliga pixlar"
-
-msgid "Back to the palette"
-msgstr "Tillbaka till paletten"
-
-msgid "Use this editor by default"
-msgstr "Använd denna redigerare som standard"
-
 msgid "Width"
 msgstr "Bredd"
 
@@ -349,15 +334,6 @@ msgstr "Öppna"
 
 msgid "100%"
 msgstr "100%"
-
-msgid "Images"
-msgstr "Bilder"
-
-msgid "Tools"
-msgstr "Verktyg"
-
-msgid "Advanced options"
-msgstr "Avancerade alternativ"
 
 msgid "Path"
 msgstr "Sökväg"
@@ -382,6 +358,15 @@ msgstr "centimeter"
 
 msgid "inches"
 msgstr "tum"
+
+msgid "Images"
+msgstr "Bilder"
+
+msgid "Tools"
+msgstr "Verktyg"
+
+msgid "Advanced options"
+msgstr "Avancerade alternativ"
 
 msgid "Close selection"
 msgstr "Stäng markering"
@@ -409,15 +394,6 @@ msgstr "Filter"
 
 msgid "Open As New Image"
 msgstr "Öppna som ny bild"
-
-msgid "Edit"
-msgstr "Redigera"
-
-msgid "Flip"
-msgstr "Vänd"
-
-msgid "More actions"
-msgstr "Fler åtgärder"
 
 msgid "Keyboard"
 msgstr "Tangentbord"
@@ -483,11 +459,11 @@ msgstr "Navigation"
 msgid "Toggle the preview"
 msgstr "Visa/Dölj förhandsgranskningen"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
-
 msgid "Troubleshoot selection"
 msgstr "Felsök markering"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
 
 msgid "Cancel"
 msgstr "Avbryt"
@@ -741,6 +717,9 @@ msgstr "Kunde inte läsa in verktyg: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "Ändringarna tillämpas i nästa nya fönster."
 
+msgid "No options"
+msgstr "Inga alternativ"
+
 msgid "Opened images"
 msgstr "Öppna bilder"
 
@@ -798,6 +777,36 @@ msgstr "Importera en bild"
 msgid "Required tool is not available"
 msgstr "Det erforderliga verktyget är inte tillgängligt"
 
+msgid "Continue"
+msgstr "Fortsätt"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Området verkar dåligt avgränsat, eller är väldigt komplext."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Denna algoritm kanske inte kan hantera det önskade området."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
+
+msgid "Tool size"
+msgstr "Verktygsstorlek"
+
+msgid "Preview"
+msgstr "Förhandsgranska"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr "Hur färgen tillämpas på befintliga pixlar"
+
+msgid "Back to the palette"
+msgstr "Tillbaka till paletten"
+
+msgid "Use this editor by default"
+msgstr "Använd denna redigerare som standard"
+
+msgid "More actions"
+msgstr "Fler åtgärder"
+
 msgid "Line shape"
 msgstr "Linjeform"
 
@@ -813,44 +822,6 @@ msgstr "Streckad"
 
 msgid "Arrow"
 msgstr "Pil"
-
-msgid "Apply"
-msgstr "Tillämpa"
-
-msgid "More options"
-msgstr "Fler alternativ"
-
-msgid "Select a filter…"
-msgstr "Välj ett filter…"
-
-msgid "Saturation"
-msgstr "Mättnad"
-
-msgid "Blur radius"
-msgstr "Oskärperadie"
-
-msgid "Transparency"
-msgstr "Transparens"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Mättnad"
-
-msgid "Pixelisation"
-msgstr "Pixelisering"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Transparens"
-
-msgid "Invert colors"
-msgstr "Invertera färger"
-
-msgid "Horizontal blur"
-msgstr "Horisontell oskärpa"
-
-msgid "Vertical blur"
-msgstr "Vertikal oskärpa"
 
 msgid "Color gradient"
 msgstr "Färgtoning"
@@ -869,39 +840,6 @@ msgstr "Klippning"
 
 msgid "Thin"
 msgstr "Tunn"
-
-msgid "Angle (degrees)"
-msgstr "Vinkel (grader)"
-
-msgid "Angle"
-msgstr "Vinkel"
-
-msgid "Rotate left"
-msgstr "Rotera vänster"
-
-msgid "Rotate right"
-msgstr "Rotera höger"
-
-msgid "Flip horizontally"
-msgstr "Vänd horisontellt"
-
-msgid "Flip vertically"
-msgstr "Vänd vertikalt"
-
-msgid "Keep proportions"
-msgstr "Bevara proportioner"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr "Alltid"
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr "Vid skalning från hörnen"
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr "Aldrig"
 
 msgid "Rectangle"
 msgstr "Rektangel"
@@ -944,14 +882,6 @@ msgstr "Radiell toning"
 msgid "Close shape"
 msgstr "Stäng figur"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Horisontell toning"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Vertikal toning"
-
 msgid "Insert here"
 msgstr "Infoga här"
 
@@ -979,17 +909,90 @@ msgstr "Kontur"
 msgid "Rectangle background"
 msgstr "Rektangelbakgrund"
 
-msgid "Continue"
-msgstr "Fortsätt"
+msgid "Edit"
+msgstr "Redigera"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Området verkar dåligt avgränsat, eller är väldigt komplext."
+msgid "Flip"
+msgstr "Vänd"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Denna algoritm kanske inte kan hantera det önskade området."
+msgid "Apply"
+msgstr "Tillämpa"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
+msgid "More options"
+msgstr "Fler alternativ"
+
+msgid "Select a filter…"
+msgstr "Välj ett filter…"
+
+msgid "Saturation"
+msgstr "Mättnad"
+
+msgid "Blur radius"
+msgstr "Oskärperadie"
+
+msgid "Transparency"
+msgstr "Transparens"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Mättnad"
+
+msgid "Pixelisation"
+msgstr "Pixelisering"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Transparens"
+
+msgid "Invert colors"
+msgstr "Invertera färger"
+
+msgid "Horizontal blur"
+msgstr "Horisontell oskärpa"
+
+msgid "Vertical blur"
+msgstr "Vertikal oskärpa"
+
+msgid "Angle (degrees)"
+msgstr "Vinkel (grader)"
+
+msgid "Angle"
+msgstr "Vinkel"
+
+msgid "Rotate left"
+msgstr "Rotera vänster"
+
+msgid "Rotate right"
+msgstr "Rotera höger"
+
+msgid "Flip horizontally"
+msgstr "Vänd horisontellt"
+
+msgid "Flip vertically"
+msgstr "Vänd vertikalt"
+
+msgid "Keep proportions"
+msgstr "Bevara proportioner"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr "Alltid"
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr "Vid skalning från hörnen"
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr "Aldrig"
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Horisontell toning"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Vertikal toning"
 
 msgid "Curve"
 msgstr "Kurva"
@@ -1048,6 +1051,9 @@ msgstr "Markera ett område eller högerklicka på arbetsytan"
 msgid "Rectangle selection"
 msgstr "Rektangelmarkering"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Beskär markeringen"
 
@@ -1068,6 +1074,21 @@ msgstr "Skalar markering"
 
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "Version 0,6 är en stor uppdatering, med diverse viktiga förändringar. "
+#~ "Rektangelmarkering och frihandsmarkering är nu distinkta verktyg, bilder "
+#~ "kan importeras eller öppnas med dra-och-släpp, rotationsverktyget stödjer "
+#~ "nu alla vinklar och hanterar horisontell eller vertikal vändning. Olika "
+#~ "verktyg som producerar former (cirkel, rektangel, polygon,…) har slagits "
+#~ "samman till ett enda sammanhängande figurverktyg."
 
 #~ msgid "Apply a filter"
 #~ msgstr "Tillämpa ett filter"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 23:12+0100\n"
+"POT-Creation-Date: 2020-02-03 21:23+0100\n"
 "PO-Revision-Date: 2020-01-19 21:50+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -63,18 +63,22 @@ msgstr ""
 "(rechthoek, cirkel, polygoon, …), tekst, herschaling, bijsnijden, draaien, …"
 
 msgid ""
-"Version 0.6 is a major update, with various important changes: rectangle "
-"selection and freehand selection are now distinct tools, images can be "
-"imported or opened using drag-and-drop, the 'rotate' tool now supports any "
-"angle and handles horizontal or vertical flipping, and various tools "
-"producing shapes (circle, rectangle, polygon, …) have been merged into a "
-"single coherent 'shape' tool."
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
 msgstr ""
-"Versie 0.6 is een grote update, met veel veranderingen: rechthoekselectie en "
-"vrije selectie zijn nu losse gereedschappen, afbeeldingen kunnen worden "
-"geïmporteerd of geopend middels slepen-en-neerzetten, het draaigereedschap "
-"ondersteunt nu elke hoek en horizontaal en verticaal spiegelen, en "
-"verschillende gereedschappen zijn samengevoegd onder 'vorm'."
+
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -315,24 +319,6 @@ msgstr "Hulp omtrent selecties"
 msgid "About Drawing"
 msgstr "Over Drawing"
 
-msgid "Tool size"
-msgstr "Gereedschapsgrootte"
-
-msgid "No options"
-msgstr "Geen opties"
-
-msgid "Preview"
-msgstr "Voorbeeld"
-
-msgid "How the color will be applied to the existing pixels"
-msgstr "Hoe de kleur wordt toegepast op aanwezige pixels"
-
-msgid "Back to the palette"
-msgstr "Terug naar het palet"
-
-msgid "Use this editor by default"
-msgstr "Gebruik standaard deze bewerker"
-
 msgid "Width"
 msgstr "Breedte"
 
@@ -350,15 +336,6 @@ msgstr "Openen"
 
 msgid "100%"
 msgstr "100%"
-
-msgid "Images"
-msgstr "Afbeeldingen"
-
-msgid "Tools"
-msgstr "Gereedschappen"
-
-msgid "Advanced options"
-msgstr "Geavanceerde opties"
 
 msgid "Path"
 msgstr "Pad"
@@ -383,6 +360,15 @@ msgstr "centimeter"
 
 msgid "inches"
 msgstr "inch"
+
+msgid "Images"
+msgstr "Afbeeldingen"
+
+msgid "Tools"
+msgstr "Gereedschappen"
+
+msgid "Advanced options"
+msgstr "Geavanceerde opties"
 
 msgid "Close selection"
 msgstr "Selectie sluiten"
@@ -410,15 +396,6 @@ msgstr "Filters"
 
 msgid "Open As New Image"
 msgstr "Openen als nieuwe afbeelding"
-
-msgid "Edit"
-msgstr "Bewerken"
-
-msgid "Flip"
-msgstr "Omdraaien"
-
-msgid "More actions"
-msgstr "Meer acties"
 
 msgid "Keyboard"
 msgstr "Toetsenbord"
@@ -484,11 +461,11 @@ msgstr "Navigatie"
 msgid "Toggle the preview"
 msgstr "Voorbeeld tonen/verbergen"
 
-msgid "Error starting the application, please report this bug."
-msgstr "Kan de toepassing niet starten. Meld deze bug."
-
 msgid "Troubleshoot selection"
 msgstr "Problemen oplossen met selecties"
+
+msgid "Error starting the application, please report this bug."
+msgstr "Kan de toepassing niet starten. Meld deze bug."
 
 msgid "Cancel"
 msgstr "Annuleren"
@@ -741,6 +718,9 @@ msgstr "Kan gereedschap niet laden: %s"
 msgid "Modifications will take effect in the next new window."
 msgstr "De wijzigingen worden toegepast na een herstart."
 
+msgid "No options"
+msgstr "Geen opties"
+
 msgid "Opened images"
 msgstr "Geopende afbeeldingen"
 
@@ -798,6 +778,37 @@ msgstr "Afbeelding importeren"
 msgid "Required tool is not available"
 msgstr "Het vereiste gereedschap is niet beschikbaar"
 
+msgid "Continue"
+msgstr "Doorgaan"
+
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Het gebied lijkt slecht afgemeten of is té complex."
+
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Dit algoritme kan het gekozen gebied mogelijk niet beheren."
+
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+"Wil je de handeling afbreken of het gereedschap tevergeefs laten doorgaan?"
+
+msgid "Tool size"
+msgstr "Gereedschapsgrootte"
+
+msgid "Preview"
+msgstr "Voorbeeld"
+
+msgid "How the color will be applied to the existing pixels"
+msgstr "Hoe de kleur wordt toegepast op aanwezige pixels"
+
+msgid "Back to the palette"
+msgstr "Terug naar het palet"
+
+msgid "Use this editor by default"
+msgstr "Gebruik standaard deze bewerker"
+
+msgid "More actions"
+msgstr "Meer acties"
+
 msgid "Line shape"
 msgstr "Lijnvorm"
 
@@ -813,44 +824,6 @@ msgstr "Streepjes gebruiken"
 
 msgid "Arrow"
 msgstr "Pijl"
-
-msgid "Apply"
-msgstr "Toepassen"
-
-msgid "More options"
-msgstr "Meer opties"
-
-msgid "Select a filter…"
-msgstr "Kies een filter…"
-
-msgid "Saturation"
-msgstr "Verzadiging"
-
-msgid "Blur radius"
-msgstr "Vervaagstraal"
-
-msgid "Transparency"
-msgstr "Doorzichtigheid"
-
-#, fuzzy
-msgid "Change saturation"
-msgstr "Verzadiging"
-
-msgid "Pixelisation"
-msgstr "Pixelvorming"
-
-#, fuzzy
-msgid "Add transparency"
-msgstr "Doorzichtigheid"
-
-msgid "Invert colors"
-msgstr "Kleuren omdraaien"
-
-msgid "Horizontal blur"
-msgstr "Horizontale vervaging"
-
-msgid "Vertical blur"
-msgstr "Verticale vervaging"
 
 msgid "Color gradient"
 msgstr "Kleurverloop"
@@ -869,39 +842,6 @@ msgstr "Vasthouden"
 
 msgid "Thin"
 msgstr "Dun"
-
-msgid "Angle (degrees)"
-msgstr "Hoek (graden)"
-
-msgid "Angle"
-msgstr "Hoek"
-
-msgid "Rotate left"
-msgstr "Naar links draaien"
-
-msgid "Rotate right"
-msgstr "Naar rechts draaien"
-
-msgid "Flip horizontally"
-msgstr "Horizontaal spiegelen"
-
-msgid "Flip vertically"
-msgstr "Verticaal spiegelen"
-
-msgid "Keep proportions"
-msgstr "Afmetingen behouden"
-
-#. Context for translations: "Always [keep proportions]"
-msgid "Always"
-msgstr "Altijd"
-
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-msgid "When scaling from corners"
-msgstr "Bij aanpassen vanuit de hoeken"
-
-#. Context for translations: "Never [keep proportions]"
-msgid "Never"
-msgstr "Nooit"
 
 msgid "Rectangle"
 msgstr "Rechthoek"
@@ -944,14 +884,6 @@ msgstr "Straalverloop"
 msgid "Close shape"
 msgstr "Vorm sluiten"
 
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Horizontaal verloop"
-
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Verticaal verloop"
-
 msgid "Insert here"
 msgstr "Hier invoegen"
 
@@ -979,18 +911,90 @@ msgstr "Contour"
 msgid "Rectangle background"
 msgstr "Rechthoekige achtergrond"
 
-msgid "Continue"
-msgstr "Doorgaan"
+msgid "Edit"
+msgstr "Bewerken"
 
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Het gebied lijkt slecht afgemeten of is té complex."
+msgid "Flip"
+msgstr "Omdraaien"
 
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Dit algoritme kan het gekozen gebied mogelijk niet beheren."
+msgid "Apply"
+msgstr "Toepassen"
 
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-"Wil je de handeling afbreken of het gereedschap tevergeefs laten doorgaan?"
+msgid "More options"
+msgstr "Meer opties"
+
+msgid "Select a filter…"
+msgstr "Kies een filter…"
+
+msgid "Saturation"
+msgstr "Verzadiging"
+
+msgid "Blur radius"
+msgstr "Vervaagstraal"
+
+msgid "Transparency"
+msgstr "Doorzichtigheid"
+
+#, fuzzy
+msgid "Change saturation"
+msgstr "Verzadiging"
+
+msgid "Pixelisation"
+msgstr "Pixelvorming"
+
+#, fuzzy
+msgid "Add transparency"
+msgstr "Doorzichtigheid"
+
+msgid "Invert colors"
+msgstr "Kleuren omdraaien"
+
+msgid "Horizontal blur"
+msgstr "Horizontale vervaging"
+
+msgid "Vertical blur"
+msgstr "Verticale vervaging"
+
+msgid "Angle (degrees)"
+msgstr "Hoek (graden)"
+
+msgid "Angle"
+msgstr "Hoek"
+
+msgid "Rotate left"
+msgstr "Naar links draaien"
+
+msgid "Rotate right"
+msgstr "Naar rechts draaien"
+
+msgid "Flip horizontally"
+msgstr "Horizontaal spiegelen"
+
+msgid "Flip vertically"
+msgstr "Verticaal spiegelen"
+
+msgid "Keep proportions"
+msgstr "Afmetingen behouden"
+
+#. Context for translations: "Always [keep proportions]"
+msgid "Always"
+msgstr "Altijd"
+
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+msgid "When scaling from corners"
+msgstr "Bij aanpassen vanuit de hoeken"
+
+#. Context for translations: "Never [keep proportions]"
+msgid "Never"
+msgstr "Nooit"
+
+#, fuzzy
+msgid "Horizontal deformation"
+msgstr "Horizontaal verloop"
+
+#, fuzzy
+msgid "Vertical deformation"
+msgstr "Verticaal verloop"
 
 msgid "Curve"
 msgstr "Boog"
@@ -1050,6 +1054,9 @@ msgstr "Selecteer een gebied of rechtsklik op het canvas"
 msgid "Rectangle selection"
 msgstr "Rechthoekselectie"
 
+msgid "Error: invalid values"
+msgstr ""
+
 msgid "Cropping the selection"
 msgstr "Bezig met bijsnijden van selectie"
 
@@ -1070,6 +1077,20 @@ msgstr "Bezig met wijzigen van selectiegrootte"
 
 msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
+
+#~ msgid ""
+#~ "Version 0.6 is a major update, with various important changes: rectangle "
+#~ "selection and freehand selection are now distinct tools, images can be "
+#~ "imported or opened using drag-and-drop, the 'rotate' tool now supports "
+#~ "any angle and handles horizontal or vertical flipping, and various tools "
+#~ "producing shapes (circle, rectangle, polygon, …) have been merged into a "
+#~ "single coherent 'shape' tool."
+#~ msgstr ""
+#~ "Versie 0.6 is een grote update, met veel veranderingen: rechthoekselectie "
+#~ "en vrije selectie zijn nu losse gereedschappen, afbeeldingen kunnen "
+#~ "worden geïmporteerd of geopend middels slepen-en-neerzetten, het "
+#~ "draaigereedschap ondersteunt nu elke hoek en horizontaal en verticaal "
+#~ "spiegelen, en verschillende gereedschappen zijn samengevoegd onder 'vorm'."
 
 #~ msgid "Apply a filter"
 #~ msgstr "Filter toepassen"
