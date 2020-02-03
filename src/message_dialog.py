@@ -17,8 +17,8 @@
 
 from gi.repository import Gtk
 
-class DrawingMessageDialog(Gtk.MessageDialog):
-	__gtype_name__ = 'DrawingMessageDialog'
+class DrMessageDialog(Gtk.MessageDialog):
+	__gtype_name__ = 'DrMessageDialog'
 
 	def __init__(self, window, **kwargs):
 		super().__init__(modal=True, transient_for=window, **kwargs)

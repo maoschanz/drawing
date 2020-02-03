@@ -1,4 +1,4 @@
-# decorations_manager.py
+# deco_manager_menubar.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -15,10 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
-
-class DrawingDecorationsManager():
-	__gtype_name__ = 'DrawingDecorationsManager'
+class DrDecoManagerMenubar():
+	__gtype_name__ = 'DrDecoManagerMenubar'
 	UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
 	def __init__(self, window, use_menubar):

@@ -17,7 +17,7 @@
 
 from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_tools import utilities_get_rgba_for_xy
+from .utilities_paths import utilities_get_rgba_for_xy
 
 class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'

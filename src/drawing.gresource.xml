@@ -2,23 +2,21 @@
 <gresources>
   <gresource prefix="/com/github/maoschanz/drawing">
     <file>ui/app-menus.ui</file>
-    <file>ui/classic-panel.ui</file>
     <file>ui/custom-image.ui</file>
-    <file>ui/color-popover.ui</file>
     <file>ui/headerbar.ui</file>
     <file>ui/headerbar-eos.ui</file>
     <file>ui/image.ui</file>
     <file>ui/minimap.ui</file>
     <file>ui/properties.ui</file>
     <file>ui/preferences.ui</file>
-    <file>ui/selection-menus.ui</file>
-    <file>ui/selection-panel.ui</file>
+    <file>ui/selection-manager.ui</file>
     <file>ui/shortcuts.ui</file>
     <file>ui/toolbar.ui</file>
     <file>ui/toolbar-symbolic.ui</file>
     <file>ui/win-menus.ui</file>
     <file>ui/window.ui</file>
 
+    <!-- Non-tools icons -->
     <file>icons/exchange-colors-symbolic.svg</file>
     <file>icons/size-1-symbolic.svg</file>
     <file>icons/size-3-symbolic.svg</file>
@@ -29,20 +27,27 @@
     <file>icons/unit-pixels-symbolic.svg</file>
     <file>icons/unit-percents-symbolic.svg</file>
 
-    <file>tools/ui/tool_arc.ui</file>
-    <file>tools/ui/tool_experiment.ui</file>
-    <file>tools/ui/tool_line.ui</file>
-    <file>tools/ui/tool_paint.ui</file>
-    <file>tools/ui/tool_pencil.ui</file>
-    <file>tools/ui/tool_shape.ui</file>
-    <file>tools/ui/tool_text.ui</file>
+    <file>tools/classic_tools/optionsbar/optionsbar-classic.ui</file>
+    <file>tools/classic_tools/optionsbar/optionsbar-color-popover.ui</file>
+    <file>tools/selection_tools/optionsbar/optionsbar-selection.ui</file>
 
-    <file>tools/ui/tool_crop.ui</file>
-    <file>tools/ui/tool_filters.ui</file>
-    <file>tools/ui/tool_rotate.ui</file>
-    <file>tools/ui/tool_scale.ui</file>
-    <file>tools/ui/tool_skew.ui</file>
+    <file>tools/ui/tool-arc.ui</file>
+    <file>tools/ui/tool-experiment.ui</file>
+    <file>tools/ui/tool-line.ui</file>
+    <file>tools/ui/tool-paint.ui</file>
+    <file>tools/ui/tool-pencil.ui</file>
+    <file>tools/ui/tool-shape.ui</file>
+    <file>tools/ui/tool-text.ui</file>
 
+    <file>tools/ui/selection.ui</file>
+
+    <file>tools/ui/tool-crop.ui</file>
+    <file>tools/ui/tool-filters.ui</file>
+    <file>tools/ui/tool-rotate.ui</file>
+    <file>tools/ui/tool-scale.ui</file>
+    <file>tools/ui/tool-skew.ui</file>
+
+    <!-- Tools icons -->
     <file>tools/icons/tool-arc-symbolic.svg</file>
     <file>tools/icons/tool-brush-symbolic.svg</file>
     <file>tools/icons/tool-circle-symbolic.svg</file>

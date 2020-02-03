@@ -41,9 +41,7 @@ class ToolText(AbstractClassicTool):
 		self.add_tool_action_simple('text-preview', self._force_refresh)
 		self.add_tool_action_simple('text-insert', self._on_insert_text)
 
-		builder = Gtk.Builder().new_from_resource( \
-		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
-
+		builder = Gtk.Builder().new_from_resource(self.UI_PATH + 'tool-text.ui')
 		# Widgets for text insertion
 		self._popover = builder.get_object('insertion-popover')
 		self._entry = builder.get_object('entry')

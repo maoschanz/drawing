@@ -17,8 +17,8 @@
 
 from gi.repository import Gtk, GdkPixbuf
 
-class DrawingPropertiesDialog(Gtk.Dialog):
-	__gtype_name__ = 'DrawingPropertiesDialog'
+class DrPropertiesDialog(Gtk.Dialog):
+	__gtype_name__ = 'DrPropertiesDialog'
 
 	def __init__(self, window, image):
 		wants_csd = not ('ssd' in window.deco_layout)

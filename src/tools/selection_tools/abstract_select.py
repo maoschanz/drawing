@@ -18,8 +18,8 @@
 import cairo
 from gi.repository import Gtk
 from .abstract_tool import AbstractAbstractTool
-from .selection_panel import SelectionToolPanel
-from .utilities_tools import utilities_show_overlay_on_context
+from .optionsbar_selection import OptionsBarSelection
+from .utilities_overlay import utilities_show_overlay_on_context
 
 class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
@@ -58,8 +58,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		return label
 
 	def get_options_model(self):
-		fpath = '/com/github/maoschanz/drawing/ui/selection-menus.ui'
-		builder = Gtk.Builder.new_from_resource(fpath)
+		builder = Gtk.Builder.new_from_resource(self.UI_PATH + 'selection.ui')
 		return builder.get_object('options-menu')
 
 	def try_build_panel(self):
@@ -67,7 +66,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		return SelectionToolPanel(self.window)
+		return OptionsBarSelection(self.window)
 
 	############################################################################
 	# Lifecycle implementations ################################################

@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, Gdk
 from .abstract_canvas_tool import AbstractCanvasTool
-from .bottombar import DrawingAdaptativeBottomBar
+from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolSkew(AbstractCanvasTool):
@@ -34,7 +34,7 @@ class ToolSkew(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = SkewToolPanel()
+		bar = OptionsBarSkew()
 		self.yx_spinbtn = bar.yx_spinbtn
 		self.xy_spinbtn = bar.xy_spinbtn
 		self.yx_spinbtn.connect('value-changed', self.on_coord_changed)
@@ -104,12 +104,12 @@ class ToolSkew(AbstractCanvasTool):
 	############################################################################
 ################################################################################
 
-class SkewToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'SkewToolPanel'
+class OptionsBarSkew(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarSkew'
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('tools/ui/tool_skew.ui')
+		builder = self.build_ui('ui/tool-skew.ui')
 		self.more_btn = builder.get_object('more_btn')
 		self.xy_label = builder.get_object('xy_label')
 		self.yx_label = builder.get_object('yx_label')

@@ -17,7 +17,7 @@
 
 import cairo
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_tools import utilities_add_arrow_triangle
+from .utilities_paths import utilities_add_arrow_triangle
 
 class ToolLine(AbstractClassicTool):
 	__gtype_name__ = 'ToolLine'

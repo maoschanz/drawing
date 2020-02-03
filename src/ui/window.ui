@@ -8,7 +8,7 @@
     <property name="value">10</property>
   </object>
 
-  <template class="DrawingWindow" parent="GtkApplicationWindow">
+  <template class="DrWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
     <child>
@@ -19,6 +19,7 @@
           <object class="GtkBox" id="toolbar_box">
             <property name="orientation">vertical</property>
             <property name="visible">False</property>
+            <style><class name="primary-toolbar"/></style>
             <child>
               <object class="GtkSeparator" />
               <packing>

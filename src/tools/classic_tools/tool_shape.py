@@ -17,7 +17,7 @@
 
 import cairo, math
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_tools import utilities_smooth_path
+from .utilities_paths import utilities_smooth_path
 
 class ToolShape(AbstractClassicTool):
 	__gtype_name__ = 'ToolShape'

@@ -3,11 +3,14 @@
 
   <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
     <!-- Actual options -->
-    <key type="s" name="decorations">
-      <default>'auto'</default>
+    <key type="s" name="deco-type">
+      <default>''</default>
       <summary>Type of window decorations</summary>
-      <description>Can be 'auto', 'csd', 'csd-eos', 'ssd', 'ssd-toolbar',
-      'ssd-symbolic', 'ssd-toolbar-symbolic', or 'ssd-menubar'.
+      <description>
+        Can be '' (automatic), 'hg' (GNOME headerbar), 'he' (elementary OS
+        headerbar), 'm' (menubar only), 'mtc' (menubar and toolbar, colorful
+        icons), 'mts' (menubar and toolbar, symbolic icons), 'tc' (toolbar only,
+        colorful icons), or 'ts' (toolbar only, symbolic icons).
       </description>
     </key>
     <key type="b" name="big-icons">

@@ -17,8 +17,8 @@
 
 import cairo
 from .abstract_tool import AbstractAbstractTool
-from .classic_panel import ClassicToolPanel
-from .blurring import utilities_fast_blur
+from .optionsbar_classic import OptionsBarClassic
+from .utilities_blur import utilities_fast_blur
 
 class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
@@ -42,7 +42,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		return ClassicToolPanel(self.window)
+		return OptionsBarClassic(self.window)
 
 	def on_tool_selected(self):
 		# XXX shouldn't i update the label/menu/size/sensitivity/etc. here?

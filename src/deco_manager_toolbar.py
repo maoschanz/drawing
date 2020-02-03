@@ -1,4 +1,4 @@
-# headerbar.py
+# deco_manager_toolbar.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -16,10 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk
-from .decorations_manager import DrawingDecorationsManager
+from .deco_manager_menubar import DrDecoManagerMenubar
 
-class DrawingDecoToolbar(DrawingDecorationsManager):
-	__gtype_name__ = 'DrawingDecoToolbar'
+class DrDecoManagerToolbar(DrDecoManagerMenubar):
+	__gtype_name__ = 'DrDecoManagerToolbar'
 
 	def __init__(self, is_symbolic, with_menubar, window):
 		super().__init__(window, with_menubar)

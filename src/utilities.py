@@ -1,7 +1,7 @@
 # utilities.py
 
 from gi.repository import Gtk, GdkPixbuf
-from .message_dialog import DrawingMessageDialog
+from .message_dialog import DrMessageDialog
 
 ################################################################################
 
@@ -129,7 +129,7 @@ def _ask_overwrite_alpha(window):
 	"""This method is not used for now. The point is to warn the user about the
 	replacement of the alpha channel for JPG or BMP files, but it might annoy
 	users very quickly to see a dialog."""
-	dialog = DrawingMessageDialog(window)
+	dialog = DrMessageDialog(window)
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
 	continue_id = dialog.set_action(_("Save"), None, True)
 	dialog.add_string(_("This file format doesn't support transparent colors."))

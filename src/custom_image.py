@@ -18,8 +18,8 @@
 from gi.repository import Gtk, Gdk
 from .utilities import utilities_add_unit_to_spinbtn
 
-class DrawingCustomImageDialog(Gtk.Dialog):
-	__gtype_name__ = 'DrawingCustomImageDialog'
+class DrCustomImageDialog(Gtk.Dialog):
+	__gtype_name__ = 'DrCustomImageDialog'
 
 	def __init__(self, appwindow):
 		wants_csd = not ('ssd' in appwindow.deco_layout)
@@ -35,8 +35,8 @@ class DrawingCustomImageDialog(Gtk.Dialog):
 		btn = self.add_button(_("Create"), Gtk.ResponseType.OK)
 		btn.get_style_context().add_class('suggested-action')
 
-		ui_path = '/com/github/maoschanz/drawing/ui/'
-		builder = Gtk.Builder.new_from_resource(ui_path + 'custom-image.ui')
+		resource_path = '/com/github/maoschanz/drawing/ui/custom-image.ui'
+		builder = Gtk.Builder.new_from_resource(resource_path)
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)
 

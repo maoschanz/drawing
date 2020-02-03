@@ -17,8 +17,8 @@
 
 from gi.repository import GLib
 
-class DrawingOptionsManager():
-	__gtype_name__ = 'DrawingOptionsManager'
+class DrOptionsManager():
+	__gtype_name__ = 'DrOptionsManager'
 	# TODO this class should raise/catch exceptions instead of trusting me
 
 	def __init__(self, window):

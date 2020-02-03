@@ -18,7 +18,7 @@
 import cairo
 from .tool_pencil import ToolPencil
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_tools import utilities_smooth_path
+from .utilities_paths import utilities_smooth_path
 
 class ToolEraser(ToolPencil):
 	__gtype_name__ = 'ToolEraser'

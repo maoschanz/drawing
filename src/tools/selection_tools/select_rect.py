@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .abstract_select import AbstractSelectionTool
-from .utilities_tools import utilities_show_overlay_on_context
+from .utilities_overlay import utilities_show_overlay_on_context
 
 class ToolRectSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolRectSelect'

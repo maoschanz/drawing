@@ -18,9 +18,9 @@
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
-from .bottombar import DrawingAdaptativeBottomBar
+from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
-from .utilities_tools import utilities_show_handles_on_context
+from .utilities_overlay import utilities_show_handles_on_context
 
 class ToolScale(AbstractCanvasTool):
 	__gtype_name__ = 'ToolScale'
@@ -44,7 +44,7 @@ class ToolScale(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = ScaleToolPanel(self)
+		bar = OptionsBarScale(self)
 		self.width_btn = bar.width_btn
 		self.height_btn = bar.height_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -220,15 +220,15 @@ class ToolScale(AbstractCanvasTool):
 	############################################################################
 ################################################################################
 
-class ScaleToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'ScaleToolPanel'
+class OptionsBarScale(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarScale'
 
 	def __init__(self, scale_tool):
 		super().__init__()
 		# future possible improvement: the panel may not compact the same way if
 		# the manipulation concerns the selection.
 		#self.scale_tool = scale_tool
-		builder = self.build_ui('tools/ui/tool_scale.ui')
+		builder = self.build_ui('ui/tool-scale.ui')
 
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')

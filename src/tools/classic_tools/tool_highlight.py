@@ -17,7 +17,7 @@
 
 import cairo
 from .tool_pencil import ToolPencil
-from .utilities_tools import utilities_smooth_path
+from .utilities_paths import utilities_smooth_path
 from .abstract_classic_tool import AbstractClassicTool
 
 class ToolHighlighter(ToolPencil):

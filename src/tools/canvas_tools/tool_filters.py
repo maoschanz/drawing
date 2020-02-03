@@ -18,9 +18,9 @@
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
-from .bottombar import DrawingAdaptativeBottomBar
-from .blurring import utilities_fast_blur
-from .blurring import BlurType
+from .abstract_optionsbar import AbstractOptionsBar
+from .utilities_blur import utilities_fast_blur
+from .utilities_blur import BlurType
 from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolFilters(AbstractCanvasTool):
@@ -38,7 +38,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		self.bar = FiltersToolPanel(self.window, self)
+		self.bar = OptionsBarFilters(self.window, self)
 		self.bar.menu_btn.connect('notify::active', self._set_active_type)
 		return self.bar
 
@@ -186,14 +186,14 @@ class ToolFilters(AbstractCanvasTool):
 	############################################################################
 ################################################################################
 
-class FiltersToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'FiltersToolPanel'
+class OptionsBarFilters(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarFilters'
 
 	def __init__(self, window, filters_tool):
 		super().__init__()
 		self.window = window
 		self.filters_tool = filters_tool
-		builder = self.build_ui('tools/ui/tool_filters.ui')
+		builder = self.build_ui('ui/tool-filters.ui')
 		self.menu_btn = builder.get_object('menu_btn')
 		self.menu_label = builder.get_object('menu_label')
 		self.menu_icon = builder.get_object('menu_icon')

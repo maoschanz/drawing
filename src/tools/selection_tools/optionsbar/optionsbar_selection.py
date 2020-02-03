@@ -1,4 +1,4 @@
-# selection_panel.py
+# optionsbar_selection.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -15,15 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .bottombar import DrawingAdaptativeBottomBar
+from .abstract_optionsbar import AbstractOptionsBar
 
-class SelectionToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'SelectionToolPanel'
+class OptionsBarSelection(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarSelection'
 
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('ui/selection-panel.ui')
+		builder = self.build_ui('selection_tools/optionsbar/optionsbar-selection.ui')
+
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')
 		self.cb_box_narrow = builder.get_object('cb_box_narrow')

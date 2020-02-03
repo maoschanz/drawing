@@ -17,9 +17,9 @@
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
-from .bottombar import DrawingAdaptativeBottomBar
+from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
-from .utilities_tools import utilities_show_handles_on_context
+from .utilities_overlay import utilities_show_handles_on_context
 
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
@@ -36,7 +36,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		bar = CropToolPanel()
+		bar = OptionsBarCrop()
 		self.height_btn = bar.height_btn
 		self.width_btn = bar.width_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -214,12 +214,12 @@ class ToolCrop(AbstractCanvasTool):
 	############################################################################
 ################################################################################
 
-class CropToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'CropToolPanel'
+class OptionsBarCrop(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarCrop'
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('tools/ui/tool_crop.ui')
+		builder = self.build_ui('ui/tool-crop.ui')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')

@@ -30,11 +30,10 @@ drawing_sources = [
 	'main.py',
 
 	'window.py',
-	'decorations_manager.py',
-	'deco_headerbar.py',
-	'deco_toolbar.py',
+	'deco_manager_menubar.py',
+	'deco_manager_headerbar.py',
+	'deco_manager_toolbar.py',
 	'options_manager.py',
-	'bottombar.py',
 	'minimap.py',
 
 	'image.py',
@@ -47,12 +46,14 @@ drawing_sources = [
 	'custom_image.py',
 
 	'tools/abstract_tool.py',
-	'tools/blurring.py',
-	'tools/utilities_tools.py',
+	'tools/abstract_optionsbar.py',
+	'tools/utilities_blur.py',
+	'tools/utilities_overlay.py',
+	'tools/utilities_paths.py',
 
 	'tools/classic_tools/abstract_classic_tool.py',
-	'tools/classic_tools/classic_panel.py',
-	'tools/classic_tools/color_popover.py',
+	'tools/classic_tools/optionsbar/optionsbar_classic.py',
+	'tools/classic_tools/optionsbar/optionsbar_color_popover.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_eraser.py',
 	'tools/classic_tools/tool_experiment.py',
@@ -65,10 +66,10 @@ drawing_sources = [
 	'tools/classic_tools/tool_text.py',
 
 	'tools/selection_tools/abstract_select.py',
-	'tools/selection_tools/selection_panel.py',
-	'tools/selection_tools/rect_select.py',
-	'tools/selection_tools/free_select.py',
-	'tools/selection_tools/color_select.py',
+	'tools/selection_tools/optionsbar/optionsbar_selection.py',
+	'tools/selection_tools/select_rect.py',
+	'tools/selection_tools/select_free.py',
+	'tools/selection_tools/select_color.py',
 
 	'tools/canvas_tools/abstract_canvas_tool.py',
 	'tools/canvas_tools/tool_crop.py',

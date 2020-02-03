@@ -1,4 +1,4 @@
-# color_popover.py
+# panel_classic_color_popover.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -19,15 +19,17 @@ import cairo
 from gi.repository import Gtk, Gdk
 from .utilities import utilities_get_rgba_name
 
-UI_PATH = '/com/github/maoschanz/drawing/ui/'
+PREFIX = '/com/github/maoschanz/drawing/'
 
-class DrawingColorPopover(Gtk.Popover):
-	__gtype_name__ = 'DrawingColorPopover'
+class OptionsBarClassicColorPopover(Gtk.Popover):
+	__gtype_name__ = 'OptionsBarClassicColorPopover'
 
 	def __init__(self, btn, thumbn, initial_rgba, is_main_c, window, **kwargs):
-		super().__init__(**kwargs)
+		super().__init__(**kwargs) # TODO passer l'options_manager, pas la window
 
-		builder = Gtk.Builder.new_from_resource(UI_PATH + 'color-popover.ui')
+		suffix = 'tools/classic_tools/optionsbar/optionsbar-color-popover.ui'
+		builder = Gtk.Builder.new_from_resource(PREFIX + suffix)
+
 		main_box = builder.get_object('main-box')
 		self.add(main_box)
 		self._button = btn
@@ -45,7 +47,7 @@ class DrawingColorPopover(Gtk.Popover):
 		builder.get_object('popover-title').set_label(title_label)
 
 		self._operator_menu_btn = builder.get_object('operator-menu-btn')
-		builder.add_from_resource(UI_PATH + 'app-menus.ui')
+		builder.add_from_resource(PREFIX + 'ui/app-menus.ui')
 		operator_menu_model = builder.get_object('operator-menu')
 		self._operator_menu_btn.set_menu_model(operator_menu_model)
 

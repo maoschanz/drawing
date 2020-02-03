@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .abstract_select import AbstractSelectionTool
-from .utilities_tools import utilities_get_magic_path
+from .utilities_paths import utilities_get_magic_path
 
 class ToolColorSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolColorSelect'

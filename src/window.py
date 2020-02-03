@@ -37,20 +37,20 @@ from .tool_rotate import ToolRotate
 from .tool_scale import ToolScale
 from .tool_skew import ToolSkew
 
-from .rect_select import ToolRectSelect
-from .free_select import ToolFreeSelect
-from .color_select import ToolColorSelect
+from .select_rect import ToolRectSelect
+from .select_free import ToolFreeSelect
+from .select_color import ToolColorSelect
 
 # Other imports
-from .image import DrawingImage
-from .properties import DrawingPropertiesDialog
-from .custom_image import DrawingCustomImageDialog
-from .minimap import DrawingMinimap
-from .options_manager import DrawingOptionsManager
-from .message_dialog import DrawingMessageDialog
-from .decorations_manager import DrawingDecorationsManager
-from .deco_headerbar import DrawingAdaptativeHeaderBar
-from .deco_toolbar import DrawingDecoToolbar
+from .image import DrImage
+from .properties import DrPropertiesDialog
+from .custom_image import DrCustomImageDialog
+from .minimap import DrMinimap
+from .options_manager import DrOptionsManager
+from .message_dialog import DrMessageDialog
+from .deco_manager_menubar import DrDecoManagerMenubar
+from .deco_manager_headerbar import DrDecoManagerHeaderbar
+from .deco_manager_toolbar import DrDecoManagerToolbar
 
 from .utilities import utilities_save_pixbuf_to
 from .utilities import utilities_add_filechooser_filters
@@ -74,8 +74,8 @@ DEFAULT_TOOL_ID = 'pencil'
 ################################################################################
 
 @Gtk.Template(resource_path=UI_PATH+'window.ui')
-class DrawingWindow(Gtk.ApplicationWindow):
-	__gtype_name__ = 'DrawingWindow'
+class DrWindow(Gtk.ApplicationWindow):
+	__gtype_name__ = 'DrWindow'
 
 	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
 
@@ -113,8 +113,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		parameters, the new image can be imported from the clipboard, loaded
 		from a GioFile, or (else) it can be a blank image."""
 		self.tools = None
-		self.minimap = DrawingMinimap(self, None)
-		self.options_manager = DrawingOptionsManager(self)
+		self.minimap = DrMinimap(self, None)
+		self.options_manager = DrOptionsManager(self)
 
 		self.add_all_win_actions()
 		if get_cb:
@@ -222,7 +222,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_new_custom(self, *args):
 		"""Open a new tab with a drawable blank image using the custom values
 		defined by user's input."""
-		dialog = DrawingCustomImageDialog(self)
+		dialog = DrCustomImageDialog(self)
 		result = dialog.run()
 		if result == Gtk.ResponseType.OK:
 			width, height, rgba = dialog.get_values()
@@ -245,7 +245,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	def build_new_tab(self, gfile=None, pixbuf=None, \
 		           width=200, height=200, background_rgba=[1.0, 0.0, 0.0, 1.0]):
 		"""Open a new tab with an optional file to open in it."""
-		new_image = DrawingImage(self)
+		new_image = DrImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
 		self.notebook.child_set_property(new_image, 'reorderable', True)
 		if gfile is not None:
@@ -321,7 +321,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.connect('delete-event', self.on_close)
 		self.connect('configure-event', self.adapt_to_window_size)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
-		self._settings.connect('changed::decorations', self.on_layout_changed)
+		self._settings.connect('changed::deco-type', self.on_layout_changed)
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
 		# self._settings.connect('changed::*', self.show_info_settings)
 		# Preview size? Dev-only features? Zoom level?
@@ -496,26 +496,27 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		environment variable."""
 		desktop_env = os.getenv('XDG_CURRENT_DESKTOP', 'GNOME')
 		if 'GNOME' in desktop_env:
-			return 'csd'
+			return 'hg'
 		elif 'Pantheon' in desktop_env:
-			return 'csd-eos'
+			return 'he'
 		elif 'Unity' in desktop_env:
-			return 'ssd-toolbar'
+			return 'tc'
 		elif 'KDE' in desktop_env:
-			return 'ssd-toolbar-symbolic'
+			return 'ts'
 		elif 'Cinnamon' in desktop_env:
-			return 'ssd-symbolic'
+			return 'mts'
 		elif 'MATE' in desktop_env or 'XFCE' in desktop_env:
-			return 'ssd'
+			return 'mtc'
 		else:
-			return 'csd' # Use the GNOME layout if the desktop is unknown,
+			return 'hg' # Use the GNOME layout if the desktop is unknown,
 		# because i don't know how the env variable is on mobile.
 		# Since hipsterwm users love "ricing", they'll be happy to edit
 		# preferences themselves if they hate CSD.
 
 	def set_ui_bars(self):
-		"""Set the UI "bars" (headerbar, menubar, title, toolbar, whatever)
-		according to the user's preference, which by default is 'auto'."""
+		"""Set the UI "bars" (headerbar, menubar, titlebar, toolbar, whatever)
+		according to the user's preference, which by default is an empty string.
+		In this case, an useful string is set by `get_auto_decorations()`."""
 		self.has_good_width_limits = False
 
 		builder = Gtk.Builder.new_from_string(PLACEHOLDER_UI_STRING \
@@ -525,24 +526,23 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.placeholder_model = builder.get_object('tool-placeholder')
 
 		# Remember the setting, so no need to restart this at each dialog.
-		self.deco_layout = self._settings.get_string('decorations')
-		if self.deco_layout == 'auto':
+		self.deco_layout = self._settings.get_string('deco-type')
+		if self.deco_layout == '':
 			self.deco_layout = self.get_auto_decorations()
 
-		if self.deco_layout == 'csd':
-			self._decorations = DrawingAdaptativeHeaderBar(False, self)
-		elif self.deco_layout == 'csd-eos':
-			self._decorations = DrawingAdaptativeHeaderBar(True, self)
-		elif self.deco_layout == 'ssd-menubar':
-			self._decorations = DrawingDecorationsManager(self, True)
-		elif self.deco_layout == 'ssd-toolbar':
-			self._decorations = DrawingDecoToolbar(False, False, self)
-		elif self.deco_layout == 'ssd-toolbar-symbolic':
-			self._decorations = DrawingDecoToolbar(True, False, self)
-		elif self.deco_layout == 'ssd-symbolic':
-			self._decorations = DrawingDecoToolbar(True, True, self)
-		else: # self.deco_layout == 'ssd'
-			self._decorations = DrawingDecoToolbar(False, True, self)
+		if self.deco_layout == 'hg':
+			self._decorations = DrDecoManagerHeaderbar(False, self)
+		elif self.deco_layout == 'he':
+			self._decorations = DrDecoManagerHeaderbar(True, self)
+		elif self.deco_layout == 'm':
+			self._decorations = DrDecoManagerMenubar(self, True)
+		elif 't' in self.deco_layout:
+			symbolic = 's' in self.deco_layout
+			menubar = 'm' in self.deco_layout
+			self._decorations = DrDecoManagerToolbar(symbolic, menubar, self)
+		else:
+			self._settings.set_string('deco-type', '')
+			self.set_ui_bars() # yes, recursion.
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
@@ -773,7 +773,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 	# IMAGE FILES MANAGEMENT ###################################################
 
 	def action_properties(self, *args):
-		DrawingPropertiesDialog(self, self.get_active_image())
+		DrPropertiesDialog(self, self.get_active_image())
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:
@@ -804,7 +804,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			# If the current image is just a blank, unmodified canvas.
 			self.try_load_file(gfile)
 		else:
-			dialog = DrawingMessageDialog(self)
+			dialog = DrMessageDialog(self)
 			# Context: answer to "where do you want to open the image?"
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
 			# Context: answer to "where do you want to open the image?"
@@ -842,7 +842,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		dialog is shown, asking if the user prefers to open them (one new tab
 		per image), or to import them (it will only import the first), or to
 		cancel (if the user dropped mistakenly)."""
-		dialog = DrawingMessageDialog(self)
+		dialog = DrMessageDialog(self)
 		cancel_id = dialog.set_action(_("Cancel"), None, False)
 		open_id = dialog.set_action(_("Open"), None, False)
 		import_id = dialog.set_action(_("Import"), None, True)
@@ -917,7 +917,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		else:
 			unsaved_file_name = fn.split('/')[-1]
 			display_name = self.get_active_image().get_filename_for_display()
-		dialog = DrawingMessageDialog(self)
+		dialog = DrMessageDialog(self)
 		discard_id = dialog.set_action(_("Discard"), 'destructive-action', False)
 		cancel_id = dialog.set_action(_("Cancel"), None, False)
 		save_id = dialog.set_action(_("Save"), None, True)

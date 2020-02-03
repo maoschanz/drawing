@@ -28,15 +28,15 @@ class NoSelectionPathException(Exception):
 
 ################################################################################
 
-class DrawingSelectionManager():
-	__gtype_name__ = 'DrawingSelectionManager'
+class DrSelectionManager():
+	__gtype_name__ = 'DrSelectionManager'
 
 	def __init__(self, image):
 		self.image = image
 		self.init_pixbuf()
 
 		builder = Gtk.Builder.new_from_resource( \
-		                  '/com/github/maoschanz/drawing/ui/selection-menus.ui')
+		                '/com/github/maoschanz/drawing/ui/selection-manager.ui')
 		menu_r = builder.get_object('inactive-selection-menu')
 		self.menu_if_inactive = Gtk.Popover.new_from_model(self.image, menu_r)
 		menu_l = builder.get_object('active-selection-menu')

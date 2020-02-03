@@ -1,4 +1,4 @@
-# classic_panel.py
+# optionsbar_classic.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -16,19 +16,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from .bottombar import DrawingAdaptativeBottomBar
-from .color_popover import DrawingColorPopover
+from .abstract_optionsbar import AbstractOptionsBar
+from .optionsbar_color_popover import OptionsBarClassicColorPopover
 from .utilities import utilities_add_unit_to_spinbtn
 
 ################################################################################
 
-class ClassicToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'ClassicToolPanel'
+class OptionsBarClassic(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarClassic'
 
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('ui/classic-panel.ui')
+		builder = self.build_ui('classic_tools/optionsbar/optionsbar-classic.ui')
 
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
@@ -123,9 +123,9 @@ class ClassicToolPanel(DrawingAdaptativeBottomBar):
 		memorized RGBA values."""
 		right_rgba = self.window._settings.get_strv('last-right-rgba')
 		left_rgba = self.window._settings.get_strv('last-left-rgba')
-		self._color_r = DrawingColorPopover(self.color_menu_btn_r, \
+		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
 		      builder.get_object('r_btn_image'), right_rgba, False, self.window)
-		self._color_l = DrawingColorPopover(self.color_menu_btn_l, \
+		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \
 		        builder.get_object('l_btn_image'), left_rgba, True, self.window)
 
 	def set_palette_setting(self, show_editor):

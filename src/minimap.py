@@ -17,10 +17,10 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
-from .utilities_tools import utilities_show_overlay_on_context
+from .utilities_overlay import utilities_show_overlay_on_context
 
-class DrawingMinimap(Gtk.Popover):
-	__gtype_name__ = 'DrawingMinimap'
+class DrMinimap(Gtk.Popover):
+	__gtype_name__ = 'DrMinimap'
 	# TODO custom "move" cursor
 	# TODO "on_motion" method?
 

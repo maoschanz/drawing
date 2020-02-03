@@ -18,7 +18,7 @@
 import cairo, math
 from gi.repository import Gtk, Gdk
 from .abstract_canvas_tool import AbstractCanvasTool
-from .bottombar import DrawingAdaptativeBottomBar
+from .abstract_optionsbar import AbstractOptionsBar
 
 class ToolRotate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolRotate'
@@ -41,7 +41,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
 
 	def build_bottom_panel(self):
-		panel = RotateToolPanel(self)
+		panel = OptionsBarRotate(self)
 		self.angle_btn = panel.angle_btn
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
 		return panel
@@ -194,15 +194,15 @@ class ToolRotate(AbstractCanvasTool):
 	############################################################################
 ################################################################################
 
-class RotateToolPanel(DrawingAdaptativeBottomBar):
-	__gtype_name__ = 'RotateToolPanel'
+class OptionsBarRotate(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarRotate'
 
 	def __init__(self, rotate_tool):
 		super().__init__()
 		# knowing the tool is needed because the panel doesn't compact the same
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool
-		builder = self.build_ui('tools/ui/tool_rotate.ui')
+		builder = self.build_ui('ui/tool-rotate.ui')
 		self.angle_btn = builder.get_object('angle_btn')
 		self.more_btn = builder.get_object('more_btn')
 		self.angle_box = builder.get_object('angle_box')

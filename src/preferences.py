@@ -18,11 +18,9 @@
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .utilities import utilities_add_unit_to_spinbtn
 
-SETTINGS_SCHEMA = 'com.github.maoschanz.drawing'
-
 @Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/preferences.ui')
-class DrawingPrefsWindow(Gtk.Window):
-	__gtype_name__ = 'DrawingPrefsWindow'
+class DrPrefsWindow(Gtk.Window):
+	__gtype_name__ = 'DrPrefsWindow'
 
 	content_area = Gtk.Template.Child()
 	stack_switcher = Gtk.Template.Child()
@@ -150,16 +148,16 @@ class DrawingPrefsWindow(Gtk.Window):
 		self.add_section_title(_("Layout"))
 		self.add_help(_("The recommended value is \"Automatic\"."))
 		layouts_dict = {
-			'auto': _("Automatic"),
-			'csd': _("Compact"),
-			'csd-eos': _("elementary OS"),
-			'ssd': _("Legacy"),
-			'ssd-symbolic': _("Legacy (symbolic icons)"),
-			'ssd-menubar': _("Menubar only"),
-			'ssd-toolbar': _("Toolbar only"),
-			'ssd-toolbar-symbolic': _("Toolbar only (symbolic icons)")
+			'': _("Automatic"),
+			'hg': _("Compact"),
+			'he': _("elementary OS"),
+			'mtc': _("Legacy"),
+			'mts': _("Legacy (symbolic icons)"),
+			'm': _("Menubar only"),
+			'tc': _("Toolbar only"),
+			'ts': _("Toolbar only (symbolic icons)")
 		}
-		self.add_radio_flowbox('decorations', layouts_dict)
+		self.add_radio_flowbox('deco-type', layouts_dict)
 
 	############################################################################
 	# Generic methods to build and pack widgets ################################

@@ -17,9 +17,9 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
-from .selection_manager import DrawingSelectionManager
+from .selection_manager import DrSelectionManager
 
-class DrawingMotionBehavior():
+class DrMotionBehavior():
 	HOVER = 0
 	DRAW = 1
 	SLIP = 2
@@ -27,8 +27,8 @@ class DrawingMotionBehavior():
 ################################################################################
 
 @Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/image.ui')
-class DrawingImage(Gtk.Box):
-	__gtype_name__ = 'DrawingImage'
+class DrImage(Gtk.Box):
+	__gtype_name__ = 'DrImage'
 
 	drawing_area = Gtk.Template.Child()
 	h_scrollbar = Gtk.Template.Child()
@@ -81,14 +81,14 @@ class DrawingImage(Gtk.Box):
 		self.zoom_level = 1.0
 		self.scroll_x = 0
 		self.scroll_y = 0
-		self.motion_behavior = DrawingMotionBehavior.HOVER
+		self.motion_behavior = DrMotionBehavior.HOVER
 		self.press2_x = 0.0
 		self.press2_y = 0.0
 		self.drag_scroll_x = 0.0
 		self.drag_scroll_y = 0.0
 
 		# Selection initialization
-		self.selection = DrawingSelectionManager(self)
+		self.selection = DrSelectionManager(self)
 
 		# History initialization
 		self.previous_pixbuf = None
@@ -345,13 +345,13 @@ class DrawingImage(Gtk.Box):
 			return
 		event_x, event_y = self.get_event_coords(event)
 		if event.button == 2:
-			self.motion_behavior = DrawingMotionBehavior.SLIP
+			self.motion_behavior = DrMotionBehavior.SLIP
 			self.press2_x = event_x
 			self.press2_y = event_y
 			self.drag_scroll_x = event_x
 			self.drag_scroll_y = event_y
 			return
-		self.motion_behavior = DrawingMotionBehavior.DRAW
+		self.motion_behavior = DrMotionBehavior.DRAW
 		self.active_tool().on_press_on_area(event, self.surface, event_x, event_y)
 		self._is_pressed = True
 
@@ -362,14 +362,14 @@ class DrawingImage(Gtk.Box):
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
 		event_x, event_y = self.get_event_coords(event)
-		if self.motion_behavior == DrawingMotionBehavior.HOVER:
+		if self.motion_behavior == DrMotionBehavior.HOVER:
 			# XXX ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
-		elif self.motion_behavior == DrawingMotionBehavior.DRAW:
+		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
 			self.update()
-		else: # self.motion_behavior == DrawingMotionBehavior.SLIP:
+		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			delta_x = int(self.drag_scroll_x - event_x)
 			delta_y = int(self.drag_scroll_y - event_y)
 			self.add_deltas(delta_x, delta_y, 0.8)
@@ -380,13 +380,13 @@ class DrawingImage(Gtk.Box):
 		"""Signal callback. Executed when a mouse button is released on
 		self.drawing_area, if the button is not the signal is transmitted to the
 		selected tool."""
-		if self.motion_behavior == DrawingMotionBehavior.SLIP:
+		if self.motion_behavior == DrMotionBehavior.SLIP:
 			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
 			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
 				self.window.options_manager.on_middle_click()
-			self.motion_behavior = DrawingMotionBehavior.HOVER
+			self.motion_behavior = DrMotionBehavior.HOVER
 			return
-		self.motion_behavior = DrawingMotionBehavior.HOVER
+		self.motion_behavior = DrMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
 		self.window.set_picture_title()

@@ -18,8 +18,8 @@
 import sys, gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
-from .window import DrawingWindow
-from .preferences import DrawingPrefsWindow
+from .window import DrWindow
+from .preferences import DrPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
@@ -99,7 +99,7 @@ class Application(Gtk.Application):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
-		win = DrawingWindow(application=self)
+		win = DrWindow(application=self)
 		win.present()
 		win.init_window_content(gfile, get_cb) # this optimization has no effect
 		# because of GLib unknown magic, but should be kept anyway because the
@@ -193,7 +193,7 @@ class Application(Gtk.Application):
 		if self.prefs_window is not None:
 			self.prefs_window.destroy()
 		wants_csd = not 'ssd' in self.props.active_window.deco_layout
-		self.prefs_window = DrawingPrefsWindow(self.is_beta(), wants_csd, \
+		self.prefs_window = DrPrefsWindow(self.is_beta(), wants_csd, \
 		                                                       application=self)
 		self.prefs_window.present()
 

@@ -17,11 +17,12 @@
 
 import cairo
 from gi.repository import Gtk
-from .utilities_tools import utilities_show_overlay_on_context
+from .utilities_overlay import utilities_show_overlay_on_context
 
 class AbstractAbstractTool():
 	"""Super-class implemented and extended by all tools."""
 	__gtype_name__ = 'AbstractAbstractTool'
+	UI_PATH = '/com/github/maoschanz/drawing/tools/ui/'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		# The tool's identity
@@ -87,7 +88,7 @@ class AbstractAbstractTool():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		fpath = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
+		fpath = self.UI_PATH + 'tool-' + self.id + '.ui'
 		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 
