@@ -40,41 +40,45 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		# Code differences are kept minimal between the 2 cases: widgets will
 		# share similar names in order to both work with the same method
 		# updating widgets' visibility when resizing.
-		self._save_label = builder.get_object('save_label')
-		self._save_icon = builder.get_object('save_icon')
-
+		self._save_long = builder.get_object('save_long')
+		self._save_short = builder.get_object('save_short')
 		self._hidable_widget_1 = builder.get_object('hidable1')
 		self._hidable_widget_2 = builder.get_object('hidable2')
-		self._main_menu_btn = builder.get_object('main_menu_btn')
 
+		# Used by other methods
 		self._undo_btn = builder.get_object('undo_btn')
 		self._redo_btn = builder.get_object('redo_btn')
+		self._main_menu_btn = builder.get_object('main_menu_btn')
 
 		# Quite high as a precaution, will be more precise later
-		self._limit_size = 700
+		self._limit_size = 720
 
 		builder.add_from_resource(self.UI_PATH + 'win-menus.ui')
 		if is_eos:
-			self._init_if_eos(builder)
+			self._init_menus_eos(builder)
 		else:
-			self._init_if_gnome(builder)
+			self._init_menus_gnome(builder)
 
-		# This one is the default to be coherent with the default value of
-		# self._is_narrow
+		# The longer one is set by default to be consistent with the initial
+		# value of self._is_narrow
 		self._main_menu_btn.set_menu_model(self._long_primary_menu)
 
-	def _init_if_eos(self, builder):
+	def _init_menus_gnome(self, builder):
+		"""Sets the menus for the GNOME/Budgie layout: `self._hidable_widget_2`
+		is the "New Image" button here."""
+		self._short_primary_menu = builder.get_object('short-window-menu')
+		self._long_primary_menu = builder.get_object('long-window-menu')
+		self._hidable_widget_2.set_menu_model(builder.get_object('new-image-menu'))
+
+	def _init_menus_eos(self, builder):
+		"""Sets the menus for the Pantheon layout: the "New Image" button isn't
+		hidden here, and menus are shorter."""
 		self._short_primary_menu = builder.get_object('minimal-window-menu')
 		self._long_primary_menu = builder.get_object('short-window-menu')
 		save_as_menubtn = builder.get_object('save_as_menubtn')
 		save_as_menubtn.set_menu_model(builder.get_object('save-section'))
 		new_btn = builder.get_object('new_btn')
 		new_btn.set_menu_model(builder.get_object('new-image-menu'))
-
-	def _init_if_gnome(self, builder):
-		self._short_primary_menu = builder.get_object('short-window-menu')
-		self._long_primary_menu = builder.get_object('long-window-menu')
-		self._hidable_widget_2.set_menu_model(builder.get_object('new-image-menu'))
 
 	def remove_from_ui(self):
 		return False
@@ -104,12 +108,12 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 	def init_adaptability(self):
 		# Header bar width limit
 		self._widget.show_all()
-		widgets_width = self._save_label.get_preferred_width()[0] \
-		               - self._save_icon.get_preferred_width()[0] \
-		          + self._hidable_widget_1.get_preferred_width()[0] \
-		                + self._undo_btn.get_preferred_width()[0] \
-		                + self._redo_btn.get_preferred_width()[0] \
-		          + self._hidable_widget_2.get_preferred_width()[0]
+		widgets_width = self._hidable_widget_1.get_preferred_width()[0] \
+		              + self._hidable_widget_2.get_preferred_width()[0] \
+		                     + self._save_long.get_preferred_width()[0] \
+		                    - self._save_short.get_preferred_width()[0] \
+		                      + self._undo_btn.get_preferred_width()[0] \
+		                      + self._redo_btn.get_preferred_width()[0]
 		self._limit_size = 2.5 * widgets_width # 100% arbitrary
 
 	def adapt_to_window_size(self):
@@ -127,8 +131,8 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 			self._main_menu_btn.set_menu_model(self._long_primary_menu)
 		else:
 			self._main_menu_btn.set_menu_model(self._short_primary_menu)
-		self._save_label.set_visible(not state)
-		self._save_icon.set_visible(state)
+		self._save_long.set_visible(not state)
+		self._save_short.set_visible(state)
 		self._hidable_widget_1.set_visible(not state)
 		self._hidable_widget_2.set_visible(not state)
 		self._is_narrow = state

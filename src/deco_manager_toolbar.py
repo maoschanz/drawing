@@ -35,16 +35,12 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 		window.toolbar_box.pack_start(self._widget, True, True, 0)
 		window.toolbar_box.show_all()
 
-		# Code differences are kept minimal between the 2 cases: widgets will
-		# share similar names in order to both work with the same method
-		# updating widgets' visibility when resizing.
-		self._save_label = builder.get_object('save_label')
-		self._save_icon = builder.get_object('save_icon')
-		# If is_eos, hidable_widget is a box with paste/import, else it's the
-		# "Open" button.
-		self._hidable_widget = builder.get_object('hidable_widget')
-		self._new_btn = builder.get_object('new_btn')
+		# Mandatory widget name, used for the `win.main_menu` action.
 		self._main_menu_btn = builder.get_object('main_menu_btn')
+
+		# XXX maybe later
+		# self._undo_btn = builder.get_object('undo_btn')
+		# self._redo_btn = builder.get_object('redo_btn')
 
 		# The toolbar has menus which need to be set manually
 		builder.add_from_resource(self.UI_PATH + 'win-menus.ui')

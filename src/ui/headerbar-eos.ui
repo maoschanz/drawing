@@ -111,7 +111,7 @@
     </child>
 
     <child>
-      <object class="GtkBox" id="save_label">
+      <object class="GtkBox" id="save_long">
         <property name="visible">False</property>
 
         <child>
@@ -122,21 +122,10 @@
             <property name="action-name">win.save</property>
             <property name="tooltip-text" translatable="yes">Save</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkImage">
+                <property name="icon-name">document-save</property>
+                <property name="pixel-size">24</property>
                 <property name="visible">True</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">document-save</property>
-                    <property name="pixel-size">24</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">Save</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
@@ -182,28 +171,17 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="save_icon">
+      <object class="GtkButton" id="save_short">
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="relief">none</property>
         <property name="action-name">win.save</property>
         <property name="tooltip-text" translatable="yes">Save</property>
         <child>
-          <object class="GtkBox">
+          <object class="GtkImage">
+            <property name="icon-name">document-save</property>
+            <property name="pixel-size">24</property>
             <property name="visible">True</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">document-save</property>
-                <property name="pixel-size">24</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label" translatable="yes">Save</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
           </object>
         </child>
       </object>
