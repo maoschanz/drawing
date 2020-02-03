@@ -60,7 +60,7 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 		if with_menubar:
 			self._main_menu_btn.set_visible(False)
 		else:
-			others_menu = builder.get_object('toolbar-menu')
+			others_menu = builder.get_object('minimal-window-menu')
 			self._main_menu_btn.set_menu_model(others_menu)
 
 	def remove_from_ui(self):

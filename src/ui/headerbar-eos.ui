@@ -38,47 +38,6 @@
     </child>
 
     <child>
-      <object class="GtkBox" id="hidable_widget">
-        <property name="visible">False</property>
-
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <property name="action-name">win.import</property>
-            <property name="relief">none</property>
-            <property name="valign">center</property>
-            <property name="tooltip-text" translatable="yes">Import</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">insert-image</property>
-                <property name="pixel-size">24</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <property name="action-name">win.paste</property>
-            <property name="relief">none</property>
-            <property name="valign">center</property>
-            <property name="tooltip-text" translatable="yes">Paste</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">edit-paste</property>
-                <property name="pixel-size">24</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-      </object>
-    </child>
-
-    <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -116,6 +75,24 @@
     </child>
 
     <child>
+      <object class="GtkButton" id="hidable1">
+        <property name="visible">False</property>
+        <property name="visible">True</property>
+        <property name="action-name">win.properties</property>
+        <property name="relief">none</property>
+        <property name="valign">center</property>
+        <property name="tooltip-text" translatable="yes">Image properties</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">document-properties</property>
+            <property name="pixel-size">24</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
       <object class="GtkMenuButton" id="main_menu_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -134,7 +111,78 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="save_label">
+      <object class="GtkBox" id="save_label">
+        <property name="visible">False</property>
+
+        <child>
+          <object class="GtkButton">
+            <property name="visible">False</property>
+            <property name="valign">center</property>
+            <property name="relief">none</property>
+            <property name="action-name">win.save</property>
+            <property name="tooltip-text" translatable="yes">Save</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">document-save</property>
+                    <property name="pixel-size">24</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Save</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="action-name">win.print</property>
+            <property name="relief">none</property>
+            <property name="valign">center</property>
+            <property name="tooltip-text" translatable="yes">Print</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">document-print</property>
+                <property name="pixel-size">24</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkMenuButton" id="save_as_menubtn">
+            <property name="visible">True</property>
+            <property name="relief">none</property>
+            <property name="valign">center</property>
+            <property name="tooltip-text" translatable="yes">Save as…</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">document-save-as</property>
+                <property name="pixel-size">24</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="save_icon">
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="relief">none</property>
@@ -165,15 +213,15 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="save_icon">
-        <property name="visible">False</property>
-        <property name="valign">center</property>
+      <object class="GtkButton" id="hidable2">
+        <property name="visible">True</property>
+        <property name="action-name">win.fullscreen</property>
         <property name="relief">none</property>
-        <property name="action-name">win.save</property>
-        <property name="tooltip-text" translatable="yes">Save</property>
+        <property name="valign">center</property>
+        <property name="tooltip-text" translatable="yes">Fullscreen</property>
         <child>
           <object class="GtkImage">
-            <property name="icon-name">document-save</property>
+            <property name="icon-name">view-fullscreen</property>
             <property name="pixel-size">24</property>
             <property name="visible">True</property>
           </object>

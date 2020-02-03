@@ -5,7 +5,7 @@
     <property name="show-close-button">True</property>
 
     <child>
-      <object class="GtkButton" id="hidable_widget">
+      <object class="GtkButton" id="hidable1">
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="action_name">win.open</property>
@@ -14,7 +14,7 @@
     </child>
 
     <child>
-      <object class="GtkMenuButton" id="new_btn">
+      <object class="GtkMenuButton" id="hidable2">
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">New Image</property>
