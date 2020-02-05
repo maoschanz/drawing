@@ -76,7 +76,7 @@ class ToolFlip(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		preview = self.get_image().get_temp_pixbuf()
+		preview = self.get_image().temp_pixbuf
 		if flip_h and flip_v:
 			preview = preview.flip(True)
 			preview = preview.flip(False)
@@ -87,4 +87,6 @@ class ToolFlip(AbstractCanvasTool):
 			self.get_image().set_temp_pixbuf(preview.flip(False))
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 
+	############################################################################
+################################################################################
 

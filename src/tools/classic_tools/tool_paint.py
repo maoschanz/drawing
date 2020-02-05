@@ -92,8 +92,9 @@ class ToolPaint(AbstractAbstractTool):
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.fill_preserve()
 
-		self.get_image().temp_pixbuf = Gdk.pixbuf_get_from_surface(surf, 0, 0, \
+		pixbuf1 = Gdk.pixbuf_get_from_surface(surf, 0, 0, \
 		                                    surf.get_width(), surf.get_height())
+		self.get_image().set_temp_pixbuf(pixbuf1)
 
 		tolerance = 10 # XXX
 		i = -1 * tolerance
@@ -116,7 +117,7 @@ class ToolPaint(AbstractAbstractTool):
 		cairo_context2.set_operator(cairo.Operator.OVER)
 
 		Gdk.cairo_set_source_pixbuf(cairo_context2, \
-		                               self.get_image().get_temp_pixbuf(), 0, 0)
+		                               self.get_image().temp_pixbuf, 0, 0)
 		cairo_context2.append_path(operation['path'])
 		cairo_context2.paint()
 		self.non_destructive_show_modif()
@@ -160,8 +161,8 @@ class ToolPaint(AbstractAbstractTool):
 		                                                       red, green, blue)
 
 	def replace_temp_with_alpha(self, red, green, blue):
-		self.get_image().temp_pixbuf = self.get_image().temp_pixbuf.add_alpha( \
-		                                                 True, red, green, blue)
+		pixbuf1 = self.get_image().temp_pixbuf.add_alpha(True, red, green, blue)
+		self.get_image().set_temp_pixbuf(pixbuf1)
 
 	############################################################################
 ################################################################################

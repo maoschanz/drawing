@@ -165,24 +165,33 @@ class DrawingImage(Gtk.Box):
 
 	def build_tab_widget(self):
 		"""Build the GTK widget displayed as the tab title."""
-		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
-		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
-		return self.build_title_widget_common(self.tab_label)
-
-	def build_title_widget_common(self, self_label):
-		# "common" because it could be nice to have a epiphany-like menu
-		tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
+		# The tab can be closed with a button.
 		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
 		btn.set_relief(Gtk.ReliefStyle.NONE)
 		btn.connect('clicked', self.try_close_tab)
+		# The title is a label. Middle-clicking on it closes the tab too.
+		self.tab_label = Gtk.Label(label=self.get_filename_for_display())
+		self.tab_label.set_ellipsize(Pango.EllipsizeMode.END)
+		event_box = Gtk.EventBox()
+		event_box.add(self.tab_label)
+		event_box.connect('button-press-event', self.on_tab_title_clicked)
+		# These widgets are packed in a regular box, which is returned.
+		tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
 		if self.window.decorations == 'csd-eos':
 			tab_title.pack_start(btn, expand=False, fill=False, padding=0)
-			tab_title.pack_end(self_label, expand=True, fill=True, padding=0)
+			tab_title.pack_end(event_box, expand=True, fill=True, padding=0)
 		else:
-			tab_title.pack_start(self_label, expand=True, fill=True, padding=0)
+			tab_title.pack_start(event_box, expand=True, fill=True, padding=0)
 			tab_title.pack_end(btn, expand=False, fill=False, padding=0)
 		tab_title.show_all()
 		return tab_title
+
+	def on_tab_title_clicked(self, widget, event_button):
+		if event_button.type == Gdk.EventType.BUTTON_PRESS \
+		and event_button.button == Gdk.BUTTON_MIDDLE:
+			self.try_close_tab()
+			return True
+		return False # This callback HAS TO return a boolean
 
 	def update_title(self):
 		main_title = self.get_filename_for_display()
@@ -417,15 +426,12 @@ class DrawingImage(Gtk.Box):
 	############################################################################
 	# Temporary pixbuf management ##############################################
 
-	def get_temp_pixbuf(self):
-		return self.temp_pixbuf
-
 	def set_temp_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			return False
+			# XXX maybe throw something instead
+			print("new_pixbuf is None, no change to temp_pixbuf will be applied")
 		else:
 			self.temp_pixbuf = new_pixbuf
-			return True
 
 	def reset_temp(self):
 		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
@@ -540,14 +546,16 @@ class DrawingImage(Gtk.Box):
 		pass
 
 	def do_draw_page(self, op, print_ctx, page_num):
-		# XXX TODO if it's too big for one page ?
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
-		print_ctx.get_cairo_context().paint()
+		# TODO if it's too big for one page ?
+		cairo_context = print_ctx.get_cairo_context()
+		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
+		cairo_context.paint()
 
 	def do_begin_print(self, op, print_ctx):
 		op.set_n_pages(1)
-		Gdk.cairo_set_source_pixbuf(print_ctx.get_cairo_context(), self.main_pixbuf, 0, 0)
-		print_ctx.get_cairo_context().paint()
+		cairo_context = print_ctx.get_cairo_context()
+		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
+		cairo_context.paint()
 
 	############################################################################
 ################################################################################

@@ -70,7 +70,7 @@ class ToolSaturate(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		temp = self.get_image().get_temp_pixbuf()
+		temp = self.get_image().temp_pixbuf
 		source_pixbuf.saturate_and_pixelate(temp, saturation, False)
 		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 
