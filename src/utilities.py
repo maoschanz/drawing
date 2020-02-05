@@ -1,4 +1,19 @@
 # utilities.py
+#
+# Copyright 2018-2020 Romain F. T.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import cairo, math
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -6,7 +21,7 @@ from .message_dialog import DrawingMessageDialog
 
 ################################################################################
 
-def utilities_save_pixbuf_to(pixbuf, fpath):
+def utilities_save_pixbuf_to(pixbuf, fpath, window):
 	"""Save pixbuf to a given path, with the file format corresponding to the
 	end of the file name. Format with no support for alpha channel will be
 	modified so transparent pixels get replaced by white."""
@@ -17,23 +32,61 @@ def utilities_save_pixbuf_to(pixbuf, fpath):
 		file_format = 'jpeg'
 	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
 		file_format = 'png'
-	# Handle formats with no alpha channel
+	# Ask the user what to do concerning formats with no alpha channel
 	if file_format not in ['png']:
-		width = pixbuf.get_width()
-		height = pixbuf.get_height()
-		# TODO ask the user if they want something else than white?
-		pattern_color1 = _rgb_as_hexadecimal_int(255, 255, 255)
-		pattern_color2 = _rgb_as_hexadecimal_int(255, 255, 255)
-		pixbuf = pixbuf.composite_color_simple(width, height, \
-		                                      GdkPixbuf.InterpType.TILES, 255, \
-		                                      8, pattern_color1, pattern_color2)
+		replacement = window._settings.get_string('replace-alpha')
+		if replacement == 'ask':
+			replacement = _ask_overwrite_alpha(window)
+		pixbuf = _replace_alpha(pixbuf, replacement)
 	# Actually save the pixbuf to the given file path
 	pixbuf.savev(fpath, file_format, [None], [])
+
+def _replace_alpha(pixbuf, replacement):
+	if replacement == 'nothing':
+		return
+	width = pixbuf.get_width()
+	height = pixbuf.get_height()
+	if replacement == 'white':
+		pcolor1 = _rgb_as_hexadecimal_int(255, 255, 255)
+		pcolor2 = _rgb_as_hexadecimal_int(255, 255, 255)
+	elif replacement == 'checkboard':
+		pcolor1 = _rgb_as_hexadecimal_int(85, 85, 85)
+		pcolor2 = _rgb_as_hexadecimal_int(170, 170, 170)
+	else: # if replacement == 'black':
+		pcolor1 = _rgb_as_hexadecimal_int(0, 0, 0)
+		pcolor2 = _rgb_as_hexadecimal_int(0, 0, 0)
+	return pixbuf.composite_color_simple(width, height,
+	                       GdkPixbuf.InterpType.TILES, 255, 8, pcolor1, pcolor2)
 
 def _rgb_as_hexadecimal_int(r, g, b):
 	"""The method GdkPixbuf.Pixbuf.composite_color_simple wants an hexadecimal
 	integer whose format is 0xaarrggbb so here are ugly binary operators."""
 	return (r << 16) + (g << 8) + b
+
+def _ask_overwrite_alpha(window):
+	"""This method is not used for now. The point is to warn the user about the
+	replacement of the alpha channel for JPG or BMP files, but it might annoy
+	users very quickly to see a dialog."""
+	dialog = DrawingMessageDialog(window)
+	cancel_id = dialog.set_action(_("Cancel"), None, False)
+	continue_id = dialog.set_action(_("Save"), None, True)
+	dialog.add_string(_("This file format doesn't support transparent colors."))
+
+	dialog.add_string(_("Replace transparency with:") )
+	alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
+	dialog.add_widget(alpha_combobox)
+	alpha_combobox.append('white', _("White"))
+	alpha_combobox.append('black', _("Black"))
+	alpha_combobox.append('checkboard', _("Checkboard"))
+	alpha_combobox.append('nothing', _("Nothing"))
+	alpha_combobox.set_active_id('white')
+
+	result = dialog.run()
+	repl = alpha_combobox.get_active_id()
+	dialog.destroy()
+	if result != continue_id:
+		raise Exception("User refused to save as %s" % file_format)
+	return repl
 
 ################################################################################
 
@@ -67,7 +120,7 @@ def utilities_add_filechooser_filters(dialog):
 def utilities_get_rgb_for_xy(surface, x, y):
 	# Guard clause: we can't perform color picking outside of the surface
 	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
-		return [-1,-1,-1]
+		return None
 	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
 	rgb_vals = screenshot.get_pixels()
 	return rgb_vals # array de 3 valeurs, de 0 à 255
@@ -109,7 +162,7 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 			color_string = _("Black")
 		else:
 			color_string = _("Grey")
-			print('gris correct')
+			# print('gris correct')
 
 	elif rgb_percents[0] > 0.5 and rgb_percents[1] > 0.2 and rgb_percents[1] < 0.4:
 		if orange_coef > 0.87:

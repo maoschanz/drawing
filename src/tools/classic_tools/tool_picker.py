@@ -15,11 +15,14 @@ class ToolPicker(AbstractAbstractTool):
 		return None
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		rgb_vals = utilities_get_rgb_for_xy(surface, event_x, event_y)
-		if rgb_vals == [-1, -1, -1]:
+		rgba_vals = utilities_get_rgb_for_xy(surface, event_x, event_y)
+		if rgba_vals is None:
 			return # click outside of the surface
-		color = Gdk.RGBA(red=rgb_vals[0]/255, green=rgb_vals[1]/255, blue=rgb_vals[2]/255)
-		color.alpha = 1.0
+		r = rgba_vals[0] / 255
+		g = rgba_vals[1] / 255
+		b = rgba_vals[2] / 255
+		a = rgba_vals[3] / 255
+		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		if event.button == 3:
 			self.window.color_popover_r.color_widget.set_rgba(color)
 		elif event.button == 1:

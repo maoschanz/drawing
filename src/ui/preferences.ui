@@ -26,14 +26,14 @@
 
   <template class="DrawingPrefsWindow" parent="GtkWindow">
     <property name="default-width">500</property>
-    <property name="default-height">300</property>
+    <property name="default-height">480</property>
     <property name="title" translatable="yes">Preferences</property>
 
     <child>
       <object class="GtkBox" id="content_area">
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">12</property>
+        <property name="spacing">10</property>
 
         <child>
           <object class="GtkStackSwitcher" id="stack_switcher">
@@ -49,27 +49,47 @@
             <property name="transition-type">crossfade</property>
 
             <child>
-              <object class="GtkBox" id="page_images">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <property name="margin">12</property>
+                <property name="expand">True</property>
+                <child>
+                  <object class="GtkGrid" id="page_images">
+                    <property name="visible">True</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">start</property>
+                    <property name="expand">True</property>
+                    <property name="column-homogeneous">False</property>
+                    <property name="row-spacing">10</property>
+                    <property name="column-spacing">16</property>
+                    <property name="margin">10</property>
+                  </object>
+                </child>
               </object>
               <packing>
-                <property name="name">page2</property>
+                <property name="name">page_images</property>
                 <property name="title" translatable="yes">Images</property>
               </packing>
             </child>
 
             <child>
-              <object class="GtkBox" id="page_tools">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <property name="margin">12</property>
+                <property name="expand">True</property>
+                <child>
+                  <object class="GtkGrid" id="page_tools">
+                    <property name="visible">True</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">start</property>
+                    <property name="expand">True</property>
+                    <property name="column-homogeneous">False</property>
+                    <property name="row-spacing">10</property>
+                    <property name="column-spacing">16</property>
+                    <property name="margin">10</property>
+                  </object>
+                </child>
               </object>
               <packing>
-                <property name="name">page1</property>
+                <property name="name">page_tools</property>
                 <property name="title" translatable="yes">Tools</property>
               </packing>
             </child>
@@ -79,16 +99,20 @@
                 <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
-                  <object class="GtkBox" id="page_advanced">
+                  <object class="GtkGrid" id="page_advanced">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">12</property>
-                    <property name="margin">12</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">start</property>
+                    <property name="expand">True</property>
+                    <property name="column-homogeneous">False</property>
+                    <property name="row-spacing">10</property>
+                    <property name="column-spacing">16</property>
+                    <property name="margin">10</property>
                   </object>
                 </child>
               </object>
               <packing>
-                <property name="name">page3</property>
+                <property name="name">page_advanced</property>
                 <property name="icon-name">view-more-horizontal-symbolic</property>
                 <property name="title" translatable="yes">Advanced options</property>
               </packing>

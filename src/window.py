@@ -1,6 +1,6 @@
 # window.py
 #
-# Copyright 2019 Romain F. T.
+# Copyright 2018-2020 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -867,7 +867,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			else:
 				self.get_active_image().gfile = gfile
 				fn = self.get_file_path()
-		utilities_save_pixbuf_to(self.get_active_image().main_pixbuf, fn)
+		utilities_save_pixbuf_to(self.get_active_image().main_pixbuf, fn, self)
 		self.get_active_image().post_save()
 		self.set_picture_title()
 		return True
@@ -931,7 +931,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_to(pb, gfile.get_path())
+			utilities_save_pixbuf_to(pb, gfile.get_path(), self)
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -997,7 +997,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		gfile = self.file_chooser_save()
 		if gfile is not None:
 			pixbuf = self.get_active_image().selection.get_pixbuf()
-			utilities_save_pixbuf_to(pixbuf, gfile.get_path())
+			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
 
 	def get_selection_tool(self):  # XXX réellement utile ?
 		if 'select' in self.tools:

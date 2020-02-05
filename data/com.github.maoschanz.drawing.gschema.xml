@@ -23,6 +23,18 @@
       optional, but putting garbage in the list isn't catastrophic so try any id
       you want.</description>
     </key>
+    <key type="s" name="replace-alpha">
+      <default>'white'</default>
+      <summary>What will replace transparent pixels if needed</summary>
+      <description>
+        What will replace transparent pixels when saving to a file format not
+        supporting it, such as JPG or BMP. It can be 'white', 'black', 'ask'
+        (the value isn't memorized and a dialog is prompted each time),
+        'nothing' (the alpha channel is removed, which usually replace deleted
+        areas with black but preserves semi-transparent colors' saturation), or
+        'checkboard'.
+      </description>
+    </key>
     <key type="i" name="preview-size">
       <default>250</default>
       <summary>Preview size</summary>
