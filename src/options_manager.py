@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GLib
 import cairo
+from gi.repository import GLib
 
 class DrawingOptionsManager():
 	__gtype_name__ = 'DrawingOptionsManager'
@@ -73,3 +73,5 @@ class DrawingOptionsManager():
 		args[0].set_state(GLib.Variant.new_string(new_value))
 		self.window.set_picture_title()
 
+	############################################################################
+################################################################################

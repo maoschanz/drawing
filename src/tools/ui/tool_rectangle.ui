@@ -2,6 +2,19 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
+      <attribute name="label" translatable="yes">Shape</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Rectangle</attribute>
+        <attribute name="action">win.rectangle_shape</attribute>
+        <attribute name="target">rectangle</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rounded rectangle</attribute>
+        <attribute name="action">win.rectangle_shape</attribute>
+        <attribute name="target">rounded</attribute>
+      </item>
+    </section>
+    <section>
       <attribute name="label" translatable="yes">Filling</attribute>
       <item>
         <attribute name="label" translatable="yes">Empty</attribute>

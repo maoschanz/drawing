@@ -16,14 +16,14 @@ class ToolText(AbstractAbstractTool):
 		self.should_cancel = False
 		self.use_size = True
 
-		self.font_fam = "Sans"
-		self.selected_background_id = 'shadow'
-		self.selected_background_label = _("Secondary color shadow")
+		self._font_fam = "Sans"
+		self._bg_id = 'outline'
+		self._bg_label = _("Outline")
 
-		self.add_tool_action_enum('text_font', 'Sans')
-		self.add_tool_action_boolean('text_bold', False)
-		self.add_tool_action_boolean('text_italic', False)
-		self.add_tool_action_enum('text_background', 'shadow')
+		self.add_tool_action_enum('text-font', self._font_fam)
+		self.add_tool_action_boolean('text-bold', False)
+		self.add_tool_action_boolean('text-italic', False)
+		self.add_tool_action_enum('text-background', self._bg_id)
 
 		builder = Gtk.Builder().new_from_resource( \
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
@@ -41,37 +41,49 @@ class ToolText(AbstractAbstractTool):
 	############################################################################
 	# Options ##################################################################
 
-	def set_font(self, *args):
-		self.font_fam = self.get_option_value('text_font')
-
-	def set_background_style(self, *args):
-		state_as_string = self.get_option_value('text_background')
-		self.selected_background_id = state_as_string
-		if state_as_string == 'none':
-			self.selected_background_label = _("No background")
-		elif state_as_string == 'shadow':
-			self.selected_background_label = _("Secondary color shadow")
+	def _set_font_options(self, *args):
+		# TODO ? use the widget again, and cairo.ToyFontFace
+		self._font_fam = self.get_option_value('text-font')
+		if self.get_option_value('text-italic'):
+			self._font_slant = cairo.FontSlant.ITALIC
 		else:
-			self.selected_background_label = _("Secondary color rectangle")
+			self._font_slant = cairo.FontSlant.NORMAL
+		if self.get_option_value('text-bold'):
+			self._font_weight = cairo.FontWeight.BOLD
+		else:
+			self._font_weight = cairo.FontWeight.NORMAL
+
+	def _set_background_style(self, *args):
+		state_as_string = self.get_option_value('text-background')
+		self._bg_id = state_as_string
+		if state_as_string == 'none':
+			self._bg_label = _("No background")
+		elif state_as_string == 'shadow':
+			self._bg_label = _("Shadow")
+		elif state_as_string == 'outline':
+			self._bg_label = _("Outline")
+		else:
+			self._bg_label = _("Rectangle background")
 
 	def get_options_label(self):
 		return _("Font options")
 
 	def get_edition_status(self):
-		self.set_background_style()
-		# TODO + font ?
-		label = self.label + ' - ' + self.selected_background_label
+		self._set_background_style()
+		self._set_font_options()
+		label = self.label + ' - ' + self._font_fam + ' - ' + self._bg_label
 		return label
 
 	############################################################################
 
 	def on_tool_selected(self):
 		super().on_tool_selected()
-		# Ctrl+v can't paste text in the entry otherwise
-		self.set_action_sensitivity('paste', False)
 
 	def on_tool_unselected(self):
 		self.set_action_sensitivity('paste', True)
+		self.set_action_sensitivity('select_all', True)
+		self.set_action_sensitivity('selection_cut', True)
+		self.set_action_sensitivity('selection_copy', True)
 
 	def give_back_control(self, preserve_selection):
 		if self.should_cancel:
@@ -105,25 +117,17 @@ class ToolText(AbstractAbstractTool):
 		self.x_begin = event_x
 		self.y_begin = event_y
 		self.should_cancel = True
+		# self._set_font_options()
 
-		# TODO use the widget again, and cairo.ToyFontFace
-		self.set_font()
+		self._open_popover_at(int(event.x), int(event.y))
 
-		if self.get_option_value('text_italic'):
-			self.font_slant = cairo.FontSlant.ITALIC
-		else:
-			self.font_slant = cairo.FontSlant.NORMAL
-		if self.get_option_value('text_bold'):
-			self.font_weight = cairo.FontWeight.BOLD
-		else:
-			self.font_weight = cairo.FontWeight.NORMAL
+		# Usual text entry shortcuts don't work otherwise
+		self.set_action_sensitivity('paste', False)
+		self.set_action_sensitivity('select_all', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('selection_copy', False)
 
-		if event is None: # TODO l'ouvrir à l'endroit précédent si clic droit ?
-			self.open_popover_at(int(event_x), int(event_y))
-		else:
-			self.open_popover_at(int(event.x), int(event.y))
-
-	def open_popover_at(self, x, y):
+	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = x
 		rectangle.y = y
@@ -141,6 +145,10 @@ class ToolText(AbstractAbstractTool):
 			operation = self.build_operation()
 			self.apply_operation(operation)
 			self.set_string('')
+		self.set_action_sensitivity('paste', True)
+		self.set_action_sensitivity('select_all', True)
+		self.set_action_sensitivity('selection_cut', True)
+		self.set_action_sensitivity('selection_copy', True)
 
 	def has_current_text(self):
 		b = self.entry.get_buffer()
@@ -170,13 +178,13 @@ class ToolText(AbstractAbstractTool):
 			'tool_id': self.id,
 			'rgba1': self.main_color,
 			'rgba2': self.secondary_color,
-			'font_fam': self.font_fam,
-			'font_slant': self.font_slant,
-			'font_weight': self.font_weight,
+			'font_fam': self._font_fam,
+			'font_slant': self._font_slant,
+			'font_weight': self._font_weight,
 			'font_size': self.tool_width,
 			'x': self.x_begin,
 			'y': self.y_begin,
-			'background': self.selected_background_id,
+			'background': self._bg_id,
 			'text': self.text_string
 		}
 		return operation
@@ -201,41 +209,49 @@ class ToolText(AbstractAbstractTool):
 		text_x = int(operation['x'])
 		text_y = int(operation['y'])
 
-		for a_line in lines:
-			if operation['background'] == 'rectangle':
-				self.op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
-				                                                 text_y, a_line)
-			actual_text_y = text_y + i*font_size
-			if operation['background'] == 'shadow':
-				self.op_bg_shadow(cairo_context, c2, font_size, text_x, \
-				                                          actual_text_y, a_line)
+		for line_text in lines:
 			####################################################################
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, \
-			                                                        c1.alpha)
-			cairo_context.move_to(text_x, actual_text_y)
-			cairo_context.show_text( a_line )
+			# Draw background for the line #####################################
+			line_y = text_y + i * font_size
+			if operation['background'] == 'rectangle':
+				self._op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
+				                                              text_y, line_text)
+			elif operation['background'] == 'shadow':
+				self._op_bg_shadow(cairo_context, c2, font_size, text_x, \
+				                                              line_y, line_text)
+			elif operation['background'] == 'outline':
+				self._op_bg_outline(cairo_context, c2, font_size, text_x, \
+				                                              line_y, line_text)
+			####################################################################
+			# Draw text for the line ###########################################
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+			cairo_context.move_to(text_x, line_y)
+			cairo_context.show_text( line_text )
 			i = i + 1
 		self.non_destructive_show_modif()
 
-	def op_bg_shadow(self, context, color, font_size, text_x, text_y, line):
+	def _op_bg_shadow(self, context, color, font_size, text_x, text_y, line):
 		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
-		if font_size < 32:
-			context.move_to(text_x+1, text_y+1)
-			context.show_text( line )
-		else:
-			context.move_to(text_x+2, text_y+2)
-			context.show_text( line )
-			context.move_to(text_x-1, text_y-1)
-			context.show_text( line )
+		dist = max(min(int(font_size/18), 4), 1)
+		context.move_to(text_x + dist, text_y + dist)
+		context.show_text(line)
 
-	def op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
+	def _op_bg_outline(self, context, color, font_size, text_x, text_y, line):
+		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
+		dist = max(min(int(font_size/18), 8), 1)
+		for dx in range(-dist, dist):
+			for dy in range(-dist, dist):
+				context.move_to(text_x + dx, text_y + dy)
+				context.show_text(line)
+
+	def _op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
 		# XXX i think cairo.Context.font_extents is supposed to help me
 		context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
-		first_y = int(text_y + (i+0.2)*font_size)
+		first_y = int(text_y + (i + 0.2) * font_size)
 		context.move_to(text_x, first_y)
-		context.show_text( line )
-		context.rel_line_to(0, (-1)*font_size)
-		context.line_to(text_x, int(text_y + (i-0.8)*font_size))
+		context.show_text(line)
+		context.rel_line_to(0, (-1) * font_size)
+		context.line_to(text_x, int(text_y + (i - 0.8) * font_size))
 		context.line_to(text_x, first_y)
 		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
 		context.fill()

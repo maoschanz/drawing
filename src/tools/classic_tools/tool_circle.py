@@ -19,7 +19,8 @@ class ToolCircle(AbstractAbstractTool):
 		self.selected_style_id = 'secondary'
 		self.selected_shape_id = 'circle'
 
-		self.add_tool_action_enum('circle_shape', 'circle')
+		self.add_tool_action_enum('filling_style', self.selected_style_id)
+		self.add_tool_action_enum('circle_shape', self.selected_shape_id)
 
 	def set_active_style(self, *args):
 		state_as_string = self.get_option_value('filling_style')
@@ -46,28 +47,30 @@ class ToolCircle(AbstractAbstractTool):
 			label = self.label + ' - ' + self.selected_style_label
 		return label
 
+	############################################################################
+
 	def give_back_control(self, preserve_selection):
 		(self.x_press, self.y_press) = (-1.0, -1.0)
 		self.restore_pixbuf()
 
 	def draw_oval(self, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.curve_to(self.x_press, (self.y_press+event_y)/2, \
-			self.x_press, event_y, (self.x_press+event_x)/2, event_y)
-		cairo_context.curve_to((self.x_press+event_x)/2, event_y, \
-			event_x, event_y, event_x, (self.y_press+event_y)/2)
-		cairo_context.curve_to(event_x, (self.y_press+event_y)/2, \
-			event_x, self.y_press, (self.x_press+event_x)/2, self.y_press)
-		cairo_context.curve_to((self.x_press+event_x)/2, self.y_press, \
-			self.x_press, self.y_press, self.x_press, (self.y_press+event_y)/2)
+		saved_matrix = cairo_context.get_matrix()
+		halfw = (self.x_press - event_x) / 2
+		halfh = (self.y_press - event_y) / 2
+		cairo_context.translate(event_x + halfw, event_y + halfh)
+		cairo_context.scale(halfw, halfh)
+		cairo_context.arc(0, 0, 1, 0, 2 * math.pi)
+		cairo_context.set_matrix(saved_matrix)
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
 	def draw_circle(self, event_x, event_y):
 		cairo_context = cairo.Context(self.get_surface())
-		rayon = math.sqrt((self.x_press - event_x)*(self.x_press - event_x) \
-			+ (self.y_press - event_y)*(self.y_press - event_y))
-		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2*math.pi)
+		delta_x2 = (self.x_press - event_x) * (self.x_press - event_x)
+		delta_y2 = (self.y_press - event_y) * (self.y_press - event_y)
+		rayon = math.sqrt(delta_x2 + delta_y2)
+		cairo_context.arc(self.x_press, self.y_press, rayon, 0.0, 2 * math.pi)
 		self._path = cairo_context.copy_path()
 
 	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
@@ -100,6 +103,8 @@ class ToolCircle(AbstractAbstractTool):
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
+	############################################################################
+
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
@@ -120,3 +125,5 @@ class ToolCircle(AbstractAbstractTool):
 		cairo_context = cairo.Context(self.get_surface())
 		utilities_generic_shape_tool_operation(cairo_context, operation)
 
+	############################################################################
+################################################################################
