@@ -22,7 +22,7 @@ class DrCustomImageDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrCustomImageDialog'
 
 	def __init__(self, appwindow):
-		wants_csd = not ('ssd' in appwindow.deco_layout)
+		wants_csd = 'h' in appwindow.deco_layout
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 		         transient_for=appwindow, title=_("New Image With Custom Size"))
 		self._app_settings = appwindow._settings

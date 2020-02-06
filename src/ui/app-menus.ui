@@ -84,14 +84,13 @@
             </item>
           </section>
         </submenu>
+      </section>
+      <section>
         <item>
           <attribute name="label" translatable="yes">Reload file</attribute>
           <attribute name="action">win.reload_file</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
           <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>
-      </section>
-      <section>
         <item>
           <attribute name="label" translatable="yes">Image properties</attribute>
           <attribute name="action">win.properties</attribute>
@@ -378,12 +377,6 @@
       <section>
         <!-- canvas -->
       </section>
-      <!-- <section> -->
-      <!--   <item> -->
-      <!--     <attribute name="label" translatable="yes">Use antialising</attribute> -->
-      <!--     <attribute name="action">win.antialiasing</attribute> -->
-      <!--   </item> -->
-      <!-- </section> -->
       <section>
         <item>
           <attribute name="label" translatable="yes">Previous tool</attribute>

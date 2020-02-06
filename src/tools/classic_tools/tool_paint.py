@@ -70,13 +70,14 @@ class ToolPaint(AbstractClassicTool):
 			# 'x': x,
 			# 'y': y,
 			'rgba': self.main_color,
+			'antialias': self._use_antialias,
 			'old_rgba': self.old_color,
 			'path': self.magic_path
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation)
+		self.start_tool_operation(operation) # TODO antialiasing
 
 		if operation['algo'] == 'replace':
 			self.op_replace(operation)

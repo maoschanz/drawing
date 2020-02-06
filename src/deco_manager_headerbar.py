@@ -50,8 +50,9 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		self._redo_btn = builder.get_object('redo_btn')
 		self._main_menu_btn = builder.get_object('main_menu_btn')
 
-		# Quite high as a precaution, will be more precise later
-		self._limit_size = 720
+		# Quite extreme as a precaution, will be more precise later
+		self._limit_size = 750
+		self._manual_correction = 0
 
 		builder.add_from_resource(self.UI_PATH + 'win-menus.ui')
 		if is_eos:
@@ -79,6 +80,7 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		save_as_menubtn.set_menu_model(builder.get_object('save-section'))
 		new_btn = builder.get_object('new_btn')
 		new_btn.set_menu_model(builder.get_object('new-image-menu'))
+		self._manual_correction = 50
 
 	def remove_from_ui(self):
 		return False
@@ -114,7 +116,9 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		                    - self._save_short.get_preferred_width()[0] \
 		                      + self._undo_btn.get_preferred_width()[0] \
 		                      + self._redo_btn.get_preferred_width()[0]
-		self._limit_size = 2.5 * widgets_width # 100% arbitrary
+		widgets_width = widgets_width + self._manual_correction
+		self._limit_size = widgets_width * 2.5 # 100% arbitrary
+		# print(self._limit_size)
 
 	def adapt_to_window_size(self):
 		can_expand = (self._widget.get_allocated_width() > self._limit_size)

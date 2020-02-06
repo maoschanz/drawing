@@ -94,6 +94,7 @@ class ToolPencil(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
+			'antialias': self._use_antialias,
 			'operator': self.get_operator_enum(),
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
@@ -105,10 +106,9 @@ class ToolPencil(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		cairo_context = self.get_context()
+		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		line_width = operation['line_width']

@@ -190,6 +190,7 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.line_to(self.x_press, event_y)
 		cairo_context.line_to(event_x, event_y)
 		cairo_context.line_to(event_x, self.y_press)
+		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
 	def build_roundedrect(self, event_x, event_y):
@@ -234,6 +235,7 @@ class ToolShape(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
+			'antialias': self._use_antialias,
 			'operator': self.get_operator_enum(),
 			'line_join': self._join_id,
 			'line_width': self.tool_width,
@@ -273,8 +275,7 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.stroke()
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation)
-		cairo_context = self.get_context()
+		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_width(operation['line_width'])
 		cairo_context.set_line_join(operation['line_join'])

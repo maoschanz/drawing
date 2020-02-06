@@ -192,7 +192,7 @@ class Application(Gtk.Application):
 		"""Action callback, showing the preferences window."""
 		if self.prefs_window is not None:
 			self.prefs_window.destroy()
-		wants_csd = not 'ssd' in self.props.active_window.deco_layout
+		wants_csd = 'h' in self.props.active_window.deco_layout
 		self.prefs_window = DrPrefsWindow(self.is_beta(), wants_csd, \
 		                                                       application=self)
 		self.prefs_window.present()

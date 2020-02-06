@@ -44,15 +44,15 @@ class ToolEraser(ToolPencil):
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,
+			'antialias': self._use_antialias,
 			'path': self._path
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		cairo_context = self.get_context()
+		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(cairo.LineCap.ROUND)
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)
 		line_width = operation['line_width']

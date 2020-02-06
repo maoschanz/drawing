@@ -32,7 +32,8 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.tool_width = 10
 		self.main_color = None
 		self.secondary_color = None
-		# self._use_antialias = True
+		self._use_antialias = True
+		self.add_tool_action_boolean('antialias', self._use_antialias)
 
 	############################################################################
 	# UI implementations #######################################################
@@ -52,7 +53,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 	# Options ##################################################################
 
 	def set_common_values(self, event_btn):
-		# self._use_antialias = self.get_option_value('antialias')
+		self._use_antialias = self.get_option_value('antialias')
 		self.tool_width = self.window.options_manager.get_tool_width()
 		if event_btn == 1:
 			self.main_color = self.window.options_manager.get_left_color()
@@ -67,12 +68,21 @@ class AbstractClassicTool(AbstractAbstractTool):
 	############################################################################
 	# Operations common methods ################################################
 
+	def start_tool_operation(self, operation):
+		super().start_tool_operation(operation)
+		context = self.get_context()
+		if 'antialias' not in operation:
+			antialias = cairo.Antialias.DEFAULT
+			# print("pas de clef pour l'antialias :", operation['tool_id'])
+		elif operation['antialias']:
+			antialias = cairo.Antialias.DEFAULT
+		else:
+			antialias = cairo.Antialias.NONE
+		context.set_antialias(antialias)
+		return context
+
 	def stroke_with_operator(self, operator, context, line_width, is_preview):
 		context.set_operator(operator)
-		# if use_antialias: # à ajouter comme paramètre de cette méthode
-		# 	context.set_antialias(cairo.Antialias.DEFAULT)
-		# else:
-		# 	context.set_antialias(cairo.Antialias.NONE)
 		is_blur = (operator == cairo.Operator.DEST_IN)
 		if is_blur and is_preview:
 			context.set_operator(cairo.Operator.CLEAR)

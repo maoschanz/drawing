@@ -129,10 +129,6 @@ class DrPrefsWindow(Gtk.Window):
 		}
 		self.add_check_flowbox('disabled-tools', tools_dict)
 
-		# self.add_section_separator()
-		# self.add_section_title(_("Behavior"))
-		# self.add_switch(_("Use antialiasing"), 'antialiasing')
-
 	def page_builder_advanced(self, is_beta):
 		"""Adds the widget to the grid of the 'advanced' page."""
 		self.set_current_grid(self.page_advanced)
@@ -151,7 +147,11 @@ class DrPrefsWindow(Gtk.Window):
 			'': _("Automatic"),
 			'hg': _("Compact"),
 			'he': _("elementary OS"),
+			# "Legacy" is about the window layout, it means menubar+toolbar, you
+			# can translate it like if it was "Traditional"
 			'mtc': _("Legacy"),
+			# "Legacy" is about the window layout, it means menubar+toolbar, you
+			# can translate it like if it was "Traditional"
 			'mts': _("Legacy (symbolic icons)"),
 			'm': _("Menubar only"),
 			'tc': _("Toolbar only"),

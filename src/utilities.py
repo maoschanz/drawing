@@ -1,4 +1,19 @@
 # utilities.py
+#
+# Copyright 2018-2020 Romain F. T.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, GdkPixbuf
 from .message_dialog import DrMessageDialog
@@ -99,7 +114,7 @@ def utilities_save_pixbuf_to(pixbuf, fpath, window):
 		replacement = window._settings.get_string('replace-alpha')
 		if replacement == 'ask':
 			replacement = _ask_overwrite_alpha(window)
-		_replace_alpha(pixbuf, replacement)
+		pixbuf = _replace_alpha(pixbuf, replacement)
 	# Actually save the pixbuf to the given file path
 	pixbuf.savev(fpath, file_format, [None], [])
 
@@ -117,7 +132,7 @@ def _replace_alpha(pixbuf, replacement):
 	else: # if replacement == 'black':
 		pcolor1 = _rgb_as_hexadecimal_int(0, 0, 0)
 		pcolor2 = _rgb_as_hexadecimal_int(0, 0, 0)
-	pixbuf = pixbuf.composite_color_simple(width, height,
+	return pixbuf.composite_color_simple(width, height,
 	                       GdkPixbuf.InterpType.TILES, 255, 8, pcolor1, pcolor2)
 
 def _rgb_as_hexadecimal_int(r, g, b):
@@ -149,7 +164,7 @@ def _ask_overwrite_alpha(window):
 	repl = alpha_combobox.get_active_id()
 	dialog.destroy()
 	if result != continue_id:
-		raise Exception("User refused to save as %s" % file_format)
+		raise Exception("User refused to save as %s" % file_format) # XXX transl
 	return repl
 
 ################################################################################

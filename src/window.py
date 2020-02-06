@@ -1007,7 +1007,8 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.get_selection_tool().import_selection(pixbuf)
 		else:
 			string =  cb.wait_for_text()
-			self.tools['text'].force_text_tool(string)
+			if string is not None:
+				self.tools['text'].force_text_tool(string)
 
 	def action_import(self, *args):
 		"""Handle the result of an 'open' file chooser dialog. It will then try

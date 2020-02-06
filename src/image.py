@@ -177,7 +177,7 @@ class DrImage(Gtk.Box):
 		event_box.connect('button-press-event', self.on_tab_title_clicked)
 		# These widgets are packed in a regular box, which is returned.
 		tab_title = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, expand=True)
-		if self.window.deco_layout == 'csd-eos':
+		if self.window.deco_layout == 'he':
 			tab_title.pack_start(btn, expand=False, fill=False, padding=0)
 			tab_title.pack_end(event_box, expand=True, fill=True, padding=0)
 		else:

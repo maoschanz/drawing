@@ -21,7 +21,7 @@ class DrPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrPropertiesDialog'
 
 	def __init__(self, window, image):
-		wants_csd = not ('ssd' in window.deco_layout)
+		wants_csd = 'h' in window.deco_layout
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 		                      transient_for=window, title=_("Image properties"))
 		self._image = image

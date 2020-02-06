@@ -214,7 +214,9 @@ class ToolScale(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.scale_simple( \
-		   operation['width'], operation['height'], GdkPixbuf.InterpType.TILES))
+		                                 operation['width'], \
+		                                 operation['height'], \
+		                                 GdkPixbuf.InterpType.TILES))
 		self.common_end_operation(operation)
 
 	############################################################################

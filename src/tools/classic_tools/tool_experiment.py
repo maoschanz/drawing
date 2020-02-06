@@ -44,14 +44,13 @@ class ToolExperiment(AbstractClassicTool):
 			'HSL_COLOR': cairo.Operator.HSL_COLOR,
 			'HSL_LUMINOSITY': cairo.Operator.HSL_LUMINOSITY
 		}
-		self._operator_label = "DIFFERENCE"
-		self._operator = cairo.Operator.DIFFERENCE
+		self._operator_label = "OVER"
+		self._operator = cairo.Operator.OVER
 		self._selected_mode = 'dynamic2'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
 		self.add_tool_action_simple('experiment_macro_scie', self._macro_scie)
-		self.add_tool_action_boolean('experiment_antialias', self._use_antialias)
 
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
@@ -59,7 +58,6 @@ class ToolExperiment(AbstractClassicTool):
 	def get_options_label(self):
 		self._set_active_operator()
 		self._set_active_mode()
-		self._set_antialias()
 		if self._selected_mode == 'simple':
 			return self._operator_label
 		else:
@@ -70,9 +68,6 @@ class ToolExperiment(AbstractClassicTool):
 	def _set_active_mode(self, *args):
 		state_as_string = self.get_option_value('experiment_mode')
 		self._selected_mode =  state_as_string
-
-	def _set_antialias(self, *args):
-		self._use_antialias = self.get_option_value('experiment_antialias')
 
 	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
@@ -109,7 +104,7 @@ class ToolExperiment(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self._set_active_operator()
 		self._set_active_mode()
-		self._set_antialias()
+		# self._set_antialias()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event.button)
@@ -153,22 +148,16 @@ class ToolExperiment(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		cairo_context = self.get_context()
+		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 
-		if operation['antialias']:
-			cairo_context.set_antialias(cairo.Antialias.DEFAULT)
-		else:
-			cairo_context.set_antialias(cairo.Antialias.NONE)
-
 		if operation['is_preview']:
-			self.op_smooth(operation, cairo_context)
+			self.op_simple(operation, cairo_context)
 			return # Previewing helps performance and debug
 		if operation['mode'] == 'dynamic':
 			self.op_dynamic(operation, cairo_context)

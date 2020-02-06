@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo, math
+import math
 from gi.repository import Gtk, Gdk
 from .abstract_canvas_tool import AbstractCanvasTool
 from .abstract_optionsbar import AbstractOptionsBar

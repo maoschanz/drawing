@@ -104,10 +104,14 @@ class ToolText(AbstractClassicTool):
 	def force_text_tool(self, string):
 		self.row.set_active(True)
 		self.set_common_values(self._last_click_btn)
-		self.on_release_on_area(None, None, 100, 100)
+		self.x_press = 100
+		self.y_press = 100
+		self._open_popover_at(100, 100)
 		self._set_string(string)
 
 	def _set_string(self, string):
+		if string is None:
+			string = ''
 		self._entry.get_buffer().set_text(string, -1)
 
 	############################################################################
@@ -121,14 +125,7 @@ class ToolText(AbstractClassicTool):
 		self.x_press = event_x
 		self.y_press = event_y
 		# self._set_font_options()
-
 		self._open_popover_at(int(event.x), int(event.y))
-
-		# Usual text entry shortcuts don't work otherwise
-		self.set_action_sensitivity('paste', False)
-		self.set_action_sensitivity('select_all', False)
-		self.set_action_sensitivity('selection_cut', False)
-		self.set_action_sensitivity('selection_copy', False)
 
 	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
@@ -141,6 +138,12 @@ class ToolText(AbstractClassicTool):
 		self._popover.popup()
 		self._entry.grab_focus()
 		self._preview_text()
+
+		# Usual text entry shortcuts don't work otherwise
+		self.set_action_sensitivity('paste', False)
+		self.set_action_sensitivity('select_all', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('selection_copy', False)
 
 	def _hide_entry(self):
 		self._popover.popdown()
@@ -192,6 +195,7 @@ class ToolText(AbstractClassicTool):
 			'_font_slant': self._font_slant,
 			'_font_weight': self._font_weight,
 			'font_size': self.tool_width,
+			# 'antialias': self._use_antialias, # XXX ne marche pas ??
 			'x': self.x_press,
 			'y': self.y_press,
 			'background': self._bg_id,
@@ -200,8 +204,8 @@ class ToolText(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation)
-		cairo_context = self.get_context()
+		cairo_context = self.start_tool_operation(operation)
+		# XXX semble se foutre de l'antialiasing
 
 		_font_fam = operation['_font_fam']
 		_font_slant = operation['_font_slant']

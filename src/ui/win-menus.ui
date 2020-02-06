@@ -38,22 +38,12 @@
         </section>
       </submenu>
     </section>
-    <!-- <section> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Unselect</attribute> -->
-    <!--     <attribute name="action">win.unselect</attribute> -->
-    <!--   </item> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Select all</attribute> -->
-    <!--     <attribute name="action">win.select_all</attribute> -->
-    <!--   </item> -->
-    <!-- </section> -->
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="label" translatable="yes">Print</attribute>
-        <attribute name="action">win.print</attribute>
-        <attribute name="verb-icon">document-print-symbolic</attribute>
+        <attribute name="label" translatable="yes">Reload file</attribute>
+        <attribute name="action">win.reload_file</attribute>
+        <attribute name="verb-icon">view-refresh-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Image properties</attribute>
@@ -75,16 +65,16 @@
         <attribute name="label" translatable="yes">Export as…</attribute>
         <attribute name="action">win.export_as</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Print</attribute>
+        <attribute name="action">win.print</attribute>
+      </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">Show tools names</attribute>
         <attribute name="action">win.show_labels</attribute>
       </item>
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">Use antialising</attribute> -->
-      <!--   <attribute name="action">win.antialiasing</attribute> -->
-      <!-- </item> -->
       <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">app.settings</attribute>
@@ -116,9 +106,9 @@
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="label" translatable="yes">Print</attribute>
-        <attribute name="action">win.print</attribute>
-        <attribute name="verb-icon">document-print-symbolic</attribute>
+        <attribute name="label" translatable="yes">Reload file</attribute>
+        <attribute name="action">win.reload_file</attribute>
+        <attribute name="verb-icon">view-refresh-symbolic</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Image properties</attribute>
@@ -140,14 +130,13 @@
         <attribute name="label" translatable="yes">Export as…</attribute>
         <attribute name="action">win.export_as</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Print</attribute>
+        <attribute name="action">win.print</attribute>
+      </item>
     </section>
     <section>
     <!-- <attribute name="label" translatable="yes">Development features</attribute> -->
-      <item>
-        <attribute name="label" translatable="yes">Reload file</attribute>
-        <attribute name="action">win.reload_file</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
-      </item>
       <item>
         <attribute name="label" translatable="yes">Refresh</attribute>
         <attribute name="action">win.restore_pixbuf</attribute>
@@ -169,10 +158,6 @@
         <attribute name="label" translatable="yes">Show tools names</attribute>
         <attribute name="action">win.show_labels</attribute>
       </item>
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">Use antialising</attribute> -->
-      <!--   <attribute name="action">win.antialiasing</attribute> -->
-      <!-- </item> -->
       <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">app.settings</attribute>
