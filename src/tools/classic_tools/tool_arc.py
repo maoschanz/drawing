@@ -22,7 +22,7 @@ class ToolArc(AbstractAbstractTool):
 		self.selected_shape_label = _("Round")
 		self.selected_operator = cairo.Operator.OVER
 		self.selected_end_id = cairo.LineCap.ROUND
-		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
+		self._1st_segment = None
 		self.use_dashes = False
 		self.use_arrow = False
 
@@ -67,9 +67,11 @@ class ToolArc(AbstractAbstractTool):
 		return label
 
 	def give_back_control(self, preserve_selection):
-		self.wait_points = (-1.0, -1.0, -1.0, -1.0)
+		self._1st_segment = None
 		self.x_press = 0.0
 		self.y_press = 0.0
+
+	############################################################################
 
 	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
@@ -83,34 +85,36 @@ class ToolArc(AbstractAbstractTool):
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.restore_pixbuf()
 		cairo_context = cairo.Context(self.get_surface())
-		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
+		if self._1st_segment is None:
 			cairo_context.move_to(self.x_press, self.y_press)
 			cairo_context.line_to(event_x, event_y)
 		else:
-			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
-			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
+			cairo_context.move_to(self._1st_segment[0], self._1st_segment[1])
+			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		if self.wait_points == (-1.0, -1.0, -1.0, -1.0):
-			self.wait_points = (self.x_press, self.y_press, event_x, event_y)
+		if self._1st_segment is None:
+			self._1st_segment = (self.x_press, self.y_press, event_x, event_y)
 			return
 		else:
 			self.restore_pixbuf()
 			cairo_context = cairo.Context(self.get_surface())
-			cairo_context.move_to(self.wait_points[0], self.wait_points[1])
-			cairo_context.curve_to(self.wait_points[2], self.wait_points[3], \
+			cairo_context.move_to(self._1st_segment[0], self._1st_segment[1])
+			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
-			self.wait_points = (-1.0, -1.0, -1.0, -1.0)
+			self._1st_segment = None
 
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
 		self.x_press = 0.0
 		self.y_press = 0.0
+
+	############################################################################
 
 	def build_operation(self, event_x, event_y):
 		operation = {

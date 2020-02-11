@@ -183,11 +183,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		"""Adds each tool's button to the side panel."""
 		group = None
 		for tool_id in self.tools:
+			row = self.tools[tool_id].row
 			if group is None:
-				group = self.tools[tool_id].row
+				group = row
 			else:
-				self.tools[tool_id].row.join_group(group)
-			self.tools_flowbox.add(self.tools[tool_id].row)
+				row.join_group(group)
+			self.tools_flowbox.add(row)
+			row.get_parent().set_can_focus(False)
 		self.on_show_labels_setting_changed()
 
 	def build_menubar_tools_menu(self):

@@ -82,12 +82,14 @@
               <object class="GtkNotebook" id="notebook">
                 <property name="visible">True</property>
                 <property name="show-tabs">False</property>
+                <property name="can-focus">False</property>
                 <property name="show-border">True</property>
                 <property name="scrollable">True</property>
                 <property name="group-name">drawing-tabs</property>
                 <child type="action-end">
                   <object class="GtkButton">
                     <property name="visible">True</property>
+                    <property name="can-focus">False</property>
                     <property name="relief">none</property>
                     <property name="action-name">win.new_tab</property>
                     <child>

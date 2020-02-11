@@ -71,6 +71,8 @@ class ToolLine(AbstractAbstractTool):
 		self.x_press = 0.0
 		self.y_press = 0.0
 
+	############################################################################
+
 	def on_press_on_area(self, event, surface, tool_width, left_color, right_color, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
@@ -78,31 +80,19 @@ class ToolLine(AbstractAbstractTool):
 		if event.button == 1:
 			self.main_color = left_color
 			self.sec_color = right_color
-		if event.button == 3:
+		elif event.button == 3:
 			self.main_color = right_color
 			self.sec_color = left_color
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(self.x_press, self.y_press)
-		cairo_context.line_to(event_x, event_y)
-
-		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self.restore_pixbuf()
-		cairo_context = cairo.Context(self.get_surface())
-		cairo_context.move_to(self.x_press, self.y_press)
-		cairo_context.line_to(event_x, event_y)
-
-		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
-		self.x_press = 0.0
-		self.y_press = 0.0
+
+	############################################################################
 
 	def build_operation(self, event_x, event_y):
 		operation = {
@@ -115,7 +105,6 @@ class ToolLine(AbstractAbstractTool):
 			'use_dashes': self.use_dashes,
 			'use_arrow': self.use_arrow,
 			'use_gradient': self.use_gradient,
-			'path': self._path,
 			'x_release': event_x,
 			'y_release': event_y,
 			'x_press': self.x_press,
@@ -132,29 +121,27 @@ class ToolLine(AbstractAbstractTool):
 		cairo_context.set_line_cap(operation['line_cap'])
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
-		rgba = operation['rgba']
-		rgba2 = operation['rgba2']
+		c1 = operation['rgba']
+		c2 = operation['rgba2']
+		x1 = operation['x_press']
+		y1 = operation['y_press']
+		x2 = operation['x_release']
+		y2 = operation['y_release']
 		if operation['use_gradient']:
-			pattern = cairo.LinearGradient( \
-			                     operation['x_press'], operation['y_press'], \
-			                     operation['x_release'], operation['y_release'])
-			pattern.add_color_stop_rgba(0.1, rgba.red, rgba.green, rgba.blue, rgba.alpha)
-			pattern.add_color_stop_rgba(0.9, rgba2.red, rgba2.green, rgba2.blue, rgba2.alpha)
+			pattern = cairo.LinearGradient(x1, y1, x2, y2)
+			pattern.add_color_stop_rgba(0.1, c1.red, c1.green, c1.blue, c1.alpha)
+			pattern.add_color_stop_rgba(0.9, c2.red, c2.green, c2.blue, c2.alpha)
 			cairo_context.set_source(pattern)
 		else:
-			cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 		if operation['use_dashes']:
-			cairo_context.set_dash([2*line_width, 2*line_width])
-		cairo_context.append_path(operation['path'])
+			cairo_context.set_dash([2 * line_width, 2 * line_width])
+		cairo_context.move_to(x1, y1)
+		cairo_context.line_to(x2, y2)
 		cairo_context.stroke()
 
 		if operation['use_arrow']:
-			x_press = operation['x_press']
-			y_press = operation['y_press']
-			x_release = operation['x_release']
-			y_release = operation['y_release']
-			utilities_add_arrow_triangle(cairo_context, x_release, y_release, \
-			                                       x_press, y_press, line_width)
+			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 	############################################################################
 ################################################################################
