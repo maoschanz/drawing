@@ -202,7 +202,7 @@ class OptionsBarRotate(AbstractOptionsBar):
 		# knowing the tool is needed because the panel doesn't compact the same
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool
-		builder = self.build_ui('ui/tool-rotate.ui')
+		builder = self.build_ui('tools/ui/tool-rotate.ui')
 		self.angle_btn = builder.get_object('angle_btn')
 		self.more_btn = builder.get_object('more_btn')
 		self.angle_box = builder.get_object('angle_box')

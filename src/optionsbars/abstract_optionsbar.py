@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-TOOLS_PATH = '/com/github/maoschanz/drawing/tools/'
+RSRC_PREFIX = '/com/github/maoschanz/drawing/'
 
 class AbstractOptionsBar():
 	__gtype_name__ = 'AbstractOptionsBar'
@@ -29,7 +29,7 @@ class AbstractOptionsBar():
 		self._is_narrow = False
 
 	def build_ui(self, end_of_path):
-		builder = Gtk.Builder.new_from_resource(TOOLS_PATH + end_of_path)
+		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + end_of_path)
 		self.action_bar = builder.get_object('bottom-panel')
 		self.cancel_btn = builder.get_object('cancel_btn') # may be None
 		self.centered_box = builder.get_object('centered_box') # may be None

@@ -48,12 +48,9 @@ from .custom_image import DrCustomImageDialog
 from .minimap import DrMinimap
 from .options_manager import DrOptionsManager
 from .message_dialog import DrMessageDialog
-from .deco_manager_menubar import DrDecoManagerMenubar
-from .deco_manager_headerbar import DrDecoManagerHeaderbar
-from .deco_manager_toolbar import DrDecoManagerToolbar
+from .deco_manager import DrDecoManagerMenubar, DrDecoManagerHeaderbar, DrDecoManagerToolbar
 
-from .utilities import utilities_save_pixbuf_to
-from .utilities import utilities_add_filechooser_filters
+from .utilities import utilities_save_pixbuf_to, utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 

@@ -17,9 +17,7 @@ src/ui/win-menus.ui
 src/ui/window.ui
 
 src/custom_image.py
-src/deco_manager_headerbar.py
-src/deco_manager_menubar.py
-src/deco_manager_toolbar.py
+src/deco_manager.py
 src/image.py
 src/main.py
 src/minimap.py
@@ -29,14 +27,18 @@ src/utilities.py
 src/window.py
 
 src/tools/abstract_tool.py
-src/tools/abstract_optionsbar.py
 src/tools/utilities_blur.py
 src/tools/utilities_overlay.py
 src/tools/utilities_paths.py
 
-src/tools/classic_tools/optionsbar/optionsbar-classic.ui
-src/tools/classic_tools/optionsbar/optionsbar-color-popover.ui
-src/tools/selection_tools/optionsbar/optionsbar-selection.ui
+src/tools/abstract_optionsbar.py
+src/optionsbars/classic/optionsbar_classic.py
+src/optionsbars/classic/optionsbar_color_popover.py
+src/optionsbars/selection/optionsbar_selection.py
+
+src/optionsbars/classic/optionsbar-classic.ui
+src/optionsbars/classic/optionsbar-color-popover.ui
+src/optionsbars/selection/optionsbar-selection.ui
 
 src/tools/ui/tool-arc.ui
 src/tools/ui/tool-experiment.ui
@@ -53,8 +55,6 @@ src/tools/ui/tool-scale.ui
 src/tools/ui/tool-skew.ui
 
 src/tools/classic_tools/abstract_classic_tool.py
-src/tools/classic_tools/optionsbar/optionsbar_classic.py
-src/tools/classic_tools/optionsbar/optionsbar_color_popover.py
 src/tools/classic_tools/tool_arc.py
 src/tools/classic_tools/tool_eraser.py
 src/tools/classic_tools/tool_highlight.py
@@ -66,7 +66,6 @@ src/tools/classic_tools/tool_shape.py
 src/tools/classic_tools/tool_text.py
 
 src/tools/selection_tools/abstract_select.py
-src/tools/selection_tools/optionsbar/optionsbar_selection.py
 src/tools/selection_tools/select_color.py
 src/tools/selection_tools/select_free.py
 src/tools/selection_tools/select_rect.py

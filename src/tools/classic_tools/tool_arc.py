@@ -116,7 +116,7 @@ class ToolArc(AbstractClassicTool):
 			'rgba': self.main_color,
 			'is_preview': is_preview,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(),
+			'operator': self.get_operator_enum(), # FIXME
 			'line_width': self.tool_width,
 			'line_cap': self._shape_id,
 			'use_dashes': self._use_dashes,

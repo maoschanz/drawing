@@ -95,7 +95,7 @@ class ToolPencil(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba': self.main_color,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(),
+			'operator': self.get_operator_enum(), # FIXME
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,

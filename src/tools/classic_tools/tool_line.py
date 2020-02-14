@@ -84,7 +84,7 @@ class ToolLine(AbstractClassicTool):
 			'rgba': self.main_color,
 			'rgba2': self.secondary_color,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(),
+			'operator': self.get_operator_enum(), # FIXME
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'use_dashes': self._use_dashes,
@@ -118,7 +118,7 @@ class ToolLine(AbstractClassicTool):
 		else:
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 		if operation['use_dashes']:
-			cairo_context.set_dash([2*line_width, 2*line_width])
+			cairo_context.set_dash([2 * line_width, 2 * line_width])
 		# We don't memorize the path because all coords are here anyway for the
 		# linear grandient and/or the arrow.
 		cairo_context.move_to(x1, y1)

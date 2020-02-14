@@ -19,8 +19,7 @@ import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
 from .abstract_optionsbar import AbstractOptionsBar
-from .utilities_blur import utilities_fast_blur
-from .utilities_blur import BlurType
+from .utilities_blur import utilities_fast_blur, BlurType
 from .utilities import utilities_add_unit_to_spinbtn
 
 class ToolFilters(AbstractCanvasTool):
@@ -193,7 +192,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 		super().__init__()
 		self.window = window
 		self.filters_tool = filters_tool
-		builder = self.build_ui('ui/tool-filters.ui')
+		builder = self.build_ui('tools/ui/tool-filters.ui')
 		self.menu_btn = builder.get_object('menu_btn')
 		self.menu_label = builder.get_object('menu_label')
 		self.menu_icon = builder.get_object('menu_icon')

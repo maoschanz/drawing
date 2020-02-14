@@ -28,7 +28,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('classic_tools/optionsbar/optionsbar-classic.ui')
+		builder = self.build_ui('optionsbars/classic/optionsbar-classic.ui')
 
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')

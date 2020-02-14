@@ -230,7 +230,7 @@ class OptionsBarScale(AbstractOptionsBar):
 		# future possible improvement: the panel may not compact the same way if
 		# the manipulation concerns the selection.
 		#self.scale_tool = scale_tool
-		builder = self.build_ui('ui/tool-scale.ui')
+		builder = self.build_ui('tools/ui/tool-scale.ui')
 
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')

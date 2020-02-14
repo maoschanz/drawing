@@ -30,9 +30,7 @@ drawing_sources = [
 	'main.py',
 
 	'window.py',
-	'deco_manager_menubar.py',
-	'deco_manager_headerbar.py',
-	'deco_manager_toolbar.py',
+	'deco_manager.py',
 	'options_manager.py',
 	'minimap.py',
 
@@ -45,15 +43,18 @@ drawing_sources = [
 	'message_dialog.py',
 	'custom_image.py',
 
+	'optionsbars/abstract_optionsbar.py',
+	'optionsbars/classic/optionsbar_classic.py',
+	'optionsbars/classic/optionsbar_color_popover.py',
+	'optionsbars/selection/optionsbar_selection.py',
+	# TODO canvas tools too
+
 	'tools/abstract_tool.py',
-	'tools/abstract_optionsbar.py',
 	'tools/utilities_blur.py',
 	'tools/utilities_overlay.py',
 	'tools/utilities_paths.py',
 
 	'tools/classic_tools/abstract_classic_tool.py',
-	'tools/classic_tools/optionsbar/optionsbar_classic.py',
-	'tools/classic_tools/optionsbar/optionsbar_color_popover.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_eraser.py',
 	'tools/classic_tools/tool_experiment.py',
@@ -66,7 +67,6 @@ drawing_sources = [
 	'tools/classic_tools/tool_text.py',
 
 	'tools/selection_tools/abstract_select.py',
-	'tools/selection_tools/optionsbar/optionsbar_selection.py',
 	'tools/selection_tools/select_rect.py',
 	'tools/selection_tools/select_free.py',
 	'tools/selection_tools/select_color.py',

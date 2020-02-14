@@ -109,7 +109,7 @@ class OptionsBarSkew(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('ui/tool-skew.ui')
+		builder = self.build_ui('tools/ui/tool-skew.ui')
 		self.more_btn = builder.get_object('more_btn')
 		self.xy_label = builder.get_object('xy_label')
 		self.yx_label = builder.get_object('yx_label')

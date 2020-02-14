@@ -219,7 +219,7 @@ class OptionsBarCrop(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('ui/tool-crop.ui')
+		builder = self.build_ui('tools/ui/tool-crop.ui')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')

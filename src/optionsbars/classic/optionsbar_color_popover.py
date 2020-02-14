@@ -27,7 +27,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 	def __init__(self, btn, thumbn, initial_rgba, is_main_c, window, **kwargs):
 		super().__init__(**kwargs) # TODO passer l'options_manager, pas la window
 
-		suffix = 'tools/classic_tools/optionsbar/optionsbar-color-popover.ui'
+		suffix = 'optionsbars/classic/optionsbar-color-popover.ui'
 		builder = Gtk.Builder.new_from_resource(PREFIX + suffix)
 
 		main_box = builder.get_object('main-box')
