@@ -36,11 +36,6 @@ class DrawingOptionsManager():
 			return
 		self.window.add_action_enum(name, default, self.enum_callback)
 
-	def add_tool_option_enum_radio(self, name, default):
-		if self.window.lookup_action(name) is not None:
-			return
-		self.window.add_action_enum(name, default, self.enum_callback_radio)
-
 	def get_value(self, name):
 		if self.window.lookup_action(name) is None:
 			return

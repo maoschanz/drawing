@@ -46,8 +46,8 @@ class ToolCrop(AbstractCanvasTool):
 		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 		self.width_btn.connect('value-changed', self.on_width_changed)
 		self.height_btn.connect('value-changed', self.on_height_changed)
-		
-		# FIXME X et Y ? top/bottom/left/right ? TODO
+		# TODO X et Y ? top/bottom/left/right ?
+
 		self.window.bottom_panel_box.add(self.bottom_panel)
 
 	def get_edition_status(self):
@@ -56,7 +56,7 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			return _("Cropping the canvas")
 
-###################################################
+	############################################################################
 
 	def on_tool_selected(self, *args):
 		self.apply_to_selection = self.selection_is_active()
@@ -166,6 +166,39 @@ class ToolCrop(AbstractCanvasTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.window.set_cursor(False)
 
+	############################################################################
+
+	def build_operation(self):
+		operation = {
+			'tool_id': self.id,
+			'is_selection': self.apply_to_selection,
+			'is_preview': True,
+			'x': int(self._x),
+			'y': int(self._y),
+			'width': self.get_width(),
+			'height': self.get_height()
+		}
+		return operation
+
+	def do_tool_operation(self, operation):
+		if operation['tool_id'] != self.id:
+			return
+		self.restore_pixbuf()
+		x = operation['x']
+		y = operation['y']
+		width = operation['width']
+		height = operation['height']
+		if operation['is_selection']:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
+		self.crop_temp_pixbuf(x, y, width, height, operation['is_selection'])
+
+		if not operation['is_selection'] and operation['is_preview']:
+			self.scale_temp_pixbuf_to_area(width, height)
+		self.common_end_operation(operation['is_preview'], operation['is_selection'])
+
 	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
 		new_pixbuf.fill(0)
@@ -200,37 +233,6 @@ class ToolCrop(AbstractCanvasTool):
 		pb = self.get_image().temp_pixbuf
 		self.get_image().set_temp_pixbuf( \
 		            pb.scale_simple(nice_w, nice_h, GdkPixbuf.InterpType.TILES))
-
-	def build_operation(self):
-		operation = {
-			'tool_id': self.id,
-			'is_selection': self.apply_to_selection,
-			'is_preview': True,
-			'x': int(self._x),
-			'y': int(self._y),
-			'width': self.get_width(),
-			'height': self.get_height()
-		}
-		return operation
-
-	def do_tool_operation(self, operation):
-		if operation['tool_id'] != self.id:
-			return
-		self.restore_pixbuf()
-		x = operation['x']
-		y = operation['y']
-		width = operation['width']
-		height = operation['height']
-		if operation['is_selection']:
-			source_pixbuf = self.get_selection_pixbuf()
-		else:
-			source_pixbuf = self.get_main_pixbuf()
-		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		self.crop_temp_pixbuf(x, y, width, height, operation['is_selection'])
-
-		if not operation['is_selection'] and operation['is_preview']:
-			self.scale_temp_pixbuf_to_area(width, height)
-		self.common_end_operation(operation['is_preview'], operation['is_selection'])
 
 	############################################################################
 ################################################################################

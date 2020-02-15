@@ -31,6 +31,23 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.needed_width_for_long = 0
 		self.accept_selection = True
 
+	############################################################################
+
+	def give_back_control(self, preserve_selection):
+		if not preserve_selection and self.selection_is_active():
+			self.on_apply_temp_pixbuf_tool_operation()
+			self.window.get_selection_tool().unselect_and_apply()
+		super().give_back_control(preserve_selection)
+
+	def update_actions_state(self, *args):
+		# Changing that in on_tool_selected would be overridden by image.py
+		self.set_action_sensitivity('selection_delete', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('unselect', False)
+		self.set_action_sensitivity('select_all', False)
+
+	############################################################################
+
 	def adapt_to_window_size(self, available_width):
 		if self.centered_box is None:
 			return
@@ -42,14 +59,6 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-
-	############################################################################
-
-	def give_back_control(self, preserve_selection):
-		if not preserve_selection and self.selection_is_active():
-			self.on_apply_temp_pixbuf_tool_operation()
-			self.window.get_selection_tool().unselect_and_apply()
-		super().give_back_control(preserve_selection)
 
 	############################################################################
 
@@ -111,6 +120,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	############################################################################
 
 	def on_draw(self, area, cairo_context):
-		pass # TODO FIXME pour l'instant pas d'overlay quand on modifie la sélection
+		pass
 
-
+	############################################################################
+################################################################################

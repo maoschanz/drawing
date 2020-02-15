@@ -294,6 +294,7 @@ class DrawingImage(Gtk.Box):
 	def update_actions_state(self):
 		state = self.selection.is_active
 		self.set_action_sensitivity('unselect', state)
+		self.set_action_sensitivity('select_all', not state)
 		self.set_action_sensitivity('selection_cut', state)
 		self.set_action_sensitivity('selection_copy', state)
 		self.set_action_sensitivity('selection_delete', state)
