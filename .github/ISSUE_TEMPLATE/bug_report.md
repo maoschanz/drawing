@@ -1,25 +1,27 @@
 ---
 name: Bug report
-about: Something doesn't work
+about: A feature already exists, but it is BROKEN
 title: ''
 labels: bug
 assignees: ''
 
 ---
 
+<!-- IF YOU FEEL THAT THIS TEMPLATE DOESN'T FIT YOUR ISSUE, IT PROBABLY MEANS
+YOU'RE USING THE WRONG TEMPLATE -->
+
 ## Description
 
-<!--Describe the bug: what doesn't work?-->
+<!-- Describe the bug: what doesn't work? -->
+<!-- If applicable, add screenshots to help explain your problem. -->
 
-<!--If applicable, add screenshots to help explain your problem.-->
 
-## Steps to reproduce the bug:
+
+### Steps to reproduce the bug
 
 1. ...
 2. ...
 3. ...
-
-----
 
 ## System
 

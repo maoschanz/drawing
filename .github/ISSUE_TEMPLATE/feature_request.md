@@ -1,25 +1,36 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest a new feature for this app
 title: ''
 labels: enhancement
 assignees: ''
 
 ---
 
-## Problem
+## Use case
 
-<!--Is your feature request related to a problem? Please give a clear and concise description of what this problem is.-->
+<!-- Why do you think this feature should be in Drawing? You can describe how
+you would use it, or in what situation it may help the users. -->
+
+
 
 ## Suggested solution
 
-<!--A clear and concise description of what you want to fix this issue.
-It can be (for example) a new tool, a new behavior for an existing tool, or a new feature concerning the application itself.-->
+<!-- A clear and concise description of what you suggest to fix this issue.
+It can be (for example) a new tool, a new behavior for an existing tool, a new
+options, a new action to add the menus, … -->
+
+
 
 ### Possible drawbacks
 
-<!--Does your solution entirely fix the issue? Could it introduce new problems?-->
+<!-- Does your solution entirely fix the issue? Could it introduce new problems? -->
+
+
 
 ### Possible alternatives
 
-<!--Describe alternatives you've considered, if any.-->
+<!-- Describe alternatives solutions you've considered, if any. -->
+
+
+

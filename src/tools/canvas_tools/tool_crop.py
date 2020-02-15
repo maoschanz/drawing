@@ -15,10 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf
 from .abstract_canvas_tool import AbstractCanvasTool
-from .abstract_optionsbar import AbstractOptionsBar
-from .utilities import utilities_add_unit_to_spinbtn
+from .optionsbar_crop import OptionsBarCrop
 from .utilities_overlay import utilities_show_handles_on_context
 
 class ToolCrop(AbstractCanvasTool):
@@ -210,50 +209,6 @@ class ToolCrop(AbstractCanvasTool):
 		min_h = min(height, temp_p.get_height() - src_y)
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	############################################################################
-################################################################################
-
-class OptionsBarCrop(AbstractOptionsBar):
-	__gtype_name__ = 'OptionsBarCrop'
-
-	def __init__(self):
-		super().__init__()
-		builder = self.build_ui('tools/ui/tool-crop.ui')
-		self.height_btn = builder.get_object('height_btn')
-		self.width_btn = builder.get_object('width_btn')
-		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
-		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
-		# XXX top/bottom/left/right ?
-
-		self.options_btn = builder.get_object('options_btn')
-
-		self.width_label = builder.get_object('width_label')
-		self.height_label = builder.get_object('height_label')
-		self.separator = builder.get_object('separator')
-
-	def init_adaptability(self):
-		super().init_adaptability()
-		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
-		                    self.cancel_btn.get_preferred_width()[0] + \
-		                   self.options_btn.get_preferred_width()[0] + \
-		                     self.apply_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
-
-	def set_compact(self, state):
-		super().set_compact(state)
-		if state:
-			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
-		else:
-			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-		self.width_label.set_visible(not state)
-		self.height_label.set_visible(not state)
-		self.separator.set_visible(not state)
-
-		# if self.crop_tool.apply_to_selection:
-		# 	self.???.set_visible(state)
-		# else:
-		# 	self.???.set_visible(state)
 
 	############################################################################
 ################################################################################

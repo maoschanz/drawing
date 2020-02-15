@@ -47,7 +47,11 @@ drawing_sources = [
 	'optionsbars/classic/optionsbar_classic.py',
 	'optionsbars/classic/optionsbar_color_popover.py',
 	'optionsbars/selection/optionsbar_selection.py',
-	# TODO canvas tools too
+	'optionsbars/canvas/optionsbar_crop.py',
+	'optionsbars/canvas/optionsbar_filters.py',
+	'optionsbars/canvas/optionsbar_rotate.py',
+	'optionsbars/canvas/optionsbar_scale.py',
+	'optionsbars/canvas/optionsbar_skew.py',
 
 	'tools/abstract_tool.py',
 	'tools/utilities_blur.py',

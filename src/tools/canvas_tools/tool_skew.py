@@ -15,10 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gdk
 from .abstract_canvas_tool import AbstractCanvasTool
-from .abstract_optionsbar import AbstractOptionsBar
-from .utilities import utilities_add_unit_to_spinbtn
+from .optionsbar_skew import OptionsBarSkew
 
 class ToolSkew(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSkew'
@@ -100,51 +99,6 @@ class ToolSkew(AbstractCanvasTool):
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
-
-	############################################################################
-################################################################################
-
-class OptionsBarSkew(AbstractOptionsBar):
-	__gtype_name__ = 'OptionsBarSkew'
-
-	def __init__(self):
-		super().__init__()
-		builder = self.build_ui('tools/ui/tool-skew.ui')
-		self.more_btn = builder.get_object('more_btn')
-		self.xy_label = builder.get_object('xy_label')
-		self.yx_label = builder.get_object('yx_label')
-		self.separator = builder.get_object('separator')
-
-		self.yx_spinbtn = builder.get_object('yx_spinbtn')
-		self.xy_spinbtn = builder.get_object('xy_spinbtn')
-		utilities_add_unit_to_spinbtn(self.yx_spinbtn, 3, '%')
-		utilities_add_unit_to_spinbtn(self.xy_spinbtn, 3, '%')
-
-	def init_adaptability(self):
-		super().init_adaptability()
-		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
-		                    self.cancel_btn.get_preferred_width()[0] + \
-		                     self.apply_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
-
-	def update_for_new_tool(self, tool):
-		self.set_compact(self._is_narrow)
-
-	def toggle_options_menu(self):
-		self.more_btn.set_active(not self.more_btn.get_active())
-
-	def hide_options_menu(self):
-		self.more_btn.set_active(False)
-
-	def set_compact(self, state):
-		super().set_compact(state)
-		if state:
-			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
-		else:
-			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
-		self.xy_label.set_visible(not state)
-		self.yx_label.set_visible(not state)
-		self.separator.set_visible(not state)
 
 	############################################################################
 ################################################################################

@@ -40,6 +40,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.set_action_sensitivity('selection_delete', False)
 		self.set_action_sensitivity('selection_cut', False)
 		self.set_action_sensitivity('unselect', False)
+		self.set_action_sensitivity('select_all', False)
 
 	def give_back_control(self, preserve_selection):
 		if not preserve_selection and self.selection_is_active():

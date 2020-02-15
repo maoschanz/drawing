@@ -16,9 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-from gi.repository import Gtk, Gdk
+from gi.repository import Gdk
 from .abstract_canvas_tool import AbstractCanvasTool
-from .abstract_optionsbar import AbstractOptionsBar
+from .optionsbar_rotate import OptionsBarRotate
 
 class ToolRotate(AbstractCanvasTool):
 	__gtype_name__ = 'ToolRotate'
@@ -190,54 +190,6 @@ class ToolRotate(AbstractCanvasTool):
 		y0 = max(0, width * xy)
 
 		return [xx, yx, xy, yy, x0, y0]
-
-	############################################################################
-################################################################################
-
-class OptionsBarRotate(AbstractOptionsBar):
-	__gtype_name__ = 'OptionsBarRotate'
-
-	def __init__(self, rotate_tool):
-		super().__init__()
-		# knowing the tool is needed because the panel doesn't compact the same
-		# way if it's applied to the selection
-		self.rotate_tool = rotate_tool
-		builder = self.build_ui('tools/ui/tool-rotate.ui')
-		self.angle_btn = builder.get_object('angle_btn')
-		self.more_btn = builder.get_object('more_btn')
-		self.angle_box = builder.get_object('angle_box')
-		self.rotate_box = builder.get_object('rotate_box')
-		self.flip_box = builder.get_object('flip_box')
-
-	def init_adaptability(self):
-		super().init_adaptability()
-		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
-		                    self.cancel_btn.get_preferred_width()[0] + \
-		                     self.apply_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
-
-	def update_for_new_tool(self, tool):
-		self.set_compact(self._is_narrow)
-
-	def toggle_options_menu(self):
-		if self.more_btn.get_visible():
-			self.more_btn.set_active(not self.more_btn.get_active())
-
-	def hide_options_menu(self):
-		self.more_btn.set_active(False)
-
-	def set_compact(self, state):
-		super().set_compact(state)
-		if self.rotate_tool.apply_to_selection:
-			self.more_btn.set_visible(state)
-			self.angle_box.set_visible(True)
-			self.rotate_box.set_visible(not state)
-			self.flip_box.set_visible(not state)
-		else:
-			self.more_btn.set_visible(False)
-			self.angle_box.set_visible(False)
-			self.rotate_box.set_visible(True)
-			self.flip_box.set_visible(True)
 
 	############################################################################
 ################################################################################
