@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 21:23+0100\n"
+"POT-Creation-Date: 2020-02-15 22:44+0100\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -642,9 +642,13 @@ msgstr "Компактный"
 msgid "elementary OS"
 msgstr ""
 
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional"
 msgid "Legacy"
 msgstr "Старый"
 
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional"
 msgid "Legacy (symbolic icons)"
 msgstr ""
 
@@ -807,6 +811,13 @@ msgstr ""
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
 
+msgid "Main color"
+msgstr "Основной цвет"
+
+#. if state_as_string == 'secondary':
+msgid "Secondary color"
+msgstr "Вторичный цвет"
+
 msgid "Tool size"
 msgstr "Размер инструмента"
 
@@ -842,6 +853,9 @@ msgstr "Использовать тире"
 
 msgid "Arrow"
 msgstr "Указатель"
+
+msgid "Antialiasing"
+msgstr ""
 
 #, fuzzy
 msgid "Color gradient"
@@ -883,13 +897,6 @@ msgstr "Круг"
 
 msgid "Empty outline"
 msgstr ""
-
-msgid "Main color"
-msgstr "Основной цвет"
-
-#. if state_as_string == 'secondary':
-msgid "Secondary color"
-msgstr "Вторичный цвет"
 
 #, fuzzy
 msgid "Horizontal gradient"
