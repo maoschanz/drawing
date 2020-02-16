@@ -64,13 +64,15 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Available tools
 
-(last update: **version 0.5-unstable**)
+(last update: **version 0.5.3-unstable**, this is NOT what is provided by the packages)
 
 #### Classic tools
 
 (options: colors, blur, eraser, size, …)
 
 - Pencil (options: dashes, …)
+- Eraser
+- Highlighter
 - Line (options: arrow, dashes, gradient, …)
 - Curve (options: arrow, dashes, …)
 - Insert text (options: font, shadow, font size, …)
@@ -100,6 +102,7 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 - Crop
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
+- Skew (horizontally or vertically)
 - Filters:
 	- Blur (various types)
 	- Saturation (increase or decrease)
