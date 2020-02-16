@@ -28,7 +28,7 @@ class ToolFilters(AbstractCanvasTool):
 		super().__init__('filters', _("Filters"), 'tool-filters-symbolic', window)
 		self.cursor_name = 'pointer'
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
-		self.add_tool_action_enum('filters_type', 'none')
+		self.add_tool_action_enum('filters_type', 'saturation')
 		self._reset_type_values()
 
 	def try_build_panel(self):
