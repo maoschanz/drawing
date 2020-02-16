@@ -95,7 +95,9 @@ class ToolText(AbstractAbstractTool):
 		self.main_color = self.window.color_popover_l.color_widget.get_rgba()
 		self.secondary_color = self.window.color_popover_r.color_widget.get_rgba()
 		self.tool_width = self.window.thickness_spinbtn.get_value_as_int()
-		self.on_release_on_area(None, None, 100, 100)
+		self.x_begin = 100
+		self.y_begin = 100
+		self._open_popover_at(100, 100)
 		self.set_string(string)
 
 	def set_string(self, string):
@@ -211,7 +213,7 @@ class ToolText(AbstractAbstractTool):
 
 		for line_text in lines:
 			####################################################################
-			# Draw background for the line #####################################
+			# Draw background for the line, if any #############################
 			line_y = text_y + i * font_size
 			if operation['background'] == 'rectangle':
 				self._op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \

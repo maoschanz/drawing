@@ -1049,12 +1049,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().update()
 		self.get_active_image().update_history_sensitivity()
 
-	def update_history_actions_labels(self, undo_label, redo_label):
-		# TODO menubar
-		if self.header_bar is not None:
-			self.header_bar.set_undo_label(undo_label)
-			self.header_bar.set_redo_label(redo_label)
-
 	############################################################################
 	# COLORS ###################################################################
 

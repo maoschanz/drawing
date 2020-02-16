@@ -260,20 +260,6 @@ class DrawingImage(Gtk.Box):
 		can_undo = ( len(self.undo_history) != 0 ) or self.window.operation_is_ongoing()
 		self.window.lookup_action('undo').set_enabled(can_undo)
 		self.window.lookup_action('redo').set_enabled(len(self.redo_history) != 0)
-		# self.update_history_actions_labels() # TODO
-
-	def update_history_actions_labels(self):
-		undo_label = self.undo_history[-1:]
-		redo_label = self.redo_history[-1:]
-		if len(undo_label) > 0:
-			undo_label = undo_label[0]['tool_id'] # TODO store a translatable label
-		else:
-			undo_label = None
-		if len(redo_label) > 0:
-			redo_label = redo_label[0]['tool_id'] # TODO store a translatable label
-		else:
-			redo_label = None
-		self.window.update_history_actions_labels(undo_label, redo_label)
 
 	def add_operation_to_history(self, operation):
 		self._is_saved = False
