@@ -24,14 +24,12 @@ class OptionsBarCrop(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('tools/ui/tool-crop.ui')
+		builder = self.build_ui('optionsbars/canvas/optionsbar-crop.ui')
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
 		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 		# XXX top/bottom/left/right ?
-
-		self.options_btn = builder.get_object('options_btn')
 
 		self.width_label = builder.get_object('width_label')
 		self.height_label = builder.get_object('height_label')
@@ -41,7 +39,6 @@ class OptionsBarCrop(AbstractOptionsBar):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
-		                   self.options_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self.set_limit_size(temp_limit_size)
 

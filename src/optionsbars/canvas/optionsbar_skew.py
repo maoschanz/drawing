@@ -24,8 +24,7 @@ class OptionsBarSkew(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('tools/ui/tool-skew.ui')
-		self.more_btn = builder.get_object('more_btn')
+		builder = self.build_ui('optionsbars/canvas/optionsbar-skew.ui')
 		self.xy_label = builder.get_object('xy_label')
 		self.yx_label = builder.get_object('yx_label')
 		self.separator = builder.get_object('separator')
@@ -44,12 +43,6 @@ class OptionsBarSkew(AbstractOptionsBar):
 
 	def update_for_new_tool(self, tool):
 		self.set_compact(self._is_narrow)
-
-	def toggle_options_menu(self):
-		self.more_btn.set_active(not self.more_btn.get_active())
-
-	def hide_options_menu(self):
-		self.more_btn.set_active(False)
 
 	def set_compact(self, state):
 		super().set_compact(state)
