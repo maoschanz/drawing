@@ -45,7 +45,7 @@ class ToolExperiment(AbstractClassicTool):
 			'HSL_LUMINOSITY': cairo.Operator.HSL_LUMINOSITY
 		}
 		self._operator_label = "OVER"
-		self._operator = cairo.Operator.OVER
+		self.operator2 = cairo.Operator.OVER
 		self._selected_mode = 'dynamic2'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
@@ -71,7 +71,7 @@ class ToolExperiment(AbstractClassicTool):
 
 	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
-		self._operator = self._operators_dict[state_as_string]
+		self.operator2 = self._operators_dict[state_as_string]
 		self._operator_label = state_as_string
 
 	############################################################################
@@ -95,7 +95,7 @@ class ToolExperiment(AbstractClassicTool):
 		self._macros_common()
 
 	def _macros_common(self):
-		self.set_common_values(1)
+		self.set_common_values(1, 1, 1)
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
@@ -107,7 +107,7 @@ class ToolExperiment(AbstractClassicTool):
 		# self._set_antialias()
 		self.x_press = event_x
 		self.y_press = event_y
-		self.set_common_values(event.button)
+		self.set_common_values(event.button, event_x, event_y)
 		self._path = None
 
 	def _add_point(self, event_x, event_y):
@@ -136,7 +136,7 @@ class ToolExperiment(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'operator': self._operator,
+			'operator': self.operator2,
 			'mode': self._selected_mode,
 			'line_width': self.tool_width,
 			'line_cap': cairo.LineCap.ROUND,

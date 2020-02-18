@@ -24,8 +24,7 @@ class ToolLine(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('line', _("Line"), 'tool-line-symbolic', window)
-		self.x_press = 0.0
-		self.y_press = 0.0
+		self.use_operator = True
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', False)
@@ -34,8 +33,12 @@ class ToolLine(AbstractClassicTool):
 		self._set_options_attributes() # Not optimal but more readable
 
 	def _set_active_shape(self):
-		if self.get_option_value('line_shape') == 'square':
+		state_as_string = self.get_option_value('line_shape')
+		if state_as_string == 'thin':
 			self._cap_id = cairo.LineCap.BUTT
+			self._shape_label = _("Thin")
+		elif state_as_string == 'square':
+			self._cap_id = cairo.LineCap.SQUARE
 			self._shape_label = _("Square")
 		else:
 			self._cap_id = cairo.LineCap.ROUND
@@ -64,9 +67,7 @@ class ToolLine(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
-		self.set_common_values(event.button)
+		self.set_common_values(event.button, event_x, event_y)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		operation = self.build_operation(event_x, event_y, True)
@@ -84,7 +85,7 @@ class ToolLine(AbstractClassicTool):
 			'rgba': self.main_color,
 			'rgba2': self.secondary_color,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(), # FIXME
+			'operator': self._operator,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'use_dashes': self._use_dashes,

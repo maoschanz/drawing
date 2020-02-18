@@ -23,7 +23,7 @@ class DrPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrPrefsWindow'
 
 	content_area = Gtk.Template.Child()
-	stack_switcher = Gtk.Template.Child()
+	stack = Gtk.Template.Child()
 
 	page_images = Gtk.Template.Child()
 	page_tools = Gtk.Template.Child()
@@ -43,10 +43,12 @@ class DrPrefsWindow(Gtk.Window):
 			header_bar = Gtk.HeaderBar(visible=True, title=_("Preferences"), \
 			                                             show_close_button=True)
 			self.set_titlebar(header_bar)
-			self.content_area.remove(self.stack_switcher)
-			header_bar.set_custom_title(self.stack_switcher)
+			stack_switcher = Gtk.StackSwitcher(visible=True, stack=self.stack, \
+			                                            halign=Gtk.Align.CENTER)
+			header_bar.set_custom_title(stack_switcher)
 		else:
-			self.stack_switcher.set_margin_top(10)
+			stack_sidebar = Gtk.StackSidebar(visible=True, stack=self.stack)
+			self.content_area.pack_start(stack_sidebar, False, False, 0)
 
 		self.page_builder_images()
 		self.page_builder_tools()

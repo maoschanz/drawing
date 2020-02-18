@@ -40,7 +40,7 @@ class ToolPaint(AbstractClassicTool):
 			return self.label
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.set_common_values(event.button)
+		self.set_common_values(event.button, event_x, event_y)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		# Guard clause: we can't paint outside of the surface

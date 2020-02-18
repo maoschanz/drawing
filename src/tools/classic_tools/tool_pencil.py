@@ -24,18 +24,19 @@ class ToolPencil(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('pencil', _("Pencil"), 'tool-pencil-symbolic', window)
-		self._path = None
+		self.use_operator = True
 
+		self._path = None
 		self._shape_label = _("Round")
 		self._cap_id = cairo.LineCap.ROUND
 		self._join_id = cairo.LineCap.ROUND
 		self._use_dashes = False
 
-		self.add_tool_action_enum('pencil_shape', 'round')
+		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', self._use_dashes)
 
 	def _set_active_shape(self, *args):
-		state_as_string = self.get_option_value('pencil_shape')
+		state_as_string = self.get_option_value('line_shape')
 		if state_as_string == 'thin':
 			self._cap_id = cairo.LineCap.BUTT
 			self._join_id = cairo.LineJoin.BEVEL
@@ -63,9 +64,7 @@ class ToolPencil(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
-		self.set_common_values(event.button)
+		self.set_common_values(event.button, event_x, event_y)
 		self._path = None
 
 	def _add_point(self, event_x, event_y):
@@ -95,7 +94,7 @@ class ToolPencil(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba': self.main_color,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(), # FIXME
+			'operator': self._operator,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,

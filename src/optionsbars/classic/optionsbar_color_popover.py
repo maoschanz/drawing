@@ -87,6 +87,8 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		operator_str = self.window.options_manager.get_operator()[1]
 		self._operator_label.set_label(operator_str)
 
+	# TODO utiliser le self.use_operator des outils pour afficher ou non le bouton
+
 	def _set_thumbail_color(self, *args):
 		"""Update the 'rgba' property of the GtkColorWidget and its preview."""
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)

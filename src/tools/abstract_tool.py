@@ -33,6 +33,7 @@ class AbstractAbstractTool():
 		# The options it supports
 		self.accept_selection = False
 		self.use_color = False
+		self.use_operator = False
 		# Misc
 		self.window = window
 		self.cursor_name = 'cell'
@@ -63,11 +64,11 @@ class AbstractAbstractTool():
 		self.get_image().set_action_sensitivity(action_name, state)
 
 	def update_actions_state(self):
-		# self.set_action_sensitivity('main_color', self.use_color)
-		# self.set_action_sensitivity('secondary_color', self.use_color)
-		# self.set_action_sensitivity('exchange_color', self.use_color)
-		# self.set_action_sensitivity('cairo_operator', self.use_color)
-		pass # TODO erreur à la fermeture de la fenêtre si décommenté
+		self.set_action_sensitivity('main_color', self.use_color)
+		self.set_action_sensitivity('secondary_color', self.use_color)
+		self.set_action_sensitivity('exchange_color', self.use_color)
+		self.set_action_sensitivity('cairo_operator', self.use_operator)
+		pass # TODO erreur à la fermeture de la fenêtre si décommenté ?
 
 	def get_settings(self):
 		return self.window._settings

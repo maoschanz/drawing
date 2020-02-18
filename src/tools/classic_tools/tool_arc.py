@@ -24,6 +24,7 @@ class ToolArc(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('arc', _("Curve"), 'tool-arc-symbolic', window)
+		self.use_operator = True
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', False)
@@ -31,7 +32,7 @@ class ToolArc(AbstractClassicTool):
 
 		# Default values
 		self._shape_label = _("Round")
-		self._shape_id = cairo.LineCap.ROUND
+		self._cap_id = cairo.LineCap.ROUND
 
 		self._1st_segment = None
 		self._use_dashes = False
@@ -39,19 +40,21 @@ class ToolArc(AbstractClassicTool):
 
 	def give_back_control(self, preserve_selection):
 		self._1st_segment = None
-		self.x_press = 0.0
-		self.y_press = 0.0
 		self.restore_pixbuf()
 
 	############################################################################
 	# Options ##################################################################
 
 	def set_active_shape(self):
-		if self.get_option_value('line_shape') == 'square':
-			self._shape_id = cairo.LineCap.BUTT
+		state_as_string = self.get_option_value('line_shape')
+		if state_as_string == 'thin':
+			self._cap_id = cairo.LineCap.BUTT
+			self._shape_label = _("Thin")
+		elif state_as_string == 'square':
+			self._cap_id = cairo.LineCap.SQUARE
 			self._shape_label = _("Square")
 		else:
-			self._shape_id = cairo.LineCap.ROUND
+			self._cap_id = cairo.LineCap.ROUND
 			self._shape_label = _("Round")
 
 	def get_options_label(self):
@@ -73,9 +76,7 @@ class ToolArc(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.set_common_values(event.button)
-		self.x_press = event_x
-		self.y_press = event_y
+		self.set_common_values(event.button, event_x, event_y)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		cairo_context = self.get_context()
@@ -105,8 +106,6 @@ class ToolArc(AbstractClassicTool):
 		self._path = cairo_context.copy_path()
 		operation = self.build_operation(event_x, event_y, False)
 		self.apply_operation(operation)
-		self.x_press = 0.0
-		self.y_press = 0.0
 
 	############################################################################
 
@@ -116,9 +115,9 @@ class ToolArc(AbstractClassicTool):
 			'rgba': self.main_color,
 			'is_preview': is_preview,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(), # FIXME
+			'operator': self._operator,
 			'line_width': self.tool_width,
-			'line_cap': self._shape_id,
+			'line_cap': self._cap_id,
 			'use_dashes': self._use_dashes,
 			'use_arrow': self._use_arrow,
 			'path': self._path,

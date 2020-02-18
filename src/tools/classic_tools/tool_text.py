@@ -103,9 +103,7 @@ class ToolText(AbstractClassicTool):
 
 	def force_text_tool(self, string):
 		self.row.set_active(True)
-		self.set_common_values(self._last_click_btn)
-		self.x_press = 100
-		self.y_press = 100
+		self.set_common_values(self._last_click_btn, 100, 100)
 		self._open_popover_at(100, 100)
 		self._set_string(string)
 
@@ -121,9 +119,7 @@ class ToolText(AbstractClassicTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._last_click_btn = event.button
 		self._should_cancel = True
-		self.set_common_values(self._last_click_btn)
-		self.x_press = event_x
-		self.y_press = event_y
+		self.set_common_values(self._last_click_btn, event_x, event_y)
 		# self._set_font_options()
 		self._open_popover_at(int(event.x), int(event.y))
 
@@ -149,7 +145,7 @@ class ToolText(AbstractClassicTool):
 		self._popover.popdown()
 
 	def _force_refresh(self, *args):
-		self.set_common_values(self._last_click_btn)
+		self.set_common_values(self._last_click_btn, self.x_press, self.y_press)
 		# self._set_font_options()
 		self._preview_text()
 

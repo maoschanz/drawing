@@ -29,10 +29,13 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.use_color = True
 		self.use_size = True
 		self.accept_selection = False
+
 		self.tool_width = 10
 		self.main_color = None
 		self.secondary_color = None
 		self._use_antialias = True
+		self.x_press = 0.0
+		self.y_press = 0.0
 		self.add_tool_action_boolean('antialias', self._use_antialias)
 
 	############################################################################
@@ -52,7 +55,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 	############################################################################
 	# Options ##################################################################
 
-	def set_common_values(self, event_btn):
+	def set_common_values(self, event_btn, event_x, event_y):
 		self._use_antialias = self.get_option_value('antialias')
 		self.tool_width = self.window.options_manager.get_tool_width()
 		if event_btn == 1:
@@ -61,9 +64,9 @@ class AbstractClassicTool(AbstractAbstractTool):
 		if event_btn == 3:
 			self.main_color = self.window.options_manager.get_right_color()
 			self.secondary_color = self.window.options_manager.get_left_color()
-
-	def get_operator_enum(self):
-		return self.window.options_manager.get_operator()[0]
+		self.x_press = event_x
+		self.y_press = event_y
+		self._operator = self.window.options_manager.get_operator()[0]
 
 	############################################################################
 	# Operations common methods ################################################

@@ -102,10 +102,8 @@ class ToolShape(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
 		self.last_mouse_btn = event.button
-		self.set_common_values(self.last_mouse_btn)
+		self.set_common_values(self.last_mouse_btn, event_x, event_y)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape':
@@ -150,7 +148,7 @@ class ToolShape(AbstractClassicTool):
 	############################################################################
 
 	def force_close_polygon(self, *args):
-		self.set_common_values(self.last_mouse_btn)
+		self.set_common_values(self.last_mouse_btn, self.x_press, self.y_press)
 		self.on_release_on_area(None, None, self.initial_x, self.initial_y)
 
 	def add_point(self, event_x, event_y, memorize):
@@ -236,7 +234,7 @@ class ToolShape(AbstractClassicTool):
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
 			'antialias': self._use_antialias,
-			'operator': self.get_operator_enum(),
+			'operator': cairo.Operator.OVER, # self._operator, # XXX ne marche pas avec le blur
 			'line_join': self._join_id,
 			'line_width': self.tool_width,
 			'filling': self._style_id,
