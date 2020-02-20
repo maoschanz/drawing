@@ -287,7 +287,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		cairo_context = self.get_context()
 		self.get_selection().show_selection_on_surface(cairo_context, False, \
 		                                           self.local_dx, self.local_dy)
-		self.get_selection().reset()
+		self.get_selection().reset(True)
 		# self.future_path = None
 		AbstractSelectionTool.future_path = None
 
@@ -316,7 +316,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > couper" ou "clic-droit > supprimer".
 			# On réinitialise le selection_manager.
-			self.get_selection().reset()
+			self.get_selection().reset(True)
 		elif operation['operation_type'] == 'op-import':
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > importer" ou "clic-droit > coller".

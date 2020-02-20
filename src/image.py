@@ -212,7 +212,7 @@ class DrImage(Gtk.Box):
 		pixbufs."""
 		if self.window.close_tab(self):
 			self.destroy()
-			self.selection.reset()
+			self.selection.reset(False)
 			self.main_pixbuf = None
 			self.temp_pixbuf = None
 			return True

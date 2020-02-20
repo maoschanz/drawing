@@ -94,7 +94,7 @@ class DrSelectionManager():
 			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
 			# avec un try except déjà ce serait pas mal
 		else:
-			self.reset()
+			self.reset(True)
 		self.image.update_actions_state()
 
 	def set_coords(self, temp_too, x, y):
@@ -112,14 +112,15 @@ class DrSelectionManager():
 	def get_pixbuf(self):
 		return self.selection_pixbuf
 
-	def reset(self):
+	def reset(self, update_image):
 		# print('⇒ reset pixbuf')
 		self.selection_pixbuf = None
 		self.selection_path = None
 		self.set_coords(True, 0, 0)
 		self.is_active = False
-		self.image.update_actions_state()
-		self.image.update()
+		if update_image:
+			self.image.update_actions_state()
+			self.image.update()
 
 	def get_path_with_scroll(self, tool_dx, tool_dy):
 		# le concept de cette méthode pue la merde
