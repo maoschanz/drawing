@@ -44,15 +44,11 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 			title_label = _("Main color")
 		else:
 			title_label = _("Secondary color")
-		builder.get_object('popover-title').set_label(title_label)
+		self._popover_title = builder.get_object('popover-title')
+		self._popover_title.set_label(title_label)
 
-		self._operator_menu_btn = builder.get_object('operator-menu-btn')
-		builder.add_from_resource(PREFIX + 'ui/app-menus.ui')
-		operator_menu_model = builder.get_object('operator-menu')
-		self._operator_menu_btn.set_menu_model(operator_menu_model)
-
-		self._operator_label = builder.get_object('operator-label')
-		self.window.options_manager.add_tool_option_enum('cairo_operator', 'over')
+		self._operator_box_1 = builder.get_object('operator-box-start')
+		self._operator_box_2 = builder.get_object('operator-box-end')
 
 		########################################################################
 		# Color chooser widget #################################################
@@ -77,17 +73,13 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 		self._update_nav_box()
 		self._set_thumbail_color()
-		# self.update_mode() # XXX pas possible, on est en train de construire
-		             # le panneau on ne peut pas appeler l'option manager dessus
 
 	############################################################################
 
-	def update_mode(self):
-		self._operator_menu_btn.set_active(False)
-		operator_str = self.window.options_manager.get_operator()[1]
-		self._operator_label.set_label(operator_str)
-
-	# TODO utiliser le self.use_operator des outils pour afficher ou non le bouton
+	def set_operators_available(self, tool_use_operator):
+		self._operator_box_1.set_visible(tool_use_operator)
+		self._operator_box_2.set_visible(tool_use_operator)
+		self._popover_title.set_visible(not tool_use_operator)
 
 	def _set_thumbail_color(self, *args):
 		"""Update the 'rgba' property of the GtkColorWidget and its preview."""

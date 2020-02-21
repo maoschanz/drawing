@@ -55,7 +55,7 @@ class DrOptionsManager():
 		"""This callback is simple but can't handle both menu-items and check/
 		toggle-buttons. It is only good for menu-items and model-buttons."""
 		new_value = args[1].get_boolean()
-		# current_value = args[0].get_state()
+
 		args[0].set_state(GLib.Variant.new_boolean(new_value))
 		self.window.set_picture_title()
 		self.get_active_panel().hide_options_menu()
@@ -64,11 +64,10 @@ class DrOptionsManager():
 		"""This callback is simple but can't handle both menu-items and
 		radio-buttons. It is only good for menu-items and model-buttons."""
 		new_value = args[1].get_string()
-		current_value = args[0].get_state().get_string()
 
 		# No need to change the state if it's already as the user want.
 		# Cases "m1 m1" or "b1 b1" or "b1 m1" or "m1 b1"
-		if new_value == current_value:
+		if new_value == args[0].get_state().get_string():
 			return
 
 		# Actually change the state to the new value.

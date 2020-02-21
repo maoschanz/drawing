@@ -35,6 +35,10 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
 		self._build_color_buttons(builder)
 
+		window.add_action_enum('cairo_operator', 'over', self.cairo_op_changed)
+		window.add_action_enum('cairo_op_mirror', 'over', self.cairop_mirror)
+		self._cairo_operator_lock = False
+
 		self.options_btn = builder.get_object('options_btn')
 		self.options_label = builder.get_object('options_label')
 		self.options_long_box = builder.get_object('options_long_box')
@@ -42,7 +46,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
-		self.thickness_spinbtn.set_value(self.window._settings.get_int('last-size'))
+		self.thickness_spinbtn.set_value(window._settings.get_int('last-size'))
 		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px') # XXX works but is ugly
 
 		self.minimap_btn = builder.get_object('minimap_btn')
@@ -51,6 +55,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 	def update_for_new_tool(self, tool):
 		self.color_box.set_sensitive(tool.use_color)
+		self._color_r.set_operators_available(tool.use_operator)
+		self._color_l.set_operators_available(tool.use_operator)
 		self.thickness_scalebtn.set_sensitive(tool.use_size)
 		self.thickness_spinbtn.set_sensitive(tool.use_size)
 
@@ -65,8 +71,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 	def hide_options_menu(self):
 		self.options_btn.set_active(False)
-		self._color_r.update_mode()
-		self._color_l.update_mode()
 
 	def build_options_menu(self, widget, model, label):
 		if widget is not None:
@@ -116,7 +120,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 			self._operator_label = _("Blur")
 		else:
 			self._operator_enum = cairo.Operator.OVER
-			self._operator_label = _("Classic")
+			self._operator_label = _("Normal")
 
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color buttons and popovers with the 2 previously
@@ -131,6 +135,44 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def set_palette_setting(self, show_editor):
 		self._color_r.editor_setting_changed(show_editor)
 		self._color_l.editor_setting_changed(show_editor)
+
+	############################################################################
+	# Cairo operators ("color application modes") ##############################
+
+	def cairo_op_changed(self, *args):
+		"""This action can be used in menus. It's a custom callback because it
+		has to set the lock required to be avoid infinite recursion caused by
+		the synchronisation with `win.cairo_op_mirror`"""
+		self.window.options_manager._enum_callback(*args)
+		# XXX appels au callback PRIVÉ de l'options_manager
+
+		mirrored_action = self.window.lookup_action('cairo_op_mirror')
+		if args[1].get_string() == mirrored_action.get_state().get_string():
+			return
+		self._cairo_operator_lock = True
+		self.window.options_manager._enum_callback(mirrored_action, args[1])
+		self._cairo_operator_lock = False
+		# TODO if blur or erase, what should it do to the palette?
+
+	def cairop_mirror(self, *args):
+		"""This action should NEVER be added to any menu. It mirrors the action
+		`win.cairo_operator`, which can be added to menus. This action is
+		intended to be used by GtkRadioButtons, whose weird behaviors include
+		sending a `change-state` signal when being unchecked, thus triggering
+		this callback twice. Thus the synchronisation mechanism with a more
+		reliable action duplicating the data."""
+		if self._cairo_operator_lock:
+			return
+		if args[1].get_string() == args[0].get_state().get_string():
+			return
+		mirrored_action = self.window.lookup_action('cairo_operator')
+		if args[1].get_string() == mirrored_action.get_state().get_string():
+			return
+		self.window.options_manager._enum_callback(*args)
+		# XXX appels au callback PRIVÉ de l'options_manager
+		self._cairo_operator_lock = True
+		self.window.options_manager._enum_callback(mirrored_action, args[1])
+		self._cairo_operator_lock = False
 
 	############################################################################
 ################################################################################
