@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-12-04 21:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -273,8 +273,9 @@ msgstr "Scambia i colori"
 msgid "Color application mode"
 msgstr "Selezione colore"
 
-msgid "Classic"
-msgstr "Classico"
+#, fuzzy
+msgid "Normal"
+msgstr "Formato"
 
 msgid "Source color"
 msgstr "Colore sorgente"
@@ -341,21 +342,6 @@ msgstr "Apri"
 msgid "100%"
 msgstr "100%"
 
-msgid "Path"
-msgstr "Percorso"
-
-msgid "Format"
-msgstr "Formato"
-
-msgid "Colorspace"
-msgstr "Spazio colore"
-
-msgid "Unsaved file"
-msgstr "File non salvato"
-
-msgid "Invalid format"
-msgstr "Formato non valido"
-
 msgid "pixels"
 msgstr "pixel"
 
@@ -371,8 +357,9 @@ msgstr "Immagini"
 msgid "Tools"
 msgstr "Strumenti"
 
-msgid "Advanced options"
-msgstr "Opzioni avanzate"
+#, fuzzy
+msgid "Window"
+msgstr "Nuova finestra"
 
 msgid "Close selection"
 msgstr "Chiudi selezione"
@@ -489,6 +476,10 @@ msgstr "Annulla %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Ripeti %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "File non salvato"
 
 #, fuzzy
 msgid "Show the app version"
@@ -622,6 +613,9 @@ msgstr "Selettore colore"
 msgid "Paint"
 msgstr "Dipingi"
 
+msgid "Advanced options"
+msgstr "Opzioni avanzate"
+
 msgid "Preview size"
 msgstr "Dimensione anteprima"
 
@@ -661,6 +655,30 @@ msgstr "Solo la barra strumenti"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Solo barra degli strumenti (icone simboliche)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Percorso"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Colorspace"
+msgstr "Spazio colore"
+
+msgid "Invalid format"
+msgstr "Formato non valido"
 
 msgid "Transparent"
 msgstr "Trasparente"
@@ -829,6 +847,9 @@ msgstr ""
 msgid "Back to the palette"
 msgstr "Ritorna alla tavolozza"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Usa questo editor come predefinito"
 
@@ -923,6 +944,9 @@ msgstr "Forma primaria"
 msgid "Round"
 msgstr "Tondo"
 
+msgid "Thin"
+msgstr "Sottile"
+
 msgid "Square"
 msgstr "Quadrato"
 
@@ -949,9 +973,6 @@ msgstr "Cancella e sostituisci"
 
 msgid "Clipping"
 msgstr "Ritaglio"
-
-msgid "Thin"
-msgstr "Sottile"
 
 msgid "Rectangle"
 msgstr "Rettangolo"
@@ -1103,6 +1124,9 @@ msgstr "Ridimensionamento della selezione"
 
 msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
+
+#~ msgid "Classic"
+#~ msgstr "Classico"
 
 #~ msgid "Filling"
 #~ msgstr "Riempimento"

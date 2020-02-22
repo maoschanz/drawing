@@ -46,9 +46,13 @@ class DrPrefsWindow(Gtk.Window):
 			stack_switcher = Gtk.StackSwitcher(visible=True, stack=self.stack, \
 			                                            halign=Gtk.Align.CENTER)
 			header_bar.set_custom_title(stack_switcher)
+			self.set_default_size(480, 500)
 		else:
 			stack_sidebar = Gtk.StackSidebar(visible=True, stack=self.stack)
+			stack_sidebar.set_size_request(140, -1)
 			self.content_area.pack_start(stack_sidebar, False, False, 0)
+			self.set_default_size(600, 400) # Not high enough but the golden
+			# ratio is more important than usability
 
 		self.page_builder_images()
 		self.page_builder_tools()

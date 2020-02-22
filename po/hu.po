@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -272,8 +272,9 @@ msgstr "Színek megcserélése"
 msgid "Color application mode"
 msgstr "Színválasztó"
 
-msgid "Classic"
-msgstr "Klasszikus"
+#, fuzzy
+msgid "Normal"
+msgstr "Formátum"
 
 msgid "Source color"
 msgstr "Forrás szín"
@@ -340,21 +341,6 @@ msgstr "Megnyitás"
 msgid "100%"
 msgstr "100%"
 
-msgid "Path"
-msgstr "Útvonal"
-
-msgid "Format"
-msgstr "Formátum"
-
-msgid "Colorspace"
-msgstr "Színtér"
-
-msgid "Unsaved file"
-msgstr "Mentetlen fájl"
-
-msgid "Invalid format"
-msgstr "Érvénytelen formátuma"
-
 msgid "pixels"
 msgstr "képpont"
 
@@ -370,8 +356,9 @@ msgstr "Képek"
 msgid "Tools"
 msgstr "Eszközök"
 
-msgid "Advanced options"
-msgstr "Haladó beállítások"
+#, fuzzy
+msgid "Window"
+msgstr "Új ablak"
 
 msgid "Close selection"
 msgstr "Kijelölés lezárása"
@@ -486,6 +473,10 @@ msgstr "„%s” _visszavonása"
 #, python-format
 msgid "Redo %s"
 msgstr "„%s” újra"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Mentetlen fájl"
 
 #, fuzzy
 msgid "Show the app version"
@@ -619,6 +610,9 @@ msgstr "Színpipetta"
 msgid "Paint"
 msgstr "Festés"
 
+msgid "Advanced options"
+msgstr "Haladó beállítások"
+
 msgid "Preview size"
 msgstr "Előnézet mérete"
 
@@ -658,6 +652,30 @@ msgstr "Csak eszköztár"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Csak eszköztár (szimbolikus ikonok)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Útvonal"
+
+msgid "Format"
+msgstr "Formátum"
+
+msgid "Colorspace"
+msgstr "Színtér"
+
+msgid "Invalid format"
+msgstr "Érvénytelen formátuma"
 
 msgid "Transparent"
 msgstr "Átlátszó"
@@ -829,6 +847,9 @@ msgstr ""
 msgid "Back to the palette"
 msgstr "Vissza a palettához"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Legyen ez az lapértelmezett szerkesztő"
 
@@ -923,6 +944,9 @@ msgstr "Alakzat"
 msgid "Round"
 msgstr "Kerekítés"
 
+msgid "Thin"
+msgstr "Vékony"
+
 msgid "Square"
 msgstr "Négyzet"
 
@@ -949,9 +973,6 @@ msgstr "Törlés és csere"
 
 msgid "Clipping"
 msgstr "Vágás"
-
-msgid "Thin"
-msgstr "Vékony"
 
 msgid "Rectangle"
 msgstr "Téglalap"
@@ -1104,6 +1125,9 @@ msgstr "Kijelölés átméretezése"
 
 msgid "Scaling the canvas"
 msgstr "Rajzvászon átméretezése"
+
+#~ msgid "Classic"
+#~ msgstr "Klasszikus"
 
 #~ msgid "Close"
 #~ msgstr "Bezár"

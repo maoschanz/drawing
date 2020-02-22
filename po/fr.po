@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-01-06 02:10+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -277,8 +277,8 @@ msgstr "Échanger les couleurs"
 msgid "Color application mode"
 msgstr "Mode d'application de la couleur"
 
-msgid "Classic"
-msgstr "Classique"
+msgid "Normal"
+msgstr "Normal"
 
 msgid "Source color"
 msgstr "Couleur source"
@@ -344,21 +344,6 @@ msgstr "Ouvrir"
 msgid "100%"
 msgstr "100%"
 
-msgid "Path"
-msgstr "Chemin"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Colorspace"
-msgstr "Encodage des couleurs"
-
-msgid "Unsaved file"
-msgstr "Fichier non enregistré"
-
-msgid "Invalid format"
-msgstr "Format invalide"
-
 msgid "pixels"
 msgstr "pixels"
 
@@ -374,8 +359,8 @@ msgstr "Images"
 msgid "Tools"
 msgstr "Outils"
 
-msgid "Advanced options"
-msgstr "Options avancées"
+msgid "Window"
+msgstr "Fenêtre"
 
 msgid "Close selection"
 msgstr "Fermer la sélection"
@@ -488,6 +473,10 @@ msgstr "Annuler %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Rétablir %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Fichier non enregistré"
 
 msgid "Show the app version"
 msgstr "Afficher la version de l'application"
@@ -617,6 +606,9 @@ msgstr "Sélecteur de couleur"
 msgid "Paint"
 msgstr "Peinture"
 
+msgid "Advanced options"
+msgstr "Options avancées"
+
 msgid "Preview size"
 msgstr "Taille de l'aperçu"
 
@@ -656,6 +648,30 @@ msgstr "Barre de boutons"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Boutons (icônes symboliques)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Chemin"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Colorspace"
+msgstr "Encodage des couleurs"
+
+msgid "Invalid format"
+msgstr "Format invalide"
 
 msgid "Transparent"
 msgstr "Transparent"
@@ -823,6 +839,9 @@ msgstr "Comment la couleur sera appliquée aux pixels existants"
 msgid "Back to the palette"
 msgstr "Retour à la palette"
 
+msgid "Palette"
+msgstr "Palette"
+
 msgid "Use this editor by default"
 msgstr "Utiliser cet éditeur par défaut"
 
@@ -911,6 +930,9 @@ msgstr "Forme de mine"
 msgid "Round"
 msgstr "Ronde"
 
+msgid "Thin"
+msgstr "Fine"
+
 msgid "Square"
 msgstr "Carrée"
 
@@ -937,9 +959,6 @@ msgstr "Effacer et remplacer"
 
 msgid "Clipping"
 msgstr "Détourage"
-
-msgid "Thin"
-msgstr "Fine"
 
 msgid "Rectangle"
 msgstr "Rectangle"
@@ -1087,6 +1106,9 @@ msgstr "Redimensionner la sélection"
 
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
+
+#~ msgid "Classic"
+#~ msgstr "Classique"
 
 #~ msgid "Close"
 #~ msgstr "Fermer"

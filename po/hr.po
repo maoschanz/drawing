@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2020-01-24 21:28+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -268,8 +268,9 @@ msgstr "Zamijeni boje"
 msgid "Color application mode"
 msgstr "Modus programa boja"
 
-msgid "Classic"
-msgstr "Klasično"
+#, fuzzy
+msgid "Normal"
+msgstr "Format"
 
 msgid "Source color"
 msgstr "Boja izvora"
@@ -336,21 +337,6 @@ msgstr "Otvori"
 msgid "100%"
 msgstr "100 %"
 
-msgid "Path"
-msgstr "Staza"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Colorspace"
-msgstr "Prostor boje"
-
-msgid "Unsaved file"
-msgstr "Nespremljena datoteka"
-
-msgid "Invalid format"
-msgstr "Neispravan format"
-
 msgid "pixels"
 msgstr "pikslova"
 
@@ -366,8 +352,9 @@ msgstr "Slike"
 msgid "Tools"
 msgstr "Alati"
 
-msgid "Advanced options"
-msgstr "Napredne opcije"
+#, fuzzy
+msgid "Window"
+msgstr "Novi prozor"
 
 msgid "Close selection"
 msgstr "Zatvori odabir"
@@ -480,6 +467,10 @@ msgstr "Poništi %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Ponovi %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Nespremljena datoteka"
 
 msgid "Show the app version"
 msgstr "Prikaži verziju programa"
@@ -608,6 +599,9 @@ msgstr "Biranje boje"
 msgid "Paint"
 msgstr "Boja"
 
+msgid "Advanced options"
+msgstr "Napredne opcije"
+
 msgid "Preview size"
 msgstr "Veličina pretpregleda"
 
@@ -647,6 +641,30 @@ msgstr "Samo traka alata"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Samo traka alata (ikone sa simbolima)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Staza"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Colorspace"
+msgstr "Prostor boje"
+
+msgid "Invalid format"
+msgstr "Neispravan format"
 
 msgid "Transparent"
 msgstr "Prozirno"
@@ -815,6 +833,9 @@ msgstr "Način primjene boje na postojeće pikslove"
 msgid "Back to the palette"
 msgstr "Natrag na paletu"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Standardno koristi ovaj uređivač"
 
@@ -907,6 +928,9 @@ msgstr "Oblik crte"
 msgid "Round"
 msgstr "Oblo"
 
+msgid "Thin"
+msgstr "Tanko"
+
 msgid "Square"
 msgstr "Kvardatično"
 
@@ -933,9 +957,6 @@ msgstr "Izbriši i zamijeni"
 
 msgid "Clipping"
 msgstr "Rezanje"
-
-msgid "Thin"
-msgstr "Tanko"
 
 msgid "Rectangle"
 msgstr "Pravokutnik"
@@ -1084,3 +1105,5 @@ msgstr "Skaliranje odabira"
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
 
+#~ msgid "Classic"
+#~ msgstr "Klasično"

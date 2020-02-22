@@ -25,10 +25,7 @@
   </object>
 
   <template class="DrPrefsWindow" parent="GtkWindow">
-    <property name="default-width">600</property>
-    <property name="default-height">500</property>
     <property name="title" translatable="yes">Preferences</property>
-
     <child>
       <object class="GtkBox" id="content_area">
         <property name="visible">True</property>
@@ -114,6 +111,7 @@
             <property name="pack-type">end</property>
           </packing>
         </child>
+
       </object>
     </child>
   </template>

@@ -20,93 +20,131 @@ from gi.repository import Gtk, GdkPixbuf
 class DrPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrPropertiesDialog'
 
-	def __init__(self, window, image):
-		wants_csd = 'h' in window.deco_layout
-		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
-		                      transient_for=window, title=_("Image properties"))
+	units_dict = {
+		'px': _("%s px"),
+		'cm': _("%s cm"),
+		'in': _("%s in")
+	}
+
+	def __init__(self, parent_window, image):
+		wants_csd = 'h' in parent_window.deco_layout
+		super().__init__(use_header_bar=wants_csd, \
+		                 destroy_with_parent=True, \
+		                 transient_for=parent_window, \
+		                 title=_("Image properties"))
 		self._image = image
-		self.build_ui()
+		self._build_ui()
 		if wants_csd:
 			subtitle = self._image.get_filename_for_display()
 			self.get_titlebar().set_subtitle(subtitle)
-		self.set_default_size(350, 200)
+			# put stackswitcher [Image|Metadata] as title_widget instead
+		self.set_default_size(400, 150)
 		self.show()
 
-	def build_ui(self):
+	def _build_ui(self):
 		"""Fill the dialog with labels displaying correct informations."""
-		ui_path = '/com/github/maoschanz/drawing/ui/'
-		builder = Gtk.Builder.new_from_resource(ui_path + 'properties.ui')
-		props_content_area = builder.get_object('props_content_area')
-		self.get_content_area().add(props_content_area)
-
-		# Path and format ######################################################
-
-		label_path = builder.get_object('label_path')
-		label_format_file = builder.get_object('label_file_format')
-
-		if self._image.gfile is not None:
-			file_path = self._image.get_file_path()
-			label_path.set_label(file_path)
-			(pb_format, w, h) = GdkPixbuf.Pixbuf.get_file_info(file_path)
-			label_format_file.set_label(pb_format.get_name())
-
-		# Colorspace ###########################################################
-
-		self.label_colorspace = builder.get_object('label_surface_colorspace')
-		self.set_colorspace_label()
+		ui_file_path = '/com/github/maoschanz/drawing/ui/properties.ui'
+		builder = Gtk.Builder.new_from_resource(ui_file_path)
+		self.get_content_area().add(builder.get_object('main_widget'))
+		self._grid = builder.get_object('image_props_grid')
 
 		# Size (and size unit) #################################################
 
 		self.label_width = builder.get_object('label_width')
 		self.label_height = builder.get_object('label_height')
 
-		self.unit = ' px'
+		self.unit = 'px'
 		btn_px = builder.get_object('units_pixels')
 		btn_in = builder.get_object('units_inches')
 		btn_cm = builder.get_object('units_cm')
 		btn_in.join_group(btn_px)
 		btn_cm.join_group(btn_px)
-		# TODO translatable units
-		btn_px.connect('toggled', self.set_unit, ' px')
-		btn_cm.connect('toggled', self.set_unit, ' cm')
-		btn_in.connect('toggled', self.set_unit, ' in')
+		btn_px.connect('toggled', self._set_unit, 'px')
+		btn_cm.connect('toggled', self._set_unit, 'cm')
+		btn_in.connect('toggled', self._set_unit, 'in')
 
-		self.set_size_labels()
+		self._set_size_labels()
 
-	def set_colorspace_label(self):
+		# Path, format and colorspace ##########################################
+
+		label_path = _("Unsaved file")
+		label_file_format = _("Unsaved file")
+		if self._image.gfile is not None:
+			label_path = self._image.get_file_path()
+			(pb_format, w, h) = GdkPixbuf.Pixbuf.get_file_info(label_path)
+			label_file_format = pb_format.get_name()
+
+		self._add_grid_row(0, _("Path"), label_path)
+		self._add_grid_row(1, _("Format"), label_file_format)
+		self._add_grid_row(2, _("Colorspace"), self._set_colorspace_label())
+		# TODO display both the colorspace of the file and off the surface, with
+		# a warning if there might be a loss of data
+
+	def _add_grid_row(self, index, key, value):
+		"""Adds a row 2 labels (a key and a value) to the dialog's main grid."""
+		key_label = Gtk.Label(label=key, halign=Gtk.Align.END, visible=True)
+		self._grid.attach(key_label, 0, index, 1, 1)
+		value_label = Gtk.Label(label=value, halign=Gtk.Align.START, \
+		                   wrap=True, wrap_mode=Gtk.WrapMode.CHAR, visible=True)
+		value_label.get_style_context().add_class('dim-label')
+		self._grid.attach(value_label, 1, index, 2, 1)
+
+	def _set_colorspace_label(self):
+		# Useless, it will always return "ARGB32"
 		enum = {
-			0: 'ARGB32',
-			1: 'RGB24',
-			2: 'A8',
-			3: 'A1',
-			4: 'RGB16_565',
-			5: 'RGB30',
+			0: "ARGB32",
+			1: "RGB24",
+			2: "A8",
+			3: "A1",
+			4: "RGB16_565",
+			5: "RGB30",
 		}
 		cairo_format = self._image.get_surface().get_format()
 		colorspace_text = enum.get(cairo_format, _("Invalid format"))
-		self.label_colorspace.set_label(colorspace_text)
 		return colorspace_text
 
-	def set_size_labels(self):
+	############################################################################
+
+	def _set_size_labels(self):
 		"""Set the labels for picture width and height according to the selected
 		unit (px, cm or in)."""
-		px_width = self._image.get_pixbuf_width()
-		px_height = self._image.get_pixbuf_height()
-		if self.unit == ' in':
+		px_width = self._image.get_pixbuf_width() # TODO contrast this with the
+		px_height = self._image.get_pixbuf_height() # size of the saved file
+		if self.unit == 'in':
 			width = round(px_width/96.0, 2)
 			height = round(px_height/96.0, 2)
-		elif self.unit == ' cm':
+		elif self.unit == 'cm':
 			width = round(px_width/37.795275591, 2)
 			height = round(px_height/37.795275591, 2)
 		else:
 			width = px_width
 			height = px_height
-		self.label_width.set_label(str(width) + self.unit)
-		self.label_height.set_label(str(height) + self.unit)
+		self.label_width.set_label(self.units_dict[self.unit] % str(width))
+		self.label_height.set_label(self.units_dict[self.unit] % str(height))
 
-	def set_unit(self, *args):
+	def _set_unit(self, *args):
 		self.unit = args[1]
-		self.set_size_labels()
+		self._set_size_labels()
 
 	############################################################################
 ################################################################################
+
+# TODO pixbuf.get_options() ⇒
+# * The PNG loader provides the tEXt ancillary chunk (http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html 4.2.3) key/value pairs as options :
+
+# Title            Short (one line) title or caption for image
+# Author           Name of image's creator
+# Description      Description of image (possibly long)
+# Copyright        Copyright notice
+# Creation Time    Time of original image creation
+# Software         Software used to create the image
+# Disclaimer       Legal disclaimer
+# Warning          Warning of nature of content
+# Source           Device used to create the image
+# Comment          Miscellaneous comment; conversion from GIF comment
+
+# * the TIFF and JPEG loaders return an “orientation” option string that corresponds to the embedded TIFF/Exif orientation tag (if present).
+# * the TIFF loader sets the “multipage” option string to “yes” when a multi-page TIFF is loaded.
+# * the JPEG and PNG loaders set “x-dpi” and “y-dpi” if the file contains image density information in dots per inch.
+# * the JPEG loader sets the “comment” option with the comment EXIF tag.
+

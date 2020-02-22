@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2020-02-04 01:09+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -278,8 +278,9 @@ msgstr "Renkleri değiş"
 msgid "Color application mode"
 msgstr "Renk uygulama kipi"
 
-msgid "Classic"
-msgstr "Klasik"
+#, fuzzy
+msgid "Normal"
+msgstr "Biçim"
 
 msgid "Source color"
 msgstr "Kaynak renk"
@@ -345,21 +346,6 @@ msgstr "Aç"
 msgid "100%"
 msgstr "%100"
 
-msgid "Path"
-msgstr "Yol"
-
-msgid "Format"
-msgstr "Biçim"
-
-msgid "Colorspace"
-msgstr "Renk boşluğu"
-
-msgid "Unsaved file"
-msgstr "Kaydedilmemiş dosya"
-
-msgid "Invalid format"
-msgstr "Geçersiz biçim"
-
 msgid "pixels"
 msgstr "piksel"
 
@@ -375,8 +361,9 @@ msgstr "Görüntüler"
 msgid "Tools"
 msgstr "Araçlar"
 
-msgid "Advanced options"
-msgstr "Gelişmiş seçenekler"
+#, fuzzy
+msgid "Window"
+msgstr "Yeni Pencere"
 
 msgid "Close selection"
 msgstr "Seçimi kapat"
@@ -489,6 +476,10 @@ msgstr "Geri al %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Yinele %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Kaydedilmemiş dosya"
 
 msgid "Show the app version"
 msgstr "Uygulama sürümünü göster"
@@ -618,6 +609,9 @@ msgstr "Renk Seçici"
 msgid "Paint"
 msgstr "Boya"
 
+msgid "Advanced options"
+msgstr "Gelişmiş seçenekler"
+
 msgid "Preview size"
 msgstr "Önizleme boyutu"
 
@@ -657,6 +651,30 @@ msgstr "Sadece araç çubuğu"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Sadece araç çubuğu (sembolik simgeler)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Yol"
+
+msgid "Format"
+msgstr "Biçim"
+
+msgid "Colorspace"
+msgstr "Renk boşluğu"
+
+msgid "Invalid format"
+msgstr "Geçersiz biçim"
 
 msgid "Transparent"
 msgstr "Şeffaf"
@@ -824,6 +842,9 @@ msgstr "Rengin mevcut piksellere nasıl uygulanacağı"
 msgid "Back to the palette"
 msgstr "Palete geri dön"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
 
@@ -912,6 +933,9 @@ msgstr "Fırça şekli"
 msgid "Round"
 msgstr "Yuvarlak"
 
+msgid "Thin"
+msgstr "İnce"
+
 msgid "Square"
 msgstr "Kare"
 
@@ -938,9 +962,6 @@ msgstr "Temizle ve değiştir"
 
 msgid "Clipping"
 msgstr "Kırpma"
-
-msgid "Thin"
-msgstr "İnce"
 
 msgid "Rectangle"
 msgstr "Dikdörtgen"
@@ -1089,6 +1110,9 @@ msgstr "Seçimi ölçeklendir"
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
 
+#~ msgid "Classic"
+#~ msgstr "Klasik"
+
 #~ msgid "Close"
 #~ msgstr "Kapat"
 
@@ -1103,4 +1127,3 @@ msgstr "Tuvali ölçeklendir"
 
 #~ msgid "Selection options"
 #~ msgstr "Seçici seçenekleri"
-

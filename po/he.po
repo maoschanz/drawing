@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -280,8 +280,9 @@ msgstr "החלף צבעים"
 msgid "Color application mode"
 msgstr "אפשרויות צבע"
 
-msgid "Classic"
-msgstr "רגיל"
+#, fuzzy
+msgid "Normal"
+msgstr "תבנית"
 
 msgid "Source color"
 msgstr "צבע מקור"
@@ -353,22 +354,6 @@ msgstr "פתיחה"
 msgid "100%"
 msgstr ""
 
-msgid "Path"
-msgstr "נתיב"
-
-msgid "Format"
-msgstr "תבנית"
-
-#, fuzzy
-msgid "Colorspace"
-msgstr "צבעים"
-
-msgid "Unsaved file"
-msgstr "קובץ לא שמור"
-
-msgid "Invalid format"
-msgstr "תבנית לא תקפה"
-
 msgid "pixels"
 msgstr "פיקסלים"
 
@@ -387,8 +372,8 @@ msgid "Tools"
 msgstr "_כלים"
 
 #, fuzzy
-msgid "Advanced options"
-msgstr "אפשרויות קשת"
+msgid "Window"
+msgstr "חלון חדש"
 
 #, fuzzy
 msgid "Close selection"
@@ -509,6 +494,10 @@ msgstr "ביטול פעולה %s"
 #, python-format
 msgid "Redo %s"
 msgstr "חידוש פעולה %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "קובץ לא שמור"
 
 #, fuzzy
 msgid "Show the app version"
@@ -638,6 +627,10 @@ msgstr "בוחר צבעים"
 msgid "Paint"
 msgstr "צבע"
 
+#, fuzzy
+msgid "Advanced options"
+msgstr "אפשרויות קשת"
+
 msgid "Preview size"
 msgstr "גודל תצוגה מקדימה"
 
@@ -678,6 +671,31 @@ msgstr "סרגל כלים בלבד"
 #, fuzzy
 msgid "Toolbar only (symbolic icons)"
 msgstr "סרגל כלים בלבד"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "נתיב"
+
+msgid "Format"
+msgstr "תבנית"
+
+#, fuzzy
+msgid "Colorspace"
+msgstr "צבעים"
+
+msgid "Invalid format"
+msgstr "תבנית לא תקפה"
 
 #, fuzzy
 msgid "Transparent"
@@ -847,6 +865,9 @@ msgstr ""
 msgid "Back to the palette"
 msgstr "חזרה ללוח הצבעים"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
@@ -949,6 +970,9 @@ msgstr "צורת פס"
 msgid "Round"
 msgstr "עגול"
 
+msgid "Thin"
+msgstr "דק"
+
 msgid "Square"
 msgstr "מרובע"
 
@@ -976,9 +1000,6 @@ msgstr "מחק והחלף"
 
 msgid "Clipping"
 msgstr ""
-
-msgid "Thin"
-msgstr "דק"
 
 msgid "Rectangle"
 msgstr "מלבן"
@@ -1138,6 +1159,9 @@ msgstr "שינוי קנה מידה של הבחירה"
 
 msgid "Scaling the canvas"
 msgstr "שינוי קנה מידה של לוח הציור"
+
+#~ msgid "Classic"
+#~ msgstr "רגיל"
 
 #~ msgid "Close"
 #~ msgstr "סגירה"

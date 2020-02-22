@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2020-02-17 08:23+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -275,8 +275,9 @@ msgstr "Växla färger"
 msgid "Color application mode"
 msgstr "Färgapplikationsläge"
 
-msgid "Classic"
-msgstr "Klassisk"
+#, fuzzy
+msgid "Normal"
+msgstr "Format"
 
 msgid "Source color"
 msgstr "Källfärg"
@@ -342,21 +343,6 @@ msgstr "Öppna"
 msgid "100%"
 msgstr "100%"
 
-msgid "Path"
-msgstr "Sökväg"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Colorspace"
-msgstr "Färgrymd"
-
-msgid "Unsaved file"
-msgstr "Osparad fil"
-
-msgid "Invalid format"
-msgstr "Ogiltigt format"
-
 msgid "pixels"
 msgstr "pixlar"
 
@@ -372,8 +358,9 @@ msgstr "Bilder"
 msgid "Tools"
 msgstr "Verktyg"
 
-msgid "Advanced options"
-msgstr "Avancerade alternativ"
+#, fuzzy
+msgid "Window"
+msgstr "Nytt fönster"
 
 msgid "Close selection"
 msgstr "Stäng markering"
@@ -486,6 +473,10 @@ msgstr "Ångra %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Upprepa %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Osparad fil"
 
 msgid "Show the app version"
 msgstr "Visa programversion"
@@ -613,6 +604,9 @@ msgstr "Färgväljare"
 msgid "Paint"
 msgstr "Måla"
 
+msgid "Advanced options"
+msgstr "Avancerade alternativ"
+
 msgid "Preview size"
 msgstr "Storlek på förhandsgranskning"
 
@@ -652,6 +646,30 @@ msgstr "Endast verktygsfält"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Endast verktygsfält (symboliska ikoner)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Sökväg"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Colorspace"
+msgstr "Färgrymd"
+
+msgid "Invalid format"
+msgstr "Ogiltigt format"
 
 msgid "Transparent"
 msgstr "Transparent"
@@ -818,6 +836,9 @@ msgstr "Hur färgen tillämpas på befintliga pixlar"
 msgid "Back to the palette"
 msgstr "Tillbaka till paletten"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Använd denna redigerare som standard"
 
@@ -906,6 +927,9 @@ msgstr "Linjeform"
 msgid "Round"
 msgstr "Rund"
 
+msgid "Thin"
+msgstr "Tunn"
+
 msgid "Square"
 msgstr "Kvadrat"
 
@@ -932,9 +956,6 @@ msgstr "Sudda och ersätt"
 
 msgid "Clipping"
 msgstr "Klippning"
-
-msgid "Thin"
-msgstr "Tunn"
 
 msgid "Rectangle"
 msgstr "Rektangel"
@@ -1082,6 +1103,9 @@ msgstr "Skalar markering"
 
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
+
+#~ msgid "Classic"
+#~ msgstr "Klassisk"
 
 #~ msgid "Close"
 #~ msgstr "Stäng"

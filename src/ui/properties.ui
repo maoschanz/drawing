@@ -1,107 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <object class="GtkBox" id="props_content_area">
+  <object class="GtkBox" id="main_widget">
     <property name="visible">True</property>
     <property name="orientation">vertical</property>
     <property name="margin">10</property>
-    <property name="spacing">10</property>
     <property name="expand">True</property>
     <child>
-      <object class="GtkGrid">
+      <object class="GtkGrid" id="image_props_grid">
         <property name="visible">True</property>
         <property name="column_spacing">25</property>
         <property name="row_spacing">15</property>
         <property name="halign">center</property>
         <property name="column_homogeneous">False</property>
-
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Path</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Format</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Colorspace</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="label_path">
-            <property name="visible">True</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">char</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Unsaved file</property>
-            <style><class name="dim-label"/></style>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">0</property>
-            <property name="width">2</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="label_file_format">
-            <property name="visible">True</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Unsaved file</property>
-            <style><class name="dim-label"/></style>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
-            <property name="width">2</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="label_surface_colorspace">
-            <property name="visible">True</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Invalid format</property>
-            <style><class name="dim-label"/></style>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">2</property>
-            <property name="width">2</property>
-            <property name="height">1</property>
-          </packing>
-        </child>
 
         <child>
           <object class="GtkSeparator">

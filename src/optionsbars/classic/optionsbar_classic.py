@@ -35,8 +35,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
 		self._build_color_buttons(builder)
 
-		window.add_action_enum('cairo_operator', 'over', self.cairo_op_changed)
-		window.add_action_enum('cairo_op_mirror', 'over', self.cairop_mirror)
+		window.add_action_enum('cairo_operator', 'over', self._cairo_op_changed)
+		window.add_action_enum('cairo_op_mirror', 'over', self._cairop_mirror)
 		self._cairo_operator_lock = False
 
 		self.options_btn = builder.get_object('options_btn')
@@ -139,7 +139,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 	############################################################################
 	# Cairo operators ("color application modes") ##############################
 
-	def cairo_op_changed(self, *args):
+	def _cairo_op_changed(self, *args):
 		"""This action can be used in menus. It's a custom callback because it
 		has to set the lock required to be avoid infinite recursion caused by
 		the synchronisation with `win.cairo_op_mirror`"""
@@ -152,15 +152,15 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._cairo_operator_lock = True
 		self.window.options_manager._enum_callback(mirrored_action, args[1])
 		self._cairo_operator_lock = False
-		# TODO if blur or erase, what should it do to the palette?
+		# TODO if blur or erase, it should disable the palette
 
-	def cairop_mirror(self, *args):
+	def _cairop_mirror(self, *args):
 		"""This action should NEVER be added to any menu. It mirrors the action
 		`win.cairo_operator`, which can be added to menus. This action is
 		intended to be used by GtkRadioButtons, whose weird behaviors include
 		sending a `change-state` signal when being unchecked, thus triggering
-		this callback twice. Thus the synchronisation mechanism with a more
-		reliable action duplicating the data."""
+		this callback twice. So this synchronisation mechanism is needed, with
+		an other "classic" action duplicating the data, and a lock."""
 		if self._cairo_operator_lock:
 			return
 		if args[1].get_string() == args[0].get_state().get_string():

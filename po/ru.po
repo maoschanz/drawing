@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -267,8 +267,9 @@ msgstr "Поменять цвета"
 msgid "Color application mode"
 msgstr "Выбор цвета"
 
-msgid "Classic"
-msgstr "Классический"
+#, fuzzy
+msgid "Normal"
+msgstr "Формат"
 
 msgid "Source color"
 msgstr "Цвет источника"
@@ -339,22 +340,6 @@ msgstr "Открыть"
 msgid "100%"
 msgstr ""
 
-msgid "Path"
-msgstr "Путь"
-
-msgid "Format"
-msgstr "Формат"
-
-#, fuzzy
-msgid "Colorspace"
-msgstr "Цвета"
-
-msgid "Unsaved file"
-msgstr "Несохраненный файл"
-
-msgid "Invalid format"
-msgstr "Неверный формат"
-
 msgid "pixels"
 msgstr "пиксели"
 
@@ -373,8 +358,8 @@ msgid "Tools"
 msgstr "_Инструменты"
 
 #, fuzzy
-msgid "Advanced options"
-msgstr "Варианты дуги"
+msgid "Window"
+msgstr "Новое окно"
 
 #, fuzzy
 msgid "Close selection"
@@ -493,6 +478,10 @@ msgstr "Отменить"
 #, fuzzy, python-format
 msgid "Redo %s"
 msgstr "Вернуть"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Несохраненный файл"
 
 #, fuzzy
 msgid "Show the app version"
@@ -621,6 +610,10 @@ msgstr "Выбор цвета"
 msgid "Paint"
 msgstr "Заливка"
 
+#, fuzzy
+msgid "Advanced options"
+msgstr "Варианты дуги"
+
 msgid "Preview size"
 msgstr "Размер предварительного просмотра"
 
@@ -661,6 +654,31 @@ msgstr "Только панель инструментов"
 #, fuzzy
 msgid "Toolbar only (symbolic icons)"
 msgstr "Только панель инструментов"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Путь"
+
+msgid "Format"
+msgstr "Формат"
+
+#, fuzzy
+msgid "Colorspace"
+msgstr "Цвета"
+
+msgid "Invalid format"
+msgstr "Неверный формат"
 
 #, fuzzy
 msgid "Transparent"
@@ -830,6 +848,9 @@ msgstr ""
 msgid "Back to the palette"
 msgstr "Назад к палитре"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
@@ -932,6 +953,9 @@ msgstr "Свободная форма"
 msgid "Round"
 msgstr "Круглый"
 
+msgid "Thin"
+msgstr "Тонкий"
+
 msgid "Square"
 msgstr "Квадратный"
 
@@ -959,9 +983,6 @@ msgstr "Стереть и заменить"
 
 msgid "Clipping"
 msgstr ""
-
-msgid "Thin"
-msgstr "Тонкий"
 
 msgid "Rectangle"
 msgstr "Прямоугольник"
@@ -1120,6 +1141,9 @@ msgstr "Масштабировать выделенное"
 msgid "Scaling the canvas"
 msgstr "Масштабировать холст"
 
+#~ msgid "Classic"
+#~ msgstr "Классический"
+
 #~ msgid "Close"
 #~ msgstr "Закрыть"
 
@@ -1134,4 +1158,3 @@ msgstr "Масштабировать холст"
 
 #~ msgid "Selection options"
 #~ msgstr "Варианты выделения"
-

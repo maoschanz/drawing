@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-12-20 12:01+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -266,8 +266,8 @@ msgstr "Zamień kolory"
 msgid "Color application mode"
 msgstr "Zaznaczanie koloru"
 
-msgid "Classic"
-msgstr "Zwykły"
+msgid "Normal"
+msgstr ""
 
 msgid "Source color"
 msgstr "Aktywny kolor"
@@ -334,21 +334,6 @@ msgstr "Otwórz"
 msgid "100%"
 msgstr ""
 
-msgid "Path"
-msgstr "Ścieżka"
-
-msgid "Format"
-msgstr ""
-
-msgid "Colorspace"
-msgstr "Przestrzeń kolorów"
-
-msgid "Unsaved file"
-msgstr "Niezapisany plik"
-
-msgid "Invalid format"
-msgstr "Niewłaściwy format"
-
 msgid "pixels"
 msgstr "punktów"
 
@@ -364,8 +349,9 @@ msgstr "Obrazy"
 msgid "Tools"
 msgstr "Narzędzia"
 
-msgid "Advanced options"
-msgstr "Opcje zaawansowane"
+#, fuzzy
+msgid "Window"
+msgstr "Nowe okno"
 
 msgid "Close selection"
 msgstr "Zakończ zaznaczanie"
@@ -478,6 +464,10 @@ msgstr "Cofnij %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Ponów %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Niezapisany plik"
 
 #, fuzzy
 msgid "Show the app version"
@@ -608,6 +598,9 @@ msgstr "Wybór koloru"
 msgid "Paint"
 msgstr "Malowanie"
 
+msgid "Advanced options"
+msgstr "Opcje zaawansowane"
+
 msgid "Preview size"
 msgstr "Rozmiar podglądu"
 
@@ -647,6 +640,30 @@ msgstr "Tylko pasek narzędzi"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Tylko pasek narzędzi (ikony symboliczne)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Ścieżka"
+
+msgid "Format"
+msgstr ""
+
+msgid "Colorspace"
+msgstr "Przestrzeń kolorów"
+
+msgid "Invalid format"
+msgstr "Niewłaściwy format"
 
 msgid "Transparent"
 msgstr "Przeźroczysty"
@@ -813,6 +830,9 @@ msgstr ""
 msgid "Back to the palette"
 msgstr "Wróć do palety"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr ""
 
@@ -907,6 +927,9 @@ msgstr "Kształt"
 msgid "Round"
 msgstr "Okrągły"
 
+msgid "Thin"
+msgstr "Cienki"
+
 msgid "Square"
 msgstr "Kwadratowy"
 
@@ -933,9 +956,6 @@ msgstr ""
 
 msgid "Clipping"
 msgstr ""
-
-msgid "Thin"
-msgstr "Cienki"
 
 msgid "Rectangle"
 msgstr "Prostokąt"
@@ -1087,3 +1107,5 @@ msgstr "Skalowanie zaznaczenia"
 msgid "Scaling the canvas"
 msgstr "Skalowanie płótna"
 
+#~ msgid "Classic"
+#~ msgstr "Zwykły"

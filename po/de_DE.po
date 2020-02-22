@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2020-02-03 23:01+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -280,8 +280,9 @@ msgstr "Farben tauschen"
 msgid "Color application mode"
 msgstr "Farbanwendungsmodus"
 
-msgid "Classic"
-msgstr "Klassisch"
+#, fuzzy
+msgid "Normal"
+msgstr "Format"
 
 msgid "Source color"
 msgstr "Quellfarbe"
@@ -347,21 +348,6 @@ msgstr "Öffnen"
 msgid "100%"
 msgstr "100%"
 
-msgid "Path"
-msgstr "Pfad"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Colorspace"
-msgstr "Farbraum"
-
-msgid "Unsaved file"
-msgstr "Nicht gespeicherte Datei"
-
-msgid "Invalid format"
-msgstr "Ungültiges Format"
-
 msgid "pixels"
 msgstr "Pixel"
 
@@ -377,8 +363,9 @@ msgstr "Bilder"
 msgid "Tools"
 msgstr "Werkzeuge"
 
-msgid "Advanced options"
-msgstr "Erweiterte Einstellungen"
+#, fuzzy
+msgid "Window"
+msgstr "Neues Fenster"
 
 msgid "Close selection"
 msgstr "Auswahl schließen"
@@ -492,6 +479,10 @@ msgstr "Rückgängig %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Wiederherstellen %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Nicht gespeicherte Datei"
 
 msgid "Show the app version"
 msgstr "Version der Anwendung anzeigen"
@@ -621,6 +612,9 @@ msgstr "Farbwähler"
 msgid "Paint"
 msgstr "Füllen"
 
+msgid "Advanced options"
+msgstr "Erweiterte Einstellungen"
+
 msgid "Preview size"
 msgstr "Vorschaugröße"
 
@@ -660,6 +654,30 @@ msgstr "Nur Werkzeugleiste"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Nur Werkzeugleiste (einfarbig)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Pfad"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Colorspace"
+msgstr "Farbraum"
+
+msgid "Invalid format"
+msgstr "Ungültiges Format"
 
 msgid "Transparent"
 msgstr "Transparenz"
@@ -832,6 +850,9 @@ msgstr "Wie die Farbe auf die vorhandenen Pixel angewendet wird"
 msgid "Back to the palette"
 msgstr "Zurück zur Palette"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
 
@@ -920,6 +941,9 @@ msgstr "Linienform"
 msgid "Round"
 msgstr "Rund"
 
+msgid "Thin"
+msgstr "Dünn"
+
 msgid "Square"
 msgstr "Eckig"
 
@@ -946,9 +970,6 @@ msgstr "Löschen und ersetzen"
 
 msgid "Clipping"
 msgstr "Ausschnitt"
-
-msgid "Thin"
-msgstr "Dünn"
 
 msgid "Rectangle"
 msgstr "Rechteck"
@@ -1098,6 +1119,9 @@ msgstr "Auswahl skalieren"
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
 
+#~ msgid "Classic"
+#~ msgstr "Klassisch"
+
 #~ msgid "Close"
 #~ msgstr "Schließen"
 
@@ -1112,4 +1136,3 @@ msgstr "Leinwand skalieren"
 
 #~ msgid "Selection options"
 #~ msgstr "Auswahl-Optionen"
-

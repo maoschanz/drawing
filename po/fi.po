@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2019-12-10 22:40+0200\n"
 "Last-Translator: Kimmo Kujansuu <kimmo.kujansuu@yahoo.com>\n"
 "Language-Team: suomi <>\n"
@@ -272,8 +272,9 @@ msgstr "Vaihda värejä"
 msgid "Color application mode"
 msgstr "Värin valinta"
 
-msgid "Classic"
-msgstr "Klassikko"
+#, fuzzy
+msgid "Normal"
+msgstr "Muoto"
 
 msgid "Source color"
 msgstr "Lähdeväri"
@@ -340,21 +341,6 @@ msgstr "Avaa"
 msgid "100%"
 msgstr "100%"
 
-msgid "Path"
-msgstr "Polku"
-
-msgid "Format"
-msgstr "Muoto"
-
-msgid "Colorspace"
-msgstr "Värialue"
-
-msgid "Unsaved file"
-msgstr "Tallentamaton tiedosto"
-
-msgid "Invalid format"
-msgstr "Väärä muoto"
-
 msgid "pixels"
 msgstr "Pikseliä"
 
@@ -370,8 +356,9 @@ msgstr "Kuvat"
 msgid "Tools"
 msgstr "Työkalut"
 
-msgid "Advanced options"
-msgstr "Edistyneet asetukset"
+#, fuzzy
+msgid "Window"
+msgstr "Uusi ikkuna"
 
 msgid "Close selection"
 msgstr "Sulje valinta"
@@ -484,6 +471,10 @@ msgstr "Kumoa %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Uudelleen %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Tallentamaton tiedosto"
 
 #, fuzzy
 msgid "Show the app version"
@@ -614,6 +605,9 @@ msgstr "Värin poiminta"
 msgid "Paint"
 msgstr "Maalaa"
 
+msgid "Advanced options"
+msgstr "Edistyneet asetukset"
+
 msgid "Preview size"
 msgstr "Esikatselun koko"
 
@@ -653,6 +647,30 @@ msgstr "Vain työkalurivi"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Vain työkalurivi (symboliset kuvakkeet)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Polku"
+
+msgid "Format"
+msgstr "Muoto"
+
+msgid "Colorspace"
+msgstr "Värialue"
+
+msgid "Invalid format"
+msgstr "Väärä muoto"
 
 msgid "Transparent"
 msgstr "Läpinäkyvä"
@@ -820,6 +838,9 @@ msgstr ""
 msgid "Back to the palette"
 msgstr "Takaisin palettiin"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Käytä tätä editoria oletuksena"
 
@@ -914,6 +935,9 @@ msgstr "Lyijykynän muoto"
 msgid "Round"
 msgstr "Pyöreä"
 
+msgid "Thin"
+msgstr "Ohut"
+
 msgid "Square"
 msgstr "Neliö"
 
@@ -940,9 +964,6 @@ msgstr "Pyyhi ja korvaa"
 
 msgid "Clipping"
 msgstr "Lehtileike"
-
-msgid "Thin"
-msgstr "Ohut"
 
 msgid "Rectangle"
 msgstr "Suorakulmio"
@@ -1094,3 +1115,5 @@ msgstr "Valinnan skaalaaminen"
 msgid "Scaling the canvas"
 msgstr "Alustan skaalaaminen"
 
+#~ msgid "Classic"
+#~ msgstr "Klassikko"

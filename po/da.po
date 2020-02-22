@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 21:40+0100\n"
+"POT-Creation-Date: 2020-02-22 03:30+0100\n"
 "PO-Revision-Date: 2020-01-19 04:42+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -268,8 +268,9 @@ msgstr "Byt om på farverne"
 msgid "Color application mode"
 msgstr "Farvepåføringstilstand"
 
-msgid "Classic"
-msgstr "Klassisk"
+#, fuzzy
+msgid "Normal"
+msgstr "Format"
 
 msgid "Source color"
 msgstr "Kildefarve"
@@ -336,21 +337,6 @@ msgstr "Åbn"
 msgid "100%"
 msgstr "100 %"
 
-msgid "Path"
-msgstr "Sti"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Colorspace"
-msgstr "Farverum"
-
-msgid "Unsaved file"
-msgstr "Ikke gemt"
-
-msgid "Invalid format"
-msgstr "Ugyldigt format"
-
 msgid "pixels"
 msgstr "pixels"
 
@@ -366,8 +352,9 @@ msgstr "Billeder"
 msgid "Tools"
 msgstr "Værktøjer"
 
-msgid "Advanced options"
-msgstr "Avancerede valgmuligheder"
+#, fuzzy
+msgid "Window"
+msgstr "Nyt vindue"
 
 msgid "Close selection"
 msgstr "Luk markering"
@@ -480,6 +467,10 @@ msgstr "Fortryd %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Omgør %s"
+
+#. Path, format and colorspace ##########################################
+msgid "Unsaved file"
+msgstr "Ikke gemt"
 
 msgid "Show the app version"
 msgstr "Vis programversionen"
@@ -608,6 +599,9 @@ msgstr "Farvevælger"
 msgid "Paint"
 msgstr "Malerbøtte"
 
+msgid "Advanced options"
+msgstr "Avancerede valgmuligheder"
+
 msgid "Preview size"
 msgstr "Størrelse på forhåndsvisning"
 
@@ -647,6 +641,30 @@ msgstr "Kun værktøjslinje"
 
 msgid "Toolbar only (symbolic icons)"
 msgstr "Kun værktøjslinje (symbolske ikoner)"
+
+#, python-format
+msgid "%s px"
+msgstr ""
+
+#, python-format
+msgid "%s cm"
+msgstr ""
+
+#, python-format
+msgid "%s in"
+msgstr ""
+
+msgid "Path"
+msgstr "Sti"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Colorspace"
+msgstr "Farverum"
+
+msgid "Invalid format"
+msgstr "Ugyldigt format"
 
 msgid "Transparent"
 msgstr "Gennemsigtig"
@@ -813,6 +831,9 @@ msgstr "Hvordan farven påføres de eksisterende pixels"
 msgid "Back to the palette"
 msgstr "Tilbage til paletten"
 
+msgid "Palette"
+msgstr ""
+
 msgid "Use this editor by default"
 msgstr "Brug editoren som standard"
 
@@ -905,6 +926,9 @@ msgstr "Linjens form"
 msgid "Round"
 msgstr "Rund"
 
+msgid "Thin"
+msgstr "Tynd"
+
 msgid "Square"
 msgstr "Firkantet"
 
@@ -931,9 +955,6 @@ msgstr "Slet og erstat"
 
 msgid "Clipping"
 msgstr "Klipning"
-
-msgid "Thin"
-msgstr "Tynd"
 
 msgid "Rectangle"
 msgstr "Rektangel"
@@ -1083,3 +1104,5 @@ msgstr "Skaler markeringen"
 msgid "Scaling the canvas"
 msgstr "Skaler lærredet"
 
+#~ msgid "Classic"
+#~ msgstr "Klassisk"

@@ -18,6 +18,7 @@
 import cairo
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 from .selection_manager import DrSelectionManager
+from .properties import DrPropertiesDialog
 
 class DrMotionBehavior():
 	HOVER = 0
@@ -227,6 +228,9 @@ class DrImage(Gtk.Box):
 			return None
 		else:
 			return self.gfile.get_path()
+
+	def show_properties(self):
+		DrPropertiesDialog(self.window, self)
 
 	############################################################################
 	# History management #######################################################

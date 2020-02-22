@@ -43,7 +43,6 @@ from .select_color import ToolColorSelect
 
 # Other imports
 from .image import DrImage
-from .properties import DrPropertiesDialog
 from .custom_image import DrCustomImageDialog
 from .minimap import DrMinimap
 from .options_manager import DrOptionsManager
@@ -770,7 +769,9 @@ class DrWindow(Gtk.ApplicationWindow):
 	# IMAGE FILES MANAGEMENT ###################################################
 
 	def action_properties(self, *args):
-		DrPropertiesDialog(self, self.get_active_image())
+		"""Display the properties dialog for the current image. This could be
+		done here but it's done in DrImage to have a satisfying UML diagram."""
+		self.get_active_image().show_properties()
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:
