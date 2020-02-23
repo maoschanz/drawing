@@ -893,9 +893,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		fn = gfile.get_path()
 		try:
 			pixb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_to(pixb, fn, self)
+			utilities_save_pixbuf_to(pixb, fn, self, True)
 			self.get_active_image().gfile = gfile
-		except:
+		except Exception as e:
+			if str(e) == '2': # exception has been raised because the user wants
+				# to save the file under an other format (JPEG/BMP → PNG)
+				self.action_save_as()
+				return True
+			# else the exception has been raised because the user cancelled
 			self.prompt_message(False, _("Failed to save %s") % fn)
 			return False
 		self.get_active_image().post_save()
@@ -939,10 +944,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		gfile = None
 		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
 		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
-		# TODO use ~/Images by default if possible
 		utilities_add_filechooser_filters(file_chooser)
+
+		images_dir = GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)
+		file_chooser.set_current_folder(images_dir)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
+
 		response = file_chooser.run()
 		if response == Gtk.ResponseType.ACCEPT:
 			gfile = file_chooser.get_file()
@@ -958,7 +966,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return
 		pixbuf = self.get_active_image().main_pixbuf
 		try:
-			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
+			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
 		except:
 			self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 
@@ -1032,7 +1040,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		if gfile is not None:
 			pixbuf = self.get_active_image().selection.get_pixbuf()
 			try:
-				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
+				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
 			except:
 				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 

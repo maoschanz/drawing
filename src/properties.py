@@ -67,9 +67,10 @@ class DrPropertiesDialog(Gtk.Dialog):
 
 		# Path, format and colorspace ##########################################
 
-		label_path = _("Unsaved file")
-		label_file_format = _("Unsaved file")
-		if self._image.gfile is not None:
+		if self._image.gfile is None:
+			label_path = _("Unsaved file")
+			label_file_format = _("Unsaved file")
+		else:
 			label_path = self._image.get_file_path()
 			(pb_format, w, h) = GdkPixbuf.Pixbuf.get_file_info(label_path)
 			label_file_format = pb_format.get_name()

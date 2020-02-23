@@ -98,7 +98,7 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 ################################################################################
 
-def utilities_save_pixbuf_to(pixbuf, fpath, window):
+def utilities_save_pixbuf_to(pixbuf, fpath, window, can_save_as):
 	"""Save pixbuf to a given path, with the file format corresponding to the
 	end of the file name. Format with no support for alpha channel will be
 	modified so transparent pixels get replaced by white."""
@@ -113,7 +113,7 @@ def utilities_save_pixbuf_to(pixbuf, fpath, window):
 	if file_format not in ['png']:
 		replacement = window._settings.get_string('replace-alpha')
 		if replacement == 'ask':
-			replacement = _ask_overwrite_alpha(window)
+			replacement = _ask_overwrite_alpha(window, can_save_as)
 		pixbuf = _replace_alpha(pixbuf, replacement)
 	# Actually save the pixbuf to the given file path
 	pixbuf.savev(fpath, file_format, [None], [])
@@ -140,31 +140,37 @@ def _rgb_as_hexadecimal_int(r, g, b):
 	integer whose format is 0xaarrggbb so here are ugly binary operators."""
 	return (r << 16) + (g << 8) + b
 
-def _ask_overwrite_alpha(window):
-	"""This method is not used for now. The point is to warn the user about the
-	replacement of the alpha channel for JPG or BMP files, but it might annoy
-	users very quickly to see a dialog."""
+def _ask_overwrite_alpha(window, can_save_as):
+	"""Warn the user about the replacement of the alpha channel for JPG or BMP
+	files, but it will quickly annoy users to see a dialog so it's an option."""
 	dialog = DrMessageDialog(window)
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
-	continue_id = dialog.set_action(_("Save"), None, True)
-	dialog.add_string(_("This file format doesn't support transparent colors."))
+	if can_save_as:
+		save_as_id = dialog.set_action(_("Save as…"), None, False)
+	replace_id = dialog.set_action(_("Replace"), None, True)
 
-	dialog.add_string(_("Replace transparency with:") )
+	dialog.add_string(_("This file format doesn't support transparent colors."))
+	if can_save_as:
+		dialog.add_string(_("You can save the image as a PNG file, or " \
+		                                          "replace transparency with:"))
+	else:
+		dialog.add_string(_("Replace transparency with:"))
+
 	alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
-	dialog.add_widget(alpha_combobox)
 	alpha_combobox.append('white', _("White"))
 	alpha_combobox.append('black', _("Black"))
 	alpha_combobox.append('checkboard', _("Checkboard"))
 	alpha_combobox.append('nothing', _("Nothing"))
 	alpha_combobox.set_active_id('white') # If we run the dialog, it means the
-	# active preference IS 'ask', so there is no way we can set the value to
-	# something pertinent.
+	# active preference is 'ask', so there is no way we can set the default
+	# value to something pertinent.
+	dialog.add_widget(alpha_combobox)
 
 	result = dialog.run()
 	repl = alpha_combobox.get_active_id()
 	dialog.destroy()
-	if result != continue_id:
-		raise Exception("User refused to save as %s" % file_format) # XXX transl
+	if result != replace_id:
+		raise Exception(result)
 	return repl
 
 ################################################################################
@@ -202,6 +208,8 @@ def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
 		_add_spinbutton_icon(spinbutton, 'unit-pixels-symbolic', _("pixels"))
 	elif unit == '%':
 		_add_spinbutton_icon(spinbutton, 'unit-percents-symbolic', _("percents"))
+	elif unit == '°':
+		_add_spinbutton_icon(spinbutton, 'unit-degrees-symbolic', _("degrees"))
 
 def _add_spinbutton_icon(spinbutton, icon, tooltip):
 	p = Gtk.EntryIconPosition.SECONDARY

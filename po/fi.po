@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 03:30+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
 "PO-Revision-Date: 2019-12-10 22:40+0200\n"
 "Last-Translator: Kimmo Kujansuu <kimmo.kujansuu@yahoo.com>\n"
 "Language-Team: suomi <>\n"
@@ -472,7 +472,6 @@ msgstr "Kumoa %s"
 msgid "Redo %s"
 msgstr "Uudelleen %s"
 
-#. Path, format and colorspace ##########################################
 msgid "Unsaved file"
 msgstr "Tallentamaton tiedosto"
 
@@ -718,8 +717,14 @@ msgstr "Todennäköisesti turkoosi"
 msgid "Unknown color name"
 msgstr "Tuntematon värin nimi"
 
+msgid "Replace"
+msgstr ""
+
 msgid "This file format doesn't support transparent colors."
 msgstr "Tämä tiedostomuoto ei tue läpinäkyviä värejä."
+
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
 
 msgid "Replace transparency with:"
 msgstr "Korvaa läpinäkyvyys seuraavilla:"
@@ -738,6 +743,10 @@ msgstr "BMP-kuvat"
 
 msgid "percents"
 msgstr "prosentit"
+
+#, fuzzy
+msgid "degrees"
+msgstr "Kulma (astetta)"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -783,6 +792,7 @@ msgstr "nämä tiedostot"
 msgid "What do you want to do with %s?"
 msgstr "Mitä haluat tehdä kohteen %s kanssa?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr "Kohteen %s tallentaminen epäonnistui"

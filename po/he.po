@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 03:30+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -495,7 +495,6 @@ msgstr "ביטול פעולה %s"
 msgid "Redo %s"
 msgstr "חידוש פעולה %s"
 
-#. Path, format and colorspace ##########################################
 msgid "Unsaved file"
 msgstr "קובץ לא שמור"
 
@@ -745,7 +744,13 @@ msgstr ""
 msgid "Unknown color name"
 msgstr ""
 
+msgid "Replace"
+msgstr ""
+
 msgid "This file format doesn't support transparent colors."
+msgstr ""
+
+msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
 
 msgid "Replace transparency with:"
@@ -765,6 +770,10 @@ msgstr "תמונות BMP"
 
 msgid "percents"
 msgstr ""
+
+#, fuzzy
+msgid "degrees"
+msgstr "זווית (מעלות)"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -811,6 +820,7 @@ msgstr "קובץ לא שמור"
 msgid "What do you want to do with %s?"
 msgstr "היכן ברצונך לפתוח את %s?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr ""

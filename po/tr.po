@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 03:30+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
 "PO-Revision-Date: 2020-02-04 01:09+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -477,7 +477,6 @@ msgstr "Geri al %s"
 msgid "Redo %s"
 msgstr "Yinele %s"
 
-#. Path, format and colorspace ##########################################
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
 
@@ -722,8 +721,14 @@ msgstr "Açık turkuaz"
 msgid "Unknown color name"
 msgstr "Bilinmeyen renk adı"
 
+msgid "Replace"
+msgstr ""
+
 msgid "This file format doesn't support transparent colors."
 msgstr "Bu dosya biçimi saydam renkleri desteklemiyor."
+
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
 
 msgid "Replace transparency with:"
 msgstr "Şeffaflığı şununla değiştir:"
@@ -742,6 +747,10 @@ msgstr "BMP görüntüler"
 
 msgid "percents"
 msgstr "yüzdeler"
+
+#, fuzzy
+msgid "degrees"
+msgstr "Açı (derece)"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -787,6 +796,7 @@ msgstr "bu dosyalar"
 msgid "What do you want to do with %s?"
 msgstr "%s ile ne yapmak istersin?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr "Kaydedilemedi %s"

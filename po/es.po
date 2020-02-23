@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 03:30+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
 "PO-Revision-Date: 2019-12-10 13:57+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -473,7 +473,6 @@ msgstr "Deshacer %s"
 msgid "Redo %s"
 msgstr "Rehacer %s"
 
-#. Path, format and colorspace ##########################################
 msgid "Unsaved file"
 msgstr "Archivo no guardado"
 
@@ -720,8 +719,14 @@ msgstr "Probablemente turquesa"
 msgid "Unknown color name"
 msgstr "Nombre de color desconocido"
 
+msgid "Replace"
+msgstr ""
+
 msgid "This file format doesn't support transparent colors."
 msgstr "Este formato de archivo no soporta colores transparentes."
+
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
 
 msgid "Replace transparency with:"
 msgstr "Reemplazar la transparencia con:"
@@ -740,6 +745,10 @@ msgstr "Imágenes BMP"
 
 msgid "percents"
 msgstr "porcentaje"
+
+#, fuzzy
+msgid "degrees"
+msgstr "Ángulo (grados)"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -785,6 +794,7 @@ msgstr "estos archivos"
 msgid "What do you want to do with %s?"
 msgstr "¿Qué quiere hacer con «%s»?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr "Error al guardar %s"

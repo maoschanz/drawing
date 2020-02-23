@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 03:30+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
 "PO-Revision-Date: 2020-01-19 04:42+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -468,7 +468,6 @@ msgstr "Fortryd %s"
 msgid "Redo %s"
 msgstr "Omgør %s"
 
-#. Path, format and colorspace ##########################################
 msgid "Unsaved file"
 msgstr "Ikke gemt"
 
@@ -712,8 +711,14 @@ msgstr "Formodentlig turkis"
 msgid "Unknown color name"
 msgstr "Ukendt farvenavn"
 
+msgid "Replace"
+msgstr ""
+
 msgid "This file format doesn't support transparent colors."
 msgstr "Filformatet understøtter ikke gennemsigtige farver."
+
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
 
 msgid "Replace transparency with:"
 msgstr "Erstat gennemsigtighed med:"
@@ -732,6 +737,10 @@ msgstr "BMP-billeder"
 
 msgid "percents"
 msgstr "procent"
+
+#, fuzzy
+msgid "degrees"
+msgstr "Vinkel (grader)"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -777,6 +786,7 @@ msgstr "disse filer"
 msgid "What do you want to do with %s?"
 msgstr "Hvad vil du gøre med %s?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr "Kunne ikke gemme %s"

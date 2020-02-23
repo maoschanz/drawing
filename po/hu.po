@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 03:30+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -474,7 +474,6 @@ msgstr "„%s” _visszavonása"
 msgid "Redo %s"
 msgstr "„%s” újra"
 
-#. Path, format and colorspace ##########################################
 msgid "Unsaved file"
 msgstr "Mentetlen fájl"
 
@@ -723,8 +722,14 @@ msgstr "Talán türkizkék"
 msgid "Unknown color name"
 msgstr "Ismeretlen szín név"
 
+msgid "Replace"
+msgstr ""
+
 msgid "This file format doesn't support transparent colors."
 msgstr "Ez a fájlformátum nem támogatja az átlátszó „színt”."
+
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
 
 msgid "Replace transparency with:"
 msgstr "Átlátszóság helyettesítése ezzel:"
@@ -743,6 +748,10 @@ msgstr "BMP-képek"
 
 msgid "percents"
 msgstr "százalék"
+
+#, fuzzy
+msgid "degrees"
+msgstr "Szög (fok)"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -789,6 +798,7 @@ msgstr "ezek a fájlok"
 msgid "What do you want to do with %s?"
 msgstr "Mit szeretne tenni a(z) %s képpel?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr "%s mentése meghiúsult"
