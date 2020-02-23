@@ -33,8 +33,8 @@ class DrawingSelectionManager():
 		self.l_popover = Gtk.Popover.new_from_model(self.image.window.notebook, menu_l)
 
 	def init_pixbuf(self):
-		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-
+		self.selection_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, \
+		                                                          True, 8, 1, 1)
 		self.set_coords(True, 0, 0)
 		self.selection_path = None
 		self.temp_path = None
@@ -92,7 +92,7 @@ class DrawingSelectionManager():
 			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
 			# avec un try except déjà ce serait pas mal
 		else:
-			self.reset()
+			self.reset(True)
 		self.image.update_actions_state()
 
 	def set_coords(self, temp_too, x, y):
@@ -112,7 +112,7 @@ class DrawingSelectionManager():
 	def get_pixbuf(self):
 		return self.selection_pixbuf
 
-	def reset(self):
+	def reset(self, update_image):
 		self.selection_pixbuf = None
 		self.selection_path = None
 		self.set_coords(True, 0, 0)
@@ -120,8 +120,9 @@ class DrawingSelectionManager():
 		self.is_active = False
 		# self.image.use_stable_pixbuf() # XXX empêchait la suppression de la
 		       # sélection, mais peut-être que ça avait du sens que ce soit là ?
-		self.image.update_actions_state()
-		self.image.update()
+		if update_image:
+			self.image.update_actions_state()
+			self.image.update()
 
 	def delete_temp(self):
 		if self.temp_path is None:

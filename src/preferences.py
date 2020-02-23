@@ -25,7 +25,7 @@ class DrawingPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrawingPrefsWindow'
 
 	content_area = GtkTemplate.Child()
-	stack_switcher = GtkTemplate.Child()
+	stack = GtkTemplate.Child()
 
 	page_images = GtkTemplate.Child()
 	page_tools = GtkTemplate.Child()
@@ -46,10 +46,16 @@ class DrawingPrefsWindow(Gtk.Window):
 			header_bar = Gtk.HeaderBar(visible=True, title=_("Preferences"), \
 			                                             show_close_button=True)
 			self.set_titlebar(header_bar)
-			self.content_area.remove(self.stack_switcher)
-			header_bar.set_custom_title(self.stack_switcher)
+			stack_switcher = Gtk.StackSwitcher(visible=True, stack=self.stack, \
+			                                            halign=Gtk.Align.CENTER)
+			header_bar.set_custom_title(stack_switcher)
+			self.set_default_size(480, 500)
 		else:
-			self.stack_switcher.set_margin_top(10)
+			stack_sidebar = Gtk.StackSidebar(visible=True, stack=self.stack)
+			stack_sidebar.set_size_request(140, -1)
+			self.content_area.pack_start(stack_sidebar, False, False, 0)
+			self.set_default_size(600, 400) # Not high enough but the golden
+			# ratio is more important than usability
 
 		self.page_builder_images()
 		self.page_builder_tools()

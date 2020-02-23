@@ -104,7 +104,7 @@ class ToolSelect(AbstractAbstractTool):
 		# XXX rien, vraiment ?
 
 	# def cancel_ongoing_operation(self):
-	# 	self.get_image().selection.reset()
+	# 	self.get_image().selection.reset(True)
 	# 	return True
 
 	############################################################################
@@ -338,7 +338,7 @@ class ToolSelect(AbstractAbstractTool):
 	def op_apply(self):
 		cairo_context = cairo.Context(self.get_surface())
 		self.get_selection().show_selection_on_surface(cairo_context, False)
-		self.get_selection().reset()
+		self.get_selection().reset(True)
 		self.future_path = None
 
 	############################################################################
@@ -368,8 +368,8 @@ class ToolSelect(AbstractAbstractTool):
 			# de type "clic-droit > couper" ou "clic-droit > supprimer".
 			# On réinitialise le selection_manager.
 			self.op_delete(operation)
-			self.get_selection().reset() # the selection is reset here because
-			                          # op_delete is also used for the 'op-drag'
+			self.get_selection().reset(True) # the selection is reset here
+			                  # because op_delete is also used for the 'op-drag'
 		elif operation['operation_type'] == 'op-import':
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > importer" ou "clic-droit > coller".

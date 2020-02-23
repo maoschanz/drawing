@@ -29,7 +29,7 @@ class ToolText(AbstractAbstractTool):
 		                  '/com/github/maoschanz/drawing/tools/ui/tool_text.ui')
 
 		# Popover for text insertion
-		self.popover = builder.get_object('insertion-popover')
+		self._popover = builder.get_object('insertion-popover')
 		self.entry = builder.get_object('entry')
 		self.entry.set_size_request(100, 50)
 		insert_btn = builder.get_object('insert_btn')
@@ -123,26 +123,26 @@ class ToolText(AbstractAbstractTool):
 
 		self._open_popover_at(int(event.x), int(event.y))
 
-		# Usual text entry shortcuts don't work otherwise
-		self.set_action_sensitivity('paste', False)
-		self.set_action_sensitivity('select_all', False)
-		self.set_action_sensitivity('selection_cut', False)
-		self.set_action_sensitivity('selection_copy', False)
-
 	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = x
 		rectangle.y = y
 		rectangle.height = 1
 		rectangle.width = 1
-		self.popover.set_pointing_to(rectangle)
-		self.popover.set_relative_to(self.get_image())
-		self.popover.popup()
+		self._popover.set_pointing_to(rectangle)
+		self._popover.set_relative_to(self.get_image())
+		self._popover.popup()
 		self.entry.grab_focus()
 		self.preview_text()
 
+		# Usual text entry shortcuts don't work otherwise
+		self.set_action_sensitivity('paste', False)
+		self.set_action_sensitivity('select_all', False)
+		self.set_action_sensitivity('selection_cut', False)
+		self.set_action_sensitivity('selection_copy', False)
+
 	def on_insert_text(self, *args):
-		self.popover.popdown()
+		self._popover.popdown()
 		if self.has_current_text():
 			operation = self.build_operation()
 			self.apply_operation(operation)
@@ -169,7 +169,7 @@ class ToolText(AbstractAbstractTool):
 
 	def on_cancel(self, *args):
 		self.restore_pixbuf()
-		self.popover.popdown()
+		self._popover.popdown()
 		self.set_string('')
 		self.should_cancel = False
 
