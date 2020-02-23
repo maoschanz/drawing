@@ -29,7 +29,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		if wants_csd:
 			subtitle = self._image.get_filename_for_display()
 			self.get_titlebar().set_subtitle(subtitle)
-		self.set_default_size(350, 200)
+		self.set_default_size(400, 150)
 		self.show()
 
 	def build_ui(self):

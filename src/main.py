@@ -260,11 +260,14 @@ class Application(Gtk.Application):
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
-			copyright='© 2018-2020 Romain F. T.', authors=['Romain F. T.'],
+			copyright="© 2018-2020 Romain F. T.", authors=["Romain F. T."],
 			# To tranlators: "translate" this by your name, it will be displayed
 			# in the "about" dialog
 			translator_credits=_("translator-credits"),
-			artists=['Tobias Bernard', 'Romain F. T.'],
+			# To translators: it's credits for the icons, consider that "Art
+			# Libre" is proper name
+			artists=["Tobias Bernard", "Romain F. T.",
+			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self.version),
