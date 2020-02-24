@@ -22,9 +22,8 @@ Dependencies:
 git clone https://github.com/maoschanz/drawing.git
 cd drawing
 meson _build
-cd _build
-ninja
-sudo ninja install
+ninja -C _build
+sudo ninja -C _build install
 ```
 
 The app can then be removed with:
