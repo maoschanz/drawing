@@ -9,30 +9,37 @@
   <body>
     <header>
       <div class="header_box">
-        <div class="row">
+        <div class="responsive-row">
           <div class="col66">
             <h1>Drawing</h1>
-            <h2>A simple drawing application for Linux.</h2>
+            <p>A simple drawing application for Linux.</p>
             <hr />
-            <a href="https://github.com/maoschanz/drawing">Source code</a>
-            <a>(GPL3) - </a>
-            <a href="https://paypal.me/maoschannz">Paypal donations</a>
-            <a> - </a>
-            <a href="./index.html">Back to homepage</a>
+            <div class="responsive-row">
+              <div class="col33">
+                <a href="https://github.com/maoschanz/drawing">Source code</a>
+                (GPL3)
+              </div>
+              <div class="col33">
+                <a href="https://paypal.me/maoschannz">Paypal donations</a>
+              </div>
+              <div class="col33">
+                <a href="./index.html">Back to homepage</a>
+              </div>
+            </div>
           </div>
           <div class="col33">
-            <img alt="icon"
+            <img class="header_icon"
               src="https://raw.githubusercontent.com/maoschanz/drawing/master/data/icons/hicolor/128x128/apps/com.github.maoschanz.drawing.png"
-              style="float:right;" />
+               alt="icon" />
           </div>
         </div>
       </div>
     </header>
     <main class="main">
       <h2>Screenshots</h2>
-      
+
       <h3>GNOME and Budgie</h3>
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <img alt="screenshot" style="width:100%"
                src="screenshots/gnome_menu.png" />
@@ -45,7 +52,7 @@
         </div>
       </div>
       
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <img alt="screenshot" style="width:100%"
                src="screenshots/gnome_arc.png" />
@@ -58,11 +65,11 @@
         </div>
       </div>
       
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <img alt="screenshot" style="width:100%"
                src="screenshots/gnome_new.png" />
-          <p>The "new" menu opened (version 0.4.7)</p>
+          <p>The "new images" menu opened (version 0.4.7)</p>
         </div>
         <div class="col50">
           <img alt="screenshot" style="width:100%"
@@ -71,7 +78,7 @@
         </div>
       </div>
       
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <img alt="screenshot" style="width:100%"
                src="screenshots/gnome_text.png" />
@@ -86,7 +93,7 @@
       </div>
       
       <h3>Cinnamon and MATE</h3>
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <img alt="screenshot" src="screenshots/cinnamon.png" style="width:100%" />
           <p>The Cinnamon user interface (version 0.4.8)</p>
@@ -100,9 +107,10 @@
       <p>It's also possible to use only the toolbar, or only the menubar. The
       user interface you will get by default depends on your desktop
       environment, but you can change that in the app preferences.</p>
-      
+      <!-- TODO screenshot(s) of the preferences -->
+
       <h3>elementaryOS</h3>
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <img alt="screenshot" src="screenshots/elementary.png" style="width:100%" />
           <p>The elementaryOS design guidelines (version 0.2)</p>
@@ -112,9 +120,9 @@
           <p>Using the primary menu to show the tools names (version 0.4.8)</p>
         </div>
       </div>
-      
+
       <h3>Linux smartphones</h3>
-      <div class="row">
+      <div class="responsive-row">
         <div class="col33">
           <p>With the default "GNOME" layout, the window can fit in the narrow
           screen of a smartphone such as Purism's Librem 5 or the PinePhone.</p>
@@ -136,6 +144,24 @@
       </div>
       <!-- end of the page-->
     </main>
+    
+    <header>
+      <!--it's a footer but it has ths same css as the header so here we are-->
+      <div class="header_box">
+        <div class="responsive-row">
+          <div class="col33">
+            <a href="https://github.com/maoschanz/drawing">Source code</a>
+            (GPL3)
+          </div>
+          <div class="col33">
+            <a href="https://paypal.me/maoschannz">Paypal donations</a>
+          </div>
+          <div class="col33">
+            <a href="./index.html">Back to homepage</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
   </body>
 </html>

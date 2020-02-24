@@ -2,21 +2,18 @@
 header {
 	background-color: #404040;
 	padding: 2px;
+	color: white;
 }
 header h1 {
 	color: white;
 }
-header h2 {
-	color: #737373;
-}
 header a, header a:hover {
-	font-size: 16px;
 	color: white;
 	font-weight: bold;
 }
 
 /* Titles */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
 	color: #404040;
 	line-height: 36px;
 	margin: 0px;
@@ -30,25 +27,17 @@ h2 {
 	font-size: 24px;
 }
 h3 {
-	font-size: 18px;
-}
-h4 {
-	font-size: 16px;
-}
-h5 {
-	font-size: 14px;
-}
-h6 {
-	font-size: 12px;
+	font-size: 20px;
 }
 
 /* Main page */
 body {
-	font-family: "Cantarell", Cantarell, "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
-	font-size: 14px;
-	line-height: 18px;
+	font-family: "Cantarell", Cantarell,
+	             "Helvetica Neue", Helvetica,
+	             "Hiragino Sans GB", Arial, sans-serif;
+	font-size: 16px;
+	line-height: 20px;
 	color: #737373;
-	background-color: white;
 	margin: 0px;
 }
 main {
@@ -59,104 +48,10 @@ hr {
 	border: 0;
 	border-bottom: 1px solid #ccc;
 }
-table {
-	margin: 10px 0 15px 0;
-	border-collapse: collapse;
-}
-td,th {
-	border: 1px solid #ddd;
-	padding: 3px 10px;
-}
-th {
-	padding: 5px 10px;
-}
-a {
-	color: #0069d6;
-}
-a:hover {
-	color: #0050a3;
-	text-decoration: none;
-}
-a img {
-	border: none;
-}
 p {
 	margin: 0px;
 	padding: 0px;
 	margin-bottom: 9px;
-}
-
-/* Style classes to get columns */
-.row {
-	display: flex;
-}
-.col50 {
-	flex: 50%;
-	padding: 5px;
-}
-.col33 {
-	flex: 33.3%;
-	padding: 5px;
-}
-.col66 {
-	flex: 66.6%;
-	padding: 5px;
-}
-
-/* Not used */
-blockquote {
-	margin: 0px;
-	padding: 13px 13px 21px 15px;
-	margin-bottom: 18px;
-	font-family:georgia,serif;
-	font-style: italic;
-}
-blockquote:before {
-	content:"\201C";
-	font-size:40px;
-	margin-left:-10px;
-	font-family:georgia,serif;
-	color:#eee;
-}
-blockquote p {
-	font-size: 14px;
-	font-weight: 300;
-	line-height: 18px;
-	margin-bottom: 0;
-	font-style: italic;
-}
-code, pre {
-	font-family: Monaco, Andale Mono, Courier New, monospace;
-}
-code {
-	background-color: #fee9cc;
-	color: rgba(0, 0, 0, 0.75);
-	padding: 1px 3px;
-	font-size: 12px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-}
-pre {
-	display: block;
-	padding: 14px;
-	margin: 0 0 18px;
-	line-height: 16px;
-	font-size: 11px;
-	border: 1px solid #d9d9d9;
-	white-space: pre-wrap;
-	word-wrap: break-word;
-}
-pre code {
-	background-color: #fff;
-	color:#737373;
-	font-size: 11px;
-	padding: 0;
-}
-sup {
-	font-size: 0.83em;
-	vertical-align: super;
-	line-height: 0;
 }
 kbd {
 	display: inline-block;
@@ -171,22 +66,48 @@ kbd {
 	border-radius: 3px;
 	box-shadow: inset 0 -1px 0 #bbb;
 }
-
-* {
-	-webkit-print-color-adjust: exact;
+.header_icon {
+	float:right;
 }
+
+/* Style classes to get collapsable columns */
+.responsive-row {
+	display: flex;
+}
+.col50, .col33, .col66 {
+	padding: 5px;
+}
+.col50 {
+	width: 50%;
+}
+.col33 {
+	width: 33.3%;
+}
+.col66 {
+	width: 66.6%;
+}
+
+@media (max-width: 576px){
+	header a {
+		font-size: 20px;
+		line-height: 32px;
+	}
+	.responsive-row {
+		display: flex;
+		flex-direction: column;
+	}
+	.col50, .col66, .col33 {
+		width: 100%;
+	}
+	.header_icon {
+		display: none;
+	}
+}
+
 @media screen and (min-width: 914px) {
 	main, .header_box {
 		width: 854px;
 		margin: 10px auto;
-	}
-}
-@media print {
-	body, code, pre code, h1, h2, h3, h4, h5, h6 {
-		color: black;
-	}
-	table, pre {
-		page-break-inside: avoid;
 	}
 }
 

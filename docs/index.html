@@ -9,37 +9,57 @@
   <body>
     <header>
       <div class="header_box">
-        <div class="row">
+        <div class="responsive-row">
           <div class="col66">
             <h1>Drawing</h1>
-            <h2>A simple drawing application for Linux.</h2>
+            <p>A simple drawing application for Linux.</p>
             <hr />
-            <a href="https://github.com/maoschanz/drawing">Source code</a>
-            <a>(GPL3) - </a>
-            <a href="https://paypal.me/maoschannz">Paypal donations</a>
-            <a> - </a>
-            <a href="./gallery.html">More screenshots</a>
+            <div class="responsive-row">
+              <div class="col33">
+                <a href="https://github.com/maoschanz/drawing">Source code</a>
+                (GPL3)
+              </div>
+              <div class="col33">
+                <a href="https://paypal.me/maoschannz">Paypal donations</a>
+              </div>
+              <div class="col33">
+                <a href="./gallery.html">More screenshots</a>
+              </div>
+            </div>
           </div>
           <div class="col33">
-            <img alt="icon"
+            <img
+              class="header_icon"
               src="https://raw.githubusercontent.com/maoschanz/drawing/master/data/icons/hicolor/128x128/apps/com.github.maoschanz.drawing.png"
-              style="float:right;" />
+              alt="icon" />
           </div>
         </div>
       </div>
     </header>
     <main class="main">
 
-      <!-- Description -->
-      <p>
-        This application is a free basic image editor, similar to Microsoft
-        Paint, but aiming at the GNOME desktop.
-      </p>
-      <p>PNG, JPEG and BMP files are supported.</p>
+      <div class="responsive-row">
+        <div class="col33">
+          <!-- Description -->
+          <p>
+            This application is a free basic image editor, similar to Microsoft
+            Paint, but aiming at the GNOME desktop.
+          </p>
+          <p>PNG, JPEG and BMP files are supported.</p>
+        </div>
+        <div class="col66">
+          <!-- Main screenshot -->
+          <p>
+            <img
+              alt="screenshot"
+              style="width:100%"
+              src="screenshots/gnome_menu.png" />
+          </p>
+        </div>
+      </div>
 
-      <!-- Screenshots -->
-      <p><img alt="screenshot" src="screenshots/gnome_menu.png" style="width:100%" /></p>
-      <div class="row">
+      <!-- Smaller screenshots -->
+      <div class="responsive-row">
         <div class="col33">
           <img alt="screenshot" src="screenshots/gnome_selection.png" style="width:100%" />
         </div>
@@ -57,7 +77,8 @@
         gallery</a>.</p>
 
       <h2>Installation</h2>
-      <div class="row">
+      <!-- TODO tabs ? -->
+      <div class="responsive-row">
         <div class="col50">
           <h3>Recommended method</h3>
           <p>The recommended way to install Drawing is with <code>flatpak</code>:</p>
@@ -102,21 +123,34 @@
       <hr />
 
       <!-- Other useful but not sexy infos -->
-      <div class="row">
+      <div class="responsive-row">
         <div class="col50">
           <h3>Available tools</h3>
+          <p>
+            Tools to draw:
+          </p>
           <ul>
             <li>Pencil</li>
-            <li>Rectangle</li>
+            <li>Rectangle &amp; rounded rectangle</li>
             <li>Circle &amp; oval</li>
             <li>Polygon</li>
             <li>Free shape</li>
             <li>Line &amp; arrow</li>
             <li>Arc</li>
             <li>Insert text</li>
-            <li>Selection (rectangle, free, or by color)</li>
-            <li>Color picker</li>
             <li>Paint</li>
+          </ul>
+          <p>
+            Tools to select part of the image:
+          </p>
+          <ul>
+            <li>Selection (rectangle or free shape)</li>
+            <li>Color picker</li>
+          </ul>
+          <p>
+            Tools to alter the canvas or the selected area:
+          </p>
+          <ul>
             <li>Crop</li>
             <li>Flip</li>
             <li>Scale</li>
@@ -151,6 +185,24 @@
         </div>
       </div>
     </main>
+    
+    <header>
+      <!--it's a footer but it has ths same css as the header so here we are-->
+      <div class="header_box">
+        <div class="responsive-row">
+          <div class="col33">
+            <a href="https://github.com/maoschanz/drawing">Source code</a>
+            (GPL3)
+          </div>
+          <div class="col33">
+            <a href="https://paypal.me/maoschannz">Paypal donations</a>
+          </div>
+          <div class="col33">
+            <a href="./gallery.html">More screenshots</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
   </body>
 </html>
