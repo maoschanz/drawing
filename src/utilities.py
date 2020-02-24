@@ -388,7 +388,7 @@ def utilities_smooth_path(cairo_context, cairo_path):
 	x4 = None
 	y4 = None
 	for pts in cairo_path:
-		if pts[1] is ():
+		if pts[1] == ():
 			continue
 		x1, y1, x2, y2, x3, y3, x4, y4 = _next_arc(cairo_context, \
 		                           x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])

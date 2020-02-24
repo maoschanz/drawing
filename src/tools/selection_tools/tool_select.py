@@ -273,7 +273,7 @@ class ToolSelect(AbstractAbstractTool):
 		main_height = self.get_main_pixbuf().get_height()
 		xmin, ymin = main_width, main_height
 		for pts in self.future_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				xmin = min(pts[1][0], xmin)
 				ymin = min(pts[1][1], ymin)
 		self.future_x = max(xmin, 0.0)

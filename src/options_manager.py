@@ -40,7 +40,7 @@ class DrawingOptionsManager():
 		if self.window.lookup_action(name) is None:
 			return
 		action = self.window.lookup_action(name)
-		if action.get_state_type().dup_string() is 's':
+		if action.get_state_type().dup_string() == 's':
 			return action.get_state().get_string()
 		else:
 			return action.get_state()

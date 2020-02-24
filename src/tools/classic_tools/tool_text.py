@@ -42,7 +42,6 @@ class ToolText(AbstractAbstractTool):
 	# Options ##################################################################
 
 	def _set_font_options(self, *args):
-		# TODO ? use the widget again, and cairo.ToyFontFace
 		self._font_fam = self.get_option_value('text-font')
 		if self.get_option_value('text-italic'):
 			self._font_slant = cairo.FontSlant.ITALIC

@@ -68,7 +68,7 @@ class DrawingSelectionManager():
 		xmin, ymin = main_width, main_height
 		xmax, ymax = 0.0, 0.0
 		for pts in self.selection_path: # XXX cairo has a method for this
-			if pts[1] is not ():
+			if pts[1] != ():
 				xmin = min(pts[1][0], xmin)
 				xmax = max(pts[1][0], xmax)
 				ymin = min(pts[1][1], ymin)
@@ -145,7 +145,7 @@ class DrawingSelectionManager():
 		delta_x = 0 - scroll_x + self.selection_x - self.temp_x
 		delta_y = 0 - scroll_y + self.selection_y - self.temp_y
 		for pts in self.selection_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				x = pts[1][0] + delta_x
 				y = pts[1][1] + delta_y
 				cairo_context.line_to(int(x), int(y))
@@ -208,7 +208,7 @@ class DrawingSelectionManager():
 			return None
 		cairo_context = cairo.Context(self._get_surface())
 		for pts in self.selection_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				x = pts[1][0] + self.selection_x - self.temp_x
 				y = pts[1][1] + self.selection_y - self.temp_y
 				cairo_context.line_to(int(x), int(y))

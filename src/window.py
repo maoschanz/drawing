@@ -24,7 +24,6 @@ from .gi_composites import GtkTemplate
 from .tool_arc import ToolArc
 from .tool_circle import ToolCircle
 from .tool_crop import ToolCrop
-from .tool_experiment import ToolExperiment
 from .tool_flip import ToolFlip
 from .tool_freeshape import ToolFreeshape
 from .tool_line import ToolLine
@@ -144,8 +143,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.load_tool('circle', ToolCircle, disabled_tools_ids, dev)
 		self.load_tool('polygon', ToolPolygon, disabled_tools_ids, dev)
 		self.load_tool('freeshape', ToolFreeshape, disabled_tools_ids, dev)
-		if dev:
-			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
 		self.load_tool('crop', ToolCrop, disabled_tools_ids, dev)
 		self.load_tool('scale', ToolScale, disabled_tools_ids, dev)
 		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)

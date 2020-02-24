@@ -48,7 +48,6 @@ drawing_sources = [
 
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_circle.py',
-	'tools/classic_tools/tool_experiment.py',
 	'tools/classic_tools/tool_freeshape.py',
 	'tools/classic_tools/tool_line.py',
 	'tools/classic_tools/tool_paint.py',
