@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-23 04:16+0100\n"
-"PO-Revision-Date: 2020-02-04 01:09+0300\n"
+"PO-Revision-Date: 2020-02-25 04:34+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Drawing"
@@ -95,7 +95,7 @@ msgid ""
 "transparency."
 msgstr ""
 "'Doygunluk' aracı, çeşitli bulanıklaştırma türleri, renk inversiyonu, "
-"pikselleştirme, doygunluk ve şeffaflık ile daha güçlü bir araç olan "
+"pikselleştirme, doygunluk ve saydamlık ile daha güçlü bir araç olan "
 "'süzgeçler' ile değiştirildi."
 
 msgid "A fullscreen mode is now available."
@@ -278,9 +278,8 @@ msgstr "Renkleri değiş"
 msgid "Color application mode"
 msgstr "Renk uygulama kipi"
 
-#, fuzzy
 msgid "Normal"
-msgstr "Biçim"
+msgstr "Normal"
 
 msgid "Source color"
 msgstr "Kaynak renk"
@@ -361,9 +360,8 @@ msgstr "Görüntüler"
 msgid "Tools"
 msgstr "Araçlar"
 
-#, fuzzy
 msgid "Window"
-msgstr "Yeni Pencere"
+msgstr "Pencere"
 
 msgid "Close selection"
 msgstr "Seçimi kapat"
@@ -544,7 +542,7 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Resimlerinizi bu biçimlerde kaydederseniz, şeffaf pikselleri değiştirmek "
+"Resimlerinizi bu biçimlerde kaydederseniz, saydam pikselleri değiştirmek "
 "için ne kullanmak istersiniz?"
 
 msgid "White"
@@ -653,11 +651,11 @@ msgstr "Sadece araç çubuğu (sembolik simgeler)"
 
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s pks"
 
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #, python-format
 msgid "%s in"
@@ -676,11 +674,11 @@ msgid "Invalid format"
 msgstr "Geçersiz biçim"
 
 msgid "Transparent"
-msgstr "Şeffaf"
+msgstr "Saydam"
 
 #, python-format
 msgid "%s%% transparent"
-msgstr "%s%% şeffaf"
+msgstr "%s%% saydam"
 
 msgid "Grey"
 msgstr "Gri"
@@ -722,16 +720,18 @@ msgid "Unknown color name"
 msgstr "Bilinmeyen renk adı"
 
 msgid "Replace"
-msgstr ""
+msgstr "Değiştir"
 
 msgid "This file format doesn't support transparent colors."
 msgstr "Bu dosya biçimi saydam renkleri desteklemiyor."
 
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
+"Görüntüyü PNG olarak kaydedebilir veya saydamlığı aşağıdakilerle "
+"değiştirebilirsiniz:"
 
 msgid "Replace transparency with:"
-msgstr "Şeffaflığı şununla değiştir:"
+msgstr "Saydamlığı şununla değiştir:"
 
 msgid "All pictures"
 msgstr "Tüm resimler"
@@ -748,9 +748,8 @@ msgstr "BMP görüntüler"
 msgid "percents"
 msgstr "yüzdeler"
 
-#, fuzzy
 msgid "degrees"
-msgstr "Açı (derece)"
+msgstr "derece"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -853,7 +852,7 @@ msgid "Back to the palette"
 msgstr "Palete geri dön"
 
 msgid "Palette"
-msgstr ""
+msgstr "Palet"
 
 msgid "Use this editor by default"
 msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
@@ -874,7 +873,7 @@ msgid "Blur radius"
 msgstr "Bulanıklık yarıçapı"
 
 msgid "Transparency"
-msgstr "Şeffaflık"
+msgstr "Saydamlık"
 
 msgid "Change saturation"
 msgstr "Doygunluğu değiştir"
@@ -883,7 +882,7 @@ msgid "Pixelisation"
 msgstr "Pikselleme"
 
 msgid "Add transparency"
-msgstr "Şeffaflık ekle"
+msgstr "Saydamlık ekle"
 
 msgid "Invert colors"
 msgstr "Renkleri ters çevir"
@@ -956,7 +955,7 @@ msgid "Arrow"
 msgstr "Oklar"
 
 msgid "Antialiasing"
-msgstr ""
+msgstr "Düzgünleştir"
 
 msgid "Color gradient"
 msgstr "Geçiş rengi"
