@@ -1,13 +1,17 @@
 How to contribute to Drawing
 
-- [If you find a bug](#bug-report)
-- [If you want a new feature](#feature-request)
-- [If you want to translate the app](#translating)
-- [If you want to fix a bug or to add a new feature](#contribute-to-the-code)
+- [If you find a bug](#bug-reports)
+- [If you want a new feature](#feature-requests)
+- [If you want to **translate** the app](#translating)
+- If you want to fix a bug or to add a new feature:
+	- [General guidelines](#contribute-to-the-code)
+	- [Explanations about the code](#structure-of-the-code)
+- [How to install from the source code](#install-from-source-code)
+- [If you want to **package** the app](#packaging)
 
 ----
 
-# Bug report
+# Bug reports
 
 Usability and design issues concerning existing features are bugs.
 
@@ -16,7 +20,7 @@ Usability and design issues concerning existing features are bugs.
 
 ----
 
-# Feature request
+# Feature requests
 
 Usability and design issues concerning existing features are **not** new features.
 
@@ -32,39 +36,38 @@ Usability and design issues concerning existing features are **not** new feature
 
 # Translating
 
-### If the translation doesn't exist at all
-
-- Fork the repo and clone your fork on your disk.
-- **Add your language to `po/LINGUAS`.**
-- Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language in the `po` directory.
+- Fork the repo and clone your fork on your disk (see [installation instructions here](#with-gnome-builder-and-flatpak))
+- **If the translation exists but is incomplete:**
+	- Find the file corresponding to you language in the the `po` directory
+- **If the translation doesn't exist at all:**
+	- Add your language to `po/LINGUAS`
+	- Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language in the `po` directory.
 - Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.drawing`).
-- (optional) if you want to test your translation:
-	- GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file.
-	- Install it with `flatpak install path/to/that/file`.
+- **(optional)** If you want to test your translation:
+	- The flatpak SDK isn't able to run a translated version of the app, so export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
+	- Or (it's harder) [install it with `meson`](#with-git-and-meson).
 - Run `git add . && git commit && git push`
 - Submit a "pull request"/"merge request"
 
-### If the translation exists but is incomplete
-
-- Fork the repo and clone your fork on your disk.
-- Find file corresponding to you language in the the `po` directory
-- Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.drawing`).
-- If you want to test your translation:
-	- GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file.
-	- Install it with `flatpak install path/to/that/file`.
-- Run `git add . && git commit && git push`
-- Submit a "pull request"/"merge request"
+Notice that it will translate the unstable, unreleased version currently
+developed on the `master` branch, while users may use versions with slightly
+different labels you may not have translated. If you want to entirely translate
+older versions, restart but run `git checkout 0.4` just after the step 1.
 
 ----
 
 # Contribute to the code
 
-- The issue has to be reported first
+### General guidelines
+
+- It's better if an issue is reported first
 - Easy issues are tagged "**good first issue**"
 - Tell on the issue that you'll try to fix it
 
 **If you find some bullshit in the code, or don't understand it, feel free to
 ask me about it.**
+
+To set up a development environment, see [here](#install-from-source-code).
 
 ### Syntax
 
@@ -81,24 +84,24 @@ instead of directly connecting buttons/menu-items to a method.
 
 ### UI design
 
-Concerning UI design, try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
-as much as possible, while making your feature available from the menubar. The
-menubar is hidden in most cases, but it should contains as many `GAction`s as
-possible for testing purposes (and also because searchable menus still exist).
+People sometimes like to design their apps in Glade, while here the main `.ui`
+files are mere templates filled algorithmically according to the user's
+settings, you kinda have to run the app to be sure of how your changes to it
+actually look like.
+
+Try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
+as much as possible, while making your feature available from the menubar
+(in `app-menus.ui`). The menubar is hidden in most cases, but it should contains
+as many `GAction`s as possible for testing purposes (and also because searchable
+menus still exist).
+
 If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
-any other), just be sure to not hurt the UX with the GNOME layout (since it's
+any other), please be sure to not hurt the UX with the GNOME layout (since it's
 the one used on smartphone, be careful it has to stay very resizable).
 
-### Explanation of the code
+### Other remarks
 
-The `data` directory contains data useless to the execution (app icons, desktop
-launcher, settings schemas, appdata, …).
-
-According to some people, it should contain the UI resources, but i don't care:
-resources used by the app (`.ui` files, in-app icons, …) are in `src`, along
-with the python code.
-
-In my opinion, the complexity of the code comes mainly from 2 points:
+In my opinion, the difficulties with the code can come mainly from 2 points:
 
 - tools are window-wide, while the operations they produce, which are stored in
 the history, are image-wide.
@@ -107,8 +110,20 @@ _(defining, explicit applying, explicit canceling, import, clipboard methods,
 use by other tools (cancelled or confirmed), deletion, implicit applying,
 implicit canceling, …)_ which can easily create small bugs.
 
+----
 
-##### The application itself
+# Structure of the code
+
+The `data` directory contains data useless to the execution (app icons, desktop
+launcher, settings schemas, appdata, …).
+
+According to some people, it should contain the UI resources, but i don't care:
+resources used by the app (`.ui` files, in-app icons, …) are in `src`, along
+with the python code.
+
+<!-- TODO ![UML diagrams](docs/uml.png) -->
+
+### The application itself
 
 `main.py` defines the application, which has:
 
@@ -152,7 +167,7 @@ tools' options. All bottom options bars can be found in the sub-directories of
 - a `GdkPixbuf.Pixbuf` (as an attribute), named `main_pixbuf`, which corresponds
 to the current state of the edited image.
 
-##### The tools
+### The tools
 
 The tools are managed by a bunch of files in the `src/tools` directory.
 
@@ -182,11 +197,105 @@ selection pixbuf or the main pixbuf, and will use the image's `temp_pixbuf`
 attribute to store a preview of their changes. These tools have to be
 explicitely applied by the user.
 
-### UML diagrams
+----
 
-TODO
+# Install from source code
 
-<!-- ![UML diagrams](docs/uml.png) -->
+You will not get updates with this installation method so please do that only
+for contributing to development, translations, testing, or packaging.
+
+### With GNOME Builder and flatpak
+
+This app is developed using _GNOME Builder_ and its support for `flatpak`:
+
+- Open _GNOME Builder_
+- Click on "Clone a repository…" and use this address: `https://github.com/maoschanz/drawing.git`
+- Open it as a project with GNOME Builder
+- Be sure the runtime is installed (if it doesn't suggest it automatically, <kbd>Ctrl</kbd>+<kbd>Return</kbd> → type `update-dependencies`)
+- Click on the _Run_ button
+
+### With `git` and `meson`
+
+See [here](#dependencies) for the list of dependencies.
+
+Get the code:
+
+```
+git clone https://github.com/maoschanz/drawing.git
+```
+
+Build the code:
+```
+cd drawing
+meson _build
+ninja -C _build
+```
+
+Install the app (system-wide):
+```
+sudo ninja -C _build install
+```
+(if you know the options to install user-wide, please tell)
+
+The app can then be removed with:
+```
+cd _build
+sudo ninja uninstall
+```
+
+### Others
+
+<details><summary>With flatpak-builder (not recommended, that's just for me)</summary>
+<p>
+
+Initial setup of the local flatpak repository:
+```
+wget https://raw.githubusercontent.com/maoschanz/drawing/master/com.github.maoschanz.drawing.json
+flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.drawing.json
+flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
+flatpak --user install local-drawing-repo com.github.maoschanz.drawing
+```
+
+Update:
+```
+flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.drawing.json
+flatpak update
+```
+
+</p>
+</details>
+
+You can also build a debian package with the script `deb_package.sh`, but you
+won't get updates that way, so don't do that. You probably don't have all the
+dependencies to make it work anyway.
 
 ----
+
+# Packaging
+
+### Branches
+
+The `master` branch is not stable and should not be packaged.
+
+Stable versions for end-users are tagged, and listed on this Github repo's
+"_Releases_" tab. For now, most of them are on the `0.4` branch.
+
+### Dependencies
+
+Dependencies to run the app:
+
+- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`). A version ≥3.30.0 is required to run the code from the branch `master`. The branch `0.4` should be fine with any version.
+- `cairo` library's GI for python3 (on Debian, it's `python3-gi-cairo`).
+- GTK libraries' GI (on Debian, it's `gir1.2-gtk-3.0`).
+
+Dependencies to build the app (Debian packages names):
+
+- `meson`. The version required by the `meson.build` file at the root of the project can be changed if necessary, but please don't add this change to your commit(s).
+- `appstream-util` (validation of the `.appdata.xml` file)
+- `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the icons into a `.gresource` file)
+
+----
+
+
+
 

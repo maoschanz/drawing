@@ -38,7 +38,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ### Unstable/nightly version
 
-[See here](./INSTALL_FROM_SOURCE.md)
+[See here](./CONTRIBUTING.md#install-from-source-code)
 
 ----
 
@@ -62,13 +62,13 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 ----
 
-### Available tools
+### Tools (0.5.3-unstable)
 
-(last update: **version 0.5.3-unstable**, this is NOT what is provided by the packages)
+(last update: **version 0.5.3-unstable**, this is **NOT** what is provided by the packages)
 
 #### Classic tools
 
-(options: colors, blur, eraser, size, …)
+(general options: colors, use blur or eraser, size, …)
 
 - Pencil (options: dashes, …)
 - Eraser
@@ -109,10 +109,11 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 	- Transparency
 	- Invert colors
 	- Pixelate
-	- …
 
 ----
 
 [Donations (paypal)](https://paypal.me/maoschannz)
+
+[To contribute](./CONTRIBUTING.md)
 
 the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic)
