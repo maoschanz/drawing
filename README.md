@@ -22,7 +22,7 @@ Classic tools:
 |Pencil     |Dashes, eraser, …|
 |Line       |Arrow, dashes, gradient …
 |Arc        |Arrow, dashes, …|
-|Insert text|Font, shadow, font size|
+|Insert text|Font, outline/shadow, font size|
 |Rectangle  |Filling         |
 |Circle     |Regular circle or oval; Filling
 |Polygon    |Filling         |
@@ -97,10 +97,6 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04, 19.04 and 19.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- Ubuntu: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - ["Snap" package](https://snapcraft.io/drawing)
-
-### Unstable/nightly version
-
-[See here](./INSTALL_FROM_SOURCE.md)
 

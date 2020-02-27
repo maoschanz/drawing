@@ -1,3 +1,13 @@
+drawing (0.4.12) unstable; urgency=low
+
+  * The preferences dialog now looks better with Cinnamon, Xfce and MATE
+  * Syntax has been updated to python3.8 (#190)
+  * The "save" dialog opens by default in the user's images directory
+  * Closing a tab doesn't produce minors errors anymore (#193, it was introduced by 0.4.11)
+  * The app.quit action asks confirmation if modifications are not saved (#191)
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sun, 16 Feb 2020 20:00:00 +0100
+
 drawing (0.4.11) unstable; urgency=low
 
   * Fix the sensitivity of the "delete" action during the selection editing
