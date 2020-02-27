@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, Pango
 
 class DrPropertiesDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrPropertiesDialog'
@@ -86,7 +86,7 @@ class DrPropertiesDialog(Gtk.Dialog):
 		key_label = Gtk.Label(label=key, halign=Gtk.Align.END, visible=True)
 		self._grid.attach(key_label, 0, index, 1, 1)
 		value_label = Gtk.Label(label=value, halign=Gtk.Align.START, \
-		                   wrap=True, wrap_mode=Gtk.WrapMode.CHAR, visible=True)
+		                 wrap=True, wrap_mode=Pango.WrapMode.CHAR, visible=True)
 		value_label.get_style_context().add_class('dim-label')
 		self._grid.attach(value_label, 1, index, 2, 1)
 

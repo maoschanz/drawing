@@ -17,6 +17,7 @@ Usability and design issues concerning existing features are bugs.
 
 - If you can, try to **check if it hasn't already been fixed but not released**.
 - Report it with informations required by the adequate issue template.
+- If it's meaningful, try to include screenshots.
 
 ----
 
@@ -26,11 +27,7 @@ Usability and design issues concerning existing features are **not** new feature
 
 - If you can, try to **check if it hasn't already been added but not released**.
 - Report it with informations required by the adequate issue template.
-- In the report, explain what it does, not how it does it.
-- Is it…
-	- a general feature?
-	- a new standalone tool?
-	- a new option for an existing tool?
+- In the report, explain **what** it does, **not how** it does it.
 
 ----
 
@@ -224,7 +221,7 @@ Get the code:
 git clone https://github.com/maoschanz/drawing.git
 ```
 
-Build the code:
+Build the app:
 ```
 cd drawing
 meson _build

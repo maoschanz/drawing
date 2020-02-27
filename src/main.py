@@ -253,8 +253,28 @@ class Application(Gtk.Application):
 		about_dialog.destroy()
 
 	def on_quit(self, *args):
-		"""Action callback, quitting the app."""
-		self.quit()
+		"""Action callback, quitting the entire app."""
+		if self.shortcuts_window is not None:
+			self.shortcuts_window.destroy()
+		if self.prefs_window is not None:
+			self.prefs_window.destroy()
+
+		can_quit = True
+		# Try (= ask confirmation) to quit the main window(s)
+		main_windows = self.get_windows()
+		for w in main_windows:
+			if w.on_close():
+				# User clicked on "cancel"
+				can_quit = False
+			else:
+				w.close()
+				w.destroy()
+
+		# The expected behavior, but now theorically useless, since closing all
+		# appwindows should quit automatically. It's too violent to be left
+		# without a guard clause.
+		if can_quit:
+			self.quit()
 
 	############################################################################
 	# Utilities ################################################################

@@ -298,7 +298,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def on_close(self, *args):
 		"""Event callback when trying to close a window. It saves/closes each
-		tab and saves the current window settings in order to restore them."""
+		tab and saves the current window settings in order to restore them.
+		Returns `False` on success, `True` otherwise."""
 		while self.notebook.get_n_pages() != 0:
 			if not self.get_active_image().try_close_tab():
 				return True
