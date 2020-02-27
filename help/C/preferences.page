@@ -21,7 +21,33 @@
     <p>The preferences dialog allows you to set the size and color of the
     default canvas displayed when creating a new file.</p>
 
-    <!-- <p>opened images and alpha ?.</p> -->
+    <p>In this section you can also select the behavior of the app when saving
+    JPG or BMP pictures: these image file formats don't support transparent or
+    semi-transparent pixels that may have been introduced during the edition.</p>
+    <list>
+      <item>
+        <p>"White" will save the image as if there was a white background behind
+        the pixels. It alters the saturation of semi-transparent colors.</p>
+      </item>
+      <item>
+        <p>"Black" will save the image as if there was a black background behind
+        the pixels. It alters the saturation of semi-transparent colors.</p>
+      </item>
+      <item>
+        <p>"Checkboard" will save the image as if there was a checkboard pattern
+        (of light grey and dark grey) as a background behind the pixels. The
+        result is very visible, and can be used to indicate visually what parts
+        were transparent.</p>
+      </item>
+      <item>
+        <p>The "nothing" option will preserve the saturation of semi-transparent
+         colors, but is hard to predict regarding fully transparent pixels.</p>
+      </item>
+      <item>
+        <p>The default option is "Ask before saving": with this value, the
+        question will be asked each single time you save a JPG or BMP image.</p>
+      </item>
+    </list>
   </section>
 
 <!-- TODO illustration(s) ? -->
@@ -37,12 +63,14 @@
   </section>
 
   <section>
-    <title>Advanced</title>
+    <title>Window</title>
 
     <p>It's possible to choose the layout of the user interface: the
     "Compact" layout, designed for the GNOME desktop, is well tested. Other
     options include the "elementary OS" layout, designed for the elementary OS
-    desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
+    desktop, and traditional layouts, for MATE or Cinnamon desktop.</p>
+    <p>The value "automatic" means the app will detect the desktop environment
+    you use and adapt its layout according to it.</p>
 
     <p>You can also set the size of the thumbnail preview.</p>
   </section>
