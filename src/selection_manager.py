@@ -269,7 +269,7 @@ class DrawingSelectionManager():
 		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x
 		delta_y = 0 - self.image.scroll_y + self.selection_y - self.temp_y
 		for pts in self.selection_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				x = pts[1][0] + delta_x
 				y = pts[1][1] + delta_y
 				print('\t', x, y)
