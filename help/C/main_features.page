@@ -26,11 +26,11 @@
 
     <p>Open a picture file from your documents.</p>
     <p>If the window size is too small to display its button, the
-    <gui style="button">Open</gui> menu is available in the main menu.</p>
+    <gui style="button">Open</gui> button is available in the primary menu.</p>
   </section>
 
   <section>
-    <title>The "New" menu</title>
+    <title>The "New Image" menu</title>
 
     <p>This menu allows you to create a new image. Several options are
     available:</p>
@@ -52,17 +52,17 @@
       </item>
     </list>
     <p>If the window size is too small to display its button, the
-    <gui style="button">New</gui> menu is merged in the main menu.</p>
+    <gui style="button">New Image</gui> menu is merged in the primary menu.</p>
   </section>
 
   <section id="main-menu">
-    <title>The main menu</title>
+    <title>The primary menu</title>
 
     <media type="image" mime="image/png" width="80%"
     src="figures/screenshot_menu.png" its:translate="no"/>
     <list>
       <item>
-        <p>Print the picture.</p>
+        <p>Reload the picture from the disk.</p>
       </item>
       <item>
         <p>See the pictures properties, such as its size and colorspace.</p>
@@ -75,6 +75,9 @@
         the original file. With <gui style="menuitem">Export as…</gui>, you keep
         editing the original file, but <gui style="menuitem">Save as…</gui> closes
         the original file and makes you edit the new one.</p>
+      </item>
+      <item>
+        <p>Print the picture.</p>
       </item>
       <item>
         <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
@@ -92,7 +95,7 @@
   </section>
 
   <section>
-    <title>Preview</title>
+    <title>Preview and zoom</title>
 
     <p>In the bottom bar, the <gui style="button">Preview</gui> button (not
     available with <link xref="tools_canvas">some tools</link>) displays a

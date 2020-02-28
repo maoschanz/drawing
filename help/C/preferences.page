@@ -19,32 +19,27 @@
 
   <section>
     <title>Image</title>
-
-    <p>Here you can choose the size and color of the default canvas displayed
-    when creating a new file.</p>
-
-    <p>When a file is saved to the JPEG or the BMP file format, the transparency
-    can't be kept. The application can replace the transparent pixels with
-    something else: it can be white, black, or a checkboard of greys.</p>
-    <p>If the replacement you want depends on the image, it's also possible to
-    open a dialog every time you save an image to one of these file formats: the
-    choices available in that dialog will also be white, black, or a checkboard
-    of greys.</p>
-
-    <p>You can also set how you want to zoom on the image: it can be with
-    <key>Ctrl</key> and the mouse wheel, or only with the mouse wheel.</p>
-  </section>
-
-  <section>
     <table rules="colgroups">
       <tr>
         <td>
-          <media type="image" mime="image/png" width="100%"
-                 src="figures/screenshot_prefs_images.png" its:translate="no" />
+          <media type="image" mime="image/png" width="100%" its:translate="no"
+                 src="figures/screenshot_prefs_images.png" />
         </td>
         <td>
-          <media type="image" mime="image/png" width="100%"
-                 src="figures/screenshot_prefs_tools.png" its:translate="no" />
+          <p>Here you can choose the size and color of the default canvas used
+          when creating a new file.</p>
+
+          <p>When a file is saved to the JPEG or the BMP file format, the
+          transparency can't be kept. The application can replace the
+          transparent pixels with something else: it can be white, black, or a
+          checkboard of greys.</p>
+          <p>If the replacement you want depends on the image, it's also
+          possible to open a dialog every time you save an image to one of these
+          file formats: the choices available in that dialog will also be white,
+          black, or a checkboard of greys.</p>
+
+          <p>You can also set how you want to zoom on the image: it can be with
+          <key>Ctrl</key> and the mouse wheel, or only with the mouse wheel.</p>
         </td>
       </tr>
     </table>
@@ -52,19 +47,30 @@
 
   <section>
     <title><link xref="tools_classic">Tools</link></title>
+    <table rules="colgroups">
+      <tr>
+        <td>
+          <p>You can set whether you prefer normal icons (16 pixels) or large
+          icons (24 pixels).</p>
+          <p>Choosing whether or not you want to display the names of the tools
+          next to their icons is possible here, and it's also available from the
+          <link xref="main_features#main-menu">primary menu</link> of the
+          window.</p>
 
-    <p>You can set whether you prefer normal icons (16 pixels) or large icons
-    (24 pixels).</p>
-    <p>Choosing whether or not you want to display the names of the tools next
-    to their icons is possible here, but it's also available from the
-    <link xref="main_features#main-menu">primary menu</link> of the window.</p>
-
-    <p>A few additional tools are also available. If they're not activated by
-    default, it's because they might be less reliable or useful.</p>
+          <p>A few additional tools are also available. If they're not activated
+          by default, it's because they might be less reliable or useful.</p>
+        </td>
+        <td>
+          <media type="image" mime="image/png" width="100%" its:translate="no"
+                 src="figures/screenshot_prefs_tools.png" />
+                 <!-- TODO outdated -->
+        </td>
+      </tr>
+    </table>
   </section>
 
   <section>
-    <title>Advanced</title>
+    <title>Window</title>
 
     <p>It's possible to choose the layout of the user interface: the
     "Compact" layout, designed for the GNOME desktop, is well tested. Other

@@ -39,7 +39,12 @@ Usability and design issues concerning existing features are **not** new feature
 - **If the translation doesn't exist at all:**
 	- Add your language to `po/LINGUAS`
 	- Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language in the `po` directory.
-- Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.drawing`).
+
+Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator)
+to translate the strings of this `.po` file. There are comments in the file to
+give context helping you to translate some strings, please take them into
+account.
+
 - **(optional)** If you want to test your translation:
 	- The flatpak SDK isn't able to run a translated version of the app, so export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
 	- Or (it's harder) [install it with `meson`](#with-git-and-meson).

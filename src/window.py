@@ -378,18 +378,17 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
-		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 		self.add_action_boolean('show_labels', self._settings.get_boolean( \
 		                     'show-labels'), self.on_show_labels_action_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
-		# self.add_action_boolean('antialiasing', self._settings.get_boolean( \
-		#                    'antialiasing'), self.on_antialiasing_action_changed)
-		# XXX rudement plus simple si c'est via l'option_manager
+
+		self.add_action_simple('reload_file', self.action_reload, ['F5'])
+		self.add_action_simple('properties', self.action_properties, None)
+		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
+		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -412,12 +411,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
 		self.add_action_simple('close', self.action_close_window, None)
-		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
-		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
+
 		self.add_action_simple('undo', self.action_undo, ['<Ctrl>z'])
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
+
+		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
+		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
-		self.add_action_simple('print', self.action_print, ['<Ctrl>p'])
+		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
@@ -442,7 +443,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		if self._settings.get_boolean('devel-only'):
-			self.add_action_simple('reload_file', self.action_reload, None)
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
@@ -784,9 +784,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.get_active_image().get_file_path()
 
 	def action_reload(self, *args):
-		gfile = self.get_active_image().gfile
-		if gfile is not None:
-			self.try_load_file(gfile)
+		self.get_active_image().reload_from_disk()
 
 	def action_open(self, *args):
 		"""Handle the result of an "open" file chooser dialog, and open it in
