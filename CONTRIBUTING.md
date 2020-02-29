@@ -43,7 +43,9 @@ Usability and design issues concerning existing features are **not** new feature
 Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator)
 to translate the strings of this `.po` file. There are comments in the file to
 give context helping you to translate some strings, please take them into
-account.
+account. For example, since this app is a clone of MS Paint, `Paint;`
+(untranslated) has to be in the list of keywords for finding the app in
+searchable menus or software centers.
 
 - **(optional)** If you want to test your translation:
 	- The flatpak SDK isn't able to run a translated version of the app, so export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.

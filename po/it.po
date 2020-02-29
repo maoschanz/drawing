@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 04:16+0100\n"
+"POT-Creation-Date: 2020-02-29 20:26+0100\n"
 "PO-Revision-Date: 2020-29-02 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -30,7 +30,7 @@ msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 msgid "Paint;Sketch;Pencil;"
-msgstr "Colore;Bozze;Matita;"
+msgstr "Paint;Colore;Bozze;Matita;"
 
 #. Context: answer to "where do you want to open the image?"
 msgid "New Window"
@@ -65,17 +65,17 @@ msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
-"La versione 0.6 è un aggiornamento importante, con varie modifiche importanti. L'app è"
-"più robusta e ha più strumenti:"
+"La versione 0.6 è un aggiornamento importante, con varie modifiche "
+"importanti. L'app èpiù robusta e ha più strumenti:"
 
 msgid ""
 "Rectangle selection and freehand selection are now distinct tools, and the "
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
-"La selezione rettangolo e la selezione a mano libera sono ora strumenti distinti e"
-"Lo strumento 'ruota' ora supporta qualsiasi angolo e gestisce le maniglie orizzontali o flipping"
-"verticali".
+"La selezione rettangolo e la selezione a mano libera sono ora strumenti "
+"distinti eLo strumento 'ruota' ora supporta qualsiasi angolo e gestisce le "
+"maniglie orizzontali o flippingverticali."
 
 msgid ""
 "The numerous tools producing shapes (circle, rectangle, polygon, …), have "
@@ -83,10 +83,10 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
-"I numerosi strumenti che producono forme (cerchio, rettangolo, poligono, ...), sono"
-"stati uniti in un unico strumento 'forma' più coerente, insieme a 'rettangolo "
-"arrotondato" ed "ellisse". Le opzioni di riempimento ora includono vari tipi di "
-"gradienti".
+"I numerosi strumenti che producono forme (cerchio, rettangolo, poligono, …), "
+"sonostati uniti in un unico strumento 'forma' più coerente, insieme a "
+"'rettangolo arrotondato' ed 'ellisse'. Le opzioni di riempimento ora "
+"includono vari tipi di gradienti."
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -263,10 +263,10 @@ msgid "_Colors"
 msgstr "_Colori"
 
 msgid "Edit Main Color…"
-msgstr "Modifica colore principale..."
+msgstr "Modifica colore principale…"
 
 msgid "Edit Secondary Color…"
-msgstr "Modifica colore secondario..."
+msgstr "Modifica colore secondario…"
 
 #, fuzzy
 msgid "Use color editor by default"
@@ -288,7 +288,7 @@ msgid "Difference"
 msgstr "Differenza"
 
 msgid "Don't use the colors but…"
-msgstr "Non usare i colori ma..."
+msgstr "Non usare i colori ma…"
 
 #. BlurType.PX_BOX
 msgid "Blur"
@@ -408,6 +408,9 @@ msgstr "Immagine"
 msgid "Open a file"
 msgstr "Apri un file"
 
+msgid "Reload image from disk"
+msgstr ""
+
 msgid "Save as"
 msgstr "Salve come"
 
@@ -474,6 +477,9 @@ msgstr "Annulla %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Ripeti %s"
+
+msgid "Can't reload a never saved file from the disk."
+msgstr ""
 
 msgid "Unsaved file"
 msgstr "File non salvato"
@@ -544,7 +550,7 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Se salvi le tue immagini in questi formati, cosa vuoi usare per sostituire " 
+"Se salvi le tue immagini in questi formati, cosa vuoi usare per sostituire "
 "pixel trasparenti?"
 
 msgid "White"
@@ -676,7 +682,7 @@ msgstr "Formato non valido"
 msgid "Transparent"
 msgstr "Trasparente"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
 msgstr "%s%% trasparente"
 
@@ -793,10 +799,9 @@ msgstr "questi file"
 msgid "What do you want to do with %s?"
 msgstr "Cosa vuoi fare con %s?"
 
-#. else the exception has been raised because the user cancelled
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Strumento di caricamento non riuscito: %s"
+msgstr ""
 
 msgid "Untitled"
 msgstr "Senza titolo"
@@ -925,7 +930,7 @@ msgstr "Quando si esegue il ridimensionamento dagli angoli"
 
 #. Context for translations: "Never [keep proportions]"
 msgid "Never"
-msgstr Mai"
+msgstr "Mai"
 
 msgid "Horizontal deformation"
 msgstr "Deformazione orizzontale"
@@ -1136,6 +1141,3 @@ msgstr "Ridimensionamento della tela"
 
 #~ msgid "Summary"
 #~ msgstr "Sommario"
-
-#~ msgid "Similar color selection"
-#~ msgstr "Selezione colore simile"
