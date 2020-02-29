@@ -49,7 +49,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 		if self.draw_polygon(event_x, event_y):
 			self.restore_pixbuf()
 			self.operation_type = 'op-define'
-			self.set_future_coords_for_free_path()
+			self._set_future_coords_for_free_path()
 			operation = self.build_operation()
 			self.apply_operation(operation)
 			# self.get_selection().show_popover()

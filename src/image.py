@@ -155,11 +155,13 @@ class DrImage(Gtk.Box):
 	############################################################################
 
 	def reload_from_disk(self):
-		# TODO désactiver l'action quand le fichier est None
+		"""..."""
 		if not self.window.confirm_save_modifs():
 			return
-		if self.gfile is None: # temporairement, pour éviter d'essayer de reload
-			return # un pixbuf qui serait None
+		if self.gfile is None:
+			self.window.prompt_message(True, \
+			                _("Can't reload a never saved file from the disk."))
+			return
 		self.try_load_file(self.gfile)
 		self.window.set_picture_title(self.update_title())
 		# FIXME ne pas reset l'historique avec try_load_pixbuf

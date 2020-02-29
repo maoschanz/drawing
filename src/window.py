@@ -981,7 +981,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_select_all(self, *args):
 		self.force_selection()
-		self.get_selection_tool().tool_select_all()
+		self.get_selection_tool().select_all()
 
 	def action_unselect(self, *args):
 		self.get_selection_tool().give_back_control(False)
