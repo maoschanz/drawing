@@ -64,7 +64,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 <!-- TODO add completion percentages, since he and ru for example are at ~50% -->
 
 If your language is not here, or is incompletely translated, you can
-[contribute](#translating) to the translations.
+[contribute](./CONTRIBUTING.md#translating) to the translations.
 
 ----
 
