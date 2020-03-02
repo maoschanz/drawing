@@ -917,7 +917,8 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		utilities_add_filechooser_filters(file_chooser)
 
 		images_dir = GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)
-		file_chooser.set_current_folder(images_dir)
+		if images_dir != None:
+			file_chooser.set_current_folder(images_dir)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 
