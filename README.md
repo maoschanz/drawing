@@ -46,6 +46,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 - Brazilian portuguese (thanks to [Antonio Hauren](https://github.com/haurenburu))
 - Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
+- Croatian (thanks to [milotype](https://github.com/milotype))
 - Danish (thanks to [scootergrisen](https://github.com/scootergrisen))
 - Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
@@ -59,6 +60,11 @@ You can install it from flathub.org using the instructions on [this page](https:
 - Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
 - Swedish (thanks to [Åke Engelbrektson](https://github.com/eson57))
 - Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
+
+<!-- TODO add completion percentages, since he and ru for example are at ~50% -->
+
+If your language is not here, or is incompletely translated, you can
+[contribute](./CONTRIBUTING.md#translating) to the translations.
 
 ----
 

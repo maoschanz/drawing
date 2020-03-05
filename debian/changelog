@@ -1,29 +1,24 @@
 drawing (0.5) unstable; urgency=low
 
-  * UNSTABLE VERSION, DO NOT USE. SOME FEATURES ARE BACKPORTED TO 0.4.x, SOME ARE NOT.
-  * images can be imported or opened using drag-and-drop (0.4.8)
-  * "new image with custom size" action (0.4.8)
-  * remove colorspace modification from the properties dialog (0.4.?)
-  * transparency replacement setting and dialog (0.4.9)
-  * add an "outline" option to the text tool (0.4.11)
-  * close tabs with middle-click (#164 raggesilver) (0.4.11)
-  * support color-picking with the alpha channel (0.4.11)
+  * UNSTABLE VERSION, DO NOT USE.
+  * CHANGES WHICH HAVE BEEN BACKPORTED TO THE 0.4 BRANCH ARE NOT LISTED HERE.
   * remove the "windows" menu from the menubar
-  * refactor bottom panels management to allow several tools to share the same panel
+  * refactor bottom panes management to allow several tools to share the same pane
   * rectangle selection, freehand selection, and color selection, are now distinct tools
-  * the 'rotate' tool now supports any angle and handles horizontal or vertical flipping
+  * the 'rotate' tool now handles horizontal or vertical flipping
+  * the 'rotate' tool now supports any angle
   * the tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool
   * "close shape" action for the 'shape' tool
   * "close selection" action for the 'free selection' tool
-  * the 'saturate' tool has been replaced by 'filters'
+  * replace the 'saturate' tool by a new 'filters' tool
   * add several types of blur to 'filters'
   * add color inversion, pixelisation, parametrized transparency to 'filters'
-  * add specialized forms of pencils (eraser, highlighter)
+  * add "additional tools" section to the preferences window
+  * add specialized types of pencils (eraser, highlighter) as optional tools
   * a fullscreen mode is now available
   * zoom in (or out) using the minimap, the touchpad, the mouse wheel, or keyboard shortcuts
-  * move the "mode" selection to the colors menus
+  * move the "color application mode" selection to the colors menus/popovers
+  * add "antialiasing" option to several tools
   * rewrite the user help manual
-  * add "additional tools" section to the preferences window
-  * rewrite the preferences window to use (scrollable) grids
 
  -- Romain F. T. <rrroschan@gmail.com>  Mon, 22 Jul 2019 00:18:12 +0100

@@ -25,29 +25,47 @@
     changes depending on the tool).</p>
     <p>The color of the left button corresponds to the left click, and is
     labeled "Main color", while the color at the right is the "Secondary color".
-    Clicking on these buttons to change their respective colors.</p>
-    <!-- TODO illustrations: the color palette and the color editor -->
+    Click on these buttons to change their respective colors:</p>
+
+    <table rules="colgroups">
+      <tr>
+        <td>
+          <media type="image" mime="image/png" width="100%" its:translate="no" />
+                 <!-- src="figures/screenshot_prefs_tools.png" /> TODO -->
+        </td>
+        <td>
+          <media type="image" mime="image/png" width="100%" its:translate="no" />
+                 <!-- src="figures/screenshot_prefs_tools.png" /> TODO -->
+        </td>
+      </tr>
+    </table>
+
     <p>At the top of the palette, you can select the way the color will be
     applied to the image:</p>
     <list>
       <item>
-        <p>Classic: ...</p>
+        <p>Normal: the selected color is added over the existing image. If your
+        color is semi-transparent yellow and your image is opaque blue, the
+        resulting pixels would be opaque green.</p>
       </item>
       <item>
-        <p>Source color: ...</p>
+        <p>Source color: the selected color replaces the pixels where it's
+        applied. If your color is semi-transparent yellow, the resulting pixels
+        would be semi-transparent yellow.</p>
       </item>
       <item>
         <p>Difference: ...</p>
+        <!-- TODO -->
       </item>
       <item>
-        <p>Blur: blurs the hovered pixels.</p>
+        <p>Blur: blurs the hovered pixels regardless of the selected color.</p>
       </item>
       <item>
-        <p>Eraser: deletes any color in the pixels.</p>
+        <p>Erase: deletes any color where the tool is applied.</p>
       </item>
     </list>
-    <p>If the color you want isn't listed, click the <gui style="button">+</gui>
-    button to use the color editor.</p>
+    <p>If the exact color you want isn't listed in the palette, click the
+    <gui style="button">+</gui> button to use the color editor.</p>
     <p>An optional <gui style="button">Color Picker</gui> tool can also help you
     to select a color. While the color picker from within the color editor can
     select a RGB color anywhere on the screen, the <gui style="menuitem">Color
@@ -58,14 +76,24 @@
   <section>
     <title>Draw things</title>
 
-    <p>Most options here concern concern the ends of the line: it can be rounded
-    or square. You can also draw a dashed lines.</p>
+    <p>Most options for these tools concern the ends of the line: it can be
+    thin, rounded or square. You can also draw a dashed lines.</p>
     <list>
       <item>
         <p>Pencil: The pencil draws following the pointer, and according to the
         chosen color.</p>
         <p>Don't forget you can use the "eraser" mode from the color menu to
-        delete existing colors!</p>
+        delete existing colors, or the "blur" mode to blur parts of the image!</p>
+      </item>
+      <item>
+        <p>Eraser: Ignore the current color settings and just erase to get fully
+        transparent pixels.</p>
+        <p>This tool is disabled by defautlt.</p>
+      </item>
+      <item>
+        <p>Highlighter: Ignore some of the color settings, and draw ("normal"
+        mode) with a semi-transparent version of the current color.</p>
+        <p>This tool is disabled by defautlt.</p>
       </item>
       <item>
         <p>Line: This tool can draw straight lines. Its options also include

@@ -107,12 +107,8 @@ class DrImage(Gtk.Box):
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': None,
-			'red': r,
-			'green': g,
-			'blue': b,
-			'alpha': a,
-			'width': width,
-			'height': height
+			'red': r, 'green': g, 'blue': b, 'alpha': a,
+			'width': width, 'height': height
 		}
 		self.init_image()
 		self.restore_first_pixbuf()
@@ -155,6 +151,21 @@ class DrImage(Gtk.Box):
 		else:
 			self.main_pixbuf = self.initial_operation['pixbuf'].copy()
 			self.use_stable_pixbuf()
+
+	############################################################################
+
+	def reload_from_disk(self):
+		"""..."""
+		if not self.window.confirm_save_modifs():
+			return
+		if self.gfile is None:
+			self.window.prompt_message(True, \
+			                _("Can't reload a never saved file from the disk."))
+			return
+		self.try_load_file(self.gfile)
+		self.window.set_picture_title(self.update_title())
+		# FIXME ne pas reset l'historique avec try_load_pixbuf
+		self.update() # mdr pourquoi c'est pas déjà le cas avec le load ???
 
 	def try_load_file(self, gfile):
 		self.gfile = gfile

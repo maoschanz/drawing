@@ -24,8 +24,8 @@ PREFIX = '/com/github/maoschanz/drawing/'
 class OptionsBarClassicColorPopover(Gtk.Popover):
 	__gtype_name__ = 'OptionsBarClassicColorPopover'
 
-	def __init__(self, btn, thumbn, initial_rgba, is_main_c, window, **kwargs):
-		super().__init__(**kwargs) # TODO passer l'options_manager, pas la window
+	def __init__(self, btn, thumbn, initial_rgba, is_main_c, cl_bar, **kwargs):
+		super().__init__(**kwargs)
 
 		suffix = 'optionsbars/classic/optionsbar-color-popover.ui'
 		builder = Gtk.Builder.new_from_resource(PREFIX + suffix)
@@ -35,7 +35,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._button = btn
 		self._button.set_popover(self)
 		self._thumbnail_image = thumbn
-		self.window = window
+		self._parent_bar = cl_bar
 
 		########################################################################
 		# Box at the top #######################################################
@@ -61,7 +61,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 		self.color_widget = builder.get_object('color-widget')
 		self.color_widget.set_rgba(initial_rgba)
-		self.color_widget.connect('notify::rgba', self._set_thumbail_color)
+		self.color_widget.connect('notify::rgba', self._set_thumbnail_color)
 		self.color_widget.connect('notify::show-editor', self._update_nav_box)
 
 		########################################################################
@@ -72,7 +72,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		back_btn.connect('clicked', self._close_color_editor)
 
 		self._update_nav_box()
-		self._set_thumbail_color()
+		self._set_thumbnail_color()
 
 	############################################################################
 
@@ -81,20 +81,40 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._operator_box_2.set_visible(tool_use_operator)
 		self._popover_title.set_visible(not tool_use_operator)
 
-	def _set_thumbail_color(self, *args):
+	def adapt_to_operator(self, supports_colors):
+		# self.color_widget.set_sensitive(supports_colors) # FIXME seulement si
+		# l'outil actif le supporte !!!
+		self._set_thumbnail_color()
+
+	def _set_thumbnail_color(self, *args):
 		"""Update the 'rgba' property of the GtkColorWidget and its preview."""
-		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
-		cairo_context = cairo.Context(surface)
 		rgba = self.color_widget.get_rgba()
 		red = rgba.red
 		green = rgba.green
 		blue = rgba.blue
 		alpha = rgba.alpha
-		cairo_context.set_source_rgba(red, green, blue, alpha)
-		cairo_context.paint()
+		op_enum = self._parent_bar._operator_enum
+
+		# Draw the thumbnail of the button
+		surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
+		cairo_context = cairo.Context(surface)
+		if op_enum == cairo.Operator.CLEAR:
+			pass # TODO doing nothing is also a possibility
+		elif op_enum == cairo.Operator.DEST_IN: # blur
+			pass # TODO doing nothing is also a possibility
+		else:
+			cairo_context.set_source_rgba(red, green, blue, alpha)
+			cairo_context.paint()
 		self._thumbnail_image.set_from_surface(surface)
-		# TODO mettre le mode aussi
+
+		# Set the tooltip of the button
 		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
+		if op_enum == cairo.Operator.CLEAR or op_enum == cairo.Operator.DEST_IN:
+			tooltip_string = self._parent_bar._operator_label
+		elif op_enum == cairo.Operator.OVER:
+			pass # Normal situation, no need to tell the user
+		else:
+			tooltip_string = self._parent_bar._operator_label + ' — ' + tooltip_string
 		self._button.set_tooltip_text(tooltip_string)
 
 	############################################################################

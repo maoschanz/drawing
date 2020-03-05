@@ -186,16 +186,16 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	############################################################################
 	# Path management ##########################################################
 
-	def tool_select_all(self):
+	def select_all(self):
 		total_w = self.get_main_pixbuf().get_width()
 		total_h = self.get_main_pixbuf().get_height()
-		self.build_rectangle_path(0, 0, total_w, total_h)
+		self._build_rectangle_path(0, 0, total_w, total_h)
 		self.operation_type = 'op-define'
 		operation = self.build_operation()
 		self.apply_operation(operation)
 		self.get_selection().show_popover()
 
-	def build_rectangle_path(self, press_x, press_y, release_x, release_y):
+	def _build_rectangle_path(self, press_x, press_y, release_x, release_y):
 		cairo_context = self.get_context()
 		x0 = int( min(press_x, release_x) )
 		y0 = int( min(press_y, release_y) )
@@ -216,7 +216,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		cairo_context.close_path()
 		AbstractSelectionTool.future_path = cairo_context.copy_path()
 
-	def set_future_coords_for_free_path(self):
+	def _set_future_coords_for_free_path(self):
+		"""..."""
 		main_width = self.get_main_pixbuf().get_width()
 		main_height = self.get_main_pixbuf().get_height()
 		xmin, ymin = main_width, main_height # TODO cairo_context.path_extents()
@@ -246,7 +247,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def unselect_and_apply(self):
 		if self.operation_type is None:
-			print('none') # FIXME le bug des outils de sélections incompatibles entre eux
+			print('none') # FIXME le bug des outils de sélection incompatibles entre eux
 			return # TODO raise something goddammit
 		self.operation_type = 'op-apply'
 		operation = self.build_operation()
@@ -255,14 +256,14 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.cursor_name = 'cross'
 		self.window.set_cursor(True)
 
-	#####
+	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-	def op_import(self, operation):
+	def _op_import(self, operation):
 		if operation['pixbuf'] is None:
 			return # TODO raise something goddammit
 		self.get_selection().set_pixbuf(operation['pixbuf'].copy())
 
-	def op_clean(self, operation):
+	def _op_clean(self, operation):
 		if operation['initial_path'] is None:
 			return # TODO raise something goddammit
 		cairo_context = self.get_context()
@@ -272,18 +273,18 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		cairo_context.fill()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
-	def op_drag(self, op):
+	def _op_drag(self, op):
 		# print('drag to : ', op['pixb_x'], op['pixb_y'])
 		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
 		self.non_destructive_show_modif()
 
-	def op_define(self, op):
+	def _op_define(self, op):
 		if op['initial_path'] is None:
 			return # TODO raise something goddammit
 		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
 		self.get_selection().load_from_path(op['initial_path'])
 
-	def op_apply(self):
+	def _op_apply(self):
 		cairo_context = self.get_context()
 		self.get_selection().show_selection_on_surface(cairo_context, False, \
 		                                           self.local_dx, self.local_dy)
@@ -321,20 +322,20 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			# Opération instantanée (sans preview), correspondant à une action
 			# de type "clic-droit > importer" ou "clic-droit > coller".
 			# On charge un pixbuf dans le selection_manager.
-			self.op_import(operation)
+			self._op_import(operation)
 		elif operation['operation_type'] == 'op-define':
 			# Opération instantanée (sans preview), correspondant à une sélection
 			# (rectangulaire ou non) par définition d'un path.
 			# On charge un pixbuf dans le selection_manager.
-			self.op_define(operation)
-			self.op_clean(operation)
+			self._op_define(operation)
+			self._op_clean(operation)
 		elif operation['operation_type'] == 'op-drag':
 			# Prévisualisation d'opération, correspondant à la définition d'une
 			# sélection (rectangulaire ou non) par construction d'un path.
 			# On modifie les coordonnées connues du selection_manager.
 			self.local_dx = 0
 			self.local_dy = 0
-			self.op_drag(operation)
+			self._op_drag(operation)
 		elif operation['operation_type'] == 'op-apply':
 			# Opération instantanée correspondant à l'aperçu de l'op-drag, donc
 			# la définition d'une sélection (rectangulaire ou non) par
@@ -342,8 +343,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			# On modifie les coordonnées connues du selection_manager.
 			if self.get_selection_pixbuf() is None:
 				return
-			self.op_drag(operation)
-			self.op_apply()
+			self._op_drag(operation)
+			self._op_apply()
 
 	############################################################################
 ################################################################################

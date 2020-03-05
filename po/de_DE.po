@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 04:16+0100\n"
-"PO-Revision-Date: 2020-02-03 23:01+0100\n"
+"POT-Creation-Date: 2020-02-29 20:26+0100\n"
+"PO-Revision-Date: 2020-02-29 22:15+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -280,9 +280,8 @@ msgstr "Farben tauschen"
 msgid "Color application mode"
 msgstr "Farbanwendungsmodus"
 
-#, fuzzy
 msgid "Normal"
-msgstr "Format"
+msgstr "Normal"
 
 msgid "Source color"
 msgstr "Quellfarbe"
@@ -363,9 +362,8 @@ msgstr "Bilder"
 msgid "Tools"
 msgstr "Werkzeuge"
 
-#, fuzzy
 msgid "Window"
-msgstr "Neues Fenster"
+msgstr "Fenster"
 
 msgid "Close selection"
 msgstr "Auswahl schließen"
@@ -411,6 +409,9 @@ msgstr "Bild"
 
 msgid "Open a file"
 msgstr "Eine Datei öffnen"
+
+msgid "Reload image from disk"
+msgstr "Bild von Festplatte neu laden"
 
 msgid "Save as"
 msgstr "Speichern als"
@@ -479,6 +480,11 @@ msgstr "Rückgängig %s"
 #, python-format
 msgid "Redo %s"
 msgstr "Wiederherstellen %s"
+
+msgid "Can't reload a never saved file from the disk."
+msgstr ""
+"Eine noch nie gespeicherte Datei kann nicht von der Festplatte neu geladen "
+"werden."
 
 msgid "Unsaved file"
 msgstr "Nicht gespeicherte Datei"
@@ -656,15 +662,15 @@ msgstr "Nur Werkzeugleiste (einfarbig)"
 
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s px"
 
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s in"
 
 msgid "Path"
 msgstr "Pfad"
@@ -727,13 +733,15 @@ msgid "Unknown color name"
 msgstr "Unbekannter Farbname"
 
 msgid "Replace"
-msgstr ""
+msgstr "Ersetzen"
 
 msgid "This file format doesn't support transparent colors."
 msgstr "Dieses Dateiformat unterstützt keine transparenten Farben."
 
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
+"Sie können das Bild als PNG-Datei speichern oder die Transparenz ersetzen "
+"mit:"
 
 msgid "Replace transparency with:"
 msgstr "Transparenz ersetzen mit:"
@@ -753,9 +761,8 @@ msgstr "BMP-Bilder"
 msgid "percents"
 msgstr "Prozent"
 
-#, fuzzy
 msgid "degrees"
-msgstr "Winkel (Grad)"
+msgstr "Grad"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -861,7 +868,7 @@ msgid "Back to the palette"
 msgstr "Zurück zur Palette"
 
 msgid "Palette"
-msgstr ""
+msgstr "Palette"
 
 msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
@@ -964,7 +971,7 @@ msgid "Arrow"
 msgstr "Pfeil"
 
 msgid "Antialiasing"
-msgstr ""
+msgstr "Kantenglättung"
 
 msgid "Color gradient"
 msgstr "Farbverlauf"

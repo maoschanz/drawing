@@ -36,7 +36,7 @@ class ToolColorSelect(AbstractSelectionTool):
 		if AbstractSelectionTool.future_path is None:
 			return
 		self.operation_type = 'op-define'
-		self.set_future_coords_for_free_path()
+		self._set_future_coords_for_free_path()
 		operation = self.build_operation()
 		self.apply_operation(operation)
 

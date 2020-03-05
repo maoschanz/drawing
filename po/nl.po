@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 04:16+0100\n"
-"PO-Revision-Date: 2020-01-19 21:50+0100\n"
+"POT-Creation-Date: 2020-02-29 20:26+0100\n"
+"PO-Revision-Date: 2020-02-28 13:50+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Drawing"
@@ -66,12 +66,17 @@ msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
+"Versie 0.6 is een grote update met enkele belangrijke aanpassingen. Drawing "
+"is stabieler en beschikt over meer gereedschap:"
 
 msgid ""
 "Rectangle selection and freehand selection are now distinct tools, and the "
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
+"Vrije en rechthoekselectie zijn twee losse gereedschappen geworden. Verder "
+"ondersteunt 'draaien' nu élke hoek, alsmede horizortaal en verticaal "
+"spiegelen."
 
 msgid ""
 "The numerous tools producing shapes (circle, rectangle, polygon, …), have "
@@ -79,6 +84,9 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
+"De verschillende vormgereedschappen (cirkel, rechthoek, polygoon, etc.) zijn "
+"samengevoegd tot één vormgereedschap, tesamen met 'afgeronde rechthoek' en "
+"'ellips'. Ook bevatten ze nu verscheidene kleurverlopen voor vullen."
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -259,9 +267,8 @@ msgstr "Hoofdkleur aanpassen…"
 msgid "Edit Secondary Color…"
 msgstr "Alternatieve kleur aanpassen…"
 
-#, fuzzy
 msgid "Use color editor by default"
-msgstr "Standaard kleuren bewerken"
+msgstr "Kleurbewerker standaard gebruiken"
 
 msgid "Exchange colors"
 msgstr "Kleuren omwisselen"
@@ -269,9 +276,8 @@ msgstr "Kleuren omwisselen"
 msgid "Color application mode"
 msgstr "Kleurmodus"
 
-#, fuzzy
 msgid "Normal"
-msgstr "Formaat"
+msgstr "Normaal"
 
 msgid "Source color"
 msgstr "Bronkleur"
@@ -286,9 +292,8 @@ msgstr "Geen kleuren gebruiken…"
 msgid "Blur"
 msgstr "Vervaging"
 
-#, fuzzy
 msgid "Erase"
-msgstr "Gum"
+msgstr "Wissen"
 
 msgid "_Tools"
 msgstr "_Gereedschap"
@@ -353,9 +358,8 @@ msgstr "Afbeeldingen"
 msgid "Tools"
 msgstr "Gereedschappen"
 
-#, fuzzy
 msgid "Window"
-msgstr "Nieuw venster"
+msgstr "Venster"
 
 msgid "Close selection"
 msgstr "Selectie sluiten"
@@ -376,7 +380,7 @@ msgstr "Draaien"
 #. into parallelograms (= tilt, slant, bend). Named after MS Paint's
 #. "Stretch/Skew" dialog.
 msgid "Skew"
-msgstr ""
+msgstr "Scheefheid"
 
 msgid "Filters"
 msgstr "Filters"
@@ -401,6 +405,9 @@ msgstr "Afbeelding"
 
 msgid "Open a file"
 msgstr "Bestand openen"
+
+msgid "Reload image from disk"
+msgstr ""
 
 msgid "Save as"
 msgstr "Opslaan als"
@@ -469,6 +476,9 @@ msgstr "%s ongedaan maken"
 msgid "Redo %s"
 msgstr "%s opnieuw toepassen"
 
+msgid "Can't reload a never saved file from the disk."
+msgstr ""
+
 msgid "Unsaved file"
 msgstr "Niet-opgeslagen bestand"
 
@@ -485,7 +495,7 @@ msgid "Edit the clipboard content"
 msgstr "Klembordinhoud bewerken"
 
 msgid "This version isn't stable!"
-msgstr ""
+msgstr "Deze versie is instabiel!"
 
 msgid "Report bugs or ideas"
 msgstr "Meld bugs of deel ideëen"
@@ -496,7 +506,7 @@ msgid "translator-credits"
 msgstr "Heimen Stoffels"
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "De makers van GNOME's 'Art Libre'-pictogramset"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Een tekenprogramma voor de GNOME-werkomgeving."
@@ -584,7 +594,7 @@ msgid "Eraser"
 msgstr "Gum"
 
 msgid "Highlighter"
-msgstr ""
+msgstr "Markering"
 
 msgid "Free selection"
 msgstr "Vrije selectie"
@@ -643,15 +653,15 @@ msgstr "Werkbalk (symbolische pictogrammen)"
 
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s px"
 
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s in"
 
 msgid "Path"
 msgstr "Pad"
@@ -712,13 +722,15 @@ msgid "Unknown color name"
 msgstr "Onbekende kleurnaam"
 
 msgid "Replace"
-msgstr ""
+msgstr "Vervangen"
 
 msgid "This file format doesn't support transparent colors."
 msgstr "Dit bestandsformaat ondersteunt geen doorzichtige kleuren."
 
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
+"Je kunt de afbeelding opslaan als PNG-bestand of de doorzichtigheid "
+"vervangen door:"
 
 msgid "Replace transparency with:"
 msgstr "Doorzichtigheid vervangen door:"
@@ -738,9 +750,8 @@ msgstr "BMP-afbeeldingen"
 msgid "percents"
 msgstr "procent"
 
-#, fuzzy
 msgid "degrees"
-msgstr "Hoek (graden)"
+msgstr "graden"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -843,7 +854,7 @@ msgid "Back to the palette"
 msgstr "Terug naar het palet"
 
 msgid "Palette"
-msgstr ""
+msgstr "Palet"
 
 msgid "Use this editor by default"
 msgstr "Gebruik standaard deze bewerker"
@@ -866,16 +877,14 @@ msgstr "Vervaagstraal"
 msgid "Transparency"
 msgstr "Doorzichtigheid"
 
-#, fuzzy
 msgid "Change saturation"
-msgstr "Verzadiging"
+msgstr "Verzadiging aanpassen"
 
 msgid "Pixelisation"
 msgstr "Pixelvorming"
 
-#, fuzzy
 msgid "Add transparency"
-msgstr "Doorzichtigheid"
+msgstr "Doorzichtigheid toevoegen"
 
 msgid "Invert colors"
 msgstr "Kleuren omdraaien"
@@ -922,11 +931,9 @@ msgstr "Bij aanpassen vanuit de hoeken"
 msgid "Never"
 msgstr "Nooit"
 
-#, fuzzy
 msgid "Horizontal deformation"
 msgstr "Horizontaal verloop"
 
-#, fuzzy
 msgid "Vertical deformation"
 msgstr "Verticaal verloop"
 
@@ -950,7 +957,7 @@ msgid "Arrow"
 msgstr "Pijl"
 
 msgid "Antialiasing"
-msgstr ""
+msgstr "Anti-kartelvorming"
 
 msgid "Color gradient"
 msgstr "Kleurverloop"
@@ -970,9 +977,8 @@ msgstr "Vasthouden"
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Rechthoek"
+msgstr "Afgeronde rechthoek"
 
 msgid "Oval"
 msgstr "Ovaal"
@@ -1093,7 +1099,7 @@ msgid "Rectangle selection"
 msgstr "Rechthoekselectie"
 
 msgid "Error: invalid values"
-msgstr ""
+msgstr "Fout: ongeldige waarden"
 
 msgid "Cropping the selection"
 msgstr "Bezig met bijsnijden van selectie"
@@ -1131,8 +1137,3 @@ msgstr "Bezig met wijzigen van canvasgrootte"
 #~ msgid "Similar color"
 #~ msgstr "Vergelijkbare kleur"
 
-#~ msgid "Selection options"
-#~ msgstr "Selectie-opties"
-
-#~ msgid "Summary"
-#~ msgstr "Samenvatting"

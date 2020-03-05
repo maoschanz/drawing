@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 04:16+0100\n"
-"PO-Revision-Date: 2019-12-04 21:15+0200\n"
+"POT-Creation-Date: 2020-02-29 20:26+0100\n"
+"PO-Revision-Date: 2020-29-02 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -65,12 +65,17 @@ msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
+"La versione 0.6 è un aggiornamento importante, con varie modifiche "
+"importanti. L'app è più robusta e ha più strumenti:"
 
 msgid ""
 "Rectangle selection and freehand selection are now distinct tools, and the "
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
+"La selezione rettangolo e la selezione a mano libera sono ora strumenti "
+"distinti, e lo strumento 'ruota' ora supporta qualsiasi angolo e gestisce le "
+"maniglie orizzontali o verticali flipping."
 
 msgid ""
 "The numerous tools producing shapes (circle, rectangle, polygon, …), have "
@@ -78,6 +83,10 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
+"I numerosi strumenti che producono forme (cerchio, rettangolo, poligono, …), "
+"sono stati uniti in un unico strumento 'forma' più coerente, insieme a "
+"'rettangolo arrotondato' ed 'ellisse'. Le opzioni di riempimento ora "
+"includono vari tipi di gradienti."
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -136,9 +145,8 @@ msgstr "Apri un' immagine"
 msgid "New Blank Image"
 msgstr "Nuova Immagine Vuota"
 
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "Nuova Immagine dalla Selezione"
+msgstr "Nuova immagine con dimensioni personalizzate"
 
 msgid "New Image From Selection"
 msgstr "Nuova Immagine dalla Selezione"
@@ -254,28 +262,24 @@ msgstr "Uscire da Schermo Intero"
 msgid "_Colors"
 msgstr "_Colori"
 
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "Colore primario"
+msgstr "Modifica colore principale…"
 
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "Colore secondario"
+msgstr "Modifica colore secondario…"
 
 #, fuzzy
 msgid "Use color editor by default"
-msgstr "Selettore colore standard"
+msgstr "Usa colore dell' editor predefinito"
 
 msgid "Exchange colors"
 msgstr "Scambia i colori"
 
-#, fuzzy
 msgid "Color application mode"
-msgstr "Selezione colore"
+msgstr "Modalità applicazione colore"
 
-#, fuzzy
 msgid "Normal"
-msgstr "Formato"
+msgstr "Normale"
 
 msgid "Source color"
 msgstr "Colore sorgente"
@@ -284,15 +288,14 @@ msgid "Difference"
 msgstr "Differenza"
 
 msgid "Don't use the colors but…"
-msgstr ""
+msgstr "Non usare i colori ma…"
 
 #. BlurType.PX_BOX
 msgid "Blur"
 msgstr "Sfocatura"
 
-#, fuzzy
 msgid "Erase"
-msgstr "Gomma"
+msgstr "Cancella"
 
 msgid "_Tools"
 msgstr "_Strumenti"
@@ -357,9 +360,8 @@ msgstr "Immagini"
 msgid "Tools"
 msgstr "Strumenti"
 
-#, fuzzy
 msgid "Window"
-msgstr "Nuova finestra"
+msgstr "Finestra"
 
 msgid "Close selection"
 msgstr "Chiudi selezione"
@@ -397,7 +399,6 @@ msgstr "Generale"
 msgid "Main menu"
 msgstr "Menu principale"
 
-#, fuzzy
 msgid "Editing"
 msgstr "Modifica"
 
@@ -406,6 +407,9 @@ msgstr "Immagine"
 
 msgid "Open a file"
 msgstr "Apri un file"
+
+msgid "Reload image from disk"
+msgstr "Ricarica l'immagine dal disco"
 
 msgid "Save as"
 msgstr "Salve come"
@@ -438,17 +442,14 @@ msgid "Delete the selection"
 msgstr "Elimina la selezione"
 
 #. Label displayed in the keyboard shortcuts dialog
-#, fuzzy
 msgid "Import a file as the selection"
-msgstr "Rotazione della selezione"
+msgstr "Importa un file come selezione"
 
-#, fuzzy
 msgid "Enter fullscreen mode"
-msgstr "Uscire da Schermo Intero"
+msgstr "Entra in modalità schermo intero"
 
-#, fuzzy
 msgid "Exit fullscreen mode"
-msgstr "Uscire da Schermo Intero"
+msgstr "Esci dalla modalità schermo intero"
 
 msgid "Navigation"
 msgstr "Navigazione"
@@ -477,12 +478,14 @@ msgstr "Annulla %s"
 msgid "Redo %s"
 msgstr "Ripeti %s"
 
+msgid "Can't reload a never saved file from the disk."
+msgstr "Impossibile ricaricare un file mai salvato dal disco."
+
 msgid "Unsaved file"
 msgstr "File non salvato"
 
-#, fuzzy
 msgid "Show the app version"
-msgstr "Mostra anteprima"
+msgstr "Mostra la versione dell'app"
 
 msgid "Open a new window"
 msgstr "Apri una nuova finestra"
@@ -494,7 +497,7 @@ msgid "Edit the clipboard content"
 msgstr "Modifica il contenuto degli appunti"
 
 msgid "This version isn't stable!"
-msgstr ""
+msgstr "Questa versione non è stabile!"
 
 msgid "Report bugs or ideas"
 msgstr "Invia segnalazioni o idee"
@@ -541,16 +544,14 @@ msgid "Images saving"
 msgstr "Salvataggio immagini"
 
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "Le immagini JPEG e BMP non possono gestire la trasparenza."
 
-#, fuzzy
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Le immagini JPEG e BMP non possono gestire la trasparenza. Se salvi le "
-"immagini in questi formati, che cosa vuoi utilizzare per sostituire i pixel "
-"trasparenti?"
+"Se salvi le tue immagini in questi formati, cosa vuoi usare per sostituire "
+"pixel trasparenti?"
 
 msgid "White"
 msgstr "Bianco"
@@ -558,24 +559,23 @@ msgstr "Bianco"
 msgid "Black"
 msgstr "Nero"
 
-#, fuzzy
 msgid "Checkboard"
-msgstr "Tastiera"
+msgstr "Scacchiera"
 
 msgid "Nothing"
-msgstr ""
+msgstr "Niente"
 
 msgid "Ask before saving"
 msgstr "Chiedi prima di salvare"
 
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr ""
+msgstr "È possibile eseguire lo zoom con Ctrl + scrolling o solo scrolling."
 
 msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr ""
+msgstr "È anche possibile usare scorciatoie da tastiera o gesti tattili."
 
 msgid "Use 'Ctrl' to zoom"
-msgstr ""
+msgstr "Usa 'Ctrl' per ingrandire"
 
 msgid "Appearance"
 msgstr "Aspetto"
@@ -598,7 +598,7 @@ msgid "Eraser"
 msgstr "Gomma"
 
 msgid "Highlighter"
-msgstr ""
+msgstr "Evidenziatore"
 
 msgid "Free selection"
 msgstr "Selezione libera"
@@ -634,7 +634,7 @@ msgid "Compact"
 msgstr "Compatto"
 
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -657,15 +657,15 @@ msgstr "Solo barra degli strumenti (icone simboliche)"
 
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s px"
 
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s in"
 
 msgid "Path"
 msgstr "Percorso"
@@ -682,7 +682,7 @@ msgstr "Formato non valido"
 msgid "Transparent"
 msgstr "Trasparente"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
 msgstr "%s%% trasparente"
 
@@ -726,13 +726,13 @@ msgid "Unknown color name"
 msgstr "Nome colore sconosciuto"
 
 msgid "Replace"
-msgstr ""
+msgstr "Sostituisci"
 
 msgid "This file format doesn't support transparent colors."
 msgstr "Questo formato di file non supporta i colori trasparenti."
 
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr ""
+msgstr "Puoi salvare l'immagine come file PNG o sostituire la trasparenza con:"
 
 msgid "Replace transparency with:"
 msgstr "Sostituisci la trasparenza con:"
@@ -752,9 +752,8 @@ msgstr "Immagini BMP"
 msgid "percents"
 msgstr "percentuali"
 
-#, fuzzy
 msgid "degrees"
-msgstr "Angolo (gradi)"
+msgstr "gradi"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -800,10 +799,9 @@ msgstr "questi file"
 msgid "What do you want to do with %s?"
 msgstr "Cosa vuoi fare con %s?"
 
-#. else the exception has been raised because the user cancelled
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Strumento di caricamento non riuscito: %s"
+msgstr "Impossibile salvare %s"
 
 msgid "Untitled"
 msgstr "Senza titolo"
@@ -821,9 +819,8 @@ msgstr "Salva l'immagine come…"
 msgid "Import a picture"
 msgstr "Importa un'immagine"
 
-#, fuzzy
 msgid "Required tool is not available"
-msgstr "È ora disponibile una modalità a schermo intero."
+msgstr "Lo strumento richiesto non è disponibile"
 
 msgid "Continue"
 msgstr "Continua"
@@ -852,13 +849,13 @@ msgid "Preview"
 msgstr "Anteprima"
 
 msgid "How the color will be applied to the existing pixels"
-msgstr ""
+msgstr "Come verrà applicato il colore ai pixel esistenti"
 
 msgid "Back to the palette"
 msgstr "Ritorna alla tavolozza"
 
 msgid "Palette"
-msgstr ""
+msgstr "Tavolozza"
 
 msgid "Use this editor by default"
 msgstr "Usa questo editor come predefinito"
@@ -881,16 +878,14 @@ msgstr "Raggio di sfocatura"
 msgid "Transparency"
 msgstr "Trasparenza"
 
-#, fuzzy
 msgid "Change saturation"
-msgstr "Saturazione"
+msgstr "Cambia saturazione"
 
 msgid "Pixelisation"
 msgstr "Pixelizzazione"
 
-#, fuzzy
 msgid "Add transparency"
-msgstr "Trasparenza"
+msgstr "Aggiungi trasparenza"
 
 msgid "Invert colors"
 msgstr "Inverti i colori"
@@ -922,33 +917,29 @@ msgstr "Ribalta verticalmente"
 msgid "More options"
 msgstr "Più opzioni"
 
-#, fuzzy
 msgid "Keep proportions"
-msgstr "Mantieni sempre le proporzioni"
+msgstr "Mantieni proporzioni"
 
 #. Context for translations: "Always [keep proportions]"
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 msgid "When scaling from corners"
-msgstr ""
+msgstr "Quando si esegue il ridimensionamento dagli angoli"
 
 #. Context for translations: "Never [keep proportions]"
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
-#, fuzzy
 msgid "Horizontal deformation"
-msgstr "Gradiente orizzontale"
+msgstr "Deformazione orizzontale"
 
-#, fuzzy
 msgid "Vertical deformation"
-msgstr "Gradiente verticale"
+msgstr "Deformazione verticale"
 
-#, fuzzy
 msgid "Line shape"
-msgstr "Forma primaria"
+msgstr "Forma della linea"
 
 #. Default values
 msgid "Round"
@@ -967,7 +958,7 @@ msgid "Arrow"
 msgstr "Freccia"
 
 msgid "Antialiasing"
-msgstr ""
+msgstr "Antialiasing"
 
 msgid "Color gradient"
 msgstr "Gradiente di colore"
@@ -987,9 +978,8 @@ msgstr "Ritaglio"
 msgid "Rectangle"
 msgstr "Rettangolo"
 
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Rettangolo"
+msgstr "Rettangolo arrotondato"
 
 msgid "Oval"
 msgstr "Ovale"
@@ -1043,9 +1033,8 @@ msgstr "Ombra"
 msgid "Outline"
 msgstr "Contorno vuoto"
 
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Sfondo preimpostato"
+msgstr "Rettangolo disfondo"
 
 msgid "Edit"
 msgstr "Modifica"
@@ -1060,10 +1049,10 @@ msgid "Curve options"
 msgstr "Opzioni di curva"
 
 msgid "Dashed arrow"
-msgstr ""
+msgstr "Freccia tratteggiata"
 
 msgid "Dashed"
-msgstr ""
+msgstr "Tratteggiata"
 
 msgid "Line"
 msgstr "Linea"
@@ -1111,7 +1100,7 @@ msgid "Rectangle selection"
 msgstr "Selezione rettangolare"
 
 msgid "Error: invalid values"
-msgstr ""
+msgstr "Errore: valori non validi"
 
 msgid "Cropping the selection"
 msgstr "Ritaglia la selezione"
@@ -1152,6 +1141,3 @@ msgstr "Ridimensionamento della tela"
 
 #~ msgid "Summary"
 #~ msgstr "Sommario"
-
-#~ msgid "Similar color selection"
-#~ msgstr "Selezione colore simile"

@@ -30,6 +30,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.window = window
 		builder = self.build_ui('optionsbars/classic/optionsbar-classic.ui')
 
+		self._operator_enum = cairo.Operator.OVER
+		self._operator_label = _("Normal")
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
@@ -47,7 +49,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
 		self.thickness_spinbtn.set_value(window._settings.get_int('last-size'))
-		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px') # XXX works but is ugly
+		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
@@ -105,7 +107,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._color_l.color_widget.set_rgba(self._color_r.color_widget.get_rgba())
 		self._color_r.color_widget.set_rgba(left_color)
 
-	def set_operator(self, op_as_string):
+	def _set_active_operator(self, op_as_string):
 		if op_as_string == 'difference':
 			self._operator_enum = cairo.Operator.DIFFERENCE
 			self._operator_label = _("Difference")
@@ -128,9 +130,9 @@ class OptionsBarClassic(AbstractOptionsBar):
 		right_rgba = self.window._settings.get_strv('last-right-rgba')
 		left_rgba = self.window._settings.get_strv('last-left-rgba')
 		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
-		      builder.get_object('r_btn_image'), right_rgba, False, self.window)
+		             builder.get_object('r_btn_image'), right_rgba, False, self)
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \
-		        builder.get_object('l_btn_image'), left_rgba, True, self.window)
+		               builder.get_object('l_btn_image'), left_rgba, True, self)
 
 	def set_palette_setting(self, show_editor):
 		self._color_r.editor_setting_changed(show_editor)
@@ -152,7 +154,13 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._cairo_operator_lock = True
 		self.window.options_manager._enum_callback(mirrored_action, args[1])
 		self._cairo_operator_lock = False
-		# TODO if blur or erase, it should disable the palette
+		self._update_popovers(args[1].get_string())
+
+	def _update_popovers(self, op_as_str):
+		supports_color = not (op_as_str == 'clear' or op_as_str == 'dest_in')
+		self._set_active_operator(op_as_str)
+		self._color_r.adapt_to_operator(supports_color)
+		self._color_l.adapt_to_operator(supports_color)
 
 	def _cairop_mirror(self, *args):
 		"""This action should NEVER be added to any menu. It mirrors the action
@@ -173,6 +181,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._cairo_operator_lock = True
 		self.window.options_manager._enum_callback(mirrored_action, args[1])
 		self._cairo_operator_lock = False
+		self._update_popovers(args[1].get_string())
 
 	############################################################################
 ################################################################################

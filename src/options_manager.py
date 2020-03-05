@@ -189,8 +189,6 @@ class DrOptionsManager():
 		return self.left_color_btn().color_widget.get_rgba()
 
 	def get_operator(self):
-		op_as_string = self.get_value('cairo_operator')
-		self.get_classic_panel().set_operator(op_as_string)
 		enum = self.get_classic_panel()._operator_enum
 		label = self.get_classic_panel()._operator_label
 		return enum, label
