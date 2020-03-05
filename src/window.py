@@ -946,7 +946,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		utilities_add_filechooser_filters(file_chooser)
 
 		images_dir = GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)
-		file_chooser.set_current_folder(images_dir)
+		if images_dir != None: # no idea why it sometimes fails
+			file_chooser.set_current_folder(images_dir)
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 
@@ -1064,12 +1065,12 @@ class DrWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT #######################################################
 
 	def action_undo(self, *args):
+		# self.prompt_message(True, _("Undoing…")) # TODO forcer la mainloop ??
 		self.get_active_image().try_undo()
-		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
+		# self.prompt_message(False, 'finished undoing')
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()
-		# self.get_active_image().reset_temp() # XXX ne devrait pas exister
 
 	def action_restore(self, *args):
 		self.get_active_image().use_stable_pixbuf()
