@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-23 04:16+0100\n"
-"PO-Revision-Date: 2020-03-05 19:24+0100\n"
+"PO-Revision-Date: 2020-03-05 19:34+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint; Szkic, Ołówek;"
+msgstr "Paint;Szkic;Ołówek;"
 
 #. Context: answer to "where do you want to open the image?"
 msgid "New Window"
@@ -695,8 +695,9 @@ msgstr "Niebieski"
 msgid "Yellow"
 msgstr "Żółty"
 
+#, fuzzy
 msgid "Magenta"
-msgstr ""
+msgstr "Kolor czerwony o odcieniu niebieskawym"
 
 msgid "Purple"
 msgstr "Purpurowy"
@@ -711,13 +712,14 @@ msgid "Unknown color name"
 msgstr "Nieznana nazwa koloru"
 
 msgid "Replace"
-msgstr ""
+msgstr "Zamień"
 
 msgid "This file format doesn't support transparent colors."
 msgstr "Ten format nie wspiera przeźroczystego koloru."
 
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
+"Możesz zapisać swój obraz jako plik PNG albo zamienić przezroczystość na:"
 
 msgid "Replace transparency with:"
 msgstr "Zastąp przeźroczystość:"
@@ -737,13 +739,12 @@ msgstr "Obrazy BMP"
 msgid "percents"
 msgstr "procent"
 
-#, fuzzy
 msgid "degrees"
-msgstr "Kąt (stopnie)"
+msgstr "kąt (w stopniach)"
 
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Niepowodzenie załadunku narzędzia: %s"
 
 msgid "Modifications will take effect in the next new window."
 msgstr "Zmiana znajdzie zastosowanie w nowym oknie."
@@ -771,7 +772,7 @@ msgstr "Zmiany nie zostały zapisane dla %s."
 
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr ""
+msgstr "Gdzie chcesz otworzyć %s?"
 
 msgid "Open a picture"
 msgstr "Otwórz zdjęcie"
@@ -783,7 +784,7 @@ msgstr "te pliki"
 
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr ""
+msgstr "Co chcesz zrobić z %s?"
 
 #. else the exception has been raised because the user cancelled
 #, python-format
@@ -841,7 +842,7 @@ msgid "Back to the palette"
 msgstr "Wróć do palety"
 
 msgid "Palette"
-msgstr ""
+msgstr "Paleta"
 
 msgid "Use this editor by default"
 msgstr ""
@@ -864,16 +865,14 @@ msgstr "Stopień rozmycia"
 msgid "Transparency"
 msgstr "Przeźroczystość"
 
-#, fuzzy
 msgid "Change saturation"
-msgstr "Nasycenie"
+msgstr "Zmiana nasycenia"
 
 msgid "Pixelisation"
 msgstr "Pikselizacja"
 
-#, fuzzy
 msgid "Add transparency"
-msgstr "Przeźroczystość"
+msgstr "Dodaj przeźroczystość"
 
 msgid "Invert colors"
 msgstr "Odwrócenie koloru"
@@ -905,13 +904,12 @@ msgstr "Odbij pionowo"
 msgid "More options"
 msgstr "Więcej opcji"
 
-#, fuzzy
 msgid "Keep proportions"
 msgstr "Zachowaj proporcje"
 
 #. Context for translations: "Always [keep proportions]"
 msgid "Always"
-msgstr ""
+msgstr "Zawsze"
 
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 msgid "When scaling from corners"
@@ -919,19 +917,16 @@ msgstr ""
 
 #. Context for translations: "Never [keep proportions]"
 msgid "Never"
-msgstr ""
+msgstr "Nigdy"
 
-#, fuzzy
 msgid "Horizontal deformation"
-msgstr "Poziomy gradient"
+msgstr "Pozioma deformacja"
 
-#, fuzzy
 msgid "Vertical deformation"
-msgstr "Pionowy gradient"
+msgstr "Pionowa deformacja"
 
-#, fuzzy
 msgid "Line shape"
-msgstr "Kształt"
+msgstr "Kształt linii"
 
 #. Default values
 msgid "Round"
@@ -950,13 +945,13 @@ msgid "Arrow"
 msgstr "Strzałka"
 
 msgid "Antialiasing"
-msgstr ""
+msgstr "Wygładzanie krawędzi"
 
 msgid "Color gradient"
 msgstr "Gradient koloru"
 
 msgid "Behavior"
-msgstr ""
+msgstr "Zachowanie"
 
 msgid "Encircle and fill"
 msgstr ""
@@ -970,9 +965,8 @@ msgstr ""
 msgid "Rectangle"
 msgstr "Prostokąt"
 
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Prostokąt"
+msgstr "Zaokrąglony prostokąt"
 
 msgid "Oval"
 msgstr "Owal"
