@@ -1118,7 +1118,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.options_label.set_label(self.active_tool().get_options_label())
 
 	############################################################################
-	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################
+	# PREVIEW AND NAVIGATION ACTIONS ###########################################
 
 	def action_toggle_preview(self, *args):
 		"""Action callback, showing or hiding the "minimap" preview popover."""
