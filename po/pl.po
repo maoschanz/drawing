@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-24 19:16+0100\n"
+"POT-Creation-Date: 2020-03-07 00:36+0100\n"
 "PO-Revision-Date: 2019-12-20 12:01+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -20,10 +20,10 @@ msgstr ""
 "|| n%100>14) ? 1 : 2);\n"
 
 msgid "Drawing"
-msgstr ""
+msgstr "Rysunek"
 
 msgid "Simple drawing utility"
-msgstr "Prosty edytor graficzny"
+msgstr "Proste narzędzie do rysowania"
 
 #. Icon name, do not translate
 msgid "com.github.maoschanz.drawing"
@@ -31,7 +31,7 @@ msgstr ""
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 msgid "Paint;Sketch;Pencil;"
-msgstr ""
+msgstr "Paint;Szkic;Ołówek;"
 
 msgid "New Window"
 msgstr "Nowe okno"
@@ -58,14 +58,21 @@ msgid ""
 "rotating, …"
 msgstr ""
 "Umożliwia rysowanie i edycję obrazów za pomocą takich narzędzi, jak ołówek, "
-"linie, łuki (z różnymi opcjami), zaznaczanie (wycinanie/kopiowanie/"
-"wstawianie/przeciąganie/…), kształty (prostokąty, koła, wielokąty, …), "
-"tekst, wstawianie, zmiana rozmiaru, przycinanie, obrót, …."
+"linia, łuk (z różnymi opcjami), zaznaczanie (wycinanie/kopiowanie/wstawianie/"
+"przeciąganie/…), kształty (prostokąty, koła, wielokąty, …), tekst, "
+"wstawianie, zmiana rozmiaru, przycinanie, obrót, …"
+
+msgid ""
+"Version 0.4.13 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"Wersja 0.4.13 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "Version 0.4.12 features several minor bug fixes, and various new "
 "translations."
 msgstr ""
+"Wersja 0.4.12 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "The preferences dialog now looks better with Cinnamon, syntax has been "
@@ -77,6 +84,7 @@ msgid ""
 "Version 0.4.11 features several minor bug fixes, and various new "
 "translations."
 msgstr ""
+"Wersja 0.4.11 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "A few features have been added to the tools: the color picker picks the "
@@ -102,6 +110,7 @@ msgid ""
 "Version 0.4.10 features several minor bug fixes, and various new "
 "translations."
 msgstr ""
+"Wersja 0.4.10 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "The \"rotate\" tool where buttons were inverted has been fixed, and tools "
@@ -162,7 +171,7 @@ msgstr ""
 
 #. This is just my name, do not translate it.
 msgid "Romain F. T."
-msgstr ""
+msgstr "Romain F. T."
 
 msgid "The default window and its primary menu"
 msgstr ""
@@ -258,7 +267,7 @@ msgid "Delete"
 msgstr "Skasuj"
 
 msgid "Paste"
-msgstr "Wstaw"
+msgstr "Wklej"
 
 msgid "Import"
 msgstr "Importuj"
@@ -267,7 +276,7 @@ msgid "_View"
 msgstr "_Podgląd"
 
 msgid "Optimal Zoom"
-msgstr "Dopasuj do rozmiaru okna"
+msgstr "Optymalne przybliżenie"
 
 msgid "Zoom Out"
 msgstr "Oddal"
@@ -285,7 +294,7 @@ msgid "Refresh"
 msgstr "Odśwież"
 
 msgid "Rebuild from history"
-msgstr "Przebuduj z historii"
+msgstr "Odbuduj z historii"
 
 msgid "Position"
 msgstr "Położenie"
@@ -387,15 +396,14 @@ msgstr "Obrazy"
 msgid "Tools"
 msgstr "Narzędzia"
 
-#, fuzzy
 msgid "Window"
-msgstr "Ok_na"
+msgstr "Okno"
 
 msgid "Path"
 msgstr "Ścieżka"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Colorspace"
 msgstr "Przestrzeń kolorów"
@@ -407,7 +415,7 @@ msgid "Invalid format"
 msgstr "Niewłaściwy format"
 
 msgid "pixels"
-msgstr "punktów"
+msgstr "pikseli"
 
 msgid "centimeters"
 msgstr "centymetrów"
@@ -419,7 +427,7 @@ msgid "Unselect"
 msgstr "Odznacz"
 
 msgid "Flip"
-msgstr ""
+msgstr "Odbij"
 
 msgid "Crop"
 msgstr "Przycinanie"
@@ -455,12 +463,11 @@ msgstr "Zamknij bieżący obraz"
 msgid "Save as"
 msgstr "Zapisz jako"
 
-#, fuzzy
 msgid "Editing"
 msgstr "Edycja"
 
 msgid "Options menu"
-msgstr ""
+msgstr "Menu opcji"
 
 msgid "Back to previous tool"
 msgstr "Powrót do poprzedniego narzędzia"
@@ -481,13 +488,13 @@ msgid "Edit the secondary color (right click)"
 msgstr "Edytuj kolor dodatkowy (prawy przycisk myszy)"
 
 msgid "Navigation"
-msgstr ""
+msgstr "Nawigacja"
 
 msgid "Toggle the preview"
-msgstr ""
+msgstr "Przełącz podgląd"
 
 msgid "Error starting the application, please report this bug."
-msgstr ""
+msgstr "Wystąpił błąd podczas uruchamiania aplikacji, proszę zgłoś ten błąd."
 
 msgid "Tool size"
 msgstr "Rozmiar narządzia"
@@ -502,7 +509,7 @@ msgid "Preview"
 msgstr "Podgląd"
 
 msgid "Troubleshoot selection"
-msgstr ""
+msgstr "Rozwiąż problemy z wyborem"
 
 msgid "Cancel"
 msgstr "Anuluj"
@@ -526,7 +533,9 @@ msgstr "Edytuj zawartość schowka"
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
-msgstr "Piotr Komur"
+msgstr ""
+"Piotr Komur\n"
+"Kacper Paczos"
 
 msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr ""
@@ -539,15 +548,15 @@ msgstr "Oficjalna witryna"
 
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr ""
+msgstr "Wystąpił problem podczas otwierania tego pliku. Czy chodziło ci o %s?"
 
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Niepowodzenie załadunku narzędzia: %s"
 
 #, python-format
 msgid "Loading %s"
-msgstr ""
+msgstr "Ładowanie %s"
 
 msgid "New Tab"
 msgstr "Nowa zakładka"
@@ -561,26 +570,26 @@ msgstr "Zmiany nie zostały zapisane dla %s."
 
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr ""
+msgstr "Gdzie chcesz otworzyć %s?"
 
 msgid "Open a picture"
-msgstr ""
+msgstr "Otwórz zdjęcie"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
 msgid "these files"
-msgstr ""
+msgstr "te pliki"
 
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr ""
+msgstr "Co chcesz zrobić z %s?"
 
 msgid "Untitled"
-msgstr "Be tytułu"
+msgstr "Bez tytułu"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 msgid "this picture"
-msgstr ""
+msgstr "tę zdjęcię"
 
 msgid "Discard"
 msgstr "Porzuć"
@@ -615,7 +624,7 @@ msgid "Images saving"
 msgstr "Zapisywanie obrazów"
 
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "Format JPEG/JPG i BMP nie wpiera przeźroczystości tła."
+msgstr "Pliki JPEG oraz BMP nie obsługują przezroczystości."
 
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
@@ -634,7 +643,7 @@ msgid "Checkboard"
 msgstr "Szachownica"
 
 msgid "Nothing"
-msgstr ""
+msgstr "Nic"
 
 msgid "Ask before saving"
 msgstr "Zapytaj przed zapisaniem"
@@ -689,7 +698,7 @@ msgid "This file format doesn't support transparent colors."
 msgstr "Ten format nie wspiera przeźroczystego koloru."
 
 msgid "Replace transparency with:"
-msgstr ""
+msgstr "Zastąp przeźroczystość:"
 
 msgid "All pictures"
 msgstr "Wszystkie obrazy"
@@ -708,7 +717,7 @@ msgstr "Przeźroczysty"
 
 #, python-format
 msgid "%s%% transparent"
-msgstr ""
+msgstr "%s%% przeźroczysty"
 
 msgid "Grey"
 msgstr "Szary"
@@ -750,7 +759,7 @@ msgid "Unknown color name"
 msgstr "Nieznana nazwa koloru"
 
 msgid "Continue"
-msgstr ""
+msgstr "Kontynuuj"
 
 msgid ""
 "The area seems poorly delimited, or is very complex.\n"
@@ -785,7 +794,7 @@ msgid "Classic"
 msgstr "Zwykły"
 
 msgid "Source color"
-msgstr "Aktywny kolor"
+msgstr "Kolor źródłowy"
 
 msgid "Eraser"
 msgstr "Gumka"
@@ -829,7 +838,7 @@ msgid "Color gradient"
 msgstr "Gradient koloru"
 
 msgid "Behavior"
-msgstr ""
+msgstr "Zachowanie"
 
 msgid "Encircle and fill"
 msgstr ""
@@ -849,9 +858,8 @@ msgstr "Sztuczne wygładzenie"
 msgid "Rectangle"
 msgstr "Prostokąt"
 
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Prostokąt"
+msgstr "Zaokrąglony prostokąt"
 
 msgid "Rotate left"
 msgstr "Obróć w lewo"
@@ -865,12 +873,11 @@ msgstr "Obróć w prawo"
 msgid "Saturation"
 msgstr "Nasycenie"
 
-#, fuzzy
 msgid "Keep proportions"
 msgstr "Zachowaj proporcje"
 
 msgid "Edit"
-msgstr ""
+msgstr "Edytuj"
 
 #, fuzzy
 msgid "Selection type"
@@ -910,18 +917,16 @@ msgid "Shadow"
 msgstr "Cień"
 
 msgid "Outline"
-msgstr ""
+msgstr "Kontur"
 
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Domyślne tło"
+msgstr "Prostokątne tło"
 
 msgid "Arc"
-msgstr ""
+msgstr "Krzywa"
 
-#, fuzzy
 msgid "Arc options"
-msgstr "Więcej opcji"
+msgstr "Krzywa opcji"
 
 #, fuzzy
 msgid "With dashes"
