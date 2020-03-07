@@ -33,6 +33,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.tool_width = 10
 		self.main_color = None
 		self.secondary_color = None
+		self._fallback_operator = 'over'
 		self._use_antialias = True
 		self.x_press = 0.0
 		self.y_press = 0.0
