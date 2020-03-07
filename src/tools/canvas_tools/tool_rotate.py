@@ -36,15 +36,15 @@ class ToolRotate(AbstractCanvasTool):
 		self.add_tool_action_simple('rotate-flip-v', self.on_vertical_clicked)
 		# self.add_tool_action_enum('rotate-unit', 'degrees') # TODO ?
 
-	def try_build_panel(self):
-		self.panel_id = 'rotate'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'rotate'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
-		panel = OptionsBarRotate(self)
-		self.angle_btn = panel.angle_btn
+	def build_bottom_pane(self):
+		pane = OptionsBarRotate(self)
+		self.angle_btn = pane.angle_btn
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
-		return panel
+		return pane
 
 	def get_edition_status(self):
 		if self.apply_to_selection:
@@ -62,7 +62,7 @@ class ToolRotate(AbstractCanvasTool):
 			self.cursor_name = 'move'
 		else:
 			self.cursor_name = 'pointer'
-		# the panel is updated by the window according to self.apply_to_selection
+		# the pane is updated by the window according to self.apply_to_selection
 
 	############################################################################
 

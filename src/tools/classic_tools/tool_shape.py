@@ -24,27 +24,27 @@ class ToolShape(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Shape"), 'tool-freeshape-symbolic', window)
-		self.reset_temp_points()
+		self._reset_temp_points()
 
 		self._shape_id = self.get_settings().get_string('last-active-shape')
 		self.add_tool_action_enum('shape_type', self._shape_id)
-		self.set_active_shape()
+		self._set_active_shape()
 
 		self._style_id = 'empty'
 		self._style_label = _("Empty")
 		self.add_tool_action_enum('shape_filling', self._style_id)
 
-		self.add_tool_action_simple('shape_close', self.force_close_polygon)
+		self.add_tool_action_simple('shape_close', self._force_close_shape)
 		self.set_action_sensitivity('shape_close', False)
 
-	def reset_temp_points(self):
+	def _reset_temp_points(self):
 		self._path = None
 		self.x_press = -1.0
 		self.y_press = -1.0
 		self.initial_x = -1.0
 		self.initial_y = -1.0
 
-	def set_filling_style(self):
+	def _set_filling_style(self):
 		state_as_string = self.get_option_value('shape_filling')
 		self._style_id = state_as_string
 		if state_as_string == 'empty':
@@ -60,7 +60,7 @@ class ToolShape(AbstractClassicTool):
 		else: # if state_as_string == 'secondary':
 			self._style_label = _("Secondary color")
 
-	def set_active_shape(self, *args):
+	def _set_active_shape(self, *args):
 		self._shape_id = self.get_option_value('shape_type')
 		if self._shape_id == 'rectangle':
 			self._shape_label = _("Rectangle")
@@ -85,8 +85,8 @@ class ToolShape(AbstractClassicTool):
 		return _("Shape options")
 
 	def get_edition_status(self):
-		self.set_filling_style()
-		self.set_active_shape()
+		self._set_filling_style()
+		self._set_active_shape()
 		label = self._shape_label + ' - ' + self._style_label
 		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
 			instruction = _("Click on the shape's first point to close it.")
@@ -97,7 +97,7 @@ class ToolShape(AbstractClassicTool):
 
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
-		self.reset_temp_points()
+		self._reset_temp_points()
 
 	############################################################################
 
@@ -107,51 +107,51 @@ class ToolShape(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape':
-			operation = self.add_point(event_x, event_y, True)
+			operation = self._add_point(event_x, event_y, True)
 		elif self._shape_id == 'polygon':
-			operation = self.add_point(event_x, event_y, False)
+			operation = self._add_point(event_x, event_y, False)
 		else:
 			if self._shape_id == 'rectangle':
-				self.build_rectangle(event_x, event_y)
+				self._draw_rectangle(event_x, event_y)
 			elif self._shape_id == 'roundedrect':
-				self.build_roundedrect(event_x, event_y)
+				self._draw_roundedrect(event_x, event_y)
 			elif self._shape_id == 'oval':
-				self.draw_oval(event_x, event_y)
+				self._draw_ellipse(event_x, event_y)
 			elif self._shape_id == 'circle':
-				self.draw_circle(event_x, event_y)
+				self._draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape' or self._shape_id == 'polygon':
-			operation = self.add_point(event_x, event_y, True)
+			operation = self._add_point(event_x, event_y, True)
 			self.set_action_sensitivity('shape_close', not operation['closed'])
 			if operation['closed']:
 				self.apply_operation(operation)
-				self.reset_temp_points()
+				self._reset_temp_points()
 			else:
 				self.do_tool_operation(operation)
 				self.non_destructive_show_modif()
 		else:
 			if self._shape_id == 'rectangle':
-				self.build_rectangle(event_x, event_y)
+				self._draw_rectangle(event_x, event_y)
 			elif self._shape_id == 'roundedrect':
-				self.build_roundedrect(event_x, event_y)
+				self._draw_roundedrect(event_x, event_y)
 			elif self._shape_id == 'oval':
-				self.draw_oval(event_x, event_y)
+				self._draw_ellipse(event_x, event_y)
 			elif self._shape_id == 'circle':
-				self.draw_circle(event_x, event_y)
+				self._draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
 			self.apply_operation(operation)
-			self.reset_temp_points()
+			self._reset_temp_points()
 
 	############################################################################
 
-	def force_close_polygon(self, *args):
+	def _force_close_shape(self, *args):
 		self.set_common_values(self.last_mouse_btn, self.x_press, self.y_press)
 		self.on_release_on_area(None, None, self.initial_x, self.initial_y)
 
-	def add_point(self, event_x, event_y, memorize):
+	def _add_point(self, event_x, event_y, memorize):
 		"""Add a point to a shape (used by both freeshape and polygon)."""
 		cairo_context = self.get_context()
 		if self.initial_x == -1.0:
@@ -161,7 +161,7 @@ class ToolShape(AbstractClassicTool):
 			self._path = cairo_context.copy_path()
 		else:
 			cairo_context.append_path(self._path)
-		should_close = self.should_close_shape(event_x, event_y)
+		should_close = self._should_close_shape(event_x, event_y)
 		if not should_close:
 			# print('continue polygon')
 			cairo_context.line_to(event_x, event_y)
@@ -173,7 +173,7 @@ class ToolShape(AbstractClassicTool):
 		operation['closed'] = should_close
 		return operation
 
-	def should_close_shape(self, event_x, event_y):
+	def _should_close_shape(self, event_x, event_y):
 		if self.initial_x == -1.0 or self.initial_y == -1.0:
 			return False
 		delta_x = max(event_x, self.initial_x) - min(event_x, self.initial_x)
@@ -182,7 +182,7 @@ class ToolShape(AbstractClassicTool):
 
 	############################################################################
 
-	def build_rectangle(self, event_x, event_y):
+	def _draw_rectangle(self, event_x, event_y):
 		cairo_context = self.get_context()
 		cairo_context.move_to(self.x_press, self.y_press)
 		cairo_context.line_to(self.x_press, event_y)
@@ -191,7 +191,7 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
-	def build_roundedrect(self, event_x, event_y):
+	def _draw_roundedrect(self, event_x, event_y):
 		cairo_context = self.get_context()
 		a = min(self.x_press, event_x)
 		b = max(self.x_press, event_x)
@@ -206,7 +206,7 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
-	def draw_oval(self, event_x, event_y):
+	def _draw_ellipse(self, event_x, event_y):
 		cairo_context = self.get_context()
 		saved_matrix = cairo_context.get_matrix()
 		halfw = (self.x_press - event_x) / 2
@@ -218,7 +218,7 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
-	def draw_circle(self, event_x, event_y):
+	def _draw_circle(self, event_x, event_y):
 		cairo_context = self.get_context()
 		delta_x2 = (self.x_press - event_x) * (self.x_press - event_x)
 		delta_y2 = (self.y_press - event_y) * (self.y_press - event_y)

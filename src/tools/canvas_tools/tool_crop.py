@@ -30,11 +30,11 @@ class ToolCrop(AbstractCanvasTool):
 		self.y_press = 0
 		self.unclicked = True
 
-	def try_build_panel(self):
-		self.panel_id = 'crop'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'crop'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		bar = OptionsBarCrop()
 		self.height_btn = bar.height_btn
 		self.width_btn = bar.width_btn

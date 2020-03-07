@@ -24,7 +24,7 @@ class OptionsBarScale(AbstractOptionsBar):
 
 	def __init__(self, scale_tool):
 		super().__init__()
-		# future possible improvement: the panel may not compact the same way if
+		# future possible improvement: the pane may not compact the same way if
 		# the manipulation concerns the selection.
 		#self.scale_tool = scale_tool
 		builder = self.build_ui('optionsbars/canvas/optionsbar-scale.ui')

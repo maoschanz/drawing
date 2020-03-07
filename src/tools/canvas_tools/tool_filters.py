@@ -31,11 +31,11 @@ class ToolFilters(AbstractCanvasTool):
 		self.add_tool_action_enum('filters_type', 'saturation')
 		self._reset_type_values()
 
-	def try_build_panel(self):
-		self.panel_id = 'filters'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'filters'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		self.bar = OptionsBarFilters(self.window, self)
 		self.bar.menu_btn.connect('notify::active', self._set_active_type)
 		return self.bar

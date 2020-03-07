@@ -42,11 +42,11 @@ class AbstractClassicTool(AbstractAbstractTool):
 	############################################################################
 	# UI implementations #######################################################
 
-	def try_build_panel(self):
-		self.panel_id = 'classic'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'classic'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		return OptionsBarClassic(self.window)
 
 	def on_tool_selected(self):

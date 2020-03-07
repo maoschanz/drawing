@@ -78,8 +78,11 @@
     </key>
     <key type="b" name="show-labels">
       <default>false</default>
-      <summary>Wide side panel</summary>
-      <description>Visibility of tools' labels in the side panel.</description>
+      <summary>Labels in side pane</summary>
+      <description>
+        Visibility of tools' labels in the side pane. If false, tools are
+        displayed in a flowbox (several icons per line if not enough height).
+      </description>
     </key>
     <key type="s" name="last-active-tool">
       <default>'pencil'</default>

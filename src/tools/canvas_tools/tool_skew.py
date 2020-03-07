@@ -28,11 +28,11 @@ class ToolSkew(AbstractCanvasTool):
 		# "Stretch/Skew" dialog.
 		super().__init__('skew', _("Skew"), 'tool-skew-symbolic', window)
 
-	def try_build_panel(self):
-		self.panel_id = 'skew'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'skew'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		bar = OptionsBarSkew()
 		self.yx_spinbtn = bar.yx_spinbtn
 		self.xy_spinbtn = bar.xy_spinbtn

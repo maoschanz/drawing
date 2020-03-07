@@ -30,7 +30,7 @@ class AbstractOptionsBar():
 
 	def build_ui(self, end_of_path):
 		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + end_of_path)
-		self.action_bar = builder.get_object('bottom-panel')
+		self.action_bar = builder.get_object('bottom-pane')
 		self.cancel_btn = builder.get_object('cancel_btn') # may be None
 		self.centered_box = builder.get_object('centered_box') # may be None
 		self.apply_btn = builder.get_object('apply_btn') # may be None

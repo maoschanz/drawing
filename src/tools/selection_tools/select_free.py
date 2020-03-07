@@ -26,7 +26,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 		self.closing_precision = 10
 		self.closing_x = 0.0
 		self.closing_y = 0.0
-		self.add_tool_action_simple('selection_close', self.force_close_polygon)
+		self.add_tool_action_simple('selection_close', self._force_close_shape)
 		self.set_action_sensitivity('selection_close', False)
 
 	def on_tool_selected(self, *args):
@@ -39,20 +39,19 @@ class ToolFreeSelect(AbstractSelectionTool):
 	############################################################################
 
 	def press_define(self, event_x, event_y):
-		self.draw_polygon(event_x, event_y)
+		self._draw_shape(event_x, event_y)
 		self.set_action_sensitivity('selection_close', True)
 
 	def motion_define(self, event_x, event_y):
-		self.draw_polygon(event_x, event_y)
+		self._draw_shape(event_x, event_y)
 
 	def release_define(self, surface, event_x, event_y):
-		if self.draw_polygon(event_x, event_y):
+		if self._draw_shape(event_x, event_y):
 			self.restore_pixbuf()
 			self.operation_type = 'op-define'
 			self._set_future_coords_for_free_path()
 			operation = self.build_operation()
 			self.apply_operation(operation)
-			# self.get_selection().show_popover()
 			# self.set_selection_has_been_used(False) # TODO ?
 			self.set_action_sensitivity('selection_close', False)
 		else:
@@ -60,10 +59,10 @@ class ToolFreeSelect(AbstractSelectionTool):
 
 	############################################################################
 
-	def force_close_polygon(self, *args):
+	def _force_close_shape(self, *args):
 		self.release_define(None, self.closing_x, self.closing_y)
 
-	def draw_polygon(self, event_x, event_y):
+	def _draw_shape(self, event_x, event_y):
 		"""This method is specific to the 'free selection' mode."""
 		cairo_context = self.get_context()
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)

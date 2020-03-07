@@ -53,7 +53,7 @@ class ToolText(AbstractClassicTool):
 	# Options ##################################################################
 
 	def _set_font_options(self, *args):
-		# TODO ? use the widget again, and cairo.ToyFontFace
+		# TODO use the widget again. And cairo.ToyFontFace ?
 		self._font_fam = self.get_option_value('text-font')
 		if self.get_option_value('text-italic'):
 			self._font_slant = cairo.FontSlant.ITALIC
@@ -114,15 +114,13 @@ class ToolText(AbstractClassicTool):
 
 	############################################################################
 
-	# XXX better way to move the text ?
-
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._last_click_btn = event.button
 		self._should_cancel = True
 		self.set_common_values(self._last_click_btn, event_x, event_y)
-		# self._set_font_options()
 		self._open_popover_at(int(event.x), int(event.y))
 
+	# XXX could there be a better way to move the text ?
 	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = x
@@ -146,7 +144,6 @@ class ToolText(AbstractClassicTool):
 
 	def _force_refresh(self, *args):
 		self.set_common_values(self._last_click_btn, self.x_press, self.y_press)
-		# self._set_font_options()
 		self._preview_text()
 
 	def _on_insert_text(self, *args):
@@ -187,9 +184,9 @@ class ToolText(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba1': self.main_color,
 			'rgba2': self.secondary_color,
-			'_font_fam': self._font_fam,
-			'_font_slant': self._font_slant,
-			'_font_weight': self._font_weight,
+			'font_fam': self._font_fam,
+			'font_slant': self._font_slant,
+			'font_weight': self._font_weight,
 			'font_size': self.tool_width,
 			# 'antialias': self._use_antialias, # XXX ne marche pas ??
 			'x': self.x_press,
@@ -201,13 +198,12 @@ class ToolText(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
-		# XXX semble se foutre de l'antialiasing
 
-		_font_fam = operation['_font_fam']
-		_font_slant = operation['_font_slant']
-		_font_weight = operation['_font_weight']
-		font_size = operation['font_size'] * 3 # XXX totalement arbitraire
-		cairo_context.select_font_face(_font_fam, _font_slant, _font_weight)
+		font_fam = operation['font_fam']
+		font_slant = operation['font_slant']
+		font_weight = operation['font_weight']
+		font_size = operation['font_size'] * 3 # totalement arbitraire
+		cairo_context.select_font_face(font_fam, font_slant, font_weight)
 		cairo_context.set_font_size(font_size)
 
 		lines = operation['text'].split('\n')
