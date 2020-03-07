@@ -60,7 +60,7 @@ class ToolPolygon(AbstractAbstractTool):
 			self.continue_polygon(cairo_context, event_x, event_y)
 			return False
 
-	def init_polygon(self, cairo_context): # TODO simplfiable depuis que c'est split en 2 outils
+	def init_polygon(self, cairo_context): # TODO simplifiable ?
 		(self.past_x, self.past_y) = (self.x_press, self.y_press)
 		cairo_context.move_to(self.x_press, self.y_press)
 		self._path = cairo_context.copy_path()

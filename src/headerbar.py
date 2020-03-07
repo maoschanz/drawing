@@ -82,8 +82,6 @@ class DrawingAdaptativeHeaderBar():
 	def set_compact(self, state):
 		"""Set the compactness of the headerbar: if the parameter is True, wide
 		widgets will be hidden in favor of narrow ones. Else, the opposite."""
-		# XXX Instead of a boolean, `state` could be an integer, which would be
-		# far more complex to handle, but would allow thinner granularity.
 		if state:
 			self.main_menu_btn.set_menu_model(self.long_main_menu)
 		else:

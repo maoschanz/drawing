@@ -255,13 +255,13 @@ class DrawingWindow(Gtk.ApplicationWindow):
 
 	def on_active_tab_changed(self, *args):
 		self.switch_to(self.active_tool_id, args[1])
-		# On devrait être moins bourrin et conserver la sélection #FIXME
+		# On devrait être moins bourrin et conserver la sélection # TODO
 		self.set_picture_title(args[1].update_title())
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
 		section = self.app.get_menubar().get_item_link(2, \
-		          Gio.MENU_LINK_SUBMENU).get_item_link(6, Gio.MENU_LINK_SECTION)
+		          Gio.MENU_LINK_SUBMENU).get_item_link(4, Gio.MENU_LINK_SECTION)
 		section.remove_all()
 		for page in self.notebook.get_children():
 			tab_title = page.update_title()
@@ -681,7 +681,6 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.tools_flowbox.set_max_children_per_line(nb_tools)
 
 	def on_show_labels_setting_changed(self, *args):
-		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
 	def on_show_labels_action_changed(self, *args):
@@ -1003,11 +1002,12 @@ class DrawingWindow(Gtk.ApplicationWindow):
 			pixbuf = self.get_active_image().selection.get_pixbuf()
 			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self)
 
-	def get_selection_tool(self):  # XXX réellement utile ?
+	def get_selection_tool(self):
 		if 'select' in self.tools:
 			return self.tools['select']
 		else:
-			self.prompt_message(True, 'Required tool is not available')
+			self.prompt_message(True, _("Required tool is not available"))
+			# Never happens in versions 0.4.x
 			return self.active_tool()
 
 	def force_selection(self, *args):
@@ -1041,7 +1041,7 @@ class DrawingWindow(Gtk.ApplicationWindow):
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().update()
 
-	def action_rebuild(self, *args): # XXX image method ?
+	def action_rebuild(self, *args):
 		"""Rebuild the image according to the history content."""
 		self.get_active_image().restore_first_pixbuf()
 		h = self.get_active_image().undo_history.copy()

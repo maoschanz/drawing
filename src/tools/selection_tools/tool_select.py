@@ -43,8 +43,7 @@ class ToolSelect(AbstractAbstractTool):
 		self.minimap_icon = builder.get_object('minimap_icon')
 		self.window.bottom_panel_box.add(self.bottom_panel)
 		self.implements_panel = True
-		# self.needed_width_for_long = XXX TODO currently harcoded
-		self.needed_width_for_long = 450
+		self.needed_width_for_long = 450 # TODO it's bad to hardcode this
 
 	############################################################################
 	# UI implementations #######################################################
@@ -97,8 +96,9 @@ class ToolSelect(AbstractAbstractTool):
 		if not preserve_selection:
 			self.unselect_and_apply()
 
-	# def on_tool_selected(self, *args):
-		# XXX rien, vraiment ?
+	def on_tool_selected(self, *args):
+		if self.selection_is_active():
+			self.refresh()
 
 	# def on_tool_unselected(self, *args):
 		# XXX rien, vraiment ?
@@ -155,7 +155,8 @@ class ToolSelect(AbstractAbstractTool):
 			self.draw_polygon(event_x, event_y)
 		elif self.behavior == 'drag':
 			# self.drag_to(event_x, event_y)
-			pass # on modifie réellement les coordonnées, c'est pas une "vraie" preview
+			pass # XXX ça modifie réellement les coordonnées, c'est pas une
+			# "vraie" preview, refactoring nécessaire
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		x = event.x + self.get_image().scroll_x
@@ -205,6 +206,14 @@ class ToolSelect(AbstractAbstractTool):
 		y = self.get_selection().selection_y
 		self.future_x = x + event_x - self.x_press
 		self.future_y = y + event_y - self.y_press
+		self.operation_type = 'op-drag'
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+		self.operation_type = 'op-define'
+
+	def refresh(self):
+		self.future_x = self.get_selection().selection_x
+		self.future_y = self.get_selection().selection_y
 		self.operation_type = 'op-drag'
 		operation = self.build_operation()
 		self.do_tool_operation(operation)

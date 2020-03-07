@@ -66,7 +66,6 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		btn_cm = builder.get_object('units_cm')
 		btn_in.join_group(btn_px)
 		btn_cm.join_group(btn_px)
-		# TODO translatable units
 		btn_px.connect('toggled', self.set_unit, ' px')
 		btn_cm.connect('toggled', self.set_unit, ' cm')
 		btn_in.connect('toggled', self.set_unit, ' in')

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ? elementary ?)
-PACKAGE_NAME="drawing" # TODO et pour elementary ?
-VERSION="0.4.12"
+PACKAGE_NAME="drawing" # et pour elementary ?
+VERSION="0.4.13"
 
 echo "targeted distribution: $DISTRO"
 echo "package name: $PACKAGE_NAME"
 echo "package version: $VERSION"
 echo ""
-echo "Is it correct? [Return/^C]" # XXX ptêt écrasé dans la suite des opérations ?
+echo "Is it correct? [Return/^C]" # écrasé dans la suite des opérations ?
 read confirmation
 
 # se souvenir du dossier courant (qui est la racine du projet) pour y amener le paquet à la fin
