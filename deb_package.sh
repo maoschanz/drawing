@@ -3,18 +3,18 @@
 DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ?
 # elementary ? mint ?) il est probable qu'on s'en tape, car si ce script est
 # fait pour un usage local, les vraies distros changent ça comme des grandes.
-PACKAGE_NAME="drawing" # TODO et pour elementary ? osef je pense, flemme.
+PACKAGE_NAME="drawing" # XXX et pour elementary ? osef je pense, flemme.
 VERSION="0.5"
 
 echo "targeted distribution: $DISTRO"
 echo "package name: $PACKAGE_NAME"
 echo "package version: $VERSION"
 echo ""
-echo "Is it correct? [Return/^C]" # XXX de toutes manières, les valeurs sont
-# ptêt écrasées dans la suite des opérations ?
+echo "Is it correct? [Return/^C]"
 read confirmation
 
-# se souvenir du dossier courant (qui est la racine du projet) pour y amener le paquet à la fin
+# remember current directory (theorically, the project's root) to bring the
+# package here in the end
 previous_dir=`pwd`
 
 # mettre en place la structure à la con voulue par les scripts de debian
@@ -36,13 +36,13 @@ cd $DIR_PATH/$DIR_NAME/
 # création automatique des fichiers supplémentaires pour la construction
 dh_make -i -y
 
-# la construction
+# actually building the package
 dpkg-buildpackage -i -us -uc -b
 
-# récupérer le paquet dans /tmp
+# get the package in /tmp and move it where the user is
 cp $DIR_PATH/*.deb $previous_dir
 
-# nettoyage
+# cleaning
 ls $DIR_PATH
 ls $DIR_PATH/$DIR_NAME
 rm -r $DIR_PATH

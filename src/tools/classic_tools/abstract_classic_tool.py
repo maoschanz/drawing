@@ -18,7 +18,7 @@
 import cairo
 from .abstract_tool import AbstractAbstractTool
 from .optionsbar_classic import OptionsBarClassic
-from .utilities_blur import utilities_fast_blur
+from .utilities_blur import utilities_blur_surface
 
 class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
@@ -92,16 +92,82 @@ class AbstractClassicTool(AbstractAbstractTool):
 			context.set_operator(cairo.Operator.CLEAR)
 
 		if is_blur and not is_preview:
-			context.set_line_width(2*line_width)
-			context.stroke()
-			radius = int(line_width/2)
-			# TODO only give the adequate rectangle, not the whole image, it's too slow!
-			b_surface = utilities_fast_blur(self.get_surface(), radius, 0)
-			# where 0 == BlurType.AUTO
-			self.restore_pixbuf()
-			context = self.get_context()
-			context.set_operator(cairo.Operator.OVER)
-			context.set_source_surface(b_surface, 0, 0)
+			context.set_line_width(2 * line_width)
+			context.stroke_preserve()
+			radius = int(line_width / 2)
+			TEMP = 0 # FIXME -1
+			if TEMP == 0:
+			# (too slow)
+				source_surface = self.get_surface()
+				blurred_surface = utilities_blur_surface(source_surface, radius, 0, 0)
+				# where 0 == BlurType.AUTO and 0 == BlurDirection.BOTH
+				self.restore_pixbuf()
+				context = self.get_context()
+				context.set_operator(cairo.Operator.OVER)
+				context.set_source_surface(blurred_surface, 0, 0)
+			elif TEMP == 1:
+			# broken at the bottom/right of the image (surface not created)
+			# broken if out of the image
+				x1, y1, x2, y2 = context.path_extents()
+				rect = cairo.RectangleInt(x=int(x1), y=int(y1), width=int(x2), height=int(y2))
+				source_surface = self.get_surface().map_to_image(rect)
+				blurred_surface = utilities_blur_surface(source_surface, radius, 0, 0)
+				# where 0 == BlurType.AUTO and 0 == BlurDirection.BOTH
+				self.restore_pixbuf()
+				context = self.get_context()
+				context.set_operator(cairo.Operator.OVER)
+				context.set_source_surface(blurred_surface, 0, 0)
+			elif TEMP == -1:
+			# test
+				x1, y1, x2, y2 = context.path_extents()
+				x0 = max(0, int(x1 - line_width))
+				y0 = max(0, int(y1 - line_width))
+				w = int(x2 - x1) + line_width * 2
+				h = int(y2 - y1) + line_width * 2
+				rect = cairo.RectangleInt(x=x0, y=y0, width=w, height=h)
+				source_surface = self.get_surface().map_to_image(rect)
+				# XXX en fait c'est là que ça chie
+				blurred_surface = utilities_blur_surface(source_surface, radius, 0, 0)
+				# where 0 == BlurType.AUTO and 0 == BlurDirection.BOTH
+				self.restore_pixbuf()
+				context = self.get_context()
+				context.set_operator(cairo.Operator.OVER)
+				context.set_source_rgba(0, 0, 255, 0.2)
+				context.paint()
+				context.set_source_surface(blurred_surface, 0, 0)
+			elif TEMP == -3:
+			# test
+				x1, y1, x2, y2 = context.path_extents()
+				x0 = max(0, int(x1 - line_width))
+				y0 = max(0, int(y1 - line_width))
+				w = int(x2 - x1) + line_width * 2
+				h = int(y2 - y1) + line_width * 2
+				rect = cairo.RectangleInt(x=x0, y=y0, width=w, height=h)
+				source_surface = self.get_surface().map_to_image(rect)
+				# cairo_context2 = cairo.Context(source_surface)
+				# cairo_context2.set_source_rgba(255, 0, 255, 0.5)
+				# cairo_context2.paint()
+				self.restore_pixbuf()
+				context = self.get_context()
+				context.set_operator(cairo.Operator.OVER)
+				context.set_source_rgba(0, 0, 255, 0.2)
+				context.paint()
+				context.set_source_surface(source_surface, 0, 0)
+			elif TEMP == 2:
+			# broken at the bottom/right of the image (surface not correct)
+			# broken if out of the image
+				x1, y1, x2, y2 = context.path_extents()
+				w = int(x2 - x1)
+				h = int(y2 - y1)
+				rect = cairo.RectangleInt(x=int(x1), y=int(y1), width=w, height=h)
+				source_surface = self.get_surface().map_to_image(rect)
+				blurred_surface = utilities_blur_surface(source_surface, radius, 0, 0)
+				# where 0 == BlurType.AUTO and 0 == BlurDirection.BOTH
+				self.restore_pixbuf()
+				context = self.get_context()
+				context.set_operator(cairo.Operator.OVER)
+				# context.set_source_surface(blurred_surface, int(x1), int(y1))
+				context.set_source_surface(blurred_surface, 0, 0)
 			context.paint()
 		else:
 			context.set_line_width(line_width)
