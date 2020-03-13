@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 20:26+0100\n"
+"POT-Creation-Date: 2020-03-13 02:56+0100\n"
 "PO-Revision-Date: 2020-02-28 13:50+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -288,7 +288,7 @@ msgstr "Verschil"
 msgid "Don't use the colors but…"
 msgstr "Geen kleuren gebruiken…"
 
-#. BlurType.PX_BOX
+#. To translators: this is a verb
 msgid "Blur"
 msgstr "Vervaging"
 
@@ -880,8 +880,9 @@ msgstr "Doorzichtigheid"
 msgid "Change saturation"
 msgstr "Verzadiging aanpassen"
 
-msgid "Pixelisation"
-msgstr "Pixelvorming"
+#. Context: a filter adding like a light veil on the image
+msgid "Veil"
+msgstr ""
 
 msgid "Add transparency"
 msgstr "Doorzichtigheid toevoegen"
@@ -889,10 +890,36 @@ msgstr "Doorzichtigheid toevoegen"
 msgid "Invert colors"
 msgstr "Kleuren omdraaien"
 
-msgid "Horizontal blur"
+#, fuzzy
+msgid "Blurring"
+msgstr "Vervaging"
+
+msgid "Fast blur"
+msgstr ""
+
+msgid "Slow blur"
+msgstr ""
+
+#. Context: a filter that censors the image with some kind of tiles
+msgid "Tiles"
+msgstr ""
+
+#, fuzzy
+msgid "Blur direction"
+msgstr "Kleurselectie"
+
+#. Context: about the blur direction
+msgid "None"
+msgstr ""
+
+#. Context: about the blur direction
+#, fuzzy
+msgid "Horizontal"
 msgstr "Horizontale vervaging"
 
-msgid "Vertical blur"
+#. Context: about the blur direction
+#, fuzzy
+msgid "Vertical"
 msgstr "Verticale vervaging"
 
 msgid "Angle (degrees)"
@@ -1122,6 +1149,9 @@ msgstr "Bezig met wijzigen van selectiegrootte"
 msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
 
+#~ msgid "Pixelisation"
+#~ msgstr "Pixelvorming"
+
 #~ msgid "Classic"
 #~ msgstr "Klassiek"
 
@@ -1136,4 +1166,3 @@ msgstr "Bezig met wijzigen van canvasgrootte"
 
 #~ msgid "Similar color"
 #~ msgstr "Vergelijkbare kleur"
-

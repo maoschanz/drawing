@@ -162,6 +162,7 @@
         <attribute name="target">saturation</attribute>
       </item>
       <item>
+          <!-- Context: a filter adding like a light veil on the image -->
         <attribute name="label" translatable="yes">Veil</attribute>
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">veil</attribute>
@@ -197,6 +198,7 @@
       <!--   <attribute name="target">blur_multi</attribute> -->
       <!-- </item> -->
       <item>
+        <!-- Context: a filter that censors the image with some kind of tiles -->
         <attribute name="label" translatable="yes">Tiles</attribute>
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">tiles</attribute>
@@ -204,16 +206,19 @@
       <submenu>
         <attribute name="label" translatable="yes">Blur direction</attribute>
         <item>
+          <!-- Context: about the blur direction -->
           <attribute name="label" translatable="yes">None</attribute>
           <attribute name="action">win.filters_blur_dir</attribute>
           <attribute name="target">none</attribute>
         </item>
         <item>
+          <!-- Context: about the blur direction -->
           <attribute name="label" translatable="yes">Horizontal</attribute>
           <attribute name="action">win.filters_blur_dir</attribute>
           <attribute name="target">horizontal</attribute>
         </item>
         <item>
+          <!-- Context: about the blur direction -->
           <attribute name="label" translatable="yes">Vertical</attribute>
           <attribute name="action">win.filters_blur_dir</attribute>
           <attribute name="target">vertical</attribute>
