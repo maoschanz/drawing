@@ -330,8 +330,30 @@ def _generic_tiled_blur(surface, radius, blur_direction):
 	return _get_tiled_surface(surface, tile_width, tile_height)
 
 def _get_tiled_surface(surface, tile_width, tile_height):
-	# TODO
-	print("Tiled blur isn't implemented yet")
+	w = surface.get_width()
+	h = surface.get_height()
+	channels = 4 # ARGB
+	pixels = surface.get_data()
+	px_max = w * h * channels
+
+	for x in range(0, w, tile_width):
+		for y in range(0, h, tile_height):
+			current_px = (x + (w * y)) * channels
+			if current_px >= px_max:
+				continue
+			tile_b = pixels[current_px + 0]
+			tile_g = pixels[current_px + 1]
+			tile_r = pixels[current_px + 2]
+			tile_a = pixels[current_px + 3]
+			for tx in range(0, tile_width):
+				for ty in range(0, tile_height):
+					current_px = ((x + tx) + (w * (y + ty))) * channels
+					if current_px >= px_max:
+						continue
+					pixels[current_px + 0] = tile_b
+					pixels[current_px + 1] = tile_g
+					pixels[current_px + 2] = tile_r
+					pixels[current_px + 3] = tile_a
 	return surface
 
 ################################################################################

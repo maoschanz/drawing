@@ -199,18 +199,12 @@
       <!-- </item> -->
       <item>
         <!-- Context: a filter that censors the image with some kind of tiles -->
-        <attribute name="label" translatable="yes">Tiles</attribute>
+        <attribute name="label" translatable="yes">Pixelisation</attribute>
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">tiles</attribute>
       </item>
       <submenu>
         <attribute name="label" translatable="yes">Blur direction</attribute>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">None</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">none</attribute>
-        </item>
         <item>
           <!-- Context: about the blur direction -->
           <attribute name="label" translatable="yes">Horizontal</attribute>
@@ -222,6 +216,12 @@
           <attribute name="label" translatable="yes">Vertical</attribute>
           <attribute name="action">win.filters_blur_dir</attribute>
           <attribute name="target">vertical</attribute>
+        </item>
+        <item>
+          <!-- Context: about the blur direction -->
+          <attribute name="label" translatable="yes">No direction</attribute>
+          <attribute name="action">win.filters_blur_dir</attribute>
+          <attribute name="target">none</attribute>
         </item>
       </submenu>
     </section>
