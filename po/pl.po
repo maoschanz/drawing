@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-14 02:34+0100\n"
-"PO-Revision-Date: 2020-03-05 19:34+0100\n"
+"POT-Creation-Date: 2020-02-23 04:16+0100\n"
+"PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -67,12 +67,17 @@ msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
+"Wersja 0.6 jest dużą aktualizacją z wieloma ważnymi zmianami. Aplikacja "
+"stała się bardziej solidna oraz ma więcej narzędzi:"
 
 msgid ""
 "Rectangle selection and freehand selection are now distinct tools, and the "
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
+"Zaznaczanie prostokątów i zaznaczanie odręczne są teraz odrębnymi "
+"narzędziami, a narzędzie „obracanie” obsługuje teraz dowolny kąt i obsługuje "
+"odwracanie w poziomie lub w pionie."
 
 msgid ""
 "The numerous tools producing shapes (circle, rectangle, polygon, …), have "
@@ -80,12 +85,19 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
+"Liczne narzędzia wytwarzające kształty (okrąg, prostokąt, wielokąt,…) "
+"zostały połączone w jedno, bardziej spójne narzędzie „kształtu” wraz z "
+"„zaokrąglonym prostokątem” i „elipsą”. Opcje wypełniania obejmują teraz "
+"różne rodzaje gradientów."
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
+"Narzędzie „nasycenia” zostało zastąpione przez „filtry”, bardziej wydajne "
+"narzędzie z kilkoma rodzajami rozmycia, inwersji kolorów, pikselizacji, "
+"nasycenia i przezroczystości."
 
 msgid "A fullscreen mode is now available."
 msgstr "Tryb pełnego ekranu jest teraz dostępny."
@@ -369,7 +381,7 @@ msgstr "Obracanie"
 #. into parallelograms (= tilt, slant, bend). Named after MS Paint's
 #. "Stretch/Skew" dialog.
 msgid "Skew"
-msgstr ""
+msgstr "Zniekształcacz"
 
 msgid "Filters"
 msgstr "Filtry"
@@ -396,7 +408,7 @@ msgid "Open a file"
 msgstr "Otwórz plik"
 
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Załaduj ponownie obraz z dysku"
 
 msgid "Save as"
 msgstr "Zapisz jako"
@@ -466,14 +478,13 @@ msgid "Redo %s"
 msgstr "Ponów %s"
 
 msgid "Can't reload a never saved file from the disk."
-msgstr ""
+msgstr "Nie można przeładować z dysku niezapisanego wcześniej pliku."
 
 msgid "Unsaved file"
 msgstr "Niezapisany plik"
 
-#, fuzzy
 msgid "Show the app version"
-msgstr "Pokaż podgląd"
+msgstr "Pokaż wersję aplikacji"
 
 msgid "Open a new window"
 msgstr "Otwórz w nowym oknie"
@@ -536,8 +547,8 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Wybierz, co zrobić z przeźroczystymi punktami obrazu, dla wymienionych "
-"formatów."
+"Jeśli zapiszesz swój obraz w jednym z tych formatów, to co chcesz zrobić z "
+"przeźroczystymi punktami obrazu?"
 
 msgid "White"
 msgstr "Biały"
@@ -554,16 +565,15 @@ msgstr "Nic"
 msgid "Ask before saving"
 msgstr "Zapytaj przed zapisaniem"
 
-#, fuzzy
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr ""
-"Możesz powiększać za pomocą Ctrl + kółko myszy lub tylko kółkiem myszy."
+"Możesz powiększać za pomocą Ctrl oraz kółka myszy lub samym kółkiem myszy."
 
 msgid "Using keyboard shortcuts or touch gestures is possible too."
 msgstr "Używanie skrótów klawiszowych lub gestów także jest możliwe."
 
 msgid "Use 'Ctrl' to zoom"
-msgstr "Użyj „Ctrl”, aby przybliżyć."
+msgstr "Użyj „Ctrl”, aby przybliżyć"
 
 msgid "Appearance"
 msgstr "Wygląd"
@@ -586,7 +596,7 @@ msgid "Eraser"
 msgstr "Gumka"
 
 msgid "Highlighter"
-msgstr ""
+msgstr "Wyróżnij zakreślaczem"
 
 msgid "Free selection"
 msgstr "Zaznaczanie (dowolne)"
@@ -622,7 +632,7 @@ msgid "Compact"
 msgstr "Kompaktowy"
 
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -651,9 +661,9 @@ msgstr ""
 msgid "%s cm"
 msgstr ""
 
-#, python-format
+#, fuzzy, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s cali"
 
 msgid "Path"
 msgstr "Ścieżka"
@@ -684,7 +694,7 @@ msgid "Brown"
 msgstr "Brązowy"
 
 msgid "Probably brown"
-msgstr ""
+msgstr "Prawdopodobnie brązowy"
 
 msgid "Red"
 msgstr "Czerwony"
@@ -698,9 +708,8 @@ msgstr "Niebieski"
 msgid "Yellow"
 msgstr "Żółty"
 
-#, fuzzy
 msgid "Magenta"
-msgstr "Kolor czerwony o odcieniu niebieskawym"
+msgstr "Kolor czerwony o niebieskawym odcieniu"
 
 msgid "Purple"
 msgstr "Purpurowy"
@@ -709,7 +718,7 @@ msgid "Cyan"
 msgstr "Cyjan"
 
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Prawdopodobnie turkusowy"
 
 msgid "Unknown color name"
 msgstr "Nieznana nazwa koloru"
@@ -811,19 +820,20 @@ msgid "Import a picture"
 msgstr "Importuj obraz"
 
 msgid "Required tool is not available"
-msgstr "Wymagane narzędzie jest niedostępne."
+msgstr "Wymagane narzędzie jest niedostępne"
 
 msgid "Continue"
 msgstr "Kontynuuj"
 
 msgid "The area seems poorly delimited, or is very complex."
-msgstr ""
+msgstr "Obszar wydaje się źle wytyczony lub jest zbyt złożony."
 
 msgid "This algorithm may not be able to manage the wanted area."
-msgstr ""
+msgstr "Ten algorytm może nie być w stanie poradzić sobie z tym obszarem."
 
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
+"Czy chcesz przerwać operację czy pozwolić narzędziu się z tym zmierzyć?"
 
 msgid "Main color"
 msgstr "Wypełnienie"
@@ -839,7 +849,7 @@ msgid "Preview"
 msgstr "Podgląd"
 
 msgid "How the color will be applied to the existing pixels"
-msgstr ""
+msgstr "Jak kolor zostanie zastosowany do istniejących pikseli"
 
 msgid "Back to the palette"
 msgstr "Wróć do palety"
@@ -848,7 +858,7 @@ msgid "Palette"
 msgstr "Paleta"
 
 msgid "Use this editor by default"
-msgstr ""
+msgstr "Używaj tego edytora domyślnie"
 
 msgid "More actions"
 msgstr "Więcej poleceń"
@@ -936,7 +946,7 @@ msgid "More options"
 msgstr "Więcej opcji"
 
 msgid "Keep proportions"
-msgstr "Zachowaj proporcje"
+msgstr "Zachowaj proporcję"
 
 #. Context for translations: "Always [keep proportions]"
 msgid "Always"
@@ -944,7 +954,7 @@ msgstr "Zawsze"
 
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 msgid "When scaling from corners"
-msgstr ""
+msgstr "Podczas skalowania począwszy od narożników"
 
 #. Context for translations: "Never [keep proportions]"
 msgid "Never"
@@ -985,13 +995,13 @@ msgid "Behavior"
 msgstr "Zachowanie"
 
 msgid "Encircle and fill"
-msgstr ""
+msgstr "Zakreśl i wypełnij"
 
 msgid "Erase and replace"
-msgstr ""
+msgstr "Wymaż i zamień"
 
 msgid "Clipping"
-msgstr ""
+msgstr "Wycinek"
 
 msgid "Rectangle"
 msgstr "Prostokąt"
@@ -1081,7 +1091,7 @@ msgid "Painting options"
 msgstr "Opcje malowania"
 
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "Kliknij obszar, aby zastąpić kolor przezroczystością"
 
 msgid "Pencil"
 msgstr "Ołówek"
@@ -1108,16 +1118,16 @@ msgid "Font options"
 msgstr "Opcje tekstu"
 
 msgid "Drag the selection or right-click on the canvas"
-msgstr ""
+msgstr "Przeciągnij zaznaczenie lub kliknij na płótno prawym przyciskiem myszy"
 
 msgid "Select an area or right-click on the canvas"
-msgstr ""
+msgstr "Wybierz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
 
 msgid "Rectangle selection"
 msgstr "Zaznaczanie (prostokątem)"
 
 msgid "Error: invalid values"
-msgstr ""
+msgstr "Błąd: nieprawidłowe wartości"
 
 msgid "Cropping the selection"
 msgstr "Przycinanie zaznaczenia"
