@@ -23,8 +23,8 @@ class DrOptionsManager():
 
 	def __init__(self, window):
 		self.window = window
-		self._bottom_panels_dict = {}
-		self._active_panel_id = None
+		self._bottom_panes_dict = {}
+		self._active_pane_id= None
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -58,7 +58,7 @@ class DrOptionsManager():
 
 		args[0].set_state(GLib.Variant.new_boolean(new_value))
 		self.window.set_picture_title()
-		self.get_active_panel().hide_options_menu()
+		self.get_active_pane().hide_options_menu()
 
 	def _enum_callback(self, *args):
 		"""This callback is simple but can't handle both menu-items and
@@ -73,7 +73,7 @@ class DrOptionsManager():
 		# Actually change the state to the new value.
 		args[0].set_state(GLib.Variant.new_string(new_value))
 		self.window.set_picture_title()
-		self.get_active_panel().hide_options_menu()
+		self.get_active_pane().hide_options_menu()
 
 	############################################################################
 
@@ -94,87 +94,87 @@ class DrOptionsManager():
 		self.window._settings.set_string('last-active-shape', shape_name)
 
 	############################################################################
-	# Bottom panels management #################################################
+	# Bottom panes management ##################################################
 
-	def try_add_bottom_panel(self, panel_id, calling_tool):
-		if panel_id not in self._bottom_panels_dict:
-			new_panel = calling_tool.build_bottom_panel()
-			if new_panel is None:
+	def try_add_bottom_pane(self, pane_id, calling_tool):
+		if pane_id not in self._bottom_panes_dict:
+			new_pane = calling_tool.build_bottom_pane()
+			if new_pane is None:
 				return
-			self._bottom_panels_dict[panel_id] = new_panel
-			self.window.bottom_panel_box.add(new_panel.action_bar)
+			self._bottom_panes_dict[pane_id] = new_pane
+			self.window.bottom_panes_box.add(new_pane.action_bar)
 
-	def try_enable_panel(self, panel_id):
-		if panel_id == self._active_panel_id:
+	def try_enable_pane(self, pane_id):
+		if pane_id == self._active_pane_id:
 			return
-		elif panel_id not in self._bottom_panels_dict:
+		elif pane_id not in self._bottom_panes_dict:
 			# Shouldn't happen anyway
 			return
 		else:
-			self._active_panel_id = panel_id
-			self.show_active_panel()
+			self._active_pane_id = pane_id
+			self._show_active_pane()
 			self.update_minimap_position()
 
-	def show_active_panel(self):
-		for each_id in self._bottom_panels_dict:
-			is_active = each_id == self._active_panel_id
-			self._bottom_panels_dict[each_id].action_bar.set_visible(is_active)
+	def _show_active_pane(self):
+		for each_id in self._bottom_panes_dict:
+			is_active = each_id == self._active_pane_id
+			self._bottom_panes_dict[each_id].action_bar.set_visible(is_active)
 
-	def get_active_panel(self):
-		if self._active_panel_id is None:
+	def get_active_pane(self):
+		if self._active_pane_id is None:
 			return None # XXX encore des exceptions manuelles...
-		return self._bottom_panels_dict[self._active_panel_id]
+		return self._bottom_panes_dict[self._active_pane_id]
 
-	def update_panel(self, tool):
-		self._bottom_panels_dict[tool.panel_id].update_for_new_tool(tool)
+	def update_pane(self, tool):
+		self._bottom_panes_dict[tool.pane_id].update_for_new_tool(tool)
 
 	############################################################################
 
 	def init_adaptability(self):
-		for panel_id in self._bottom_panels_dict:
-			self._bottom_panels_dict[panel_id].init_adaptability()
-		self.show_active_panel()
+		for pane_id in self._bottom_panes_dict:
+			self._bottom_panes_dict[pane_id].init_adaptability()
+		self._show_active_pane()
 
 	def adapt_to_window_size(self, available_width):
-		self.get_active_panel().adapt_to_window_size(available_width)
+		self.get_active_pane().adapt_to_window_size(available_width)
 
 	############################################################################
 
 	def toggle_menu(self):
-		self.get_active_panel().toggle_options_menu()
+		self.get_active_pane().toggle_options_menu()
 
 	def set_minimap_label(self, label):
-		for panel_id in self._bottom_panels_dict:
-			self._bottom_panels_dict[panel_id].set_minimap_label(label)
+		for pane_id in self._bottom_panes_dict:
+			self._bottom_panes_dict[pane_id].set_minimap_label(label)
 
 	def update_minimap_position(self):
-		"""Move the minimap popover to the currently active panel."""
-		btn = self.get_active_panel().get_minimap_btn()
+		"""Move the minimap popover to the currently active optionsbar."""
+		btn = self.get_active_pane().get_minimap_btn()
 		if btn is not None:
 			self.window.minimap.set_relative_to(btn)
 		else:
-			self.window.minimap.set_relative_to(self.window.bottom_panel_box)
+			self.window.minimap.set_relative_to(self.window.bottom_panes_box)
 
 	def on_middle_click(self):
-		self.get_active_panel().middle_click_action()
+		self.get_active_pane().middle_click_action()
 
 	############################################################################
-	# Methods specific to the classic panel ####################################
+	# Methods specific to the optionsbar for classic tools #####################
 
-	def get_classic_panel(self): # XXX hardcoded
-		return self._bottom_panels_dict['classic']
+	def get_classic_tools_pane(self): # XXX hardcoded
+		return self._bottom_panes_dict['classic']
 
 	def left_color_btn(self):
-		return self.get_classic_panel()._color_l
+		return self.get_classic_tools_pane()._color_l
 
 	def right_color_btn(self):
-		return self.get_classic_panel()._color_r
+		return self.get_classic_tools_pane()._color_r
 
 	def set_palette_setting(self, show_editor):
-		self.get_classic_panel().set_palette_setting(show_editor)
+		self.get_classic_tools_pane().set_palette_setting(show_editor)
 
 	def get_tool_width(self):
-		return int(self.get_classic_panel().thickness_spinbtn.get_value())
+		return int(self.get_classic_tools_pane().thickness_spinbtn.get_value())
 
 	def set_right_color(self, color):
 		return self.right_color_btn().color_widget.set_rgba(color)
@@ -189,8 +189,8 @@ class DrOptionsManager():
 		return self.left_color_btn().color_widget.get_rgba()
 
 	def get_operator(self):
-		enum = self.get_classic_panel()._operator_enum
-		label = self.get_classic_panel()._operator_label
+		enum = self.get_classic_tools_pane()._operator_enum
+		label = self.get_classic_tools_pane()._operator_label
 		return enum, label
 
 	############################################################################

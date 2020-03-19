@@ -37,11 +37,11 @@ class ToolScale(AbstractCanvasTool):
 		self.add_tool_action_enum('scale-proportions', 'corners')
 		# self.add_tool_action_enum('scale-unit', 'pixels') # TODO ?
 
-	def try_build_panel(self):
-		self.panel_id = 'scale'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'scale'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		bar = OptionsBarScale(self)
 		self.width_btn = bar.width_btn
 		self.height_btn = bar.height_btn

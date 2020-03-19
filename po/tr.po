@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 20:26+0100\n"
-"PO-Revision-Date: 2020-02-25 04:34+0300\n"
+"POT-Creation-Date: 2020-03-14 02:34+0100\n"
+"PO-Revision-Date: 2020-03-12 22:32+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
@@ -290,7 +290,7 @@ msgstr "Farklılık"
 msgid "Don't use the colors but…"
 msgstr "Renkleri kullanmayın ama…"
 
-#. BlurType.PX_BOX
+#. To translators: this is a verb
 msgid "Blur"
 msgstr "Bulanıklık"
 
@@ -409,7 +409,7 @@ msgid "Open a file"
 msgstr "Bir dosya aç"
 
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Resmi diskten yeniden yükle"
 
 msgid "Save as"
 msgstr "Farklı kaydet"
@@ -479,7 +479,7 @@ msgid "Redo %s"
 msgstr "Yinele %s"
 
 msgid "Can't reload a never saved file from the disk."
-msgstr ""
+msgstr "Hiç kaydedilmemiş bir dosya diskten yeniden yüklenemez."
 
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
@@ -634,7 +634,7 @@ msgid "Compact"
 msgstr "Yoğun"
 
 msgid "elementary OS"
-msgstr "Elementary OS"
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -884,8 +884,9 @@ msgstr "Saydamlık"
 msgid "Change saturation"
 msgstr "Doygunluğu değiştir"
 
-msgid "Pixelisation"
-msgstr "Pikselleme"
+#. Context: a filter adding like a light veil on the image
+msgid "Veil"
+msgstr ""
 
 msgid "Add transparency"
 msgstr "Saydamlık ekle"
@@ -893,11 +894,38 @@ msgstr "Saydamlık ekle"
 msgid "Invert colors"
 msgstr "Renkleri ters çevir"
 
-msgid "Horizontal blur"
+#, fuzzy
+msgid "Blurring"
+msgstr "Bulanıklık"
+
+msgid "Fast blur"
+msgstr ""
+
+msgid "Slow blur"
+msgstr ""
+
+#. Context: a filter that censors the image with some kind of tiles
+msgid "Pixelisation"
+msgstr "Pikselleme"
+
+#, fuzzy
+msgid "Blur direction"
+msgstr "Renk seçimi"
+
+#. Context: about the blur direction
+#, fuzzy
+msgid "Horizontal"
 msgstr "Yatay bulanıklık"
 
-msgid "Vertical blur"
+#. Context: about the blur direction
+#, fuzzy
+msgid "Vertical"
 msgstr "Dikey bulanıklık"
+
+#. Context: about the blur direction
+#, fuzzy
+msgid "No direction"
+msgstr "Renk seçimi"
 
 msgid "Angle (degrees)"
 msgstr "Açı (derece)"

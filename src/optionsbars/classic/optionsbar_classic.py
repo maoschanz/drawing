@@ -57,8 +57,12 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 	def update_for_new_tool(self, tool):
 		self.color_box.set_sensitive(tool.use_color)
-		self._color_r.set_operators_available(tool.use_operator)
-		self._color_l.set_operators_available(tool.use_operator)
+		if tool.use_operator:
+			operator = self.window.options_manager.get_value('cairo_operator')
+		else:
+			operator = tool._fallback_operator
+		self._color_r.set_operators_available(tool.use_operator, operator)
+		self._color_l.set_operators_available(tool.use_operator, operator)
 		self.thickness_scalebtn.set_sensitive(tool.use_size)
 		self.thickness_spinbtn.set_sensitive(tool.use_size)
 
@@ -156,11 +160,10 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._cairo_operator_lock = False
 		self._update_popovers(args[1].get_string())
 
-	def _update_popovers(self, op_as_str):
-		supports_color = not (op_as_str == 'clear' or op_as_str == 'dest_in')
-		self._set_active_operator(op_as_str)
-		self._color_r.adapt_to_operator(supports_color)
-		self._color_l.adapt_to_operator(supports_color)
+	def _update_popovers(self, op_as_string):
+		self._set_active_operator(op_as_string)
+		self._color_r.adapt_to_operator(op_as_string)
+		self._color_l.adapt_to_operator(op_as_string)
 
 	def _cairop_mirror(self, *args):
 		"""This action should NEVER be added to any menu. It mirrors the action

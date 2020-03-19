@@ -22,7 +22,7 @@ class OptionsBarRotate(AbstractOptionsBar):
 
 	def __init__(self, rotate_tool):
 		super().__init__()
-		# knowing the tool is needed because the panel doesn't compact the same
+		# knowing the tool is needed because the pane doesn't compact the same
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool
 		builder = self.build_ui('optionsbars/canvas/optionsbar-rotate.ui')

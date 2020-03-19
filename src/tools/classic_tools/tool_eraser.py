@@ -29,6 +29,7 @@ class ToolEraser(ToolPencil):
 		AbstractClassicTool.__init__(self, 'eraser', _("Eraser"), \
 		                                         'tool-eraser-symbolic', window)
 		self.use_color = False
+		self._fallback_operator = 'clear'
 
 	def get_options_model(self):
 		return None

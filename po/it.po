@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 20:26+0100\n"
+"POT-Creation-Date: 2020-03-14 02:34+0100\n"
 "PO-Revision-Date: 2020-29-02 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -290,7 +290,7 @@ msgstr "Differenza"
 msgid "Don't use the colors but…"
 msgstr "Non usare i colori ma…"
 
-#. BlurType.PX_BOX
+#. To translators: this is a verb
 msgid "Blur"
 msgstr "Sfocatura"
 
@@ -799,6 +799,7 @@ msgstr "questi file"
 msgid "What do you want to do with %s?"
 msgstr "Cosa vuoi fare con %s?"
 
+#. else the exception has been raised because the user cancelled
 #, python-format
 msgid "Failed to save %s"
 msgstr "Impossibile salvare %s"
@@ -881,8 +882,9 @@ msgstr "Trasparenza"
 msgid "Change saturation"
 msgstr "Cambia saturazione"
 
-msgid "Pixelisation"
-msgstr "Pixelizzazione"
+#. Context: a filter adding like a light veil on the image
+msgid "Veil"
+msgstr ""
 
 msgid "Add transparency"
 msgstr "Aggiungi trasparenza"
@@ -890,11 +892,38 @@ msgstr "Aggiungi trasparenza"
 msgid "Invert colors"
 msgstr "Inverti i colori"
 
-msgid "Horizontal blur"
+#, fuzzy
+msgid "Blurring"
+msgstr "Sfocatura"
+
+msgid "Fast blur"
+msgstr ""
+
+msgid "Slow blur"
+msgstr ""
+
+#. Context: a filter that censors the image with some kind of tiles
+msgid "Pixelisation"
+msgstr "Pixelizzazione"
+
+#, fuzzy
+msgid "Blur direction"
+msgstr "Selezione colore"
+
+#. Context: about the blur direction
+#, fuzzy
+msgid "Horizontal"
 msgstr "Sfocatura orizzontalmente"
 
-msgid "Vertical blur"
+#. Context: about the blur direction
+#, fuzzy
+msgid "Vertical"
 msgstr "Sfocatura verticale"
+
+#. Context: about the blur direction
+#, fuzzy
+msgid "No direction"
+msgstr "Selezione colore"
 
 msgid "Angle (degrees)"
 msgstr "Angolo (gradi)"
@@ -1139,5 +1168,3 @@ msgstr "Ridimensionamento della tela"
 #~ msgid "Selection options"
 #~ msgstr "Opzioni selezione"
 
-#~ msgid "Summary"
-#~ msgstr "Sommario"

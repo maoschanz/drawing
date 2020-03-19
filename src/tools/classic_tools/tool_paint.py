@@ -80,16 +80,16 @@ class ToolPaint(AbstractClassicTool):
 		self.start_tool_operation(operation) # TODO antialiasing
 
 		if operation['algo'] == 'replace':
-			self.op_replace(operation)
+			self._op_replace(operation)
 		elif operation['algo'] == 'fill':
-			self.op_fill(operation)
+			self._op_fill(operation)
 		else: # == 'clipping'
-			self.op_clipping(operation)
+			self._op_clipping(operation)
 
 	############################################################################
 
-	def op_replace(self, operation):
-		"""Algorithmically less ugly than `op_fill`, but doesn't handle (semi-)
+	def _op_replace(self, operation):
+		"""Algorithmically less ugly than `_op_fill`, but doesn't handle (semi-)
 		transparent colors correctly, even outside of the targeted area."""
 		# FIXME
 		if operation['path'] is None:
@@ -115,7 +115,7 @@ class ToolPaint(AbstractClassicTool):
 			red = int( min(255, red) )
 			green = int( min(255, green) )
 			blue = int( min(255, blue) )
-			self.replace_temp_with_alpha(red, green, blue)
+			self._replace_temp_with_alpha(red, green, blue)
 			i = i+1
 		self.restore_pixbuf()
 		cairo_context2 = self.get_context()
@@ -135,7 +135,7 @@ class ToolPaint(AbstractClassicTool):
 		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context2.paint()
 
-	def op_fill(self, operation):
+	def _op_fill(self, operation):
 		"""Simple but ugly, and it's relying on the precision of the provided
 		path whose creation is based on shitty heurisctics."""
 		if operation['path'] is None:
@@ -151,7 +151,7 @@ class ToolPaint(AbstractClassicTool):
 		# 	XXX doesn't work as i expected
 		cairo_context.fill()
 
-	def op_clipping(self, operation):
+	def _op_clipping(self, operation):
 		"""Replace the color with transparency by adding an alpha channel."""
 		old_rgba = operation['old_rgba']
 		r0 = old_rgba[0]
@@ -179,13 +179,13 @@ class ToolPaint(AbstractClassicTool):
 		for i in range(-1 * margin, margin + 1):
 			b = b0 + i
 			if b <= 255 and b >= 0:
-				self.replace_main_with_alpha(r, g, b)
+				self._replace_main_with_alpha(r, g, b)
 
-	def replace_main_with_alpha(self, red, green, blue):
+	def _replace_main_with_alpha(self, red, green, blue):
 		new_pixbuf = self.get_main_pixbuf().add_alpha(True, red, green, blue)
 		self.get_image().set_main_pixbuf(new_pixbuf)
 
-	def replace_temp_with_alpha(self, red, green, blue):
+	def _replace_temp_with_alpha(self, red, green, blue):
 		new_pixbuf = self.get_image().temp_pixbuf.add_alpha(True, red, green, blue)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 

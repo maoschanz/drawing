@@ -18,7 +18,7 @@
 import cairo
 from .abstract_tool import AbstractAbstractTool
 from .optionsbar_classic import OptionsBarClassic
-from .utilities_blur import utilities_fast_blur
+from .utilities_blur import utilities_blur_surface
 
 class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
@@ -33,6 +33,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.tool_width = 10
 		self.main_color = None
 		self.secondary_color = None
+		self._fallback_operator = 'over'
 		self._use_antialias = True
 		self.x_press = 0.0
 		self.y_press = 0.0
@@ -41,11 +42,11 @@ class AbstractClassicTool(AbstractAbstractTool):
 	############################################################################
 	# UI implementations #######################################################
 
-	def try_build_panel(self):
-		self.panel_id = 'classic'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'classic'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		return OptionsBarClassic(self.window)
 
 	def on_tool_selected(self):
@@ -91,16 +92,17 @@ class AbstractClassicTool(AbstractAbstractTool):
 			context.set_operator(cairo.Operator.CLEAR)
 
 		if is_blur and not is_preview:
-			context.set_line_width(2*line_width)
-			context.stroke()
-			radius = int(line_width/2)
-			# TODO only give the adequate rectangle, not the whole image, it's too slow!
-			b_surface = utilities_fast_blur(self.get_surface(), radius, 0)
-			# where 0 == BlurType.AUTO
+			context.set_line_width(line_width)
+			context.stroke_preserve()
+			radius = int(line_width / 2)
+			source_surface = self.get_surface()
+			# XXX using the whole surface is suboptimal
+			blurred_surface = utilities_blur_surface(source_surface, radius, 3, 0)
+			# where 0 == BlurType.CAIRO_REPAINTS and 0 == BlurDirection.BOTH
 			self.restore_pixbuf()
 			context = self.get_context()
 			context.set_operator(cairo.Operator.OVER)
-			context.set_source_surface(b_surface, 0, 0)
+			context.set_source_surface(blurred_surface, 0, 0)
 			context.paint()
 		else:
 			context.set_line_width(line_width)

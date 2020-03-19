@@ -61,11 +61,11 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		builder = Gtk.Builder.new_from_resource(self.UI_PATH + 'selection.ui')
 		return builder.get_object('options-menu')
 
-	def try_build_panel(self):
-		self.panel_id = 'selection'
-		self.window.options_manager.try_add_bottom_panel(self.panel_id, self)
+	def try_build_pane(self):
+		self.pane_id = 'selection'
+		self.window.options_manager.try_add_bottom_pane(self.pane_id, self)
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		return OptionsBarSelection(self.window)
 
 	############################################################################

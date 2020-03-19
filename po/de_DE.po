@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 20:26+0100\n"
-"PO-Revision-Date: 2020-02-29 22:15+0100\n"
+"POT-Creation-Date: 2020-03-14 02:34+0100\n"
+"PO-Revision-Date: 2020-03-17 22:13+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -24,7 +24,6 @@ msgstr "Zeichnung"
 msgid "Simple drawing utility"
 msgstr "Einfaches Zeichenprogramm"
 
-# Copied & pasted into the translated-field to get 100% translated. Did no change to the source string.
 #. Icon name, do not translate
 msgid "com.github.maoschanz.drawing"
 msgstr "com.github.maoschanz.drawing"
@@ -292,7 +291,7 @@ msgstr "Gegensätzlich"
 msgid "Don't use the colors but…"
 msgstr "Benutze nicht die Farben, sondern …"
 
-#. BlurType.PX_BOX
+#. To translators: this is a verb
 msgid "Blur"
 msgstr "Verwischen"
 
@@ -894,8 +893,9 @@ msgstr "Transparenz"
 msgid "Change saturation"
 msgstr "Sättigung ändern"
 
-msgid "Pixelisation"
-msgstr "Verpixelung"
+#. Context: a filter adding like a light veil on the image
+msgid "Veil"
+msgstr "Schleier"
 
 msgid "Add transparency"
 msgstr "Transparenz hinzufügen"
@@ -903,11 +903,33 @@ msgstr "Transparenz hinzufügen"
 msgid "Invert colors"
 msgstr "Farben tauschen"
 
-msgid "Horizontal blur"
-msgstr "Horizontale Unschärfe"
+msgid "Blurring"
+msgstr "Unschärfe"
 
-msgid "Vertical blur"
-msgstr "Vertikale Unschärfe"
+msgid "Fast blur"
+msgstr "Schnelle Unschärfe"
+
+msgid "Slow blur"
+msgstr "Langsame Unschärfe"
+
+#. Context: a filter that censors the image with some kind of tiles
+msgid "Pixelisation"
+msgstr "Verpixelung"
+
+msgid "Blur direction"
+msgstr "Unschärfe-Richtung"
+
+#. Context: about the blur direction
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#. Context: about the blur direction
+msgid "Vertical"
+msgstr "Vertikal"
+
+#. Context: about the blur direction
+msgid "No direction"
+msgstr "Keine Richtung"
 
 msgid "Angle (degrees)"
 msgstr "Winkel (Grad)"

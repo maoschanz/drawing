@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 20:26+0100\n"
-"PO-Revision-Date: 2020-02-23 15:39+0100\n"
+"POT-Creation-Date: 2020-03-14 02:34+0100\n"
+"PO-Revision-Date: 2020-03-18 06:32+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -83,8 +83,8 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
-"De många verktyg som producerar former (Cirkel, Rektangel, Polygon…), har "
-"nu slagits samman till ett enda, mer konsekvent \"formverktyg\", tillsammans "
+"De många verktyg som producerar former (Cirkel, Rektangel, Polygon…), har nu "
+"slagits samman till ett enda, mer konsekvent \"formverktyg\", tillsammans "
 "med \"Rundad rektangel\" och \"Ellips\". Deras fyllningsalternativ "
 "innehåller nu olika typer av övertoningar."
 
@@ -287,7 +287,7 @@ msgstr "Skillnad"
 msgid "Don't use the colors but…"
 msgstr "Använd inte dessa färger, men…"
 
-#. BlurType.PX_BOX
+#. To translators: this is a verb
 msgid "Blur"
 msgstr "Oskärpa"
 
@@ -406,7 +406,7 @@ msgid "Open a file"
 msgstr "Öppna en fil"
 
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Läs om bilden från disk"
 
 msgid "Save as"
 msgstr "Spara som"
@@ -476,7 +476,7 @@ msgid "Redo %s"
 msgstr "Upprepa %s"
 
 msgid "Can't reload a never saved file from the disk."
-msgstr ""
+msgstr "Kan inte läsa om en fil som aldrig sparats."
 
 msgid "Unsaved file"
 msgstr "Osparad fil"
@@ -876,8 +876,9 @@ msgstr "Transparens"
 msgid "Change saturation"
 msgstr "Ändra mättnad"
 
-msgid "Pixelisation"
-msgstr "Pixelisering"
+#. Context: a filter adding like a light veil on the image
+msgid "Veil"
+msgstr "Slöja"
 
 msgid "Add transparency"
 msgstr "Lägg till transparens"
@@ -885,11 +886,33 @@ msgstr "Lägg till transparens"
 msgid "Invert colors"
 msgstr "Invertera färger"
 
-msgid "Horizontal blur"
-msgstr "Horisontell oskärpa"
+msgid "Blurring"
+msgstr "Oskärpa"
 
-msgid "Vertical blur"
-msgstr "Vertikal oskärpa"
+msgid "Fast blur"
+msgstr "Snabb oskärpa"
+
+msgid "Slow blur"
+msgstr "Långsam oskärpa"
+
+#. Context: a filter that censors the image with some kind of tiles
+msgid "Pixelisation"
+msgstr "Pixelisering"
+
+msgid "Blur direction"
+msgstr "Oskärpans riktning"
+
+#. Context: about the blur direction
+msgid "Horizontal"
+msgstr "Horisontellt"
+
+#. Context: about the blur direction
+msgid "Vertical"
+msgstr "Vertikalt"
+
+#. Context: about the blur direction
+msgid "No direction"
+msgstr "Ingen riktning"
 
 msgid "Angle (degrees)"
 msgstr "Vinkel (grader)"

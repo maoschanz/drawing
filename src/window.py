@@ -81,7 +81,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	info_bar = Gtk.Template.Child()
 	info_label = Gtk.Template.Child()
 	notebook = Gtk.Template.Child()
-	bottom_panel_box = Gtk.Template.Child()
+	bottom_panes_box = Gtk.Template.Child()
 	tools_scrollable_box = Gtk.Template.Child()
 	tools_nonscrollable_box = Gtk.Template.Child()
 	fullscreen_btn = Gtk.Template.Child()
@@ -151,7 +151,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.load_tool('skew', ToolSkew, disabled_tools_ids, dev)
 		self.load_tool('filters', ToolFilters, disabled_tools_ids, dev)
 
-		# Side panel buttons for tools, and their menubar items if they don't
+		# Side pane buttons for tools, and their menubar items if they don't
 		# exist yet
 		self.build_tool_rows()
 		if not self.app.has_tools_in_menubar:
@@ -180,7 +180,7 @@ class DrWindow(Gtk.ApplicationWindow):
 				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
 	def build_tool_rows(self):
-		"""Adds each tool's button to the side panel."""
+		"""Adds each tool's button to the side pane."""
 		group = None
 		for tool_id in self.tools:
 			row = self.tools[tool_id].row
@@ -316,7 +316,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_bar.connect('close', self.hide_message)
 		self.info_bar.connect('response', self.hide_message)
 		self.connect('delete-event', self.on_close)
-		self.connect('configure-event', self.adapt_to_window_size)
+		self.connect('configure-event', self._adapt_to_window_size)
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self._settings.connect('changed::deco-type', self.on_layout_changed)
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
@@ -564,21 +564,21 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
 		action to ease the accelerator (shift+f10). This action could be
-		disable when the current panel doesn't contain the corresponding button,
+		disable when the current pane doesn't contain the corresponding button,
 		but will not be."""
 		self.options_manager.toggle_menu()
 
-	def adapt_to_window_size(self, *args):
-		"""Adapts the headerbar (if any) and the default bottom panel to the new
-		window size. If the current bottom panel isn't the default one, this
-		will call the tool method applying the new size to the tool panel."""
+	def _adapt_to_window_size(self, *args):
+		"""Adapts the headerbar (if any) and the default bottom pane to the new
+		window size. If the current bottom pane isn't the default one, this
+		will call the tool method applying the new size to the tool pane."""
 		if not self.has_good_width_limits and self.get_allocated_width() > 700:
 			self.options_manager.init_adaptability()
 			self._decorations.init_adaptability()
 			self.has_good_width_limits = True
 		self._decorations.adapt_to_window_size()
 
-		available_width = self.bottom_panel_box.get_allocated_width()
+		available_width = self.bottom_panes_box.get_allocated_width()
 		self.options_manager.adapt_to_window_size(available_width)
 
 		self.get_active_image().fake_scrollbar_update()
@@ -619,14 +619,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.update_tabs_visibility()
 
 	############################################################################
-	# TOOLS PANEL ##############################################################
+	# SIDE PANE (TOOLS) ########################################################
 
 	def on_icon_size_changed(self, *args):
 		for tool_id in self.tools:
 			self.tools[tool_id].update_icon_size()
 
 	def set_tools_labels_visibility(self, visible):
-		"""Change the way tools are displayed in the side panel. Visible labels
+		"""Change the way tools are displayed in the side pane. Visible labels
 		mean the tools will be arranged in a scrollable list of buttons, else
 		they will be in an adaptative flowbox."""
 		for tool_id in self.tools:
@@ -676,7 +676,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.pointer_to_current_page = None
 		action = self.lookup_action('active_tool')
 		action.set_state(GLib.Variant.new_string(tool_id))
-		self.disable_former_tool(tool_id)
+		self._disable_former_tool(tool_id)
 		self.pointer_to_current_page = image_pointer
 		self.enable_tool(tool_id)
 		self.pointer_to_current_page = None
@@ -686,12 +686,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.active_tool().on_tool_selected()
-		self.update_fullscreen_icon()
-		self.update_bottom_panel()
+		self._update_fullscreen_icon()
+		self._update_bottom_pane()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
 
-	def disable_former_tool(self, future_tool_id):
+	def _disable_former_tool(self, future_tool_id):
 		"""Unactivate the active tool."""
 		self.former_tool_id = self.active_tool_id
 		should_preserve_selection = self.tools[future_tool_id].accept_selection
@@ -699,14 +699,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.former_tool().on_tool_unselected()
 		self.get_active_image().selection.hide_popovers()
 
-	def update_bottom_panel(self):
-		"""Show the correct bottom panel, with the correct tool options menu."""
-		self.options_manager.try_enable_panel(self.active_tool().panel_id)
-		self.options_manager.update_panel(self.active_tool())
-		self.build_options_menu()
-		self.adapt_to_window_size()
+	def _update_bottom_pane(self):
+		"""Show the correct bottom pane, with the correct tool options menu."""
+		self.options_manager.try_enable_pane(self.active_tool().pane_id)
+		self.options_manager.update_pane(self.active_tool())
+		self._build_options_menu()
+		self._adapt_to_window_size()
 
-	def update_fullscreen_icon(self):
+	def _update_fullscreen_icon(self):
 		"""Show the icon of the currently active tool on the button managing
 		fullscreen's main menu."""
 		name = self.active_tool().icon_name
@@ -722,10 +722,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def back_to_previous(self, *args):
 		self.tools[self.former_tool_id].row.set_active(True)
 
-	def active_panel(self):
-		return self.options_manager.get_active_panel()
-
-	def build_options_menu(self):
+	def _build_options_menu(self):
 		"""Build the active tool's option menus.
 		The first menu is the popover from the bottom bar. It can contain any
 		widget, or it can be build from a Gio.MenuModel
@@ -740,11 +737,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			self.app.get_menubar().remove(5)
 			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
-		panel = self.active_panel()
-		if panel is not None: # XXX try/except
-			panel.build_options_menu(widget, model, label)
+		pane = self.options_manager.get_active_pane()
+		if pane is not None: # XXX try/except
+			pane.build_options_menu(widget, model, label)
 		else:
-			self.prompt_message(False, 'panel is none for label: ' + label)
+			self.prompt_message(False, 'Pane is none for label: ' + label)
 
 	def action_use_editor(self, *args):
 		use_editor = not args[0].get_state()
@@ -753,7 +750,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.options_manager.set_palette_setting(use_editor)
 
 	def exchange_colors(self, *args):
-		self.options_manager.get_classic_panel().middle_click_action()
+		self.options_manager.get_classic_tools_pane().middle_click_action()
 
 	def action_color1(self, *args):
 		if self.active_tool().use_color:

@@ -40,7 +40,7 @@ class AbstractAbstractTool():
 		self._ongoing_operation = False
 		# Once everything is set, build the UI
 		self.build_row()
-		self.try_build_panel()
+		self.try_build_pane()
 
 	############################################################################
 	# Actions for tool's options ###############################################
@@ -79,10 +79,10 @@ class AbstractAbstractTool():
 	def show_error(self, error_text):
 		self.window.prompt_message(True, error_text)
 
-	def try_build_panel(self):
+	def try_build_pane(self):
 		pass
 
-	def build_bottom_panel(self):
+	def build_bottom_pane(self):
 		return None
 
 	def add_item_to_menu(self, tools_menu):
