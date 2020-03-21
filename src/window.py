@@ -92,7 +92,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.app = kwargs['application']
 
 		self.fullscreened = False
-		self.pointer_to_current_page = None # XXX this ridiculous hack allow to
+		self.pointer_to_current_page = None # this ridiculous hack allows to
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None

@@ -209,6 +209,7 @@ def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
 	elif unit == '%':
 		_add_spinbutton_icon(spinbutton, 'unit-percents-symbolic', _("percents"))
 	elif unit == '°':
+		# To translators: it's the angle measure unit
 		_add_spinbutton_icon(spinbutton, 'unit-degrees-symbolic', _("degrees"))
 
 def _add_spinbutton_icon(spinbutton, icon, tooltip):

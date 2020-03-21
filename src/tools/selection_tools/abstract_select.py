@@ -73,7 +73,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def give_back_control(self, preserve_selection):
 		self.get_selection().hide_popovers()
-		# TODO tout le bazar sur has_been_used??
+		# TODO if the selection hasn't been used, nothing should be applied
 		if not preserve_selection:
 			self.unselect_and_apply()
 

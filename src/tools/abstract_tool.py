@@ -68,7 +68,6 @@ class AbstractAbstractTool():
 		self.set_action_sensitivity('secondary_color', self.use_color)
 		self.set_action_sensitivity('exchange_color', self.use_color)
 		self.set_action_sensitivity('cairo_operator', self.use_operator)
-		pass # TODO erreur à la fermeture de la fenêtre si décommenté ?
 
 	def get_settings(self):
 		return self.window._settings
@@ -199,12 +198,6 @@ class AbstractAbstractTool():
 
 	def get_selection_pixbuf(self):
 		return self.get_selection().get_pixbuf()
-
-	def set_selection_has_been_used(self, state):
-		self.get_selection().has_been_used = state
-
-	def selection_has_been_used(self):
-		return self.get_selection().has_been_used
 
 	############################################################################
 	# Image management #########################################################

@@ -109,8 +109,9 @@ class DrPropertiesDialog(Gtk.Dialog):
 	def _set_size_labels(self):
 		"""Set the labels for picture width and height according to the selected
 		unit (px, cm or in)."""
-		px_width = self._image.get_pixbuf_width() # TODO contrast this with the
-		px_height = self._image.get_pixbuf_height() # size of the saved file
+		# TODO contrast this size with the size of the saved file
+		px_width = self._image.get_pixbuf_width()
+		px_height = self._image.get_pixbuf_height()
 		if self.unit == 'in':
 			width = round(px_width/96.0, 2)
 			height = round(px_height/96.0, 2)

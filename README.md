@@ -9,7 +9,7 @@ PNG, JPEG and BMP files are supported.
 
 Besides GNOME, some more traditional design layouts are available too, as well
 as an [elementaryOS layout](./docs/screenshots/elementary.png). It should also
-be compatible with [Purism's Librem 5 phone](./docs/screenshots/librem_options.png).
+be compatible with [the Pinephone and Librem 5 smartphones](./docs/screenshots/librem_options.png).
 
 ## Screenshots
 
@@ -111,10 +111,11 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 - Skew (horizontally or vertically)
 - Filters:
 	- Blur (various types)
+	- Pixelisation
 	- Saturation (increase or decrease)
 	- Transparency
 	- Invert colors
-	- Pixelate
+	- …
 
 ----
 

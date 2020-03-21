@@ -120,7 +120,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 			cairo_context = cairo.Context(surface)
 			cairo_context.set_source_rgba(red, green, blue, alpha)
 			cairo_context.paint()
-			# XXX it could explicit whether it's normal/source/difference
+			# it could explicit whether it's normal/source/difference
 			self._thumbnail_image.set_from_surface(surface)
 
 		# Set the tooltip of the button

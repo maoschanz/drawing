@@ -50,7 +50,6 @@ class DrSelectionManager():
 		self.set_coords(True, 0, 0)
 		self.selection_path = None
 		self.is_active = False
-		self.has_been_used = False
 
 	def load_from_path(self, new_path):
 		"""Create a selection_pixbuf from a minimal part of the main surface by
@@ -160,7 +159,6 @@ class DrSelectionManager():
 		can be an imported picture (from a file or from the clipboard)."""
 		if self.selection_pixbuf is None:
 			raise NoSelectionPixbufException()
-		self.has_been_used = True
 		self.temp_x = self.selection_x
 		self.temp_y = self.selection_y
 		self.is_active = True
@@ -248,7 +246,6 @@ class DrSelectionManager():
 				y = pts[1][1] + delta_y
 				print('\t', x, y)
 
-		print("has_been_used", self.has_been_used) # TODO not implemented
 		print("---------------------------------------------------------------")
 
 	############################################################################
