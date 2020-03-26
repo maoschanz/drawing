@@ -269,11 +269,21 @@ class DrWindow(Gtk.ApplicationWindow):
 			tab_index = self.notebook.page_num(page)
 			section.append(tab_title, 'win.active_tab(' + str(tab_index) + ')')
 
-	# def action_tab_left(self, *args):
-	# 	pass TODO
+	def action_tab_left(self, *args):
+		# XXX (un)availability of this action, + touch gesture
+		current_page = self.notebook.get_current_page()
+		if current_page == 0:
+			self.notebook.set_current_page(self.notebook.get_n_pages() - 1)
+		else:
+			self.notebook.set_current_page(current_page - 1)
 
-	# def action_tab_right(self, *args):
-	# 	pass TODO
+	def action_tab_right(self, *args):
+		# XXX (un)availability of this action, + touch gesture
+		current_page = self.notebook.get_current_page()
+		if current_page == self.notebook.get_n_pages() - 1:
+			self.notebook.set_current_page(0)
+		else:
+			self.notebook.set_current_page(current_page + 1)
 
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
@@ -407,8 +417,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('new_tab_clipboard', \
 		                    self.build_image_from_clipboard, ['<Ctrl><Shift>v'])
 		self.add_action_simple('open', self.action_open, ['<Ctrl>o'])
-		# self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
-		# self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
+		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
+		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
 		self.add_action_simple('close', self.action_close_window, None)
 
