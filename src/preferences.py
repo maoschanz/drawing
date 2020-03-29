@@ -90,16 +90,7 @@ class DrPrefsWindow(Gtk.Window):
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		bg_color_btn.set_rgba(color)
 		bg_color_btn.connect('color-set', self.on_background_changed)
-		self.add_row(_("Default canvas background"), bg_color_btn)
-		ui_bg_color_btn = Gtk.ColorButton(use_alpha=False)
-		ui_background_rgb = self._settings.get_strv("ui-background-rgb")
-		r = float(ui_background_rgb[0])
-		g = float(ui_background_rgb[1])
-		b = float(ui_background_rgb[2])
-		color = Gdk.RGBA(red=r, green=g, blue=b)
-		ui_bg_color_btn.set_rgba(color)
-		ui_bg_color_btn.connect('color-set', self.on_ui_background_changed)
-		self.add_row(_("Default background"), ui_bg_color_btn)
+		self.add_row(_("Default background"), bg_color_btn)
 
 		self.add_section_separator()
 		self.add_section_title(_("Images saving"))
@@ -149,6 +140,17 @@ class DrPrefsWindow(Gtk.Window):
 		self.set_current_grid(self.page_advanced)
 
 		self.add_section_title(_("Advanced options"))
+
+		ui_bg_color_btn = Gtk.ColorButton(use_alpha=False)
+		ui_background_rgb = self._settings.get_strv("ui-background-rgb")
+		r = float(ui_background_rgb[0])
+		g = float(ui_background_rgb[1])
+		b = float(ui_background_rgb[2])
+		color = Gdk.RGBA(red=r, green=g, blue=b)
+		ui_bg_color_btn.set_rgba(color)
+		ui_bg_color_btn.connect('color-set', self.on_ui_background_changed)
+		self.add_row(_("UI background"), ui_bg_color_btn)
+
 		self.add_adj(_("Preview size"), 'preview-size', self.adj_preview)
 		if is_beta:
 			self.add_switch(_("Development features"), 'devel-only')
