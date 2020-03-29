@@ -346,6 +346,16 @@ class DrImage(Gtk.Box):
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self.drawing_area is redrawn."""
+		rgb = self.window._settings.get_strv('ui-background-rgb')
+		r, g, b = float(rgb[0]), float(rgb[1]), float(rgb[2])
+
+		alloc = self.get_allocation()
+		width, height = alloc.width, alloc.height
+
+		cairo_context.set_source_rgb(r, g, b)
+		cairo_context.rectangle(0, 0, width, height)
+		cairo_context.fill()
+
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
