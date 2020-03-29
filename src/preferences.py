@@ -90,7 +90,16 @@ class DrPrefsWindow(Gtk.Window):
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		bg_color_btn.set_rgba(color)
 		bg_color_btn.connect('color-set', self.on_background_changed)
-		self.add_row(_("Default background"), bg_color_btn)
+		self.add_row(_("Default canvas background"), bg_color_btn)
+		ui_bg_color_btn = Gtk.ColorButton(use_alpha=False)
+		ui_background_rgb = self._settings.get_strv("ui-background-rgb")
+		r = float(ui_background_rgb[0])
+		g = float(ui_background_rgb[1])
+		b = float(ui_background_rgb[2])
+		color = Gdk.RGBA(red=r, green=g, blue=b)
+		ui_bg_color_btn.set_rgba(color)
+		ui_bg_color_btn.connect('color-set', self.on_ui_background_changed)
+		self.add_row(_("Default background"), ui_bg_color_btn)
 
 		self.add_section_separator()
 		self.add_section_title(_("Images saving"))
@@ -269,6 +278,11 @@ class DrPrefsWindow(Gtk.Window):
 		c = color_btn.get_rgba()
 		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
 		self._settings.set_strv('background-rgba', color_array)
+
+	def on_ui_background_changed(self, color_btn):
+		c = color_btn.get_rgba()
+		color_array = [str(c.red), str(c.green), str(c.blue)]
+		self._settings.set_strv('ui-background-rgb', color_array)
 
 	############################################################################
 	# Low-level packing ########################################################
