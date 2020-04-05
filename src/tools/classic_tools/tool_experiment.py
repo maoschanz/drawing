@@ -67,7 +67,7 @@ class ToolExperiment(AbstractClassicTool):
 
 	def _set_active_mode(self, *args):
 		state_as_string = self.get_option_value('experiment_mode')
-		self._selected_mode =  state_as_string
+		self._selected_mode = state_as_string
 
 	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
@@ -163,8 +163,6 @@ class ToolExperiment(AbstractClassicTool):
 			self.op_dynamic(operation, cairo_context)
 		elif operation['mode'] == 'dynamic2':
 			self.op_dynamic2(operation, cairo_context)
-		elif operation['mode'] == 'juxta':
-			self.op_juxta(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
 			self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
@@ -184,74 +182,6 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.set_line_width(operation['line_width'])
 		utilities_smooth_path(cairo_context, operation['path'])
 		cairo_context.stroke()
-
-	############################################################################
-
-	def op_juxta(self, operation, cairo_context):
-		# cairo_context.set_operator(operation['operator'])
-		SMOOTH = True
-		if SMOOTH:
-			utilities_smooth_path(cairo_context, operation['path'])
-			path = cairo_context.copy_path()
-		else:
-			path = operation['path']
-		base_width = operation['line_width']
-		line_width = 0
-		cairo_context.new_path()
-
-		length = 1
-		for pts in path:
-			length += 1
-		widths = [base_width] * length
-
-		# Initializing widths (XXX faisable sans cairo_context) + factorisable
-		i = 0
-		for pts in path:
-			i += 1
-			ok, future_x, future_y = self._future_point(pts)
-			if not ok:
-				continue
-			current_x, current_y = cairo_context.get_current_point()
-			dist = self._get_dist(current_x, current_y, future_x, future_y)
-			new_width = 1 + int(base_width / max(1, 0.05 * dist))
-			if line_width == 0:
-				line_width = (new_width + base_width) / 2
-			else:
-				line_width = (new_width + line_width + line_width) / 3
-			widths[i] = max(1, int(line_width))
-			cairo_context.move_to(future_x, future_y)
-
-		# For each possible width, draw some portions of the path
-		cairo_context.set_line_width(base_width)
-		self._draw_x_translated_path(cairo_context, path, widths, -0.5)
-		self._draw_x_translated_path(cairo_context, path, widths, -0.25)
-		self._draw_x_translated_path(cairo_context, path, widths, 0.0)
-		self._draw_x_translated_path(cairo_context, path, widths, 0.25)
-		self._draw_x_translated_path(cairo_context, path, widths, 0.5)
-
-	def _draw_x_translated_path(self, cairo_context, path, widths, delta_coef):
-		cairo_context.new_path()
-		i = 0
-		for pts in path:
-			i += 1
-			ok, future_x, future_y = self._future_point(pts)
-			if not ok:
-				# print("not ok", i)
-				continue
-			current_x, current_y = cairo_context.get_current_point()
-			delta_x = delta_coef * widths[i]
-			self._add_segment_shift_x(cairo_context, pts, delta_x)
-			cairo_context.move_to(future_x + delta_x, future_y) # XXX ça devrait
-			# être le delta_x de la width du segment d'avant mais bon
-		cairo_context.stroke()
-
-	def _add_segment_shift_x(self, cairo_context, pts, delta_x):
-		if pts[0] == cairo.PathDataType.CURVE_TO:
-			cairo_context.curve_to(pts[1][0] + delta_x, pts[1][1], \
-			                       pts[1][2] + delta_x, pts[1][3], \
-			                       pts[1][4] + delta_x, pts[1][5])
-		elif pts[0] == cairo.PathDataType.LINE_TO:
-			cairo_context.line_to(pts[1][0] + delta_x, pts[1][1])
 
 	############################################################################
 

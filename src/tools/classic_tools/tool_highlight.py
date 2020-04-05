@@ -56,7 +56,7 @@ class ToolHighlighter(ToolPencil):
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.5)
 		utilities_smooth_path(cairo_context, operation['path'])
-		self.stroke_with_operator(cairo.Operator.OVER, cairo_context, \
+		self.stroke_with_operator(cairo.Operator.MULTIPLY, cairo_context, \
 		                                                      line_width, False)
 
 	############################################################################

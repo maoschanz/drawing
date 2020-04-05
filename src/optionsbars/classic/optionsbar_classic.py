@@ -115,6 +115,9 @@ class OptionsBarClassic(AbstractOptionsBar):
 		if op_as_string == 'difference':
 			self._operator_enum = cairo.Operator.DIFFERENCE
 			self._operator_label = _("Difference")
+		elif op_as_string == 'multiply':
+			self._operator_enum = cairo.Operator.MULTIPLY
+			self._operator_label = _("Highlight")
 		elif op_as_string == 'source':
 			self._operator_enum = cairo.Operator.SOURCE
 			self._operator_label = _("Source color")
