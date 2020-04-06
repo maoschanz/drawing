@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <menu id="options-menu">
+
     <section>
       <attribute name="label">Pinceaux</attribute>
       <item>
-        <attribute name="label">Pinceau simple</attribute>
+        <attribute name="label">Simple</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">simple</attribute>
       </item>
       <item>
-        <attribute name="label">Pinceau lisse (ajout de points)</attribute>
+        <attribute name="label">Lisse (ajout de points)</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">smooth</attribute>
       </item>
       <item>
-        <attribute name="label">Pinceau dynamique par segments</attribute>
+        <attribute name="label">Dynamique par segments</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">dynamic</attribute>
       </item>
       <item>
-        <attribute name="label">Pinceau dynamique (superposition)</attribute>
+        <attribute name="label">Dynamique par superposition</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">dynamic2</attribute>
       </item>
@@ -29,6 +30,7 @@
       <!--   <attribute name="target">pattern</attribute> -->
       <!-- </item> -->
     </section>
+
     <section>
       <attribute name="label">Actions</attribute>
       <item>
@@ -36,10 +38,11 @@
         <attribute name="action">win.experiment_macro_scie</attribute>
       </item>
     </section>
+
     <section>
-      <attribute name="label">Opérateurs Cairo</attribute>
+      <attribute name="label">Opérateurs de dessin</attribute>
       <submenu>
-        <attribute name="label">Opérateurs basiques</attribute>
+        <attribute name="label">Opérateurs Porter-Duff</attribute>
         <section>
           <item>
             <attribute name="label">CLEAR</attribute>
@@ -63,18 +66,18 @@
           </item>
         </section>
         <section>
+          <!-- <item> -->
+          <!--   <attribute name="label">DEST</attribute> -->
+          <!--   <attribute name="action">win.experiment_operator</attribute> -->
+          <!--   <attribute name="target">DEST</attribute> -->
+          <!-- </item> -->
           <item>
-            <attribute name="label">DEST</attribute>
-            <attribute name="action">win.experiment_operator</attribute>
-            <attribute name="target">DEST</attribute>
-          </item>
-          <item>
-            <attribute name="label">DEST_OVER</attribute>
+            <attribute name="label">DEST__OVER</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">DEST_OVER</attribute>
           </item>
           <item>
-            <attribute name="label">DEST_OUT</attribute>
+            <attribute name="label">DEST__OUT</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">DEST_OUT</attribute>
           </item>
@@ -95,18 +98,41 @@
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">SATURATE</attribute>
           </item>
+        </section>
+        <section>
+          <attribute name="label">Opérateurs non-liés</attribute>
           <item>
-            <attribute name="label">MULTIPLY</attribute>
+            <attribute name="label">IN</attribute>
             <attribute name="action">win.experiment_operator</attribute>
-            <attribute name="target">MULTIPLY</attribute>
+            <attribute name="target">IN</attribute>
+          </item>
+          <item>
+            <attribute name="label">OUT</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">OUT</attribute>
+          </item>
+          <item>
+            <attribute name="label">DEST__IN</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">DEST_IN</attribute>
+          </item>
+          <item>
+            <attribute name="label">DEST__ATOP</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">DEST_ATOP</attribute>
           </item>
         </section>
       </submenu>
       <submenu>
-        <attribute name="label">Opérateurs avancés</attribute>
+        <attribute name="label">Modes de fusion</attribute>
         <section>
           <item>
-            <attribute name="label">SCREEN</attribute>
+            <attribute name="label">MULTIPLY (assombrit)</attribute>
+            <attribute name="action">win.experiment_operator</attribute>
+            <attribute name="target">MULTIPLY</attribute>
+          </item>
+          <item>
+            <attribute name="label">SCREEN (éclaircit)</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">SCREEN</attribute>
           </item>
@@ -127,23 +153,25 @@
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">LIGHTEN</attribute>
           </item>
+        </section>
+        <section>
           <item>
-            <attribute name="label">COLOR_DODGE</attribute>
+            <attribute name="label">COLOR__DODGE (éclaircit)</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">COLOR_DODGE</attribute>
           </item>
           <item>
-            <attribute name="label">COLOR_BURN</attribute>
+            <attribute name="label">COLOR__BURN (assombrit)</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">COLOR_BURN</attribute>
           </item>
           <item>
-            <attribute name="label">HARD_LIGHT</attribute>
+            <attribute name="label">HARD__LIGHT</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">HARD_LIGHT</attribute>
           </item>
           <item>
-            <attribute name="label">SOFT_LIGHT</attribute>
+            <attribute name="label">SOFT__LIGHT</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">SOFT_LIGHT</attribute>
           </item>
@@ -161,53 +189,31 @@
           </item>
         </section>
         <section>
+          <attribute name="label">Modes non-séparants</attribute>
           <item>
-            <attribute name="label">HSL_HUE</attribute>
+            <attribute name="label">HSL__HUE</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">HSL_HUE</attribute>
           </item>
           <item>
-            <attribute name="label">HSL_SATURATION</attribute>
+            <attribute name="label">HSL__SATURATION</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">HSL_SATURATION</attribute>
           </item>
           <item>
-            <attribute name="label">HSL_COLOR</attribute>
+            <attribute name="label">HSL__COLOR</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">HSL_COLOR</attribute>
           </item>
           <item>
-            <attribute name="label">HSL_LUMINOSITY</attribute>
+            <attribute name="label">HSL__LUMINOSITY</attribute>
             <attribute name="action">win.experiment_operator</attribute>
             <attribute name="target">HSL_LUMINOSITY</attribute>
           </item>
         </section>
       </submenu>
-      <submenu>
-        <attribute name="label">Opérateurs non-liés</attribute>
-        <section>
-          <item>
-            <attribute name="label">IN</attribute>
-            <attribute name="action">win.experiment_operator</attribute>
-            <attribute name="target">IN</attribute>
-          </item>
-          <item>
-            <attribute name="label">OUT</attribute>
-            <attribute name="action">win.experiment_operator</attribute>
-            <attribute name="target">OUT</attribute>
-          </item>
-          <item>
-            <attribute name="label">DEST_IN</attribute>
-            <attribute name="action">win.experiment_operator</attribute>
-            <attribute name="target">DEST_IN</attribute>
-          </item>
-          <item>
-            <attribute name="label">DEST_ATOP</attribute>
-            <attribute name="action">win.experiment_operator</attribute>
-            <attribute name="target">DEST_ATOP</attribute>
-          </item>
-        </section>
-      </submenu>
     </section>
+
   </menu>
 </interface>
+

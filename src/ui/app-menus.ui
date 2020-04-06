@@ -339,7 +339,7 @@
             <attribute name="target">over</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">Source color</attribute>
+            <attribute name="label" translatable="yes">Raw source color</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">source</attribute>
           </item>
@@ -353,14 +353,34 @@
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">difference</attribute>
           </item>
-          <!-- TODO autres ? -->
+          <!-- TODO ? -->
+          <!-- <item> -->
+          <!--   <attribute name="label" translatable="yes">Lighten</attribute> -->
+          <!--   <attribute name="action">win.cairo_operator</attribute> -->
+          <!--   <attribute name="target">lighten</attribute> -->
+          <!-- </item> -->
+          <!-- <item> -->
+          <!--   <attribute name="label" translatable="yes">Darken</attribute> -->
+          <!--   <attribute name="action">win.cairo_operator</attribute> -->
+          <!--   <attribute name="target">darken</attribute> -->
+          <!-- </item> -->
+          <item>
+            <attribute name="label" translatable="yes">Replace hue</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">hsl-hue</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Replace color</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">hsl-color</attribute>
+          </item>
         </section>
         <section>
           <attribute name="label" translatable="yes">Don't use the colors but…</attribute>
           <item>
             <attribute name="label" translatable="yes">Blur</attribute>
             <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">dest_in</attribute>
+            <attribute name="target">dest-in</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">Erase</attribute>

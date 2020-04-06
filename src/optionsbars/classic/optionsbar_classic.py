@@ -120,11 +120,17 @@ class OptionsBarClassic(AbstractOptionsBar):
 			self._operator_label = _("Highlight")
 		elif op_as_string == 'source':
 			self._operator_enum = cairo.Operator.SOURCE
-			self._operator_label = _("Source color")
+			self._operator_label = _("Raw source color")
+		elif op_as_string == 'hsl-hue':
+			self._operator_enum = cairo.Operator.HSL_HUE
+			self._operator_label = _("Replace hue")
+		elif op_as_string == 'hsl-color':
+			self._operator_enum = cairo.Operator.HSL_COLOR
+			self._operator_label = _("Replace color")
 		elif op_as_string == 'clear':
 			self._operator_enum = cairo.Operator.CLEAR
 			self._operator_label = _("Erase")
-		elif op_as_string == 'dest_in':
+		elif op_as_string == 'dest-in':
 			self._operator_enum = cairo.Operator.DEST_IN
 			self._operator_label = _("Blur")
 		else:
@@ -132,7 +138,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 			self._operator_label = _("Normal")
 
 	def _build_color_buttons(self, builder):
-		"""Initialize the 2 color buttons and popovers with the 2 previously
+		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
 		right_rgba = self.window._settings.get_strv('last-right-rgba')
 		left_rgba = self.window._settings.get_strv('last-left-rgba')

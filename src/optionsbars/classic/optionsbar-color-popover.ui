@@ -80,7 +80,7 @@
                 <!-- To translators: this is a verb -->
                 <property name="label" translatable="yes">Blur</property>
                 <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'dest_in'</property>
+                <property name="action-target">'dest-in'</property>
               </object>
             </child>
             <child>
@@ -157,7 +157,7 @@
 
   <menu id="other-operators-menu">
     <item>
-      <attribute name="label" translatable="yes">Source color</attribute>
+      <attribute name="label" translatable="yes">Raw source color</attribute>
       <attribute name="action">win.cairo_operator</attribute>
       <attribute name="target">source</attribute>
     </item>
@@ -170,6 +170,16 @@
       <attribute name="label" translatable="yes">Difference</attribute>
       <attribute name="action">win.cairo_operator</attribute>
       <attribute name="target">difference</attribute>
+    </item>
+    <item>
+      <attribute name="label" translatable="yes">Replace hue</attribute>
+      <attribute name="action">win.cairo_operator</attribute>
+      <attribute name="target">hsl-hue</attribute>
+    </item>
+    <item>
+      <attribute name="label" translatable="yes">Replace color</attribute>
+      <attribute name="action">win.cairo_operator</attribute>
+      <attribute name="target">hsl-color</attribute>
     </item>
   </menu>
 

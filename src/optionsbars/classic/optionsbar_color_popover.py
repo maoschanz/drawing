@@ -84,7 +84,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self.adapt_to_operator(op_as_string)
 
 	def _operator_supports_color(self, op_as_string):
-		return not (op_as_string == 'clear' or op_as_string == 'dest_in')
+		return not (op_as_string == 'clear' or op_as_string == 'dest-in')
 
 	def adapt_to_operator(self, op_as_string):
 		supports_colors = self._operator_supports_color(op_as_string)
@@ -112,7 +112,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		if op_as_string == 'clear':
 			self._thumbnail_image.set_from_icon_name('tool-eraser-symbolic', \
 			                                         Gtk.IconSize.SMALL_TOOLBAR)
-		elif op_as_string == 'dest_in': # blur
+		elif op_as_string == 'dest-in': # blur
 			self._thumbnail_image.set_from_icon_name('mode-blur-symbolic', \
 			                                         Gtk.IconSize.SMALL_TOOLBAR)
 		else:
