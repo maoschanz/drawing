@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-14 02:34+0100\n"
-"PO-Revision-Date: 2020-01-24 21:28+0100\n"
+"PO-Revision-Date: 2020-04-26 21:29+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
@@ -58,20 +58,25 @@ msgid ""
 "rotating, …"
 msgstr ""
 "Omogućuje crtanje ili uređivanje slika pomoću alata kao što su olovka, "
-"linija ili luk (s različitim opcijama), odabir (izrezivanje/kopiranje/"
-"umetanje/povlačenje/…), oblici (pravokutnik, krug, poligon, …), umetanje "
-"teksta, mijenjanje veličine, rezanje, rotiranje, …"
+"linija ili luk (s različitim opcijama), odabir (izrezivanje, kopiranje, "
+"umetanje, povlačenje, …), oblici (pravokutnik, krug, poligon, …), umetanje "
+"teksta, mijenjanje veličine, rezanje, okretanje, …"
 
 msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
+"Verzija 0.6 je važno izdanje, s raznim promjenama. Program je stabilniji i "
+"sadrži više alata:"
 
 msgid ""
 "Rectangle selection and freehand selection are now distinct tools, and the "
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
+"Pravokutni odabir i prostoručni odabir sada su dva različita alata, a alat "
+"„Okreni” sada podržava bilo koji kut i omogućuje vodoravno ili okomito "
+"preokretanje."
 
 msgid ""
 "The numerous tools producing shapes (circle, rectangle, polygon, …), have "
@@ -79,6 +84,10 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
+"Mnogi alati koji proizvode oblike (krug, pravokutnik, poligon, …) spojeni su "
+"u jedan, konzistentniji alat zvan „oblik”, zajedno s alatima „obli "
+"pravokutnik” i „elipsa”. Njihove mogućnosti ispunjavanja bojom sada "
+"uključuju različite vrste gradijenata."
 
 msgid ""
 "The 'saturate' tool has been replaced by 'filters', a more powerful tool "
@@ -89,7 +98,7 @@ msgstr ""
 "vrsta zamućenja, inverzija boja, pikselizacije, zasićenja i prozirnosti."
 
 msgid "A fullscreen mode is now available."
-msgstr "Sada postoji cjeloekranski prikaz."
+msgstr "Sada postoji modus za cjeloekranski prikaz."
 
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
@@ -139,10 +148,10 @@ msgid "New Image With Custom Size"
 msgstr "Nova slika prilagođene veličine"
 
 msgid "New Image From Selection"
-msgstr "iz odabira"
+msgstr "Nova slika iz odabira"
 
 msgid "New Image From Clipboard"
-msgstr "iz međuspremnika"
+msgstr "Nova slika iz međuspremnika"
 
 msgid "Reload file"
 msgstr "Ponovo učitaj datoteku"
@@ -205,7 +214,7 @@ msgid "_View"
 msgstr "_Prikaz"
 
 msgid "Show the preview"
-msgstr "Prikaži pretpregled"
+msgstr "Prikaži pretprikaz"
 
 msgid "Zoom"
 msgstr "Zumiranje"
@@ -258,9 +267,8 @@ msgstr "Uredi glavnu boju …"
 msgid "Edit Secondary Color…"
 msgstr "Uredi sporednu boju …"
 
-#, fuzzy
 msgid "Use color editor by default"
-msgstr "Uređivač boja standardno"
+msgstr "Standardno koristi uređivač boja"
 
 msgid "Exchange colors"
 msgstr "Zamijeni boje"
@@ -268,9 +276,8 @@ msgstr "Zamijeni boje"
 msgid "Color application mode"
 msgstr "Modus programa boja"
 
-#, fuzzy
 msgid "Normal"
-msgstr "Format"
+msgstr "Normalno"
 
 msgid "Source color"
 msgstr "Boja izvora"
@@ -285,9 +292,8 @@ msgstr "Ne koristi boje, već …"
 msgid "Blur"
 msgstr "Zamuti"
 
-#, fuzzy
 msgid "Erase"
-msgstr "Gumica"
+msgstr "Izbriši"
 
 msgid "_Tools"
 msgstr "_Alati"
@@ -352,9 +358,8 @@ msgstr "Slike"
 msgid "Tools"
 msgstr "Alati"
 
-#, fuzzy
 msgid "Window"
-msgstr "Novi prozor"
+msgstr "Prozor"
 
 msgid "Close selection"
 msgstr "Zatvori odabir"
@@ -375,7 +380,7 @@ msgstr "Okreni"
 #. into parallelograms (= tilt, slant, bend). Named after MS Paint's
 #. "Stretch/Skew" dialog.
 msgid "Skew"
-msgstr ""
+msgstr "Ukosi"
 
 msgid "Filters"
 msgstr "Filtri"
@@ -402,7 +407,7 @@ msgid "Open a file"
 msgstr "Otvori datoteku"
 
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Ponovo učitaj sliku s diska"
 
 msgid "Save as"
 msgstr "Spremi kao"
@@ -448,7 +453,7 @@ msgid "Navigation"
 msgstr "Navigacija"
 
 msgid "Toggle the preview"
-msgstr "Uključi/isključi pretpregled"
+msgstr "Uključi/isključi pretprikaz"
 
 msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
@@ -473,6 +478,7 @@ msgstr "Ponovi %s"
 
 msgid "Can't reload a never saved file from the disk."
 msgstr ""
+"Nije moguće s diska ponovo učitati sliku, koja nikada nije bila spremljena."
 
 msgid "Unsaved file"
 msgstr "Nespremljena datoteka"
@@ -490,11 +496,10 @@ msgid "Edit the clipboard content"
 msgstr "Uredi sadržaj međuspremnika"
 
 msgid "This version isn't stable!"
-msgstr ""
+msgstr "Ovo nije stabilna verzija!"
 
-#, fuzzy
 msgid "Report bugs or ideas"
-msgstr "Prijavi grešku"
+msgstr "Prijavi greške ili ideje"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
@@ -502,7 +507,7 @@ msgid "translator-credits"
 msgstr "Milo Ivir <mail@milotype.de>, 2020."
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "Autori GNOME-ovog kompleta ikona „Art Libre”"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Program za crtanje za GNOME desktop."
@@ -608,7 +613,7 @@ msgid "Advanced options"
 msgstr "Napredne opcije"
 
 msgid "Preview size"
-msgstr "Veličina pretpregleda"
+msgstr "Veličina pretprikaza"
 
 msgid "Development features"
 msgstr "Funkcije u razvoju"
@@ -649,15 +654,15 @@ msgstr "Samo traka alata (ikone sa simbolima)"
 
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s px"
 
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s in"
 
 msgid "Path"
 msgstr "Staza"
@@ -718,13 +723,13 @@ msgid "Unknown color name"
 msgstr "Nepoznato ime boje"
 
 msgid "Replace"
-msgstr ""
+msgstr "Zamijeni"
 
 msgid "This file format doesn't support transparent colors."
 msgstr "Ovaj datotečni format ne podržava prozirne boje."
 
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr ""
+msgstr "Sliku možeš spremiti kao PNG datoteku ili zamijeni prozirnost s:"
 
 msgid "Replace transparency with:"
 msgstr "Zamijeni prozirnost s:"
@@ -744,9 +749,8 @@ msgstr "BMP slike"
 msgid "percents"
 msgstr "postoci"
 
-#, fuzzy
 msgid "degrees"
-msgstr "Kut (u stupnjevima)"
+msgstr "stupnjevi"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -774,7 +778,7 @@ msgstr "Odbaci promjene"
 
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "%s sadrži nespremljene promjene."
+msgstr "Postoje nespremljene promjene u %s."
 
 #, python-format
 msgid "Where do you want to open %s?"
@@ -802,7 +806,7 @@ msgstr "Bezimeno"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 msgid "this picture"
-msgstr "Ova slika"
+msgstr "ovoj slici"
 
 msgid "Discard"
 msgstr "Odbaci"
@@ -841,7 +845,7 @@ msgid "Tool size"
 msgstr "Veličina alata"
 
 msgid "Preview"
-msgstr "Pretpregled"
+msgstr "Pretprikaz"
 
 msgid "How the color will be applied to the existing pixels"
 msgstr "Način primjene boje na postojeće pikslove"
@@ -850,7 +854,7 @@ msgid "Back to the palette"
 msgstr "Natrag na paletu"
 
 msgid "Palette"
-msgstr ""
+msgstr "Paleta"
 
 msgid "Use this editor by default"
 msgstr "Standardno koristi ovaj uređivač"
@@ -868,58 +872,51 @@ msgid "Saturation"
 msgstr "Zasićenost"
 
 msgid "Blur radius"
-msgstr "Područje zamućivanja"
+msgstr "Radijus mutnoće"
 
 msgid "Transparency"
 msgstr "Prozirnost"
 
-#, fuzzy
 msgid "Change saturation"
-msgstr "Zasićenost"
+msgstr "Promijeni zasićenost"
 
 #. Context: a filter adding like a light veil on the image
 msgid "Veil"
-msgstr ""
+msgstr "Veo"
 
-#, fuzzy
 msgid "Add transparency"
-msgstr "Prozirnost"
+msgstr "Dodaj prozirnost"
 
 msgid "Invert colors"
 msgstr "Invertiraj boje"
 
-#, fuzzy
 msgid "Blurring"
-msgstr "Zamuti"
+msgstr "Zamućivanje"
 
 msgid "Fast blur"
-msgstr ""
+msgstr "Brza mutnoća"
 
 msgid "Slow blur"
-msgstr ""
+msgstr "Spora mutnoća"
 
 #. Context: a filter that censors the image with some kind of tiles
 msgid "Pixelisation"
 msgstr "Pikselizacija"
 
-#, fuzzy
 msgid "Blur direction"
-msgstr "Odabir bojom"
+msgstr "Smjer mutnoće"
 
 #. Context: about the blur direction
-#, fuzzy
 msgid "Horizontal"
-msgstr "Vodoravno zamućivanje"
+msgstr "Vodoravno"
 
 #. Context: about the blur direction
-#, fuzzy
 msgid "Vertical"
-msgstr "Okomito zamućivanje"
+msgstr "Okomito"
 
 #. Context: about the blur direction
-#, fuzzy
 msgid "No direction"
-msgstr "Odabir bojom"
+msgstr "Bez smjera"
 
 msgid "Angle (degrees)"
 msgstr "Kut (u stupnjevima)"
@@ -957,13 +954,11 @@ msgstr "Pri skaliranju iz kutova"
 msgid "Never"
 msgstr "Nikada"
 
-#, fuzzy
 msgid "Horizontal deformation"
-msgstr "Vodoravan prijelaz"
+msgstr "Vodoravno izobličenje"
 
-#, fuzzy
 msgid "Vertical deformation"
-msgstr "Okomit prijelaz"
+msgstr "Okomito izobličenje"
 
 msgid "Line shape"
 msgstr "Oblik crte"
@@ -985,13 +980,13 @@ msgid "Arrow"
 msgstr "Strelica"
 
 msgid "Antialiasing"
-msgstr ""
+msgstr "Zaglađivanje rubova"
 
 msgid "Color gradient"
-msgstr "Prijelaz boje"
+msgstr "Gradijent u boji"
 
 msgid "Behavior"
-msgstr "Način"
+msgstr "Način rada"
 
 msgid "Encircle and fill"
 msgstr "Okruži i ispuni"
@@ -1024,13 +1019,13 @@ msgid "Empty outline"
 msgstr "Prazna kontura"
 
 msgid "Horizontal gradient"
-msgstr "Vodoravan prijelaz"
+msgstr "Vodoravni gradijent"
 
 msgid "Vertical gradient"
-msgstr "Okomit prijelaz"
+msgstr "Okomiti gradijent"
 
 msgid "Radial gradient"
-msgstr "Kružni prijelaz"
+msgstr "Kružni gradijent"
 
 msgid "Close shape"
 msgstr "Zatvori oblik"
@@ -1123,10 +1118,10 @@ msgid "Select an area or right-click on the canvas"
 msgstr "Odaberi područje ili klikni desnom tipkom na platno"
 
 msgid "Rectangle selection"
-msgstr "Pravokutan odabir"
+msgstr "Pravokutni odabir"
 
 msgid "Error: invalid values"
-msgstr ""
+msgstr "Greška: nevaljane vrijednosti"
 
 msgid "Cropping the selection"
 msgstr "Rezanje odabira"
@@ -1148,6 +1143,3 @@ msgstr "Skaliranje odabira"
 
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
-
-#~ msgid "Classic"
-#~ msgstr "Klasično"
