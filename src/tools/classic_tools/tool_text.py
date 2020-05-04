@@ -207,15 +207,15 @@ class ToolText(AbstractClassicTool):
 		cairo_context.set_font_size(font_size)
 
 		lines = operation['text'].split('\n')
-		i = 0
 		c1 = operation['rgba1']
 		c2 = operation['rgba2']
 		text_x = int(operation['x'])
 		text_y = int(operation['y'])
 
+		########################################################################
+		# Draw background for the line #########################################
+		i = 0
 		for line_text in lines:
-			####################################################################
-			# Draw background for the line #####################################
 			line_y = text_y + i * font_size
 			if operation['background'] == 'rectangle':
 				self._op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
@@ -226,12 +226,18 @@ class ToolText(AbstractClassicTool):
 			elif operation['background'] == 'outline':
 				self._op_bg_outline(cairo_context, c2, font_size, text_x, \
 				                                              line_y, line_text)
-			####################################################################
-			# Draw text for the line ###########################################
+			i = i + 1
+
+		########################################################################
+		# Draw text for the line ###############################################
+		i = 0
+		for line_text in lines:
+			line_y = text_y + i * font_size
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 			cairo_context.move_to(text_x, line_y)
 			cairo_context.show_text( line_text )
 			i = i + 1
+
 		self.non_destructive_show_modif()
 
 	def _op_bg_shadow(self, context, color, font_size, text_x, text_y, line):

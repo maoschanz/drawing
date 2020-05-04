@@ -25,6 +25,7 @@ class AbstractAbstractTool():
 	UI_PATH = '/com/github/maoschanz/drawing/tools/ui/'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
+		self.window = window
 		# The tool's identity
 		self.id = tool_id
 		self.menu_id = 0
@@ -34,8 +35,7 @@ class AbstractAbstractTool():
 		self.accept_selection = False
 		self.use_color = False
 		self.use_operator = False
-		# Misc
-		self.window = window
+		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
 		# Once everything is set, build the UI
@@ -175,7 +175,6 @@ class AbstractAbstractTool():
 		self._ongoing_operation = True
 
 	def apply_operation(self, operation):
-		self.get_image().add_pixbuf_to_history()
 		self.simple_apply_operation(operation)
 		self.get_image().update_actions_state()
 		self.get_image().update_history_sensitivity()

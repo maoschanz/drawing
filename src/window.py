@@ -47,9 +47,12 @@ from .custom_image import DrCustomImageDialog
 from .minimap import DrMinimap
 from .options_manager import DrOptionsManager
 from .message_dialog import DrMessageDialog
-from .deco_manager import DrDecoManagerMenubar, DrDecoManagerHeaderbar, DrDecoManagerToolbar
+from .deco_manager import DrDecoManagerMenubar, \
+                          DrDecoManagerHeaderbar, \
+                          DrDecoManagerToolbar
 
-from .utilities import utilities_save_pixbuf_to, utilities_add_filechooser_filters
+from .utilities import utilities_save_pixbuf_to, \
+                       utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -906,7 +909,8 @@ class DrWindow(Gtk.ApplicationWindow):
 				# to save the file under an other format (JPEG/BMP → PNG)
 				self.action_save_as()
 				return True
-			# else the exception has been raised because the user cancelled
+			# else the exception was raised because an actual error occured, or
+			# the user clicked on "cancel"
 			self.prompt_message(False, _("Failed to save %s") % fn)
 			return False
 		self.get_active_image().post_save()
@@ -914,8 +918,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		return True
 
 	def confirm_save_modifs(self):
-		"""Return True if the image can be closed/overwritten (whether it's saved
-		or not), or False if the image can't be closed/overwritten."""
+		"""Return True if the image can be closed/overwritten (whether it's
+		saved or not), or False otherwise (usually if the user clicked 'cancel',
+		or if an error occurred)."""
 		if self.get_active_image()._is_saved:
 			return True
 		fn = self.get_file_path()
