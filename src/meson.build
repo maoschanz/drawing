@@ -41,7 +41,7 @@ drawing_sources = [
 	'properties.py',
 	'preferences.py',
 	'message_dialog.py',
-	'custom_image.py',
+	'new_image_dialog.py',
 
 	'optionsbars/abstract_optionsbar.py',
 	'optionsbars/classic/optionsbar_classic.py',

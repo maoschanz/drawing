@@ -1,4 +1,4 @@
-# custom_image.py
+# new_image_dialog.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -35,7 +35,7 @@ class DrCustomImageDialog(Gtk.Dialog):
 		btn = self.add_button(_("Create"), Gtk.ResponseType.OK)
 		btn.get_style_context().add_class('suggested-action')
 
-		resource_path = '/com/github/maoschanz/drawing/ui/custom-image.ui'
+		resource_path = '/com/github/maoschanz/drawing/ui/new-image-dialog.ui'
 		builder = Gtk.Builder.new_from_resource(resource_path)
 		props_content_area = builder.get_object('props_content_area')
 		self.get_content_area().add(props_content_area)

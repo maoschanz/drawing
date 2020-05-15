@@ -43,7 +43,7 @@ from .select_color import ToolColorSelect
 
 # Other imports
 from .image import DrImage
-from .custom_image import DrCustomImageDialog
+from .new_image_dialog import DrCustomImageDialog
 from .minimap import DrMinimap
 from .options_manager import DrOptionsManager
 from .message_dialog import DrMessageDialog
@@ -887,13 +887,13 @@ class DrWindow(Gtk.ApplicationWindow):
 			gfile = self.file_chooser_save()
 		else:
 			gfile = self.get_active_image().gfile
-		return self.save_gfile(gfile)
+		return self._save_current_tab_to_gfile(gfile)
 
 	def action_save_as(self, *args):
 		gfile = self.file_chooser_save()
-		self.save_gfile(gfile)
+		self._save_current_tab_to_gfile(gfile)
 
-	def save_gfile(self, gfile):
+	def _save_current_tab_to_gfile(self, gfile):
 		"""Do everything needed to save the currently active image's pixbuf to
 		the Gio.File object given as argument."""
 		if gfile is None:
