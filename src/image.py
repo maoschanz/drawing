@@ -73,7 +73,7 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Image initialization #####################################################
 
-	def init_image(self):
+	def init_image_common(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
 		self._is_pressed = False
@@ -110,7 +110,7 @@ class DrImage(Gtk.Box):
 			'red': r, 'green': g, 'blue': b, 'alpha': a,
 			'width': width, 'height': height
 		}
-		self.init_image()
+		self.init_image_common()
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
@@ -123,7 +123,7 @@ class DrImage(Gtk.Box):
 			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
 		self.main_pixbuf = pixbuf
-		self.init_image()
+		self.init_image_common()
 		self.restore_first_pixbuf()
 		self.update_title()
 
@@ -155,12 +155,13 @@ class DrImage(Gtk.Box):
 	############################################################################
 
 	def reload_from_disk(self):
-		"""..."""
 		if not self.window.confirm_save_modifs():
 			return
+		"""Safely reloads the image from the disk (asks if unsaved changes
+		should be discarded or saved)."""
 		if self.gfile is None:
 			self.window.prompt_message(True, \
-			                _("Can't reload a never saved file from the disk."))
+			                _("Can't reload a never-saved file from the disk."))
 			return
 		self.try_load_file(self.gfile)
 		self.window.set_picture_title(self.update_title())
@@ -208,7 +209,7 @@ class DrImage(Gtk.Box):
 	def update_title(self):
 		main_title = self.get_filename_for_display()
 		if not self._is_saved:
-			main_title = '*' + main_title
+			main_title = "*" + main_title
 		self.set_tab_label(main_title)
 		return main_title
 
@@ -384,7 +385,7 @@ class DrImage(Gtk.Box):
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update()
+			self.update() # TODO comment this for better perfs
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			delta_x = int(self.drag_scroll_x - event_x)
 			delta_y = int(self.drag_scroll_y - event_y)
