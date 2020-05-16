@@ -34,7 +34,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuButton">
+              <object class="GtkMenuButton" id="op-menubtn">
                 <property name="visible">True</property>
                 <property name="menu-model">other-operators-menu</property>
                 <child>
@@ -49,7 +49,6 @@
               <object class="GtkRadioButton">
                 <property name="group">op-group</property>
                 <!-- <property name="visible">True</property> -->
-                <!-- <property name="label" translatable="yes">Source</property> -->
                 <property name="action-name">win.cairo_op_mirror</property>
                 <property name="action-target">'source'</property>
               </object>
@@ -58,9 +57,56 @@
               <object class="GtkRadioButton">
                 <property name="group">op-group</property>
                 <!-- <property name="visible">True</property> -->
-                <!-- <property name="label" translatable="yes">Difference</property> -->
+                <property name="action-name">win.cairo_op_mirror</property>
+                <property name="action-target">'multiply'</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton">
+                <property name="group">op-group</property>
+                <!-- <property name="visible">True</property> -->
                 <property name="action-name">win.cairo_op_mirror</property>
                 <property name="action-target">'difference'</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <!-- <property name="visible">True</property> -->
+            <property name="orientation">horizontal</property>
+            <style><class name="linked"/></style>
+            <child>
+              <object class="GtkRadioButton">
+                <property name="group">op-group</property>
+                <!-- <property name="visible">True</property> -->
+                <property name="action-name">win.cairo_op_mirror</property>
+                <property name="action-target">'hsl-hue'</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton">
+                <property name="group">op-group</property>
+                <!-- <property name="visible">True</property> -->
+                <property name="action-name">win.cairo_op_mirror</property>
+                <property name="action-target">'hsl-saturation'</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton">
+                <property name="group">op-group</property>
+                <!-- <property name="visible">True</property> -->
+                <property name="action-name">win.cairo_op_mirror</property>
+                <property name="action-target">'hsl-color'</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRadioButton">
+                <property name="group">op-group</property>
+                <!-- <property name="visible">True</property> -->
+                <property name="action-name">win.cairo_op_mirror</property>
+                <property name="action-target">'hsl-luminosity'</property>
               </object>
             </child>
           </object>
@@ -156,31 +202,49 @@
   <!-- -->
 
   <menu id="other-operators-menu">
-    <item>
-      <attribute name="label" translatable="yes">Raw source color</attribute>
-      <attribute name="action">win.cairo_operator</attribute>
-      <attribute name="target">source</attribute>
-    </item>
-    <item>
-      <attribute name="label" translatable="yes">Highlight</attribute>
-      <attribute name="action">win.cairo_operator</attribute>
-      <attribute name="target">multiply</attribute>
-    </item>
-    <item>
-      <attribute name="label" translatable="yes">Difference</attribute>
-      <attribute name="action">win.cairo_operator</attribute>
-      <attribute name="target">difference</attribute>
-    </item>
-    <item>
-      <attribute name="label" translatable="yes">Replace hue</attribute>
-      <attribute name="action">win.cairo_operator</attribute>
-      <attribute name="target">hsl-hue</attribute>
-    </item>
-    <item>
-      <attribute name="label" translatable="yes">Replace color</attribute>
-      <attribute name="action">win.cairo_operator</attribute>
-      <attribute name="target">hsl-color</attribute>
-    </item>
+    <section>
+      <attribute name="label" translatable="yes">Other modes</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Raw source color</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">source</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Highlight</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">multiply</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Difference</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">difference</attribute>
+      </item>
+      <!-- XXX and more? -->
+    </section>
+    <submenu>
+      <attribute name="label" translatable="yes">Photo manipulation</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Hue only</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">hsl-hue</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Saturation only</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">hsl-saturation</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Hue and saturation</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">hsl-color</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Luminosity only</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">hsl-luminosity</attribute>
+      </item>
+    </submenu>
   </menu>
 
 </interface>
+

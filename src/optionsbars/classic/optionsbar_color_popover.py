@@ -49,6 +49,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 		self._operator_box_1 = builder.get_object('operator-box-start')
 		self._operator_box_2 = builder.get_object('operator-box-end')
+		self._operator_menubtn = builder.get_object('op-menubtn')
 
 		########################################################################
 		# Color chooser widget #################################################
@@ -88,6 +89,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 	def adapt_to_operator(self, op_as_string):
 		supports_colors = self._operator_supports_color(op_as_string)
+		self._operator_menubtn.get_popover().popdown()
 		self.color_widget.set_sensitive(supports_colors)
 		self._set_thumbnail_color(op_as_string)
 

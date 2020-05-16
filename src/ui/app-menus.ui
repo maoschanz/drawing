@@ -330,14 +330,15 @@
           <attribute name="verb-icon">exchange-colors-symbolic</attribute>
         </item>
       </section>
-      <section id="operator-menu">
-        <section>
-          <attribute name="label" translatable="yes">Color application mode</attribute>
-          <item>
-            <attribute name="label" translatable="yes">Normal</attribute>
-            <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">over</attribute>
-          </item>
+      <section>
+        <attribute name="label" translatable="yes">Color application mode</attribute>
+        <item>
+          <attribute name="label" translatable="yes">Normal</attribute>
+          <attribute name="action">win.cairo_operator</attribute>
+          <attribute name="target">over</attribute>
+        </item>
+        <submenu>
+          <attribute name="label" translatable="yes">Other modes</attribute>
           <item>
             <attribute name="label" translatable="yes">Raw source color</attribute>
             <attribute name="action">win.cairo_operator</attribute>
@@ -364,30 +365,43 @@
           <!--   <attribute name="action">win.cairo_operator</attribute> -->
           <!--   <attribute name="target">darken</attribute> -->
           <!-- </item> -->
+        </submenu>
+        <submenu>
+          <attribute name="label" translatable="yes">Photo manipulation</attribute>
           <item>
-            <attribute name="label" translatable="yes">Replace hue</attribute>
+            <attribute name="label" translatable="yes">Hue only</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">hsl-hue</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">Replace color</attribute>
+            <attribute name="label" translatable="yes">Saturation only</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">hsl-saturation</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Hue and saturation</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">hsl-color</attribute>
           </item>
-        </section>
-        <section>
-          <attribute name="label" translatable="yes">Don't use the colors but…</attribute>
           <item>
-            <attribute name="label" translatable="yes">Blur</attribute>
+            <attribute name="label" translatable="yes">Luminosity only</attribute>
             <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">dest-in</attribute>
+            <attribute name="target">hsl-luminosity</attribute>
           </item>
-          <item>
-            <attribute name="label" translatable="yes">Erase</attribute>
-            <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">clear</attribute>
-          </item>
-        </section>
+        </submenu>
+      </section>
+      <section>
+        <attribute name="label" translatable="yes">Don't use the colors but…</attribute>
+        <item>
+          <attribute name="label" translatable="yes">Blur</attribute>
+          <attribute name="action">win.cairo_operator</attribute>
+          <attribute name="target">dest-in</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Erase</attribute>
+          <attribute name="action">win.cairo_operator</attribute>
+          <attribute name="target">clear</attribute>
+        </item>
       </section>
     </submenu>
 

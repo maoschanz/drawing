@@ -121,18 +121,27 @@ class OptionsBarClassic(AbstractOptionsBar):
 		elif op_as_string == 'source':
 			self._operator_enum = cairo.Operator.SOURCE
 			self._operator_label = _("Raw source color")
+
 		elif op_as_string == 'hsl-hue':
 			self._operator_enum = cairo.Operator.HSL_HUE
-			self._operator_label = _("Replace hue")
+			self._operator_label = _("Hue only")
+		elif op_as_string == 'hsl-saturation':
+			self._operator_enum = cairo.Operator.HSL_SATURATION
+			self._operator_label = _("Saturation only")
 		elif op_as_string == 'hsl-color':
 			self._operator_enum = cairo.Operator.HSL_COLOR
-			self._operator_label = _("Replace color")
+			self._operator_label = _("Hue and saturation")
+		elif op_as_string == 'hsl-luminosity':
+			self._operator_enum = cairo.Operator.HSL_LUMINOSITY
+			self._operator_label = _("Luminosity only")
+
 		elif op_as_string == 'clear':
 			self._operator_enum = cairo.Operator.CLEAR
 			self._operator_label = _("Erase")
 		elif op_as_string == 'dest-in':
 			self._operator_enum = cairo.Operator.DEST_IN
 			self._operator_label = _("Blur")
+
 		else:
 			self._operator_enum = cairo.Operator.OVER
 			self._operator_label = _("Normal")
