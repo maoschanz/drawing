@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-15 19:07+0200\n"
-"PO-Revision-Date: 2020-04-26 21:29+0200\n"
+"PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
@@ -63,7 +63,8 @@ msgstr "Program za crtanje za GNOME desktop"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"„Crtanje” je osnovni uređivač slika, podržava PNG, JPEG i BMP datoteke."
+"„Crtanje” je osnovni program za uređivanje slika s podrškom za PNG, JPEG i "
+"BMP datoteke."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -73,7 +74,7 @@ msgid ""
 "rotating, …"
 msgstr ""
 "Omogućuje crtanje ili uređivanje slika pomoću alata kao što su olovka, "
-"linija ili luk (s različitim opcijama), odabir (izrezivanje, kopiranje, "
+"linija ili luk (s raznim opcijama), odabir (izrezivanje, kopiranje, "
 "umetanje, povlačenje, …), oblici (pravokutnik, krug, poligon, …), umetanje "
 "teksta, mijenjanje veličine, rezanje, okretanje, …"
 
@@ -113,8 +114,8 @@ msgid ""
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
-"Alat „zasićenost” zamijenjen je „filterima”, moćnijim alatom s nekoliko "
-"vrsta zamućenja, inverzija boja, pikselizacije, zasićenja i prozirnosti."
+"Alat „zasićenost” zamijenjen je alatom „filtri”, moćnijim alatom za nekoliko "
+"vrsta zamućenja, inverziju boja, pikselizaciju, zasićenost i prozirnosti."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "A fullscreen mode is now available."
@@ -217,7 +218,7 @@ msgstr "Izvezi kao …"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
-msgstr "Ispis"
+msgstr "Ispiši"
 
 #: src/ui/app-menus.ui
 msgid "Close Image"
@@ -281,7 +282,7 @@ msgstr "Umetni"
 #: src/ui/toolbar-symbolic.ui src/window.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
-msgstr "Uvoz"
+msgstr "Uvezi"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -335,14 +336,12 @@ msgid "Go Right"
 msgstr "Idi desno"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the left"
-msgstr "Natrag na paletu"
+msgstr "Kartica lijevo"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the right"
-msgstr "Okreni desno"
+msgstr "Kartica desno"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Refresh"
@@ -385,7 +384,7 @@ msgstr "Zamijeni boje"
 
 #: src/ui/app-menus.ui
 msgid "Color application mode"
-msgstr "Modus programa boja"
+msgstr "Modus programa u boji"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -394,17 +393,15 @@ msgstr "Normalno"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
-msgstr ""
+msgstr "Drugi modusi"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Raw source color"
-msgstr "Boja izvora"
+msgstr "Neobrađena izvorna boja"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Highlight"
 msgstr "Isticanje"
 
@@ -415,30 +412,27 @@ msgstr "Razlika"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Photo manipulation"
-msgstr ""
+msgstr "Obrada fotografija"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Hue only"
-msgstr "Samo traka izbornika"
+msgstr "Samo nijansa"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Saturation only"
-msgstr "Zasićenost"
+msgstr "Samo zasićenost"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Hue and saturation"
-msgstr "Promijeni zasićenost"
+msgstr "Nijansa i zasićenost"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
-msgstr ""
+msgstr "Samo osvjetljenost"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
@@ -665,7 +659,7 @@ msgstr "Uvezi datoteku kao odabir"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr ""
+msgstr "Kartice"
 
 #: src/ui/shortcuts.ui
 msgid "Enter fullscreen mode"
@@ -702,10 +696,10 @@ msgid "Redo %s"
 msgstr "Ponovi %s"
 
 #: src/image.py
-#, fuzzy
 msgid "Can't reload a never-saved file from the disk."
 msgstr ""
-"Nije moguće s diska ponovo učitati sliku, koja nikada nije bila spremljena."
+"Nije moguće s diska ponovo učitati sliku, koja još nikada nije bila "
+"spremljena."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -773,7 +767,7 @@ msgstr "Službena web-stranica"
 #: src/main.py
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr "Greška pri otvaranju datoteke. Jesi li mislio/la na %s?"
+msgstr "Greška pri otvaranju datoteke. Možda misliš %s?"
 
 #. This displays the zoom level, %s will be replaced with a number, while
 #. %% is just the symbol '%'
@@ -836,11 +830,11 @@ msgstr "Pitaj prije spremanja"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Možeš zumirati pomoću Ctrl+klizanje ili samo klizanje."
+msgstr "Zumiraj pomoću Ctrl+klizanje ili samo klizanjem."
 
 #: src/preferences.py
 msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr "Također je moguće kosristiti prečace na tipkovnici ili dodirne geste."
+msgstr "Moguće je koristiti i tipkovničke prečace ili dodirne geste."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -863,8 +857,8 @@ msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
-"Ovi alati nisu toliko pouzdani i korisni kao što bi trebali biti, stoga se "
-"standardno ne aktiviraju svi."
+"Ovi alati nisu pouzdani i korisni kao što bi trebali biti, stoga neki nisu "
+"standardno aktivirani."
 
 #. In the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -881,15 +875,15 @@ msgstr "Prostoručni odabir"
 
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Odabir bojom"
+msgstr "Odabir prema boji"
 
 #: src/preferences.py src/tools/classic_tools/tool_picker.py
 msgid "Color Picker"
-msgstr "Biranje boje"
+msgstr "Kapaljka"
 
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
-msgstr "Boja"
+msgstr "Bojanje"
 
 #: src/preferences.py
 msgid "Advanced options"
@@ -1348,7 +1342,7 @@ msgstr "Daljnje opcije"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
-msgstr "Zadrži omjere"
+msgstr "Zadrži omjer"
 
 #. Context for translations: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
@@ -1386,7 +1380,7 @@ msgstr "Oblik crte"
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Oblo"
+msgstr "Zaobljeno"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
@@ -1529,7 +1523,7 @@ msgstr "Krivulja"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve options"
-msgstr "Opcije za krivulje"
+msgstr "Opcije za krivulju"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -1554,7 +1548,7 @@ msgstr "Opcije za crtanje"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
-msgstr "Klikni na područje, čiju boju želiš zamijeniti s prozirnošću"
+msgstr "Klikni na područje čiju boju želiš zamijeniti s prozirnošću"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
@@ -1586,7 +1580,7 @@ msgstr "Tekst"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Font options"
-msgstr "Opcije za fontove"
+msgstr "Opcije za font"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
