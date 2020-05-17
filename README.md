@@ -46,7 +46,7 @@ You can install it from flathub.org using the instructions on [this page](https:
 
 - Brazilian portuguese (thanks to [Antonio Hauren](https://github.com/haurenburu))
 - Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
-- Croatian (thanks to [milotype](https://github.com/milotype))
+- Croatian (thanks to [Milo Ivir](https://github.com/milotype))
 - Danish (thanks to [scootergrisen](https://github.com/scootergrisen))
 - Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
 - English
