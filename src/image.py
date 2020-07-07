@@ -102,34 +102,31 @@ class DrImage(Gtk.Box):
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
 		a = float(background_rgba[3])
-		self.initial_operation = {
+		op = {
 			'tool_id': None,
 			'pixbuf': None,
 			'red': r, 'green': g, 'blue': b, 'alpha': a,
 			'width': width, 'height': height
 		}
 		self.init_image_common()
+		self._history_manager.set_initial_state(op)
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
-		self._load_pixbuf_common(pixbuf)
 		self.init_image_common()
+		self._load_pixbuf_common(pixbuf)
 		self.restore_first_pixbuf()
 		self.update_title()
 
 	def _new_blank_pixbuf(self, w, h):
 		return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, w, h)
 
-	def get_last_saved_pixbuf_op(self):
-		last_saved_pixbuf_op = self.initial_operation
-		return last_saved_pixbuf_op
-
 	def restore_first_pixbuf(self):
 		"""Set the last saved pixbuf from the history as the main_pixbuf. This
 		is used to rebuild the picture from its history."""
-		last_saved_pixbuf_op = self.get_last_saved_pixbuf_op()
+		last_saved_pixbuf_op = self._history_manager.get_last_saved_state()
 
-		# restore the pixbuf found by get_last_saved_pixbuf_op
+		# restore the state found in the history
 		pixbuf = last_saved_pixbuf_op['pixbuf']
 		width = last_saved_pixbuf_op['width']
 		height = last_saved_pixbuf_op['height']
@@ -157,25 +154,29 @@ class DrImage(Gtk.Box):
 	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
-		# XXX garder ça en attribut fait-il encore sens ?
-		self.initial_operation = {
+		op = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
 			'red': 0.0, 'green': 0.0, 'blue': 0.0, 'alpha': 0.0,
 			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
+		self._history_manager.set_initial_state(op)
 		self.main_pixbuf = pixbuf
 
 	def reload_from_disk(self):
-		"""Safely reloads the image from the disk (asks if unsaved changes
-		should be discarded or saved)."""
-		if not self.window.confirm_save_modifs(): # TODO non c'est nul, l'op de
-			return # reload doit être annulable en plus
+		"""Safely reloads the image from the disk."""
 		if self.gfile is None:
-			self.window.prompt_message(True, \
-			                _("Can't reload a never-saved file from the disk."))
-			return
-		self.add_reload_history_operation(gfile)
+			# TODO no, the action shouldn't be active in the first place
+			if not self.window.confirm_save_modifs():
+				self.window.prompt_message(True, \
+				            _("Can't reload a never-saved file from the disk."))
+				return
+		disk_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		self._load_pixbuf_common(disk_pixbuf)
+		self.window.set_picture_title(self.update_title())
+		self.use_stable_pixbuf()
+		self.update()
+		self.remember_current_state()
 
 	def try_load_file(self, gfile):
 		self.gfile = gfile
@@ -265,16 +266,21 @@ class DrImage(Gtk.Box):
 	def is_saved(self):
 		return self._history_manager.get_saved()
 
-	def add_reload_history_operation(self, gfile): # XXX wait ça devait faire quoi ça
-		self.gfile = gfile
+	def remember_current_state(self):
+		self._history_manager.add_state(self.main_pixbuf.copy())
 
-	def update_history_sensitivity(self): # XXX dans le history_manager ?
+	def update_history_sensitivity(self):
 		self.set_action_sensitivity('undo', self._history_manager.can_undo())
 		self.set_action_sensitivity('redo', self._history_manager.can_redo())
 		# self.update_history_actions_labels()
 
-	def add_to_history(self, operation): # XXX ptêt simplifiable ?
+	def add_to_history(self, operation):
 		self._history_manager.add_operation(operation)
+
+	def should_replace(self):
+		if self._history_manager.can_undo():
+			return False
+		return not self._history_manager.has_initial_pixbuf()
 
 	############################################################################
 	# Misc ? ###################################################################
@@ -296,11 +302,6 @@ class DrImage(Gtk.Box):
 
 	def active_tool(self):
 		return self.window.active_tool()
-
-	def should_replace(self):
-		if not self._history_manager.can_undo():
-			return False
-		return self.initial_operation['pixbuf'] is None
 
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
@@ -386,7 +387,6 @@ class DrImage(Gtk.Box):
 		self.window.set_cursor(False)
 
 	def post_save(self):
-		# self._is_saved = True # FIXME
 		self.use_stable_pixbuf()
 		self.update()
 

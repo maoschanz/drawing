@@ -903,7 +903,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		try:
 			pixb = self.get_active_image().main_pixbuf
 			utilities_save_pixbuf_to(pixb, fn, self, True)
-			self.get_active_image().add_reload_history_operation(gfile)
+			self.get_active_image().gfile = gfile
+			self.get_active_image().remember_current_state()
 		except Exception as e:
 			if str(e) == '2': # exception has been raised because the user wants
 				# to save the file under an other format (JPEG/BMP → PNG)
@@ -912,6 +913,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# else the exception was raised because an actual error occured, or
 			# the user clicked on "cancel"
 			self.prompt_message(False, _("Failed to save %s") % fn)
+			print(e)
 			return False
 		self.get_active_image().post_save()
 		self.set_picture_title()
