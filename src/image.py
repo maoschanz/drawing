@@ -17,6 +17,7 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
+from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
 
@@ -92,10 +93,7 @@ class DrImage(Gtk.Box):
 		self.selection = DrSelectionManager(self)
 
 		# History initialization
-		self.previous_pixbuf = None
-		self.undo_history = []
-		self.redo_history = []
-		self._is_saved = True
+		self._history_manager = DrHistoryManager(self)
 		self.set_action_sensitivity('undo', False)
 		self.set_action_sensitivity('redo', False)
 
@@ -114,8 +112,52 @@ class DrImage(Gtk.Box):
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
+		self._load_pixbuf_common(pixbuf)
+		self.init_image_common()
+		self.restore_first_pixbuf()
+		self.update_title()
+
+	def _new_blank_pixbuf(self, w, h):
+		return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, w, h)
+
+	def get_last_saved_pixbuf_op(self):
+		last_saved_pixbuf_op = self.initial_operation
+		return last_saved_pixbuf_op
+
+	def restore_first_pixbuf(self):
+		"""Set the last saved pixbuf from the history as the main_pixbuf. This
+		is used to rebuild the picture from its history."""
+		last_saved_pixbuf_op = self.get_last_saved_pixbuf_op()
+
+		# restore the pixbuf found by get_last_saved_pixbuf_op
+		pixbuf = last_saved_pixbuf_op['pixbuf']
+		width = last_saved_pixbuf_op['width']
+		height = last_saved_pixbuf_op['height']
+		self.temp_pixbuf = self._new_blank_pixbuf(1, 1)
+		self.selection.init_pixbuf()
+		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
+		if pixbuf is None:
+			# no pixbuf found at step 1: the restored pixbuf is a blank one
+			r = last_saved_pixbuf_op['red']
+			g = last_saved_pixbuf_op['green']
+			b = last_saved_pixbuf_op['blue']
+			a = last_saved_pixbuf_op['alpha']
+			self.main_pixbuf = self._new_blank_pixbuf(width, height)
+			cairo_context = cairo.Context(self.surface)
+			cairo_context.set_source_rgba(r, g, b, a)
+			cairo_context.paint()
+			self.update()
+			self.set_surface_as_stable_pixbuf()
+		else:
+			self.main_pixbuf = last_saved_pixbuf_op['pixbuf'].copy()
+			self.use_stable_pixbuf()
+
+	############################################################################
+
+	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
+		# XXX garder ça en attribut fait-il encore sens ?
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
@@ -123,50 +165,17 @@ class DrImage(Gtk.Box):
 			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
 		self.main_pixbuf = pixbuf
-		self.init_image_common()
-		self.restore_first_pixbuf()
-		self.update_title()
-
-	def restore_first_pixbuf(self):
-		"""Set the first saved pixbuf as the main_pixbuf. This is used to
-		rebuild the picture from its history."""
-		pixbuf = self.initial_operation['pixbuf']
-		width = self.initial_operation['width']
-		height = self.initial_operation['height']
-		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
-		self.selection.init_pixbuf()
-		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		if pixbuf is None:
-			r = self.initial_operation['red']
-			g = self.initial_operation['green']
-			b = self.initial_operation['blue']
-			a = self.initial_operation['alpha']
-			self.main_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, \
-			                                             True, 8, width, height)
-			cairo_context = cairo.Context(self.surface)
-			cairo_context.set_source_rgba(r, g, b, a)
-			cairo_context.paint()
-			self.update()
-			self.set_surface_as_stable_pixbuf()
-		else:
-			self.main_pixbuf = self.initial_operation['pixbuf'].copy()
-			self.use_stable_pixbuf()
-
-	############################################################################
 
 	def reload_from_disk(self):
-		if not self.window.confirm_save_modifs():
-			return
 		"""Safely reloads the image from the disk (asks if unsaved changes
 		should be discarded or saved)."""
+		if not self.window.confirm_save_modifs(): # TODO non c'est nul, l'op de
+			return # reload doit être annulable en plus
 		if self.gfile is None:
 			self.window.prompt_message(True, \
 			                _("Can't reload a never-saved file from the disk."))
 			return
-		self.try_load_file(self.gfile)
-		self.window.set_picture_title(self.update_title())
-		# FIXME ne pas reset l'historique avec try_load_pixbuf
-		self.update() # mdr pourquoi c'est pas déjà le cas avec le load ???
+		self.add_reload_history_operation(gfile)
 
 	def try_load_file(self, gfile):
 		self.gfile = gfile
@@ -208,7 +217,7 @@ class DrImage(Gtk.Box):
 
 	def update_title(self):
 		main_title = self.get_filename_for_display()
-		if not self._is_saved:
+		if not self.is_saved():
 			main_title = "*" + main_title
 		self.set_tab_label(main_title)
 		return main_title
@@ -247,74 +256,25 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# History management #######################################################
 
-	def _operation_is_ongoing(self):
-		return self.active_tool().has_ongoing_operation()
+	def try_undo(self):
+		self._history_manager.try_undo()
 
-	def try_undo(self, *args):
-		if self._operation_is_ongoing():
-			self.active_tool().cancel_ongoing_operation()
-			return
-		if len(self.undo_history) != 0:
-			self.redo_history.append(self.undo_history.pop())
-		if self.previous_pixbuf is not None:
-			# TODO better pixbuf-based history
-			self.main_pixbuf = self.previous_pixbuf
-			self.previous_pixbuf = None
-			self.use_stable_pixbuf()
-			self.update()
-			self.update_history_sensitivity()
-		else:
-			self.rebuild_from_history()
+	def try_redo(self):
+		self._history_manager.try_redo()
 
-	def try_redo(self, *args):
-		operation = self.redo_history.pop()
-		self.window.tools[operation['tool_id']].apply_operation(operation)
+	def is_saved(self):
+		return self._history_manager.get_saved()
 
-	def rebuild_from_history(self):
-		self.restore_first_pixbuf()
-		history = self.undo_history.copy()
-		self.undo_history = []
-		for op in history:
-			# print(op)
-			self.window.tools[op['tool_id']].simple_apply_operation(op)
-		self.update()
-		self.update_history_sensitivity()
+	def add_reload_history_operation(self, gfile): # XXX wait ça devait faire quoi ça
+		self.gfile = gfile
 
-	def update_history_sensitivity(self):
-		# XXX never called while an operation is ongoing so that's stupid
-		can_undo = (len(self.undo_history) != 0) or self._operation_is_ongoing()
-		self.set_action_sensitivity('undo', can_undo)
-		self.set_action_sensitivity('redo', len(self.redo_history) != 0)
+	def update_history_sensitivity(self): # XXX dans le history_manager ?
+		self.set_action_sensitivity('undo', self._history_manager.can_undo())
+		self.set_action_sensitivity('redo', self._history_manager.can_redo())
 		# self.update_history_actions_labels()
 
-	def update_history_actions_labels(self):
-		undoable_action = self.undo_history[-1:]
-		redoable_action = self.redo_history[-1:]
-		undo_label = None
-		redo_label = None
-		# TODO store/get translatable labels instead of tool_ids (issue #42)
-		if self._operation_is_ongoing():
-			# XXX pointless: the method is called at application of the operation
-			undo_label = self.active_tool().tool_id
-		elif len(undoable_action) > 0:
-			undo_label = undoable_action[0]['tool_id']
-		if len(redoable_action) > 0:
-			redo_label = redoable_action[0]['tool_id']
-		self.window.update_history_actions_labels(undo_label, redo_label)
-
-	def add_pixbuf_to_history(self):
-		# self.previous_pixbuf = self.main_pixbuf.copy()
-		pass # TODO
-
-	def add_to_history(self, operation):
-		self.set_surface_as_stable_pixbuf()
-		# print('add_operation_to_history')
-		# print(operation['tool_id'])
-		# if 'select' in operation['tool_id']:
-		# 	print(operation['operation_type'])
-		# 	print('-----------------------------------')
-		self._is_saved = False
-		self.undo_history.append(operation)
+	def add_to_history(self, operation): # XXX ptêt simplifiable ?
+		self._history_manager.add_operation(operation)
 
 	############################################################################
 	# Misc ? ###################################################################
@@ -338,7 +298,7 @@ class DrImage(Gtk.Box):
 		return self.window.active_tool()
 
 	def should_replace(self):
-		if len(self.undo_history) > 0:
+		if not self._history_manager.can_undo():
 			return False
 		return self.initial_operation['pixbuf'] is None
 
@@ -426,7 +386,7 @@ class DrImage(Gtk.Box):
 		self.window.set_cursor(False)
 
 	def post_save(self):
-		self._is_saved = True
+		# self._is_saved = True # FIXME
 		self.use_stable_pixbuf()
 		self.update()
 
@@ -467,7 +427,7 @@ class DrImage(Gtk.Box):
 			self.temp_pixbuf = new_pixbuf
 
 	def reset_temp(self):
-		self.temp_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 1, 1)
+		self.temp_pixbuf = self._new_blank_pixbuf(1, 1)
 		self.use_stable_pixbuf()
 		self.update()
 

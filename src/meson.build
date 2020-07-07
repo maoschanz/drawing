@@ -35,6 +35,7 @@ drawing_sources = [
 	'minimap.py',
 
 	'image.py',
+	'history_manager.py',
 	'selection_manager.py',
 
 	'utilities.py',

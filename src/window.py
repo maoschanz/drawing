@@ -291,7 +291,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def close_tab(self, tab):
 		"""Close a tab (after asking to save if needed)."""
 		index = self.notebook.page_num(tab)
-		if not self.notebook.get_nth_page(index)._is_saved:
+		if not self.notebook.get_nth_page(index).is_saved():
 			self.notebook.set_current_page(index)
 			is_saved = self.confirm_save_modifs()
 			if not is_saved:
@@ -818,7 +818,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_window_id = dialog.set_action(_("New Window"), None, False)
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
-			if not self.get_active_image()._is_saved:
+			if not self.get_active_image().is_saved():
 				dialog.add_string(_("There are unsaved modifications to %s.") % \
 				             self.get_active_image().get_filename_for_display())
 			dialog.add_string(_("Where do you want to open %s?") % file_name)
@@ -903,7 +903,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		try:
 			pixb = self.get_active_image().main_pixbuf
 			utilities_save_pixbuf_to(pixb, fn, self, True)
-			self.get_active_image().gfile = gfile
+			self.get_active_image().add_reload_history_operation(gfile)
 		except Exception as e:
 			if str(e) == '2': # exception has been raised because the user wants
 				# to save the file under an other format (JPEG/BMP → PNG)
@@ -921,7 +921,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""Return True if the image can be closed/overwritten (whether it's
 		saved or not), or False otherwise (usually if the user clicked 'cancel',
 		or if an error occurred)."""
-		if self.get_active_image()._is_saved:
+		if self.get_active_image().is_saved():
 			return True
 		fn = self.get_file_path()
 		if fn is None:
@@ -1085,12 +1085,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_active_image().try_redo()
 
 	def action_restore(self, *args):
+		"""[Dev only] show the last saved pixbuf on the canvas."""
 		self.get_active_image().use_stable_pixbuf()
 		self.get_active_image().update()
 
 	def action_rebuild(self, *args):
-		"""Rebuild the image according to the history content."""
-		self.get_active_image().rebuild_from_history()
+		"""[Dev only] rebuild the image according to the history content."""
+		self.get_active_image()._history_manager._rebuild_from_history()
 
 	def update_history_actions_labels(self, undo_label, redo_label):
 		self._decorations.set_undo_label(undo_label)
