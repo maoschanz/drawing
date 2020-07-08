@@ -30,9 +30,13 @@ class ToolShape(AbstractClassicTool):
 		self.add_tool_action_enum('shape_type', self._shape_id)
 		self._set_active_shape()
 
-		self._style_id = 'empty'
-		self._style_label = _("Empty")
-		self.add_tool_action_enum('shape_filling', self._style_id)
+		self._filling_id = 'empty'
+		self._filling_label = _("Empty shape")
+		self.add_tool_action_enum('shape_filling', self._filling_id)
+
+		self._outline_id = 'solid'
+		self._outline_label = _("Solid outline")
+		self.add_tool_action_enum('shape_outline', self._outline_id)
 
 		self.add_tool_action_simple('shape_close', self._force_close_shape)
 		self.set_action_sensitivity('shape_close', False)
@@ -46,19 +50,29 @@ class ToolShape(AbstractClassicTool):
 
 	def _set_filling_style(self):
 		state_as_string = self.get_option_value('shape_filling')
-		self._style_id = state_as_string
+		self._filling_id = state_as_string
 		if state_as_string == 'empty':
-			self._style_label = _("Empty outline")
+			self._filling_label = _("Empty shape")
 		elif state_as_string == 'filled':
-			self._style_label = _("Main color")
+			self._filling_label = _("Main color")
 		elif state_as_string == 'h-gradient':
-			self._style_label = _("Horizontal gradient")
+			self._filling_label = _("Horizontal gradient")
 		elif state_as_string == 'v-gradient':
-			self._style_label = _("Vertical gradient")
+			self._filling_label = _("Vertical gradient")
 		elif state_as_string == 'r-gradient':
-			self._style_label = _("Radial gradient")
+			self._filling_label = _("Radial gradient")
 		else: # if state_as_string == 'secondary':
-			self._style_label = _("Secondary color")
+			self._filling_label = _("Secondary color")
+
+	def _set_outline_style(self):
+		state_as_string = self.get_option_value('shape_outline')
+		self._outline_id = state_as_string
+		if state_as_string == 'solid':
+			self._outline_label = _("Solid outline")
+		elif state_as_string == 'dashed':
+			self._outline_label = _("Dashed outline")
+		else: # if state_as_string == 'none':
+			self._outline_label = _("No outline")
 
 	def _set_active_shape(self, *args):
 		self._shape_id = self.get_option_value('shape_type')
@@ -86,13 +100,21 @@ class ToolShape(AbstractClassicTool):
 
 	def get_edition_status(self):
 		self._set_filling_style()
+		self._set_outline_style()
 		self._set_active_shape()
-		label = self._shape_label + ' - ' + self._style_label
+
+		label = self._shape_label
+		if self._filling_id != 'empty':
+			label += ' - ' + self._filling_label
+		if self._outline_id != 'solid':
+			label += ' - ' + self._outline_label
+
 		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
 			instruction = _("Click on the shape's first point to close it.")
 			label = label + ' - ' + instruction
 		else:
 			self.set_action_sensitivity('shape_close', False)
+
 		return label
 
 	def give_back_control(self, preserve_selection):
@@ -237,7 +259,8 @@ class ToolShape(AbstractClassicTool):
 			'operator': cairo.Operator.OVER, # self._operator, # XXX ne marche pas avec le blur
 			'line_join': self._join_id,
 			'line_width': self.tool_width,
-			'filling': self._style_id,
+			'filling': self._filling_id,
+			'outline': self._outline_id,
 			'smooth': (self._shape_id == 'freeshape'),
 			'closed': True,
 			'path': cairo_path
@@ -258,24 +281,24 @@ class ToolShape(AbstractClassicTool):
 		# the 2 centers could be 2 distinct points
 		return pattern
 
-	def fill_pattern(self, cairo_context, pattern, c1, c2):
-		"""Fill the shape defined by the context with a gradient from c1 to c2
+	def _fill_pattern(self, cairo_context, pattern, c1, c2):
+		"""Fill the shape defined in the context with a gradient from c1 to c2
 		according to the given pattern."""
 		pattern.add_color_stop_rgba(0.1, c1.red, c1.green, c1.blue, c1.alpha)
 		pattern.add_color_stop_rgba(0.9, c2.red, c2.green, c2.blue, c2.alpha)
 		cairo_context.set_source(pattern)
-		cairo_context.fill()
-
-	def fill_secondary(self, cairo_context, c1, c2):
-		cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
 		cairo_context.fill_preserve()
-		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-		cairo_context.stroke()
+
+	def _fill_plain(self, cairo_context, c):
+		"""Fill the shape defined in the context with the color c."""
+		cairo_context.set_source_rgba(c.red, c.green, c.blue, c.alpha)
+		cairo_context.fill_preserve()
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_operator(operation['operator'])
-		cairo_context.set_line_width(operation['line_width'])
+		line_width = operation['line_width']
+		cairo_context.set_line_width(line_width)
 		cairo_context.set_line_join(operation['line_join'])
 		c1 = operation['rgba_main']
 		c2 = operation['rgba_secd']
@@ -288,15 +311,17 @@ class ToolShape(AbstractClassicTool):
 
 		filling = operation['filling']
 		if filling == 'secondary':
-			self.fill_secondary(cairo_context, c1, c2)
+			self._fill_plain(cairo_context, c2)
+		elif filling == 'filled':
+			self._fill_plain(cairo_context, c1)
 		elif filling == 'h-gradient':
 			x1, y1, x2, y2 = cairo_context.path_extents()
 			pattern = self.get_pattern_h(x1, x2)
-			self.fill_pattern(cairo_context, pattern, c1, c2)
+			self._fill_pattern(cairo_context, pattern, c1, c2)
 		elif filling == 'v-gradient':
 			x1, y1, x2, y2 = cairo_context.path_extents()
 			pattern = self.get_pattern_v(y1, y2)
-			self.fill_pattern(cairo_context, pattern, c1, c2)
+			self._fill_pattern(cairo_context, pattern, c1, c2)
 		elif filling == 'r-gradient':
 			x1, y1, x2, y2 = cairo_context.path_extents()
 			ddx = abs(x1 - x2) / 2
@@ -305,13 +330,20 @@ class ToolShape(AbstractClassicTool):
 			center_y = min(y1, y2) + ddy
 			rad = max(ddx, ddy)
 			pattern = self.get_pattern_r(center_x, center_y, rad)
-			self.fill_pattern(cairo_context, pattern, c1, c2)
-		elif filling == 'filled':
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-			cairo_context.fill()
+			self._fill_pattern(cairo_context, pattern, c1, c2)
 		else: # filling == 'empty':
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+			pass
+
+		outline = operation['outline']
+		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+		if outline == 'dashed':
+			cairo_context.set_dash([2 * line_width, 2 * line_width])
+		if outline != 'none':
 			cairo_context.stroke()
+
+		# Reset the current path (maybe useful if no outline)
+		cairo_context.new_path()
 
 	############################################################################
 ################################################################################
+

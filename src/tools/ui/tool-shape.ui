@@ -2,8 +2,58 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
-      <!-- <attribute name="label" translatable="yes">Shape</attribute> -->
-        <attribute name="display-hint">horizontal-buttons</attribute>
+      <!-- <attribute name="label" translatable="yes">Outline</attribute> -->
+      <item>
+        <attribute name="label" translatable="yes">Solid outline</attribute>
+        <attribute name="action">win.shape_outline</attribute>
+        <attribute name="target">solid</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Dashed outline</attribute>
+        <attribute name="action">win.shape_outline</attribute>
+        <attribute name="target">dashed</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">No outline</attribute>
+        <attribute name="action">win.shape_outline</attribute>
+        <attribute name="target">none</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label" translatable="yes">Filling</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Empty shape</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">empty</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Main color</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">filled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Horizontal gradient</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">h-gradient</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Vertical gradient</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">v-gradient</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Radial gradient</attribute>
+        <attribute name="action">win.shape_filling</attribute>
+        <attribute name="target">r-gradient</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="label" translatable="yes">Rectangle</attribute>
         <attribute name="action">win.shape_type</attribute>
@@ -42,49 +92,15 @@
       </item>
     </section>
     <section>
-      <!-- <attribute name="label" translatable="yes">Filling</attribute> -->
       <item>
-        <attribute name="label" translatable="yes">Empty outline</attribute>
-        <attribute name="action">win.shape_filling</attribute>
-        <attribute name="target">empty</attribute>
+        <attribute name="label" translatable="yes">Antialiasing</attribute>
+        <attribute name="action">win.antialias</attribute>
       </item>
-      <item>
-        <attribute name="label" translatable="yes">Main color</attribute>
-        <attribute name="action">win.shape_filling</attribute>
-        <attribute name="target">filled</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Secondary color</attribute>
-        <attribute name="action">win.shape_filling</attribute>
-        <attribute name="target">secondary</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Horizontal gradient</attribute>
-        <attribute name="action">win.shape_filling</attribute>
-        <attribute name="target">h-gradient</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Vertical gradient</attribute>
-        <attribute name="action">win.shape_filling</attribute>
-        <attribute name="target">v-gradient</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Radial gradient</attribute>
-        <attribute name="action">win.shape_filling</attribute>
-        <attribute name="target">r-gradient</attribute>
-      </item>
-    </section>
-    <section>
       <item>
         <attribute name="label" translatable="yes">Close shape</attribute>
         <attribute name="action">win.shape_close</attribute>
       </item>
     </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Antialiasing</attribute>
-        <attribute name="action">win.antialias</attribute>
-      </item>
-    </section>
   </menu>
 </interface>
+
