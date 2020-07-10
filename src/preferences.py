@@ -141,22 +141,22 @@ class DrPrefsWindow(Gtk.Window):
 
 		self.add_section_title(_("Advanced options"))
 
-		ui_bg_color_btn = Gtk.ColorButton(use_alpha=True)
-		ui_background_rgb = self._settings.get_strv("ui-background-rgb")
-		r = float(ui_background_rgb[0])
-		g = float(ui_background_rgb[1])
-		b = float(ui_background_rgb[2])
-		a = float(ui_background_rgb[3])
-		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		ui_bg_color_btn.set_rgba(color)
-		ui_bg_color_btn.connect('color-set', self.on_ui_background_changed)
-		self.add_row(_("UI background"), ui_bg_color_btn)
-
 		self.add_adj(_("Preview size"), 'preview-size', self.adj_preview)
 		if is_beta:
 			self.add_switch(_("Development features"), 'devel-only')
 		else:
 			self._settings.set_boolean('devel-only', False)
+
+		bg_color_btn = Gtk.ColorButton(use_alpha=True)
+		background_rgba = self._settings.get_strv("ui-background-rgba")
+		r = float(background_rgba[0])
+		g = float(background_rgba[1])
+		b = float(background_rgba[2])
+		a = float(background_rgba[3])
+		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		bg_color_btn.set_rgba(color)
+		bg_color_btn.connect('color-set', self.on_ui_background_changed)
+		self.add_row(_("Background color"), bg_color_btn)
 
 		self.add_section_separator()
 		self.add_section_title(_("Layout"))
@@ -285,7 +285,7 @@ class DrPrefsWindow(Gtk.Window):
 	def on_ui_background_changed(self, color_btn):
 		c = color_btn.get_rgba()
 		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
-		self._settings.set_strv('ui-background-rgb', color_array)
+		self._settings.set_strv('ui-background-rgba', color_array)
 
 	############################################################################
 	# Low-level packing ########################################################

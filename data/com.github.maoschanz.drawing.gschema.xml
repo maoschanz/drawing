@@ -47,6 +47,13 @@
         'checkboard'.
       </description>
     </key>
+    <key type="as" name="ui-background-rgba">
+      <default>['0.0', '0.0', '0.0', '0.0']</default>
+      <summary>Default UI background color</summary>
+      <description>
+        The color for the background of the user interface, behind the image.
+      </description>
+    </key>
     <key type="b" name="devel-only">
       <default>false</default>
       <summary>Experimental features</summary>
@@ -58,11 +65,6 @@
       <default>['1.0', '1.0', '1.0', '1.0']</default>
       <summary>Default color background</summary>
       <description>The default color background of a new image.</description>
-    </key>
-    <key type="as" name="ui-background-rgb">
-      <default>['0.0', '0.0', '0.0', '0.0']</default>
-      <summary>Default UI background color</summary>
-      <description>The default color for the background of the user interface behind the image.</description>
     </key>
     <key type="i" name="default-width">
       <default>1000</default>
