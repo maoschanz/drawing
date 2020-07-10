@@ -88,6 +88,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		return not (op_as_string == 'clear' or op_as_string == 'dest-in')
 
 	def adapt_to_operator(self, op_as_string):
+		# print("adapt to operator :", op_as_string) # XXX est-ce trop appelé
 		supports_colors = self._operator_supports_color(op_as_string)
 		self._operator_menubtn.get_popover().popdown()
 		self.color_widget.set_sensitive(supports_colors)

@@ -33,9 +33,11 @@ class ToolText(AbstractClassicTool):
 		self._bg_label = _("Outline")
 
 		self.add_tool_action_enum('text-font', self._font_fam)
+		# self.add_tool_action_simple('text-set-custom', self._set_custom)
 		self.add_tool_action_boolean('text-bold', False)
 		self.add_tool_action_boolean('text-italic', False)
 		self.add_tool_action_enum('text-background', self._bg_id)
+
 		# TODO actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
 		self.add_tool_action_simple('text-preview', self._force_refresh)
@@ -51,6 +53,9 @@ class ToolText(AbstractClassicTool):
 
 	############################################################################
 	# Options ##################################################################
+
+	def _set_custom(self, *args):
+		pass # TODO fontchooserdialog ??
 
 	def _set_font_options(self, *args):
 		# TODO use the widget again. And cairo.ToyFontFace ?

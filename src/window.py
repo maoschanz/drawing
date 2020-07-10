@@ -1079,7 +1079,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT #######################################################
 
 	def action_undo(self, *args):
-		# self.prompt_message(True, _("Undoing…")) # TODO forcer la mainloop ??
+		# self.prompt_message(True, _("Undoing…"))
 		self.get_active_image().try_undo()
 		# self.prompt_message(False, 'finished undoing')
 

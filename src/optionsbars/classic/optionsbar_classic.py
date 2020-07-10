@@ -112,6 +112,10 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._color_r.color_widget.set_rgba(left_color)
 
 	def _set_active_operator(self, op_as_string):
+		"""Remember as attributes the value and the label of the operator which
+		is the current one according to the Gio.Action state value given as an
+		argument."""
+
 		if op_as_string == 'difference':
 			self._operator_enum = cairo.Operator.DIFFERENCE
 			self._operator_label = _("Difference")

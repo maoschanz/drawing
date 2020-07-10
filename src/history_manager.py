@@ -28,7 +28,6 @@ class DrHistoryManager():
 		self._undo_history = []
 		self._redo_history = []
 		self._is_saved = True
-		# TODO
 
 	def get_saved(self):
 		return self._is_saved
@@ -66,7 +65,9 @@ class DrHistoryManager():
 		return len(self._redo_history) > 0
 
 #	def update_history_actions_labels(self):
-#		"""...""" # l'appel est commenté aussi
+#		"""Update the current decoration manager "undo/redo" labels (tooltips,
+#		menuitems, etc.) to fit the current content of the history."""
+#		# l'appel est commenté aussi
 #		undoable_action = self._undo_history[-1:]
 #		redoable_action = self._redo_history[-1:]
 #		undo_label = None
@@ -120,7 +121,11 @@ class DrHistoryManager():
 			return self._undo_history[index]
 
 	def _get_last_state_index(self, yeet_supernumerary_states):
-		"""..."""
+		"""Return the index of the last "state" operation (dict whose 'tool_id'
+		value is None) in the undo-history. If there is no such operation, the
+		returned index is -1 which means the only known state is the
+		self._initial_operation attribute."""
+
 		returned_index = -1
 		nbPixbufs = 0
 		for op in self._undo_history:
@@ -134,6 +139,8 @@ class DrHistoryManager():
 			print("YEETING STATES : %s IS TOO MUCH!" % nbPixbufs)
 			# TODO tester cette merde là
 			nbPixbufs = 0
+			# for op in self._redo_history:
+			# 	pass # TODO ça aussi non ??
 			for op in self._undo_history:
 				if op['tool_id'] is None:
 					if nbPixbufs < 5:
@@ -142,8 +149,7 @@ class DrHistoryManager():
 						op['pixbuf'] = None # XXX fuite ?
 						self._undo_history.remove(op)
 						op = {} # XXX fuite ?
-			# for op in self._redo_history:
-			# 	pass # TODO ça aussi non ??
+						return self._get_last_state_index(True)
 
 		print("returned_index : " + str(returned_index))
 		return returned_index
@@ -152,7 +158,7 @@ class DrHistoryManager():
 	# Other private methods ####################################################
 
 	def _rebuild_from_history(self):
-		"""..."""
+		"""Rebuild the image according to the content of the current history."""
 		last_save_index = self._get_last_state_index(True)
 		self._image.restore_first_pixbuf()
 		history = self._undo_history.copy()
@@ -162,7 +168,7 @@ class DrHistoryManager():
 				print("do", op['tool_id'])
 				self._get_tool(op['tool_id']).simple_apply_operation(op)
 			else:
-				print("skip", op['tool_id'])
+				print("skip", op['tool_id']) # TODO faire 2 boucles, avec ranges
 				self._undo_history.append(op)
 		self._image.update()
 		self._image.update_history_sensitivity()
