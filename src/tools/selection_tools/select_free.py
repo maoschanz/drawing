@@ -66,27 +66,28 @@ class ToolFreeSelect(AbstractSelectionTool):
 		cairo_context = self.get_context()
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 		cairo_context.set_dash([3, 3])
-		if AbstractSelectionTool.future_path is None:
+		if AbstractSelectionTool._future_path is None:
 			self.closing_x = event_x
 			self.closing_y = event_y
 			cairo_context.move_to(event_x, event_y)
-			AbstractSelectionTool.future_path = cairo_context.copy_path()
+			AbstractSelectionTool._future_path = cairo_context.copy_path()
 			return False
 		delta_x = max(event_x, self.closing_x) - min(event_x, self.closing_x)
 		delta_y = max(event_y, self.closing_y) - min(event_y, self.closing_y)
 		if (delta_x < self.closing_precision) and (delta_y < self.closing_precision):
-			cairo_context.append_path(AbstractSelectionTool.future_path)
+			cairo_context.append_path(AbstractSelectionTool._future_path)
 			cairo_context.close_path()
 			cairo_context.stroke_preserve()
-			AbstractSelectionTool.future_path = cairo_context.copy_path()
+			AbstractSelectionTool._future_path = cairo_context.copy_path()
 			return True
 		else:
-			cairo_context.append_path(AbstractSelectionTool.future_path)
+			cairo_context.append_path(AbstractSelectionTool._future_path)
 			cairo_context.line_to(int(event_x), int(event_y))
 			cairo_context.stroke_preserve() # draw the line without closing the path
-			AbstractSelectionTool.future_path = cairo_context.copy_path()
+			AbstractSelectionTool._future_path = cairo_context.copy_path()
 			self.non_destructive_show_modif() # XXX
 			return False
 
 	############################################################################
 ################################################################################
+

@@ -25,10 +25,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
 	# x_press = 0
 	# y_press = 0
-	# future_x = 0
-	# future_y = 0
-	future_path = None
-	# future_pixbuf = None
+	_future_x = 0
+	_future_y = 0
+	_future_path = None
+	_future_pixbuf = None
 	# operation_type = None # 'op-define'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
@@ -41,10 +41,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.y_press = 0
 		self.local_dx = 0
 		self.local_dy = 0
-		self.future_x = 0
-		self.future_y = 0
-		# self.future_path = None
-		self.future_pixbuf = None
+		# AbstractSelectionTool._future_x = 0
+		# AbstractSelectionTool._future_y = 0
+		# AbstractSelectionTool._future_path = None
+		# AbstractSelectionTool._future_pixbuf = None
 		self.operation_type = None # 'op-define'
 
 	############################################################################
@@ -114,8 +114,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def drag_to(self, event_x, event_y):
 		x = self.get_selection().selection_x
 		y = self.get_selection().selection_y
-		self.future_x = x + event_x - self.x_press
-		self.future_y = y + event_y - self.y_press
+		AbstractSelectionTool._future_x = x + event_x - self.x_press
+		AbstractSelectionTool._future_y = y + event_y - self.y_press
 		self.operation_type = 'op-drag'
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
@@ -204,29 +204,31 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		w = x1 - x0
 		h = y1 - y0
 		if w <= 0 or h <= 0:
-			# AbstractSelectionTool.future_path = None
+			# AbstractSelectionTool._future_path = None
 			return
-		self.future_x = x0
-		self.future_y = y0
+		AbstractSelectionTool._future_x = x0
+		AbstractSelectionTool._future_y = y0
 		cairo_context.new_path()
 		cairo_context.move_to(x0, y0)
 		cairo_context.line_to(x1, y0)
 		cairo_context.line_to(x1, y1)
 		cairo_context.line_to(x0, y1)
 		cairo_context.close_path()
-		AbstractSelectionTool.future_path = cairo_context.copy_path()
+		AbstractSelectionTool._future_path = cairo_context.copy_path()
 
 	def _set_future_coords_for_free_path(self):
-		"""..."""
+		"""Convert AbstractSelectionTool._future_path's absolute coords to
+		relative ones, and sets AbstractSelectionTool._future_x and
+		AbstractSelectionTool._future_y accordingly."""
 		main_width = self.get_main_pixbuf().get_width()
 		main_height = self.get_main_pixbuf().get_height()
 		xmin, ymin = main_width, main_height # TODO cairo_context.path_extents()
-		for pts in AbstractSelectionTool.future_path:
+		for pts in AbstractSelectionTool._future_path:
 			if pts[1] is not ():
 				xmin = min(pts[1][0], xmin)
 				ymin = min(pts[1][1], ymin)
-		self.future_x = max(xmin, 0.0)
-		self.future_y = max(ymin, 0.0)
+		AbstractSelectionTool._future_x = max(xmin, 0.0)
+		AbstractSelectionTool._future_y = max(ymin, 0.0)
 
 	############################################################################
 	# Operations management methods ############################################
@@ -239,7 +241,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def import_selection(self, pixbuf):
 		self.unselect_and_apply()
-		self.future_pixbuf = pixbuf
+		AbstractSelectionTool._future_pixbuf = pixbuf
 		self.operation_type = 'op-import'
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -289,24 +291,24 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().show_selection_on_surface(cairo_context, False, \
 		                                           self.local_dx, self.local_dy)
 		self.get_selection().reset(True)
-		# self.future_path = None
-		AbstractSelectionTool.future_path = None
+		# AbstractSelectionTool._future_path = None
+		AbstractSelectionTool._future_path = None
 
 	############################################################################
 	# Operations management implementations ####################################
 
 	def build_operation(self):
-		if self.future_pixbuf is None: # Cas normal
+		if AbstractSelectionTool._future_pixbuf is None: # Cas normal
 			pixbuf = None
 		else: # Cas des importations uniquement
-			pixbuf = self.future_pixbuf.copy()
+			pixbuf = AbstractSelectionTool._future_pixbuf.copy()
 		operation = {
 			'tool_id': self.id,
 			'operation_type': self.operation_type,
-			'initial_path': AbstractSelectionTool.future_path,
+			'initial_path': AbstractSelectionTool._future_path,
 			'pixbuf': pixbuf,
-			'pixb_x': int(self.future_x),
-			'pixb_y': int(self.future_y)
+			'pixb_x': int(AbstractSelectionTool._future_x),
+			'pixb_y': int(AbstractSelectionTool._future_y)
 		}
 		return operation
 
@@ -348,3 +350,4 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	############################################################################
 ################################################################################
+
