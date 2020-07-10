@@ -203,18 +203,22 @@
 
   <menu id="other-operators-menu">
     <section>
+      <!-- Context: possible ways to apply the color to the canvas -->
       <attribute name="label" translatable="yes">Other modes</attribute>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Raw source color</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">source</attribute>
       </item>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Highlight</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">multiply</attribute>
       </item>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Difference</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">difference</attribute>
@@ -222,23 +226,28 @@
       <!-- XXX and more? -->
     </section>
     <submenu>
-      <attribute name="label" translatable="yes">Photo manipulation</attribute>
+      <!-- Context: possible ways to apply the color to the canvas -->
+      <attribute name="label" translatable="yes">Photo-oriented modes</attribute>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Hue only</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">hsl-hue</attribute>
       </item>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Saturation only</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">hsl-saturation</attribute>
       </item>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Hue and saturation</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">hsl-color</attribute>
       </item>
       <item>
+        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Luminosity only</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">hsl-luminosity</attribute>

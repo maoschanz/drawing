@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2020-05-19 01:04+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -392,44 +392,53 @@ msgstr "Renk uygulama kipi"
 msgid "Normal"
 msgstr "Normal"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr "Diğer kipler"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "Ham kaynak rengi"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Vurgu"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Farklılık"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
-msgstr "Fotoğraf hilesi"
+msgid "Photo-oriented modes"
+msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "Sadece ton"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "Sadece doygunluk"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "Ton ve doygunluk"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -508,8 +517,9 @@ msgid "Height"
 msgstr "Yükseklik"
 
 #: src/ui/new-image-dialog.ui
-msgid "Background color"
-msgstr "Arkaplan rengi"
+#, fuzzy
+msgid "Color"
+msgstr "Renkler"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -788,7 +798,8 @@ msgid "Default height"
 msgstr "Öntanımlı yükseklik"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Öntanımlı arka plan"
 
 #: src/preferences.py
@@ -897,6 +908,10 @@ msgstr "Önizleme boyutu"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Geliştirilmiş özellikler"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Arkaplan rengi"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1432,6 +1447,43 @@ msgid "Clipping"
 msgstr "Kırpma"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Solid outline"
+msgstr "Boş anahat"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Dashed outline"
+msgstr "Kesikli ok"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Dış çizgi"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "Dolgu"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Boş"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Yatay gradyan"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Dikey gradyan"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Radyal gradyan"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Dikdörtgen"
 
@@ -1455,22 +1507,6 @@ msgstr "Serbest biçim"
 msgid "Circle"
 msgstr "Daire"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr "Boş anahat"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Horizontal gradient"
-msgstr "Yatay gradyan"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Vertical gradient"
-msgstr "Dikey gradyan"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Radial gradient"
-msgstr "Radyal gradyan"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Şekli kapat"
@@ -1491,6 +1527,7 @@ msgstr "Italic"
 msgid "Bold"
 msgstr "Kalın"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Arkaplan"
@@ -1565,10 +1602,6 @@ msgid "Shape"
 msgstr "Şekil"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Boş"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Biçim seçenekleri"
 
@@ -1628,14 +1661,14 @@ msgstr "Seçimi ölçeklendir"
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
 
+#~ msgid "Photo manipulation"
+#~ msgstr "Fotoğraf hilesi"
+
 #~ msgid "Classic"
 #~ msgstr "Klasik"
 
 #~ msgid "Close"
 #~ msgstr "Kapat"
-
-#~ msgid "Filling"
-#~ msgstr "Dolgu"
 
 #~ msgid "Freehand"
 #~ msgstr "Düzensiz"

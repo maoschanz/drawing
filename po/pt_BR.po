@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
 "Last-Translator: Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
@@ -388,49 +388,58 @@ msgstr "Seleção de cor"
 msgid "Normal"
 msgstr "Formatar"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Raw source color"
 msgstr "Cor de origem"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Highlight"
 msgstr "Altura"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Diferença"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
+msgid "Photo-oriented modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue only"
 msgstr "Apenas barra de menu"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Saturation only"
 msgstr "Saturação (%)"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue and saturation"
 msgstr "Saturação (%)"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -511,8 +520,8 @@ msgstr "Altura"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
-msgid "Background color"
-msgstr "Fundo"
+msgid "Color"
+msgstr "Cores"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
@@ -801,7 +810,8 @@ msgid "Default height"
 msgstr "Altura padrão"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Fundo padrão"
 
 #: src/preferences.py
@@ -905,6 +915,11 @@ msgstr "Previsualizar tamanho"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Características de desenvolvimento"
+
+#: src/preferences.py
+#, fuzzy
+msgid "Background color"
+msgstr "Fundo"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1462,6 +1477,44 @@ msgid "Clipping"
 msgstr "Recorte"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr ""
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Sem opções"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "Preenchimento"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Vazio"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Borrar horizontalmente"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Vertical gradient"
+msgstr "Borrar verticalmente"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Radial gradient"
+msgstr "Gradiente de cor"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Retângulo"
 
@@ -1486,25 +1539,6 @@ msgstr "Forma livre"
 msgid "Circle"
 msgstr "Circulo"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr ""
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Horizontal gradient"
-msgstr "Borrar horizontalmente"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Vertical gradient"
-msgstr "Borrar verticalmente"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Radial gradient"
-msgstr "Gradiente de cor"
-
 #: src/tools/ui/tool-shape.ui
 #, fuzzy
 msgid "Close shape"
@@ -1526,6 +1560,7 @@ msgstr "Itálico"
 msgid "Bold"
 msgstr "Negrito"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Fundo"
@@ -1602,10 +1637,6 @@ msgid "Shape"
 msgstr "Forma"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Vazio"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Opções da forma"
 
@@ -1670,9 +1701,6 @@ msgstr "Redimensionar a tela"
 
 #~ msgid "Close"
 #~ msgstr "Fechar"
-
-#~ msgid "Filling"
-#~ msgstr "Preenchimento"
 
 #~ msgid "Selection type"
 #~ msgstr "Tipo de seleção"

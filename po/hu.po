@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -389,49 +389,58 @@ msgstr "Színválasztó"
 msgid "Normal"
 msgstr "Formátum"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Raw source color"
 msgstr "Forrás szín"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Highlight"
 msgstr "Magasság"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Különbség"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
+msgid "Photo-oriented modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue only"
 msgstr "Csak menüsor"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Saturation only"
 msgstr "Telítettség"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue and saturation"
 msgstr "Telítettség"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -511,8 +520,9 @@ msgid "Height"
 msgstr "Magasság"
 
 #: src/ui/new-image-dialog.ui
-msgid "Background color"
-msgstr "Háttérszín"
+#, fuzzy
+msgid "Color"
+msgstr "Színek"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -797,7 +807,8 @@ msgid "Default height"
 msgstr "Alapértelmezett magasság"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Alapértelmezett háttér"
 
 #: src/preferences.py
@@ -907,6 +918,10 @@ msgstr "Előnézet mérete"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Fejlesztés"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Háttérszín"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1456,6 +1471,43 @@ msgid "Clipping"
 msgstr "Vágás"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Solid outline"
+msgstr "Nincs körvonal"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Dashed outline"
+msgstr "Szaggatott nyíl"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Nincs körvonal"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "Kitöltés"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Kiürítés"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Vízszintes színátmenet"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Függőleges színátmenet"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Sugaras színátmenet"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Téglalap"
 
@@ -1480,22 +1532,6 @@ msgstr "Szabad alakzat"
 msgid "Circle"
 msgstr "Kör"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr "Nincs körvonal"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Horizontal gradient"
-msgstr "Vízszintes színátmenet"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Vertical gradient"
-msgstr "Függőleges színátmenet"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Radial gradient"
-msgstr "Sugaras színátmenet"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Alak bezárása"
@@ -1516,6 +1552,7 @@ msgstr "Dőlt"
 msgid "Bold"
 msgstr "Félkövér"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Háttér"
@@ -1592,10 +1629,6 @@ msgid "Shape"
 msgstr "Alakzat"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Kiürítés"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Alakzat beállítások"
 
@@ -1662,9 +1695,6 @@ msgstr "Rajzvászon átméretezése"
 
 #~ msgid "Close"
 #~ msgstr "Bezár"
-
-#~ msgid "Filling"
-#~ msgstr "Kitöltés"
 
 #~ msgid "Freehand"
 #~ msgstr "Szabadkézi"

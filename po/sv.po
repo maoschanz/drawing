@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2020-05-17 16:20+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -389,44 +389,53 @@ msgstr "Färgapplikationsläge"
 msgid "Normal"
 msgstr "Normal"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr "Andra lägen"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "Rå källfärg"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Markera"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Skillnad"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
-msgstr "Fotomanipulation"
+msgid "Photo-oriented modes"
+msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "Endast nyans"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "Endast mättnad"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "Nyans och mättnad"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -505,8 +514,9 @@ msgid "Height"
 msgstr "Höjd"
 
 #: src/ui/new-image-dialog.ui
-msgid "Background color"
-msgstr "Bakgrundsfärg"
+#, fuzzy
+msgid "Color"
+msgstr "Färger"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -785,7 +795,8 @@ msgid "Default height"
 msgstr "Standardhöjd"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Standardbakgrund"
 
 #: src/preferences.py
@@ -892,6 +903,10 @@ msgstr "Storlek på förhandsgranskning"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Utvecklingsfunktioner"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Bakgrundsfärg"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1424,6 +1439,43 @@ msgid "Clipping"
 msgstr "Klippning"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Solid outline"
+msgstr "Tom disposition"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Dashed outline"
+msgstr "Streckad pil"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Kontur"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Tom"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Horisontell toning"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Vertikal toning"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Radiell toning"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Rektangel"
 
@@ -1447,22 +1499,6 @@ msgstr "Fri figur"
 msgid "Circle"
 msgstr "Cirkel"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr "Tom disposition"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Horizontal gradient"
-msgstr "Horisontell toning"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Vertical gradient"
-msgstr "Vertikal toning"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Radial gradient"
-msgstr "Radiell toning"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Stäng figur"
@@ -1483,6 +1519,7 @@ msgstr "Kursiv"
 msgid "Bold"
 msgstr "Fet"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Bakgrund"
@@ -1557,10 +1594,6 @@ msgid "Shape"
 msgstr "Figur"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Tom"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Figuralternativ"
 
@@ -1619,6 +1652,9 @@ msgstr "Skalar markering"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
+
+#~ msgid "Photo manipulation"
+#~ msgstr "Fotomanipulation"
 
 #~ msgid "Classic"
 #~ msgstr "Klassisk"

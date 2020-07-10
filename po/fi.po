@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -393,49 +393,58 @@ msgstr "Värin sovellustila"
 msgid "Normal"
 msgstr "Normaali"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Raw source color"
 msgstr "Lähdeväri"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Highlight"
 msgstr "Korostekynä"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Eroavuus"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
+msgid "Photo-oriented modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue only"
 msgstr "Vain valikkopalkki"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Saturation only"
 msgstr "Kylläisyys"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue and saturation"
 msgstr "Vaihda kylläisyys"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -514,8 +523,9 @@ msgid "Height"
 msgstr "Korkeus"
 
 #: src/ui/new-image-dialog.ui
-msgid "Background color"
-msgstr "Taustaväri"
+#, fuzzy
+msgid "Color"
+msgstr "Värit"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -795,7 +805,8 @@ msgid "Default height"
 msgstr "Oletuskorkeus"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Oletustausta"
 
 #: src/preferences.py
@@ -902,6 +913,10 @@ msgstr "Esikatselun koko"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Kehitysvaiheen ominaisuudet"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Taustaväri"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1434,6 +1449,43 @@ msgid "Clipping"
 msgstr "Lehtileike"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Solid outline"
+msgstr "Tyhjä ääriviiva"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Dashed outline"
+msgstr "Katkoviivattu nuoli"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Ääriviiva"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Tyhjä"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Vaakasuuntainen liukuväri"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Pystysuora liukuväri"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Säteinen liukuväri"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Suorakulmio"
 
@@ -1457,22 +1509,6 @@ msgstr "Vapaalla muodolla"
 msgid "Circle"
 msgstr "Ympyrä"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr "Tyhjä ääriviiva"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Horizontal gradient"
-msgstr "Vaakasuuntainen liukuväri"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Vertical gradient"
-msgstr "Pystysuora liukuväri"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Radial gradient"
-msgstr "Säteinen liukuväri"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Sulje muoto"
@@ -1493,6 +1529,7 @@ msgstr "Kursivoitu"
 msgid "Bold"
 msgstr "Vahvennettu"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Tausta"
@@ -1565,10 +1602,6 @@ msgstr "Lyijykynän asetukset"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Muoto"
-
-#: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Tyhjä"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"

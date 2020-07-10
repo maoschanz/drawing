@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -397,49 +397,58 @@ msgstr "אפשרויות צבע"
 msgid "Normal"
 msgstr "תבנית"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Raw source color"
 msgstr "צבע מקור"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Highlight"
 msgstr "גובה"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "שוני"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
+msgid "Photo-oriented modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue only"
 msgstr "סרגל תפריט בלבד"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Saturation only"
 msgstr "רוויה"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue and saturation"
 msgstr "רוויה"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -523,8 +532,8 @@ msgstr "גובה"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
-msgid "Background color"
-msgstr "רקע אטום"
+msgid "Color"
+msgstr "צבעים"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
@@ -820,7 +829,8 @@ msgid "Default height"
 msgstr "גובה ברירת מחדל"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "רקע ברירת מחדל"
 
 #: src/preferences.py
@@ -925,6 +935,11 @@ msgstr "גודל תצוגה מקדימה"
 #: src/preferences.py
 msgid "Development features"
 msgstr "תכונות פיתוח"
+
+#: src/preferences.py
+#, fuzzy
+msgid "Background color"
+msgstr "רקע אטום"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1481,6 +1496,44 @@ msgid "Clipping"
 msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr ""
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "אין אפשרויות"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "מילוי"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "ריק"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "הפוך אופקית"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Vertical gradient"
+msgstr "בוחר צבעים"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Radial gradient"
+msgstr "בוחר צבעים"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "מלבן"
 
@@ -1505,25 +1558,6 @@ msgstr "צורה חופשית"
 msgid "Circle"
 msgstr "עיגול"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr ""
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Horizontal gradient"
-msgstr "הפוך אופקית"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Vertical gradient"
-msgstr "בוחר צבעים"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Radial gradient"
-msgstr "בוחר צבעים"
-
 #: src/tools/ui/tool-shape.ui
 #, fuzzy
 msgid "Close shape"
@@ -1545,6 +1579,7 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 #, fuzzy
 msgid "Background"
@@ -1623,10 +1658,6 @@ msgid "Shape"
 msgstr "צורה"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "ריק"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "אפשרויות"
 
@@ -1694,9 +1725,6 @@ msgstr "שינוי קנה מידה של לוח הציור"
 
 #~ msgid "Close"
 #~ msgstr "סגירה"
-
-#~ msgid "Filling"
-#~ msgstr "מילוי"
 
 #~ msgid "Selection type"
 #~ msgstr "סוג בחירה"

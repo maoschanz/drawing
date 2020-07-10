@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -384,49 +384,58 @@ msgstr "Выбор цвета"
 msgid "Normal"
 msgstr "Формат"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Raw source color"
 msgstr "Цвет источника"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Highlight"
 msgstr "Высота"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Различия"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
+msgid "Photo-oriented modes"
 msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue only"
 msgstr "Только панель меню"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Saturation only"
 msgstr "Насыщенность (%)"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue and saturation"
 msgstr "Насыщенность (%)"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -509,8 +518,8 @@ msgstr "Высота"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
-msgid "Background color"
-msgstr "Фон по умолчанию"
+msgid "Color"
+msgstr "Цвета"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
@@ -803,7 +812,8 @@ msgid "Default height"
 msgstr "Высота по умолчанию"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Фон по умолчанию"
 
 #: src/preferences.py
@@ -908,6 +918,11 @@ msgstr "Размер предварительного просмотра"
 #: src/preferences.py
 msgid "Development features"
 msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+msgid "Background color"
+msgstr "Фон по умолчанию"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1464,6 +1479,43 @@ msgid "Clipping"
 msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr ""
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "No outline"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "Заполнение"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Пустой"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Horizontal gradient"
+msgstr "Перевернуть по горизонтали"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Vertical gradient"
+msgstr "Выбор цвета"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Radial gradient"
+msgstr "Выбор цвета"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Прямоугольник"
 
@@ -1488,25 +1540,6 @@ msgstr "Свободная форма"
 msgid "Circle"
 msgstr "Круг"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr ""
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Horizontal gradient"
-msgstr "Перевернуть по горизонтали"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Vertical gradient"
-msgstr "Выбор цвета"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Radial gradient"
-msgstr "Выбор цвета"
-
 #: src/tools/ui/tool-shape.ui
 #, fuzzy
 msgid "Close shape"
@@ -1528,6 +1561,7 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 #, fuzzy
 msgid "Background"
@@ -1606,10 +1640,6 @@ msgid "Shape"
 msgstr "Фигура"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Пустой"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Фарианты формы"
 
@@ -1675,9 +1705,6 @@ msgstr "Масштабировать холст"
 
 #~ msgid "Close"
 #~ msgstr "Закрыть"
-
-#~ msgid "Filling"
-#~ msgstr "Заполнение"
 
 #~ msgid "Freehand"
 #~ msgstr "Свободно"

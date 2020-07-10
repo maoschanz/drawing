@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2020-05-24 17:22+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -390,44 +390,53 @@ msgstr "Kleurmodus"
 msgid "Normal"
 msgstr "Normaal"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr "Overige modi"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "Bronkleur"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Markering"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Verschil"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
-msgstr "Fotobewerking"
+msgid "Photo-oriented modes"
+msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "Alleen tint"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "Alleen verzadiging"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "Tint en verzadiging"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -506,8 +515,9 @@ msgid "Height"
 msgstr "Hoogte"
 
 #: src/ui/new-image-dialog.ui
-msgid "Background color"
-msgstr "Achtergrondkleur"
+#, fuzzy
+msgid "Color"
+msgstr "Kleuren"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -786,7 +796,8 @@ msgid "Default height"
 msgstr "Standaardhoogte"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Standaardachtergrond"
 
 #: src/preferences.py
@@ -893,6 +904,10 @@ msgstr "Voorbeeldgrootte"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Experimentele functies"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Achtergrondkleur"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1428,6 +1443,43 @@ msgid "Clipping"
 msgstr "Vasthouden"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Solid outline"
+msgstr "Leeg contour"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Dashed outline"
+msgstr "Gestreepte pijl"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Contour"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "Opvullen"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Leeg"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Horizontaal verloop"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Verticaal verloop"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Straalverloop"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Rechthoek"
 
@@ -1451,22 +1503,6 @@ msgstr "Vrije vorm"
 msgid "Circle"
 msgstr "Cirkel"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr "Leeg contour"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Horizontal gradient"
-msgstr "Horizontaal verloop"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Vertical gradient"
-msgstr "Verticaal verloop"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Radial gradient"
-msgstr "Straalverloop"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Vorm sluiten"
@@ -1487,6 +1523,7 @@ msgstr "Cursief"
 msgid "Bold"
 msgstr "Vetgedrukt"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Achtergrond"
@@ -1562,10 +1599,6 @@ msgid "Shape"
 msgstr "Vorm"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Leeg"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Vormopties"
 
@@ -1625,14 +1658,14 @@ msgstr "Bezig met wijzigen van selectiegrootte"
 msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
 
+#~ msgid "Photo manipulation"
+#~ msgstr "Fotobewerking"
+
 #~ msgid "Classic"
 #~ msgstr "Klassiek"
 
 #~ msgid "Close"
 #~ msgstr "Sluiten"
-
-#~ msgid "Filling"
-#~ msgstr "Opvullen"
 
 #~ msgid "Freehand"
 #~ msgstr "Vrije vorm"

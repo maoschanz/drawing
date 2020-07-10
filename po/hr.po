@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-15 19:07+0200\n"
+"POT-Creation-Date: 2020-07-11 01:33+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -391,44 +391,53 @@ msgstr "Modus programa u boji"
 msgid "Normal"
 msgstr "Normalno"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
 msgstr "Drugi modusi"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "Neobrađena izvorna boja"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Isticanje"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Razlika"
 
+#. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo manipulation"
-msgstr "Obrada fotografija"
+msgid "Photo-oriented modes"
+msgstr ""
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "Samo nijansa"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "Samo zasićenost"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "Nijansa i zasićenost"
 
+#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
@@ -507,8 +516,9 @@ msgid "Height"
 msgstr "Visina"
 
 #: src/ui/new-image-dialog.ui
-msgid "Background color"
-msgstr "Boja pozadine"
+#, fuzzy
+msgid "Color"
+msgstr "Boje"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -789,7 +799,8 @@ msgid "Default height"
 msgstr "Standardna visina"
 
 #: src/preferences.py
-msgid "Default background"
+#, fuzzy
+msgid "Default color"
 msgstr "Standardna pozadina"
 
 #: src/preferences.py
@@ -896,6 +907,10 @@ msgstr "Veličina pretprikaza"
 #: src/preferences.py
 msgid "Development features"
 msgstr "Funkcije u razvoju"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Boja pozadine"
 
 #: src/preferences.py
 msgid "Layout"
@@ -1430,6 +1445,43 @@ msgid "Clipping"
 msgstr "Rezanje"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Solid outline"
+msgstr "Prazna kontura"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Dashed outline"
+msgstr "Iscrtkana strelica"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "No outline"
+msgstr "Kontura"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Empty shape"
+msgstr "Prazno"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Vodoravni gradijent"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Okomiti gradijent"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Kružni gradijent"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Pravokutnik"
 
@@ -1453,22 +1505,6 @@ msgstr "Prostoručni oblik"
 msgid "Circle"
 msgstr "Krug"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Empty outline"
-msgstr "Prazna kontura"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Horizontal gradient"
-msgstr "Vodoravni gradijent"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Vertical gradient"
-msgstr "Okomiti gradijent"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Radial gradient"
-msgstr "Kružni gradijent"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Zatvori oblik"
@@ -1489,6 +1525,7 @@ msgstr "Kurziv"
 msgid "Bold"
 msgstr "Podebljano"
 
+#. <submenu>
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Pozadina"
@@ -1563,10 +1600,6 @@ msgid "Shape"
 msgstr "Oblik"
 
 #: src/tools/classic_tools/tool_shape.py
-msgid "Empty"
-msgstr "Prazno"
-
-#: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Opcije za oblik"
 
@@ -1625,3 +1658,6 @@ msgstr "Skaliranje odabira"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
+
+#~ msgid "Photo manipulation"
+#~ msgstr "Obrada fotografija"
