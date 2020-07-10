@@ -308,11 +308,19 @@ class DrImage(Gtk.Box):
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self.drawing_area is redrawn."""
+		# Background color
+		rgba = self.window._settings.get_strv('ui-background-rgba')
+		cairo_context.set_source_rgba(float(rgba[0]), float(rgba[1]), \
+		                                         float(rgba[2]), float(rgba[3]))
+		cairo_context.paint()
+
+		# Image (with zoom level)
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
+		# What the tool is painting
 		self.active_tool().on_draw(area, cairo_context)
 
 	def on_press_on_area(self, area, event):
