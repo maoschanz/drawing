@@ -210,7 +210,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		defined by user's settings."""
 		width = self._settings.get_int('default-width')
 		height = self._settings.get_int('default-height')
-		rgba = self._settings.get_strv('background-rgba')
+		rgba = self._settings.get_strv('default-rgba')
 		self.build_new_tab(width=width, height=height, background_rgba=rgba)
 		if self.active_tool_id is not None: # Tools might not be initialized yet
 			self.set_picture_title()

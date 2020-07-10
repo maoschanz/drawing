@@ -82,7 +82,7 @@ class DrPrefsWindow(Gtk.Window):
 		self.add_adj(_("Default width"), 'default-width', self.adj_width)
 		self.add_adj(_("Default height"), 'default-height', self.adj_height)
 		bg_color_btn = Gtk.ColorButton(use_alpha=True)
-		background_rgba = self._settings.get_strv('background-rgba')
+		background_rgba = self._settings.get_strv('default-rgba')
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
@@ -90,7 +90,7 @@ class DrPrefsWindow(Gtk.Window):
 		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 		bg_color_btn.set_rgba(color)
 		bg_color_btn.connect('color-set', self.on_background_changed)
-		self.add_row(_("Default background"), bg_color_btn)
+		self.add_row(_("Default color"), bg_color_btn)
 
 		self.add_section_separator()
 		self.add_section_title(_("Images saving"))
@@ -161,6 +161,9 @@ class DrPrefsWindow(Gtk.Window):
 		self.add_section_separator()
 		self.add_section_title(_("Layout"))
 		self.add_help(_("The recommended value is \"Automatic\"."))
+		# h = headerbar; g = gnome; e = elementary
+		# m = menubar; t = toolbar
+		# c = color; s = symbolic
 		layouts_dict = {
 			'': _("Automatic"),
 			'hg': _("Compact"),
@@ -280,7 +283,7 @@ class DrPrefsWindow(Gtk.Window):
 	def on_background_changed(self, color_btn):
 		c = color_btn.get_rgba()
 		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
-		self._settings.set_strv('background-rgba', color_array)
+		self._settings.set_strv('default-rgba', color_array)
 
 	def on_ui_background_changed(self, color_btn):
 		c = color_btn.get_rgba()

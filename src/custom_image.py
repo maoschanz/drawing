@@ -51,7 +51,7 @@ class DrCustomImageDialog(Gtk.Dialog):
 		self._height_btn.set_value(default_h)
 
 		self._color_btn = builder.get_object('color_btn')
-		background_rgba = self._app_settings.get_strv('background-rgba')
+		background_rgba = self._app_settings.get_strv('default-rgba')
 		r = float(background_rgba[0])
 		g = float(background_rgba[1])
 		b = float(background_rgba[2])
@@ -73,7 +73,7 @@ class DrCustomImageDialog(Gtk.Dialog):
 		if self._default_checkbtn.get_active():
 			self._app_settings.set_int('default-width', width)
 			self._app_settings.set_int('default-height', height)
-			self._app_settings.set_strv('background-rgba', rgba)
+			self._app_settings.set_strv('default-rgba', rgba)
 		return width, height, rgba
 
 	############################################################################
