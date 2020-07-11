@@ -30,10 +30,10 @@ class ToolColorSelect(AbstractSelectionTool):
 	def motion_define(self, event_x, event_y):
 		pass
 
-	def release_define(self, surface, event_x, event_y):
-		AbstractSelectionTool._future_path = utilities_get_magic_path(surface, \
-		                                       event_x, event_y, self.window, 1)
-		if AbstractSelectionTool._future_path is None:
+	def release_define(self, surfc, event_x, event_y):
+		path = utilities_get_magic_path(surfc, event_x, event_y, self.window, 1)
+		self.get_selection().set_future_path(path)
+		if path is None:
 			return
 		self.operation_type = 'op-define'
 		self._set_future_coords_for_free_path()

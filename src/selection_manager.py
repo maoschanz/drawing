@@ -34,6 +34,7 @@ class DrSelectionManager():
 	def __init__(self, image):
 		self.image = image
 		self.init_pixbuf()
+		self.reset_future_data()
 
 		builder = Gtk.Builder.new_from_resource( \
 		                '/com/github/maoschanz/drawing/ui/selection-manager.ui')
@@ -222,6 +223,27 @@ class DrSelectionManager():
 			# because right-click → import/paste shouldn't use (0, 0) as coords.
 			self.set_coords(True, gdk_rect.x, gdk_rect.y)
 			self.menu_if_inactive.popup()
+
+	############################################################################
+	# Future path/coords #######################################################
+
+	def reset_future_data(self):
+		self._future_x = 0
+		self._future_y = 0
+		self._future_path = None
+
+	def set_future_coords(self, x, y):
+		self._future_x = int(x)
+		self._future_y = int(y)
+
+	def get_future_coords(self):
+		return self._future_x, self._future_y
+
+	def set_future_path(self, path):
+		self._future_path = path
+
+	def get_future_path(self):
+		return self._future_path
 
 	############################################################################
 	# Debug ####################################################################
