@@ -23,12 +23,10 @@ from .utilities_overlay import utilities_show_overlay_on_context
 
 class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
-	# x_press = 0
-	# y_press = 0
 	_future_x = 0
 	_future_y = 0
 	_future_path = None
-	_future_pixbuf = None
+
 	# operation_type = None # 'op-define'
 
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
@@ -36,15 +34,11 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.menu_id = 2
 		self.accept_selection = True
 
-		# XXX ???????????? what should i do here
+		self._future_pixbuf = None
 		self.x_press = 0
 		self.y_press = 0
 		self.local_dx = 0
 		self.local_dy = 0
-		# AbstractSelectionTool._future_x = 0
-		# AbstractSelectionTool._future_y = 0
-		# AbstractSelectionTool._future_path = None
-		# AbstractSelectionTool._future_pixbuf = None
 		self.operation_type = None # 'op-define'
 
 	############################################################################
@@ -84,7 +78,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	# 	pass
 
 	def cancel_ongoing_operation(self):
-		pass # TODO could cancel an unapplied dragging
+		pass # XXX really ?
 
 	def has_ongoing_operation(self):
 		return False
@@ -92,7 +86,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	############################################################################
 	############################################################################
 
-	def get_press_behavior(self, event):
+	def _get_press_behavior(self, event):
 		if event.button == 3:
 			return 'menu'
 		elif not self.selection_is_active():
@@ -111,7 +105,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def release_define(self, surface, event_x, event_y):
 		pass # implemented by actual tools
 
-	def drag_to(self, event_x, event_y):
+	def _apply_drag_to(self, event_x, event_y):
 		x = self.get_selection().selection_x
 		y = self.get_selection().selection_y
 		AbstractSelectionTool._future_x = x + event_x - self.x_press
@@ -121,7 +115,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.do_tool_operation(operation)
 		self.operation_type = 'op-define'
 
-	def preview_drag_to(self, event_x, event_y):
+	def _preview_drag_to(self, event_x, event_y):
 		self.local_dx = event_x - self.x_press
 		self.local_dy = event_y - self.y_press
 		self.non_destructive_show_modif()
@@ -132,7 +126,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.behavior = self.get_press_behavior(event)
+		self.behavior = self._get_press_behavior(event)
 		# print('press', self.behavior)
 		if self.behavior == 'drag':
 			self.cursor_name = 'grabbing'
@@ -148,7 +142,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		if self.behavior == 'define':
 			self.motion_define(event_x, event_y)
 		elif self.behavior == 'drag':
-			self.preview_drag_to(event_x, event_y)
+			self._preview_drag_to(event_x, event_y)
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		x = event.x + self.get_image().scroll_x
@@ -170,7 +164,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		if self.behavior == 'define':
 			self.release_define(surface, event_x, event_y)
 		elif self.behavior == 'drag':
-			self.drag_to(event_x, event_y)
+			self._apply_drag_to(event_x, event_y)
 
 	def on_draw(self, area, cairo_context):
 		if not self.selection_is_active():
@@ -241,7 +235,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def import_selection(self, pixbuf):
 		self.unselect_and_apply()
-		AbstractSelectionTool._future_pixbuf = pixbuf
+		self._future_pixbuf = pixbuf
 		self.operation_type = 'op-import'
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -291,17 +285,17 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().show_selection_on_surface(cairo_context, False, \
 		                                           self.local_dx, self.local_dy)
 		self.get_selection().reset(True)
-		# AbstractSelectionTool._future_path = None
 		AbstractSelectionTool._future_path = None
 
 	############################################################################
 	# Operations management implementations ####################################
 
 	def build_operation(self):
-		if AbstractSelectionTool._future_pixbuf is None: # Cas normal
+		if self._future_pixbuf is None: # Cas normal
 			pixbuf = None
 		else: # Cas des importations uniquement
-			pixbuf = AbstractSelectionTool._future_pixbuf.copy()
+			pixbuf = self._future_pixbuf.copy()
+			self._future_pixbuf = None
 		operation = {
 			'tool_id': self.id,
 			'operation_type': self.operation_type,
