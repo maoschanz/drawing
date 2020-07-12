@@ -99,13 +99,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def apply_temp(self, operation_is_selection, local_dx, local_dy):
 		new_pixbuf = self.get_image().temp_pixbuf.copy()
 		if operation_is_selection:
-			# TODO déplacer le code qui suit dans selection_manager.py
-			self.get_selection().set_pixbuf(new_pixbuf)
-			x = self.get_selection().selection_x + local_dx
-			y = self.get_selection().selection_y + local_dy
-			self.get_selection().set_coords(True, x, y) # XXX si on reste sur
-			# True, l'overlay s'en trouve décalée, mais avec False ça nique tout
-			# au moment de la désélection
+			self.get_selection().update_from_canvas_tool(new_pixbuf, local_dx, \
+			                                                           local_dy)
 		else:
 			self.get_image().set_main_pixbuf(new_pixbuf)
 			self.get_image().use_stable_pixbuf()

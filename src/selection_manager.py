@@ -18,6 +18,7 @@
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
+# TODO tester qu'elles printent une stack !!!
 class NoSelectionPixbufException(Exception):
 	def __init__(self, *args):
 		super().__init__("Exception: the selection pixbuf is empty.")
@@ -221,6 +222,7 @@ class DrSelectionManager():
 			gdk_rect = self.menu_if_inactive.get_pointing_to()[1]
 			# It's important to pre-set these coords as the selection coords,
 			# because right-click → import/paste shouldn't use (0, 0) as coords.
+			# FIXME ne marche pas du tout lol (#175, ptêt #223?)
 			self.set_coords(True, gdk_rect.x, gdk_rect.y)
 			self.menu_if_inactive.popup()
 
@@ -245,18 +247,22 @@ class DrSelectionManager():
 	def get_future_path(self):
 		return self._future_path
 
+	def update_from_canvas_tool(self, new_pixbuf, dx, dy):
+		self.set_pixbuf(new_pixbuf)
+		x = self.selection_x + dx
+		y = self.selection_y + dy
+		self.set_coords(False, x, y)
+		self.set_future_coords(self._future_x + dx, self._future_y + dy)
+
 	############################################################################
 	# Debug ####################################################################
 
 	def print_values(self, *args):
-		"""Debug only. Is linked to the "troubleshoot selection" item in the
-		short hamburger menu."""
-		print("selection_x", self.selection_x)
-		print("selection_y", self.selection_y)
-		print("temp_x", self.temp_x)
-		print("temp_y", self.temp_y)
-		print("image.scroll_x", self.image.scroll_x)
-		print("image.scroll_y", self.image.scroll_y)
+		"""Development only: is linked to the "troubleshoot selection" item in
+		the short hamburger menu."""
+		print("selection coords", self.selection_x, self.selection_y)
+		print("temp coords", self.temp_x, self.temp_y)
+		print("image.scroll coords", self.image.scroll_x, self.image.scroll_y)
 		print("image.zoom_level", self.image.zoom_level)
 
 		print("selection_path with scroll & temp deltas")
@@ -268,6 +274,8 @@ class DrSelectionManager():
 				y = pts[1][1] + delta_y
 				print('\t', x, y)
 
+		print("future path", self._future_path)
+		print("future coords", self._future_x, self._future_y)
 		print("---------------------------------------------------------------")
 
 	############################################################################

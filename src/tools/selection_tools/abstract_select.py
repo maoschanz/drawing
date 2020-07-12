@@ -24,8 +24,6 @@ from .utilities_overlay import utilities_show_overlay_on_context
 class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
 
-	# operation_type = None # 'op-define'
-
 	def __init__(self, tool_id, label, icon_name, window, **kwargs):
 		super().__init__(tool_id, label, icon_name, window)
 		self.menu_id = 2
@@ -240,9 +238,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.operation_type = 'op-define'
 
 	def unselect_and_apply(self):
-		if self.operation_type is None:
-			print('none') # FIXME le bug des outils de sélection incompatibles entre eux
-			return # TODO raise something goddammit
 		self.operation_type = 'op-apply'
 		operation = self.build_operation()
 		self.apply_operation(operation)

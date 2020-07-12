@@ -990,9 +990,6 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_getvalues(self, *args):
 		"""Development only: helps debugging the selection."""
 		self.get_active_image().selection.print_values()
-		# self.show_all()
-		# print("Focused widget:", self.get_focus())
-		# print(self.get_focus().get_path().to_string())
 
 	def action_select_all(self, *args):
 		self.force_selection()
