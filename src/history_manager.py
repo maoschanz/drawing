@@ -35,6 +35,21 @@ class DrHistoryManager():
 	def set_initial_state(self, toolless_operation):
 		self._initial_operation = toolless_operation
 
+	def empty_history(self):
+		"""Probably useless way to explicitely 'forget' the objects. It doesn't
+		really free the memory, but it kinda helps i suppose."""
+		for op in self._undo_history:
+			self._delete_operation(op)
+		for op in self._redo_history:
+			self._delete_operation(op)
+		self._delete_operation(self._initial_operation)
+
+	def _delete_operation(self, op):
+		for key in op:
+			op[key] = None
+		op = {}
+		op = None
+
 	############################################################################
 	# Controls accessed by DrImage #############################################
 
@@ -51,7 +66,7 @@ class DrHistoryManager():
 		operation = self._redo_history.pop()
 		if operation['tool_id'] is None:
 			self._undo_history.append(operation)
-			self._image.restore_first_pixbuf() # FIXME FIXME ça marche pô
+			self._image.restore_first_pixbuf() # FIXME ça marche pô
 		else:
 			self._get_tool(operation['tool_id']).apply_operation(operation)
 

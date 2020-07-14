@@ -238,6 +238,7 @@ class DrImage(Gtk.Box):
 			self.selection.reset(False)
 			self.main_pixbuf = None
 			self.temp_pixbuf = None
+			self._history_manager.empty_history()
 			return True
 		else:
 			return False
