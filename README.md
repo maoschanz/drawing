@@ -27,18 +27,23 @@ be compatible with [the Pinephone and Librem 5 smartphones](./docs/screenshots/l
 
 >**Recommended**
 
-You can install it from flathub.org using the instructions on [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
+You can install it from flathub.org using the instructions on
+[this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
 
 ### Other packages available
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04, 19.10 and 20.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- Ubuntu 18.04, 20.04, and 20.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - ["Snap" package](https://snapcraft.io/drawing)
 
 ### Unstable/nightly version
 
-[See here](./CONTRIBUTING.md#install-from-source-code)
+[See here](./CONTRIBUTING.md#install-from-source-code) to install and test the
+app from source code.
+
+<!-- It's also possible to use the -->
+<!-- [debian experimental repository](https://wiki.debian.org/DebianExperimental) -->
 
 ----
 
@@ -70,11 +75,13 @@ If your language is not here, or is incompletely translated, you can
 
 ### Tools (0.5.3-unstable)
 
-(last update: **version 0.5.3-unstable**, this is **NOT** what is provided by the packages)
+(last update: **version 0.5.3-unstable**, this is **NOT** what is provided by
+the packages. See [this page](https://maoschanz.github.io/drawing/) for tools
+available in versions 0.4.x)
 
 #### Classic tools
 
-(general options: colors, use blur or eraser, size, …)
+General options for these tools: colors, use blur or eraser, size, …
 
 - Pencil (options: dashes, …)
 - Eraser
@@ -82,7 +89,7 @@ If your language is not here, or is incompletely translated, you can
 - Line (options: arrow, dashes, gradient, …)
 - Curve (options: arrow, dashes, …)
 - Insert text (options: font, shadow, font size, …)
-- Shape (options: filling style, gradient, …):
+- Shape (options: filling style, outline style, gradient, …):
 	- rectangle
 	- rounded rectangle
 	- circle
@@ -124,3 +131,4 @@ These tools allow to edit the whole image, or to edit a selected part of it.
 [To contribute](./CONTRIBUTING.md)
 
 the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic)
+

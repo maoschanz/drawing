@@ -75,25 +75,27 @@ ask me about it.**
 
 To set up a development environment, see [here](#install-from-source-code).
 
-### Syntax
+### Syntax and comments
 
-- Use tabs in `.py` files.
 - Use 2 spaces in `.ui` or `.xml` files.
-- Try to not write lines longer than 80 characters.
-- In the python code, use double quotes for strings the user might see, and
-single quotes otherwise (paths, constants, enumerations, dict keys, …)
 - Good comments explain *why* the code does what it does. If a comment explains
 *what* it does, the comment is useless, or the code is bad.
+- Upon translatable strings, comments explaining the context to translators are
+welcome.
 
-I like `GAction`s and i've added wrapper methods for using them, try to use that
-instead of directly connecting buttons/menu-items to a method.
+**In python code only:**
+
+- Use actual tabs (4 columns wide).
+- Try to not write lines longer than 80 characters.
+- Use double quotes for strings the user might see, and single quotes otherwise
+(paths, constants, enumerations, dict keys, …)
 
 ### UI design
 
-People sometimes like to design their apps in Glade, while here the main `.ui`
-files are mere templates filled algorithmically according to the user's
-settings, you kinda have to run the app to be sure of how your changes to it
-actually look like.
+People sometimes like to design their apps in Glade, but in Drawing, the main
+`.ui` files are mere templates filled algorithmically according to the user's
+settings, so you kinda have to run the app to be sure of how your changes to
+these files actually look like.
 
 Try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
 as much as possible, while making your feature available from the menubar
@@ -107,14 +109,33 @@ the one used on smartphone, be careful it has to stay very resizable).
 
 ### Other remarks
 
-In my opinion, the difficulties with the code can come mainly from 2 points:
+I like `GAction`s and i've added wrapper methods for using them, try to use that
+instead of directly connecting buttons/menu-items to a method.
+
+In my opinion, the difficulties with the code can come mainly from 3 points:
 
 - tools are window-wide, while the operations they produce, which are stored in
 the history, are image-wide.
 - the interactions with the selection are ridiculously complex and numerous
 _(defining, explicit applying, explicit canceling, import, clipboard methods,
-use by other tools (cancelled or confirmed), deletion, implicit applying,
+use by the "canvas tools" (cancelled or confirmed), deletion, implicit applying,
 implicit canceling, …)_ which can easily create small bugs.
+- the horizontal and vertical scrollings (and their scrollbars) are managed
+"manually" and quite poorly.
+
+These 3 points sometimes lead to object-oriented spaghetti code.
+
+If you change anything regarding the selection and/or the "canvas tools" (the
+tools which can edit the selection content), make sure to test various scenarios
+like this one:
+
+1. several images edited in different tabs of the same window;
+2. zoom and/or scroll;
+3. select things, or import/paste things (in both tabs);
+4. edit the selection (in both tabs, don't forget to click "apply" before
+switching to the other tab);
+5. unselect it (in both tabs);
+6. undo/redo.
 
 ----
 
@@ -123,9 +144,9 @@ implicit canceling, …)_ which can easily create small bugs.
 The `data` directory contains data useless to the execution (app icons, desktop
 launcher, settings schemas, appdata, …).
 
-According to some people, it should contain the UI resources, but i don't care:
-resources used by the app (`.ui` files, in-app icons, …) are in `src`, along
-with the python code.
+According to some people, this directory should contain the UI resources, but
+here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
+along with the python code.
 
 <!-- TODO ![UML diagrams](docs/uml.png) -->
 
@@ -148,12 +169,12 @@ with the python code.
 showing image-wide infos.
 - a window's decorations can change quite a lot, which is mostly handled by
 `deco_manager.py`. Three classes are defined in this file:
-	- `DrDecoManagerMenubar` just hides or shows the menubar. Most of its
+	- **`DrDecoManagerMenubar`** just hides or shows the menubar. Most of its
 	methods are empty.
-	- `DrDecoManagerToolbar` loads a toolbar from an UI file. This class extends
-	`DrDecoManagerMenubar`, and will manage a small "hamburger menu" at the end
-	of the toolbar if the menubar is hidden.
-	- `DrDecoManagerHeaderbar` loads a headerbar from an UI file. This class
+	- **`DrDecoManagerToolbar`** loads a toolbar from an UI file. This class
+	extends `DrDecoManagerMenubar`, and will manage a small "hamburger menu" at
+	the end of the toolbar if the menubar is hidden.
+	- **`DrDecoManagerHeaderbar`** loads a headerbar from an UI file. This class
 	extends `DrDecoManagerMenubar` but the menubar will always stay hidden.
 	It handles how widgets are shown or hidden depending on the size of the
 	window, and will display various menus depending on the visibility of the
@@ -166,12 +187,16 @@ the correct bottom bar (= the one required by the current **tool**) and manage
 tools' options. All bottom options bars can be found in the sub-directories of
 `src/optionsbars/`, and are specialized from `src/optionsbars/abstract_optionsbar.py`
 
-`image.py` defines an image, which contains:
+`image.py` defines an image (= a tab), which contains:
 
-- an "undo" history and a "redo" history
-- a selection, managed by `selection_manager.py`
 - a `GdkPixbuf.Pixbuf` (as an attribute), named `main_pixbuf`, which corresponds
 to the current state of the edited image.
+- a file (`Gio.File`) which can be `None` (if it's a new image never saved).
+- a history, managed by `history_manager.py`
+- a selection, managed by `selection_manager.py`
+- methods to manage the zoom and the scroll.
+- methods to manage printing.
+- methods to receive signals from the mouse, and transmit them to the tools.
 
 ### The tools
 
@@ -180,16 +205,18 @@ The tools are managed by a bunch of files in the `src/tools` directory.
 >The relationship between the window and the tools is a
 **[State](https://en.wikipedia.org/wiki/State_pattern)** design pattern.
 
-The active tool's methods are called from the window's (or the current image's)
-code regardless of what tool is active. To achieve that, all tools inherit from
-**abstract** classes defining common methods.
+The active tool's methods are called from the currently active image's code (or
+the window's code) regardless of what tool is active. To achieve that, all tools
+inherit from **abstract** classes defining common methods.
 
 First of all, `src/tools/abstract_tool.py` defines how the tool will be added in
 the UI, provides several wrappers to add options, to access the pixbufs, to add
-an operation to the edition history, etc. Other common features, when they don't
-depend on the image or the tool at all (such as blurring, computing some paths,
-displaying an overlay on the image (for the selection for example)), may be
-provided by one of the `src/tools/utilities_*.py` files.
+an operation to the edition history, etc.
+
+Other common features, when they don't depend on the image or the tool at all
+(such as blurring, computing some paths, displaying an overlay on the image (for
+the selection for example)), may be provided by one of the
+`src/tools/utilities_*.py` files.
 
 Then, an other layer of abstract classes is used, depending on the subcategory a
 tool is in:
@@ -201,7 +228,7 @@ almost entirely managed in `abstract_select.py`.
 - the "canvas tools" (scale/crop/rotate/filters/…) can be applied to the
 selection pixbuf or the main pixbuf, and will use the image's `temp_pixbuf`
 attribute to store a preview of their changes. These tools have to be
-explicitely applied by the user.
+explicitely applied by the user, using a button in the bottom bar.
 
 ----
 
@@ -226,25 +253,25 @@ See [here](#dependencies) for the list of dependencies.
 
 Get the code:
 
-```
+```sh
 git clone https://github.com/maoschanz/drawing.git
 ```
 
 Build the app:
-```
+```sh
 cd drawing
 meson _build
 ninja -C _build
 ```
 
 Install the app (system-wide):
-```
+```sh
 sudo ninja -C _build install
 ```
 (if you know the options to install user-wide, please tell)
 
 The app can then be removed with:
-```
+```sh
 cd _build
 sudo ninja uninstall
 ```
@@ -255,7 +282,7 @@ sudo ninja uninstall
 <p>
 
 Initial setup of the local flatpak repository:
-```
+```sh
 wget https://raw.githubusercontent.com/maoschanz/drawing/master/com.github.maoschanz.drawing.json
 flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.drawing.json
 flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
@@ -263,7 +290,7 @@ flatpak --user install local-drawing-repo com.github.maoschanz.drawing
 ```
 
 Update:
-```
+```sh
 flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.drawing.json
 flatpak update
 ```
@@ -273,7 +300,7 @@ flatpak update
 
 You can also build a debian package with the script `deb_package.sh`, but you
 won't get updates that way, so don't do that. You probably don't have all the
-dependencies to make it work anyway.
+dependencies to make the script work anyway.
 
 ----
 
@@ -281,10 +308,23 @@ dependencies to make it work anyway.
 
 ### Branches
 
-The `master` branch is not stable and should not be packaged.
+The `master` branch is not stable and **should not** be packaged.
 
-Stable versions for end-users are tagged, and listed on this Github repo's
-"_Releases_" tab. For now, most of them are on the `0.4` branch.
+<details><summary>(except if your distro have experimental repos)</summary>
+<p>
+
+<a href=https://wiki.debian.org/DebianExperimental>How to set up the debian
+experimental repository</a>
+
+```sh
+sudo apt -t experimental install drawing
+```
+
+</p>
+</details>
+
+Stable versions for end-users are **tagged**, and listed in this Github repo's
+"_Releases_" section. For now, most of them are on the `0.4` branch.
 
 ### Dependencies
 
@@ -301,7 +341,5 @@ Dependencies to build the app (Debian packages names):
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the icons into a `.gresource` file)
 
 ----
-
-
 
 
