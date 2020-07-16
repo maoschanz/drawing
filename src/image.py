@@ -32,9 +32,9 @@ class DrMotionBehavior():
 class DrImage(Gtk.Box):
 	__gtype_name__ = 'DrImage'
 
-	drawing_area = Gtk.Template.Child()
-	h_scrollbar = Gtk.Template.Child()
-	v_scrollbar = Gtk.Template.Child()
+	_drawing_area = Gtk.Template.Child()
+	_h_scrollbar = Gtk.Template.Child()
+	_v_scrollbar = Gtk.Template.Child()
 
 	CLOSING_PRECISION = 10
 
@@ -45,7 +45,7 @@ class DrImage(Gtk.Box):
 		self.gfile = None
 		self.filename = None
 
-		self.drawing_area.add_events( \
+		self._drawing_area.add_events( \
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | \
 			Gdk.EventMask.POINTER_MOTION_MASK | \
@@ -53,23 +53,23 @@ class DrImage(Gtk.Box):
 			Gdk.EventMask.ENTER_NOTIFY_MASK | \
 			Gdk.EventMask.LEAVE_NOTIFY_MASK)
 		# Using BUTTON_MOTION_MASK instead of POINTER_MOTION_MASK would be less
-		# algorithmically complex but powerful enough.
+		# algorithmically complex but not "powerful" enough.
 
 		# For displaying things on the widget
-		self.drawing_area.connect('draw', self.on_draw)
+		self._drawing_area.connect('draw', self.on_draw)
 		# For drawing with tools
-		self.drawing_area.connect('motion-notify-event', self.on_motion_on_area)
-		self.drawing_area.connect('button-press-event', self.on_press_on_area)
-		self.drawing_area.connect('button-release-event', self.on_release_on_area)
+		self._drawing_area.connect('motion-notify-event', self.on_motion_on_area)
+		self._drawing_area.connect('button-press-event', self.on_press_on_area)
+		self._drawing_area.connect('button-release-event', self.on_release_on_area)
 		# For scrolling
-		self.drawing_area.connect('scroll-event', self.on_scroll_on_area)
-		self.h_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
-		self.v_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
+		self._drawing_area.connect('scroll-event', self.on_scroll_on_area)
+		self._h_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
+		self._v_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
 		# For the cursor
-		self.drawing_area.connect('enter-notify-event', self.on_enter_image)
-		self.drawing_area.connect('leave-notify-event', self.on_leave_image)
+		self._drawing_area.connect('enter-notify-event', self.on_enter_image)
+		self._drawing_area.connect('leave-notify-event', self.on_leave_image)
 
-		self.ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
+		self._ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
 
 	############################################################################
 	# Image initialization #####################################################
@@ -93,7 +93,7 @@ class DrImage(Gtk.Box):
 		self.selection = DrSelectionManager(self)
 
 		# History initialization
-		self._history_manager = DrHistoryManager(self)
+		self._history = DrHistoryManager(self)
 		self.set_action_sensitivity('undo', False)
 		self.set_action_sensitivity('redo', False)
 
@@ -109,7 +109,7 @@ class DrImage(Gtk.Box):
 			'width': width, 'height': height
 		}
 		self.init_image_common()
-		self._history_manager.set_initial_state(op)
+		self._history.set_initial_state(op)
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
@@ -124,7 +124,7 @@ class DrImage(Gtk.Box):
 	def restore_first_pixbuf(self):
 		"""Set the last saved pixbuf from the history as the main_pixbuf. This
 		is used to rebuild the picture from its history."""
-		last_saved_pixbuf_op = self._history_manager.get_last_saved_state()
+		last_saved_pixbuf_op = self._history.get_last_saved_state()
 
 		# restore the state found in the history
 		pixbuf = last_saved_pixbuf_op['pixbuf']
@@ -160,7 +160,7 @@ class DrImage(Gtk.Box):
 			'red': 0.0, 'green': 0.0, 'blue': 0.0, 'alpha': 0.0,
 			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
-		self._history_manager.set_initial_state(op)
+		self._history.set_initial_state(op)
 		self.main_pixbuf = pixbuf
 
 	def reload_from_disk(self):
@@ -238,7 +238,7 @@ class DrImage(Gtk.Box):
 			self.selection.reset(False)
 			self.main_pixbuf = None
 			self.temp_pixbuf = None
-			self._history_manager.empty_history()
+			self._history.empty_history()
 			return True
 		else:
 			return False
@@ -259,29 +259,29 @@ class DrImage(Gtk.Box):
 	# History management #######################################################
 
 	def try_undo(self):
-		self._history_manager.try_undo()
+		self._history.try_undo()
 
 	def try_redo(self):
-		self._history_manager.try_redo()
+		self._history.try_redo()
 
 	def is_saved(self):
-		return self._history_manager.get_saved()
+		return self._history.get_saved()
 
 	def remember_current_state(self):
-		self._history_manager.add_state(self.main_pixbuf.copy())
+		self._history.add_state(self.main_pixbuf.copy())
 
 	def update_history_sensitivity(self):
-		self.set_action_sensitivity('undo', self._history_manager.can_undo())
-		self.set_action_sensitivity('redo', self._history_manager.can_redo())
+		self.set_action_sensitivity('undo', self._history.can_undo())
+		self.set_action_sensitivity('redo', self._history.can_redo())
 		# self.update_history_actions_labels()
 
 	def add_to_history(self, operation):
-		self._history_manager.add_operation(operation)
+		self._history.add_operation(operation)
 
 	def should_replace(self):
-		if self._history_manager.can_undo():
+		if self._history.can_undo():
 			return False
-		return not self._history_manager.has_initial_pixbuf()
+		return not self._history.has_initial_pixbuf()
 
 	############################################################################
 	# Misc ? ###################################################################
@@ -308,7 +308,7 @@ class DrImage(Gtk.Box):
 	# Drawing area, main pixbuf, and surface management ########################
 
 	def on_draw(self, area, cairo_context):
-		"""Signal callback. Executed when self.drawing_area is redrawn."""
+		"""Signal callback. Executed when self._drawing_area is redrawn."""
 		# Background color
 		rgba = self.window._settings.get_strv('ui-background-rgba')
 		cairo_context.set_source_rgba(float(rgba[0]), float(rgba[1]), \
@@ -326,7 +326,7 @@ class DrImage(Gtk.Box):
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on
-		self.drawing_area, if the button is the mouse wheel the colors are
+		self._drawing_area, if the button is the mouse wheel the colors are
 		exchanged, otherwise the signal is transmitted to the selected tool."""
 		if self._is_pressed:
 			return
@@ -344,7 +344,7 @@ class DrImage(Gtk.Box):
 
 	def on_motion_on_area(self, area, event):
 		"""Signal callback. Executed when the mouse pointer moves upon
-		self.drawing_area, the signal is transmitted to the selected tool.
+		self._drawing_area, the signal is transmitted to the selected tool.
 		If a button (not the mouse wheel) is pressed, the tool's method should
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
@@ -365,8 +365,8 @@ class DrImage(Gtk.Box):
 
 	def on_release_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is released on
-		self.drawing_area, if the button is not the signal is transmitted to the
-		selected tool."""
+		self._drawing_area, if the button is not the signal is transmitted to
+		the selected tool."""
 		if self.motion_behavior == DrMotionBehavior.SLIP:
 			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
 			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
@@ -380,11 +380,11 @@ class DrImage(Gtk.Box):
 		self._is_pressed = False
 
 	def update(self):
-		# print('image.py: drawing_area.queue_draw')
+		# print('image.py: _drawing_area.queue_draw')
 		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
 		# l'utilisation pour les trop grandes images, il faudrait n'update que
 		# la partie qui change, ou au pire que la partie affichée
-		self.drawing_area.queue_draw()
+		self._drawing_area.queue_draw()
 
 	def get_surface(self):
 		return self.surface
@@ -444,10 +444,10 @@ class DrImage(Gtk.Box):
 	# Interaction with the minimap #############################################
 
 	def get_widget_width(self):
-		return self.drawing_area.get_allocated_width()
+		return self._drawing_area.get_allocated_width()
 
 	def get_widget_height(self):
-		return self.drawing_area.get_allocated_height()
+		return self._drawing_area.get_allocated_height()
 
 	def get_mini_pixbuf(self, preview_size):
 		mpb_width = self.get_pixbuf_width()
@@ -513,14 +513,14 @@ class DrImage(Gtk.Box):
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
 		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
-		if ctrl_is_used == self.ctrl_to_zoom:
+		if ctrl_is_used == self._ctrl_to_zoom:
 			event_x, event_y = self.get_event_coords(event)
 			self.zoom_to_point(event.delta_x, event.delta_y, event.x, event.y)
 		else:
 			self.add_deltas(event.delta_x, event.delta_y, 10)
 
 	def on_scrollbar_value_change(self, scrollbar):
-		self.correct_coords(self.h_scrollbar.get_value(), self.v_scrollbar.get_value())
+		self.correct_coords(self._h_scrollbar.get_value(), self._v_scrollbar.get_value())
 		self.update()
 
 	def add_deltas(self, delta_x, delta_y, factor):
@@ -553,9 +553,9 @@ class DrImage(Gtk.Box):
 
 	def update_scrollbar(self, is_vertical, allocated_size, pixbuf_size, coord):
 		if is_vertical:
-			scrollbar = self.v_scrollbar
+			scrollbar = self._v_scrollbar
 		else:
-			scrollbar = self.h_scrollbar
+			scrollbar = self._h_scrollbar
 		scrollbar.set_visible(allocated_size / self.zoom_level < pixbuf_size)
 		scrollbar.set_range(0, pixbuf_size)
 		scrollbar.get_adjustment().set_page_size(allocated_size / self.zoom_level)

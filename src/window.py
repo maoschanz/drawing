@@ -129,34 +129,34 @@ class DrWindow(Gtk.ApplicationWindow):
 	def init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
-		disabled_tools_ids = self._settings.get_strv('disabled-tools')
+		disabled_tools = self._settings.get_strv('disabled-tools')
 		dev = self._settings.get_boolean('devel-only')
 		self.tools = {}
 		self.prompt_message(False, 'window has started, now loading tools')
 		# The order might be improvable
-		self.load_tool('pencil', ToolPencil, disabled_tools_ids, dev)
-		self.load_tool('eraser', ToolEraser, disabled_tools_ids, dev)
-		self.load_tool('highlight', ToolHighlighter, disabled_tools_ids, dev)
-		self.load_tool('text', ToolText, disabled_tools_ids, dev)
-		self.load_tool('rect_select', ToolRectSelect, disabled_tools_ids, dev)
-		self.load_tool('free_select', ToolFreeSelect, disabled_tools_ids, dev)
-		self.load_tool('line', ToolLine, disabled_tools_ids, dev)
-		self.load_tool('arc', ToolArc, disabled_tools_ids, dev)
-		self.load_tool('shape', ToolShape, disabled_tools_ids, dev)
-		self.load_tool('picker', ToolPicker, disabled_tools_ids, dev)
-		self.load_tool('color_select', ToolColorSelect, disabled_tools_ids, dev)
-		self.load_tool('paint', ToolPaint, disabled_tools_ids, dev)
+		self._load_tool('pencil', ToolPencil, disabled_tools, dev)
+		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
+		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
+		self._load_tool('text', ToolText, disabled_tools, dev)
+		self._load_tool('rect_select', ToolRectSelect, disabled_tools, dev)
+		self._load_tool('free_select', ToolFreeSelect, disabled_tools, dev)
+		self._load_tool('line', ToolLine, disabled_tools, dev)
+		self._load_tool('arc', ToolArc, disabled_tools, dev)
+		self._load_tool('shape', ToolShape, disabled_tools, dev)
+		self._load_tool('picker', ToolPicker, disabled_tools, dev)
+		self._load_tool('color_select', ToolColorSelect, disabled_tools, dev)
+		self._load_tool('paint', ToolPaint, disabled_tools, dev)
 		if dev:
-			self.load_tool('experiment', ToolExperiment, disabled_tools_ids, dev)
-		self.load_tool('crop', ToolCrop, disabled_tools_ids, dev)
-		self.load_tool('scale', ToolScale, disabled_tools_ids, dev)
-		self.load_tool('rotate', ToolRotate, disabled_tools_ids, dev)
-		self.load_tool('skew', ToolSkew, disabled_tools_ids, dev)
-		self.load_tool('filters', ToolFilters, disabled_tools_ids, dev)
+			self._load_tool('experiment', ToolExperiment, disabled_tools, dev)
+		self._load_tool('crop', ToolCrop, disabled_tools, dev)
+		self._load_tool('scale', ToolScale, disabled_tools, dev)
+		self._load_tool('rotate', ToolRotate, disabled_tools, dev)
+		self._load_tool('skew', ToolSkew, disabled_tools, dev)
+		self._load_tool('filters', ToolFilters, disabled_tools, dev)
 
 		# Side pane buttons for tools, and their menubar items if they don't
 		# exist yet
-		self.build_tool_rows()
+		self._build_tool_rows()
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()
 
@@ -171,18 +171,18 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			self.active_tool().row.set_active(True)
 
-	def load_tool(self, tool_id, tool_class, disabled_tools_ids, dev):
+	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
 		"""Given its id and its python class, this method tries to load a tool,
 		and show an error message if the tool initialization failed."""
 		if dev: # Simplest way to get an error stack
 			self.tools[tool_id] = tool_class(self)
-		elif tool_id not in disabled_tools_ids:
+		elif tool_id not in disabled_tools:
 			try:
 				self.tools[tool_id] = tool_class(self)
 			except:
 				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
-	def build_tool_rows(self):
+	def _build_tool_rows(self):
 		"""Adds each tool's button to the side pane."""
 		group = None
 		for tool_id in self.tools:
@@ -1090,7 +1090,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_rebuild(self, *args):
 		"""[Dev only] rebuild the image according to the history content."""
-		self.get_active_image()._history_manager._rebuild_from_history()
+		self.get_active_image()._history._rebuild_from_history()
 
 	def update_history_actions_labels(self, undo_label, redo_label):
 		self._decorations.set_undo_label(undo_label)
