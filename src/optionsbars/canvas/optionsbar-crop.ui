@@ -117,5 +117,48 @@
       </packing>
     </child>
 
+    <child>
+      <object class="GtkMenuButton" id="options_btn">
+        <property name="tooltip-text" translatable="yes">More options</property>
+        <property name="menu-model">actions-menu</property>
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">view-more-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
   </object>
+
+  <!-- -->
+
+  <!-- Menu shown in the action bar (bottom-right) -->
+  <menu id="actions-menu">
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Zoom Out</attribute>
+        <attribute name="action">win.zoom_out</attribute>
+        <attribute name="verb-icon">zoom-out-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Original Zoom</attribute>
+        <attribute name="action">win.zoom_100</attribute>
+        <attribute name="verb-icon">zoom-original-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Zoom In</attribute>
+        <attribute name="action">win.zoom_in</attribute>
+        <attribute name="verb-icon">zoom-in-symbolic</attribute>
+      </item>
+    </section>
+  </menu>
+
 </interface>
