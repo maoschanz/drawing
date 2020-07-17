@@ -57,9 +57,9 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 	def temp_preview(self, is_selection, local_dx, local_dy):
 		"""Part of the previewing methods shared by all canvas tools."""
-		cairo_context = self.get_context()
 		pixbuf = self.get_image().temp_pixbuf
 		if is_selection:
+			cairo_context = self.get_context()
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
 			x = self.get_selection().selection_x + local_dx
@@ -67,11 +67,14 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
 			cairo_context.paint()
 		else:
-			cairo_context.set_operator(cairo.Operator.CLEAR)
-			cairo_context.paint()
-			cairo_context.set_operator(cairo.Operator.OVER)
+			cairo_context = self.get_context()
+			# widget_surface = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
+			# cairo_context = cairo.Context(widget_surface)
+			# TODO concerning the scale(/crop)/rotate/skew preview ^
+			cairo_context.set_operator(cairo.Operator.SOURCE)
 			Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
 			cairo_context.paint()
+			cairo_context.set_operator(cairo.Operator.OVER)
 		self.get_image().update()
 
 	############################################################################
@@ -96,11 +99,10 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		else:
 			self.apply_temp(op['is_selection'], op['local_dx'], op['local_dy'])
 
-	def apply_temp(self, operation_is_selection, local_dx, local_dy):
+	def apply_temp(self, operation_is_selection, ldx, ldy):
 		new_pixbuf = self.get_image().temp_pixbuf.copy()
 		if operation_is_selection:
-			self.get_selection().update_from_canvas_tool(new_pixbuf, local_dx, \
-			                                                           local_dy)
+			self.get_selection().update_from_canvas_tool(new_pixbuf, ldx, ldy)
 		else:
 			self.get_image().set_main_pixbuf(new_pixbuf)
 			self.get_image().use_stable_pixbuf()

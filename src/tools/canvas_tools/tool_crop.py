@@ -162,7 +162,7 @@ class ToolCrop(AbstractCanvasTool):
 		                                         self.apply_to_selection, False)
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
 		# FIXME bien excepté les delta locaux : quand on rogne depuis le haut ou
-		# la gauche, les coordonées de référence des poignées ne sont plus
+		# la gauche, les coordonnées de référence des poignées ne sont plus
 		# correctes.
 
 	############################################################################
@@ -195,7 +195,9 @@ class ToolCrop(AbstractCanvasTool):
 
 	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		new_pixbuf.fill(0)
+		# RGBA hexadecimal TODO as an option
+		filling_color = self._rgba_as_hexa_int(255, 255, 255, 0.0)
+		new_pixbuf.fill(filling_color)
 		src_x = max(x, 0)
 		src_y = max(y, 0)
 		if is_selection:
@@ -209,6 +211,11 @@ class ToolCrop(AbstractCanvasTool):
 		min_h = min(height, temp_p.get_height() - src_y)
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
+
+	def _rgba_as_hexa_int(self, r, g, b, a):
+		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
+		format is 0xrrggbbaa so here are ugly binary operators."""
+		return (((((r << 8) + g) << 8) + b) << 8) + int(255 * a)
 
 	############################################################################
 ################################################################################

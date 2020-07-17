@@ -134,7 +134,7 @@ class DrImage(Gtk.Box):
 		self.selection.init_pixbuf()
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
-			# no pixbuf found at step 1: the restored pixbuf is a blank one
+			# no pixbuf in the operation: the restored state is a blank one
 			r = last_saved_pixbuf_op['red']
 			g = last_saved_pixbuf_op['green']
 			b = last_saved_pixbuf_op['blue']
