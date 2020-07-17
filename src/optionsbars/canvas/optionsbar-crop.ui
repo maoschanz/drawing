@@ -142,6 +142,24 @@
   <!-- Menu shown in the action bar (bottom-right) -->
   <menu id="actions-menu">
     <section>
+      <attribute name="label" translatable="yes">Expand with…</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Transparency</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">alpha</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Default color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">initial</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+    </section>
+    <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="label" translatable="yes">Zoom Out</attribute>

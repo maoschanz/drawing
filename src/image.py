@@ -109,7 +109,7 @@ class DrImage(Gtk.Box):
 			'width': width, 'height': height
 		}
 		self.init_image_common()
-		self._history.set_initial_state(op)
+		self._history.initial_operation = op
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
@@ -154,13 +154,18 @@ class DrImage(Gtk.Box):
 	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
+		background_rgba = self.window._settings.get_strv('default-rgba')
+		r = float(background_rgba[0])
+		g = float(background_rgba[1])
+		b = float(background_rgba[2])
+		a = float(background_rgba[3])
 		op = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
-			'red': 0.0, 'green': 0.0, 'blue': 0.0, 'alpha': 0.0,
+			'red': r, 'green': g, 'blue': b, 'alpha': a,
 			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
-		self._history.set_initial_state(op)
+		self._history.initial_operation = op
 		self.main_pixbuf = pixbuf
 
 	def reload_from_disk(self):
@@ -282,6 +287,14 @@ class DrImage(Gtk.Box):
 		if self._history.can_undo():
 			return False
 		return not self._history.has_initial_pixbuf()
+
+	def get_initial_rgba(self):
+		operation = self._history.initial_operation
+		r = operation['red']
+		g = operation['green']
+		b = operation['blue']
+		a = operation['alpha']
+		return Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 
 	############################################################################
 	# Misc ? ###################################################################

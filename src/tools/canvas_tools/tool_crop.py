@@ -29,6 +29,8 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 		self.unclicked = True
+		self.add_tool_action_enum('crop-expand', 'initial')
+		self._expansion_color = 0 # transparent black, will be updated later
 
 	def try_build_pane(self):
 		self.pane_id = 'crop'
@@ -36,6 +38,7 @@ class ToolCrop(AbstractCanvasTool):
 
 	def build_bottom_pane(self):
 		bar = OptionsBarCrop()
+		self.options_btn = bar.options_btn
 		self.height_btn = bar.height_btn
 		self.width_btn = bar.width_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -48,7 +51,7 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			return _("Cropping the canvas")
 
-###################################################
+	############################################################################
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -60,6 +63,7 @@ class ToolCrop(AbstractCanvasTool):
 			self.init_if_main()
 		self.width_btn.set_value(self.original_width)
 		self.height_btn.set_value(self.original_height)
+		self.options_btn.set_visible(not self.apply_to_selection)
 		self.build_and_do_op()
 
 	def init_if_selection(self):
@@ -73,6 +77,31 @@ class ToolCrop(AbstractCanvasTool):
 		self.original_height = self.get_image().get_pixbuf_height()
 		self.width_btn.set_range(1, 10 * self.original_width)
 		self.height_btn.set_range(1, 10 * self.original_height)
+
+	############################################################################
+
+	def _update_expansion_color(self, event_btn=1):
+		"""When the canvas grows, the color of the new pixels is parametrable"""
+		color_type = self.get_option_value('crop-expand')
+		if color_type == 'initial':
+			exp_rgba = self.get_image().get_initial_rgba()
+		elif color_type == 'secondary':
+			if event_btn == 1:
+				exp_rgba = self.window.options_manager.get_right_color()
+			if event_btn == 3:
+				exp_rgba = self.window.options_manager.get_left_color()
+		else: # color_type == 'alpha':
+			exp_rgba = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=0.0)
+		self._expansion_color = self._rgba_as_hexa_int(exp_rgba)
+
+	def _rgba_as_hexa_int(self, gdk_rgba):
+		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
+		format is 0xrrggbbaa so here are ugly binary operators."""
+		r = int(255 * gdk_rgba.red)
+		g = int(255 * gdk_rgba.green)
+		b = int(255 * gdk_rgba.blue)
+		a = int(255 * gdk_rgba.alpha)
+		return (((((r << 8) + g) << 8) + b) << 8) + a
 
 	############################################################################
 
@@ -114,6 +143,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = event.x
 		self.y_press = event.y
 		self.unclicked = False
+		self._update_expansion_color(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		delta_x = event.x - self.x_press
@@ -175,7 +205,8 @@ class ToolCrop(AbstractCanvasTool):
 			'local_dx': int(self._x),
 			'local_dy': int(self._y),
 			'width': self.get_width(),
-			'height': self.get_height()
+			'height': self.get_height(),
+			'rgba': self._expansion_color
 		}
 		return operation
 
@@ -185,19 +216,19 @@ class ToolCrop(AbstractCanvasTool):
 		y = operation['local_dy']
 		width = operation['width']
 		height = operation['height']
-		if operation['is_selection']:
+		rgba = operation['rgba']
+		is_selection = operation['is_selection']
+		if is_selection:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		self.crop_temp_pixbuf(x, y, width, height, operation['is_selection'])
+		self.crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
 		self.common_end_operation(operation)
 
-	def crop_temp_pixbuf(self, x, y, width, height, is_selection):
+	def crop_temp_pixbuf(self, x, y, width, height, is_selection, rgba):
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		# RGBA hexadecimal TODO as an option
-		filling_color = self._rgba_as_hexa_int(255, 255, 255, 0.0)
-		new_pixbuf.fill(filling_color)
+		new_pixbuf.fill(rgba)
 		src_x = max(x, 0)
 		src_y = max(y, 0)
 		if is_selection:
@@ -211,11 +242,6 @@ class ToolCrop(AbstractCanvasTool):
 		min_h = min(height, temp_p.get_height() - src_y)
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	def _rgba_as_hexa_int(self, r, g, b, a):
-		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
-		format is 0xrrggbbaa so here are ugly binary operators."""
-		return (((((r << 8) + g) << 8) + b) << 8) + int(255 * a)
 
 	############################################################################
 ################################################################################

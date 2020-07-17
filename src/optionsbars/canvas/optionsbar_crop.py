@@ -38,7 +38,8 @@ class OptionsBarCrop(AbstractOptionsBar):
 		self.separator = builder.get_object('separator')
 
 	def toggle_options_menu(self):
-		self.options_btn.set_active(not self.options_btn.get_active())
+		if self.options_btn.get_visible():
+			self.options_btn.set_active(not self.options_btn.get_active())
 
 	def hide_options_menu(self):
 		self.options_btn.set_active(False)

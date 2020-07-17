@@ -32,9 +32,6 @@ class DrHistoryManager():
 	def get_saved(self):
 		return self._is_saved
 
-	def set_initial_state(self, toolless_operation):
-		self._initial_operation = toolless_operation
-
 	def empty_history(self):
 		"""Probably useless way to explicitely 'forget' the objects. It doesn't
 		really free the memory, but it kinda helps i suppose."""
@@ -42,7 +39,7 @@ class DrHistoryManager():
 			self._delete_operation(op)
 		for op in self._redo_history:
 			self._delete_operation(op)
-		self._delete_operation(self._initial_operation)
+		self._delete_operation(self.initial_operation)
 
 	def _delete_operation(self, op):
 		for key in op:
@@ -126,12 +123,12 @@ class DrHistoryManager():
 		self._is_saved = True
 
 	def has_initial_pixbuf(self):
-		return self._initial_operation['pixbuf'] is not None
+		return self.initial_operation['pixbuf'] is not None
 
 	def get_last_saved_state(self):
 		index = self._get_last_state_index(False)
 		if index == -1:
-			return self._initial_operation
+			return self.initial_operation
 		else:
 			return self._undo_history[index]
 
@@ -139,7 +136,7 @@ class DrHistoryManager():
 		"""Return the index of the last "state" operation (dict whose 'tool_id'
 		value is None) in the undo-history. If there is no such operation, the
 		returned index is -1 which means the only known state is the
-		self._initial_operation attribute."""
+		self.initial_operation attribute."""
 
 		returned_index = -1
 		nbPixbufs = 0
