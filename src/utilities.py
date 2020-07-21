@@ -211,6 +211,8 @@ def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
 	elif unit == '°':
 		# To translators: it's the angle measure unit
 		_add_spinbutton_icon(spinbutton, 'unit-degrees-symbolic', _("degrees"))
+	elif unit == 's':
+		_add_spinbutton_icon(spinbutton, 'unit-seconds-symbolic', _("seconds"))
 
 def _add_spinbutton_icon(spinbutton, icon, tooltip):
 	p = Gtk.EntryIconPosition.SECONDARY

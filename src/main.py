@@ -15,7 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import sys, gi
+import sys, gi, time
+from urllib.parse import unquote
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrWindow
@@ -60,6 +62,8 @@ class Application(Gtk.Application):
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
+		self.add_main_option('screenshot', b's', GLib.OptionFlags.NONE,
+		                             GLib.OptionArg.NONE, _("Screenshot"), None)
 
 		icon_theme = Gtk.IconTheme.get_default()
 		icon_theme.add_resource_path(APP_PATH + '/icons')
@@ -79,6 +83,7 @@ class Application(Gtk.Application):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs, None)
+		self.add_action_simple('screenshot', self.on_screenshot, None)
 		if self.is_beta():
 			self.add_action_simple('report_bug', self.on_report, None)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
@@ -123,9 +128,13 @@ class Application(Gtk.Application):
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
 
+		# TODO update comments
 		# Possible options are 'version', 'new-window', and 'new-tab', in this
 		# order: only one option can be applied, '-ntv' will be the same as '-v'.
 		options = args[1].get_options_dict()
+
+		# hack to do a screenshot
+		self.cli_app = args[1]
 
 		if options.contains('version'):
 			print(_("Drawing") + ' ' + self._version)
@@ -135,6 +144,8 @@ class Application(Gtk.Application):
 			print(_("Report bugs or ideas") + ' 👉️ ' + BUG_REPORT_URL)
 		elif options.contains('edit-clipboard'):
 			self.open_window_with_content(None, True)
+		elif options.contains('screenshot'):
+			self.on_screenshot()
 
 		# If no file given as argument
 		elif options.contains('new-window') and len(arguments) == 1:
@@ -142,8 +153,6 @@ class Application(Gtk.Application):
 		elif options.contains('new-tab') and len(arguments) == 1:
 			win = self.props.active_window
 			if not win:
-				self.on_new_window()
-			else:
 				win.present()
 				self.props.active_window.build_new_image()
 		elif len(arguments) == 1:
@@ -159,14 +168,68 @@ class Application(Gtk.Application):
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
 				if f is not None:
-					win = self.props.active_window
-					if not win:
-						self.open_window_with_content(f, False)
-					else:
-						win.present()
-						self.props.active_window.build_new_tab(gfile=f)
+					self._new_tab_with_file(f)
 		# I don't even know if i should return something
 		return 0
+
+	def _new_tab_with_file(self, f):
+		win = self.props.active_window
+		if not win:
+			self.open_window_with_content(f, False)
+		else:
+			win.present()
+			self.props.active_window.build_new_tab(gfile=f)
+
+	############################################################################
+	# Screenshotting ###########################################################
+
+	def on_screenshot(self, *args):
+		win = self.props.active_window
+		if not win:
+			win = self.on_new_window()
+			# Because the portal requires the app to have a window
+			# TODO la cacher peut-être ?
+		win.iconify() # ça marche pô assez vite
+		delay = win._settings.get_int('screenshot-delay')
+		time.sleep(delay) # FIXME merdique
+
+		bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
+		proxy = Gio.DBusProxy.new_sync(bus, Gio.DBusProxyFlags.NONE, None,
+				                         'org.freedesktop.portal.Desktop',
+				                      '/org/freedesktop/portal/desktop',
+				                'org.freedesktop.portal.Screenshot', None)
+
+		args = GLib.Variant('(sa{sv})', ('', {}))
+		res = proxy.call_sync('Screenshot', args, \
+		                             Gio.DBusCallFlags.NO_AUTO_START, 500, None)
+		response_id = bus.signal_subscribe('org.freedesktop.portal.Desktop', \
+		           'org.freedesktop.portal.Request', 'Response', res[0], None, \
+		       Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot, None)
+
+	def receive_screenshot(self, *args):
+		useful_data = args[5]
+		# TODO dans toute cette merde ^ ya bien un truc mieux que l'URL ?
+		if useful_data[0] == 1:
+			# Action cancelled by the user
+			return
+		win = self.props.active_window
+		if not win:
+			# Should never happen
+			win = self.on_new_window()
+		else:
+			win.present()
+		if useful_data[0] == 0:
+			weird_uri = useful_data[1]['uri']
+			# f = Gio.File.new_for_uri(weird_uri)
+			file_name = weird_uri.split('/')[-1] # XXX honteux
+			image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+			true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
+			fpath = unquote(true_uri) # XXX honteux
+			f = self._get_valid_file(self.cli_app, fpath)
+			if f is not None:
+				self._new_tab_with_file(f)
+		elif useful_data[0] == 2:
+			win.prompt_message(True, _("Screenshot failed"))
 
 	############################################################################
 	# Actions callbacks ########################################################

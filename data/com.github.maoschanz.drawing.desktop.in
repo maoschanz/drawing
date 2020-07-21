@@ -11,7 +11,7 @@ StartupNotify=true
 Keywords=Paint;Sketch;Pencil;
 Categories=Graphics;GNOME;GTK;
 MimeType=image/png;image/bmp;image/jpeg;
-Actions=new-window;new-tab;edit-clipboard;
+Actions=new-window;new-tab;edit-clipboard;screenshot;
 
 [Desktop Action new-window]
 Name=New Window
@@ -24,3 +24,7 @@ Exec=drawing --new-tab
 [Desktop Action edit-clipboard]
 Name=Edit Image in Clipboard
 Exec=drawing --edit-clipboard
+
+[Desktop Action screenshot]
+Name=Screenshot
+Exec=drawing --screenshot

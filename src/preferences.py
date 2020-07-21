@@ -32,6 +32,7 @@ class DrPrefsWindow(Gtk.Window):
 	adj_width = Gtk.Template.Child()
 	adj_height = Gtk.Template.Child()
 	adj_preview = Gtk.Template.Child()
+	adj_screenshot = Gtk.Template.Child()
 
 	_current_grid = None
 	_grid_attach_cpt = 0
@@ -158,6 +159,8 @@ class DrPrefsWindow(Gtk.Window):
 		bg_color_btn.connect('color-set', self.on_ui_background_changed)
 		self.add_row(_("Background color"), bg_color_btn)
 
+		self.add_adj(_("Screenshot delay"), 'screenshot-delay', self.adj_screenshot)
+
 		self.add_section_separator()
 		self.add_section_title(_("Layout"))
 		self.add_help(_("The recommended value is \"Automatic\"."))
@@ -221,7 +224,7 @@ class DrPrefsWindow(Gtk.Window):
 	def add_adj(self, label_text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
-		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px')
+		utilities_add_unit_to_spinbtn(spinbtn, 4, 'px') # FIXME don't harcode these
 		spinbtn.connect('value-changed', self.on_adj_changed, key)
 		self.add_row(label_text, spinbtn)
 
