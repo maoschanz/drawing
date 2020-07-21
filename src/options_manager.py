@@ -93,6 +93,8 @@ class DrOptionsManager():
 		shape_name = self.get_value('shape_type')
 		self.window._settings.set_string('last-active-shape', shape_name)
 
+		# TODO more ?
+
 	############################################################################
 	# Bottom panes management ##################################################
 

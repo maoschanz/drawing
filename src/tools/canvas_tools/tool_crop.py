@@ -38,7 +38,6 @@ class ToolCrop(AbstractCanvasTool):
 
 	def build_bottom_pane(self):
 		bar = OptionsBarCrop()
-		self.options_btn = bar.options_btn
 		self.height_btn = bar.height_btn
 		self.width_btn = bar.width_btn
 		self.width_btn.connect('value-changed', self.on_width_changed)
@@ -63,7 +62,7 @@ class ToolCrop(AbstractCanvasTool):
 			self.init_if_main()
 		self.width_btn.set_value(self.original_width)
 		self.height_btn.set_value(self.original_height)
-		self.options_btn.set_visible(not self.apply_to_selection)
+		self.set_action_sensitivity('crop-expand', not self.apply_to_selection)
 		self.build_and_do_op()
 
 	def init_if_selection(self):

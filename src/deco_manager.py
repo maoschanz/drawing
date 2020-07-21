@@ -89,10 +89,12 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		self._hidable_widget_1 = builder.get_object('hidable1')
 		self._hidable_widget_2 = builder.get_object('hidable2')
 
-		# Used by other methods
+		# Mandatory widget name, used for the `win.main_menu` action
+		self._main_menu_btn = builder.get_object('main_menu_btn')
+
+		# History buttons whose tooltips depends on the last operation
 		self._undo_btn = builder.get_object('undo_btn')
 		self._redo_btn = builder.get_object('redo_btn')
-		self._main_menu_btn = builder.get_object('main_menu_btn')
 
 		# Quite extreme as a precaution, will be more precise later
 		self._limit_size = 750
@@ -127,7 +129,7 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		self._manual_correction = 50
 
 	def remove_from_ui(self):
-		return False
+		return self._is_narrow
 
 	############################################################################
 
@@ -163,6 +165,8 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		widgets_width = widgets_width + self._manual_correction
 		self._limit_size = widgets_width * 2.5 # 100% arbitrary
 		# print(self._limit_size)
+		self.set_compact(True)
+		self.adapt_to_window_size()
 
 	def adapt_to_window_size(self):
 		can_expand = (self._widget.get_allocated_width() > self._limit_size)
@@ -205,9 +209,10 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 		window.toolbar_box.pack_start(self._widget, True, True, 0)
 		window.toolbar_box.show_all()
 
-		# Mandatory widget name, used for the `win.main_menu` action.
+		# Mandatory widget name, used for the `win.main_menu` action
 		self._main_menu_btn = builder.get_object('main_menu_btn')
 
+		# History buttons whose tooltips depends on the last operation
 		# XXX maybe later
 		# self._undo_btn = builder.get_object('undo_btn')
 		# self._redo_btn = builder.get_object('redo_btn')
@@ -232,6 +237,18 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 	def remove_from_ui(self):
 		self._widget.destroy()
 		return False
+
+	# def set_undo_label(self, label):
+	# 	if label is None:
+	# 		self._undo_btn.set_tooltip_text(_("Undo"))
+	# 	else:
+	# 		self._undo_btn.set_tooltip_text(_("Undo %s") % label)
+
+	# def set_redo_label(self, label):
+	# 	if label is None:
+	# 		self._redo_btn.set_tooltip_text(_("Redo"))
+	# 	else:
+	# 		self._redo_btn.set_tooltip_text(_("Redo %s") % label)
 
 	############################################################################
 ################################################################################

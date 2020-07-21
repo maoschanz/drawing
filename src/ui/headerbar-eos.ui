@@ -10,10 +10,10 @@
         <property name="relief">none</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">New Image</property>
-        <!-- <child> -->
-        <!--   <object class="GtkBox"> -->
-        <!--     <property name="visible">True</property> -->
-        <!--     <property name="spacing">6</property> -->
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">6</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">document-new</property>
@@ -21,14 +21,14 @@
                 <property name="visible">True</property>
               </object>
             </child>
-        <!--     <child> -->
-        <!--       <object class="GtkImage"> -->
-        <!--         <property name="icon-name">pan-down</property> -->
-        <!--         <property name="visible">True</property> -->
-        <!--       </object> -->
-        <!--     </child> -->
-        <!--   </object> -->
-        <!-- </child> -->
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">pan-down</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
 
@@ -148,10 +148,10 @@
             <property name="relief">none</property>
             <property name="valign">center</property>
             <property name="tooltip-text" translatable="yes">Save as…</property>
-            <!-- <child> -->
-            <!--   <object class="GtkBox"> -->
-            <!--     <property name="visible">True</property> -->
-            <!--     <property name="spacing">6</property> -->
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="spacing">6</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">document-save-as</property>
@@ -159,14 +159,14 @@
                     <property name="visible">True</property>
                   </object>
                 </child>
-            <!--     <child> -->
-            <!--       <object class="GtkImage"> -->
-            <!--         <property name="icon-name">pan-down</property> -->
-            <!--         <property name="visible">True</property> -->
-            <!--       </object> -->
-            <!--     </child> -->
-            <!--   </object> -->
-            <!-- </child> -->
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">pan-down</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
 
