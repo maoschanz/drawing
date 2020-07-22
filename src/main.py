@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import sys, gi, time
+import sys, gi
 from urllib.parse import unquote
 
 gi.require_version('Gtk', '3.0')
@@ -190,8 +190,6 @@ class Application(Gtk.Application):
 			# Because the portal requires the app to have a window
 			# TODO la cacher peut-être ?
 		win.iconify() # ça marche pô assez vite
-		delay = win._settings.get_int('screenshot-delay')
-		time.sleep(delay) # FIXME merdique
 
 		bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
 		proxy = Gio.DBusProxy.new_sync(bus, Gio.DBusProxyFlags.NONE, None,
