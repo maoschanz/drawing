@@ -186,28 +186,66 @@ class Application(Gtk.Application):
 	def on_screenshot(self, *args):
 		win = self.props.active_window
 		if not win:
-			win = self.on_new_window()
 			# Because the portal requires the app to have a window
-			# TODO la cacher peut-être ?
-		win.iconify() # ça marche pô assez vite
+			win = self.on_new_window()
+		# We can't iconify win because it would iconify the portal dialog too
 
-		bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
-		proxy = Gio.DBusProxy.new_sync(bus, Gio.DBusProxyFlags.NONE, None,
-				                         'org.freedesktop.portal.Desktop',
-				                      '/org/freedesktop/portal/desktop',
-				                'org.freedesktop.portal.Screenshot', None)
+		gio_dbus_connection = Gio.bus_get_sync(Gio.BusType.SESSION, None)
+		proxy = Gio.DBusProxy.new_sync(
+			gio_dbus_connection,
+			Gio.DBusProxyFlags.NONE, None,
+			'org.freedesktop.portal.Desktop',
+			'/org/freedesktop/portal/desktop',
+			'org.freedesktop.portal.Screenshot',
+			None
+		)
 
-		args = GLib.Variant('(sa{sv})', ('', {}))
-		res = proxy.call_sync('Screenshot', args, \
-		                             Gio.DBusCallFlags.NO_AUTO_START, 500, None)
-		response_id = bus.signal_subscribe('org.freedesktop.portal.Desktop', \
-		           'org.freedesktop.portal.Request', 'Response', res[0], None, \
-		       Gio.DBusSignalFlags.NO_MATCH_RULE, self.receive_screenshot, None)
+		parent_window_id = '' # TODO x11:xid or wayland:handle
+		args = GLib.Variant('(sa{sv})', (parent_window_id, {
+			'interactive': GLib.Variant.new_boolean(True),
+			'modal': GLib.Variant.new_boolean(False)
+		})) # interactive could be an app setting
+
+		try:
+			# We provide the args to the portal, and expect an "object path" in
+			# return (None if an error occurs).
+			# method_name, parameters, flags, timeout_msec, cancellable
+			result_GVariant = proxy.call_sync('Screenshot', args, \
+			                         Gio.DBusCallFlags.NO_AUTO_START, 500, None)
+			if result_GVariant is None:
+				raise Exception("The DBus proxy didn't return an object path." \
+				                 + "\nThe portal can't suscribe to the signal.")
+
+			# sender, interface_name, member, object_path, arg0, flags, callback, *user_data
+			response_id = gio_dbus_connection.signal_subscribe(
+				'org.freedesktop.portal.Desktop',
+				'org.freedesktop.portal.Request',
+				'Response',
+				result_GVariant[0],
+				None,
+				Gio.DBusSignalFlags.NO_MATCH_RULE,
+				self.receive_screenshot,
+				None
+			)
+		except Exception as e:
+			print("[Drawing] Error while calling the screenshot portal.")
+			print(e)
+			print("[Drawing] args were", args)
 
 	def receive_screenshot(self, *args):
-		useful_data = args[5]
-		# TODO dans toute cette merde ^ ya bien un truc mieux que l'URL ?
-		if useful_data[0] == 1:
+		# XXX what are at index 1 or 2? is index 0 closed?
+		# <Gio.DBusConnection object at 0x7f6106b64e60 (GDBusConnection at 0x557bc1767380)>,
+		# ':1.49',
+		# '/org/freedesktop/portal/desktop/request/1_2813/t/1811915328',
+		# 'org.freedesktop.portal.Request',
+		# 'Response',
+		# GLib.Variant('(ua{sv})', (
+		# 	0,
+		# 	{'uri': <'file:///run/user/1000/doc/ca018260/Screenshot-7.png'>}
+		# )),
+		# None
+		screenshot_state = args[5][0] # == 0 if success
+		if screenshot_state == 1:
 			# Action cancelled by the user
 			return
 		win = self.props.active_window
@@ -216,18 +254,21 @@ class Application(Gtk.Application):
 			win = self.on_new_window()
 		else:
 			win.present()
-		if useful_data[0] == 0:
-			weird_uri = useful_data[1]['uri']
-			# f = Gio.File.new_for_uri(weird_uri)
-			file_name = weird_uri.split('/')[-1] # XXX honteux
-			image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-			true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
-			fpath = unquote(true_uri) # XXX honteux
-			f = self._get_valid_file(self.cli_app, fpath)
-			if f is not None:
-				self._new_tab_with_file(f)
-		elif useful_data[0] == 2:
+		if screenshot_state == 2:
 			win.prompt_message(True, _("Screenshot failed"))
+			return
+
+		weird_uri = args[5][1]['uri']
+		# f = Gio.File.new_for_uri(weird_uri)
+		file_name = weird_uri.split('/')[-1] # XXX honteux
+		image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+		true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
+		fpath = unquote(true_uri) # XXX honteux
+		f = self._get_valid_file(self.cli_app, fpath)
+		if f is not None:
+			self._new_tab_with_file(f) # XXX non car ça ouvre TOUJOURS un new tab
+		# TODO pourquoi j'ouvre pas juste un fichier avec cette uri tant qu'elle
+		# existe et correspond au fichier ? sans le merdier avec cli_app
 
 	############################################################################
 	# Actions callbacks ########################################################
@@ -372,7 +413,7 @@ class Application(Gtk.Application):
 		except:
 			err = _("Error opening this file. Did you mean %s ?")
 			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-			# XXX can happen without flatpak
+			# FIXME can happen without flatpak
 			command = command.format(APP_ID, path)
 			print(err % command)
 			return None
