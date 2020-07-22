@@ -259,16 +259,22 @@ class Application(Gtk.Application):
 			return
 
 		weird_uri = args[5][1]['uri']
-		# f = Gio.File.new_for_uri(weird_uri)
-		file_name = weird_uri.split('/')[-1] # XXX honteux
-		image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-		true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
-		fpath = unquote(true_uri) # XXX honteux
-		f = self._get_valid_file(self.cli_app, fpath)
+
+		use_hack = True
+		if use_hack:
+			file_name = weird_uri.split('/')[-1] # XXX honteux
+			image_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+			true_uri = 'file://' + image_dir + '/' + file_name # XXX honteux
+			fpath = unquote(true_uri) # XXX honteux
+			f = self._get_valid_file(self.cli_app, fpath)
+		else:
+			# TODO réparer ça + virer le merdier avec cli_app
+			f = Gio.File.new_for_uri(weird_uri)
+			# g-file-error-quark: Failed to open “/run/user/1000/doc/25e111af/Screenshot-9.png”
+			# for writing: Permission denied (2)
+
 		if f is not None:
 			self._new_tab_with_file(f) # XXX non car ça ouvre TOUJOURS un new tab
-		# TODO pourquoi j'ouvre pas juste un fichier avec cette uri tant qu'elle
-		# existe et correspond au fichier ? sans le merdier avec cli_app
 
 	############################################################################
 	# Actions callbacks ########################################################
