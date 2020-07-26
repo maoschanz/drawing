@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 01:33+0200\n"
+"POT-Creation-Date: 2020-07-26 05:24+0200\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
 "Last-Translator: Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
@@ -291,17 +291,20 @@ msgid "Optimal Zoom"
 msgstr "Zoom ótico"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom Out"
 msgstr "Reduzir zoom"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Original Zoom"
 msgstr "Zoom original"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom In"
 msgstr "Aumentar zoom"
 
@@ -614,9 +617,8 @@ msgid "Main menu"
 msgstr "Menu principal"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
-msgid "Editing"
-msgstr "Edição"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -809,7 +811,8 @@ msgstr "Largura padrão"
 msgid "Default height"
 msgstr "Altura padrão"
 
-#: src/preferences.py
+#: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Fundo padrão"
@@ -1218,7 +1221,8 @@ msgstr "Cor primária"
 
 #. if state_as_string == 'secondary':
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Cor secundária"
 
@@ -1264,6 +1268,22 @@ msgstr "Mais ações"
 msgid "Apply"
 msgstr "Aplicar"
 
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
+#, fuzzy
+msgid "More options"
+msgstr "Mais ações"
+
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr ""
+
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#, fuzzy
+msgid "Transparency"
+msgstr "Adicionar transparência"
+
 #: src/optionsbars/canvas/optionsbar-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 #, fuzzy
@@ -1279,11 +1299,6 @@ msgstr "Saturação (%)"
 #, fuzzy
 msgid "Blur radius"
 msgstr "Raio do borrão (pixels)"
-
-#: src/optionsbars/canvas/optionsbar-filters.ui
-#, fuzzy
-msgid "Transparency"
-msgstr "Adicionar transparência"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
@@ -1377,11 +1392,6 @@ msgstr "Inverter horizontalmente"
 #: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
 msgstr "Inverter verticalmente"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui
-#, fuzzy
-msgid "More options"
-msgstr "Mais ações"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 #, fuzzy
@@ -1695,6 +1705,10 @@ msgstr "Redimensionar a seleção"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Redimensionar a tela"
+
+#, fuzzy
+#~ msgid "Editing"
+#~ msgstr "Edição"
 
 #~ msgid "Classic"
 #~ msgstr "Clássico"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 01:33+0200\n"
+"POT-Creation-Date: 2020-07-26 05:24+0200\n"
 "PO-Revision-Date: 2020-07-15 05:44+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -299,17 +299,20 @@ msgid "Optimal Zoom"
 msgstr "Optimal zoom"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom Out"
 msgstr "Zooma ut"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Original Zoom"
 msgstr "Ursprunglig zoom"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom In"
 msgstr "Zooma in"
 
@@ -605,8 +608,8 @@ msgid "Main menu"
 msgstr "Huvudmeny"
 
 #: src/ui/shortcuts.ui
-msgid "Editing"
-msgstr "Redigering"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -793,7 +796,8 @@ msgstr "Standardbredd"
 msgid "Default height"
 msgstr "Standardhöjd"
 
-#: src/preferences.py
+#: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Standardfärg"
 
@@ -1197,7 +1201,8 @@ msgstr "Primär färg"
 
 #. if state_as_string == 'secondary':
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Sekundär färg"
 
@@ -1242,6 +1247,20 @@ msgstr "Fler åtgärder"
 msgid "Apply"
 msgstr "Tillämpa"
 
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
+msgid "More options"
+msgstr "Fler alternativ"
+
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr ""
+
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+msgid "Transparency"
+msgstr "Transparens"
+
 #: src/optionsbars/canvas/optionsbar-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Select a filter…"
@@ -1254,10 +1273,6 @@ msgstr "Mättnad"
 #: src/optionsbars/canvas/optionsbar-filters.ui
 msgid "Blur radius"
 msgstr "Oskärperadie"
-
-#: src/optionsbars/canvas/optionsbar-filters.ui
-msgid "Transparency"
-msgstr "Transparens"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
@@ -1342,10 +1357,6 @@ msgstr "Vänd horisontellt"
 #: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
 msgstr "Vänd vertikalt"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui
-msgid "More options"
-msgstr "Fler alternativ"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
@@ -1646,6 +1657,9 @@ msgstr "Skalar markering"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
+
+#~ msgid "Editing"
+#~ msgstr "Redigering"
 
 #~ msgid "Photo manipulation"
 #~ msgstr "Fotomanipulation"

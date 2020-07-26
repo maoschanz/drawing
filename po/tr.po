@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 01:33+0200\n"
+"POT-Creation-Date: 2020-07-26 05:24+0200\n"
 "PO-Revision-Date: 2020-05-19 01:04+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -302,17 +302,20 @@ msgid "Optimal Zoom"
 msgstr "İdeal Yakınlık"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Original Zoom"
 msgstr "Orijinal Yakınlık"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom In"
 msgstr "Yakınlaştır"
 
@@ -609,8 +612,8 @@ msgid "Main menu"
 msgstr "Ana menü"
 
 #: src/ui/shortcuts.ui
-msgid "Editing"
-msgstr "Düzenleniyor"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -797,7 +800,8 @@ msgstr "Öntanımlı genişlik"
 msgid "Default height"
 msgstr "Öntanımlı yükseklik"
 
-#: src/preferences.py
+#: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Öntanımlı arka plan"
@@ -1207,7 +1211,8 @@ msgstr "Ana renk"
 
 #. if state_as_string == 'secondary':
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "İkincil renk"
 
@@ -1252,6 +1257,20 @@ msgstr "Daha fazla eylem"
 msgid "Apply"
 msgstr "Onayla"
 
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
+msgid "More options"
+msgstr "Daha fazla seçenek"
+
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr ""
+
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+msgid "Transparency"
+msgstr "Saydamlık"
+
 #: src/optionsbars/canvas/optionsbar-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Select a filter…"
@@ -1264,10 +1283,6 @@ msgstr "Doygunluk"
 #: src/optionsbars/canvas/optionsbar-filters.ui
 msgid "Blur radius"
 msgstr "Bulanıklık yarıçapı"
-
-#: src/optionsbars/canvas/optionsbar-filters.ui
-msgid "Transparency"
-msgstr "Saydamlık"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
@@ -1352,10 +1367,6 @@ msgstr "Yatay çevir"
 #: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
 msgstr "Dikey çevir"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui
-msgid "More options"
-msgstr "Daha fazla seçenek"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
@@ -1660,6 +1671,9 @@ msgstr "Seçimi ölçeklendir"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
+
+#~ msgid "Editing"
+#~ msgstr "Düzenleniyor"
 
 #~ msgid "Photo manipulation"
 #~ msgstr "Fotoğraf hilesi"

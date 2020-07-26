@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 01:33+0200\n"
+"POT-Creation-Date: 2020-07-26 05:24+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -292,17 +292,20 @@ msgid "Optimal Zoom"
 msgstr "Automatikus nagyítás"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom Out"
 msgstr "Kicsinyítés"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Original Zoom"
 msgstr "Eredeti nagyítás"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 msgid "Zoom In"
 msgstr "Nagyítás"
 
@@ -613,8 +616,8 @@ msgid "Main menu"
 msgstr "Főmenü"
 
 #: src/ui/shortcuts.ui
-msgid "Editing"
-msgstr "Szerkesztés"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -806,7 +809,8 @@ msgstr "Alapértelmezett szélesség"
 msgid "Default height"
 msgstr "Alapértelmezett magasság"
 
-#: src/preferences.py
+#: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Alapértelmezett háttér"
@@ -1220,7 +1224,8 @@ msgstr "Elsődleges szín"
 
 #. if state_as_string == 'secondary':
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Másodlagos szín"
 
@@ -1265,6 +1270,20 @@ msgstr "További műveletek"
 msgid "Apply"
 msgstr "Alkalmaz"
 
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
+msgid "More options"
+msgstr "További lehetőségek"
+
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr ""
+
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+msgid "Transparency"
+msgstr "Átlátszóság"
+
 #: src/optionsbars/canvas/optionsbar-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Select a filter…"
@@ -1277,10 +1296,6 @@ msgstr "Telítettség"
 #: src/optionsbars/canvas/optionsbar-filters.ui
 msgid "Blur radius"
 msgstr "Elmosás sugara"
-
-#: src/optionsbars/canvas/optionsbar-filters.ui
-msgid "Transparency"
-msgstr "Átlátszóság"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
@@ -1372,10 +1387,6 @@ msgstr "Vízszintes tükrözés"
 #: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
 msgstr "Függőleges tükrözés"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui
-msgid "More options"
-msgstr "További lehetőségek"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 #, fuzzy
@@ -1689,6 +1700,9 @@ msgstr "Kijelölés átméretezése"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Rajzvászon átméretezése"
+
+#~ msgid "Editing"
+#~ msgstr "Szerkesztés"
 
 #~ msgid "Classic"
 #~ msgstr "Klasszikus"

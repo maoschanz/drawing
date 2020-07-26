@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 01:33+0200\n"
+"POT-Creation-Date: 2020-07-26 05:24+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -290,19 +290,22 @@ msgid "Optimal Zoom"
 msgstr "מרחק מיטבי"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 #, fuzzy
 msgid "Zoom Out"
 msgstr "התרחקות"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 #, fuzzy
 msgid "Original Zoom"
 msgstr "מרחק מקורי"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
 #, fuzzy
 msgid "Zoom In"
 msgstr "התקרבות"
@@ -627,12 +630,9 @@ msgstr "כללי"
 msgid "Main menu"
 msgstr "תפריט ראשי"
 
-# Perhaps this should be renamed to "Editing"?
-# I had a hard time understanding what this term was supposed to mean.
 #: src/ui/shortcuts.ui
-#, fuzzy
-msgid "Editing"
-msgstr "עריכה"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -828,7 +828,8 @@ msgstr "רוחב ברירת מחדל"
 msgid "Default height"
 msgstr "גובה ברירת מחדל"
 
-#: src/preferences.py
+#: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "רקע ברירת מחדל"
@@ -1238,7 +1239,8 @@ msgstr "צבע ראשי"
 
 #. if state_as_string == 'secondary':
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "צבע משנה"
 
@@ -1284,6 +1286,21 @@ msgstr "אין אפשרויות"
 msgid "Apply"
 msgstr "יישום"
 
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-scale.ui
+#, fuzzy
+msgid "More options"
+msgstr "אין אפשרויות"
+
+#: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr ""
+
+#: src/optionsbars/canvas/optionsbar-crop.ui
+#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+msgid "Transparency"
+msgstr "שקיפות"
+
 #: src/optionsbars/canvas/optionsbar-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 #, fuzzy
@@ -1297,10 +1314,6 @@ msgstr "רוויה"
 #: src/optionsbars/canvas/optionsbar-filters.ui
 msgid "Blur radius"
 msgstr ""
-
-#: src/optionsbars/canvas/optionsbar-filters.ui
-msgid "Transparency"
-msgstr "שקיפות"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
@@ -1395,11 +1408,6 @@ msgstr "הפוך אופקית"
 #: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
 msgstr "הפוך אנכית"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui
-#, fuzzy
-msgid "More options"
-msgstr "אין אפשרויות"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 #, fuzzy
@@ -1719,6 +1727,12 @@ msgstr "שינוי קנה מידה של הבחירה"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "שינוי קנה מידה של לוח הציור"
+
+# Perhaps this should be renamed to "Editing"?
+# I had a hard time understanding what this term was supposed to mean.
+#, fuzzy
+#~ msgid "Editing"
+#~ msgstr "עריכה"
 
 #~ msgid "Classic"
 #~ msgstr "רגיל"
