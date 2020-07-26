@@ -7,13 +7,10 @@ assignees: ''
 
 ---
 
-<!-- IF YOU FEEL THAT THIS TEMPLATE DOESN'T FIT YOUR ISSUE, IT PROBABLY MEANS
-YOU'RE USING THE WRONG TEMPLATE -->
-
 ## Description
 
 <!-- Describe the bug: what doesn't work? -->
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!-- If it's useful, add screenshots to help explain your problem. -->
 
 
 

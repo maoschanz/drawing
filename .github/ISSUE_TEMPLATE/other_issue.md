@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 <!-- Describe the issue, in english or in french -->
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!-- If it's useful, add screenshots to help explain your problem. -->
 
 
 

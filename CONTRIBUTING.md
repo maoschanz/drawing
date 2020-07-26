@@ -33,32 +33,53 @@ Usability and design issues concerning existing features are **not** new feature
 
 # Translating
 
+Notice that this will translate the unstable, unreleased version currently
+developed on the `master` branch. If you want to entirely translate older
+versions, restart but run `git checkout 0.4` just after having cloned the repo,
+and open the merge request to `0.4` too.
+
+### Get the .po file
+
 - Fork the repo and clone your fork on your disk (see [installation instructions here](#with-gnome-builder-and-flatpak))
 - **If the translation exists but is incomplete:**
-	- Find the file corresponding to you language in the the `po` directory
+	- Find the file corresponding to your language in the the `po` directory
 - **If the translation doesn't exist at all:**
 	- Add your language to `po/LINGUAS`
-	- Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language in the `po` directory.
+	- Build the app once, and then run `ninja -C _build drawing-update-po` at
+	the root of the project. It will produce a `.po` file for your language in
+	the `po` directory. <!-- TODO c'est pas la meilleure commande -->
+
+### Translate
 
 Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator)
-to translate the strings of this `.po` file. There are comments in the file to
-give context helping you to translate some strings, please take them into
-account.
+to translate the strings of this `.po` file.
+
+There are comments in the file to give context helping you to translate some
+strings, please take them into account.
 
 >Example of something translators can't guess so it's written in the comments:
 since this app is a clone of MS Paint, `Paint;` (untranslated) has to be in the
 list of keywords for finding the app in searchable menus or software centers.
 
-- **(optional)** If you want to test your translation:
-	- The flatpak SDK isn't able to run a translated version of the app, so export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
-	- Or (it's harder) [install it with `meson`](#with-git-and-meson).
-- Run `git add . && git commit && git push`
-- Submit a "pull request"/"merge request"
+When words have an underscore in them, it defines a keyboard accelerator working
+with the <kbd>Alt</kbd> key: for example, if the english-speaking user uses a 
+layout with a menu-bar, pressing <kbd>Alt</kbd>+<kbd>F</kbd> will open the
+`_File` menu. In translations, the underscore can be on another character, but
+translators should take into account that 2 labels activatable at the same time
+can't share the same accelerator.
 
-Notice that it will translate the unstable, unreleased version currently
-developed on the `master` branch, while users may use versions with slightly
-different labels you may not have translated. If you want to entirely translate
-older versions, restart but run `git checkout 0.4` just after the step 1.
+Concerning the "original version" in english: i'm **not** a native english
+speaker, so there might be mistakes. If you find incorrect english labels,
+please report an issue about it.
+
+### Submitting your translation
+
+- **(optional)** If you want to test your translation:
+	- The flatpak SDK isn't able to run a translated version of the app, so
+	export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
+	- Or (it's harder) [install it with `meson`](#with-git-and-meson).
+- Run `git add po && git commit && git push`
+- Submit a "pull request"/"merge request"
 
 ----
 

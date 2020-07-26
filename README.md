@@ -49,27 +49,37 @@ app from source code.
 
 ### Available languages
 
-- Brazilian portuguese (thanks to [Antonio Hauren](https://github.com/haurenburu))
-- Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
-- Croatian (thanks to [Milo Ivir](https://github.com/milotype))
-- Danish (thanks to [scootergrisen](https://github.com/scootergrisen))
-- Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
-- English
-- Finnish (thanks to [MahtiAnkka](https://github.com/mahtiankka))
-- French
-- German (thanks to [Onno Giesmann](https://github.com/Etamuk))
-- Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
-- Hungarian (thanks to [Kálmán „KAMI” Szalai](https://github.com/kami911))
-- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella))
-- Polish (thanks to [Piotr Komur](https://github.com/pkomur))
-- Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
-- Swedish (thanks to [Åke Engelbrektson](https://github.com/eson57))
-- Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
-
-<!-- TODO add completion percentages, since he and ru for example are at ~50% -->
-
 If your language is not here, or is incompletely translated, you can
 [contribute](./CONTRIBUTING.md#translating) to the translations.
+
+<!-- TODO accurate completion percentages -->
+
+| code | name         | since | complete*? | main translators                  |
+|------|--------------|-------|------------|-----------------------------------|
+| da   | Danish       | 0.4.10 |           | [scootergrisen](https://github.com/scootergrisen)
+| de_DE | German      | 0.4.1 |            | [Onno Giesmann](https://github.com/Etamuk)
+|      | English      | 0.2   | 100%       | help welcome **                   |
+| es   | Castillan    | 0.2   |            | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
+| hr   | Croatian     | 0.4.11 |           | [Milo Ivir](https://github.com/milotype)
+| fi   | Finnish      | 0.4.10 |           | [MahtiAnkka](https://github.com/mahtiankka)
+| fr   | French       | 0.2   | 100%       |                                   |
+| he   | Hebrew       | 0.4.1 |            | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
+| hu   | Hungarian    | 0.4.10 |           | [Kálmán „KAMI” Szalai](https://github.com/kami911)
+| it   | Italian      | 0.4.1 |            | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
+| nl   | Dutch        | 0.4.1 |            | [Heimen Stoffels](https://github.com/Vistaus)
+| pl   | Polish       | 0.4.10 |           | [Piotr Komur](https://github.com/pkomur)
+| pt_BR | Brazilian portuguese | 0.4.3 |   | [Antonio Hauren](https://github.com/haurenburu)
+| ru   | Russian      | 0.4.1 |            | [Artem Polishchuk](https://github.com/tim77)
+| sv   | Swedish      | 0.4.11 |           | [Åke Engelbrektson](https://github.com/eson57)
+| tr   | Turkish      | 0.2   |            | [Serdar Sağlam](https://github.com/TeknoMobil)
+| zh_CN | Chinese, simplified |  |         | [OverflowCat](https://github.com/OverflowCat)
+| zh_TW | Chinese, traditional |  |        | [pan93412](https://github.com/pan93412) and [OverflowCat](https://github.com/OverflowCat)
+
+\*completion percentages correspond to **the next** version, still in development
+
+\**Concerning the "original version" in english: all the labels are here, but
+i'm **not** a native english speaker, so there might be mistakes. If you find
+incorrect english labels, please report an issue about it.
 
 ----
 
