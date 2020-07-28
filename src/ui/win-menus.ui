@@ -259,9 +259,14 @@
       </item>
     </section>
     <section>
-      <!-- here will be a submenu of tools -->
+      <attribute name="label" translatable="yes">Tools</attribute>
+      <!-- here will be a section of tools -->
+      <submenu>
+        <attribute name="label" translatable="yes">Other tools</attribute>
+        <!-- here will be 2 sections of tools -->
+      </submenu>
     </section>
-    <!-- here will be a list of tabs -->
+    <!-- here will be  list of tabs -->
   </menu>
 
 </interface>

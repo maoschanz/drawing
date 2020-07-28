@@ -561,11 +561,20 @@ class DrWindow(Gtk.ApplicationWindow):
 	def set_fullscreen_menu(self):
 		builder = Gtk.Builder.new_from_resource(UI_PATH + 'win-menus.ui')
 		fullscreen_menu = builder.get_object('fullscreen-menu')
+
 		tabs_list = self.get_menubar_item([[True, 2], [False, 1]])
 		fullscreen_menu.append_section(_("Opened images"), tabs_list)
-		tools_menu = self.get_menubar_item([[True, 4]])
+
+		classic_tools_section = self.get_menubar_item([[True, 4], [False, 1]])
 		section = fullscreen_menu.get_item_link(3, Gio.MENU_LINK_SECTION)
-		section.prepend_submenu(_("_Tools"), tools_menu)
+		section.prepend_section(None, classic_tools_section)
+
+		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
+		canvas_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
+		submenu = section.get_item_link(1, Gio.MENU_LINK_SUBMENU)
+		submenu.append_section(None, selection_tools_section)
+		submenu.append_section(None, canvas_tools_section)
+
 		self.fullscreen_btn.set_menu_model(fullscreen_menu)
 
 	def action_main_menu(self, *args):
