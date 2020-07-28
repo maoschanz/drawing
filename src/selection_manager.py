@@ -65,6 +65,7 @@ class DrSelectionManager():
 
 		# Erase everything outside of the path
 		surface = Gdk.cairo_surface_create_from_pixbuf(main_pixbuf, 0, None)
+		surface.set_device_scale(self.image.SCALE_FACTOR, self.image.SCALE_FACTOR)
 		cairo_context = cairo.Context(surface)
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.new_path()

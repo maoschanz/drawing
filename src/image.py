@@ -37,6 +37,7 @@ class DrImage(Gtk.Box):
 	_v_scrollbar = Gtk.Template.Child()
 
 	CLOSING_PRECISION = 10
+	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
@@ -423,6 +424,7 @@ class DrImage(Gtk.Box):
 		# l'utilisation pour les trop grandes images, il faudrait n'update que
 		# la partie qui change, ou au pire que la partie affichée
 		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+		self.surface.set_device_scale(self.SCALE_FACTOR, self.SCALE_FACTOR)
 
 	def get_pixbuf_width(self):
 		return self.main_pixbuf.get_width()

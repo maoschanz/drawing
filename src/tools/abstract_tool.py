@@ -207,6 +207,9 @@ class AbstractAbstractTool():
 	def get_surface(self):
 		return self.get_image().get_surface()
 
+	def scale_factor(self):
+		return self.get_image().SCALE_FACTOR
+
 	def get_context(self):
 		return cairo.Context(self.get_surface())
 

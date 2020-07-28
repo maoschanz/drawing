@@ -83,6 +83,7 @@ class ToolSkew(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		source_surface.set_device_scale(self.scale_factor(), self.scale_factor())
 
 		xy = operation['xy']
 		x0 = 0.0

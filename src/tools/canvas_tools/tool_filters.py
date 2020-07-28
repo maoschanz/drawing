@@ -153,6 +153,7 @@ class ToolFilters(AbstractCanvasTool):
 
 	def op_transparency(self, source_pixbuf, percent):
 		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		surface.set_device_scale(self.scale_factor(), self.scale_factor())
 		width = source_pixbuf.get_width()
 		height = source_pixbuf.get_height()
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
@@ -166,6 +167,7 @@ class ToolFilters(AbstractCanvasTool):
 
 	def op_blur(self, source_pixbuf, blur_algo, blur_direction, radius):
 		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		surface.set_device_scale(self.scale_factor(), self.scale_factor())
 		bs = utilities_blur_surface(surface, radius, blur_algo, blur_direction)
 		bp = Gdk.pixbuf_get_from_surface(bs, 0, 0, bs.get_width(), bs.get_height())
 		self.get_image().set_temp_pixbuf(bp)

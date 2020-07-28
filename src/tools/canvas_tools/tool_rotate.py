@@ -160,7 +160,8 @@ class ToolRotate(AbstractCanvasTool):
 		new_pixbuf = source_pixbuf.rotate_simple(gdk_rotation)
 		if cairo_rotation != 0:
 			surface0 = Gdk.cairo_surface_create_from_pixbuf(new_pixbuf, 0, None)
-			coefs = self.get_rotation_matrix(cairo_rotation, \
+			surface0.set_device_scale(self.scale_factor(), self.scale_factor())
+			coefs = self._get_rotation_matrix(cairo_rotation, \
 			                        surface0.get_width(), surface0.get_height())
 			new_surface = self.get_deformed_surface(surface0, coefs)
 			new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
@@ -175,7 +176,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
 
-	def get_rotation_matrix(self, angle, width, height):
+	def _get_rotation_matrix(self, angle, width, height):
 		"""Transform an angle (in degrees) to the xx/yx/xy/yy coefs expected by
 		cairo. Due to previously performed modifications to the data, the angle
 		will be between 0 (excluded) and 90 (excluded)."""
