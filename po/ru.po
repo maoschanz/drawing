@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -460,7 +460,7 @@ msgstr ""
 msgid "Erase"
 msgstr "Ластик"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Инструменты"
 
@@ -550,7 +550,7 @@ msgstr "дюймы"
 msgid "Images"
 msgstr "Изображение"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #, fuzzy
 msgid "Tools"
 msgstr "_Инструменты"
@@ -703,6 +703,10 @@ msgstr "Переключить предварительный просмотр"
 #, fuzzy
 msgid "Troubleshoot selection"
 msgstr "Выбор цвета"
+
+#: src/ui/win-menus.ui
+msgid "Other tools"
+msgstr ""
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1709,10 +1713,6 @@ msgstr "Масштабировать выделенное"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Масштабировать холст"
-
-#, fuzzy
-#~ msgid "Editing"
-#~ msgstr "Издание"
 
 #~ msgid "Classic"
 #~ msgstr "Классический"

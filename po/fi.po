@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -468,7 +468,7 @@ msgstr "Sumeus"
 msgid "Erase"
 msgstr "Pyyhi"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Työkalut"
 
@@ -554,7 +554,7 @@ msgstr "tuumaa"
 msgid "Images"
 msgstr "Kuvat"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Työkalut"
 
@@ -700,6 +700,10 @@ msgstr "Vaihda esikatseluun"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Vianmääritys"
+
+#: src/ui/win-menus.ui
+msgid "Other tools"
+msgstr ""
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1673,9 +1677,6 @@ msgstr "Valinnan skaalaaminen"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Alustan skaalaaminen"
-
-#~ msgid "Editing"
-#~ msgstr "Muokata"
 
 #~ msgid "Classic"
 #~ msgstr "Klassikko"

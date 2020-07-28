@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-05-24 17:22+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -460,7 +460,7 @@ msgstr "Vervaging"
 msgid "Erase"
 msgstr "Wissen"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Gereedschap"
 
@@ -546,7 +546,7 @@ msgstr "inch"
 msgid "Images"
 msgstr "Afbeeldingen"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Gereedschappen"
 
@@ -692,6 +692,11 @@ msgstr "Voorbeeld tonen/verbergen"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Problemen oplossen met selecties"
+
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "Other tools"
+msgstr "Overige modi"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1668,12 +1673,6 @@ msgstr "Bezig met wijzigen van selectiegrootte"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
-
-#~ msgid "Editing"
-#~ msgstr "Bewerking"
-
-#~ msgid "Photo manipulation"
-#~ msgstr "Fotobewerking"
 
 #~ msgid "Classic"
 #~ msgstr "Klassiek"

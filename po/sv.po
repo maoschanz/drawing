@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-07-15 05:44+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -459,7 +459,7 @@ msgstr "Oskärpa"
 msgid "Erase"
 msgstr "Sudda"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Verktyg"
 
@@ -544,7 +544,7 @@ msgstr "tum"
 msgid "Images"
 msgstr "Bilder"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Verktyg"
 
@@ -690,6 +690,11 @@ msgstr "Visa/Dölj förhandsgranskningen"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Felsök markering"
+
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "Other tools"
+msgstr "Andra lägen"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1657,12 +1662,6 @@ msgstr "Skalar markering"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
-
-#~ msgid "Editing"
-#~ msgstr "Redigering"
-
-#~ msgid "Photo manipulation"
-#~ msgstr "Fotomanipulation"
 
 #~ msgid "Classic"
 #~ msgstr "Klassisk"

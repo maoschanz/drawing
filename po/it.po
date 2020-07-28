@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-06-02 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -463,7 +463,7 @@ msgstr "Sfocatura"
 msgid "Erase"
 msgstr "Cancella"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Strumenti"
 
@@ -549,7 +549,7 @@ msgstr "pollici"
 msgid "Images"
 msgstr "Immagini"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Strumenti"
 
@@ -695,6 +695,11 @@ msgstr "Mostra/nascondi anteprima"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Risolvere i problemi di selezione"
+
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "Other tools"
+msgstr "Altre modalità"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1671,12 +1676,6 @@ msgstr "Ridimensionamento della selezione"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
-
-#~ msgid "Editing"
-#~ msgstr "Modifica"
-
-#~ msgid "Photo manipulation"
-#~ msgstr "Manipolazione fotografica"
 
 #~ msgid "Classic"
 #~ msgstr "Classico"

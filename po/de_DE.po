@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -464,7 +464,7 @@ msgstr "Verwischen"
 msgid "Erase"
 msgstr "Löschen"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
@@ -550,7 +550,7 @@ msgstr "Zoll"
 msgid "Images"
 msgstr "Bilder"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Werkzeuge"
 
@@ -697,6 +697,11 @@ msgstr "Vorschau umschalten"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Problembehandlung bei der Auswahl"
+
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "Other tools"
+msgstr "Andere Modi"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1682,12 +1687,6 @@ msgstr "Auswahl skalieren"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
-
-#~ msgid "Editing"
-#~ msgstr "Bearbeitung"
-
-#~ msgid "Photo manipulation"
-#~ msgstr "Bildbearbeitung"
 
 #~ msgid "Classic"
 #~ msgstr "Klassisch"

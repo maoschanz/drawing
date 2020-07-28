@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-05-19 01:04+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -462,7 +462,7 @@ msgstr "Bulanıklık"
 msgid "Erase"
 msgstr "Silgi"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Araçlar"
 
@@ -548,7 +548,7 @@ msgstr "inç"
 msgid "Images"
 msgstr "Görüntüler"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Araçlar"
 
@@ -694,6 +694,11 @@ msgstr "Önizlemeyi değiştir"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
+
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "Other tools"
+msgstr "Diğer kipler"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1671,12 +1676,6 @@ msgstr "Seçimi ölçeklendir"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
-
-#~ msgid "Editing"
-#~ msgstr "Düzenleniyor"
-
-#~ msgid "Photo manipulation"
-#~ msgstr "Fotoğraf hilesi"
 
 #~ msgid "Classic"
 #~ msgstr "Klasik"

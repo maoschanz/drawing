@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 05:24+0200\n"
+"POT-Creation-Date: 2020-07-28 21:58+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -461,7 +461,7 @@ msgstr "Zamuti"
 msgid "Erase"
 msgstr "Izbriši"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Tools"
 msgstr "_Alati"
 
@@ -547,7 +547,7 @@ msgstr "inča"
 msgid "Images"
 msgstr "Slike"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
 msgstr "Alati"
 
@@ -693,6 +693,11 @@ msgstr "Uključi/isključi pretprikaz"
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
+
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "Other tools"
+msgstr "Drugi modusi"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -1669,9 +1674,3 @@ msgstr "Skaliranje odabira"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
-
-#~ msgid "Editing"
-#~ msgstr "Uređivanje"
-
-#~ msgid "Photo manipulation"
-#~ msgstr "Obrada fotografija"
