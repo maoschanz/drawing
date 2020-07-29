@@ -40,8 +40,8 @@
       </tr>
     </table>
 
-    <p>At the top of the palette, you can select the way the color will be
-    applied to the image:</p>
+    <p><em>With compatible tools</em>, you can select at the top of the palette
+    the way the color will be applied to the image:</p>
     <list>
       <item>
         <p>Normal: the selected color is added over the existing image. If your
@@ -63,6 +63,14 @@
       </item>
       <item>
         <p>Replace hue: ...</p>
+        <!-- TODO -->
+      </item>
+      <item>
+        <p>Replace color: ...</p>
+        <!-- TODO -->
+      </item>
+      <item>
+        <p>Replace color: ...</p>
         <!-- TODO -->
       </item>
       <item>
@@ -146,14 +154,14 @@
 
     <list>
       <item>
-        <p>Shapes: Available shapes include rectangle, oval, circle, polygon, and
-        free shape.</p>
-        <p>Polygons and free shapes can be drawn in several clicks. To close them,
-        do a last click at the position where you began the line, or use the
-        <gui style="menuitem">Close shape</gui> menu item.</p>
-        <p>Various filling options are available, with or without an outline,
-        using a plain color or a gradient.</p>
-        <!-- TODO explain options -->
+        <p>Shapes: Available shapes include rectangle, rounded rectangle, oval,
+        circle, polygon, and free shape.</p>
+        <p>Polygons and free shapes can be drawn in several clicks. To close
+        them, do a last click at the position where you began the line, or use
+        the <gui style="menuitem">Close shape</gui> menu item.</p>
+        <p>Various filling options are available (using a plain color, or a
+        gradient, or nothing), as well as outline options (using a plain
+        outline, dashes, or nothing).</p>
       </item>
       <item>
         <p>Paint. This tool tries to paint an area with a color, which doesn't
@@ -169,8 +177,9 @@
 
     <p>The <link xref="tools_selection">selection tools</link> don't draw, but
     their capabilities are very powerful and useful for any image editing.</p>
-    <p><link xref="tools_canvas">Other tools</link> allow you to transform the
-    canvas or the selected area.</p>
+    <p>Other tools allow you to <link xref="tools_canvas">transform the canvas
+    or the selected area</link>.</p>
   </section>
 
 </page>
+

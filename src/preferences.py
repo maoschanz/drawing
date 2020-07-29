@@ -58,10 +58,10 @@ class DrPrefsWindow(Gtk.Window):
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)
 
-	# Each page_* attribute is a GtkGrid. The page_builder_* methods declare
+	# Each `page_*` attribute is a GtkGrid. The `page_builder_*` methods declare
 	# their grid to be the currently filled one, and reset the counter.
-	# Then, the page_builder_* methods will call the add_* methods, who will
-	# build accurate widgets to be packed on the grid by the attach_* methods.
+	# Then, the `page_builder_*` methods will call the `add_*` methods, who will
+	# build accurate widgets to be packed on the grid by the `attach_*` methods.
 
 	############################################################################
 
@@ -109,7 +109,7 @@ class DrPrefsWindow(Gtk.Window):
 		self.add_section_separator()
 		self.add_section_title(_("Zoom"))
 		zoom_help = _("You can zoom with Ctrl+scrolling, or only scrolling.") + \
-		  " " + _("Using keyboard shortcuts or touch gestures is possible too.")
+		                   " " + _("See the user help manual for explanations.")
 		self.add_help(zoom_help)
 		self.add_switch(_("Use 'Ctrl' to zoom"), 'ctrl-zoom')
 

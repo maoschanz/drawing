@@ -15,7 +15,7 @@
 
   <title>Preferences</title>
 
-  <p>The preferences dialog is splitted into 3 tabs.</p>
+  <p>The preferences dialog is splitted into 3 parts.</p>
 
   <section>
     <title>Image</title>
@@ -26,8 +26,8 @@
                  src="figures/screenshot_prefs_images.png" />
         </td>
         <td>
-          <p>Here you can choose the size and color of the default canvas used
-          when creating a new file.</p>
+          <p>You can choose the size and color of the default canvas used when
+          creating a new file.</p>
 
           <p>When a file is saved to the JPEG or the BMP file format, the
           transparency can't be kept. The application can replace the
@@ -38,11 +38,26 @@
           file formats: the choices available in that dialog will also be white,
           black, or a checkboard of greys.</p>
 
-          <p>You can also set how you want to zoom on the image: it can be with
-          <key>Ctrl</key> and the mouse wheel, or only with the mouse wheel.</p>
+          <p>You can also set how you want to zoom on the image: by default,
+          scrolling on the canvas <em>moves the current view</em> in the
+          direction of the scrolling, and scrolling while holding the
+          <key>Ctrl</key> key <em>zooms in or out</em>. You can turn off the
+          switch to invert these behaviors.</p>
         </td>
       </tr>
     </table>
+    <p>If you rely on an old-school mouse, it's pertinent to turn this setting
+    off: the mouse wheel will then directly zoom in and out. To browse the
+    image, you can move your mouse on the canvas while you hold its middle
+    button: it'll to move the current view in any direction.</p>
+    <p>If you have a trackpad, or a touchscreen, it's recommended to keep using
+    the <key>Ctrl</key> key to zoom (default behavior): with such a device,
+    you're able to intuitively scroll in both directions to browse the entire
+    image. If your device supports multi-touch gestures, you'll even be able to
+    zoom in and out using the default <em>touch gestures (stretch or pinch with
+    two fingers)</em>, which will not work if you turn off this setting.</p>
+    <p>Of course, it's always possible to control the zoom level with the
+    keyboard shortcuts, or the buttons under the thumbnail preview.</p>
   </section>
 
   <section>
@@ -63,7 +78,6 @@
         <td>
           <media type="image" mime="image/png" width="100%" its:translate="no"
                  src="figures/screenshot_prefs_tools.png" />
-                 <!-- TODO outdated -->
         </td>
       </tr>
     </table>
@@ -72,15 +86,44 @@
   <section>
     <title>Window</title>
 
-    <p>It's possible to choose the layout of the user interface: the
+    <p>Here you can set the size of the thumbnail preview, but using a bigger
+    preview is not recommended for technical reasons.</p>
+
+    <p>You can also set the color of the background "behind" the canvas.</p>
+
+    <p>Finally, it's possible to choose the layout of the user interface: the
     "Compact" layout, designed for the GNOME desktop, is well tested. Other
     options include the "elementary OS" layout, designed for the elementary OS
     desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
-    <p>"Symbolic icons" means that the icons are monochrome (black if you use a
-    light theme, or white if you use a dark theme.</p>
 
-    <p>You can also set the size of the thumbnail preview, but using a bigger
-    preview is not recommended for technical reasons.</p>
+    <!-- <table rules="colgroups"> -->
+    <!-- TODO images and captions -->
+    <!--   <tr> -->
+    <!--     <td> -->
+    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
+    <!--              src="figures/screenshot_*.png" /> -->
+    <!--     </td> -->
+    <!--     <td> -->
+    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
+    <!--              src="figures/screenshot_*.png" /> -->
+    <!--     </td> -->
+    <!--   </tr> -->
+    <!--   <tr> -->
+    <!--     <td> -->
+    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
+    <!--              src="figures/screenshot_*.png" /> -->
+    <!--     </td> -->
+    <!--     <td> -->
+    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
+    <!--              src="figures/screenshot_*.png" /> -->
+    <!--     </td> -->
+    <!--   </tr> -->
+    <!-- </table> -->
+
+    <p>In this context,"symbolic icons" means that the icons are monochrome
+    (black if you use a light theme, or white if you use a dark theme).
+    Otherwise they can be colorful.</p>
   </section>
 
 </page>
+

@@ -33,7 +33,8 @@
     position of the mouse pointer on the canvas.</p>
     <p>The exact size can be set using the values in the bottom bar.</p>
     <p>If your increasing the size of the image instead of decreasing it, you
-    may need to change the zoom level.</p>
+    may need to change the zoom level. The color of the pixels you create when
+    increasing the size is customizable.</p>
   </section>
 
   <section>
@@ -44,7 +45,7 @@
     <!-- TODO illustration -->
   </section>
 
-  <!-- TODO skew ? -->
+  <!-- XXX skew (later) -->
 
   <section>
     <title>Rotate</title>
@@ -65,28 +66,29 @@
         <p><gui style="menuitem">Saturation</gui> allows you to increase of
         decrease the saturation of the image by modifying the number in the
         bottom bar.</p>
-        <media type="image" mime="image/png" width="80%"
-               src="figures/screenshot_saturate.png" its:translate="no"/>
+        <media type="image" mime="image/png" width="80%" its:translate="no"
+               src="figures/screenshot_saturate.png" />
         <p>A saturation bigger than 100% will boost the colors, a saturation
         smaller than 100% will produce a greyish image.</p>
       </item>
       <item>
-        <p><gui style="menuitem">Blur</gui>, and several variations of it, will
-        blur the image using a parametrable radius which be modified in the same
-        way.</p>
-        <p>Be careful, applying blur to the image can take a few seconds.</p>
-      </item>
-      <item>
-        <p><gui style="menuitem">Pixelate</gui></p>
-      </item>
-      <item>
-        <p><gui style="menuitem">Invert colors</gui></p>
+        <p><gui style="menuitem">Veil</gui> will add a greyish veil upon the
+        image, with a thin pixelisation pattern.</p>
       </item>
       <item>
         <p><gui style="menuitem">Transparency</gui> can make the image partly
         translucent, according to the percentage in the bottom bar.</p>
       </item>
+      <item>
+        <p><gui style="menuitem">Invert colors</gui>.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Blur</gui>, and several variations of it, will
+        blur the image using a parametrable radius.</p>
+        <p>Be careful, applying blur to the image can take a few seconds.</p>
+      </item>
     </list>
   </section>
 
 </page>
+
