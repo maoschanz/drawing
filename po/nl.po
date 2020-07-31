@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 21:58+0200\n"
-"PO-Revision-Date: 2020-05-24 17:22+0200\n"
+"PO-Revision-Date: 2020-07-31 19:21+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -289,7 +289,7 @@ msgstr "_Beeld"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
-msgstr "Voorbeeld tonen"
+msgstr "Voorvertoning aan/uit"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -408,7 +408,7 @@ msgstr "Bronkleur"
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
-msgstr "Markering"
+msgstr "Accenten"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
@@ -419,7 +419,7 @@ msgstr "Verschil"
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Photo-oriented modes"
-msgstr ""
+msgstr "Fotobewerkingsmodi"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
@@ -482,11 +482,11 @@ msgstr "Index"
 
 #: src/ui/app-menus.ui
 msgid "Basic help"
-msgstr "Basale hulp"
+msgstr "Algemene hulp"
 
 #: src/ui/app-menus.ui
 msgid "Help about tools"
-msgstr "Hulp over gereedschappen"
+msgstr "Hulp omtrent gereedschappen"
 
 #: src/ui/app-menus.ui
 msgid "Canvas and selection"
@@ -498,7 +498,7 @@ msgstr "Hulp omtrent selecties"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "Over Drawing"
+msgstr "Over Tekenen"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
@@ -518,13 +518,12 @@ msgid "Height"
 msgstr "Hoogte"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Kleuren"
+msgstr "Kleur"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
-msgstr "Deze instellingen standaard gebruiken"
+msgstr "Instellingen onthouden"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -611,7 +610,7 @@ msgstr "Hoofdmenu"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -687,16 +686,15 @@ msgstr "Navigatie"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "Voorbeeld tonen/verbergen"
+msgstr "Voorvertoning aan/uit"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Problemen oplossen met selecties"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "Other tools"
-msgstr "Overige modi"
+msgstr "Overig gereedschap"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -805,9 +803,8 @@ msgstr "Standaardhoogte"
 
 #: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
 #: src/tools/ui/tool-crop.ui
-#, fuzzy
 msgid "Default color"
-msgstr "Standaardachtergrond"
+msgstr "Standaardkleur"
 
 #: src/preferences.py
 msgid "Images saving"
@@ -815,7 +812,7 @@ msgstr "Afbeeldingen opslaan"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "JPEG- BMP-afbeeldingen kunnen niet omgaan met doorzichtigheid."
+msgstr "JPEG- en BMP-afbeeldingen kunnen niet omgaan met doorzichtigheid."
 
 #: src/preferences.py
 msgid ""
@@ -908,7 +905,7 @@ msgstr "Geavanceerde opties"
 
 #: src/preferences.py
 msgid "Preview size"
-msgstr "Voorbeeldgrootte"
+msgstr "Voorvertoningsgrootte"
 
 #: src/preferences.py
 msgid "Development features"
@@ -1065,7 +1062,7 @@ msgstr "Dit bestandsformaat ondersteunt geen doorzichtige kleuren."
 #: src/utilities.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
-"Je kunt de afbeelding opslaan als PNG-bestand of de doorzichtigheid "
+"Je kunt de afbeelding opslaan als png-bestand of de doorzichtigheid "
 "vervangen door:"
 
 #: src/utilities.py
@@ -1104,7 +1101,7 @@ msgstr "Kan gereedschap niet laden: %s"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
-msgstr "De wijzigingen worden toegepast na een herstart."
+msgstr "Herstart om de wijzigingen toe te passen."
 
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1134,7 +1131,7 @@ msgstr "Wijzigingen verwerpen"
 #: src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "%s bevat niet-opgeslagen wijzigingen."
+msgstr "%s bevat niet-opgeslagen aanpassingen."
 
 #: src/window.py
 #, python-format
@@ -1225,7 +1222,7 @@ msgstr "Gereedschapsgrootte"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 #: src/tools/ui/tool-filters.ui
 msgid "Preview"
-msgstr "Voorbeeld"
+msgstr "Voorvertoning"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -1265,7 +1262,7 @@ msgstr "Meer opties"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Uitbreiden met…"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
@@ -1459,29 +1456,25 @@ msgid "Clipping"
 msgstr "Vasthouden"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Leeg contour"
+msgstr "Effen contour"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Dashed outline"
-msgstr "Gestreepte pijl"
+msgstr "Gestreepte rand"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
-msgstr "Contour"
+msgstr "Geen randcontour"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
 msgstr "Opvullen"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Leeg"
+msgstr "Blanco vorm"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
