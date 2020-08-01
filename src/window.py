@@ -326,18 +326,29 @@ class DrWindow(Gtk.ApplicationWindow):
 	# GENERAL PURPOSE METHODS ##################################################
 
 	def connect_signals(self):
+		# Closing the info bar
 		self.info_bar.connect('close', self.hide_message)
 		self.info_bar.connect('response', self.hide_message)
+
+		# Closing the window
 		self.connect('delete-event', self.on_close)
+
+		# Resizing the window
 		self.connect('configure-event', self._adapt_to_window_size)
+
+		# When a setting changes
 		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self._settings.connect('changed::deco-type', self.on_layout_changed)
 		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
-		# self._settings.connect('changed::*', self.show_info_settings)
-		# Preview size? Dev-only features? Zoom level?
+		# self._settings.connect('changed::preview-size', self.show_info_settings)
+		# self._settings.connect('changed::devel-only', self.show_info_settings)
 		self._settings.connect('changed::disabled-tools', self.show_info_settings)
+		# Other settings are connected in DrImage
+
+		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
+		# Managing drag-and-drop
 		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
 		self.notebook.connect('drag-data-received', self.on_data_dropped)
 		self.notebook.drag_dest_add_uri_targets()

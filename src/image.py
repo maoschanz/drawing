@@ -46,6 +46,17 @@ class DrImage(Gtk.Box):
 		self.gfile = None
 		self.filename = None
 
+		self._init_drawing_area()
+
+		self._update_background_color()
+		self.window._settings.connect('changed::ui-background-rgba', \
+		                                          self._update_background_color)
+
+		self._update_zoom_behavior()
+		self.window._settings.connect('changed::ctrl-zoom', \
+		                                             self._update_zoom_behavior)
+
+	def _init_drawing_area(self):
 		self._drawing_area.add_events( \
 			Gdk.EventMask.BUTTON_PRESS_MASK | \
 			Gdk.EventMask.BUTTON_RELEASE_MASK | \
@@ -58,18 +69,29 @@ class DrImage(Gtk.Box):
 
 		# For displaying things on the widget
 		self._drawing_area.connect('draw', self.on_draw)
+
 		# For drawing with tools
 		self._drawing_area.connect('motion-notify-event', self.on_motion_on_area)
 		self._drawing_area.connect('button-press-event', self.on_press_on_area)
 		self._drawing_area.connect('button-release-event', self.on_release_on_area)
+
 		# For scrolling
 		self._drawing_area.connect('scroll-event', self.on_scroll_on_area)
 		self._h_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
 		self._v_scrollbar.connect('value-changed', self.on_scrollbar_value_change)
+
 		# For the cursor
 		self._drawing_area.connect('enter-notify-event', self.on_enter_image)
 		self._drawing_area.connect('leave-notify-event', self.on_leave_image)
 
+	def _update_background_color(self, *args):
+		rgba = self.window._settings.get_strv('ui-background-rgba')
+		self._bg_rgba = (float(rgba[0]), float(rgba[1]), \
+		                                         float(rgba[2]), float(rgba[3]))
+		# We remember this data here for performance, since it's used by the
+		# on_draw method which is called a lot.
+
+	def _update_zoom_behavior(self, *args):
 		self._ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
 
 	############################################################################
@@ -172,7 +194,7 @@ class DrImage(Gtk.Box):
 	def reload_from_disk(self):
 		"""Safely reloads the image from the disk."""
 		if self.gfile is None:
-			# TODO no, the action shouldn't be active in the first place
+			# XXX no, the action shouldn't be active in the first place
 			if not self.window.confirm_save_modifs():
 				self.window.prompt_message(True, \
 				            _("Can't reload a never-saved file from the disk."))
@@ -324,9 +346,7 @@ class DrImage(Gtk.Box):
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""
 		# Background color
-		rgba = self.window._settings.get_strv('ui-background-rgba')
-		cairo_context.set_source_rgba(float(rgba[0]), float(rgba[1]), \
-		                                         float(rgba[2]), float(rgba[3]))
+		cairo_context.set_source_rgba(*self._bg_rgba)
 		cairo_context.paint()
 
 		# Image (with zoom level)
@@ -337,6 +357,8 @@ class DrImage(Gtk.Box):
 
 		# What the tool is painting
 		self.active_tool().on_draw(area, cairo_context)
+
+		# TODO doesn't work so well with canvas tools
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on

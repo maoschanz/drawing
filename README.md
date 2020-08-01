@@ -64,7 +64,7 @@ If your language is not here, or is incompletely translated, you can
 | hr   | Croatian     | 0.4.11 | 97%       | [Milo Ivir](https://github.com/milotype)
 | hu   | Hungarian    | 0.4.10 | **78%**   | [Kálmán „KAMI” Szalai](https://github.com/kami911)
 | it   | Italian      | 0.4.1 | 96%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
-| nl   | Dutch        | 0.4.1 | 97%        | [Heimen Stoffels](https://github.com/Vistaus)
+| nl   | Dutch        | 0.4.1 | 99%        | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | 0.4.10 | 89%       | [Piotr Komur](https://github.com/pkomur)
 | pt_BR | Br. portuguese | 0.4.3 | **60%** | [Antonio Hauren](https://github.com/haurenburu)
 | ru   | Russian      | 0.4.1 | **43%**    | [Artem Polishchuk](https://github.com/tim77)
@@ -73,7 +73,7 @@ If your language is not here, or is incompletely translated, you can
 | zh_CN | Chinese, simplified |  | 99%     | [OverflowCat](https://github.com/OverflowCat)
 | zh_TW | Chinese, traditional |  | 99%    | [pan93412](https://github.com/pan93412) and [OverflowCat](https://github.com/OverflowCat)
 
-\*completion percentages correspond to **the next** version, still in development
+\*Completion percentages correspond to **the next** version, still in development
 
 \**Concerning the "original version" in english: all the labels are here, but
 i'm **not** a native english speaker, so there might be mistakes. If you find
