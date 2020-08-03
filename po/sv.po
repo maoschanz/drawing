@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 21:58+0200\n"
+"POT-Creation-Date: 2020-08-03 03:52+0200\n"
 "PO-Revision-Date: 2020-08-01 08:31+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -577,14 +577,6 @@ msgstr "Skala"
 msgid "Rotate"
 msgstr "Rotera"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_skew.py
-msgid "Skew"
-msgstr "Snedställ"
-
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Filters"
@@ -596,8 +588,9 @@ msgid "Open As New Image"
 msgstr "Öppna som ny bild"
 
 #: src/ui/shortcuts.ui
-msgid "Keyboard"
-msgstr "Tangentbord"
+#, fuzzy
+msgid "Keyboard Shortcuts"
+msgstr "Genvägar"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -686,6 +679,10 @@ msgstr "Navigation"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Visa/Dölj förhandsgranskningen"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr ""
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
@@ -846,8 +843,8 @@ msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr "Du kan zooma med Ctrl+mushjul eller bara skrolla."
 
 #: src/preferences.py
-msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr "Tangentbordsgenvägar eller pekgester går också att använda."
+msgid "See the user help manual for explanations."
+msgstr ""
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1557,6 +1554,13 @@ msgstr "Redigera"
 msgid "Flip"
 msgstr "Vänd"
 
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/canvas_tools/tool_skew.py
+msgid "Skew"
+msgstr "Snedställ"
+
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Kurva"
@@ -1661,6 +1665,12 @@ msgstr "Skalar markering"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
+
+#~ msgid "Keyboard"
+#~ msgstr "Tangentbord"
+
+#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
+#~ msgstr "Tangentbordsgenvägar eller pekgester går också att använda."
 
 #~ msgid "Classic"
 #~ msgstr "Klassisk"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 21:58+0200\n"
+"POT-Creation-Date: 2020-08-03 03:52+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -565,14 +565,6 @@ msgstr "拉伸"
 msgid "Rotate"
 msgstr "旋转"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_skew.py
-msgid "Skew"
-msgstr "偏斜"
-
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Filters"
@@ -584,8 +576,9 @@ msgid "Open As New Image"
 msgstr "以新图像打开"
 
 #: src/ui/shortcuts.ui
-msgid "Keyboard"
-msgstr "键盘"
+#, fuzzy
+msgid "Keyboard Shortcuts"
+msgstr "捷径"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -674,6 +667,10 @@ msgstr "导航"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "切换预览"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr ""
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
@@ -833,8 +830,8 @@ msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr "你可以使用 Ctrl 滚动，或仅仅滚动。"
 
 #: src/preferences.py
-msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr "当然也支持键盘快捷键和触摸手势。"
+msgid "See the user help manual for explanations."
+msgstr ""
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1542,6 +1539,13 @@ msgstr "编辑"
 msgid "Flip"
 msgstr "翻转"
 
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/canvas_tools/tool_skew.py
+msgid "Skew"
+msgstr "偏斜"
+
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "曲线"
@@ -1646,3 +1650,9 @@ msgstr "拉伸选区"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "拉伸画布"
+
+#~ msgid "Keyboard"
+#~ msgstr "键盘"
+
+#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
+#~ msgstr "当然也支持键盘快捷键和触摸手势。"

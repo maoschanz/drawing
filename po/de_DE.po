@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 21:58+0200\n"
+"POT-Creation-Date: 2020-08-03 03:52+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -583,14 +583,6 @@ msgstr "Skalieren"
 msgid "Rotate"
 msgstr "Drehen"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_skew.py
-msgid "Skew"
-msgstr "Verzerren"
-
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Filters"
@@ -602,8 +594,9 @@ msgid "Open As New Image"
 msgstr "Als neues Bild öffnen"
 
 #: src/ui/shortcuts.ui
-msgid "Keyboard"
-msgstr "Tastatur"
+#, fuzzy
+msgid "Keyboard Shortcuts"
+msgstr "Tastenkürzel"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -693,6 +686,10 @@ msgstr "Steuerung"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Vorschau umschalten"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr ""
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
@@ -857,10 +854,8 @@ msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr "Sie können Zoomen mit STR+Scrollen oder nur mit Scrollen."
 
 #: src/preferences.py
-msgid "Using keyboard shortcuts or touch gestures is possible too."
+msgid "See the user help manual for explanations."
 msgstr ""
-"Die Benutzung von Tastenkombinationen oder Touch-Gesten sind ebenfalls "
-"möglich."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1582,6 +1577,13 @@ msgstr "Bearbeiten"
 msgid "Flip"
 msgstr "Spiegeln"
 
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/canvas_tools/tool_skew.py
+msgid "Skew"
+msgstr "Verzerren"
+
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Bogen"
@@ -1687,6 +1689,14 @@ msgstr "Auswahl skalieren"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
+
+#~ msgid "Keyboard"
+#~ msgstr "Tastatur"
+
+#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
+#~ msgstr ""
+#~ "Die Benutzung von Tastenkombinationen oder Touch-Gesten sind ebenfalls "
+#~ "möglich."
 
 #~ msgid "Classic"
 #~ msgstr "Klassisch"

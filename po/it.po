@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 21:58+0200\n"
+"POT-Creation-Date: 2020-08-03 03:52+0200\n"
 "PO-Revision-Date: 2020-06-02 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -582,14 +582,6 @@ msgstr "Scala"
 msgid "Rotate"
 msgstr "Ruota"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_skew.py
-msgid "Skew"
-msgstr "Storto"
-
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Filters"
@@ -601,8 +593,9 @@ msgid "Open As New Image"
 msgstr "Apri Come Nuova immagine"
 
 #: src/ui/shortcuts.ui
-msgid "Keyboard"
-msgstr "Tastiera"
+#, fuzzy
+msgid "Keyboard Shortcuts"
+msgstr "Scorciatoie"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -691,6 +684,10 @@ msgstr "Navigazione"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Mostra/nascondi anteprima"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr ""
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
@@ -855,8 +852,8 @@ msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr "È possibile eseguire lo zoom con Ctrl + scrolling o solo scrolling."
 
 #: src/preferences.py
-msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr "È anche possibile usare scorciatoie da tastiera o gesti tattili."
+msgid "See the user help manual for explanations."
+msgstr ""
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1571,6 +1568,13 @@ msgstr "Modifica"
 msgid "Flip"
 msgstr "Ribalta"
 
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/canvas_tools/tool_skew.py
+msgid "Skew"
+msgstr "Storto"
+
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Curva"
@@ -1676,6 +1680,12 @@ msgstr "Ridimensionamento della selezione"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
+
+#~ msgid "Keyboard"
+#~ msgstr "Tastiera"
+
+#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
+#~ msgstr "È anche possibile usare scorciatoie da tastiera o gesti tattili."
 
 #~ msgid "Classic"
 #~ msgstr "Classico"
