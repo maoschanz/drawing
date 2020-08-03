@@ -54,23 +54,35 @@ and open the merge request to `0.4` too.
 Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator)
 to translate the strings of this `.po` file.
 
-There are comments in the file to give context helping you to translate some
-strings, please take them into account.
-
->Example of something translators can't guess so it's written in the comments:
-since this app is a clone of MS Paint, `Paint;` (untranslated) has to be in the
-list of keywords for finding the app in searchable menus or software centers.
-
-When words have an underscore in them, it defines a keyboard accelerator working
-with the <kbd>Alt</kbd> key: for example, if the english-speaking user uses a 
-layout with a menu-bar, pressing <kbd>Alt</kbd>+<kbd>F</kbd> will open the
-`_File` menu. In translations, the underscore can be on another character, but
-translators should take into account that 2 labels activatable at the same time
-can't share the same accelerator.
-
 Concerning the "original version" in english: i'm **not** a native english
 speaker, so there might be mistakes. If you find incorrect english labels,
 please report an issue about it.
+
+##### Comments
+
+There are comments in the file to give context helping you to translate some
+strings, please take them into account.
+
+Example of something translators can't guess so it's written in the comments:
+since this app is a clone of MS Paint, `Paint;` (untranslated) has to be in the
+list of keywords for finding the app in searchable menus or software centers.
+
+##### Accelerators
+
+When words have an underscore in them, it defines a keyboard accelerator working
+with the <kbd>Alt</kbd> key: for example, if the english-speaking user uses a
+layout with a menu-bar, pressing <kbd>Alt</kbd>+<kbd>F</kbd> will open the
+`_File` menu.
+
+In translations, the underscore can be on another character of the word, but
+translators should take into account that 2 labels activatable at the same time
+can't share the same accelerator.
+
+Example: `Édi_tion` and `Ou_tils` can't work, but `É_dition` and `Ou_tils` can
+work.
+
+Also, the character should be accessible easily from the keyboard layouts of
+your language.
 
 ### Submitting your translation
 
@@ -88,7 +100,7 @@ please report an issue about it.
 ### General guidelines
 
 - It's better if an issue is reported first
-- Easy issues are tagged "**good first issue**"
+- Easy issues are tagged "[good first issue](https://github.com/maoschanz/drawing/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)"
 - Tell on the issue that you'll try to fix it
 
 **If you find anything weird in the code, or don't understand it, feel free to
@@ -100,7 +112,8 @@ To set up a development environment, see [here](#install-from-source-code).
 
 - Use 2 spaces in `.ui` or `.xml` files.
 - Good comments explain *why* the code does what it does. If a comment explains
-*what* it does, the comment is useless, or the code is bad.
+*what* it does, the comment is useless, or the code is bad. (useless comments
+are fine, don't worry)
 - Upon translatable strings, comments explaining the context to translators are
 welcome.
 
@@ -111,12 +124,45 @@ welcome.
 - Use double quotes for strings the user might see, and single quotes otherwise
 (paths, constants, enumerations, dict keys, …)
 
+### Structure of the code
+
+The `data` directory contains data useful for installation but useless to the
+execution (app icons, desktop launcher, settings schemas, appdata, …).
+
+According to some people, this directory should contain the UI resources, but
+here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
+along with the python code.
+
+- See [here](./diagrams/README.md) for explanations about the architecture
+- See [here](./diagrams/) for class diagrams (**WORK IN PROGRESS**)
+
 ### UI design
 
-People sometimes like to design their apps in Glade, but in Drawing, the main
-`.ui` files are mere templates filled algorithmically according to the user's
-settings, so you kinda have to run the app to be sure of how your changes to
-these files actually look like.
+If you want to change something to the user interface:
+
+##### About Glade
+
+People sometimes like to design their apps in Glade, or in the "GUI designer"
+extension integrated in GNOME Builder.
+
+But in Drawing, the UI is modular, and the `.ui` files are mere templates filled
+algorithmically according to the user's actions and settings. So you have to:
+
+- edit them with a text editor, since the point of a given file is hard to
+understand by just looking at the Glade preview;
+- actually run the app to be sure of how your changes to these files actually
+look like once filled with the accurate widgets.
+
+If you **ever** even try to use Glade or a similar software, the auto-generated
+code will re-order all the lines, and add dozens of useless properties. Such a
+commit diff would be unreadable, so a merge request with this kind of change
+would be rejected.
+
+Glade also removes all comments, which are essential to the generation of the
+translation files. It also removes some of the empty containers meant to be
+filled by the python code, thus breaking the app. Do not use Glade.
+
+##### Design guidelines
 
 Try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
 as much as possible, while making your feature available from the menubar
@@ -127,20 +173,6 @@ menus still exist).
 If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
 any other), please be sure to not hurt the UX with the GNOME layout (since it's
 the one used on smartphone, be careful it has to stay very resizable).
-
-### Structure of the code
-
-The `data` directory contains data useful for installation but useless to the
-execution (app icons, desktop launcher, settings schemas, appdata, …).
-
-According to some people, this directory should contain the UI resources, but
-here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
-along with the python code.
-
-<!-- TODO ![UML diagrams](docs/uml.png) -->
-
-- See [here](./diagrams/README.md) for explanations about the code
-- See [here](./diagrams/) for class diagrams (**WORK IN PROGRESS**)
 
 ### Other remarks
 
