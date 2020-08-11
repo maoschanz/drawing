@@ -349,16 +349,16 @@ class DrImage(Gtk.Box):
 		cairo_context.set_source_rgba(*self._bg_rgba)
 		cairo_context.paint()
 
-		# Image (with zoom level)
+		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
+
+		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
 		# What the tool is painting
 		self.active_tool().on_draw(area, cairo_context)
-
-		# TODO doesn't work so well with canvas tools
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on

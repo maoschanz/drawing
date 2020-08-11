@@ -1043,7 +1043,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.force_selection()
 			self.get_selection_tool().import_selection(pixbuf)
 		else:
-			string =  cb.wait_for_text()
+			string = cb.wait_for_text()
 			if string is not None:
 				self.tools['text'].force_text_tool(string)
 

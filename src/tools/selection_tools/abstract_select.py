@@ -233,6 +233,17 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.unselect_and_apply()
 		self._future_pixbuf = pixbuf
 		self.operation_type = 'op-import'
+
+		sx = self.get_selection().selection_x
+		sy = self.get_selection().selection_y
+		if sx == 0 and sy == 0 :
+			scroll_x = self.get_image().scroll_x + 2
+			scroll_y = self.get_image().scroll_y + 2
+			self.get_selection().set_future_coords(scroll_x, scroll_y)
+			self.get_selection().set_coords(False, scroll_x, scroll_y)
+		else:
+			self.get_selection().set_future_coords(sx, sy)
+
 		operation = self.build_operation()
 		self.apply_operation(operation)
 		self.operation_type = 'op-define'
