@@ -153,8 +153,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.window.set_cursor(True)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self.get_selection().set_popovers_position(event.x, event.y)
 		if event.button == 3:
+			if not self.get_selection().is_active:
+				self.get_selection().set_coords(True, event_x, event_y)
+			self.get_selection().set_popovers_position(event.x, event.y)
 			self.get_selection().show_popover()
 			return
 		self.restore_pixbuf()

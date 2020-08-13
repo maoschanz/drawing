@@ -204,6 +204,8 @@ class DrSelectionManager():
 	# Popover menus management methods #########################################
 
 	def set_popovers_position(self, x, y):
+		"""Set the coords where the popover should be opened. These coords are
+		relative TO THE WIDGET, not to the pixbuf."""
 		rectangle = Gdk.Rectangle()
 		rectangle.x = int(x)
 		rectangle.y = int(y)
@@ -217,14 +219,10 @@ class DrSelectionManager():
 		self.menu_if_inactive.popdown()
 
 	def show_popover(self):
+		"""Open the adequate popover at the previously set coords."""
 		if self.is_active:
 			self.menu_if_active.popup()
 		else:
-			gdk_rect = self.menu_if_inactive.get_pointing_to()[1]
-			# It's important to pre-set these coords as the selection coords,
-			# because right-click → import/paste shouldn't use (0, 0) as coords.
-			# FIXME ne marche pas du tout lol (#175, ptêt #223?)
-			self.set_coords(True, gdk_rect.x, gdk_rect.y)
 			self.menu_if_inactive.popup()
 
 	############################################################################
