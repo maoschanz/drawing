@@ -231,21 +231,19 @@ class ToolText(AbstractClassicTool):
 		# Draw background for the line #########################################
 
 		if operation['background'] == 'rectangle':
-			# i = 0
-			# for line_text in lines:
-			# 	line_y = text_y + i * font_size
-			# 	self._op_bg_rectangle(cairo_context, c2, font_size, i, \
-			# 	                                      text_x, text_y, line_text)
-			# 	i = i + 1
-			pass # FIXME
+			lines = entire_text.split('\n')
+			line_y = text_y
+			for line_text in lines:
+				line_y = self._op_bg_rectangle(cairo_context, layout, c2, \
+				                                      text_x, line_y, line_text)
 		elif operation['background'] == 'shadow':
-			dist = max(min(int(font_size/18), 4), 1)
+			dist = max(min(int(font_size/16), 4), 1)
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
 			self._show_text_with_options(cairo_context, layout, entire_text, \
 			                                       text_x + dist, text_y + dist)
 		elif operation['background'] == 'outline':
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
-			dist = max(min(int(font_size/18), 8), 1)
+			dist = max(min(int(font_size/16), 8), 1)
 			for dx in range(-dist, dist):
 				for dy in range(-dist, dist):
 					self._show_text_with_options(cairo_context, layout, \
@@ -266,18 +264,23 @@ class ToolText(AbstractClassicTool):
 		PangoCairo.update_layout(cc, pl)
 		PangoCairo.show_layout(cc, pl)
 
-	def _op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
-		# XXX i think cairo.Context.font_extents is supposed to help me
-		context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
-		first_y = int(text_y + (i + 0.2) * font_size)
-		context.move_to(text_x, first_y)
-		context.show_text(line)
-		context.rel_line_to(0, (-1) * font_size)
-		context.line_to(text_x, int(text_y + (i - 0.8) * font_size))
-		context.line_to(text_x, first_y)
-		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
+	def _op_bg_rectangle(self, context, layout, c2, text_x, line_y, line_text):
+		# The text is first "displayed" in a transparent color…
+		context.set_source_rgba(0.0, 0.0, 0.0, 0.50)
+		self._show_text_with_options(context, layout, line_text, text_x, line_y)
+		# …so we can get the size of the displayed line…
+		ink_rect, logical_rect = layout.get_pixel_extents()
+		delta_y = logical_rect.height
+		# …and draw the background rectangle with the correct size.
+		context.rel_line_to(0, delta_y)
+		context.rel_line_to(logical_rect.width, 0)
+		context.rel_line_to(0, -1 * delta_y)
+		context.close_path()
+		context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
 		context.fill()
 		context.stroke()
+		# The returned value will be used as the vertical coord of the next line
+		return line_y + delta_y
 
 	############################################################################
 ################################################################################
