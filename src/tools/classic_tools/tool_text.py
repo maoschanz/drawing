@@ -209,79 +209,60 @@ class ToolText(AbstractClassicTool):
 		cairo_context = self.start_tool_operation(operation)
 
 		font_fam = operation['font_fam']
-		if operation['is_italic']:
-			font_slant = cairo.FontSlant.ITALIC
-		else:
-			font_slant = cairo.FontSlant.NORMAL
-		if operation['is_bold']:
-			font_weight = cairo.FontWeight.BOLD
-		else:
-			font_weight = cairo.FontWeight.NORMAL
-		font_size = operation['font_size'] * 3 # totalement arbitraire
-		cairo_context.select_font_face(font_fam, font_slant, font_weight)
-		cairo_context.set_font_size(font_size)
-
-		lines = operation['text'].split('\n')
+		font_size = operation['font_size']
+		entire_text = operation['text']
 		c1 = operation['rgba1']
 		c2 = operation['rgba2']
 		text_x = int(operation['x'])
 		text_y = int(operation['y'])
 
-		if self.window._settings.get_boolean('devel-only'):
-			font = Pango.FontDescription(font_fam + " " + str(operation['font_size']))
-
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-			cairo_context.move_to(text_x, text_y)
-
-			layout = PangoCairo.create_layout(cairo_context)
-			layout.set_font_description(font)
-			layout.set_text("音 (sound) おと oto\nhhhhhHFJFDKGJQF\nseveral lines")
-			# layout.set_text(operation['text'])
-			PangoCairo.update_layout(cairo_context, layout)
-			PangoCairo.show_layout(cairo_context, layout)
-			# TODO FIXME il faut refaire les backgrounds
+		font_description_string = font_fam
+		if operation['is_italic']:
+			font_description_string += " Italic"
+		if operation['is_bold']:
+			font_description_string += " Bold"
+		font_description_string += " " + str(font_size)
+		font = Pango.FontDescription(font_description_string)
+		layout = PangoCairo.create_layout(cairo_context)
+		layout.set_font_description(font)
 
 		########################################################################
 		# Draw background for the line #########################################
-		i = 0
-		for line_text in lines:
-			line_y = text_y + i * font_size
-			if operation['background'] == 'rectangle':
-				self._op_bg_rectangle(cairo_context, c2, font_size, i, text_x, \
-				                                              text_y, line_text)
-			elif operation['background'] == 'shadow':
-				self._op_bg_shadow(cairo_context, c2, font_size, text_x, \
-				                                              line_y, line_text)
-			elif operation['background'] == 'outline':
-				self._op_bg_outline(cairo_context, c2, font_size, text_x, \
-				                                              line_y, line_text)
-			i = i + 1
+		if operation['background'] == 'rectangle':
+			# i = 0
+			# for line_text in lines:
+			# 	line_y = text_y + i * font_size
+			# 	self._op_bg_rectangle(cairo_context, c2, font_size, i, \
+			# 	                                      text_x, text_y, line_text)
+			# 	i = i + 1
+			pass # FIXME
+		elif operation['background'] == 'shadow':
+			dist = max(min(int(font_size/18), 4), 1)
+			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			self._show_text_with_options(cairo_context, layout, entire_text, \
+			                                       text_x + dist, text_y + dist)
+		elif operation['background'] == 'outline':
+			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			dist = max(min(int(font_size/18), 8), 1)
+			for dx in range(-dist, dist):
+				for dy in range(-dist, dist):
+					self._show_text_with_options(cairo_context, layout, \
+					                      entire_text, text_x + dx, text_y + dy)
 
 		########################################################################
 		# Draw text for the line ###############################################
-		i = 0
-		for line_text in lines:
-			line_y = text_y + i * font_size
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-			cairo_context.move_to(text_x, line_y)
-			cairo_context.show_text( line_text )
-			i = i + 1
+
+		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+		self._show_text_with_options(cairo_context, layout, entire_text, \
+		                                                         text_x, text_y)
 
 		self.non_destructive_show_modif()
 
-	def _op_bg_shadow(self, context, color, font_size, text_x, text_y, line):
-		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
-		dist = max(min(int(font_size/18), 4), 1)
-		context.move_to(text_x + dist, text_y + dist)
-		context.show_text(line)
-
-	def _op_bg_outline(self, context, color, font_size, text_x, text_y, line):
-		context.set_source_rgba(color.red, color.green, color.blue, color.alpha)
-		dist = max(min(int(font_size/18), 8), 1)
-		for dx in range(-dist, dist):
-			for dy in range(-dist, dist):
-				context.move_to(text_x + dx, text_y + dy)
-				context.show_text(line)
+	def _show_text_with_options(self, cc, pl, text, text_x, text_y):
+		cc.move_to(text_x, text_y)
+		pl.set_text(text)
+		PangoCairo.update_layout(cc, pl)
+		PangoCairo.show_layout(cc, pl)
 
 	def _op_bg_rectangle(self, context, color, font_size, i, text_x, text_y, line):
 		# XXX i think cairo.Context.font_extents is supposed to help me
