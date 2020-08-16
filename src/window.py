@@ -793,9 +793,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		if self.active_tool().use_color:
 			self.options_manager.right_color_btn().open()
 
-	def on_antialiasing_action_changed(self, *args):
-		pass # TODO
-
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################
 

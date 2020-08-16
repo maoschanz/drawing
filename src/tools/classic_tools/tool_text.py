@@ -28,7 +28,7 @@ class ToolText(AbstractClassicTool):
 		self._should_cancel = False
 		self._last_click_btn = 1
 
-		self._font_fam = "Sans"
+		self.font_fam_name = self.window._settings.get_string('last-font-name')
 		self._bg_id = 'outline'
 		self._bg_label = _("Outline")
 
@@ -57,20 +57,21 @@ class ToolText(AbstractClassicTool):
 	def _set_font(self, *args):
 		dialog = Gtk.FontChooserDialog(show_preview_entry=False)
 		dialog.set_level(Gtk.FontChooserLevel.FAMILY)
-		dialog.set_font("Carlito") # TODO restore the current one
+		dialog.set_font(self.font_fam_name) # XXX j'ai pas trop l'impression que ça marche
 
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())
 		status = dialog.run()
 		if(status == Gtk.ResponseType.OK):
-			self._font_fam = dialog.get_font_family().get_name()
-			print(dialog.get_font()) # TODO changer les options pour les adapter
-			# au contenu de cette ^ chaîne là
+			self.font_fam_name = dialog.get_font_family().get_name()
+			print(dialog.get_font()) # TODO changer les options (italic, bold)
+			# pour les adapter au contenu de cette ^ chaîne là
 			self._preview_text()
 		dialog.destroy()
 
 	def _set_font_options(self, *args):
-		self._is_italic = self.get_option_value('text-italic') # XXX incomplet, OBLIQUE existe
+		# XXX incomplete? OBLIQUE exists
+		self._is_italic = self.get_option_value('text-italic')
 		self._is_bold = self.get_option_value('text-bold')
 
 	def _set_background_style(self, *args):
@@ -91,7 +92,7 @@ class ToolText(AbstractClassicTool):
 	def get_edition_status(self):
 		self._set_background_style()
 		self._set_font_options()
-		label = self.label + ' - ' + self._font_fam + ' - ' + self._bg_label
+		label = self.label + ' - ' + self.font_fam_name + ' - ' + self._bg_label
 		return label
 
 	############################################################################
@@ -193,7 +194,7 @@ class ToolText(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba1': self.main_color,
 			'rgba2': self.secondary_color,
-			'font_fam': self._font_fam,
+			'font_fam': self.font_fam_name,
 			'is_italic': self._is_italic,
 			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
@@ -228,6 +229,7 @@ class ToolText(AbstractClassicTool):
 
 		########################################################################
 		# Draw background for the line #########################################
+
 		if operation['background'] == 'rectangle':
 			# i = 0
 			# for line_text in lines:
