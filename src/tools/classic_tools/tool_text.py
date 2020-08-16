@@ -32,8 +32,8 @@ class ToolText(AbstractClassicTool):
 		self._bg_id = 'outline'
 		self._bg_label = _("Outline")
 
-		self.add_tool_action_enum('text-font', self._font_fam)
-		# self.add_tool_action_simple('text-set-custom', self._set_custom)
+		self.add_tool_action_simple('text-set-font', self._set_font)
+		# TODO remember and restore the selected font and its options
 		self.add_tool_action_boolean('text-bold', False)
 		self.add_tool_action_boolean('text-italic', False)
 		self.add_tool_action_enum('text-background', self._bg_id)
@@ -54,20 +54,24 @@ class ToolText(AbstractClassicTool):
 	############################################################################
 	# Options ##################################################################
 
-	def _set_custom(self, *args):
-		pass # TODO fontchooserdialog ??
+	def _set_font(self, *args):
+		dialog = Gtk.FontChooserDialog(show_preview_entry=False)
+		dialog.set_level(Gtk.FontChooserLevel.FAMILY)
+		dialog.set_font("Carlito") # TODO restore the current one
+
+		# for f in PangoCairo.font_map_get_default().list_families():
+		# 	print(f.get_name())
+		status = dialog.run()
+		if(status == Gtk.ResponseType.OK):
+			self._font_fam = dialog.get_font_family().get_name()
+			print(dialog.get_font()) # TODO changer les options pour les adapter
+			# au contenu de cette ^ chaîne là
+			self._preview_text()
+		dialog.destroy()
 
 	def _set_font_options(self, *args):
-		# TODO use the widget again. And cairo.ToyFontFace ?
-		self._font_fam = self.get_option_value('text-font')
-		if self.get_option_value('text-italic'):
-			self._font_slant = cairo.FontSlant.ITALIC
-		else:
-			self._font_slant = cairo.FontSlant.NORMAL
-		if self.get_option_value('text-bold'):
-			self._font_weight = cairo.FontWeight.BOLD
-		else:
-			self._font_weight = cairo.FontWeight.NORMAL
+		self._is_italic = self.get_option_value('text-italic') # XXX incomplet, OBLIQUE existe
+		self._is_bold = self.get_option_value('text-bold')
 
 	def _set_background_style(self, *args):
 		state_as_string = self.get_option_value('text-background')
@@ -190,8 +194,8 @@ class ToolText(AbstractClassicTool):
 			'rgba1': self.main_color,
 			'rgba2': self.secondary_color,
 			'font_fam': self._font_fam,
-			'font_slant': self._font_slant,
-			'font_weight': self._font_weight,
+			'is_italic': self._is_italic,
+			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
 			# 'antialias': self._use_antialias, # XXX ne marche pas ??
 			'x': self.x_press,
@@ -205,8 +209,14 @@ class ToolText(AbstractClassicTool):
 		cairo_context = self.start_tool_operation(operation)
 
 		font_fam = operation['font_fam']
-		font_slant = operation['font_slant']
-		font_weight = operation['font_weight']
+		if operation['is_italic']:
+			font_slant = cairo.FontSlant.ITALIC
+		else:
+			font_slant = cairo.FontSlant.NORMAL
+		if operation['is_bold']:
+			font_weight = cairo.FontWeight.BOLD
+		else:
+			font_weight = cairo.FontWeight.NORMAL
 		font_size = operation['font_size'] * 3 # totalement arbitraire
 		cairo_context.select_font_face(font_fam, font_slant, font_weight)
 		cairo_context.set_font_size(font_size)
@@ -218,27 +228,18 @@ class ToolText(AbstractClassicTool):
 		text_y = int(operation['y'])
 
 		if self.window._settings.get_boolean('devel-only'):
-			# To see font names:
-			font_map = PangoCairo.font_map_get_default()
-			for f in font_map.list_families():
-				print(f.get_name())
-
-			# Font name and options
-			fontname = "Droid Sans Fallback"
-			# fontname = "DejaVu Math TeX Gyre"
-			font = Pango.FontDescription(fontname + " 25")
+			font = Pango.FontDescription(font_fam + " " + str(operation['font_size']))
 
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 			cairo_context.move_to(text_x, text_y)
 
 			layout = PangoCairo.create_layout(cairo_context)
 			layout.set_font_description(font)
-			# layout.set_text(u"音 (sound) おと oto")
-			layout.set_text("音 (sound) おと oto")
+			layout.set_text("音 (sound) おと oto\nhhhhhHFJFDKGJQF\nseveral lines")
 			# layout.set_text(operation['text'])
 			PangoCairo.update_layout(cairo_context, layout)
 			PangoCairo.show_layout(cairo_context, layout)
-			# TODO FIXME
+			# TODO FIXME il faut refaire les backgrounds
 
 		########################################################################
 		# Draw background for the line #########################################
