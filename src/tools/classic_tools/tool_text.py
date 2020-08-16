@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Pango, PangoCairo
 from .abstract_classic_tool import AbstractClassicTool
 
 class ToolText(AbstractClassicTool):
@@ -216,6 +216,29 @@ class ToolText(AbstractClassicTool):
 		c2 = operation['rgba2']
 		text_x = int(operation['x'])
 		text_y = int(operation['y'])
+
+		if self.window._settings.get_boolean('devel-only'):
+			# To see font names:
+			font_map = PangoCairo.font_map_get_default()
+			for f in font_map.list_families():
+				print(f.get_name())
+
+			# Font name and options
+			fontname = "Droid Sans Fallback"
+			# fontname = "DejaVu Math TeX Gyre"
+			font = Pango.FontDescription(fontname + " 25")
+
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+			cairo_context.move_to(text_x, text_y)
+
+			layout = PangoCairo.create_layout(cairo_context)
+			layout.set_font_description(font)
+			# layout.set_text(u"音 (sound) おと oto")
+			layout.set_text("音 (sound) おと oto")
+			# layout.set_text(operation['text'])
+			PangoCairo.update_layout(cairo_context, layout)
+			PangoCairo.show_layout(cairo_context, layout)
+			# TODO FIXME
 
 		########################################################################
 		# Draw background for the line #########################################
