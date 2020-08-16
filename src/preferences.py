@@ -81,16 +81,7 @@ class DrPrefsWindow(Gtk.Window):
 		self.add_section_title(_("New images"))
 		self.add_adj(_("Default width"), 'default-width', self.adj_width)
 		self.add_adj(_("Default height"), 'default-height', self.adj_height)
-		bg_color_btn = Gtk.ColorButton(use_alpha=True)
-		background_rgba = self._settings.get_strv('default-rgba')
-		r = float(background_rgba[0])
-		g = float(background_rgba[1])
-		b = float(background_rgba[2])
-		a = float(background_rgba[3])
-		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		bg_color_btn.set_rgba(color)
-		bg_color_btn.connect('color-set', self.on_background_changed)
-		self.add_row(_("Default color"), bg_color_btn)
+		self.add_colorbtn(_("Default color"), 'default-rgba')
 
 		self.add_section_separator()
 		self.add_section_title(_("Images saving"))
@@ -140,23 +131,12 @@ class DrPrefsWindow(Gtk.Window):
 		self.set_current_grid(self.page_advanced)
 
 		self.add_section_title(_("Advanced options"))
-
 		self.add_adj(_("Preview size"), 'preview-size', self.adj_preview)
 		if is_beta:
 			self.add_switch(_("Development features"), 'devel-only')
 		else:
 			self._settings.set_boolean('devel-only', False)
-
-		bg_color_btn = Gtk.ColorButton(use_alpha=True)
-		background_rgba = self._settings.get_strv("ui-background-rgba")
-		r = float(background_rgba[0])
-		g = float(background_rgba[1])
-		b = float(background_rgba[2])
-		a = float(background_rgba[3])
-		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-		bg_color_btn.set_rgba(color)
-		bg_color_btn.connect('color-set', self.on_ui_background_changed)
-		self.add_row(_("Background color"), bg_color_btn)
+		self.add_colorbtn(_("Background color"), 'ui-background-rgba')
 
 		self.add_section_separator()
 		self.add_section_title(_("Layout"))
@@ -218,6 +198,18 @@ class DrPrefsWindow(Gtk.Window):
 		switch.connect('notify::active', self.on_bool_changed, key)
 		self.add_row(label_text, switch)
 
+	def add_colorbtn(self, label_text, key):
+		color_btn = Gtk.ColorButton(use_alpha=True)
+		background_rgba = self._settings.get_strv(key)
+		r = float(background_rgba[0])
+		g = float(background_rgba[1])
+		b = float(background_rgba[2])
+		a = float(background_rgba[3])
+		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		color_btn.set_rgba(color)
+		color_btn.connect('color-set', self.on_colorbtn_changed, key)
+		self.add_row(label_text, color_btn)
+
 	def add_adj(self, label_text, key, adj):
 		spinbtn = Gtk.SpinButton(adjustment=adj)
 		spinbtn.set_value(self._settings.get_int(key))
@@ -277,18 +269,10 @@ class DrPrefsWindow(Gtk.Window):
 		if self._radio_are_active:
 			self._settings.set_string(key, btn_id)
 
-	############################################################################
-	# Custom callbacks #########################################################
-
-	def on_background_changed(self, color_btn):
+	def on_colorbtn_changed(self, color_btn, key):
 		c = color_btn.get_rgba()
 		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
-		self._settings.set_strv('default-rgba', color_array)
-
-	def on_ui_background_changed(self, color_btn):
-		c = color_btn.get_rgba()
-		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
-		self._settings.set_strv('ui-background-rgba', color_array)
+		self._settings.set_strv(key, color_array)
 
 	############################################################################
 	# Low-level packing ########################################################
