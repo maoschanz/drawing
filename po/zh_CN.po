@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -97,6 +97,12 @@ msgid ""
 msgstr ""
 "大量的形状工具（圆，矩形，多边形，…）已合并为一个单一的，更一致的「形状」工"
 "具，还另添加了圆角矩形和椭圆。填充选项现包括各种类型的渐变。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1503,6 +1509,11 @@ msgid "Font"
 msgstr "字体"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "选择滤镜…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "斜体"
 
@@ -1654,5 +1665,3 @@ msgstr "拉伸画布"
 #~ msgid "Keyboard"
 #~ msgstr "键盘"
 
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "当然也支持键盘快捷键和触摸手势。"

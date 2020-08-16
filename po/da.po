@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-07-24 00:00+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -104,6 +104,12 @@ msgstr ""
 "blevet sammenføjet i ét enkelt, mere ensartet, 'form'-værktøj sammen med "
 "'afrundet rektangel' og 'ellipse'. Deres valgmuligheder for udfyldning "
 "inkluderer nu diverse typer gradienter."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1520,6 +1526,11 @@ msgid "Font"
 msgstr "Skrifttype"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Vælg et filter …"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Kursiv"
 
@@ -1670,6 +1681,3 @@ msgstr "Skaler lærredet"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tastatur"
-
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "Og med tastaturgenveje eller touchbevægelser."

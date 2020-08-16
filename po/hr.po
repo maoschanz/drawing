@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -107,6 +107,12 @@ msgstr ""
 "u jedan, konzistentniji alat zvan „oblik”, zajedno s alatima „obli "
 "pravokutnik” i „elipsa”. Njihove mogućnosti ispunjavanja bojom sada "
 "uključuju različite vrste gradijenata."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1531,6 +1537,11 @@ msgid "Font"
 msgstr "Font"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Odaberi filtar …"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Kurziv"
 
@@ -1682,5 +1693,3 @@ msgstr "Skaliranje platna"
 #~ msgid "Keyboard"
 #~ msgstr "Tipkovnica"
 
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "Moguće je koristiti i tipkovničke prečace ili dodirne geste."

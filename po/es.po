@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2019-12-10 13:57+0100\n"
 "Last-Translator: Xoán Sampaíño <xoansampainho@gmail.com>\n"
 "Language-Team: \n"
@@ -97,6 +97,12 @@ msgid ""
 "been merged into a single, more consistent 'shape' tool, along with 'rounded "
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1553,6 +1559,11 @@ msgid "Font"
 msgstr "Tipo de letra"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Seleccionar un filtro…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Cursiva"
 
@@ -1709,9 +1720,6 @@ msgstr "Escalando el lienzo"
 
 #~ msgid "Keyboard"
 #~ msgstr "Teclado"
-
-#~ msgid "Classic"
-#~ msgstr "Clásico"
 
 #~ msgid "Close"
 #~ msgstr "Cerrar"

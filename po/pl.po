@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -107,6 +107,12 @@ msgstr ""
 "zostały połączone w jedno, bardziej spójne narzędzie „kształtu” wraz z "
 "„zaokrąglonym prostokątem” i „elipsą”. Opcje wypełniania obejmują teraz "
 "różne rodzaje gradientów."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1542,6 +1548,11 @@ msgid "Font"
 msgstr "Czcionka"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Wybierz filtr…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Pochylenie"
 
@@ -1693,11 +1704,3 @@ msgstr "Skalowanie płótna"
 #~ msgid "Keyboard"
 #~ msgstr "Klawiatura"
 
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "Używanie skrótów klawiszowych lub gestów także jest możliwe."
-
-#~ msgid "Editing"
-#~ msgstr "Edycja"
-
-#~ msgid "Classic"
-#~ msgstr "Zwykły"

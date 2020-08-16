@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-08-11 07:36+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -105,6 +105,12 @@ msgstr ""
 "slagits samman till ett enda, mer konsekvent \"formverktyg\", tillsammans "
 "med \"Rundad rektangel\" och \"Ellips\". Deras fyllningsalternativ "
 "innehåller nu olika typer av övertoningar."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1517,6 +1523,11 @@ msgid "Font"
 msgstr "Teckensnitt"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Välj ett filter…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Kursiv"
 
@@ -1667,12 +1678,6 @@ msgstr "Skalar arbetsytan"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tangentbord"
-
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "Tangentbordsgenvägar eller pekgester går också att använda."
-
-#~ msgid "Classic"
-#~ msgstr "Klassisk"
 
 #~ msgid "Close"
 #~ msgstr "Stäng"

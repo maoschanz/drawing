@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-05-19 01:04+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -106,6 +106,12 @@ msgstr ""
 "dikdörtgen' ve 'elips' ile birlikte tek, daha tutarlı bir 'şekil' aracında "
 "birleştirilmiştir. Doldurma seçenekleri artık çeşitli renk geçişlerini "
 "içermektedir."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1532,6 +1538,11 @@ msgid "Font"
 msgstr "Yazı tipi"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Bir süzgeç seç…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Italic"
 
@@ -1682,13 +1693,6 @@ msgstr "Tuvali ölçeklendir"
 
 #~ msgid "Keyboard"
 #~ msgstr "Klavye"
-
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr ""
-#~ "Klavye kısayollarını veya dokunma hareketlerini kullanmak da mümkündür."
-
-#~ msgid "Classic"
-#~ msgstr "Klasik"
 
 #~ msgid "Close"
 #~ msgstr "Kapat"

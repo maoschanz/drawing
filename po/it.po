@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-08-16 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -105,6 +105,12 @@ msgstr ""
 "sono stati uniti in un unico strumento 'forma' più coerente, insieme a "
 "'rettangolo arrotondato' ed 'ellisse'. Le opzioni di riempimento ora "
 "includono vari tipi di gradienti."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1526,6 +1532,11 @@ msgid "Font"
 msgstr "Carattere"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Seleziona un filtro…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Italic"
 
@@ -1677,12 +1688,6 @@ msgstr "Ridimensionamento della tela"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tastiera"
-
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "È anche possibile usare scorciatoie da tastiera o gesti tattili."
-
-#~ msgid "Classic"
-#~ msgstr "Classico"
 
 #~ msgid "Freehand"
 #~ msgstr "Mano libera"

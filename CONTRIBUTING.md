@@ -33,21 +33,21 @@ Usability and design issues concerning existing features are **not** new feature
 
 # Translating
 
-Notice that this will translate the unstable, unreleased version currently
-developed on the `master` branch. If you want to entirely translate older
-versions, restart but run `git checkout 0.4` just after having cloned the repo,
-and open the merge request to `0.4` too.
+Notice that this procedure will translate the unstable, unreleased version
+currently developed on the `master` branch. If you want to entirely translate
+older versions, restart this procedure but run `git checkout 0.4` just after
+having cloned the repo, and at the end, open the merge request to `0.4` too.
 
 ### Get the .po file
 
 - Fork the repo and clone your fork on your disk (see [installation instructions here](#with-gnome-builder-and-flatpak))
 - **If the translation exists but is incomplete:**
-	- Find the file corresponding to your language in the the `po` directory
+	- Find the file corresponding to your language in the the `po` directory.
 - **If the translation doesn't exist at all:**
 	- Add your language to `po/LINGUAS`
-	- Build the app once, and then run `ninja -C _build drawing-update-po` at
-	the root of the project. It will produce a `.po` file for your language in
-	the `po` directory. <!-- TODO c'est pas la meilleure commande -->
+	- Run `msginit -i po/drawing.pot --locale=xx -o po/xx.po`, where `xx` should
+	be replaced by the ISO code of your language. This command will produce a
+	`.po` file for your language in the `po` directory.
 
 ### Translate
 
@@ -315,5 +315,4 @@ Dependencies to build the app (Debian packages names):
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the icons into a `.gresource` file)
 
 ----
-
 

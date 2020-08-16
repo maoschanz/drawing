@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -107,6 +107,12 @@ msgstr ""
 "…) sind nun zusammengefaßt zu einem einzelnen, besser passenden 'Rahmen'-"
 "Werkzeug, zusammen mit 'Abgerundetes Rechteck' und 'Elipse'. Ihre Füll-"
 "Optionen beinhalten jetzt mehrere Arten von Verläufen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1541,6 +1547,11 @@ msgid "Font"
 msgstr "Schriftart"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Wählen Sie einen Filter…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Kursiv"
 
@@ -1692,14 +1703,6 @@ msgstr "Leinwand skalieren"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tastatur"
-
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr ""
-#~ "Die Benutzung von Tastenkombinationen oder Touch-Gesten sind ebenfalls "
-#~ "möglich."
-
-#~ msgid "Classic"
-#~ msgstr "Klassisch"
 
 #~ msgid "Close"
 #~ msgstr "Schließen"

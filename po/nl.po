@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 03:52+0200\n"
+"POT-Creation-Date: 2020-08-16 23:17+0200\n"
 "PO-Revision-Date: 2020-08-10 20:31+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -105,6 +105,12 @@ msgstr ""
 "De verschillende vormgereedschappen (cirkel, rechthoek, polygoon, etc.) zijn "
 "samengevoegd tot één vormgereedschap, tesamen met 'afgeronde rechthoek' en "
 "'ellips'. Ook bevatten ze nu verscheidene kleurverlopen voor vullen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1521,6 +1527,11 @@ msgid "Font"
 msgstr "Lettertype"
 
 #: src/tools/ui/tool-text.ui
+#, fuzzy
+msgid "Select a font…"
+msgstr "Kies een filter…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
 msgstr "Cursief"
 
@@ -1672,12 +1683,6 @@ msgstr "Bezig met wijzigen van canvasgrootte"
 
 #~ msgid "Keyboard"
 #~ msgstr "Toetsenbord"
-
-#~ msgid "Using keyboard shortcuts or touch gestures is possible too."
-#~ msgstr "Daarnaast kun je ook sneltoetsen of aanraakgebaren gebruiken."
-
-#~ msgid "Classic"
-#~ msgstr "Klassiek"
 
 #~ msgid "Close"
 #~ msgstr "Sluiten"
