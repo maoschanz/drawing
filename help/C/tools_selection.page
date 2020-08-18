@@ -19,12 +19,9 @@
     <title>Selecting an area</title>
 
     <p>Tools such as <gui style="button">Rectangle Selection</gui> or <gui
-    style="button">Free Selection</gui> which are available in the side bar
-    (along with <link xref="tools_classic">the other tools</link>), allow you to
-    define a part of the image for further manipulations.</p>
-    <p>A tool named <gui style="button">Color Selection</gui> also exists, and
-    tries to select an area according to its color, but it doesn't always work
-    as expected so this tool is disabled by default.</p>
+    style="button">Free Selection</gui> are available in the side bar, along
+    with <link xref="tools_classic">the other tools</link>. You can use them
+    to define a part of the image for further manipulations.</p>
 
     <p>Aside of defining the contour of an area with the mouse, the selection
     can also be created in various ways:</p>
@@ -39,6 +36,11 @@
         <p>Right-click, <gui style="menuitem">Select all</gui>.</p>
       </item>
     </list>
+
+    <p>A tool named <gui style="button">Color Selection</gui> also exists, and
+    tries to select an area according to its color, but it doesn't always work
+    as expected so this tool is <link xref="preferences#tools">disabled by
+    default</link>.</p>
   </section>
 
   <section>
@@ -54,8 +56,8 @@
         <p>Cut or copy it to the clipboard.</p>
       </item>
       <item>
-        <p>Edit it with <link xref="tools_canvas">tools</link>. You can access
-        the compatible tools with a right-click on the selection.</p>
+        <p>Transform it with tools. <link xref="tools_canvas">The compatible
+        tools</link> can be accessed with a right-click on the selection.</p>
         <media type="image" mime="image/png" width="80%"
                src="figures/screenshot_selection.png" its:translate="no"/>
       </item>
@@ -74,3 +76,4 @@
   </section>
 
 </page>
+

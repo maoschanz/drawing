@@ -17,9 +17,12 @@
 
   <p>"Drawing" is a basic drawing application for the GNOME desktop, which can
   edit or create pictures (PNG, JPEG or BMP).</p>
-  <p>Basic features are located in the header of the window, such as the
-  <gui style="button">Open</gui> button, the <gui style="button">Save</gui>
-  button, and the main menu.</p>
+
+  <note style="tip">
+    <p>Many features described here are located in the header of the window, but
+    the exact layout of the app depends on your desktop environment. Screenshots
+    are provided for a standard GNOME environment.</p>
+  </note>
 
   <section>
     <title>The "Open" button</title>
@@ -32,20 +35,22 @@
   <section>
     <title>The "New Image" menu</title>
 
-    <p>This menu allows you to create a new image. Several options are
+    <p>The goal of this menu is to create a new image. Several options are
     available:</p>
     <list>
       <item>
-        <p>Create a new blank image, in a new tab. Such an new image can use the
-        <link xref="preferences">default size and background color</link>, or
-        you can set custom values.</p>
+        <p>Create a new blank image, in a new tab. This new image will use the
+        <link xref="preferences">default size and background color</link>.</p>
+      </item>
+      <item>
+        <p>Create a new blank image, with a custom size and background color.</p>
       </item>
       <item>
         <p>Create a new image from the current <link xref="tools_selection">
         selection</link>.</p>
       </item>
       <item>
-        <p>Create a new image from the clipboard content.</p>
+        <p>Create a new image from the current clipboard content.</p>
       </item>
       <item>
         <p>Open a new window with a new blank image.</p>
@@ -88,20 +93,39 @@
   <section>
     <title>Editing</title>
 
-    <p>You can edit the opened picture with the <link xref="tools_classic">tools
-    </link> in the side bar. The <gui style="button">Undo</gui> and
-    <gui style="button">Redo</gui> buttons are located in the header of the
-    window.</p>
+    <p>You can edit the picture with the tools in the side bar. There are
+    several types of tools:</p>
+    <list>
+      <item>
+        <p>The <link xref="tools_classic">classic tools</link>, such as pencils,
+        shapes, or text insertion.</p>
+      </item>
+      <item>
+        <p>The various types of <link xref="tools_selection">selection</link>,
+        to define a part of the picture you want to move or edit further with
+        the following tools:</p>
+      </item>
+      <item>
+        <p>Finally, <link xref="tools_canvas">some tools</link> can transform
+        either the selection or the entire canvas. This includes cropping,
+        rotating, scaling, or applying a filter.</p>
+      </item>
+    </list>
+    <p>With the related buttons in the header of the window, you can
+    <gui style="button">Undo</gui> (and then <gui style="button">Redo</gui>)
+    any edit you just did.</p>
+    <p>In the bottom bar, each tool can provide various options and actions.</p>
   </section>
 
   <section>
-    <title>Preview and zoom</title>
+    <title>Zoom and thumbnail preview</title>
 
-    <p>In the bottom bar, the <gui style="button">Preview</gui> button (not
-    available with <link xref="tools_canvas">some tools</link>) displays a
-    thumbnail of the full picture you're editing.</p>
-    <p>This preview provides zoom controls, and its button shows the current
-    zoom level as its label.</p>
+    <p>Also in the bottom bar, the <gui style="button">Preview</gui> button
+    (available with <link xref="tools_classic">most tools</link>) displays the
+    current zoom level.</p>
+    <p>Clicking on this button opens a menu with a thumbnail of the full picture
+    you're editing, along with zoom level controls.</p>
   </section>
 
 </page>
+

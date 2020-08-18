@@ -19,37 +19,31 @@
 
   <section>
     <title>Image</title>
-    <table rules="colgroups">
-      <tr>
-        <td>
-          <media type="image" mime="image/png" width="100%" its:translate="no"
-                 src="figures/screenshot_prefs_images.png" />
-        </td>
-        <td>
-          <p>You can choose the size and color of the default canvas used when
-          creating a new file.</p>
 
-          <p>When a file is saved to the JPEG or the BMP file format, the
-          transparency can't be kept. The application can replace the
-          transparent pixels with something else: it can be white, black, or a
-          checkboard of greys.</p>
-          <p>If the replacement you want depends on the image, it's also
-          possible to open a dialog every time you save an image to one of these
-          file formats: the choices available in that dialog will also be white,
-          black, or a checkboard of greys.</p>
+    <p>You can choose the size and color of the default canvas used when
+    creating a new file.</p>
 
-          <p>You can also set how you want to zoom on the image: by default,
-          scrolling on the canvas <em>moves the current view</em> in the
-          direction of the scrolling, and scrolling while holding the
-          <key>Ctrl</key> key <em>zooms in or out</em>. You can turn off the
-          switch to invert these behaviors.</p>
-        </td>
-      </tr>
-    </table>
+    <p>When a file is saved to the JPEG or the BMP file format, the transparency
+    can't be kept. The application can replace the transparent pixels with
+    something else: it can be white, black, or a checkboard of greys.</p>
+    <p>If the replacement you want depends on the image, it's also possible to
+    open a dialog every time you save an image to one of these file formats: the
+    choices available in that dialog will also be white, black, or a checkboard
+    of greys.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_prefs_images.png" />
+
+    <p>You can also set how you want to zoom on the image: by default, scrolling
+    on the canvas <em>moves the current view</em> in the direction of the
+    scrolling, and scrolling while holding the <key>Ctrl</key> key <em>zooms in
+    or out</em>. You can turn off the switch to invert these behaviors.</p>
+
     <p>If you rely on an old-school mouse, it's pertinent to turn this setting
     off: the mouse wheel will then directly zoom in and out. To browse the
     image, you can move your mouse on the canvas while you hold its middle
     button: it'll to move the current view in any direction.</p>
+
     <p>If you have a trackpad, or a touchscreen, it's recommended to keep using
     the <key>Ctrl</key> key to zoom (default behavior): with such a device,
     you're able to intuitively scroll in both directions to browse the entire
@@ -62,25 +56,17 @@
 
   <section>
     <title><link xref="tools_classic">Tools</link></title>
-    <table rules="colgroups">
-      <tr>
-        <td>
-          <p>You can set whether you prefer normal icons (16 pixels) or large
-          icons (24 pixels).</p>
-          <p>Choosing whether or not you want to display the names of the tools
-          next to their icons is possible here, and it's also available from the
-          <link xref="main_features#main-menu">primary menu</link> of the
-          window.</p>
+    <p>You can set whether you prefer normal icons (16 pixels) or large icons
+    (24 pixels).</p>
+    <p>Choosing whether or not you want to display the names of the tools next
+    to their icons is possible here, and it's also available from the
+    <link xref="main_features#main-menu">primary menu</link> of the window.</p>
 
-          <p>A few additional tools are also available. If they're not activated
-          by default, it's because they might be less reliable or useful.</p>
-        </td>
-        <td>
-          <media type="image" mime="image/png" width="100%" its:translate="no"
-                 src="figures/screenshot_prefs_tools.png" />
-        </td>
-      </tr>
-    </table>
+    <p>A few additional tools are also available. If they're not activated by
+    default, it's because they might be less reliable or useful.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_prefs_tools.png" />
   </section>
 
   <section>
@@ -96,7 +82,7 @@
     options include the "elementary OS" layout, designed for the elementary OS
     desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
 
-    <!-- <table rules="colgroups"> -->
+    <!-- <table rules="all"> -->
     <!-- TODO images and captions -->
     <!--   <tr> -->
     <!--     <td> -->
