@@ -139,14 +139,14 @@ class ToolCrop(AbstractCanvasTool):
 		self.window.set_cursor(True)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self.unclicked = False
 		self._update_expansion_color(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
-		delta_x = event.x - self.x_press
-		delta_y = event.y - self.y_press
+		delta_x = event_x - self.x_press
+		delta_y = event_y - self.y_press
 
 		if self.cursor_name == 'not-allowed':
 			return
@@ -165,8 +165,8 @@ class ToolCrop(AbstractCanvasTool):
 			self._x = max(0, self._x)
 			self._y = max(0, self._y)
 
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		# self.build_and_do_op() # better UX but slower to compute
 		if not self.apply_to_selection:
 			self.build_and_do_op()

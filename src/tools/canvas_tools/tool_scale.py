@@ -124,8 +124,8 @@ class ToolScale(AbstractCanvasTool):
 		self.window.set_cursor(True)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event.x
-		self.y_press = event.y
+		self.x_press = event_x
+		self.y_press = event_y
 		self._x2 = self._x + self.get_width()
 		self._y2 = self._y + self.get_height()
 		self.directions = self.cursor_name.replace('-resize', '')
@@ -134,10 +134,10 @@ class ToolScale(AbstractCanvasTool):
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self.cursor_name == 'not-allowed':
 			return
-		delta_x = event.x - self.x_press
-		delta_y = event.y - self.y_press
-		self.x_press = event.x
-		self.y_press = event.y
+		delta_x = event_x - self.x_press
+		delta_y = event_y - self.y_press
+		self.x_press = event_x
+		self.y_press = event_y
 
 		height = self.get_height()
 		width = self.get_width()
