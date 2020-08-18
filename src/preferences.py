@@ -54,6 +54,9 @@ class DrPrefsWindow(Gtk.Window):
 			self.set_default_size(600, 400) # Not high enough but the golden
 			# ratio is more important than usability
 
+		if is_beta:
+			self.get_style_context().add_class('devel')
+
 		self.page_builder_images()
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)

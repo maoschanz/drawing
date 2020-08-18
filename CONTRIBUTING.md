@@ -13,9 +13,7 @@ How to contribute to Drawing
 
 # Bug reports
 
-Usability and design issues concerning existing features are bugs.
-
-- If you can, try to **check if it hasn't already been fixed but not released**.
+- If you can, try to **check if the bug has already been fixed but not released**.
 - Report it with informations required by the adequate issue template.
 - If it's meaningful, try to include screenshots.
 
@@ -23,9 +21,7 @@ Usability and design issues concerning existing features are bugs.
 
 # Feature requests
 
-Usability and design issues concerning existing features are **not** new features.
-
-- If you can, try to **check if it hasn't already been added but not released**.
+- If you can, try to **check if the feature has already been added but not released**.
 - Report it with informations required by the adequate issue template.
 - In the report, explain **what** it does, **not how** it does it.
 
@@ -56,7 +52,7 @@ to translate the strings of this `.po` file.
 
 Concerning the "original version" in english: i'm **not** a native english
 speaker, so there might be mistakes. If you find incorrect english labels,
-please report an issue about it.
+please report an issue about them.
 
 ##### Comments
 
@@ -70,7 +66,7 @@ list of keywords for finding the app in searchable menus or software centers.
 ##### Accelerators
 
 When words have an underscore in them, it defines a keyboard accelerator working
-with the <kbd>Alt</kbd> key: for example, if the english-speaking user uses a
+with the <kbd>Alt</kbd> key: for example, if an english-speaking user uses a
 layout with a menu-bar, pressing <kbd>Alt</kbd>+<kbd>F</kbd> will open the
 `_File` menu.
 
@@ -133,8 +129,8 @@ According to some people, this directory should contain the UI resources, but
 here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
 along with the python code.
 
-- See [here](./diagrams/README.md) for explanations about the architecture
-- See [here](./diagrams/) for class diagrams (**WORK IN PROGRESS**)
+>See [here](./diagrams/) for explanations about the architecture and class
+diagrams (**WORK IN PROGRESS**)
 
 ### UI design
 
@@ -150,8 +146,8 @@ algorithmically according to the user's actions and settings. So you have to:
 
 - edit them with a text editor, since the point of a given file is hard to
 understand by just looking at the Glade preview;
-- actually run the app to be sure of how your changes to these files actually
-look like once filled with the accurate widgets.
+- run the app to be sure of how your changes to these files actually look like
+once filled with the accurate widgets.
 
 If you **ever** even try to use Glade or a similar software, the auto-generated
 code will re-order all the lines, and add dozens of useless properties. Such a
@@ -160,7 +156,7 @@ would be rejected.
 
 Glade also removes all comments, which are essential to the generation of the
 translation files. It also removes some of the empty containers meant to be
-filled by the python code, thus breaking the app. Do not use Glade.
+filled by the python code, thus breaking the app. Please do not use Glade here.
 
 ##### Design guidelines
 
@@ -190,7 +186,7 @@ implicit canceling, …)_ which can easily create small bugs.
 - the horizontal and vertical scrollings (and their scrollbars) are managed
 "manually" and quite poorly.
 
-These 3 points sometimes lead to object-oriented spaghetti code.
+These 3 points sometimes can lead to object-oriented spaghetti code.
 
 If you change anything regarding the selection and/or the "canvas tools" (the
 tools which can edit the selection content), make sure to test various scenarios
@@ -218,7 +214,8 @@ This app is developed using _GNOME Builder_ and its support for `flatpak`:
 - Open _GNOME Builder_
 - Click on "Clone a repository…" and use this address: `https://github.com/maoschanz/drawing.git`
 - Open it as a project with GNOME Builder
-- Be sure the runtime is installed (if it doesn't suggest it automatically, <kbd>Ctrl</kbd>+<kbd>Return</kbd> → type `update-dependencies`)
+- Be sure the runtime is installed (if it doesn't suggest it automatically,
+<kbd>Ctrl</kbd>+<kbd>Return</kbd> → type `update-dependencies`)
 - Click on the _Run_ button
 
 ### With `git` and `meson`
@@ -304,15 +301,20 @@ Stable versions for end-users are **tagged**, and listed in this Github repo's
 
 Dependencies to run the app:
 
-- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`). A version ≥3.30.0 is required to run the code from the branch `master`. The branch `0.4` should be fine with any version.
+- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`). A
+version ≥3.30.0 is required to run the code from the branch `master`. The branch
+`0.4` should be fine with any version.
 - `cairo` library's GI for python3 (on Debian, it's `python3-gi-cairo`).
 - GTK libraries' GI (on Debian, it's `gir1.2-gtk-3.0`).
 
 Dependencies to build the app (Debian packages names):
 
-- `meson`. The version required by the `meson.build` file at the root of the project can be changed if necessary, but please don't add this change to your commit(s).
+- `meson`. The version of meson required by the `meson.build` file at the root
+of the project can be changed if necessary, but please don't add this change to
+your commit(s).
 - `appstream-util` (validation of the `.appdata.xml` file)
-- `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the icons into a `.gresource` file)
+- `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
+icons into a `.gresource` file)
 
 ----
 

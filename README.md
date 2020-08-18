@@ -63,7 +63,7 @@ If your language is not here, or is incompletely translated, you can
 | he   | Hebrew       | 0.4.1 | **47%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
 | hr   | Croatian     | 0.4.11 | 97%       | [Milo Ivir](https://github.com/milotype)
 | hu   | Hungarian    | 0.4.10 | **78%**   | [Kálmán „KAMI” Szalai](https://github.com/kami911)
-| it   | Italian      | 0.4.1 | 96%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
+| it   | Italian      | 0.4.1 | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
 | nl   | Dutch        | 0.4.1 | 99%        | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | 0.4.10 | 89%       | [Piotr Komur](https://github.com/pkomur)
 | pt_BR | Br. portuguese | 0.4.3 | **60%** | [Antonio Hauren](https://github.com/haurenburu)
