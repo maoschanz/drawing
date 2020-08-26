@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-16 23:17+0200\n"
-"PO-Revision-Date: 2020-05-19 01:04+0300\n"
+"PO-Revision-Date: 2020-08-26 18:01+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -112,6 +112,8 @@ msgid ""
 "The text tool can now write using most system font, thus allowing more "
 "complex characters to be used (e.g. Asian characters)."
 msgstr ""
+"Metin aracı artık çoğu sistem yazı tipini kullanarak yazabilir, böylece "
+"karmaşık karakterler kullanılabilir (örneğin, Asya karakterleri)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -427,7 +429,7 @@ msgstr "Farklılık"
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Photo-oriented modes"
-msgstr ""
+msgstr "Fotoğraf odaklı kipler"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
@@ -526,9 +528,8 @@ msgid "Height"
 msgstr "Yükseklik"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Renkler"
+msgstr "Renk"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -598,9 +599,8 @@ msgid "Open As New Image"
 msgstr "Yeni Görüntü Olarak Aç"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Kısayollar"
+msgstr "Klavye Kısayolları"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -612,7 +612,7 @@ msgstr "Ana menü"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Geçmiş"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -692,16 +692,15 @@ msgstr "Önizlemeyi değiştir"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Dokunmatik hareketleri"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "Other tools"
-msgstr "Diğer kipler"
+msgstr "Diğer araçlar"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -810,9 +809,8 @@ msgstr "Öntanımlı yükseklik"
 
 #: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
 #: src/tools/ui/tool-crop.ui
-#, fuzzy
 msgid "Default color"
-msgstr "Öntanımlı arka plan"
+msgstr "Öntanımlı renk"
 
 #: src/preferences.py
 msgid "Images saving"
@@ -857,7 +855,7 @@ msgstr ""
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "Açıklamalar için kullanıcı yardım kılavuzuna bakın."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1271,7 +1269,7 @@ msgstr "Daha fazla seçenek"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Şununla genişlet..."
 
 #: src/optionsbars/canvas/optionsbar-crop.ui
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
@@ -1465,29 +1463,25 @@ msgid "Clipping"
 msgstr "Kırpma"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Boş anahat"
+msgstr "Düz anahat"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Dashed outline"
-msgstr "Kesikli ok"
+msgstr "Kesikli anahat"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
-msgstr "Dış çizgi"
+msgstr "Anahat yok"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
 msgstr "Dolgu"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Boş"
+msgstr "Boş şekil"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
@@ -1538,9 +1532,8 @@ msgid "Font"
 msgstr "Yazı tipi"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "Bir süzgeç seç…"
+msgstr "Bir yazı tipi seç…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
