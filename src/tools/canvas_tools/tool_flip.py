@@ -31,7 +31,7 @@ class ToolFlip(AbstractCanvasTool):
 		self.flip_v = False
 
 		builder = Gtk.Builder.new_from_resource( \
-		                  '/com/github/maoschanz/drawing/tools/ui/tool_flip.ui')
+		                  '/com/github/maoschanz/drawing/tools/ui/tool-flip.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.horizontal_btn = builder.get_object('horizontal_btn')

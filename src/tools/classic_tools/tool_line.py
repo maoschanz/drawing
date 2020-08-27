@@ -1,8 +1,21 @@
 # tool_line.py
+#
+# Copyright 2018-2020 Romain F. T.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk
-
 from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_add_arrow_triangle
 
@@ -20,19 +33,20 @@ class ToolLine(AbstractAbstractTool):
 		self.add_tool_action_enum('cairo_operator', 'over')
 
 		# Default values
-		self.selected_shape_label = _("Round")
+		self._shape_label = _("Round")
 		self.selected_operator = cairo.Operator.OVER
-		self.selected_end_id = cairo.LineCap.ROUND
+		self._cap_id = cairo.LineCap.ROUND
 		self.use_dashes = False
 		self.use_arrow = False
 
-	def set_active_shape(self):
-		if self.get_option_value('line_shape') == 'square':
-			self.selected_end_id = cairo.LineCap.BUTT
-			self.selected_shape_label = _("Square")
-		else:
-			self.selected_end_id = cairo.LineCap.ROUND
-			self.selected_shape_label = _("Round")
+	def _set_active_shape(self):
+		state_as_string = self.get_option_value('line_shape')
+		if state_as_string == 'thin':
+			self._cap_id = cairo.LineCap.BUTT
+			self._shape_label = _("Thin")
+		elif state_as_string == 'square':
+			self._cap_id = cairo.LineCap.SQUARE
+			self._shape_label = _("Square")
 
 	def set_active_operator(self):
 		state_as_string = self.get_option_value('cairo_operator')
@@ -52,13 +66,14 @@ class ToolLine(AbstractAbstractTool):
 	def get_options_label(self):
 		return _("Line options")
 
-	def get_edition_status(self): # TODO l'opérateur est important
+	def get_edition_status(self):
+		# TODO l'opérateur est important
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.use_gradient = self.get_option_value('use_gradient')
 		self.set_active_shape()
 		self.set_active_operator()
-		label = self.label + ' (' + self.selected_shape_label + ') '
+		label = self.label + ' (' + self._shape_label + ') '
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")
 		elif self.use_arrow:
@@ -101,7 +116,7 @@ class ToolLine(AbstractAbstractTool):
 			'rgba2': self.sec_color,
 			'operator': self.selected_operator,
 			'line_width': self.tool_width,
-			'line_cap': self.selected_end_id,
+			'line_cap': self._cap_id,
 			'use_dashes': self.use_dashes,
 			'use_arrow': self.use_arrow,
 			'use_gradient': self.use_gradient,

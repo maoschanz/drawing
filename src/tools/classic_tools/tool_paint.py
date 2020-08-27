@@ -1,7 +1,7 @@
 # tool_paint.py
 
 import cairo
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf
 
 from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_get_magic_path

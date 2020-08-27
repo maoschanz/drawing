@@ -32,7 +32,7 @@ class ToolSelect(AbstractAbstractTool):
 
 		# Special bottom panel TODO common to the 3 types
 		builder = Gtk.Builder.new_from_resource( \
-		                '/com/github/maoschanz/drawing/tools/ui/tool_select.ui')
+		                '/com/github/maoschanz/drawing/tools/ui/tool-select.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 		actions_menu = builder.get_object('actions-menu')
 		builder.get_object('actions_btn').set_menu_model(actions_menu)

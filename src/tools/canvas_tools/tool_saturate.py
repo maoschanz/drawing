@@ -31,7 +31,7 @@ class ToolSaturate(AbstractCanvasTool):
 		self.apply_to_selection = False
 
 		builder = Gtk.Builder.new_from_resource( \
-		              '/com/github/maoschanz/drawing/tools/ui/tool_saturate.ui')
+		              '/com/github/maoschanz/drawing/tools/ui/tool-saturate.ui')
 		self.bottom_panel = builder.get_object('bottom-panel')
 
 		self.saturation_btn = builder.get_object('sat_btn')

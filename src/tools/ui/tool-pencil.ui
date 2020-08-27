@@ -2,17 +2,17 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
-      <attribute name="label" translatable="yes">Lead shape</attribute>
+      <attribute name="label" translatable="yes">Line shape</attribute>
       <item>
         <attribute name="label" translatable="yes">Round</attribute>
         <attribute name="action">win.line_shape</attribute>
         <attribute name="target">round</attribute>
       </item>
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">Thin</attribute> -->
-      <!--   <attribute name="action">win.line_shape</attribute> -->
-      <!--   <attribute name="target">thin</attribute> -->
-      <!-- </item> -->
+      <item>
+        <attribute name="label" translatable="yes">Thin</attribute>
+        <attribute name="action">win.line_shape</attribute>
+        <attribute name="target">thin</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes">Square</attribute>
         <attribute name="action">win.line_shape</attribute>
@@ -23,10 +23,6 @@
       <item>
         <attribute name="label" translatable="yes">Use dashes</attribute>
         <attribute name="action">win.use_dashes</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Arrow</attribute>
-        <attribute name="action">win.is_arrow</attribute>
       </item>
     </section>
     <section>
@@ -50,6 +46,12 @@
         <attribute name="label" translatable="yes">Difference</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">difference</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Artificial smoothness</attribute>
+        <attribute name="action">win.pencil_smooth</attribute>
       </item>
     </section>
   </menu>

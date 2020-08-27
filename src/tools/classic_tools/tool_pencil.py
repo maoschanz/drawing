@@ -1,8 +1,21 @@
 # tool_pencil.py
+#
+# Copyright 2018-2020 Romain F. T.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk
 import cairo, math
-
 from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_smooth_path
 
@@ -22,13 +35,13 @@ class ToolPencil(AbstractAbstractTool):
 		self.use_dashes = False
 		self.is_smooth = True
 
-		self.add_tool_action_enum('pencil_shape', 'round')
+		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_enum('cairo_operator', 'over')
 		self.add_tool_action_boolean('use_dashes', self.use_dashes)
 		self.add_tool_action_boolean('pencil_smooth', self.is_smooth)
 
 	def set_active_shape(self, *args):
-		state_as_string = self.get_option_value('pencil_shape')
+		state_as_string = self.get_option_value('line_shape')
 		if state_as_string == 'thin':
 			self.selected_cap_id = cairo.LineCap.BUTT
 			self.selected_join_id = cairo.LineJoin.BEVEL

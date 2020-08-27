@@ -1,6 +1,6 @@
 # tool_picker.py
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gdk
 
 from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_get_rgb_for_xy

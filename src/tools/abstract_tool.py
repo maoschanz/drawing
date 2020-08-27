@@ -68,7 +68,7 @@ class AbstractAbstractTool():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
-		fpath = '/com/github/maoschanz/drawing/tools/ui/tool_' + self.id + '.ui'
+		fpath = '/com/github/maoschanz/drawing/tools/ui/tool-' + self.id + '.ui'
 		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 

@@ -1,8 +1,6 @@
 # tool_rectangle.py
 
 import cairo, math
-from gi.repository import Gtk, Gdk
-
 from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_generic_shape_tool_operation
 

@@ -1,8 +1,6 @@
 # tool_polygon.py
 
-from gi.repository import Gtk, Gdk
 import cairo
-
 from .abstract_tool import AbstractAbstractTool
 from .utilities import utilities_generic_shape_tool_operation
 
