@@ -48,20 +48,17 @@ Canvas/selection edition tools:
 
 ### Available languages
 
-- Brazilian portuguese (thanks to [Antonio Hauren](https://github.com/haurenburu))
-- Castillan (thanks to [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan))
-- Danish (thanks to [scootergrisen](https://github.com/scootergrisen))
-- Dutch (thanks to [Heimen Stoffels](https://github.com/Vistaus))
-- English
-- Finnish (thanks to [MahtiAnkka](https://github.com/mahtiankka))
-- French
-- German (thanks to [Onno Giesmann](https://github.com/Etamuk))
-- Hebrew (thanks to [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash))
-- Hungarian (thanks to [KAMI911](https://github.com/kami911))
-- Italian (thanks to [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella))
-- Polish (thanks to [Piotr Komur](https://github.com/pkomur))
-- Russian (thanks to [Artem Polishchuk](https://github.com/tim77))
-- Turkish (thanks to [Serdar Sağlam](https://github.com/TeknoMobil))
+If your language is not here, or is incompletely translated, you can
+[contribute](./CONTRIBUTING.md#translating) to the translations.
+
+| code | name         | since | complete?  | main translators                  |
+|------|--------------|-------|------------|-----------------------------------|
+|      | English      | 0.2   | 100%       | help welcome *                    |
+| fr   | French       | 0.2   | 100%       |                                   |
+
+\*Concerning the "original version" in english: all the labels are here, but
+i'm **not** a native english speaker, so there might be mistakes. If you find
+incorrect english labels, please report an issue about it.
 
 ----
 

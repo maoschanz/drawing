@@ -54,16 +54,20 @@ class DrawingPrefsWindow(Gtk.Window):
 			stack_sidebar = Gtk.StackSidebar(visible=True, stack=self.stack)
 			stack_sidebar.set_size_request(140, -1)
 			self.content_area.pack_start(stack_sidebar, False, False, 0)
-			self.set_default_size(600, 360)
+			self.set_default_size(600, 400) # Not high enough but the golden
+			# ratio is more important than usability
+
+		if is_beta:
+			self.get_style_context().add_class('devel')
 
 		self.page_builder_images()
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)
 
-	# Each page_* attribute is a GtkGrid. The page_builder_* methods declare
+	# Each `page_*` attribute is a GtkGrid. The `page_builder_*` methods declare
 	# their grid to be the currently filled one, and reset the counter.
-	# Then, the page_builder_* methods will call the add_* methods, who will
-	# build accurate widgets to be packed on the grid by the attach_* methods.
+	# Then, the `page_builder_*` methods will call the `add_*` methods, who will
+	# build accurate widgets to be packed on the grid by the `attach_*` methods.
 
 	############################################################################
 

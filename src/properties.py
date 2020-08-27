@@ -25,14 +25,14 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 		                      transient_for=window, title=_("Image properties"))
 		self._image = image
-		self.build_ui()
+		self._build_ui()
 		if wants_csd:
 			subtitle = self._image.get_filename_for_display()
 			self.get_titlebar().set_subtitle(subtitle)
 		self.set_default_size(400, 150)
 		self.show()
 
-	def build_ui(self):
+	def _build_ui(self):
 		"""Fill the dialog with labels displaying correct informations."""
 		ui_path = '/com/github/maoschanz/drawing/ui/'
 		builder = Gtk.Builder.new_from_resource(ui_path + 'properties.ui')
@@ -53,7 +53,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		# Colorspace ###########################################################
 
 		self.label_colorspace = builder.get_object('label_surface_colorspace')
-		self.set_colorspace_label()
+		self._set_colorspace_label()
 
 		# Size (and size unit) #################################################
 
@@ -66,13 +66,13 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		btn_cm = builder.get_object('units_cm')
 		btn_in.join_group(btn_px)
 		btn_cm.join_group(btn_px)
-		btn_px.connect('toggled', self.set_unit, ' px')
-		btn_cm.connect('toggled', self.set_unit, ' cm')
-		btn_in.connect('toggled', self.set_unit, ' in')
+		btn_px.connect('toggled', self._set_unit, ' px')
+		btn_cm.connect('toggled', self._set_unit, ' cm')
+		btn_in.connect('toggled', self._set_unit, ' in')
 
-		self.set_size_labels()
+		self._set_size_labels()
 
-	def set_colorspace_label(self):
+	def _set_colorspace_label(self):
 		enum = {
 			0: 'ARGB32',
 			1: 'RGB24',
@@ -86,7 +86,7 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_colorspace.set_label(colorspace_text)
 		return colorspace_text
 
-	def set_size_labels(self):
+	def _set_size_labels(self):
 		"""Set the labels for picture width and height according to the selected
 		unit (px, cm or in)."""
 		px_width = self._image.get_pixbuf_width()
@@ -103,9 +103,9 @@ class DrawingPropertiesDialog(Gtk.Dialog):
 		self.label_width.set_label(str(width) + self.unit)
 		self.label_height.set_label(str(height) + self.unit)
 
-	def set_unit(self, *args):
+	def _set_unit(self, *args):
 		self.unit = args[1]
-		self.set_size_labels()
+		self._set_size_labels()
 
 	############################################################################
 ################################################################################

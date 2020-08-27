@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 import cairo
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
 
 class DrawingSelectionManager():
 	__gtype_name__ = 'DrawingSelectionManager'
@@ -256,14 +256,11 @@ class DrawingSelectionManager():
 	# Debug ####################################################################
 
 	def print_values(self, *args):
-		"""Debug only. Is linked to the "troubleshoot selection" item in the
-		short hamburger menu."""
-		print("selection_x", self.selection_x)
-		print("selection_y", self.selection_y)
-		print("temp_x", self.temp_x)
-		print("temp_y", self.temp_y)
-		print("image.scroll_x", self.image.scroll_x)
-		print("image.scroll_y", self.image.scroll_y)
+		"""Development only: is linked to the "troubleshoot selection" item in
+		the short hamburger menu."""
+		print("selection coords", self.selection_x, self.selection_y)
+		print("temp coords", self.temp_x, self.temp_y)
+		print("image.scroll coords", self.image.scroll_x, self.image.scroll_y)
 
 		print("selection_path with scroll & temp deltas")
 		delta_x = 0 - self.image.scroll_x + self.selection_x - self.temp_x

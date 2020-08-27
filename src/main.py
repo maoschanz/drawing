@@ -16,7 +16,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, gi
-
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 
@@ -24,7 +23,8 @@ from .window import DrawingWindow
 from .preferences import DrawingPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
-APP_PATH = '/com/github/maoschanz/drawing/'
+APP_PATH = '/com/github/maoschanz/drawing'
+BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new'
 
 def main(version):
 	app = Application(version)
@@ -36,27 +36,25 @@ class Application(Gtk.Application):
 	shortcuts_window = None
 	prefs_window = None
 
-	# INITIALIZATION ###########################################################
+	############################################################################
+	# Initialization ###########################################################
 
 	def __init__(self, version):
 		super().__init__(application_id=APP_ID,
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
-		GLib.set_application_name('Drawing') # XXX drawing ?
+		GLib.set_application_name(_("Drawing"))
 		GLib.set_prgname(APP_ID)
-		self.version = version
+		self._version = version
 		self.has_tools_in_menubar = False
 
 		self.connect('startup', self.on_startup)
 		self.register(None)
-
 		self.connect('activate', self.on_activate)
 		self.connect('command-line', self.on_cli)
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
-		                     GLib.OptionArg.NONE,
-		                     _("Print the version and display the 'about' dialog"),
-		                     None)
+		                     GLib.OptionArg.NONE, _("Show the app version"), None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
@@ -66,22 +64,20 @@ class Application(Gtk.Application):
 		# TODO options pour le screenshot ?
 
 		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path(APP_PATH + 'icons')
-		icon_theme.add_resource_path(APP_PATH + 'tools/icons')
-
-		self.connect('window-removed', self.update_windows_menu_section)
+		icon_theme.add_resource_path(APP_PATH + '/icons')
+		icon_theme.add_resource_path(APP_PATH + '/tools/icons')
 
 	def on_startup(self, *args):
 		"""Called only once, add app-wide menus and actions, and all accels."""
-		self.build_actions()
-		builder = Gtk.Builder.new_from_resource(APP_PATH + 'ui/app-menus.ui')
+		self._build_actions()
+		builder = Gtk.Builder.new_from_resource(APP_PATH + '/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 		if self.prefers_app_menu():
 			appmenu_model = builder.get_object('app-menu')
 			self.set_app_menu(appmenu_model)
 
-	def build_actions(self):
+	def _build_actions(self):
 		"""Add app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs, None)
@@ -165,8 +161,11 @@ class Application(Gtk.Application):
 		options = args[1].get_options_dict()
 
 		if options.contains('version'):
-			print(_("Drawing") + ' ' + self.version)
-			self.on_about()
+			print(_("Drawing") + ' ' + self._version)
+			if self.is_beta():
+				print(_("This version isn't stable!"))
+			print()
+			print(_("Report bugs or ideas") + ' 👉️ ' + BUG_REPORT_URL)
 		elif options.contains('edit-clipboard'):
 			self.open_window_with_content(None, True)
 
@@ -186,12 +185,12 @@ class Application(Gtk.Application):
 		elif options.contains('new-window'):
 			self.on_new_window()
 			for fpath in arguments:
-				f = self.get_valid_file(args[1], fpath)
+				f = self._get_valid_file(args[1], fpath)
 				if f is not None:
 					self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
-				f = self.get_valid_file(args[1], fpath)
+				f = self._get_valid_file(args[1], fpath)
 				if f is not None:
 					win = self.props.active_window
 					if not win:
@@ -202,7 +201,8 @@ class Application(Gtk.Application):
 		# I don't even know if i should return something
 		return 0
 
-	# ACTIONS CALLBACKS ########################################################
+	############################################################################
+	# Actions callbacks ########################################################
 
 	def on_new_window(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
@@ -211,14 +211,13 @@ class Application(Gtk.Application):
 	def on_report(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
 		win = self.props.active_window
-		url = 'https://github.com/maoschanz/drawing/issues/new'
-		Gtk.show_uri_on_window(win, url, Gdk.CURRENT_TIME)
+		Gtk.show_uri_on_window(win, BUG_REPORT_URL, Gdk.CURRENT_TIME)
 
 	def on_shortcuts(self, *args):
 		"""Action callback, showing the 'shortcuts' dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-		builder = Gtk.Builder().new_from_resource(APP_PATH + 'ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource(APP_PATH + '/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts')
 		self.shortcuts_window.present()
 
@@ -232,28 +231,28 @@ class Application(Gtk.Application):
 
 	def on_help_index(self, *args):
 		"""Action callback, showing the index of user help manual."""
-		self.show_help_page('')
+		self._show_help_page('')
 
 	def on_help_main(self, *args):
 		"""Action callback, showing the 'basic features' page of the user help
 		manual."""
-		self.show_help_page('/main_features')
+		self._show_help_page('/main_features')
 
 	def on_help_tools(self, *args):
 		"""Action callback, showing the 'tools' page of the user help manual."""
-		self.show_help_page('/drawing_tools')
+		self._show_help_page('/drawing_tools')
 
 	def on_help_canvas(self, *args):
 		"""Action callback, showing the 'canvas and selection tools' page of the
 		user help manual."""
-		self.show_help_page('/canvas_tools')
+		self._show_help_page('/canvas_tools')
 
 	def on_help_selection(self, *args):
 		"""Action callback, showing the 'selection' page of the user
 		help manual."""
-		self.show_help_page('/selection_tools')
+		self._show_help_page('/selection_tools')
 
-	def show_help_page(self, suffix):
+	def _show_help_page(self, suffix):
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
 
@@ -270,7 +269,7 @@ class Application(Gtk.Application):
 			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
-			logo_icon_name=APP_ID, version=str(self.version),
+			logo_icon_name=APP_ID, version=str(self._version),
 			website='https://maoschanz.github.io/drawing/',
 			website_label=_("Official webpage"))
 		about_dialog.run()
@@ -300,17 +299,14 @@ class Application(Gtk.Application):
 		if can_quit:
 			self.quit()
 
-	# UTILITIES ################################################################
+	############################################################################
+	# Utilities ################################################################
 
 	def is_beta(self):
 		"""Tells is the app version is even or odd, odd versions being considered
 		as unstable versions. This affects available options and the style of
 		the headerbar."""
-		version_array = self.version.split('.')
-		if (int(version_array[1]) * 5) % 10 == 5:
-			return True
-		else:
-			return False
+		return (int(self._version.split('.')[1]) * 5) % 10 == 5
 
 	def add_action_simple(self, action_name, callback, shortcuts):
 		action = Gio.SimpleAction.new(action_name, None)
@@ -332,7 +328,7 @@ class Application(Gtk.Application):
 		action.connect('change-state', callback)
 		self.add_action(action)
 
-	def get_valid_file(self, app, path):
+	def _get_valid_file(self, app, path):
 		try:
 			f = app.create_file_for_arg(path)
 			if 'image/' in f.query_info('standard::*', \
@@ -343,6 +339,7 @@ class Application(Gtk.Application):
 		except:
 			err = _("Error opening this file. Did you mean %s ?")
 			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+			# XXX can happen without flatpak
 			command = command.format(APP_ID, path)
 			print(err % command)
 			return None
