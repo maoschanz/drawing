@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
-"PO-Revision-Date: 2020-01-24 21:28+0100\n"
+"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.3.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
@@ -48,7 +48,8 @@ msgstr "Program za crtanje za GNOME desktop"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"„Crtanje” je osnovni uređivač slika, podržava PNG, JPEG i BMP datoteke."
+"„Crtanje” je osnovni program za uređivanje slika s podrškom za PNG, JPEG i "
+"BMP datoteke."
 
 msgid ""
 "It allows you to draw or edit pictures with tools such as pencil, line or "
@@ -57,9 +58,21 @@ msgid ""
 "rotating, …"
 msgstr ""
 "Omogućuje crtanje ili uređivanje slika pomoću alata kao što su olovka, "
-"linija ili luk (s različitim opcijama), odabir (izrezivanje/kopiranje/"
-"umetanje/povlačenje/…), oblici (pravokutnik, krug, poligon, …), umetanje "
-"teksta, mijenjanje veličine, rezanje, rotiranje, …"
+"linija ili luk (s raznim opcijama), odabir (izrezivanje, kopiranje, "
+"umetanje, povlačenje, …), oblici (pravokutnik, krug, poligon, …), umetanje "
+"teksta, mijenjanje veličine, rezanje, okretanje, …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"Verzija 0.4.14 sadrži nekoliko ispravki manjih programskih grešaka i razne "
+"nove prijevode."
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -224,11 +237,11 @@ msgstr "Nova slika prilagođene veličine"
 
 #. you can omit the "New image" in the translation
 msgid "New Image From Selection"
-msgstr "iz odabira"
+msgstr "Nova slika iz odabira"
 
 #. you can omit the "New image" in the translation
 msgid "New Image From Clipboard"
-msgstr "iz međuspremnika"
+msgstr "Nova slika iz međuspremnika"
 
 msgid "Open an image"
 msgstr "Otvori sliku"
@@ -249,7 +262,7 @@ msgid "Export as…"
 msgstr "Izvezi kao …"
 
 msgid "Print"
-msgstr "Ispis"
+msgstr "Ispiši"
 
 #, fuzzy
 msgid "Close"
@@ -280,13 +293,13 @@ msgid "Paste"
 msgstr "Umetni"
 
 msgid "Import"
-msgstr "Uvoz"
+msgstr "Uvezi"
 
 msgid "_View"
 msgstr "_Prikaz"
 
 msgid "Show the preview"
-msgstr "Prikaži pretpregled"
+msgstr "Prikaži pretprikaz"
 
 msgid "Refresh"
 msgstr "Aktualiziraj"
@@ -396,9 +409,8 @@ msgstr "Slike"
 msgid "Tools"
 msgstr "Alati"
 
-#, fuzzy
 msgid "Window"
-msgstr "Novi prozor"
+msgstr "Prozor"
 
 msgid "Path"
 msgstr "Staza"
@@ -493,7 +505,7 @@ msgid "Navigation"
 msgstr "Navigacija"
 
 msgid "Toggle the preview"
-msgstr "Uključi/isključi pretpregled"
+msgstr "Uključi/isključi pretprikaz"
 
 msgid "Error starting the application, please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi grešku."
@@ -508,7 +520,7 @@ msgstr "Bez opcija"
 
 #. <property name="relief">none</property>
 msgid "Preview"
-msgstr "Pretpregled"
+msgstr "Pretprikaz"
 
 msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
@@ -520,8 +532,8 @@ msgstr "Odustani"
 msgid "Create"
 msgstr "Stvori"
 
-msgid "Print the version and display the 'about' dialog"
-msgstr ""
+msgid "Show the app version"
+msgstr "Prikaži verziju programa"
 
 msgid "Open a new window"
 msgstr "Otvori novi prozor"
@@ -532,13 +544,19 @@ msgstr "Otvori novu karticu"
 msgid "Edit the clipboard content"
 msgstr "Uredi sadržaj međuspremnika"
 
+msgid "This version isn't stable!"
+msgstr "Ovo nije stabilna verzija!"
+
+msgid "Report bugs or ideas"
+msgstr "Prijavi greške ili ideje"
+
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
 msgstr "Milo Ivir <mail@milotype.de>, 2020."
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "Autori GNOME-ovog kompleta ikona „Art Libre”"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Program za crtanje za GNOME desktop."
@@ -548,7 +566,7 @@ msgstr "Službena web-stranica"
 
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr "Greška pri otvaranju datoteke. Jesi li mislio/la na %s?"
+msgstr "Greška pri otvaranju datoteke. Možda misliš %s?"
 
 #, python-format
 msgid "Failed to load tool: %s"
@@ -566,7 +584,7 @@ msgstr "Odbaci promjene"
 
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "%s sadrži nespremljene promjene."
+msgstr "Postoje nespremljene promjene u %s."
 
 #, python-format
 msgid "Where do you want to open %s?"
@@ -589,7 +607,7 @@ msgstr "Bezimeno"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 msgid "this picture"
-msgstr "Ova slika"
+msgstr "ovoj slici"
 
 msgid "Discard"
 msgstr "Odbaci"
@@ -599,6 +617,9 @@ msgstr "Spremi sliku kao …"
 
 msgid "Import a picture"
 msgstr "Uvezi jednu sliku"
+
+msgid "Required tool is not available"
+msgstr "Potrebni alat nije dostupan"
 
 #, python-format
 msgid "Undo %s"
@@ -655,7 +676,7 @@ msgid "Advanced options"
 msgstr "Napredne opcije"
 
 msgid "Preview size"
-msgstr "Veličina pretpregleda"
+msgstr "Veličina pretprikaza"
 
 msgid "Development features"
 msgstr "Funkcije u razvoju"
@@ -772,12 +793,15 @@ msgid "percents"
 msgstr "postoci"
 
 #, fuzzy
-msgid "Lead shape"
+msgid "Line shape"
 msgstr "Oblik crte"
 
 #. Default values
 msgid "Round"
-msgstr "Oblo"
+msgstr "Zaobljeno"
+
+msgid "Thin"
+msgstr "Tanko"
 
 msgid "Square"
 msgstr "Kvardatično"
@@ -836,10 +860,10 @@ msgid "Flip vertically"
 msgstr "Preokreni okomito"
 
 msgid "Color gradient"
-msgstr "Prijelaz boje"
+msgstr "Gradijent u boji"
 
 msgid "Behavior"
-msgstr "Način"
+msgstr "Način rada"
 
 msgid "Encircle and fill"
 msgstr "Okruži i ispuni"
@@ -849,9 +873,6 @@ msgstr "Izbriši i zamijeni"
 
 msgid "Clipping"
 msgstr "Rezanje"
-
-msgid "Thin"
-msgstr "Tanko"
 
 msgid "Artificial smoothness"
 msgstr ""
@@ -875,7 +896,7 @@ msgid "Saturation"
 msgstr "Zasićenost"
 
 msgid "Keep proportions"
-msgstr "Zadrži omjere"
+msgstr "Zadrži omjer"
 
 msgid "Edit"
 msgstr "Uredi"
@@ -936,7 +957,7 @@ msgstr "Koristi crtice"
 
 #, fuzzy
 msgid "Circle options"
-msgstr "Opcije za krivulje"
+msgstr "Opcije za krivulju"
 
 msgid "Free shape"
 msgstr "Prostoručni oblik"
@@ -954,20 +975,20 @@ msgid "Line options"
 msgstr "Opcije za crtu"
 
 msgid "Paint"
-msgstr "Boja"
+msgstr "Bojanje"
 
 msgid "Painting options"
 msgstr "Opcije za crtanje"
 
 msgid "Click on an area to replace its color by transparency"
-msgstr "Klikni na područje, čiju boju želiš zamijeniti s prozirnošću"
+msgstr "Klikni na područje čiju boju želiš zamijeniti s prozirnošću"
 
 msgid "Polygon"
 msgstr "Mnogokut"
 
 #, fuzzy
 msgid "Polygon options"
-msgstr "Opcije za fontove"
+msgstr "Opcije za font"
 
 msgid "Pencil"
 msgstr "Olovka"
@@ -976,26 +997,26 @@ msgid "Pencil options"
 msgstr "Opcije za olovku"
 
 msgid "Color Picker"
-msgstr "Biranje boje"
+msgstr "Kapaljka"
 
 #, fuzzy
 msgid "Rectangle options"
-msgstr "Pravokutan odabir"
+msgstr "Pravokutni odabir"
 
 msgid "Text"
 msgstr "Tekst"
 
 msgid "Font options"
-msgstr "Opcije za fontove"
+msgstr "Opcije za font"
 
 msgid "Rectangle selection"
-msgstr "Pravokutan odabir"
+msgstr "Pravokutni odabir"
 
 msgid "Free selection"
 msgstr "Prostoručni odabir"
 
 msgid "Color selection"
-msgstr "Odabir bojom"
+msgstr "Odabir prema boji"
 
 msgid "Drag the selection or right-click on the canvas"
 msgstr "Povuci odabir ili klikni desnom tipkom na platno"

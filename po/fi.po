@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
-"PO-Revision-Date: 2019-12-10 22:40+0200\n"
-"Last-Translator: Kimmo Kujansuu <kimmo.kujansuu@yahoo.com>\n"
+"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"PO-Revision-Date: 2020-04-06 22:26+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
-"Language: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 2.0.6\n"
 
 msgid "Drawing"
 msgstr "Piirtäminen"
@@ -61,6 +61,17 @@ msgstr ""
 "tai kaari (eri vaihtoehdoilla), valinta (leikkaa/kopioi/liitä/vedä/…), "
 "muodot (suorakulmio, ympyrä, monikulmio…), tekstin lisäys, koon muuttaminen, "
 "rajaaminen, kiertäminen, …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"Versio 0.4.14 sisältää useita pieniä virhekorjauksia ja uusia käännöksiä."
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -390,9 +401,8 @@ msgstr "Kuvat"
 msgid "Tools"
 msgstr "Työkalut"
 
-#, fuzzy
 msgid "Window"
-msgstr "Uusi ikkuna"
+msgstr "Ikkuna"
 
 msgid "Path"
 msgstr "Polku"
@@ -410,13 +420,13 @@ msgid "Invalid format"
 msgstr "Väärä muoto"
 
 msgid "pixels"
-msgstr "Pikseliä"
+msgstr "pikseliä"
 
 msgid "centimeters"
-msgstr "Senttimetriä"
+msgstr "senttimetriä"
 
 msgid "inches"
-msgstr "Tuumaa"
+msgstr "tuumaa"
 
 msgid "Unselect"
 msgstr "Valitsematta"
@@ -514,8 +524,8 @@ msgstr "Peru"
 msgid "Create"
 msgstr "Luo"
 
-msgid "Print the version and display the 'about' dialog"
-msgstr "Tulosta versio ja näytä 'tietoja' -valintaikkuna"
+msgid "Show the app version"
+msgstr "Näytä sovelluksen versio"
 
 msgid "Open a new window"
 msgstr "Avaa uusi ikkuna"
@@ -526,13 +536,19 @@ msgstr "Avaa uusi välilehti"
 msgid "Edit the clipboard content"
 msgstr "Muokkaa leikepöydän sisältöä"
 
+msgid "This version isn't stable!"
+msgstr "Tämä versio ei ole vakaa!"
+
+msgid "Report bugs or ideas"
+msgstr "Ilmoita virheistä tai ideoita"
+
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
-msgstr "Kääntäjä Kimmo Kujansuu"
+msgstr "Kimmo Kujansuu"
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "GNOMEn \"Art Libre\" -kuvakesarjan kirjoittajat"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Piirustus apuohjelma GNOME-työpöydälle."
@@ -583,7 +599,7 @@ msgstr "Nimetön"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 msgid "this picture"
-msgstr "Tämä kuva"
+msgstr "tämä kuva"
 
 msgid "Discard"
 msgstr "Hylkää"
@@ -593,6 +609,9 @@ msgstr "Tallenna kuva nimellä…"
 
 msgid "Import a picture"
 msgstr "Tuo kuva"
+
+msgid "Required tool is not available"
+msgstr "Pakollinen työkalu ei ole käytettävissä"
 
 #, python-format
 msgid "Undo %s"
@@ -618,14 +637,14 @@ msgid "Images saving"
 msgstr "Kuvien tallennus"
 
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "JPEG- ja BMP-kuvat eivät pysty käsittelemään läpinäkyvyyttä."
 
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"JPEG- ja BMP-kuvat eivät pysty käsittelemään läpinäkyvyyttä, jos tallennat "
-"kuvat näihin muotoihin. Mitä haluat käyttää korvaamaan läpinäkyvät pikselit?"
+"Jos tallennat kuvat näihin muotoihin, mitä haluat käyttää korvaamaan "
+"läpinäkyvät pikselit?"
 
 msgid "White"
 msgstr "Valkoinen"
@@ -637,7 +656,7 @@ msgid "Checkboard"
 msgstr "Tarkistusalusta"
 
 msgid "Nothing"
-msgstr ""
+msgstr "Mitään"
 
 msgid "Ask before saving"
 msgstr "Kysy ennen tallentamista"
@@ -667,7 +686,7 @@ msgid "Compact"
 msgstr "Tiivis"
 
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -772,6 +791,9 @@ msgstr "Lyijykynän muoto"
 msgid "Round"
 msgstr "Pyöreä"
 
+msgid "Thin"
+msgstr "Ohut"
+
 msgid "Square"
 msgstr "Neliö"
 
@@ -829,7 +851,7 @@ msgid "Flip vertically"
 msgstr "Peilaa pystysuunnassa"
 
 msgid "Color gradient"
-msgstr "värikaltevuus"
+msgstr "Värin liukuväri"
 
 msgid "Behavior"
 msgstr "Käyttäytyminen"
@@ -842,9 +864,6 @@ msgstr "Pyyhi ja korvaa"
 
 msgid "Clipping"
 msgstr "Lehtileike"
-
-msgid "Thin"
-msgstr "Ohut"
 
 msgid "Artificial smoothness"
 msgstr "Keinotekoinen sileys"
@@ -910,7 +929,7 @@ msgid "No background"
 msgstr "Ei taustaa"
 
 msgid "Shadow"
-msgstr ""
+msgstr "Varjo"
 
 #, fuzzy
 msgid "Outline"
