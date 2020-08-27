@@ -1,24 +1,16 @@
 ---
-name: Bug report
-about: A feature already exists, but it is BROKEN
+name: Other issue
+about: Any issue that doesn't fit the other templates
 title: ''
-labels: bug
+labels: ''
 assignees: ''
 
 ---
 
-## Description
-
-<!-- Describe the bug: what doesn't work? -->
+<!-- Describe the issue, in english or in french -->
 <!-- If it's useful, add screenshots to help explain your problem. -->
 
 
-
-### Steps to reproduce the bug
-
-1. ...
-2. ...
-3. ...
 
 ## System
 

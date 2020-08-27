@@ -17,22 +17,25 @@
 
   <p>"Drawing" is a basic drawing application for the GNOME desktop, which can
   edit or create pictures (PNG, JPEG or BMP).</p>
-  <p>Basic features are located in the header of the window, such as the
-  <gui style="button">Open</gui> button, the <gui style="button">Save</gui>
-  button, and the main menu.</p>
+
+  <note style="tip">
+    <p>Many features described here are located in the header of the window, but
+    the exact layout of the app depends on your desktop environment. Screenshots
+    are provided for a standard GNOME environment.</p>
+  </note>
 
   <section>
     <title>The "Open" button</title>
 
     <p>Open a picture file from your documents.</p>
     <p>If the window size is too small to display its button, the
-    <gui style="button">Open</gui> menu is available in the main menu.</p>
+    <gui style="button">Open</gui> button is available in the primary menu.</p>
   </section>
 
   <section>
     <title>The "New Image" menu</title>
 
-    <p>This menu allows you to create a new image. Several options are
+    <p>The goal of this menu is to create a new image. Several options are
     available:</p>
     <list>
       <item>
@@ -45,18 +48,18 @@
         selection</link>.</p>
       </item>
       <item>
-        <p>Create a new image from the clipboard content.</p>
+        <p>Create a new image from the current clipboard content.</p>
       </item>
       <item>
         <p>Open a new window with a new blank image.</p>
       </item>
     </list>
     <p>If the window size is too small to display its button, the
-    <gui style="button">New</gui> menu is merged in the main menu.</p>
+    <gui style="button">New Image</gui> menu is merged in the primary menu.</p>
   </section>
 
   <section id="main-menu">
-    <title>The main menu</title>
+    <title>The primary menu</title>
 
     <media type="image" mime="image/png" width="80%"
            src="figures/screenshot_menu.png" its:translate="no"/>
@@ -97,3 +100,4 @@
   </section>
 
 </page>
+

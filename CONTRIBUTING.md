@@ -1,109 +1,320 @@
-# How to contribute to Drawing
+How to contribute to Drawing
+
+- [If you find a bug](#bug-reports)
+- [If you want a new feature](#feature-requests)
+- [If you want to **translate** the app](#translating)
+- If you want to fix a bug or to add a new feature:
+	- [General guidelines](#contribute-to-the-code)
+	- [Explanations about the code](#structure-of-the-code)
+- [How to install from the source code](#install-from-source-code)
+- [If you want to **package** the app](#packaging)
 
 ----
 
-## If you want to translate the app
+# Bug reports
 
-#### I assume this will be the most usual contribution so i detail:
-
-- Fork the repo and clone it on your disk.
-- `git checkout 0.4` to contribute to the `0.4` branch.
-- Add your language to `po/LINGUAS`.
-- Build the app once, and then run `ninja -C _build drawing-update-po` at the root of the project. It will produce a `.po` file for your language.
-- Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) to translate the strings of this `.po` file. Do not translate the app id (`com.github.maoschanz.drawing`).
-- If you want to test your translation:
-	- GNOME Builder isn't able to run a translated version of the app so export it as a `.flatpak` file.
-	- Install it with `flatpak install path/to/that/file`.
-- Run `git add . && git commit && git push`
-- Submit a "pull request"/"merge request".
+- If you can, try to **check if the bug has already been fixed but not released**.
+- Report it with informations required by the adequate issue template.
+- If it's meaningful, try to include screenshots.
 
 ----
 
-## If you want to fix a bug or to add a new feature
+# Feature requests
 
-- The issue has to be reported first.
-- Tell on the issue that you'll try to fix it.
+- If you can, try to **check if the feature has already been added but not released**.
+- Report it with informations required by the adequate issue template.
+- In the report, explain **what** it does, **not how** it does it.
 
-### Syntax
+----
 
-- Use tabs in `.py` files.
+# Translating
+
+Notice that this procedure will translate the unstable, unreleased version
+currently developed on the `master` branch. If you want to entirely translate
+older versions, restart this procedure but run `git checkout 0.4` just after
+having cloned the repo, and at the end, open the merge request to `0.4` too.
+
+### Get the .po file
+
+- Fork the repo and clone your fork on your disk (see [installation instructions here](#with-gnome-builder-and-flatpak))
+- **If the translation exists but is incomplete:**
+	- Find the file corresponding to your language in the the `po` directory.
+- **If the translation doesn't exist at all:**
+	- Add your language to `po/LINGUAS`
+	- Run `msginit -i po/drawing.pot --locale=xx -o po/xx.po`, where `xx` should
+	be replaced by the ISO code of your language. This command will produce a
+	`.po` file for your language in the `po` directory.
+
+### Translate
+
+Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator)
+to translate the strings of this `.po` file.
+
+Concerning the "original version" in english: i'm **not** a native english
+speaker, so there might be mistakes. If you find incorrect english labels,
+please report an issue about them.
+
+##### Comments
+
+There are comments in the file to give context helping you to translate some
+strings, please take them into account.
+
+Example of something translators can't guess so it's written in the comments:
+since this app is a clone of MS Paint, `Paint;` (untranslated) has to be in the
+list of keywords for finding the app in searchable menus or software centers.
+
+##### Accelerators
+
+When words have an underscore in them, it defines a keyboard accelerator working
+with the <kbd>Alt</kbd> key: for example, if an english-speaking user uses a
+layout with a menu-bar, pressing <kbd>Alt</kbd>+<kbd>F</kbd> will open the
+`_File` menu.
+
+In translations, the underscore can be on another character of the word, but
+translators should take into account that 2 labels activatable at the same time
+can't share the same accelerator.
+
+Example: `Édi_tion` and `Ou_tils` can't work, but `É_dition` and `Ou_tils` can
+work.
+
+Also, the character should be accessible easily from the keyboard layouts of
+your language.
+
+### Submitting your translation
+
+- **(optional)** If you want to test your translation:
+	- The flatpak SDK isn't able to run a translated version of the app, so
+	export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
+	- Or (it's harder) [install it with `meson`](#with-git-and-meson).
+- Run `git add po && git commit && git push`
+- Submit a "pull request"/"merge request"
+
+----
+
+# Contribute to the code
+
+### General guidelines
+
+- It's better if an issue is reported first
+- Easy issues are tagged "[good first issue](https://github.com/maoschanz/drawing/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)"
+- Tell on the issue that you'll try to fix it
+
+**If you find anything weird in the code, or don't understand it, feel free to
+ask me about it.**
+
+To set up a development environment, see [here](#install-from-source-code).
+
+### Syntax and comments
+
 - Use 2 spaces in `.ui` or `.xml` files.
-- Try to not do lines longer than 80 characters.
-- In the python code, use double quotes for translatable strings and single quotes otherwise.
-- Good comments explain *why* the code does it, if a comment needs to explain *what* it does, the code is probably bad.
-- I like `GAction`s and i've added wrapper methods for using them, try to use that instead of directly connecting buttons/menu-items to a method.
+- Good comments explain *why* the code does what it does. If a comment explains
+*what* it does, the comment is useless, or the code is bad. (useless comments
+are fine, don't worry)
+- Upon translatable strings, comments explaining the context to translators are
+welcome.
 
-Concerning design, try to respect GNOME Human Interface Guidelines as much as possible, while making your feature available from the (hidden by default) menubar.
+**In python code only:**
 
-### Explanation of the code
+- Use actual tabs (4 columns wide).
+- Try to not write lines longer than 80 characters.
+- Use double quotes for strings the user might see, and single quotes otherwise
+(paths, constants, enumerations, dict keys, …)
 
-The `data` directory contains data useless to the execution (app icons, desktop launcher, settings schemas, appdata, …).
-I know, it should contains the resources according to some people, but i don't care:
-resources used by the app (`.ui` files, in-app icons, …) are in `src`, along with the python code.
+### Structure of the code
 
-- `main.py` defines the application, which has:
-    - a preferences window (`preferences.py`)
-    - a menubar (hidden with most layouts)
-    - an appmenu (for GNOME Shell <= 3.30)
-    - dialogs (about, shortcuts)
-    - some `GioAction`s
-    - implementations of CLI handling methods
-    - several **windows**
-- `window.py` defines a GtkApplicationWindow:
-    - the **properties** dialog (`proporties.py`) depends on the window
-    - a window's decorations can change quite a lot, which is partly handled by…
-        - `headerbar.py` for the headerbar
-        - `color_popover.py` for the color palettes (default bottom panel)
-        - `minimap.py` for the minimap, which shows a thumbnail of the currently opened image
-    - some `GioAction`s
-    - a window has several **tools**
-    - a window has several **images**
-- `image.py` defines an image, which contains:
-    - an "undo" history and a "redo" history
-    - a selection, managed by `selection_manager.py`
-    - a pixbuf (as an attribute), named `main_pixbuf`
-- **tools** are managed by a bunch of files in the `tools` directory. There are several types of tools:
-    - the selection translates users input into operations using the selection_manager
-    - the "canvas tools" can be applied the selection pixbuf or the main pixbuf
-    - the classic tools, draw on the main pixbuf using **`cairo`**
+The `data` directory contains data useful for installation but useless to the
+execution (app icons, desktop launcher, settings schemas, appdata, …).
 
-In my opinion, he complexity of the code comes mainly from 2 points:
+According to some people, this directory should contain the UI resources, but
+here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
+along with the python code.
 
-- tools are window-wide, while operations, which are stored in the history, are image-wide
-- the interactions with the selection are ridiculously complex and numerous _(defining, explicit applying, explicit canceling, import, clipboard methods, cancelled use by other tools, confirmed use by other tools, deletion, implicit applying, implicit canceling, …)_
+>See [here](./diagrams/) for explanations about the architecture and class
+diagrams (**WORK IN PROGRESS**)
 
-<!-- UML diagrams: -->
+### UI design
 
-<!-- ![UML diagrams](docs/uml.png) -->
+If you want to change something to the user interface:
 
->**If you find some bullshit in the code, or don't understand it, feel free to ask me about it.**
+##### About Glade
+
+People sometimes like to design their apps in Glade, or in the "GUI designer"
+extension integrated in GNOME Builder.
+
+But in Drawing, the UI is modular, and the `.ui` files are mere templates filled
+algorithmically according to the user's actions and settings. So you have to:
+
+- edit them with a text editor, since the point of a given file is hard to
+understand by just looking at the Glade preview;
+- run the app to be sure of how your changes to these files actually look like
+once filled with the accurate widgets.
+
+If you **ever** even try to use Glade or a similar software, the auto-generated
+code will re-order all the lines, and add dozens of useless properties. Such a
+commit diff would be unreadable, so a merge request with this kind of change
+would be rejected.
+
+Glade also removes all comments, which are essential to the generation of the
+translation files. It also removes some of the empty containers meant to be
+filled by the python code, thus breaking the app. Please do not use Glade here.
+
+##### Design guidelines
+
+Try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
+as much as possible, while making your feature available from the menubar
+(in `app-menus.ui`). The menubar is hidden in most cases, but it should contains
+as many `GAction`s as possible for testing purposes (and also because searchable
+menus still exist).
+
+If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
+any other), please be sure to not hurt the UX with the GNOME layout (since it's
+the one used on smartphone, be careful it has to stay very resizable).
+
+### Other remarks
+
+I like `GAction`s and i've added wrapper methods for using them, try to use that
+instead of directly connecting buttons/menu-items to a method.
+
+In my opinion, the difficulties with the code can come mainly from 3 points:
+
+- tools are window-wide, while the operations they produce, which are stored in
+the history, are image-wide.
+- the interactions with the selection are ridiculously complex and numerous
+_(defining, explicit applying, explicit canceling, import, clipboard methods,
+use by the "canvas tools" (cancelled or confirmed), deletion, implicit applying,
+implicit canceling, …)_ which can easily create small bugs.
+- the horizontal and vertical scrollings (and their scrollbars) are managed
+"manually" and quite poorly.
+
+These 3 points sometimes can lead to object-oriented spaghetti code.
+
+If you change anything regarding the selection and/or the "canvas tools" (the
+tools which can edit the selection content), make sure to test various scenarios
+like this one:
+
+1. several images edited in different tabs of the same window;
+2. zoom and/or scroll;
+3. select things, or import/paste things (in both tabs);
+4. edit the selection (in both tabs, don't forget to click "apply" before
+switching to the other tab);
+5. unselect it (in both tabs);
+6. undo/redo.
 
 ----
 
-## If you find a bug
+# Install from source code
 
-Usability and design issues are considered as bugs.
+You will not get updates with this installation method so please do that only
+for contributing to development, translations, testing, or packaging.
 
-- If you can, try to check if it hasn't already been fixed but not released.
-- Report it with:
-	- OS version
-	- Flatpak version
-	- App version
-	- If it's meaningful, screenshots.
+### With GNOME Builder and flatpak
+
+This app is developed using _GNOME Builder_ and its support for `flatpak`:
+
+- Open _GNOME Builder_
+- Click on "Clone a repository…" and use this address: `https://github.com/maoschanz/drawing.git`
+- Open it as a project with GNOME Builder
+- Be sure the runtime is installed (if it doesn't suggest it automatically,
+<kbd>Ctrl</kbd>+<kbd>Return</kbd> → type `update-dependencies`)
+- Click on the _Run_ button
+
+### With `git` and `meson`
+
+See [here](#dependencies) for the list of dependencies.
+
+Get the code:
+
+```sh
+git clone https://github.com/maoschanz/drawing.git
+```
+
+Build the app:
+```sh
+cd drawing
+meson _build
+ninja -C _build
+```
+
+Install the app (system-wide):
+```sh
+sudo ninja -C _build install
+```
+(if you know the options to install user-wide, please tell)
+
+The app can then be removed with:
+```sh
+cd _build
+sudo ninja uninstall
+```
+
+### Others
+
+<details><summary>With flatpak-builder (not recommended, that's just for me)</summary>
+<p>
+
+Initial setup of the local flatpak repository:
+```sh
+wget https://raw.githubusercontent.com/maoschanz/drawing/master/com.github.maoschanz.drawing.json
+flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.drawing.json
+flatpak --user remote-add --no-gpg-verify local-drawing-repo _repo
+flatpak --user install local-drawing-repo com.github.maoschanz.drawing
+```
+
+Update:
+```sh
+flatpak-builder --force-clean _build2/ --repo=_repo com.github.maoschanz.drawing.json
+flatpak update
+```
+
+</p>
+</details>
+
+You can also build a debian package with the script `deb_package.sh`, but you
+won't get updates that way, so don't do that. You probably don't have all the
+dependencies to make the script work anyway.
 
 ----
 
-## If you want a new feature
+# Packaging
 
-Usability and design issues are **not** considered as features.
+### Branches
 
-- Report it as an issue, and explain what it does, not how it does it.
-- Is it…
-	- a general feature ?
-	- a new standalone tool ?
-	- a new option for an existing tool ?
+The `master` branch is not stable and **should not** be packaged.
+
+<details><summary>(except if your distro have experimental repos)</summary>
+<p>
+
+<a href=https://wiki.debian.org/DebianExperimental>How to set up the debian
+experimental repository</a>
+
+```sh
+sudo apt -t experimental install drawing
+```
+
+</p>
+</details>
+
+Stable versions for end-users are **tagged**, and listed in this Github repo's
+"_Releases_" section. For now, most of them are on the `0.4` branch.
+
+### Dependencies
+
+Dependencies to run the app:
+
+- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`). A
+version ≥3.30.0 is required to run the code from the branch `master`. The branch
+`0.4` should be fine with any version.
+- `cairo` library's GI for python3 (on Debian, it's `python3-gi-cairo`).
+- GTK libraries' GI (on Debian, it's `gir1.2-gtk-3.0`).
+
+Dependencies to build the app (Debian packages names):
+
+- `meson`. The version of meson required by the `meson.build` file at the root
+of the project can be changed if necessary, but please don't add this change to
+your commit(s).
+- `appstream-util` (validation of the `.appdata.xml` file)
+- `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
+icons into a `.gresource` file)
 
 ----
-
-#### And thank you for caring about this app!
 
