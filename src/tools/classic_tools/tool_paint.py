@@ -69,16 +69,16 @@ class ToolPaint(AbstractAbstractTool):
 		self.restore_pixbuf()
 
 		if operation['algo'] == 'replace':
-			self.op_replace(operation)
+			self._op_replace(operation)
 		elif operation['algo'] == 'fill':
-			self.op_fill(operation)
+			self._op_fill(operation)
 		else: # == 'clipping'
-			self.op_clipping(operation)
+			self._op_clipping(operation)
 
 	############################################################################
 
-	def op_replace(self, operation):
-		"""Algorithmically less ugly than `op_fill`, but doesn't handle (semi-)
+	def _op_replace(self, operation):
+		"""Algorithmically less ugly than `_op_fill`, but doesn't handle (semi-)
 		transparent colors correctly, even outside of the targeted area."""
 		# FIXME
 		if operation['path'] is None:
@@ -125,7 +125,7 @@ class ToolPaint(AbstractAbstractTool):
 		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context2.paint()
 
-	def op_fill(self, operation):
+	def _op_fill(self, operation):
 		"""Simple but ugly, and it's relying on the precision of the provided
 		path whose creation is based on shitty heurisctics."""
 		if operation['path'] is None:
@@ -136,29 +136,39 @@ class ToolPaint(AbstractAbstractTool):
 		cairo_context.append_path(operation['path'])
 		cairo_context.fill()
 
-	def op_clipping(self, operation):
+	def _op_clipping(self, operation):
 		"""Replace the color with transparency by adding an alpha channel."""
-		old_rgb = operation['old_rgb']
-		r0 = old_rgb[0]
-		g0 = old_rgb[1]
-		b0 = old_rgb[2]
+		old_rgba = operation['old_rgb']
+		r0 = old_rgba[0]
+		g0 = old_rgba[1]
+		b0 = old_rgba[2]
+		# XXX and the alpha channel ? pas l'air possible en fait
 		margin = 0 # TODO as an option ? is not elegant but is powerful
-		for i in range(-1 * margin, margin+1):
-			r = r0 + i
-			if r <= 255 and r >= 0:
-				for j in range(-1 * margin, margin+1):
-					g = g0 + j
-					if g <= 255 and g >= 0:
-						for k in range(-1 * margin, margin+1):
-							b = b0 + k
-							if b <= 255 and b >= 0:
-								self.replace_with_alpha(r, g, b)
+		self._clip_red(margin, r0, g0, b0)
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 
-	def replace_main_with_alpha(self, red, green, blue):
-		self.get_image().main_pixbuf = self.get_main_pixbuf().add_alpha(True, \
-		                                                       red, green, blue)
+	def _clip_red(self, margin, r0, g0, b0):
+		for i in range(-1 * margin, margin + 1):
+			r = r0 + i
+			if r <= 255 and r >= 0:
+				self._clip_green(margin, r, g0, b0)
+
+	def _clip_green(self, margin, r, g0, b0):
+		for i in range(-1 * margin, margin + 1):
+			g = g0 + i
+			if g <= 255 and g >= 0:
+				self._clip_blue(margin, r, g, b0)
+
+	def _clip_blue(self, margin, r, g, b0):
+		for i in range(-1 * margin, margin + 1):
+			b = b0 + i
+			if b <= 255 and b >= 0:
+				self._replace_main_with_alpha(r, g, b)
+
+	def _replace_main_with_alpha(self, red, green, blue):
+		new_pixbuf = self.get_main_pixbuf().add_alpha(True, red, green, blue)
+		self.get_image().set_main_pixbuf(new_pixbuf)
 
 	def replace_temp_with_alpha(self, red, green, blue):
 		pixbuf1 = self.get_image().temp_pixbuf.add_alpha(True, red, green, blue)
