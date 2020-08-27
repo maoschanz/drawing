@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
+"POT-Creation-Date: 2020-08-28 00:27+0200\n"
 "PO-Revision-Date: 2019-07-31 11:08-0300\n"
-"Last-Translator: Antonio Hauren <haurenburu@protonmail.com>\n"
+"Last-Translator: Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>\n"
 "Language-Team: Portuguese - Brazil <none>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,17 @@ msgstr ""
 "arco (com diversas opções), seleção (corta/copia/cola/arrasta/…), formas "
 "(retângulo, circulo, polígono, …), inserir texto, redimensionar, aparar, "
 "rotacionar, …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"A versão 0.4.14 apresenta diversas correções de erros e várias traduções."
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -518,8 +529,9 @@ msgstr "Cancelar"
 msgid "Create"
 msgstr ""
 
-msgid "Print the version and display the 'about' dialog"
-msgstr "Mostrar versão e a janela 'sobre'"
+#, fuzzy
+msgid "Show the app version"
+msgstr "Mostrar versão"
 
 msgid "Open a new window"
 msgstr "Abrir uma nova janela"
@@ -529,6 +541,12 @@ msgstr "Abrir uma nova aba"
 
 msgid "Edit the clipboard content"
 msgstr "Editar conteúdo do clipboard"
+
+msgid "This version isn't stable!"
+msgstr ""
+
+msgid "Report bugs or ideas"
+msgstr "Reportar bugs ou ideias"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
@@ -599,6 +617,9 @@ msgstr "Salvar imagem como…"
 
 msgid "Import a picture"
 msgstr "Importar uma imagem"
+
+msgid "Required tool is not available"
+msgstr ""
 
 #, python-format
 msgid "Undo %s"
@@ -781,6 +802,9 @@ msgstr "Forma"
 msgid "Round"
 msgstr "Arredondada"
 
+msgid "Thin"
+msgstr "Fino"
+
 msgid "Square"
 msgstr "Quadrada"
 
@@ -849,9 +873,6 @@ msgstr "Apagar e substituir"
 
 msgid "Clipping"
 msgstr "Recorte"
-
-msgid "Thin"
-msgstr "Fino"
 
 #, fuzzy
 msgid "Artificial smoothness"

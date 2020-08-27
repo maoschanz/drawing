@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Piotr Komur <pkomur@gmail.com>, 2019.
+# Piotr Komur <pkomur@gmail.com>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
-"PO-Revision-Date: 2019-12-20 12:01+0100\n"
+"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
 
@@ -61,6 +61,17 @@ msgstr ""
 "linia, łuk (z różnymi opcjami), zaznaczanie (wycinanie/kopiowanie/wstawianie/"
 "przeciąganie/…), kształty (prostokąty, koła, wielokąty, …), tekst, "
 "wstawianie, zmiana rozmiaru, przycinanie, obrót, …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"Wersja 0.4.14 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -139,6 +150,7 @@ msgstr ""
 msgid ""
 "Version 0.4.5 features several minor bug fixes, and various new translations."
 msgstr ""
+"Wersja 0.4.5 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "Clicking on both mouse buttons will no longer crash the tools, and the "
@@ -149,6 +161,7 @@ msgstr ""
 msgid ""
 "Version 0.4.4 features several minor bug fixes, and various new translations."
 msgstr ""
+"Wersja 0.4.4 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "Version 0.4.3 includes new translations, and is compatible with older "
@@ -158,6 +171,7 @@ msgstr ""
 msgid ""
 "Version 0.4.2 features several minor bug fixes, and various new translations."
 msgstr ""
+"Wersja 0.4.2 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 msgid ""
 "Version 0.4 introduces a new icon, numerous bug fixes, an improved toolbar "
@@ -361,7 +375,7 @@ msgid "Back to the palette"
 msgstr "Wróć do palety"
 
 msgid "Use this editor by default"
-msgstr ""
+msgstr "Używaj tego edytora domyślnie"
 
 msgid "Width"
 msgstr "Szerokość"
@@ -506,8 +520,8 @@ msgstr "Anuluj"
 msgid "Create"
 msgstr "Utwórz"
 
-msgid "Print the version and display the 'about' dialog"
-msgstr ""
+msgid "Show the app version"
+msgstr "Pokaż wersję aplikacji"
 
 msgid "Open a new window"
 msgstr "Otwórz w nowym oknie"
@@ -518,12 +532,16 @@ msgstr "Otwórz w nowej zakładce"
 msgid "Edit the clipboard content"
 msgstr "Edytuj zawartość schowka"
 
+msgid "This version isn't stable!"
+msgstr "Ta wersja nie jest stabilna!"
+
+msgid "Report bugs or ideas"
+msgstr "Zgłoś błąd lub pomysł"
+
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
-msgstr ""
-"Piotr Komur\n"
-"Kacper Paczos"
+msgstr "Piotr Komur, Kacper Paczos"
 
 msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr ""
@@ -588,6 +606,9 @@ msgstr "Zapisz obraz jako…"
 msgid "Import a picture"
 msgstr "Importuj obraz"
 
+msgid "Required tool is not available"
+msgstr "Wymagane narzędzie jest niedostępne"
+
 #, python-format
 msgid "Undo %s"
 msgstr "Cofnij %s"
@@ -618,8 +639,8 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Wybierz, co zrobić z przeźroczystymi punktami obrazu, dla wymienionych "
-"formatów."
+"Jeśli zapiszesz swój obraz w jednym z tych formatów, to co chcesz zrobić z "
+"przeźroczystymi punktami obrazu?"
 
 msgid "White"
 msgstr "Biały"
@@ -661,7 +682,7 @@ msgid "Compact"
 msgstr "Kompaktowy"
 
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -717,7 +738,7 @@ msgid "Brown"
 msgstr "Brązowy"
 
 msgid "Probably brown"
-msgstr ""
+msgstr "Prawdopodobnie brązowy"
 
 msgid "Red"
 msgstr "Czerwony"
@@ -732,7 +753,7 @@ msgid "Yellow"
 msgstr "Żółty"
 
 msgid "Magenta"
-msgstr ""
+msgstr "Kolor czerwony o niebieskawym odcieniu"
 
 msgid "Purple"
 msgstr "Purpurowy"
@@ -741,7 +762,7 @@ msgid "Cyan"
 msgstr "Cyjan"
 
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Prawdopodobnie turkusowy"
 
 msgid "Unknown color name"
 msgstr "Nieznana nazwa koloru"
@@ -765,6 +786,9 @@ msgstr "Kształt"
 #. Default values
 msgid "Round"
 msgstr "Okrągły"
+
+msgid "Thin"
+msgstr "Cienki"
 
 msgid "Square"
 msgstr "Kwadratowy"
@@ -829,16 +853,13 @@ msgid "Behavior"
 msgstr "Zachowanie"
 
 msgid "Encircle and fill"
-msgstr ""
+msgstr "Zakreśl i wypełnij"
 
 msgid "Erase and replace"
-msgstr ""
+msgstr "Wymaż i zamień"
 
 msgid "Clipping"
-msgstr ""
-
-msgid "Thin"
-msgstr "Cienki"
+msgstr "Wycinek"
 
 msgid "Artificial smoothness"
 msgstr "Sztuczne wygładzenie"
@@ -862,7 +883,7 @@ msgid "Saturation"
 msgstr "Nasycenie"
 
 msgid "Keep proportions"
-msgstr "Zachowaj proporcje"
+msgstr "Zachowaj proporcję"
 
 msgid "Edit"
 msgstr "Edytuj"
@@ -946,7 +967,7 @@ msgid "Painting options"
 msgstr "Opcje malowania"
 
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
+msgstr "Kliknij obszar, aby zastąpić kolor przezroczystością"
 
 msgid "Polygon"
 msgstr "Wielokąt"
@@ -984,10 +1005,10 @@ msgid "Color selection"
 msgstr "Zaznaczanie koloru"
 
 msgid "Drag the selection or right-click on the canvas"
-msgstr ""
+msgstr "Przeciągnij zaznaczenie lub kliknij na płótno prawym przyciskiem myszy"
 
 msgid "Select an area or right-click on the canvas"
-msgstr ""
+msgstr "Wybierz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
 
 msgid "Cropping the selection"
 msgstr "Przycinanie zaznaczenia"

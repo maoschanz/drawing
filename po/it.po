@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
-"PO-Revision-Date: 2019-08-06 21:15+0200\n"
+"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"PO-Revision-Date: 2020-08-16 19:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -59,6 +59,18 @@ msgstr ""
 "Ti permette di disegnare o modificare immagini con strumenti come matita, "
 "linea oarco (con varie opzioni), selezione (taglia/copia/incolla/trascina/"
 "…), forme, rotazione, …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"La versione 0.4.14 presenta diverse correzioni di bug minori e varie nuove "
+"traduzioni. "
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -223,9 +235,8 @@ msgstr "_File"
 msgid "New Blank Image"
 msgstr "Nuova Immagine Vuota"
 
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "Nuova Immagine dalla Selezione"
+msgstr "Nuova immagine con dimensioni personalizzate"
 
 #. you can omit the "New image" in the translation
 msgid "New Image From Selection"
@@ -398,9 +409,8 @@ msgstr "Immagini"
 msgid "Tools"
 msgstr "Strumenti"
 
-#, fuzzy
 msgid "Window"
-msgstr "_Finestra"
+msgstr "Finestra"
 
 msgid "Path"
 msgstr "Percorso"
@@ -521,8 +531,8 @@ msgstr "Annulla"
 msgid "Create"
 msgstr "Crea"
 
-msgid "Print the version and display the 'about' dialog"
-msgstr "Stampa la versione e mostra la finestra 'informazioni'"
+msgid "Show the app version"
+msgstr "Mostra la versione dell'app"
 
 msgid "Open a new window"
 msgstr "Apri una nuova finestra"
@@ -533,6 +543,12 @@ msgstr "Apri una nuova scheda"
 msgid "Edit the clipboard content"
 msgstr "Modifica il contenuto degli appunti"
 
+msgid "This version isn't stable!"
+msgstr "Questa versione non è stabile!"
+
+msgid "Report bugs or ideas"
+msgstr "Invia segnalazioni o idee"
+
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
@@ -541,7 +557,7 @@ msgstr ""
 "Albano Battistella"
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "Gli autori del set di icone \"Art Libre\" di GNOME"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
@@ -603,6 +619,9 @@ msgstr "Salva l'immagine come…"
 msgid "Import a picture"
 msgstr "Importa un'immagine"
 
+msgid "Required tool is not available"
+msgstr "Lo strumento richiesto non è disponibile"
+
 #, python-format
 msgid "Undo %s"
 msgstr "Annulla %s"
@@ -627,16 +646,14 @@ msgid "Images saving"
 msgstr "Salvataggio immagini"
 
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "Le immagini JPEG e BMP non possono gestire la trasparenza."
 
-#, fuzzy
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Le immagini JPEG e BMP non possono gestire la trasparenza. Se salvi le "
-"immagini in questi formati, che cosa vuoi utilizzare per sostituire i pixel "
-"trasparenti?"
+"Se salvi le tue immagini in questi formati, cosa vuoi usare per sostituire "
+"pixel trasparenti?"
 
 msgid "White"
 msgstr "Bianco"
@@ -645,10 +662,10 @@ msgid "Black"
 msgstr "Nero"
 
 msgid "Checkboard"
-msgstr ""
+msgstr "Scacchiera"
 
 msgid "Nothing"
-msgstr ""
+msgstr "Niente"
 
 msgid "Ask before saving"
 msgstr "Chiedi prima di salvare"
@@ -678,7 +695,7 @@ msgid "Compact"
 msgstr "Compatto"
 
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -787,6 +804,9 @@ msgstr "Forma primaria"
 msgid "Round"
 msgstr "Tondo"
 
+msgid "Thin"
+msgstr "Sottile"
+
 msgid "Square"
 msgstr "Quadrato"
 
@@ -856,18 +876,14 @@ msgstr "Cancella e sostituisci"
 msgid "Clipping"
 msgstr "Ritaglio"
 
-msgid "Thin"
-msgstr "Sottile"
-
 msgid "Artificial smoothness"
 msgstr "Levigatezza artificiale"
 
 msgid "Rectangle"
 msgstr "Rettangolo"
 
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Rettangolo"
+msgstr "Rettangolo arrotondato"
 
 msgid "Rotate left"
 msgstr "Ruota a sinistra"
@@ -882,7 +898,7 @@ msgid "Saturation"
 msgstr "Saturazione"
 
 msgid "Keep proportions"
-msgstr "Mantieni le proporzioni"
+msgstr "Mantieni proporzioni"
 
 msgid "Edit"
 msgstr "Modifica"
@@ -923,9 +939,8 @@ msgstr "Ombra"
 msgid "Outline"
 msgstr "Contorno"
 
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Sfondo preimpostato"
+msgstr "Rettangolo disfondo"
 
 msgid "Arc"
 msgstr "Arco"
