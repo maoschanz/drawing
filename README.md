@@ -53,8 +53,11 @@ If your language is not here, or is incompletely translated, you can
 
 | code | name         | since | complete?  | main translators                  |
 |------|--------------|-------|------------|-----------------------------------|
+| da   | Danish       | 0.4.10 | 97%       | [scootergrisen](https://github.com/scootergrisen)
 |      | English      | 0.2   | 100%       | help welcome *                    |
 | fr   | French       | 0.2   | 100%       |                                   |
+| zh_CN | Chinese, simplified | 0.4.14 | 98% | [OverflowCat](https://github.com/OverflowCat)
+| zh_TW | Chinese, traditional | 0.4.14 | 98% | [pan93412](https://github.com/pan93412) and [OverflowCat](https://github.com/OverflowCat)
 
 \*Concerning the "original version" in english: all the labels are here, but
 i'm **not** a native english speaker, so there might be mistakes. If you find

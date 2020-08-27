@@ -1,13 +1,13 @@
 # French translation of com.github.maoschanz.drawing
 # This file is under the same GPLv3.
-# Romain F. T. <rrroschan@gmail.com>, 2018-2019.
+# Romain F. T. <rrroschan@gmail.com>, 2018-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
-"PO-Revision-Date: 2019-01-06 02:10+0100\n"
+"POT-Creation-Date: 2020-08-27 23:50+0200\n"
+"PO-Revision-Date: 2020-02-24 23:17+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.30.1\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
 msgid "Drawing"
 msgstr "Dessin"
@@ -59,6 +59,21 @@ msgstr ""
 "crayon, trait ou arc (avec diverses options), sélection (couper/copier/"
 "coller/déplacer…), formes (rectangle, cercle, polygone, …), insertion de "
 "texte, redimensionnement, recadrage, rotation, …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"La version 0.4.14 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
+"L'outil texte peut maintenant écrire en utilisant la plupart des polices du "
+"système, permettant ainsi l'utilisation de caractères plus complexes (tels "
+"que les caractères asiatiques)."
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -264,7 +279,7 @@ msgid "Open an image"
 msgstr "Ouvrir une image"
 
 msgid "Reload file"
-msgstr "Recharger un fichier"
+msgstr "Recharger le fichier"
 
 msgid "Image properties"
 msgstr "Propriétés de l'image"
@@ -544,8 +559,8 @@ msgstr "Annuler"
 msgid "Create"
 msgstr "Créer"
 
-msgid "Print the version and display the 'about' dialog"
-msgstr "Afficher la version et le dialogue 'à propos'"
+msgid "Show the app version"
+msgstr "Afficher la version de l'application"
 
 msgid "Open a new window"
 msgstr "Ouvrir une nouvelle fenêtre"
@@ -556,19 +571,25 @@ msgstr "Ouvrir un nouvel onglet"
 msgid "Edit the clipboard content"
 msgstr "Éditer le contenu du presse-papier"
 
+msgid "This version isn't stable!"
+msgstr "Cette version n'est pas stable !"
+
+msgid "Report bugs or ideas"
+msgstr "Rapporter des bugs ou des idées"
+
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
 msgstr "Romain F. T."
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "Les auteurs des icônes \"Art Libre\" de GNOME"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Une application de dessin pour le bureau GNOME."
 
 msgid "Official webpage"
-msgstr "Site officiel"
+msgstr "Page web officielle"
 
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
@@ -624,6 +645,9 @@ msgstr "Enregistrer l'image sous…"
 msgid "Import a picture"
 msgstr "Importer une image"
 
+msgid "Required tool is not available"
+msgstr "L'outil requis n'est pas disponible"
+
 #, python-format
 msgid "Undo %s"
 msgstr "Annuler %s"
@@ -648,14 +672,14 @@ msgid "Images saving"
 msgstr "Enregistrement des images"
 
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "Les images JPEG ou BMP ne peuvent prendre en charge la transparence."
+msgstr "Les images JPEG et BMP ne peuvent pas avoir de transparence."
 
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Si vous enregistrez vos images dans ces formats, que voulez-vous utiliser "
-"pour remplacer les pixels transparents ?"
+"Si vous enregistrez vos images dans ces formats, par quoi voulez-vous "
+"replacer les pixels transparents ?"
 
 msgid "White"
 msgstr "Blanc"
@@ -716,10 +740,10 @@ msgid "Toolbar only"
 msgstr "Barre de boutons"
 
 msgid "Toolbar only (symbolic icons)"
-msgstr "Boutons (icônes symb.)"
+msgstr "Boutons (icônes symboliques)"
 
 msgid "This file format doesn't support transparent colors."
-msgstr "Ce format de fichiers ne supporte pas les couleurs transparentes."
+msgstr "Ce format de fichier ne supporte pas les couleurs transparentes."
 
 msgid "Replace transparency with:"
 msgstr "Remplacer la transparence par :"
@@ -799,12 +823,15 @@ msgstr ""
 msgid "percents"
 msgstr "pourcents"
 
-msgid "Lead shape"
+msgid "Line shape"
 msgstr "Forme de mine"
 
 #. Default values
 msgid "Round"
 msgstr "Ronde"
+
+msgid "Thin"
+msgstr "Fine"
 
 msgid "Square"
 msgstr "Carrée"
@@ -875,9 +902,6 @@ msgstr "Effacer et remplacer"
 msgid "Clipping"
 msgstr "Détourage"
 
-msgid "Thin"
-msgstr "Fine"
-
 msgid "Artificial smoothness"
 msgstr "Lissage artificiel"
 
@@ -922,6 +946,9 @@ msgstr "Insérer ici"
 
 msgid "Font"
 msgstr "Police"
+
+msgid "Select a font…"
+msgstr "Sélectionner une police…"
 
 msgid "Italic"
 msgstr "Italique"

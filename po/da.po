@@ -1,13 +1,13 @@
 # Danish translation for Drawing
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# scootergrisen, 2019.
+# scootergrisen, 2019-2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-07 00:45+0100\n"
-"PO-Revision-Date: 2019-12-08 00:00+0200\n"
+"POT-Creation-Date: 2020-08-27 23:50+0200\n"
+"PO-Revision-Date: 2020-07-24 00:00+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -58,6 +58,18 @@ msgstr ""
 "blyant, linje eller bue (med diverse valgmuligheder), markering (klip/kopiér/"
 "indsæt/træk/ …), former (rektangel, cirkel, polygon …), indsættelse af "
 "tekst, tilpasning af størrelse, beskæring, drejning …"
+
+msgid ""
+"Version 0.4.14 features several minor bug fixes, and various new "
+"translations."
+msgstr ""
+"Version 0.4.14 har adskillige mindre fejlrettelser og diverse nye "
+"oversættelser."
+
+msgid ""
+"The text tool can now write using most system font, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
 
 msgid ""
 "Version 0.4.13 features several minor bug fixes, and various new "
@@ -337,9 +349,8 @@ msgstr "Forrige værktøj"
 msgid "_Options"
 msgstr "Valg_muligheder"
 
-#, fuzzy
 msgid "_Windows"
-msgstr "Nyt vindue"
+msgstr "_Vinduer"
 
 msgid "Quit all windows"
 msgstr "Afslut alle vinduer"
@@ -392,9 +403,8 @@ msgstr "Billeder"
 msgid "Tools"
 msgstr "Værktøjer"
 
-#, fuzzy
 msgid "Window"
-msgstr "Nyt vindue"
+msgstr "Vindue"
 
 msgid "Path"
 msgstr "Sti"
@@ -460,9 +470,8 @@ msgstr "Luk det aktive billede"
 msgid "Save as"
 msgstr "Gem som"
 
-#, fuzzy
 msgid "Editing"
-msgstr "Redigering"
+msgstr "Rediger"
 
 msgid "Options menu"
 msgstr "Valgmulighedsmenu"
@@ -516,8 +525,8 @@ msgstr "Annuller"
 msgid "Create"
 msgstr "Opret"
 
-msgid "Print the version and display the 'about' dialog"
-msgstr "Vis versionen og \"om\"-dialogen"
+msgid "Show the app version"
+msgstr "Vis programversionen"
 
 msgid "Open a new window"
 msgstr "Åbn et nyt vindue"
@@ -528,13 +537,19 @@ msgstr "Åbn et nyt faneblad"
 msgid "Edit the clipboard content"
 msgstr "Rediger udklipsholderens indhold"
 
+msgid "This version isn't stable!"
+msgstr "Denne version er ikke stabil!"
+
+msgid "Report bugs or ideas"
+msgstr "Rapportér fejl eller ideer"
+
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
 msgid "translator-credits"
 msgstr "scootergrisen"
 
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "Forfatterne af GNOMEs \"Art Libre\"-ikonsæt"
 
 msgid "A drawing application for the GNOME desktop."
 msgstr "Et tegneprogram til GNOME-skrivebordet."
@@ -595,6 +610,9 @@ msgstr "Gem billede som …"
 
 msgid "Import a picture"
 msgstr "Importér et billede"
+
+msgid "Required tool is not available"
+msgstr "Krævet værktøj er ikke tilgængeligt"
 
 #, python-format
 msgid "Undo %s"
@@ -767,12 +785,15 @@ msgstr ""
 msgid "percents"
 msgstr "procent"
 
-msgid "Lead shape"
+msgid "Line shape"
 msgstr "Linjens form"
 
 #. Default values
 msgid "Round"
 msgstr "Rund"
+
+msgid "Thin"
+msgstr "Tynd"
 
 msgid "Square"
 msgstr "Firkantet"
@@ -790,7 +811,7 @@ msgid "Classic"
 msgstr "Klassisk"
 
 msgid "Source color"
-msgstr "Kildefarve"
+msgstr "Rå kildefarve"
 
 msgid "Eraser"
 msgstr "Viskelæder"
@@ -808,10 +829,10 @@ msgid "Circle"
 msgstr "Cirkel"
 
 msgid "Filling"
-msgstr ""
+msgstr "Udfyldning"
 
 msgid "Empty"
-msgstr "Tom"
+msgstr "Tom form"
 
 #, fuzzy
 msgid "Filled (main color)"
@@ -845,18 +866,14 @@ msgstr "Slet og erstat"
 msgid "Clipping"
 msgstr "Klipning"
 
-msgid "Thin"
-msgstr "Tynd"
-
 msgid "Artificial smoothness"
 msgstr "Kunstig jævnhed"
 
 msgid "Rectangle"
 msgstr "Rektangel"
 
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Rektangel"
+msgstr "Afrundet rektangel"
 
 msgid "Rotate left"
 msgstr "Drej til venstre"
@@ -897,6 +914,9 @@ msgstr "Indsæt her"
 
 msgid "Font"
 msgstr "Skrifttype"
+
+msgid "Select a font…"
+msgstr "Vælg en skrifttype …"
 
 msgid "Italic"
 msgstr "Kursiv"
