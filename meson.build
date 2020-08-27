@@ -1,6 +1,6 @@
 project(
 	'drawing',
-	version: '0.4.13',
+	version: '0.4.14',
 	meson_version: '>= 0.45.0',
 )
 
@@ -12,3 +12,4 @@ subdir('src')
 subdir('po')
 
 meson.add_install_script('build-aux/meson/postinstall.py')
+
