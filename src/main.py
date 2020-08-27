@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import sys, gi
+import sys, gi, time, os
 from urllib.parse import unquote
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GLib, Gdk
+from gi.repository import Gtk, Gio, GLib, Gdk, GdkX11
 from .window import DrWindow
 from .preferences import DrPrefsWindow
 
@@ -188,7 +188,6 @@ class Application(Gtk.Application):
 		if not win:
 			# Because the portal requires the app to have a window
 			win = self.on_new_window()
-		# We can't iconify win because it would iconify the portal dialog too
 
 		gio_dbus_connection = Gio.bus_get_sync(Gio.BusType.SESSION, None)
 		proxy = Gio.DBusProxy.new_sync(
@@ -200,7 +199,16 @@ class Application(Gtk.Application):
 			None
 		)
 
-		parent_window_id = '' # TODO x11:xid or wayland:handle
+		parent_window_id = ""
+		# https://flatpak.github.io/xdg-desktop-portal/portal-docs.html#parent_window
+		gdk_backend = os.getenv('XDG_SESSION_TYPE', 'unrecognized')
+		if gdk_backend == 'x11':
+			xid = GdkX11.X11Window.get_xid(win.get_window())
+			parent_window_id = "x11:" + str(xid) # doesn't even work
+		# elif gdk_backend == 'wayland':
+		# 	handle = "" # XXX GDK4 only?
+		# 	parent_window_id = "wayland:" + handle
+
 		args = GLib.Variant('(sa{sv})', (parent_window_id, {
 			'interactive': GLib.Variant.new_boolean(True),
 			'modal': GLib.Variant.new_boolean(False)
@@ -232,7 +240,19 @@ class Application(Gtk.Application):
 			print(e)
 			print("[Drawing] args were", args)
 
+		time.sleep(0.2)
+		# We can't iconify immediately because it would iconify the portal
+		# dialog too # TODO use the mainloop instead of freezing
+		win.iconify()
+
 	def receive_screenshot(self, *args):
+		win = self.props.active_window
+		if not win:
+			# Should never happen
+			win = self.on_new_window()
+		win.deiconify()
+		win.present()
+
 		# XXX what are at index 1 or 2? is index 0 closed?
 		# <Gio.DBusConnection object at 0x7f6106b64e60 (GDBusConnection at 0x557bc1767380)>,
 		# ':1.49',
@@ -248,12 +268,6 @@ class Application(Gtk.Application):
 		if screenshot_state == 1:
 			# Action cancelled by the user
 			return
-		win = self.props.active_window
-		if not win:
-			# Should never happen
-			win = self.on_new_window()
-		else:
-			win.present()
 		if screenshot_state == 2:
 			win.prompt_message(True, _("Screenshot failed"))
 			return
@@ -274,7 +288,7 @@ class Application(Gtk.Application):
 			# for writing: Permission denied (2)
 
 		if f is not None:
-			self._new_tab_with_file(f) # XXX non car ça ouvre TOUJOURS un new tab
+			self._new_tab_with_file(f) # XXX nul car ça ouvre TOUJOURS un new tab
 
 	############################################################################
 	# Actions callbacks ########################################################
