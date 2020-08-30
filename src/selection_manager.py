@@ -246,7 +246,7 @@ class DrSelectionManager():
 	def get_future_path(self):
 		return self._future_path
 
-	def update_from_canvas_tool(self, new_pixbuf, dx, dy):
+	def update_from_transform_tool(self, new_pixbuf, dx, dy):
 		self.set_pixbuf(new_pixbuf)
 		x = self.selection_x + dx
 		y = self.selection_y + dy

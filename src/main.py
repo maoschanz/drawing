@@ -86,7 +86,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help', self.on_help_index, ['F1'])
 		self.add_action_simple('help_main', self.on_help_main, None)
 		self.add_action_simple('help_tools', self.on_help_tools, None)
-		self.add_action_simple('help_canvas', self.on_help_canvas, None)
+		self.add_action_simple('help_transform', self.on_help_transform, None)
 		self.add_action_simple('help_selection', self.on_help_selection, None)
 		self.add_action_simple('help_prefs', self.on_help_prefs, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
@@ -211,10 +211,10 @@ class Application(Gtk.Application):
 		manual."""
 		self._show_help_page('/tools_classic')
 
-	def on_help_canvas(self, *args):
-		"""Action callback, showing the 'canvas and selection tools' page of the
-		user help manual."""
-		self._show_help_page('/tools_canvas')
+	def on_help_transform(self, *args):
+		"""Action callback, showing the 'transform tools' page of the user help
+		manual."""
+		self._show_help_page('/tools_transform')
 
 	def on_help_selection(self, *args):
 		"""Action callback, showing the 'selection tools' page of the user help

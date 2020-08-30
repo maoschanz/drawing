@@ -181,16 +181,17 @@ In my opinion, the difficulties with the code can come mainly from 3 points:
 the history, are image-wide.
 - the interactions with the selection are ridiculously complex and numerous
 _(defining, explicit applying, explicit canceling, import, clipboard methods,
-use by the "canvas tools" (cancelled or confirmed), deletion, implicit applying,
-implicit canceling, …)_ which can easily create small bugs.
+use by the transformation tools (whose operation can be cancelled or confirmed),
+deletion, implicit applying, implicit canceling, …)_ which can easily create
+small bugs or regressions.
 - the horizontal and vertical scrollings (and their scrollbars) are managed
 "manually" and quite poorly.
 
 These 3 points sometimes can lead to object-oriented spaghetti code.
 
-If you change anything regarding the selection and/or the "canvas tools" (the
-tools which can edit the selection content), make sure to test various scenarios
-like this one:
+If you change anything regarding the selection and/or the transformation tools
+(which can edit the selection content), make sure to test various scenarios like
+this one:
 
 1. several images edited in different tabs of the same window;
 2. zoom and/or scroll;

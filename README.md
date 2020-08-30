@@ -70,7 +70,7 @@ If your language is not here, or is incompletely translated, you can
 | pt_BR | Br. portuguese | 0.4.3 | **60%**  | [Antonio Hauren](https://github.com/haurenburu)
 | ru   | Russian      | 0.4.1  | **43%**    | [Artem Polishchuk](https://github.com/tim77)
 | sv   | Swedish      | 0.4.11 | 99%        | [Åke Engelbrektson](https://github.com/eson57)
-| tr   | Turkish      | 0.2    | 100%%      | [Serdar Sağlam](https://github.com/TeknoMobil)
+| tr   | Turkish      | 0.2    | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil)
 | zh_CN | Chinese, simplified  |  | 99%     | [OverflowCat](https://github.com/OverflowCat)
 | zh_TW | Chinese, traditional |  | 100%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
 
@@ -112,13 +112,14 @@ General options for these tools: colors, use blur or eraser, size, …
 #### Selection tools
 
 These tools allow you to define an area (rectangle or free), which you can move,
-cut, copy, paste, edit with canvas tools, export, open as a new image, etc.
+cut, copy, paste, edit with any transformation tool, export, open as a new
+image, etc.
 
 - Rectangle selection
 - Free shape selection
 - Adjacent color selection
 
-#### Canvas/selection edition tools
+#### Transformation tools
 
 These tools allow to edit the whole image, or to edit a selected part of it.
 

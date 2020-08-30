@@ -56,7 +56,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.do_tool_operation(operation)
 
 	def temp_preview(self, is_selection, local_dx, local_dy):
-		"""Part of the previewing methods shared by all canvas tools."""
+		"""Part of the previewing methods shared by all transform tools."""
 		pixbuf = self.get_image().temp_pixbuf
 		if is_selection:
 			cairo_context = self.get_context()
@@ -102,7 +102,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def apply_temp(self, operation_is_selection, ldx, ldy):
 		new_pixbuf = self.get_image().temp_pixbuf.copy()
 		if operation_is_selection:
-			self.get_selection().update_from_canvas_tool(new_pixbuf, ldx, ldy)
+			self.get_selection().update_from_transform_tool(new_pixbuf, ldx, ldy)
 		else:
 			self.get_image().set_main_pixbuf(new_pixbuf)
 			self.get_image().use_stable_pixbuf()

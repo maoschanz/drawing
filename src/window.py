@@ -455,7 +455,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
-		self.add_action_simple('apply_canvas_tool', self.action_apply_canvas_tool, None)
+		self.add_action_simple('apply_transform_tool', self.action_apply_transformation, None)
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -581,10 +581,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		section.prepend_section(None, classic_tools_section)
 
 		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
-		canvas_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
+		transform_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
 		submenu = section.get_item_link(1, Gio.MENU_LINK_SUBMENU)
 		submenu.append_section(None, selection_tools_section)
-		submenu.append_section(None, canvas_tools_section)
+		submenu.append_section(None, transform_tools_section)
 
 		self.fullscreen_btn.set_menu_model(fullscreen_menu)
 
@@ -1086,7 +1086,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def force_selection(self, *args):
 		self.get_selection_tool().row.set_active(True) # XXX appeler enable tool ?
 
-	def action_apply_canvas_tool(self, *args):
+	def action_apply_transformation(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	############################################################################
