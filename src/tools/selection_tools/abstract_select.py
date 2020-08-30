@@ -36,6 +36,9 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.local_dy = 0
 		self.operation_type = None # 'op-define'
 
+		self.add_tool_action_enum('selection-color', 'alpha')
+		# alpha initial secondary
+
 	############################################################################
 	# UI implementations #######################################################
 
