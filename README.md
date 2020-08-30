@@ -52,29 +52,30 @@ app from source code.
 If your language is not here, or is incompletely translated, you can
 [contribute](./CONTRIBUTING.md#translating) to the translations.
 
-| code | name         | since | complete*? | main translators                  |
-|------|--------------|-------|------------|-----------------------------------|
-| da   | Danish       | 0.4.10 | 99%       | [scootergrisen](https://github.com/scootergrisen)
-| de_DE | German      | 0.4.1 | 97%        | [Onno Giesmann](https://github.com/Etamuk)
-|      | English      | 0.2   | 100%       | help welcome **                   |
-| es   | Castillan    | 0.2   | 100%       | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
-| eu   | Basque       |       | 100%       | [alexgabi]](https://github.com/alexgabi)
-| fi   | Finnish      | 0.4.10 | 93%       | [MahtiAnkka](https://github.com/mahtiankka)
-| fr   | French       | 0.2   | 100%       |                                   |
-| he   | Hebrew       | 0.4.1 | **47%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
-| hr   | Croatian     | 0.4.11 | 97%       | [Milo Ivir](https://github.com/milotype)
-| hu   | Hungarian    | 0.4.10 | **78%**   | [Kálmán „KAMI” Szalai](https://github.com/kami911)
-| it   | Italian      | 0.4.1 | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
-| nl   | Dutch        | 0.4.1 | 99%        | [Heimen Stoffels](https://github.com/Vistaus)
-| pl   | Polish       | 0.4.10 | 89%       | [Piotr Komur](https://github.com/pkomur)
-| pt_BR | Br. portuguese | 0.4.3 | **60%** | [Antonio Hauren](https://github.com/haurenburu)
-| ru   | Russian      | 0.4.1 | **43%**    | [Artem Polishchuk](https://github.com/tim77)
-| sv   | Swedish      | 0.4.11 | 99%       | [Åke Engelbrektson](https://github.com/eson57)
-| tr   | Turkish      | 0.2   | 100%%      | [Serdar Sağlam](https://github.com/TeknoMobil)
-| zh_CN | Chinese, simplified |  | 99%     | [OverflowCat](https://github.com/OverflowCat)
-| zh_TW | Chinese, traditional |  | 100%   | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
+| code | name         | since… | complete*? | main translators                 |
+|------|--------------|--------|------------|----------------------------------|
+| da   | Danish       | 0.4.10 | 99%        | [scootergrisen](https://github.com/scootergrisen)
+| de_DE | German      | 0.4.1  | 97%        | [Onno Giesmann](https://github.com/Etamuk)
+|      | English      | 0.2    | 100%       | help welcome **                  |
+| es   | Castillan    | 0.2    | 100%       | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
+| eu   | Basque       | 0.4.14 | 100%       | [alexgabi](https://github.com/alexgabi)
+| fi   | Finnish      | 0.4.10 | 93%        | [MahtiAnkka](https://github.com/mahtiankka)
+| fr   | French       | 0.2    | 100%       |                                  |
+| he   | Hebrew       | 0.4.1  | **47%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
+| hr   | Croatian     | 0.4.11 | 97%        | [Milo Ivir](https://github.com/milotype)
+| hu   | Hungarian    | 0.4.10 | **78%**    | [Kálmán „KAMI” Szalai](https://github.com/kami911)
+| it   | Italian      | 0.4.1  | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
+| nl   | Dutch        | 0.4.1  | 99%        | [Heimen Stoffels](https://github.com/Vistaus)
+| pl   | Polish       | 0.4.10 | 89%        | [Piotr Komur](https://github.com/pkomur)
+| pt_BR | Br. portuguese | 0.4.3 | **60%**  | [Antonio Hauren](https://github.com/haurenburu)
+| ru   | Russian      | 0.4.1  | **43%**    | [Artem Polishchuk](https://github.com/tim77)
+| sv   | Swedish      | 0.4.11 | 99%        | [Åke Engelbrektson](https://github.com/eson57)
+| tr   | Turkish      | 0.2    | 100%%      | [Serdar Sağlam](https://github.com/TeknoMobil)
+| zh_CN | Chinese, simplified  |  | 99%     | [OverflowCat](https://github.com/OverflowCat)
+| zh_TW | Chinese, traditional |  | 100%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
 
-\*Completion percentages correspond to **the next** version, still in development
+\*Completion percentages correspond to **the next** major version, still in
+development.
 
 \**Concerning the "original version" in english: all the labels are here, but
 i'm **not** a native english speaker, so there might be mistakes. If you find
