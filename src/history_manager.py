@@ -68,12 +68,12 @@ class DrHistoryManager():
 			self._get_tool(operation['tool_id']).apply_operation(operation)
 
 	def can_undo(self):
-		# XXX incorrect si ya des states ???
+		# XXX incorrect si ya des states et qu'on redo
 		return (len(self._undo_history) > 0) or self._operation_is_ongoing()
 		# XXX never called while an operation is ongoing so that ^ is stupid
 
 	def can_redo(self):
-		# XXX incorrect si ya des states ???
+		# XXX incorrect si ya des states ?
 		return len(self._redo_history) > 0
 
 #	def update_history_actions_labels(self):
@@ -132,7 +132,7 @@ class DrHistoryManager():
 		else:
 			return self._undo_history[index]
 
-	def _get_last_state_index(self, yeet_supernumerary_states):
+	def _get_last_state_index(self, allow_yeeting_states):
 		"""Return the index of the last "state" operation (dict whose 'tool_id'
 		value is None) in the undo-history. If there is no such operation, the
 		returned index is -1 which means the only known state is the
@@ -146,24 +146,26 @@ class DrHistoryManager():
 				returned_index = self._undo_history.index(op)
 				nbPixbufs += 1
 
-		# If there are too many pixbufs in the history, remove a few
-		if yeet_supernumerary_states and nbPixbufs > 10:
-			print("YEETING STATES : %s IS TOO MUCH!" % nbPixbufs)
-			# TODO tester cette merde là
-			nbPixbufs = 0
-			# for op in self._redo_history:
-			# 	pass # TODO ça aussi non ??
-			for op in self._undo_history:
-				if op['tool_id'] is None:
-					if nbPixbufs < 5:
-						nbPixbufs += 1
-					else:
-						op['pixbuf'] = None # XXX fuite ?
-						self._undo_history.remove(op)
-						op = {} # XXX fuite ?
-						return self._get_last_state_index(True)
+		# If there are too many pixbufs in the history, remove a few ones
+		# XXX l'idée est intéressante MAIS les states peuvent réellement
+		# modifier les données, par exemple la transparence, et on ne peut donc
+		# pas virer tout un state au pif. Issue #200.
+# 		if allow_yeeting_states and nbPixbufs > 10:
+# 			print("YEETING STATES : %s IS TOO MUCH!" % nbPixbufs)
+# 			nbPixbufs = 0
+#			# for op in self._redo_history:
+#			# 	pass # XXX ça aussi non ??
+# 			for op in self._undo_history:
+# 				if op['tool_id'] is None:
+# 					if nbPixbufs < 5:
+# 						nbPixbufs += 1
+# 					else:
+# 						op['pixbuf'] = None
+# 						self._undo_history.remove(op)
+# 						op = {}
+# 						return self._get_last_state_index(True)
 
-		print("returned_index : " + str(returned_index))
+		# print("returned_index : " + str(returned_index))
 		return returned_index
 
 	############################################################################
@@ -175,12 +177,12 @@ class DrHistoryManager():
 		self._image.restore_first_pixbuf()
 		history = self._undo_history.copy()
 		self._undo_history = []
-		for op in history:
+		for op in history: # TODO faire 2 boucles, avec des range()
 			if history.index(op) > last_save_index:
-				print("do", op['tool_id'])
+				# print("do", op['tool_id'])
 				self._get_tool(op['tool_id']).simple_apply_operation(op)
 			else:
-				print("skip", op['tool_id']) # TODO faire 2 boucles, avec ranges
+				# print("skip", op['tool_id'])
 				self._undo_history.append(op)
 		self._image.update()
 		self._image.update_history_sensitivity()
@@ -198,6 +200,5 @@ class DrHistoryManager():
 
 	############################################################################
 ################################################################################
-
 
 

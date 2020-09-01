@@ -258,10 +258,11 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def on_active_tab_changed(self, *args):
 		self.switch_to(self.active_tool_id, args[1])
-		print("changement d'image")
-		# On devrait être moins bourrin et conserver la sélection # XXX
+		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
+		args[1].update_history_sensitivity()
+		# On devrait être moins bourrin et conserver la sélection # TODO
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
@@ -273,7 +274,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			section.append(tab_title, 'win.active_tab(' + str(tab_index) + ')')
 
 	def action_tab_left(self, *args):
-		# XXX (un)availability of this action, + touch gesture
+		# XXX (un)availability of this action
 		current_page = self.notebook.get_current_page()
 		if current_page == 0:
 			self.notebook.set_current_page(self.notebook.get_n_pages() - 1)
@@ -281,7 +282,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.notebook.set_current_page(current_page - 1)
 
 	def action_tab_right(self, *args):
-		# XXX (un)availability of this action, + touch gesture
+		# XXX (un)availability of this action
 		current_page = self.notebook.get_current_page()
 		if current_page == self.notebook.get_n_pages() - 1:
 			self.notebook.set_current_page(0)

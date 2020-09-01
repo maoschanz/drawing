@@ -71,8 +71,8 @@ If your language is not here, or is incompletely translated, you can
 | ru   | Russian      | 0.4.1  | **43%**    | [Artem Polishchuk](https://github.com/tim77)
 | sv   | Swedish      | 0.4.11 | 99%        | [Åke Engelbrektson](https://github.com/eson57)
 | tr   | Turkish      | 0.2    | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil)
-| zh_CN | Chinese, simplified  |  | 99%     | [OverflowCat](https://github.com/OverflowCat)
-| zh_TW | Chinese, traditional |  | 100%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
+| zh_CN | Chinese, simpl. | 0.4.14 | 99%    | [OverflowCat](https://github.com/OverflowCat)
+| zh_TW | Chinese, tradi. | 0.4.14 | 100%   | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
 
 \*Completion percentages correspond to **the next** major version, still in
 development.
