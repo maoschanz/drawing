@@ -2,21 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
 # Antonio Hauren <haurenburu@protonmail.com>, 2019.
+# Arthur <arthurbacci64@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-16 23:17+0200\n"
-"PO-Revision-Date: 2019-07-31 11:08-0300\n"
-"Last-Translator: Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>\n"
-"Language-Team: Portuguese - Brazil <none>\n"
+"PO-Revision-Date: 2020-09-03 11:30-0300\n"
+"Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.32.1\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -52,7 +53,7 @@ msgstr "Nova Imagem"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr "Editar imagem do clipboard"
+msgstr "Editar Imagem no Clipboard"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "A drawing application for the GNOME desktop"
@@ -92,8 +93,8 @@ msgid ""
 "flipping."
 msgstr ""
 "Seleção retangular e seleção de mão agora são ferramentas distintas, e a "
-"Ferramenta 'rotacionar' agora suporta qualquer ângulo e inverção vertical "
-"e horizontal."
+"Ferramenta 'rotacionar' agora suporta qualquer ângulo e inverção vertical e "
+"horizontal."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -102,16 +103,19 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
-"As numerosas ferramentas de produzir formatos (círculo, retângulo, "
-"polígono, ...), foram unidas em uma única, chamada ferramenta de 'formato'"
-", e com funcionalidades como 'retângulo arredondado' e 'elipse'. As opções "
-"de preenchimento agora incluem vários tipos de gradientes."
+"As numerosas ferramentas de produzir formatos (círculo, retângulo, polígono, "
+"…), foram unidas em uma única, chamada ferramenta de 'formato', e com "
+"funcionalidades como 'retângulo arredondado' e 'elipse'. As opções de "
+"preenchimento agora incluem vários tipos de gradientes."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The text tool can now write using most system font, thus allowing more "
 "complex characters to be used (e.g. Asian characters)."
 msgstr ""
+"A ferramenta de texto agora pode escrever usando fontes do sistema, "
+"permitindo caracteres mais complexos para serem utilizados (como caracteres "
+"asiáticos)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -119,16 +123,21 @@ msgid ""
 "with several types of blur, color inversion, pixelisation, saturation and "
 "transparency."
 msgstr ""
+"A ferramenta 'saturar' foi substituída por 'filtros', uma ferramenta mais "
+"poderosa com diferentes tipos de borrado, cor, inversão, pixelização, "
+"saturação e transparência."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "A fullscreen mode is now available."
-msgstr ""
+msgstr "Um modo de tela cheia agora está disponível."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The most prominent new feature is the ability to zoom in (or out) on the "
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
+"A funcionalidade mais proeminente é a habilidade de aumentar (ou diminuir) o "
+"zoom em uma imagem, usando o minimapa, o touchpad ou a rodinha do mouse."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -180,9 +189,8 @@ msgid "New Blank Image"
 msgstr "Nova imagem em branco"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "Nova imagem da seleção"
+msgstr "Nova imagem com tamanho personalizado"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Selection"
@@ -222,14 +230,12 @@ msgid "Print"
 msgstr "Imprimir"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Close Image"
-msgstr "Nova imagem"
+msgstr "Fechar imagem"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Close Window"
-msgstr "Nova janela"
+msgstr "Fechar janela"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Quit all windows"
@@ -296,12 +302,10 @@ msgid "Show the preview"
 msgstr "Mostrar preview"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
-#, fuzzy
 msgid "Zoom"
-msgstr "Aumentar zoom"
+msgstr "Zoom"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Optimal Zoom"
 msgstr "Zoom ótico"
 
@@ -344,14 +348,12 @@ msgid "Go Right"
 msgstr "Ir para direita"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the left"
-msgstr "Voltar para a paleta"
+msgstr "Ir para a esquerda"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the right"
-msgstr "Girar para direita"
+msgstr "Ir para a direita"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Refresh"
@@ -376,19 +378,16 @@ msgid "_Colors"
 msgstr "_Cores"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "Cor primária"
+msgstr "Editar cor primária"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "Cor secundária"
+msgstr "Editar cor secundária"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Use color editor by default"
-msgstr "Cores padrão"
+msgstr "Usar editor de cores por padrão"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -396,34 +395,30 @@ msgid "Exchange colors"
 msgstr "Trocar cores"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Color application mode"
-msgstr "Seleção de cor"
+msgstr "Modo de aplicação da cor"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Normal"
-msgstr "Formatar"
+msgstr "Normal"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
-msgstr ""
+msgstr "Outros modos"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Raw source color"
 msgstr "Cor de origem"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Highlight"
-msgstr "Altura"
+msgstr "Ênfase"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
@@ -439,23 +434,20 @@ msgstr "Modos foto-orientados"
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Hue only"
-msgstr "Apenas barra de menu"
+msgstr "Apenas hue"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Saturation only"
-msgstr "Saturação (%)"
+msgstr "Somente saturação"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Hue and saturation"
-msgstr "Saturação (%)"
+msgstr "Hue e saturação"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
@@ -475,7 +467,6 @@ msgstr "Borrar"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Erase"
 msgstr "Borracha"
 
@@ -537,12 +528,10 @@ msgid "Height"
 msgstr "Altura"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Cores"
+msgstr "Cor"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Use these settings by default"
 msgstr "Usar essas opções por padrão"
 
@@ -571,15 +560,13 @@ msgid "Tools"
 msgstr "Ferramentas"
 
 #: src/ui/preferences.ui
-#, fuzzy
 msgid "Window"
-msgstr "Nova janela"
+msgstr "Janela"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Close selection"
-msgstr "Seleção de cor"
+msgstr "Descartar seleção"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -612,7 +599,6 @@ msgid "Open As New Image"
 msgstr "Abrir como uma nova imagem"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos"
 
@@ -681,21 +667,18 @@ msgstr "Deletar seleção"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Import a file as the selection"
-msgstr "Girar a seleção"
+msgstr "Importar um arquivo como a seleção"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Tabulações"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Enter fullscreen mode"
-msgstr "Sair da tela cheia"
+msgstr "Entrar na tela cheia"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Exit fullscreen mode"
 msgstr "Sair da tela cheia"
 
@@ -759,9 +742,8 @@ msgid "Create"
 msgstr "Criar"
 
 #: src/main.py
-#, fuzzy
 msgid "Show the app version"
-msgstr "Mostrar versão"
+msgstr "Mostrar a versão do programa"
 
 #: src/main.py
 msgid "Open a new window"
@@ -829,14 +811,12 @@ msgstr "Altura padrão"
 
 #: src/preferences.py src/optionsbars/canvas/optionsbar-crop.ui
 #: src/tools/ui/tool-crop.ui
-#, fuzzy
 msgid "Default color"
-msgstr "Fundo padrão"
+msgstr "Cor padrão"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Images saving"
-msgstr "Imagens"
+msgstr "Salvação de imagens"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
@@ -860,7 +840,7 @@ msgstr "Preto"
 
 #: src/preferences.py src/utilities.py
 msgid "Checkboard"
-msgstr ""
+msgstr "Tabuleiro"
 
 #: src/preferences.py src/utilities.py
 msgid "Nothing"
@@ -899,6 +879,8 @@ msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
+"Essas ferramentas não são tão úteis quanto deveriam ser, então elas nao são "
+"habilitadas por padrão."
 
 #. In the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -907,7 +889,7 @@ msgstr "Borracha"
 
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr ""
+msgstr "Realçador"
 
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
@@ -938,7 +920,6 @@ msgid "Development features"
 msgstr "Características de desenvolvimento"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Background color"
 msgstr "Cor de fundo"
 
@@ -960,7 +941,7 @@ msgstr "Compacto"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -971,9 +952,8 @@ msgstr "Tradicional"
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
 #: src/preferences.py
-#, fuzzy
 msgid "Legacy (symbolic icons)"
-msgstr "Tradicional (simples)"
+msgstr "Tradicional (ícones simbólicos)"
 
 #: src/preferences.py
 msgid "Menubar only"
@@ -984,24 +964,23 @@ msgid "Toolbar only"
 msgstr "Apenas barra de ferramentas"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Toolbar only (symbolic icons)"
-msgstr "Barra de ferramentas (simples)"
+msgstr "Somente barra de ferramentas (ícones simbólicos)"
 
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s px"
 
 #: src/properties.py
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #: src/properties.py
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s in"
 
 #: src/properties.py
 msgid "Path"
@@ -1012,23 +991,21 @@ msgid "Format"
 msgstr "Formatar"
 
 #: src/properties.py
-#, fuzzy
 msgid "Colorspace"
-msgstr "Cores"
+msgstr "Espaço de cores"
 
 #: src/properties.py
 msgid "Invalid format"
 msgstr "Formato inválido"
 
 #: src/utilities.py
-#, fuzzy
 msgid "Transparent"
-msgstr "Adicionar transparência"
+msgstr "Transparência"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s%% transparent"
-msgstr "Adicionar transparência"
+msgstr "%s%% de transparência"
 
 #: src/utilities.py
 msgid "Grey"
@@ -1047,7 +1024,6 @@ msgid "Probably brown"
 msgstr "Provavelmente marrom"
 
 #: src/utilities.py
-#, fuzzy
 msgid "Red"
 msgstr "Vermelho"
 
@@ -1121,7 +1097,6 @@ msgstr "porcentagens"
 
 #. To translators: it's the angle measure unit
 #: src/utilities.py
-#, fuzzy
 msgid "degrees"
 msgstr "graus"
 
@@ -1187,9 +1162,9 @@ msgstr "O quê você quer fazer com %s?"
 #. else the exception was raised because an actual error occured, or
 #. the user clicked on "cancel"
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to save %s"
-msgstr "Falha ao carregar a ferramenta: %s"
+msgstr "Falha ao salvar: %s"
 
 #: src/window.py
 msgid "Untitled"
@@ -1272,7 +1247,6 @@ msgstr "Usar esse editor por padrão"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/canvas/optionsbar-rotate.ui
-#, fuzzy
 msgid "More actions"
 msgstr "Mais ações"
 
@@ -1288,9 +1262,8 @@ msgstr "Aplicar"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui
 #: src/optionsbars/canvas/optionsbar-scale.ui
-#, fuzzy
 msgid "More options"
-msgstr "Mais ações"
+msgstr "Mais opções"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
@@ -1298,54 +1271,46 @@ msgstr "Expandir com…"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
-#, fuzzy
 msgid "Transparency"
-msgstr "Adicionar transparência"
+msgstr "Transparência"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
 msgid "Select a filter…"
-msgstr "Selecionar um filtro…"
+msgstr "Selecione um filtro…"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui
-#, fuzzy
 msgid "Saturation"
-msgstr "Saturação (%)"
+msgstr "Saturação"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui
-#, fuzzy
 msgid "Blur radius"
-msgstr "Raio do borrão (pixels)"
+msgstr "Raio do borrado"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
 msgid "Change saturation"
-msgstr "Saturação (%)"
+msgstr "Alterar saturação"
 
 #. Context: a filter adding like a light veil on the image
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Veil"
-msgstr ""
+msgstr "Véu"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
 msgid "Add transparency"
 msgstr "Adicionar transparência"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
 msgid "Invert colors"
-msgstr "Trocar cores"
+msgstr "Inverter cores"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui
-#, fuzzy
 msgid "Blurring"
-msgstr "Borrado"
+msgstr "Borrando"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
@@ -1355,37 +1320,32 @@ msgstr "Borrado rápido"
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Slow blur"
-msgstr ""
+msgstr "Mostrar borrado"
 
 #. Context: a filter that censors the image with some kind of tiles
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
 msgid "Pixelisation"
 msgstr "Pixelização"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur direction"
-msgstr "Seleção de cor"
+msgstr "Direção do borrado"
 
 #. Context: about the blur direction
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Horizontal"
-msgstr "Borrar horizontalmente"
+msgstr "horizontal"
 
 #. Context: about the blur direction
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Vertical"
-msgstr "Borrar verticalmente"
+msgstr "Vertical"
 
 #. Context: about the blur direction
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "No direction"
-msgstr "Seleção de cor"
+msgstr "Sem direão"
 
 #: src/optionsbars/canvas/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1412,7 +1372,6 @@ msgid "Flip vertically"
 msgstr "Inverter verticalmente"
 
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Keep proportions"
 msgstr "Manter proporções"
 
@@ -1435,18 +1394,15 @@ msgid "Never"
 msgstr "Nunca"
 
 #: src/optionsbars/canvas/optionsbar-skew.ui
-#, fuzzy
 msgid "Horizontal deformation"
-msgstr "Borrar horizontalmente"
+msgstr "Deformação horizontal"
 
 #: src/optionsbars/canvas/optionsbar-skew.ui
-#, fuzzy
 msgid "Vertical deformation"
-msgstr "Borrar verticalmente"
+msgstr "Deformação vertical"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Line shape"
 msgstr "Forma de linha"
 
@@ -1514,7 +1470,6 @@ msgstr "Borda traçada"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
 msgstr "Sem borda"
 
@@ -1523,33 +1478,28 @@ msgid "Filling"
 msgstr "Preenchimento"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
 msgstr "Forma vazia"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Horizontal gradient"
 msgstr "Gradiente horizontal"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Vertical gradient"
 msgstr "Gradiente vertical"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Radial gradient"
-msgstr "Gradiente de cor"
+msgstr "Gradiente radial"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Retângulo"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Retângulo"
+msgstr "Retângulo arrendondado"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Oval"
@@ -1568,9 +1518,8 @@ msgid "Circle"
 msgstr "Circulo"
 
 #: src/tools/ui/tool-shape.ui
-#, fuzzy
 msgid "Close shape"
-msgstr "Fechar forma"
+msgstr "Descartar forma"
 
 #: src/tools/ui/tool-text.ui
 msgid "Insert here"
@@ -1581,9 +1530,8 @@ msgid "Font"
 msgstr "Fonte"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "Selecionar um filtro…"
+msgstr "Selecionar uma fonte…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
@@ -1611,7 +1559,6 @@ msgid "Outline"
 msgstr "Borda"
 
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Rectangle background"
 msgstr "Fundo retangular"
 
@@ -1635,7 +1582,6 @@ msgid "Curve"
 msgstr "Curva"
 
 #: src/tools/classic_tools/tool_arc.py
-#, fuzzy
 msgid "Curve options"
 msgstr "Opções de curva"
 
