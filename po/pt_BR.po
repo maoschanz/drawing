@@ -82,6 +82,8 @@ msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
+"Versão 0.6 é uma maior atualização. com muitas mudanças importantes. Mais "
+"robusto e com mais ferramentas:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -89,6 +91,9 @@ msgid ""
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
+"Seleção retangular e seleção de mão agora são ferramentas distintas, e a "
+"Ferramenta 'rotacionar' agora suporta qualquer ângulo e inverção vertical "
+"e horizontal."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -97,6 +102,10 @@ msgid ""
 "rectangle' and 'ellipse'. Their filling options now include various types of "
 "gradients."
 msgstr ""
+"As numerosas ferramentas de produzir formatos (círculo, retângulo, "
+"polígono, ...), foram unidas em uma única, chamada ferramenta de 'formato'"
+", e com funcionalidades como 'retângulo arredondado' e 'elipse'. As opções "
+"de preenchimento agora incluem vários tipos de gradientes."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -425,7 +434,7 @@ msgstr "Diferença"
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Photo-oriented modes"
-msgstr ""
+msgstr "Modos foto-orientados"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
@@ -452,17 +461,17 @@ msgstr "Saturação (%)"
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
-msgstr ""
+msgstr "Somente luminosidade"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
-msgstr ""
+msgstr "Não use cores, mas…"
 
 #. To translators: this is a verb
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Blur"
-msgstr "Borrado"
+msgstr "Borrar"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -535,11 +544,11 @@ msgstr "Cores"
 #: src/ui/new-image-dialog.ui
 #, fuzzy
 msgid "Use these settings by default"
-msgstr "Usar esse editor por padrão"
+msgstr "Usar essas opções por padrão"
 
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/properties.ui src/utilities.py
 msgid "pixels"
@@ -617,7 +626,7 @@ msgstr "Menu principal"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Histórico"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -629,7 +638,7 @@ msgstr "Abrir um arquivo"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Recarregar imagem do disco"
 
 #: src/ui/shortcuts.ui
 msgid "Save as"
@@ -678,7 +687,7 @@ msgstr "Girar a seleção"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr ""
+msgstr "Tabulações"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -696,11 +705,11 @@ msgstr "Navegação"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "Alternar a pre visualização"
+msgstr "Alternar a pré-visualização"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Gestos de toque"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
@@ -708,7 +717,7 @@ msgstr "Resolver problemas de seleção"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
-msgstr ""
+msgstr "Outras ferramentas"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -726,7 +735,7 @@ msgstr "Refazer %s"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
-msgstr ""
+msgstr "Não é possível carregar uma imagem nunca salva do disco"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -747,7 +756,7 @@ msgstr "Cancelar"
 #. Context: Create a new image
 #: src/new_image_dialog.py
 msgid "Create"
-msgstr ""
+msgstr "Criar"
 
 #: src/main.py
 #, fuzzy
@@ -768,7 +777,7 @@ msgstr "Editar conteúdo do clipboard"
 
 #: src/main.py
 msgid "This version isn't stable!"
-msgstr ""
+msgstr "Essa versão não é estável!"
 
 #: src/main.py
 msgid "Report bugs or ideas"
@@ -804,7 +813,7 @@ msgstr "Erro ao abrir este arquivo. Você quis dizer %s ?"
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
 
 #: src/preferences.py
 msgid "New images"
@@ -831,21 +840,23 @@ msgstr "Imagens"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "Imagens JPEG e BMP não podem ter transparência"
 
 #: src/preferences.py
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
+"Se você salvar suas imagem nesses formatos, o que quer que substitua os "
+"pixeis transparentes?"
 
 #: src/preferences.py src/utilities.py
 msgid "White"
-msgstr ""
+msgstr "Branco"
 
 #: src/preferences.py src/utilities.py
 msgid "Black"
-msgstr ""
+msgstr "Preto"
 
 #: src/preferences.py src/utilities.py
 msgid "Checkboard"
@@ -853,23 +864,23 @@ msgstr ""
 
 #: src/preferences.py src/utilities.py
 msgid "Nothing"
-msgstr ""
+msgstr "Nada"
 
 #: src/preferences.py
 msgid "Ask before saving"
-msgstr ""
+msgstr "Perguntar antes de salvar"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr ""
+msgstr "Você pode dar zoom com Ctrl+scroll, ou somente scroll"
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "Veja o manual de ajuda para explicações."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr ""
+msgstr "Use 'Ctrl' para zoom"
 
 #: src/preferences.py
 msgid "Appearance"
@@ -929,7 +940,7 @@ msgstr "Características de desenvolvimento"
 #: src/preferences.py
 #, fuzzy
 msgid "Background color"
-msgstr "Fundo"
+msgstr "Cor de fundo"
 
 #: src/preferences.py
 msgid "Layout"
@@ -937,7 +948,7 @@ msgstr "Disposição"
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "O valor recomendado é \"Automático\"."
 
 #: src/preferences.py
 msgid "Automatic"
@@ -1021,72 +1032,72 @@ msgstr "Adicionar transparência"
 
 #: src/utilities.py
 msgid "Grey"
-msgstr ""
+msgstr "Cinza"
 
 #: src/utilities.py
 msgid "Orange"
-msgstr ""
+msgstr "Laraja"
 
 #: src/utilities.py
 msgid "Brown"
-msgstr ""
+msgstr "Marrom"
 
 #: src/utilities.py
 msgid "Probably brown"
-msgstr ""
+msgstr "Provavelmente marrom"
 
 #: src/utilities.py
 #, fuzzy
 msgid "Red"
-msgstr "Refazer"
+msgstr "Vermelho"
 
 #: src/utilities.py
 msgid "Green"
-msgstr ""
+msgstr "Verde"
 
 #: src/utilities.py
 msgid "Blue"
-msgstr ""
+msgstr "Azul"
 
 #: src/utilities.py
 msgid "Yellow"
-msgstr ""
+msgstr "Amarelo"
 
 #: src/utilities.py
 msgid "Magenta"
-msgstr ""
+msgstr "Magenta"
 
 #: src/utilities.py
 msgid "Purple"
-msgstr ""
+msgstr "Roxo"
 
 #: src/utilities.py
 msgid "Cyan"
-msgstr ""
+msgstr "Ciano"
 
 #: src/utilities.py
 msgid "Probably turquoise"
-msgstr ""
+msgstr "Provavelmente turquesa"
 
 #: src/utilities.py
 msgid "Unknown color name"
-msgstr ""
+msgstr "Cor sem nome"
 
 #: src/utilities.py
 msgid "Replace"
-msgstr ""
+msgstr "Subtítuir"
 
 #: src/utilities.py
 msgid "This file format doesn't support transparent colors."
-msgstr ""
+msgstr "Esse formato de arquivo não suporta cores transparentes"
 
 #: src/utilities.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr ""
+msgstr "Você pode salvar a imagem como PNG, ou substituír a transparência com:"
 
 #: src/utilities.py
 msgid "Replace transparency with:"
-msgstr ""
+msgstr "Substituír transparência com:"
 
 #: src/utilities.py
 msgid "All pictures"
@@ -1106,13 +1117,13 @@ msgstr "Imagens BMP"
 
 #: src/utilities.py
 msgid "percents"
-msgstr ""
+msgstr "porcentagens"
 
 #. To translators: it's the angle measure unit
 #: src/utilities.py
 #, fuzzy
 msgid "degrees"
-msgstr "Ângulo (graus)"
+msgstr "graus"
 
 #: src/window.py
 #, python-format
@@ -1121,7 +1132,7 @@ msgstr "Falha ao carregar a ferramenta: %s"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
-msgstr ""
+msgstr "Modificações vão ter efeito na próxima janela"
 
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1203,7 +1214,7 @@ msgstr "Importar uma imagem"
 
 #: src/window.py
 msgid "Required tool is not available"
-msgstr ""
+msgstr "A ferramenta requerida não está disponível"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1219,7 +1230,7 @@ msgstr "Esse algoritmo pode não ser capaz de gerir a area desejada."
 
 #: src/tools/utilities_paths.py
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Voce deseja cancelar essa operacao, ou deixar a ferramenta tentar ?"
+msgstr "Você deseja cancelar essa operacao, ou deixar a ferramenta tentar ?"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
@@ -1245,7 +1256,7 @@ msgstr "Previsualizar"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
-msgstr ""
+msgstr "Como a cor vai ser aplicada para os pixeis existentes"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Back to the palette"
@@ -1253,7 +1264,7 @@ msgstr "Voltar para a paleta"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
-msgstr ""
+msgstr "Paleta"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Use this editor by default"
@@ -1283,7 +1294,7 @@ msgstr "Mais ações"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Expardir com…"
 
 #: src/optionsbars/canvas/optionsbar-crop.ui
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-crop.ui
@@ -1339,7 +1350,7 @@ msgstr "Borrado"
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
 msgid "Fast blur"
-msgstr ""
+msgstr "Borrado rápido"
 
 #: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/canvas_tools/tool_filters.py
