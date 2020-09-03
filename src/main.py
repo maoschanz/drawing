@@ -235,12 +235,12 @@ class Application(Gtk.Application):
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
 			copyright="© 2018-2020 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio"],
-			# To tranlators: "translate" this by your name, it will be displayed
-			# in the "about" dialog
+			# To tranlators: "translate" this by a list of your names (one name
+			# per line), they will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
-			# To translators: it's credits for the icons, consider that "Art
-			# Libre" is proper name
 			artists=["Tobias Bernard", "Romain F. T.",
+			# To translators: this is credits for the icons, consider that "Art
+			# Libre" is proper name
 			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
@@ -311,7 +311,7 @@ class Application(Gtk.Application):
 		except:
 			err = _("Error opening this file. Did you mean %s ?")
 			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-			# XXX can happen without flatpak
+			# TODO can happen without flatpak
 			command = command.format(APP_ID, path)
 			print(err % command)
 			return None

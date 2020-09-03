@@ -67,7 +67,7 @@ If your language is not here, or is incompletely translated, you can
 | it   | Italian      | 0.4.1  | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
 | nl   | Dutch        | 0.4.1  | 99%        | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | 0.4.10 | 89%        | [Piotr Komur](https://github.com/pkomur)
-| pt_BR | Br. portuguese | 0.4.3 | **60%**  | [Antonio Hauren](https://github.com/haurenburu)
+| pt_BR | Br. portuguese | 0.4.3 | 99%      | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
 | ru   | Russian      | 0.4.1  | **43%**    | [Artem Polishchuk](https://github.com/tim77)
 | sv   | Swedish      | 0.4.11 | 99%        | [Åke Engelbrektson](https://github.com/eson57)
 | tr   | Turkish      | 0.2    | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil)
