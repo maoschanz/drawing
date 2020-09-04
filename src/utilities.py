@@ -147,6 +147,7 @@ def _ask_overwrite_alpha(window, can_save_as):
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
 	if can_save_as:
 		save_as_id = dialog.set_action(_("Save as…"), None, False)
+	# Context: confirm replacing transparent pixels with the selected color
 	replace_id = dialog.set_action(_("Replace"), None, True)
 
 	dialog.add_string(_("This file format doesn't support transparent colors."))
