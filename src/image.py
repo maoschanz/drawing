@@ -603,15 +603,42 @@ class DrImage(Gtk.Box):
 			self.scroll_x = int(scrollbar.get_value())
 
 	def _zoom_to_point(self, event):
-		delta_x, delta_y, x, y = event.delta_x, event.delta_y, event.x, event.y
-		zoom_delta = (delta_x + delta_y) * -5
+		old_zoom_level = self.zoom_level
+		zoom_delta = (event.delta_x + event.delta_y) * -1 #-5
 		self.inc_zoom_level(zoom_delta)
-		displayed_w = self.get_widget_width() / self.zoom_level
-		displayed_h = self.get_widget_height() / self.zoom_level
-		fake_delta_x = x - (displayed_w / 2)
-		fake_delta_y = y - (displayed_h / 2)
-		self.add_deltas(fake_delta_x, fake_delta_y, min(1, 1/self.zoom_level))
+		print("-------------------------------")
 
+		event_x, event_y = self.get_event_coords(event)
+		print("event      ", event_x, event_y)
+
+		proportion_w = event.x / self.get_widget_width()
+		proportion_h = event.y / self.get_widget_height()
+		print("proportions", proportion_w, proportion_h)
+
+		print("scroll     ", self.scroll_x, self.scroll_y)
+		corner_w = event_x - self.scroll_x
+		corner_h = event_y - self.scroll_y
+		print("corner     ", corner_w, corner_h)
+
+		# displayed_w = self.get_widget_width() / self.zoom_level
+		# displayed_h = self.get_widget_height() / self.zoom_level
+		# fake_delta_x = event.x - (displayed_w / 2)
+		# fake_delta_y = event.y - (displayed_h / 2)
+		# fake_delta_x = event.x - (self.get_widget_width() / 2)
+		# fake_delta_y = event.y - (self.get_widget_height() / 2)
+
+		fake_delta_x = corner_w * proportion_w
+		fake_delta_y = corner_h * proportion_h
+
+		# fake_delta_x = 0.5 - fake_delta_x
+		# fake_delta_y = 0.5 - fake_delta_y
+		# fake_delta_x *= self.get_widget_width()
+		# fake_delta_y *= self.get_widget_height()
+
+		print("           ", fake_delta_x, fake_delta_y)
+		self._add_dot_at(self.scroll_x + fake_delta_x, self.scroll_y + fake_delta_y, 1)
+		self.add_deltas(fake_delta_x, fake_delta_y, 1)
+		self._add_dot_at(self.scroll_x, self.scroll_y, 2)
 
 		# print(x, y)
 		self._add_dot_at(event_x, event_y, 0)
