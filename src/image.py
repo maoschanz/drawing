@@ -603,47 +603,49 @@ class DrImage(Gtk.Box):
 			self.scroll_x = int(scrollbar.get_value())
 
 	def _zoom_to_point(self, event):
-		old_zoom_level = self.zoom_level
-		zoom_delta = (event.delta_x + event.delta_y) * -1 #-5
-		self.inc_zoom_level(zoom_delta)
-		print("-------------------------------")
-
+		"""Zoom in or out the image in a way such that the point under the
+		pointer stays as much as possible under the pointer."""
 		event_x, event_y = self.get_event_coords(event)
-		print("event      ", event_x, event_y)
+		# print("-------------------------------")
+		# print("event      ", event_x, event_y)
+		# self._add_dot_at(event_x, event_y, 0)
+
+		# old_zoom_level = self.zoom_level
+		zoom_delta = (event.delta_x + event.delta_y) * -4 # Arbitrary
+		self.inc_zoom_level(zoom_delta)
 
 		proportion_w = event.x / self.get_widget_width()
 		proportion_h = event.y / self.get_widget_height()
-		print("proportions", proportion_w, proportion_h)
+		# print("proportions", proportion_w, proportion_h)
 
-		print("scroll     ", self.scroll_x, self.scroll_y)
+		# print("scroll     ", self.scroll_x, self.scroll_y)
 		corner_w = event_x - self.scroll_x
 		corner_h = event_y - self.scroll_y
-		print("corner     ", corner_w, corner_h)
+		# print("corner     ", corner_w, corner_h)
 
-		# displayed_w = self.get_widget_width() / self.zoom_level
-		# displayed_h = self.get_widget_height() / self.zoom_level
-		# fake_delta_x = event.x - (displayed_w / 2)
-		# fake_delta_y = event.y - (displayed_h / 2)
-		# fake_delta_x = event.x - (self.get_widget_width() / 2)
-		# fake_delta_y = event.y - (self.get_widget_height() / 2)
+		# self._add_line_at(self.scroll_x, self.scroll_y, self.scroll_x, event_y, 1)
+		# self._add_line_at(self.scroll_x, event_y, event_x, event_y, 1)
 
-		fake_delta_x = corner_w * proportion_w
-		fake_delta_y = corner_h * proportion_h
+		fake_delta_x = corner_w * (proportion_w - 0.5)
+		fake_delta_y = corner_h * (proportion_h - 0.5)
+		if zoom_delta > 0:
+			# Zooming in
+			fake_delta_x *= 0.5
+			fake_delta_y *= 0.5
+		else:
+			# Zooming out XXX
+			fake_delta_x *= -0.1
+			fake_delta_y *= -0.1
 
-		# fake_delta_x = 0.5 - fake_delta_x
-		# fake_delta_y = 0.5 - fake_delta_y
-		# fake_delta_x *= self.get_widget_width()
-		# fake_delta_y *= self.get_widget_height()
-
-		print("           ", fake_delta_x, fake_delta_y)
-		self._add_dot_at(self.scroll_x + fake_delta_x, self.scroll_y + fake_delta_y, 1)
+		# print("           ", fake_delta_x, fake_delta_y)
 		self.add_deltas(fake_delta_x, fake_delta_y, 1)
-		self._add_dot_at(self.scroll_x, self.scroll_y, 2)
-
-		# print(x, y)
-		self._add_dot_at(event_x, event_y, 0)
+		# self._add_dot_at(self.scroll_x, self.scroll_y, 2)
 
 	def _add_dot_at(self, x, y, dotType):
+		# FIXME virer tout ça dès que possible
+		self._add_line_at(x+1, y+1, x-1, y-1, dotType)
+
+	def _add_line_at(self, x1, y1, x2, y2, dotType):
 		# FIXME virer tout ça dès que possible
 		if self.__dots_color is None:
 			self.__dots_color = [2000, 0, 2000]
@@ -684,10 +686,10 @@ class DrImage(Gtk.Box):
 			'use_arrow': False,
 			'use_gradient': False,
 			'is_preview': False,
-			'x_release': x - 1,
-			'y_release': y - 1,
-			'x_press': x + 1,
-			'y_press': y + 1
+			'x_release': x1,
+			'y_release': y1,
+			'x_press': x2,
+			'y_press': y2
 		}
 		self.window.tools['line'].apply_operation(dots_operation)
 
