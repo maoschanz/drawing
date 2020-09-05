@@ -68,6 +68,7 @@ drawing_sources = [
 	'tools/classic_tools/tool_paint.py',
 	'tools/classic_tools/tool_pencil.py',
 	'tools/classic_tools/tool_picker.py',
+	'tools/classic_tools/tool_points.py',
 	'tools/classic_tools/tool_shape.py',
 	'tools/classic_tools/tool_text.py',
 

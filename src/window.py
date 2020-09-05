@@ -28,6 +28,7 @@ from .tool_line import ToolLine
 from .tool_paint import ToolPaint
 from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
+from .tool_points import ToolPoints
 from .tool_shape import ToolShape
 from .tool_text import ToolText
 
@@ -138,6 +139,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
 		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
 		self._load_tool('text', ToolText, disabled_tools, dev)
+		self._load_tool('points', ToolPoints, disabled_tools, dev)
 		self._load_tool('rect_select', ToolRectSelect, disabled_tools, dev)
 		self._load_tool('free_select', ToolFreeSelect, disabled_tools, dev)
 		self._load_tool('line', ToolLine, disabled_tools, dev)
