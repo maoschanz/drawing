@@ -58,8 +58,8 @@ class DrMinimap(Gtk.Popover):
 		self.set_zoom_label(zoom_value)
 
 	def set_zoom_label(self, int_value):
-		# This displays the zoom level, %s will be replaced with a number, while
-		# %% is just the symbol '%'
+		# This string displays the zoom level: %s will be replaced with a
+		# number, while %% will be rendered as the symbol '%'
 		zoom_label = _("%s%%") % str(int(int_value))
 		self.window.options_manager.set_minimap_label(zoom_label)
 		self.update_minimap(False)

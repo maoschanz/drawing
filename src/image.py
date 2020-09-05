@@ -606,26 +606,22 @@ class DrImage(Gtk.Box):
 		"""Zoom in or out the image in a way such that the point under the
 		pointer stays as much as possible under the pointer."""
 		event_x, event_y = self.get_event_coords(event)
-		# print("-------------------------------")
-		# print("event      ", event_x, event_y)
-		# self._add_dot_at(event_x, event_y, 0)
 
-		# old_zoom_level = self.zoom_level
 		zoom_delta = (event.delta_x + event.delta_y) * -4 # Arbitrary
 		self.inc_zoom_level(zoom_delta)
 
+		# Where the zoom event occurs, in terms of percentages, in the widget's
+		# reference frame. Like, "at 10% of the width, and 80% of the height".
 		proportion_w = event.x / self.get_widget_width()
 		proportion_h = event.y / self.get_widget_height()
-		# print("proportions", proportion_w, proportion_h)
 
-		# print("scroll     ", self.scroll_x, self.scroll_y)
+		# Size of the rectangle between the current scroll position (values of
+		# the self.scroll_* attributes) and the zoom event. Both are expressed
+		# in pixels in the reference frame of the pixbuf.
 		corner_w = event_x - self.scroll_x
 		corner_h = event_y - self.scroll_y
-		# print("corner     ", corner_w, corner_h)
 
-		# self._add_line_at(self.scroll_x, self.scroll_y, self.scroll_x, event_y, 1)
-		# self._add_line_at(self.scroll_x, event_y, event_x, event_y, 1)
-
+		# Dark magic based on unsound experiments XXX
 		fake_delta_x = corner_w * (proportion_w - 0.5)
 		fake_delta_y = corner_h * (proportion_h - 0.5)
 		if zoom_delta > 0:
@@ -633,65 +629,12 @@ class DrImage(Gtk.Box):
 			fake_delta_x *= 0.5
 			fake_delta_y *= 0.5
 		else:
-			# Zooming out XXX
+			# Zooming out
 			fake_delta_x *= -0.1
 			fake_delta_y *= -0.1
 
-		# print("           ", fake_delta_x, fake_delta_y)
+		# Updating the scroll position based on the values previously found
 		self.add_deltas(fake_delta_x, fake_delta_y, 1)
-		# self._add_dot_at(self.scroll_x, self.scroll_y, 2)
-
-	def _add_dot_at(self, x, y, dotType):
-		# FIXME virer tout ça dès que possible
-		self._add_line_at(x+1, y+1, x-1, y-1, dotType)
-
-	def _add_line_at(self, x1, y1, x2, y2, dotType):
-		# FIXME virer tout ça dès que possible
-		if self.__dots_color is None:
-			self.__dots_color = [2000, 0, 2000]
-		if self.__dots_color[0] > 0:
-			self.__dots_color[0] = max(0, self.__dots_color[0] - 10)
-		elif self.__dots_color[1] < 2000:
-			self.__dots_color[1] = max(0, self.__dots_color[1] + 10)
-		elif self.__dots_color[2] > 0:
-			self.__dots_color[2] = max(0, self.__dots_color[2] - 10)
-		else:
-			self.__dots_color = [2000, 2000, 0]
-		dots_color = self.window.options_manager.get_left_color()
-		dots_color.red = self.__dots_color[0] / 2000
-		dots_color.green = self.__dots_color[1] / 2000
-		dots_color.blue = self.__dots_color[2] / 2000
-
-		if dotType == 1:
-			cairop = cairo.Operator.DIFFERENCE
-			caircap = cairo.LineCap.BUTT
-			dots_color.alpha = 0.5
-		elif dotType == 2:
-			cairop = cairo.Operator.MULTIPLY
-			caircap = cairo.LineCap.SQUARE
-			dots_color.alpha = 0.2
-		else:
-			cairop = cairo.Operator.OVER
-			caircap = cairo.LineCap.ROUND
-
-		dots_operation = {
-			'tool_id': 'line',
-			'rgba': dots_color,
-			'rgba2': self.window.options_manager.get_right_color(),
-			'antialias': False,
-			'operator': cairop,
-			'line_width': 8,
-			'line_cap': caircap,
-			'use_dashes': False,
-			'use_arrow': False,
-			'use_gradient': False,
-			'is_preview': False,
-			'x_release': x1,
-			'y_release': y1,
-			'x_press': x2,
-			'y_press': y2
-		}
-		self.window.tools['line'].apply_operation(dots_operation)
 
 	def inc_zoom_level(self, delta):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
