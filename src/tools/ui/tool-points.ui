@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <menu id="options-menu">
+    <section>
+      <attribute name="label" translatable="yes">Dots type</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Circle</attribute>
+        <attribute name="action">win.points_type</attribute>
+        <attribute name="target">circle</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Cross</attribute>
+        <attribute name="action">win.points_type</attribute>
+        <attribute name="target">cross</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">X-shaped cross</attribute>
+        <attribute name="action">win.points_type</attribute>
+        <attribute name="target">x-cross</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Square</attribute>
+        <attribute name="action">win.points_type</attribute>
+        <attribute name="target">square</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Include a number</attribute>
+        <attribute name="action">win.points_number</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <attribute name="label" translatable="yes">Next number</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Reset number</attribute>
+        <attribute name="action">win.points_reset_num</attribute>
+        <attribute name="verb-icon">go-bottom-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Decrement number</attribute>
+        <attribute name="action">win.points_dec_num</attribute>
+        <attribute name="verb-icon">go-down-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Increment number</attribute>
+        <attribute name="action">win.points_inc_num</attribute>
+        <attribute name="verb-icon">go-up-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Antialiasing</attribute>
+        <attribute name="action">win.antialias</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
