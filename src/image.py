@@ -46,7 +46,6 @@ class DrImage(Gtk.Box):
 		self.gfile = None
 		self.filename = None
 
-		self.__dots_color = None # FIXME virer ça
 		self._init_drawing_area()
 
 		self._update_background_color()

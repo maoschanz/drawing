@@ -194,8 +194,11 @@ class DrOptionsManager():
 		return self.left_color_btn().color_widget.get_rgba()
 
 	def get_operator(self):
-		enum = self.get_classic_tools_pane()._operator_enum
-		label = self.get_classic_tools_pane()._operator_label
+		# XXX répugnant, on duplique la donnée dans les 2 popovers, puis on
+		# hardcode qu'on prendra la donnée uniquement dans celui de droite, et
+		# tout ça sans respecter l'encapsulation
+		enum = self.get_classic_tools_pane()._color_r._operator_enum
+		label = self.get_classic_tools_pane()._color_r._operator_label
 		return enum, label
 
 	############################################################################

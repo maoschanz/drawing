@@ -3,7 +3,7 @@ Be sure to read [general contributing guidelines](../CONTRIBUTING.md#contribute-
 first.
 
 <!--[TOC]-->
-<!--FIXME quand un objet retient qui l'a invoqué, c'est tjrs de la compo ??-->
+<!--XXX quand un objet retient qui l'a invoqué, c'est tjrs de la compo ??-->
 
 # Overview
 

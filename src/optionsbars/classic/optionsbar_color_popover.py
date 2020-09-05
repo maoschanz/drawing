@@ -21,6 +21,40 @@ from .utilities import utilities_get_rgba_name
 
 PREFIX = '/com/github/maoschanz/drawing/'
 
+CAIRO_OP_VALUES = {
+	'over': cairo.Operator.OVER,
+
+	'clear': cairo.Operator.CLEAR,
+	'dest-in': cairo.Operator.DEST_IN,
+
+	'difference': cairo.Operator.DIFFERENCE,
+	'multiply': cairo.Operator.MULTIPLY,
+	'source': cairo.Operator.SOURCE,
+
+	'hsl-hue': cairo.Operator.HSL_HUE,
+	'hsl-saturation': cairo.Operator.HSL_SATURATION,
+	'hsl-color': cairo.Operator.HSL_COLOR,
+	'hsl-luminosity': cairo.Operator.HSL_LUMINOSITY,
+}
+
+CAIRO_OP_LABELS = {
+	'over': _("Normal"),
+
+	'clear': _("Erase"),
+	'dest-in': _("Blur"),
+
+	'difference': _("Difference"),
+	'multiply': _("Highlight"),
+	'source': _("Raw source color"),
+
+	'hsl-hue': _("Hue only"),
+	'hsl-saturation': _("Saturation only"),
+	'hsl-color': _("Hue and saturation"),
+	'hsl-luminosity': _("Luminosity only"),
+}
+
+################################################################################
+
 class OptionsBarClassicColorPopover(Gtk.Popover):
 	__gtype_name__ = 'OptionsBarClassicColorPopover'
 
@@ -36,6 +70,10 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._button.set_popover(self)
 		self._thumbnail_image = thumbn
 		self._parent_bar = cl_bar
+
+		# These attributes are the same in both oppovers, but this may evolve
+		self._operator_enum = cairo.Operator.OVER
+		self._operator_label = _("Normal")
 
 		########################################################################
 		# Box at the top #######################################################
@@ -88,6 +126,8 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		return not (op_as_string == 'clear' or op_as_string == 'dest-in')
 
 	def adapt_to_operator(self, op_as_string):
+		self._operator_enum = CAIRO_OP_VALUES[op_as_string]
+		self._operator_label = CAIRO_OP_LABELS[op_as_string]
 		# print("adapt to operator :", op_as_string) # XXX est-ce trop appelé
 		supports_colors = self._operator_supports_color(op_as_string)
 		self._operator_menubtn.get_popover().popdown()
@@ -129,13 +169,11 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		# Set the tooltip of the button
 		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
 		if not self._operator_supports_color(op_as_string):
-			# FIXME not if the tool is the eraser
-			tooltip_string = self._parent_bar._operator_label
+			tooltip_string = self._operator_label
 		elif op_as_string == 'over':
 			pass # Normal situation, no need to tell the user
 		else:
-			# XXX shouldn't fail but is ugly
-			tooltip_string = self._parent_bar._operator_label + ' — ' + tooltip_string
+			tooltip_string = self._operator_label + ' - ' + tooltip_string
 		self._button.set_tooltip_text(tooltip_string)
 
 	############################################################################

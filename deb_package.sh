@@ -1,9 +1,8 @@
 #!/bin/bash
 
-DISTRO="unstable" # TODO lister les valeurs possibles (debian ? ubuntu ?
-# elementary ? mint ?) il est probable qu'on s'en tape, car si ce script est
-# fait pour un usage local, les vraies distros changent ça comme des grandes.
-PACKAGE_NAME="drawing" # XXX et pour elementary ? osef je pense, flemme.
+DISTRO="unstable" # TODO list all possible values? i think i don't care, this
+# script is for local use only, actual distros do it themselves
+PACKAGE_NAME="drawing" # XXX ask it as an input maybe?
 VERSION="0.5"
 
 echo "targeted distribution: $DISTRO"
