@@ -60,6 +60,8 @@ If your language is not here, or is incompletely translated, you can
 | eu   | Basque       | 0.4.14 | 86%       | [alexgabi](https://github.com/alexgabi)
 | fi   | Finnish      | 0.4.10 | 89%       | [MahtiAnkka](https://github.com/mahtiankka)
 | fr   | French       | 0.2   | 100%       |                                   |
+| he   | Hebrew       | 0.4.1 | **68%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
+| hr   | Croatian     | 0.4.11 | 88%       | [Milo Ivir](https://github.com/milotype)
 | hu   | Hungarian    | 0.4.10 | 92%       | [Kálmán „KAMI” Szalai](https://github.com/kami911)
 | sv   | Swedish      | 0.4.11 | 88%       | [Åke Engelbrektson](https://github.com/eson57)
 | tr   | Turkish      | 0.2   | 95%        | [Serdar Sağlam](https://github.com/TeknoMobil)
