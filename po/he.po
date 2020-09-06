@@ -464,9 +464,6 @@ msgstr "סגור תמונה נוכחיתשמירה כ..."
 msgid "Save as"
 msgstr "שמירה כ…"
 
-# Perhaps this should be renamed to "Editing"?
-# I had a hard time understanding what this term was supposed to mean.
-#, fuzzy
 msgid "Editing"
 msgstr "עריכה"
 
@@ -510,7 +507,6 @@ msgstr "גודל כלי"
 msgid "No options"
 msgstr "אין אפשרויות"
 
-#. <property name="relief">none</property>
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
@@ -525,10 +521,9 @@ msgstr "ביטול"
 msgid "Create"
 msgstr ""
 
-# I had to translate this to "Display the version and "about" dialog".
-# I hope this is in line with the original intent?
-msgid "Print the version and display the 'about' dialog"
-msgstr "הצג את הגרסה ואת מסך \"אודות\""
+#, fuzzy
+msgid "Show the app version"
+msgstr "הצג תצוגה מקדימה"
 
 msgid "Open a new window"
 msgstr "פתח חלון חדשה"
@@ -538,6 +533,9 @@ msgstr "פתח לשונית חדשה"
 
 msgid "Edit the clipboard content"
 msgstr ""
+
+msgid "Report bugs or ideas"
+msgstr "דווח באגים או רעיונות"
 
 #. To tranlators: "translate" this by your name, it will be displayed
 #. in the "about" dialog
@@ -556,6 +554,8 @@ msgstr ""
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
 msgstr ""
+"שגיאה בפתיחת קובץ זה. האם התכוונת ל-\n"
+"%s ?"
 
 #, python-format
 msgid "Failed to load tool: %s"
