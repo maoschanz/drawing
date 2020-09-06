@@ -837,8 +837,10 @@ class DrWindow(Gtk.ApplicationWindow):
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
 			if not self.get_active_image().is_saved():
+				# Context: %s will be replaced by the name of a file.
 				dialog.add_string(_("There are unsaved modifications to %s.") % \
 				             self.get_active_image().get_filename_for_display())
+			# Context: %s will be replaced by the name of a file.
 			dialog.add_string(_("Where do you want to open %s?") % file_name)
 			result = dialog.run()
 			dialog.destroy()
@@ -878,6 +880,8 @@ class DrWindow(Gtk.ApplicationWindow):
 			# Context for translation:
 			# "What do you want to do with *these files*?"
 			label = _("these files")
+		# Context: %s will be replaced by the name of a file. The possible
+		# answers are "cancel", "open", and "import"
 		dialog.add_string(_("What do you want to do with %s?") % label)
 		result = dialog.run()
 		dialog.destroy()
@@ -930,8 +934,8 @@ class DrWindow(Gtk.ApplicationWindow):
 				return True
 			# else the exception was raised because an actual error occured, or
 			# the user clicked on "cancel"
-			self.prompt_message(False, _("Failed to save %s") % fn)
 			print(e)
+			self.prompt_message(False, _("Failed to save %s") % fn)
 			return False
 		self.get_active_image().post_save()
 		self.set_picture_title()
@@ -980,6 +984,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		images_dir = GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)
 		if images_dir != None: # no idea why it sometimes fails
 			file_chooser.set_current_folder(images_dir)
+		# Context: Untitled(.png) is the default name of a newly saved file
 		default_file_name = str(_("Untitled") + '.png')
 		file_chooser.set_current_name(default_file_name)
 

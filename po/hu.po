@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-16 23:17+0200\n"
+"POT-Creation-Date: 2020-09-06 23:18+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -315,6 +315,8 @@ msgstr "Eredeti nagyítás"
 msgid "Zoom In"
 msgstr "Nagyítás"
 
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
 msgstr "Pozíció"
@@ -392,7 +394,7 @@ msgstr "Színek megcserélése"
 msgid "Color application mode"
 msgstr "Színválasztó"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Normal"
@@ -404,21 +406,21 @@ msgid "Other modes"
 msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Raw source color"
 msgstr "Forrás szín"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Highlight"
 msgstr "Magasság"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Különbség"
@@ -429,28 +431,28 @@ msgid "Photo-oriented modes"
 msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue only"
 msgstr "Csak menüsor"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Saturation only"
 msgstr "Telítettség"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Hue and saturation"
 msgstr "Telítettség"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
 msgstr ""
@@ -460,12 +462,12 @@ msgid "Don't use the colors but…"
 msgstr ""
 
 #. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Blur"
 msgstr "Elmosás"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 #, fuzzy
 msgid "Erase"
@@ -622,22 +624,23 @@ msgstr ""
 msgid "Image"
 msgstr "Kép"
 
-#: src/ui/shortcuts.ui
-msgid "Open a file"
-msgstr "Fájl megnyitása"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "Kép megnyitása"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
 msgstr ""
 
-#: src/ui/shortcuts.ui
-msgid "Save as"
-msgstr "Mentés másként"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Save picture as…"
+msgstr "Kép mentése másként…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Aktív képnézet bezárása"
 
+#. TODO after 0.6, replace this string with: Open the tool options menu
 #: src/ui/shortcuts.ui
 msgid "Options menu"
 msgstr "Beállítások menü"
@@ -686,6 +689,8 @@ msgstr "Belépés a teljes képernyős módba"
 msgid "Exit fullscreen mode"
 msgstr "Kilépés a teljes képernyős módból"
 
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigáció"
@@ -747,19 +752,23 @@ msgstr "Mégse"
 msgid "Create"
 msgstr "Létrehozás"
 
+#. Description of a command line option
 #: src/main.py
 #, fuzzy
 msgid "Show the app version"
 msgstr "Előnézet megjelenítése"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new window"
 msgstr "Megnyitás új ablakban"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new tab"
 msgstr "Új lap megnyitása"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
 msgstr "Kép szerkesztése a vágólapról"
@@ -773,12 +782,14 @@ msgstr ""
 msgid "Report bugs or ideas"
 msgstr "Hibajelentés küldése"
 
-#. To tranlators: "translate" this by your name, it will be displayed
-#. in the "about" dialog
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
 msgstr "Kálmán „KAMI” Szalai <kami911@gmail.com>, 2019"
 
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr ""
@@ -797,13 +808,14 @@ msgid "Error opening this file. Did you mean %s ?"
 msgstr ""
 "Hiba történt a fájl megnyitása során. Próbálja meg a(z) %s fájlt megnyitni?"
 
-#. This displays the zoom level, %s will be replaced with a number, while
-#. %% is just the symbol '%'
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
 msgstr "%s%%"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
 msgstr "Új képek"
@@ -822,6 +834,7 @@ msgstr "Alapértelmezett magasság"
 msgid "Default color"
 msgstr "Alapértelmezett háttér"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
 msgstr "Képek mentése"
@@ -872,6 +885,8 @@ msgstr ""
 msgid "Use 'Ctrl' to zoom"
 msgstr ""
 
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
 msgstr "Megjelenés"
@@ -880,6 +895,7 @@ msgstr "Megjelenés"
 msgid "Use big icons"
 msgstr "Nagy ikonok"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
 msgstr "További eszközök"
@@ -918,6 +934,7 @@ msgstr "Színpipetta"
 msgid "Paint"
 msgstr "Festés"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
 msgstr "Haladó beállítások"
@@ -926,6 +943,7 @@ msgstr "Haladó beállítások"
 msgid "Preview size"
 msgstr "Előnézet mérete"
 
+#. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
 msgstr "Fejlesztés"
@@ -934,6 +952,8 @@ msgstr "Fejlesztés"
 msgid "Background color"
 msgstr "Háttérszín"
 
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
 msgstr "Elrendezés"
@@ -942,6 +962,7 @@ msgstr "Elrendezés"
 msgid "The recommended value is \"Automatic\"."
 msgstr "Az ajánlott érték: „Automatikus”."
 
+#. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
 msgstr "Automatikus"
@@ -961,7 +982,8 @@ msgid "Legacy"
 msgstr "Örökölt"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
-#. can translate it like if it was "Traditional"
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
 msgstr "Örökölt (szimbolikus ikonok)"
@@ -974,6 +996,7 @@ msgstr "Csak menüsor"
 msgid "Toolbar only"
 msgstr "Csak eszköztár"
 
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
 msgstr "Csak eszköztár (szimbolikus ikonok)"
@@ -993,10 +1016,12 @@ msgstr ""
 msgid "%s in"
 msgstr ""
 
+#. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
 msgstr "Útvonal"
 
+#. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
 msgstr "Formátum"
@@ -1005,6 +1030,7 @@ msgstr "Formátum"
 msgid "Colorspace"
 msgstr "Színtér"
 
+#. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
 msgstr "Érvénytelen formátuma"
@@ -1070,6 +1096,7 @@ msgstr "Talán türkizkék"
 msgid "Unknown color name"
 msgstr "Ismeretlen szín név"
 
+#. Context: confirm replacing transparent pixels with the selected color
 #: src/utilities.py
 msgid "Replace"
 msgstr ""
@@ -1147,19 +1174,17 @@ msgstr "Új lap"
 msgid "Discard changes"
 msgstr "Módosítások elvetése"
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Mentetlen változtatások vannak a következőhöz: %s."
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Hova kívánja megnyitni a(z) %s képfájlt?"
-
-#: src/window.py
-msgid "Open a picture"
-msgstr "Kép megnyitása"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
@@ -1167,18 +1192,19 @@ msgstr "Kép megnyitása"
 msgid "these files"
 msgstr "ezek a fájlok"
 
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Mit szeretne tenni a(z) %s képpel?"
 
-#. else the exception was raised because an actual error occured, or
-#. the user clicked on "cancel"
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "%s mentése meghiúsult"
 
+#. Context: Untitled(.png) is the default name of a newly saved file
 #: src/window.py
 msgid "Untitled"
 msgstr "Névtelen"
@@ -1191,10 +1217,6 @@ msgstr "ez a kép"
 #: src/window.py
 msgid "Discard"
 msgstr "Eldobás"
-
-#: src/window.py
-msgid "Save picture as…"
-msgstr "Kép mentése másként…"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1719,6 +1741,12 @@ msgstr "Kijelölés átméretezése"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Rajzvászon átméretezése"
+
+#~ msgid "Open a file"
+#~ msgstr "Fájl megnyitása"
+
+#~ msgid "Save as"
+#~ msgstr "Mentés másként"
 
 #~ msgid "Keyboard"
 #~ msgstr "Billentyűzet"

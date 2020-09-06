@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-16 23:17+0200\n"
+"POT-Creation-Date: 2020-09-06 23:18+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -327,6 +327,8 @@ msgstr "Original-Zoom"
 msgid "Zoom In"
 msgstr "Hineinzoomen"
 
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
 msgstr "Position"
@@ -398,7 +400,7 @@ msgstr "Farben tauschen"
 msgid "Color application mode"
 msgstr "Farbanwendungsmodus"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Normal"
 msgstr "Normal"
@@ -409,19 +411,19 @@ msgid "Other modes"
 msgstr "Andere Modi"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "Quellfarbe"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Hervorheben"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Gegensätzlich"
@@ -432,25 +434,25 @@ msgid "Photo-oriented modes"
 msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "Nur Farbton"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "Nur Sättigung"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "Farbton und Sättigung"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
 msgstr "Nur Helligkeit"
@@ -460,12 +462,12 @@ msgid "Don't use the colors but…"
 msgstr "Benutze nicht die Farben, sondern …"
 
 #. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Blur"
 msgstr "Verwischen"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Erase"
 msgstr "Löschen"
@@ -620,22 +622,23 @@ msgstr ""
 msgid "Image"
 msgstr "Bild"
 
-#: src/ui/shortcuts.ui
-msgid "Open a file"
-msgstr "Eine Datei öffnen"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "Ein Bild öffnen"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
 msgstr "Bild von Festplatte neu laden"
 
-#: src/ui/shortcuts.ui
-msgid "Save as"
-msgstr "Speichern als"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Save picture as…"
+msgstr "Bild speichern als…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Aktives Bild schließen"
 
+#. TODO after 0.6, replace this string with: Open the tool options menu
 #: src/ui/shortcuts.ui
 msgid "Options menu"
 msgstr "Optionen-Menü"
@@ -685,6 +688,8 @@ msgstr "Vollbildansicht starten"
 msgid "Exit fullscreen mode"
 msgstr "Vollbildansicht beenden"
 
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Steuerung"
@@ -747,18 +752,22 @@ msgstr "Abbrechen"
 msgid "Create"
 msgstr "Erstellen"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
 msgstr "Version der Anwendung anzeigen"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new window"
 msgstr "Neues Fenster öffnen"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new tab"
 msgstr "Neuen Tab öffnen"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
 msgstr "Inhalt der Zwischenablage bearbeiten"
@@ -771,12 +780,14 @@ msgstr "Diese Version ist nicht fertig!"
 msgid "Report bugs or ideas"
 msgstr "Fehler oder Ideen melden"
 
-#. To tranlators: "translate" this by your name, it will be displayed
-#. in the "about" dialog
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
 msgstr "Onno Giesmann"
 
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "Symbolsatz-Autoren von GNOME's \"Art Libre\""
@@ -794,13 +805,14 @@ msgstr "Offizielle Internetseite"
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
 
-#. This displays the zoom level, %s will be replaced with a number, while
-#. %% is just the symbol '%'
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
 msgstr "%s%%"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
 msgstr "Neue Bilder"
@@ -819,6 +831,7 @@ msgstr "Standardhöhe"
 msgid "Default color"
 msgstr "Standardhintergrund"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
 msgstr "Speichern von Bildern"
@@ -867,6 +880,8 @@ msgstr ""
 msgid "Use 'Ctrl' to zoom"
 msgstr "'STRG' für Zoomen nutzen"
 
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
 msgstr "Erscheinungsbild"
@@ -875,6 +890,7 @@ msgstr "Erscheinungsbild"
 msgid "Use big icons"
 msgstr "Große Symbole verwenden"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
 msgstr "Zusätzliche Werkzeuge"
@@ -912,6 +928,7 @@ msgstr "Farbwähler"
 msgid "Paint"
 msgstr "Füllen"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
 msgstr "Erweiterte Einstellungen"
@@ -920,6 +937,7 @@ msgstr "Erweiterte Einstellungen"
 msgid "Preview size"
 msgstr "Vorschaugröße"
 
+#. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
 msgstr "Entwicklungsfunktionen"
@@ -928,6 +946,8 @@ msgstr "Entwicklungsfunktionen"
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
 msgstr "Layout"
@@ -936,6 +956,7 @@ msgstr "Layout"
 msgid "The recommended value is \"Automatic\"."
 msgstr "Der empfohlene Wert ist \"Automatisch\"."
 
+#. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
 msgstr "Automatisch"
@@ -955,7 +976,8 @@ msgid "Legacy"
 msgstr "Altmodisch"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
-#. can translate it like if it was "Traditional"
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
 msgstr "Traditionell (einfarbig)"
@@ -968,6 +990,7 @@ msgstr "Nur Menüleiste"
 msgid "Toolbar only"
 msgstr "Nur Werkzeugleiste"
 
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
 msgstr "Nur Werkzeugleiste (einfarbig)"
@@ -987,10 +1010,12 @@ msgstr "%s cm"
 msgid "%s in"
 msgstr "%s in"
 
+#. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
 msgstr "Pfad"
 
+#. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
 msgstr "Format"
@@ -999,6 +1024,7 @@ msgstr "Format"
 msgid "Colorspace"
 msgstr "Farbraum"
 
+#. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
 msgstr "Ungültiges Format"
@@ -1066,6 +1092,7 @@ msgstr "Eher türkis"
 msgid "Unknown color name"
 msgstr "Unbekannter Farbname"
 
+#. Context: confirm replacing transparent pixels with the selected color
 #: src/utilities.py
 msgid "Replace"
 msgstr "Ersetzen"
@@ -1143,19 +1170,17 @@ msgstr "Neuer Tab"
 msgid "Discard changes"
 msgstr "Änderungen verwerfen"
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Es gibt Änderungen an %s, die noch nicht gespeichert wurden."
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Wo möchten Sie %s öffnen?"
-
-#: src/window.py
-msgid "Open a picture"
-msgstr "Ein Bild öffnen"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
@@ -1163,18 +1188,19 @@ msgstr "Ein Bild öffnen"
 msgid "these files"
 msgstr "diese Dateien"
 
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Was möchten Sie mit %s machen?"
 
-#. else the exception was raised because an actual error occured, or
-#. the user clicked on "cancel"
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Speichern von %s fehlgeschlagen"
 
+#. Context: Untitled(.png) is the default name of a newly saved file
 #: src/window.py
 msgid "Untitled"
 msgstr "Unbenannt"
@@ -1187,10 +1213,6 @@ msgstr "diesem Bild"
 #: src/window.py
 msgid "Discard"
 msgstr "Verwerfen"
-
-#: src/window.py
-msgid "Save picture as…"
-msgstr "Bild speichern als…"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1699,6 +1721,12 @@ msgstr "Auswahl skalieren"
 #: src/tools/canvas_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Leinwand skalieren"
+
+#~ msgid "Open a file"
+#~ msgstr "Eine Datei öffnen"
+
+#~ msgid "Save as"
+#~ msgstr "Speichern als"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tastatur"

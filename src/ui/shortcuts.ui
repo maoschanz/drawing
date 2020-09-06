@@ -89,7 +89,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Open a file</property>
+                <property name="title" translatable="yes">Open a picture</property>
                 <property name="accelerator">&lt;Primary&gt;o</property>
               </object>
             </child>
@@ -110,7 +110,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Save as</property>
+                <property name="title" translatable="yes">Save picture as…</property>
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;s</property>
               </object>
             </child>
@@ -137,6 +137,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <!-- TODO after 0.6, replace this string with: Open the tool options menu -->
                 <property name="title" translatable="yes">Options menu</property>
                 <property name="accelerator">&lt;Primary&gt;F10</property>
               </object>
@@ -320,6 +321,8 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
+            <!-- Context: this section of the shortcuts window is about moving -->
+            <!-- the view to the left/right/top/bottom -->
             <property name="title" translatable="yes">Navigation</property>
             <child>
               <object class="GtkShortcutsShortcut">

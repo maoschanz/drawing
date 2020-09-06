@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-16 23:17+0200\n"
+"POT-Creation-Date: 2020-09-06 23:18+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -324,6 +324,8 @@ msgstr "Izvorno zumiranje"
 msgid "Zoom In"
 msgstr "Povećaj prikaz"
 
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
 msgstr "Pozicija"
@@ -395,7 +397,7 @@ msgstr "Zamijeni boje"
 msgid "Color application mode"
 msgstr "Modus programa u boji"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Normal"
 msgstr "Normalno"
@@ -406,19 +408,19 @@ msgid "Other modes"
 msgstr "Drugi modusi"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "Neobrađena izvorna boja"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Isticanje"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "Razlika"
@@ -429,25 +431,25 @@ msgid "Photo-oriented modes"
 msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "Samo nijansa"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "Samo zasićenost"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "Nijansa i zasićenost"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
 msgstr "Samo osvjetljenost"
@@ -457,12 +459,12 @@ msgid "Don't use the colors but…"
 msgstr "Ne koristi boje, već …"
 
 #. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Blur"
 msgstr "Zamuti"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Erase"
 msgstr "Izbriši"
@@ -617,22 +619,23 @@ msgstr ""
 msgid "Image"
 msgstr "Slika"
 
-#: src/ui/shortcuts.ui
-msgid "Open a file"
-msgstr "Otvori datoteku"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "Otvori jednu sliku"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
 msgstr "Ponovo učitaj sliku s diska"
 
-#: src/ui/shortcuts.ui
-msgid "Save as"
-msgstr "Spremi kao"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Save picture as…"
+msgstr "Spremi sliku kao …"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Zatvori aktivnu sliku"
 
+#. TODO after 0.6, replace this string with: Open the tool options menu
 #: src/ui/shortcuts.ui
 msgid "Options menu"
 msgstr "Izbornik opcija"
@@ -681,6 +684,8 @@ msgstr "Otvori cjeloekranski prikaz"
 msgid "Exit fullscreen mode"
 msgstr "Zatvori cjeloekranski prikaz"
 
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigacija"
@@ -743,18 +748,22 @@ msgstr "Odustani"
 msgid "Create"
 msgstr "Stvori"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
 msgstr "Prikaži verziju programa"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new window"
 msgstr "Otvori novi prozor"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new tab"
 msgstr "Otvori novu karticu"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
 msgstr "Uredi sadržaj međuspremnika"
@@ -767,12 +776,14 @@ msgstr "Ovo nije stabilna verzija!"
 msgid "Report bugs or ideas"
 msgstr "Prijavi greške ili ideje"
 
-#. To tranlators: "translate" this by your name, it will be displayed
-#. in the "about" dialog
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
 msgstr "Milo Ivir <mail@milotype.de>, 2020."
 
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "Autori GNOME-ovog kompleta ikona „Art Libre”"
@@ -790,13 +801,14 @@ msgstr "Službena web-stranica"
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "Greška pri otvaranju datoteke. Možda misliš %s?"
 
-#. This displays the zoom level, %s will be replaced with a number, while
-#. %% is just the symbol '%'
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
 msgstr "%s %%"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
 msgstr "Nove slike"
@@ -815,6 +827,7 @@ msgstr "Standardna visina"
 msgid "Default color"
 msgstr "Standardna pozadina"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
 msgstr "Spremanje slika"
@@ -863,6 +876,8 @@ msgstr ""
 msgid "Use 'Ctrl' to zoom"
 msgstr "Koristi „Ctrl” za zumiranje"
 
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
 msgstr "Izgled"
@@ -871,6 +886,7 @@ msgstr "Izgled"
 msgid "Use big icons"
 msgstr "Koristi velike ikone"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
 msgstr "Dodatni alati"
@@ -908,6 +924,7 @@ msgstr "Kapaljka"
 msgid "Paint"
 msgstr "Bojanje"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
 msgstr "Napredne opcije"
@@ -916,6 +933,7 @@ msgstr "Napredne opcije"
 msgid "Preview size"
 msgstr "Veličina pretprikaza"
 
+#. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
 msgstr "Funkcije u razvoju"
@@ -924,6 +942,8 @@ msgstr "Funkcije u razvoju"
 msgid "Background color"
 msgstr "Boja pozadine"
 
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
 msgstr "Raspored"
@@ -932,6 +952,7 @@ msgstr "Raspored"
 msgid "The recommended value is \"Automatic\"."
 msgstr "Preporučena vrijednost je „Automatski”."
 
+#. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
 msgstr "Automatski"
@@ -951,7 +972,8 @@ msgid "Legacy"
 msgstr "Stari"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
-#. can translate it like if it was "Traditional"
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
 msgstr "Stari (ikone sa simbolima)"
@@ -964,6 +986,7 @@ msgstr "Samo traka izbornika"
 msgid "Toolbar only"
 msgstr "Samo traka alata"
 
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
 msgstr "Samo traka alata (ikone sa simbolima)"
@@ -983,10 +1006,12 @@ msgstr "%s cm"
 msgid "%s in"
 msgstr "%s in"
 
+#. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
 msgstr "Staza"
 
+#. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
 msgstr "Format"
@@ -995,6 +1020,7 @@ msgstr "Format"
 msgid "Colorspace"
 msgstr "Prostor boje"
 
+#. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
 msgstr "Neispravan format"
@@ -1060,6 +1086,7 @@ msgstr "Vjerojatno tirkizna"
 msgid "Unknown color name"
 msgstr "Nepoznato ime boje"
 
+#. Context: confirm replacing transparent pixels with the selected color
 #: src/utilities.py
 msgid "Replace"
 msgstr "Zamijeni"
@@ -1135,19 +1162,17 @@ msgstr "Nova kartica"
 msgid "Discard changes"
 msgstr "Odbaci promjene"
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "Postoje nespremljene promjene u %s."
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Gdje želiš otvoriti %s?"
-
-#: src/window.py
-msgid "Open a picture"
-msgstr "Otvori jednu sliku"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
@@ -1155,18 +1180,19 @@ msgstr "Otvori jednu sliku"
 msgid "these files"
 msgstr "ovim datotekama"
 
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "Što želiš uraditi s %s?"
 
-#. else the exception was raised because an actual error occured, or
-#. the user clicked on "cancel"
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Neuspjelo spremanje %s"
 
+#. Context: Untitled(.png) is the default name of a newly saved file
 #: src/window.py
 msgid "Untitled"
 msgstr "Bezimeno"
@@ -1179,10 +1205,6 @@ msgstr "ovoj slici"
 #: src/window.py
 msgid "Discard"
 msgstr "Odbaci"
-
-#: src/window.py
-msgid "Save picture as…"
-msgstr "Spremi sliku kao …"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1690,6 +1712,11 @@ msgstr "Skaliranje odabira"
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
 
+#~ msgid "Open a file"
+#~ msgstr "Otvori datoteku"
+
+#~ msgid "Save as"
+#~ msgstr "Spremi kao"
+
 #~ msgid "Keyboard"
 #~ msgstr "Tipkovnica"
-

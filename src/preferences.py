@@ -81,12 +81,14 @@ class DrPrefsWindow(Gtk.Window):
 		"""Adds the widget to the grid of the 'images' page."""
 		self.set_current_grid(self.page_images)
 
+		# Context: title of a section of the preferences
 		self.add_section_title(_("New images"))
 		self.add_adj(_("Default width"), 'default-width', self.adj_width)
 		self.add_adj(_("Default height"), 'default-height', self.adj_height)
 		self.add_colorbtn(_("Default color"), 'default-rgba')
 
 		self.add_section_separator()
+		# Context: title of a section of the preferences
 		self.add_section_title(_("Images saving"))
 		self.add_help(_("JPEG and BMP images can't handle transparency.") + \
 		        " " + _("If you save your images in these formats, what " + \
@@ -111,11 +113,14 @@ class DrPrefsWindow(Gtk.Window):
 		"""Adds the widget to the grid of the 'tools' page."""
 		self.set_current_grid(self.page_tools)
 
+		# Context: title of a section of the preferences (appearance of the
+		# tools: big icons?, labels?)
 		self.add_section_title(_("Appearance"))
 		self.add_switch(_("Show tools names"), 'show-labels')
 		self.add_switch(_("Use big icons"), 'big-icons')
 
 		self.add_section_separator()
+		# Context: title of a section of the preferences
 		self.add_section_title(_("Additional tools"))
 		self.add_help(_("These tools are not as reliable and useful as " + \
 		       "they should be, so they are not all enabled by default."))
@@ -133,21 +138,26 @@ class DrPrefsWindow(Gtk.Window):
 		"""Adds the widget to the grid of the 'advanced' page."""
 		self.set_current_grid(self.page_advanced)
 
+		# Context: title of a section of the preferences
 		self.add_section_title(_("Advanced options"))
 		self.add_adj(_("Preview size"), 'preview-size', self.adj_preview)
 		if is_beta:
+			# This label will not be displayed in the UI of stable versions
 			self.add_switch(_("Development features"), 'devel-only')
 		else:
 			self._settings.set_boolean('devel-only', False)
 		self.add_colorbtn(_("Background color"), 'ui-background-rgba')
 
 		self.add_section_separator()
+		# Context: title of a section of the preferences. It corresponds to the
+		# window layout (header-bar? tool-bar? menu-bar?)
 		self.add_section_title(_("Layout"))
 		self.add_help(_("The recommended value is \"Automatic\"."))
 		# h = headerbar; g = gnome; e = elementary
 		# m = menubar; t = toolbar
 		# c = color; s = symbolic
 		layouts_dict = {
+			# It has to match what's written in the previous string.
 			'': _("Automatic"),
 			'hg': _("Compact"),
 			'he': _("elementary OS"),
@@ -155,10 +165,12 @@ class DrPrefsWindow(Gtk.Window):
 			# can translate it like if it was "Traditional"
 			'mtc': _("Legacy"),
 			# "Legacy" is about the window layout, it means menubar+toolbar, you
-			# can translate it like if it was "Traditional"
+			# can translate it like if it was "Traditional".
+			# Symbolic icons are monochrome icons.
 			'mts': _("Legacy (symbolic icons)"),
 			'm': _("Menubar only"),
 			'tc': _("Toolbar only"),
+			# Symbolic icons are monochrome icons.
 			'ts': _("Toolbar only (symbolic icons)")
 		}
 		self.add_radio_flowbox('deco-type', layouts_dict)

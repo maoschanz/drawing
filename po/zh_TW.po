@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-16 23:17+0200\n"
+"POT-Creation-Date: 2020-09-06 23:18+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -316,6 +316,8 @@ msgstr "原始大小"
 msgid "Zoom In"
 msgstr "放大"
 
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
 msgstr "位置"
@@ -387,7 +389,7 @@ msgstr "交換色彩"
 msgid "Color application mode"
 msgstr "色彩套用模式"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Normal"
 msgstr "預設"
@@ -398,19 +400,19 @@ msgid "Other modes"
 msgstr "其他模式"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
 msgstr "原始來源的色彩"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "螢光筆"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
 msgstr "差異"
@@ -421,25 +423,25 @@ msgid "Photo-oriented modes"
 msgstr "匹配目標圖片"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
 msgstr "僅色相"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
 msgstr "僅飽和度"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
 msgstr "色相和飽和度"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
 msgstr "僅發光度"
@@ -449,12 +451,12 @@ msgid "Don't use the colors but…"
 msgstr "不要使用色彩，而是…"
 
 #. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Blur"
 msgstr "模糊"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Erase"
 msgstr "擦除"
@@ -607,22 +609,23 @@ msgstr "歷史記錄"
 msgid "Image"
 msgstr "影像"
 
-#: src/ui/shortcuts.ui
-msgid "Open a file"
-msgstr "開啟檔案"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "開啟圖片"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
 msgstr "從磁碟中重新載入影像"
 
-#: src/ui/shortcuts.ui
-msgid "Save as"
-msgstr "另存為"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Save picture as…"
+msgstr "另存圖片為…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "關閉使用中的影像"
 
+#. TODO after 0.6, replace this string with: Open the tool options menu
 #: src/ui/shortcuts.ui
 msgid "Options menu"
 msgstr "選項選單"
@@ -671,6 +674,8 @@ msgstr "進入全螢幕模式"
 msgid "Exit fullscreen mode"
 msgstr "結束全螢幕模式"
 
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "導航"
@@ -730,18 +735,22 @@ msgstr "取消"
 msgid "Create"
 msgstr "建立"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
 msgstr "顯示應用程式版本"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new window"
 msgstr "開啟新視窗"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Open a new tab"
 msgstr "開啟新分頁"
 
+#. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
 msgstr "編輯剪貼簿內容"
@@ -782,13 +791,14 @@ msgstr "官方網頁"
 msgid "Error opening this file. Did you mean %s ?"
 msgstr "開啟此檔案時發生錯誤。你在找 %s 嗎？"
 
-#. This displays the zoom level, %s will be replaced with a number, while
-#. %% is just the symbol '%'
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
 msgstr "%s%%"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
 msgstr "新影像"
@@ -806,6 +816,7 @@ msgstr "預設高度"
 msgid "Default color"
 msgstr "預設色彩"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
 msgstr "影像儲存"
@@ -852,6 +863,8 @@ msgstr "請參見使用者說明手冊。"
 msgid "Use 'Ctrl' to zoom"
 msgstr "使用「Ctrl」鍵縮放"
 
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
 msgstr "外觀"
@@ -860,6 +873,7 @@ msgstr "外觀"
 msgid "Use big icons"
 msgstr "使用大圖示"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
 msgstr "附加工具"
@@ -895,6 +909,7 @@ msgstr "取色器"
 msgid "Paint"
 msgstr "筆刷"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
 msgstr "進階選項"
@@ -903,6 +918,7 @@ msgstr "進階選項"
 msgid "Preview size"
 msgstr "預覽大小"
 
+#. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
 msgstr "開發中的功能"
@@ -911,6 +927,8 @@ msgstr "開發中的功能"
 msgid "Background color"
 msgstr "背景色彩"
 
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
 msgstr "布局"
@@ -919,6 +937,7 @@ msgstr "布局"
 msgid "The recommended value is \"Automatic\"."
 msgstr "推薦的值為「自動」。"
 
+#. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
 msgstr "自動"
@@ -938,7 +957,8 @@ msgid "Legacy"
 msgstr "舊版介面"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
-#. can translate it like if it was "Traditional"
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
 msgstr "舊版介面（符號圖示）"
@@ -951,6 +971,7 @@ msgstr "僅選單"
 msgid "Toolbar only"
 msgstr "僅工具列"
 
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
 msgstr "僅工具列（符號圖示）"
@@ -970,10 +991,12 @@ msgstr "%s 公分"
 msgid "%s in"
 msgstr "%s 英寸"
 
+#. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
 msgstr "路徑"
 
+#. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
 msgstr "格式"
@@ -982,6 +1005,7 @@ msgstr "格式"
 msgid "Colorspace"
 msgstr "色彩空間"
 
+#. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
 msgstr "無效格式"
@@ -1047,6 +1071,7 @@ msgstr "可能為綠松石色"
 msgid "Unknown color name"
 msgstr "未知色彩"
 
+#. Context: confirm replacing transparent pixels with the selected color
 #: src/utilities.py
 msgid "Replace"
 msgstr "取代"
@@ -1122,19 +1147,17 @@ msgstr "新分頁"
 msgid "Discard changes"
 msgstr "丟棄更改"
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
 msgstr "%s 有未儲存的修改。"
 
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "您想在哪裡開啟 %s？"
-
-#: src/window.py
-msgid "Open a picture"
-msgstr "開啟圖片"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
@@ -1142,18 +1165,19 @@ msgstr "開啟圖片"
 msgid "these files"
 msgstr "這些檔案"
 
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "你想要對 %s 做什麼？"
 
-#. else the exception was raised because an actual error occured, or
-#. the user clicked on "cancel"
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "儲存 %s 失敗"
 
+#. Context: Untitled(.png) is the default name of a newly saved file
 #: src/window.py
 msgid "Untitled"
 msgstr "未命名"
@@ -1166,10 +1190,6 @@ msgstr "此圖片"
 #: src/window.py
 msgid "Discard"
 msgstr "丟棄"
-
-#: src/window.py
-msgid "Save picture as…"
-msgstr "另存圖片為…"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1670,3 +1690,8 @@ msgstr "縮放選擇區域"
 msgid "Scaling the canvas"
 msgstr "縮放畫布"
 
+#~ msgid "Open a file"
+#~ msgstr "開啟檔案"
+
+#~ msgid "Save as"
+#~ msgstr "另存為"
