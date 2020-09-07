@@ -25,10 +25,11 @@ class ToolPaint(AbstractClassicTool):
 	__gtype_name__ = 'ToolPaint'
 
 	def __init__(self, window, **kwargs):
+		# Context: the name of a tool to fill an area of one color with an other
 		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window)
 		self.magic_path = None
 		self.use_size = False
-		self.add_tool_action_enum('paint_algo', 'fill')
+		self.add_tool_action_enum('paint_algo', 'replace')
 
 	def get_options_label(self):
 		return _("Painting options")
@@ -88,10 +89,40 @@ class ToolPaint(AbstractClassicTool):
 
 	############################################################################
 
+	def _op_fill(self, operation):
+		"""Simple but ugly, and it's relying on the precision of the provided
+		path whose creation is based on shitty heurisctics."""
+		if operation['path'] is None:
+			return
+		cairo_context = self.get_context()
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.append_path(operation['path'])
+		# can_fill = cairo_context.in_fill(operation['x'], operation['y'])
+		# print(can_fill)
+		# if not can_fill:
+		# 	cairo_context.set_fill_rule(cairo.FillRule.EVEN_ODD)
+		# 	XXX doesn't work as i expected
+		cairo_context.fill()
+
 	def _op_replace(self, operation):
-		"""Algorithmically less ugly than `_op_fill`, but doesn't handle (semi-)
-		transparent colors correctly, even outside of the targeted area."""
-		# FIXME
+		"""Algorithmically less ugly than `_op_fill`, but the replacing strategy
+		itself doesn't handle (semi-) transparent colors correctly, even outside
+		of the targeted area.
+		To fix that, the method paints on the temporary pixbuf, and uses the
+		(famously bad) path from 'encircle and fill' to , and then write a part
+		of this pixbuf to the main one. It's still not good enough tho."""
+		# In this example, the user paints in blue and clicks on X (red):
+		#
+		# rrrrrrrrrrrrrrrrrrrrrrrrr
+		# rrrgggggggggggggggggrrXrr
+		# rrrgaaaaaaaaaaaaaaagrrrrr
+		# rrrgaaaaaaaaaaaaaaagrrrrr
+		# rrrgggggggggggggggggrrrrr
+		# rrrrrrrrrrrrrrrrrrrrrrrrr
+		#
+		# All red pixels will be painted blue, but XXX all the alpha ones too.
+
 		if operation['path'] is None:
 			return
 		surf = self.get_surface()
@@ -135,29 +166,13 @@ class ToolPaint(AbstractClassicTool):
 		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context2.paint()
 
-	def _op_fill(self, operation):
-		"""Simple but ugly, and it's relying on the precision of the provided
-		path whose creation is based on shitty heurisctics."""
-		if operation['path'] is None:
-			return
-		cairo_context = self.get_context()
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		cairo_context.append_path(operation['path'])
-		# can_fill = cairo_context.in_fill(operation['x'], operation['y'])
-		# print(can_fill)
-		# if not can_fill:
-		# 	cairo_context.set_fill_rule(cairo.FillRule.EVEN_ODD)
-		# 	XXX doesn't work as i expected
-		cairo_context.fill()
-
 	def _op_clipping(self, operation):
 		"""Replace the color with transparency by adding an alpha channel."""
 		old_rgba = operation['old_rgba']
 		r0 = old_rgba[0]
 		g0 = old_rgba[1]
 		b0 = old_rgba[2]
-		# XXX and the alpha channel ? pas l'air possible en fait
+		# ^ it's not possible to take into account the alpha channel
 		margin = 0 # TODO as an option ? is not elegant but is powerful
 		self._clip_red(margin, r0, g0, b0)
 		self.restore_pixbuf()

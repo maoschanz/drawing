@@ -189,10 +189,18 @@
         outline, dashes, or nothing).</p>
       </item>
       <item>
-        <p>Paint. This tool tries to paint an area with a color, which doesn't
-        always work as expected so this tool is disabled by default. It can use
-        three possible algorithms: ......</p>
-        <!-- TODO -->
+        <p>Paint. This tool tries to paint an area of a given color with a new
+        color.</p>
+        <p>It can use three possible algorithms: <gui style="menuitem">Encircle
+        and fill</gui> is very simplistic and discouraged,
+        <gui style="menuitem">Erase and replace</gui> should work better, but
+        still fails in a few situations, and <gui style="menuitem">Clipping
+        </gui> doesn't paint but erase the color you clicked on the entire
+        image, for example to cut out an image from its white background.</p>
+        <note style="warning">
+          <p>This tool is disabled by default, because it will not work if the
+          shape to paint is too complex.</p>
+        </note>
       </item>
     </list>
   </section>
