@@ -23,6 +23,8 @@ class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'
 
 	def __init__(self, window, **kwargs):
+		# Context: this is a tool to pick a RGBA color in the image in order to
+		# use it to draw with other tools
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
 		self.use_size = False
 

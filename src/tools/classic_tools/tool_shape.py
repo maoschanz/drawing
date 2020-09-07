@@ -54,6 +54,7 @@ class ToolShape(AbstractClassicTool):
 		if state_as_string == 'empty':
 			self._filling_label = _("Empty shape")
 		elif state_as_string == 'filled':
+			# Context: fill a shape with the color of the left click
 			self._filling_label = _("Main color")
 		elif state_as_string == 'h-gradient':
 			self._filling_label = _("Horizontal gradient")
@@ -62,6 +63,8 @@ class ToolShape(AbstractClassicTool):
 		elif state_as_string == 'r-gradient':
 			self._filling_label = _("Radial gradient")
 		else: # if state_as_string == 'secondary':
+			pass
+			# Context: fill a shape with the color of the right click
 			self._filling_label = _("Secondary color")
 
 	def _set_outline_style(self):

@@ -88,31 +88,34 @@
       </item>
     </section>
     <section>
-      <!-- <submenu> -->
-        <attribute name="label" translatable="yes">Background</attribute>
-        <section>
-          <item>
-            <attribute name="label" translatable="yes">No background</attribute>
-            <attribute name="action">win.text-background</attribute>
-            <attribute name="target">none</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Shadow</attribute>
-            <attribute name="action">win.text-background</attribute>
-            <attribute name="target">shadow</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Outline</attribute>
-            <attribute name="action">win.text-background</attribute>
-            <attribute name="target">outline</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Rectangle background</attribute>
-            <attribute name="action">win.text-background</attribute>
-            <attribute name="target">rectangle</attribute>
-          </item>
-        </section>
-      <!-- </submenu> -->
+      <!-- Context: the types of background behind the inserted text -->
+      <attribute name="label" translatable="yes">Background</attribute>
+      <section>
+        <item>
+          <!-- Context: a type of background behind the inserted text -->
+          <attribute name="label" translatable="yes">No background</attribute>
+          <attribute name="action">win.text-background</attribute>
+          <attribute name="target">none</attribute>
+        </item>
+        <item>
+          <!-- Context: a type of background behind the inserted text -->
+          <attribute name="label" translatable="yes">Shadow</attribute>
+          <attribute name="action">win.text-background</attribute>
+          <attribute name="target">shadow</attribute>
+        </item>
+        <item>
+          <!-- Context: a type of background behind the inserted text -->
+          <attribute name="label" translatable="yes">Outline</attribute>
+          <attribute name="action">win.text-background</attribute>
+          <attribute name="target">outline</attribute>
+        </item>
+        <item>
+          <!-- Context: a type of background behind the inserted text -->
+          <attribute name="label" translatable="yes">Rectangle background</attribute>
+          <attribute name="action">win.text-background</attribute>
+          <attribute name="target">rectangle</attribute>
+        </item>
+      </section>
     </section>
     <!-- <section> -->
     <!--   <item> -->

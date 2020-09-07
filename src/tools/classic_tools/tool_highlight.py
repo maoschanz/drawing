@@ -25,6 +25,8 @@ class ToolHighlighter(ToolPencil):
 
 	def __init__(self, window, **kwargs):
 		super().__init__(window)
+		# Context: this is the name of a tool, a thick pencil dedicated to
+		# highlight text, for example in screenshots
 		AbstractClassicTool.__init__(self, 'highlight', _("Highlighter"), \
 		                                      'tool-highlight-symbolic', window)
 

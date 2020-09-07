@@ -22,6 +22,8 @@ class ToolFreeSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolFreeSelect'
 
 	def __init__(self, window, **kwargs):
+		# Context: this is a tool to select an area according to a shape that
+		# can be freely defined by the user.
 		super().__init__('free_select', _("Free selection"), 'tool-select-free-symbolic', window)
 		self.closing_precision = 10
 		self.closing_x = 0.0

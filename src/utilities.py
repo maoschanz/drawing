@@ -66,6 +66,9 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 	elif rgb_percents[0] > 0.4 and rgb_percents[1] < 0.3 and rgb_percents[2] < 0.3:
 		if lumin < 0.7 and rgb_percents[0] < 0.7:
+			# Context: the name of the current color is provided as a tooltip to
+			# help users with color blindness, but some color names don't have a
+			# clear definition. Here, the app thinks it's probably brown.
 			color_string = _("Probably brown")
 		else:
 			color_string = _("Red")
@@ -88,9 +91,15 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 		if lumin > 0.7:
 			color_string = _("Cyan")
 		else:
+			# Context: the name of the current color is provided as a tooltip to
+			# help users with color blindness, but some color names don't have a
+			# clear definition. Here, the app thinks it's probably turquoise.
 			color_string = _("Probably turquoise")
 
 	else:
+		# Context: the name of the current color is provided as a tooltip to
+		# help users with color blindness, but some color names don't have a
+		# clear definition. Here, the app can't find a corresponding color name.
 		color_string = _("Unknown color name")
 
 	# print(color_string)
@@ -206,11 +215,15 @@ def utilities_add_filechooser_filters(dialog):
 def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
 	spinbutton.set_width_chars(width_chars + 3)
 	if unit == 'px':
+		# To translators: it's a measure unit, it appears in tooltips over
+		# numerical inputs
 		_add_spinbutton_icon(spinbutton, 'unit-pixels-symbolic', _("pixels"))
 	elif unit == '%':
+		# To translators: it appears in tooltips over numerical inputs
 		_add_spinbutton_icon(spinbutton, 'unit-percents-symbolic', _("percents"))
 	elif unit == '°':
-		# To translators: it's the angle measure unit
+		# To translators: it's the angle measure unit, it appears in a tooltip
+		# over a numerical input
 		_add_spinbutton_icon(spinbutton, 'unit-degrees-symbolic', _("degrees"))
 
 def _add_spinbutton_icon(spinbutton, icon, tooltip):
