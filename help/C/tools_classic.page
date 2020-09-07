@@ -59,8 +59,8 @@
         would be semi-transparent yellow.</p>
       </item>
       <item>
-        <p>Highlight: ...</p>
-        <!-- TODO -->
+        <p>Highlight: the selected color is added to the lighter pixels only. It
+        highlights dark text on light background.</p>
       </item>
       <item>
         <p>Difference: ...</p>
@@ -166,17 +166,20 @@
       <p>Don't forget to confirm the insertion using the <gui style="button">
       Insert here</gui> button.</p>
     </note>
+
+    <!-- XXX points (later) -->
   </section>
 
   <section>
     <title>Fill an area</title>
 
-    <p>......</p>
+    <p>To paint an area using a given color, several tools can be used:</p>
+
     <!-- TODO illustration -->
 
     <list>
       <item>
-        <p>Shapes: Available shapes include rectangle, rounded rectangle, oval,
+        <p>Shapes. Available shapes include rectangle, rounded rectangle, oval,
         circle, polygon, and free shape.</p>
         <p>Polygons and free shapes can be drawn in several clicks. To close
         them, do a last click at the position where you began the line, or use

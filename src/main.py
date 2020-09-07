@@ -23,7 +23,7 @@ from .preferences import DrPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
-BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new'
+BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
 
 def main(version):
 	app = Application(version)
