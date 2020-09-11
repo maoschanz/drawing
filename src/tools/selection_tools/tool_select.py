@@ -48,7 +48,7 @@ class ToolSelect(AbstractAbstractTool):
 	############################################################################
 	# UI implementations #######################################################
 
-	def set_active_type(self, *args):
+	def _set_active_type(self, *args):
 		selection_type = self.get_option_value('selection_type')
 		if selection_type == 'rectangle':
 			self.selected_type_id = 'rectangle'
@@ -64,7 +64,7 @@ class ToolSelect(AbstractAbstractTool):
 		return _("Selection options")
 
 	def get_edition_status(self):
-		self.set_active_type()
+		self._set_active_type()
 		label = self.selected_type_label
 		if self.selection_is_active():
 			label = label + ' - ' +  _("Drag the selection or right-click on the canvas")

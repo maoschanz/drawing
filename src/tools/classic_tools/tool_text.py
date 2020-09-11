@@ -236,7 +236,7 @@ class ToolText(AbstractAbstractTool):
 		cairo_context = cairo.Context(self.get_surface())
 
 		font_fam = operation['font_fam']
-		font_size = operation['font_size']
+		font_size = operation['font_size'] * 2
 		entire_text = operation['text']
 		c1 = operation['rgba1']
 		c2 = operation['rgba2']

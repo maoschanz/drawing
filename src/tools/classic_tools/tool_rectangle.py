@@ -19,7 +19,7 @@ class ToolRectangle(AbstractAbstractTool):
 		self.add_tool_action_enum('filling_style', self.selected_style_id)
 		self.add_tool_action_enum('rectangle_shape', self.selected_shape_id)
 
-	def set_active_style(self, *args):
+	def _set_active_style(self, *args):
 		state_as_string = self.get_option_value('filling_style')
 		self.selected_style_id = state_as_string
 		if state_as_string == 'empty':
@@ -29,15 +29,15 @@ class ToolRectangle(AbstractAbstractTool):
 		else:
 			self.selected_style_label = _("Filled (secondary color)")
 
-	def set_active_shape(self, *args):
+	def _set_active_shape(self, *args):
 		self.selected_shape_id = self.get_option_value('rectangle_shape')
 
 	def get_options_label(self):
 		return _("Rectangle options")
 
 	def get_edition_status(self):
-		self.set_active_shape()
-		self.set_active_style()
+		self._set_active_shape()
+		self._set_active_style()
 		if self.selected_shape_id == 'rounded':
 			label = _("Rounded rectangle") + ' - ' + self.selected_style_label
 		else:

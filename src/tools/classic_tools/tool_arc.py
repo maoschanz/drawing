@@ -39,7 +39,7 @@ class ToolArc(AbstractAbstractTool):
 		self.use_dashes = False
 		self.use_arrow = False
 
-	def set_active_shape(self):
+	def _set_active_shape(self):
 		state_as_string = self.get_option_value('line_shape')
 		if state_as_string == 'thin':
 			self._cap_id = cairo.LineCap.BUTT
@@ -51,7 +51,7 @@ class ToolArc(AbstractAbstractTool):
 			self._cap_id = cairo.LineCap.ROUND
 			self._shape_label = _("Round")
 
-	def set_active_operator(self):
+	def _set_active_operator(self):
 		state_as_string = self.get_option_value('cairo_operator')
 		if state_as_string == 'difference':
 			self.selected_operator = cairo.Operator.DIFFERENCE
@@ -72,8 +72,8 @@ class ToolArc(AbstractAbstractTool):
 	def get_edition_status(self): # TODO l'opérateur est important
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.use_arrow = self.get_option_value('is_arrow')
-		self.set_active_shape()
-		self.set_active_operator()
+		self._set_active_shape()
+		self._set_active_operator()
 		label = self.label + ' (' + self._shape_label + ') '
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")

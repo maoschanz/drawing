@@ -48,7 +48,7 @@ class ToolLine(AbstractAbstractTool):
 			self._cap_id = cairo.LineCap.SQUARE
 			self._shape_label = _("Square")
 
-	def set_active_operator(self):
+	def _set_active_operator(self):
 		state_as_string = self.get_option_value('cairo_operator')
 		if state_as_string == 'difference':
 			self.selected_operator = cairo.Operator.DIFFERENCE
@@ -71,8 +71,8 @@ class ToolLine(AbstractAbstractTool):
 		self.use_dashes = self.get_option_value('use_dashes')
 		self.use_arrow = self.get_option_value('is_arrow')
 		self.use_gradient = self.get_option_value('use_gradient')
-		self.set_active_shape()
-		self.set_active_operator()
+		self._set_active_shape()
+		self._set_active_operator()
 		label = self.label + ' (' + self._shape_label + ') '
 		if self.use_arrow and self.use_dashes:
 			label = label + ' - ' + _("Arrow") + ' - ' + _("With dashes")

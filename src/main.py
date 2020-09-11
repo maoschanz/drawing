@@ -17,6 +17,7 @@
 
 import sys, gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 
 from .window import DrawingWindow
@@ -24,7 +25,7 @@ from .preferences import DrawingPrefsWindow
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
-BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new'
+BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
 
 def main(version):
 	app = Application(version)
@@ -54,12 +55,16 @@ class Application(Gtk.Application):
 		self.connect('command-line', self.on_cli)
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
+		                     # Description of a command line option
 		                     GLib.OptionArg.NONE, _("Show the app version"), None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
+		                     # Description of a command line option
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
+		                     # Description of a command line option
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
+		             # Description of a command line option
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
 		# TODO options pour le screenshot ?
 
@@ -329,6 +334,7 @@ class Application(Gtk.Application):
 		self.add_action(action)
 
 	def _get_valid_file(self, app, path):
+		"""Creates a GioFile object if the path corresponds to an image."""
 		try:
 			f = app.create_file_for_arg(path)
 			if 'image/' in f.query_info('standard::*', \

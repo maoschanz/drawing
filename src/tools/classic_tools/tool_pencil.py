@@ -40,7 +40,7 @@ class ToolPencil(AbstractAbstractTool):
 		self.add_tool_action_boolean('use_dashes', self.use_dashes)
 		self.add_tool_action_boolean('pencil_smooth', self.is_smooth)
 
-	def set_active_shape(self, *args):
+	def _set_active_shape(self, *args):
 		state_as_string = self.get_option_value('line_shape')
 		if state_as_string == 'thin':
 			self.selected_cap_id = cairo.LineCap.BUTT
@@ -55,7 +55,7 @@ class ToolPencil(AbstractAbstractTool):
 			self.selected_join_id = cairo.LineJoin.ROUND
 			self.selected_shape_label = _("Round")
 
-	def set_active_operator(self, *args):
+	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('cairo_operator')
 		if state_as_string == 'difference':
 			self.selected_operator = cairo.Operator.DIFFERENCE
@@ -76,8 +76,8 @@ class ToolPencil(AbstractAbstractTool):
 	def get_edition_status(self):
 		self.is_smooth = self.get_option_value('pencil_smooth')
 		self.use_dashes = self.get_option_value('use_dashes')
-		self.set_active_shape()
-		self.set_active_operator()
+		self._set_active_shape()
+		self._set_active_operator()
 		label = self.label + ' - ' + self.selected_shape_label
 		if self.use_dashes:
 			label = label + ' - ' + _("With dashes")
