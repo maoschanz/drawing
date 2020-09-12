@@ -170,7 +170,7 @@ class AbstractAbstractTool():
 
 	def start_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
-			raise Exception("Can't apply operation: %s is an tool" % self.id)
+			raise Exception("Can't start operation: %s is the wrong tool" % self.id)
 		self.restore_pixbuf()
 		self._ongoing_operation = True
 
@@ -181,7 +181,10 @@ class AbstractAbstractTool():
 
 	def simple_apply_operation(self, operation):
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
-		self.do_tool_operation(operation)
+		try:
+			self.do_tool_operation(operation)
+		except Exception as e:
+			self.show_error(str(e))
 		self._ongoing_operation = False
 		self.get_image().add_to_history(operation)
 		self.non_destructive_show_modif()

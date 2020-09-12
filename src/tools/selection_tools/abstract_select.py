@@ -20,6 +20,7 @@ from gi.repository import Gtk
 from .abstract_tool import AbstractAbstractTool
 from .optionsbar_selection import OptionsBarSelection
 from .utilities_overlay import utilities_show_overlay_on_context
+from .selection_manager import NoSelectionPixbufException
 
 class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
@@ -260,14 +261,18 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-	def _op_import(self, operation):
-		if operation['pixbuf'] is None:
-			return # TODO raise something goddammit
-		self.get_selection().set_pixbuf(operation['pixbuf'].copy())
+	def _op_import(self, op):
+		if op['pixbuf'] is None:
+			raise NoSelectionPixbufException()
+			# XXX l'exécution est-elle propre après le "retour" à la méthode
+			# appelante ? (en comparaison à si on fait juste un retour normal)
+		self.get_selection().set_future_coords(op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_pixbuf(op['pixbuf'].copy())
 
 	def _op_clean(self, operation):
 		if operation['initial_path'] is None:
-			return # TODO raise something goddammit
+			return # The user double-clicked: there is no path, and it's normal
 		cairo_context = self.get_context()
 		cairo_context.new_path()
 		cairo_context.append_path(operation['initial_path'])
@@ -282,7 +287,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def _op_define(self, op):
 		if op['initial_path'] is None:
-			return # TODO raise something goddammit
+			return # The user double-clicked: there is no path, and it's normal
 		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
 		self.get_selection().load_from_path(op['initial_path'])
 
