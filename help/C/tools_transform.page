@@ -46,7 +46,9 @@
 
     <p>Resize the image, using the mouse or the values in the bottom bar.</p>
     <p>Proportions can be locked or not.</p>
-    <!-- TODO illustration -->
+
+    <media type="image" mime="image/png" width="100%" its:translate="no"
+           src="figures/screenshot_scale.png" />
   </section>
 
   <!-- XXX skew (later) -->
@@ -57,10 +59,10 @@
     <p>Change the orientation of the image, or flip it, using the buttons in the
     bottom bar.</p>
     <p>If a selection is defined, you can freely choose the precise angle of the
-    rotation.</p>
+    rotation. Otherwise, only rotations of 90°, 180° or 270° are possible.</p>
   </section>
 
-  <section>
+  <section id="filters">
     <title>Filters</title>
 
     <p>You can apply a filter to the image or the selection. Click on the
