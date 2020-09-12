@@ -211,7 +211,7 @@ class ToolText(AbstractClassicTool):
 		cairo_context = self.start_tool_operation(operation)
 
 		font_fam = operation['font_fam']
-		font_size = operation['font_size']
+		font_size = operation['font_size'] * 2
 		entire_text = operation['text']
 		c1 = operation['rgba1']
 		c2 = operation['rgba2']

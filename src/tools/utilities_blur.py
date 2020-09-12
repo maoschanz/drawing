@@ -334,26 +334,32 @@ def _get_tiled_surface(surface, tile_width, tile_height):
 	h = surface.get_height()
 	channels = 4 # ARGB
 	pixels = surface.get_data()
-	px_max = w * h * channels
+	pixel_max = w * h * channels
 
 	for x in range(0, w, tile_width):
 		for y in range(0, h, tile_height):
-			current_px = (x + (w * y)) * channels
-			if current_px >= px_max:
+			current_pixel = (x + (w * y)) * channels
+			if current_pixel >= pixel_max:
 				continue
-			tile_b = pixels[current_px + 0]
-			tile_g = pixels[current_px + 1]
-			tile_r = pixels[current_px + 2]
-			tile_a = pixels[current_px + 3]
+			tile_b = pixels[current_pixel + 0]
+			tile_g = pixels[current_pixel + 1]
+			tile_r = pixels[current_pixel + 2]
+			tile_a = pixels[current_pixel + 3]
 			for tx in range(0, tile_width):
 				for ty in range(0, tile_height):
-					current_px = ((x + tx) + (w * (y + ty))) * channels
-					if current_px >= px_max:
+					current_pixel = ((x + tx) + (w * (y + ty))) * channels
+					if current_pixel >= pixel_max:
 						continue
-					pixels[current_px + 0] = tile_b
-					pixels[current_px + 1] = tile_g
-					pixels[current_px + 2] = tile_r
-					pixels[current_px + 3] = tile_a
+					if current_pixel >= (w * (y + ty + 1)) * channels:
+						# the current tile is out of the surface, this guard
+						# clause avoids corrupting the next tile
+						continue
+					pixels[current_pixel + 0] = tile_b
+					pixels[current_pixel + 1] = tile_g
+					pixels[current_pixel + 2] = tile_r
+					pixels[current_pixel + 3] = tile_a
+			# end of one tile
+	# end of the "for each tile"
 	return surface
 
 ################################################################################
