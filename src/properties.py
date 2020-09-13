@@ -80,7 +80,7 @@ class DrPropertiesDialog(Gtk.Dialog):
 		# Context: the file format of the edited file
 		self._add_grid_row(1, _("Format"), label_file_format)
 		self._add_grid_row(2, _("Colorspace"), self._set_colorspace_label())
-		# TODO display both the colorspace of the file and off the surface, with
+		# TODO display both the colorspace of the file and of the surface, with
 		# a warning if there might be a loss of data
 
 	def _add_grid_row(self, index, key, value):

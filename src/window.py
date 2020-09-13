@@ -772,7 +772,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.app.get_menubar().remove(5)
 			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
 		pane = self.options_manager.get_active_pane()
-		if pane is not None: # XXX try/except
+		if pane is not None: # TODO try/except
 			pane.build_options_menu(widget, model, label)
 		else:
 			self.prompt_message(False, 'Pane is none for label: ' + label)
