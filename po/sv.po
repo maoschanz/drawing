@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-06 23:18+0200\n"
+"POT-Creation-Date: 2020-09-14 00:33+0200\n"
 "PO-Revision-Date: 2020-08-17 07:44+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -108,7 +108,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The text tool can now write using most system font, thus allowing more "
+"The text tool can now write using most system fonts, thus allowing more "
 "complex characters to be used (e.g. Asian characters)."
 msgstr ""
 "Textverktyget kan nu skriva med de flesta systemteckensnitt, vilket gör att "
@@ -485,22 +485,28 @@ msgstr "A_lternativ"
 msgid "_Help"
 msgstr "_Hjälp"
 
+#. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
 msgstr "Index"
 
+#. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
 msgstr "Grundläggande hjälp"
 
+#. Context: open the help page about classic tools
 #: src/ui/app-menus.ui
 msgid "Help about tools"
 msgstr "Hjälp om verktyg"
 
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 msgid "Canvas and selection"
 msgstr "Arbetsyta och markering"
 
+#. Context: open the help page about the selection
 #: src/ui/app-menus.ui
 msgid "Help about selection"
 msgstr "Hjälp om markering"
@@ -538,6 +544,8 @@ msgstr "Använd dessa inställningar som standard"
 msgid "100%"
 msgstr "100%"
 
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
 #: src/ui/properties.ui src/utilities.py
 msgid "pixels"
 msgstr "pixlar"
@@ -893,27 +901,37 @@ msgstr ""
 "Dessa verktyg är inte lika tillförlitliga och användbara som de skall vara, "
 "så alla är inte aktiverade som standard."
 
-#. In the meaning "a rubber eraser"
+#. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Suddgummi"
 
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
 msgstr "Markeringspenna"
 
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
 msgstr "Fri markering"
 
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
 msgstr "Färgval"
 
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
 #: src/preferences.py src/tools/classic_tools/tool_picker.py
 msgid "Color Picker"
 msgstr "Färgväljare"
 
+#. Context: the name of a tool to fill an area of one color with an other
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
 msgstr "Måla"
@@ -1040,6 +1058,9 @@ msgstr "Orange"
 msgid "Brown"
 msgstr "Brun"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
 #: src/utilities.py
 msgid "Probably brown"
 msgstr "Troligen brun"
@@ -1072,10 +1093,16 @@ msgstr "Lila"
 msgid "Cyan"
 msgstr "Cyan"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably turquoise.
 #: src/utilities.py
 msgid "Probably turquoise"
 msgstr "Troligen turkos"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities.py
 msgid "Unknown color name"
 msgstr "Okänt färgnamn"
@@ -1113,11 +1140,13 @@ msgstr "JPEG-bilder"
 msgid "BMP images"
 msgstr "BMP-bilder"
 
+#. To translators: it appears in tooltips over numerical inputs
 #: src/utilities.py
 msgid "percents"
 msgstr "procent"
 
-#. To translators: it's the angle measure unit
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
 #: src/utilities.py
 msgid "degrees"
 msgstr "grader"
@@ -1224,12 +1253,13 @@ msgstr "Denna algoritm kanske inte kan hantera det önskade området."
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
 
+#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Main color"
 msgstr "Primär färg"
 
-#. if state_as_string == 'secondary':
+#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
 #: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
@@ -1325,6 +1355,8 @@ msgstr "Lägg till transparens"
 msgid "Invert colors"
 msgstr "Invertera färger"
 
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
 #: src/optionsbars/canvas/optionsbar-filters.ui
 msgid "Blurring"
 msgstr "Oskärpa"
@@ -1388,23 +1420,24 @@ msgstr "Vänd horisontellt"
 msgid "Flip vertically"
 msgstr "Vänd vertikalt"
 
+#. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
 msgstr "Bevara proportioner"
 
-#. Context for translations: an item in a menu whose title is "Keep proportions"
+#. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Always"
 msgstr "Alltid"
 
-#. Context for translations: an item in a menu whose title is "Keep proportions"
+#. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
 msgstr "Vid skalning från hörnen"
 
-#. Context for translations: an item in a menu whose title is "Keep proportions"
+#. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
@@ -1423,6 +1456,7 @@ msgstr "Vertikal deformation"
 msgid "Line shape"
 msgstr "Linjeform"
 
+#. Context: this is the name of a line shape
 #. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
@@ -1430,12 +1464,14 @@ msgstr "Linjeform"
 msgid "Round"
 msgstr "Rund"
 
+#. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Thin"
 msgstr "Tunn"
 
+#. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
@@ -1461,18 +1497,30 @@ msgstr "Kantutjämning"
 msgid "Color gradient"
 msgstr "Färgtoning"
 
+#. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
 msgid "Behavior"
 msgstr "Beteende"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 #: src/tools/ui/tool-paint.ui
 msgid "Encircle and fill"
 msgstr "Ringa in och fyll"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 #: src/tools/ui/tool-paint.ui
 msgid "Erase and replace"
 msgstr "Sudda och ersätt"
 
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background. XXX clipping isn't the correct english word
 #: src/tools/ui/tool-paint.ui
 msgid "Clipping"
 msgstr "Klippning"
@@ -1558,23 +1606,27 @@ msgstr "Kursiv"
 msgid "Bold"
 msgstr "Fet"
 
-#. <submenu>
+#. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "Bakgrund"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "No background"
 msgstr "Ingen bakgrund"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Skugga"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Outline"
 msgstr "Kontur"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "Rektangelbakgrund"
@@ -1651,6 +1703,7 @@ msgstr "Klicka på figurens första punkt för att stänga den."
 msgid "Text"
 msgstr "Text"
 
+#. XXX use "text options" instead
 #: src/tools/classic_tools/tool_text.py
 msgid "Font options"
 msgstr "Teckensnittsalternativ"

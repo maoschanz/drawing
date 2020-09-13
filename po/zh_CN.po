@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-06 23:18+0200\n"
+"POT-Creation-Date: 2020-09-14 00:33+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The text tool can now write using most system font, thus allowing more "
+"The text tool can now write using most system fonts, thus allowing more "
 "complex characters to be used (e.g. Asian characters)."
 msgstr ""
 
@@ -471,22 +471,28 @@ msgstr "选项(_O)"
 msgid "_Help"
 msgstr "帮助(_H)"
 
+#. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
 msgstr "编号"
 
+#. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
 msgstr "基本"
 
+#. Context: open the help page about classic tools
 #: src/ui/app-menus.ui
 msgid "Help about tools"
 msgstr "关于工具的帮助"
 
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 msgid "Canvas and selection"
 msgstr "画布和选区"
 
+#. Context: open the help page about the selection
 #: src/ui/app-menus.ui
 msgid "Help about selection"
 msgstr "关于选区的帮助"
@@ -524,6 +530,8 @@ msgstr "默认使用这些设置"
 msgid "100%"
 msgstr "100%"
 
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
 #: src/ui/properties.ui src/utilities.py
 msgid "pixels"
 msgstr "像素"
@@ -877,27 +885,37 @@ msgid ""
 "not all enabled by default."
 msgstr "这些工具并不如应有的那样可靠和有用，所以它们在默认情况下并非全部启用。"
 
-#. In the meaning "a rubber eraser"
+#. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "橡皮擦"
 
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
 msgstr "荧光笔"
 
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
 msgstr "自由选择"
 
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
 msgstr "颜色选择"
 
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
 #: src/preferences.py src/tools/classic_tools/tool_picker.py
 msgid "Color Picker"
 msgstr "取色器"
 
+#. Context: the name of a tool to fill an area of one color with an other
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
 msgstr "笔刷"
@@ -1024,6 +1042,9 @@ msgstr "橘色"
 msgid "Brown"
 msgstr "棕色"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
 #: src/utilities.py
 msgid "Probably brown"
 msgstr "可能为棕色"
@@ -1056,10 +1077,16 @@ msgstr "紫色"
 msgid "Cyan"
 msgstr "青色"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably turquoise.
 #: src/utilities.py
 msgid "Probably turquoise"
 msgstr "可能为绿松石色"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities.py
 msgid "Unknown color name"
 msgstr "未知颜色"
@@ -1097,11 +1124,13 @@ msgstr "JPEG 图像"
 msgid "BMP images"
 msgstr "BMP 图像"
 
+#. To translators: it appears in tooltips over numerical inputs
 #: src/utilities.py
 msgid "percents"
 msgstr "百分比"
 
-#. To translators: it's the angle measure unit
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
 #: src/utilities.py
 msgid "degrees"
 msgstr "度"
@@ -1208,12 +1237,13 @@ msgstr "该算法可能无法处理所需区域。"
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr "您想要中止该操作吗？"
 
+#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Main color"
 msgstr "主颜色"
 
-#. if state_as_string == 'secondary':
+#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/canvas/optionsbar-crop.ui src/tools/ui/tool-shape.ui
 #: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
@@ -1309,6 +1339,8 @@ msgstr "增加透明度"
 msgid "Invert colors"
 msgstr "插入颜色"
 
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
 #: src/optionsbars/canvas/optionsbar-filters.ui
 msgid "Blurring"
 msgstr "模糊"
@@ -1372,23 +1404,24 @@ msgstr "水平翻转"
 msgid "Flip vertically"
 msgstr "垂直翻转"
 
+#. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
 msgstr "保持纵横比"
 
-#. Context for translations: an item in a menu whose title is "Keep proportions"
+#. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Always"
 msgstr "总是"
 
-#. Context for translations: an item in a menu whose title is "Keep proportions"
+#. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
 msgstr "从角落缩放时"
 
-#. Context for translations: an item in a menu whose title is "Keep proportions"
+#. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
@@ -1407,6 +1440,7 @@ msgstr "垂直变形"
 msgid "Line shape"
 msgstr "线形"
 
+#. Context: this is the name of a line shape
 #. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
@@ -1414,12 +1448,14 @@ msgstr "线形"
 msgid "Round"
 msgstr "圆形"
 
+#. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Thin"
 msgstr "窄"
 
+#. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
@@ -1445,18 +1481,30 @@ msgstr "抗锯齿"
 msgid "Color gradient"
 msgstr "颜色渐变"
 
+#. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
 msgid "Behavior"
 msgstr "行为"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 #: src/tools/ui/tool-paint.ui
 msgid "Encircle and fill"
 msgstr "包围并填充"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 #: src/tools/ui/tool-paint.ui
 msgid "Erase and replace"
 msgstr "擦除并替换"
 
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background. XXX clipping isn't the correct english word
 #: src/tools/ui/tool-paint.ui
 msgid "Clipping"
 msgstr "剪裁"
@@ -1543,23 +1591,27 @@ msgstr "斜体"
 msgid "Bold"
 msgstr "粗体"
 
-#. <submenu>
+#. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
 msgid "Background"
 msgstr "无背景"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "No background"
 msgstr "无背景"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "阴影"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Outline"
 msgstr "大纲"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "矩形背景"
@@ -1636,6 +1688,7 @@ msgstr "单击形状的第一个节点以将其关闭。"
 msgid "Text"
 msgstr "文本"
 
+#. XXX use "text options" instead
 #: src/tools/classic_tools/tool_text.py
 msgid "Font options"
 msgstr "字体选项"
