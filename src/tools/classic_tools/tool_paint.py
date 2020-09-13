@@ -108,25 +108,22 @@ class ToolPaint(AbstractClassicTool):
 	def _op_replace(self, operation):
 		"""Algorithmically less ugly than `_op_fill`, but the replacing strategy
 		itself doesn't handle (semi-) transparent colors correctly, even outside
-		of the targeted area.
-		To fix that, the method paints on the temporary pixbuf, and uses the
-		(famously bad) path from 'encircle and fill' to , and then write a part
-		of this pixbuf to the main one. It's still not good enough tho."""
+		of the targeted area."""
 		# In this example, the user paints in blue and clicks on X (red):
 		#
 		# rrrrrrrrrrrrrrrrrrrrrrrrr
 		# rrrgggggggggggggggggrrXrr
 		# rrrgaaaaaaaaaaaaaaagrrrrr
 		# rrrgaaaaaaaaaaaaaaagrrrrr
-		# rrrgggggggggggggggggrrrrr
-		# rrrrrrrrrrrrrrrrrrrrrrrrr
+		# rrrgggggggggggggggggrraaa
+		# rrrrrrrrrrrrrrrrrrrrrraaa
 		#
-		# All red pixels will be painted blue, but XXX all the alpha ones too.
+		# All red pixels will be painted blue, but FIXME all the alpha ones too.
 
 		if operation['path'] is None:
 			return
-		surf = self.get_surface()
-		cairo_context = cairo.Context(surf)
+		surface = self.get_surface()
+		cairo_context = cairo.Context(surface)
 		rgba = operation['rgba']
 		old_rgba = operation['old_rgba']
 		cairo_context.set_source_rgba(255, 255, 255, 1.0)
@@ -134,8 +131,8 @@ class ToolPaint(AbstractClassicTool):
 		cairo_context.set_operator(cairo.Operator.DEST_IN)
 		cairo_context.fill_preserve()
 
-		self.get_image().temp_pixbuf = Gdk.pixbuf_get_from_surface(surf, 0, 0, \
-		                                    surf.get_width(), surf.get_height())
+		self.get_image().set_temp_pixbuf(Gdk.pixbuf_get_from_surface(surface, \
+		                       0, 0, surface.get_width(), surface.get_height()))
 
 		tolerance = 10 # XXX
 		i = -1 * tolerance

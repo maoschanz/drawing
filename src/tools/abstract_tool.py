@@ -19,8 +19,16 @@ import cairo
 from gi.repository import Gtk
 from .utilities_overlay import utilities_show_overlay_on_context
 
+class WrongToolIdException(Exception):
+	def __init__(self, expected, actual):
+		msg = "Can't start operation: wrong tool id (expected {0}, got {1})"
+		super().__init__(msg.format(expected, actual))
+
+################################################################################
+
 class AbstractAbstractTool():
 	"""Super-class implemented and extended by all tools."""
+
 	__gtype_name__ = 'AbstractAbstractTool'
 	UI_PATH = '/com/github/maoschanz/drawing/tools/ui/'
 
@@ -170,7 +178,7 @@ class AbstractAbstractTool():
 
 	def start_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
-			raise Exception("Can't start operation: %s is the wrong tool" % self.id)
+			raise WrongToolIdException(operation['tool_id'], self.id)
 		self.restore_pixbuf()
 		self._ongoing_operation = True
 

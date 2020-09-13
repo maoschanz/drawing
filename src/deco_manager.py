@@ -42,10 +42,10 @@ class DrDecoManagerMenubar():
 			self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
 
 	def set_undo_label(self, label):
-		pass
+		pass # TODO update "undo" items in the menubar
 
 	def set_redo_label(self, label):
-		pass
+		pass # TODO update "undo" items in the menubar
 
 	############################################################################
 	# Adaptability #############################################################
@@ -139,12 +139,14 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		self._widget.set_subtitle(subtitle_label)
 
 	def set_undo_label(self, label):
+		super().set_undo_label(label)
 		if label is None:
 			self._undo_btn.set_tooltip_text(_("Undo"))
 		else:
 			self._undo_btn.set_tooltip_text(_("Undo %s") % label)
 
 	def set_redo_label(self, label):
+		super().set_redo_label(label)
 		if label is None:
 			self._redo_btn.set_tooltip_text(_("Redo"))
 		else:
@@ -239,12 +241,14 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 		return False
 
 	# def set_undo_label(self, label):
+	#	super().set_undo_label(label)
 	# 	if label is None:
 	# 		self._undo_btn.set_tooltip_text(_("Undo"))
 	# 	else:
 	# 		self._undo_btn.set_tooltip_text(_("Undo %s") % label)
 
 	# def set_redo_label(self, label):
+	#	super().set_redo_label(label)
 	# 	if label is None:
 	# 		self._redo_btn.set_tooltip_text(_("Redo"))
 	# 	else:

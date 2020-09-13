@@ -18,14 +18,13 @@
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
-# TODO tester qu'elles printent une stack !!!
 class NoSelectionPixbufException(Exception):
 	def __init__(self, *args):
-		super().__init__("Exception: the selection pixbuf is empty.")
+		super().__init__("The selection pixbuf is empty.")
 
 class NoSelectionPathException(Exception):
 	def __init__(self, *args):
-		super().__init__("Exception: the selection path is empty.")
+		super().__init__("The selection path is empty.")
 
 ################################################################################
 
@@ -180,7 +179,7 @@ class DrSelectionManager():
 		tested_y)" is in the path defining the selection. If such path doesn't
 		exist, it returns None."""
 		if not self.is_active:
-			return True # TODO throw something goddammit
+			return True # shouldn't happen
 		if self.selection_path is None:
 			raise NoSelectionPathException()
 		delta_x = self.selection_x - self.temp_x # XXX UTILISATION DE TEMP

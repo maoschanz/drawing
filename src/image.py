@@ -26,6 +26,10 @@ class DrMotionBehavior():
 	DRAW = 1
 	SLIP = 2
 
+class NoPixbufNoChangeException(Exception):
+	def __init__(self, pb_name):
+		super().__init__("New pixbuf empty, no change applied to %." % pb_name)
+
 ################################################################################
 
 @Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/image.ui')
@@ -103,9 +107,9 @@ class DrImage(Gtk.Box):
 		self._is_pressed = False
 
 		# Zoom and scroll initialization
-		self.zoom_level = 1.0
 		self.scroll_x = 0
 		self.scroll_y = 0
+		self.set_zoom_level(100) # will do `self.zoom_level = 1.0`
 		self.motion_behavior = DrMotionBehavior.HOVER
 		self.press2_x = 0.0
 		self.press2_y = 0.0
@@ -153,7 +157,7 @@ class DrImage(Gtk.Box):
 		pixbuf = last_saved_pixbuf_op['pixbuf']
 		width = last_saved_pixbuf_op['width']
 		height = last_saved_pixbuf_op['height']
-		self.temp_pixbuf = self._new_blank_pixbuf(1, 1)
+		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.selection.init_pixbuf()
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
@@ -457,8 +461,7 @@ class DrImage(Gtk.Box):
 	# TODO utiliser ça en interne à image.py
 	def set_main_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			# XXX maybe throw something instead
-			print("new_pixbuf is None, no change to main_pixbuf will be applied")
+			raise NoPixbufNoChangeException('main_pixbuf')
 		else:
 			self.main_pixbuf = new_pixbuf
 
@@ -467,13 +470,12 @@ class DrImage(Gtk.Box):
 
 	def set_temp_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			# XXX maybe throw something instead
-			print("new_pixbuf is None, no change to temp_pixbuf will be applied")
+			raise NoPixbufNoChangeException('temp_pixbuf')
 		else:
 			self.temp_pixbuf = new_pixbuf
 
 	def reset_temp(self):
-		self.temp_pixbuf = self._new_blank_pixbuf(1, 1)
+		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.use_stable_pixbuf()
 		self.update()
 

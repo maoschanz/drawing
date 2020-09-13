@@ -532,8 +532,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			return 'hg' # Use the GNOME layout if the desktop is unknown,
 		# because i don't know how the env variable is on mobile.
-		# Since hipsterwm users love "ricing", they'll be happy to edit
-		# preferences themselves if they hate CSD.
 
 	def set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, titlebar, toolbar, whatever)
@@ -1090,7 +1088,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return self.active_tool()
 
 	def force_selection(self, *args):
-		self.get_selection_tool().row.set_active(True) # XXX appeler enable tool ?
+		self.get_selection_tool().row.set_active(True) # XXX not enable_tool?
 
 	def action_apply_transformation(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
@@ -1118,7 +1116,6 @@ class DrWindow(Gtk.ApplicationWindow):
 	def update_history_actions_labels(self, undo_label, redo_label):
 		self._decorations.set_undo_label(undo_label)
 		self._decorations.set_redo_label(redo_label)
-		# TODO maybe update "undo" and "redo" items in the menubar too
 
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################

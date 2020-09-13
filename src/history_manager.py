@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gdk, Gio, GdkPixbuf, GLib
+# from .abstract_tool import WrongToolIdException
 
 ################################################################################
 
@@ -177,7 +178,7 @@ class DrHistoryManager():
 		self._image.restore_first_pixbuf()
 		history = self._undo_history.copy()
 		self._undo_history = []
-		for op in history: # TODO faire 2 boucles, avec des range()
+		for op in history:
 			if history.index(op) > last_save_index:
 				# print("do", op['tool_id'])
 				self._get_tool(op['tool_id']).simple_apply_operation(op)
@@ -195,8 +196,9 @@ class DrHistoryManager():
 		if tool_id in all_tools:
 			return all_tools[tool_id]
 		else:
-			# XXX raise something instead
 			self._image.window.prompt_message(True, "Error: no tool " + tool_id)
+			# raise WrongToolIdException(tool_id, "NOTHING") # XXX too disruptive??
+			# this may happen if last_save_index is incorrect
 
 	############################################################################
 ################################################################################

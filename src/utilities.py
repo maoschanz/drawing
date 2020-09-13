@@ -108,9 +108,10 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 ################################################################################
 
 def utilities_save_pixbuf_to(pixbuf, fpath, window, can_save_as):
-	"""Save pixbuf to a given path, with the file format corresponding to the
+	"""Save a pixbuf to a given path, with the file format corresponding to the
 	end of the file name. Format with no support for alpha channel will be
-	modified so transparent pixels get replaced by white."""
+	modified so transparent pixels get replaced by the color chosen by the user
+	in the app preferences."""
 	# Build a short string which will be recognized as a file format by the
 	# GdkPixbuf.Pixbuf.savev method
 	file_format = fpath.split('.')[-1]
@@ -151,7 +152,7 @@ def _rgb_as_hexadecimal_int(r, g, b):
 
 def _ask_overwrite_alpha(window, can_save_as):
 	"""Warn the user about the replacement of the alpha channel for JPG or BMP
-	files, but it will quickly annoy users to see a dialog so it's an option."""
+	files, but it may quickly annoy users to see a dialog so it's an option."""
 	dialog = DrMessageDialog(window)
 	cancel_id = dialog.set_action(_("Cancel"), None, False)
 	if can_save_as:
