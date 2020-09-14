@@ -131,9 +131,9 @@ class ToolFilters(AbstractCanvasTool):
 			'local_dy': 0,
 			'saturation': self._get_saturation(),
 			'radius': self._get_blur_radius(),
-			'pixelate': self.pixelate, # XXX ces 4 booléens dégueulasses au lieu
-			'invert': self.invert, # de passer la valeur de l'action et de faire
-			'saturate': self.saturate, # le switch/case côté do_tool_operation??
+			'pixelate': self.pixelate, # TODO remove these 4 ugly booleans and
+			'invert': self.invert, # keep the action's state value instead, with
+			'saturate': self.saturate, # a switch/case in `do_tool_operation`??
 			'use_transparency': self.transparency,
 			'transpercent': self._get_transparency(),
 			'blur_algo': self.blur_algo,

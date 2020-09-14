@@ -124,12 +124,12 @@ class DrSelectionManager():
 			self.image.update()
 
 	def get_path_with_scroll(self, tool_dx, tool_dy):
-		# le concept de cette méthode pue la merde
+		# the very concept of this method sucks
 		if self.selection_path is None:
 			raise NoSelectionPathException()
-		# FIXME pas du tout bon avec le zoom ?
-		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
-		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
+		# FIXME very wrong when there is some zoom ??
+		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX SHOULDN'T USE TEMP
+		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX SHOULDN'T USE TEMP
 		cairo_context = self._get_context_with_path(delta_x, delta_y)
 		cairo_context.close_path()
 		return cairo_context.copy_path()
@@ -182,8 +182,8 @@ class DrSelectionManager():
 			return True # shouldn't happen
 		if self.selection_path is None:
 			raise NoSelectionPathException()
-		delta_x = self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
-		delta_y = self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
+		delta_x = self.selection_x - self.temp_x # XXX SHOULDN'T USE TEMP
+		delta_y = self.selection_y - self.temp_y # XXX SHOULDN'T USE TEMP
 		cairo_context = self._get_context_with_path(delta_x, delta_y)
 		return cairo_context.in_fill(tested_x, tested_y)
 

@@ -257,7 +257,7 @@ class AbstractAbstractTool():
 			return
 		self.get_selection().show_selection_on_surface(cairo_context, True, 0, 0)
 		dragged_path = self.get_selection().get_path_with_scroll(0, 0)
-		# XXX non, pas "0, 0", mais ce code n'est jamais exécuté normalement
+		# XXX no, not "0, 0", but this code is never executed anyway so ok
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################

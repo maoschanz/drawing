@@ -128,7 +128,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 	def adapt_to_operator(self, op_as_string):
 		self._operator_enum = CAIRO_OP_VALUES[op_as_string]
 		self._operator_label = CAIRO_OP_LABELS[op_as_string]
-		# print("adapt to operator :", op_as_string) # XXX est-ce trop appelé
+		# print("adapt to operator :", op_as_string) # XXX is it called too much
 		supports_colors = self._operator_supports_color(op_as_string)
 		self._operator_menubtn.get_popover().popdown()
 		self.color_widget.set_sensitive(supports_colors)

@@ -330,7 +330,7 @@ class DrImage(Gtk.Box):
 		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
-		# XXX à déléguer partiellement au selection_manager ?
+		# XXX shouldn't it be done by the selection_manager?
 		state = self.selection.is_active
 		self.set_action_sensitivity('unselect', state)
 		self.set_action_sensitivity('select_all', not state)
@@ -395,7 +395,7 @@ class DrImage(Gtk.Box):
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update() # TODO comment this for better perfs
+			self.update() # <<< comment this for better perfs
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			delta_x = int(self.drag_scroll_x - event_x)
 			delta_y = int(self.drag_scroll_y - event_y)

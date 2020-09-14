@@ -282,8 +282,8 @@ def _generic_cairo_blur(surface, radius, blur_direction):
 	elif blur_direction == BlurDirection.VERTICAL:
 		surface = _cairo_directional_blur(surface, radius, True)
 	else:
-		# XXX avec des grands radius ça se voit que c'est juste une séquence de
-		# de 2 blurs directionnels au lieu d'être un vrai algo
+		# XXX with some big radius, it's visible that it's just a sequence of
+		# 2 directional blurs instead of an actual algorithm
 		surface = _cairo_directional_blur(surface, radius, True)
 		surface = _cairo_directional_blur(surface, radius, False)
 	return surface
@@ -301,7 +301,7 @@ def _cairo_directional_blur(surface, radius, is_vertical):
 		step = 1
 		alpha = min(0.9, (0.5 + step) / radius)
 	else:
-		step = int(radius / 6) # pourquoi 6 ? mystère
+		step = int(radius / 6) # why 6? mystery
 		# cette optimisation donne de légers glitchs aux grands radius, qui ne
 		# sont de toutes manières pas beaux car on voit en partie à travers
 		alpha = min(0.9, (1 + step) / radius)

@@ -264,8 +264,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def _op_import(self, op):
 		if op['pixbuf'] is None:
 			raise NoSelectionPixbufException()
-			# XXX l'exécution est-elle propre après le "retour" à la méthode
-			# appelante ? (en comparaison à si on fait juste un retour normal)
+			# XXX does it run cleanly after the "return" to the calling method?
+			# (compared to a more normal return)
 		self.get_selection().set_future_coords(op['pixb_x'], op['pixb_y'])
 		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
 		self.get_selection().set_pixbuf(op['pixbuf'].copy())

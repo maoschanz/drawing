@@ -1,7 +1,6 @@
 #!/bin/bash
 
-DISTRO="unstable" # TODO list all possible values? i think i don't care, this
-# script is for local use only, actual distros do it themselves
+DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing" # XXX ask it as an input maybe?
 VERSION="0.5"
 
@@ -16,7 +15,7 @@ read confirmation
 # package here in the end
 previous_dir=`pwd`
 
-# mettre en place la structure à la con voulue par les scripts de debian
+# set up the stupidly specific structure required by debian scripts
 DIR_NAME=$PACKAGE_NAME'-'$VERSION
 FILE_NAME=$PACKAGE_NAME'_'$VERSION
 DIR_PATH=/tmp/building-dir
@@ -32,7 +31,7 @@ cd $DIR_PATH/
 tar -Jcvf $FILE_NAME.orig.tar.xz $DIR_NAME
 cd $DIR_PATH/$DIR_NAME/
 
-# création automatique des fichiers supplémentaires pour la construction
+# automatic creation of additional files for the build process
 dh_make -i -y
 
 # actually building the package
