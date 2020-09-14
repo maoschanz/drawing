@@ -107,6 +107,7 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 ################################################################################
 
+# XXX c'est appelé que dans window ça, est-ce à sa place ?...
 def utilities_save_pixbuf_to(pixbuf, fpath, window, can_save_as):
 	"""Save a pixbuf to a given path, with the file format corresponding to the
 	end of the file name. Format with no support for alpha channel will be
@@ -136,6 +137,9 @@ def _replace_alpha(pixbuf, replacement):
 	if replacement == 'white':
 		pcolor1 = _rgb_as_hexadecimal_int(255, 255, 255)
 		pcolor2 = _rgb_as_hexadecimal_int(255, 255, 255)
+	# elif replacement == 'initial':
+	# 	pcolor1 = _rgb_as_hexadecimal_int(??, ??, ??) # euh zut j'ai pas accès à
+	# 	pcolor2 = _rgb_as_hexadecimal_int(??, ??, ??) # l'objet image là...
 	elif replacement == 'checkboard':
 		pcolor1 = _rgb_as_hexadecimal_int(85, 85, 85)
 		pcolor2 = _rgb_as_hexadecimal_int(170, 170, 170)
@@ -174,7 +178,7 @@ def _ask_overwrite_alpha(window, can_save_as):
 	alpha_combobox.append('nothing', _("Nothing"))
 	alpha_combobox.set_active_id('white') # If we run the dialog, it means the
 	# active preference is 'ask', so there is no way we can set the default
-	# value to something pertinent.
+	# value to something pertinent. # TODO mettre 'initial' c'est mieux
 	dialog.add_widget(alpha_combobox)
 
 	result = dialog.run()
