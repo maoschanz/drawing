@@ -113,15 +113,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		"""Return the name of the accurate cursor for tools such as `scale` or
 		`crop`, with or without an active selection, depending on the size and
 		position of the resized/cropped area."""
-		height = self.get_image().temp_pixbuf.get_height()
-		width = self.get_image().temp_pixbuf.get_width()
-		w_left, w_right, h_top, h_bottom = self.get_image().get_corrected_coords(\
-		                     0, width, 0, height, self.apply_to_selection, True)
-		# Comment to help the debug:
-		h_top += 0.4 * height
-		h_bottom -= 0.4 * height
-		w_left += 0.4 * width
-		w_right -= 0.4 * width
+		w_left, w_right, h_top, h_bottom = self.get_image().get_nineths_sizes( \
+		                                                self.apply_to_selection)
 		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
 
 		cursor_name = ''

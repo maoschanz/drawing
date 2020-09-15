@@ -549,6 +549,19 @@ class DrImage(Gtk.Box):
 		# the zoom is not 1.0
 		return x1, x2, y1, y2
 
+	def get_nineths_sizes(self, apply_to_selection):
+		"""Returns the sizes of the 'nineths' of the image used for example by
+		'scale' or 'crop' to decide the cursor they'll show."""
+		height = self.temp_pixbuf.get_height()
+		width = self.temp_pixbuf.get_width()
+		w_left, w_right, h_top, h_bottom = self.get_corrected_coords(0, width, \
+		                                    0, height, apply_to_selection, True)
+		w_left += 0.4 * width * self.zoom_level
+		w_right -= 0.4 * width * self.zoom_level
+		h_top += 0.4 * height * self.zoom_level
+		h_bottom -= 0.4 * height * self.zoom_level
+		return w_left, w_right, h_top, h_bottom
+
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
 		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
