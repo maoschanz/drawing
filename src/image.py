@@ -535,7 +535,6 @@ class DrImage(Gtk.Box):
 		x1 = x1 - self.scroll_x
 		y1 = y1 - self.scroll_y
 		if with_selection:
-			# FIXME ne comprends pas les deltas locaux du crop ni du scale
 			x1 += self.selection.selection_x
 			y1 += self.selection.selection_y
 		x2 = x1 + w
@@ -549,18 +548,24 @@ class DrImage(Gtk.Box):
 		# the zoom is not 1.0
 		return x1, x2, y1, y2
 
-	def get_nineths_sizes(self, apply_to_selection):
+	def get_nineths_sizes(self, apply_to_selection, x1, y1):
 		"""Returns the sizes of the 'nineths' of the image used for example by
 		'scale' or 'crop' to decide the cursor they'll show."""
 		height = self.temp_pixbuf.get_height()
 		width = self.temp_pixbuf.get_width()
-		w_left, w_right, h_top, h_bottom = self.get_corrected_coords(0, width, \
-		                                    0, height, apply_to_selection, True)
-		w_left += 0.4 * width * self.zoom_level
-		w_right -= 0.4 * width * self.zoom_level
-		h_top += 0.4 * height * self.zoom_level
-		h_bottom -= 0.4 * height * self.zoom_level
-		return w_left, w_right, h_top, h_bottom
+		if not apply_to_selection:
+			x1 = 0
+			y1 = 0
+		# width_left, width_right, height_top, height_bottom
+		wl, wr, ht, hb = self.get_corrected_coords(x1, width, y1, height, \
+		                                               apply_to_selection, True)
+		# FIXME using local deltas this way "works" but isn't mathematically
+		# correct: scaled selections have a "null" and excentred central nineth
+		wl += 0.4 * width * self.zoom_level
+		wr -= 0.4 * width * self.zoom_level
+		ht += 0.4 * height * self.zoom_level
+		hb -= 0.4 * height * self.zoom_level
+		return wl, wr, ht, hb
 
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll

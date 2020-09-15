@@ -114,9 +114,11 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		`crop`, with or without an active selection, depending on the size and
 		position of the resized/cropped area."""
 		w_left, w_right, h_top, h_bottom = self.get_image().get_nineths_sizes( \
-		                                                self.apply_to_selection)
-		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
+		                    self.apply_to_selection, int(self._x), int(self._y))
+		# if we're transforming the selection from its top and/or left, coords
+		# to decide the direction depend on local deltas (self._x and self._y)
 
+		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
 		cursor_name = ''
 		if event_y < h_top:
 			cursor_name = cursor_name + 'n'
