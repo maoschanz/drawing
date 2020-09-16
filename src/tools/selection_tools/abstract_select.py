@@ -170,10 +170,9 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			return
 		self.get_selection().show_selection_on_surface(cairo_context, True, \
 		                                           self.local_dx, self.local_dy)
-		dragged_path = self.get_selection().get_path_with_scroll(self.local_dx, \
-		                                                  self.local_dy) # TODO
-		# i should give it something corresponding temporary selection_x/y when
-		# the selection is moving. Method not really use elsewhere.
+		dragged_path = self.get_selection().get_path_with_scroll( \
+		                                           self.local_dx, self.local_dy)
+		# Method not really use elsewhere.
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################

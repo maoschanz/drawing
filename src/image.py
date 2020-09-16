@@ -356,6 +356,8 @@ class DrImage(Gtk.Box):
 		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 
+		# TODO transform tools may appreciate to draw *before* the image
+
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
@@ -458,7 +460,7 @@ class DrImage(Gtk.Box):
 	def get_pixbuf_height(self):
 		return self.main_pixbuf.get_height()
 
-	# TODO utiliser ça en interne à image.py
+	# TODO utiliser ça en interne à image.py ?
 	def set_main_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
 			raise NoPixbufNoChangeException('main_pixbuf')

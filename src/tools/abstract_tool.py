@@ -251,13 +251,13 @@ class AbstractAbstractTool():
 	def on_draw(self, area, cairo_context):
 		if not self.accept_selection:
 			return
-		# Basic implementation, in fact never executed becaus tools needing it
-		# will do it better to fit their needs
 		if not self.selection_is_active():
 			return
+		# Basic "wrong" implementation (wtf is "0, 0"), which is never executed
+		# because tools needing to draw an overlay will do it better to fit
+		# their needs.
 		self.get_selection().show_selection_on_surface(cairo_context, True, 0, 0)
 		dragged_path = self.get_selection().get_path_with_scroll(0, 0)
-		# XXX no, not "0, 0", but this code is never executed anyway so ok
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################

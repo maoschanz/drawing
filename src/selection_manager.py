@@ -90,10 +90,12 @@ class DrSelectionManager():
 		selection_height = int(ymax - ymin)
 		if selection_width > 0 and selection_height > 0:
 			# print('⇒ load pixbuf')
-			self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
-			            int(xmin), int(ymin), selection_width, selection_height)
-			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
-			# avec un try except déjà ce serait pas mal
+			pixbuf = Gdk.pixbuf_get_from_surface(surface, int(xmin), int(ymin),\
+			                                  selection_width, selection_height)
+			if pixbuf is not None:
+				self.selection_pixbuf = pixbuf
+			# can't use `set_pixbuf` here ^ because it would replace the free
+			# path with a rectangle path
 		else:
 			self.reset(True)
 		self.image.update_actions_state()

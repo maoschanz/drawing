@@ -160,7 +160,6 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.show_error(_("Error: invalid values"))
 			return source_surface
 		cairo_context.set_source_surface(source_surface, 0, 0)
-		# FIXME scroll and zoom ?
 		cairo_context.paint()
 		return new_surface
 
