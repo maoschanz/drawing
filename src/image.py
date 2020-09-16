@@ -544,8 +544,6 @@ class DrImage(Gtk.Box):
 			x2 *= self.zoom_level
 			y1 *= self.zoom_level
 			y2 *= self.zoom_level
-		# TODO use the same kind of transformation for the selection cursor when
-		# the zoom is not 1.0
 		return x1, x2, y1, y2
 
 	def get_nineths_sizes(self, apply_to_selection, x1, y1):

@@ -124,10 +124,9 @@ class DrSelectionManager():
 			self.image.update()
 
 	def get_path_with_scroll(self, tool_dx, tool_dy):
-		# the very concept of this method sucks
+		# The very concept of this method sucks
 		if self.selection_path is None:
 			raise NoSelectionPathException()
-		# FIXME very wrong when there is some zoom ??
 		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX SHOULDN'T USE TEMP
 		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX SHOULDN'T USE TEMP
 		cairo_context = self._get_context_with_path(delta_x, delta_y)
@@ -180,11 +179,10 @@ class DrSelectionManager():
 		exist, it returns None."""
 		if not self.is_active:
 			return True # shouldn't happen
-		if self.selection_path is None:
-			raise NoSelectionPathException()
-		delta_x = self.selection_x - self.temp_x # XXX SHOULDN'T USE TEMP
-		delta_y = self.selection_y - self.temp_y # XXX SHOULDN'T USE TEMP
-		cairo_context = self._get_context_with_path(delta_x, delta_y)
+		scrolled_path = self.get_path_with_scroll(self.image.scroll_x, self.image.scroll_y)
+		cairo_context = self._get_context()
+		cairo_context.new_path()
+		cairo_context.append_path(scrolled_path)
 		return cairo_context.in_fill(tested_x, tested_y)
 
 	def _get_context(self):

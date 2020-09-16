@@ -143,8 +143,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			self._preview_drag_to(event_x, event_y)
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		x = event.x + self.get_image().scroll_x
-		y = event.y + self.get_image().scroll_y
+		x, y = self.get_image().get_event_coords(event)
 		if not self.selection_is_active():
 			self.cursor_name = 'cross'
 		elif self.get_selection().point_is_in_selection(x, y):
