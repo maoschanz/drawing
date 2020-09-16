@@ -900,9 +900,40 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.set_picture_title() # often redundant but not useless
 		self.prompt_message(False, 'file successfully loaded')
 
+	def confirm_despite_ongoing_operation(self):
+		"""Ask to the user whether or not the want to apply the operation of the
+		current tool (curve, shape, transform, selection) before saving."""
+		msg = None
+		if self.get_selection_tool().selection_is_active():
+			msg = _("A part of the image is selected, and the pixels " + \
+			                                 "beneath the selection are blank.")
+		elif self.active_tool().has_ongoing_operation():
+			msg = _("Modifications from the current tool haven't been applied.")
+		if msg is None:
+			return True
+
+		dialog = DrMessageDialog(self)
+		cancel_id = dialog.set_action(_("Cancel"), None, True)
+		save_id = dialog.set_action(_("Save"), 'destructive-action', False)
+		dialog.add_string(msg)
+		dialog.add_string(_("Do you want to save anyway?"))
+		self.minimap.update_minimap(True)
+		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
+		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
+		frame.add(image)
+		dialog.add_widget(frame)
+		result = dialog.run()
+		dialog.destroy()
+		if result == save_id:
+			return True
+		else: # cancel_id
+			return False
+
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
 		successfully saved."""
+		if not self.confirm_despite_ongoing_operation():
+			return False
 		if self.get_file_path() is None: # Newly created and never saved image
 			gfile = self.file_chooser_save()
 		else:
@@ -910,6 +941,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self._save_current_tab_to_gfile(gfile)
 
 	def action_save_as(self, *args):
+		if not self.confirm_despite_ongoing_operation():
+			return
 		gfile = self.file_chooser_save()
 		self._save_current_tab_to_gfile(gfile)
 
