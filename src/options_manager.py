@@ -96,7 +96,7 @@ class DrOptionsManager():
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self.window._settings.set_string('last-font-name', font_fam_name)
 
-		# TODO more ?
+		# XXX more ?
 
 	############################################################################
 	# Bottom panes management ##################################################

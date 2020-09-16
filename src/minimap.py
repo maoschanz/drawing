@@ -21,8 +21,7 @@ from .utilities_overlay import utilities_show_overlay_on_context
 
 class DrMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrMinimap'
-	# TODO custom "move" cursor
-	# TODO "on_motion" method?
+	# TODO custom "move" cursor and "on_motion" method?
 
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)

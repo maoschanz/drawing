@@ -2,7 +2,7 @@
 
 DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing" # XXX ask it as an input maybe?
-VERSION="0.5"
+VERSION="0.6"
 
 echo "targeted distribution: $DISTRO"
 echo "package name: $PACKAGE_NAME"

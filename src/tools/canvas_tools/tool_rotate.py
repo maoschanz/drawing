@@ -34,7 +34,6 @@ class ToolRotate(AbstractCanvasTool):
 		self.add_tool_action_simple('rotate-counter-cw', self.on_left_clicked)
 		self.add_tool_action_simple('rotate-flip-h', self.on_horizontal_clicked)
 		self.add_tool_action_simple('rotate-flip-v', self.on_vertical_clicked)
-		# self.add_tool_action_enum('rotate-unit', 'degrees') # TODO ?
 
 	def try_build_pane(self):
 		self.pane_id = 'rotate'

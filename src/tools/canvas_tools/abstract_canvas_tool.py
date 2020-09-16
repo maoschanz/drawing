@@ -148,7 +148,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		normal_w = p_xx * source_w + p_xy * source_h + p_x0
 		normal_h = p_yx * source_w + p_yy * source_h + p_y0
 		w = max(normal_w, source_w + p_x0)
-		h = max(normal_h, source_h + p_y0) # XXX bof, pas sûr
+		h = max(normal_h, source_h + p_y0) # XXX bof, pas sûr, c'est trop
 
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 		cairo_context = cairo.Context(new_surface)

@@ -39,7 +39,7 @@ class AbstractOptionsBar():
 	def build_options_menu(self, widget, model, label):
 		pass
 
-	def update_for_new_tool(self, tool): # and the menu? TODO
+	def update_for_new_tool(self, tool):
 		pass
 
 	def get_minimap_btn(self):

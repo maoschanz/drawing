@@ -42,10 +42,10 @@ class DrDecoManagerMenubar():
 			self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
 
 	def set_undo_label(self, label):
-		pass # TODO update "undo" items in the menubar
+		pass # TODO update "undo" item in the menubar
 
 	def set_redo_label(self, label):
-		pass # TODO update "undo" items in the menubar
+		pass # TODO update "redo" item in the menubar
 
 	############################################################################
 	# Adaptability #############################################################

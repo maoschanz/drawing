@@ -57,7 +57,7 @@ class ToolText(AbstractClassicTool):
 	def _set_font(self, *args):
 		dialog = Gtk.FontChooserDialog(show_preview_entry=False)
 		dialog.set_level(Gtk.FontChooserLevel.FAMILY)
-		dialog.set_font(self.font_fam_name) # XXX j'ai pas trop l'impression que ça marche
+		dialog.set_font(self.font_fam_name) # FIXME doesn't work
 
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())

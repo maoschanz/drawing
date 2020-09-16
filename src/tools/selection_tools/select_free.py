@@ -86,7 +86,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 			cairo_context.line_to(int(event_x), int(event_y))
 			cairo_context.stroke_preserve() # draw the line without closing the path
 			self.get_selection().set_future_path(cairo_context.copy_path())
-			self.non_destructive_show_modif() # XXX
+			self.non_destructive_show_modif()
 			return False
 
 	############################################################################

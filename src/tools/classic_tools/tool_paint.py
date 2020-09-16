@@ -78,7 +78,7 @@ class ToolPaint(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation) # TODO antialiasing
+		self.start_tool_operation(operation) # TODO expose antialiasing option?
 
 		if operation['algo'] == 'replace':
 			self._op_replace(operation)

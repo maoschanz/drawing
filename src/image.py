@@ -166,14 +166,14 @@ class DrImage(Gtk.Box):
 			g = last_saved_pixbuf_op['green']
 			b = last_saved_pixbuf_op['blue']
 			a = last_saved_pixbuf_op['alpha']
-			self.main_pixbuf = self._new_blank_pixbuf(width, height)
+			self.set_main_pixbuf(self._new_blank_pixbuf(width, height))
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
 			cairo_context.paint()
 			self.update()
 			self.set_surface_as_stable_pixbuf()
 		else:
-			self.main_pixbuf = last_saved_pixbuf_op['pixbuf'].copy()
+			self.set_main_pixbuf(last_saved_pixbuf_op['pixbuf'].copy())
 			self.use_stable_pixbuf()
 
 	############################################################################
@@ -193,7 +193,7 @@ class DrImage(Gtk.Box):
 			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
 		}
 		self._history.initial_operation = op
-		self.main_pixbuf = pixbuf
+		self.set_main_pixbuf(pixbuf)
 
 	def reload_from_disk(self):
 		"""Safely reloads the image from the disk."""
@@ -392,7 +392,7 @@ class DrImage(Gtk.Box):
 		except the mouse cursor icon for example."""
 		event_x, event_y = self.get_event_coords(event)
 		if self.motion_behavior == DrMotionBehavior.HOVER:
-			# XXX ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
+			# TODO ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
@@ -460,8 +460,9 @@ class DrImage(Gtk.Box):
 	def get_pixbuf_height(self):
 		return self.main_pixbuf.get_height()
 
-	# TODO utiliser ça en interne à image.py ?
 	def set_main_pixbuf(self, new_pixbuf):
+		"""Safely set a pixbuf as the main one (not used everywhere internally
+		in image.py, but it's normal)."""
 		if new_pixbuf is None:
 			raise NoPixbufNoChangeException('main_pixbuf')
 		else:

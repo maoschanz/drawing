@@ -50,7 +50,6 @@ class AbstractClassicTool(AbstractAbstractTool):
 		return OptionsBarClassic(self.window)
 
 	def on_tool_selected(self):
-		# XXX shouldn't i update the label/menu/size/sensitivity/etc. here?
 		pass
 
 	############################################################################

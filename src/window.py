@@ -733,10 +733,15 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def _update_bottom_pane(self):
 		"""Show the correct bottom pane, with the correct tool options menu."""
-		self.options_manager.try_enable_pane(self.active_tool().pane_id)
-		self.options_manager.update_pane(self.active_tool())
-		self._build_options_menu()
-		self._adapt_to_window_size()
+		try:
+			self.options_manager.try_enable_pane(self.active_tool().pane_id)
+			self.options_manager.update_pane(self.active_tool())
+			self._build_options_menu()
+			self._adapt_to_window_size()
+		except Exception as e:
+			self.prompt_message(True, _("Error: pane invalid for '%s', " + \
+			                   "please report this bug.") % self.active_tool_id)
+			print(e)
 
 	def _update_fullscreen_icon(self):
 		"""Show the icon of the currently active tool on the button managing
@@ -770,10 +775,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.app.get_menubar().remove(5)
 			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
 		pane = self.options_manager.get_active_pane()
-		if pane is not None: # TODO try/except
-			pane.build_options_menu(widget, model, label)
-		else:
-			self.prompt_message(False, 'Pane is none for label: ' + label)
+		pane.build_options_menu(widget, model, label)
 
 	def action_use_editor(self, *args):
 		use_editor = not args[0].get_state()

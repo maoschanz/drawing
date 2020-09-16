@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo, threading
-from datetime import datetime # Not actually needed, just to measure perfs XXX
+# from datetime import datetime # Not actually needed, just to measure perfs
 
 class BlurType(int):
 	INVALID = -1
@@ -41,8 +41,8 @@ def utilities_blur_surface(surface, radius, blur_type, blur_direction):
 	if radius < 1:
 		return surface
 	blurred_surface = None
-	time0 = datetime.now()
-	print('blurring begins, using algo ', blur_type, '-', blur_direction)
+	# time0 = datetime.now()
+	# print('blurring begins, using algo ', blur_type, '-', blur_direction)
 
 	if blur_type == BlurType.INVALID:
 		return surface
@@ -59,8 +59,8 @@ def utilities_blur_surface(surface, radius, blur_type, blur_direction):
 	elif blur_type == BlurType.TILES:
 		blurred_surface = _generic_tiled_blur(surface, radius, blur_direction)
 
-	time1 = datetime.now()
-	print('blurring ended, total time:', time1 - time0)
+	# time1 = datetime.now()
+	# print('blurring ended, total time:', time1 - time0)
 	return blurred_surface
 
 ################################################################################
@@ -81,7 +81,7 @@ def _generic_px_box_blur(surface, radius, blur_direction):
 	cairo_context = cairo.Context(original)
 	# cairo_context.set_operator(cairo.Operator.SOURCE)
 	cairo_context.set_source_surface(surface, 0, 0)
-	cairo_context.paint() # XXX cette copie est-elle utile ?
+	cairo_context.paint() # XXX is this copy useful?
 	original.flush()
 	pixels = original.get_data()
 

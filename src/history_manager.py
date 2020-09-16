@@ -31,6 +31,8 @@ class DrHistoryManager():
 		self._is_saved = True
 
 	def get_saved(self):
+		# XXX undoing/redoing doesn't update the title so the "*" isn't visible
+		# in all situations around a saving
 		return self._is_saved
 
 	def empty_history(self):
@@ -64,14 +66,14 @@ class DrHistoryManager():
 		operation = self._redo_history.pop()
 		if operation['tool_id'] is None:
 			self._undo_history.append(operation)
-			self._image.restore_first_pixbuf() # FIXME ça marche pô
+			self._image.restore_first_pixbuf()
 		else:
 			self._get_tool(operation['tool_id']).apply_operation(operation)
 
 	def can_undo(self):
 		# XXX incorrect si ya des states et qu'on redo
 		return (len(self._undo_history) > 0) or self._operation_is_ongoing()
-		# XXX never called while an operation is ongoing so that ^ is stupid
+		# rarely called while an operation is ongoing so that ^ is stupid
 
 	def can_redo(self):
 		# XXX incorrect si ya des states ?
@@ -85,8 +87,8 @@ class DrHistoryManager():
 #		redoable_action = self._redo_history[-1:]
 #		undo_label = None
 #		redo_label = None
-#		# TODO store/get translatable labels instead of tool_ids (issue #42)
-#		# XXX doesn't work with pixbuf states anyway
+#		# TODO store/get translatable labels instead of tool_ids (issue #42),
+#		# but it'll doesn't work with pixbuf states anyway…
 #		if self._operation_is_ongoing():
 #			# XXX pointless: the method is called after applying the operation
 #			undo_label = self._image.active_tool().tool_id
@@ -147,24 +149,8 @@ class DrHistoryManager():
 				returned_index = self._undo_history.index(op)
 				nbPixbufs += 1
 
-		# If there are too many pixbufs in the history, remove a few ones
-		# XXX l'idée est intéressante MAIS les states peuvent réellement
-		# modifier les données, par exemple la transparence, et on ne peut donc
-		# pas virer tout un state au pif. Issue #200.
-# 		if allow_yeeting_states and nbPixbufs > 10:
-# 			print("YEETING STATES : %s IS TOO MUCH!" % nbPixbufs)
-# 			nbPixbufs = 0
-#			# for op in self._redo_history:
-#			# 	pass # XXX ça aussi non ??
-# 			for op in self._undo_history:
-# 				if op['tool_id'] is None:
-# 					if nbPixbufs < 5:
-# 						nbPixbufs += 1
-# 					else:
-# 						op['pixbuf'] = None
-# 						self._undo_history.remove(op)
-# 						op = {}
-# 						return self._get_last_state_index(True)
+		# TODO if there are too many pixbufs in the history, remove a few ones
+		# Issue #200, needs more design because saving can change the data
 
 		# print("returned_index : " + str(returned_index))
 		return returned_index
@@ -196,9 +182,8 @@ class DrHistoryManager():
 		if tool_id in all_tools:
 			return all_tools[tool_id]
 		else:
-			self._image.window.prompt_message(True, "Error: no tool " + tool_id)
-			# raise WrongToolIdException(tool_id, "NOTHING") # XXX too disruptive??
-			# this may happen if last_save_index is incorrect
+			self._image.window.prompt_message(True, _("Error: no tool '%s'" % tool_id))
+			# no raise: this may happen normally if last_save_index is incorrect
 
 	############################################################################
 ################################################################################
