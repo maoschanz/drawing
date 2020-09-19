@@ -1,4 +1,4 @@
-gnome = import('gnome')
+
 gnome.yelp(
 	meson.project_name(),
 	sources: [

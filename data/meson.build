@@ -1,6 +1,7 @@
+
 desktop_file = i18n.merge_file(
-	input: 'com.github.maoschanz.drawing.desktop.in',
-	output: 'com.github.maoschanz.drawing.desktop',
+	input: app_uuid + '.desktop.in',
+	output: app_uuid + '.desktop',
 	type: 'desktop',
 	po_dir: '../po',
 	install: true,
@@ -13,8 +14,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-	input: 'com.github.maoschanz.drawing.appdata.xml.in',
-	output: 'com.github.maoschanz.drawing.appdata.xml',
+	input: app_uuid + '.appdata.xml.in',
+	output: app_uuid + '.appdata.xml',
 	po_dir: '../po',
 	install: true,
 	install_dir: join_paths(get_option('datadir'), 'metainfo')
@@ -30,7 +31,7 @@ if appstream_util.found()
 endif
 
 install_data(
-	'com.github.maoschanz.drawing.gschema.xml',
+	app_uuid + '.gschema.xml',
 	install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
@@ -45,3 +46,4 @@ endif
 
 message('Making a list of icons')
 subdir('icons')
+
