@@ -216,7 +216,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		xmin, ymin = main_width, main_height # TODO context.path_extents() ?
 		future_path = self.get_selection().get_future_path()
 		for pts in future_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				xmin = min(pts[1][0], xmin)
 				ymin = min(pts[1][1], ymin)
 		self.get_selection().set_future_coords(max(xmin, 0.0), max(ymin, 0.0))

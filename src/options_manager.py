@@ -46,7 +46,7 @@ class DrOptionsManager():
 		if not self._action_exists(name):
 			return
 		action = self.window.lookup_action(name)
-		if action.get_state_type().dup_string() is 's':
+		if action.get_state_type().dup_string() == 's':
 			return action.get_state().get_string()
 		else:
 			return action.get_state()

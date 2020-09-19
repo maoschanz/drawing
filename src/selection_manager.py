@@ -193,7 +193,7 @@ class DrSelectionManager():
 	def _get_context_with_path(self, delta_x, delta_y):
 		cairo_context = self._get_context()
 		for pts in self.selection_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				x = pts[1][0] + delta_x
 				y = pts[1][1] + delta_y
 				cairo_context.line_to(int(x), int(y))
