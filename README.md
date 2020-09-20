@@ -8,14 +8,15 @@ at the GNOME desktop.
 PNG, JPEG and BMP files are supported.
 
 Besides GNOME, some more traditional design layouts are available too, as well
-as an [elementaryOS layout](./docs/screenshots/elementary.png). It should also
-be compatible with [the Pinephone and Librem 5 smartphones](./docs/screenshots/librem_options.png).
+as an [elementaryOS layout](./docs/screenshots/0.6/elementary_save_as.png). It
+should also be compatible with the *Pinephone* and *Librem 5*
+[smartphones](./docs/screenshots/0.6/librem_menu.png).
 
 ## Screenshots
 
 ### Default user interface (for GNOME/Budgie)
 
-![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/gnome_menu.png)
+![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/0.6/gnome_menu.png)
 
 [More screenshots](https://maoschanz.github.io/drawing/gallery.html)
 

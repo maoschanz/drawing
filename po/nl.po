@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-16 21:44+0200\n"
+"POT-Creation-Date: 2020-09-20 18:37+0200\n"
 "PO-Revision-Date: 2020-09-05 16:54+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -157,11 +157,11 @@ msgid "The selection and the actions associated with it"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The thumbnail preview, showing various shapes zoomed in"
+msgid "Zooming in various shapes"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The \"new image\" menu opened while the selection is being scaled up"
+msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
@@ -229,6 +229,11 @@ msgstr "Eigenschappen"
 msgid "Save"
 msgstr "Opslaan"
 
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+#, fuzzy
+msgid "Save without transparency"
+msgstr "Doorzichtigheid toevoegen"
+
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/utilities.py
 msgid "Save as…"
@@ -238,6 +243,10 @@ msgstr "Opslaan als…"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
 msgstr "Exporteren als…"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
@@ -743,6 +752,12 @@ msgstr "%s ongedaan maken"
 msgid "Redo %s"
 msgstr "%s opnieuw toepassen"
 
+#. Context: an error message
+#: src/image.py
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr ""
+
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
 msgstr "Niet-opgeslagen bestanden kunnen niet opnieuw worden ingelezen."
@@ -928,6 +943,10 @@ msgstr "Gum"
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
 msgstr "Markering"
+
+#: src/preferences.py
+msgid "Points"
+msgstr ""
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1170,6 +1189,7 @@ msgstr "procent"
 msgid "degrees"
 msgstr "graden"
 
+#. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
@@ -1189,6 +1209,11 @@ msgstr "Geen opties"
 #: src/window.py
 msgid "Opened images"
 msgstr "Geopende afbeeldingen"
+
+#: src/window.py
+#, fuzzy, python-format
+msgid "Error: pane invalid for '%s', please report this bug."
+msgstr "Kan de toepassing niet starten. Meld deze bug."
 
 #: src/window.py
 #, python-format
@@ -1244,6 +1269,7 @@ msgstr ""
 msgid "Do you want to save anyway?"
 msgstr "Waar wil je %s openen?"
 
+#. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
@@ -1270,6 +1296,12 @@ msgstr "Afbeelding importeren"
 #: src/window.py
 msgid "Required tool is not available"
 msgstr "Het vereiste gereedschap is niet beschikbaar"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
 
 #: src/tools/utilities_paths.py
 msgid "Continue"

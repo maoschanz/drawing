@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-16 21:44+0200\n"
+"POT-Creation-Date: 2020-09-20 18:37+0200\n"
 "PO-Revision-Date: 2020-08-24 05:01-0500\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: \n"
@@ -160,11 +160,11 @@ msgid "The selection and the actions associated with it"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The thumbnail preview, showing various shapes zoomed in"
+msgid "Zooming in various shapes"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The \"new image\" menu opened while the selection is being scaled up"
+msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
@@ -232,6 +232,11 @@ msgstr "Propiedades de imagen"
 msgid "Save"
 msgstr "Guardar"
 
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+#, fuzzy
+msgid "Save without transparency"
+msgstr "Añadir transparencia"
+
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/utilities.py
 msgid "Save as…"
@@ -241,6 +246,10 @@ msgstr "Guardar como…"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
 msgstr "Exportar como…"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
@@ -746,6 +755,12 @@ msgstr "Deshacer %s"
 msgid "Redo %s"
 msgstr "Rehacer %s"
 
+#. Context: an error message
+#: src/image.py
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr ""
+
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
 msgstr "No se puede recargar del disco un archivo que nunca se guardó."
@@ -935,6 +950,10 @@ msgstr "Borrador"
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
 msgstr "Rotulador"
+
+#: src/preferences.py
+msgid "Points"
+msgstr ""
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1176,6 +1195,7 @@ msgstr "porcentaje"
 msgid "degrees"
 msgstr "grados"
 
+#. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
@@ -1195,6 +1215,11 @@ msgstr "Sin opciones"
 #: src/window.py
 msgid "Opened images"
 msgstr "Imágenes abiertas"
+
+#: src/window.py
+#, fuzzy, python-format
+msgid "Error: pane invalid for '%s', please report this bug."
+msgstr "Error al iniciar la aplicación; por favor, informe acerca del fallo."
 
 #: src/window.py
 #, python-format
@@ -1250,6 +1275,7 @@ msgstr ""
 msgid "Do you want to save anyway?"
 msgstr "¿Dónde quiere abrir «%s»?"
 
+#. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
@@ -1276,6 +1302,12 @@ msgstr "Importar una imagen"
 #: src/window.py
 msgid "Required tool is not available"
 msgstr "La herramienta requerida no está disponible"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
 
 #: src/tools/utilities_paths.py
 msgid "Continue"

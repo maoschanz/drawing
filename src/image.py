@@ -29,7 +29,7 @@ class DrMotionBehavior():
 class NoPixbufNoChangeException(Exception):
 	def __init__(self, pb_name):
 		# Context: an error message
-		super().__init__(_("New pixbuf empty, no change applied to %") % pb_name)
+		super().__init__(_("New pixbuf empty, no change applied to %s") % pb_name)
 
 ################################################################################
 

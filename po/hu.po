@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-16 21:44+0200\n"
+"POT-Creation-Date: 2020-09-20 18:37+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -147,11 +147,11 @@ msgid "The selection and the actions associated with it"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The thumbnail preview, showing various shapes zoomed in"
+msgid "Zooming in various shapes"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The \"new image\" menu opened while the selection is being scaled up"
+msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
@@ -219,6 +219,11 @@ msgstr "Képtulajdonságok"
 msgid "Save"
 msgstr "Mentés"
 
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+#, fuzzy
+msgid "Save without transparency"
+msgstr "Átlátszóság"
+
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/utilities.py
 msgid "Save as…"
@@ -228,6 +233,10 @@ msgstr "Mentés másként…"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
 msgstr "Exportálás…"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
@@ -751,6 +760,12 @@ msgstr "„%s” _visszavonása"
 msgid "Redo %s"
 msgstr "„%s” újra"
 
+#. Context: an error message
+#: src/image.py
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr ""
+
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
 msgstr ""
@@ -942,6 +957,10 @@ msgstr "Radír"
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
+msgstr ""
+
+#: src/preferences.py
+msgid "Points"
 msgstr ""
 
 #. Context: this is a tool to select an area according to a shape that
@@ -1184,6 +1203,7 @@ msgstr "százalék"
 msgid "degrees"
 msgstr "Szög (fok)"
 
+#. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
@@ -1204,6 +1224,13 @@ msgstr "Nincs beállítás"
 #: src/window.py
 msgid "Opened images"
 msgstr "Megnyitott képek"
+
+#: src/window.py
+#, fuzzy, python-format
+msgid "Error: pane invalid for '%s', please report this bug."
+msgstr ""
+"Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
+"hibát a fejlesztőknek!"
 
 #: src/window.py
 #, python-format
@@ -1259,6 +1286,7 @@ msgstr ""
 msgid "Do you want to save anyway?"
 msgstr "Hova kívánja megnyitni a(z) %s képfájlt?"
 
+#. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to save %s"
@@ -1286,6 +1314,12 @@ msgstr "Kép importálása"
 #, fuzzy
 msgid "Required tool is not available"
 msgstr "Teljes képernyős mód elérhető."
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
