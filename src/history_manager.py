@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gdk, Gio, GdkPixbuf, GLib
+from gi.repository import Gdk, Gio, GdkPixbuf
 # from .abstract_tool import WrongToolIdException
 
 ################################################################################

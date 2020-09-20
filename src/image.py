@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
@@ -200,7 +200,8 @@ class DrImage(Gtk.Box):
 		"""Safely reloads the image from the disk."""
 		if self.gfile is None:
 			# XXX no, the action shouldn't be active in the first place
-			if not self.window.confirm_save_modifs():
+			isnt_saved = not self.window.saving_manager.confirm_save_modifs()
+			if isnt_saved or self.get_file_path() is None:
 				self.window.prompt_message(True, \
 				            _("Can't reload a never-saved file from the disk."))
 				return

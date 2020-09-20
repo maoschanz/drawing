@@ -51,9 +51,9 @@ from .message_dialog import DrMessageDialog
 from .deco_manager import DrDecoManagerMenubar, \
                           DrDecoManagerHeaderbar, \
                           DrDecoManagerToolbar
+from .saving_manager import DrSavingManager
 
-from .utilities import utilities_save_pixbuf_to, \
-                       utilities_add_filechooser_filters
+from .utilities import utilities_add_filechooser_filters
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -115,6 +115,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.tools = None
 		self.minimap = DrMinimap(self, None)
 		self.options_manager = DrOptionsManager(self)
+		self.saving_manager = DrSavingManager(self)
 
 		self.add_all_win_actions()
 		if get_cb:
@@ -297,7 +298,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		index = self.notebook.page_num(tab)
 		if not self.notebook.get_nth_page(index).is_saved():
 			self.notebook.set_current_page(index)
-			is_saved = self.confirm_save_modifs()
+			is_saved = self.saving_manager.confirm_save_modifs()
 			if not is_saved:
 				return False
 		self.notebook.remove_page(index)
@@ -444,10 +445,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
-		# self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
+		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
-		# self.add_action_simple('export_clipboard', self.action_export_cb, None)
+		# self.add_action_simple('to_clipboard', self.action_export_cb, None)
 		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
@@ -818,9 +819,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			return self.pointer_to_current_page
 
-	def get_file_path(self):
-		return self.get_active_image().get_file_path()
-
 	def action_reload(self, *args):
 		self.get_active_image().reload_from_disk()
 
@@ -912,145 +910,22 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.set_picture_title() # often redundant but not useless
 		self.prompt_message(False, 'file successfully loaded')
 
-	def confirm_despite_ongoing_operation(self):
-		"""Ask to the user whether or not the want to apply the operation of the
-		current tool (curve, shape, transform, selection) before saving."""
-		msg = None
-		if self.get_selection_tool().selection_is_active():
-			msg = _("A part of the image is selected, and the pixels " + \
-			                                 "beneath the selection are blank.")
-		elif self.active_tool().has_ongoing_operation():
-			msg = _("Modifications from the current tool haven't been applied.")
-		if msg is None:
-			return True
-
-		dialog = DrMessageDialog(self)
-		cancel_id = dialog.set_action(_("Cancel"), None, True)
-		save_id = dialog.set_action(_("Save"), 'destructive-action', False)
-		dialog.add_string(msg)
-		dialog.add_string(_("Do you want to save anyway?"))
-		self.minimap.update_minimap(True)
-		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
-		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
-		frame.add(image)
-		dialog.add_widget(frame)
-		result = dialog.run()
-		dialog.destroy()
-		if result == save_id:
-			return True
-		else: # cancel_id
-			return False
-
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
 		successfully saved."""
-		if not self.confirm_despite_ongoing_operation():
-			return False
-		if self.get_file_path() is None: # Newly created and never saved image
-			gfile = self.file_chooser_save()
-		else:
-			gfile = self.get_active_image().gfile
-		return self._save_current_tab_to_gfile(gfile)
+		return self.saving_manager.save_current_image(False, False, False, True)
 
 	def action_save_as(self, *args):
-		if not self.confirm_despite_ongoing_operation():
-			return
-		gfile = self.file_chooser_save()
-		self._save_current_tab_to_gfile(gfile)
+		return self.saving_manager.save_current_image(False, True, False, True)
 
-	def _save_current_tab_to_gfile(self, gfile):
-		"""Do everything needed to save the currently active image's pixbuf to
-		the Gio.File object given as argument."""
-		if gfile is None:
-			# The user pressed "cancel" or closed the file chooser dialog
-			return False
-		fn = gfile.get_path()
-		try:
-			pixb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_to(pixb, fn, self, True)
-			self.get_active_image().gfile = gfile
-			self.get_active_image().remember_current_state()
-		except Exception as e:
-			if str(e) == '2': # exception has been raised because the user wants
-				# to save the file under an other format (JPEG/BMP → PNG)
-				self.action_save_as()
-				return True
-			# else the exception was raised because an actual error occured, or
-			# the user clicked on "cancel"
-			print(e)
-			# Context: an error message
-			self.prompt_message(False, _("Failed to save %s") % fn)
-			return False
-		self.get_active_image().post_save()
-		self.set_picture_title()
-		return True
-
-	def confirm_save_modifs(self):
-		"""Return True if the image can be closed/overwritten (whether it's
-		saved or not), or False otherwise (usually if the user clicked 'cancel',
-		or if an error occurred)."""
-		if self.get_active_image().is_saved():
-			return True
-		fn = self.get_file_path()
-		if fn is None:
-			unsaved_file_name = _("Untitled") + '.png'
-			# Context: the sentence "There are unsaved modifications to %s."
-			display_name = _("this picture")
-		else:
-			unsaved_file_name = fn.split('/')[-1]
-			display_name = self.get_active_image().get_filename_for_display()
-		dialog = DrMessageDialog(self)
-		discard_id = dialog.set_action(_("Discard"), 'destructive-action', False)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		save_id = dialog.set_action(_("Save"), None, True)
-		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
-		self.minimap.update_minimap(True)
-		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
-		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
-		frame.add(image)
-		dialog.add_widget(frame)
-		result = dialog.run()
-		dialog.destroy()
-		if result == save_id:
-			return self.action_save()
-		elif result == discard_id:
-			return True
-		else: # cancel_id
-			return False
-
-	def file_chooser_save(self):
-		"""Opens an "save" file chooser dialog, and return a GioFile or None."""
-		gfile = None
-		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
-		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
-		utilities_add_filechooser_filters(file_chooser)
-
-		images_dir = GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)
-		if images_dir != None: # no idea why it sometimes fails
-			file_chooser.set_current_folder(images_dir)
-		# Context: Untitled(.png) is the default name of a newly saved file
-		default_file_name = str(_("Untitled") + '.png')
-		file_chooser.set_current_name(default_file_name)
-
-		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT:
-			gfile = file_chooser.get_file()
-		file_chooser.destroy()
-		return gfile
+	def action_save_alphaless(self, *args):
+		return self.saving_manager.save_current_image(False, False, False, False)
 
 	def action_print(self, *args):
 		self.get_active_image().print_image()
 
 	def action_export_as(self, *args):
-		gfile = self.file_chooser_save()
-		if gfile is None:
-			return
-		pixbuf = self.get_active_image().main_pixbuf
-		try:
-			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
-		except:
-			# Context: an error message
-			self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
+		return self.saving_manager.save_current_image(True, True, False, True)
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -1114,15 +989,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().import_selection(pixbuf)
 
 	def action_selection_export(self, *args):
-		# XXX very similar to action_export_as
-		gfile = self.file_chooser_save()
-		if gfile is not None:
-			pixbuf = self.get_active_image().selection.get_pixbuf()
-			try:
-				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
-			except:
-				# Context: an error message
-				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
+		return self.saving_manager.save_current_image(True, True, True, True)
 
 	def get_selection_tool(self):
 		if 'rect_select' in self.tools:

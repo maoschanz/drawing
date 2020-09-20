@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gio, GLib, Gdk
+from gi.repository import Gtk, Gio, Gdk
 from .utilities import utilities_add_unit_to_spinbtn
 
 @Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/preferences.ui')

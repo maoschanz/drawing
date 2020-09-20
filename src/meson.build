@@ -36,6 +36,7 @@ drawing_sources = [
 
 	'image.py',
 	'history_manager.py',
+	'saving_manager.py',
 	'selection_manager.py',
 
 	'utilities.py',

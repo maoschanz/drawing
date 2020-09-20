@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GdkPixbuf
-from .message_dialog import DrMessageDialog
+from gi.repository import Gtk
 
 ################################################################################
 
@@ -104,89 +103,6 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 	# print(color_string)
 	return (color_string + alpha_string)
-
-################################################################################
-
-# XXX c'est appelé que dans window ça, est-ce à sa place ?...
-def utilities_save_pixbuf_to(pixbuf, fpath, window, can_save_as):
-	"""Save a pixbuf to a given path, with the file format corresponding to the
-	end of the file name. Format with no support for alpha channel will be
-	modified so transparent pixels get replaced by the color chosen by the user
-	in the app preferences."""
-	# Build a short string which will be recognized as a file format by the
-	# GdkPixbuf.Pixbuf.savev method
-	file_format = fpath.split('.')[-1]
-	if file_format in ['jpeg', 'jpg', 'jpe']:
-		file_format = 'jpeg'
-	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
-		file_format = 'png'
-	# Ask the user what to do concerning formats with no alpha channel
-	if file_format not in ['png']:
-		replacement = window._settings.get_string('replace-alpha')
-		if replacement == 'ask':
-			replacement = _ask_overwrite_alpha(window, can_save_as)
-		pixbuf = _replace_alpha(pixbuf, replacement)
-	# Actually save the pixbuf to the given file path
-	pixbuf.savev(fpath, file_format, [None], [])
-
-def _replace_alpha(pixbuf, replacement):
-	if replacement == 'nothing':
-		return
-	width = pixbuf.get_width()
-	height = pixbuf.get_height()
-	if replacement == 'white':
-		pcolor1 = _rgb_as_hexadecimal_int(255, 255, 255)
-		pcolor2 = _rgb_as_hexadecimal_int(255, 255, 255)
-	# elif replacement == 'initial':
-	# 	pcolor1 = _rgb_as_hexadecimal_int(??, ??, ??) # euh zut j'ai pas accès à
-	# 	pcolor2 = _rgb_as_hexadecimal_int(??, ??, ??) # l'objet image là...
-	elif replacement == 'checkboard':
-		pcolor1 = _rgb_as_hexadecimal_int(85, 85, 85)
-		pcolor2 = _rgb_as_hexadecimal_int(170, 170, 170)
-	else: # if replacement == 'black':
-		pcolor1 = _rgb_as_hexadecimal_int(0, 0, 0)
-		pcolor2 = _rgb_as_hexadecimal_int(0, 0, 0)
-	return pixbuf.composite_color_simple(width, height,
-	                       GdkPixbuf.InterpType.TILES, 255, 8, pcolor1, pcolor2)
-
-def _rgb_as_hexadecimal_int(r, g, b):
-	"""The method GdkPixbuf.Pixbuf.composite_color_simple wants an hexadecimal
-	integer whose format is 0xaarrggbb so here are ugly binary operators."""
-	return (r << 16) + (g << 8) + b
-
-def _ask_overwrite_alpha(window, can_save_as):
-	"""Warn the user about the replacement of the alpha channel for JPG or BMP
-	files, but it may quickly annoy users to see a dialog so it's an option."""
-	dialog = DrMessageDialog(window)
-	cancel_id = dialog.set_action(_("Cancel"), None, False)
-	if can_save_as:
-		save_as_id = dialog.set_action(_("Save as…"), None, False)
-	# Context: confirm replacing transparent pixels with the selected color
-	replace_id = dialog.set_action(_("Replace"), None, True)
-
-	dialog.add_string(_("This file format doesn't support transparent colors."))
-	if can_save_as:
-		dialog.add_string(_("You can save the image as a PNG file, or " \
-		                                          "replace transparency with:"))
-	else:
-		dialog.add_string(_("Replace transparency with:"))
-
-	alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
-	alpha_combobox.append('white', _("White"))
-	alpha_combobox.append('black', _("Black"))
-	alpha_combobox.append('checkboard', _("Checkboard"))
-	alpha_combobox.append('nothing', _("Nothing"))
-	alpha_combobox.set_active_id('white') # If we run the dialog, it means the
-	# active preference is 'ask', so there is no way we can set the default
-	# value to something pertinent. # TODO mettre 'initial' c'est mieux
-	dialog.add_widget(alpha_combobox)
-
-	result = dialog.run()
-	repl = alpha_combobox.get_active_id()
-	dialog.destroy()
-	if result != replace_id:
-		raise Exception(result)
-	return repl
 
 ################################################################################
 
