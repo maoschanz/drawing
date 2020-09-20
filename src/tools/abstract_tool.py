@@ -21,7 +21,8 @@ from .utilities_overlay import utilities_show_overlay_on_context
 
 class WrongToolIdException(Exception):
 	def __init__(self, expected, actual):
-		msg = "Can't start operation: wrong tool id (expected {0}, got {1})"
+		# Context: an error message
+		msg = _("Can't start operation: wrong tool id (expected {0}, got {1})")
 		super().__init__(msg.format(expected, actual))
 
 ################################################################################

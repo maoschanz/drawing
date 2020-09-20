@@ -116,7 +116,8 @@ class DrHistoryManager():
 
 	def add_state(self, pixbuf):
 		if pixbuf is None:
-			raise Exception("Attempt to save an invalid state")
+			# Context: an error message
+			raise Exception(_("Attempt to save an invalid state"))
 		self._undo_history.append({
 			'tool_id': None,
 			'pixbuf': pixbuf,

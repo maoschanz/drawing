@@ -182,6 +182,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			try:
 				self.tools[tool_id] = tool_class(self)
 			except:
+				# Context: an error message
 				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
 	def _build_tool_rows(self):
@@ -492,10 +493,15 @@ class DrWindow(Gtk.ApplicationWindow):
 	# WINDOW DECORATIONS AND LAYOUTS ###########################################
 
 	def on_layout_changed(self, *args):
-		is_narrow = self._decorations.remove_from_ui()
-		self.set_ui_bars()
-		self._decorations.set_compact(is_narrow)
-		self.set_picture_title()
+		try:
+			is_narrow = self._decorations.remove_from_ui()
+			self.set_ui_bars()
+			self._decorations.set_compact(is_narrow)
+			self.set_picture_title()
+		except:
+			pass # Closed windows are not actually deleted from the array kept
+			# in main.py, so this can be called even after the window lost its
+			# data (and it will fail).
 
 	def show_info_settings(self, *args):
 		"""This is executed when a setting changed but the method to apply it
@@ -970,6 +976,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# else the exception was raised because an actual error occured, or
 			# the user clicked on "cancel"
 			print(e)
+			# Context: an error message
 			self.prompt_message(False, _("Failed to save %s") % fn)
 			return False
 		self.get_active_image().post_save()
@@ -1040,6 +1047,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		try:
 			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
 		except:
+			# Context: an error message
 			self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 
 	############################################################################
@@ -1111,6 +1119,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			try:
 				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
 			except:
+				# Context: an error message
 				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
 
 	def get_selection_tool(self):

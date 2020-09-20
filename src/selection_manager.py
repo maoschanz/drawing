@@ -20,11 +20,12 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 
 class NoSelectionPixbufException(Exception):
 	def __init__(self, *args):
-		super().__init__("The selection pixbuf is empty.")
+		# Context: an error message
+		super().__init__(_("The selection pixbuf is empty."))
 
 class NoSelectionPathException(Exception):
 	def __init__(self, *args):
-		super().__init__("The selection path is empty.")
+		super().__init__(_("The selection path is empty."))
 
 ################################################################################
 
