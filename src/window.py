@@ -444,8 +444,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
+		# self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
+		# self.add_action_simple('export_clipboard', self.action_export_cb, None)
 		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])

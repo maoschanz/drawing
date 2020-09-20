@@ -56,7 +56,12 @@
         <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
       </item>
     </section>
-    <section>
+    <section id="save-section">
+      <item>
+        <attribute name="action">win.save_alphaless</attribute>
+        <attribute name="label" translatable="yes">Save without transparency</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
       <item>
         <attribute name="action">win.save_as</attribute>
         <attribute name="label" translatable="yes">Save as…</attribute>
@@ -64,6 +69,11 @@
       <item>
         <attribute name="label" translatable="yes">Export as…</attribute>
         <attribute name="action">win.export_as</attribute>
+      </item>
+      <item>
+        <attribute name="action">win.to_clipboard</attribute>
+        <attribute name="label" translatable="yes">Copy to clipboard</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Print</attribute>
@@ -121,7 +131,12 @@
         <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
       </item>
     </section>
-    <section id="save-section">
+    <section>
+      <item>
+        <attribute name="action">win.save_alphaless</attribute>
+        <attribute name="label" translatable="yes">Save without transparency</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
       <item>
         <attribute name="action">win.save_as</attribute>
         <attribute name="label" translatable="yes">Save as…</attribute>
@@ -131,12 +146,16 @@
         <attribute name="action">win.export_as</attribute>
       </item>
       <item>
+        <attribute name="action">win.to_clipboard</attribute>
+        <attribute name="label" translatable="yes">Copy to clipboard</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Print</attribute>
         <attribute name="action">win.print</attribute>
       </item>
     </section>
     <section>
-    <!-- <attribute name="label" translatable="yes">Development features</attribute> -->
       <item>
         <attribute name="label" translatable="yes">Refresh</attribute>
         <attribute name="action">win.restore_pixbuf</attribute>

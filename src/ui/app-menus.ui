@@ -104,6 +104,11 @@
           <attribute name="verb-icon">document-save-symbolic</attribute>
         </item>
         <item>
+          <attribute name="action">win.save_alphaless</attribute>
+          <attribute name="label" translatable="yes">Save without transparency</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+        </item>
+        <item>
           <attribute name="label" translatable="yes">Save as…</attribute>
           <attribute name="action">win.save_as</attribute>
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
@@ -112,6 +117,11 @@
           <attribute name="label" translatable="yes">Export as…</attribute>
           <attribute name="action">win.export_as</attribute>
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.to_clipboard</attribute>
+          <attribute name="label" translatable="yes">Copy to clipboard</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
         </item>
       </section>
       <section>
