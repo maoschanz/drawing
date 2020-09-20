@@ -83,17 +83,18 @@ incorrect english labels, please report an issue about it.
 
 ----
 
-### Tools (0.5.3-unstable)
+### Tools (0.6.0)
 
-(last update: **version 0.5.3-unstable**, this is **NOT** what is provided by
-the packages. See [this page](https://maoschanz.github.io/drawing/) for tools
-available in versions 0.4.x)
+(last update: **version 0.6.0**)
+
+<!-- See [this page](https://maoschanz.github.io/drawing/) for the tools -->
+<!-- available in versions 0.4.x) -->
 
 #### Classic tools
 
 General options for these tools: colors, use blur or eraser, size, …
 
-- Pencil (options: dashes, …)
+- Pencil (options: dashes, line shape, …)
 - Eraser
 - Highlighter
 - Line (options: arrow, dashes, gradient, …)
@@ -121,12 +122,12 @@ image, etc.
 
 #### Transformation tools
 
-These tools allow to edit the whole image, or to edit a selected part of it.
+These tools can edit the whole image, or edit a selected part of it.
 
 - Crop
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
-- Skew (horizontally or vertically)
+<!-- - Skew (horizontally or vertically) -->
 - Filters:
 	- Blur (various types)
 	- Pixelisation

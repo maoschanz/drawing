@@ -4,12 +4,19 @@ DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing" # XXX ask it as an input maybe?
 VERSION="0.6"
 
+function separator () {
+	echo ""
+	echo "---------------------------------------------------------------------"
+	echo ""
+}
+
 echo "targeted distribution: $DISTRO"
 echo "package name: $PACKAGE_NAME"
 echo "package version: $VERSION"
 echo ""
 echo "Is it correct? [Return/^C]"
 read confirmation
+separator
 
 # remember current directory (theorically, the project's root) to bring the
 # package here in the end
@@ -30,12 +37,15 @@ cp meson.build $DIR_PATH/$DIR_NAME/
 cd $DIR_PATH/
 tar -Jcvf $FILE_NAME.orig.tar.xz $DIR_NAME
 cd $DIR_PATH/$DIR_NAME/
+separator
 
 # automatic creation of additional files for the build process
 dh_make -i -y
+separator
 
 # actually building the package
 dpkg-buildpackage -i -us -uc -b
+separator
 
 # get the package in /tmp and move it where the user is
 cp $DIR_PATH/*.deb $previous_dir

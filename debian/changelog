@@ -1,24 +1,24 @@
-drawing (0.5) unstable; urgency=low
+drawing (0.6) unstable; urgency=low
 
-  * UNSTABLE VERSION, DO NOT USE.
-  * CHANGES WHICH HAVE BEEN BACKPORTED TO THE 0.4 BRANCH ARE NOT LISTED HERE.
   * remove the "windows" menu from the menubar
   * refactor bottom panes management to allow several tools to share the same pane
   * rectangle selection, freehand selection, and color selection, are now distinct tools
   * the 'rotate' tool now handles horizontal or vertical flipping
-  * the 'rotate' tool now supports any angle
+  * the 'rotate' tool now supports any angle when rotationg the selection
   * the tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool
   * "close shape" action for the 'shape' tool
   * "close selection" action for the 'free selection' tool
   * replace the 'saturate' tool by a new 'filters' tool
   * add several types of blur to 'filters'
-  * add color inversion, pixelisation, parametrized transparency to 'filters'
+  * add color inversion, pixelisation, partial transparency to 'filters'
   * add "additional tools" section to the preferences window
   * add specialized types of pencils (eraser, highlighter) as optional tools
   * a fullscreen mode is now available
-  * zoom in (or out) using the minimap, the touchpad, the mouse wheel, or keyboard shortcuts
+  * zoom in (or out) using the minimap, the touch gestures, the mouse wheel, or keyboard shortcuts
   * move the "color application mode" selection to the colors menus/popovers
   * add "antialiasing" option to several tools
+  * warn the user when they try to save despite the current operation not being applied
   * rewrite the user help manual
 
- -- Romain F. T. <rrroschan@gmail.com>  Mon, 22 Jul 2019 00:18:12 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sun, 20 Sep 2020 13:18:12 +0100
+

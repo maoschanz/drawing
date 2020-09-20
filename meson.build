@@ -8,21 +8,19 @@ app_uuid = 'com.github.maoschanz.drawing'
 
 # Dependencies #################################################################
 
-# dependency('gtk+-3.0', version: '>=3.22')
-# dependency('pygobject-3.0', version: '>=3.30') # python3-gi, python3-gi-cairo
-# dependency('py3cairo') # python3, cairo, python3-cairo
-# XXX ^ this puts dependencies on *-dev packages during the build process, but
-# it doesn't ensure the actual lib is here
+# XXX the proper way to check python3 libs dependencies is this:
+# https://mesonbuild.com/Python-module.html#dependency but the doc is quite bad
+# so i've no idea how to make it work
 
 python3 = find_program('python3')
-# You can comment the following instruction if you're using an old distro to
-# build a package for a recent distro. These modules are required to run the
-# app, but not to build the package
 python3_tested_modules = {
 	'cairo': '',
 	'gi': '3.30',
 }
 
+# You can comment the following loop if you're using an old distro to build a
+# package for a recent distro. These modules are required to run the app, but
+# not to build the package
 foreach module, required_version : python3_tested_modules
 	if run_command(python3, '-c', 'import @0@'.format(module)).returncode() != 0
 		error('python3 module \'' + module + '\' not found')
