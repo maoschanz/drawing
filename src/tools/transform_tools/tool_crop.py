@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gdk, GdkPixbuf
-from .abstract_canvas_tool import AbstractCanvasTool
+from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_crop import OptionsBarCrop
 from .utilities_overlay import utilities_show_handles_on_context
 

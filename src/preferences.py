@@ -40,11 +40,17 @@ class DrPrefsWindow(Gtk.Window):
 	def __init__(self, is_beta, wants_csd, **kwargs):
 		super().__init__(**kwargs)
 		if wants_csd:
-			header_bar = Gtk.HeaderBar(visible=True, title=_("Preferences"), \
-			                                             show_close_button=True)
+			header_bar = Gtk.HeaderBar(
+				visible=True, \
+				title=_("Preferences"), \
+				show_close_button=True \
+			)
 			self.set_titlebar(header_bar)
-			stack_switcher = Gtk.StackSwitcher(visible=True, stack=self.stack, \
-			                                            halign=Gtk.Align.CENTER)
+			stack_switcher = Gtk.StackSwitcher(
+				visible=True, \
+				stack=self.stack, \
+				halign=Gtk.Align.CENTER \
+			)
 			header_bar.set_custom_title(stack_switcher)
 			self.set_default_size(480, 500)
 		else:
@@ -61,9 +67,9 @@ class DrPrefsWindow(Gtk.Window):
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)
 
-	# Each `page_*` attribute is a GtkGrid. The `page_builder_*` methods declare
-	# their grid to be the currently filled one, and reset the counter.
-	# Then, the `page_builder_*` methods will call the `add_*` methods, who will
+	# Each `page_*` attribute is a GtkGrid. Each `page_builder_*` method declare
+	# its grid to be the currently filled one, and reset the counter.
+	# Then, each `page_builder_*` method will call the `add_*` methods, who will
 	# build accurate widgets to be packed on the grid by the `attach_*` methods.
 
 	############################################################################

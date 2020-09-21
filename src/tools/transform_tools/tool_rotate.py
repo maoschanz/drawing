@@ -17,7 +17,7 @@
 
 import math
 from gi.repository import Gdk
-from .abstract_canvas_tool import AbstractCanvasTool
+from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_rotate import OptionsBarRotate
 
 class ToolRotate(AbstractCanvasTool):

@@ -28,6 +28,9 @@ if appstream_util.found()
 		appstream_util,
 		args: ['validate', appstream_file]
 	)
+	# The app will never pass "validate-strict" because appstream-util wants
+	# pictures with a 16:9 ratio, while i use pictures of the default window
+	# size, which is approximating the objectively better golden ratio.
 endif
 
 install_data(

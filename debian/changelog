@@ -1,4 +1,15 @@
-drawing (0.6) unstable; urgency=low
+drawing (0.6.1) unstable; urgency=low
+
+  * new 'save without transparency' action, that works with PNG
+  * add 'initial color' as a replacement for transparent pixels
+  * fix a bug in the 'rotate' tool that occured when the selection was flipped before being rotated
+  * add the additional tool 'points', to help captioning
+  * update the user help manual
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 26 Sep 2020 13:12:00 +0100
+
+drawing (0.6.0) unstable; urgency=low
 
   * remove the "windows" menu from the menubar
   * refactor bottom panes management to allow several tools to share the same pane

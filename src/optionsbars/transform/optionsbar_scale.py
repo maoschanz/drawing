@@ -1,4 +1,4 @@
-# optionsbar_crop.py
+# optionsbar_scale.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -19,17 +19,20 @@ from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
 
-class OptionsBarCrop(AbstractOptionsBar):
-	__gtype_name__ = 'OptionsBarCrop'
+class OptionsBarScale(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarScale'
 
-	def __init__(self):
+	def __init__(self, scale_tool):
 		super().__init__()
-		builder = self.build_ui('optionsbars/canvas/optionsbar-crop.ui')
-		self.height_btn = builder.get_object('height_btn')
+		# future possible improvement: the pane may not compact the same way if
+		# the manipulation concerns the selection.
+		#self.scale_tool = scale_tool
+		builder = self.build_ui('optionsbars/transform/optionsbar-scale.ui')
+
 		self.width_btn = builder.get_object('width_btn')
+		self.height_btn = builder.get_object('height_btn')
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
 		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
-		# XXX top/bottom/left/right ?
 
 		self.options_btn = builder.get_object('options_btn')
 
@@ -38,8 +41,7 @@ class OptionsBarCrop(AbstractOptionsBar):
 		self.separator = builder.get_object('separator')
 
 	def toggle_options_menu(self):
-		if self.options_btn.get_visible():
-			self.options_btn.set_active(not self.options_btn.get_active())
+		self.options_btn.set_active(not self.options_btn.get_active())
 
 	def hide_options_menu(self):
 		self.options_btn.set_active(False)
@@ -61,11 +63,6 @@ class OptionsBarCrop(AbstractOptionsBar):
 		self.width_label.set_visible(not state)
 		self.height_label.set_visible(not state)
 		self.separator.set_visible(not state)
-
-		# if self.crop_tool.apply_to_selection:
-		# 	self.???.set_visible(state)
-		# else:
-		# 	self.???.set_visible(state)
 
 	############################################################################
 ################################################################################

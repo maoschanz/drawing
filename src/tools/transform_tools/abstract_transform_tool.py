@@ -1,4 +1,4 @@
-# abstract_canvas_tool.py
+# abstract_transform_tool.py
 #
 # Copyright 2018-2020 Romain F. T.
 #

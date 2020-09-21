@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2020 Romain F. T. -->
 <component type="desktop">
   <id>com.github.maoschanz.drawing</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -24,6 +25,21 @@
   </description>
 
   <releases>
+    <release version="0.6.1" date="2020-10-10">
+      <description>
+        <p>
+          It's now possible to remove transparency when saving PNG files too.
+          And there are more color options to replace the transparent pixels.
+        </p>
+        <p>
+          A new optional tool named "Points" has been added, it may help
+          captioning pictures.
+        </p>
+        <p>
+          Minors bugs to the 'rotate' tool have been fixed.
+        </p>
+      </description>
+    </release>
     <release version="0.6.0" date="2020-09-20">
       <description>
         <p>
@@ -59,9 +75,9 @@
         </p>
       </description>
     </release>
-    <release version="0.4.8" date="2019-10-13">
+    <release version="0.4.14" date="2020-09-11">
       <description>
-        <p>Version 0.4.8 features several minor bug fixes, and various new
+        <p>Version 0.4.14 features several minor bug fixes, and various new
         translations.</p>
       </description>
     </release>
@@ -96,7 +112,7 @@
         https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_tools_preview.png
       </image>
       <caption>
-        The thumbnail preview, showing various shapes zoomed in
+        Zooming in various shapes
       </caption>
     </screenshot>
     <screenshot>
@@ -104,7 +120,7 @@
         https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_new.png
       </image>
       <caption>
-        The "new image" menu opened while the selection is being scaled up
+        The "new image" menu opened
       </caption>
     </screenshot>
   </screenshots>

@@ -49,11 +49,11 @@ drawing_sources = [
 	'optionsbars/classic/optionsbar_classic.py',
 	'optionsbars/classic/optionsbar_color_popover.py',
 	'optionsbars/selection/optionsbar_selection.py',
-	'optionsbars/canvas/optionsbar_crop.py',
-	'optionsbars/canvas/optionsbar_filters.py',
-	'optionsbars/canvas/optionsbar_rotate.py',
-	'optionsbars/canvas/optionsbar_scale.py',
-	'optionsbars/canvas/optionsbar_skew.py',
+	'optionsbars/transform/optionsbar_crop.py',
+	'optionsbars/transform/optionsbar_filters.py',
+	'optionsbars/transform/optionsbar_rotate.py',
+	'optionsbars/transform/optionsbar_scale.py',
+	'optionsbars/transform/optionsbar_skew.py',
 
 	'tools/abstract_tool.py',
 	'tools/utilities_blur.py',
@@ -78,12 +78,12 @@ drawing_sources = [
 	'tools/selection_tools/select_free.py',
 	'tools/selection_tools/select_color.py',
 
-	'tools/canvas_tools/abstract_canvas_tool.py',
-	'tools/canvas_tools/tool_crop.py',
-	'tools/canvas_tools/tool_filters.py',
-	'tools/canvas_tools/tool_rotate.py',
-	'tools/canvas_tools/tool_scale.py',
-	'tools/canvas_tools/tool_skew.py'
+	'tools/transform_tools/abstract_transform_tool.py',
+	'tools/transform_tools/tool_crop.py',
+	'tools/transform_tools/tool_filters.py',
+	'tools/transform_tools/tool_rotate.py',
+	'tools/transform_tools/tool_scale.py',
+	'tools/transform_tools/tool_skew.py'
 ]
 
 install_data(drawing_sources, install_dir: moduledir)
