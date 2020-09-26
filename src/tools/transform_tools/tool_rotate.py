@@ -154,9 +154,16 @@ class ToolRotate(AbstractCanvasTool):
 		# print('gdk_rotation:', gdk_rotation)
 		# print('cairo_rotation:', cairo_rotation)
 
-		# Image rotation, using methods from both GdkPixbuf.Pixbuf and (if
-		# needed) cairo.Context
+		# Image rotation, using the method from GdkPixbuf.Pixbuf
 		new_pixbuf = source_pixbuf.rotate_simple(gdk_rotation)
+
+		# Image flipping (horizontal or vertical "mirroring")
+		if flip_h:
+			new_pixbuf = new_pixbuf.flip(True)
+		if flip_v:
+			new_pixbuf = new_pixbuf.flip(False)
+
+		# Image rotation, using methods from cairo.Context (only if needed)
 		if cairo_rotation != 0:
 			surface0 = Gdk.cairo_surface_create_from_pixbuf(new_pixbuf, 0, None)
 			surface0.set_device_scale(self.scale_factor(), self.scale_factor())
@@ -165,12 +172,6 @@ class ToolRotate(AbstractCanvasTool):
 			new_surface = self.get_deformed_surface(surface0, coefs)
 			new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 			                  new_surface.get_width(), new_surface.get_height())
-
-		# Image flipping (horizontal or vertical "mirroring")
-		if flip_h:
-			new_pixbuf = new_pixbuf.flip(True)
-		if flip_v:
-			new_pixbuf = new_pixbuf.flip(False)
 
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
