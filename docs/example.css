@@ -1,5 +1,5 @@
-/* Header */
-header {
+/* Header & footer */
+header, footer {
 	background-color: #404040;
 	padding: 2px;
 	color: white;
@@ -7,13 +7,17 @@ header {
 header h1 {
 	color: white;
 }
-header a, header a:hover {
+header a, header a:hover,
+footer a, footer a:hover {
 	color: white;
 	font-weight: bold;
 }
+.header-icon {
+	float:right;
+}
 
 /* Titles */
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	color: #404040;
 	line-height: 36px;
 	margin: 0px;
@@ -28,6 +32,9 @@ h2 {
 }
 h3 {
 	font-size: 20px;
+}
+h4 {
+	font-size: 16px;
 }
 
 /* Main page */
@@ -66,8 +73,9 @@ kbd {
 	border-radius: 3px;
 	box-shadow: inset 0 -1px 0 #bbb;
 }
-.header_icon {
-	float:right;
+.limited-image {
+	width: 90%;
+	max-width: 350px;
 }
 
 /* Style classes to get collapsable columns */
@@ -87,11 +95,49 @@ kbd {
 	width: 66.6%;
 }
 
-@media (max-width: 576px){
-	header a {
+/* Style classes to get tabs */
+input, .tab {
+	display: none;
+}
+
+#tab1:checked ~ .tab.content1,
+#tab2:checked ~ .tab.content2,
+#tab3:checked ~ .tab.content3 {
+	display: block;
+}
+
+input + label {
+	display: inline-block;
+	border: 1px solid #999;
+	background: #EEE;
+	padding: 4px 10px;
+	border-radius: 4px 4px 0 0;
+	position: relative;
+	top: 1px;
+	/* text-align: center; */
+}
+input:checked + label {
+	background: #FFF;
+	border-bottom: 1px solid transparent;
+}
+input ~ .tab {
+	border-top: 1px solid #999;
+	padding: 12px;
+}
+
+/******************************************************************************/
+
+@media (max-width: 576px) {
+	/* Header & footer */
+	header a, footer a {
 		font-size: 20px;
 		line-height: 32px;
 	}
+	.header-icon {
+		display: none;
+	}
+
+	/* Collapsable columns */
 	.responsive-row {
 		display: flex;
 		flex-direction: column;
@@ -99,13 +145,19 @@ kbd {
 	.col50, .col66, .col33 {
 		width: 100%;
 	}
-	.header_icon {
-		display: none;
+
+	/* Tabs */
+	label h4 {
+		font-size: 12px;
+		line-height: 20px;
+	}
+	input + label {
+		padding: 4px 4px;
 	}
 }
 
 @media screen and (min-width: 914px) {
-	main, .header_box {
+	main, .header-box {
 		width: 854px;
 		margin: 10px auto;
 	}
