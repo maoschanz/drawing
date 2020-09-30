@@ -92,8 +92,10 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 		else:
 			# Context: the name of the current color is provided as a tooltip to
 			# help users with color blindness, but some color names don't have a
-			# clear definition. Here, the app thinks it's probably turquoise.
-			color_string = _("Probably turquoise")
+			# clear definition. Here, the app thinks it's probably teal.
+			# You can translate "teal" with the name of approaching color, like
+			# turquoise or green-blue.
+			color_string = _("Probably teal")
 
 	else:
 		# Context: the name of the current color is provided as a tooltip to
