@@ -64,7 +64,7 @@ class DrSavingManager():
 				replacement = self._window._settings.get_string('replace-alpha')
 				if replacement == 'ask':
 					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
-				pixbuf = self._replace_alpha(pixbuf, replacement)
+				pixbuf = self._replace_alpha(pixbuf, replacement, image)
 
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
@@ -80,10 +80,10 @@ class DrSavingManager():
 				# because the user wants to save the file under an other format
 				return self.saving_manager.save_current_image(False, True, False, True)
 			# else the exception was raised because an actual error occured, or
-			# the user clicked on "cancel"
+			# the user clicked on "cancel" XXX that's dumb
 			print(e)
 			# Context: an error message
-			self._window.prompt_message(True, _("Failed to save %s") % fn)
+			self._window.prompt_message(True, _("Failed to save %s") % file_path)
 			return False
 
 		return True
@@ -208,13 +208,14 @@ class DrSavingManager():
 			dialog.add_string(_("Replace transparency with:"))
 
 		alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
+		alpha_combobox.append('initial', _("Default color"))
 		alpha_combobox.append('white', _("White"))
 		alpha_combobox.append('black', _("Black"))
 		alpha_combobox.append('checkboard', _("Checkboard"))
 		alpha_combobox.append('nothing', _("Nothing"))
-		alpha_combobox.set_active_id('white') # If we run the dialog, it means the
-		# active preference is 'ask', so there is no way we can set the default
-		# value to something pertinent. # TODO mettre 'initial' c'est mieux
+		alpha_combobox.set_active_id('initial') # If we run the dialog, it often
+		# means the active preference is 'ask', so there is no way we can set
+		# the default value to something more pertinent.
 		dialog.add_widget(alpha_combobox)
 
 		result = dialog.run()
@@ -224,7 +225,7 @@ class DrSavingManager():
 			raise Exception(result)
 		return repl
 
-	def _replace_alpha(self, pixbuf, replacement):
+	def _replace_alpha(self, pixbuf, replacement, image):
 		if replacement == 'nothing':
 			return
 		width = pixbuf.get_width()
@@ -232,9 +233,15 @@ class DrSavingManager():
 		if replacement == 'white':
 			pcolor1 = self._rgb_as_hexadecimal_int(255, 255, 255)
 			pcolor2 = self._rgb_as_hexadecimal_int(255, 255, 255)
-		# elif replacement == 'initial': # TODO donner accès à l'objet image !!!
-		# 	pcolor1 = self._rgb_as_hexadecimal_int(??, ??, ??)
-		# 	pcolor2 = self._rgb_as_hexadecimal_int(??, ??, ??)
+		elif replacement == 'initial':
+			initial_rgba = image.get_initial_rgba()
+			r = int(initial_rgba.red * 255)
+			g = int(initial_rgba.green * 255)
+			b = int(initial_rgba.blue * 255)
+			# the initial color has an alpha channel but it's not pertinent, and
+			# not possible anyway.
+			pcolor1 = self._rgb_as_hexadecimal_int(r, g, b)
+			pcolor2 = self._rgb_as_hexadecimal_int(r, g, b)
 		elif replacement == 'checkboard':
 			pcolor1 = self._rgb_as_hexadecimal_int(85, 85, 85)
 			pcolor2 = self._rgb_as_hexadecimal_int(170, 170, 170)

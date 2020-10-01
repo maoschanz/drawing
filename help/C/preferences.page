@@ -26,11 +26,13 @@
     <p>When a file is saved to the JPEG or the BMP file format, the transparency
     can't be kept. The application can replace the transparent pixels with
     something else: it can be white, black, or a checkboard of greys.</p>
+    <p>The option "default color" corresponds to the initial color of the
+    canvas, which is usually the "default color" setting available in the
+    previous section.</p>
     <p>If the replacement you want depends on the image, it's also possible to
     open a dialog every time you save an image to one of these file formats: the
     choices available in that dialog will also be white, black, or a checkboard
     of greys.</p>
-    <!-- TODO or initial color -->
 
     <media type="image" mime="image/png" width="80%" its:translate="no"
            src="figures/screenshot_prefs_images.png" />

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-30 22:03+0200\n"
+"POT-Creation-Date: 2020-10-01 22:41+0200\n"
 "PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -886,8 +886,12 @@ msgstr "Domyślna szerokość"
 msgid "Default height"
 msgstr "Domyślna wysokość"
 
-#: src/preferences.py src/optionsbars/transform/optionsbar-crop.ui
-#: src/tools/ui/tool-crop.ui
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Domyślne tło"
@@ -917,10 +921,14 @@ msgstr "Biały"
 msgid "Black"
 msgstr "Czarny"
 
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
 #: src/preferences.py src/saving_manager.py
 msgid "Checkboard"
 msgstr "Szachownica"
 
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
 #: src/preferences.py src/saving_manager.py
 msgid "Nothing"
 msgstr "Nic"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-30 22:03+0200\n"
+"POT-Creation-Date: 2020-10-01 22:41+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -864,8 +864,12 @@ msgstr "默认宽度"
 msgid "Default height"
 msgstr "默认高度"
 
-#: src/preferences.py src/optionsbars/transform/optionsbar-crop.ui
-#: src/tools/ui/tool-crop.ui
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "默认颜色"
 
@@ -892,10 +896,14 @@ msgstr "白色"
 msgid "Black"
 msgstr "黑色"
 
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
 #: src/preferences.py src/saving_manager.py
 msgid "Checkboard"
 msgstr "旗盘格"
 
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
 #: src/preferences.py src/saving_manager.py
 msgid "Nothing"
 msgstr "空"

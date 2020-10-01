@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-30 22:03+0200\n"
+"POT-Creation-Date: 2020-10-01 22:41+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -881,8 +881,12 @@ msgstr "Standardna širina"
 msgid "Default height"
 msgstr "Standardna visina"
 
-#: src/preferences.py src/optionsbars/transform/optionsbar-crop.ui
-#: src/tools/ui/tool-crop.ui
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Standardna pozadina"
@@ -912,10 +916,14 @@ msgstr "Bijelu boju"
 msgid "Black"
 msgstr "Crnu boju"
 
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
 #: src/preferences.py src/saving_manager.py
 msgid "Checkboard"
 msgstr "Šahovnicu"
 
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
 #: src/preferences.py src/saving_manager.py
 msgid "Nothing"
 msgstr "Ništa"

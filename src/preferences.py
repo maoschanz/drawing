@@ -100,9 +100,18 @@ class DrPrefsWindow(Gtk.Window):
 		        " " + _("If you save your images in these formats, what " + \
 		                  "do want to use to replace transparent pixels?"))
 		alpha_dict = {
+			# Context: this is the label that describes the initial color of an
+			# image (as set in the preferences or in the "new image with custom
+			# size" dialog). This is displayed in the context of editing or
+			# saving the image, but not when creating it.
+			'initial': _("Default color"),
 			'white': _("White"),
 			'black': _("Black"),
+			# Context: replace transparent pixels with [checkboard]. This is a
+			# pattern of dark and light greys.
 			'checkboard': _("Checkboard"),
+			# Context: replace transparent pixels with [nothing]. In practice it
+			# means the alpha channel is just removed.
 			'nothing': _("Nothing"),
 			'ask': _("Ask before saving")
 		}
