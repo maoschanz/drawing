@@ -1,4 +1,4 @@
-# SOME DESCRIPTIVE TITLE.
+# ITALIAN TRANSLATION FOR DRAWING.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 22:41+0200\n"
-"PO-Revision-Date: 2020-09-20 15:45+0100\n"
+"PO-Revision-Date: 2020-10-02 15:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -81,17 +81,20 @@ msgid ""
 "It's now possible to remove transparency when saving PNG files too. And "
 "there are more color options to replace the transparent pixels."
 msgstr ""
+"Ora è possibile rimuovere la trasparenza anche durante il salvataggio dei file PNG. E "
+"ci sono più opzioni di colore per sostituire i pixel trasparenti."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A new optional tool named \"Points\" has been added, it may help captioning "
 "pictures."
 msgstr ""
+"È stato aggiunto un nuovo strumento opzionale denominato \" Punti \ ", potrebbe essere utile per i sottotitoli "
+"immagini."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr "Le modifiche dallo strumento corrente non sono state applicate."
+msgstr "Sono stati corretti bug minori nello strumento "ruota."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -181,12 +184,12 @@ msgstr "La selezione e le azioni ad essa associate"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Zoom in varie forme"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "La \"nuova immagine\" menu aperto"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -254,9 +257,8 @@ msgid "Save"
 msgstr "Salva"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Aggiungi trasparenza"
+msgstr "Salva senza trasparenza"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -270,7 +272,7 @@ msgstr "Esporta come…"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copia negli appunti"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
@@ -692,9 +694,8 @@ msgid "Close the active image"
 msgstr "Chiudi l'immagine attiva"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Menu opzioni"
+msgstr "Apri il menu delle opzioni dello strumento"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -980,7 +981,7 @@ msgstr "Evidenziatore"
 
 #: src/preferences.py
 msgid "Points"
-msgstr ""
+msgstr "Punti"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1336,7 +1337,7 @@ msgstr "Lo strumento richiesto non è disponibile"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
+msgstr "Impossibile avviare l'operazione: ID strumento errato (previsto {0}, ottenuto {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1624,19 +1625,16 @@ msgstr "Cancella e sostituisci"
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Colore sorgente"
+msgstr "Rimuovi colore"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Contorno vuoto"
+msgstr "Profilo solido"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Dashed outline"
-msgstr "Freccia tratteggiata"
+msgstr "Profilo tratteggiato"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
@@ -1649,9 +1647,8 @@ msgid "Filling"
 msgstr "Riempimento"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Vuoto"
+msgstr "Forma vuota"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
@@ -1739,9 +1736,8 @@ msgid "Rectangle background"
 msgstr "Rettangolo disfondo"
 
 #: src/tools/ui/selection.ui
-#, fuzzy
 msgid "Transform"
-msgstr "Trasparente"
+msgstr "Trasforma"
 
 #: src/tools/ui/selection.ui
 msgid "Flip"
