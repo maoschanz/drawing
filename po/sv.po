@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 22:41+0200\n"
-"PO-Revision-Date: 2020-09-20 14:45+0200\n"
+"PO-Revision-Date: 2020-10-04 07:34+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -81,17 +81,21 @@ msgid ""
 "It's now possible to remove transparency when saving PNG files too. And "
 "there are more color options to replace the transparent pixels."
 msgstr ""
+"Det är nu möjligt att ta bort transparens när PNG-filer sparas också. Det "
+"finns också fler färgalternativ att ersätta de transparenta bildpunkterna "
+"med."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A new optional tool named \"Points\" has been added, it may help captioning "
 "pictures."
 msgstr ""
+"Ett nytt tilläggsverktyg kallat \"Punkter\" har lagts till, det kan hjälpa "
+"till med att textsätta bilder."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr "Ändringar från det aktuella verktyget har inte tillämpats."
+msgstr "Mindre fel i verktyget \"Rotera\" har fixats."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -138,7 +142,7 @@ msgid ""
 "transparency."
 msgstr ""
 "Mättnadsverktyget har ersatts av\"Filter\", ett mer kraftfullt verktyg med "
-"flera typer av oskärpa, färginversion, pixelisering, mättnad och transparens."
+"flera typer av oskärpa, färginversion, pixelering, mättnad och transparens."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "A fullscreen mode is now available."
@@ -178,12 +182,12 @@ msgstr "Markeringen och de åtgärder som associeras med den."
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Zooma i olika figurer"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "Menyn \"Ny bild\" öppnas"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -251,9 +255,8 @@ msgid "Save"
 msgstr "Spara"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Lägg till transparens"
+msgstr "Spara utan transparens"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -267,7 +270,7 @@ msgstr "Exportera som…"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiera till urklipp"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
@@ -689,9 +692,8 @@ msgid "Close the active image"
 msgstr "Stäng den aktiva bilden"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Alternativmeny"
+msgstr "Öppna verktygsalternativmeny"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -777,7 +779,7 @@ msgstr "Upprepa %s"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Ny pixbuf tom, ingen ändring tillämpas på %s"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
@@ -975,7 +977,7 @@ msgstr "Markeringspenna"
 
 #: src/preferences.py
 msgid "Points"
-msgstr ""
+msgstr "Punkter"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1281,9 +1283,9 @@ msgid "Opened images"
 msgstr "Öppna bilder"
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
+msgstr "Fel: Ogiltig panel för \"%s\". Rapportera felet."
 
 #: src/window.py
 #, python-format
@@ -1330,7 +1332,7 @@ msgstr "Det erforderliga verktyget är inte tillgängligt"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
+msgstr "Kan inte starta åtgärden: Fel verktygs-ID (förväntade {0}, fick {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1470,7 +1472,7 @@ msgstr "Långsam oskärpa"
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Pixelation"
-msgstr "Pixelisering"
+msgstr "Pixelering"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 msgid "Blur direction"
@@ -1617,9 +1619,8 @@ msgstr "Sudda och ersätt"
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Rå källfärg"
+msgstr "Ta bort färg"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1728,9 +1729,8 @@ msgid "Rectangle background"
 msgstr "Rektangelbakgrund"
 
 #: src/tools/ui/selection.ui
-#, fuzzy
 msgid "Transform"
-msgstr "Transparent"
+msgstr "Omvandla"
 
 #: src/tools/ui/selection.ui
 msgid "Flip"
@@ -1849,17 +1849,17 @@ msgstr "Skalar markering"
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
 
-#~ msgid "Clipping"
-#~ msgstr "Klippning"
-
-#~ msgid "Edit"
-#~ msgstr "Redigera"
-
 #~ msgid "The thumbnail preview, showing various shapes zoomed in"
 #~ msgstr "Miniatyrförhandsvisning, visande diverse inzoomade figurer"
 
 #~ msgid "The \"new image\" menu opened while the selection is being scaled up"
 #~ msgstr "Menyn \"Ny bild\" öppnad medan markeringen skalas upp"
+
+#~ msgid "Clipping"
+#~ msgstr "Klippning"
+
+#~ msgid "Edit"
+#~ msgstr "Redigera"
 
 #~ msgid "Open a file"
 #~ msgstr "Öppna en fil"
