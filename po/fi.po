@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 22:41+0200\n"
+"POT-Creation-Date: 2020-10-04 16:47+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -77,6 +77,25 @@ msgstr ""
 "tai kaari (eri vaihtoehdoilla), valinta (leikkaa/kopioi/liitä/vedä/…), "
 "muodot (suorakulmio, ympyrä, monikulmio…), tekstin lisäys, koon muuttaminen, "
 "rajaaminen, kiertäminen, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.2 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1282,7 +1301,6 @@ msgstr "Muutokset tulevat voimaan seuraavassa uudessa ikkunassa."
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
 msgid "No options"
 msgstr "Ei vaihtoehtoja"
 
@@ -1774,6 +1792,20 @@ msgstr "Katkoviivattu nuoli"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Katkoviiva"
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Suorakulmion tausta"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Highlighter options"
+msgstr "Korostekynä"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"

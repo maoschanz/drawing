@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 22:41+0200\n"
+"POT-Creation-Date: 2020-10-04 16:47+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -77,6 +77,25 @@ msgstr ""
 "Linien oder Kurven (mit verschiedenen Optionen), Auswahl (Ausschneiden/"
 "Kopieren/Einfügen/Ziehen/…), Formen (Rechteck, Kreis, Vieleck, …) "
 "Texteingabe, Größenänderung, Zuschneiden, Drehen, usw.…"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.2 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1285,7 +1304,6 @@ msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
 msgid "No options"
 msgstr "Keine Optionen"
 
@@ -1780,6 +1798,20 @@ msgstr "Gestrichelter Pfeil"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Gestrichelt"
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Rechteckiger Hintergrund"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Highlighter options"
+msgstr "Hervorhebung"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"

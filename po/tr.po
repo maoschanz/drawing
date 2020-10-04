@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 22:41+0200\n"
+"POT-Creation-Date: 2020-10-04 16:47+0200\n"
 "PO-Revision-Date: 2020-08-26 18:01+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -76,6 +76,25 @@ msgstr ""
 "sürükle/…), şekiller (dikdörtgen, daire, çokgen,…), metin ekleme gibi "
 "araçlarla resim çizmenize veya düzenlemenize olanak sağlar. yeniden "
 "boyutlandırma, kırpma, döndürme, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.2 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1277,7 +1296,6 @@ msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
 msgid "No options"
 msgstr "Seçenek yok"
 
@@ -1765,6 +1783,20 @@ msgstr "Kesikli ok"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Kesik"
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Dikdörtgen arka plan"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Highlighter options"
+msgstr "İşaretleyici"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 22:41+0200\n"
+"POT-Creation-Date: 2020-10-04 16:47+0200\n"
 "PO-Revision-Date: 2020-10-04 07:34+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -75,6 +75,25 @@ msgstr ""
 "Det låter dig rita eller redigera bilder med verktyg såsom penna, linje "
 "eller båge (med olika alternativ), markering (klipp ut/kopiera/klistra in/"
 "dra/…), textinfogning, storleksändring, beskärning, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.2 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1274,7 +1293,6 @@ msgstr "Ändringarna tillämpas i nästa nya fönster."
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
 msgid "No options"
 msgstr "Inga alternativ"
 
@@ -1471,7 +1489,8 @@ msgstr "Långsam oskärpa"
 #. Context: a filter that censors the image with some kind of tiles
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
-msgid "Pixelisation"
+#, fuzzy
+msgid "Pixelization"
 msgstr "Pixelisering"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
@@ -1759,6 +1778,20 @@ msgstr "Streckad pil"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Streckad"
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Rektangelbakgrund"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Highlighter options"
+msgstr "Markeringspenna"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"

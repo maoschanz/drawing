@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 22:41+0200\n"
+"POT-Creation-Date: 2020-10-04 16:47+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -76,6 +76,25 @@ msgstr ""
 "ceruza, vonal, körív (számos beállítási lehetőséggel), kiválasztás (kivágás, "
 "másolás, beillesztés, áthúzás), alakzatok (négyszög, kör, poligon), szöveg, "
 "átméretezés, vágás, forgatás, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.2 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1289,7 +1308,6 @@ msgstr ""
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
 msgid "No options"
 msgstr "Nincs beállítás"
 
@@ -1801,6 +1819,20 @@ msgstr "Szaggatott nyíl"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Szaggatott"
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Alapértelmezett háttér"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Highlighter options"
+msgstr "Vonal beállítások"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"

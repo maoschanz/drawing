@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 22:41+0200\n"
+"POT-Creation-Date: 2020-10-04 16:47+0200\n"
 "PO-Revision-Date: 2020-09-22 00:38+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -75,6 +75,25 @@ msgstr ""
 "crayon, trait ou arc (avec diverses options), sélection (couper/copier/"
 "coller/déplacer…), formes (rectangle, cercle, polygone, …), insertion de "
 "texte, redimensionnement, recadrage, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.2 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1280,7 +1299,6 @@ msgstr "Les modifications prendront effet pour la prochaine nouvelle fenêtre."
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
 msgid "No options"
 msgstr "Pas d'options"
 
@@ -1767,6 +1785,18 @@ msgstr "Flèche en pointillés"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "En pointillés"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Texte sombre sur arrière-plan clair"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Texte clair sur arrière-plan sombre"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter options"
+msgstr "Options du surligneur"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
