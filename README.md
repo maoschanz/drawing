@@ -132,7 +132,7 @@ These tools can edit the whole image, or edit a selected part of it.
 <!-- - Skew (horizontally or vertically) -->
 - Filters:
 	- Blur (various types)
-	- Pixelation
+	- Pixelization
 	- Saturation (increase or decrease)
 	- Transparency
 	- Invert colors

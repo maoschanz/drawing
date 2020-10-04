@@ -79,7 +79,7 @@ class ToolFilters(AbstractCanvasTool):
 			self.type_label = _("Slow blur")
 		elif state_as_string == 'tiles':
 			self.blur_algo = BlurType.TILES
-			self.type_label = _("Pixelation")
+			self.type_label = _("Pixelization")
 		elif state_as_string == 'saturation':
 			self.saturate = True
 			self.type_label = _("Change saturation")

@@ -278,10 +278,20 @@ dependencies to make the script work anyway.
 
 # Packaging
 
-### Branches
+### Branches and tags
 
-The `master` branch is not stable and **should not** be packaged.
+Stable versions for end-users are **tagged**, and listed in this Github repo's
+"_Releases_" section.
 
+```
+          0.4.1  0.4.2  …  0.4.14
+           _.______.____…____.
+   0.2    /         ______       0.6.0   0.6.1
+____.____/_________/______\________._______._____
+                        \_____________/
+```
+
+Please don't package anything aside this tagged code
 <details><summary>(except if your distro have experimental repos)</summary>
 <p>
 
@@ -295,27 +305,42 @@ sudo apt -t experimental install drawing
 </p>
 </details>
 
-Stable versions for end-users are **tagged**, and listed in this Github repo's
-"_Releases_" section. For now, most of them are on the `0.4` branch.
-
 ### Dependencies
 
-Dependencies to run the app:
+(Debian packages names are used here)
 
-- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`). A
-version ≥3.30.0 is required to run the code from the branch `master`. The branch
-`0.4` should be fine with any version.
+##### Dependencies to run the app
+
+- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`).
 - `cairo` library's GI for python3 (on Debian, it's `python3-gi-cairo`).
 - GTK libraries' GI (on Debian, it's `gir1.2-gtk-3.0`).
 
-Dependencies to build the app (Debian packages names):
+|                 | `python3-gi` | `python3-gi-cairo` | `gir1.2-gtk-3.0` |
+|-----------------|--------------|--------------------|------------------|
+| 0.2             | any          | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| 0.4.1, 0.4.2    | **≥3.30.0**  | any?               | 3.22             |
+| 0.4.3 to 0.4.13 | any          | any?               | 3.22             |
+| 0.4.14          | **≥3.32**    | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| 0.6.0 to 0.6.2  | **≥3.30.0**  | any?               | 3.22             |
+| 0.6.3 to 0.6.?? | any          | any?               | 3.22             |
+| `master`'s HEAD | **≥3.30.0**  | any?               | 3.22             |
+
+##### Dependencies to build the app
 
 - `meson`. The version of meson required by the `meson.build` file at the root
 of the project can be changed if necessary, but please don't add this change to
 your commit(s).
-- `appstream-util` (validation of the `.appdata.xml` file)
+- [optional] `appstream-util` (validation of the `.appdata.xml` file)
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
 icons into a `.gresource` file)
+
+Aside of this, **since 0.6.0**, the main `meson.build` script will try to check
+if your system does have **the dependencies to run the app**.
+
+The tag 0.6.0 can't be built if `appstream-util` is on the system, the other
+tags should be fine.
 
 ----
 
