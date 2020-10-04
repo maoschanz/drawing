@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 22:41+0200\n"
-"PO-Revision-Date: 2020-09-20 19:25+0200\n"
+"PO-Revision-Date: 2020-10-04 13:37+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
@@ -82,17 +82,21 @@ msgid ""
 "It's now possible to remove transparency when saving PNG files too. And "
 "there are more color options to replace the transparent pixels."
 msgstr ""
+"Je kunt voortaan doorzichtigheid verwijderen tijdens het opslaan van png-"
+"bestanden. Ook zijn er meer kleuropties beschikbaar om doorzichtige pixels "
+"te vervangen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A new optional tool named \"Points\" has been added, it may help captioning "
 "pictures."
 msgstr ""
+"Er is een nieuw gereedschap genaamd 'Punten', wat je kunt gebruiken om "
+"afbeeldingen te voorzien van bijschriften."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr "De aangebrachte bewerkingen zijn nog niet toegepast."
+msgstr "Kleine fouten opgelost m.b.t. het draaigereedschap."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -689,9 +693,8 @@ msgid "Close the active image"
 msgstr "Huidige afbeelding sluiten"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Optiemenu"
+msgstr "Gereedschapsoptiemenu openen"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -1623,9 +1626,8 @@ msgstr "Wissen en vervangen"
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Bronkleur"
+msgstr "Kleur verwijderen"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1734,9 +1736,8 @@ msgid "Rectangle background"
 msgstr "Rechthoekige achtergrond"
 
 #: src/tools/ui/selection.ui
-#, fuzzy
 msgid "Transform"
-msgstr "Doorzichtig"
+msgstr "Transformeren"
 
 #: src/tools/ui/selection.ui
 msgid "Flip"
