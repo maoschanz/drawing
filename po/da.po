@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-04 16:47+0200\n"
-"PO-Revision-Date: 2020-07-24 00:00+0200\n"
+"PO-Revision-Date: 2020-10-06 18:41+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -60,8 +60,8 @@ msgstr "Et tegneprogram til GNOME-skrivebordet"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG "
-"og BMP."
+"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG og "
+"BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -80,6 +80,9 @@ msgid ""
 "The version 0.6.2 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+"Version 0.6.2 forbedre valgmuligheden til at tegne pile: adskillige "
+"problemstillinger er blevet rettet og det er nu muligt at bruge pile med "
+"pile i begge ender."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -87,28 +90,37 @@ msgid ""
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every layout."
 msgstr ""
+"Når et billedet er blevet gemt uden dets gennemsigtighed, så foreslår "
+"programmet nu at genindlæse billedet fra disken. Desuden er funktionaliteten "
+"'genindlæs fra disk' nu tilgængelig i alle layouts."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The 'highlighter' tool now provides options to highlight light text on a "
 "dark background."
 msgstr ""
+"Værktøjet 'overstregningspen' har nu valgmuligheden til at fremhæve lys "
+"tekst på en mørk baggrund."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "It's now possible to remove transparency when saving PNG files too. And "
 "there are more color options to replace the transparent pixels."
 msgstr ""
+"Nu er det også muligt at fjerne gennemsigtighed når PNG-filer gemmes. Og der "
+"er flere farvevalgmuligheder til at erstatte de gennemsigtige pixels."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A new optional tool named \"Points\" has been added, it may help captioning "
 "pictures."
 msgstr ""
+"Et nyt valgfrits værktøj kaldet \"Punkter\" er blevet tilføjet. Det kan være "
+"en hjælp når der sættes tekst på billeder."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr ""
+msgstr "Mindre fejl i værktøjet 'drej' er blevet rettet."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -124,9 +136,9 @@ msgid ""
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
-"Rektangelmarkering og frihåndsmarkering har nu hver deres værktøj og 'drej'-"
-"værktøjet understøtter nu vilkårlig vinkel og håndterer vandret og lodret "
-"vending."
+"Rektangelmarkering og frihåndsmarkering har nu hver deres værktøj og "
+"'drej'-værktøjet understøtter nu vilkårlig vinkel og håndterer vandret og "
+"lodret vending."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -145,6 +157,8 @@ msgid ""
 "The text tool can now write using most system fonts, thus allowing more "
 "complex characters to be used (e.g. Asian characters)."
 msgstr ""
+"Tekstværktøjet kan nu skrive med de fleste af systemets skrifttyper, hvilket "
+"giver mulighed for at bruge mere komplekse tegn (f.eks. asiatiske tegn)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -152,7 +166,7 @@ msgid ""
 "with several types of blur, color inversion, pixelization, saturation and "
 "transparency."
 msgstr ""
-"Værktøjet \"Saturate\" er blevet erstattet af \"filtre\", som er et mere "
+"Værktøjet 'saturate' er blevet erstattet af 'filtre', som er et mere "
 "kraftfuldt værktøj med adskillige typer sløring, farveinvertering, "
 "pixelering, farvemætning og gennemsigtighed."
 
@@ -184,22 +198,22 @@ msgstr "Romain F. T."
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Vinduet og dets primære menu"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "Markeringen og de handlinger den er tilknyttet"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Zooming i diverse forme"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "Den åbnede menu \"nyt billede\""
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -267,9 +281,8 @@ msgid "Save"
 msgstr "Gem"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Tilføj gennemsigtighed"
+msgstr "Gem uden gennemsigtighed"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -283,7 +296,7 @@ msgstr "Eksportér som …"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiér til udklipsholder"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Print"
@@ -669,9 +682,8 @@ msgid "Open As New Image"
 msgstr "Åbn som nyt billede"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Genveje"
+msgstr "Tastaturgenveje"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -683,7 +695,7 @@ msgstr "Hovedmenu"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Historik"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -706,9 +718,8 @@ msgid "Close the active image"
 msgstr "Luk det aktive billede"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Valgmulighedsmenu"
+msgstr "Åbn menuen værktøjsvalgmuligheder"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -766,16 +777,15 @@ msgstr "Forhåndsvisning til/fra"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Berøringsbevægelser"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Fejlsøg markering"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "Other tools"
-msgstr "Andre tilstande"
+msgstr "Andre værktøjer"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -795,7 +805,7 @@ msgstr "Omgør %s"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Ny pixbuf tom, ingen ændring anvendt til %s"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
@@ -951,7 +961,7 @@ msgstr "Du kan zoome med Ctrl+rulning eller kun rulning."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "Se brugerhjælpmanualen for forklaringer."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -993,7 +1003,7 @@ msgstr "Overstregningspen"
 
 #: src/preferences.py
 msgid "Points"
-msgstr ""
+msgstr "Punkter"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1150,16 +1160,15 @@ msgstr "Der er ændringer i %s som ikke er blevet gemt."
 msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
-msgstr ""
+msgstr "En del af billedet er markeret og pixelerne under markeringen er tomme."
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "Ændringerne fra det nuværende værktøj er ikke blevet anvendt."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Hvor vil du åbne %s?"
+msgstr "Vil du gemme alligevel?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1299,9 +1308,9 @@ msgid "Opened images"
 msgstr "Åbne billeder"
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Fejl ved start af programmet. Rapportér venligst fejlen."
+msgstr "Fejl: rude ugyldig for '%s'. Rapportér venligst fejlen."
 
 #: src/window.py
 #, python-format
@@ -1348,7 +1357,7 @@ msgstr "Krævet værktøj er ikke tilgængeligt"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
+msgstr "Kan ikke state handling: forkert værktøjs-id (ventede {0}, fik {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1427,7 +1436,7 @@ msgstr "Flere valgmuligheder"
 
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Udvid med …"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
@@ -1635,9 +1644,8 @@ msgstr "Slet og erstat"
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Rå kildefarve"
+msgstr "Fjern farve"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1709,9 +1717,8 @@ msgid "Font"
 msgstr "Skrifttype"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "Vælg et filter …"
+msgstr "Vælg en skrifttype …"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
@@ -1747,9 +1754,8 @@ msgid "Rectangle background"
 msgstr "Rektangelbaggrund"
 
 #: src/tools/ui/selection.ui
-#, fuzzy
 msgid "Transform"
-msgstr "Gennemsigtig"
+msgstr "Transformér"
 
 #: src/tools/ui/selection.ui
 msgid "Flip"
@@ -1780,18 +1786,16 @@ msgid "Dashed"
 msgstr "Stiplet"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Rektangelbaggrund"
+msgstr "Mørk tekst på lys baggrund"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Lys tekst på mørk baggrund"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Overstregningspen"
+msgstr "Valgmuligheder for overstregningspen"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1881,18 +1885,3 @@ msgstr "Skaler markeringen"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skaler lærredet"
-
-#~ msgid "Clipping"
-#~ msgstr "Klipning"
-
-#~ msgid "Edit"
-#~ msgstr "Rediger"
-
-#~ msgid "Open a file"
-#~ msgstr "Åbn en fil"
-
-#~ msgid "Save as"
-#~ msgstr "Gem som"
-
-#~ msgid "Keyboard"
-#~ msgstr "Tastatur"
