@@ -71,7 +71,7 @@ If your language is not here, or is incompletely translated, you can
 | pl   | Polish       | 0.4.10 | 84%        | [Piotr Komur](https://github.com/pkomur)
 | pt_BR | Br. portuguese | 0.4.3 | 95%      | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
 | ru   | Russian      | 0.4.1  | **40%**    | [Artem Polishchuk](https://github.com/tim77)
-| sv   | Swedish      | 0.4.11 | 96%        | [Åke Engelbrektson](https://github.com/eson57)
+| sv   | Swedish      | 0.4.11 | 98%        | [Åke Engelbrektson](https://github.com/eson57)
 | tr   | Turkish      | 0.2    | 95%        | [Serdar Sağlam](https://github.com/TeknoMobil)
 | zh_CN | Chinese, simpl. | 0.4.14 | 93%    | [OverflowCat](https://github.com/OverflowCat)
 | zh_TW | Chinese, tradi. | 0.4.14 | 95%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)

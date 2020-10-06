@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-04 16:47+0200\n"
+"POT-Creation-Date: 2020-10-06 20:39+0200\n"
 "PO-Revision-Date: 2020-10-06 18:41+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -60,8 +60,8 @@ msgstr "Et tegneprogram til GNOME-skrivebordet"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG og "
-"BMP."
+"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG "
+"og BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -136,9 +136,9 @@ msgid ""
 "'rotate' tool now supports any angle and handles horizontal or vertical "
 "flipping."
 msgstr ""
-"Rektangelmarkering og frihåndsmarkering har nu hver deres værktøj og "
-"'drej'-værktøjet understøtter nu vilkårlig vinkel og håndterer vandret og "
-"lodret vending."
+"Rektangelmarkering og frihåndsmarkering har nu hver deres værktøj og 'drej'-"
+"værktøjet understøtter nu vilkårlig vinkel og håndterer vandret og lodret "
+"vending."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -265,7 +265,8 @@ msgstr "Nyt billede fra markering"
 msgid "New Image From Clipboard"
 msgstr "Nyt billede fra udklipsholder"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Reload file"
 msgstr "Genindlæs fil"
 
@@ -439,8 +440,8 @@ msgstr "Opdater"
 msgid "Show tools names"
 msgstr "Vis værktøjernes navne"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/shortcuts.ui
-#: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
@@ -1160,7 +1161,8 @@ msgstr "Der er ændringer i %s som ikke er blevet gemt."
 msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
-msgstr "En del af billedet er markeret og pixelerne under markeringen er tomme."
+msgstr ""
+"En del af billedet er markeret og pixelerne under markeringen er tomme."
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."

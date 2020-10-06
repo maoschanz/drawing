@@ -199,18 +199,21 @@
     <child>
       <object class="GtkButton" id="hidable2">
         <property name="visible">False</property>
-        <property name="action-name">win.fullscreen</property>
+        <property name="action-name">win.reload_file</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
-        <property name="tooltip-text" translatable="yes">Fullscreen</property>
+        <property name="tooltip-text" translatable="yes">Reload file</property>
         <child>
           <object class="GtkImage">
-            <property name="icon-name">view-fullscreen</property>
+            <property name="icon-name">view-refresh</property>
             <property name="pixel-size">24</property>
             <property name="visible">True</property>
           </object>
         </child>
       </object>
+      <!-- if fullscreen was made available to elementaryOS it would be -->
+      <!-- hideable here. It's not because their icon for this is confusing -->
+      <!--  as hell: it's the same as "maximize" -->
       <packing>
         <property name="pack-type">end</property>
       </packing>

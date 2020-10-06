@@ -30,6 +30,17 @@
           </packing>
         </child>
         <child>
+          <object class="GtkToolButton">
+            <property name="action-name">win.reload_file</property>
+            <property name="icon-name">view-refresh</property>
+            <property name="tooltip-text" translatable="yes">Reload file</property>
+            <property name="label" translatable="yes">Reload file</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkSeparatorToolItem" />
         </child>
         <child>
