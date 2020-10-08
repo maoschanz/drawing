@@ -2,13 +2,13 @@ Source: drawing
 Section: graphics
 Priority: optional
 Maintainer: Romain F. T. <rrroschan@gmail.com>
-Build-Depends: meson (>=0.50), appstream-util (>=0.7.14), libglib2.0-dev-bin (>=2.58.3)
+Build-Depends: meson (>=0.50), appstream-util (>=0.7.14), libglib2.0-dev-bin (>=2.58.3), python3-cairo, python3-gi (>=3.30.0)
 Standards-Version: 4.4.0
 Homepage: https://maoschanz.github.io/drawing/
 
 Package: drawing
 Architecture: all
-Depends: python3-gi (>=3.30.0), python3-gi-cairo (>=3.30.0), gir1.2-gtk-3.0 (>=3.24.0)
-Description: A drawing application for the GNOME desktop.
- A simple application to draw or edit pictures.
- It includes tools like: Pencil, Selection, Shape, Text, …
+Depends: ${misc:Depends}, ${python3:Depends}, python3-gi (>=3.30.0), python3-gi-cairo (>=3.30.0), gir1.2-gtk-3.0 (>=3.24.0)
+Description: Simple application to draw or edit pictures, for the GNOME desktop.
+ It includes tools such as Pencil, Selection, Shape, Text, Filter or Crop.
+
