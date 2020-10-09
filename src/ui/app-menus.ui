@@ -118,13 +118,12 @@
           <attribute name="action">win.export_as</attribute>
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
         </item>
+      </section>
+      <section id="share-section">
         <item>
           <attribute name="action">win.to_clipboard</attribute>
           <attribute name="label" translatable="yes">Copy to clipboard</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
         </item>
-      </section>
-      <section>
         <item>
           <attribute name="label" translatable="yes">Print</attribute>
           <attribute name="action">win.print</attribute>

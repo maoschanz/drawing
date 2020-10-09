@@ -122,11 +122,13 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		hidden here, and menus are shorter."""
 		self._short_primary_menu = builder.get_object('minimal-window-menu')
 		self._long_primary_menu = builder.get_object('short-window-menu')
-		save_as_menubtn = builder.get_object('save_as_menubtn')
+		save_as_menubtn = builder.get_object('hidable1')
 		save_as_menubtn.set_menu_model(builder.get_object('save-section'))
+		share_menubtn = builder.get_object('hidable2')
+		share_menubtn.set_menu_model(builder.get_object('share-section'))
 		new_btn = builder.get_object('new_btn')
 		new_btn.set_menu_model(builder.get_object('new-image-menu'))
-		self._manual_correction = 50
+		self._manual_correction = -50
 
 	def remove_from_ui(self):
 		return self._is_narrow
