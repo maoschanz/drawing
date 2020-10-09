@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 20:39+0200\n"
+"POT-Creation-Date: 2020-10-09 22:23+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -82,15 +82,19 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every layout."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
+msgid "An action to copy the whole image to clipboard has been added."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -237,14 +241,12 @@ msgstr "בחירה מלבנית"
 msgid "New Image From Clipboard"
 msgstr "תמונה חדשה מהלוח"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui
 #, fuzzy
 msgid "Reload file"
 msgstr "פתיחת קובץ"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/properties.py
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
 msgstr "מאפייני תמונה"
 
@@ -269,11 +271,13 @@ msgstr "שמירה כ…"
 msgid "Export as…"
 msgstr "ייצוא כ…"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Print"
 msgstr "הדפסה"
 
@@ -430,8 +434,7 @@ msgstr "רענון"
 msgid "Show tools names"
 msgstr "הצג שמות כלים"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr ""
 
@@ -600,6 +603,10 @@ msgstr "אודות ציור"
 #: src/ui/toolbar-symbolic.ui src/window.py
 msgid "Open"
 msgstr "פתיחה"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr ""
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1371,6 +1378,11 @@ msgstr "קובץ לא שמור"
 #, fuzzy, python-format
 msgid "What do you want to do with %s?"
 msgstr "היכן ברצונך לפתוח את %s?"
+
+#: src/window.py
+#, fuzzy
+msgid "Image copied to clipboard"
+msgstr "עריכת תמונה מהלוח"
 
 #: src/window.py
 msgid "Import a picture"

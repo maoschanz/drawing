@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 20:39+0200\n"
+"POT-Creation-Date: 2020-10-09 22:23+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -81,15 +81,19 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every layout."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
+msgid "An action to copy the whole image to clipboard has been added."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -239,13 +243,11 @@ msgstr "从选区创建新图像"
 msgid "New Image From Clipboard"
 msgstr "从剪贴版创建新图像"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
 msgstr "重载文件"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/properties.py
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
 msgstr "图像属性"
 
@@ -270,11 +272,13 @@ msgstr "另存为…"
 msgid "Export as…"
 msgstr "导出为…"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Print"
 msgstr "打印"
 
@@ -415,8 +419,7 @@ msgstr "刷新"
 msgid "Show tools names"
 msgstr "显示工具名称"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr "全屏"
 
@@ -571,6 +574,10 @@ msgstr "关于 Drawing"
 #: src/ui/toolbar-symbolic.ui src/window.py
 msgid "Open"
 msgstr "打开"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr ""
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1319,6 +1326,11 @@ msgstr "这些文件"
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "你想要对 %s 做什么？"
+
+#: src/window.py
+#, fuzzy
+msgid "Image copied to clipboard"
+msgstr "在剪贴板中编辑图像"
 
 #: src/window.py
 msgid "Import a picture"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 20:39+0200\n"
+"POT-Creation-Date: 2020-10-09 22:23+0200\n"
 "PO-Revision-Date: 2020-08-26 18:01+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -85,15 +85,19 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every layout."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
+msgid "An action to copy the whole image to clipboard has been added."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -256,13 +260,11 @@ msgstr "Seçimden Yeni Görüntü"
 msgid "New Image From Clipboard"
 msgstr "Panodan Yeni Görüntü"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
 msgstr "Yeniden yükle"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/properties.py
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
 msgstr "Görüntü özellikleri"
 
@@ -287,11 +289,13 @@ msgstr "Farklı kaydet…"
 msgid "Export as…"
 msgstr "Farklı aktar…"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Print"
 msgstr "Yazdır"
 
@@ -432,8 +436,7 @@ msgstr "Yenile"
 msgid "Show tools names"
 msgstr "Araç adlarını göster"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr "Tam ekran"
 
@@ -588,6 +591,10 @@ msgstr "Çizim Hakkında"
 #: src/ui/toolbar-symbolic.ui src/window.py
 msgid "Open"
 msgstr "Aç"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr ""
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1341,6 +1348,11 @@ msgstr "bu dosyalar"
 #, python-format
 msgid "What do you want to do with %s?"
 msgstr "%s ile ne yapmak istersin?"
+
+#: src/window.py
+#, fuzzy
+msgid "Image copied to clipboard"
+msgstr "Panodaki Resmi Düzenle"
 
 #: src/window.py
 msgid "Import a picture"

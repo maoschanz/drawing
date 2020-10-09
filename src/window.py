@@ -448,7 +448,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
-		# self.add_action_simple('to_clipboard', self.action_export_cb, None)
+		self.add_action_simple('to_clipboard', self.action_export_cb, None)
 		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
@@ -921,11 +921,16 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_save_alphaless(self, *args):
 		return self.saving_manager.save_current_image(False, False, False, False)
 
+	def action_export_as(self, *args):
+		return self.saving_manager.save_current_image(True, True, False, True)
+
 	def action_print(self, *args):
 		self.get_active_image().print_image()
 
-	def action_export_as(self, *args):
-		return self.saving_manager.save_current_image(True, True, False, True)
+	def action_export_cb(self, *args):
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		cb.set_image(self.get_active_image().main_pixbuf)
+		self.prompt_message(True, _("Image copied to clipboard"))
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################

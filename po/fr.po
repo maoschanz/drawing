@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 20:39+0200\n"
+"POT-Creation-Date: 2020-10-09 22:23+0200\n"
 "PO-Revision-Date: 2020-09-22 00:38+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -84,16 +84,21 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every layout."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
+msgid "An action to copy the whole image to clipboard has been added."
 msgstr ""
+"Une action pour copier l'image entière dans le presse-papier a été ajoutée."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -261,13 +266,11 @@ msgstr "À partir de la sélection"
 msgid "New Image From Clipboard"
 msgstr "À partir du presse-papier"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
 msgstr "Recharger le fichier"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/properties.py
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
 msgstr "Propriétés de l'image"
 
@@ -291,11 +294,13 @@ msgstr "Enregistrer sous…"
 msgid "Export as…"
 msgstr "Exporter sous…"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr "Copier vers le presse-papier"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Print"
 msgstr "Imprimer"
 
@@ -436,8 +441,7 @@ msgstr "Actualiser"
 msgid "Show tools names"
 msgstr "Afficher le nom des outils"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr "Plein écran"
 
@@ -592,6 +596,10 @@ msgstr "À propos de Dessin"
 #: src/ui/toolbar-symbolic.ui src/window.py
 msgid "Open"
 msgstr "Ouvrir"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr "Partager l'image"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1346,6 +1354,10 @@ msgid "What do you want to do with %s?"
 msgstr "Que souhaitez-vous faire avec %s ?"
 
 #: src/window.py
+msgid "Image copied to clipboard"
+msgstr "Image copiée dans le presse-papier"
+
+#: src/window.py
 msgid "Import a picture"
 msgstr "Importer une image"
 
@@ -1893,14 +1905,6 @@ msgstr "Redimensionner le canevas"
 
 #~ msgid "Edit"
 #~ msgstr "Éditer"
-
-#~ msgid "The thumbnail preview, showing various shapes zoomed in"
-#~ msgstr "L'aperçu miniature, montrant diverses formes où on a zoomé"
-
-#~ msgid "The \"new image\" menu opened while the selection is being scaled up"
-#~ msgstr ""
-#~ "Le menu \"nouvelle image\" ouvert tandis que la sélection est "
-#~ "redimensionnée"
 
 #~ msgid "Open a file"
 #~ msgstr "Ouvrir un fichier"
