@@ -45,6 +45,21 @@
                 </child>
               </object>
             </child>
+            <child internal-child="action_area">
+              <object class="GtkButtonBox">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkButton" id="info_action">
+                    <property name="visible">True</property>
+                    <property name="action-name">app.report_bug</property>
+                    <property name="label" translatable="yes">Report a bug</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <action-widgets>
+              <action-widget response="ok">info_action</action-widget>
+            </action-widgets>
           </object>
         </child>
         <child>

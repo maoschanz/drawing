@@ -84,6 +84,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	toolbar_box = Gtk.Template.Child()
 	info_bar = Gtk.Template.Child()
 	info_label = Gtk.Template.Child()
+	info_action = Gtk.Template.Child()
 	notebook = Gtk.Template.Child()
 	bottom_panes_box = Gtk.Template.Child()
 	tools_scrollable_box = Gtk.Template.Child()
@@ -632,10 +633,19 @@ class DrWindow(Gtk.ApplicationWindow):
 	def prompt_message(self, show, label):
 		"""Update the content and the visibility of the info bar."""
 		self.info_bar.set_visible(show)
+		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
 		if self._settings.get_boolean('devel-only'):
 			print('Drawing: ' + label)
+
+	def prompt_action(self, message, action_name, action_label):
+		"""Update the content of the info bar, including its actionable button
+		which is set as visible."""
+		self.prompt_message(True, message)
+		self.info_action.set_visible(True)
+		self.info_action.set_action_name(action_name)
+		self.info_action.set_label(action_label)
 
 	def update_tabs_visibility(self):
 		should_show = (self.notebook.get_n_pages() > 1) and not self.fullscreened
@@ -919,7 +929,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.saving_manager.save_current_image(False, True, False, True)
 
 	def action_save_alphaless(self, *args):
-		return self.saving_manager.save_current_image(False, False, False, False)
+		if self.saving_manager.save_current_image(False, False, False, False):
+			self.ask_reload()
+			return True
+		return False
 
 	def action_export_as(self, *args):
 		return self.saving_manager.save_current_image(True, True, False, True)
@@ -931,6 +944,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_active_image().main_pixbuf)
 		self.prompt_message(True, _("Image copied to clipboard"))
+
+	def ask_reload(self):
+		self.prompt_action(_("The image changed on the disk, do you want " + \
+		                       "to reload it?"), 'win.reload_file', _("Reload"))
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################

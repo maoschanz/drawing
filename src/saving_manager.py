@@ -30,7 +30,7 @@ class DrSavingManager():
 		self._window = window
 
 	def save_current_image(self, is_export, to_new, selection_only, allow_alpha):
-		"""All parameters are booleans. Returns a boolean."""
+		"""All parameters are booleans. Returns a boolean (true if success)."""
 		if not selection_only and not self._confirm_despite_ongoing_operation():
 			return False
 
