@@ -121,15 +121,15 @@ class ToolLine(AbstractClassicTool):
 		if operation['use_dashes']:
 			cairo_context.set_dash([2 * line_width, 2 * line_width])
 		# We don't memorize the path because all coords are here anyway for the
-		# linear grandient and/or the arrow.
+		# linear gradient and/or the arrow.
 		cairo_context.move_to(x1, y1)
 		cairo_context.line_to(x2, y2)
 
+		if operation['use_arrow']:
+			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1)
+
 		self.stroke_with_operator(operation['operator'], cairo_context, \
 		                                    line_width, operation['is_preview'])
-
-		if operation['use_arrow']:
-			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 	############################################################################
 ################################################################################

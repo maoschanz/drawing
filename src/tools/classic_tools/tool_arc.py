@@ -139,15 +139,15 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.set_dash([2 * line_width, 2 * line_width])
 		cairo_context.append_path(operation['path'])
 
-		self.stroke_with_operator(operation['operator'], cairo_context, \
-		                                    line_width, operation['is_preview'])
-
 		if operation['use_arrow']:
 			x1 = operation['x_press']
 			y1 = operation['y_press']
 			x2 = operation['x_release']
 			y2 = operation['y_release']
-			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
+			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1)
+
+		self.stroke_with_operator(operation['operator'], cairo_context, \
+		                                    line_width, operation['is_preview'])
 
 	############################################################################
 ################################################################################

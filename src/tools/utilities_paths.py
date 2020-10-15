@@ -115,11 +115,11 @@ def launch_infinite_loop_dialog(window):
 
 ################################################################################
 
-def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
-	cairo_context.new_path()
-	cairo_context.set_line_width(line_width)
-	cairo_context.set_dash([1, 0])
-	cairo_context.move_to(x2, y2)
+def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1):
+	"""Adds a triangular end to the current path."""
+	cairo_context.set_line_join(cairo.LineJoin.MITER)
+	# cairo_context.set_dash([1, 0]) # XXX looks awful if dashed
+
 	x_length = max(x1, x2) - min(x1, x2)
 	y_length = max(y1, y2) - min(y1, y2)
 	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
@@ -139,6 +139,8 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 		x_backpoint = (x_backpoint + x2)/2
 		y_backpoint = (y_backpoint + y2)/2
 
+	cairo_context.move_to(x2, y2) # TODO x2,y2 should be the backpoint, and the
+	# arrow's triangle end should go forward
 	if delta < -1.5 or delta > 1.0:
 		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint)
 		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint)
@@ -149,9 +151,10 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
 		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
 
+	# XXX the path isn't filled to avoid issues regarding curves, but it means
+	# thin arrows have empty spots
 	cairo_context.close_path()
-	cairo_context.fill_preserve()
-	cairo_context.stroke()
+	# The stroke must be done afterwards, by the calling method
 
 ################################################################################
 # Path smoothing ###############################################################
