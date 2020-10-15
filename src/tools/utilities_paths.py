@@ -84,7 +84,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		if (new_x != -10):
 			cairo_context.line_to(x, y)
 		# else:
-		#	 print('TENTATIVE ABUSIVE D\'AJOUT')
+		#	 print("TENTATIVE ABUSIVE D'AJOUT")
 		#	 should_stop = True
 
 		if (i > 10) and (first_x-5 < x < first_x+5) and (first_y-5 < y < first_y+5):

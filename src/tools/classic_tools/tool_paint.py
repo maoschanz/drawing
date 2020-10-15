@@ -35,8 +35,11 @@ class ToolPaint(AbstractClassicTool):
 		return _("Painting options")
 
 	def get_edition_status(self):
-		if self.get_option_value('paint_algo') == 'clipping':
+		paint_algo = self.get_option_value('paint_algo')
+		if paint_algo == 'clipping':
 			return _("Click on an area to replace its color by transparency")
+		elif paint_algo == 'whole':
+			return _("Click on the canvas to entirely paint it")
 		else:
 			return self.label
 
@@ -78,16 +81,25 @@ class ToolPaint(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation) # TODO expose antialiasing option?
+		self.start_tool_operation(operation) # XXX expose antialiasing option?
 
 		if operation['algo'] == 'replace':
 			self._op_replace(operation)
+		elif operation['algo'] == 'whole':
+			self._op_whole(operation)
 		elif operation['algo'] == 'fill':
 			self._op_fill(operation)
 		else: # == 'clipping'
 			self._op_clipping(operation)
 
 	############################################################################
+
+	def _op_whole(self, operation):
+		"""Paint the entire image regardless of existing pixels"""
+		cairo_context = self.get_context()
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.paint()
 
 	def _op_fill(self, operation):
 		"""Simple but ugly, and it's relying on the precision of the provided
@@ -174,6 +186,8 @@ class ToolPaint(AbstractClassicTool):
 		self._clip_red(margin, r0, g0, b0)
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
+
+	############################################################################
 
 	def _clip_red(self, margin, r0, g0, b0):
 		for i in range(-1 * margin, margin + 1):
