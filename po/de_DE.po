@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-09 22:23+0200\n"
+"POT-Creation-Date: 2020-10-16 00:33+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -80,9 +80,16 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The version 0.6.2 improves the option to draw arrows: several issues have "
+"The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Die Version 0.6.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
+"neue Übersetzungen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -94,7 +101,7 @@ msgstr ""
 msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
-"now available with every layout."
+"now available with every possible window layout."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -176,14 +183,6 @@ msgstr ""
 "(kleiner oder größer). Das funktioniert über die Mini-Karte, Touchpad oder "
 "das Mausrad."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.4.14 features several minor bug fixes, and various new "
-"translations."
-msgstr ""
-"Die Version 0.4.14 enthält mehrere kleine Fehlerbehebungen und verschiedene "
-"neue Übersetzungen."
-
 # Copied & pasted into the translated-field to get 100% translated. Did no change to the source string.
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -215,7 +214,7 @@ msgstr ""
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "Report a bug"
 msgstr "Einen Fehler melden"
 
@@ -1363,6 +1362,15 @@ msgid "Image copied to clipboard"
 msgstr "Bild in Zwischenablage bearbeiten"
 
 #: src/window.py
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/window.py
+#, fuzzy
+msgid "Reload"
+msgstr "Datei neu laden"
+
+#: src/window.py
 msgid "Import a picture"
 msgstr "Ein Bild importieren"
 
@@ -1661,6 +1669,14 @@ msgid "Erase and replace"
 msgstr "Löschen und ersetzen"
 
 #. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+#, fuzzy
+msgid "Entire image"
+msgstr "Geöffnete Bilder"
+
+#. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
@@ -1842,6 +1858,11 @@ msgstr "Füll-Optionen"
 msgid "Click on an area to replace its color by transparency"
 msgstr ""
 "Klicken Sie auf einen Bereich, um dessen Farbe durch Transparenz zu ersetzen"
+
+#: src/tools/classic_tools/tool_paint.py
+#, fuzzy
+msgid "Click on the canvas to entirely paint it"
+msgstr "Klicken Sie auf den ersten Punkt der Form, um es zu schließen."
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"

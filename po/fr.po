@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-09 22:23+0200\n"
-"PO-Revision-Date: 2020-09-22 00:38+0200\n"
+"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"PO-Revision-Date: 2020-10-16 00:40+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -78,22 +78,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The version 0.6.2 improves the option to draw arrows: several issues have "
+"The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+"La version 0.6.3 améliore l'option pour dessiner des flèches : plusieurs "
+"problèmes ont été corrigés, et les flèches à double extrémité sont "
+"maintenant possibles."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.6.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The 'highlighter' tool now provides options to highlight light text on a "
 "dark background."
 msgstr ""
+"L'outil « surligneur » fournit maintenant des options pour surligner du "
+"texte clair sur fond sombre."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
-"now available with every layout."
+"now available with every possible window layout."
 msgstr ""
+"Quand l'image a été enregistrée sans transparence, l'application suggère "
+"maintenant de recharger l'image depuis le disque. Aussi, la fonctionnalité "
+"\"recharger depuis le disque\" est maintenant accessible avec tous les "
+"environnements."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "An action to copy the whole image to clipboard has been added."
@@ -183,14 +199,6 @@ msgstr ""
 "(ou dézoomer) sur l'image, en utilisant l'aperçu miniature, le touchpad ou "
 "la molette de souris."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.4.14 features several minor bug fixes, and various new "
-"translations."
-msgstr ""
-"La version 0.4.14 comporte plusieurs correctifs de bugs mineurs, et diverses "
-"nouvelles traductions."
-
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Romain F. T."
@@ -221,7 +229,7 @@ msgstr "Le menu \"nouvelle image\" ouvert"
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "Report a bug"
 msgstr "Reporter un bug"
 
@@ -1358,6 +1366,14 @@ msgid "Image copied to clipboard"
 msgstr "Image copiée dans le presse-papier"
 
 #: src/window.py
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "L'image a changé sur le disque, voulez-vous la recharger ?"
+
+#: src/window.py
+msgid "Reload"
+msgstr "Recharger"
+
+#: src/window.py
 msgid "Import a picture"
 msgstr "Importer une image"
 
@@ -1654,6 +1670,13 @@ msgid "Erase and replace"
 msgstr "Effacer et remplacer"
 
 #. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+msgid "Entire image"
+msgstr "Image entière"
+
+#. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
@@ -1826,6 +1849,10 @@ msgstr "Options de peinture"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
 msgstr "Cliquez sur une zone pour remplacer sa couleur par de la transparence"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr "Cliquez sur le canevas pour le peindre entièrement"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"

@@ -62,8 +62,8 @@
         would be semi-transparent yellow.</p>
       </item>
       <item>
-        <p>Highlight: the selected color is added to the lighter pixels only. It
-        highlights dark text on light background.</p>
+        <p>Highlight: the selected color is added to the lighter pixels only,
+        which highlights dark text on light background.</p>
       </item>
       <item>
         <p>Difference: the resulting color is the difference between the
@@ -128,8 +128,12 @@
         transparent pixels.</p>
       </item>
       <item>
-        <p>Highlighter: Ignore some of the color settings, and draw ("normal"
-        mode) with a semi-transparent version of the current color.</p>
+        <p>Highlighter: Ignore some of the color settings, and draw with a
+        semi-transparent version of the current color.</p>
+        <p>The "highlight" color application mode is used, so the selected color
+        is added to the lighter pixels only, which highlights dark text on light
+        background. An option can be used to do the opposite (highlight light
+        text on dark background).</p>
       </item>
       <item>
         <p>Line: This tool can draw straight lines. Its options also include
@@ -192,16 +196,19 @@
       <item>
         <p>Paint. This tool tries to paint an area of a given color with a new
         color.</p>
-        <p>It can use three possible algorithms: <gui style="menuitem">Encircle
-        and fill</gui> is very simplistic and discouraged,
-        <gui style="menuitem">Erase and replace</gui> should work better, but
-        still fails in a few situations, and <gui style="menuitem">Clipping
-        </gui> doesn't paint but erase the color you clicked on the entire
-        image, for example to cut out an image from its white background.</p>
         <note style="warning">
           <p>This tool is disabled by default, because it will not work if the
           shape to paint is too complex.</p>
         </note>
+        <p>It can use several possible algorithms: <gui style="menuitem">
+        Encircle and fill</gui> is very simplistic and discouraged,
+        <gui style="menuitem">Erase and replace</gui> should work better, but
+        still fails in a few situations.</p>
+        <p>The <gui style="menuitem">Entire image</gui> option paints over the
+        the entire image, regardless of what's already drawn.</p>
+        <p><gui style="menuitem">Erase color</gui> doesn't paint but erase the
+        color you clicked, on the entire image, for example to cut out an image
+        from its white background.</p>
       </item>
     </list>
   </section>

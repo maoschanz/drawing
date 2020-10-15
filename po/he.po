@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-09 22:23+0200\n"
+"POT-Creation-Date: 2020-10-16 00:33+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -76,8 +76,13 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The version 0.6.2 improves the option to draw arrows: several issues have "
+"The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6.2 features several minor bug fixes, and various new translations."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -90,7 +95,7 @@ msgstr ""
 msgid ""
 "When an image has been saved without its transparency, the app now suggests "
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
-"now available with every layout."
+"now available with every possible window layout."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -157,12 +162,6 @@ msgid ""
 "image, using the minimap, the touchpad or the mouse wheel."
 msgstr ""
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.4.14 features several minor bug fixes, and various new "
-"translations."
-msgstr ""
-
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Romain F. T."
@@ -193,7 +192,7 @@ msgstr ""
 msgid "Preferences"
 msgstr "מאפיינים"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "Report a bug"
 msgstr "דווח על באג"
 
@@ -1385,6 +1384,15 @@ msgid "Image copied to clipboard"
 msgstr "עריכת תמונה מהלוח"
 
 #: src/window.py
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/window.py
+#, fuzzy
+msgid "Reload"
+msgstr "פתיחת קובץ"
+
+#: src/window.py
 msgid "Import a picture"
 msgstr "יבא תמונה"
 
@@ -1697,6 +1705,14 @@ msgid "Erase and replace"
 msgstr "מחק והחלף"
 
 #. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+#, fuzzy
+msgid "Entire image"
+msgstr "תמונות שנפתחו"
+
+#. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
@@ -1884,6 +1900,10 @@ msgstr "אפשרויות צביעה"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
 msgstr "לחץ על אזור כדי  להחליף את צבעו לפי שקיפות"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"

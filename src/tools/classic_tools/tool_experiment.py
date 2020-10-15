@@ -186,7 +186,13 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def op_dynamic(self, operation, cairo_context):
+		"""Brush with speed-sensitive dynamic width, where the variation of
+		width is drawn by a succession of segments. The first segment is shit,
+		and it looks awful with semi-transparent colors."""
+
+		# mask intersections between segments when semi-transparency
 		cairo_context.set_operator(cairo.Operator.SOURCE)
+
 		SMOOTH = True
 		if SMOOTH:
 			utilities_smooth_path(cairo_context, operation['path'])
@@ -214,6 +220,10 @@ class ToolExperiment(AbstractClassicTool):
 			cairo_context.move_to(future_x, future_y)
 
 	def op_dynamic2(self, operation, cairo_context):
+		"""Brush with speed-sensitive dynamic width, where the variation of
+		width is drawn by a superposition of segments. It doesn't really support
+		semi-transparent colors."""
+
 		# cairo_context.set_operator(operation['operator'])
 		SMOOTH = True
 		if SMOOTH:
@@ -280,6 +290,10 @@ class ToolExperiment(AbstractClassicTool):
 		# cairo_context.set_line_width(line_width)
 		# cairo_context.append_path(path)
 		# cairo_context.stroke()
+
+	def op_dynamic2_mask(self, operation, cairo_context):
+		pass # TODO support operators and semi-transparency, using tricks like
+		# whatever the dest_in operator is doing to blur
 
 	def _add_segment(self, cairo_context, pts):
 		if pts[0] == cairo.PathDataType.CURVE_TO:
