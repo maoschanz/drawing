@@ -261,18 +261,22 @@
             <item>
               <attribute name="label" translatable="yes">Go Left</attribute>
               <attribute name="action">win.go_left</attribute>
+              <attribute name="verb-icon">pan-start-symbolic</attribute>
             </item>
             <item>
               <attribute name="label" translatable="yes">Go Up</attribute>
               <attribute name="action">win.go_up</attribute>
+              <attribute name="verb-icon">pan-up-symbolic</attribute>
             </item>
             <item>
               <attribute name="label" translatable="yes">Go Down</attribute>
               <attribute name="action">win.go_down</attribute>
+              <attribute name="verb-icon">pan-down-symbolic</attribute>
             </item>
             <item>
               <attribute name="label" translatable="yes">Go Right</attribute>
               <attribute name="action">win.go_right</attribute>
+              <attribute name="verb-icon">pan-end-symbolic</attribute>
             </item>
           </section>
         </submenu>
@@ -308,10 +312,12 @@
         <item>
           <attribute name="label" translatable="yes">Fullscreen</attribute>
           <attribute name="action">win.fullscreen</attribute>
+          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Exit fullscreen</attribute>
           <attribute name="action">win.unfullscreen</attribute>
+          <attribute name="verb-icon">view-restore-symbolic</attribute>
         </item>
       </section>
     </submenu>
@@ -431,6 +437,17 @@
         <item>
           <attribute name="label" translatable="yes">Previous tool</attribute>
           <attribute name="action">win.back_to_previous</attribute>
+          <attribute name="verb-icon">go-previous-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Bigger width</attribute>
+          <attribute name="action">win.size_more</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Smaller width</attribute>
+          <attribute name="action">win.size_less</attribute>
         </item>
       </section>
     </submenu>
@@ -453,6 +470,7 @@
           <attribute name="label" translatable="yes">Report a bug</attribute>
           <attribute name="action">app.report_bug</attribute>
           <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">dialog-error-symbolic</attribute>
         </item>
       </section>
       <section>

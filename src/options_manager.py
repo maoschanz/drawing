@@ -181,6 +181,10 @@ class DrOptionsManager():
 	def get_tool_width(self):
 		return int(self.get_classic_tools_pane().thickness_spinbtn.get_value())
 
+	def update_tool_width(self, delta):
+		width = self.get_tool_width() + delta
+		self.get_classic_tools_pane().thickness_spinbtn.set_value(width)
+
 	def set_right_color(self, color):
 		return self.right_color_btn().color_widget.set_rgba(color)
 

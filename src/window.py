@@ -474,6 +474,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		editor = self._settings.get_boolean('direct-color-edit')
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
+		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
+		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
+
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
@@ -814,6 +817,12 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_color2(self, *args):
 		if self.active_tool().use_color:
 			self.options_manager.right_color_btn().open()
+
+	def action_size_more(self, *args):
+		self.options_manager.update_tool_width(1)
+
+	def action_size_less(self, *args):
+		self.options_manager.update_tool_width(-1)
 
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################

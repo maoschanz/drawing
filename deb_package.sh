@@ -2,7 +2,7 @@
 
 DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing" # XXX ask it as an input maybe?
-VERSION="0.6"
+VERSION="0.6.2"
 
 function separator () {
 	echo ""
