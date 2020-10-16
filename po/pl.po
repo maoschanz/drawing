@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -552,6 +552,15 @@ msgstr "_Narzędzia"
 msgid "Previous tool"
 msgstr "Poprzednie narzędzie"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Domyślna szerokość"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opcje"
@@ -699,8 +708,12 @@ msgid "Main menu"
 msgstr "Menu główne"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr ""
+msgid "Enter fullscreen mode"
+msgstr "Wejdź w tryb pełnoekranowy"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Opuść tryb pełnoekranowy"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -721,6 +734,10 @@ msgstr "Zapisz obraz jako…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Zamknij bieżący obraz"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -762,14 +779,6 @@ msgstr "Importuj plik jako zaznaczenie"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Wejdź w tryb pełnoekranowy"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Opuść tryb pełnoekranowy"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

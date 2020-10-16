@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -552,6 +552,15 @@ msgstr "_Työkalut"
 msgid "Previous tool"
 msgstr "Edellinen työkalu"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Oletusleveys"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Valinnat"
@@ -699,8 +708,12 @@ msgid "Main menu"
 msgstr "Päävalikko"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr ""
+msgid "Enter fullscreen mode"
+msgstr "Siirry koko näyttöön"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Poistu koko näytöstä"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -721,6 +734,10 @@ msgstr "Tallenna kuva nimellä…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Sulje aktiivinen kuva"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -762,14 +779,6 @@ msgstr "Tuo tiedosto valintana"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Siirry koko näyttöön"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Poistu koko näytöstä"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

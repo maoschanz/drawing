@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-10-02 15:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -551,6 +551,15 @@ msgstr "_Strumenti"
 msgid "Previous tool"
 msgstr "Strumento precedente"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Larghezza standard"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opzioni"
@@ -696,8 +705,12 @@ msgid "Main menu"
 msgstr "Menu principale"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Cronologia"
+msgid "Enter fullscreen mode"
+msgstr "Entra in modalità schermo intero"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Esci dalla modalità schermo intero"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -718,6 +731,10 @@ msgstr "Salva l'immagine come…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Chiudi l'immagine attiva"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Cronologia"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
@@ -758,14 +775,6 @@ msgstr "Importa un file come selezione"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Schede"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Entra in modalità schermo intero"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Esci dalla modalità schermo intero"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

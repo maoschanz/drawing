@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-08-26 18:01+0300\n"
 "Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
 "Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
@@ -548,6 +548,15 @@ msgstr "_Araçlar"
 msgid "Previous tool"
 msgstr "Önceki araç"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Öntanımlı genişlik"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Seçenekler"
@@ -693,8 +702,12 @@ msgid "Main menu"
 msgstr "Ana menü"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Geçmiş"
+msgid "Enter fullscreen mode"
+msgstr "Tam ekran kipine gir"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Tam ekran kipinden çık"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -715,6 +728,10 @@ msgstr "Resmi farklı kaydet…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Aktif resmi kapat"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Geçmiş"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -756,14 +773,6 @@ msgstr "Bir dosyayı seçim olarak al"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Sekmeler"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Tam ekran kipine gir"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Tam ekran kipinden çık"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

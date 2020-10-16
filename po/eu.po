@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -547,6 +547,15 @@ msgstr "_Tresnak"
 msgid "Previous tool"
 msgstr "Aurreko tresna"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Zabalera lehenetsia"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Aukerak"
@@ -692,8 +701,12 @@ msgid "Main menu"
 msgstr "Menu nagusia"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historiala"
+msgid "Enter fullscreen mode"
+msgstr "Pantaila osoko modura"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Irten pantaila osotik"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -714,6 +727,10 @@ msgstr "Gorde irudia honela…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Itxi uneko irudia"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Historiala"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -755,14 +772,6 @@ msgstr "Inportatu fitxategia hautapen gisa"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Fitxak"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Pantaila osoko modura"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Irten pantaila osotik"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-08-24 05:01-0500\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: \n"
@@ -549,6 +549,15 @@ msgstr "_Herramientas"
 msgid "Previous tool"
 msgstr "Herramienta anterior"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Anchura predeterminada"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opciones"
@@ -694,8 +703,12 @@ msgid "Main menu"
 msgstr "Menú principal"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historial"
+msgid "Enter fullscreen mode"
+msgstr "Ingresar al modo de pantalla completa"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Salir del modo de pantalla completa"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -716,6 +729,10 @@ msgstr "Guardar imagen como…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Cerrar la imagen activa"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Historial"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -757,14 +774,6 @@ msgstr "Importar un archivo como selección"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Pestañas"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Ingresar al modo de pantalla completa"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Salir del modo de pantalla completa"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

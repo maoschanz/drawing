@@ -415,7 +415,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                     'show-labels'), self.on_show_labels_action_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
-		self.add_action_simple('reload_file', self.action_reload, ['F5'])
+		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties, None)
 		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
 		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
@@ -467,8 +467,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
-		self.add_action_simple('main_color', self.action_color1, ['<Ctrl>l'])
-		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
+		self.add_action_simple('main_color', self.action_color1, ['<Ctrl><Shift>l'])
+		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl><Shift>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
 		editor = self._settings.get_boolean('direct-color-edit')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -548,6 +548,15 @@ msgstr "_Ferramentas"
 msgid "Previous tool"
 msgstr "Ferramenta anterior"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Largura padrão"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opções"
@@ -693,8 +702,12 @@ msgid "Main menu"
 msgstr "Menu principal"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Histórico"
+msgid "Enter fullscreen mode"
+msgstr "Entrar na tela cheia"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Sair da tela cheia"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -715,6 +728,10 @@ msgstr "Salvar imagem como…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Fechar a imagem ativa"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Histórico"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -756,14 +773,6 @@ msgstr "Importar um arquivo como a seleção"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Tabulações"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Entrar na tela cheia"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Sair da tela cheia"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

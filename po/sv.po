@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-10-04 07:34+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -549,6 +549,15 @@ msgstr "_Verktyg"
 msgid "Previous tool"
 msgstr "Föregående verktyg"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Standardbredd"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "A_lternativ"
@@ -694,8 +703,12 @@ msgid "Main menu"
 msgstr "Huvudmeny"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historik"
+msgid "Enter fullscreen mode"
+msgstr "Växla till fullskärmsläge"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Avsluta fullskärmsläget"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -716,6 +729,10 @@ msgstr "Spara bild som…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Stäng den aktiva bilden"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Historik"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
@@ -756,14 +773,6 @@ msgstr "Importera en bildfil till markeringen"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Flikar"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Växla till fullskärmsläge"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Avsluta fullskärmsläget"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
