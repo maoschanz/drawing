@@ -29,7 +29,7 @@ class ToolPaint(AbstractClassicTool):
 		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window)
 		self.magic_path = None
 		self.use_size = False
-		self.add_tool_action_enum('paint_algo', 'replace')
+		self.add_tool_action_enum('paint_algo', 'fill')
 
 	def get_options_label(self):
 		return _("Painting options")
@@ -60,7 +60,7 @@ class ToolPaint(AbstractClassicTool):
 		elif self.get_option_value('paint_algo') == 'replace':
 			self.magic_path = utilities_get_magic_path(surface, x, y, self.window, 2)
 		else:
-			pass # == 'clipping'
+			pass # == 'clipping' or == 'whole'
 
 		operation = self.build_operation(x, y)
 		self.apply_operation(operation)

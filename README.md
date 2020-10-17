@@ -85,9 +85,9 @@ incorrect english labels, please report an issue about it.
 
 ----
 
-### Tools (0.6.0)
+### Tools
 
-(last update: **version 0.6.1**)
+(last update: **version 0.6.2**)
 
 *Tools in italic can be disabled.*
 
@@ -97,7 +97,7 @@ General options for these tools: colors, use antialiasing, size, …
 
 - Pencil (options: dashes, line shape, …)
 - *Eraser*
-- *Highlighter*
+- *Highlighter* (options: highlight on dark background)
 - Line (options: arrow, dashes, gradient, …)
 - Curve (options: arrow, dashes, …)
 - Insert text (options: font, shadow/outline, font size, …)
