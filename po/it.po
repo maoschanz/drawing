@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-16 20:30+0200\n"
-"PO-Revision-Date: 2020-10-02 15:45+0100\n"
+"PO-Revision-Date: 2020-10-17 15:45+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -81,6 +81,8 @@ msgid ""
 "The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+"La versione 0.6.3 migliora l'opzione per disegnare le frecce: diversi problemi sono "
+"stati corretti ed ora sono possibili frecce a doppia punta."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -94,6 +96,8 @@ msgid ""
 "The 'highlighter' tool now provides options to highlight light text on a "
 "dark background."
 msgstr ""
+"Lo strumento" evidenziatore "ora fornisce opzioni per evidenziare il testo chiaro su un "
+"sfondo scuro."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -101,10 +105,13 @@ msgid ""
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every possible window layout."
 msgstr ""
+"Quando un'immagine è stata salvata senza la sua trasparenza, l'app ora suggerisce "
+"per ricaricare l'immagine dal disco. Inoltre, la funzione "ricarica dal disco" è "
+"ora disponibile con ogni possibile layout di finestra."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "An action to copy the whole image to clipboard has been added."
-msgstr ""
+msgstr "È stata aggiunta un'azione per copiare l'intera immagine negli appunti."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -553,12 +560,11 @@ msgstr "Strumento precedente"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Larghezza maggiore"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Larghezza standard"
+msgstr "Larghezza ridotta"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -605,7 +611,7 @@ msgstr "Apri"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Condividi l'immagine"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -816,7 +822,7 @@ msgstr "Ripeti %s"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Nuovo pixbuf vuoto, nessuna modifica applicata a %s"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
@@ -1181,9 +1187,8 @@ msgid "Modifications from the current tool haven't been applied."
 msgstr "Le modifiche dallo strumento corrente non sono state applicate."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Dove vuoi aprire %s?"
+msgstr "Vuoi salvare comunque?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1360,18 +1365,16 @@ msgid "What do you want to do with %s?"
 msgstr "Cosa vuoi fare con %s?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Copia negli appunti"
+msgstr "Immagine copiata negli appunti"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "L'immagine è cambiata sul disco, vuoi ricaricarla?"
 
 #: src/window.py
-#, fuzzy
 msgid "Reload"
-msgstr "Ricarica file"
+msgstr "Ricarica"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1674,9 +1677,8 @@ msgstr "Cancella e sostituisci"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Immagini aperte"
+msgstr "Immagine intera"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -1696,9 +1698,8 @@ msgstr "Profilo tratteggiato"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
-msgstr "Contorno"
+msgstr "Nessun contorno"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
@@ -1826,18 +1827,16 @@ msgid "Dashed"
 msgstr "Tratteggiata"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Rettangolo disfondo"
+msgstr "Testo scuro su sfondo chiaro"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Testo chiaro su sfondo scuro"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Evidenziatore"
+msgstr "Opzioni evidenziatore"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1856,9 +1855,8 @@ msgid "Click on an area to replace its color by transparency"
 msgstr "Clicca su un'area per sostituire il suo colore con la trasparenza"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Fai clic sul primo punto della forma per chiuderla."
+msgstr "Fare clic sulla tela per dipingerla interamente"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
