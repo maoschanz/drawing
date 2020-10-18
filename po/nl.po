@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-16 20:30+0200\n"
-"PO-Revision-Date: 2020-10-04 13:37+0200\n"
+"PO-Revision-Date: 2020-10-18 18:23+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
@@ -82,6 +82,9 @@ msgid ""
 "The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+"Versie 0.6.3 bevat verbeteringen omtrent het tekenen van pijlen. Er zijn "
+"verschillende pijlproblemen opgelost en er is een nieuwe soort: pijlen met "
+"dubbele uiteinden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -95,6 +98,8 @@ msgid ""
 "The 'highlighter' tool now provides options to highlight light text on a "
 "dark background."
 msgstr ""
+"Het markeergereedschap bevat nu een optie om lichte tekst op een donkere "
+"achtergrond te markeren."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -102,10 +107,13 @@ msgid ""
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every possible window layout."
 msgstr ""
+"Als een afbeelding is opgeslagen zonder de doorzichtigheid, dan wordt er een "
+"scherm getoond om de afbeelding opnieuw in te lezen. Daarnaast is de optie "
+"'Opnieuw inlezen' nu beschikbaar in elke vensterindeling."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "An action to copy the whole image to clipboard has been added."
-msgstr ""
+msgstr "Nieuwe functie: gehele afbeelding kopiëren naar klembord."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -264,7 +272,7 @@ msgstr "Nieuwe afbeelding van klembord"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr "Bestand herladen"
+msgstr "Bestand opnieuw inlezen"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
@@ -552,12 +560,11 @@ msgstr "Vorig gereedschap"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Breder"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Standaardbreedte"
+msgstr "Smaller"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -604,7 +611,7 @@ msgstr "Openen"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Afbeelding delen"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1359,18 +1366,16 @@ msgid "What do you want to do with %s?"
 msgstr "Wat wil je doen met %s?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Kopiëren naar klembord"
+msgstr "De afbeelding is gekopieerd naar het klembord"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Het afbeeldingsbestand is gewijzigd. Wil je het opnieuw inlezen?"
 
 #: src/window.py
-#, fuzzy
 msgid "Reload"
-msgstr "Bestand herladen"
+msgstr "Opnieuw inlezen"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1673,9 +1678,8 @@ msgstr "Wissen en vervangen"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Geopende afbeeldingen"
+msgstr "Gehele afbeelding"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -1824,18 +1828,16 @@ msgid "Dashed"
 msgstr "Gestreept"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Rechthoekige achtergrond"
+msgstr "Donkere tekst op lichte achtergrond"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Lichte tekst op donkere achtergrond"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Markering"
+msgstr "Markeeropties"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1855,9 +1857,8 @@ msgstr ""
 "Klik een gebied aan om de kleur ervan te vervangen door doorzichtigheid"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Klik op het eerste punt om te sluiten."
+msgstr "Klik op het canvas om het op te vullen"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
