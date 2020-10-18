@@ -123,13 +123,17 @@ ARROW_TRIANGLE = [
     (-2.747, -1.),
 ]
 
+MIN_ARROW_SCALE = 3
+
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	# scales, rotates and translates the arrow triangle
 	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
 
 	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
-	scaled = ((x*line_width, y*line_width) for x, y in ARROW_TRIANGLE)
+	scale = max(line_width, MIN_ARROW_SCALE)
+	scaled = ((x*scale, y*scale) for x, y in ARROW_TRIANGLE)
+
 	rotated = ((x*cos - y*sin, x*sin + y*cos) for x, y in scaled)
 	head = [(x + x2, y + y2) for x, y in rotated]
 
