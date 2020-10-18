@@ -115,39 +115,32 @@ def launch_infinite_loop_dialog(window):
 
 ################################################################################
 
+# The coordinates of the corners of the triangle. These points are defined as if
+# the end of the arrow line is at "0, 0" and rotated by 0 degrees.
+ARROW_TRIANGLE = [
+    (0., 0.),
+    (-2.747, 1.),
+    (-2.747, -1.),
+]
+
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
+	# scales, rotates and translates the arrow triangle
+	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
+
+	sin, cos = math.sin(line_angle), math.cos(line_angle)
+
+	scaled = ((x*line_width, y*line_width) for x, y in ARROW_TRIANGLE)
+	rotated = ((x*cos - y*sin, x*sin + y*cos) for x, y in scaled)
+	head = [(x + x2, y + y2) for x, y in rotated]
+
+	# draws the arrow head
 	cairo_context.new_path()
 	cairo_context.set_line_width(line_width)
 	cairo_context.set_dash([1, 0])
-	cairo_context.move_to(x2, y2)
-	x_length = max(x1, x2) - min(x1, x2)
-	y_length = max(y1, y2) - min(y1, y2)
-	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
-	if line_length == 0:
-		return
-	arrow_width = math.log(line_length)
-	if (x1 - x2) != 0:
-		delta = (y1 - y2) / (x1 - x2)
-	else:
-		delta = 1.0
 
-	x_backpoint = (x1 + x2)/2
-	y_backpoint = (y1 + y2)/2
-	i = 0
-	while i < arrow_width:
-		i = i + 2
-		x_backpoint = (x_backpoint + x2)/2
-		y_backpoint = (y_backpoint + y2)/2
-
-	if delta < -1.5 or delta > 1.0:
-		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint)
-		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint)
-	elif delta > -0.5 and delta <= 1.0:
-		cairo_context.line_to(x_backpoint, y_backpoint-arrow_width)
-		cairo_context.line_to(x_backpoint, y_backpoint+arrow_width)
-	else:
-		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
-		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
+	cairo_context.move_to(*head[0])
+	cairo_context.line_to(*head[1])
+	cairo_context.line_to(*head[2])
 
 	cairo_context.close_path()
 	cairo_context.fill_preserve()
