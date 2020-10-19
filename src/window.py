@@ -415,7 +415,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                     'show-labels'), self.on_show_labels_action_changed)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
-		self.add_action_simple('reload_file', self.action_reload, ['F5'])
+		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties, None)
 		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
 		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
@@ -467,12 +467,15 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
-		self.add_action_simple('main_color', self.action_color1, ['<Ctrl>l'])
-		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
+		self.add_action_simple('main_color', self.action_color1, ['<Ctrl><Shift>l'])
+		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl><Shift>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
 		editor = self._settings.get_boolean('direct-color-edit')
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
+
+		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
+		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
@@ -814,6 +817,12 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_color2(self, *args):
 		if self.active_tool().use_color:
 			self.options_manager.right_color_btn().open()
+
+	def action_size_more(self, *args):
+		self.options_manager.update_tool_width(1)
+
+	def action_size_less(self, *args):
+		self.options_manager.update_tool_width(-1)
 
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################

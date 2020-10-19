@@ -115,44 +115,35 @@ def launch_infinite_loop_dialog(window):
 
 ################################################################################
 
-def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1):
+# The coordinates of the corners of the triangle. These points are defined as if
+# the end of the arrow line is at "0, 0" and rotated by 0 degrees.
+ARROW_TRIANGLE = [
+	(0.0, 0.0),
+	(-2.747, 1.0),
+	(-2.747, -1.0),
+]
+
+MIN_ARROW_SCALE = 3
+
+def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	"""Adds a triangular end to the current path."""
-	cairo_context.set_line_join(cairo.LineJoin.MITER)
-	# cairo_context.set_dash([1, 0]) # XXX looks awful if dashed
+	# scales, rotates and translates the arrow triangle
+	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
+	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
-	x_length = max(x1, x2) - min(x1, x2)
-	y_length = max(y1, y2) - min(y1, y2)
-	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
-	if line_length == 0:
-		return
-	arrow_width = math.log(line_length)
-	if (x1 - x2) != 0:
-		delta = (y1 - y2) / (x1 - x2)
-	else:
-		delta = 1.0
+	scale = max(line_width, MIN_ARROW_SCALE)
+	scaled = ((x*scale, y*scale) for x, y in ARROW_TRIANGLE)
+	rotated = ((x*cos - y*sin, x*sin + y*cos) for x, y in scaled)
+	head = [(x + x2, y + y2) for x, y in rotated]
+	# TODO less obscure data structures
+	# FIXME cases with very short last segment
 
-	x_backpoint = (x1 + x2)/2
-	y_backpoint = (y1 + y2)/2
-	i = 0
-	while i < arrow_width:
-		i = i + 2
-		x_backpoint = (x_backpoint + x2)/2
-		y_backpoint = (y_backpoint + y2)/2
+	cairo_context.move_to(*head[0])
+	cairo_context.line_to(*head[1])
+	cairo_context.line_to(*head[2])
 
-	cairo_context.move_to(x2, y2) # TODO x2,y2 should be the backpoint, and the
-	# arrow's triangle end should go forward
-	if delta < -1.5 or delta > 1.0:
-		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint)
-		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint)
-	elif delta > -0.5 and delta <= 1.0:
-		cairo_context.line_to(x_backpoint, y_backpoint-arrow_width)
-		cairo_context.line_to(x_backpoint, y_backpoint+arrow_width)
-	else:
-		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
-		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
-
-	# XXX the path isn't filled to avoid issues regarding curves, but it means
-	# thin arrows have empty spots
+	# XXX the path isn't filled because the path is opened by the first point of
+	# the line/curve and it can't be closed so easily
 	cairo_context.close_path()
 	# The stroke must be done afterwards, by the calling method
 

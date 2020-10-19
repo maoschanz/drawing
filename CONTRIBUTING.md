@@ -30,9 +30,11 @@ How to contribute to Drawing
 # Translating
 
 Notice that this procedure will translate the unstable, unreleased version
-currently developed on the `master` branch. If you want to entirely translate
-older versions, restart this procedure but run `git checkout 0.4` just after
-having cloned the repo, and at the end, open the merge request to `0.4` too.
+currently developed on the `master` branch.
+
+<!-- If you want to entirely translate older versions, restart this -->
+<!-- procedure but run `git checkout 0.6` just after having cloned the repo, -->
+<!-- and at the end, open the merge request to `0.6` too. -->
 
 ### Get the .po file
 
@@ -80,12 +82,16 @@ work.
 Also, the character should be accessible easily from the keyboard layouts of
 your language.
 
+### Testing your translation (optional)
+
+If you want to test your translation:
+
+- The flatpak SDK isn't able to run a translated version of the app, so
+export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
+- Or (it's harder) [install it with `meson`](#with-git-and-meson).
+
 ### Submitting your translation
 
-- **(optional)** If you want to test your translation:
-	- The flatpak SDK isn't able to run a translated version of the app, so
-	export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
-	- Or (it's harder) [install it with `meson`](#with-git-and-meson).
 - Run `git add po && git commit && git push`
 - Submit a "pull request"/"merge request"
 
@@ -130,7 +136,7 @@ here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`
 along with the python code.
 
 >See [here](./diagrams/) for explanations about the architecture and class
-diagrams (**WORK IN PROGRESS**)
+diagrams
 
 ### UI design
 
@@ -167,8 +173,8 @@ as many `GAction`s as possible for testing purposes (and also because searchable
 menus still exist).
 
 If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
-any other), please be sure to not hurt the UX with the GNOME layout (since it's
-the one used on smartphone, be careful it has to stay very resizable).
+any other), please be sure to not hurt the UX of the GNOME layout (since it's
+the one used on smartphone, be careful: it has to stay very resizable).
 
 ### Other remarks
 
@@ -285,10 +291,10 @@ Stable versions for end-users are **tagged**, and listed in this Github repo's
 
 ```
           0.4.1  0.4.2  …  0.4.14
-           _.______.____…____.
-   0.2    /         ______       0.6.0   0.6.1
-____.____/_________/______\________._______._____
-                        \_____________/
+           _.______.____…____.                         _
+   0.2    /         ______       0.6.0  0.6.1  0.6.2  /
+____.____/_________/______\________.______.______.___/___
+                        \____________/
 ```
 
 Please don't package anything aside this tagged code
@@ -323,7 +329,8 @@ sudo apt -t experimental install drawing
 | 0.4.3 to 0.4.13 | any          | any?               | 3.22             |
 | 0.4.14          | **≥3.32**    | any?               | 3.22             |
 | --------------- | ------------ | ------------------ | ---------------- |
-| 0.6.0 to 0.6.2  | **≥3.30.0**  | any?               | 3.22             |
+| 0.6.0 to 0.6.1  | **≥3.32.0**  | any?               | 3.22             |
+| 0.6.2           | **≥3.30.0**  | any?               | 3.22             |
 | 0.6.3 to 0.6.?? | any          | any?               | 3.22             |
 | `master`'s HEAD | **≥3.30.0**  | any?               | 3.22             |
 

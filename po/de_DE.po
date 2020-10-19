@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-05-17 14:49+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <--->\n"
@@ -548,6 +548,15 @@ msgstr "_Werkzeuge"
 msgid "Previous tool"
 msgstr "Vorheriges Werkzeug"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Standardbreite"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Optionen"
@@ -695,8 +704,12 @@ msgid "Main menu"
 msgstr "Hauptmenü"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr ""
+msgid "Enter fullscreen mode"
+msgstr "Vollbildansicht starten"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Vollbildansicht beenden"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -717,6 +730,10 @@ msgstr "Bild speichern als…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Aktives Bild schließen"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -759,14 +776,6 @@ msgstr "Importieren einer Datei als Auswahl"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Reiter"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Vollbildansicht starten"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Vollbildansicht beenden"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

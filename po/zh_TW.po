@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -537,6 +537,15 @@ msgstr "工具(_T)"
 msgid "Previous tool"
 msgstr "先前的工具"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "預設寬度"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "選項(_O)"
@@ -682,8 +691,12 @@ msgid "Main menu"
 msgstr "主選單"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "歷史記錄"
+msgid "Enter fullscreen mode"
+msgstr "進入全螢幕模式"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "結束全螢幕模式"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -704,6 +717,10 @@ msgstr "另存圖片為…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "關閉使用中的影像"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "歷史記錄"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -745,14 +762,6 @@ msgstr "匯入檔案作為選擇區域"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "分頁"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "進入全螢幕模式"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "結束全螢幕模式"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom

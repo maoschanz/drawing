@@ -144,7 +144,7 @@ class ToolArc(AbstractClassicTool):
 			y1 = operation['y_press']
 			x2 = operation['x_release']
 			y2 = operation['y_release']
-			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1)
+			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 		self.stroke_with_operator(operation['operator'], cairo_context, \
 		                                    line_width, operation['is_preview'])

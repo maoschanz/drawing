@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-10-16 00:40+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -562,6 +562,14 @@ msgstr "Ou_tils"
 msgid "Previous tool"
 msgstr "Outil précédent"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr "Plus large"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Smaller width"
+msgstr "Moins large"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Options"
@@ -707,8 +715,12 @@ msgid "Main menu"
 msgstr "Menu principal"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historique"
+msgid "Enter fullscreen mode"
+msgstr "Entrer en mode plein écran"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Quitter le mode plein écran"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -729,6 +741,10 @@ msgstr "Enregistrer l'image sous…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Fermer l'image active"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Historique"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
@@ -769,14 +785,6 @@ msgstr "Importer un fichier en tant que sélection"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Onglets"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Entrer en mode plein écran"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Quitter le mode plein écran"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
@@ -1936,5 +1944,3 @@ msgstr "Redimensionner le canevas"
 #~ msgid "Open a file"
 #~ msgstr "Ouvrir un fichier"
 
-#~ msgid "Save as"
-#~ msgstr "Enregistrer sous"

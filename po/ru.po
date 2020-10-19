@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -544,6 +544,15 @@ msgstr "_Инструменты"
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "Ширина по умолчанию"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Опции"
@@ -699,7 +708,11 @@ msgid "Main menu"
 msgstr "Главное меню"
 
 #: src/ui/shortcuts.ui
-msgid "History"
+msgid "Enter fullscreen mode"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
 msgstr ""
 
 #: src/ui/shortcuts.ui
@@ -721,6 +734,10 @@ msgstr "Сохранить изображение как…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Закрыть активное изображение"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -763,14 +780,6 @@ msgstr "Повернуть выделенное"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
 msgstr ""
 
 #. Context: this section of the shortcuts window is about moving

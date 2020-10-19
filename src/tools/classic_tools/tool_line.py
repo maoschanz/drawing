@@ -126,7 +126,7 @@ class ToolLine(AbstractClassicTool):
 		cairo_context.line_to(x2, y2)
 
 		if operation['use_arrow']:
-			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1)
+			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 		self.stroke_with_operator(operation['operator'], cairo_context, \
 		                                    line_width, operation['is_preview'])

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 00:33+0200\n"
+"POT-Creation-Date: 2020-10-16 20:30+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -531,6 +531,15 @@ msgstr "工具(_T)"
 msgid "Previous tool"
 msgstr "先前的工具"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Smaller width"
+msgstr "默认宽度"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "选项(_O)"
@@ -677,8 +686,12 @@ msgid "Main menu"
 msgstr "主菜单"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "历史记录"
+msgid "Enter fullscreen mode"
+msgstr "进入全屏模式"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "退出全屏模式"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -699,6 +712,10 @@ msgstr "另存图片为…"
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "关闭活动的图像"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "历史记录"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -740,14 +757,6 @@ msgstr "导入文件作为选区"
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "标签页"
-
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "进入全屏模式"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "退出全屏模式"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
