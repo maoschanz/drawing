@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-16 20:30+0200\n"
-"PO-Revision-Date: 2020-10-04 07:34+0200\n"
+"PO-Revision-Date: 2020-10-19 08:59+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -81,6 +81,8 @@ msgid ""
 "The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+"Versionen 0.6.3 förbättrar alternativet att rita pilar. Flera problem har "
+"åtgärdats och dubbelsidiga pilar är nu möjliga."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -94,6 +96,8 @@ msgid ""
 "The 'highlighter' tool now provides options to highlight light text on a "
 "dark background."
 msgstr ""
+"Verktyget 'Markeringspenna' ger nu alternativ för att markera ljus text mot "
+"en mörk bakgrund."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -101,10 +105,13 @@ msgid ""
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every possible window layout."
 msgstr ""
+"När en bild har sparats utan dess transparens, föreslår programmet nu att "
+"läsa om bilden från disk. Funktionen \"Läs om bilden från disk\" är nu också "
+"tillgänglig vid varje möjlig fönsterlayout."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "An action to copy the whole image to clipboard has been added."
-msgstr ""
+msgstr "En åtgärd för att kopiera hela bilden till urklipp har lagts till."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -551,12 +558,11 @@ msgstr "Föregående verktyg"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Större bredd"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Standardbredd"
+msgstr "Mindre bredd"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -603,7 +609,7 @@ msgstr "Öppna"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Dela bilden"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1355,18 +1361,16 @@ msgid "What do you want to do with %s?"
 msgstr "Vad vill du göra med %s?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Kopiera till urklipp"
+msgstr "Bilden kopierad till urklipp"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Bilden har ändrats på disk, vill du uppdatera den?"
 
 #: src/window.py
-#, fuzzy
 msgid "Reload"
-msgstr "Uppdatera fil"
+msgstr "Uppdatera"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1519,7 +1523,6 @@ msgstr "Långsam oskärpa"
 #. Context: a filter that censors the image with some kind of tiles
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Pixelization"
 msgstr "Pixelisering"
 
@@ -1667,9 +1670,8 @@ msgstr "Sudda och ersätt"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Öppna bilder"
+msgstr "Hela bilden"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -1818,18 +1820,16 @@ msgid "Dashed"
 msgstr "Streckad"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Rektangelbakgrund"
+msgstr "Mörk text på ljus bakgrund"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Ljus text på mörk bakgrund"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Markeringspenna"
+msgstr "Markeringsalternativ"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1848,9 +1848,8 @@ msgid "Click on an area to replace its color by transparency"
 msgstr "Klicka på ett område för att byta ut färgen mot transparens"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Klicka på figurens första punkt för att stänga den."
+msgstr "Klicka på arbetsytan för att färgsätta den."
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
