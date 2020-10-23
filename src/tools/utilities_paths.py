@@ -138,14 +138,21 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	# TODO less obscure data structures
 	# FIXME cases with very short last segment
 
-	cairo_context.move_to(*head[0])
-	cairo_context.line_to(*head[1])
-	cairo_context.line_to(*head[2])
+	# draw the arrow triangle
+	_draw_head(cairo_context, head, True)
 
 	# XXX the path isn't filled because the path is opened by the first point of
 	# the line/curve and it can't be closed so easily
 	cairo_context.close_path()
 	# The stroke must be done afterwards, by the calling method
+
+def _draw_head(cairo_context, head, first_try):
+	if first_try:
+		cairo_context.move_to(*head[0])
+	else:
+		cairo_context.line_to(*head[0])
+	cairo_context.line_to(*head[1])
+	cairo_context.line_to(*head[2])
 
 ################################################################################
 # Path smoothing ###############################################################
