@@ -127,16 +127,18 @@ MIN_ARROW_SCALE = 3
 
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	"""Adds a triangular end to the current path."""
-	# scales, rotates and translates the arrow triangle
 	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
 	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
 	scale = max(line_width, MIN_ARROW_SCALE)
-	scaled = ((x*scale, y*scale) for x, y in ARROW_TRIANGLE)
-	rotated = ((x*cos - y*sin, x*sin + y*cos) for x, y in scaled)
-	head = [(x + x2, y + y2) for x, y in rotated]
-	# TODO less obscure data structures
 	# FIXME cases with very short last segment
+	head = []
+	# scale, rotate and translate the arrow triangle
+	for x, y in ARROW_TRIANGLE:
+		p = (x * scale, y * scale)
+		p = (p[0] * cos - p[1] * sin, p[0] * sin + p[1] * cos)
+		p = (p[0] + x2, p[1] + y2)
+		head.append(p)
 
 	# draw the arrow triangle
 	_draw_head(cairo_context, head, True)
