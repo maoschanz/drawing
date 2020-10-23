@@ -130,8 +130,10 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
 	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
-	scale = max(line_width, MIN_ARROW_SCALE)
 	# FIXME cases with very short last segment
+	# if scale == line_width, dashed arrow will look like shit
+	scale = max(line_width * 1.1, MIN_ARROW_SCALE)
+
 	head = []
 	# scale, rotate and translate the arrow triangle
 	for x, y in ARROW_TRIANGLE:
@@ -142,6 +144,13 @@ def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
 
 	# draw the arrow triangle
 	_draw_head(cairo_context, head, True)
+
+	# shameful hack to get a full head in cases where the line is dashed
+	if cairo_context.get_dash_count() > 0:
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
 
 	# XXX the path isn't filled because the path is opened by the first point of
 	# the line/curve and it can't be closed so easily
