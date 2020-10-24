@@ -202,13 +202,23 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def build_menubar_tools_menu(self):
 		sections = [None, None, None]
-		sections[2] = self.get_menubar_item([[True, 4], [False, 0]])
-		sections[0] = self.get_menubar_item([[True, 4], [False, 1]])
-		sections[1] = self.get_menubar_item([[True, 4], [False, 2]])
+		# the ids of the various kinds of tools don't match the index of their
+		# section in the submenu
+		sections[2] = self._get_menubar_tools_section(0)
+		sections[0] = self._get_menubar_tools_section(1)
+		sections[1] = self._get_menubar_tools_section(2)
 		for tool_id in self.tools:
 			tool = self.tools[tool_id]
 			tool.add_item_to_menu(sections[tool.menu_id])
 		self.app.has_tools_in_menubar = True
+
+	def _get_menubar_tools_section(self, section_index):
+		return self._get_menubar_item([
+			[True, 4],
+			[False, 1],
+			[True, 0],
+			[False, section_index]
+		])
 
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
@@ -271,7 +281,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
-		section = self.get_menubar_item([[True, 2], [False, 1]])
+		section = self._get_menubar_item([[True, 2], [False, 1]])
 		section.remove_all()
 		for page in self.notebook.get_children():
 			tab_title = page.update_title()
@@ -360,7 +370,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.notebook.drag_dest_add_uri_targets()
 		# because drag_dest_add_image_targets doesn't work for files
 
-	def get_menubar_item(self, path_description):
+	def _get_menubar_item(self, path_description):
 		"""Get an item of the app-wide menubar. The `path_description` object
 		is an array of [boolean, int] couples. The boolean means if we're
 		looking for a submenu, the int is an index."""
@@ -587,15 +597,15 @@ class DrWindow(Gtk.ApplicationWindow):
 		builder = Gtk.Builder.new_from_resource(UI_PATH + 'win-menus.ui')
 		fullscreen_menu = builder.get_object('fullscreen-menu')
 
-		tabs_list = self.get_menubar_item([[True, 2], [False, 1]])
+		tabs_list = self._get_menubar_item([[True, 2], [False, 1]])
 		fullscreen_menu.append_section(_("Opened images"), tabs_list)
 
-		classic_tools_section = self.get_menubar_item([[True, 4], [False, 1]])
+		classic_tools_section = self._get_menubar_tools_section(1)
 		section = fullscreen_menu.get_item_link(3, Gio.MENU_LINK_SECTION)
 		section.prepend_section(None, classic_tools_section)
 
-		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
-		transform_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
+		selection_tools_section = self._get_menubar_tools_section(0)
+		transform_tools_section = self._get_menubar_tools_section(2)
 		submenu = section.get_item_link(1, Gio.MENU_LINK_SUBMENU)
 		submenu.append_section(None, selection_tools_section)
 		submenu.append_section(None, transform_tools_section)

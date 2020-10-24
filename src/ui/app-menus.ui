@@ -425,20 +425,25 @@
     <submenu id="tools-menu">
       <attribute name="label" translatable="yes">_Tools</attribute>
       <section>
-        <!-- selection -->
-      </section>
-      <section>
-        <!-- classic -->
-      </section>
-      <section>
-        <!-- transform -->
-      </section>
-      <section>
         <item>
           <attribute name="label" translatable="yes">Previous tool</attribute>
           <attribute name="action">win.back_to_previous</attribute>
           <attribute name="verb-icon">go-previous-symbolic</attribute>
         </item>
+      </section>
+      <section>
+        <submenu>
+          <attribute name="label" translatable="yes">Active tool</attribute>
+          <section>
+            <!-- selection -->
+          </section>
+          <section>
+            <!-- classic -->
+          </section>
+          <section>
+            <!-- transform -->
+          </section>
+        </submenu>
       </section>
       <section>
         <item>
