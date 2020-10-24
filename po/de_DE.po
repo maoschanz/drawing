@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-16 20:30+0200\n"
-"PO-Revision-Date: 2020-05-17 14:49+0200\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"PO-Revision-Date: 2020-10-23 22:59+0200\n"
+"Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -37,7 +37,7 @@ msgstr "com.github.maoschanz.drawing"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Skizze;Bleistift;"
+msgstr "Paint;Skizze;Bleistift;Zeichnen;Malen;Zeichnung;"
 
 #. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
@@ -68,10 +68,9 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"It allows you to draw or edit pictures with tools such as pencil, line or arc "
+"(with various options), selection (cut/copy/paste/drag/…), shapes (rectangle, "
+"circle, polygon, …), text insertion, resizing, cropping, rotating, …"
 msgstr ""
 "Sie können Bilder erstellen oder bearbeiten mit Werkzeugen, wie Bleistift, "
 "Linien oder Kurven (mit verschiedenen Optionen), Auswahl (Ausschneiden/"
@@ -83,6 +82,8 @@ msgid ""
 "The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
+"Die Version 0.6.3 verbessert das Zeichnen von Pfeilen: verschiedene Fehler "
+"wurden behoben und es sind jetzt auch Pfeile mit zwei Spitzen möglich"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -93,9 +94,11 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
+"The 'highlighter' tool now provides options to highlight light text on a dark "
+"background."
 msgstr ""
+"Das Werkzeug 'Hervorheben' bietet jetzt die Option, hellen Text auf einem "
+"dunklen Hintergrund hervorzuheben."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -103,34 +106,44 @@ msgid ""
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every possible window layout."
 msgstr ""
+"Wenn ein Bild ohne seine Transparenz gespeichert wurde, schlägt die Anwendung "
+"nun vor, das Bild noch mal vom Datenträger zu laden. Auch das Feature 'Vom "
+"Datenträger neu laden' ist jetzt verfügbar für alle Fenster-Layouts."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "An action to copy the whole image to clipboard has been added."
 msgstr ""
+"Eine Befehl zum Kopieren des gesamten Bildes in die Zwischenablage wurde "
+"hinzugefügt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It's now possible to remove transparency when saving PNG files too. And "
-"there are more color options to replace the transparent pixels."
+"It's now possible to remove transparency when saving PNG files too. And there "
+"are more color options to replace the transparent pixels."
 msgstr ""
+"Es ist jetzt auch möglich, die Transparenz von PNG-Bildern beim Speichern zu "
+"entfernen. Es gibt jetzt auch mehr Farboptionen, um die transparenten Pixel "
+"zu ersetzen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A new optional tool named \"Points\" has been added, it may help captioning "
 "pictures."
 msgstr ""
+"Ein neues optionales Werkzeug namens 'Punkte' wurde hinzugefügt. Es könnte "
+"hilfreich sein, Bilder zu beschriften."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr ""
+msgstr "Kleinere Fehler im Werkzeug 'Drehen' wurden behoben."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
-"Version 0.6 ist ein großes Update mit verschiedenen wichtigen Änderungen. "
-"Die Anwendung ist jetzt stabiler und hat weitere Werkzeuge:"
+"Version 0.6 ist ein großes Update mit verschiedenen wichtigen Änderungen. Die "
+"Anwendung ist jetzt stabiler und hat weitere Werkzeuge:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -159,11 +172,13 @@ msgid ""
 "The text tool can now write using most system fonts, thus allowing more "
 "complex characters to be used (e.g. Asian characters)."
 msgstr ""
+"Das Textwerkzeug kann jetzt die meisten Systemschriftarten verwenden. Das "
+"erlaubt komplexere Zeichen zu verwenden (z.B. Asiatische Zeichen)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
-"with several types of blur, color inversion, pixelization, saturation and "
+"The 'saturate' tool has been replaced by 'filters', a more powerful tool with "
+"several types of blur, color inversion, pixelization, saturation and "
 "transparency."
 msgstr ""
 "Das Werkzeug 'Sättigung' wurde durch 'Filter' ersetzt, einem umfangreichen "
@@ -192,22 +207,22 @@ msgstr "Romain F. T."
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Das Fenster mit dem Hauptmenü."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "Die Auswahl und die damit verknüpften Aktionen"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Zoomen in verschiedenen Formen"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "Menü \"Neues Bild\" geöffnet"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -274,9 +289,8 @@ msgid "Save"
 msgstr "Speichern"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Transparenz hinzufügen"
+msgstr "Speichern ohne Transparenz"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -291,7 +305,7 @@ msgstr "Exportieren als…"
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "In Zwischenablage kopieren"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -499,7 +513,7 @@ msgstr "Gegensätzlich"
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Photo-oriented modes"
-msgstr ""
+msgstr "Fotoorientierte Modi"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -550,12 +564,11 @@ msgstr "Vorheriges Werkzeug"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Größere Breite"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Standardbreite"
+msgstr "Kleinere Breite"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -602,7 +615,7 @@ msgstr "Öffnen"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Bild teilen"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -617,9 +630,8 @@ msgid "Height"
 msgstr "Höhe"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Farben"
+msgstr "Farbe"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -655,8 +667,8 @@ msgstr "Werkzeuge"
 msgid "Window"
 msgstr "Fenster"
 
-#: src/ui/selection-manager.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/selection.ui
 msgid "Close selection"
 msgstr "Auswahl schließen"
 
@@ -685,13 +697,12 @@ msgstr "Drehen"
 msgid "Filters"
 msgstr "Filter"
 
-#: src/ui/selection-manager.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/selection.ui
 msgid "Open As New Image"
 msgstr "Als neues Bild öffnen"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
 msgstr "Tastenkürzel"
 
@@ -733,12 +744,11 @@ msgstr "Aktives Bild schließen"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Verlauf"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Optionen-Menü"
+msgstr "Menü mit Optionen für Werkzeug öffnen"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -789,20 +799,19 @@ msgstr "Vorschau umschalten"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Touch-Gesten"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Problembehandlung bei der Auswahl"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "Other tools"
-msgstr "Andere Modi"
+msgstr "Andere Werkzeuge"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
-msgstr "Fehler beim Starten der Anwendung. Bitte diesen Fehler melden."
+msgstr "Fehler beim Starten der Anwendung. Bitte melden Sie diesen Fehler."
 
 #: src/deco_manager.py
 #, python-format
@@ -818,7 +827,7 @@ msgstr "Wiederherstellen %s"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Neuer Pixbuf ist leer, keine Änderung an %s angewendet"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
@@ -926,9 +935,8 @@ msgstr "Standardhöhe"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#, fuzzy
 msgid "Default color"
-msgstr "Standardhintergrund"
+msgstr "Standardfarbe"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -977,7 +985,7 @@ msgstr "Sie können Zoomen mit STR+Scrollen oder nur mit Scrollen."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "Schauen Sie in die Hilfeseiten für Erklärungen."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1000,11 +1008,11 @@ msgstr "Zusätzliche Werkzeuge"
 
 #: src/preferences.py
 msgid ""
-"These tools are not as reliable and useful as they should be, so they are "
-"not all enabled by default."
+"These tools are not as reliable and useful as they should be, so they are not "
+"all enabled by default."
 msgstr ""
-"Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein "
-"sollten. Daher sind nicht alle standardmäßig aktiviert."
+"Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein sollten. "
+"Daher sind nicht alle standardmäßig aktiviert."
 
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -1019,7 +1027,7 @@ msgstr "Hervorhebung"
 
 #: src/preferences.py
 msgid "Points"
-msgstr ""
+msgstr "Punkte"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1177,15 +1185,15 @@ msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
 msgstr ""
+"Ein Teil des Bildes ist ausgewählt und die Pixel unter der Auswahl sind leer."
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "Änderungen aus dem aktuellen Werkzeug wurden nicht angewendet."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Wo möchten Sie %s öffnen?"
+msgstr "Möchten Sie trotzdem speichern?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1199,8 +1207,7 @@ msgstr "Dieses Dateiformat unterstützt keine transparenten Farben."
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
-"Sie können das Bild als PNG-Datei speichern oder die Transparenz ersetzen "
-"mit:"
+"Sie können das Bild als PNG-Datei speichern oder die Transparenz ersetzen mit:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
@@ -1328,9 +1335,9 @@ msgid "Opened images"
 msgstr "Geöffnete Bilder"
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Fehler beim Starten der Anwendung. Bitte diesen Fehler melden."
+msgstr "Fehler: Bereich ungültig für '%s'. Bitte melden Sie diesen Fehler."
 
 #: src/window.py
 #, python-format
@@ -1366,18 +1373,16 @@ msgid "What do you want to do with %s?"
 msgstr "Was möchten Sie mit %s machen?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Bild in Zwischenablage bearbeiten"
+msgstr "Bild in Zwischenablage kopiert"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Das Bild auf dem Datenträger wurde geändert. Möchten Sie es neu laden?"
 
 #: src/window.py
-#, fuzzy
 msgid "Reload"
-msgstr "Datei neu laden"
+msgstr "Neu laden"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1392,6 +1397,7 @@ msgstr "Benötigtes Werkzeug ist nicht verfügbar"
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
+"Vorgang nicht durchführbar: falsche Werkzeug-ID (erwartet {0}, erhalten {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1474,7 +1480,7 @@ msgstr "Weitere Optionen"
 
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Erweitern mit…"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
@@ -1629,14 +1635,14 @@ msgstr "Rund"
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Thin"
-msgstr "Dünn"
+msgstr "Schmal"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Square"
-msgstr "Eckig"
+msgstr "Rechteckig"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1681,43 +1687,37 @@ msgstr "Löschen und ersetzen"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Geöffnete Bilder"
+msgstr "Gesamtes Bild"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Quellfarbe"
+msgstr "Farbe entfernen"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Leere Außenlinie"
+msgstr "Feste Außenlinie"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Dashed outline"
-msgstr "Gestrichelter Pfeil"
+msgstr "Gepunktete Außenlinie"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
-msgstr "Außenlinie"
+msgstr "Keine Außenlinie"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
 msgstr "Füllung"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Leer"
+msgstr "Leere Form"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
@@ -1805,9 +1805,8 @@ msgid "Rectangle background"
 msgstr "Rechteckiger Hintergrund"
 
 #: src/tools/ui/selection.ui
-#, fuzzy
 msgid "Transform"
-msgstr "Transparenz"
+msgstr "Umwandeln"
 
 #: src/tools/ui/selection.ui
 msgid "Flip"
@@ -1838,18 +1837,16 @@ msgid "Dashed"
 msgstr "Gestrichelt"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Rechteckiger Hintergrund"
+msgstr "Dunkler Text auf hellem Hintergrund"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Heller Text auf dunklem Hintergrund"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Hervorhebung"
+msgstr "Hervorhebe-Optionen"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1869,9 +1866,8 @@ msgstr ""
 "Klicken Sie auf einen Bereich, um dessen Farbe durch Transparenz zu ersetzen"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Klicken Sie auf den ersten Punkt der Form, um es zu schließen."
+msgstr "Leinwand anklicken, um sie vollständig auszumalen"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
