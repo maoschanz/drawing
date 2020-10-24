@@ -20,13 +20,30 @@
       </item>
     </section>
     <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">No arrow</attribute>
+        <attribute name="action">win.arrow-type</attribute>
+        <attribute name="target">none</attribute>
+        <attribute name="verb-icon">tool-arc-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Simple arrow</attribute>
+        <attribute name="action">win.arrow-type</attribute>
+        <attribute name="target">simple</attribute>
+        <attribute name="verb-icon">tool-arc-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Double arrow</attribute>
+        <attribute name="action">win.arrow-type</attribute>
+        <attribute name="target">double</attribute>
+        <attribute name="verb-icon">tool-arc-symbolic</attribute>
+      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Use dashes</attribute>
         <attribute name="action">win.use_dashes</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Arrow</attribute>
-        <attribute name="action">win.is_arrow</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Antialiasing</attribute>

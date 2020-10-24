@@ -28,7 +28,7 @@ class ToolLine(AbstractClassicTool):
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_boolean('use_dashes', False)
-		self.add_tool_action_boolean('is_arrow', False)
+		self.add_tool_action_enum('arrow-type', 'none')
 		self.add_tool_action_boolean('use_gradient', False)
 		self._set_options_attributes() # Not optimal but more readable
 
@@ -49,16 +49,17 @@ class ToolLine(AbstractClassicTool):
 
 	def _set_options_attributes(self):
 		self._use_dashes = self.get_option_value('use_dashes')
-		self._use_arrow = self.get_option_value('is_arrow')
+		self._arrow_type = self.get_option_value('arrow-type')
 		self._use_gradient = self.get_option_value('use_gradient')
 		self._set_active_shape()
 
 	def get_edition_status(self):
 		self._set_options_attributes()
+		is_arrow = self._arrow_type != 'none'
 		label = self.label
-		if self._use_arrow and self._use_dashes:
+		if is_arrow and self._use_dashes:
 			label = label + ' - ' + _("Dashed arrow")
-		elif self._use_arrow:
+		elif is_arrow:
 			label = label + ' - ' + _("Arrow")
 		elif self._use_dashes:
 			label = label + ' - ' + _("Dashed")
@@ -89,7 +90,7 @@ class ToolLine(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'use_dashes': self._use_dashes,
-			'use_arrow': self._use_arrow,
+			'arrow_type': self._arrow_type,
 			'use_gradient': self._use_gradient,
 			'is_preview': is_preview,
 			'x_release': event_x,
@@ -120,12 +121,16 @@ class ToolLine(AbstractClassicTool):
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
 		if operation['use_dashes']:
 			cairo_context.set_dash([2 * line_width, 2 * line_width])
+
+		if operation['arrow_type'] == 'double':
+			utilities_add_arrow_triangle(cairo_context, x1, y1, x2, y2, line_width)
+
 		# We don't memorize the path because all coords are here anyway for the
 		# linear gradient and/or the arrow.
 		cairo_context.move_to(x1, y1)
 		cairo_context.line_to(x2, y2)
 
-		if operation['use_arrow']:
+		if operation['arrow_type'] != 'none':
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 		self.stroke_with_operator(operation['operator'], cairo_context, \
