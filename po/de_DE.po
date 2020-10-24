@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 20:30+0200\n"
+"POT-Creation-Date: 2020-10-24 14:35+0200\n"
 "PO-Revision-Date: 2020-10-23 22:59+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -68,9 +68,10 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or arc "
-"(with various options), selection (cut/copy/paste/drag/…), shapes (rectangle, "
-"circle, polygon, …), text insertion, resizing, cropping, rotating, …"
+"It allows you to draw or edit pictures with tools such as pencil, line or "
+"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
+"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
+"rotating, …"
 msgstr ""
 "Sie können Bilder erstellen oder bearbeiten mit Werkzeugen, wie Bleistift, "
 "Linien oder Kurven (mit verschiedenen Optionen), Auswahl (Ausschneiden/"
@@ -87,6 +88,12 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"This version is finally compatible with older distributions (versions of "
+"GNOME libraries older than 3.30)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.6.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "Die Version 0.6.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
@@ -94,8 +101,8 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a dark "
-"background."
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
 msgstr ""
 "Das Werkzeug 'Hervorheben' bietet jetzt die Option, hellen Text auf einem "
 "dunklen Hintergrund hervorzuheben."
@@ -106,9 +113,10 @@ msgid ""
 "to reload the image from the disk. Also, the 'reload from disk' feature is "
 "now available with every possible window layout."
 msgstr ""
-"Wenn ein Bild ohne seine Transparenz gespeichert wurde, schlägt die Anwendung "
-"nun vor, das Bild noch mal vom Datenträger zu laden. Auch das Feature 'Vom "
-"Datenträger neu laden' ist jetzt verfügbar für alle Fenster-Layouts."
+"Wenn ein Bild ohne seine Transparenz gespeichert wurde, schlägt die "
+"Anwendung nun vor, das Bild noch mal vom Datenträger zu laden. Auch das "
+"Feature 'Vom Datenträger neu laden' ist jetzt verfügbar für alle Fenster-"
+"Layouts."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "An action to copy the whole image to clipboard has been added."
@@ -118,8 +126,8 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It's now possible to remove transparency when saving PNG files too. And there "
-"are more color options to replace the transparent pixels."
+"It's now possible to remove transparency when saving PNG files too. And "
+"there are more color options to replace the transparent pixels."
 msgstr ""
 "Es ist jetzt auch möglich, die Transparenz von PNG-Bildern beim Speichern zu "
 "entfernen. Es gibt jetzt auch mehr Farboptionen, um die transparenten Pixel "
@@ -142,8 +150,8 @@ msgid ""
 "Version 0.6 is a major update, with various important changes. The app is "
 "more robust and has more tools:"
 msgstr ""
-"Version 0.6 ist ein großes Update mit verschiedenen wichtigen Änderungen. Die "
-"Anwendung ist jetzt stabiler und hat weitere Werkzeuge:"
+"Version 0.6 ist ein großes Update mit verschiedenen wichtigen Änderungen. "
+"Die Anwendung ist jetzt stabiler und hat weitere Werkzeuge:"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -177,8 +185,8 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The 'saturate' tool has been replaced by 'filters', a more powerful tool with "
-"several types of blur, color inversion, pixelization, saturation and "
+"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
+"with several types of blur, color inversion, pixelization, saturation and "
 "transparency."
 msgstr ""
 "Das Werkzeug 'Sättigung' wurde durch 'Filter' ersetzt, einem umfangreichen "
@@ -667,8 +675,8 @@ msgstr "Werkzeuge"
 msgid "Window"
 msgstr "Fenster"
 
-#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Close selection"
 msgstr "Auswahl schließen"
 
@@ -697,8 +705,8 @@ msgstr "Drehen"
 msgid "Filters"
 msgstr "Filter"
 
-#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
 msgstr "Als neues Bild öffnen"
 
@@ -1008,11 +1016,11 @@ msgstr "Zusätzliche Werkzeuge"
 
 #: src/preferences.py
 msgid ""
-"These tools are not as reliable and useful as they should be, so they are not "
-"all enabled by default."
+"These tools are not as reliable and useful as they should be, so they are "
+"not all enabled by default."
 msgstr ""
-"Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein sollten. "
-"Daher sind nicht alle standardmäßig aktiviert."
+"Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein "
+"sollten. Daher sind nicht alle standardmäßig aktiviert."
 
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -1207,7 +1215,8 @@ msgstr "Dieses Dateiformat unterstützt keine transparenten Farben."
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
-"Sie können das Bild als PNG-Datei speichern oder die Transparenz ersetzen mit:"
+"Sie können das Bild als PNG-Datei speichern oder die Transparenz ersetzen "
+"mit:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
