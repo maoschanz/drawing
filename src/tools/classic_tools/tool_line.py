@@ -27,7 +27,7 @@ class ToolLine(AbstractClassicTool):
 		self.use_operator = True
 
 		self.add_tool_action_enum('line_shape', 'round')
-		self.add_tool_action_boolean('use_dashes', False)
+		self.add_tool_action_enum('dashes-type', 'none')
 		self.add_tool_action_enum('arrow-type', 'none')
 		self.add_tool_action_boolean('use_gradient', False)
 		self._set_options_attributes() # Not optimal but more readable
@@ -45,7 +45,7 @@ class ToolLine(AbstractClassicTool):
 		return _("Line options")
 
 	def _set_options_attributes(self):
-		self._use_dashes = self.get_option_value('use_dashes')
+		self._dashes_type = self.get_option_value('dashes-type')
 		self._arrow_type = self.get_option_value('arrow-type')
 		self._use_gradient = self.get_option_value('use_gradient')
 		self._set_active_shape()
@@ -53,12 +53,13 @@ class ToolLine(AbstractClassicTool):
 	def get_edition_status(self):
 		self._set_options_attributes()
 		is_arrow = self._arrow_type != 'none'
+		use_dashes = self._dashes_type != 'none'
 		label = self.label
-		if is_arrow and self._use_dashes:
+		if is_arrow and use_dashes:
 			label = label + ' - ' + _("Dashed arrow")
 		elif is_arrow:
 			label = label + ' - ' + _("Arrow")
-		elif self._use_dashes:
+		elif use_dashes:
 			label = label + ' - ' + _("Dashed")
 		return label
 
@@ -86,7 +87,7 @@ class ToolLine(AbstractClassicTool):
 			'operator': self._operator,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
-			'use_dashes': self._use_dashes,
+			'dashes_type': self._dashes_type,
 			'arrow_type': self._arrow_type,
 			'use_gradient': self._use_gradient,
 			'is_preview': is_preview,
@@ -100,7 +101,6 @@ class ToolLine(AbstractClassicTool):
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_operator(operation['operator'])
-		cairo_context.set_line_cap(operation['line_cap'])
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
 		c1 = operation['rgba']
@@ -116,8 +116,9 @@ class ToolLine(AbstractClassicTool):
 			cairo_context.set_source(pattern)
 		else:
 			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-		if operation['use_dashes']:
-			cairo_context.set_dash([2 * line_width, 2 * line_width])
+
+		self.set_dashes_and_cap(cairo_context, line_width, \
+		                        operation['dashes_type'], operation['line_cap'])
 
 		if operation['arrow_type'] == 'double':
 			utilities_add_arrow_triangle(cairo_context, x1, y1, x2, y2, line_width)

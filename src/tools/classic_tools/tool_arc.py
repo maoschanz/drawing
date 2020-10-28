@@ -27,7 +27,7 @@ class ToolArc(AbstractClassicTool):
 		self.use_operator = True
 
 		self.add_tool_action_enum('line_shape', 'round')
-		self.add_tool_action_boolean('use_dashes', False)
+		self.add_tool_action_enum('dashes-type', 'none')
 		self.add_tool_action_enum('arrow-type', 'none')
 
 		# Default values
@@ -36,7 +36,7 @@ class ToolArc(AbstractClassicTool):
 
 		self._1st_segment = None
 		self._use_dashes = False
-		self._arrow_type = False
+		self._dashes_type = 'none'
 
 	def give_back_control(self, preserve_selection):
 		self._1st_segment = None
@@ -58,16 +58,17 @@ class ToolArc(AbstractClassicTool):
 		return _("Curve options")
 
 	def get_edition_status(self):
-		self._use_dashes = self.get_option_value('use_dashes')
+		self._dashes_type = self.get_option_value('dashes-type')
 		self._arrow_type = self.get_option_value('arrow-type')
 		self.set_active_shape()
 		is_arrow = self._arrow_type != 'none'
+		use_dashes = self._dashes_type != 'none'
 		label = self.label
-		if is_arrow and self._use_dashes:
+		if is_arrow and use_dashes:
 			label = label + ' - ' + _("Dashed arrow")
 		elif is_arrow:
 			label = label + ' - ' + _("Arrow")
-		elif self._use_dashes:
+		elif use_dashes:
 			label = label + ' - ' + _("Dashed")
 		return label
 
@@ -116,7 +117,7 @@ class ToolArc(AbstractClassicTool):
 			'operator': self._operator,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
-			'use_dashes': self._use_dashes,
+			'dashes_type': self._dashes_type,
 			'arrow_type': self._arrow_type,
 			'path': self._path,
 			'x_release': event_x,
@@ -128,13 +129,12 @@ class ToolArc(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
-		cairo_context.set_line_cap(operation['line_cap'])
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		if operation['use_dashes']:
-			cairo_context.set_dash([2 * line_width, 2 * line_width])
+		self.set_dashes_and_cap(cairo_context, line_width, \
+		                        operation['dashes_type'], operation['line_cap'])
 
 		if operation['arrow_type'] == 'double':
 			for pts in operation['path']:
