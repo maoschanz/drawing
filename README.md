@@ -66,6 +66,7 @@ If your language is not here, or is incompletely translated, you can
 | he   | Hebrew       | 0.4.1  | **45%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
 | hr   | Croatian     | 0.4.11 | 91%        | [Milo Ivir](https://github.com/milotype)
 | hu   | Hungarian    | 0.4.10 | **73%**    | [Kálmán „KAMI” Szalai](https://github.com/kami911)
+| id   | Indonesian   | 0.6.3  | 99%        | [Ghani Rafif](https://github.com/ekickx)
 | it   | Italian      | 0.4.1  | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
 | nl   | Dutch        | 0.4.1  | 98%        | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | 0.4.10 | 84%        | [Piotr Komur](https://github.com/pkomur)
