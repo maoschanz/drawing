@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-28 02:08+0100\n"
-"PO-Revision-Date: 2020-10-23 22:59+0200\n"
+"PO-Revision-Date: 2020-10-28 21:05+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -84,17 +84,19 @@ msgid ""
 "been fixed and double-ended arrows are now possible."
 msgstr ""
 "Die Version 0.6.3 verbessert das Zeichnen von Pfeilen: verschiedene Fehler "
-"wurden behoben und es sind jetzt auch Pfeile mit zwei Spitzen möglich"
+"wurden behoben und es sind jetzt auch Pfeile mit zwei Spitzen möglich."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "There is also more options to draw using dashes."
-msgstr ""
+msgstr "Es sind jetzt auch weitere Optionen möglich, Striche zu zeichnen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "This version is finally compatible with older distributions (versions of "
 "GNOME libraries older than 3.30)."
 msgstr ""
+"Diese Version ist jetzt auch mit älteren Distributionen kompatibel "
+"(Versionen der GNOME-Bibliotheken älter als 3.30)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -219,7 +221,7 @@ msgstr "Romain F. T."
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr "Das Fenster mit dem Hauptmenü."
+msgstr "Das Fenster mit dem Hauptmenü"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -570,9 +572,8 @@ msgid "Previous tool"
 msgstr "Vorheriges Werkzeug"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Andere Werkzeuge"
+msgstr "Aktives Werkzeug"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -1656,47 +1657,41 @@ msgid "Square"
 msgstr "Rechteckig"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Pfeil"
+msgstr "Kein Pfeil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Einfacher Pfeil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Gestrichelter Pfeil"
+msgstr "Doppelpfeil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Gestrichelt"
+msgstr "Kein Strich"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Gestrichelt"
+msgstr "Einfache Striche"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Gestrichelt"
+msgstr "Lange Striche"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Gestrichelt"
+msgstr "Kurze Striche"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Abwechselnde Striche"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
