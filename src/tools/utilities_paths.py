@@ -118,37 +118,61 @@ def launch_infinite_loop_dialog(window):
 # The coordinates of the corners of the triangle. These points are defined as if
 # the end of the arrow line is at "0, 0" and rotated by 0 degrees.
 ARROW_TRIANGLE = [
-    (0., 0.),
-    (-2.747, 1.),
-    (-2.747, -1.),
+	(0.0, 0.0),
+	(-2.747, 1.0),
+	(-2.747, -1.0),
 ]
 
 MIN_ARROW_SCALE = 3
 
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
-	# scales, rotates and translates the arrow triangle
-	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
-
+	"""Adds a triangular head to the current path."""
+	if x1 == x2 and y1 == y2:
+		line_angle = 0
+	else:
+		line_angle = math.atan2(y2 - y1, x2 - x1)
 	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
-	scale = max(line_width, MIN_ARROW_SCALE)
-	scaled = ((x*scale, y*scale) for x, y in ARROW_TRIANGLE)
+	# FIXME cases with very short last segment
+	# if scale == line_width, dashed arrow will look like shit
+	scale = max(line_width * 1.1, MIN_ARROW_SCALE)
 
-	rotated = ((x*cos - y*sin, x*sin + y*cos) for x, y in scaled)
-	head = [(x + x2, y + y2) for x, y in rotated]
+	# when the last segment of the line is very short, the head is scaled down
+	# last_segment_length = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+	# scale = min(scale, last_segment_length/line_width)
+	# ^XXX broken with dashes
+	# TODO ça peut ne plus être nécessaire si je décale la tête
 
-	# draws the arrow head
-	cairo_context.new_path()
-	cairo_context.set_line_width(line_width)
-	cairo_context.set_dash([1, 0])
+	head = []
+	# scale, rotate and translate the arrow triangle
+	for x, y in ARROW_TRIANGLE:
+		p = (x * scale, y * scale)
+		p = (p[0] * cos - p[1] * sin, p[0] * sin + p[1] * cos)
+		p = (p[0] + x2, p[1] + y2)
+		head.append(p)
 
-	cairo_context.move_to(*head[0])
+	# draw the arrow triangle
+	_draw_head(cairo_context, head, True)
+
+	# shameful hack to get a full head in cases where the line is dashed
+	if cairo_context.get_dash_count() > 0:
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+
+	# XXX the path isn't filled because the path is opened by the first point of
+	# the line/curve and it can't be closed so easily
+	cairo_context.close_path()
+	# The stroke must be done afterwards, by the calling method
+
+def _draw_head(cairo_context, head, first_try):
+	if first_try:
+		cairo_context.move_to(*head[0])
+	else:
+		cairo_context.line_to(*head[0])
 	cairo_context.line_to(*head[1])
 	cairo_context.line_to(*head[2])
-
-	cairo_context.close_path()
-	cairo_context.fill_preserve()
-	cairo_context.stroke()
 
 ################################################################################
 # Path smoothing ###############################################################
