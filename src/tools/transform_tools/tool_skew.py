@@ -40,11 +40,11 @@ class ToolSkew(AbstractCanvasTool):
 		self.xy_spinbtn.connect('value-changed', self.on_coord_changed)
 		return bar
 
-	# def get_edition_status(self):
-	# 	if self.apply_to_selection:
-	# 		return _("***** the selection")
-	# 	else:
-	# 		return _("***** the canvas")
+	def get_edition_status(self):
+		if self.apply_to_selection:
+			return _("Skewing the selection")
+		else:
+			return _("Skewing the canvas")
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -52,15 +52,69 @@ class ToolSkew(AbstractCanvasTool):
 
 	############################################################################
 
-	# TODO surface signals
+	def get_yx(self):
+		return self.yx_spinbtn.get_value_as_int()
+
+	def get_xy(self):
+		return self.xy_spinbtn.get_value_as_int()
+
+	def get_width(self):
+		if self.apply_to_selection:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		return source_pixbuf.get_width()
+
+	def get_height(self):
+		if self.apply_to_selection:
+			source_pixbuf = self.get_selection_pixbuf()
+		else:
+			source_pixbuf = self.get_main_pixbuf()
+		return source_pixbuf.get_width()
 
 	def on_coord_changed(self, *args):
 		self.build_and_do_op()
 
 	def _reset_values(self, *args):
+		self._yx = 0 # vertical deformation
+		self._xy = 0 # horizontal deformation
 		self.yx_spinbtn.set_value(0)
 		self.xy_spinbtn.set_value(0)
 		self.build_and_do_op()
+
+	############################################################################
+
+	# def on_unclicked_motion_on_area(self, event, surface):
+		# TODO h/v_double_arrow
+
+	def on_press_on_area(self, event, surface, event_x, event_y):
+		self.x_press = event_x
+		self.y_press = event_y
+
+		self._yx = self.get_yx() # vertical deformation
+		self._xy = self.get_xy() # horizontal deformation
+
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		delta_x = event_x - self.x_press
+		delta_y = event_y - self.y_press
+
+		# TODO tout ça fonctionne mais est très peu intuitif, il faut vraiment
+		# traquer le curseur pour savoir quand inverser le delta
+
+		yx = self._yx
+		xy = self._xy
+		yx += 100 * delta_y/self.get_height()
+		xy += 100 * delta_x/self.get_width()
+		self.yx_spinbtn.set_value(yx)
+		self.xy_spinbtn.set_value(xy)
+
+	def on_release_on_area(self, event, surface, event_x, event_y):
+		self.on_motion_on_area(event, surface, event_x, event_y)
+		self.build_and_do_op() # technically already done
+
+	############################################################################
+
+	# TODO draw custom avec des handles
 
 	############################################################################
 
