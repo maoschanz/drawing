@@ -40,10 +40,6 @@ class ToolPencil(AbstractClassicTool):
 		if state_as_string == 'thin':
 			self._cap_id = cairo.LineCap.BUTT
 			self._join_id = cairo.LineJoin.BEVEL
-			self._shape_label = _("Thin")
-		elif state_as_string == 'square':
-			self._cap_id = cairo.LineCap.SQUARE
-			self._join_id = cairo.LineJoin.MITER
 			self._shape_label = _("Square")
 		else:
 			self._cap_id = cairo.LineCap.ROUND

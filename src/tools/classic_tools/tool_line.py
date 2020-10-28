@@ -36,9 +36,6 @@ class ToolLine(AbstractClassicTool):
 		state_as_string = self.get_option_value('line_shape')
 		if state_as_string == 'thin':
 			self._cap_id = cairo.LineCap.BUTT
-			self._shape_label = _("Thin")
-		elif state_as_string == 'square':
-			self._cap_id = cairo.LineCap.SQUARE
 			self._shape_label = _("Square")
 		else:
 			self._cap_id = cairo.LineCap.ROUND

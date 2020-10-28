@@ -126,8 +126,11 @@ ARROW_TRIANGLE = [
 MIN_ARROW_SCALE = 3
 
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
-	"""Adds a triangular end to the current path."""
-	line_angle = 0 if x1 == x2 and y1 == y2 else math.atan2(y2 - y1, x2 - x1)
+	"""Adds a triangular head to the current path."""
+	if x1 == x2 and y1 == y2:
+		line_angle = 0
+	else:
+		line_angle = math.atan2(y2 - y1, x2 - x1)
 	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
 	# FIXME cases with very short last segment
