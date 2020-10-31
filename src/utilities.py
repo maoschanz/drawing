@@ -117,13 +117,13 @@ def utilities_add_filechooser_filters(dialog):
 
 ################################################################################
 
-def utilities_get_rgb_for_xy(surface, x, y):
+def utilities_get_rgba_for_xy(surface, x, y):
 	# Guard clause: we can't perform color picking outside of the surface
 	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
 		return None
 	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
-	rgb_vals = screenshot.get_pixels()
-	return rgb_vals # array de 3 valeurs, de 0 à 255
+	rgba_vals = screenshot.get_pixels()
+	return rgba_vals
 
 def utilities_get_rgba_name(red, green, blue, alpha):
 	"""To improve accessibility, it is useful to display the name of the colors.
@@ -223,13 +223,13 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 	"""This method tries to build a path defining an area of the same color. It
 	will mainly be used to paint this area, or to select it."""
 	cairo_context = cairo.Context(surface)
-	old_color = utilities_get_rgb_for_xy(surface, x, y)
+	old_color = utilities_get_rgba_for_xy(surface, x, y)
 
 	# Cairo doesn't provide methods for what we want to do. I will have to
 	# define myself how to decide what should be filled.
 	# The heuristic here is that we create a hull containing the area of
 	# color we want to paint. We don't care about "enclaves" of other colors.
-	while (utilities_get_rgb_for_xy(surface, x, y) == old_color) and y > 0:
+	while (utilities_get_rgba_for_xy(surface, x, y) == old_color) and y > 0:
 		y = y - 1
 	y = y + 1 # sinon ça crashe ?
 	cairo_context.move_to(x, y)
@@ -256,7 +256,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		while (not end_circle) or (j < 8):
 			future_x = x+x_shift[direction]
 			future_y = y+y_shift[direction]
-			if (utilities_get_rgb_for_xy(surface, future_x, future_y) == old_color) \
+			if (utilities_get_rgba_for_xy(surface, future_x, future_y) == old_color) \
 			and (future_x > 0) and (future_y > 0) \
 			and (future_x < surface.get_width()) \
 			and (future_y < surface.get_height()-2): # ???

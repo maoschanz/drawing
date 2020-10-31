@@ -1,4 +1,4 @@
-gnome = import('gnome')
+
 gnome.yelp(meson.project_name(),
   sources: [
     'index.page',
@@ -17,3 +17,4 @@ gnome.yelp(meson.project_name(),
     'figures/screenshot_saturate.png'
   ]
 )
+
