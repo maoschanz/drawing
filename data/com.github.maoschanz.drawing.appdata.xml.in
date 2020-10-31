@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2020 Romain F. T. -->
 <component type="desktop">
   <id>com.github.maoschanz.drawing</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -9,6 +10,10 @@
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
+  <custom>
+    <value key="Purism::form_factor">workstation</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
   <content_rating type="oars-1.1" />
 
   <name>Drawing</name>
@@ -23,6 +28,14 @@
     </p>
   </description>
 
+    <release version="0.4.15" date="2020-10-30">
+      <description>
+        <p>
+          Version 0.4.15 features several minor bug fixes, and various new
+          translations.
+        </p>
+      </description>
+    </release>
   <releases>
     <release version="0.4.14" date="2020-08-27">
       <description>
