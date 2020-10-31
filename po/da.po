@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-27 23:50+0200\n"
+"POT-Creation-Date: 2020-10-31 17:06+0100\n"
 "PO-Revision-Date: 2020-07-24 00:00+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -524,15 +524,19 @@ msgstr "Annuller"
 msgid "Create"
 msgstr "Opret"
 
+#. Description of a command line option
 msgid "Show the app version"
 msgstr "Vis programversionen"
 
+#. Description of a command line option
 msgid "Open a new window"
 msgstr "Åbn et nyt vindue"
 
+#. Description of a command line option
 msgid "Open a new tab"
 msgstr "Åbn et nyt faneblad"
 
+#. Description of a command line option
 msgid "Edit the clipboard content"
 msgstr "Rediger udklipsholderens indhold"
 
@@ -787,13 +791,16 @@ msgstr "procent"
 msgid "Line shape"
 msgstr "Linjens form"
 
+#. Context: this is the name of a line shape
 #. Default values
 msgid "Round"
 msgstr "Rund"
 
+#. Context: this is the name of a line shape
 msgid "Thin"
 msgstr "Tynd"
 
+#. Context: this is the name of a line shape
 msgid "Square"
 msgstr "Firkantet"
 
@@ -853,17 +860,37 @@ msgstr "Vend lodret"
 msgid "Color gradient"
 msgstr "Farvegradient"
 
+#. Context: title for the list of the possible painting algorithms.
 msgid "Behavior"
 msgstr "Opførsel"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 msgid "Encircle and fill"
 msgstr "Omring og udfyld"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 msgid "Erase and replace"
 msgstr "Slet og erstat"
 
-msgid "Clipping"
-msgstr "Klipning"
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#, fuzzy
+msgid "Entire image"
+msgstr "Nye billeder"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#, fuzzy
+msgid "Remove color"
+msgstr "Rå kildefarve"
 
 msgid "Artificial smoothness"
 msgstr "Kunstig jævnhed"
@@ -968,6 +995,7 @@ msgstr "Linje"
 msgid "Line options"
 msgstr "Valgmuligheder for linje"
 
+#. Context: the name of a tool to fill an area of one color with an other
 msgid "Paint"
 msgstr "Malerbøtte"
 
@@ -976,6 +1004,10 @@ msgstr "Valgmuligheder for malerbøtte"
 
 msgid "Click on an area to replace its color by transparency"
 msgstr "Klik på et område for at erstatte dets farve med gennemsigtighed"
+
+#, fuzzy
+msgid "Click on the canvas to entirely paint it"
+msgstr "Klik på formens første punkt for at lukke den."
 
 msgid "Polygon"
 msgstr "Polygon"
@@ -1035,3 +1067,6 @@ msgstr "Skaler markeringen"
 
 msgid "Scaling the canvas"
 msgstr "Skaler lærredet"
+
+#~ msgid "Clipping"
+#~ msgstr "Klipning"

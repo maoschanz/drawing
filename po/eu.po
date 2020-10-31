@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-30 00:42+0200\n"
+"POT-Creation-Date: 2020-10-31 17:06+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -529,15 +529,19 @@ msgstr "Utzi"
 msgid "Create"
 msgstr "Sortu"
 
+#. Description of a command line option
 msgid "Show the app version"
 msgstr "Erakutsi aplikazioaren bertsioa"
 
+#. Description of a command line option
 msgid "Open a new window"
 msgstr "Ireki leiho berria"
 
+#. Description of a command line option
 msgid "Open a new tab"
 msgstr "Ireki fitxa berria"
 
+#. Description of a command line option
 msgid "Edit the clipboard content"
 msgstr "Editatu arbelaren edukia"
 
@@ -793,13 +797,16 @@ msgstr "ehunekoak"
 msgid "Line shape"
 msgstr "Marraren forma"
 
+#. Context: this is the name of a line shape
 #. Default values
 msgid "Round"
 msgstr "Mutur borobilduak"
 
+#. Context: this is the name of a line shape
 msgid "Thin"
 msgstr "Mutur zorrotzak"
 
+#. Context: this is the name of a line shape
 msgid "Square"
 msgstr "Mutur karratuak"
 
@@ -861,17 +868,37 @@ msgstr "Irauli bertikalki"
 msgid "Color gradient"
 msgstr "Kolore gradientea"
 
+#. Context: title for the list of the possible painting algorithms.
 msgid "Behavior"
 msgstr "Portaera"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 msgid "Encircle and fill"
 msgstr "Borobildu eta bete"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 msgid "Erase and replace"
 msgstr "Ezabatu eta ordeztu"
 
-msgid "Clipping"
-msgstr "Mozketa"
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#, fuzzy
+msgid "Entire image"
+msgstr "Irudi berriak"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#, fuzzy
+msgid "Remove color"
+msgstr "Jatorrizko kolorea"
 
 msgid "Artificial smoothness"
 msgstr ""
@@ -976,6 +1003,7 @@ msgstr "Marra"
 msgid "Line options"
 msgstr "Marraren aukerak"
 
+#. Context: the name of a tool to fill an area of one color with an other
 msgid "Paint"
 msgstr "Betegarria"
 
@@ -984,6 +1012,10 @@ msgstr "Betegarriaren aukerak"
 
 msgid "Click on an area to replace its color by transparency"
 msgstr "Klikatu area batean kolorea kendu eta gardena uzteko"
+
+#, fuzzy
+msgid "Click on the canvas to entirely paint it"
+msgstr "Klikatu formaren lehenengo puntuan bera ixteko."
 
 msgid "Polygon"
 msgstr "Poligonoa"
@@ -1043,3 +1075,6 @@ msgstr "Oihala biratzen"
 
 msgid "Scaling the canvas"
 msgstr "Oihala eskalatzen"
+
+#~ msgid "Clipping"
+#~ msgstr "Mozketa"

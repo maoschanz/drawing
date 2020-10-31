@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"POT-Creation-Date: 2020-10-31 17:06+0100\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -526,15 +526,19 @@ msgstr "Odustani"
 msgid "Create"
 msgstr "Stvori"
 
+#. Description of a command line option
 msgid "Show the app version"
 msgstr "Prikaži verziju programa"
 
+#. Description of a command line option
 msgid "Open a new window"
 msgstr "Otvori novi prozor"
 
+#. Description of a command line option
 msgid "Open a new tab"
 msgstr "Otvori novu karticu"
 
+#. Description of a command line option
 msgid "Edit the clipboard content"
 msgstr "Uredi sadržaj međuspremnika"
 
@@ -790,13 +794,16 @@ msgstr "postoci"
 msgid "Line shape"
 msgstr "Oblik crte"
 
+#. Context: this is the name of a line shape
 #. Default values
 msgid "Round"
 msgstr "Zaobljeno"
 
+#. Context: this is the name of a line shape
 msgid "Thin"
 msgstr "Tanko"
 
+#. Context: this is the name of a line shape
 msgid "Square"
 msgstr "Kvardatično"
 
@@ -856,17 +863,37 @@ msgstr "Preokreni okomito"
 msgid "Color gradient"
 msgstr "Gradijent u boji"
 
+#. Context: title for the list of the possible painting algorithms.
 msgid "Behavior"
 msgstr "Način rada"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 msgid "Encircle and fill"
 msgstr "Okruži i ispuni"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 msgid "Erase and replace"
 msgstr "Izbriši i zamijeni"
 
-msgid "Clipping"
-msgstr "Rezanje"
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#, fuzzy
+msgid "Entire image"
+msgstr "Nove slike"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#, fuzzy
+msgid "Remove color"
+msgstr "Boja izvora"
 
 msgid "Artificial smoothness"
 msgstr ""
@@ -971,6 +998,7 @@ msgstr "Crta"
 msgid "Line options"
 msgstr "Opcije za crtu"
 
+#. Context: the name of a tool to fill an area of one color with an other
 msgid "Paint"
 msgstr "Bojanje"
 
@@ -979,6 +1007,10 @@ msgstr "Opcije za crtanje"
 
 msgid "Click on an area to replace its color by transparency"
 msgstr "Klikni na područje čiju boju želiš zamijeniti s prozirnošću"
+
+#, fuzzy
+msgid "Click on the canvas to entirely paint it"
+msgstr "Za zatvaranje oblika, klikni na njegovu prvu točku."
 
 msgid "Polygon"
 msgstr "Mnogokut"
@@ -1036,3 +1068,6 @@ msgstr "Skaliranje odabira"
 
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
+
+#~ msgid "Clipping"
+#~ msgstr "Rezanje"

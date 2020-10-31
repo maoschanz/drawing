@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"POT-Creation-Date: 2020-10-31 17:06+0100\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -509,15 +509,19 @@ msgstr "取消"
 msgid "Create"
 msgstr "创建"
 
+#. Description of a command line option
 msgid "Show the app version"
 msgstr "显示应用版本"
 
+#. Description of a command line option
 msgid "Open a new window"
 msgstr "打开新窗口"
 
+#. Description of a command line option
 msgid "Open a new tab"
 msgstr "打开新标签页"
 
+#. Description of a command line option
 msgid "Edit the clipboard content"
 msgstr "编辑剪贴板内容"
 
@@ -774,13 +778,16 @@ msgstr "百分比"
 msgid "Line shape"
 msgstr "线形"
 
+#. Context: this is the name of a line shape
 #. Default values
 msgid "Round"
 msgstr "圆形"
 
+#. Context: this is the name of a line shape
 msgid "Thin"
 msgstr "窄"
 
+#. Context: this is the name of a line shape
 msgid "Square"
 msgstr "方形"
 
@@ -842,17 +849,37 @@ msgstr "垂直翻转"
 msgid "Color gradient"
 msgstr "颜色渐变"
 
+#. Context: title for the list of the possible painting algorithms.
 msgid "Behavior"
 msgstr "行为"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 msgid "Encircle and fill"
 msgstr "包围并填充"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 msgid "Erase and replace"
 msgstr "擦除并替换"
 
-msgid "Clipping"
-msgstr "剪裁"
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#, fuzzy
+msgid "Entire image"
+msgstr "新图像"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#, fuzzy
+msgid "Remove color"
+msgstr "原始来源的颜色"
 
 msgid "Artificial smoothness"
 msgstr ""
@@ -958,6 +985,7 @@ msgstr "直线"
 msgid "Line options"
 msgstr "直线选项"
 
+#. Context: the name of a tool to fill an area of one color with an other
 msgid "Paint"
 msgstr "笔刷"
 
@@ -966,6 +994,10 @@ msgstr "绘画选项"
 
 msgid "Click on an area to replace its color by transparency"
 msgstr "单击一个区域以用透明色替换其颜色"
+
+#, fuzzy
+msgid "Click on the canvas to entirely paint it"
+msgstr "单击形状的第一个节点以将其关闭。"
 
 msgid "Polygon"
 msgstr "多边形"
@@ -1025,3 +1057,6 @@ msgstr "拉伸选区"
 
 msgid "Scaling the canvas"
 msgstr "拉伸画布"
+
+#~ msgid "Clipping"
+#~ msgstr "剪裁"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-28 00:27+0200\n"
+"POT-Creation-Date: 2020-10-31 17:06+0100\n"
 "PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -519,15 +519,19 @@ msgstr "Anuluj"
 msgid "Create"
 msgstr "Utwórz"
 
+#. Description of a command line option
 msgid "Show the app version"
 msgstr "Pokaż wersję aplikacji"
 
+#. Description of a command line option
 msgid "Open a new window"
 msgstr "Otwórz w nowym oknie"
 
+#. Description of a command line option
 msgid "Open a new tab"
 msgstr "Otwórz w nowej zakładce"
 
+#. Description of a command line option
 msgid "Edit the clipboard content"
 msgstr "Edytuj zawartość schowka"
 
@@ -782,13 +786,16 @@ msgstr "procent"
 msgid "Line shape"
 msgstr "Kształt linii"
 
+#. Context: this is the name of a line shape
 #. Default values
 msgid "Round"
 msgstr "Okrągły"
 
+#. Context: this is the name of a line shape
 msgid "Thin"
 msgstr "Cienki"
 
+#. Context: this is the name of a line shape
 msgid "Square"
 msgstr "Kwadratowy"
 
@@ -848,17 +855,37 @@ msgstr "Odbij pionowo"
 msgid "Color gradient"
 msgstr "Gradient koloru"
 
+#. Context: title for the list of the possible painting algorithms.
 msgid "Behavior"
 msgstr "Zachowanie"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 msgid "Encircle and fill"
 msgstr "Zakreśl i wypełnij"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 msgid "Erase and replace"
 msgstr "Wymaż i zamień"
 
-msgid "Clipping"
-msgstr "Wycinek"
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#, fuzzy
+msgid "Entire image"
+msgstr "Nowe obrazy"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#, fuzzy
+msgid "Remove color"
+msgstr "Kolor źródłowy"
 
 msgid "Artificial smoothness"
 msgstr "Sztuczne wygładzenie"
@@ -962,6 +989,7 @@ msgstr "Linia"
 msgid "Line options"
 msgstr "Opcje linii"
 
+#. Context: the name of a tool to fill an area of one color with an other
 msgid "Paint"
 msgstr "Malowanie"
 
@@ -970,6 +998,10 @@ msgstr "Opcje malowania"
 
 msgid "Click on an area to replace its color by transparency"
 msgstr "Kliknij obszar, aby zastąpić kolor przezroczystością"
+
+#, fuzzy
+msgid "Click on the canvas to entirely paint it"
+msgstr "Kliknij pierwszy punkt kształtu, aby zakończyć."
 
 msgid "Polygon"
 msgstr "Wielokąt"
@@ -1029,3 +1061,6 @@ msgstr "Skalowanie zaznaczenia"
 
 msgid "Scaling the canvas"
 msgstr "Skalowanie płótna"
+
+#~ msgid "Clipping"
+#~ msgstr "Wycinek"

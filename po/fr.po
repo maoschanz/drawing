@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-27 23:50+0200\n"
-"PO-Revision-Date: 2020-02-24 23:17+0100\n"
+"POT-Creation-Date: 2020-10-31 17:06+0100\n"
+"PO-Revision-Date: 2020-10-31 17:06+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
-"Language-Team: French <none>\n"
+"Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 msgid "Drawing"
 msgstr "Dessin"
@@ -558,15 +558,19 @@ msgstr "Annuler"
 msgid "Create"
 msgstr "Créer"
 
+#. Description of a command line option
 msgid "Show the app version"
 msgstr "Afficher la version de l'application"
 
+#. Description of a command line option
 msgid "Open a new window"
 msgstr "Ouvrir une nouvelle fenêtre"
 
+#. Description of a command line option
 msgid "Open a new tab"
 msgstr "Ouvrir un nouvel onglet"
 
+#. Description of a command line option
 msgid "Edit the clipboard content"
 msgstr "Éditer le contenu du presse-papier"
 
@@ -825,13 +829,16 @@ msgstr "pourcents"
 msgid "Line shape"
 msgstr "Forme de mine"
 
+#. Context: this is the name of a line shape
 #. Default values
 msgid "Round"
 msgstr "Ronde"
 
+#. Context: this is the name of a line shape
 msgid "Thin"
 msgstr "Fine"
 
+#. Context: this is the name of a line shape
 msgid "Square"
 msgstr "Carrée"
 
@@ -889,17 +896,35 @@ msgstr "Retourner verticalement"
 msgid "Color gradient"
 msgstr "Dégradé"
 
+#. Context: title for the list of the possible painting algorithms.
 msgid "Behavior"
 msgstr "Comportement"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 msgid "Encircle and fill"
 msgstr "Entourer et remplir"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 msgid "Erase and replace"
 msgstr "Effacer et remplacer"
 
-msgid "Clipping"
-msgstr "Détourage"
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+msgid "Entire image"
+msgstr "Image entière"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+msgid "Remove color"
+msgstr "Supprimer la couleur"
 
 msgid "Artificial smoothness"
 msgstr "Lissage artificiel"
@@ -997,6 +1022,7 @@ msgstr "Trait"
 msgid "Line options"
 msgstr "Options de la ligne"
 
+#. Context: the name of a tool to fill an area of one color with an other
 msgid "Paint"
 msgstr "Peinture"
 
@@ -1005,6 +1031,9 @@ msgstr "Options de peinture"
 
 msgid "Click on an area to replace its color by transparency"
 msgstr "Cliquez sur une zone pour remplacer sa couleur par de la transparence"
+
+msgid "Click on the canvas to entirely paint it"
+msgstr "Cliquez sur le canevas pour le peindre entièrement"
 
 msgid "Polygon"
 msgstr "Polygone"
@@ -1062,3 +1091,6 @@ msgstr "Redimensionner la sélection"
 
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
+
+#~ msgid "Clipping"
+#~ msgstr "Détourage"
