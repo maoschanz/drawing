@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 02:08+0100\n"
+"POT-Creation-Date: 2020-10-31 03:57+0100\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -846,10 +846,10 @@ msgstr "Nespremljena datoteka"
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -1028,7 +1028,12 @@ msgstr "Gumica"
 msgid "Highlighter"
 msgstr "Isticanje"
 
-#: src/preferences.py
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
 msgstr ""
 
@@ -1426,8 +1431,8 @@ msgstr "Glavna boja"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Sporedna boja"
 
@@ -1436,8 +1441,8 @@ msgid "Tool size"
 msgstr "Veličina alata"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-filters.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Pretprikaz"
 
@@ -1511,7 +1516,7 @@ msgid "Veil"
 msgstr "Veo"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
+#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
 msgstr "Dodaj prozirnost"
 
@@ -1616,6 +1621,22 @@ msgstr "Vodoravno izobličenje"
 msgid "Vertical deformation"
 msgstr "Okomito izobličenje"
 
+#: src/tools/ui/selection.ui
+#, fuzzy
+msgid "Transform"
+msgstr "Prozirno"
+
+#: src/tools/ui/selection.ui
+msgid "Flip"
+msgstr "Preokreni"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Ukosi"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1631,8 +1652,10 @@ msgstr "Zaobljeno"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Kvardatično"
 
@@ -1679,10 +1702,20 @@ msgstr "Koristi crtice"
 msgid "Alternated dashes"
 msgstr ""
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
+#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Zaglađivanje rubova"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Pravokutna pozadina"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1724,6 +1757,43 @@ msgstr "Otvorene slike"
 #, fuzzy
 msgid "Remove color"
 msgstr "Neobrađena izvorna boja"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "Krug"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 #, fuzzy
@@ -1782,10 +1852,6 @@ msgstr "Mnogokut"
 msgid "Free shape"
 msgstr "Prostoručni oblik"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Circle"
-msgstr "Krug"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Zatvori oblik"
@@ -1836,22 +1902,6 @@ msgstr "Kontura"
 msgid "Rectangle background"
 msgstr "Pravokutna pozadina"
 
-#: src/tools/ui/selection.ui
-#, fuzzy
-msgid "Transform"
-msgstr "Prozirno"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Preokreni"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Ukosi"
-
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Krivulja"
@@ -1872,15 +1922,6 @@ msgstr "Strelica"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Iscrtkano"
-
-#: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
-msgid "Dark text on light background"
-msgstr "Pravokutna pozadina"
-
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -1915,6 +1956,16 @@ msgstr "Olovka"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Opcije za olovku"
+
+#: src/tools/classic_tools/tool_points.py
+#, fuzzy
+msgid "Points options"
+msgstr "Opcije za font"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -1980,6 +2031,10 @@ msgstr "Skaliranje odabira"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Skaliranje platna"
+
+#, fuzzy
+#~ msgid "Add semi-transparency"
+#~ msgstr "Dodaj prozirnost"
 
 #~ msgid "Thin"
 #~ msgstr "Tanko"

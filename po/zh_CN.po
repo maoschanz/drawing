@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 02:08+0100\n"
+"POT-Creation-Date: 2020-10-31 03:57+0100\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -829,10 +829,10 @@ msgstr "未保存的文件"
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "取消"
 
@@ -1006,7 +1006,12 @@ msgstr "橡皮擦"
 msgid "Highlighter"
 msgstr "荧光笔"
 
-#: src/preferences.py
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
 msgstr ""
 
@@ -1402,8 +1407,8 @@ msgstr "主颜色"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "副颜色"
 
@@ -1412,8 +1417,8 @@ msgid "Tool size"
 msgstr "工具大小"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-filters.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "预览"
 
@@ -1487,7 +1492,7 @@ msgid "Veil"
 msgstr "面纱"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
+#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
 msgstr "增加透明度"
 
@@ -1592,6 +1597,22 @@ msgstr "水平变形"
 msgid "Vertical deformation"
 msgstr "垂直变形"
 
+#: src/tools/ui/selection.ui
+#, fuzzy
+msgid "Transform"
+msgstr "透明"
+
+#: src/tools/ui/selection.ui
+msgid "Flip"
+msgstr "翻转"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "偏斜"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1607,8 +1628,10 @@ msgstr "圆形"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "方形"
 
@@ -1655,10 +1678,20 @@ msgstr "使用虚线"
 msgid "Alternated dashes"
 msgstr ""
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
+#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "抗锯齿"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "矩形背景"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1700,6 +1733,43 @@ msgstr "已打开的图像"
 #, fuzzy
 msgid "Remove color"
 msgstr "原始来源的颜色"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "圆"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1754,10 +1824,6 @@ msgstr "多边形"
 msgid "Free shape"
 msgstr "自由形状"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Circle"
-msgstr "圆"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "关闭图形"
@@ -1808,22 +1874,6 @@ msgstr "大纲"
 msgid "Rectangle background"
 msgstr "矩形背景"
 
-#: src/tools/ui/selection.ui
-#, fuzzy
-msgid "Transform"
-msgstr "透明"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "翻转"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "偏斜"
-
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "曲线"
@@ -1844,15 +1894,6 @@ msgstr "箭头"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "虚线"
-
-#: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
-msgid "Dark text on light background"
-msgstr "矩形背景"
-
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -1887,6 +1928,16 @@ msgstr "铅笔"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "铅笔选项"
+
+#: src/tools/classic_tools/tool_points.py
+#, fuzzy
+msgid "Points options"
+msgstr "字体选项"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -1952,6 +2003,10 @@ msgstr "拉伸选区"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "拉伸画布"
+
+#, fuzzy
+#~ msgid "Add semi-transparency"
+#~ msgstr "增加透明度"
 
 #~ msgid "Thin"
 #~ msgstr "窄"

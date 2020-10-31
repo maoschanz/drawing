@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 02:08+0100\n"
+"POT-Creation-Date: 2020-10-31 03:57+0100\n"
 "PO-Revision-Date: 2020-10-18 18:23+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -852,10 +852,10 @@ msgstr "Niet-opgeslagen bestand"
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1033,7 +1033,12 @@ msgstr "Gum"
 msgid "Highlighter"
 msgstr "Markering"
 
-#: src/preferences.py
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
 msgstr "Punten"
 
@@ -1433,8 +1438,8 @@ msgstr "Hoofdkleur"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Alternatieve kleur"
 
@@ -1443,8 +1448,8 @@ msgid "Tool size"
 msgstr "Gereedschapsgrootte"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-filters.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Voorvertoning"
 
@@ -1518,7 +1523,7 @@ msgid "Veil"
 msgstr "Sluier"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
+#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
 msgstr "Doorzichtigheid toevoegen"
 
@@ -1623,6 +1628,21 @@ msgstr "Horizontaal verloop"
 msgid "Vertical deformation"
 msgstr "Verticaal verloop"
 
+#: src/tools/ui/selection.ui
+msgid "Transform"
+msgstr "Transformeren"
+
+#: src/tools/ui/selection.ui
+msgid "Flip"
+msgstr "Omdraaien"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Scheefheid"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1638,8 +1658,10 @@ msgstr "Rond"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Vierkant"
 
@@ -1686,10 +1708,19 @@ msgstr "Streepjes gebruiken"
 msgid "Alternated dashes"
 msgstr ""
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
+#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Anti-kartelvorming"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Donkere tekst op lichte achtergrond"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Lichte tekst op donkere achtergrond"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1729,6 +1760,43 @@ msgstr "Gehele afbeelding"
 #: src/tools/ui/tool-paint.ui
 msgid "Remove color"
 msgstr "Kleur verwijderen"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "Cirkel"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1783,10 +1851,6 @@ msgstr "Polygoon"
 msgid "Free shape"
 msgstr "Vrije vorm"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Circle"
-msgstr "Cirkel"
-
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
 msgstr "Vorm sluiten"
@@ -1836,21 +1900,6 @@ msgstr "Contour"
 msgid "Rectangle background"
 msgstr "Rechthoekige achtergrond"
 
-#: src/tools/ui/selection.ui
-msgid "Transform"
-msgstr "Transformeren"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Omdraaien"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Scheefheid"
-
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Boog"
@@ -1871,14 +1920,6 @@ msgstr "Pijl"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
 msgstr "Gestreept"
-
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Dark text on light background"
-msgstr "Donkere tekst op lichte achtergrond"
-
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr "Lichte tekst op donkere achtergrond"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -1912,6 +1953,16 @@ msgstr "Potlood"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Potloodopties"
+
+#: src/tools/classic_tools/tool_points.py
+#, fuzzy
+msgid "Points options"
+msgstr "Lettertype-opties"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -1977,6 +2028,10 @@ msgstr "Bezig met wijzigen van selectiegrootte"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
+
+#, fuzzy
+#~ msgid "Add semi-transparency"
+#~ msgstr "Doorzichtigheid toevoegen"
 
 #~ msgid "Thin"
 #~ msgstr "Dun"
