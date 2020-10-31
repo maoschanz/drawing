@@ -28,6 +28,7 @@ configure_file(
 drawing_sources = [
 	'__init__.py',
 	'main.py',
+	'gi_composites.py',
 
 	'window.py',
 	'deco_manager.py',
