@@ -1,7 +1,7 @@
 
 project(
 	'drawing',
-	version: '0.6.2+',
+	version: '0.7.0+',
 	meson_version: '>= 0.50.0',
 )
 app_uuid = 'com.github.maoschanz.drawing'
@@ -41,6 +41,9 @@ foreach module, required_version : python3_tested_modules
 		message('python3 module "' + module + '" looks fine.')
 	endif
 endforeach
+
+# TODO options to build it without gettext. If gettext, validate the dep is here
+# TODO options to build it without appdata. If appdata, validate the dep is here
 
 ################################################################################
 
