@@ -29,7 +29,21 @@ class DrMotionBehavior():
 class NoPixbufNoChangeException(Exception):
 	def __init__(self, pb_name):
 		# Context: an error message
-		super().__init__(_("New pixbuf empty, no change applied to %s") % pb_name)
+		message = _("New pixbuf empty, no change applied to %s")
+		super().__init__(message % pb_name)
+
+class InvalidFileFormatException(Exception):
+	def __init__(self, initial_message, fpath):
+		self.message = initial_message
+		cpt = 0
+		with open(fpath, "rb") as f:
+			riff_bytes = f.read(4)
+			size_bytes = f.read(4)
+			webp_bytes = f.read(4)
+			if riff_bytes == b'RIFF' and webp_bytes == b'WEBP':
+				# Context: an error message, %s is a file path
+				self.message = _("Despite its name, %s is a WEBP file.") % fpath
+		super().__init__(self.message)
 
 ################################################################################
 
@@ -213,9 +227,15 @@ class DrImage(Gtk.Box):
 		self.remember_current_state()
 
 	def try_load_file(self, gfile):
-		self.gfile = gfile
-		pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-		self.try_load_pixbuf(pixbuf)
+		try:
+			self.gfile = gfile
+			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+			self.try_load_pixbuf(pixbuf)
+		except Exception as ex:
+			ex = InvalidFileFormatException(ex.message, gfile.get_path())
+			self.window.prompt_message(True, ex.message)
+			raise ex # An exception must be rethrown to avoid the execution of
+			# the method that hides the message.
 
 	############################################################################
 	# Image title and tab management ###########################################
