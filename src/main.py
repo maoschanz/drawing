@@ -47,6 +47,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname(APP_ID)
 		self._version = version
 		self.has_tools_in_menubar = False
+		self._runs_in_sandbox = False
 
 		self.connect('startup', self.on_startup)
 		self.register(None)
@@ -306,19 +307,31 @@ class Application(Gtk.Application):
 
 	def _get_valid_file(self, app, path):
 		"""Creates a GioFile object if the path corresponds to an image."""
+		err = _("Error opening this file.") + ' '
 		try:
 			f = app.create_file_for_arg(path)
 			if 'image/' in f.query_info('standard::*', \
 				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
 				return f
 			else:
-				return None # mainly when it's /app/bin/drawing
+				if not self._runs_in_sandbox and path == '/app/bin/drawing':
+					self._runs_in_sandbox = True
+					# when it's /app/bin/drawing, the situation is normal, and
+					# it tells the app it's running in a flatpak sandbox
+				else:
+					# This is an error message, %s is a file path
+					print(err + _("%s isn't an image.") % path)
+				return None
 		except:
-			err = _("Error opening this file. Did you mean %s ?")
-			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-			# TODO can happen without flatpak
-			command = command.format(APP_ID, path)
-			print(err % command)
+			if self._runs_in_sandbox:
+				# This is an error message, %s is a better command suggestion
+				err = err + _("Did you mean %s ?")
+				command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+				command = command.format(APP_ID, path)
+				print(err % command)
+			else:
+				# This is an error message, %s is a file path
+				print(err + _("%s doesn't exist.") % path)
 			return None
 
 	############################################################################
