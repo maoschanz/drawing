@@ -87,16 +87,16 @@ class DrWindow(Gtk.ApplicationWindow):
 	info_action = Gtk.Template.Child()
 	notebook = Gtk.Template.Child()
 	bottom_panes_box = Gtk.Template.Child()
+	unfullscreen_btn = Gtk.Template.Child()
+	bottom_meta_box = Gtk.Template.Child()
 	tools_scrollable_box = Gtk.Template.Child()
 	tools_nonscrollable_box = Gtk.Template.Child()
-	fullscreen_btn = Gtk.Template.Child()
-	fullscreen_icon = Gtk.Template.Child()
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
 
-		self.fullscreened = False
+		self._controls_hidden = False
 		self.pointer_to_current_page = None # this ridiculous hack allows to
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
@@ -594,32 +594,9 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
-		self.set_fullscreen_menu()
-
-	def set_fullscreen_menu(self):
-		builder = Gtk.Builder.new_from_resource(UI_PATH + 'win-menus.ui')
-		fullscreen_menu = builder.get_object('fullscreen-menu')
-
-		tabs_list = self._get_menubar_item([[True, 2], [False, 1]])
-		fullscreen_menu.append_section(_("Opened images"), tabs_list)
-
-		classic_tools_section = self._get_menubar_tools_section(1)
-		section = fullscreen_menu.get_item_link(3, Gio.MENU_LINK_SECTION)
-		section.prepend_section(None, classic_tools_section)
-
-		selection_tools_section = self._get_menubar_tools_section(0)
-		transform_tools_section = self._get_menubar_tools_section(2)
-		submenu = section.get_item_link(1, Gio.MENU_LINK_SUBMENU)
-		submenu.append_section(None, selection_tools_section)
-		submenu.append_section(None, transform_tools_section)
-
-		self.fullscreen_btn.set_menu_model(fullscreen_menu)
 
 	def action_main_menu(self, *args):
-		if self.fullscreened:
-			self.fullscreen_btn.set_active(not self.fullscreen_btn.get_active())
-		else:
-			self._decorations.toggle_menu()
+		self._decorations.toggle_menu()
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
@@ -664,7 +641,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_label(action_label)
 
 	def update_tabs_visibility(self):
-		should_show = (self.notebook.get_n_pages() > 1) and not self.fullscreened
+		should_show = (self.notebook.get_n_pages() > 1) and not self._controls_hidden
 		self.notebook.set_show_tabs(should_show)
 
 	############################################################################
@@ -766,7 +743,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.active_tool().on_tool_selected()
-		self._update_fullscreen_icon()
 		self._update_bottom_pane()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
@@ -790,13 +766,6 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.prompt_message(True, _("Error: pane invalid for '%s', " + \
 			                   "please report this bug.") % self.active_tool_id)
 			print(e)
-
-	def _update_fullscreen_icon(self):
-		"""Show the icon of the currently active tool on the button managing
-		fullscreen's main menu."""
-		name = self.active_tool().icon_name
-		img = Gtk.Image.new_from_icon_name(name, Gtk.IconSize.BUTTON)
-		self.fullscreen_btn.set_image(img)
 
 	def active_tool(self):
 		return self.tools[self.active_tool_id]
