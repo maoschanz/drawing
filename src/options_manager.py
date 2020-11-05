@@ -160,9 +160,6 @@ class DrOptionsManager():
 		else:
 			self.window.minimap.set_relative_to(self.window.bottom_panes_box)
 
-	def on_middle_click(self):
-		self.get_active_pane().middle_click_action()
-
 	############################################################################
 	# Methods specific to the optionsbar for classic tools #####################
 

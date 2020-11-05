@@ -426,6 +426,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
+		self.add_action_boolean('hide_controls', False, self.action_hide_controls)
+		self.app.set_accels_for_action('win.hide_controls', ['F8'])
+		self.lookup_action('hide_controls').set_enabled(False)
+
 		self.add_action_boolean('fullscreen', False, self.action_fullscreen)
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
@@ -657,23 +661,42 @@ class DrWindow(Gtk.ApplicationWindow):
 		# XXX maybe track the window widget's 'window-state-event' to use this
 		# https://lazka.github.io/pgi-docs/Gdk-3.0/flags.html#Gdk.WindowState.FULLSCREEN
 		shall_fullscreen = args[1]
-		self._set_controls_hidden(shall_fullscreen)
 		if shall_fullscreen:
 			self.fullscreen()
+			self.prompt_message(True, _("Press F11 to exit fullscreen.") + \
+			         " " + _("Press middle-click or F8 to show/hide controls."))
 		else:
 			self.unfullscreen()
+		self._set_controls_hidden(shall_fullscreen)
+		self.lookup_action('hide_controls').set_enabled(shall_fullscreen)
 		self.unfullscreen_btn.set_visible(shall_fullscreen)
 		args[0].set_state(GLib.Variant.new_boolean(shall_fullscreen))
 
-	def _set_controls_hidden(self, state):
-		self._controls_hidden = state # XXX utiliser un state d'action
-		self.tools_flowbox.set_visible(not state)
+	def action_hide_controls(self, *args):
+		"""Boolean action controlling the visibility of the UI elements such as
+		the tools list, the bottom pane, the menubar/toolbar if any. This can
+		only (in theory) be used while in fullscreen."""
+		controls_hidden = args[1]
+		self.tools_flowbox.set_visible(not controls_hidden)
 		if 't' in self.deco_layout:
-			self.toolbar_box.set_visible(not state)
+			self.toolbar_box.set_visible(not controls_hidden)
 		if 'm' in self.deco_layout:
-			self.set_show_menubar(not state)
+			self.set_show_menubar(not controls_hidden)
 		self.update_tabs_visibility()
-		self.bottom_meta_box.set_visible(not state)
+		self.bottom_meta_box.set_visible(not controls_hidden)
+		args[0].set_state(GLib.Variant.new_boolean(controls_hidden))
+
+	def _set_controls_hidden(self, state):
+		hc_action = self.lookup_action('hide_controls')
+		hc_action.change_state(GLib.Variant.new_boolean(state))
+
+	def on_middle_click(self):
+		is_fullscreened = self.lookup_action('fullscreen').get_state()
+		if is_fullscreened:
+			hc_action = self.lookup_action('hide_controls')
+			self._set_controls_hidden(not hc_action.get_state())
+		else:
+			self.options_manager.get_active_pane().middle_click_action()
 
 	############################################################################
 	# SIDE PANE (TOOLS) ########################################################

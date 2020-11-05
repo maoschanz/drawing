@@ -434,7 +434,7 @@ class DrImage(Gtk.Box):
 		if self.motion_behavior == DrMotionBehavior.SLIP:
 			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
 			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
-				self.window.options_manager.on_middle_click()
+				self.window.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return
 		self.motion_behavior = DrMotionBehavior.HOVER
