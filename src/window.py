@@ -421,14 +421,17 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
-		self.add_action_boolean('show_labels', self._settings.get_boolean( \
-		                     'show-labels'), self.on_show_labels_action_changed)
+
+		show_labels = self._settings.get_boolean('show-labels')
+		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
+
+		self.add_action_boolean('fullscreen', False, self.action_fullscreen)
+		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
+		self.add_action_simple('unfullscreen', self.action_unfullscreen, None)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -668,21 +671,32 @@ class DrWindow(Gtk.ApplicationWindow):
 	# FULLSCREEN ###############################################################
 
 	def action_unfullscreen(self, *args):
-		# TODO connect to signals instead
-		self.unfullscreen()
-		self.set_fullscreen_state(False)
+		"""Simple action, exiting fullscreen."""
+		fs_action = self.lookup_action('fullscreen')
+		fs_action.change_state(GLib.Variant.new_boolean(False))
 
 	def action_fullscreen(self, *args):
-		# TODO connect to signals instead?
-		self.fullscreen()
-		self.set_fullscreen_state(True)
+		"""Boolean action, toggling fullscreen."""
+		# XXX maybe track the window widget's 'window-state-event' to use this
+		# https://lazka.github.io/pgi-docs/Gdk-3.0/flags.html#Gdk.WindowState.FULLSCREEN
+		shall_fullscreen = args[1]
+		self._set_controls_hidden(shall_fullscreen)
+		if shall_fullscreen:
+			self.fullscreen()
+		else:
+			self.unfullscreen()
+		self.unfullscreen_btn.set_visible(shall_fullscreen)
+		args[0].set_state(GLib.Variant.new_boolean(shall_fullscreen))
 
-	def set_fullscreen_state(self, state):
-		self.fullscreened = state
+	def _set_controls_hidden(self, state):
+		self._controls_hidden = state # XXX utiliser un state d'action
 		self.tools_flowbox.set_visible(not state)
-		self.toolbar_box.set_visible(not state) # XXX not if empty!!
-		self.fullscreen_btn.set_visible(state)
+		if 't' in self.deco_layout:
+			self.toolbar_box.set_visible(not state)
+		if 'm' in self.deco_layout:
+			self.set_show_menubar(not state)
 		self.update_tabs_visibility()
+		self.bottom_meta_box.set_visible(not state)
 
 	############################################################################
 	# SIDE PANE (TOOLS) ########################################################
@@ -716,7 +730,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
-	def on_show_labels_action_changed(self, *args):
+	def action_show_labels(self, *args):
 		show_labels = not args[0].get_state()
 		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
