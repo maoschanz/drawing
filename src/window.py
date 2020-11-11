@@ -466,7 +466,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
-		self.add_action_simple('to_clipboard', self.action_export_cb, None)
+		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
 		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
@@ -480,7 +480,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
-		self.add_action_simple('apply_transform_tool', self.action_apply_transformation, None)
+		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -1052,7 +1052,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def force_selection(self, *args):
 		self.get_selection_tool().row.set_active(True) # XXX not enable_tool?
 
-	def action_apply_transformation(self, *args):
+	def action_apply_transform(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	############################################################################

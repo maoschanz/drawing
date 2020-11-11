@@ -117,6 +117,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">Copy to clipboard</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;c</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Close the active image</property>
                 <property name="accelerator">&lt;Primary&gt;w</property>
               </object>
@@ -183,6 +190,16 @@
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;Down</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Apply a transformation</property>
+                <property name="accelerator">&lt;Primary&gt;Return</property>
+              </object>
+            </child>
+            <!-- The "cancel transformation" button is linked to a -->
+            <!-- "force_selection" action so it wouldn't be pertinent to add -->
+            <!-- a shortcut for it in my opinion -->
           </object>
         </child>
         <child>

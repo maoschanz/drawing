@@ -93,6 +93,9 @@ class AbstractAbstractTool():
 	def build_bottom_pane(self):
 		return None
 
+	def on_apply_temp_pixbuf_tool_operation(self, *args):
+		pass # implemented only by transform tools
+
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
