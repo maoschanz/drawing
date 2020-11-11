@@ -52,7 +52,7 @@ class AbstractAbstractTool():
 		self.try_build_pane()
 
 	############################################################################
-	# Actions for tool's options ###############################################
+	# Utilities managing actions for tool's options ############################
 
 	def add_tool_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
@@ -82,10 +82,13 @@ class AbstractAbstractTool():
 		return self.window._settings
 
 	############################################################################
-	# UI #######################################################################
+	# Various utilities ########################################################
 
 	def show_error(self, error_text):
 		self.window.prompt_message(True, error_text)
+
+	############################################################################
+	# Bottom pane and menubar integration ######################################
 
 	def try_build_pane(self):
 		pass
@@ -95,6 +98,12 @@ class AbstractAbstractTool():
 
 	def on_apply_temp_pixbuf_tool_operation(self, *args):
 		pass # implemented only by transform tools
+
+	def get_options_label(self):
+		return _("No options")
+
+	def adapt_to_window_size(self, available_width):
+		pass
 
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
@@ -110,8 +119,8 @@ class AbstractAbstractTool():
 	def get_edition_status(self):
 		return self.label
 
-	def get_options_label(self):
-		return _("No options")
+	############################################################################
+	# Side pane ################################################################
 
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method stores it as
@@ -147,9 +156,6 @@ class AbstractAbstractTool():
 			size = Gtk.IconSize.SMALL_TOOLBAR
 		image.set_from_icon_name(self.icon_name, size)
 
-	def adapt_to_window_size(self, available_width):
-		pass
-
 	############################################################################
 	# Activation or not ########################################################
 
@@ -167,15 +173,15 @@ class AbstractAbstractTool():
 		self.non_destructive_show_modif()
 		self._ongoing_operation = False
 
-	def has_ongoing_operation(self):
-		return self._ongoing_operation
-
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 
 	############################################################################
 	# History ##################################################################
+
+	def has_ongoing_operation(self):
+		return self._ongoing_operation
 
 	def do_tool_operation(self, operation):
 		pass
