@@ -916,6 +916,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		cancel_id = dialog.set_action(_("Cancel"), None, False)
 		open_id = dialog.set_action(_("Open"), None, False)
 		import_id = dialog.set_action(_("Import"), None, True)
+
 		uris = data.get_uris()
 		if len(uris) == 1:
 			label = uris[0].split('/')[-1]
@@ -936,6 +937,7 @@ class DrWindow(Gtk.ApplicationWindow):
 				self.import_from_path(f.get_path())
 				return
 			elif result == open_id:
+
 				f = Gio.File.new_for_uri(uri)
 				self.build_new_tab(gfile=f)
 

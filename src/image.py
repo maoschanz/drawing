@@ -236,6 +236,7 @@ class DrImage(Gtk.Box):
 			self.window.prompt_message(True, ex.message)
 			raise ex # An exception must be rethrown to avoid the execution of
 			# the method that hides the message.
+		# FIXME but because of that, it's broken as shit afterwards
 
 	############################################################################
 	# Image title and tab management ###########################################

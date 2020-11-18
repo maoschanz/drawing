@@ -31,6 +31,8 @@ should also be compatible with the *Pinephone* and *Librem 5*
 You can install it from flathub.org using the instructions on
 [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
 
+[<img alt="" height="100" src="https://flathub.org/assets/badges/flathub-badge-en.png">](https://flathub.org/apps/details/com.github.maoschanz.drawing).
+
 ### Other packages available
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)

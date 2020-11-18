@@ -129,7 +129,7 @@ class AbstractAbstractTool():
 		                        draw_indicator=False, valign=Gtk.Align.CENTER, \
 		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		self.label_widget = Gtk.Label(label=self.label)
+		self.label_widget = Gtk.Label(label=self.label) #, use_underline=True)
 		if self.get_settings().get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
