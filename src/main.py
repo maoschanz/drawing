@@ -21,6 +21,7 @@ gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrWindow
 from .preferences import DrPrefsWindow
+from .utilities import utilities_gfile_is_image
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
@@ -309,20 +310,8 @@ class Application(Gtk.Application):
 		"""Creates a GioFile object if the path corresponds to an image."""
 		err = _("Error opening this file.") + ' '
 		try:
-			f = app.create_file_for_arg(path)
-			if 'image/' in f.query_info('standard::*', \
-				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
-				return f
-			else:
-				if not self._runs_in_sandbox and path == '/app/bin/drawing':
-					self._runs_in_sandbox = True
-					# when it's /app/bin/drawing, the situation is normal, and
-					# it tells the app it's running in a flatpak sandbox
-				else:
-					# This is an error message, %s is a file path
-					print(err + _("%s isn't an image.") % path)
-				return None
-		except:
+			gfile = app.create_file_for_arg(path)
+		except Exception as excp:
 			if self._runs_in_sandbox:
 				# This is an error message, %s is a better command suggestion
 				err = err + _("Did you mean %s ?")
@@ -332,6 +321,18 @@ class Application(Gtk.Application):
 			else:
 				# This is an error message, %s is a file path
 				print(err + _("%s doesn't exist.") % path)
+			return None
+
+		is_image, err = utilities_gfile_is_image(gfile, err)
+		if is_image:
+			return gfile
+		else:
+			if not self._runs_in_sandbox and path == '/app/bin/drawing':
+				self._runs_in_sandbox = True
+				# when it's /app/bin/drawing, the situation is normal, and
+				# it tells the app it's running in a flatpak sandbox
+			else:
+				print(err)
 			return None
 
 	############################################################################

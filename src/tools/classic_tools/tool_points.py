@@ -29,7 +29,7 @@ class ToolPoints(AbstractClassicTool):
 		# the elements of an image.
 		super().__init__('points', _("Points"), 'tool-points-symbolic', window)
 
-		self.add_tool_action_enum('points_type', 'circle')
+		self.add_tool_action_enum('points_type', 'cross')
 		self.add_tool_action_boolean('points_number', False)
 		self.add_tool_action_simple('points_reset_num', self._reset_number)
 		self.add_tool_action_simple('points_inc_num', self._increment_number)

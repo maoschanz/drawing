@@ -20,6 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
+from .utilities import InvalidFileFormatException
 
 class DrMotionBehavior():
 	HOVER = 0
@@ -31,19 +32,6 @@ class NoPixbufNoChangeException(Exception):
 		# Context: an error message
 		message = _("New pixbuf empty, no change applied to %s")
 		super().__init__(message % pb_name)
-
-class InvalidFileFormatException(Exception):
-	def __init__(self, initial_message, fpath):
-		self.message = initial_message
-		cpt = 0
-		with open(fpath, "rb") as f:
-			riff_bytes = f.read(4)
-			size_bytes = f.read(4)
-			webp_bytes = f.read(4)
-			if riff_bytes == b'RIFF' and webp_bytes == b'WEBP':
-				# Context: an error message, %s is a file path
-				self.message = _("Despite its name, %s is a WEBP file.") % fpath
-		super().__init__(self.message)
 
 ################################################################################
 
