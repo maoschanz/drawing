@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 ################################################################################
 
@@ -154,6 +154,19 @@ def _add_spinbutton_icon(spinbutton, icon, tooltip):
 	spinbutton.set_icon_from_icon_name(p, icon)
 	spinbutton.set_icon_tooltip_text(p, tooltip)
 	spinbutton.set_icon_sensitive(p, False)
+
+################################################################################
+
+def utilities_gfile_is_image(gfile, error_msg=""):
+	try:
+		infos = gfile.query_info('standard::*', Gio.FileQueryInfoFlags.NONE, None)
+		if 'image/' in infos.get_content_type():
+			return True, error_msg
+		else:
+			error_msg = error_msg + _("%s isn't an image.") % gfile.get_path()
+	except Exception as err:
+		error_msg = error_msg + err.message
+	return False, error_msg
 
 ################################################################################
 

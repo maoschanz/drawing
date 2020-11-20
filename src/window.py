@@ -54,6 +54,7 @@ from .deco_manager import DrDecoManagerMenubar, \
 from .saving_manager import DrSavingManager
 
 from .utilities import utilities_add_filechooser_filters
+from .utilities import utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -918,8 +919,19 @@ class DrWindow(Gtk.ApplicationWindow):
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()
-		if len(uris) == 1:
-			label = uris[0].split('/')[-1]
+		gfiles = []
+		for uri in uris:
+			gfile = Gio.File.new_for_uri(uri)
+			is_image, error_msg = utilities_gfile_is_image(gfile)
+			if is_image:
+				gfiles.append(gfile)
+			else:
+				self.prompt_message(True, error_msg)
+
+		if len(gfiles) == 0:
+			return
+		elif len(gfiles) == 1:
+			label = gfiles[0].get_path().split('/')[-1]
 		else:
 			# Context for translation:
 			# "What do you want to do with *these files*?"
@@ -929,17 +941,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		dialog.add_string(_("What do you want to do with %s?") % label)
 		result = dialog.run()
 		dialog.destroy()
-		for uri in uris:
-			# print(uri)
-			# valider l'URI TODO
-			if result == import_id:
-				f = Gio.File.new_for_uri(uri)
-				self.import_from_path(f.get_path())
-				return
-			elif result == open_id:
 
-				f = Gio.File.new_for_uri(uri)
+		if result == open_id:
+			for f in gfiles:
 				self.build_new_tab(gfile=f)
+		elif result == import_id:
+			self.import_from_path(gfiles[0].get_path())
 
 	def try_load_file(self, gfile):
 		if gfile is not None:
