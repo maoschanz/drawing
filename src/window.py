@@ -128,11 +128,11 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.build_new_tab(gfile=gfile)
 		else:
 			self.build_new_image()
-		self.init_tools()
+		self._init_tools()
 		self.connect_signals()
 		self.set_picture_title()
 
-	def init_tools(self):
+	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
 		disabled_tools = self._settings.get_strv('disabled-tools')
@@ -162,7 +162,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._load_tool('filters', ToolFilters, disabled_tools, dev)
 
 		# Side pane buttons for tools, and their menubar items if they don't
-		# exist yet
+		# exist yet (they're defined on the application level)
 		self._build_tool_rows()
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()

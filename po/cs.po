@@ -1,70 +1,68 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Language xx translations for drawing package.
+# Copyright (C) 2020 THE drawing'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Onno Giesmann <nutzer3105@gmail.com>, 2019-2020.
-# Milo Ivir <mail@milotype.de>, 2020.
+# Vojtěch Perník <v.pernik@centrum.cz>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 03:57+0100\n"
-"PO-Revision-Date: 2020-10-28 21:05+0100\n"
-"Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
-"Language-Team: German <--->\n"
-"Language: de\n"
+"POT-Creation-Date: 2020-10-31 20:22+0100\n"
+"PO-Revision-Date: 2020-11-13 16:21+0100\n"
+"Last-Translator: Vojtěch Perník <v.pernik@centrum.cz>\n"
+"Language-Team: Czech <@>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr "Zeichnung"
+msgstr "Kreslení"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
-msgstr "Einfaches Zeichenprogramm"
+msgstr "Jednoduchý kreslicí nástroj"
 
 #. Icon name, do not translate
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
+msgstr ""
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Skizze;Bleistift;Zeichnen;Malen;Zeichnung;"
+msgstr "Paint;Skica;Tužka;"
 
 #. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
-msgstr "Neues Fenster"
+msgstr "Nové okno"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "New Image"
-msgstr "Neues Bild"
+msgstr "Nový obrázek"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr "Bild in Zwischenablage bearbeiten"
+msgstr "Upravit obrázek v clipboardu"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "A drawing application for the GNOME desktop"
-msgstr "Ein Zeichenprogramm für den GNOME-Desktop"
+msgstr "Kreslicí aplikace pro prostředí GNOME"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"\"Zeichnung\" ist eine einfache Bildbearbeitung mit Unterstützung der "
-"Dateitypen PNG, JPEG und BMP."
+"\"Kreslení\" je jednoduchý editor obrázků, podporující typy PNG, JPEG a BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -73,796 +71,657 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, …"
 msgstr ""
-"Sie können Bilder erstellen oder bearbeiten mit Werkzeugen, wie Bleistift, "
-"Linien oder Kurven (mit verschiedenen Optionen), Auswahl (Ausschneiden/"
-"Kopieren/Einfügen/Ziehen/…), Formen (Rechteck, Kreis, Vieleck, …) "
-"Texteingabe, Größenänderung, Zuschneiden, Drehen, usw.…"
+"Umožňuje kreslit nebo upravovat obrázky pomocí nástrojů, jako je tužka, čára "
+"nebo oblouk (s různými možnostmi), výběr (vyjmutí/kopírování/vložení/"
+"přetažení/…), tvary (obdélník, kruh, mnohoúhelník,…), vkládání textu, změna "
+"velikosti, oříznutí, otočení,…"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.6.4 features several minor bug fixes, and various new translations."
 msgstr ""
-"Die Version 0.6.4 enthält mehrere kleine Fehlerbehebungen und verschiedene "
-"neue Übersetzungen."
+"Verze 0.6.4 obsahuje několik drobných oprav chyb a různé nové překlady."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The version 0.6.3 improves the option to draw arrows: several issues have "
-"been fixed and double-ended arrows are now possible."
-msgstr ""
-"Die Version 0.6.3 verbessert das Zeichnen von Pfeilen: verschiedene Fehler "
-"wurden behoben und es sind jetzt auch Pfeile mit zwei Spitzen möglich."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "There is also more options to draw using dashes."
-msgstr "Es sind jetzt auch weitere Optionen möglich, Striche zu zeichnen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version is finally compatible with older distributions (versions of "
-"GNOME libraries older than 3.30)."
-msgstr ""
-"Diese Version ist jetzt auch mit älteren Distributionen kompatibel "
-"(Versionen der GNOME-Bibliotheken älter als 3.30)"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.6.2 features several minor bug fixes, and various new translations."
-msgstr ""
-"Die Version 0.6.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
-"neue Übersetzungen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
-msgstr ""
-"Das Werkzeug 'Hervorheben' bietet jetzt die Option, hellen Text auf einem "
-"dunklen Hintergrund hervorzuheben."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When an image has been saved without its transparency, the app now suggests "
-"to reload the image from the disk. Also, the 'reload from disk' feature is "
-"now available with every possible window layout."
-msgstr ""
-"Wenn ein Bild ohne seine Transparenz gespeichert wurde, schlägt die "
-"Anwendung nun vor, das Bild noch mal vom Datenträger zu laden. Auch das "
-"Feature 'Vom Datenträger neu laden' ist jetzt verfügbar für alle Fenster-"
-"Layouts."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "An action to copy the whole image to clipboard has been added."
-msgstr ""
-"Eine Befehl zum Kopieren des gesamten Bildes in die Zwischenablage wurde "
-"hinzugefügt."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"It's now possible to remove transparency when saving PNG files too. And "
-"there are more color options to replace the transparent pixels."
-msgstr ""
-"Es ist jetzt auch möglich, die Transparenz von PNG-Bildern beim Speichern zu "
-"entfernen. Es gibt jetzt auch mehr Farboptionen, um die transparenten Pixel "
-"zu ersetzen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A new optional tool named \"Points\" has been added, it may help captioning "
-"pictures."
-msgstr ""
-"Ein neues optionales Werkzeug namens 'Punkte' wurde hinzugefügt. Es könnte "
-"hilfreich sein, Bilder zu beschriften."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr "Kleinere Fehler im Werkzeug 'Drehen' wurden behoben."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.6 is a major update, with various important changes. The app is "
-"more robust and has more tools:"
-msgstr ""
-"Version 0.6 ist ein großes Update mit verschiedenen wichtigen Änderungen. "
-"Die Anwendung ist jetzt stabiler und hat weitere Werkzeuge:"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Rectangle selection and freehand selection are now distinct tools, and the "
-"'rotate' tool now supports any angle and handles horizontal or vertical "
-"flipping."
-msgstr ""
-"Rechteckige Auswahl und Freihand-Auswahl sind nun getrennte Werkzeuge. Das "
-"Werkzeug 'Drehen' unterstützt nun jeden beliebigen Grad und kann horizontal "
-"und vertikal spiegeln."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
-"been merged into a single, more consistent 'shape' tool, along with 'rounded "
-"rectangle' and 'ellipse'. Their filling options now include various types of "
-"gradients."
-msgstr ""
-"Die verschiedenen Werkzeuge, die Rahmen erstellen (Kreis, Rechteck, Vieleck, "
-"…) sind nun zusammengefaßt zu einem einzelnen, besser passenden 'Rahmen'-"
-"Werkzeug, zusammen mit 'Abgerundetes Rechteck' und 'Elipse'. Ihre Füll-"
-"Optionen beinhalten jetzt mehrere Arten von Verläufen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The text tool can now write using most system fonts, thus allowing more "
-"complex characters to be used (e.g. Asian characters)."
-msgstr ""
-"Das Textwerkzeug kann jetzt die meisten Systemschriftarten verwenden. Das "
-"erlaubt komplexere Zeichen zu verwenden (z.B. Asiatische Zeichen)"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
-"with several types of blur, color inversion, pixelization, saturation and "
-"transparency."
-msgstr ""
-"Das Werkzeug 'Sättigung' wurde durch 'Filter' ersetzt, einem umfangreichen "
-"Werkzeug mit mehreren Arten Unschärfe, Farbumkehr, Verpixeln, Sättigung und "
-"Transparenz."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A fullscreen mode is now available."
-msgstr "Es gibt jetzt einen Vollbildmodus."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The most prominent new feature is the ability to zoom in (or out) on the "
-"image, using the minimap, the touchpad or the mouse wheel."
-msgstr ""
-"Die wohl markanteste neue Funktion ist die Möglichkeit, das Bild zu zoomen "
-"(kleiner oder größer). Das funktioniert über die Mini-Karte, Touchpad oder "
-"das Mausrad."
-
-# Copied & pasted into the translated-field to get 100% translated. Did no change to the source string.
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Romain F. T."
-msgstr "Romain F. T."
+msgstr ""
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr "Das Fenster mit dem Hauptmenü"
+msgstr "Okno a jeho hlavní menu"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr "Die Auswahl und die damit verknüpften Aktionen"
+msgstr "Výběr a akce s ním spojené"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr "Zoomen in verschiedenen Formen"
+msgstr "Přiblížení v různých tvarech"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr "Menü \"Neues Bild\" geöffnet"
+msgstr "Otevřeno menu „nový obrázek“"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Předvolby"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "Report a bug"
-msgstr "Einen Fehler melden"
+msgstr "Nahlásit chybu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
-msgstr "Tastenkürzel"
+msgstr "Zkratky"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Help"
-msgstr "Hilfe"
+msgstr "Nápověda"
 
 #: src/ui/app-menus.ui
 msgid "About"
-msgstr "Info zu"
+msgstr "O aplikaci"
 
 #: src/ui/app-menus.ui
 msgid "Quit"
-msgstr "Beenden"
+msgstr "Zavřít"
 
 #: src/ui/app-menus.ui
 msgid "_File"
-msgstr "_Datei"
+msgstr "_Soubor"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Open an image"
-msgstr "Ein Bild öffnen"
+msgstr "Otevřít obrázek"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Blank Image"
-msgstr "Neues leeres Bild"
+msgstr "Nový prázdný obrázek"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
 msgid "New Image With Custom Size"
-msgstr "Neues Bild mit eigener Größe"
+msgstr "Nový obrázek s vlastní velikostí"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Selection"
-msgstr "Neues Bild aus der Auswahl"
+msgstr "Nový obrázek z výběru"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
-msgstr "Neues Bild aus der Zwischenablage"
+msgstr "Nový obrázek z clipboardu"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr "Datei neu laden"
+msgstr "Znovu načíst soubor"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
-msgstr "Bildeigenschaften"
+msgstr "Vlastnosti obrázku"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui src/saving_manager.py
 msgid "Save"
-msgstr "Speichern"
+msgstr "Uložit"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
-msgstr "Speichern ohne Transparenz"
+msgstr "Uložit bez zachování průhlednosti"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr "Speichern als…"
+msgstr "Uložit jako..."
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
-msgstr "Exportieren als…"
+msgstr "Exportovat jako..."
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr "In Zwischenablage kopieren"
+msgstr "Kopírovat do clipboardu"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Print"
-msgstr "Drucken"
+msgstr "Tisknout"
 
 #: src/ui/app-menus.ui
 msgid "Close Image"
-msgstr "Bild schließen"
+msgstr "Zavřít obrázek"
 
 #: src/ui/app-menus.ui
 msgid "Close Window"
-msgstr "Fenster schließen"
+msgstr "Zavřít okno"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Quit all windows"
-msgstr "Alle Fenster schließen"
+msgstr "Zavřít všechna okna"
 
 #: src/ui/app-menus.ui
 msgid "_Edit"
-msgstr "_Bearbeiten"
+msgstr "_Upravit"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui src/deco_manager.py
 msgid "Undo"
-msgstr "Rückgängig"
+msgstr "Zpět"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui src/deco_manager.py
 msgid "Redo"
-msgstr "Wiederherstellen"
+msgstr "Dopředu"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Rebuild from history"
-msgstr "Wiederherstellen aus Verlauf"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Select all"
-msgstr "Alles auswählen"
+msgstr "Vybrat vše"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Cut"
-msgstr "Ausschneiden"
+msgstr "Vyjmout"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Copy"
-msgstr "Kopieren"
+msgstr "Kopírovat"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Smazat"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Paste"
-msgstr "Einfügen"
+msgstr "Vložit"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
-msgstr "Importieren"
+msgstr "Importovat"
 
 #: src/ui/app-menus.ui
 msgid "_View"
-msgstr "_Ansicht"
+msgstr "_Zobrazit"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
-msgstr "Vorschau anzeigen"
+msgstr "Zobrazit náhled"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Zoom"
+msgstr "Přiblížit"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
-msgstr "Optimaler Zoom"
+msgstr "Optimální přiblížení"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Zoom Out"
-msgstr "Herauszoomen"
+msgstr "Oddálit"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Original Zoom"
-msgstr "Original-Zoom"
+msgstr "Původní přiblížení"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Zoom In"
-msgstr "Hineinzoomen"
+msgstr "Přiblížit"
 
 #. Context: this submenu is about moving the view to the
 #. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
-msgstr "Position"
+msgstr "Pozice"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Left"
-msgstr "Nach links"
+msgstr "Vlevo"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Up"
-msgstr "Nach oben"
+msgstr "Nahoru"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Down"
-msgstr "Nach unten"
+msgstr "Dolů"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
-msgstr "Nach rechts"
+msgstr "Vpravo"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
-msgstr "Reiter links"
+msgstr "Záložka nalevo"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the right"
-msgstr "Reiter rechts"
+msgstr "Záložka napravo"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Refresh"
-msgstr "Aktualisieren"
+msgstr "Obnovit"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
-msgstr "Vollbildansicht"
+msgstr "Zapnout zobrazení na celou obrazovku"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Exit fullscreen"
-msgstr "Vollbildansicht schließen"
+msgstr "Ukončit zobrazení na celou obrazovku"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
-msgstr "_Farben"
+msgstr "_Barvy"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Hauptfarbe bearbeiten…"
+msgstr "Upravit hlavní barvu..."
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Zweitfarbe bearbeiten…"
+msgstr "Upravit vedlejší barvu..."
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
-msgstr "Farbwähler standardmäßig verwenden"
+msgstr "Ve výchozím nastavení použít editor barev"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
 msgid "Exchange colors"
-msgstr "Farben tauschen"
+msgstr "Otočit barvy"
 
 #: src/ui/app-menus.ui
 msgid "Color application mode"
-msgstr "Farbanwendungsmodus"
+msgstr "Barevný režim aplikace"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Normal"
-msgstr "Normal"
+msgstr "Normální"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Other modes"
-msgstr "Andere Modi"
+msgstr "Ostatní režimy"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Raw source color"
-msgstr "Quellfarbe"
+msgstr "Barva plátna"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
-msgstr "Hervorheben"
+msgstr "Zvýraznění"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Difference"
-msgstr "Gegensätzlich"
+msgstr "Rozdíl"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Photo-oriented modes"
-msgstr "Fotoorientierte Modi"
+msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue only"
-msgstr "Nur Farbton"
+msgstr "Pouze odstín"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Saturation only"
-msgstr "Nur Sättigung"
+msgstr "Pouze sytost"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Hue and saturation"
-msgstr "Farbton und Sättigung"
+msgstr "Odstín a sytost"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Luminosity only"
-msgstr "Nur Helligkeit"
+msgstr "Pouze zářivost"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
-msgstr "Benutze nicht die Farben, sondern …"
+msgstr "Nepoužívat barvy, ale ..."
 
 #. To translators: this is a verb
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Blur"
-msgstr "Verwischen"
+msgstr "Rozmazat"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Erase"
-msgstr "Löschen"
+msgstr "Vymazat"
 
 #: src/ui/app-menus.ui
 msgid "_Tools"
-msgstr "_Werkzeuge"
+msgstr "_Nástroje"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
-msgstr "Vorheriges Werkzeug"
+msgstr "Předchozí nástroj"
 
 #: src/ui/app-menus.ui
 msgid "Active tool"
-msgstr "Aktives Werkzeug"
+msgstr "Aktivní nástroj"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
 msgid "Show tools names"
-msgstr "Werkzeugnamen anzeigen"
+msgstr "Zobrazit názvy nástrojů"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr "Größere Breite"
+msgstr "Větší šířka"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
-msgstr "Kleinere Breite"
+msgstr "Menší šířka"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
-msgstr "_Optionen"
+msgstr "_Možnosti"
 
 #: src/ui/app-menus.ui
 msgid "_Help"
-msgstr "_Hilfe"
+msgstr "Ná_pověda"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr "Index"
+msgstr "Rejstřík"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
-msgstr "Grundlegende Hilfe"
+msgstr "Základní nápověda"
 
 #. Context: open the help page about classic tools
 #: src/ui/app-menus.ui
 msgid "Help about tools"
-msgstr "Hilfe zu Werkzeugen"
+msgstr "Nápověda k nástrojům"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 msgid "Canvas and selection"
-msgstr "Leinwand und Auswahl"
+msgstr "Plátno a výběr"
 
 #. Context: open the help page about the selection
 #: src/ui/app-menus.ui
 msgid "Help about selection"
-msgstr "Hilfe zur Auswahl"
+msgstr "Nápověda k výběru"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "Info zu Zeichnung"
+msgstr "O Kreslení"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
 msgid "Open"
-msgstr "Öffnen"
+msgstr "Otevřít"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr "Bild teilen"
+msgstr "Sdílet obrázek"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Width"
-msgstr "Breite"
+msgstr "Šířka"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Height"
-msgstr "Höhe"
+msgstr "Výška"
 
 #: src/ui/new-image-dialog.ui
 msgid "Color"
-msgstr "Farbe"
+msgstr "Barva"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
-msgstr "Diese Einstellungen standardmäßig verwenden"
+msgstr "Používat toto nastavení automaticky"
 
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr "100%"
+msgstr ""
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
 #: src/ui/properties.ui src/utilities.py
 msgid "pixels"
-msgstr "Pixel"
+msgstr "pixely"
 
 #: src/ui/properties.ui
 msgid "centimeters"
-msgstr "Zentimeter"
+msgstr "centimatry"
 
 #: src/ui/properties.ui
 msgid "inches"
-msgstr "Zoll"
+msgstr "palce"
 
 #: src/ui/preferences.ui
 msgid "Images"
-msgstr "Bilder"
+msgstr "Obrázky"
 
 #: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Tools"
-msgstr "Werkzeuge"
+msgstr "Nástroje"
 
 #: src/ui/preferences.ui
 msgid "Window"
-msgstr "Fenster"
+msgstr "Okno"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Close selection"
-msgstr "Auswahl schließen"
+msgstr "Zrušit výběr"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Unselect"
-msgstr "Abwählen"
+msgstr "Zrušit výběr"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/transform_tools/tool_crop.py
 msgid "Crop"
-msgstr "Zuschneiden"
+msgstr "Oříznout"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scale"
-msgstr "Skalieren"
+msgstr "Změnit velikost"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
-msgstr "Drehen"
+msgstr "Otočit"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Filters"
-msgstr "Filter"
+msgstr "Filtry"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
-msgstr "Als neues Bild öffnen"
+msgstr "Otevřít jako nový obrázek"
 
 #: src/ui/shortcuts.ui
 msgid "Keyboard Shortcuts"
-msgstr "Tastenkürzel"
+msgstr "Klávesové zkratky"
 
 #: src/ui/shortcuts.ui
 msgid "General"
-msgstr "Allgemein"
+msgstr "Obecné"
 
 #: src/ui/shortcuts.ui
 msgid "Main menu"
-msgstr "Hauptmenü"
+msgstr "Hlavní menu"
 
 #: src/ui/shortcuts.ui
 msgid "Enter fullscreen mode"
-msgstr "Vollbildansicht starten"
+msgstr "Zapnout zobrazení na celou obrazovku"
 
 #: src/ui/shortcuts.ui
 msgid "Exit fullscreen mode"
-msgstr "Vollbildansicht beenden"
+msgstr "Ukončit zobrazení na celou obrazovku"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
-msgstr "Bild"
+msgstr "Obrázek"
 
 #: src/ui/shortcuts.ui src/window.py
 msgid "Open a picture"
-msgstr "Ein Bild öffnen"
+msgstr "Otevřít obrázek"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
-msgstr "Bild von Festplatte neu laden"
+msgstr "Znovu načíst obrázek z disku"
 
 #: src/ui/shortcuts.ui src/saving_manager.py
 msgid "Save picture as…"
-msgstr "Bild speichern als…"
+msgstr "Uložit obrázek jako..."
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
-msgstr "Aktives Bild schließen"
+msgstr "Zavřít aktivní obrázek"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr "Verlauf"
+msgstr "Historie"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
-msgstr "Menü mit Optionen für Werkzeug öffnen"
+msgstr "Otevřít nástrojové menu"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
-msgstr "Zurück zum vorherigen Werkzeug"
+msgstr "Zpět k předchozímu nástroji"
 
 #: src/ui/shortcuts.ui
 msgid "Colors"
-msgstr "Farben"
+msgstr "Barvy"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
-msgstr "Bearbeiten der Hauptfarbe (Linksklick)"
+msgstr "Upravit hlavní barvu (kliknout levým tlačítkem)"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the secondary color (right click)"
-msgstr "Bearbeiten der Zweitfarbe (Rechtsklick)"
+msgstr "Upravit vedlejší barvu (kliknout pravým tlačítkem)"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
-msgstr "Auswahl"
+msgstr "Výběr"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Delete the selection"
-msgstr "Auswahl löschen"
+msgstr "Smazat výběr"
 
-# Will have to see this in the program to know the meaning.
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
-msgstr "Importieren einer Datei als Auswahl"
+msgstr "Importovat soubor jako výběr"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr "Reiter"
+msgstr "Záložky"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
-msgstr "Steuerung"
+msgstr "Navigace"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "Vorschau umschalten"
+msgstr "Přepnout náhled"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr "Touch-Gesten"
+msgstr "Dotyková gesta"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
-msgstr "Problembehandlung bei der Auswahl"
+msgstr "Odstranit potíže s výběrem"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
-msgstr "Andere Werkzeuge"
+msgstr "Ostatní nástroje"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
-msgstr "Fehler beim Starten der Anwendung. Bitte melden Sie diesen Fehler."
+msgstr "Při spuštění aplikace došlo k chybě, tuto chybu prosím nahlaste."
 
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
-msgstr "Rückgängig %s"
+msgstr "Zpět %s"
 
 #: src/deco_manager.py
 #, python-format
 msgid "Redo %s"
-msgstr "Wiederherstellen %s"
+msgstr "Dopředu %s"
 
 #. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr "Neuer Pixbuf ist leer, keine Änderung an %s angewendet"
+msgstr "Nový pixbuf prázdný, na %s nebyla použita žádná změna"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
-msgstr ""
-"Eine noch nie gespeicherte Datei kann nicht von der Festplatte neu geladen "
-"werden."
+msgstr "Nelze znovu načíst nikdy neuložený soubor z disku."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
-msgstr "Nicht gespeicherte Datei"
+msgstr "Neuložený soubor"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/tools/utilities_paths.py src/optionsbars/transform/optionsbar-crop.ui
@@ -874,85 +733,85 @@ msgstr "Nicht gespeicherte Datei"
 #: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
 #: src/tools/ui/tool-text.ui
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "Zrušit"
 
 #. Context: Create a new image
 #: src/new_image_dialog.py
 msgid "Create"
-msgstr "Erstellen"
+msgstr "Vytvořit"
 
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
-msgstr "Version der Anwendung anzeigen"
+msgstr "Zobrazit verzi aplikace"
 
 #. Description of a command line option
 #: src/main.py
 msgid "Open a new window"
-msgstr "Neues Fenster öffnen"
+msgstr "Otevřít nové okno"
 
 #. Description of a command line option
 #: src/main.py
 msgid "Open a new tab"
-msgstr "Neuen Tab öffnen"
+msgstr "Otevřít novou záložku"
 
 #. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
-msgstr "Inhalt der Zwischenablage bearbeiten"
+msgstr "Upravit obsah clipboardu"
 
 #: src/main.py
 msgid "This version isn't stable!"
-msgstr "Diese Version ist nicht fertig!"
+msgstr "Tato verze není stabilní!"
 
 #: src/main.py
 msgid "Report bugs or ideas"
-msgstr "Fehler oder Ideen melden"
+msgstr "Nahlásit chyby nebo nápady"
 
 #. To tranlators: "translate" this by a list of your names (one name
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Onno Giesmann"
+msgstr "Vojtěch Perník"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr "Symbolsatz-Autoren von GNOME's \"Art Libre\""
+msgstr "Autoři GNOME sady ikon „Art Libre“"
 
 #: src/main.py
 msgid "A drawing application for the GNOME desktop."
-msgstr "Ein Zeichenprogramm für den GNOME-Desktop."
+msgstr "Kreslicí aplikace pro prostředí GNOME."
 
 #: src/main.py
 msgid "Official webpage"
-msgstr "Offizielle Internetseite"
+msgstr "Oficiální web"
 
 #: src/main.py
 #, python-format
 msgid "Error opening this file. Did you mean %s ?"
-msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
+msgstr "Při otevírání tohoto souboru došlo k chybě. Měli jste na mysli %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
-msgstr "%s%%"
+msgstr ""
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
-msgstr "Neue Bilder"
+msgstr "Nové obrázky"
 
 #: src/preferences.py
 msgid "Default width"
-msgstr "Standardbreite"
+msgstr "Výchozí šířka"
 
 #: src/preferences.py
 msgid "Default height"
-msgstr "Standardhöhe"
+msgstr "Výchozí výška"
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
@@ -961,94 +820,94 @@ msgstr "Standardhöhe"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Default color"
-msgstr "Standardfarbe"
+msgstr "Výchozí barva"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
-msgstr "Speichern von Bildern"
+msgstr "Ukládání obrázků"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "JPEG- und BMP-Bilder unterstützen keine Transparenz."
+msgstr "Obrázky JPEG a BMP neumožňují průhlednost."
 
 #: src/preferences.py
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Wenn Sie Ihre Bilder in diesem Format speichern möchten, werden die "
-"transparenten Pixel ersetzt. Was möchten Sie dafür nutzen?"
+"Pokud ukládáte obrázky v těchto formátech, co chcete použít k nahrazení "
+"průhledných pixelů?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
-msgstr "Weiß"
+msgstr "Bílá"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "Black"
-msgstr "Schwarz"
+msgstr "Černá"
 
 #. Context: replace transparent pixels with [checkboard]. This is a
 #. pattern of dark and light greys.
 #: src/preferences.py src/saving_manager.py
 msgid "Checkboard"
-msgstr "Schachbrett"
+msgstr "Šachovnice"
 
 #. Context: replace transparent pixels with [nothing]. In practice it
 #. means the alpha channel is just removed.
 #: src/preferences.py src/saving_manager.py
 msgid "Nothing"
-msgstr "Nichts"
+msgstr "Nic"
 
 #: src/preferences.py
 msgid "Ask before saving"
-msgstr "Vor dem Speichern fragen"
+msgstr "Zeptat se před uložením"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Sie können Zoomen mit STR+Scrollen oder nur mit Scrollen."
+msgstr "Přibližovat můžete pomocí Ctrl + posouvání nebo pouze posouváním."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr "Schauen Sie in die Hilfeseiten für Erklärungen."
+msgstr "Vysvětlení najdete v uživatelské příručce."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "'STRG' für Zoomen nutzen"
+msgstr "pro přiblížení použijte \"Ctrl\""
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
-msgstr "Erscheinungsbild"
+msgstr "Vzhled"
 
 #: src/preferences.py
 msgid "Use big icons"
-msgstr "Große Symbole verwenden"
+msgstr "Použít velké ikony"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
-msgstr "Zusätzliche Werkzeuge"
+msgstr "Další nástroje"
 
 #: src/preferences.py
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
-"Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein "
-"sollten. Daher sind nicht alle standardmäßig aktiviert."
+"Tyto nástroje nejsou tak spolehlivé a užitečné, jak by měly být, takže ve "
+"výchozím nastavení nejsou všechny povoleny."
 
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
-msgstr "Radiergummi"
+msgstr "Guma"
 
 #. Context: this is the name of a tool, a thick pencil dedicated to
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr "Hervorhebung"
+msgstr "Zvýrazňovač"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1057,251 +916,246 @@ msgstr "Hervorhebung"
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr "Punkte"
+msgstr "Body"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
-msgstr "Freie Auswahl"
+msgstr "Volný výběr"
 
 #. Context: this is a tool to "magically" select an area depending on its
 #. color. For example clicking on a white pixel will select the
 #. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Farbauswahl"
+msgstr "Výběr barvy"
 
 #. Context: this is a tool to pick a RGBA color in the image in order to
 #. use it to draw with other tools
 #: src/preferences.py src/tools/classic_tools/tool_picker.py
 msgid "Color Picker"
-msgstr "Farbwähler"
+msgstr "Kapátko"
 
 #. Context: the name of a tool to fill an area of one color with an other
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
-msgstr "Füllen"
+msgstr "Kyblík"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
-msgstr "Erweiterte Einstellungen"
+msgstr "Pokročilé možnosti"
 
 #: src/preferences.py
 msgid "Preview size"
-msgstr "Vorschaugröße"
+msgstr "Velikost náhledu"
 
 #. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
-msgstr "Entwicklungsfunktionen"
+msgstr "Funkce pro vývojáře"
 
 #: src/preferences.py
 msgid "Background color"
-msgstr "Hintergrundfarbe"
+msgstr "Barva pozadí"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
-msgstr "Layout"
+msgstr "Rozložení"
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr "Der empfohlene Wert ist \"Automatisch\"."
+msgstr "Doporučená hodnota je „Automaticky“."
 
 #. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
-msgstr "Automatisch"
+msgstr "Automaticky"
 
 #: src/preferences.py
 msgid "Compact"
-msgstr "Kompakt"
+msgstr "Kompaktní"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr "elementary OS"
+msgstr ""
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
 #: src/preferences.py
 msgid "Legacy"
-msgstr "Altmodisch"
+msgstr "Tradiční"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional".
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
-msgstr "Traditionell (einfarbig)"
+msgstr "Tradiční (symbolické ikony)"
 
 #: src/preferences.py
 msgid "Menubar only"
-msgstr "Nur Menüleiste"
+msgstr "Pouze menu"
 
 #: src/preferences.py
 msgid "Toolbar only"
-msgstr "Nur Werkzeugleiste"
+msgstr "Pouze panel nástrojů"
 
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
-msgstr "Nur Werkzeugleiste (einfarbig)"
+msgstr "Pouze panel nástrojů (symbolické ikony)"
 
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr "%s px"
+msgstr ""
 
 #: src/properties.py
 #, python-format
 msgid "%s cm"
-msgstr "%s cm"
+msgstr ""
 
 #: src/properties.py
 #, python-format
 msgid "%s in"
-msgstr "%s in"
+msgstr ""
 
 #. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
-msgstr "Pfad"
+msgstr "Cesta"
 
 #. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
-msgstr "Format"
+msgstr "Formát"
 
 #: src/properties.py
 msgid "Colorspace"
-msgstr "Farbraum"
+msgstr "Barevný prostor"
 
 #. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
-msgstr "Ungültiges Format"
+msgstr "Chybný formát"
 
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "Speichern von %s fehlgeschlagen"
+msgstr "Nepovedlo se uložit %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
 msgid "Untitled"
-msgstr "Unbenannt"
+msgstr "Bez názvu"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/saving_manager.py
 msgid "this picture"
-msgstr "diesem Bild"
+msgstr "tento obrázek"
 
 #: src/saving_manager.py
 msgid "Discard"
-msgstr "Verwerfen"
+msgstr "Zahodit"
 
 #. Context: %s will be replaced by the name of a file.
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Es gibt Änderungen an %s, die noch nicht gespeichert wurden."
+msgstr "U obrázku %s existují neuložené úpravy."
 
 #: src/saving_manager.py
 msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
-msgstr ""
-"Ein Teil des Bildes ist ausgewählt und die Pixel unter der Auswahl sind leer."
+msgstr "Je vybrána část obrázku a pixely pod výběrem jsou prázdné."
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr "Änderungen aus dem aktuellen Werkzeug wurden nicht angewendet."
+msgstr "Úpravy aktuálního nástroje nebyly použity."
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
-msgstr "Möchten Sie trotzdem speichern?"
+msgstr "Chcete soubor přesto uložit?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
 msgid "Replace"
-msgstr "Ersetzen"
+msgstr "Nahradit"
 
 #: src/saving_manager.py
 msgid "This file format doesn't support transparent colors."
-msgstr "Dieses Dateiformat unterstützt keine transparenten Farben."
+msgstr "Tento formát souboru nepodporuje průhledné barvy."
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr ""
-"Sie können das Bild als PNG-Datei speichern oder die Transparenz ersetzen "
-"mit:"
+msgstr "Obrázek můžete uložit jako soubor PNG nebo průhlednost nahradit:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
-msgstr "Transparenz ersetzen mit:"
+msgstr "Nahradit průhlednost:"
 
 #: src/utilities.py
 msgid "Transparent"
-msgstr "Transparenz"
+msgstr "Průhledný"
 
 #: src/utilities.py
 #, python-format
 msgid "%s%% transparent"
-msgstr "%s%% Transparenz"
+msgstr "%s%% průhledný"
 
 #: src/utilities.py
 msgid "Grey"
-msgstr "Grau"
+msgstr "Šedá"
 
 #: src/utilities.py
 msgid "Orange"
-msgstr "Orange"
+msgstr "Oranžová"
 
 #: src/utilities.py
 msgid "Brown"
-msgstr "Braun"
+msgstr "Hnědá"
 
-# Note for me as translator: I need to see this "in work" in the app to understand the whole meaning of it. But I think the translation is good for the moment.
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
 #. clear definition. Here, the app thinks it's probably brown.
 #: src/utilities.py
 msgid "Probably brown"
-msgstr "Eher braun"
+msgstr "Pravděpodobně hnědá"
 
 #: src/utilities.py
 msgid "Red"
-msgstr "Rot"
+msgstr "Červená"
 
 #: src/utilities.py
 msgid "Green"
-msgstr "Grün"
+msgstr "Zelená"
 
 #: src/utilities.py
 msgid "Blue"
-msgstr "Blau"
+msgstr "Modrá"
 
 #: src/utilities.py
 msgid "Yellow"
-msgstr "Gelb"
+msgstr "Žlutá"
 
 #: src/utilities.py
 msgid "Magenta"
-msgstr "Magenta"
+msgstr "Purpurová"
 
 #: src/utilities.py
 msgid "Purple"
-msgstr "Violett"
+msgstr "Fialová"
 
 #: src/utilities.py
 msgid "Cyan"
-msgstr "Cyan"
+msgstr "Tyrkysová"
 
-# Note for me as translator: I need to see this "in work" in the app to understand the whole meaning of it. But I think the translation is good for the moment.
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
 #. clear definition. Here, the app thinks it's probably teal.
@@ -1309,190 +1163,186 @@ msgstr "Cyan"
 #. turquoise or green-blue.
 #: src/utilities.py
 msgid "Probably teal"
-msgstr "Eher türkis"
+msgstr "Pravděpodobně zelenomodrá"
 
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
 #. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities.py
 msgid "Unknown color name"
-msgstr "Unbekannter Farbname"
+msgstr "Neznámý název barvy"
 
 #: src/utilities.py
 msgid "All pictures"
-msgstr "Alle Bilder"
+msgstr "Všechny obrázky"
 
 #: src/utilities.py
 msgid "PNG images"
-msgstr "PNG-Bilder"
+msgstr "PNG obrázky"
 
 #: src/utilities.py
 msgid "JPEG images"
-msgstr "JPEG-Bilder"
+msgstr "JPEG obrázky"
 
 #: src/utilities.py
 msgid "BMP images"
-msgstr "BMP-Bilder"
+msgstr "BMP obrázky"
 
 #. To translators: it appears in tooltips over numerical inputs
 #: src/utilities.py
 msgid "percents"
-msgstr "Prozent"
+msgstr "procenta"
 
 #. To translators: it's the angle measure unit, it appears in a tooltip
 #. over a numerical input
 #: src/utilities.py
 msgid "degrees"
-msgstr "Grad"
+msgstr "stupně"
 
 #. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr "Fehler beim Laden des Werkzeugs: %s"
+msgstr "Nepodařilo se načíst nástroj: %s"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
-msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
+msgstr "Úpravy se projeví v dalším novém okně."
 
 #: src/window.py src/tools/abstract_tool.py
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "No options"
-msgstr "Keine Optionen"
+msgstr "Žádné možnosti"
 
 #: src/window.py
 msgid "Opened images"
-msgstr "Geöffnete Bilder"
+msgstr "Otevřené obrázky"
 
 #: src/window.py
 #, python-format
 msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Fehler: Bereich ungültig für '%s'. Bitte melden Sie diesen Fehler."
+msgstr ""
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
-msgstr "Wird geladen %s"
+msgstr "Načítání %s"
 
 #. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
-msgstr "Neuer Tab"
+msgstr "Nová záložka"
 
 #: src/window.py
 msgid "Discard changes"
-msgstr "Änderungen verwerfen"
+msgstr "Zahodit změny"
 
 #. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr "Wo möchten Sie %s öffnen?"
+msgstr "Kde si přejete otevřít %s?"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
 #: src/window.py
 msgid "these files"
-msgstr "diese Dateien"
+msgstr "těmito soubory"
 
 #. Context: %s will be replaced by the name of a file. The possible
 #. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "Was möchten Sie mit %s machen?"
+msgstr "Co si přejete udělat s %s?"
 
 #: src/window.py
 msgid "Image copied to clipboard"
-msgstr "Bild in Zwischenablage kopiert"
+msgstr "Obrázek zkopírován do clipboardu."
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Das Bild auf dem Datenträger wurde geändert. Möchten Sie es neu laden?"
+msgstr "Obrázek byl změněn. Přejete si ho znovu načíst?"
 
 #: src/window.py
 msgid "Reload"
-msgstr "Neu laden"
+msgstr "Znovu načíst"
 
 #: src/window.py
 msgid "Import a picture"
-msgstr "Ein Bild importieren"
+msgstr "Importovat obrázek"
 
 #: src/window.py
 msgid "Required tool is not available"
-msgstr "Benötigtes Werkzeug ist nicht verfügbar"
+msgstr "Požadovaný nástroj není k dispozici"
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
-"Vorgang nicht durchführbar: falsche Werkzeug-ID (erwartet {0}, erhalten {1})"
+"Nelze spustit operaci: nesprávné ID nástroje (očekáváno {0}, získáno {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
-msgstr "Weiter"
+msgstr "Pokračovat"
 
 #: src/tools/utilities_paths.py
 msgid "The area seems poorly delimited, or is very complex."
-msgstr "Der Bereich scheint schlecht abgegrenzt zu sein oder ist sehr komplex."
+msgstr "Tato oblast se zdá být špatně vymezená nebo je velmi složitá."
 
 #: src/tools/utilities_paths.py
 msgid "This algorithm may not be able to manage the wanted area."
-msgstr ""
-"Dieser Algorithmus ist möglicherweise nicht in der Lage, den gewünschten "
-"Bereich zu erkennen."
+msgstr "Tento algoritmus nemusí být schopen spravovat požadovanou oblast."
 
 #: src/tools/utilities_paths.py
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-"Möchten Sie den Vorgang abbrechen oder soll das Werkzeug es trotzdem "
-"versuchen?"
+msgstr "Chcete operaci přerušit nebo nechat nástroj se snažit?"
 
 #. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Main color"
-msgstr "Hauptfarbe"
+msgstr "Hlavní barva"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
-msgstr "Zweitfarbe"
+msgstr "Vedlejší barva"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
 msgid "Tool size"
-msgstr "Werkzeuggröße"
+msgstr "Velikost nástroje"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
-msgstr "Vorschau"
+msgstr "Náhled"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
-msgstr "Wie die Farbe auf die vorhandenen Pixel angewendet wird"
+msgstr "Jak bude barva použita na stávající pixely"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Back to the palette"
-msgstr "Zurück zur Palette"
+msgstr "Zpět na paletu"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
-msgstr "Palette"
+msgstr "Paleta"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Use this editor by default"
-msgstr "Diesen Farbwähler standardmäßig nutzen"
+msgstr "Použít tento editor jako výchozí"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "More actions"
-msgstr "Weitere Aktionen"
+msgstr "Více akcí"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
@@ -1502,171 +1352,171 @@ msgstr "Weitere Aktionen"
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
 #: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
 msgid "Apply"
-msgstr "Anwenden"
+msgstr "Použít"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "More options"
-msgstr "Weitere Optionen"
+msgstr "Více možností"
 
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr "Erweitern mit…"
+msgstr "Rozbalit pomocí..."
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
 msgid "Transparency"
-msgstr "Transparenz"
+msgstr "Průhlednost"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
-msgstr "Wählen Sie einen Filter…"
+msgstr "Vybrat filtr..."
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 msgid "Saturation"
-msgstr "Sättigung"
+msgstr "Saturace"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 msgid "Blur radius"
-msgstr "Unschärferadius"
+msgstr "Poloměr rozostření"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
-msgstr "Sättigung ändern"
+msgstr "Změnit saturaci"
 
 #. Context: a filter adding like a light veil on the image
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Veil"
-msgstr "Schleier"
+msgstr "Maska"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
-msgstr "Transparenz hinzufügen"
+msgstr "Přidat průhlednost"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
-msgstr "Farben tauschen"
+msgstr "Invertovat barvy"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
 #: src/optionsbars/transform/optionsbar-filters.ui
 msgid "Blurring"
-msgstr "Unschärfe"
+msgstr "Rozostření"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Fast blur"
-msgstr "Schnelle Unschärfe"
+msgstr "Rychlé rozostření"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Slow blur"
-msgstr "Langsame Unschärfe"
+msgstr "Pomalé rozostření"
 
 #. Context: a filter that censors the image with some kind of tiles
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Pixelization"
-msgstr "Verpixelung"
+msgstr "Pixelizace"
 
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 msgid "Blur direction"
-msgstr "Unschärfe-Richtung"
+msgstr "Směr rozostření"
 
 #. Context: about the blur direction
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 msgid "Horizontal"
-msgstr "Horizontal"
+msgstr "Horizontální"
 
 #. Context: about the blur direction
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 msgid "Vertical"
-msgstr "Vertikal"
+msgstr "Vertikální"
 
 #. Context: about the blur direction
 #: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
 msgid "No direction"
-msgstr "Keine Richtung"
+msgstr "Žádný směr"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
-msgstr "Winkel (Grad)"
+msgstr "Úhel (stupně)"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
-msgstr "Winkel"
+msgstr "Úhel"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
-msgstr "Nach links drehen"
+msgstr "Otočit vlevo"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate right"
-msgstr "Nach rechts drehen"
+msgstr "Otočit vpravo"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip horizontally"
-msgstr "Horizontal spiegeln"
+msgstr "Překlopit horizontálně"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
-msgstr "Vertikal spiegeln"
+msgstr "Překlopit vertikálně"
 
 #. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
-msgstr "Verhältnisse beibehalten"
+msgstr "Uzamknout poměr stran"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Always"
-msgstr "Immer"
+msgstr "Vždy"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
-msgstr "Beim Skalieren an den Ecken"
+msgstr "Při změně velikosti z rohů"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
-msgstr "Nie"
+msgstr "Nikdy"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
-msgstr "Horizontale Verformung"
+msgstr "Horizontální deformace"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Vertical deformation"
-msgstr "Vertikale Verformung"
+msgstr "Vertikální deformace"
 
 #: src/tools/ui/selection.ui
 msgid "Transform"
-msgstr "Umwandeln"
+msgstr "Transormovat"
 
 #: src/tools/ui/selection.ui
 msgid "Flip"
-msgstr "Spiegeln"
+msgstr "Překlopit"
 
 #. In this context, "Skew" is the name of the tool changing rectangles
 #. into parallelograms (= tilt, slant, bend). Named after MS Paint's
 #. "Stretch/Skew" dialog.
 #: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
 msgid "Skew"
-msgstr "Verzerren"
+msgstr "Zšikmit"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
-msgstr "Linienform"
+msgstr "Tvar čáry"
 
 #. Context: this is the name of a line shape
 #. Default values
@@ -1674,7 +1524,7 @@ msgstr "Linienform"
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Rund"
+msgstr "Kruh"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1683,67 +1533,67 @@ msgstr "Rund"
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
-msgstr "Rechteckig"
+msgstr "Čtverec"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "No arrow"
-msgstr "Kein Pfeil"
+msgstr "Žádná šipka"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr "Einfacher Pfeil"
+msgstr "Jednoduchá šipka"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Double arrow"
-msgstr "Doppelpfeil"
+msgstr "Dvojitá šipka"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "No dashes"
-msgstr "Keine Striche"
+msgstr "Nepřerušované"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Simple dashes"
-msgstr "Einfache Striche"
+msgstr "Jednoduše přerušované"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Long dashes"
-msgstr "Lange Striche"
+msgstr "Dlouze přerušované"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Short dashes"
-msgstr "Kurze Striche"
+msgstr "Krátce přerušované"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr "Abwechselnde Striche"
+msgstr "Střídavě přerušované"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
 #: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
-msgstr "Kantenglättung"
+msgstr ""
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Dark text on light background"
-msgstr "Dunkler Text auf hellem Hintergrund"
+msgstr "Tmavý text na světlém pozadí"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr "Heller Text auf dunklem Hintergrund"
+msgstr "Světlý text na tmavém pozadí"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
-msgstr "Farbverlauf"
+msgstr "Barevný přechod"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
 msgid "Behavior"
-msgstr "Verhalten"
+msgstr "Chování"
 
 #. Context: this is one of the possible painting algorithms. It
 #. tries to draw a shape around the area to paint, and fill it
@@ -1751,21 +1601,21 @@ msgstr "Verhalten"
 #. default behavior of the tool.
 #: src/tools/ui/tool-paint.ui
 msgid "Encircle and fill"
-msgstr "Einkreisen und füllen"
+msgstr "Označit a vyplnit"
 
 #. Context: this is one of the possible painting algorithms. It
 #. erases the color the user clicked, and then replace transparent
 #. pixels with the new color.
 #: src/tools/ui/tool-paint.ui
 msgid "Erase and replace"
-msgstr "Löschen und ersetzen"
+msgstr "Smazat a nahradit"
 
 #. Context: this is one of the possible painting algorithms. It
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
 msgid "Entire image"
-msgstr "Gesamtes Bild"
+msgstr "Celý obrázek"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -1773,221 +1623,220 @@ msgstr "Gesamtes Bild"
 #. background.
 #: src/tools/ui/tool-paint.ui
 msgid "Remove color"
-msgstr "Farbe entfernen"
+msgstr "Odstranit barvu"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr "Punktetyp"
+msgstr "Typ bodů"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
 msgid "Circle"
-msgstr "Kreis"
+msgstr "Kruh"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr "Kreuz"
+msgstr "Kříž"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr "X-förmiges Kreuz"
+msgstr "Kříž ve tvaru X."
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr "Eine Nummer einschließen"
+msgstr "Uvést číslo"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr "Nächste Nummer"
+msgstr "Další číslo"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr "Nummer zurücksetzen"
+msgstr "Resetovat číslo"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr "Dekrementnummer"
+msgstr "Zmenšit číslo"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr "Inkrementzahl"
+msgstr "Zvětšit číslo"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
-msgstr "Durchgehende Außenlinie"
+msgstr "Plný obrys"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Dashed outline"
-msgstr "Gestrichelte Außenlinie"
+msgstr "Přerušovaný obrys"
 
 #. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
-msgstr "Keine Außenlinie"
+msgstr "Žádný obrys"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
-msgstr "Füllung"
+msgstr "Vyplňující"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Empty shape"
-msgstr "Leere Form"
+msgstr "Prázdný tvar"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
-msgstr "Horizontaler Farbverlauf"
+msgstr "Horizontální přechod"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Vertical gradient"
-msgstr "Vertikaler Farbverlauf"
+msgstr "Vertikální přechod"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
-msgstr "Radialer Farbverlauf"
+msgstr "Kruhový přechod"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
-msgstr "Rechteck"
+msgstr "Obdélník"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
-msgstr "Abgerundetes Rechteck"
+msgstr "Zaoblený obdélník"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Oval"
-msgstr "Oval"
+msgstr "Ovál"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Polygon"
-msgstr "Vieleck"
+msgstr "Mnohoúhelník"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Free shape"
-msgstr "Freie Form"
+msgstr "Volný tvar"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
-msgstr "Form schließen"
+msgstr "Uzavřený tvar"
 
 #: src/tools/ui/tool-text.ui
 msgid "Insert here"
-msgstr "Hier einfügen"
+msgstr "Vložit sem"
 
 #: src/tools/ui/tool-text.ui
 msgid "Font"
-msgstr "Schriftart"
+msgstr "Font"
 
 #: src/tools/ui/tool-text.ui
 msgid "Select a font…"
-msgstr "Wählen Sie eine Schriftart…"
+msgstr "Vybrat font..."
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
-msgstr "Kursiv"
+msgstr "Kurzíva"
 
 #: src/tools/ui/tool-text.ui
 msgid "Bold"
-msgstr "Fett"
+msgstr "Tučné"
 
 #. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
 msgid "Background"
-msgstr "Hintergrund"
+msgstr "Pozadí"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "No background"
-msgstr "Ohne Hintergrund"
+msgstr "Žádné pozadí"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
-msgstr "Schatten"
+msgstr "Stín"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Outline"
-msgstr "Außenlinie"
+msgstr "Obrys"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
-msgstr "Rechteckiger Hintergrund"
+msgstr "Pozadí obdélníku"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
-msgstr "Bogen"
+msgstr "Křivka"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve options"
-msgstr "Bogen-Optionen"
+msgstr "Možnosti křivky"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
-msgstr "Gestrichelter Pfeil"
+msgstr "Přerušovaná šipka"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Arrow"
-msgstr "Pfeil"
+msgstr "Šipka"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
-msgstr "Gestrichelt"
+msgstr "Přerušované"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
-msgstr "Hervorhebe-Optionen"
+msgstr "Možnosti zvýrazňovače"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
-msgstr "Linie"
+msgstr "Čára"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
-msgstr "Linien-Optionen"
+msgstr "Možnosti čáry"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Füll-Optionen"
+msgstr "Možnosti výplně"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
-msgstr ""
-"Klicken Sie auf einen Bereich, um dessen Farbe durch Transparenz zu ersetzen"
+msgstr "Kliknutím na oblast nahradíte její barvu průhledností"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
-msgstr "Leinwand anklicken, um sie vollständig auszumalen"
+msgstr "Kliknutím na plátno jej vyplníte"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
-msgstr "Bleistift"
+msgstr "Tužka"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr "Bleistift-Optionen"
+msgstr "Možnosti tužky"
 
 #: src/tools/classic_tools/tool_points.py
 msgid "Points options"
-msgstr "Punkte-Optionen"
+msgstr "Možnosti bodů"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr "Nächste Nummer: %s"
+msgstr "Následující číslo: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
-msgstr "Form"
+msgstr "Tvar"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
-msgstr "Form-Optionen"
+msgstr "Možnosti tvaru"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
-msgstr "Klicken Sie auf den ersten Punkt der Form, um es zu schließen."
+msgstr "Kliknutím na první bod obrazce jej zavřete."
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -1996,66 +1845,48 @@ msgstr "Text"
 #. XXX use "text options" instead
 #: src/tools/classic_tools/tool_text.py
 msgid "Font options"
-msgstr "Schriftart-Optionen"
+msgstr "Možnosti fontu"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Auswahl ziehen oder Rechtsklick auf die Leinwand"
+msgstr "Přetáhněte výběr nebo klikněte pravým tlačítkem na plátno"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Bereich auswählen oder Rechtsklick auf die Leinwand"
+msgstr "Vyberte oblast nebo klikněte pravým tlačítkem na plátno"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
-msgstr "Rechteckauswahl"
+msgstr "Výběr obdélníku"
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
-msgstr "Fehler: Ungültige Werte"
+msgstr "Chyba: neplatné hodnoty"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
-msgstr "Auswahl zuschneiden"
+msgstr "Oříznutí výběru"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
-msgstr "Leinwand zuschneiden"
+msgstr "Oříznutí plátna"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
-msgstr "Klicken Sie für eine Vorschau zum ausgewählten Filter auf das Bild"
+msgstr "Kliknutím na obrázek zobrazíte náhled vybraného filtru"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
-msgstr "Auswahl drehen"
+msgstr "Otočení výběru"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
-msgstr "Leinwand drehen"
+msgstr "Otočení plátna"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
-msgstr "Auswahl skalieren"
+msgstr "Změna velikosti výběru"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
-msgstr "Leinwand skalieren"
-
-#~ msgid "Edit"
-#~ msgstr "Bearbeiten"
-
-#~ msgid "Save as"
-#~ msgstr "Speichern als"
-
-#~ msgid "Close"
-#~ msgstr "Schließen"
-
-#~ msgid "Freehand"
-#~ msgstr "Freihand"
-
-#~ msgid "Similar color"
-#~ msgstr "Ähnliche Farbe"
-
-#~ msgid "Selection options"
-#~ msgstr "Auswahl-Optionen"
+msgstr "Změna velikosti plátna"

@@ -28,6 +28,13 @@ class DrMotionBehavior():
 	DRAW = 1
 	SLIP = 2
 
+	_LIMIT = 10
+	def is_moving(x1, x2, y1, y2):
+		# no `self` because it's static
+		moves_x = abs(x1 - x2) < DrMotionBehavior._LIMIT
+		moves_y = abs(y1 - y2) < DrMotionBehavior._LIMIT
+		return moves_x and moves_y
+
 class NoPixbufNoChangeException(Exception):
 	def __init__(self, pb_name):
 		# Context: an error message
@@ -43,7 +50,6 @@ class DrImage(Gtk.Box):
 	_h_scrollbar = GtkTemplate.Child()
 	_v_scrollbar = GtkTemplate.Child()
 
-	CLOSING_PRECISION = 10
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
 	def __init__(self, window, **kwargs):
@@ -415,8 +421,8 @@ class DrImage(Gtk.Box):
 		self._drawing_area, if the button is not the signal is transmitted to
 		the selected tool."""
 		if self.motion_behavior == DrMotionBehavior.SLIP:
-			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
-			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
+			if DrMotionBehavior.is_moving(self.press2_x, self.drag_scroll_x, \
+			                              self.press2_y, self.drag_scroll_y):
 				self.window.options_manager.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return

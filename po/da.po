@@ -77,6 +77,13 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.6.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"Version 0.6.4 har adskillige mindre fejlrettelser og diverse nye "
+"oversættelser."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "The version 0.6.3 improves the option to draw arrows: several issues have "
 "been fixed and double-ended arrows are now possible."
 msgstr ""
@@ -562,9 +569,8 @@ msgid "Previous tool"
 msgstr "Forrige værktøj"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Andre værktøjer"
+msgstr "Aktive værktøj"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -573,12 +579,11 @@ msgstr "Vis værktøjernes navne"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Bredere"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Standardbredde"
+msgstr "Smallere"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -625,7 +630,7 @@ msgstr "Åbn"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Del billedet"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1383,18 +1388,16 @@ msgid "What do you want to do with %s?"
 msgstr "Hvad vil du gøre med %s?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Kopiér til udklipsholder"
+msgstr "Billede kopieret til udklipsholder"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Billedet blev ændret på disken. Vil du genindlæse det?"
 
 #: src/window.py
-#, fuzzy
 msgid "Reload"
-msgstr "Genindlæs fil"
+msgstr "Genindlæs"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1662,47 +1665,41 @@ msgid "Square"
 msgstr "Firkantet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Pil"
+msgstr "Ingen pil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Simpel pil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Stiplet pil"
+msgstr "Dobbelt pil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Stiplet"
+msgstr "Ingen stiplet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Stiplet"
+msgstr "Simpel stiplet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Stiplet"
+msgstr "Lang stiplet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Stiplet"
+msgstr "Kort stiplet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Skiftende stiplet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
 #: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
@@ -1746,9 +1743,8 @@ msgstr "Slet og erstat"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Åbne billeder"
+msgstr "Hele billedet"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -1760,7 +1756,7 @@ msgstr "Fjern farve"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Priktype"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -1769,31 +1765,31 @@ msgstr "Cirkel"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Kryds"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "X-formet kryds"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Medtag et tal"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Næste tal"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Nulstil tal"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Tal til at mindske"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Tal til at øge"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1939,9 +1935,8 @@ msgid "Click on an area to replace its color by transparency"
 msgstr "Klik på et område for at erstatte dets farve med gennemsigtighed"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Klik på formens første punkt for at lukke den."
+msgstr "Klik på lærredet for at male det hele"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
@@ -1952,14 +1947,13 @@ msgid "Pencil options"
 msgstr "Valgmuligheder for blyant"
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Valgmuligheder for skrifttype"
+msgstr "Valgmuligheder for punkter"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr ""
+msgstr "Næste tal: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"

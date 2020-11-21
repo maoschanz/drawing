@@ -137,7 +137,7 @@ class Application(Gtk.Application):
 			if self.is_beta():
 				print(_("This version isn't stable!"))
 			print()
-			print(_("Report bugs or ideas") + ' 👉️ ' + BUG_REPORT_URL)
+			print(_("Report bugs or ideas") + " 👉️ " + BUG_REPORT_URL)
 		elif options.contains('edit-clipboard'):
 			self.open_window_with_content(None, True)
 
@@ -190,7 +190,7 @@ class Application(Gtk.Application):
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
 		builder = Gtk.Builder().new_from_resource(APP_PATH + '/ui/shortcuts.ui')
-		self.shortcuts_window = builder.get_object('shortcuts')
+		self.shortcuts_window = builder.get_object('shortcuts-window')
 		self.shortcuts_window.present()
 
 	def on_prefs(self, *args):

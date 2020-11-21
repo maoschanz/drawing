@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <interface domain="drawing">
 
-<!-- Hamburger menu for smartphone -->
+  <!-- Hamburger menu for smartphone -->
   <menu id="long-window-menu">
     <section>
       <item>
@@ -112,7 +112,7 @@
     </section>
   </menu>
 
-<!-- Hamburger menu for desktop -->
+  <!-- Hamburger menu for desktop -->
   <menu id="short-window-menu">
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
@@ -158,6 +158,7 @@
       </item>
     </section>
     <section>
+      <!-- For debug purposes only -->
       <item>
         <attribute name="label" translatable="yes">Refresh</attribute>
         <attribute name="action">win.restore_pixbuf</attribute>
@@ -205,6 +206,7 @@
     </section>
   </menu>
 
+  <!-- Hamburger menu for layouts with a more rich toolbar -->
   <menu id="minimal-window-menu">
     <section>
       <item>
