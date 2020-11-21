@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 20:22+0100\n"
+"POT-Creation-Date: 2020-11-21 18:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/saving_manager.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr ""
 
@@ -178,8 +178,8 @@ msgstr ""
 msgid "Export as…"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -206,13 +206,13 @@ msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr ""
 
@@ -324,7 +324,11 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr ""
 
@@ -539,7 +543,7 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
 msgstr ""
 
@@ -595,14 +599,6 @@ msgid "Main menu"
 msgstr ""
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr ""
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr ""
 
@@ -623,10 +619,6 @@ msgid "Close the active image"
 msgstr ""
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr ""
-
-#: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
 msgstr ""
 
@@ -635,17 +627,11 @@ msgid "Back to previous tool"
 msgstr ""
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
+msgid "Apply a transformation"
 msgstr ""
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr ""
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
+msgid "History"
 msgstr ""
 
 #: src/ui/shortcuts.ui
@@ -663,6 +649,20 @@ msgid "Import a file as the selection"
 msgstr ""
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr ""
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr ""
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr ""
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr ""
 
@@ -677,15 +677,19 @@ msgid "Toggle the preview"
 msgstr ""
 
 #: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr ""
+
+#: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
-msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Other tools"
 msgstr ""
 
 #: src/ui/window.ui
@@ -782,8 +786,13 @@ msgid "Official webpage"
 msgstr ""
 
 #: src/main.py
+msgid "Error opening this file."
+msgstr ""
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
 #, python-format
-msgid "Error opening this file. Did you mean %s ?"
+msgid "Did you mean %s ?"
 msgstr ""
 
 #. This string displays the zoom level: %s will be replaced with a
@@ -1188,6 +1197,21 @@ msgstr ""
 msgid "degrees"
 msgstr ""
 
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr ""
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1205,7 +1229,11 @@ msgid "No options"
 msgstr ""
 
 #: src/window.py
-msgid "Opened images"
+msgid "Press F11 to exit fullscreen."
+msgstr ""
+
+#: src/window.py
+msgid "Press middle-click or F8 to show/hide controls."
 msgstr ""
 
 #: src/window.py

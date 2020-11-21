@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 20:22+0100\n"
+"POT-Creation-Date: 2020-11-21 18:04+0100\n"
 "PO-Revision-Date: 2020-11-13 16:21+0100\n"
 "Last-Translator: Vojtěch Perník <v.pernik@centrum.cz>\n"
 "Language-Team: Czech <@>\n"
@@ -167,7 +167,7 @@ msgstr "Vlastnosti obrázku"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/saving_manager.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr "Uložit"
 
@@ -185,8 +185,8 @@ msgstr "Uložit jako..."
 msgid "Export as…"
 msgstr "Exportovat jako..."
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr "Kopírovat do clipboardu"
 
@@ -213,13 +213,13 @@ msgstr "_Upravit"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr "Zpět"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr "Dopředu"
 
@@ -331,7 +331,11 @@ msgstr "Obnovit"
 msgid "Fullscreen"
 msgstr "Zapnout zobrazení na celou obrazovku"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr "Ukončit zobrazení na celou obrazovku"
 
@@ -546,7 +550,7 @@ msgstr "palce"
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -602,14 +606,6 @@ msgid "Main menu"
 msgstr "Hlavní menu"
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Zapnout zobrazení na celou obrazovku"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Ukončit zobrazení na celou obrazovku"
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Obrázek"
 
@@ -630,10 +626,6 @@ msgid "Close the active image"
 msgstr "Zavřít aktivní obrázek"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historie"
-
-#: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
 msgstr "Otevřít nástrojové menu"
 
@@ -642,18 +634,12 @@ msgid "Back to previous tool"
 msgstr "Zpět k předchozímu nástroji"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Barvy"
+msgid "Apply a transformation"
+msgstr ""
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Upravit hlavní barvu (kliknout levým tlačítkem)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Upravit vedlejší barvu (kliknout pravým tlačítkem)"
+msgid "History"
+msgstr "Historie"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -670,6 +656,20 @@ msgid "Import a file as the selection"
 msgstr "Importovat soubor jako výběr"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Barvy"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Upravit hlavní barvu (kliknout levým tlačítkem)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Upravit vedlejší barvu (kliknout pravým tlačítkem)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Záložky"
 
@@ -684,16 +684,21 @@ msgid "Toggle the preview"
 msgstr "Přepnout náhled"
 
 #: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle fullscreen mode"
+msgstr "Zapnout zobrazení na celou obrazovku"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr ""
+
+#: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Dotyková gesta"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Odstranit potíže s výběrem"
-
-#: src/ui/win-menus.ui
-msgid "Other tools"
-msgstr "Ostatní nástroje"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -789,9 +794,15 @@ msgid "Official webpage"
 msgstr "Oficiální web"
 
 #: src/main.py
-#, python-format
-msgid "Error opening this file. Did you mean %s ?"
+#, fuzzy
+msgid "Error opening this file."
 msgstr "Při otevírání tohoto souboru došlo k chybě. Měli jste na mysli %s ?"
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr ""
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1199,6 +1210,21 @@ msgstr "procenta"
 msgid "degrees"
 msgstr "stupně"
 
+#: src/utilities.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "Otevřít obrázek"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1216,8 +1242,13 @@ msgid "No options"
 msgstr "Žádné možnosti"
 
 #: src/window.py
-msgid "Opened images"
-msgstr "Otevřené obrázky"
+#, fuzzy
+msgid "Press F11 to exit fullscreen."
+msgstr "Ukončit zobrazení na celou obrazovku"
+
+#: src/window.py
+msgid "Press middle-click or F8 to show/hide controls."
+msgstr ""
 
 #: src/window.py
 #, python-format
@@ -1890,3 +1921,12 @@ msgstr "Změna velikosti výběru"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Změna velikosti plátna"
+
+#~ msgid "Exit fullscreen mode"
+#~ msgstr "Ukončit zobrazení na celou obrazovku"
+
+#~ msgid "Other tools"
+#~ msgstr "Ostatní nástroje"
+
+#~ msgid "Opened images"
+#~ msgstr "Otevřené obrázky"

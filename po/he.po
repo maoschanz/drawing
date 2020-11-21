@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 20:22+0100\n"
+"POT-Creation-Date: 2020-11-21 18:04+0100\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -168,7 +168,7 @@ msgstr "מאפייני תמונה"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/saving_manager.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr "שמירה"
 
@@ -187,8 +187,8 @@ msgstr "שמירה כ…"
 msgid "Export as…"
 msgstr "ייצוא כ…"
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -217,13 +217,13 @@ msgstr "_עריכה"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr "ביטול פעולה"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr "חידוש פעולה"
 
@@ -349,7 +349,11 @@ msgstr "רענון"
 msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr ""
 
@@ -582,7 +586,7 @@ msgstr "אינצ'ים"
 msgid "Images"
 msgstr "תמונה"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
 msgstr "כלים"
 
@@ -641,14 +645,6 @@ msgid "Main menu"
 msgstr "תפריט ראשי"
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr ""
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "תמונה"
 
@@ -669,10 +665,6 @@ msgid "Close the active image"
 msgstr "סגור תמונה נוכחית"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr ""
-
-#: src/ui/shortcuts.ui
 #, fuzzy
 msgid "Open the tool options menu"
 msgstr "תפריט אפשרויות"
@@ -682,18 +674,12 @@ msgid "Back to previous tool"
 msgstr "חזרה לכלי הקודם"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "צבעים"
+msgid "Apply a transformation"
+msgstr ""
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "ערוך את הצבע הראשי (לחיצה שמאלית)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "ערוך את צבע המשנה (לחיצה שמאלית)"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -712,6 +698,20 @@ msgid "Import a file as the selection"
 msgstr "סיבוב הבחירה"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "צבעים"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "ערוך את הצבע הראשי (לחיצה שמאלית)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "ערוך את צבע המשנה (לחיצה שמאלית)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr ""
 
@@ -727,6 +727,14 @@ msgid "Toggle the preview"
 msgstr "הצג/הסתר תצוגה מקדימה"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr ""
+
+#: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
 
@@ -734,10 +742,6 @@ msgstr ""
 #, fuzzy
 msgid "Troubleshoot selection"
 msgstr "אפשרויות צבע"
-
-#: src/ui/win-menus.ui
-msgid "Other tools"
-msgstr ""
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -835,12 +839,18 @@ msgid "Official webpage"
 msgstr ""
 
 #: src/main.py
-#, fuzzy, python-format
-msgid "Error opening this file. Did you mean %s ?"
+#, fuzzy
+msgid "Error opening this file."
 msgstr ""
 "שגיאה בפתיחת קובץ זה. האם התכוונת ל-\n"
 "flatpak run --file-forwarding {0} @@ {1}\n"
 "?"
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr ""
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1254,6 +1264,21 @@ msgstr ""
 msgid "degrees"
 msgstr "זווית (מעלות)"
 
+#: src/utilities.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "פתיחת תמונה"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1271,8 +1296,12 @@ msgid "No options"
 msgstr "אין אפשרויות"
 
 #: src/window.py
-msgid "Opened images"
-msgstr "תמונות שנפתחו"
+msgid "Press F11 to exit fullscreen."
+msgstr ""
+
+#: src/window.py
+msgid "Press middle-click or F8 to show/hide controls."
+msgstr ""
 
 #: src/window.py
 #, fuzzy, python-format
@@ -1990,6 +2019,9 @@ msgstr "שינוי קנה מידה של הבחירה"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "שינוי קנה מידה של לוח הציור"
+
+#~ msgid "Opened images"
+#~ msgstr "תמונות שנפתחו"
 
 #~ msgid "Edit"
 #~ msgstr "עריכה"

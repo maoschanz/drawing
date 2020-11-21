@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 20:22+0100\n"
-"PO-Revision-Date: 2020-10-31 03:57+0100\n"
+"POT-Creation-Date: 2020-11-21 18:04+0100\n"
+"PO-Revision-Date: 2020-11-21 11:04+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -168,7 +168,7 @@ msgstr "Propriétés de l'image"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/saving_manager.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -186,8 +186,8 @@ msgstr "Enregistrer sous…"
 msgid "Export as…"
 msgstr "Exporter sous…"
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr "Copier vers le presse-papier"
 
@@ -214,13 +214,13 @@ msgstr "É_dition"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr "Annuler"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr "Rétablir"
 
@@ -332,7 +332,11 @@ msgstr "Actualiser"
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "Cacher les barres d'outils"
+
+#: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr "Quitter le plein écran"
 
@@ -547,7 +551,7 @@ msgstr "pouces"
 msgid "Images"
 msgstr "Images"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
 msgstr "Outils"
 
@@ -603,14 +607,6 @@ msgid "Main menu"
 msgstr "Menu principal"
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Entrer en mode plein écran"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Quitter le mode plein écran"
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Image"
 
@@ -631,10 +627,6 @@ msgid "Close the active image"
 msgstr "Fermer l'image active"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historique"
-
-#: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
 msgstr "Ouvrir le menu des options de l'outil"
 
@@ -643,18 +635,12 @@ msgid "Back to previous tool"
 msgstr "Revenir à l'outil précédent"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Couleurs"
+msgid "Apply a transformation"
+msgstr "Appliquer une transformation"
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Modifier la couleur principale (clic gauche)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Modifier la couleur secondaire (clic droit)"
+msgid "History"
+msgstr "Historique"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -671,6 +657,20 @@ msgid "Import a file as the selection"
 msgstr "Importer un fichier en tant que sélection"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Couleurs"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Modifier la couleur principale (clic gauche)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Modifier la couleur secondaire (clic droit)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Onglets"
 
@@ -685,16 +685,20 @@ msgid "Toggle the preview"
 msgstr "Afficher l'aperçu"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr "Basculer le mode plein écran"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "Basculer la visibilité des barres d'outils"
+
+#: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Gestuelles tactiles"
 
 #: src/ui/win-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Débuggage de la sélection"
-
-#: src/ui/win-menus.ui
-msgid "Other tools"
-msgstr "Autres outils"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -790,9 +794,14 @@ msgid "Official webpage"
 msgstr "Page web officielle"
 
 #: src/main.py
+msgid "Error opening this file."
+msgstr "Erreur à l'ouverture de ce fichier."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
 #, python-format
-msgid "Error opening this file. Did you mean %s ?"
-msgstr "Erreur à l'ouverture de ce fichier. Vouliez-vous faire %s ?"
+msgid "Did you mean %s ?"
+msgstr "Vouliez vous dire %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1204,6 +1213,22 @@ msgstr "pourcents"
 msgid "degrees"
 msgstr "degrés"
 
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s n'est pas une image"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+"Désolé, les images WEBP ne peuvent pas être chargées par cette application."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Malgré son nom, %s est une image WEBP."
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1221,8 +1246,13 @@ msgid "No options"
 msgstr "Pas d'options"
 
 #: src/window.py
-msgid "Opened images"
-msgstr "Images ouvertes"
+msgid "Press F11 to exit fullscreen."
+msgstr "Appuyer sur F11 pour quitter le plein écran."
+
+#: src/window.py
+msgid "Press middle-click or F8 to show/hide controls."
+msgstr ""
+"Appuyer sur F8 ou le clic du milieu pour afficher/cacher les contrôles."
 
 #: src/window.py
 #, python-format
@@ -1896,4 +1926,3 @@ msgstr "Redimensionner la sélection"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
-

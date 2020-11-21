@@ -130,8 +130,9 @@ class Application(Gtk.Application):
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
 
-		# Possible options are 'version', 'new-window', and 'new-tab', in this
-		# order: only one option can be applied, '-ntv' will be the same as '-v'.
+		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
+		# 'new-window', in this order: only one option can be applied, '-ntvc'
+		# will be understood as '-v'.
 		options = args[1].get_options_dict()
 
 		if options.contains('version'):
@@ -140,24 +141,24 @@ class Application(Gtk.Application):
 				print(_("This version isn't stable!"))
 			print()
 			print(_("Report bugs or ideas") + " 👉️ " + BUG_REPORT_URL)
+
 		elif options.contains('edit-clipboard'):
 			self.open_window_with_content(None, True)
+			# XXX it could be in a new tab
 
-		# If no file given as argument
-		elif options.contains('new-window') and len(arguments) == 1:
-			self.on_new_window()
 		elif options.contains('new-tab') and len(arguments) == 1:
+			# If '-t' but no file given as argument
 			win = self.props.active_window
 			if not win:
 				self.on_new_window()
 			else:
 				win.present()
 				self.props.active_window.build_new_image()
-		elif len(arguments) == 1:
-			self.on_activate()
 
 		elif options.contains('new-window'):
-			self.on_new_window()
+			# it opens one new window per file given as argument, or just one
+			# new window if no argument is a valid enough file.
+			windows_counter = 0
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
 				# here f can be a GioFile or a boolea; True would mean the app
@@ -165,7 +166,15 @@ class Application(Gtk.Application):
 				if f != False:
 					f = None if f == True else f
 					self.open_window_with_content(f, False)
-		else: # giving files without '-n' is equivalent to giving files with '-t'
+					windows_counter = windows_counter + 1
+			if windows_counter == 0:
+				self.on_new_window()
+
+		elif len(arguments) == 1:
+			self.on_activate()
+
+		else:
+			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
 				# here f can be a GioFile or a boolea; True would mean the app
@@ -178,6 +187,7 @@ class Application(Gtk.Application):
 					else:
 						win.present()
 						self.props.active_window.build_new_tab(gfile=f)
+
 		# I don't even know if i should return something
 		return 0
 
