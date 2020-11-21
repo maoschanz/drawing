@@ -135,18 +135,8 @@ class DrImage(Gtk.Box):
 		self.set_action_sensitivity('redo', False)
 
 	def init_background(self, width, height, background_rgba):
-		r = float(background_rgba[0])
-		g = float(background_rgba[1])
-		b = float(background_rgba[2])
-		a = float(background_rgba[3])
-		op = {
-			'tool_id': None,
-			'pixbuf': None,
-			'red': r, 'green': g, 'blue': b, 'alpha': a,
-			'width': width, 'height': height
-		}
 		self.init_image_common()
-		self._history.initial_operation = op
+		self._history.set_initial_operation(background_rgba, None, width, height)
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
@@ -192,17 +182,8 @@ class DrImage(Gtk.Box):
 		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
 		background_rgba = self.window._settings.get_strv('default-rgba')
-		r = float(background_rgba[0])
-		g = float(background_rgba[1])
-		b = float(background_rgba[2])
-		a = float(background_rgba[3])
-		op = {
-			'tool_id': None,
-			'pixbuf': pixbuf,
-			'red': r, 'green': g, 'blue': b, 'alpha': a,
-			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
-		}
-		self._history.initial_operation = op
+		self._history.set_initial_operation(background_rgba, pixbuf, \
+		                                pixbuf.get_width(), pixbuf.get_height())
 		self.set_main_pixbuf(pixbuf)
 
 	def reload_from_disk(self):

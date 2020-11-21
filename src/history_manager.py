@@ -114,6 +114,18 @@ class DrHistoryManager():
 	############################################################################
 	# Cached pixbufs ###########################################################
 
+	def set_initial_operation(self, rgba_array, pixbuf, width, height):
+		r = float(rgba_array[0])
+		g = float(rgba_array[1])
+		b = float(rgba_array[2])
+		a = float(rgba_array[3])
+		self.initial_operation = {
+			'tool_id': None,
+			'pixbuf': pixbuf,
+			'red': r, 'green': g, 'blue': b, 'alpha': a,
+			'width': width, 'height': height
+		}
+
 	def add_state(self, pixbuf):
 		if pixbuf is None:
 			# Context: an error message

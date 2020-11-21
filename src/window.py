@@ -173,6 +173,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
+
 		if tool_id == DEFAULT_TOOL_ID: # The "pencil" button is already active
 			self.enable_tool(tool_id)
 		else:
@@ -463,7 +464,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
-		self.add_action_simple('to_clipboard', self.action_export_cb, None)
+		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
 		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
@@ -672,6 +673,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	# FULLSCREEN ###############################################################
 
 	def action_unfullscreen(self, *args):
+		"""Simple action, exiting fullscreen."""
 		# TODO connect to signals instead
 		self.unfullscreen()
 		self.set_fullscreen_state(False)
@@ -916,6 +918,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()
+		# valider les URIs TODO
 
 		if len(uris) == 1:
 			label = uris[0].split('/')[-1]
@@ -929,16 +932,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		result = dialog.run()
 		dialog.destroy()
 
-		for uri in uris:
-			# print(uri)
-			# valider l'URI TODO
-			if result == import_id:
-				f = Gio.File.new_for_uri(uri)
-				self.import_from_path(f.get_path())
-				return
-			elif result == open_id:
+		if result == open_id:
+			for uri in uris:
 				f = Gio.File.new_for_uri(uri)
 				self.build_new_tab(gfile=f)
+		elif result == import_id:
+			f = Gio.File.new_for_uri(uris[0])
+			self.import_from_path(f.get_path())
 
 	def try_load_file(self, gfile):
 		if gfile is not None:

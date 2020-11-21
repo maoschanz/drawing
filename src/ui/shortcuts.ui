@@ -118,6 +118,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">Copy to clipboard</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;c</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Close the active image</property>
                 <property name="accelerator">&lt;Primary&gt;w</property>
               </object>

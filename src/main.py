@@ -158,8 +158,9 @@ class Application(Gtk.Application):
 			self.on_new_window()
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				if f is not None:
-					self.open_window_with_content(f, False)
+				# here f can be None (the app will open a new blank image if
+				# fpath isn't the path of an image)
+				self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
