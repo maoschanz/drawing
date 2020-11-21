@@ -945,8 +945,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		uris = data.get_uris()
 		gfiles = []
 		for uri in uris:
-			gfile = Gio.File.new_for_uri(uri)
-			is_image, error_msg = utilities_gfile_is_image(gfile)
+			try:
+				gfile = Gio.File.new_for_uri(uri)
+				is_image, error_msg = utilities_gfile_is_image(gfile)
+			except Exception as excp:
+				is_image = False
+				error_msg = excp.message
 			if is_image:
 				gfiles.append(gfile)
 			else:

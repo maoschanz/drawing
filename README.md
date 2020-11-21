@@ -55,6 +55,7 @@ If your language is not here, or is incompletely translated, you can
 
 | code | name         | since… | complete*? | main translators                 |
 |------|--------------|--------|------------|----------------------------------|
+| cs   | Czech        | 0.6.4  | 97%        | [Vojtěch Perník](https://github.com/pervoj)
 | da   | Danish       | 0.4.10 | 93%        | [scootergrisen](https://github.com/scootergrisen)
 | de_DE | German      | 0.4.1  | 100%       | [Onno Giesmann](https://github.com/Etamuk)
 |      | English      | 0.2    | 100%       | help welcome **                  |
@@ -66,7 +67,7 @@ If your language is not here, or is incompletely translated, you can
 | hr   | Croatian     | 0.4.11 | 85%        | [Milo Ivir](https://github.com/milotype)
 | hu   | Hungarian    | 0.4.10 | **68%**    | [Kálmán „KAMI” Szalai](https://github.com/kami911)
 | id   | Indonesian   | 0.6.3  | 83%        | [Ghani Rafif](https://github.com/ekickx)
-| it   | Italian      | 0.4.1  | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella ](https://github.com/albanobattistella)
+| it   | Italian      | 0.4.1  | 99%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella](https://github.com/albanobattistella)
 | nl   | Dutch        | 0.4.1  | 100%       | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | 0.4.10 | 78%        | [Piotr Komur](https://github.com/pkomur)
 | pt_BR | Br. portuguese | 0.4.3 | 88%      | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
