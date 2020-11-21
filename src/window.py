@@ -424,8 +424,9 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
-		self.add_action_boolean('show_labels', self._settings.get_boolean( \
-		                     'show-labels'), self.on_show_labels_action_changed)
+
+		show_labels = self._settings.get_boolean('show-labels')
+		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
@@ -476,7 +477,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
-		self.add_action_simple('apply_transform_tool', self.action_apply_transformation, None)
+		self.add_action_simple('apply_transform', self.action_apply_transform, None)
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -652,7 +653,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if self._settings.get_boolean('devel-only'):
+		if show or self._settings.get_boolean('devel-only'):
 			print('Drawing: ' + label)
 
 	def prompt_action(self, message, action_name, action_label):
@@ -719,7 +720,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
-	def on_show_labels_action_changed(self, *args):
+	def action_show_labels(self, *args):
 		show_labels = not args[0].get_state()
 		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
@@ -913,7 +914,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		cancel_id = dialog.set_action(_("Cancel"), None, False)
 		open_id = dialog.set_action(_("Open"), None, False)
 		import_id = dialog.set_action(_("Import"), None, True)
+
 		uris = data.get_uris()
+
 		if len(uris) == 1:
 			label = uris[0].split('/')[-1]
 		else:
@@ -925,6 +928,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		dialog.add_string(_("What do you want to do with %s?") % label)
 		result = dialog.run()
 		dialog.destroy()
+
 		for uri in uris:
 			# print(uri)
 			# valider l'URI TODO
@@ -1049,7 +1053,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def force_selection(self, *args):
 		self.get_selection_tool().row.set_active(True) # XXX not enable_tool?
 
-	def action_apply_transformation(self, *args):
+	def action_apply_transform(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	############################################################################
