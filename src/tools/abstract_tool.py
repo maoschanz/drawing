@@ -70,7 +70,7 @@ class AbstractAbstractTool():
 		return self.window.options_manager.get_value(action_name)
 
 	def set_action_sensitivity(self, action_name, state):
-		self.get_image().set_action_sensitivity(action_name, state)
+		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
 		self.set_action_sensitivity('main_color', self.use_color)

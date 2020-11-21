@@ -102,6 +102,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
+		self._is_tools_initialisation_finished = False
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -120,17 +121,27 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.saving_manager = DrSavingManager(self)
 
 		self.add_all_win_actions()
-		if get_cb:
-			self.build_image_from_clipboard()
-		elif gfile is not None:
-			self.build_new_tab(gfile=gfile)
-		else:
-			self.build_new_image()
-		self.init_tools()
+		self._init_tools()
 		self.connect_signals()
+
+		# The picture is built as late as possible in the init process because
+		# reading files is too prone to exceptions that may fuck everything up,
+		# and i don't trust that catching them is enough to ensure the process
+		# can continue normally.
+		try:
+			if get_cb:
+				self.build_image_from_clipboard()
+			elif gfile is not None:
+				self.build_new_tab(gfile=gfile)
+			else:
+				self.build_new_image()
+		except Exception as excp:
+			self.prompt_message(True, excp.message)
+
+		self._enable_first_tool()
 		self.set_picture_title()
 
-	def init_tools(self):
+	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
 		disabled_tools = self._settings.get_strv('disabled-tools')
@@ -160,21 +171,32 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._load_tool('filters', ToolFilters, disabled_tools, dev)
 
 		# Side pane buttons for tools, and their menubar items if they don't
-		# exist yet
+		# exist yet (they're defined on the application level)
 		self._build_tool_rows()
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()
 
-		# Initialisation of options and menus
+		# Initialisation of which tool is active
 		tool_id = self._settings.get_string('last-active-tool')
 		if tool_id not in self.tools:
 			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		if tool_id == DEFAULT_TOOL_ID: # The "pencil" button is already active
-			self.enable_tool(tool_id)
+		# the end of this process, implemented in the `_enable_first_tool`
+		# method, will be called later because it requires an active image,
+		# which doesn't exist yet at this point of the window init process.
+
+	def _enable_first_tool(self):
+		"""Near the end of the window initialisation process, this method is
+		called once to make sure all things related to the active tool, mostly
+		its options' values, and the visibility of its optionsbar, are all
+		correctly loaded."""
+		if self.active_tool_id == DEFAULT_TOOL_ID:
+			# Special case of the "pencil" radio button, which is already active
+			self.enable_tool(self.active_tool_id)
 		else:
 			self.active_tool().row.set_active(True)
+		self._is_tools_initialisation_finished = True
 
 	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
 		"""Given its id and its python class, this method tries to load a tool,
@@ -231,8 +253,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		height = self._settings.get_int('default-height')
 		rgba = self._settings.get_strv('default-rgba')
 		self.build_new_tab(width=width, height=height, background_rgba=rgba)
-		if self.active_tool_id is not None: # Tools might not be initialized yet
-			self.set_picture_title()
+		self.set_picture_title()
 
 	def build_new_custom(self, *args):
 		"""Open a new tab with a drawable blank image using the custom values
@@ -273,6 +294,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
+		if not self._is_tools_initialisation_finished:
+			return
 		self.switch_to(self.active_tool_id, args[1])
 		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
@@ -634,7 +657,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if self._settings.get_boolean('devel-only'):
+		if show or self._settings.get_boolean('devel-only'):
 			print('Drawing: ' + label)
 
 	def prompt_action(self, message, action_name, action_label):
@@ -666,6 +689,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.fullscreen()
 			self.prompt_message(True, _("Press F11 to exit fullscreen.") + \
 			         " " + _("Press middle-click or F8 to show/hide controls."))
+			# XXX or 3 fingers if it's a touch device?
 		else:
 			self.unfullscreen()
 		self._set_controls_hidden(shall_fullscreen)
