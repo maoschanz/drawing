@@ -288,6 +288,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
+			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
+			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
+			# qu'un petit pixbuf rouge
 		else:
 			new_image.init_background(width, height, background_rgba)
 		self.update_tabs_visibility()

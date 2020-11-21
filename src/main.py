@@ -160,13 +160,18 @@ class Application(Gtk.Application):
 			self.on_new_window()
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be None (the app will open a new blank image if
-				# fpath isn't the path of an image)
-				self.open_window_with_content(f, False)
+				# here f can be a GioFile or a boolea; True would mean the app
+				# should open a new blank image.
+				if f != False:
+					f = None if f == True else f
+					self.open_window_with_content(f, False)
 		else: # giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				if f is not None:
+				# here f can be a GioFile or a boolea; True would mean the app
+				# should open a new blank image.
+				if f != False:
+					f = None if f == True else f
 					win = self.props.active_window
 					if not win:
 						self.open_window_with_content(f, False)
@@ -308,34 +313,35 @@ class Application(Gtk.Application):
 		self.add_action(action)
 
 	def _get_valid_file(self, app, path):
-		"""Creates a GioFile object if the path corresponds to an image."""
+		"""Creates a GioFile object if the path corresponds to an image. If no
+		GioFile can be created, it returns a boolean telling whether or not a
+		window should be opened anyway."""
+		if path == '/app/bin/drawing':
+			self._runs_in_sandbox = True
+			# when it's /app/bin/drawing, the situation is normal, and
+			# it tells the app it's running in a flatpak sandbox
+			return False
+
 		err = _("Error opening this file.") + ' '
 		try:
 			gfile = app.create_file_for_arg(path)
 		except Exception as excp:
 			if self._runs_in_sandbox:
-				# This is an error message, %s is a better command suggestion
-				err = err + _("Did you mean %s ?")
 				command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
 				command = command.format(APP_ID, path)
-				print(err % command)
+				# This is an error message, %s is a better command suggestion
+				err = err + _("Did you mean %s ?") % command
 			else:
-				# This is an error message, %s is a file path
-				print(err + _("%s doesn't exist.") % path)
-			return None
+				err = err + excp.message
+			print(err) # TODO show that message in an empty window
+			return False
 
 		is_image, err = utilities_gfile_is_image(gfile, err)
 		if is_image:
 			return gfile
 		else:
-			if not self._runs_in_sandbox and path == '/app/bin/drawing':
-				self._runs_in_sandbox = True
-				# when it's /app/bin/drawing, the situation is normal, and
-				# it tells the app it's running in a flatpak sandbox
-			else:
-				print(err)
-				# TODO show that message in the empty window that will start
-			return None
+			print(err) # TODO show that message in an empty window
+			return True
 
 	############################################################################
 ################################################################################

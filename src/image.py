@@ -205,13 +205,17 @@ class DrImage(Gtk.Box):
 		try:
 			self.gfile = gfile
 			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-			self.try_load_pixbuf(pixbuf)
 		except Exception as ex:
+			if not ex.message:
+				ex.message = ""
 			ex = InvalidFileFormatException(ex.message, gfile.get_path())
 			self.window.prompt_message(True, ex.message)
-			raise ex # An exception must be rethrown to avoid the execution of
-			# the method that hides the message.
-		# FIXME but because of that, it's broken as shit afterwards
+			self.gfile = None
+			pixbuf = self._new_blank_pixbuf(100, 100)
+			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
+			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
+			# qu'un petit pixbuf corrompu
+		self.try_load_pixbuf(pixbuf)
 
 	############################################################################
 	# Image title and tab management ###########################################
