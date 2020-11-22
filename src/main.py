@@ -143,8 +143,12 @@ class Application(Gtk.Application):
 			print(_("Report bugs or ideas") + " 👉️ " + BUG_REPORT_URL)
 
 		elif options.contains('edit-clipboard'):
-			self.open_window_with_content(None, True)
-			# XXX it could be in a new tab
+			win = self.props.active_window
+			if not win:
+				self.open_window_with_content(None, True)
+			else:
+				win.present()
+				self.props.active_window.build_image_from_clipboard()
 
 		elif options.contains('new-tab') and len(arguments) == 1:
 			# If '-t' but no file given as argument

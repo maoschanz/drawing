@@ -24,7 +24,7 @@ class DrOptionsManager():
 	def __init__(self, window):
 		self.window = window
 		self._bottom_panes_dict = {}
-		self._active_pane_id= None
+		self._active_pane_id = None
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -128,6 +128,7 @@ class DrOptionsManager():
 	def get_active_pane(self):
 		if self._active_pane_id is None:
 			return None # XXX encore des exceptions manuelles...
+			# return self._bottom_panes_dict['classic']
 		return self._bottom_panes_dict[self._active_pane_id]
 
 	def update_pane(self, tool):

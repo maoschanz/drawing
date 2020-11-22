@@ -207,7 +207,7 @@ class DrImage(Gtk.Box):
 			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		except Exception as ex:
 			if not ex.message:
-				ex.message = ""
+				ex.message = "[exception without a valid message]"
 			ex = InvalidFileFormatException(ex.message, gfile.get_path())
 			self.window.prompt_message(True, ex.message)
 			self.gfile = None

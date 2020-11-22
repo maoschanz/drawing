@@ -271,7 +271,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		empty, the new image will be blank."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
-		self.build_new_tab(pixbuf=pixbuf)
+		if pixbuf is None:
+			self.prompt_message(True, _("The clipboard doesn't contain any image."))
+			self.build_new_image()
+		else:
+			self.build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
@@ -647,6 +651,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._decorations.adapt_to_window_size()
 
 		available_width = self.bottom_panes_box.get_allocated_width()
+		if not self._is_tools_initialisation_finished:
+			return # there is no active pane nor active image yet
 		self.options_manager.adapt_to_window_size(available_width)
 
 		self.get_active_image().fake_scrollbar_update()
