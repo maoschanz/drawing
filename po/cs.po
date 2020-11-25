@@ -1,22 +1,22 @@
 # Language xx translations for drawing package.
 # Copyright (C) 2020 THE drawing'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Vojtěch Perník <v.pernik@centrum.cz>, 2020.
+# Vojtěch Perník <v.perni@centrum.cz>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-22 02:40+0100\n"
-"PO-Revision-Date: 2020-11-13 16:21+0100\n"
-"Last-Translator: Vojtěch Perník <v.pernik@centrum.cz>\n"
+"PO-Revision-Date: 2020-11-25 18:06+0100\n"
+"Last-Translator: Vojtěch Perník <v.perni@centrum.cz>\n"
 "Language-Team: Czech <@>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -269,7 +269,7 @@ msgstr "Zobrazit náhled"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Přiblížit"
+msgstr "Přiblížení"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
@@ -333,7 +333,7 @@ msgstr "Zapnout zobrazení na celou obrazovku"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Skrýt panely nástrojů"
 
 #: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
@@ -635,7 +635,7 @@ msgstr "Zpět k předchozímu nástroji"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Použít transformaci"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -684,13 +684,12 @@ msgid "Toggle the preview"
 msgstr "Přepnout náhled"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Zapnout zobrazení na celou obrazovku"
+msgstr "Zapnout/vypnout zobrazení na celou obrazovku"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Zobrazit/skrýt nástrojové panely"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -777,7 +776,7 @@ msgstr "Nahlásit chyby nebo nápady"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Vojtěch Perník"
+msgstr "Vojtěch Perník <v.pernik@centrum.cz>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -794,15 +793,14 @@ msgid "Official webpage"
 msgstr "Oficiální web"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Při otevírání tohoto souboru došlo k chybě. Měli jste na mysli %s ?"
+msgstr "Při otevírání tohoto souboru došlo k chybě."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Měli jste na mysli %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -884,7 +882,7 @@ msgstr "Vysvětlení najdete v uživatelské příručce."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "pro přiblížení použijte \"Ctrl\""
+msgstr "Používat \"Ctrl\" pro přiblížení"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1211,19 +1209,19 @@ msgid "degrees"
 msgstr "stupně"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Otevřít obrázek"
+msgstr "%s není obrázek."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "Omlouváme se, ale tato aplikace nepodporuje obrázky WEBP."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Navzdory své příponě je %s stále obrázek WEBP."
 
 #. Context: an error message
 #: src/window.py
@@ -1233,7 +1231,7 @@ msgstr "Nepodařilo se načíst nástroj: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Clipboard neobsahuje žádný obrázek."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1246,18 +1244,19 @@ msgid "No options"
 msgstr "Žádné možnosti"
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Ukončit zobrazení na celou obrazovku"
+msgstr "Stiskněte F11 pro ukončení zobrazení na celou obrazovku"
 
 #: src/window.py
 msgid "Press middle-click or F8 to show/hide controls."
 msgstr ""
+"Stisknutím středního tlačítka nebo klávesy F8 zobrazíte/skryjete panely "
+"nástrojů."
 
 #: src/window.py
 #, python-format
 msgid "Error: pane invalid for '%s', please report this bug."
-msgstr ""
+msgstr "Chyba: neplatná oblast pro \"%s\". Prosím, nahlaste tuto chybu."
 
 #: src/window.py
 #, python-format
@@ -1551,7 +1550,7 @@ msgstr "Zšikmit"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
-msgstr "Tvar čáry"
+msgstr "Tvar konce čáry"
 
 #. Context: this is the name of a line shape
 #. Default values
@@ -1559,7 +1558,7 @@ msgstr "Tvar čáry"
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Kruh"
+msgstr "Zakulacený"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1568,7 +1567,7 @@ msgstr "Kruh"
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
-msgstr "Čtverec"
+msgstr "Rovný"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "No arrow"
@@ -1585,33 +1584,33 @@ msgstr "Dvojitá šipka"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "No dashes"
-msgstr "Nepřerušované"
+msgstr "Bez přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Simple dashes"
-msgstr "Jednoduše přerušované"
+msgstr "Základní přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Long dashes"
-msgstr "Dlouze přerušované"
+msgstr "Dlouhé přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Short dashes"
-msgstr "Krátce přerušované"
+msgstr "Krátké přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr "Střídavě přerušované"
+msgstr "Střídavé přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
 #: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
-msgstr ""
+msgstr "Uhladit"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Dark text on light background"
