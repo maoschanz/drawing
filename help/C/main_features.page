@@ -28,8 +28,8 @@
     <title>The "Open" button</title>
 
     <p>Open a picture file from your documents.</p>
-    <p>If the window size is too small to display its button, the
-    <gui style="button">Open</gui> button is available in the primary menu.</p>
+    <p>If the window size is too small to display the <gui style="button">Open</gui>
+    button, it's available in the primary menu.</p>
   </section>
 
   <section>
@@ -65,6 +65,7 @@
 
     <media type="image" mime="image/png" width="80%" its:translate="no"
            src="figures/screenshot_menu.png" />
+
     <list>
       <item>
         <p>Reload the picture from the disk.</p>
@@ -73,7 +74,7 @@
         <p>See the pictures properties, such as its size and colorspace.</p>
       </item>
       <item>
-        <p>Enable the fullscreen mode.</p>
+        <p>Enable the <link xref="#fullscreen">fullscreen mode</link>.</p>
       </item>
       <item>
         <p>Export the image or save it as a new file. Both options don't overwrite
@@ -83,6 +84,10 @@
       </item>
       <item>
         <p>Print the picture.</p>
+      </item>
+      <item>
+        <p>Copy the picture to the clipboard, for example to share it with an
+        other app.</p>
       </item>
       <item>
         <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
@@ -106,7 +111,7 @@
         the following tools:</p>
       </item>
       <item>
-        <p>Finally, <link xref="tools_canvas">some tools</link> can transform
+        <p>Finally, <link xref="tools_transform">some tools</link> can transform
         either the selection or the entire canvas. This includes cropping,
         rotating, scaling, or applying a filter.</p>
       </item>
@@ -125,6 +130,28 @@
     current zoom level.</p>
     <p>Clicking on this button opens a menu with a thumbnail of the full picture
     you're editing, along with zoom level controls.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_zoom.png" />
+  </section>
+
+  <section id="fullscreen">
+    <title>Fullscreen mode</title>
+
+    <p>When you click on the <gui style="button">Fullscreen</gui> menu item, the
+    app uses all the available space to display the picture.</p>
+
+    <note style="tip">
+      <p>Buttons and menus are then hidden, but you can still control many
+      things with keyboard shortcuts.</p>
+    </note>
+
+    <p>To change the active tool or its options, you can temporarily display the
+    panes: press <key>F8</key>, or click with the middle button of your mouse,
+    or (if you're using a touch device) tap with 3 fingers.</p>
+    <p>When the bottom pane is visible, you can click on the <gui style="button">
+    Exit fullscreen</gui> button to restore the windowed mode. Or you can press
+    <key>F11</key> at any moment.</p>
   </section>
 
 </page>

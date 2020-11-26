@@ -44,7 +44,6 @@
       <object class="GtkBox" id="centered_box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
-        <property name="orientation">horizontal</property>
 
         <child>
           <object class="GtkBox">
@@ -99,7 +98,7 @@
 
     <child>
       <object class="GtkButton" id="apply_btn">
-        <property name="action_name">win.apply_canvas_tool</property>
+        <property name="action_name">win.apply_transform</property>
         <property name="tooltip-text" translatable="yes">Apply</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -142,37 +141,22 @@
 
   <!-- Menu shown in the action bar (bottom-right) -->
   <menu id="actions-menu">
-    <!-- <section> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Pixels</attribute> -->
-    <!--     <attribute name="action">win.scale-unit</attribute> -->
-    <!--     <attribute name="target">pixels</attribute> -->
-    <!--   </item> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Percentage</attribute> -->
-    <!--     <attribute name="action">win.scale-unit</attribute> -->
-    <!--     <attribute name="target">percents</attribute> -->
-    <!--   </item> -->
-    <!-- </section> -->
     <section>
-      <attribute name="label" translatable="yes">Keep proportions</attribute>
+      <attribute name="label" translatable="yes">Expand with…</attribute>
       <item>
-        <!-- Context for translations: an item in a menu whose title is "Keep proportions" -->
-        <attribute name="label" translatable="yes">Always</attribute>
-        <attribute name="action">win.scale-proportions</attribute>
-        <attribute name="target">always</attribute>
+        <attribute name="label" translatable="yes">Transparency</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">alpha</attribute>
       </item>
       <item>
-        <!-- Context for translations: an item in a menu whose title is "Keep proportions" -->
-        <attribute name="label" translatable="yes">When scaling from corners</attribute>
-        <attribute name="action">win.scale-proportions</attribute>
-        <attribute name="target">corners</attribute>
+        <attribute name="label" translatable="yes">Default color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">initial</attribute>
       </item>
       <item>
-        <!-- Context for translations: an item in a menu whose title is "Keep proportions" -->
-        <attribute name="label" translatable="yes">Never</attribute>
-        <attribute name="action">win.scale-proportions</attribute>
-        <attribute name="target">never</attribute>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">secondary</attribute>
       </item>
     </section>
     <section>

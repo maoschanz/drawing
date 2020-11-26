@@ -26,7 +26,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 		super().__init__()
 		self.window = window
 		self.filters_tool = filters_tool
-		builder = self.build_ui('optionsbars/canvas/optionsbar-filters.ui')
+		builder = self.build_ui('optionsbars/transform/optionsbar-filters.ui')
 		self.menu_btn = builder.get_object('menu_btn')
 		self.menu_label = builder.get_object('menu_label')
 		self.menu_icon = builder.get_object('menu_icon')

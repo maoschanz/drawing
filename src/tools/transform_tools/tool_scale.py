@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, GdkPixbuf
-from .abstract_canvas_tool import AbstractCanvasTool
+from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_scale import OptionsBarScale
 from .utilities_overlay import utilities_show_handles_on_context
 
@@ -35,7 +35,7 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 		self.add_tool_action_enum('scale-proportions', 'corners')
-		# self.add_tool_action_enum('scale-unit', 'pixels') # TODO ?
+		# self.add_tool_action_enum('scale-unit', 'pixels') # TODO
 
 	def try_build_pane(self):
 		self.pane_id = 'scale'
@@ -186,10 +186,6 @@ class ToolScale(AbstractCanvasTool):
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
-		# FIXME bien excepté les delta locaux : quand on rogne depuis le haut ou
-		# la gauche, les coordonnées de référence des poignées ne sont plus
-		# correctes.
-		# Ça impacte aussi l'overlay après application des changements.
 
 	############################################################################
 

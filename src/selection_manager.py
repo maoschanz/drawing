@@ -18,14 +18,14 @@
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
-# TODO tester qu'elles printent une stack !!!
 class NoSelectionPixbufException(Exception):
 	def __init__(self, *args):
-		super().__init__("Exception: the selection pixbuf is empty.")
+		# Context: an error message
+		super().__init__(_("The selection pixbuf is empty."))
 
 class NoSelectionPathException(Exception):
 	def __init__(self, *args):
-		super().__init__("Exception: the selection path is empty.")
+		super().__init__(_("The selection path is empty."))
 
 ################################################################################
 
@@ -91,12 +91,14 @@ class DrSelectionManager():
 		selection_height = int(ymax - ymin)
 		if selection_width > 0 and selection_height > 0:
 			# print('⇒ load pixbuf')
-			self.selection_pixbuf = Gdk.pixbuf_get_from_surface(surface, \
-			            int(xmin), int(ymin), selection_width, selection_height)
-			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
-			# avec un try except déjà ce serait pas mal
-			# TODO selon un paramètre donné, remplacer un rgb par de l'alpha
-			# au sein de ce pixbuf
+			pixbuf = Gdk.pixbuf_get_from_surface(surface, int(xmin), int(ymin),\
+			                                  selection_width, selection_height)
+			if pixbuf is not None:
+				# TODO selon un paramètre donné, remplacer un rgb par de l'alpha
+				# au sein de ce pixbuf
+				self.selection_pixbuf = pixbuf
+			# can't use `set_pixbuf` here ^ because it would replace the free
+			# path with a rectangle path
 		else:
 			self.reset(True)
 		self.image.update_actions_state()
@@ -127,12 +129,11 @@ class DrSelectionManager():
 			self.image.update()
 
 	def get_path_with_scroll(self, tool_dx, tool_dy):
-		# le concept de cette méthode pue la merde
+		# The very concept of this method sucks
 		if self.selection_path is None:
 			raise NoSelectionPathException()
-		# FIXME pas du tout bon avec le zoom ?
-		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
-		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
+		delta_x = tool_dx - self.image.scroll_x + self.selection_x - self.temp_x # XXX SHOULDN'T USE TEMP
+		delta_y = tool_dy - self.image.scroll_y + self.selection_y - self.temp_y # XXX SHOULDN'T USE TEMP
 		cairo_context = self._get_context_with_path(delta_x, delta_y)
 		cairo_context.close_path()
 		return cairo_context.copy_path()
@@ -182,12 +183,11 @@ class DrSelectionManager():
 		tested_y)" is in the path defining the selection. If such path doesn't
 		exist, it returns None."""
 		if not self.is_active:
-			return True # TODO throw something goddammit
-		if self.selection_path is None:
-			raise NoSelectionPathException()
-		delta_x = self.selection_x - self.temp_x # XXX UTILISATION DE TEMP
-		delta_y = self.selection_y - self.temp_y # XXX UTILISATION DE TEMP
-		cairo_context = self._get_context_with_path(delta_x, delta_y)
+			return True # shouldn't happen
+		scrolled_path = self.get_path_with_scroll(self.image.scroll_x, self.image.scroll_y)
+		cairo_context = self._get_context()
+		cairo_context.new_path()
+		cairo_context.append_path(scrolled_path)
 		return cairo_context.in_fill(tested_x, tested_y)
 
 	def _get_context(self):
@@ -196,7 +196,7 @@ class DrSelectionManager():
 	def _get_context_with_path(self, delta_x, delta_y):
 		cairo_context = self._get_context()
 		for pts in self.selection_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				x = pts[1][0] + delta_x
 				y = pts[1][1] + delta_y
 				cairo_context.line_to(int(x), int(y))
@@ -248,7 +248,7 @@ class DrSelectionManager():
 	def get_future_path(self):
 		return self._future_path
 
-	def update_from_canvas_tool(self, new_pixbuf, dx, dy):
+	def update_from_transform_tool(self, new_pixbuf, dx, dy):
 		self.set_pixbuf(new_pixbuf)
 		x = self.selection_x + dx
 		y = self.selection_y + dy

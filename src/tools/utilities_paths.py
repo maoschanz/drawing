@@ -84,7 +84,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		if (new_x != -10):
 			cairo_context.line_to(x, y)
 		# else:
-		#	 print('TENTATIVE ABUSIVE D\'AJOUT')
+		#	 print("TENTATIVE ABUSIVE D'AJOUT")
 		#	 should_stop = True
 
 		if (i > 10) and (first_x-5 < x < first_x+5) and (first_y-5 < y < first_y+5):
@@ -115,43 +115,64 @@ def launch_infinite_loop_dialog(window):
 
 ################################################################################
 
+# The coordinates of the corners of the triangle. These points are defined as if
+# the end of the arrow line is at "0, 0" and rotated by 0 degrees.
+ARROW_TRIANGLE = [
+	(0.0, 0.0),
+	(-2.747, 1.0),
+	(-2.747, -1.0),
+]
+
+MIN_ARROW_SCALE = 3
+
 def utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width):
-	cairo_context.new_path()
-	cairo_context.set_line_width(line_width)
-	cairo_context.set_dash([1, 0])
-	cairo_context.move_to(x2, y2)
-	x_length = max(x1, x2) - min(x1, x2)
-	y_length = max(y1, y2) - min(y1, y2)
-	line_length = math.sqrt( (x_length)**2 + (y_length)**2 )
-	if line_length == 0:
-		return
-	arrow_width = math.log(line_length)
-	if (x1 - x2) != 0:
-		delta = (y1 - y2) / (x1 - x2)
+	"""Adds a triangular head to the current path."""
+	if x1 == x2 and y1 == y2:
+		line_angle = 0
 	else:
-		delta = 1.0
+		line_angle = math.atan2(y2 - y1, x2 - x1)
+	sin, cos = math.sin(line_angle), math.cos(line_angle)
 
-	x_backpoint = (x1 + x2)/2
-	y_backpoint = (y1 + y2)/2
-	i = 0
-	while i < arrow_width:
-		i = i + 2
-		x_backpoint = (x_backpoint + x2)/2
-		y_backpoint = (y_backpoint + y2)/2
+	# FIXME cases with very short last segment
+	# if scale == line_width, dashed arrow will look like shit
+	scale = max(line_width * 1.1, MIN_ARROW_SCALE)
 
-	if delta < -1.5 or delta > 1.0:
-		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint)
-		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint)
-	elif delta > -0.5 and delta <= 1.0:
-		cairo_context.line_to(x_backpoint, y_backpoint-arrow_width)
-		cairo_context.line_to(x_backpoint, y_backpoint+arrow_width)
-	else:
-		cairo_context.line_to(x_backpoint-arrow_width, y_backpoint-arrow_width)
-		cairo_context.line_to(x_backpoint+arrow_width, y_backpoint+arrow_width)
+	# when the last segment of the line is very short, the head is scaled down
+	# last_segment_length = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+	# scale = min(scale, last_segment_length/line_width)
+	# ^XXX broken with dashes
+	# TODO ça peut ne plus être nécessaire si je décale la tête
 
+	head = []
+	# scale, rotate and translate the arrow triangle
+	for x, y in ARROW_TRIANGLE:
+		p = (x * scale, y * scale)
+		p = (p[0] * cos - p[1] * sin, p[0] * sin + p[1] * cos)
+		p = (p[0] + x2, p[1] + y2)
+		head.append(p)
+
+	# draw the arrow triangle
+	_draw_head(cairo_context, head, True)
+
+	# shameful hack to get a full head in cases where the line is dashed
+	if cairo_context.get_dash_count() > 0:
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+		_draw_head(cairo_context, head, False)
+
+	# XXX the path isn't filled because the path is opened by the first point of
+	# the line/curve and it can't be closed so easily
 	cairo_context.close_path()
-	cairo_context.fill_preserve()
-	cairo_context.stroke()
+	# The stroke must be done afterwards, by the calling method
+
+def _draw_head(cairo_context, head, first_try):
+	if first_try:
+		cairo_context.move_to(*head[0])
+	else:
+		cairo_context.line_to(*head[0])
+	cairo_context.line_to(*head[1])
+	cairo_context.line_to(*head[2])
 
 ################################################################################
 # Path smoothing ###############################################################
@@ -165,7 +186,7 @@ def utilities_smooth_path(cairo_context, cairo_path):
 	x3 = y3 = None
 	x4 = y4 = None
 	for pts in cairo_path:
-		if pts[1] is ():
+		if pts[1] == ():
 			continue
 		x1, y1, x2, y2, x3, y3, x4, y4 = _next_arc(cairo_context, \
 		                           x2, y2, x3, y3, x4, y4, pts[1][0], pts[1][1])

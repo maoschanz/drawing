@@ -17,7 +17,7 @@
 
 import math
 from gi.repository import Gdk
-from .abstract_canvas_tool import AbstractCanvasTool
+from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_rotate import OptionsBarRotate
 
 class ToolRotate(AbstractCanvasTool):
@@ -34,7 +34,6 @@ class ToolRotate(AbstractCanvasTool):
 		self.add_tool_action_simple('rotate-counter-cw', self.on_left_clicked)
 		self.add_tool_action_simple('rotate-flip-h', self.on_horizontal_clicked)
 		self.add_tool_action_simple('rotate-flip-v', self.on_vertical_clicked)
-		# self.add_tool_action_enum('rotate-unit', 'degrees') # TODO ?
 
 	def try_build_pane(self):
 		self.pane_id = 'rotate'
@@ -155,9 +154,16 @@ class ToolRotate(AbstractCanvasTool):
 		# print('gdk_rotation:', gdk_rotation)
 		# print('cairo_rotation:', cairo_rotation)
 
-		# Image rotation, using methods from both GdkPixbuf.Pixbuf and (if
-		# needed) cairo.Context
+		# Image rotation, using the method from GdkPixbuf.Pixbuf
 		new_pixbuf = source_pixbuf.rotate_simple(gdk_rotation)
+
+		# Image flipping (horizontal or vertical "mirroring")
+		if flip_h:
+			new_pixbuf = new_pixbuf.flip(True)
+		if flip_v:
+			new_pixbuf = new_pixbuf.flip(False)
+
+		# Image rotation, using methods from cairo.Context (only if needed)
 		if cairo_rotation != 0:
 			surface0 = Gdk.cairo_surface_create_from_pixbuf(new_pixbuf, 0, None)
 			surface0.set_device_scale(self.scale_factor(), self.scale_factor())
@@ -166,12 +172,6 @@ class ToolRotate(AbstractCanvasTool):
 			new_surface = self.get_deformed_surface(surface0, coefs)
 			new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 			                  new_surface.get_width(), new_surface.get_height())
-
-		# Image flipping (horizontal or vertical "mirroring")
-		if flip_h:
-			new_pixbuf = new_pixbuf.flip(True)
-		if flip_v:
-			new_pixbuf = new_pixbuf.flip(False)
 
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)

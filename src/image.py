@@ -16,15 +16,29 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib, Pango
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
+from .utilities import InvalidFileFormatException
 
 class DrMotionBehavior():
 	HOVER = 0
 	DRAW = 1
 	SLIP = 2
+
+	_LIMIT = 10
+	def is_moving(x1, x2, y1, y2):
+		# no `self` because it's static
+		moves_x = abs(x1 - x2) < DrMotionBehavior._LIMIT
+		moves_y = abs(y1 - y2) < DrMotionBehavior._LIMIT
+		return moves_x and moves_y
+
+class NoPixbufNoChangeException(Exception):
+	def __init__(self, pb_name):
+		# Context: an error message
+		message = _("New pixbuf empty, no change applied to %s")
+		super().__init__(message % pb_name)
 
 ################################################################################
 
@@ -36,7 +50,6 @@ class DrImage(Gtk.Box):
 	_h_scrollbar = Gtk.Template.Child()
 	_v_scrollbar = Gtk.Template.Child()
 
-	CLOSING_PRECISION = 10
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
 	def __init__(self, window, **kwargs):
@@ -103,9 +116,9 @@ class DrImage(Gtk.Box):
 		self._is_pressed = False
 
 		# Zoom and scroll initialization
-		self.zoom_level = 1.0
 		self.scroll_x = 0
 		self.scroll_y = 0
+		self.set_zoom_level(100) # will do `self.zoom_level = 1.0`
 		self.motion_behavior = DrMotionBehavior.HOVER
 		self.press2_x = 0.0
 		self.press2_y = 0.0
@@ -121,18 +134,8 @@ class DrImage(Gtk.Box):
 		self.set_action_sensitivity('redo', False)
 
 	def init_background(self, width, height, background_rgba):
-		r = float(background_rgba[0])
-		g = float(background_rgba[1])
-		b = float(background_rgba[2])
-		a = float(background_rgba[3])
-		op = {
-			'tool_id': None,
-			'pixbuf': None,
-			'red': r, 'green': g, 'blue': b, 'alpha': a,
-			'width': width, 'height': height
-		}
 		self.init_image_common()
-		self._history.initial_operation = op
+		self._history.set_initial_operation(background_rgba, None, width, height)
 		self.restore_first_pixbuf()
 
 	def try_load_pixbuf(self, pixbuf):
@@ -153,7 +156,7 @@ class DrImage(Gtk.Box):
 		pixbuf = last_saved_pixbuf_op['pixbuf']
 		width = last_saved_pixbuf_op['width']
 		height = last_saved_pixbuf_op['height']
-		self.temp_pixbuf = self._new_blank_pixbuf(1, 1)
+		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.selection.init_pixbuf()
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
@@ -162,14 +165,14 @@ class DrImage(Gtk.Box):
 			g = last_saved_pixbuf_op['green']
 			b = last_saved_pixbuf_op['blue']
 			a = last_saved_pixbuf_op['alpha']
-			self.main_pixbuf = self._new_blank_pixbuf(width, height)
+			self.set_main_pixbuf(self._new_blank_pixbuf(width, height))
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
 			cairo_context.paint()
 			self.update()
 			self.set_surface_as_stable_pixbuf()
 		else:
-			self.main_pixbuf = last_saved_pixbuf_op['pixbuf'].copy()
+			self.set_main_pixbuf(last_saved_pixbuf_op['pixbuf'].copy())
 			self.use_stable_pixbuf()
 
 	############################################################################
@@ -178,24 +181,16 @@ class DrImage(Gtk.Box):
 		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
 		background_rgba = self.window._settings.get_strv('default-rgba')
-		r = float(background_rgba[0])
-		g = float(background_rgba[1])
-		b = float(background_rgba[2])
-		a = float(background_rgba[3])
-		op = {
-			'tool_id': None,
-			'pixbuf': pixbuf,
-			'red': r, 'green': g, 'blue': b, 'alpha': a,
-			'width': pixbuf.get_width(), 'height': pixbuf.get_height()
-		}
-		self._history.initial_operation = op
-		self.main_pixbuf = pixbuf
+		self._history.set_initial_operation(background_rgba, pixbuf, \
+		                                pixbuf.get_width(), pixbuf.get_height())
+		self.set_main_pixbuf(pixbuf)
 
 	def reload_from_disk(self):
 		"""Safely reloads the image from the disk."""
 		if self.gfile is None:
 			# XXX no, the action shouldn't be active in the first place
-			if not self.window.confirm_save_modifs():
+			isnt_saved = not self.window.saving_manager.confirm_save_modifs()
+			if isnt_saved or self.get_file_path() is None:
 				self.window.prompt_message(True, \
 				            _("Can't reload a never-saved file from the disk."))
 				return
@@ -207,8 +202,19 @@ class DrImage(Gtk.Box):
 		self.remember_current_state()
 
 	def try_load_file(self, gfile):
-		self.gfile = gfile
-		pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		try:
+			self.gfile = gfile
+			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		except Exception as ex:
+			if not ex.message:
+				ex.message = "[exception without a valid message]"
+			ex = InvalidFileFormatException(ex.message, gfile.get_path())
+			self.window.prompt_message(True, ex.message)
+			self.gfile = None
+			pixbuf = self._new_blank_pixbuf(100, 100)
+			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
+			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
+			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
 
 	############################################################################
@@ -326,7 +332,7 @@ class DrImage(Gtk.Box):
 		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
-		# XXX à déléguer partiellement au selection_manager ?
+		# XXX shouldn't it be done by the selection_manager?
 		state = self.selection.is_active
 		self.set_action_sensitivity('unselect', state)
 		self.set_action_sensitivity('select_all', not state)
@@ -351,6 +357,8 @@ class DrImage(Gtk.Box):
 
 		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
+
+		# TODO transform tools may appreciate to draw *before* the image
 
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
@@ -386,12 +394,12 @@ class DrImage(Gtk.Box):
 		except the mouse cursor icon for example."""
 		event_x, event_y = self.get_event_coords(event)
 		if self.motion_behavior == DrMotionBehavior.HOVER:
-			# XXX ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
+			# TODO ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update() # TODO comment this for better perfs
+			self.update() # <<< comment this for better perfs
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			delta_x = int(self.drag_scroll_x - event_x)
 			delta_y = int(self.drag_scroll_y - event_y)
@@ -404,9 +412,9 @@ class DrImage(Gtk.Box):
 		self._drawing_area, if the button is not the signal is transmitted to
 		the selected tool."""
 		if self.motion_behavior == DrMotionBehavior.SLIP:
-			if abs(self.press2_x - self.drag_scroll_x) < self.CLOSING_PRECISION \
-			and abs(self.press2_y - self.drag_scroll_y) < self.CLOSING_PRECISION:
-				self.window.options_manager.on_middle_click()
+			if DrMotionBehavior.is_moving(self.press2_x, self.drag_scroll_x, \
+			                              self.press2_y, self.drag_scroll_y):
+				self.window.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return
 		self.motion_behavior = DrMotionBehavior.HOVER
@@ -454,11 +462,11 @@ class DrImage(Gtk.Box):
 	def get_pixbuf_height(self):
 		return self.main_pixbuf.get_height()
 
-	# TODO utiliser ça en interne à image.py
 	def set_main_pixbuf(self, new_pixbuf):
+		"""Safely set a pixbuf as the main one (not used everywhere internally
+		in image.py, but it's normal)."""
 		if new_pixbuf is None:
-			# XXX maybe throw something instead
-			print("new_pixbuf is None, no change to main_pixbuf will be applied")
+			raise NoPixbufNoChangeException('main_pixbuf')
 		else:
 			self.main_pixbuf = new_pixbuf
 
@@ -467,13 +475,12 @@ class DrImage(Gtk.Box):
 
 	def set_temp_pixbuf(self, new_pixbuf):
 		if new_pixbuf is None:
-			# XXX maybe throw something instead
-			print("new_pixbuf is None, no change to temp_pixbuf will be applied")
+			raise NoPixbufNoChangeException('temp_pixbuf')
 		else:
 			self.temp_pixbuf = new_pixbuf
 
 	def reset_temp(self):
-		self.temp_pixbuf = self._new_blank_pixbuf(1, 1)
+		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.use_stable_pixbuf()
 		self.update()
 
@@ -533,7 +540,6 @@ class DrImage(Gtk.Box):
 		x1 = x1 - self.scroll_x
 		y1 = y1 - self.scroll_y
 		if with_selection:
-			# FIXME ne comprends pas les deltas locaux du crop ni du scale
 			x1 += self.selection.selection_x
 			y1 += self.selection.selection_y
 		x2 = x1 + w
@@ -543,16 +549,32 @@ class DrImage(Gtk.Box):
 			x2 *= self.zoom_level
 			y1 *= self.zoom_level
 			y2 *= self.zoom_level
-		# TODO use the same kind of transformation for the selection cursor when
-		# the zoom is not 1.0
 		return x1, x2, y1, y2
+
+	def get_nineths_sizes(self, apply_to_selection, x1, y1):
+		"""Returns the sizes of the 'nineths' of the image used for example by
+		'scale' or 'crop' to decide the cursor they'll show."""
+		height = self.temp_pixbuf.get_height()
+		width = self.temp_pixbuf.get_width()
+		if not apply_to_selection:
+			x1 = 0
+			y1 = 0
+		# width_left, width_right, height_top, height_bottom
+		wl, wr, ht, hb = self.get_corrected_coords(x1, width, y1, height, \
+		                                               apply_to_selection, True)
+		# FIXME using local deltas this way "works" but isn't mathematically
+		# correct: scaled selections have a "null" and excentred central nineth
+		wl += 0.4 * width * self.zoom_level
+		wr -= 0.4 * width * self.zoom_level
+		ht += 0.4 * height * self.zoom_level
+		hb -= 0.4 * height * self.zoom_level
+		return wl, wr, ht, hb
 
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
 		ctrl_is_used = (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK
 		if ctrl_is_used == self._ctrl_to_zoom:
-			event_x, event_y = self.get_event_coords(event)
-			self.zoom_to_point(event.delta_x, event.delta_y, event.x, event.y)
+			self._zoom_to_point(event)
 		else:
 			self.add_deltas(event.delta_x, event.delta_y, 10)
 
@@ -602,14 +624,39 @@ class DrImage(Gtk.Box):
 		else:
 			self.scroll_x = int(scrollbar.get_value())
 
-	def zoom_to_point(self, delta_x, delta_y, x, y):
-		zoom_delta = (delta_x + delta_y) * -5
+	def _zoom_to_point(self, event):
+		"""Zoom in or out the image in a way such that the point under the
+		pointer stays as much as possible under the pointer."""
+		event_x, event_y = self.get_event_coords(event)
+
+		zoom_delta = (event.delta_x + event.delta_y) * -4 # Arbitrary
 		self.inc_zoom_level(zoom_delta)
-		displayed_w = self.get_widget_width() / self.zoom_level
-		displayed_h = self.get_widget_height() / self.zoom_level
-		fake_delta_x = x - (displayed_w / 2)
-		fake_delta_y = y - (displayed_h / 2)
-		self.add_deltas(fake_delta_x, fake_delta_y, min(1, 1/self.zoom_level))
+
+		# Where the zoom event occurs, in terms of percentages, in the widget's
+		# reference frame. Like, "at 10% of the width, and 80% of the height".
+		proportion_w = event.x / self.get_widget_width()
+		proportion_h = event.y / self.get_widget_height()
+
+		# Size of the rectangle between the current scroll position (values of
+		# the self.scroll_* attributes) and the zoom event. Both are expressed
+		# in pixels in the reference frame of the pixbuf.
+		corner_w = event_x - self.scroll_x
+		corner_h = event_y - self.scroll_y
+
+		# Dark magic based on unsound experiments XXX
+		fake_delta_x = corner_w * (proportion_w - 0.5)
+		fake_delta_y = corner_h * (proportion_h - 0.5)
+		if zoom_delta > 0:
+			# Zooming in
+			fake_delta_x *= 0.5
+			fake_delta_y *= 0.5
+		else:
+			# Zooming out
+			fake_delta_x *= -0.1
+			fake_delta_y *= -0.1
+
+		# Updating the scroll position based on the values previously found
+		self.add_deltas(fake_delta_x, fake_delta_y, 1)
 
 	def inc_zoom_level(self, delta):
 		self.set_zoom_level((self.zoom_level * 100) + delta)

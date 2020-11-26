@@ -1,0 +1,1936 @@
+# Indonesian translations for drawing package.
+# Copyright (C) 2020 THE drawing'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the drawing package.
+# Ghani Rafif <ghani.rafif.2112@gmail.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: drawing\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-22 02:40+0100\n"
+"PO-Revision-Date: 2020-10-25 01:41+0700\n"
+"Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gtranslator 3.38.0\n"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+#: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
+#: src/main.py
+msgid "Drawing"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Simple drawing utility"
+msgstr "Utilitas menggambar yang sederhana"
+
+#. Icon name, do not translate
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "com.github.maoschanz.drawing"
+msgstr "com.github.maoschanz.drawing"
+
+#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Paint;Sketch;Pencil;"
+msgstr "Paint;Sketsa;Pensil;"
+
+#. Context: answer to "where do you want to open the image?"
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
+msgid "New Window"
+msgstr "Jendela Baru"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "New Image"
+msgstr "Gambar Baru"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Edit Image in Clipboard"
+msgstr "Sunting Gambar di papan klip"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "A drawing application for the GNOME desktop"
+msgstr "Aplikasi menggambar untuk destop GNOME"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+msgstr ""
+"\"Drawing\" adalah pengolah gambar dasar yang mendukung tipe berkas PNG, "
+"JPEG, dan BMP."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It allows you to draw or edit pictures with tools such as pencil, line or "
+"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
+"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
+"rotating, …"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6.4 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#. This is just my name, do not translate it.
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Romain F. T."
+msgstr "Romain F. T."
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The window and its primary menu"
+msgstr ""
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The selection and the actions associated with it"
+msgstr ""
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Zooming in various shapes"
+msgstr ""
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The \"new image\" menu opened"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Prefrensi"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Laporkan kutu"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Pintasan"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Bantuan"
+
+#: src/ui/app-menus.ui
+msgid "About"
+msgstr "Tentang"
+
+#: src/ui/app-menus.ui
+msgid "Quit"
+msgstr "Keluar"
+
+#: src/ui/app-menus.ui
+msgid "_File"
+msgstr "_Berkas"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Open an image"
+msgstr "Buka gambar"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Blank Image"
+msgstr "Gambar Kosong Baru"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
+msgid "New Image With Custom Size"
+msgstr "Gambar Baru Dengan Ukuran Khusus"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Selection"
+msgstr "Gambar Baru Dari Seleksi"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Clipboard"
+msgstr "Gambar Baru Dari Papan Klip"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Reload file"
+msgstr "Muat ulang berkas"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
+msgid "Image properties"
+msgstr "Properti gambar"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/saving_manager.py
+msgid "Save"
+msgstr "Simpan"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Save without transparency"
+msgstr "Simpan tanpa transparansi"
+
+#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
+#: src/saving_manager.py
+msgid "Save as…"
+msgstr "Simpan sebagai..."
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Export as…"
+msgstr "Ekspor sebagai..."
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr "Salin ke papan klip"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Print"
+msgstr "Cetak"
+
+#: src/ui/app-menus.ui
+msgid "Close Image"
+msgstr "Tutup Gambar"
+
+#: src/ui/app-menus.ui
+msgid "Close Window"
+msgstr "Tutup Jendela"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Quit all windows"
+msgstr "Tinggalkan semua jendela"
+
+#: src/ui/app-menus.ui
+msgid "_Edit"
+msgstr "_Sunting"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Undo"
+msgstr "Nirjadikan"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Redo"
+msgstr "Jadikan lagi"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Rebuild from history"
+msgstr "Bangun ulang dari riwayat"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Select all"
+msgstr "Pilih semua"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Cut"
+msgstr "Potong"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Copy"
+msgstr "Salin"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Delete"
+msgstr "Hapus"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Paste"
+msgstr "Tempel"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Import"
+msgstr "Impor"
+
+#: src/ui/app-menus.ui
+msgid "_View"
+msgstr "_Tampilan"
+
+#: src/ui/app-menus.ui
+msgid "Show the preview"
+msgstr "Tampilkan pratinjau"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
+msgid "Zoom"
+msgstr "Zum"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Optimal Zoom"
+msgstr "Zum Optimal"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Zoom Out"
+msgstr "Perkecil"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Original Zoom"
+msgstr "Zum Asli"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Zoom In"
+msgstr "Perbesar"
+
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
+#: src/ui/app-menus.ui
+msgid "Position"
+msgstr "Posisi"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Left"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Up"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Down"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Right"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the left"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the right"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Refresh"
+msgstr "Segarkan"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Layar penuh"
+
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Keluar dari layar penuh"
+
+#: src/ui/app-menus.ui
+msgid "_Colors"
+msgstr "_Warna"
+
+#: src/ui/app-menus.ui
+msgid "Edit Main Color…"
+msgstr "Sunting Warna Utama..."
+
+#: src/ui/app-menus.ui
+msgid "Edit Secondary Color…"
+msgstr "Sunting Warna Sekunder..."
+
+#: src/ui/app-menus.ui
+msgid "Use color editor by default"
+msgstr "Gunakan penyunting warna secara bawaan"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Exchange colors"
+msgstr "Tukar warna"
+
+#: src/ui/app-menus.ui
+msgid "Color application mode"
+msgstr ""
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Normal"
+msgstr "Normal"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Other modes"
+msgstr "Mode lain"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Raw source color"
+msgstr ""
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Highlight"
+msgstr "Sorot"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Difference"
+msgstr "Perbedaan"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Photo-oriented modes"
+msgstr ""
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Hue only"
+msgstr ""
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Saturation only"
+msgstr ""
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Hue and saturation"
+msgstr "Hue dan penjenuhan"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Luminosity only"
+msgstr ""
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Don't use the colors but…"
+msgstr ""
+
+#. To translators: this is a verb
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Blur"
+msgstr "Kabur"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Erase"
+msgstr "Hapus"
+
+#: src/ui/app-menus.ui
+msgid "_Tools"
+msgstr "Per_kakas"
+
+#: src/ui/app-menus.ui
+msgid "Previous tool"
+msgstr "Alat sebelumnya"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Active tool"
+msgstr "Alat lainnya"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Show tools names"
+msgstr "Tampilkan nama alat"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr "Lebar yang lebih besar"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Smaller width"
+msgstr "Lebar yang lebih kecil"
+
+#: src/ui/app-menus.ui src/window.py
+msgid "_Options"
+msgstr "_Opsi"
+
+#: src/ui/app-menus.ui
+msgid "_Help"
+msgstr "Ba_ntuan"
+
+#. Context: open the index of all help pages
+#: src/ui/app-menus.ui
+msgid "Index"
+msgstr "Indeks"
+
+#. Context: open the help page about general use of the app
+#: src/ui/app-menus.ui
+msgid "Basic help"
+msgstr "Bantuan dasar"
+
+#. Context: open the help page about classic tools
+#: src/ui/app-menus.ui
+msgid "Help about tools"
+msgstr "Bantuan tentang perkakas"
+
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
+#: src/ui/app-menus.ui
+msgid "Canvas and selection"
+msgstr "Kanvas dan seleksi"
+
+#. Context: open the help page about the selection
+#: src/ui/app-menus.ui
+msgid "Help about selection"
+msgstr "Bantuan tentang seleksi"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "About Drawing"
+msgstr "Tentang Drawing"
+
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+msgid "Open"
+msgstr "Buka"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr "Bagikan gambar"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Width"
+msgstr "Lebar"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Height"
+msgstr "Tinggi"
+
+#: src/ui/new-image-dialog.ui
+msgid "Color"
+msgstr "Warna"
+
+#: src/ui/new-image-dialog.ui
+msgid "Use these settings by default"
+msgstr "Gunakan pengaturan ini secara bawaan"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "100%"
+
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
+#: src/ui/properties.ui src/utilities.py
+msgid "pixels"
+msgstr "piksel"
+
+#: src/ui/properties.ui
+msgid "centimeters"
+msgstr "sentimeter"
+
+#: src/ui/properties.ui
+msgid "inches"
+msgstr "inci"
+
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "Gambar"
+
+#: src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Perkakas"
+
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "Jendela"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Close selection"
+msgstr "Tutup seleksi"
+
+#: src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Unselect"
+msgstr "Nirpilih"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_crop.py
+msgid "Crop"
+msgstr "Pangkas"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scale"
+msgstr "Skalakan"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotate"
+msgstr "Putar"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Filters"
+msgstr "Penapis"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Open As New Image"
+msgstr "Buka Sebagai Gambar Baru"
+
+#: src/ui/shortcuts.ui
+msgid "Keyboard Shortcuts"
+msgstr "Pintasan Papan Tik"
+
+#: src/ui/shortcuts.ui
+msgid "General"
+msgstr "Umum"
+
+#: src/ui/shortcuts.ui
+msgid "Main menu"
+msgstr "Menu utama"
+
+#: src/ui/shortcuts.ui
+msgid "Image"
+msgstr "Gambar"
+
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "Buka gambar"
+
+#: src/ui/shortcuts.ui
+msgid "Reload image from disk"
+msgstr "Muat gambar dari diska"
+
+#: src/ui/shortcuts.ui src/saving_manager.py
+msgid "Save picture as…"
+msgstr "Simpan gambar sebagai..."
+
+#: src/ui/shortcuts.ui
+msgid "Close the active image"
+msgstr "Tutup gambar yang aktif"
+
+#: src/ui/shortcuts.ui
+msgid "Open the tool options menu"
+msgstr "Buka menu opsi alat"
+
+#: src/ui/shortcuts.ui
+msgid "Back to previous tool"
+msgstr "Kembali ke alat sebelumnya"
+
+#: src/ui/shortcuts.ui
+msgid "Apply a transformation"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "Riwayat"
+
+#: src/ui/shortcuts.ui
+msgid "Selection"
+msgstr "Seleksi"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Delete the selection"
+msgstr "Hapus seleksi"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Import a file as the selection"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Warna"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Sunting warna utama (klik kiri)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Sunting warna sekunder (klik kanan)"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr ""
+
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
+#: src/ui/shortcuts.ui
+msgid "Navigation"
+msgstr "Navigasi"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "Jungkitkan pratinjau"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle fullscreen mode"
+msgstr "Masuk mode layar penuh"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr ""
+
+#: src/ui/win-menus.ui
+msgid "Troubleshoot selection"
+msgstr ""
+
+#: src/ui/window.ui
+msgid "Error starting the application, please report this bug."
+msgstr "Kesalahan saat memulai aplikasi, silakan laporkan kutu ini."
+
+#: src/deco_manager.py
+#, python-format
+msgid "Undo %s"
+msgstr "Nirjadikan %s"
+
+#: src/deco_manager.py
+#, python-format
+msgid "Redo %s"
+msgstr "Jadikan %s lagi"
+
+#. Context: an error message
+#: src/image.py
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr ""
+
+#: src/image.py
+msgid "Can't reload a never-saved file from the disk."
+msgstr "Tak bisa memuat ulang berkas dari diska yang tidak pernah disimpan."
+
+#: src/image.py src/properties.py
+msgid "Unsaved file"
+msgstr "Berkas tak tersimpan"
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/tools/utilities_paths.py src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "Batalkan"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr "Buat"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Show the app version"
+msgstr "Tampilkan versi aplikasi"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new window"
+msgstr "Buka jendela baru"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new tab"
+msgstr "Buka tab baru"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Edit the clipboard content"
+msgstr "Sunting konten papan klip"
+
+#: src/main.py
+msgid "This version isn't stable!"
+msgstr "Versi ini tidak stabil!"
+
+#: src/main.py
+msgid "Report bugs or ideas"
+msgstr "Laporkan kutu atau ide"
+
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
+#: src/main.py
+msgid "translator-credits"
+msgstr "Ghani Rafif"
+
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
+#: src/main.py
+msgid "GNOME's \"Art Libre\" icon set authors"
+msgstr "Pembuat set ikon \"Art Libre\""
+
+#: src/main.py
+msgid "A drawing application for the GNOME desktop."
+msgstr "Aplikasi menggambar untuk destop GNOME."
+
+#: src/main.py
+msgid "Official webpage"
+msgstr "Laman web resmi"
+
+#: src/main.py
+#, fuzzy
+msgid "Error opening this file."
+msgstr "Tidak bisa membuka berkas. Apakah maksud anda %s ?"
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr ""
+
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
+#: src/minimap.py
+#, python-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "New images"
+msgstr "Gambar baru"
+
+#: src/preferences.py
+msgid "Default width"
+msgstr "Lebar bawaan"
+
+#: src/preferences.py
+msgid "Default height"
+msgstr "Tinggi bawaan"
+
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Default color"
+msgstr "Warna bawaan"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Images saving"
+msgstr "Menyimpan gambar"
+
+#: src/preferences.py
+msgid "JPEG and BMP images can't handle transparency."
+msgstr "Gambar JPEG dan BMP tidak bisa menangani transparansi."
+
+#: src/preferences.py
+msgid ""
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
+msgstr ""
+
+#: src/preferences.py src/saving_manager.py src/utilities.py
+msgid "White"
+msgstr "Putih"
+
+#: src/preferences.py src/saving_manager.py src/utilities.py
+msgid "Black"
+msgstr "Hitam"
+
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
+#: src/preferences.py src/saving_manager.py
+msgid "Checkboard"
+msgstr "Papan catur"
+
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
+#: src/preferences.py src/saving_manager.py
+msgid "Nothing"
+msgstr ""
+
+#: src/preferences.py
+msgid "Ask before saving"
+msgstr "Tanya sebelum menyimpan"
+
+#: src/preferences.py
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr ""
+
+#: src/preferences.py
+msgid "See the user help manual for explanations."
+msgstr "Lihat panduan pengguna untuk penjelasan."
+
+#: src/preferences.py
+msgid "Use 'Ctrl' to zoom"
+msgstr ""
+
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
+#: src/preferences.py
+msgid "Appearance"
+msgstr "Tampilan"
+
+#: src/preferences.py
+msgid "Use big icons"
+msgstr "Gunakan ikon besar"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Additional tools"
+msgstr "Perkakas lainnya"
+
+#: src/preferences.py
+msgid ""
+"These tools are not as reliable and useful as they should be, so they are "
+"not all enabled by default."
+msgstr ""
+
+#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#: src/preferences.py src/tools/classic_tools/tool_eraser.py
+msgid "Eraser"
+msgstr "Penghapus"
+
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
+#: src/preferences.py src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter"
+msgstr "Stabilo"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
+msgid "Points"
+msgstr "Ujung"
+
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
+#: src/preferences.py src/tools/selection_tools/select_free.py
+msgid "Free selection"
+msgstr "Seleksi bebas"
+
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
+#: src/preferences.py src/tools/selection_tools/select_color.py
+msgid "Color selection"
+msgstr "Seleksi warna"
+
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
+#: src/preferences.py src/tools/classic_tools/tool_picker.py
+msgid "Color Picker"
+msgstr "Pengambil Warna"
+
+#. Context: the name of a tool to fill an area of one color with an other
+#: src/preferences.py src/tools/classic_tools/tool_paint.py
+msgid "Paint"
+msgstr "Cat"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Advanced options"
+msgstr "Opsi tingkat lanjut"
+
+#: src/preferences.py
+msgid "Preview size"
+msgstr "Ukuran pratinjau"
+
+#. This label will not be displayed in the UI of stable versions
+#: src/preferences.py
+msgid "Development features"
+msgstr "Fitur pengembangan"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Warna latar belakang"
+
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
+#: src/preferences.py
+msgid "Layout"
+msgstr "Tata letak"
+
+#: src/preferences.py
+msgid "The recommended value is \"Automatic\"."
+msgstr "Nilai yang direkomendasikan adalah \"Otomatis\"."
+
+#. It has to match what's written in the previous string.
+#: src/preferences.py
+msgid "Automatic"
+msgstr "Otomatis"
+
+#: src/preferences.py
+msgid "Compact"
+msgstr "Kompak"
+
+#: src/preferences.py
+msgid "elementary OS"
+msgstr "elementary OS"
+
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional"
+#: src/preferences.py
+msgid "Legacy"
+msgstr "Tampilan lama"
+
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Legacy (symbolic icons)"
+msgstr "Tampilan lama (ikon monokrom)"
+
+#: src/preferences.py
+msgid "Menubar only"
+msgstr "Hanya bilah menu"
+
+#: src/preferences.py
+msgid "Toolbar only"
+msgstr "Hanya bilah alat"
+
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Toolbar only (symbolic icons)"
+msgstr "Hanya bilah alat (ikon monokrom)"
+
+#: src/properties.py
+#, python-format
+msgid "%s px"
+msgstr "%s px"
+
+#: src/properties.py
+#, python-format
+msgid "%s cm"
+msgstr "%s cm"
+
+#: src/properties.py
+#, python-format
+msgid "%s in"
+msgstr "%s in"
+
+#. Context: the path of the edited file
+#: src/properties.py
+msgid "Path"
+msgstr "Lokasi"
+
+#. Context: the file format of the edited file
+#: src/properties.py
+msgid "Format"
+msgstr "Format"
+
+#: src/properties.py
+msgid "Colorspace"
+msgstr "Rentang warna"
+
+#. Context: an invalid colorspace format
+#: src/properties.py
+msgid "Invalid format"
+msgstr "Format tidak valid"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to save %s"
+msgstr "Gagal menyimpan %s"
+
+#. Context: Untitled(.png) is the default name of a newly saved file
+#: src/saving_manager.py
+msgid "Untitled"
+msgstr "Tanpa judul"
+
+#. Context: the sentence "There are unsaved modifications to %s."
+#: src/saving_manager.py
+msgid "this picture"
+msgstr "gambar ini"
+
+#: src/saving_manager.py
+msgid "Discard"
+msgstr "Buang"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/saving_manager.py src/window.py
+#, python-format
+msgid "There are unsaved modifications to %s."
+msgstr "Terdapat modifikasi yang belum tersimpan ke %s."
+
+#: src/saving_manager.py
+msgid ""
+"A part of the image is selected, and the pixels beneath the selection are "
+"blank."
+msgstr ""
+
+#: src/saving_manager.py
+msgid "Modifications from the current tool haven't been applied."
+msgstr "Modifikasi dari alat saat ini belum diterapkan."
+
+#: src/saving_manager.py
+msgid "Do you want to save anyway?"
+msgstr "Apakah anda ingin tetap menyimpannya?"
+
+#. Context: confirm replacing transparent pixels with the selected color
+#: src/saving_manager.py
+msgid "Replace"
+msgstr "Ganti"
+
+#: src/saving_manager.py
+msgid "This file format doesn't support transparent colors."
+msgstr "Format berkas ini tidak mendukung warna transparan."
+
+#: src/saving_manager.py
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
+"Anda bisa menyimpan gambar ini sebagai berkas PNG, atau mengganti "
+"transparansinya dengan:"
+
+#: src/saving_manager.py
+msgid "Replace transparency with:"
+msgstr "Ganti transparansi dengan:"
+
+#: src/utilities.py
+msgid "Transparent"
+msgstr "Transparan"
+
+#: src/utilities.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% transparan"
+
+#: src/utilities.py
+msgid "Grey"
+msgstr "Kelabu"
+
+#: src/utilities.py
+msgid "Orange"
+msgstr "Oranye"
+
+#: src/utilities.py
+msgid "Brown"
+msgstr "Coklat"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities.py
+msgid "Probably brown"
+msgstr ""
+
+#: src/utilities.py
+msgid "Red"
+msgstr "Merah"
+
+#: src/utilities.py
+msgid "Green"
+msgstr "Hijau"
+
+#: src/utilities.py
+msgid "Blue"
+msgstr "Biru"
+
+#: src/utilities.py
+msgid "Yellow"
+msgstr "Kuning"
+
+#: src/utilities.py
+msgid "Magenta"
+msgstr "Magenta"
+
+#: src/utilities.py
+msgid "Purple"
+msgstr "Ungu"
+
+#: src/utilities.py
+msgid "Cyan"
+msgstr "Cyan"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities.py
+msgid "Probably teal"
+msgstr ""
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities.py
+msgid "Unknown color name"
+msgstr "Nama warna tak diketahui"
+
+#: src/utilities.py
+msgid "All pictures"
+msgstr "Semua gambar"
+
+#: src/utilities.py
+msgid "PNG images"
+msgstr "Gambar PNG"
+
+#: src/utilities.py
+msgid "JPEG images"
+msgstr "Gambar JPEG"
+
+#: src/utilities.py
+msgid "BMP images"
+msgstr "Gambar BMP"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities.py
+msgid "percents"
+msgstr "persen"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities.py
+msgid "degrees"
+msgstr "derajat"
+
+#: src/utilities.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "Buka gambar"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
+#. Context: an error message
+#: src/window.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Gagal memuat alat: %s"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr ""
+
+#: src/window.py
+msgid "Modifications will take effect in the next new window."
+msgstr ""
+
+#: src/window.py src/tools/abstract_tool.py
+#: src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/classic_tools/tool_eraser.py
+msgid "No options"
+msgstr "Tidak ada opsi"
+
+#: src/window.py
+#, fuzzy
+msgid "Press F11 to exit fullscreen."
+msgstr "Keluar dari layar penuh"
+
+#: src/window.py
+msgid "Press middle-click or F8 to show/hide controls."
+msgstr ""
+
+#: src/window.py
+#, python-format
+msgid "Error: pane invalid for '%s', please report this bug."
+msgstr ""
+
+#: src/window.py
+#, python-format
+msgid "Loading %s"
+msgstr "Memuat %s"
+
+#. Context: answer to "where do you want to open the image?"
+#: src/window.py
+msgid "New Tab"
+msgstr "Tab baru"
+
+#: src/window.py
+msgid "Discard changes"
+msgstr "Buang perubahan"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/window.py
+#, python-format
+msgid "Where do you want to open %s?"
+msgstr "Di mana anda ingin membuka %s?"
+
+#. Context for translation:
+#. "What do you want to do with *these files*?"
+#: src/window.py
+msgid "these files"
+msgstr "berkas ini"
+
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
+#: src/window.py
+#, python-format
+msgid "What do you want to do with %s?"
+msgstr "Apa yang ingin anda lakukan dengan %s?"
+
+#: src/window.py
+msgid "Image copied to clipboard"
+msgstr "Gambar tersalin ke papan klip"
+
+#: src/window.py
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Gambar telah diubah pada diska, apakah anda ingin memuatnya ulang?"
+
+#: src/window.py
+msgid "Reload"
+msgstr "Muat ulang"
+
+#: src/window.py
+msgid "Import a picture"
+msgstr "Impor gambar"
+
+#: src/window.py
+msgid "Required tool is not available"
+msgstr "Alat yang dibutuhkan tidak tersedia"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
+
+#: src/tools/utilities_paths.py
+msgid "Continue"
+msgstr "Lanjutkan"
+
+#: src/tools/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr ""
+
+#: src/tools/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Algoritma mungkin tidak dapat menangani area yang diinginkan."
+
+#: src/tools/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+
+#. Context: fill a shape with the color of the left click
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Main color"
+msgstr "Warna utama"
+
+#. Context: fill a shape with the color of the right click
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Secondary color"
+msgstr "Warna sekunder"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Tool size"
+msgstr "Ukuran alat"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+msgid "Preview"
+msgstr "Pratinjau"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "How the color will be applied to the existing pixels"
+msgstr ""
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Back to the palette"
+msgstr ""
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Palette"
+msgstr "Palet"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Use this editor by default"
+msgstr "Gunakan penyunting ini secara bawaan"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "More actions"
+msgstr ""
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+msgid "Apply"
+msgstr "Terapkan"
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "More options"
+msgstr "Lebih banyak opsi"
+
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr ""
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+msgid "Transparency"
+msgstr "Transparansi"
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Select a filter…"
+msgstr "Pilih penapis..."
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+msgid "Saturation"
+msgstr "Penjenuhan"
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+msgid "Blur radius"
+msgstr "Radius pengaburan"
+
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "Ubah penjenuhan"
+
+#. Context: a filter adding like a light veil on the image
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr ""
+
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "Tambahkan transparansi"
+
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Balik warna"
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/optionsbars/transform/optionsbar-filters.ui
+msgid "Blurring"
+msgstr "Pengaburan"
+
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "Pengaburan cepat"
+
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "Pengaburan lamban"
+
+#. Context: a filter that censors the image with some kind of tiles
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pikselisasi"
+
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "Arah pengaburan"
+
+#. Context: about the blur direction
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "horisontal"
+
+#. Context: about the blur direction
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "Vertikal"
+
+#. Context: about the blur direction
+#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "Tanpa arah"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle (degrees)"
+msgstr "Sudut (derajat)"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle"
+msgstr "Sudut"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate left"
+msgstr "Putar ke kiri"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate right"
+msgstr "Putar ke kanan"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip horizontally"
+msgstr "Balik secara horisontal"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip vertically"
+msgstr "Balik secara vertikal"
+
+#. Context: the title of a menu to chose how the image will be scaled
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Keep proportions"
+msgstr "Jaga proporsi"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Always [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Always"
+msgstr "Selalu"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When scaling from corners"
+msgstr "Saat menskalakan dari pojok"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Never [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Never"
+msgstr "Jangan pernah"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Horizontal deformation"
+msgstr "Deformasi horisontal"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Vertical deformation"
+msgstr "Deformasi vertikal"
+
+#: src/tools/ui/selection.ui
+msgid "Transform"
+msgstr ""
+
+#: src/tools/ui/selection.ui
+msgid "Flip"
+msgstr "Balik"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Condongkan"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Line shape"
+msgstr "Bentuk garis"
+
+#. Context: this is the name of a line shape
+#. Default values
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+msgid "Round"
+msgstr "Cembung"
+
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
+msgid "Square"
+msgstr "Persegi"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "No arrow"
+msgstr "Panah"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "Double arrow"
+msgstr "Panah putus-putus"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+#, fuzzy
+msgid "No dashes"
+msgstr "Gunakan garis putus-putus"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+#, fuzzy
+msgid "Simple dashes"
+msgstr "Gunakan garis putus-putus"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+#, fuzzy
+msgid "Long dashes"
+msgstr "Gunakan garis putus-putus"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+#, fuzzy
+msgid "Short dashes"
+msgstr "Gunakan garis putus-putus"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Alternated dashes"
+msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
+#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+msgid "Antialiasing"
+msgstr "Antialias"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Teks gelap pada latar belakang terang"
+
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Teks terang pada latar belakang gelap"
+
+#: src/tools/ui/tool-line.ui
+msgid "Color gradient"
+msgstr "Gradasi warna"
+
+#. Context: title for the list of the possible painting algorithms.
+#: src/tools/ui/tool-paint.ui
+msgid "Behavior"
+msgstr "Perilaku"
+
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
+#: src/tools/ui/tool-paint.ui
+msgid "Encircle and fill"
+msgstr ""
+
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
+#: src/tools/ui/tool-paint.ui
+msgid "Erase and replace"
+msgstr "Hilangkan dan ganti"
+
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+msgid "Entire image"
+msgstr "Seluruh gambar"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#: src/tools/ui/tool-paint.ui
+msgid "Remove color"
+msgstr "Hilangkan warna"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "Lingkaran"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr ""
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr ""
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr "Garis penuh"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr "Garis putus-putus"
+
+#. if state_as_string == 'none':
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "No outline"
+msgstr "Tanpa garis luar"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "Pengisian"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Empty shape"
+msgstr "Bentuk kosong"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "Gradasi horizontal"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "Gradasi vertikal"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "Gradasi radial"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Segiempat"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rounded rectangle"
+msgstr "Segiempat cembung"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Oval"
+msgstr "Oval"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Polygon"
+msgstr "Poligon"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Free shape"
+msgstr "Bentuk bebas"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Close shape"
+msgstr "Tutup bentuk"
+
+#: src/tools/ui/tool-text.ui
+msgid "Insert here"
+msgstr "Sisipkan di sini"
+
+#: src/tools/ui/tool-text.ui
+msgid "Font"
+msgstr "Fonta"
+
+#: src/tools/ui/tool-text.ui
+msgid "Select a font…"
+msgstr "Pilih fonta..."
+
+#: src/tools/ui/tool-text.ui
+msgid "Italic"
+msgstr "Miring"
+
+#: src/tools/ui/tool-text.ui
+msgid "Bold"
+msgstr "Tebal"
+
+#. Context: the types of background behind the inserted text
+#: src/tools/ui/tool-text.ui
+msgid "Background"
+msgstr "Latar belakang"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "No background"
+msgstr "Tanpa latar belakang"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Shadow"
+msgstr "Bayangan"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Garis luar"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Rectangle background"
+msgstr "Latar belakang persegi"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve"
+msgstr "Kurva"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve options"
+msgstr "Opsi kurva"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Dashed arrow"
+msgstr "Panah putus-putus"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Arrow"
+msgstr "Panah"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Dashed"
+msgstr "Putus-putus"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter options"
+msgstr "Opsi stabilo"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line"
+msgstr "Garis"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line options"
+msgstr "Opsi garis"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Painting options"
+msgstr "Opsi pengecatan"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on an area to replace its color by transparency"
+msgstr "Klik pada area untuk mengganti warna dengan transparansi"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr "Klik pada kanvas untuk mengecat seluruhnya"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Pensil"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil options"
+msgstr "Opsi pensil"
+
+#: src/tools/classic_tools/tool_points.py
+#, fuzzy
+msgid "Points options"
+msgstr "Opsi teks"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr ""
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape"
+msgstr "Bentuk"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape options"
+msgstr "Opsi bentuk"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Click on the shape's first point to close it."
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text"
+msgstr "Teks"
+
+#. XXX use "text options" instead
+#: src/tools/classic_tools/tool_text.py
+msgid "Font options"
+msgstr "Opsi teks"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Drag the selection or right-click on the canvas"
+msgstr "Seret seleksi atau klik kanan pada kanvas"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Select an area or right-click on the canvas"
+msgstr "Pilih area atau klik kanan pada kanvas"
+
+#: src/tools/selection_tools/select_rect.py
+msgid "Rectangle selection"
+msgstr "Seleksi persegi"
+
+#: src/tools/transform_tools/abstract_transform_tool.py
+msgid "Error: invalid values"
+msgstr "Galat: nilai tidak valid"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the selection"
+msgstr "Pangkas seleksi"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the canvas"
+msgstr "Pangkas kanvas"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Click on the image to preview the selected filter"
+msgstr "Klik gambar untuk melihat pratinjau penapis pilihan"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the selection"
+msgstr "Putar seleksi"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the canvas"
+msgstr "Putar kanvas"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the selection"
+msgstr "Skalakan seleksi"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the canvas"
+msgstr "Skalakan kanvas"
+
+#~ msgid "Exit fullscreen mode"
+#~ msgstr "Keluar mode layar penuh"
+
+#~ msgid "Other tools"
+#~ msgstr "Alat lainnya"
+
+#~ msgid "Opened images"
+#~ msgstr "Gambar yang terbuka"

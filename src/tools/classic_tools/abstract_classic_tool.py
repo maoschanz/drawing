@@ -50,7 +50,6 @@ class AbstractClassicTool(AbstractAbstractTool):
 		return OptionsBarClassic(self.window)
 
 	def on_tool_selected(self):
-		# XXX shouldn't i update the label/menu/size/sensitivity/etc. here?
 		pass
 
 	############################################################################
@@ -84,6 +83,36 @@ class AbstractClassicTool(AbstractAbstractTool):
 			antialias = cairo.Antialias.NONE
 		context.set_antialias(antialias)
 		return context
+
+	def set_dashes_and_cap(self, cairo_context, lw, dashes_type, line_cap):
+		"""Set a cairo dash pattern to the given context. The pattern we want
+		is described by its name as a string (`dashes_type`), but the actual
+		lengths that cairo wants depend also on the line width (`lw`) and the
+		`line_cap`. The line cap is also set here."""
+		cairo_context.set_line_cap(line_cap)
+		dashes_descriptor = []
+		if dashes_type == 'regular':
+			dashes_descriptor = [2, 2]
+		elif dashes_type == 'long':
+			dashes_descriptor = [3, 1]
+		elif dashes_type == 'dots':
+			dashes_descriptor = [1, 1]
+		elif dashes_type == 'alt':
+			dashes_descriptor = [3, 1, 1, 1]
+
+		i = 0
+		for length in dashes_descriptor:
+			if line_cap != cairo.LineCap.BUTT:
+				if i % 2 == 0:
+					length = length - 1
+				else:
+					length = length + 1
+			actual_length = length * lw
+			if length == 0:
+				actual_length = actual_length + 1
+			dashes_descriptor[i] = actual_length
+			i = i + 1
+		cairo_context.set_dash(dashes_descriptor)
 
 	def stroke_with_operator(self, operator, context, line_width, is_preview):
 		context.set_operator(operator)

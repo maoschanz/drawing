@@ -30,8 +30,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.window = window
 		builder = self.build_ui('optionsbars/classic/optionsbar-classic.ui')
 
-		self._operator_enum = cairo.Operator.OVER
-		self._operator_label = _("Normal")
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
@@ -111,45 +109,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._color_l.color_widget.set_rgba(self._color_r.color_widget.get_rgba())
 		self._color_r.color_widget.set_rgba(left_color)
 
-	def _set_active_operator(self, op_as_string):
-		"""Remember as attributes the value and the label of the operator which
-		is the current one according to the Gio.Action state value given as an
-		argument."""
-
-		if op_as_string == 'difference':
-			self._operator_enum = cairo.Operator.DIFFERENCE
-			self._operator_label = _("Difference")
-		elif op_as_string == 'multiply':
-			self._operator_enum = cairo.Operator.MULTIPLY
-			self._operator_label = _("Highlight")
-		elif op_as_string == 'source':
-			self._operator_enum = cairo.Operator.SOURCE
-			self._operator_label = _("Raw source color")
-
-		elif op_as_string == 'hsl-hue':
-			self._operator_enum = cairo.Operator.HSL_HUE
-			self._operator_label = _("Hue only")
-		elif op_as_string == 'hsl-saturation':
-			self._operator_enum = cairo.Operator.HSL_SATURATION
-			self._operator_label = _("Saturation only")
-		elif op_as_string == 'hsl-color':
-			self._operator_enum = cairo.Operator.HSL_COLOR
-			self._operator_label = _("Hue and saturation")
-		elif op_as_string == 'hsl-luminosity':
-			self._operator_enum = cairo.Operator.HSL_LUMINOSITY
-			self._operator_label = _("Luminosity only")
-
-		elif op_as_string == 'clear':
-			self._operator_enum = cairo.Operator.CLEAR
-			self._operator_label = _("Erase")
-		elif op_as_string == 'dest-in':
-			self._operator_enum = cairo.Operator.DEST_IN
-			self._operator_label = _("Blur")
-
-		else:
-			self._operator_enum = cairo.Operator.OVER
-			self._operator_label = _("Normal")
-
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
@@ -183,7 +142,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._update_popovers(args[1].get_string())
 
 	def _update_popovers(self, op_as_string):
-		self._set_active_operator(op_as_string)
 		self._color_r.adapt_to_operator(op_as_string)
 		self._color_l.adapt_to_operator(op_as_string)
 

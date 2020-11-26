@@ -24,7 +24,7 @@ class DrOptionsManager():
 	def __init__(self, window):
 		self.window = window
 		self._bottom_panes_dict = {}
-		self._active_pane_id= None
+		self._active_pane_id = None
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -46,7 +46,7 @@ class DrOptionsManager():
 		if not self._action_exists(name):
 			return
 		action = self.window.lookup_action(name)
-		if action.get_state_type().dup_string() is 's':
+		if action.get_state_type().dup_string() == 's':
 			return action.get_state().get_string()
 		else:
 			return action.get_state()
@@ -96,7 +96,7 @@ class DrOptionsManager():
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self.window._settings.set_string('last-font-name', font_fam_name)
 
-		# TODO more ?
+		# XXX more ?
 
 	############################################################################
 	# Bottom panes management ##################################################
@@ -128,6 +128,7 @@ class DrOptionsManager():
 	def get_active_pane(self):
 		if self._active_pane_id is None:
 			return None # XXX encore des exceptions manuelles...
+			# return self._bottom_panes_dict['classic']
 		return self._bottom_panes_dict[self._active_pane_id]
 
 	def update_pane(self, tool):
@@ -160,9 +161,6 @@ class DrOptionsManager():
 		else:
 			self.window.minimap.set_relative_to(self.window.bottom_panes_box)
 
-	def on_middle_click(self):
-		self.get_active_pane().middle_click_action()
-
 	############################################################################
 	# Methods specific to the optionsbar for classic tools #####################
 
@@ -181,6 +179,10 @@ class DrOptionsManager():
 	def get_tool_width(self):
 		return int(self.get_classic_tools_pane().thickness_spinbtn.get_value())
 
+	def update_tool_width(self, delta):
+		width = self.get_tool_width() + delta
+		self.get_classic_tools_pane().thickness_spinbtn.set_value(width)
+
 	def set_right_color(self, color):
 		return self.right_color_btn().color_widget.set_rgba(color)
 
@@ -194,8 +196,11 @@ class DrOptionsManager():
 		return self.left_color_btn().color_widget.get_rgba()
 
 	def get_operator(self):
-		enum = self.get_classic_tools_pane()._operator_enum
-		label = self.get_classic_tools_pane()._operator_label
+		# XXX répugnant, on duplique la donnée dans les 2 popovers, puis on
+		# hardcode qu'on prendra la donnée uniquement dans celui de droite, et
+		# tout ça sans respecter l'encapsulation
+		enum = self.get_classic_tools_pane()._color_r._operator_enum
+		label = self.get_classic_tools_pane()._color_r._operator_label
 		return enum, label
 
 	############################################################################

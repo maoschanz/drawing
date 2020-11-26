@@ -19,8 +19,17 @@ import cairo
 from gi.repository import Gtk
 from .utilities_overlay import utilities_show_overlay_on_context
 
+class WrongToolIdException(Exception):
+	def __init__(self, expected, actual):
+		# Context: an error message
+		msg = _("Can't start operation: wrong tool id (expected {0}, got {1})")
+		super().__init__(msg.format(expected, actual))
+
+################################################################################
+
 class AbstractAbstractTool():
 	"""Super-class implemented and extended by all tools."""
+
 	__gtype_name__ = 'AbstractAbstractTool'
 	UI_PATH = '/com/github/maoschanz/drawing/tools/ui/'
 
@@ -43,12 +52,12 @@ class AbstractAbstractTool():
 		self.try_build_pane()
 
 	############################################################################
-	# Actions for tool's options ###############################################
+	# Utilities managing actions for tool's options ############################
 
 	def add_tool_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
-		trigger the method 'callback'.""" # XXX shortcut ?
+		trigger the method 'callback'.""" # XXX allow to set shortcuts ?
 		self.window.add_action_simple(action_name, callback, None)
 
 	def add_tool_action_boolean(self, action_name, default):
@@ -61,7 +70,7 @@ class AbstractAbstractTool():
 		return self.window.options_manager.get_value(action_name)
 
 	def set_action_sensitivity(self, action_name, state):
-		self.get_image().set_action_sensitivity(action_name, state)
+		self.window.lookup_action(action_name).set_enabled(state)
 
 	def update_actions_state(self):
 		self.set_action_sensitivity('main_color', self.use_color)
@@ -73,16 +82,28 @@ class AbstractAbstractTool():
 		return self.window._settings
 
 	############################################################################
-	# UI #######################################################################
+	# Various utilities ########################################################
 
 	def show_error(self, error_text):
 		self.window.prompt_message(True, error_text)
+
+	############################################################################
+	# Bottom pane and menubar integration ######################################
 
 	def try_build_pane(self):
 		pass
 
 	def build_bottom_pane(self):
 		return None
+
+	def on_apply_temp_pixbuf_tool_operation(self, *args):
+		pass # implemented only by transform tools
+
+	def get_options_label(self):
+		return _("No options")
+
+	def adapt_to_window_size(self, available_width):
+		pass
 
 	def add_item_to_menu(self, tools_menu):
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
@@ -98,8 +119,8 @@ class AbstractAbstractTool():
 	def get_edition_status(self):
 		return self.label
 
-	def get_options_label(self):
-		return _("No options")
+	############################################################################
+	# Side pane ################################################################
 
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method stores it as
@@ -108,7 +129,7 @@ class AbstractAbstractTool():
 		                        draw_indicator=False, valign=Gtk.Align.CENTER, \
 		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		self.label_widget = Gtk.Label(label=self.label)
+		self.label_widget = Gtk.Label(label=self.label) #, use_underline=True)
 		if self.get_settings().get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
@@ -135,9 +156,6 @@ class AbstractAbstractTool():
 			size = Gtk.IconSize.SMALL_TOOLBAR
 		image.set_from_icon_name(self.icon_name, size)
 
-	def adapt_to_window_size(self, available_width):
-		pass
-
 	############################################################################
 	# Activation or not ########################################################
 
@@ -155,9 +173,6 @@ class AbstractAbstractTool():
 		self.non_destructive_show_modif()
 		self._ongoing_operation = False
 
-	def has_ongoing_operation(self):
-		return self._ongoing_operation
-
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
@@ -165,12 +180,15 @@ class AbstractAbstractTool():
 	############################################################################
 	# History ##################################################################
 
+	def has_ongoing_operation(self):
+		return self._ongoing_operation
+
 	def do_tool_operation(self, operation):
 		pass
 
 	def start_tool_operation(self, operation):
 		if operation['tool_id'] != self.id:
-			raise Exception("Can't apply operation: %s is an tool" % self.id)
+			raise WrongToolIdException(operation['tool_id'], self.id)
 		self.restore_pixbuf()
 		self._ongoing_operation = True
 
@@ -181,7 +199,10 @@ class AbstractAbstractTool():
 
 	def simple_apply_operation(self, operation):
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
-		self.do_tool_operation(operation)
+		try:
+			self.do_tool_operation(operation)
+		except Exception as e:
+			self.show_error(str(e))
 		self._ongoing_operation = False
 		self.get_image().add_to_history(operation)
 		self.non_destructive_show_modif()
@@ -240,13 +261,13 @@ class AbstractAbstractTool():
 	def on_draw(self, area, cairo_context):
 		if not self.accept_selection:
 			return
-		# Basic implementation, in fact never executed becaus tools needing it
-		# will do it better to fit their needs
 		if not self.selection_is_active():
 			return
+		# Basic "wrong" implementation (wtf is "0, 0"), which is never executed
+		# because tools needing to draw an overlay will do it better to fit
+		# their needs.
 		self.get_selection().show_selection_on_surface(cairo_context, True, 0, 0)
 		dragged_path = self.get_selection().get_path_with_scroll(0, 0)
-		# XXX non, pas "0, 0", mais ce code n'est jamais exécuté normalement
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################

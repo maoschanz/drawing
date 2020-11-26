@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page xmlns="http://projectmallard.org/1.0/"
       xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
-      id="tools_canvas">
+      id="tools_transform">
 
   <info>
     <link type="guide" xref="index#tools"/>
@@ -10,10 +10,10 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Transform the image canvas or the current selection</desc>
+    <desc>Apply a transformation to the image or the current selection</desc>
   </info>
 
-  <title>Edit the canvas or the selection</title>
+  <title>Transform the image or the selection</title>
 
   <p>These tools are available from the side bar (along with
   <link xref="tools_classic">the other tools</link>), or from a right click on
@@ -22,11 +22,18 @@
   area, otherwise they will transform the picture as a whole.</p>
 
   <note style="important">
-    <p>With these tools, once you have the transformation you want, you have to
-    <em>apply the result</em> with the <gui style="button">Apply</gui> button at
-    the right.</p>
+    <p>With these tools, once you have the transformation you want, you should
+    apply the result with the <gui style="button">Apply</gui> button at the
+    right.</p>
     <p>Otherwise you can cancel the transformation with the <gui style="button">
     Cancel</gui> button at the left.</p>
+  </note>
+  <note style="tip">
+    <p>When you change the current tool without applying explicitely, the
+    transformation will be automatically applied if it concerns the selection,
+    but cancelled if it concerns the whole image.</p>
+    <p>If you try to save without applying the transformation, a dialog will
+    remind you that you should apply it before saving.</p>
   </note>
 
   <section>
@@ -45,8 +52,10 @@
     <title>Scale</title>
 
     <p>Resize the image, using the mouse or the values in the bottom bar.</p>
-    <p>Proportions can be locked or not.</p>
-    <!-- TODO illustration -->
+    <p>Proportions can be locked or not, using the menu at the bottom-right.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_scale.png" />
   </section>
 
   <!-- XXX skew (later) -->
@@ -57,10 +66,10 @@
     <p>Change the orientation of the image, or flip it, using the buttons in the
     bottom bar.</p>
     <p>If a selection is defined, you can freely choose the precise angle of the
-    rotation.</p>
+    rotation. Otherwise, only rotations of 90°, 180° or 270° are possible.</p>
   </section>
 
-  <section>
+  <section id="filters">
     <title>Filters</title>
 
     <p>You can apply a filter to the image or the selection. Click on the
@@ -70,12 +79,12 @@
         <p>Change the <gui style="menuitem">Saturation</gui>: increase or
         decrease the saturation of the image by modifying the number in the
         bottom bar.</p>
-        <p>A saturation bigger than 100% will boost the colors, a saturation
-        smaller than 100% will produce a greyish image.</p>
+        <p>A saturation bigger than 100% boosts the colors, a saturation smaller
+        than 100% does a greyish image.</p>
       </item>
       <item>
-        <p><gui style="menuitem">Veil</gui> will add a greyish veil upon the
-        image, with a thin pixelisation pattern.</p>
+        <p><gui style="menuitem">Veil</gui> will add a slightly desaturated veil
+        upon the image, with a thin pixelated pattern.</p>
       </item>
       <item>
         <p><gui style="menuitem">Transparency</gui> can make the image partly
@@ -93,7 +102,8 @@
       </item>
     </list>
 
-    <media type="image" mime="image/png" width="100%" its:translate="no"
+    <p>Here is an example of filters applied on small areas of an image:</p>
+    <media type="image" mime="image/png" width="80%" its:translate="no"
            src="figures/screenshot_filters.png" />
   </section>
 

@@ -26,6 +26,9 @@
     <p>When a file is saved to the JPEG or the BMP file format, the transparency
     can't be kept. The application can replace the transparent pixels with
     something else: it can be white, black, or a checkboard of greys.</p>
+    <p>The option "default color" corresponds to the initial color of the
+    canvas, which is usually the "default color" setting available in the
+    previous section.</p>
     <p>If the replacement you want depends on the image, it's also possible to
     open a dialog every time you save an image to one of these file formats: the
     choices available in that dialog will also be white, black, or a checkboard
@@ -54,7 +57,7 @@
     keyboard shortcuts, or the buttons under the thumbnail preview.</p>
   </section>
 
-  <section>
+  <section id="tools">
     <title><link xref="tools_classic">Tools</link></title>
     <p>You can set whether you prefer normal icons (16 pixels) or large icons
     (24 pixels).</p>
@@ -82,33 +85,9 @@
     options include the "elementary OS" layout, designed for the elementary OS
     desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
 
-    <!-- <table rules="all"> -->
-    <!-- TODO images and captions -->
-    <!--   <tr> -->
-    <!--     <td> -->
-    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
-    <!--              src="figures/screenshot_*.png" /> -->
-    <!--     </td> -->
-    <!--     <td> -->
-    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
-    <!--              src="figures/screenshot_*.png" /> -->
-    <!--     </td> -->
-    <!--   </tr> -->
-    <!--   <tr> -->
-    <!--     <td> -->
-    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
-    <!--              src="figures/screenshot_*.png" /> -->
-    <!--     </td> -->
-    <!--     <td> -->
-    <!--       <media type="image" mime="image/png" width="100%" its:translate="no" -->
-    <!--              src="figures/screenshot_*.png" /> -->
-    <!--     </td> -->
-    <!--   </tr> -->
-    <!-- </table> -->
-
     <p>In this context,"symbolic icons" means that the icons are monochrome
     (black if you use a light theme, or white if you use a dark theme).
-    Otherwise they can be colorful.</p>
+    Otherwise they can be colorful (depending on your theme).</p>
   </section>
 
 </page>

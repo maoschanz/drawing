@@ -1,24 +1,71 @@
-drawing (0.5) unstable; urgency=low
+drawing (0.6.4) unstable; urgency=low
 
-  * UNSTABLE VERSION, DO NOT USE.
-  * CHANGES WHICH HAVE BEEN BACKPORTED TO THE 0.4 BRANCH ARE NOT LISTED HERE.
+  * add more keyboard shortcuts
+  * slightly better "erase and replace" algo for the paint tool
+  * better handle attempts to open webp images (#217)
+  * better handle attempts to open incorrect file types
+  * update help manual
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 28 Nov 2020 13:12:00 +0100
+
+drawing (0.6.3) unstable; urgency=low
+
+  * use submenus for the "tools" menu in the menubar
+  * fix arrows' heads when the line was semi-transparent
+  * fix arrows' heads with specific angles (#286)
+  * fix arrows' heads when the line had a square end
+  * add option for double-ended arrows
+  * add more options for dashed lines
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 31 Oct 2020 13:12:00 +0100
+
+drawing (0.6.2) unstable; urgency=low
+
+  * add keyboard shortcuts for increasing and decreasing the tool width (#242)
+  * ensure all features are available with all layouts (e.g. "reload" with Cinnamon and eOS)
+  * suggest to reload when the file has been saved without transparency
+  * new 'copy to clipboard' action
+  * new "paint over the entire image" option to the paint tool
+  * fix Debian Buster (and PureOS Amber) support (#275)
+  * add option for the 'highlighter' tool to highlight on dark background
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 17 Oct 2020 13:12:00 +0100
+
+drawing (0.6.1) unstable; urgency=low
+
+  * new 'save without transparency' action, that works with PNG
+  * add 'initial color' as a replacement for transparent pixels
+  * fix a bug in the 'rotate' tool that occured when the selection was flipped before being rotated
+  * add the additional tool 'points', to help captioning
+  * update the user help manual
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 03 Oct 2020 13:12:00 +0100
+
+drawing (0.6.0) unstable; urgency=low
+
   * remove the "windows" menu from the menubar
   * refactor bottom panes management to allow several tools to share the same pane
   * rectangle selection, freehand selection, and color selection, are now distinct tools
   * the 'rotate' tool now handles horizontal or vertical flipping
-  * the 'rotate' tool now supports any angle
+  * the 'rotate' tool now supports any angle when rotationg the selection
   * the tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool
   * "close shape" action for the 'shape' tool
   * "close selection" action for the 'free selection' tool
   * replace the 'saturate' tool by a new 'filters' tool
   * add several types of blur to 'filters'
-  * add color inversion, pixelisation, parametrized transparency to 'filters'
+  * add color inversion, pixelization, partial transparency to 'filters'
   * add "additional tools" section to the preferences window
   * add specialized types of pencils (eraser, highlighter) as optional tools
   * a fullscreen mode is now available
-  * zoom in (or out) using the minimap, the touchpad, the mouse wheel, or keyboard shortcuts
+  * zoom in (or out) using the minimap, the touch gestures, the mouse wheel, or keyboard shortcuts
   * move the "color application mode" selection to the colors menus/popovers
   * add "antialiasing" option to several tools
+  * warn the user when they try to save despite the current operation not being applied
   * rewrite the user help manual
 
- -- Romain F. T. <rrroschan@gmail.com>  Mon, 22 Jul 2019 00:18:12 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sun, 20 Sep 2020 13:12:00 +0100
+

@@ -23,6 +23,7 @@ src/main.py
 src/minimap.py
 src/preferences.py
 src/properties.py
+src/saving_manager.py
 src/utilities.py
 src/window.py
 
@@ -35,34 +36,36 @@ src/optionsbars/abstract_optionsbar.py
 src/optionsbars/classic/optionsbar_classic.py
 src/optionsbars/classic/optionsbar_color_popover.py
 src/optionsbars/selection/optionsbar_selection.py
-src/optionsbars/canvas/optionsbar_crop.py
-src/optionsbars/canvas/optionsbar_filters.py
-src/optionsbars/canvas/optionsbar_rotate.py
-src/optionsbars/canvas/optionsbar_scale.py
-src/optionsbars/canvas/optionsbar_skew.py
+src/optionsbars/transform/optionsbar_crop.py
+src/optionsbars/transform/optionsbar_filters.py
+src/optionsbars/transform/optionsbar_rotate.py
+src/optionsbars/transform/optionsbar_scale.py
+src/optionsbars/transform/optionsbar_skew.py
 
 src/optionsbars/classic/optionsbar-classic.ui
 src/optionsbars/classic/optionsbar-color-popover.ui
 src/optionsbars/selection/optionsbar-selection.ui
-src/optionsbars/canvas/optionsbar-crop.ui
-src/optionsbars/canvas/optionsbar-filters.ui
-src/optionsbars/canvas/optionsbar-rotate.ui
-src/optionsbars/canvas/optionsbar-scale.ui
-src/optionsbars/canvas/optionsbar-skew.ui
+src/optionsbars/transform/optionsbar-crop.ui
+src/optionsbars/transform/optionsbar-filters.ui
+src/optionsbars/transform/optionsbar-rotate.ui
+src/optionsbars/transform/optionsbar-scale.ui
+src/optionsbars/transform/optionsbar-skew.ui
 
+src/tools/ui/selection.ui
 src/tools/ui/tool-arc.ui
+src/tools/ui/tool-crop.ui
 src/tools/ui/tool-experiment.ui
+src/tools/ui/tool-filters.ui
+src/tools/ui/tool-highlight.ui
 src/tools/ui/tool-line.ui
 src/tools/ui/tool-paint.ui
 src/tools/ui/tool-pencil.ui
-src/tools/ui/tool-shape.ui
-src/tools/ui/tool-text.ui
-src/tools/ui/selection.ui
-src/tools/ui/tool-crop.ui
-src/tools/ui/tool-filters.ui
+src/tools/ui/tool-points.ui
 src/tools/ui/tool-rotate.ui
 src/tools/ui/tool-scale.ui
+src/tools/ui/tool-shape.ui
 src/tools/ui/tool-skew.ui
+src/tools/ui/tool-text.ui
 
 src/tools/classic_tools/abstract_classic_tool.py
 src/tools/classic_tools/tool_arc.py
@@ -71,6 +74,7 @@ src/tools/classic_tools/tool_highlight.py
 src/tools/classic_tools/tool_line.py
 src/tools/classic_tools/tool_paint.py
 src/tools/classic_tools/tool_pencil.py
+src/tools/classic_tools/tool_points.py
 src/tools/classic_tools/tool_picker.py
 src/tools/classic_tools/tool_shape.py
 src/tools/classic_tools/tool_text.py
@@ -80,10 +84,10 @@ src/tools/selection_tools/select_color.py
 src/tools/selection_tools/select_free.py
 src/tools/selection_tools/select_rect.py
 
-src/tools/canvas_tools/abstract_canvas_tool.py
-src/tools/canvas_tools/tool_crop.py
-src/tools/canvas_tools/tool_filters.py
-src/tools/canvas_tools/tool_rotate.py
-src/tools/canvas_tools/tool_scale.py
-src/tools/canvas_tools/tool_skew.py
+src/tools/transform_tools/abstract_transform_tool.py
+src/tools/transform_tools/tool_crop.py
+src/tools/transform_tools/tool_filters.py
+src/tools/transform_tools/tool_rotate.py
+src/tools/transform_tools/tool_scale.py
+src/tools/transform_tools/tool_skew.py
 

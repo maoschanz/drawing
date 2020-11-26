@@ -22,6 +22,8 @@ class ToolFreeSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolFreeSelect'
 
 	def __init__(self, window, **kwargs):
+		# Context: this is a tool to select an area according to a shape that
+		# can be freely defined by the user.
 		super().__init__('free_select', _("Free selection"), 'tool-select-free-symbolic', window)
 		self.closing_precision = 10
 		self.closing_x = 0.0
@@ -84,7 +86,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 			cairo_context.line_to(int(event_x), int(event_y))
 			cairo_context.stroke_preserve() # draw the line without closing the path
 			self.get_selection().set_future_path(cairo_context.copy_path())
-			self.non_destructive_show_modif() # XXX
+			self.non_destructive_show_modif()
 			return False
 
 	############################################################################

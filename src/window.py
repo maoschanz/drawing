@@ -28,6 +28,7 @@ from .tool_line import ToolLine
 from .tool_paint import ToolPaint
 from .tool_pencil import ToolPencil
 from .tool_picker import ToolPicker
+from .tool_points import ToolPoints
 from .tool_shape import ToolShape
 from .tool_text import ToolText
 
@@ -50,9 +51,10 @@ from .message_dialog import DrMessageDialog
 from .deco_manager import DrDecoManagerMenubar, \
                           DrDecoManagerHeaderbar, \
                           DrDecoManagerToolbar
+from .saving_manager import DrSavingManager
 
-from .utilities import utilities_save_pixbuf_to, \
-                       utilities_add_filechooser_filters
+from .utilities import utilities_add_filechooser_filters
+from .utilities import utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -83,22 +85,24 @@ class DrWindow(Gtk.ApplicationWindow):
 	toolbar_box = Gtk.Template.Child()
 	info_bar = Gtk.Template.Child()
 	info_label = Gtk.Template.Child()
+	info_action = Gtk.Template.Child()
 	notebook = Gtk.Template.Child()
 	bottom_panes_box = Gtk.Template.Child()
+	unfullscreen_btn = Gtk.Template.Child()
+	bottom_meta_box = Gtk.Template.Child()
 	tools_scrollable_box = Gtk.Template.Child()
 	tools_nonscrollable_box = Gtk.Template.Child()
-	fullscreen_btn = Gtk.Template.Child()
-	fullscreen_icon = Gtk.Template.Child()
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
 
-		self.fullscreened = False
+		self._controls_hidden = False
 		self.pointer_to_current_page = None # this ridiculous hack allows to
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
+		self._is_tools_initialisation_finished = False
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -114,19 +118,30 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.tools = None
 		self.minimap = DrMinimap(self, None)
 		self.options_manager = DrOptionsManager(self)
+		self.saving_manager = DrSavingManager(self)
 
 		self.add_all_win_actions()
-		if get_cb:
-			self.build_image_from_clipboard()
-		elif gfile is not None:
-			self.build_new_tab(gfile=gfile)
-		else:
-			self.build_new_image()
-		self.init_tools()
+		self._init_tools()
 		self.connect_signals()
+
+		# The picture is built as late as possible in the init process because
+		# reading files is too prone to exceptions that may fuck everything up,
+		# and i don't trust that catching them is enough to ensure the process
+		# can continue normally.
+		try:
+			if get_cb:
+				self.build_image_from_clipboard()
+			elif gfile is not None:
+				self.build_new_tab(gfile=gfile)
+			else:
+				self.build_new_image()
+		except Exception as excp:
+			self.prompt_message(True, excp.message)
+
+		self._enable_first_tool()
 		self.set_picture_title()
 
-	def init_tools(self):
+	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
 		disabled_tools = self._settings.get_strv('disabled-tools')
@@ -138,6 +153,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
 		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
 		self._load_tool('text', ToolText, disabled_tools, dev)
+		self._load_tool('points', ToolPoints, disabled_tools, dev)
 		self._load_tool('rect_select', ToolRectSelect, disabled_tools, dev)
 		self._load_tool('free_select', ToolFreeSelect, disabled_tools, dev)
 		self._load_tool('line', ToolLine, disabled_tools, dev)
@@ -155,21 +171,32 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._load_tool('filters', ToolFilters, disabled_tools, dev)
 
 		# Side pane buttons for tools, and their menubar items if they don't
-		# exist yet
+		# exist yet (they're defined on the application level)
 		self._build_tool_rows()
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()
 
-		# Initialisation of options and menus
+		# Initialisation of which tool is active
 		tool_id = self._settings.get_string('last-active-tool')
 		if tool_id not in self.tools:
 			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		if tool_id == DEFAULT_TOOL_ID: # The "pencil" button is already active
-			self.enable_tool(tool_id)
+		# the end of this process, implemented in the `_enable_first_tool`
+		# method, will be called later because it requires an active image,
+		# which doesn't exist yet at this point of the window init process.
+
+	def _enable_first_tool(self):
+		"""Near the end of the window initialisation process, this method is
+		called once to make sure all things related to the active tool, mostly
+		its options' values, and the visibility of its optionsbar, are all
+		correctly loaded."""
+		if self.active_tool_id == DEFAULT_TOOL_ID:
+			# Special case of the "pencil" radio button, which is already active
+			self.enable_tool(self.active_tool_id)
 		else:
 			self.active_tool().row.set_active(True)
+		self._is_tools_initialisation_finished = True
 
 	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
 		"""Given its id and its python class, this method tries to load a tool,
@@ -180,6 +207,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			try:
 				self.tools[tool_id] = tool_class(self)
 			except:
+				# Context: an error message
 				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
 
 	def _build_tool_rows(self):
@@ -197,13 +225,23 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def build_menubar_tools_menu(self):
 		sections = [None, None, None]
-		sections[2] = self.get_menubar_item([[True, 4], [False, 0]])
-		sections[0] = self.get_menubar_item([[True, 4], [False, 1]])
-		sections[1] = self.get_menubar_item([[True, 4], [False, 2]])
+		# the ids of the various kinds of tools don't match the index of their
+		# section in the submenu
+		sections[2] = self._get_menubar_tools_section(0)
+		sections[0] = self._get_menubar_tools_section(1)
+		sections[1] = self._get_menubar_tools_section(2)
 		for tool_id in self.tools:
 			tool = self.tools[tool_id]
 			tool.add_item_to_menu(sections[tool.menu_id])
 		self.app.has_tools_in_menubar = True
+
+	def _get_menubar_tools_section(self, section_index):
+		return self._get_menubar_item([
+			[True, 4],
+			[False, 1],
+			[True, 0],
+			[False, section_index]
+		])
 
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
@@ -215,8 +253,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		height = self._settings.get_int('default-height')
 		rgba = self._settings.get_strv('default-rgba')
 		self.build_new_tab(width=width, height=height, background_rgba=rgba)
-		if self.active_tool_id is not None: # Tools might not be initialized yet
-			self.set_picture_title()
+		self.set_picture_title()
 
 	def build_new_custom(self, *args):
 		"""Open a new tab with a drawable blank image using the custom values
@@ -234,7 +271,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		empty, the new image will be blank."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
-		self.build_new_tab(pixbuf=pixbuf)
+		if pixbuf is None:
+			self.prompt_message(True, _("The clipboard doesn't contain any image."))
+			self.build_new_image()
+		else:
+			self.build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
@@ -251,21 +292,27 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
+			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
+			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
+			# qu'un petit pixbuf rouge
 		else:
 			new_image.init_background(width, height, background_rgba)
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
+		if not self._is_tools_initialisation_finished:
+			return
 		self.switch_to(self.active_tool_id, args[1])
-		print("changement d'image")
-		# On devrait être moins bourrin et conserver la sélection # XXX
+		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
+		args[1].update_history_sensitivity()
+		# On devrait être moins bourrin et conserver la sélection # TODO
 
 	def update_tabs_menu_section(self, *args):
 		action = self.lookup_action('active_tab')
-		section = self.get_menubar_item([[True, 2], [False, 1]])
+		section = self._get_menubar_item([[True, 2], [False, 1]])
 		section.remove_all()
 		for page in self.notebook.get_children():
 			tab_title = page.update_title()
@@ -273,7 +320,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			section.append(tab_title, 'win.active_tab(' + str(tab_index) + ')')
 
 	def action_tab_left(self, *args):
-		# XXX (un)availability of this action, + touch gesture
+		# XXX (un)availability of this action
 		current_page = self.notebook.get_current_page()
 		if current_page == 0:
 			self.notebook.set_current_page(self.notebook.get_n_pages() - 1)
@@ -281,7 +328,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.notebook.set_current_page(current_page - 1)
 
 	def action_tab_right(self, *args):
-		# XXX (un)availability of this action, + touch gesture
+		# XXX (un)availability of this action
 		current_page = self.notebook.get_current_page()
 		if current_page == self.notebook.get_n_pages() - 1:
 			self.notebook.set_current_page(0)
@@ -293,7 +340,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		index = self.notebook.page_num(tab)
 		if not self.notebook.get_nth_page(index).is_saved():
 			self.notebook.set_current_page(index)
-			is_saved = self.confirm_save_modifs()
+			is_saved = self.saving_manager.confirm_save_modifs()
 			if not is_saved:
 				return False
 		self.notebook.remove_page(index)
@@ -354,7 +401,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.notebook.drag_dest_add_uri_targets()
 		# because drag_dest_add_image_targets doesn't work for files
 
-	def get_menubar_item(self, path_description):
+	def _get_menubar_item(self, path_description):
 		"""Get an item of the app-wide menubar. The `path_description` object
 		is an array of [boolean, int] couples. The boolean means if we're
 		looking for a submenu, the int is an index."""
@@ -405,14 +452,21 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
-		self.add_action_boolean('show_labels', self._settings.get_boolean( \
-		                     'show-labels'), self.on_show_labels_action_changed)
+
+		show_labels = self._settings.get_boolean('show-labels')
+		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
-		self.add_action_simple('reload_file', self.action_reload, ['F5'])
+		self.add_action_boolean('hide_controls', False, self.action_hide_controls)
+		self.app.set_accels_for_action('win.hide_controls', ['F8'])
+		self.lookup_action('hide_controls').set_enabled(False)
+
+		self.add_action_boolean('fullscreen', False, self.action_fullscreen)
+		self.app.set_accels_for_action('win.fullscreen', ['F11'])
+
+		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
+		self.add_action_simple('unfullscreen', self.action_unfullscreen, None)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -440,8 +494,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
+		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as, None)
+		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
 		self.add_action_simple('print', self.action_print, None)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
@@ -455,16 +511,19 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
-		self.add_action_simple('apply_canvas_tool', self.action_apply_canvas_tool, None)
+		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
-		self.add_action_simple('main_color', self.action_color1, ['<Ctrl>l'])
-		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl>r'])
+		self.add_action_simple('main_color', self.action_color1, ['<Ctrl><Shift>l'])
+		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl><Shift>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
 		editor = self._settings.get_boolean('direct-color-edit')
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
+
+		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
+		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
 		if self._settings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
@@ -489,10 +548,15 @@ class DrWindow(Gtk.ApplicationWindow):
 	# WINDOW DECORATIONS AND LAYOUTS ###########################################
 
 	def on_layout_changed(self, *args):
-		is_narrow = self._decorations.remove_from_ui()
-		self.set_ui_bars()
-		self._decorations.set_compact(is_narrow)
-		self.set_picture_title()
+		try:
+			is_narrow = self._decorations.remove_from_ui()
+			self.set_ui_bars()
+			self._decorations.set_compact(is_narrow)
+			self.set_picture_title()
+		except:
+			pass # Closed windows are not actually deleted from the array kept
+			# in main.py, so this can be called even after the window lost its
+			# data (and it will fail).
 
 	def show_info_settings(self, *args):
 		"""This is executed when a setting changed but the method to apply it
@@ -531,8 +595,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			return 'hg' # Use the GNOME layout if the desktop is unknown,
 		# because i don't know how the env variable is on mobile.
-		# Since hipsterwm users love "ricing", they'll be happy to edit
-		# preferences themselves if they hate CSD.
 
 	def set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, titlebar, toolbar, whatever)
@@ -567,32 +629,9 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
-		self.set_fullscreen_menu()
-
-	def set_fullscreen_menu(self):
-		builder = Gtk.Builder.new_from_resource(UI_PATH + 'win-menus.ui')
-		fullscreen_menu = builder.get_object('fullscreen-menu')
-
-		tabs_list = self.get_menubar_item([[True, 2], [False, 1]])
-		fullscreen_menu.append_section(_("Opened images"), tabs_list)
-
-		classic_tools_section = self.get_menubar_item([[True, 4], [False, 1]])
-		section = fullscreen_menu.get_item_link(3, Gio.MENU_LINK_SECTION)
-		section.prepend_section(None, classic_tools_section)
-
-		selection_tools_section = self.get_menubar_item([[True, 4], [False, 0]])
-		canvas_tools_section = self.get_menubar_item([[True, 4], [False, 2]])
-		submenu = section.get_item_link(1, Gio.MENU_LINK_SUBMENU)
-		submenu.append_section(None, selection_tools_section)
-		submenu.append_section(None, canvas_tools_section)
-
-		self.fullscreen_btn.set_menu_model(fullscreen_menu)
 
 	def action_main_menu(self, *args):
-		if self.fullscreened:
-			self.fullscreen_btn.set_active(not self.fullscreen_btn.get_active())
-		else:
-			self._decorations.toggle_menu()
+		self._decorations.toggle_menu()
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
@@ -612,6 +651,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._decorations.adapt_to_window_size()
 
 		available_width = self.bottom_panes_box.get_allocated_width()
+		if not self._is_tools_initialisation_finished:
+			return # there is no active pane nor active image yet
 		self.options_manager.adapt_to_window_size(available_width)
 
 		self.get_active_image().fake_scrollbar_update()
@@ -622,34 +663,74 @@ class DrWindow(Gtk.ApplicationWindow):
 	def prompt_message(self, show, label):
 		"""Update the content and the visibility of the info bar."""
 		self.info_bar.set_visible(show)
+		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if self._settings.get_boolean('devel-only'):
+		if show or self._settings.get_boolean('devel-only'):
 			print('Drawing: ' + label)
 
+	def prompt_action(self, message, action_name, action_label):
+		"""Update the content of the info bar, including its actionable button
+		which is set as visible."""
+		self.prompt_message(True, message)
+		self.info_action.set_visible(True)
+		self.info_action.set_action_name(action_name)
+		self.info_action.set_label(action_label)
+
 	def update_tabs_visibility(self):
-		should_show = (self.notebook.get_n_pages() > 1) and not self.fullscreened
+		should_show = (self.notebook.get_n_pages() > 1) and not self._controls_hidden
 		self.notebook.set_show_tabs(should_show)
 
 	############################################################################
 	# FULLSCREEN ###############################################################
 
 	def action_unfullscreen(self, *args):
-		# TODO connect to signals instead
-		self.unfullscreen()
-		self.set_fullscreen_state(False)
+		"""Simple action, exiting fullscreen."""
+		fs_action = self.lookup_action('fullscreen')
+		fs_action.change_state(GLib.Variant.new_boolean(False))
 
 	def action_fullscreen(self, *args):
-		# TODO connect to signals instead?
-		self.fullscreen()
-		self.set_fullscreen_state(True)
+		"""Boolean action, toggling fullscreen."""
+		# XXX maybe track the window widget's 'window-state-event' to use this
+		# https://lazka.github.io/pgi-docs/Gdk-3.0/flags.html#Gdk.WindowState.FULLSCREEN
+		shall_fullscreen = args[1]
+		if shall_fullscreen:
+			self.fullscreen()
+			self.prompt_message(True, _("Middle-click, tap with 3 fingers, " + \
+			                           "or press F8 to show/hide controls.") + \
+			                           " " + _("Press F11 to exit fullscreen."))
+		else:
+			self.unfullscreen()
+		self._set_controls_hidden(shall_fullscreen)
+		self.lookup_action('hide_controls').set_enabled(shall_fullscreen)
+		self.unfullscreen_btn.set_visible(shall_fullscreen)
+		args[0].set_state(GLib.Variant.new_boolean(shall_fullscreen))
 
-	def set_fullscreen_state(self, state):
-		self.fullscreened = state
-		self.tools_flowbox.set_visible(not state)
-		self.toolbar_box.set_visible(not state) # XXX not if empty!!
-		self.fullscreen_btn.set_visible(state)
+	def action_hide_controls(self, *args):
+		"""Boolean action controlling the visibility of the UI elements such as
+		the tools list, the bottom pane, the menubar/toolbar if any. This can
+		only (in theory) be used while in fullscreen."""
+		controls_hidden = args[1]
+		self.tools_flowbox.set_visible(not controls_hidden)
+		if 't' in self.deco_layout:
+			self.toolbar_box.set_visible(not controls_hidden)
+		if 'm' in self.deco_layout:
+			self.set_show_menubar(not controls_hidden)
 		self.update_tabs_visibility()
+		self.bottom_meta_box.set_visible(not controls_hidden)
+		args[0].set_state(GLib.Variant.new_boolean(controls_hidden))
+
+	def _set_controls_hidden(self, state):
+		hc_action = self.lookup_action('hide_controls')
+		hc_action.change_state(GLib.Variant.new_boolean(state))
+
+	def on_middle_click(self):
+		is_fullscreened = self.lookup_action('fullscreen').get_state()
+		if is_fullscreened:
+			hc_action = self.lookup_action('hide_controls')
+			self._set_controls_hidden(not hc_action.get_state())
+		else:
+			self.options_manager.get_active_pane().middle_click_action()
 
 	############################################################################
 	# SIDE PANE (TOOLS) ########################################################
@@ -683,7 +764,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
 		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
 
-	def on_show_labels_action_changed(self, *args):
+	def action_show_labels(self, *args):
 		show_labels = not args[0].get_state()
 		self._settings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
@@ -719,7 +800,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.active_tool().on_tool_selected()
-		self._update_fullscreen_icon()
 		self._update_bottom_pane()
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
@@ -734,17 +814,15 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def _update_bottom_pane(self):
 		"""Show the correct bottom pane, with the correct tool options menu."""
-		self.options_manager.try_enable_pane(self.active_tool().pane_id)
-		self.options_manager.update_pane(self.active_tool())
-		self._build_options_menu()
-		self._adapt_to_window_size()
-
-	def _update_fullscreen_icon(self):
-		"""Show the icon of the currently active tool on the button managing
-		fullscreen's main menu."""
-		name = self.active_tool().icon_name
-		img = Gtk.Image.new_from_icon_name(name, Gtk.IconSize.BUTTON)
-		self.fullscreen_btn.set_image(img)
+		try:
+			self.options_manager.try_enable_pane(self.active_tool().pane_id)
+			self.options_manager.update_pane(self.active_tool())
+			self._build_options_menu()
+			self._adapt_to_window_size()
+		except Exception as e:
+			self.prompt_message(True, _("Error: pane invalid for '%s', " + \
+			                   "please report this bug.") % self.active_tool_id)
+			print(e)
 
 	def active_tool(self):
 		return self.tools[self.active_tool_id]
@@ -771,10 +849,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.app.get_menubar().remove(5)
 			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
 		pane = self.options_manager.get_active_pane()
-		if pane is not None: # XXX try/except
-			pane.build_options_menu(widget, model, label)
-		else:
-			self.prompt_message(False, 'Pane is none for label: ' + label)
+		pane.build_options_menu(widget, model, label)
 
 	def action_use_editor(self, *args):
 		use_editor = not args[0].get_state()
@@ -793,6 +868,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		if self.active_tool().use_color:
 			self.options_manager.right_color_btn().open()
 
+	def action_size_more(self, *args):
+		self.options_manager.update_tool_width(1)
+
+	def action_size_less(self, *args):
+		self.options_manager.update_tool_width(-1)
+
 	############################################################################
 	# IMAGE FILES MANAGEMENT ###################################################
 
@@ -806,9 +887,6 @@ class DrWindow(Gtk.ApplicationWindow):
 			return self.notebook.get_nth_page(self.notebook.get_current_page())
 		else:
 			return self.pointer_to_current_page
-
-	def get_file_path(self):
-		return self.get_active_image().get_file_path()
 
 	def action_reload(self, *args):
 		self.get_active_image().reload_from_disk()
@@ -836,8 +914,10 @@ class DrWindow(Gtk.ApplicationWindow):
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)
 			if not self.get_active_image().is_saved():
+				# Context: %s will be replaced by the name of a file.
 				dialog.add_string(_("There are unsaved modifications to %s.") % \
 				             self.get_active_image().get_filename_for_display())
+			# Context: %s will be replaced by the name of a file.
 			dialog.add_string(_("Where do you want to open %s?") % file_name)
 			result = dialog.run()
 			dialog.destroy()
@@ -870,26 +950,40 @@ class DrWindow(Gtk.ApplicationWindow):
 		cancel_id = dialog.set_action(_("Cancel"), None, False)
 		open_id = dialog.set_action(_("Open"), None, False)
 		import_id = dialog.set_action(_("Import"), None, True)
+
 		uris = data.get_uris()
-		if len(uris) == 1:
-			label = uris[0].split('/')[-1]
+		gfiles = []
+		for uri in uris:
+			try:
+				gfile = Gio.File.new_for_uri(uri)
+				is_image, error_msg = utilities_gfile_is_image(gfile)
+			except Exception as excp:
+				is_image = False
+				error_msg = excp.message
+			if is_image:
+				gfiles.append(gfile)
+			else:
+				self.prompt_message(True, error_msg)
+
+		if len(gfiles) == 0:
+			return
+		elif len(gfiles) == 1:
+			label = gfiles[0].get_path().split('/')[-1]
 		else:
 			# Context for translation:
 			# "What do you want to do with *these files*?"
 			label = _("these files")
+		# Context: %s will be replaced by the name of a file. The possible
+		# answers are "cancel", "open", and "import"
 		dialog.add_string(_("What do you want to do with %s?") % label)
 		result = dialog.run()
 		dialog.destroy()
-		for uri in uris:
-			# print(uri)
-			# valider l'URI TODO
-			if result == import_id:
-				f = Gio.File.new_for_uri(uri)
-				self.import_from_path(f.get_path())
-				return
-			elif result == open_id:
-				f = Gio.File.new_for_uri(uri)
+
+		if result == open_id:
+			for f in gfiles:
 				self.build_new_tab(gfile=f)
+		elif result == import_id:
+			self.import_from_path(gfiles[0].get_path())
 
 	def try_load_file(self, gfile):
 		if gfile is not None:
@@ -900,106 +994,31 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
 		successfully saved."""
-		if self.get_file_path() is None: # Newly created and never saved image
-			gfile = self.file_chooser_save()
-		else:
-			gfile = self.get_active_image().gfile
-		return self._save_current_tab_to_gfile(gfile)
+		return self.saving_manager.save_current_image(False, False, False, True)
 
 	def action_save_as(self, *args):
-		gfile = self.file_chooser_save()
-		self._save_current_tab_to_gfile(gfile)
+		return self.saving_manager.save_current_image(False, True, False, True)
 
-	def _save_current_tab_to_gfile(self, gfile):
-		"""Do everything needed to save the currently active image's pixbuf to
-		the Gio.File object given as argument."""
-		if gfile is None:
-			# The user pressed "cancel" or closed the file chooser dialog
-			return False
-		fn = gfile.get_path()
-		try:
-			pixb = self.get_active_image().main_pixbuf
-			utilities_save_pixbuf_to(pixb, fn, self, True)
-			self.get_active_image().gfile = gfile
-			self.get_active_image().remember_current_state()
-		except Exception as e:
-			if str(e) == '2': # exception has been raised because the user wants
-				# to save the file under an other format (JPEG/BMP → PNG)
-				self.action_save_as()
-				return True
-			# else the exception was raised because an actual error occured, or
-			# the user clicked on "cancel"
-			self.prompt_message(False, _("Failed to save %s") % fn)
-			print(e)
-			return False
-		self.get_active_image().post_save()
-		self.set_picture_title()
-		return True
-
-	def confirm_save_modifs(self):
-		"""Return True if the image can be closed/overwritten (whether it's
-		saved or not), or False otherwise (usually if the user clicked 'cancel',
-		or if an error occurred)."""
-		if self.get_active_image().is_saved():
+	def action_save_alphaless(self, *args):
+		if self.saving_manager.save_current_image(False, False, False, False):
+			self.ask_reload()
 			return True
-		fn = self.get_file_path()
-		if fn is None:
-			unsaved_file_name = _("Untitled") + '.png'
-			# Context: the sentence "There are unsaved modifications to %s."
-			display_name = _("this picture")
-		else:
-			unsaved_file_name = fn.split('/')[-1]
-			display_name = self.get_active_image().get_filename_for_display()
-		dialog = DrMessageDialog(self)
-		discard_id = dialog.set_action(_("Discard"), 'destructive-action', False)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		save_id = dialog.set_action(_("Save"), None, True)
-		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
-		self.minimap.update_minimap(True)
-		image = Gtk.Image().new_from_pixbuf(self.minimap.mini_pixbuf)
-		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
-		frame.add(image)
-		dialog.add_widget(frame)
-		result = dialog.run()
-		dialog.destroy()
-		if result == save_id:
-			return self.action_save()
-		elif result == discard_id:
-			return True
-		else: # cancel_id
-			return False
+		return False
 
-	def file_chooser_save(self):
-		"""Opens an "save" file chooser dialog, and return a GioFile or None."""
-		gfile = None
-		file_chooser = Gtk.FileChooserNative.new(_("Save picture as…"), self,
-		                     Gtk.FileChooserAction.SAVE, _("Save"), _("Cancel"))
-		utilities_add_filechooser_filters(file_chooser)
-
-		images_dir = GLib.get_user_special_dir(GLib.USER_DIRECTORY_PICTURES)
-		if images_dir != None: # no idea why it sometimes fails
-			file_chooser.set_current_folder(images_dir)
-		default_file_name = str(_("Untitled") + '.png')
-		file_chooser.set_current_name(default_file_name)
-
-		response = file_chooser.run()
-		if response == Gtk.ResponseType.ACCEPT:
-			gfile = file_chooser.get_file()
-		file_chooser.destroy()
-		return gfile
+	def action_export_as(self, *args):
+		return self.saving_manager.save_current_image(True, True, False, True)
 
 	def action_print(self, *args):
 		self.get_active_image().print_image()
 
-	def action_export_as(self, *args):
-		gfile = self.file_chooser_save()
-		if gfile is None:
-			return
-		pixbuf = self.get_active_image().main_pixbuf
-		try:
-			utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
-		except:
-			self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
+	def action_export_cb(self, *args):
+		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		cb.set_image(self.get_active_image().main_pixbuf)
+		self.prompt_message(True, _("Image copied to clipboard"))
+
+	def ask_reload(self):
+		self.prompt_action(_("The image changed on the disk, do you want " + \
+		                       "to reload it?"), 'win.reload_file', _("Reload"))
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -1063,14 +1082,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().import_selection(pixbuf)
 
 	def action_selection_export(self, *args):
-		# XXX very similar to action_export_as
-		gfile = self.file_chooser_save()
-		if gfile is not None:
-			pixbuf = self.get_active_image().selection.get_pixbuf()
-			try:
-				utilities_save_pixbuf_to(pixbuf, gfile.get_path(), self, False)
-			except:
-				self.prompt_message(True, _("Failed to save %s") % gfile.get_path())
+		return self.saving_manager.save_current_image(True, True, True, True)
 
 	def get_selection_tool(self):
 		if 'rect_select' in self.tools:
@@ -1084,9 +1096,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			return self.active_tool()
 
 	def force_selection(self, *args):
-		self.get_selection_tool().row.set_active(True) # XXX appeler enable tool ?
+		self.get_selection_tool().row.set_active(True) # XXX not enable_tool?
 
-	def action_apply_canvas_tool(self, *args):
+	def action_apply_transform(self, *args):
 		self.active_tool().on_apply_temp_pixbuf_tool_operation()
 
 	############################################################################
@@ -1112,7 +1124,6 @@ class DrWindow(Gtk.ApplicationWindow):
 	def update_history_actions_labels(self, undo_label, redo_label):
 		self._decorations.set_undo_label(undo_label)
 		self._decorations.set_redo_label(redo_label)
-		# TODO maybe update "undo" and "redo" items in the menubar too
 
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################

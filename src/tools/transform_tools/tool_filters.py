@@ -17,7 +17,7 @@
 
 import cairo
 from gi.repository import Gdk, GdkPixbuf
-from .abstract_canvas_tool import AbstractCanvasTool
+from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_filters import OptionsBarFilters
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
@@ -51,6 +51,9 @@ class ToolFilters(AbstractCanvasTool):
 
 	def _reset_type_values(self):
 		self.blur_algo = BlurType.INVALID
+		# The active filter is memorized using individual booleans because they
+		# make it easier to write conditionals, concerning both the panel and
+		# the tool operation.
 		self.saturate = False
 		self.pixelate = False
 		self.invert = False
@@ -76,7 +79,7 @@ class ToolFilters(AbstractCanvasTool):
 			self.type_label = _("Slow blur")
 		elif state_as_string == 'tiles':
 			self.blur_algo = BlurType.TILES
-			self.type_label = _("Pixelisation")
+			self.type_label = _("Pixelization")
 		elif state_as_string == 'saturation':
 			self.saturate = True
 			self.type_label = _("Change saturation")
@@ -111,6 +114,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar.menu_btn.set_active(True)
 		if self.blur_algo == BlurType.INVALID:
 			self.on_filter_preview()
+			# XXX great optimization but it displays shit
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.on_filter_preview()
@@ -131,9 +135,9 @@ class ToolFilters(AbstractCanvasTool):
 			'local_dy': 0,
 			'saturation': self._get_saturation(),
 			'radius': self._get_blur_radius(),
-			'pixelate': self.pixelate, # XXX ces 4 booléens dégueulasses au lieu
-			'invert': self.invert, # de passer la valeur de l'action et de faire
-			'saturate': self.saturate, # le switch/case côté do_tool_operation??
+			'pixelate': self.pixelate,
+			'invert': self.invert,
+			'saturate': self.saturate,
 			'use_transparency': self.transparency,
 			'transpercent': self._get_transparency(),
 			'blur_algo': self.blur_algo,
@@ -195,7 +199,7 @@ class ToolFilters(AbstractCanvasTool):
 			if operation['saturate']:
 				source_pixbuf.saturate_and_pixelate(temp, operation['saturation'], False)
 			elif operation['pixelate']:
-				source_pixbuf.saturate_and_pixelate(temp, 1, operation['pixelate'])
+				source_pixbuf.saturate_and_pixelate(temp, 1, True)
 
 		self.common_end_operation(operation)
 

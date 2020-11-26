@@ -1,4 +1,4 @@
-# abstract_canvas_tool.py
+# abstract_transform_tool.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -56,7 +56,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.do_tool_operation(operation)
 
 	def temp_preview(self, is_selection, local_dx, local_dy):
-		"""Part of the previewing methods shared by all canvas tools."""
+		"""Part of the previewing methods shared by all transform tools."""
 		pixbuf = self.get_image().temp_pixbuf
 		if is_selection:
 			cairo_context = self.get_context()
@@ -102,7 +102,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def apply_temp(self, operation_is_selection, ldx, ldy):
 		new_pixbuf = self.get_image().temp_pixbuf.copy()
 		if operation_is_selection:
-			self.get_selection().update_from_canvas_tool(new_pixbuf, ldx, ldy)
+			self.get_selection().update_from_transform_tool(new_pixbuf, ldx, ldy)
 		else:
 			self.get_image().set_main_pixbuf(new_pixbuf)
 			self.get_image().use_stable_pixbuf()
@@ -113,17 +113,12 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		"""Return the name of the accurate cursor for tools such as `scale` or
 		`crop`, with or without an active selection, depending on the size and
 		position of the resized/cropped area."""
-		height = self.get_image().temp_pixbuf.get_height()
-		width = self.get_image().temp_pixbuf.get_width()
-		w_left, w_right, h_top, h_bottom = self.get_image().get_corrected_coords(\
-		                     0, width, 0, height, self.apply_to_selection, True)
-		# Comment to help the debug:
-		h_top += 0.4 * height
-		h_bottom -= 0.4 * height
-		w_left += 0.4 * width
-		w_right -= 0.4 * width
-		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
+		w_left, w_right, h_top, h_bottom = self.get_image().get_nineths_sizes( \
+		                    self.apply_to_selection, int(self._x), int(self._y))
+		# if we're transforming the selection from its top and/or left, coords
+		# to decide the direction depend on local deltas (self._x and self._y)
 
+		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
 		cursor_name = ''
 		if event_y < h_top:
 			cursor_name = cursor_name + 'n'
@@ -153,7 +148,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		normal_w = p_xx * source_w + p_xy * source_h + p_x0
 		normal_h = p_yx * source_w + p_yy * source_h + p_y0
 		w = max(normal_w, source_w + p_x0)
-		h = max(normal_h, source_h + p_y0) # XXX bof, pas sûr
+		h = max(normal_h, source_h + p_y0) # XXX bof, pas sûr, c'est trop
 
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 		cairo_context = cairo.Context(new_surface)
@@ -165,7 +160,6 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.show_error(_("Error: invalid values"))
 			return source_surface
 		cairo_context.set_source_surface(source_surface, 0, 0)
-		# FIXME scroll and zoom ?
 		cairo_context.paint()
 		return new_surface
 

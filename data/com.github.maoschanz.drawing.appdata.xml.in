@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2020 Romain F. T. -->
 <component type="desktop">
   <id>com.github.maoschanz.drawing</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -9,6 +10,10 @@
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
+  <custom>
+    <value key="Purism::form_factor">workstation</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
   <content_rating type="oars-1.1" />
 
   <name>Drawing</name>
@@ -24,45 +29,12 @@
   </description>
 
   <releases>
-    <release version="0.6.1" date="2019-12-01">
+    <release version="0.6.4" date="2020-11-28">
       <description>
         <p>
-          Version 0.6 is a major update, with various important changes. The app
-          is more robust and has more tools:
+          Version 0.6.4 features several minor bug fixes, and various new
+          translations.
         </p>
-        <p>
-          Rectangle selection and freehand selection are now distinct tools, and
-          the 'rotate' tool now supports any angle and handles horizontal or
-          vertical flipping.
-        </p>
-        <p>
-          The numerous tools producing shapes (circle, rectangle, polygon, …),
-          have been merged into a single, more consistent 'shape' tool, along
-          with 'rounded rectangle' and 'ellipse'. Their filling options now
-          include various types of gradients.
-        </p>
-        <p>
-          The text tool can now write using most system font, thus allowing more
-          complex characters to be used (e.g. Asian characters).
-        </p>
-        <p>
-          The 'saturate' tool has been replaced by 'filters', a more powerful
-          tool with several types of blur, color inversion, pixelisation,
-          saturation and transparency.
-        </p>
-        <p>
-          A fullscreen mode is now available.
-        </p>
-        <p>
-          The most prominent new feature is the ability to zoom in (or out) on
-          the image, using the minimap, the touchpad or the mouse wheel.
-        </p>
-      </description>
-    </release>
-    <release version="0.4.8" date="2019-10-13">
-      <description>
-        <p>Version 0.4.8 features several minor bug fixes, and various new
-        translations.</p>
       </description>
     </release>
   </releases>
@@ -77,28 +49,39 @@
   <screenshots>
     <screenshot type="default">
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/gnome_menu.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_menu.png
       </image>
-      <!-- TODO screenshots are not up-to-date -->
-      <!-- <caption></caption> -->
+      <!-- Caption of a screenshot, for appstores -->
+      <caption>
+        The window and its primary menu
+      </caption>
     </screenshot>
     <screenshot>
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/gnome_selection.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_selection.png
       </image>
-      <!-- <caption></caption> -->
+      <!-- Caption of a screenshot, for appstores -->
+      <caption>
+        The selection and the actions associated with it
+      </caption>
     </screenshot>
     <screenshot>
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/gnome_tools_preview.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_tools_preview.png
       </image>
-      <!-- <caption></caption> -->
+      <!-- Caption of a screenshot, for appstores -->
+      <caption>
+        Zooming in various shapes
+      </caption>
     </screenshot>
     <screenshot>
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/gnome_new.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_new.png
       </image>
-      <!-- <caption></caption> -->
+      <!-- Caption of a screenshot, for appstores -->
+      <caption>
+        The "new image" menu opened
+      </caption>
     </screenshot>
   </screenshots>
 
@@ -108,3 +91,4 @@
     <binary>drawing</binary>
   </provides>
 </component>
+

@@ -3,7 +3,7 @@ Be sure to read [general contributing guidelines](../CONTRIBUTING.md#contribute-
 first.
 
 <!--[TOC]-->
-<!--FIXME quand un objet retient qui l'a invoqué, c'est tjrs de la compo ??-->
+<!--XXX quand un objet retient qui l'a invoqué, c'est tjrs de la compo ??-->
 
 # Overview
 
@@ -88,7 +88,7 @@ tool is in:
 - the selection tools translates the user's input into operations using the
 image's **selection_manager**. These operations are quite complex, and are
 almost entirely managed in `abstract_select.py`.
-- the "canvas tools" (scale/crop/rotate/filters/…) can be applied to the
+- the transformation tools (scale/crop/rotate/filters/…) can be applied to the
 selection pixbuf or the main pixbuf, and will use the image's `temp_pixbuf`
 attribute to store a preview of their changes. These tools have to be
 explicitely applied by the user, using a button in the bottom bar.
@@ -120,10 +120,10 @@ popovers. The default associated set of options and actions is pretty rich
 - selection optionsbar: all selection tools have roughly the same actions, which
 are hardcoded in the optionsbar, although tools can disable actions they don't
 support (e.g. "Closing selection", useless for the rectangle selection).
-- canvas tools: each canvas edition tool defines its own optionsbar. All of them
-have a layout with a "cancel" button at the left and an "apply" button at the
-right. The rest differs greatly, but it's usually spinbuttons to provide precise
-control over numerical values (sizes, angles, percentages, …) in the middle, and
-a small menu with options at the right.
+- transformation tools: each of these tools defines its own optionsbar. All of
+them have a layout with a "cancel" button at the left and an "apply" button at
+the right. The rest differs greatly, but it's usually spinbuttons to provide
+precise control over numerical values (sizes, angles, percentages, …) in the
+middle, and a small menu with options at the right.
 
 

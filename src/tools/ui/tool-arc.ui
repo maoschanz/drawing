@@ -9,25 +9,62 @@
         <attribute name="target">round</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Thin</attribute>
-        <attribute name="action">win.line_shape</attribute>
-        <attribute name="target">thin</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">Square</attribute>
         <attribute name="action">win.line_shape</attribute>
-        <attribute name="target">square</attribute>
+        <attribute name="target">thin</attribute>
       </item>
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Use dashes</attribute>
-        <attribute name="action">win.use_dashes</attribute>
+        <attribute name="label" translatable="yes">No arrow</attribute>
+        <attribute name="action">win.arrow-type</attribute>
+        <attribute name="target">none</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Arrow</attribute>
-        <attribute name="action">win.is_arrow</attribute>
+        <attribute name="label" translatable="yes">Simple arrow</attribute>
+        <attribute name="action">win.arrow-type</attribute>
+        <attribute name="target">simple</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Double arrow</attribute>
+        <attribute name="action">win.arrow-type</attribute>
+        <attribute name="target">double</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">No dashes</attribute>
+        <attribute name="action">win.dashes-type</attribute>
+        <attribute name="target">none</attribute>
+        <attribute name="verb-icon">dash-none-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Simple dashes</attribute>
+        <attribute name="action">win.dashes-type</attribute>
+        <attribute name="target">regular</attribute>
+        <attribute name="verb-icon">dash-regular-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Long dashes</attribute>
+        <attribute name="action">win.dashes-type</attribute>
+        <attribute name="target">long</attribute>
+        <attribute name="verb-icon">dash-long-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Short dashes</attribute>
+        <attribute name="action">win.dashes-type</attribute>
+        <attribute name="target">dots</attribute>
+        <attribute name="verb-icon">dash-dots-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Alternated dashes</attribute>
+        <attribute name="action">win.dashes-type</attribute>
+        <attribute name="target">alt</attribute>
+        <attribute name="verb-icon">dash-alt-symbolic</attribute>
+      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Antialiasing</attribute>
         <attribute name="action">win.antialias</attribute>

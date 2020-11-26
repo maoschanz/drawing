@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo, threading
-from datetime import datetime # Not actually needed, just to measure perfs XXX
+# from datetime import datetime # Not actually needed, just to measure perfs
 
 class BlurType(int):
 	INVALID = -1
@@ -41,8 +41,8 @@ def utilities_blur_surface(surface, radius, blur_type, blur_direction):
 	if radius < 1:
 		return surface
 	blurred_surface = None
-	time0 = datetime.now()
-	print('blurring begins, using algo ', blur_type, '-', blur_direction)
+	# time0 = datetime.now()
+	# print('blurring begins, using algo ', blur_type, '-', blur_direction)
 
 	if blur_type == BlurType.INVALID:
 		return surface
@@ -59,8 +59,8 @@ def utilities_blur_surface(surface, radius, blur_type, blur_direction):
 	elif blur_type == BlurType.TILES:
 		blurred_surface = _generic_tiled_blur(surface, radius, blur_direction)
 
-	time1 = datetime.now()
-	print('blurring ended, total time:', time1 - time0)
+	# time1 = datetime.now()
+	# print('blurring ended, total time:', time1 - time0)
 	return blurred_surface
 
 ################################################################################
@@ -81,7 +81,7 @@ def _generic_px_box_blur(surface, radius, blur_direction):
 	cairo_context = cairo.Context(original)
 	# cairo_context.set_operator(cairo.Operator.SOURCE)
 	cairo_context.set_source_surface(surface, 0, 0)
-	cairo_context.paint() # XXX cette copie est-elle utile ?
+	cairo_context.paint() # XXX is this copy useful?
 	original.flush()
 	pixels = original.get_data()
 
@@ -282,8 +282,8 @@ def _generic_cairo_blur(surface, radius, blur_direction):
 	elif blur_direction == BlurDirection.VERTICAL:
 		surface = _cairo_directional_blur(surface, radius, True)
 	else:
-		# XXX avec des grands radius ça se voit que c'est juste une séquence de
-		# de 2 blurs directionnels au lieu d'être un vrai algo
+		# XXX with some big radius, it's visible that it's just a sequence of
+		# 2 directional blurs instead of an actual algorithm
 		surface = _cairo_directional_blur(surface, radius, True)
 		surface = _cairo_directional_blur(surface, radius, False)
 	return surface
@@ -301,7 +301,7 @@ def _cairo_directional_blur(surface, radius, is_vertical):
 		step = 1
 		alpha = min(0.9, (0.5 + step) / radius)
 	else:
-		step = int(radius / 6) # pourquoi 6 ? mystère
+		step = int(radius / 6) # why 6? mystery
 		# cette optimisation donne de légers glitchs aux grands radius, qui ne
 		# sont de toutes manières pas beaux car on voit en partie à travers
 		alpha = min(0.9, (1 + step) / radius)
@@ -334,26 +334,32 @@ def _get_tiled_surface(surface, tile_width, tile_height):
 	h = surface.get_height()
 	channels = 4 # ARGB
 	pixels = surface.get_data()
-	px_max = w * h * channels
+	pixel_max = w * h * channels
 
 	for x in range(0, w, tile_width):
 		for y in range(0, h, tile_height):
-			current_px = (x + (w * y)) * channels
-			if current_px >= px_max:
+			current_pixel = (x + (w * y)) * channels
+			if current_pixel >= pixel_max:
 				continue
-			tile_b = pixels[current_px + 0]
-			tile_g = pixels[current_px + 1]
-			tile_r = pixels[current_px + 2]
-			tile_a = pixels[current_px + 3]
+			tile_b = pixels[current_pixel + 0]
+			tile_g = pixels[current_pixel + 1]
+			tile_r = pixels[current_pixel + 2]
+			tile_a = pixels[current_pixel + 3]
 			for tx in range(0, tile_width):
 				for ty in range(0, tile_height):
-					current_px = ((x + tx) + (w * (y + ty))) * channels
-					if current_px >= px_max:
+					current_pixel = ((x + tx) + (w * (y + ty))) * channels
+					if current_pixel >= pixel_max:
 						continue
-					pixels[current_px + 0] = tile_b
-					pixels[current_px + 1] = tile_g
-					pixels[current_px + 2] = tile_r
-					pixels[current_px + 3] = tile_a
+					if current_pixel >= (w * (y + ty + 1)) * channels:
+						# the current tile is out of the surface, this guard
+						# clause avoids corrupting the next tile
+						continue
+					pixels[current_pixel + 0] = tile_b
+					pixels[current_pixel + 1] = tile_g
+					pixels[current_pixel + 2] = tile_r
+					pixels[current_pixel + 3] = tile_a
+			# end of one tile
+	# end of the "for each tile"
 	return surface
 
 ################################################################################

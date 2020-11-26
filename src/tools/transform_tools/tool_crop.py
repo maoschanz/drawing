@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gdk, GdkPixbuf
-from .abstract_canvas_tool import AbstractCanvasTool
+from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_crop import OptionsBarCrop
 from .utilities_overlay import utilities_show_handles_on_context
 
@@ -190,9 +190,6 @@ class ToolCrop(AbstractCanvasTool):
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
-		# FIXME bien excepté les delta locaux : quand on rogne depuis le haut ou
-		# la gauche, les coordonnées de référence des poignées ne sont plus
-		# correctes.
 
 	############################################################################
 

@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GdkPixbuf
-from .message_dialog import DrMessageDialog
+from gi.repository import Gtk, Gio
 
 ################################################################################
 
@@ -66,6 +65,9 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 	elif rgb_percents[0] > 0.4 and rgb_percents[1] < 0.3 and rgb_percents[2] < 0.3:
 		if lumin < 0.7 and rgb_percents[0] < 0.7:
+			# Context: the name of the current color is provided as a tooltip to
+			# help users with color blindness, but some color names don't have a
+			# clear definition. Here, the app thinks it's probably brown.
 			color_string = _("Probably brown")
 		else:
 			color_string = _("Red")
@@ -88,90 +90,21 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 		if lumin > 0.7:
 			color_string = _("Cyan")
 		else:
-			color_string = _("Probably turquoise")
+			# Context: the name of the current color is provided as a tooltip to
+			# help users with color blindness, but some color names don't have a
+			# clear definition. Here, the app thinks it's probably teal.
+			# You can translate "teal" with the name of approaching color, like
+			# turquoise or green-blue.
+			color_string = _("Probably teal")
 
 	else:
+		# Context: the name of the current color is provided as a tooltip to
+		# help users with color blindness, but some color names don't have a
+		# clear definition. Here, the app can't find a corresponding color name.
 		color_string = _("Unknown color name")
 
 	# print(color_string)
 	return (color_string + alpha_string)
-
-################################################################################
-
-def utilities_save_pixbuf_to(pixbuf, fpath, window, can_save_as):
-	"""Save pixbuf to a given path, with the file format corresponding to the
-	end of the file name. Format with no support for alpha channel will be
-	modified so transparent pixels get replaced by white."""
-	# Build a short string which will be recognized as a file format by the
-	# GdkPixbuf.Pixbuf.savev method
-	file_format = fpath.split('.')[-1]
-	if file_format in ['jpeg', 'jpg', 'jpe']:
-		file_format = 'jpeg'
-	elif file_format not in ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']:
-		file_format = 'png'
-	# Ask the user what to do concerning formats with no alpha channel
-	if file_format not in ['png']:
-		replacement = window._settings.get_string('replace-alpha')
-		if replacement == 'ask':
-			replacement = _ask_overwrite_alpha(window, can_save_as)
-		pixbuf = _replace_alpha(pixbuf, replacement)
-	# Actually save the pixbuf to the given file path
-	pixbuf.savev(fpath, file_format, [None], [])
-
-def _replace_alpha(pixbuf, replacement):
-	if replacement == 'nothing':
-		return
-	width = pixbuf.get_width()
-	height = pixbuf.get_height()
-	if replacement == 'white':
-		pcolor1 = _rgb_as_hexadecimal_int(255, 255, 255)
-		pcolor2 = _rgb_as_hexadecimal_int(255, 255, 255)
-	elif replacement == 'checkboard':
-		pcolor1 = _rgb_as_hexadecimal_int(85, 85, 85)
-		pcolor2 = _rgb_as_hexadecimal_int(170, 170, 170)
-	else: # if replacement == 'black':
-		pcolor1 = _rgb_as_hexadecimal_int(0, 0, 0)
-		pcolor2 = _rgb_as_hexadecimal_int(0, 0, 0)
-	return pixbuf.composite_color_simple(width, height,
-	                       GdkPixbuf.InterpType.TILES, 255, 8, pcolor1, pcolor2)
-
-def _rgb_as_hexadecimal_int(r, g, b):
-	"""The method GdkPixbuf.Pixbuf.composite_color_simple wants an hexadecimal
-	integer whose format is 0xaarrggbb so here are ugly binary operators."""
-	return (r << 16) + (g << 8) + b
-
-def _ask_overwrite_alpha(window, can_save_as):
-	"""Warn the user about the replacement of the alpha channel for JPG or BMP
-	files, but it will quickly annoy users to see a dialog so it's an option."""
-	dialog = DrMessageDialog(window)
-	cancel_id = dialog.set_action(_("Cancel"), None, False)
-	if can_save_as:
-		save_as_id = dialog.set_action(_("Save as…"), None, False)
-	replace_id = dialog.set_action(_("Replace"), None, True)
-
-	dialog.add_string(_("This file format doesn't support transparent colors."))
-	if can_save_as:
-		dialog.add_string(_("You can save the image as a PNG file, or " \
-		                                          "replace transparency with:"))
-	else:
-		dialog.add_string(_("Replace transparency with:"))
-
-	alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
-	alpha_combobox.append('white', _("White"))
-	alpha_combobox.append('black', _("Black"))
-	alpha_combobox.append('checkboard', _("Checkboard"))
-	alpha_combobox.append('nothing', _("Nothing"))
-	alpha_combobox.set_active_id('white') # If we run the dialog, it means the
-	# active preference is 'ask', so there is no way we can set the default
-	# value to something pertinent.
-	dialog.add_widget(alpha_combobox)
-
-	result = dialog.run()
-	repl = alpha_combobox.get_active_id()
-	dialog.destroy()
-	if result != replace_id:
-		raise Exception(result)
-	return repl
 
 ################################################################################
 
@@ -205,11 +138,15 @@ def utilities_add_filechooser_filters(dialog):
 def utilities_add_unit_to_spinbtn(spinbutton, width_chars, unit):
 	spinbutton.set_width_chars(width_chars + 3)
 	if unit == 'px':
+		# To translators: it's a measure unit, it appears in tooltips over
+		# numerical inputs
 		_add_spinbutton_icon(spinbutton, 'unit-pixels-symbolic', _("pixels"))
 	elif unit == '%':
+		# To translators: it appears in tooltips over numerical inputs
 		_add_spinbutton_icon(spinbutton, 'unit-percents-symbolic', _("percents"))
 	elif unit == '°':
-		# To translators: it's the angle measure unit
+		# To translators: it's the angle measure unit, it appears in a tooltip
+		# over a numerical input
 		_add_spinbutton_icon(spinbutton, 'unit-degrees-symbolic', _("degrees"))
 
 def _add_spinbutton_icon(spinbutton, icon, tooltip):
@@ -217,6 +154,44 @@ def _add_spinbutton_icon(spinbutton, icon, tooltip):
 	spinbutton.set_icon_from_icon_name(p, icon)
 	spinbutton.set_icon_tooltip_text(p, tooltip)
 	spinbutton.set_icon_sensitive(p, False)
+
+################################################################################
+
+def utilities_gfile_is_image(gfile, error_msg=""):
+	try:
+		infos = gfile.query_info('standard::*', Gio.FileQueryInfoFlags.NONE, None)
+		if 'image/' in infos.get_content_type():
+			# The exact file format of the image isn't validated here because i
+			# can't assume what gdkpixbuf is able to read (it's modular, and it
+			# evolves). An InvalidFileFormatException will be raised by DrImage
+			# if the file can't be loaded.
+			return True, error_msg
+		else:
+			error_msg = error_msg + _("%s isn't an image.") % gfile.get_path()
+	except Exception as err:
+		error_msg = error_msg + err.message
+	return False, error_msg
+
+class InvalidFileFormatException(Exception):
+	def __init__(self, initial_message, fpath):
+		self.message = initial_message
+		cpt = 0
+		with open(fpath, 'rb') as f:
+			riff_bytes = f.read(4)
+			size_bytes = f.read(4)
+			webp_bytes = f.read(4)
+			if riff_bytes == b'RIFF' and webp_bytes == b'WEBP':
+				msg = _("Sorry, WEBP images can't be loaded by this app.") + " 😢 "
+				if fpath[-5:] != '.webp':
+					# Context: an error message, %s is a file path
+					msg = msg + _("Despite its name, %s is a WEBP file.") % fpath
+				self.message = msg
+		super().__init__(self.message)
+	# This exception is meant to be raised when a file is detected as an image
+	# by Gio (see utility function above) BUT can't be loaded into a GdkPixbuf.
+	# It usually means the file is corrupted, or has a deceptive name (for
+	# example "xxx.jpeg" despite being a text file), or is just an image format
+	# not supported by the GdkPixbuf version installed by the user.
 
 ################################################################################
 

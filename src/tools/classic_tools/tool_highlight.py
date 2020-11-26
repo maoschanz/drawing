@@ -25,14 +25,25 @@ class ToolHighlighter(ToolPencil):
 
 	def __init__(self, window, **kwargs):
 		super().__init__(window)
+		# Context: this is the name of a tool, a thick pencil dedicated to
+		# highlight text, for example in screenshots
 		AbstractClassicTool.__init__(self, 'highlight', _("Highlighter"), \
 		                                      'tool-highlight-symbolic', window)
+		self.add_tool_action_enum('highlight-bg', 'light')
+		self.add_tool_action_boolean('highlight-alpha', True)
 
-	def get_options_model(self):
-		return None
+	def get_edition_status(self):
+		self._bg_type = self.get_option_value('highlight-bg')
+		self._force_alpha = self.get_option_value('highlight-alpha')
+		statut = self.label + " - "
+		if self._bg_type == 'light':
+			statut += _("Dark text on light background")
+		else:
+			statut += _("Light text on dark background")
+		return statut
 
 	def get_options_label(self):
-		return _("No options")
+		return _("Highlighter options")
 
 	############################################################################
 
@@ -40,8 +51,10 @@ class ToolHighlighter(ToolPencil):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'line_width': self.tool_width,
-			'path': self._path
+			'width': self.tool_width,
+			'path': self._path,
+			'bg-type': self._bg_type,
+			'halpha': self._force_alpha
 		}
 		return operation
 
@@ -49,15 +62,21 @@ class ToolHighlighter(ToolPencil):
 		self.start_tool_operation(operation)
 		if operation['path'] is None:
 			return
-		cairo_context = self.get_context()
-		cairo_context.set_line_cap(cairo.LineCap.SQUARE)
-		cairo_context.set_line_join(cairo.LineJoin.ROUND)
-		line_width = operation['line_width']
+		ccontext = self.get_context()
+		ccontext.set_line_cap(cairo.LineCap.SQUARE)
+		ccontext.set_line_join(cairo.LineJoin.ROUND)
+		line_width = operation['width']
+		if operation['bg-type'] == 'light':
+			op = cairo.Operator.MULTIPLY
+		else:
+			op = cairo.Operator.SCREEN
 		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.5)
-		utilities_smooth_path(cairo_context, operation['path'])
-		self.stroke_with_operator(cairo.Operator.MULTIPLY, cairo_context, \
-		                                                      line_width, False)
+		if operation['halpha']:
+			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.5)
+		else:
+			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		utilities_smooth_path(ccontext, operation['path'])
+		self.stroke_with_operator(op, ccontext, line_width, False)
 
 	############################################################################
 ################################################################################

@@ -57,7 +57,7 @@ class ToolText(AbstractClassicTool):
 	def _set_font(self, *args):
 		dialog = Gtk.FontChooserDialog(show_preview_entry=False)
 		dialog.set_level(Gtk.FontChooserLevel.FAMILY)
-		dialog.set_font(self.font_fam_name) # XXX j'ai pas trop l'impression que ça marche
+		dialog.set_font(self.font_fam_name) # FIXME doesn't work
 
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())
@@ -87,6 +87,7 @@ class ToolText(AbstractClassicTool):
 			self._bg_label = _("Rectangle background")
 
 	def get_options_label(self):
+		# XXX use "text options" instead
 		return _("Font options")
 
 	def get_edition_status(self):
@@ -210,7 +211,7 @@ class ToolText(AbstractClassicTool):
 		cairo_context = self.start_tool_operation(operation)
 
 		font_fam = operation['font_fam']
-		font_size = operation['font_size']
+		font_size = operation['font_size'] * 2
 		entire_text = operation['text']
 		c1 = operation['rgba1']
 		c2 = operation['rgba2']
@@ -260,7 +261,7 @@ class ToolText(AbstractClassicTool):
 
 	def _show_text_with_options(self, cc, pl, text, text_x, text_y):
 		cc.move_to(text_x, text_y)
-		pl.set_text(text)
+		pl.set_text(text, -1)
 		PangoCairo.update_layout(cc, pl)
 		PangoCairo.show_layout(cc, pl)
 

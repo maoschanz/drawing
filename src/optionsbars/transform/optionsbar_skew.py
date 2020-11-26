@@ -1,4 +1,4 @@
-# optionsbar_rotate.py
+# optionsbar_skew.py
 #
 # Copyright 2018-2020 Romain F. T.
 #
@@ -15,24 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
 
-class OptionsBarRotate(AbstractOptionsBar):
-	__gtype_name__ = 'OptionsBarRotate'
+class OptionsBarSkew(AbstractOptionsBar):
+	__gtype_name__ = 'OptionsBarSkew'
 
-	def __init__(self, rotate_tool):
+	def __init__(self):
 		super().__init__()
-		# knowing the tool is needed because the pane doesn't compact the same
-		# way if it's applied to the selection
-		self.rotate_tool = rotate_tool
-		builder = self.build_ui('optionsbars/canvas/optionsbar-rotate.ui')
-		self.angle_btn = builder.get_object('angle_btn')
-		utilities_add_unit_to_spinbtn(self.angle_btn, 3, '°')
-		self.more_btn = builder.get_object('more_btn')
-		self.angle_box = builder.get_object('angle_box')
-		self.rotate_box = builder.get_object('rotate_box')
-		self.flip_box = builder.get_object('flip_box')
+		builder = self.build_ui('optionsbars/transform/optionsbar-skew.ui')
+		self.xy_label = builder.get_object('xy_label')
+		self.yx_label = builder.get_object('yx_label')
+		self.separator = builder.get_object('separator')
+
+		self.yx_spinbtn = builder.get_object('yx_spinbtn')
+		self.xy_spinbtn = builder.get_object('xy_spinbtn')
+		utilities_add_unit_to_spinbtn(self.yx_spinbtn, 3, '%')
+		utilities_add_unit_to_spinbtn(self.xy_spinbtn, 3, '%')
 
 	def init_adaptability(self):
 		super().init_adaptability()
@@ -44,25 +44,15 @@ class OptionsBarRotate(AbstractOptionsBar):
 	def update_for_new_tool(self, tool):
 		self.set_compact(self._is_narrow)
 
-	def toggle_options_menu(self):
-		if self.more_btn.get_visible():
-			self.more_btn.set_active(not self.more_btn.get_active())
-
-	def hide_options_menu(self):
-		self.more_btn.set_active(False)
-
 	def set_compact(self, state):
 		super().set_compact(state)
-		if self.rotate_tool.apply_to_selection:
-			self.more_btn.set_visible(state)
-			self.angle_box.set_visible(True)
-			self.rotate_box.set_visible(not state)
-			self.flip_box.set_visible(not state)
+		if state:
+			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
-			self.more_btn.set_visible(False)
-			self.angle_box.set_visible(False)
-			self.rotate_box.set_visible(True)
-			self.flip_box.set_visible(True)
+			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+		self.xy_label.set_visible(not state)
+		self.yx_label.set_visible(not state)
+		self.separator.set_visible(not state)
 
 	############################################################################
 ################################################################################

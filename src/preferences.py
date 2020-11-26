@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gio, GLib, Gdk
+from gi.repository import Gtk, Gio, Gdk
 from .utilities import utilities_add_unit_to_spinbtn
 
 @Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/preferences.ui')
@@ -40,11 +40,17 @@ class DrPrefsWindow(Gtk.Window):
 	def __init__(self, is_beta, wants_csd, **kwargs):
 		super().__init__(**kwargs)
 		if wants_csd:
-			header_bar = Gtk.HeaderBar(visible=True, title=_("Preferences"), \
-			                                             show_close_button=True)
+			header_bar = Gtk.HeaderBar(
+				visible=True, \
+				title=_("Preferences"), \
+				show_close_button=True \
+			)
 			self.set_titlebar(header_bar)
-			stack_switcher = Gtk.StackSwitcher(visible=True, stack=self.stack, \
-			                                            halign=Gtk.Align.CENTER)
+			stack_switcher = Gtk.StackSwitcher(
+				visible=True, \
+				stack=self.stack, \
+				halign=Gtk.Align.CENTER \
+			)
 			header_bar.set_custom_title(stack_switcher)
 			self.set_default_size(480, 500)
 		else:
@@ -61,9 +67,9 @@ class DrPrefsWindow(Gtk.Window):
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)
 
-	# Each `page_*` attribute is a GtkGrid. The `page_builder_*` methods declare
-	# their grid to be the currently filled one, and reset the counter.
-	# Then, the `page_builder_*` methods will call the `add_*` methods, who will
+	# Each `page_*` attribute is a GtkGrid. Each `page_builder_*` method declare
+	# its grid to be the currently filled one, and reset the counter.
+	# Then, each `page_builder_*` method will call the `add_*` methods, who will
 	# build accurate widgets to be packed on the grid by the `attach_*` methods.
 
 	############################################################################
@@ -81,20 +87,31 @@ class DrPrefsWindow(Gtk.Window):
 		"""Adds the widget to the grid of the 'images' page."""
 		self.set_current_grid(self.page_images)
 
+		# Context: title of a section of the preferences
 		self.add_section_title(_("New images"))
 		self.add_adj(_("Default width"), 'default-width', self.adj_width)
 		self.add_adj(_("Default height"), 'default-height', self.adj_height)
 		self.add_colorbtn(_("Default color"), 'default-rgba')
 
 		self.add_section_separator()
+		# Context: title of a section of the preferences
 		self.add_section_title(_("Images saving"))
 		self.add_help(_("JPEG and BMP images can't handle transparency.") + \
 		        " " + _("If you save your images in these formats, what " + \
 		                  "do want to use to replace transparent pixels?"))
 		alpha_dict = {
+			# Context: this is the label that describes the initial color of an
+			# image (as set in the preferences or in the "new image with custom
+			# size" dialog). This is displayed in the context of editing or
+			# saving the image, but not when creating it.
+			'initial': _("Default color"),
 			'white': _("White"),
 			'black': _("Black"),
+			# Context: replace transparent pixels with [checkboard]. This is a
+			# pattern of dark and light greys.
 			'checkboard': _("Checkboard"),
+			# Context: replace transparent pixels with [nothing]. In practice it
+			# means the alpha channel is just removed.
 			'nothing': _("Nothing"),
 			'ask': _("Ask before saving")
 		}
@@ -111,17 +128,21 @@ class DrPrefsWindow(Gtk.Window):
 		"""Adds the widget to the grid of the 'tools' page."""
 		self.set_current_grid(self.page_tools)
 
+		# Context: title of a section of the preferences (appearance of the
+		# tools: big icons?, labels?)
 		self.add_section_title(_("Appearance"))
 		self.add_switch(_("Show tools names"), 'show-labels')
 		self.add_switch(_("Use big icons"), 'big-icons')
 
 		self.add_section_separator()
+		# Context: title of a section of the preferences
 		self.add_section_title(_("Additional tools"))
 		self.add_help(_("These tools are not as reliable and useful as " + \
 		       "they should be, so they are not all enabled by default."))
 		tools_dict = {
 			'eraser': _("Eraser"),
 			'highlight': _("Highlighter"),
+			'points': _("Points"),
 			'free_select': _("Free selection"),
 			'color_select': _("Color selection"),
 			'picker': _("Color Picker"),
@@ -133,21 +154,26 @@ class DrPrefsWindow(Gtk.Window):
 		"""Adds the widget to the grid of the 'advanced' page."""
 		self.set_current_grid(self.page_advanced)
 
+		# Context: title of a section of the preferences
 		self.add_section_title(_("Advanced options"))
 		self.add_adj(_("Preview size"), 'preview-size', self.adj_preview)
 		if is_beta:
+			# This label will not be displayed in the UI of stable versions
 			self.add_switch(_("Development features"), 'devel-only')
 		else:
 			self._settings.set_boolean('devel-only', False)
 		self.add_colorbtn(_("Background color"), 'ui-background-rgba')
 
 		self.add_section_separator()
+		# Context: title of a section of the preferences. It corresponds to the
+		# window layout (header-bar? tool-bar? menu-bar?)
 		self.add_section_title(_("Layout"))
 		self.add_help(_("The recommended value is \"Automatic\"."))
 		# h = headerbar; g = gnome; e = elementary
 		# m = menubar; t = toolbar
 		# c = color; s = symbolic
 		layouts_dict = {
+			# It has to match what's written in the previous string.
 			'': _("Automatic"),
 			'hg': _("Compact"),
 			'he': _("elementary OS"),
@@ -155,10 +181,12 @@ class DrPrefsWindow(Gtk.Window):
 			# can translate it like if it was "Traditional"
 			'mtc': _("Legacy"),
 			# "Legacy" is about the window layout, it means menubar+toolbar, you
-			# can translate it like if it was "Traditional"
+			# can translate it like if it was "Traditional".
+			# Symbolic icons are monochrome icons.
 			'mts': _("Legacy (symbolic icons)"),
 			'm': _("Menubar only"),
 			'tc': _("Toolbar only"),
+			# Symbolic icons are monochrome icons.
 			'ts': _("Toolbar only (symbolic icons)")
 		}
 		self.add_radio_flowbox('deco-type', layouts_dict)

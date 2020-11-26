@@ -22,6 +22,9 @@ class ToolColorSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolColorSelect'
 
 	def __init__(self, window, **kwargs):
+		# Context: this is a tool to "magically" select an area depending on its
+		# color. For example clicking on a white pixel will select the
+		# surrounding area made of white pixels.
 		super().__init__('color_select', _("Color selection"), 'tool-magic-symbolic', window)
 
 	def press_define(self, event_x, event_y):

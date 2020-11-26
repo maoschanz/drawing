@@ -8,7 +8,7 @@
 
   <body>
     <header>
-      <div class="header_box">
+      <div class="header-box">
         <div class="responsive-row">
           <div class="col66">
             <h1>Drawing</h1>
@@ -29,7 +29,7 @@
           </div>
           <div class="col33">
             <img
-              class="header_icon"
+              class="header-icon"
               src="https://raw.githubusercontent.com/maoschanz/drawing/master/data/icons/hicolor/128x128/apps/com.github.maoschanz.drawing.png"
               alt="icon" />
           </div>
@@ -46,6 +46,13 @@
             Paint, but aiming at the GNOME desktop.
           </p>
           <p>PNG, JPEG and BMP files are supported.</p>
+
+          <!-- Links to anchors -->
+          <!-- <ul> -->
+          <!--   <li><a href="#installation">Installation</a></li> -->
+          <!--   <li><a href="#tools">Tools</a></li> -->
+          <!--   <li><a href="#translations">Available languages</a></li> -->
+          <!-- </ul> -->
         </div>
         <div class="col66">
           <!-- Main screenshot -->
@@ -53,7 +60,7 @@
             <img
               alt="screenshot"
               style="width:100%"
-              src="screenshots/gnome_menu.png" />
+              src="screenshots/0.6/gnome_menu.png" />
           </p>
         </div>
       </div>
@@ -61,13 +68,13 @@
       <!-- Smaller screenshots -->
       <div class="responsive-row">
         <div class="col33">
-          <img alt="screenshot" src="screenshots/gnome_selection.png" style="width:100%" />
+          <img alt="screenshot" src="screenshots/0.6/gnome_selection.png" style="width:100%" />
         </div>
         <div class="col33">
-          <img alt="screenshot" src="screenshots/gnome_saturate.png" style="width:100%" />
+          <img alt="screenshot" src="screenshots/0.6/gnome_new.png" style="width:100%" />
         </div>
         <div class="col33">
-          <img alt="screenshot" src="screenshots/gnome_tools_preview.png" style="width:100%" />
+          <img alt="screenshot" src="screenshots/0.6/gnome_tools_preview.png" style="width:100%" />
         </div>
       </div>
       <p>
@@ -77,120 +84,175 @@
         gallery</a>.
       </p>
 
-      <h2>Installation</h2>
-      <!-- TODO tabs ? -->
-      <div class="responsive-row">
-        <div class="col50">
-          <h3>Recommended method</h3>
-          <p>The recommended way to install Drawing is with <code>flatpak</code>:</p>
-          <p>
-            <a
-              href="https://flathub.org/apps/details/com.github.maoschanz.drawing"
-              style="width:90%">
-              <img
-                style="width:90%"
-                src="https://raw.githubusercontent.com/flatpak-design-team/flathub-mockups/master/assets/download-button/download-i.png"
-                alt="Install it from Flathub" />
-            </a>
-          </p>
-          <p>(version 0.4.12)</p>
-          <h3>Alternative methods for Ubuntu</h3>
-          <p>
-            <a href="https://launchpad.net/~cartes/+archive/ubuntu/drawing/">
-              PPA repository (version 0.4.13)
-            </a>
-          </p>
-          <p>
-            <a href="https://snapcraft.io/drawing">
-              Snap package (version 0.4.7)
-            </a>
-          </p>
-        </div>
-        <div class="col50">
-          <h3>Native packages</h3>
-          <p>
-            The app is also available as native packages in the repositories of
-            the following distributions:
-          </p>
-          <p>
-            <a href="https://repology.org/project/drawing/versions">
-              <img
-                src="https://repology.org/badge/vertical-allrepos/drawing.svg"
-                alt="Packaging status" />
-            </a>
-          </p>
-        </div>
+      <h2><a id="installation"></a>Installation</h2><!-- ******************* -->
+
+      &nbsp;
+      <!-- It would look better if in a div, but that would break the CSS, -->
+      <!-- which relies on the "~" combinator. -->
+      <input type="radio" name="tabs" id="tab1" checked="yes" />
+      <label for="tab1"><h4>Flatpak</h4></label>
+
+      <input type="radio" name="tabs" id="tab2" />
+      <label for="tab2"><h4>Native packages</h4></label>
+
+      <input type="radio" name="tabs" id="tab3" />
+      <label for="tab3"><h4>Other methods</h4></label>
+
+      <div class="tab content1">
+        <p>
+          The <b>recommended</b> way to install the most recent version of
+          Drawing is to use <code>flatpak</code>:</p>
+        <p>
+          <a
+            href="https://flathub.org/apps/details/com.github.maoschanz.drawing"
+            class="limited-image">
+            <img
+              class="limited-image"
+              src="https://flathub.org/assets/badges/flathub-badge-en.png"
+              alt="Install it from Flathub" />
+            <p>(version 0.6.3)</p>
+          </a>
+        </p>
+        <p>Permissions required: ipc/x11/wayland</p>
       </div>
+
+      <div class="tab content2">
+        <p>
+          The app is also available as native packages in the repositories of
+          the following distributions:
+        </p>
+        <p>
+          <a href="https://repology.org/project/drawing/versions">
+            <img
+              src="https://repology.org/badge/vertical-allrepos/drawing.svg"
+              alt="Packaging status" />
+          </a>
+        </p>
+        <p>
+          You can use the package manager of your distribution to install the
+          package <code>drawing</code>.
+        </p>
+      </div>
+
+      <div class="tab content3">
+        <p>Alternative installation methods for Ubuntu :</p>
+        <ul>
+          <li>
+            <a href="https://launchpad.net/~cartes/+archive/ubuntu/drawing/">
+              <b>PPA repository (version 0.6.3)</b>
+            </a>
+          </li>
+          <li>
+            <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" -->
+            <a href="https://snapcraft.io/drawing"
+               title="is the code even packaged from a tag?">
+              Snap package (0.6.3? unstable?)
+            </a>
+          </li>
+        </ul>
+        <hr />
+        <p>
+          <a href="https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/media-gfx/drawing">
+            Gentoo package
+          </a>
+          from an external overlay
+        </p>
+      </div>
+
       <hr />
 
       <!-- Other useful but not sexy infos -->
+      <h2><a id="tools"></a>Tools</h2><!-- ********************************* -->
       <div class="responsive-row">
+
         <div class="col50">
-          <h2>Tools</h2>
-          <p>
-            Tools to draw:
-          </p>
+          <p>Tools to <b>draw</b>:</p>
           <ul>
             <li>Pencil</li>
-            <li>Rectangle &amp; rounded rectangle</li>
-            <li>Circle &amp; oval</li>
-            <li>Polygon</li>
-            <li>Free shape</li>
-            <li>Line &amp; arrow</li>
-            <li>Arc</li>
+            <li>Eraser*</li>
+            <li>Highlighter*</li>
             <li>Insert text</li>
-            <li>Paint</li>
+            <li>Points*</li>
+            <li>Shape
+              <ul>
+                <li>Rectangle</li>
+                <li>Rounded rectangle</li>
+                <li>Circle</li>
+                <li>Oval</li>
+                <li>Polygon</li>
+                <li>Free shape</li>
+              </ul>
+            </li>
+            <li>Line &amp; arrow</li>
+            <li>Curve</li>
+            <li>Color picker*</li>
+            <li>Paint*</li>
           </ul>
-          <p>
-            Tools to select part of the image:
-          </p>
+        </div>
+
+        <div class="col50">
+          <p>Tools to <b>select</b> a part of the image:</p>
           <ul>
-            <li>Selection (rectangle or free shape)</li>
-            <li>Color picker</li>
+            <li>Rectangle selection</li>
+            <li>Free selection</li>
+            <li>Adjacent color selection*</li>
           </ul>
-          <p>
-            Tools to alter the canvas or the selected area:
-          </p>
+
+          <p>Tools to <b>transform</b> the canvas or the selected area:</p>
           <ul>
             <li>Crop</li>
-            <li>Flip</li>
             <li>Scale</li>
-            <li>Rotate</li>
-            <li>Saturate</li>
+            <li>Rotate &amp; flip</li>
+            <li>Filters
+              <ul>
+                <li>Blur</li>
+                <li>Pixelization</li>
+                <li>Saturate &amp; desaturate</li>
+                <li>Add transparency</li>
+                <li>Invert colors</li>
+              </ul>
+            </li>
           </ul>
+
+          <p>(last update of this list: version 0.6.3)</p>
+          <p>*these tools are disabled by default.</p>
         </div>
-        <div class="col50">
-          <h2>Available languages</h2>
-          <ul>
-            <li>Brazilian portuguese</li>
-            <li>Castillan</li>
-            <li>Croatian</li>
-            <li>Danish</li>
-            <li>Dutch</li>
-            <li>English</li>
-            <li>Finnish</li>
-            <li>French</li>
-            <li>German</li>
-            <li>Hebrew</li>
-            <li>Hungarian</li>
-            <li>Italian</li>
-            <li>Polish</li>
-            <li>Russian</li>
-            <li>Swedish</li>
-            <li>Turkish</li>
-          </ul>
-          <p>
-            Credits for these translations are available
-            <a href="https://github.com/maoschanz/drawing#available-languages">
-            here</a> and in the app's "about" dialog.
-          </p>
-        </div>
+
       </div>
+
+      <h2><a id="translations"></a>Available languages</h2><!-- ************ -->
+      <ul>
+        <li>Basque</li>
+        <li>Brazilian portuguese</li>
+        <li>Castillan</li>
+        <li>Croatian</li>
+        <li>Chinese (simplified)</li>
+        <li>Chinese (traditional)</li>
+        <li>Danish</li>
+        <li>Dutch</li>
+        <li>English</li>
+        <li>Finnish</li>
+        <li>French</li>
+        <li>German</li>
+        <li>Hebrew</li>
+        <li>Hungarian</li>
+        <li>Italian</li>
+        <li>Polish</li>
+        <li>Russian</li>
+        <li>Swedish</li>
+        <li>Turkish</li>
+      </ul>
+      <p>
+        Credits for these translations are available
+        <a href="https://github.com/maoschanz/drawing#available-languages">
+        here</a> and in the app's "about" dialog.
+      </p>
+
     </main>
     
-    <header>
-      <!--it's a footer but it has ths same css as the header so here we are-->
-      <div class="header_box">
+    <footer>
+      <!--it's a footer but it has ths same css as the header-->
+      <div class="header-box">
         <div class="responsive-row">
           <div class="col33">
             <a href="https://github.com/maoschanz/drawing">Source code</a>
@@ -204,7 +266,7 @@
           </div>
         </div>
       </div>
-    </header>
+    </footer>
 
   </body>
 </html>

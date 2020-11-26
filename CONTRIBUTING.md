@@ -30,9 +30,11 @@ How to contribute to Drawing
 # Translating
 
 Notice that this procedure will translate the unstable, unreleased version
-currently developed on the `master` branch. If you want to entirely translate
-older versions, restart this procedure but run `git checkout 0.4` just after
-having cloned the repo, and at the end, open the merge request to `0.4` too.
+currently developed on the `master` branch.
+
+<!-- If you want to entirely translate older versions, restart this -->
+<!-- procedure but run `git checkout 0.6` just after having cloned the repo, -->
+<!-- and at the end, open the merge request to `0.6` too. -->
 
 ### Get the .po file
 
@@ -80,12 +82,16 @@ work.
 Also, the character should be accessible easily from the keyboard layouts of
 your language.
 
+### Testing your translation (optional)
+
+If you want to test your translation:
+
+- The flatpak SDK isn't able to run a translated version of the app, so
+export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
+- Or (it's harder) [install it with `meson`](#with-git-and-meson).
+
 ### Submitting your translation
 
-- **(optional)** If you want to test your translation:
-	- The flatpak SDK isn't able to run a translated version of the app, so
-	export it as a `.flatpak` file and install it with `flatpak install path/to/that/file`.
-	- Or (it's harder) [install it with `meson`](#with-git-and-meson).
 - Run `git add po && git commit && git push`
 - Submit a "pull request"/"merge request"
 
@@ -130,7 +136,7 @@ here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`
 along with the python code.
 
 >See [here](./diagrams/) for explanations about the architecture and class
-diagrams (**WORK IN PROGRESS**)
+diagrams
 
 ### UI design
 
@@ -167,8 +173,8 @@ as many `GAction`s as possible for testing purposes (and also because searchable
 menus still exist).
 
 If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
-any other), please be sure to not hurt the UX with the GNOME layout (since it's
-the one used on smartphone, be careful it has to stay very resizable).
+any other), please be sure to not hurt the UX of the GNOME layout (since it's
+the one used on smartphone, be careful: it has to stay very resizable).
 
 ### Other remarks
 
@@ -181,16 +187,17 @@ In my opinion, the difficulties with the code can come mainly from 3 points:
 the history, are image-wide.
 - the interactions with the selection are ridiculously complex and numerous
 _(defining, explicit applying, explicit canceling, import, clipboard methods,
-use by the "canvas tools" (cancelled or confirmed), deletion, implicit applying,
-implicit canceling, …)_ which can easily create small bugs.
+use by the transformation tools (whose operation can be cancelled or confirmed),
+deletion, implicit applying, implicit canceling, …)_ which can easily create
+small bugs or regressions.
 - the horizontal and vertical scrollings (and their scrollbars) are managed
 "manually" and quite poorly.
 
 These 3 points sometimes can lead to object-oriented spaghetti code.
 
-If you change anything regarding the selection and/or the "canvas tools" (the
-tools which can edit the selection content), make sure to test various scenarios
-like this one:
+If you change anything regarding the selection and/or the transformation tools
+(which can edit the selection content), make sure to test various scenarios like
+this one:
 
 1. several images edited in different tabs of the same window;
 2. zoom and/or scroll;
@@ -277,10 +284,20 @@ dependencies to make the script work anyway.
 
 # Packaging
 
-### Branches
+### Branches and tags
 
-The `master` branch is not stable and **should not** be packaged.
+Stable versions for end-users are **tagged**, and listed in this Github repo's
+"_Releases_" section.
 
+```
+          0.4.1  0.4.2  …  0.4.14
+           _.______.____…____.                         _
+   0.2    /         ______       0.6.0  0.6.1  0.6.2  /
+____.____/_________/______\________.______.______.___/___
+                        \____________/
+```
+
+Please don't package anything aside this tagged code
 <details><summary>(except if your distro have experimental repos)</summary>
 <p>
 
@@ -294,27 +311,43 @@ sudo apt -t experimental install drawing
 </p>
 </details>
 
-Stable versions for end-users are **tagged**, and listed in this Github repo's
-"_Releases_" section. For now, most of them are on the `0.4` branch.
-
 ### Dependencies
 
-Dependencies to run the app:
+(Debian packages names are used here)
 
-- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`). A
-version ≥3.30.0 is required to run the code from the branch `master`. The branch
-`0.4` should be fine with any version.
+##### Dependencies to run the app
+
+- GObject Introspection (GI) for python3 (on Debian, it's `python3-gi`).
 - `cairo` library's GI for python3 (on Debian, it's `python3-gi-cairo`).
 - GTK libraries' GI (on Debian, it's `gir1.2-gtk-3.0`).
 
-Dependencies to build the app (Debian packages names):
+|                 | `python3-gi` | `python3-gi-cairo` | `gir1.2-gtk-3.0` |
+|-----------------|--------------|--------------------|------------------|
+| 0.2             | any          | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| 0.4.1, 0.4.2    | **≥3.30.0**  | any?               | 3.22             |
+| 0.4.3 to 0.4.13 | any          | any?               | 3.22             |
+| 0.4.14          | **≥3.32**    | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| 0.6.0 to 0.6.1  | **≥3.32.0**  | any?               | 3.22             |
+| 0.6.2           | **≥3.30.0**  | any?               | 3.22             |
+| 0.6.3 to 0.6.?? | any          | any?               | 3.22             |
+| `master`'s HEAD | **≥3.30.0**  | any?               | 3.22             |
+
+##### Dependencies to build the app
 
 - `meson`. The version of meson required by the `meson.build` file at the root
 of the project can be changed if necessary, but please don't add this change to
 your commit(s).
-- `appstream-util` (validation of the `.appdata.xml` file)
+- [optional] `appstream-util` (validation of the `.appdata.xml` file)
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
 icons into a `.gresource` file)
+
+Aside of this, **since 0.6.0**, the main `meson.build` script will try to check
+if your system does have **the dependencies to run the app**.
+
+The tag 0.6.0 can't be built if `appstream-util` is on the system, the other
+tags should be fine.
 
 ----
 

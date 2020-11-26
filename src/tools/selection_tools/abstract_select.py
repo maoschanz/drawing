@@ -20,6 +20,7 @@ from gi.repository import Gtk
 from .abstract_tool import AbstractAbstractTool
 from .optionsbar_selection import OptionsBarSelection
 from .utilities_overlay import utilities_show_overlay_on_context
+from .selection_manager import NoSelectionPixbufException
 
 class AbstractSelectionTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractSelectionTool'
@@ -145,8 +146,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			self._preview_drag_to(event_x, event_y)
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		x = event.x + self.get_image().scroll_x
-		y = event.y + self.get_image().scroll_y
+		x, y = self.get_image().get_event_coords(event)
 		if not self.selection_is_active():
 			self.cursor_name = 'cross'
 		elif self.get_selection().point_is_in_selection(x, y):
@@ -173,10 +173,9 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			return
 		self.get_selection().show_selection_on_surface(cairo_context, True, \
 		                                           self.local_dx, self.local_dy)
-		dragged_path = self.get_selection().get_path_with_scroll(self.local_dx, \
-		                                                  self.local_dy) # TODO
-		# i should give it something corresponding temporary selection_x/y when
-		# the selection is moving. Method not really use elsewhere.
+		dragged_path = self.get_selection().get_path_with_scroll( \
+		                                           self.local_dx, self.local_dy)
+		# Method not really use elsewhere.
 		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################
@@ -220,7 +219,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		xmin, ymin = main_width, main_height # TODO context.path_extents() ?
 		future_path = self.get_selection().get_future_path()
 		for pts in future_path:
-			if pts[1] is not ():
+			if pts[1] != ():
 				xmin = min(pts[1][0], xmin)
 				ymin = min(pts[1][1], ymin)
 		self.get_selection().set_future_coords(max(xmin, 0.0), max(ymin, 0.0))
@@ -263,14 +262,18 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-	def _op_import(self, operation):
-		if operation['pixbuf'] is None:
-			return # TODO raise something goddammit
-		self.get_selection().set_pixbuf(operation['pixbuf'].copy())
+	def _op_import(self, op):
+		if op['pixbuf'] is None:
+			raise NoSelectionPixbufException()
+			# XXX does it run cleanly after the "return" to the calling method?
+			# (compared to a more normal return)
+		self.get_selection().set_future_coords(op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_pixbuf(op['pixbuf'].copy())
 
 	def _op_clean(self, operation):
 		if operation['initial_path'] is None:
-			return # TODO raise something goddammit
+			return # The user double-clicked: there is no path, and it's normal
 		cairo_context = self.get_context()
 		cairo_context.new_path()
 		cairo_context.append_path(operation['initial_path'])
@@ -287,7 +290,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def _op_define(self, op):
 		if op['initial_path'] is None:
-			return # TODO raise something goddammit
+			return # The user double-clicked: there is no path, and it's normal
 		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
 		self.get_selection().load_from_path(op['initial_path'])
 

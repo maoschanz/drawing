@@ -17,6 +17,7 @@
 
 import cairo, math
 from gi.repository import Gdk, GdkPixbuf
+from .selection_manager import NoSelectionPathException
 
 ################################################################################
 # Selection overlay ############################################################
@@ -25,7 +26,7 @@ def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
 	"""Draw a blueish area on `cairo_context`, with or without dashes. This is
 	mainly used for the selection."""
 	if cairo_path is None:
-		return # TODO throw an exception
+		raise NoSelectionPathException()
 	cairo_context.new_path()
 	cairo_context.set_line_width(1)
 	if has_dashes:

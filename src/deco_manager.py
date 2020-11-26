@@ -42,10 +42,10 @@ class DrDecoManagerMenubar():
 			self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
 
 	def set_undo_label(self, label):
-		pass
+		pass # TODO update "undo" item in the menubar
 
 	def set_redo_label(self, label):
-		pass
+		pass # TODO update "redo" item in the menubar
 
 	############################################################################
 	# Adaptability #############################################################
@@ -122,11 +122,13 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		hidden here, and menus are shorter."""
 		self._short_primary_menu = builder.get_object('minimal-window-menu')
 		self._long_primary_menu = builder.get_object('short-window-menu')
-		save_as_menubtn = builder.get_object('save_as_menubtn')
+		save_as_menubtn = builder.get_object('hidable1')
 		save_as_menubtn.set_menu_model(builder.get_object('save-section'))
+		share_menubtn = builder.get_object('hidable2')
+		share_menubtn.set_menu_model(builder.get_object('share-section'))
 		new_btn = builder.get_object('new_btn')
 		new_btn.set_menu_model(builder.get_object('new-image-menu'))
-		self._manual_correction = 50
+		self._manual_correction = -50
 
 	def remove_from_ui(self):
 		return self._is_narrow
@@ -139,12 +141,14 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		self._widget.set_subtitle(subtitle_label)
 
 	def set_undo_label(self, label):
+		super().set_undo_label(label)
 		if label is None:
 			self._undo_btn.set_tooltip_text(_("Undo"))
 		else:
 			self._undo_btn.set_tooltip_text(_("Undo %s") % label)
 
 	def set_redo_label(self, label):
+		super().set_redo_label(label)
 		if label is None:
 			self._redo_btn.set_tooltip_text(_("Redo"))
 		else:
@@ -239,12 +243,14 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 		return False
 
 	# def set_undo_label(self, label):
+	#	super().set_undo_label(label)
 	# 	if label is None:
 	# 		self._undo_btn.set_tooltip_text(_("Undo"))
 	# 	else:
 	# 		self._undo_btn.set_tooltip_text(_("Undo %s") % label)
 
 	# def set_redo_label(self, label):
+	#	super().set_redo_label(label)
 	# 	if label is None:
 	# 		self._redo_btn.set_tooltip_text(_("Redo"))
 	# 	else:

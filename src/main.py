@@ -17,13 +17,15 @@
 
 import sys, gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrWindow
 from .preferences import DrPrefsWindow
+from .utilities import utilities_gfile_is_image
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
-BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new'
+BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
 
 def main(version):
 	app = Application(version)
@@ -46,6 +48,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname(APP_ID)
 		self._version = version
 		self.has_tools_in_menubar = False
+		self._runs_in_sandbox = False
 
 		self.connect('startup', self.on_startup)
 		self.register(None)
@@ -53,12 +56,16 @@ class Application(Gtk.Application):
 		self.connect('command-line', self.on_cli)
 
 		self.add_main_option('version', b'v', GLib.OptionFlags.NONE,
+		                     # Description of a command line option
 		                     GLib.OptionArg.NONE, _("Show the app version"), None)
 		self.add_main_option('new-window', b'n', GLib.OptionFlags.NONE,
+		                     # Description of a command line option
 		                     GLib.OptionArg.NONE, _("Open a new window"), None)
 		self.add_main_option('new-tab', b't', GLib.OptionFlags.NONE,
+		                     # Description of a command line option
 		                     GLib.OptionArg.NONE, _("Open a new tab"), None)
 		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
+		             # Description of a command line option
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
 
 		icon_theme = Gtk.IconTheme.get_default()
@@ -86,7 +93,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help', self.on_help_index, ['F1'])
 		self.add_action_simple('help_main', self.on_help_main, None)
 		self.add_action_simple('help_tools', self.on_help_tools, None)
-		self.add_action_simple('help_canvas', self.on_help_canvas, None)
+		self.add_action_simple('help_transform', self.on_help_transform, None)
 		self.add_action_simple('help_selection', self.on_help_selection, None)
 		self.add_action_simple('help_prefs', self.on_help_prefs, None)
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
@@ -123,8 +130,9 @@ class Application(Gtk.Application):
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
 
-		# Possible options are 'version', 'new-window', and 'new-tab', in this
-		# order: only one option can be applied, '-ntv' will be the same as '-v'.
+		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
+		# 'new-window', in this order: only one option can be applied, '-ntvc'
+		# will be understood as '-v'.
 		options = args[1].get_options_dict()
 
 		if options.contains('version'):
@@ -132,39 +140,58 @@ class Application(Gtk.Application):
 			if self.is_beta():
 				print(_("This version isn't stable!"))
 			print()
-			print(_("Report bugs or ideas") + ' 👉️ ' + BUG_REPORT_URL)
-		elif options.contains('edit-clipboard'):
-			self.open_window_with_content(None, True)
+			print(_("Report bugs or ideas") + " 👉️ " + BUG_REPORT_URL)
 
-		# If no file given as argument
-		elif options.contains('new-window') and len(arguments) == 1:
-			self.on_new_window()
+		elif options.contains('edit-clipboard'):
+			win = self.props.active_window
+			if not win:
+				self.open_window_with_content(None, True)
+			else:
+				win.present()
+				self.props.active_window.build_image_from_clipboard()
+
 		elif options.contains('new-tab') and len(arguments) == 1:
+			# If '-t' but no file given as argument
 			win = self.props.active_window
 			if not win:
 				self.on_new_window()
 			else:
 				win.present()
 				self.props.active_window.build_new_image()
+
+		elif options.contains('new-window'):
+			# it opens one new window per file given as argument, or just one
+			# new window if no argument is a valid enough file.
+			windows_counter = 0
+			for fpath in arguments:
+				f = self._get_valid_file(args[1], fpath)
+				# here f can be a GioFile or a boolea; True would mean the app
+				# should open a new blank image.
+				if f != False:
+					f = None if f == True else f
+					self.open_window_with_content(f, False)
+					windows_counter = windows_counter + 1
+			if windows_counter == 0:
+				self.on_new_window()
+
 		elif len(arguments) == 1:
 			self.on_activate()
 
-		elif options.contains('new-window'):
-			self.on_new_window()
+		else:
+			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				if f is not None:
-					self.open_window_with_content(f, False)
-		else: # giving files without '-n' is equivalent to giving files with '-t'
-			for fpath in arguments:
-				f = self._get_valid_file(args[1], fpath)
-				if f is not None:
+				# here f can be a GioFile or a boolea; True would mean the app
+				# should open a new blank image.
+				if f != False:
+					f = None if f == True else f
 					win = self.props.active_window
 					if not win:
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
 						self.props.active_window.build_new_tab(gfile=f)
+
 		# I don't even know if i should return something
 		return 0
 
@@ -185,7 +212,7 @@ class Application(Gtk.Application):
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
 		builder = Gtk.Builder().new_from_resource(APP_PATH + '/ui/shortcuts.ui')
-		self.shortcuts_window = builder.get_object('shortcuts')
+		self.shortcuts_window = builder.get_object('shortcuts-window')
 		self.shortcuts_window.present()
 
 	def on_prefs(self, *args):
@@ -211,10 +238,10 @@ class Application(Gtk.Application):
 		manual."""
 		self._show_help_page('/tools_classic')
 
-	def on_help_canvas(self, *args):
-		"""Action callback, showing the 'canvas and selection tools' page of the
-		user help manual."""
-		self._show_help_page('/tools_canvas')
+	def on_help_transform(self, *args):
+		"""Action callback, showing the 'transform tools' page of the user help
+		manual."""
+		self._show_help_page('/tools_transform')
 
 	def on_help_selection(self, *args):
 		"""Action callback, showing the 'selection tools' page of the user help
@@ -235,12 +262,12 @@ class Application(Gtk.Application):
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
 			copyright="© 2018-2020 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio"],
-			# To tranlators: "translate" this by your name, it will be displayed
-			# in the "about" dialog
+			# To tranlators: "translate" this by a list of your names (one name
+			# per line), they will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
-			# To translators: it's credits for the icons, consider that "Art
-			# Libre" is proper name
 			artists=["Tobias Bernard", "Romain F. T.",
+			# To translators: this is credits for the icons, consider that "Art
+			# Libre" is proper name
 			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("A drawing application for the GNOME desktop."),
 			license_type=Gtk.License.GPL_3_0,
@@ -300,21 +327,35 @@ class Application(Gtk.Application):
 		self.add_action(action)
 
 	def _get_valid_file(self, app, path):
-		"""Creates a GioFile object if the path corresponds to an image."""
+		"""Creates a GioFile object if the path corresponds to an image. If no
+		GioFile can be created, it returns a boolean telling whether or not a
+		window should be opened anyway."""
+		if path == '/app/bin/drawing':
+			self._runs_in_sandbox = True
+			# when it's /app/bin/drawing, the situation is normal, and
+			# it tells the app it's running in a flatpak sandbox
+			return False
+
+		err = _("Error opening this file.") + ' '
 		try:
-			f = app.create_file_for_arg(path)
-			if 'image/' in f.query_info('standard::*', \
-				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
-				return f
+			gfile = app.create_file_for_arg(path)
+		except Exception as excp:
+			if self._runs_in_sandbox:
+				command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+				command = command.format(APP_ID, path)
+				# This is an error message, %s is a better command suggestion
+				err = err + _("Did you mean %s ?") % command
 			else:
-				return None # mainly when it's /app/bin/drawing
-		except:
-			err = _("Error opening this file. Did you mean %s ?")
-			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-			# XXX can happen without flatpak
-			command = command.format(APP_ID, path)
-			print(err % command)
-			return None
+				err = err + excp.message
+			print(err) # TODO show that message in an empty window
+			return False
+
+		is_image, err = utilities_gfile_is_image(gfile, err)
+		if is_image:
+			return gfile
+		else:
+			print(err) # TODO show that message in an empty window
+			return True
 
 	############################################################################
 ################################################################################
