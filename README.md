@@ -39,7 +39,7 @@ You can install it from flathub.org using the instructions on
 
 - Ubuntu 18.04, 20.04, and 20.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Gentoo package](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/media-gfx/drawing) from an external overlay
-- ["Snap" package](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- ["Snap" package](https://snapcraft.io/drawing)
 
 ### Unstable/nightly version
 

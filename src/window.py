@@ -696,9 +696,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		shall_fullscreen = args[1]
 		if shall_fullscreen:
 			self.fullscreen()
-			self.prompt_message(True, _("Press F11 to exit fullscreen.") + \
-			         " " + _("Press middle-click or F8 to show/hide controls."))
-			# XXX or 3 fingers if it's a touch device?
+			self.prompt_message(True, _("Middle-click, tap with 3 fingers, " + \
+			                           "or press F8 to show/hide controls.") + \
+			                           " " + _("Press F11 to exit fullscreen."))
 		else:
 			self.unfullscreen()
 		self._set_controls_hidden(shall_fullscreen)
