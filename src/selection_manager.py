@@ -95,6 +95,8 @@ class DrSelectionManager():
 			            int(xmin), int(ymin), selection_width, selection_height)
 			# XXX PAS_SOUHAITABLE ?? passer par set_pixbuf est-il plus sain ?
 			# avec un try except déjà ce serait pas mal
+			# TODO selon un paramètre donné, remplacer un rgb par de l'alpha
+			# au sein de ce pixbuf
 		else:
 			self.reset(True)
 		self.image.update_actions_state()
