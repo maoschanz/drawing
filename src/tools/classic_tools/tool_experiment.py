@@ -78,25 +78,33 @@ class ToolExperiment(AbstractClassicTool):
 
 	def _macro_scie(self, *args):
 		cairo_context = self.get_context()
-		cairo_context.move_to(50, 50)
+		# cairo_context.move_to(50, 50)
+		# cairo_context.move_to(0, 150) # quel que soit le 1er trait, dynamic2 lui
+		# mets une largeur délirante XXX ; à voir comment ça marche dans le cas
+		# réel d'un tracé depuis un path
+		cairo_context.line_to(50, 50)
 		cairo_context.line_to(100, 150)
 		cairo_context.line_to(150, 50)
-		cairo_context.line_to(200, 150)
-		cairo_context.line_to(250, 50)
-		cairo_context.line_to(300, 150)
+		cairo_context.line_to(250, 250)
 		cairo_context.line_to(350, 50)
-		cairo_context.line_to(375, 100)
-		cairo_context.line_to(400, 50)
-		cairo_context.line_to(425, 100)
+		cairo_context.line_to(375, 100) #
+		cairo_context.line_to(400, 50) # dents moins hautes
+		cairo_context.line_to(425, 100) #
 		cairo_context.line_to(450, 50)
 		cairo_context.line_to(500, 150)
 		cairo_context.line_to(550, 50)
+		cairo_context.line_to(570, 100) #
+		cairo_context.line_to(575, 100) # court palier
+		cairo_context.line_to(580, 100) #
+		cairo_context.line_to(600, 150)
+		cairo_context.line_to(650, 50)
 		self._path = cairo_context.copy_path()
 		self._macros_common()
 
 	def _macros_common(self):
 		self.set_common_values(1, 1, 1)
 		operation = self.build_operation()
+		operation['is_preview'] = False
 		self.apply_operation(operation)
 
 	############################################################################
@@ -104,7 +112,6 @@ class ToolExperiment(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self._set_active_operator()
 		self._set_active_mode()
-		# self._set_antialias()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event.button, event_x, event_y)
@@ -159,12 +166,16 @@ class ToolExperiment(AbstractClassicTool):
 		if operation['is_preview']:
 			self.op_simple(operation, cairo_context)
 			return # Previewing helps performance and debug
-		if operation['mode'] == 'dynamic':
-			self.op_dynamic(operation, cairo_context)
+		if operation['mode'] == 'dynamic1':
+			self.op_dynamic1_segments(operation, cairo_context)
 		elif operation['mode'] == 'dynamic2':
-			self.op_dynamic2(operation, cairo_context)
+			self.op_dynamic2_superposition(operation, cairo_context)
+		elif operation['mode'] == 'dynamic3':
+			self.op_dynamic3_mask(operation, cairo_context) # TODO
+		elif operation['mode'] == 'pressure':
+			self.op_pressure(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
-			self.op_simple(operation, cairo_context)
+			# self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
@@ -185,7 +196,7 @@ class ToolExperiment(AbstractClassicTool):
 
 	############################################################################
 
-	def op_dynamic(self, operation, cairo_context):
+	def op_dynamic1_segments(self, operation, cairo_context):
 		"""Brush with speed-sensitive dynamic width, where the variation of
 		width is drawn by a succession of segments. The first segment is shit,
 		and it looks awful with semi-transparent colors."""
@@ -219,7 +230,7 @@ class ToolExperiment(AbstractClassicTool):
 			cairo_context.stroke()
 			cairo_context.move_to(future_x, future_y)
 
-	def op_dynamic2(self, operation, cairo_context):
+	def op_dynamic2_superposition(self, operation, cairo_context):
 		"""Brush with speed-sensitive dynamic width, where the variation of
 		width is drawn by a superposition of segments. It doesn't really support
 		semi-transparent colors."""
@@ -241,6 +252,7 @@ class ToolExperiment(AbstractClassicTool):
 		widths = [base_width] * length
 
 		# Initializing widths (XXX faisable sans cairo_context) + factorisable
+		# TODO pas correct, la width a un "retard" sur la vitesse du tracé
 		i = 0
 		for pts in path:
 			i += 1
@@ -291,9 +303,10 @@ class ToolExperiment(AbstractClassicTool):
 		# cairo_context.append_path(path)
 		# cairo_context.stroke()
 
-	def op_dynamic2_mask(self, operation, cairo_context):
-		pass # TODO support operators and semi-transparency, using tricks like
-		# whatever the dest_in operator is doing to blur
+	def op_dynamic3_mask(self, operation, cairo_context):
+		pass
+		# TODO support operators and semi-transparency, using tricks like what
+		# the dest_in operator is doing to blur. Same superposition as dynamic2
 
 	def _add_segment(self, cairo_context, pts):
 		if pts[0] == cairo.PathDataType.CURVE_TO:
@@ -313,6 +326,13 @@ class ToolExperiment(AbstractClassicTool):
 	def _get_dist(self, x1, y1, x2, y2):
 		dist2 = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
 		return math.sqrt(dist2)
+
+	############################################################################
+
+	def op_pressure(self, operation, cairo_context):
+		pass
+		# TODO là c'est carrément l'input qui doit changer, la largeur variable
+		# utilisera probablement le même code que dynamic3
 
 	############################################################################
 ################################################################################

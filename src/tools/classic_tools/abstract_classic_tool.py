@@ -34,9 +34,11 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.main_color = None
 		self.secondary_color = None
 		self._fallback_operator = 'over'
-		self._use_antialias = True
 		self.x_press = 0.0
 		self.y_press = 0.0
+		self._use_antialias = self.get_settings().get_boolean('use-antialiasing')
+		# FIXME honteusement sous-performant, il me faut au plus vite une
+		# méthode pour faire des actions à partir d'un gsettings
 		self.add_tool_action_boolean('antialias', self._use_antialias)
 
 	############################################################################

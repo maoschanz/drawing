@@ -15,20 +15,30 @@
         <attribute name="target">smooth</attribute>
       </item>
       <item>
-        <attribute name="label">Dynamique par segments</attribute>
+        <attribute name="label">Sensible à la pression</attribute>
         <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">dynamic</attribute>
-      </item>
-      <item>
-        <attribute name="label">Dynamique par superposition</attribute>
-        <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">dynamic2</attribute>
+        <attribute name="target">pressure</attribute>
       </item>
       <!-- <item> -->
       <!--   <attribute name="label">Pinceau à motif</attribute> -->
       <!--   <attribute name="action">win.experiment_mode</attribute> -->
       <!--   <attribute name="target">pattern</attribute> -->
       <!-- </item> -->
+      <item>
+        <attribute name="label">Dynamique par segments</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">dynamic1</attribute>
+      </item>
+      <item>
+        <attribute name="label">Dynamique par superposition</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">dynamic2</attribute>
+      </item>
+      <item>
+        <attribute name="label">Dynamique par masque</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">dynamic3</attribute>
+      </item>
     </section>
 
     <section>

@@ -96,6 +96,9 @@ class DrOptionsManager():
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self.window._settings.set_string('last-font-name', font_fam_name)
 
+		use_antialiasing = self.get_value('antialiasing')
+		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
+
 		# XXX more ?
 
 	############################################################################
