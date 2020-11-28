@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-22 02:40+0100\n"
-"PO-Revision-Date: 2020-11-01 20:15+0100\n"
+"PO-Revision-Date: 2020-11-28 13:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -334,7 +334,7 @@ msgstr "Schero Intero"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Nascondi barre degli strumenti"
 
 #: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
@@ -636,7 +636,7 @@ msgstr "Ritorna allo strumento precedente"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Applica una trasformazione"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -691,7 +691,7 @@ msgstr "Entra in modalità schermo intero"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Attiva/disattiva la visibilità barre degli strumenti"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -797,15 +797,14 @@ msgid "Official webpage"
 msgstr "Pagina Web Ufficiale"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Errore nell'apertura del file. Intendevi %s ?"
+msgstr "Errore durante l'apertura di questo file."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Intendevi %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1221,13 +1220,13 @@ msgstr "Apri un' immagine"
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "Spiacenti, le immagini WEBP non possono essere caricate da questa app."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Nonostante il nome, %s è un file WEBP."
 
 #. Context: an error message
 #: src/window.py
@@ -1237,7 +1236,7 @@ msgstr "Strumento di caricamento non riuscito: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Gli appunti non contengono nessuna immagine"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1250,13 +1249,12 @@ msgid "No options"
 msgstr "Nessuna opzione"
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Uscire da Schermo Intero"
+msgstr "Premi F11 per uscire dalla modalità a schermo intero."
 
 #: src/window.py
 msgid "Press middle-click or F8 to show/hide controls."
-msgstr ""
+msgstr "Premi il tasto centrale o F8 per mostrare/nascondere i controlli."
 
 #: src/window.py
 #, fuzzy, python-format
