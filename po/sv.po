@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 03:57+0100\n"
-"PO-Revision-Date: 2020-10-29 07:20+0100\n"
+"POT-Creation-Date: 2020-11-28 10:07+0100\n"
+"PO-Revision-Date: 2020-11-23 15:35+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -75,6 +75,19 @@ msgstr ""
 "Det låter dig rita eller redigera bilder med verktyg såsom penna, linje "
 "eller båge (med olika alternativ), markering (klipp ut/kopiera/klistra in/"
 "dra/…), textinfogning, storleksändring, beskärning, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"Version 0.6.4 innehåller ett flertal mindre felkorrigeringar, och diverse "
+"nya översättningar."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The value of the \"use anti-aliasing\" option is now restored when the app "
+"starts."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -308,8 +321,8 @@ msgstr "Spara som…"
 msgid "Export as…"
 msgstr "Exportera som…"
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr "Kopiera till urklipp"
 
@@ -725,14 +738,6 @@ msgid "Main menu"
 msgstr "Huvudmeny"
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Växla till fullskärmsläge"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Avsluta fullskärmsläget"
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Bild"
 
@@ -753,10 +758,6 @@ msgid "Close the active image"
 msgstr "Stäng den aktiva bilden"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historik"
-
-#: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
 msgstr "Öppna verktygsalternativmeny"
 
@@ -765,18 +766,12 @@ msgid "Back to previous tool"
 msgstr "Tillbaka till föregående verktyg"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Färger"
+msgid "Apply a transformation"
+msgstr "Tillämpa en omvandling"
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Redigera den primära färgen (vänsterklick)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Redigera den sekundära färgen (högerklick)"
+msgid "History"
+msgstr "Historik"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -793,6 +788,20 @@ msgid "Import a file as the selection"
 msgstr "Importera en bildfil till markeringen"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Färger"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Redigera den primära färgen (vänsterklick)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Redigera den sekundära färgen (högerklick)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Flikar"
 
@@ -805,6 +814,14 @@ msgstr "Navigation"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Visa/Dölj förhandsgranskningen"
+
+#: src/ui/shortcuts.ui
+msgid "Enter fullscreen mode"
+msgstr "Växla till fullskärmsläge"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Avsluta fullskärmsläget"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -912,9 +929,14 @@ msgid "Official webpage"
 msgstr "Officiell webbplats"
 
 #: src/main.py
+msgid "Error opening this file."
+msgstr "Kunde inte öppna den här filen."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
 #, python-format
-msgid "Error opening this file. Did you mean %s ?"
-msgstr "Kunde inte öppna den här filen. Menade du %s ?"
+msgid "Did you mean %s ?"
+msgstr "Menade du %s?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1323,11 +1345,30 @@ msgstr "procent"
 msgid "degrees"
 msgstr "grader"
 
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s är ingen bild."
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "WEBP-bilder kan inte läsas av det här programmet."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Trots namnet, så är %s en WEBP-fil."
+
 #. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Kunde inte läsa in verktyg: %s"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "Urklipp innehåller ingen bild."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1625,17 +1666,6 @@ msgstr "Vertikal deformation"
 msgid "Transform"
 msgstr "Omvandla"
 
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Vänd"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Snedställ"
-
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1750,7 +1780,7 @@ msgstr "Ta bort färg"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Punkttyp"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -1759,31 +1789,31 @@ msgstr "Cirkel"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Kryss"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "X-formade kors"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Inkludera ett nummer"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Nästa nummer"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Återställ nummer"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Minska nummer"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Öka nummer"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1941,14 +1971,13 @@ msgid "Pencil options"
 msgstr "Pennalternativ"
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Teckensnittsalternativ"
+msgstr "Punktalternativ"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr ""
+msgstr "Nästa nummer: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -2015,33 +2044,10 @@ msgstr "Skalar markering"
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
 
-#, fuzzy
-#~ msgid "Add semi-transparency"
-#~ msgstr "Lägg till transparens"
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Snedställ"
 
-#~ msgid "Thin"
-#~ msgstr "Tunn"
-
-#~ msgid "The thumbnail preview, showing various shapes zoomed in"
-#~ msgstr "Miniatyrförhandsvisning, visande diverse inzoomade figurer"
-
-#~ msgid "The \"new image\" menu opened while the selection is being scaled up"
-#~ msgstr "Menyn \"Ny bild\" öppnad medan markeringen skalas upp"
-
-#~ msgid "Clipping"
-#~ msgstr "Klippning"
-
-#~ msgid "Edit"
-#~ msgstr "Redigera"
-
-#~ msgid "Open a file"
-#~ msgstr "Öppna en fil"
-
-#~ msgid "Save as"
-#~ msgstr "Spara som"
-
-#~ msgid "Keyboard"
-#~ msgstr "Tangentbord"
-
-#~ msgid "Close"
-#~ msgstr "Stäng"

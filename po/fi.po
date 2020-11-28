@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 03:57+0100\n"
+"POT-Creation-Date: 2020-11-28 10:12+0100\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -77,6 +77,18 @@ msgstr ""
 "tai kaari (eri vaihtoehdoilla), valinta (leikkaa/kopioi/liitä/vedä/…), "
 "muodot (suorakulmio, ympyrä, monikulmio…), tekstin lisäys, koon muuttaminen, "
 "rajaaminen, kiertäminen, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"Versio 0.6.4 sisältää useita pieniä virhekorjauksia ja uusia käännöksiä."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The value of the \"use anti-aliasing\" option is now restored when the app "
+"starts."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -295,8 +307,8 @@ msgstr "Tallenna nimellä…"
 msgid "Export as…"
 msgstr "Vie nimellä…"
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -722,14 +734,6 @@ msgid "Main menu"
 msgstr "Päävalikko"
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Siirry koko näyttöön"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Poistu koko näytöstä"
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Kuva"
 
@@ -750,10 +754,6 @@ msgid "Close the active image"
 msgstr "Sulje aktiivinen kuva"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr ""
-
-#: src/ui/shortcuts.ui
 #, fuzzy
 msgid "Open the tool options menu"
 msgstr "Asetukset valikko"
@@ -763,18 +763,12 @@ msgid "Back to previous tool"
 msgstr "Takaisin edelliseen työkaluun"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Värit"
+msgid "Apply a transformation"
+msgstr ""
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Muokkaa pääväriä (vasen napsautus)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Muokkaa seuraavaa väriä (napsauta hiiren oikealla painikkeella)"
+msgid "History"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -791,6 +785,20 @@ msgid "Import a file as the selection"
 msgstr "Tuo tiedosto valintana"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Värit"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Muokkaa pääväriä (vasen napsautus)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Muokkaa seuraavaa väriä (napsauta hiiren oikealla painikkeella)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr ""
 
@@ -803,6 +811,14 @@ msgstr "Navigaatio"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Vaihda esikatseluun"
+
+#: src/ui/shortcuts.ui
+msgid "Enter fullscreen mode"
+msgstr "Siirry koko näyttöön"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Poistu koko näytöstä"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -911,9 +927,15 @@ msgid "Official webpage"
 msgstr "Virallinen verkkosivu"
 
 #: src/main.py
-#, python-format
-msgid "Error opening this file. Did you mean %s ?"
+#, fuzzy
+msgid "Error opening this file."
 msgstr "Virhe avatessa tiedostoa. Tarkoititko %s ?"
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr ""
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1323,11 +1345,30 @@ msgstr "prosentit"
 msgid "degrees"
 msgstr "astetta"
 
+#: src/utilities.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "Avaa kuva"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
 #. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Työkalun lataus epäonnistui: %s"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr ""
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1627,17 +1668,6 @@ msgstr "Pystysuora muodonmuutos"
 #, fuzzy
 msgid "Transform"
 msgstr "Läpinäkyvä"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Peilaa"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Vinossa"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -2033,6 +2063,16 @@ msgstr "Valinnan skaalaaminen"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Alustan skaalaaminen"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Vinossa"
+
+#~ msgid "Flip"
+#~ msgstr "Peilaa"
 
 #, fuzzy
 #~ msgid "Add semi-transparency"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 20:22+0100\n"
-"PO-Revision-Date: 2020-11-13 16:21+0100\n"
+"POT-Creation-Date: 2020-11-28 10:12+0100\n"
+"PO-Revision-Date: 2020-11-25 18:15+0100\n"
 "Last-Translator: Vojtěch Perník <v.pernik@centrum.cz>\n"
 "Language-Team: Czech <@>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -81,6 +81,114 @@ msgid ""
 "Version 0.6.4 features several minor bug fixes, and various new translations."
 msgstr ""
 "Verze 0.6.4 obsahuje několik drobných oprav chyb a různé nové překlady."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The value of the \"use anti-aliasing\" option is now restored when the app "
+"starts."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The version 0.6.3 improves the option to draw arrows: several issues have "
+"been fixed and double-ended arrows are now possible."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "There is also more options to draw using dashes."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This version is finally compatible with older distributions (versions of "
+"GNOME libraries older than 3.30)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Version 0.6.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Verze 0.6.4 obsahuje několik drobných oprav chyb a různé nové překlady."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'highlighter' tool now provides options to highlight light text on a "
+"dark background."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When an image has been saved without its transparency, the app now suggests "
+"to reload the image from the disk. Also, the 'reload from disk' feature is "
+"now available with every possible window layout."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "An action to copy the whole image to clipboard has been added."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's now possible to remove transparency when saving PNG files too. And "
+"there are more color options to replace the transparent pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A new optional tool named \"Points\" has been added, it may help captioning "
+"pictures."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid "Minors bugs to the 'rotate' tool have been fixed."
+msgstr "Úpravy aktuálního nástroje nebyly použity."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.6 is a major update, with various important changes. The app is "
+"more robust and has more tools:"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Rectangle selection and freehand selection are now distinct tools, and the "
+"'rotate' tool now supports any angle and handles horizontal or vertical "
+"flipping."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
+"been merged into a single, more consistent 'shape' tool, along with 'rounded "
+"rectangle' and 'ellipse'. Their filling options now include various types of "
+"gradients."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool can now write using most system fonts, thus allowing more "
+"complex characters to be used (e.g. Asian characters)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
+"with several types of blur, color inversion, pixelization, saturation and "
+"transparency."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid "A fullscreen mode is now available."
+msgstr "Požadovaný nástroj není k dispozici"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The most prominent new feature is the ability to zoom in (or out) on the "
+"image, using the minimap, the touchpad or the mouse wheel."
+msgstr ""
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -185,8 +293,8 @@ msgstr "Uložit jako..."
 msgid "Export as…"
 msgstr "Exportovat jako..."
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr "Kopírovat do clipboardu"
 
@@ -269,7 +377,7 @@ msgstr "Zobrazit náhled"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Přiblížit"
+msgstr "Přiblížení"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
@@ -602,14 +710,6 @@ msgid "Main menu"
 msgstr "Hlavní menu"
 
 #: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Zapnout zobrazení na celou obrazovku"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Ukončit zobrazení na celou obrazovku"
-
-#: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Obrázek"
 
@@ -630,10 +730,6 @@ msgid "Close the active image"
 msgstr "Zavřít aktivní obrázek"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historie"
-
-#: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
 msgstr "Otevřít nástrojové menu"
 
@@ -642,18 +738,12 @@ msgid "Back to previous tool"
 msgstr "Zpět k předchozímu nástroji"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Barvy"
+msgid "Apply a transformation"
+msgstr "Použít transformaci"
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Upravit hlavní barvu (kliknout levým tlačítkem)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Upravit vedlejší barvu (kliknout pravým tlačítkem)"
+msgid "History"
+msgstr "Historie"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -670,6 +760,20 @@ msgid "Import a file as the selection"
 msgstr "Importovat soubor jako výběr"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Barvy"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Upravit hlavní barvu (kliknout levým tlačítkem)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Upravit vedlejší barvu (kliknout pravým tlačítkem)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Záložky"
 
@@ -682,6 +786,14 @@ msgstr "Navigace"
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Přepnout náhled"
+
+#: src/ui/shortcuts.ui
+msgid "Enter fullscreen mode"
+msgstr "Zapnout zobrazení na celou obrazovku"
+
+#: src/ui/shortcuts.ui
+msgid "Exit fullscreen mode"
+msgstr "Ukončit zobrazení na celou obrazovku"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -772,7 +884,7 @@ msgstr "Nahlásit chyby nebo nápady"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Vojtěch Perník"
+msgstr "Vojtěch Perník <v.pernik@centrum.cz>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -789,9 +901,14 @@ msgid "Official webpage"
 msgstr "Oficiální web"
 
 #: src/main.py
+msgid "Error opening this file."
+msgstr "Při otevírání tohoto souboru došlo k chybě."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
 #, python-format
-msgid "Error opening this file. Did you mean %s ?"
-msgstr "Při otevírání tohoto souboru došlo k chybě. Měli jste na mysli %s ?"
+msgid "Did you mean %s ?"
+msgstr "Měli jste na mysli %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -873,7 +990,7 @@ msgstr "Vysvětlení najdete v uživatelské příručce."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "pro přiblížení použijte \"Ctrl\""
+msgstr "Používat \"Ctrl\" pro přiblížení"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1199,11 +1316,30 @@ msgstr "procenta"
 msgid "degrees"
 msgstr "stupně"
 
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s není obrázek."
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "Omlouváme se, ale tato aplikace nepodporuje obrázky WEBP."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Navzdory své příponě je %s stále obrázek WEBP."
+
 #. Context: an error message
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
 msgstr "Nepodařilo se načíst nástroj: %s"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "Clipboard neobsahuje žádný obrázek."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1222,7 +1358,7 @@ msgstr "Otevřené obrázky"
 #: src/window.py
 #, python-format
 msgid "Error: pane invalid for '%s', please report this bug."
-msgstr ""
+msgstr "Chyba: neplatná oblast pro \"%s\". Prosím, nahlaste tuto chybu."
 
 #: src/window.py
 #, python-format
@@ -1502,21 +1638,10 @@ msgstr "Vertikální deformace"
 msgid "Transform"
 msgstr "Transormovat"
 
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Překlopit"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Zšikmit"
-
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
-msgstr "Tvar čáry"
+msgstr "Tvar konce čáry"
 
 #. Context: this is the name of a line shape
 #. Default values
@@ -1524,7 +1649,7 @@ msgstr "Tvar čáry"
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Kruh"
+msgstr "Zakulacený"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1533,7 +1658,7 @@ msgstr "Kruh"
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
-msgstr "Čtverec"
+msgstr "Rovný"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "No arrow"
@@ -1550,33 +1675,33 @@ msgstr "Dvojitá šipka"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "No dashes"
-msgstr "Nepřerušované"
+msgstr "Bez přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Simple dashes"
-msgstr "Jednoduše přerušované"
+msgstr "Základní přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Long dashes"
-msgstr "Dlouze přerušované"
+msgstr "Dlouhé přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Short dashes"
-msgstr "Krátce přerušované"
+msgstr "Krátké přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr "Střídavě přerušované"
+msgstr "Střídavé přerušování"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
 #: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
-msgstr ""
+msgstr "Uhladit"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Dark text on light background"
@@ -1890,3 +2015,11 @@ msgstr "Změna velikosti výběru"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Změna velikosti plátna"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Zšikmit"
+
