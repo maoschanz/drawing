@@ -31,13 +31,15 @@ should also be compatible with the *Pinephone* and *Librem 5*
 You can install it from flathub.org using the instructions on
 [this page](https://flathub.org/apps/details/com.github.maoschanz.drawing).
 
+[<img alt="" height="100" src="https://flathub.org/assets/badges/flathub-badge-en.png">](https://flathub.org/apps/details/com.github.maoschanz.drawing).
+
 ### Other packages available
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
 - Ubuntu 18.04, 20.04, and 20.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Gentoo package](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/media-gfx/drawing) from an external overlay
-- ["Snap" package](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- ["Snap" package](https://snapcraft.io/drawing)
 
 ### Unstable/nightly version
 
@@ -88,7 +90,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.6.2**)
+(last update: **version 0.6.4**)
 
 *Tools in italic can be disabled.*
 
