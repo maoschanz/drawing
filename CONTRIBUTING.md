@@ -110,6 +110,16 @@ ask me about it.**
 
 To set up a development environment, see [here](#install-from-source-code).
 
+### Settings
+
+The settings are managed by the `Gio.Settings` abstraction, which will probably
+corresponds to the `dconf` database once the app is installed as a native
+package.
+
+With flatpak however, which includes the recommended development setup, the
+settings are stored in a key-value file, which can be found (and edited) at
+`~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/settings/keyfile`.
+
 ### Syntax and comments
 
 - Use 2 spaces in `.ui` or `.xml` files.
@@ -157,12 +167,14 @@ once filled with the accurate widgets.
 
 If you **ever** even try to use Glade or a similar software, the auto-generated
 code will re-order all the lines, and add dozens of useless properties. Such a
-commit diff would be unreadable, so a merge request with this kind of change
-would be rejected.
+commit diff would be unreadable.
 
-Glade also removes all comments, which are essential to the generation of the
-translation files. It also removes some of the empty containers meant to be
-filled by the python code, thus breaking the app. Please do not use Glade here.
+Glade also removes all comments, which are essential to the understanding of the
+code, to the generation of the translation files, or which may be disabled code
+for future features. It also removes some of the empty containers meant to be
+filled by the python code, thus breaking the app.
+
+Please do not use Glade here. Merge requests with such changes will be rejected.
 
 ##### Design guidelines
 
@@ -290,14 +302,14 @@ Stable versions for end-users are **tagged**, and listed in this Github repo's
 "_Releases_" section.
 
 ```
-          0.4.1  0.4.2  …  0.4.14
-           _.______.____…____.                         _
+          0.4.1  0.4.2  …  0.4.14                     0.6.3  0.6.4
+           _.______.____…____.                         _.______._
    0.2    /         ______       0.6.0  0.6.1  0.6.2  /
-____.____/_________/______\________.______.______.___/___
+____.____/_________/______\________.______.______.___/____________
                         \____________/
 ```
 
-Please don't package anything aside this tagged code
+**Please don't package anything aside this tagged code**
 <details><summary>(except if your distro have experimental repos)</summary>
 <p>
 
@@ -321,6 +333,8 @@ sudo apt -t experimental install drawing
 - `cairo` library's GI for python3 (on Debian, it's `python3-gi-cairo`).
 - GTK libraries' GI (on Debian, it's `gir1.2-gtk-3.0`).
 
+Minimal versions of the dependencies:
+
 |                 | `python3-gi` | `python3-gi-cairo` | `gir1.2-gtk-3.0` |
 |-----------------|--------------|--------------------|------------------|
 | 0.2             | any          | any?               | 3.22             |
@@ -328,6 +342,7 @@ sudo apt -t experimental install drawing
 | 0.4.1, 0.4.2    | **≥3.30.0**  | any?               | 3.22             |
 | 0.4.3 to 0.4.13 | any          | any?               | 3.22             |
 | 0.4.14          | **≥3.32**    | any?               | 3.22             |
+| 0.4.15          | any          | any?               | 3.22             |
 | --------------- | ------------ | ------------------ | ---------------- |
 | 0.6.0 to 0.6.1  | **≥3.32.0**  | any?               | 3.22             |
 | 0.6.2           | **≥3.30.0**  | any?               | 3.22             |
