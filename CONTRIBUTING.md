@@ -36,6 +36,13 @@ currently developed on the `master` branch.
 <!-- procedure but run `git checkout 0.6` just after having cloned the repo, -->
 <!-- and at the end, open the merge request to `0.6` too. -->
 
+>You don't have to update your translation each time i update the files!
+
+>Doing it just before the planned date of a major release should be enough;
+>there are around two major releases per year, and 1 minor release per month.
+
+>Their dates are written in `debian/changelog`.
+
 ### Get the .po file
 
 - Fork the repo and clone your fork on your disk (see [installation instructions here](#with-gnome-builder-and-flatpak))

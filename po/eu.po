@@ -1546,17 +1546,6 @@ msgstr "Itxuraldaketa bertikala"
 msgid "Transform"
 msgstr "Gardena"
 
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Irauli"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Etzan"
-
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1947,6 +1936,13 @@ msgstr "Oihala biratzen"
 msgid "Scaling the canvas"
 msgstr "Oihala eskalatzen"
 
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Etzan"
+
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Irten pantaila osotik"
 
@@ -1958,9 +1954,3 @@ msgstr "Oihala eskalatzen"
 
 #~ msgid "Edit"
 #~ msgstr "Editatu"
-
-#~ msgid "Open a file"
-#~ msgstr "Ireki fitxategia"
-
-#~ msgid "Save as"
-#~ msgstr "Gorde honela"
