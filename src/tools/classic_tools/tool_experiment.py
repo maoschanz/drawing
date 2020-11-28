@@ -81,22 +81,26 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.move_to(50, 50)
 		cairo_context.line_to(100, 150)
 		cairo_context.line_to(150, 50)
-		cairo_context.line_to(200, 150)
-		cairo_context.line_to(250, 50)
-		cairo_context.line_to(300, 150)
+		cairo_context.line_to(250, 250)
 		cairo_context.line_to(350, 50)
-		cairo_context.line_to(375, 100)
-		cairo_context.line_to(400, 50)
-		cairo_context.line_to(425, 100)
+		cairo_context.line_to(375, 100) #
+		cairo_context.line_to(400, 50) # dents moins hautes
+		cairo_context.line_to(425, 100) #
 		cairo_context.line_to(450, 50)
 		cairo_context.line_to(500, 150)
 		cairo_context.line_to(550, 50)
+		cairo_context.line_to(570, 100) #
+		cairo_context.line_to(575, 100) # court palier
+		cairo_context.line_to(580, 100) #
+		cairo_context.line_to(600, 150)
+		cairo_context.line_to(650, 50)
 		self._path = cairo_context.copy_path()
 		self._macros_common()
 
 	def _macros_common(self):
 		self.set_common_values(1, 1, 1)
 		operation = self.build_operation()
+		operation['is_preview'] = False
 		self.apply_operation(operation)
 
 	############################################################################
@@ -104,7 +108,6 @@ class ToolExperiment(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self._set_active_operator()
 		self._set_active_mode()
-		# self._set_antialias()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event.button, event_x, event_y)
@@ -241,6 +244,7 @@ class ToolExperiment(AbstractClassicTool):
 		widths = [base_width] * length
 
 		# Initializing widths (XXX faisable sans cairo_context) + factorisable
+		# TODO pas correct, la width a un "retard" sur la vitesse du tracé
 		i = 0
 		for pts in path:
 			i += 1

@@ -24,7 +24,7 @@ class DrOptionsManager():
 	def __init__(self, window):
 		self.window = window
 		self._bottom_panes_dict = {}
-		self._active_pane_id= None
+		self._active_pane_id = None
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -95,6 +95,9 @@ class DrOptionsManager():
 
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self.window._settings.set_string('last-font-name', font_fam_name)
+
+		use_antialiasing = self.get_value('antialias')
+		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
 
 		# XXX more ?
 

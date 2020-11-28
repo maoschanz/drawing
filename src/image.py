@@ -20,6 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
+from .utilities import InvalidFileFormatException
 
 from .gi_composites import GtkTemplate
 
@@ -38,7 +39,8 @@ class DrMotionBehavior():
 class NoPixbufNoChangeException(Exception):
 	def __init__(self, pb_name):
 		# Context: an error message
-		super().__init__(_("New pixbuf empty, no change applied to %s") % pb_name)
+		message = _("New pixbuf empty, no change applied to %s")
+		super().__init__(message % pb_name)
 
 ################################################################################
 
@@ -203,8 +205,19 @@ class DrImage(Gtk.Box):
 		self.remember_current_state()
 
 	def try_load_file(self, gfile):
-		self.gfile = gfile
-		pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		try:
+			self.gfile = gfile
+			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+		except Exception as ex:
+			if not ex.message:
+				ex.message = "[exception without a valid message]"
+			ex = InvalidFileFormatException(ex.message, gfile.get_path())
+			self.window.prompt_message(True, ex.message)
+			self.gfile = None
+			pixbuf = self._new_blank_pixbuf(100, 100)
+			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
+			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
+			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
 
 	############################################################################

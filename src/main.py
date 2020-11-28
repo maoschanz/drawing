@@ -21,6 +21,7 @@ gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrWindow
 from .preferences import DrPrefsWindow
+from .utilities import utilities_gfile_is_image
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
@@ -47,6 +48,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname(APP_ID)
 		self._version = version
 		self.has_tools_in_menubar = False
+		self._runs_in_sandbox = False
 
 		self.connect('startup', self.on_startup)
 		self.register(None)
@@ -128,8 +130,9 @@ class Application(Gtk.Application):
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
 
-		# Possible options are 'version', 'new-window', and 'new-tab', in this
-		# order: only one option can be applied, '-ntv' will be the same as '-v'.
+		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
+		# 'new-window', in this order: only one option can be applied, '-ntvc'
+		# will be understood as '-v'.
 		options = args[1].get_options_dict()
 
 		if options.contains('version'):
@@ -138,39 +141,57 @@ class Application(Gtk.Application):
 				print(_("This version isn't stable!"))
 			print()
 			print(_("Report bugs or ideas") + " 👉️ " + BUG_REPORT_URL)
-		elif options.contains('edit-clipboard'):
-			self.open_window_with_content(None, True)
 
-		# If no file given as argument
-		elif options.contains('new-window') and len(arguments) == 1:
-			self.on_new_window()
+		elif options.contains('edit-clipboard'):
+			win = self.props.active_window
+			if not win:
+				self.open_window_with_content(None, True)
+			else:
+				win.present()
+				self.props.active_window.build_image_from_clipboard()
+
 		elif options.contains('new-tab') and len(arguments) == 1:
+			# If '-t' but no file given as argument
 			win = self.props.active_window
 			if not win:
 				self.on_new_window()
 			else:
 				win.present()
 				self.props.active_window.build_new_image()
+
+		elif options.contains('new-window'):
+			# it opens one new window per file given as argument, or just one
+			# new window if no argument is a valid enough file.
+			windows_counter = 0
+			for fpath in arguments:
+				f = self._get_valid_file(args[1], fpath)
+				# here f can be a GioFile or a boolea; True would mean the app
+				# should open a new blank image.
+				if f != False:
+					f = None if f == True else f
+					self.open_window_with_content(f, False)
+					windows_counter = windows_counter + 1
+			if windows_counter == 0:
+				self.on_new_window()
+
 		elif len(arguments) == 1:
 			self.on_activate()
 
-		elif options.contains('new-window'):
-			self.on_new_window()
+		else:
+			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be None (the app will open a new blank image if
-				# fpath isn't the path of an image)
-				self.open_window_with_content(f, False)
-		else: # giving files without '-n' is equivalent to giving files with '-t'
-			for fpath in arguments:
-				f = self._get_valid_file(args[1], fpath)
-				if f is not None:
+				# here f can be a GioFile or a boolea; True would mean the app
+				# should open a new blank image.
+				if f != False:
+					f = None if f == True else f
 					win = self.props.active_window
 					if not win:
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
 						self.props.active_window.build_new_tab(gfile=f)
+
 		# I don't even know if i should return something
 		return 0
 
@@ -306,21 +327,35 @@ class Application(Gtk.Application):
 		self.add_action(action)
 
 	def _get_valid_file(self, app, path):
-		"""Creates a GioFile object if the path corresponds to an image."""
+		"""Creates a GioFile object if the path corresponds to an image. If no
+		GioFile can be created, it returns a boolean telling whether or not a
+		window should be opened anyway."""
+		if path == '/app/bin/drawing':
+			self._runs_in_sandbox = True
+			# when it's /app/bin/drawing, the situation is normal, and
+			# it tells the app it's running in a flatpak sandbox
+			return False
+
+		err = _("Error opening this file.") + ' '
 		try:
-			f = app.create_file_for_arg(path)
-			if 'image/' in f.query_info('standard::*', \
-				          Gio.FileQueryInfoFlags.NONE, None).get_content_type():
-				return f
+			gfile = app.create_file_for_arg(path)
+		except Exception as excp:
+			if self._runs_in_sandbox:
+				command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
+				command = command.format(APP_ID, path)
+				# This is an error message, %s is a better command suggestion
+				err = err + _("Did you mean %s ?") % command
 			else:
-				return None # mainly when it's /app/bin/drawing
-		except:
-			err = _("Error opening this file. Did you mean %s ?")
-			command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-			# TODO can happen without flatpak
-			command = command.format(APP_ID, path)
-			print(err % command)
-			return None
+				err = err + excp.message
+			print(err) # TODO show that message in an empty window
+			return False
+
+		is_image, err = utilities_gfile_is_image(gfile, err)
+		if is_image:
+			return gfile
+		else:
+			print(err) # TODO show that message in an empty window
+			return True
 
 	############################################################################
 ################################################################################

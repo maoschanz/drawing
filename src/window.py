@@ -56,6 +56,7 @@ from .deco_manager import DrDecoManagerMenubar, \
 from .saving_manager import DrSavingManager
 
 from .utilities import utilities_add_filechooser_filters
+from .utilities import utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 
@@ -104,6 +105,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
+		self._is_tools_initialisation_finished = False
 
 		if self._settings.get_boolean('maximized'):
 			self.maximize()
@@ -122,14 +124,24 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.saving_manager = DrSavingManager(self)
 
 		self.add_all_win_actions()
-		if get_cb:
-			self.build_image_from_clipboard()
-		elif gfile is not None:
-			self.build_new_tab(gfile=gfile)
-		else:
-			self.build_new_image()
 		self._init_tools()
 		self.connect_signals()
+
+		# The picture is built as late as possible in the init process because
+		# reading files is too prone to exceptions that may fuck everything up,
+		# and i don't trust that catching them is enough to ensure the process
+		# can continue normally.
+		try:
+			if get_cb:
+				self.build_image_from_clipboard()
+			elif gfile is not None:
+				self.build_new_tab(gfile=gfile)
+			else:
+				self.build_new_image()
+		except Exception as excp:
+			self.prompt_message(True, excp.message)
+
+		self._enable_first_tool()
 		self.set_picture_title()
 
 	def _init_tools(self):
@@ -167,17 +179,27 @@ class DrWindow(Gtk.ApplicationWindow):
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()
 
-		# Initialisation of options and menus
+		# Initialisation of which tool is active
 		tool_id = self._settings.get_string('last-active-tool')
 		if tool_id not in self.tools:
 			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
+		# the end of this process, implemented in the `_enable_first_tool`
+		# method, will be called later because it requires an active image,
+		# which doesn't exist yet at this point of the window init process.
 
-		if tool_id == DEFAULT_TOOL_ID: # The "pencil" button is already active
-			self.enable_tool(tool_id)
+	def _enable_first_tool(self):
+		"""Near the end of the window initialisation process, this method is
+		called once to make sure all things related to the active tool, mostly
+		its options' values, and the visibility of its optionsbar, are all
+		correctly loaded."""
+		if self.active_tool_id == DEFAULT_TOOL_ID:
+			# Special case of the "pencil" radio button, which is already active
+			self.enable_tool(self.active_tool_id)
 		else:
 			self.active_tool().row.set_active(True)
+		self._is_tools_initialisation_finished = True
 
 	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
 		"""Given its id and its python class, this method tries to load a tool,
@@ -234,8 +256,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		height = self._settings.get_int('default-height')
 		rgba = self._settings.get_strv('default-rgba')
 		self.build_new_tab(width=width, height=height, background_rgba=rgba)
-		if self.active_tool_id is not None: # Tools might not be initialized yet
-			self.set_picture_title()
+		self.set_picture_title()
 
 	def build_new_custom(self, *args):
 		"""Open a new tab with a drawable blank image using the custom values
@@ -253,7 +274,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		empty, the new image will be blank."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
-		self.build_new_tab(pixbuf=pixbuf)
+		if pixbuf is None:
+			self.prompt_message(True, _("The clipboard doesn't contain any image."))
+			self.build_new_image()
+		else:
+			self.build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
@@ -270,12 +295,17 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
+			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
+			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
+			# qu'un petit pixbuf rouge
 		else:
 			new_image.init_background(width, height, background_rgba)
 		self.update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
+		if not self._is_tools_initialisation_finished:
+			return
 		self.switch_to(self.active_tool_id, args[1])
 		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
@@ -430,9 +460,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
+		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
+
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('fullscreen', self.action_fullscreen, ['F11'])
 		self.add_action_simple('unfullscreen', self.action_unfullscreen, ['Escape'])
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
@@ -478,7 +509,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
-		self.add_action_simple('apply_transform', self.action_apply_transform, None)
+		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -641,6 +672,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._decorations.adapt_to_window_size()
 
 		available_width = self.bottom_panes_box.get_allocated_width()
+		if not self._is_tools_initialisation_finished:
+			return # there is no active pane nor active image yet
 		self.options_manager.adapt_to_window_size(available_width)
 
 		self.get_active_image().fake_scrollbar_update()
@@ -918,10 +951,23 @@ class DrWindow(Gtk.ApplicationWindow):
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()
-		# valider les URIs TODO
+		gfiles = []
+		for uri in uris:
+			try:
+				gfile = Gio.File.new_for_uri(uri)
+				is_image, error_msg = utilities_gfile_is_image(gfile)
+			except Exception as excp:
+				is_image = False
+				error_msg = excp.message
+			if is_image:
+				gfiles.append(gfile)
+			else:
+				self.prompt_message(True, error_msg)
 
-		if len(uris) == 1:
-			label = uris[0].split('/')[-1]
+		if len(gfiles) == 0:
+			return
+		elif len(gfiles) == 1:
+			label = gfiles[0].get_path().split('/')[-1]
 		else:
 			# Context for translation:
 			# "What do you want to do with *these files*?"
@@ -933,12 +979,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		dialog.destroy()
 
 		if result == open_id:
-			for uri in uris:
-				f = Gio.File.new_for_uri(uri)
+			for f in gfiles:
 				self.build_new_tab(gfile=f)
 		elif result == import_id:
-			f = Gio.File.new_for_uri(uris[0])
-			self.import_from_path(f.get_path())
+			self.import_from_path(gfiles[0].get_path())
 
 	def try_load_file(self, gfile):
 		if gfile is not None:
