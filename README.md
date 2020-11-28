@@ -88,7 +88,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.6.3**)
+(last update: **version 0.6.4**)
 
 *Tools in italic can be disabled.*
 
