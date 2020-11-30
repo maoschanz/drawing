@@ -98,7 +98,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
 
-		self._controls_hidden = False
 		self.pointer_to_current_page = None # this ridiculous hack allows to
 		                   # manage several tabs in a single window despite the
 		                                      # notebook widget being pure shit
@@ -300,7 +299,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# qu'un petit pixbuf rouge
 		else:
 			new_image.init_background(width, height, background_rgba)
-		self.update_tabs_visibility()
+		self._update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
@@ -347,7 +346,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			if not is_saved:
 				return False
 		self.notebook.remove_page(index)
-		self.update_tabs_visibility()
+		self._update_tabs_visibility()
 		return True
 
 	def action_close_tab(self, *args):
@@ -680,8 +679,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_action_name(action_name)
 		self.info_action.set_label(action_label)
 
-	def update_tabs_visibility(self):
-		should_show = (self.notebook.get_n_pages() > 1) and not self._controls_hidden
+	def _update_tabs_visibility(self):
+		controls_hidden = self.lookup_action('hide_controls').get_state()
+		should_show = (self.notebook.get_n_pages() > 1) and not controls_hidden
 		self.notebook.set_show_tabs(should_show)
 
 	############################################################################
@@ -693,7 +693,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		fs_action.change_state(GLib.Variant.new_boolean(False))
 
 	def action_fullscreen(self, *args):
-		"""Boolean action, toggling fullscreen."""
+		"""Boolean action, toggling fullscreen mode."""
 		# XXX maybe track the window widget's 'window-state-event' to use this
 		# https://lazka.github.io/pgi-docs/Gdk-3.0/flags.html#Gdk.WindowState.FULLSCREEN
 		shall_fullscreen = args[1]
@@ -719,9 +719,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.toolbar_box.set_visible(not controls_hidden)
 		if 'm' in self.deco_layout:
 			self.set_show_menubar(not controls_hidden)
-		self.update_tabs_visibility()
 		self.bottom_meta_box.set_visible(not controls_hidden)
 		args[0].set_state(GLib.Variant.new_boolean(controls_hidden))
+		self._update_tabs_visibility()
 
 	def _set_controls_hidden(self, state):
 		hc_action = self.lookup_action('hide_controls')
