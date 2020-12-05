@@ -101,8 +101,8 @@ class DrImage(Gtk.Box):
 		rgba = self.window._settings.get_strv('ui-background-rgba')
 		self._bg_rgba = (float(rgba[0]), float(rgba[1]), \
 		                                         float(rgba[2]), float(rgba[3]))
-		# We remember this data here for performance, since it's used by the
-		# on_draw method which is called a lot.
+		# We remember this data here for performance: it's used by the `on_draw`
+		# method which is called a lot, and reading a gsettings costs a lot.
 
 	def _update_zoom_behavior(self, *args):
 		self._ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
@@ -358,7 +358,8 @@ class DrImage(Gtk.Box):
 		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 
-		# TODO transform tools may appreciate to draw *before* the image
+		# TODO transform tools may appreciate to draw *before* the image (issue
+		# when the canvas becomes larger)
 
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
@@ -677,33 +678,6 @@ class DrImage(Gtk.Box):
 		self.set_zoom_level(opti)
 		self.scroll_x = 0
 		self.scroll_y = 0
-
-	############################################################################
-	# Printing #################################################################
-
-	def print_image(self):
-		op = Gtk.PrintOperation()
-		# FIXME the preview doesn't work, i guess it's because of flatpak ?
-		# I could connect to the 'preview' signal but that would be weird
-		op.connect('draw-page', self.do_draw_page)
-		op.connect('begin-print', self.do_begin_print)
-		op.connect('end-print', self.do_end_print)
-		res = op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self.window)
-
-	def do_end_print(self, *args):
-		pass
-
-	def do_draw_page(self, op, print_ctx, page_num):
-		# TODO if it's too big for one page ?
-		cairo_context = print_ctx.get_cairo_context()
-		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
-		cairo_context.paint()
-
-	def do_begin_print(self, op, print_ctx):
-		op.set_n_pages(1)
-		cairo_context = print_ctx.get_cairo_context()
-		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
-		cairo_context.paint()
 
 	############################################################################
 ################################################################################
