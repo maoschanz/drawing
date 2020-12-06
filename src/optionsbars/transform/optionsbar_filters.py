@@ -35,6 +35,10 @@ class OptionsBarFilters(AbstractOptionsBar):
 		self.sat_btn = builder.get_object('sat_btn')
 		utilities_add_unit_to_spinbtn(self.sat_btn, 3, '%')
 
+		self.cont_label = builder.get_object('cont_label')
+		self.cont_btn = builder.get_object('cont_btn')
+		utilities_add_unit_to_spinbtn(self.cont_btn, 3, '%')
+
 		self.tspc_label = builder.get_object('tspc_label')
 		self.tspc_btn = builder.get_object('tspc_btn')
 		utilities_add_unit_to_spinbtn(self.tspc_btn, 3, '%')
@@ -54,8 +58,11 @@ class OptionsBarFilters(AbstractOptionsBar):
 	def init_adaptability(self):
 		super().init_adaptability()
 		self.menu_icon.set_visible(False)
+		# XXX zebi c'est vraiment moche
 		widgets_size = max( self.sat_label.get_preferred_width()[0] + \
 		                    self.sat_btn.get_preferred_width()[0], \
+		                    self.cont_label.get_preferred_width()[0] + \
+		                    self.cont_btn.get_preferred_width()[0], \
 		                    self.tspc_label.get_preferred_width()[0] + \
 		                    self.tspc_btn.get_preferred_width()[0], \
 		                    self.blur_label.get_preferred_width()[0] + \
@@ -76,11 +83,16 @@ class OptionsBarFilters(AbstractOptionsBar):
 		self.menu_label.set_visible(not state)
 		self.menu_icon.set_visible(state)
 
-		blurring = (self.filters_tool.blur_algo != BlurType.INVALID)
+		self.cont_label.set_visible(self.filters_tool.contrast and not state)
+		self.cont_btn.set_visible(self.filters_tool.contrast)
+
 		self.tspc_label.set_visible(self.filters_tool.transparency and not state)
 		self.tspc_btn.set_visible(self.filters_tool.transparency)
+
 		self.sat_label.set_visible(self.filters_tool.saturate and not state)
 		self.sat_btn.set_visible(self.filters_tool.saturate)
+
+		blurring = (self.filters_tool.blur_algo != BlurType.INVALID)
 		self.blur_label.set_visible(blurring and not state)
 		self.blur_btn.set_visible(blurring)
 

@@ -31,6 +31,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.add_tool_action_enum('filters_type', 'saturation')
 		self.add_tool_action_enum('filters_blur_dir', 'none')
 		self.blur_direction = BlurDirection.BOTH
+		self.type_label = _("Change saturation")
 		self._reset_type_values()
 
 	def try_build_pane(self):
@@ -55,6 +56,7 @@ class ToolFilters(AbstractCanvasTool):
 		# make it easier to write conditionals, concerning both the panel and
 		# the tool operation.
 		self.saturate = False
+		self.contrast = False
 		self.pixelate = False
 		self.invert = False
 		self.transparency = False
@@ -83,6 +85,9 @@ class ToolFilters(AbstractCanvasTool):
 		elif state_as_string == 'saturation':
 			self.saturate = True
 			self.type_label = _("Change saturation")
+		elif state_as_string == 'contrast':
+			self.contrast = True
+			self.type_label = _("Increase contrast")
 		elif state_as_string == 'veil':
 			self.pixelate = True
 			self.type_label = _("Veil")
@@ -101,6 +106,9 @@ class ToolFilters(AbstractCanvasTool):
 
 	def _get_transparency(self, *args):
 		return self.bar.tspc_btn.get_value()/100
+
+	def _get_contrast(self, *args):
+		return self.bar.cont_btn.get_value()/100
 
 	def _get_blur_radius(self, *args):
 		return self.bar.blur_btn.get_value_as_int()
@@ -133,14 +141,21 @@ class ToolFilters(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': 0,
 			'local_dy': 0,
-			'saturation': self._get_saturation(),
-			'radius': self._get_blur_radius(),
+
 			'pixelate': self.pixelate,
 			'invert': self.invert,
+
 			'saturate': self.saturate,
+			'saturation': self._get_saturation(),
+
 			'use_transparency': self.transparency,
 			'transpercent': self._get_transparency(),
+
+			'use_contrast': self.contrast,
+			'contr_percent': self._get_contrast(),
+
 			'blur_algo': self.blur_algo,
+			'radius': self._get_blur_radius(),
 			'blur_direction': self.blur_direction
 		}
 		return operation
@@ -165,6 +180,32 @@ class ToolFilters(AbstractCanvasTool):
 		cairo_context.set_operator(cairo.Operator.SOURCE)
 		cairo_context.set_source_surface(surface)
 		cairo_context.paint_with_alpha(1.0 - percent)
+
+		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
+		                      new_surface.get_width(), new_surface.get_height())
+		self.get_image().set_temp_pixbuf(new_pixbuf)
+
+	def op_contrast(self, source_pixbuf, percent):
+		"""Create a temp_pixbuf from a surface of the same size, whose cairo
+		context is first painted using the original surface (source operator),
+		which is basically a stupid way to copy it, and then painted again (with
+		alpha this time) using a blending mode that will increase the contrast.
+		OVERLAY, """
+		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		surface.set_device_scale(self.scale_factor(), self.scale_factor())
+		width = source_pixbuf.get_width()
+		height = source_pixbuf.get_height()
+		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
+		cairo_context = cairo.Context(new_surface)
+		cairo_context.set_source_surface(surface)
+
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.paint()
+
+		cairo_context.set_operator(cairo.Operator.SOFT_LIGHT)
+		# OVERLAY SOFT_LIGHT HARD_LIGHT
+		cairo_context.paint_with_alpha(percent - 1.0)
+
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
@@ -189,8 +230,9 @@ class ToolFilters(AbstractCanvasTool):
 			blur_direction = operation['blur_direction']
 			self.op_blur(source_pixbuf, blur_algo, blur_direction, blur_radius)
 		elif operation['use_transparency']:
-			percent = operation['transpercent']
-			self.op_transparency(source_pixbuf, percent)
+			self.op_transparency(source_pixbuf, operation['transpercent'])
+		elif operation['use_contrast']:
+			self.op_contrast(source_pixbuf, operation['contr_percent'])
 		elif operation['invert']:
 			self.op_invert_color(source_pixbuf)
 		else:
