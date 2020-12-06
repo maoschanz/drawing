@@ -29,28 +29,28 @@ class DrPrintingManager():
 
 		psetup = Gtk.PageSetup()
 		if pixbuf.get_height() < pixbuf.get_width():
-			# XXX seulement si l'image est plus large que la largeur du format
-			# portrait ? osef en vrai, flemme
 			psetup.set_orientation(Gtk.PageOrientation.LANDSCAPE)
 		else:
 			psetup.set_orientation(Gtk.PageOrientation.PORTRAIT)
 		print_op.set_default_page_setup(psetup)
-		# print_op.set_use_full_page(True) # ?
+		# print_op.set_use_full_page(True) # XXX what does it do?
 
 		# FIXME the default preview doesn't always work, i guess it's because of
 		# the sandbox, or the flatpak implementation.
 		# The default preview says "evince-previewer" ???
 		# I could implement a custom callback to the 'preview' signal but that
-		# would be weird. And likely useless since it's not called at all?????
+		# would be weird. And likely useless since it's only called when the
+		# Gtk.PrintOperationAction given to `run` is PREVIEW???
 		print_op.connect('draw-page', self._do_draw_page, pixbuf)
 		print_op.connect('begin-print', self._do_begin_print, pixbuf)
 
 		res = print_op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self._window)
 		# si on apply réellement (du moins avec l'impression vers pdf), ça
-		# begin-print puis ça draw-page avant de retourner du run
-		print(res) # pourquoi le résultat est Gtk.PrintOperationResult.APPLY
-		# même quand on clique sur "Aperçu" ??? XXX
-		# I assume print_op continues to live enough to be used by signals.
+		# begin-print puis ça draw-page *avant* de retourner du run
+		print(res) # it's Gtk.PrintOperationResult.APPLY even when "Preview" is
+		# clicked, because the possible values are actually "APPLY", "CANCEL",
+		# "IN_PROGRESS" and "ERROR"
+		# I'll assume print_op continues to live enough to be used by signals.
 
 	def _do_draw_page(self, op, print_ctx, page_num, pixbuf):
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
@@ -60,8 +60,14 @@ class DrPrintingManager():
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
 
 	def _show_pixbuf_on_page(self, print_ctx, pixbuf):
-		# TODO if it's too big for one page ? la technique est de scale down
-		scale = 1.0
+		h_ratio = print_ctx.get_height() / pixbuf.get_height()
+		w_ratio = print_ctx.get_width() / pixbuf.get_width()
+		if h_ratio < 1.0 or w_ratio < 1.0:
+			scale = min(h_ratio, w_ratio)
+		else:
+			scale = 1.0
+		# XXX too much
+		# TODO should be centered
 		print(scale)
 
 		cairo_context = print_ctx.get_cairo_context()
