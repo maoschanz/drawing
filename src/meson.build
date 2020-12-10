@@ -85,7 +85,10 @@ drawing_sources = [
 	'tools/transform_tools/tool_filters.py',
 	'tools/transform_tools/tool_rotate.py',
 	'tools/transform_tools/tool_scale.py',
-	'tools/transform_tools/tool_skew.py'
+	'tools/transform_tools/tool_skew.py',
+
+	'tools/transform_tools/filters/abstract_filter.py',
+	'tools/transform_tools/filters/filter_colors.py',
 ]
 
 install_data(drawing_sources, install_dir: moduledir)

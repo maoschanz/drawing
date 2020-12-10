@@ -18,6 +18,7 @@
 import cairo
 from gi.repository import Gdk, GdkPixbuf
 from .abstract_transform_tool import AbstractCanvasTool
+from .filter_colors import FilterColors
 from .optionsbar_filters import OptionsBarFilters
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
@@ -161,15 +162,6 @@ class ToolFilters(AbstractCanvasTool):
 		}
 		return operation
 
-	def op_invert_color(self, source_pixbuf):
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		cairo_context = cairo.Context(surface)
-		cairo_context.set_operator(cairo.Operator.DIFFERENCE)
-		cairo_context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
-		cairo_context.paint()
-		new_pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, \
-		                              surface.get_width(), surface.get_height())
-		self.get_image().set_temp_pixbuf(new_pixbuf)
 
 	def op_transparency(self, source_pixbuf, percent):
 		"""Create a temp_pixbuf from a surface of the same size, whose cairo
@@ -238,7 +230,8 @@ class ToolFilters(AbstractCanvasTool):
 		elif operation['use_contrast']:
 			self.op_contrast(source_pixbuf, operation['contr_percent'])
 		elif operation['invert']:
-			self.op_invert_color(source_pixbuf)
+			test_filter = FilterColors('colors', self)
+			test_filter.do_filter_operation(source_pixbuf, operation)
 		else:
 			self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 			temp = self.get_image().temp_pixbuf
