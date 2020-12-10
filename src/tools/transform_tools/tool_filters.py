@@ -88,6 +88,7 @@ class ToolFilters(AbstractCanvasTool):
 		elif state_as_string == 'contrast':
 			self.contrast = True
 			self.type_label = _("Increase contrast")
+		# TODO changer la luminosity tant qu'à faire
 		elif state_as_string == 'veil':
 			self.pixelate = True
 			self.type_label = _("Veil")
@@ -171,14 +172,17 @@ class ToolFilters(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 
 	def op_transparency(self, source_pixbuf, percent):
+		"""Create a temp_pixbuf from a surface of the same size, whose cairo
+		context is painted (with alpha) using the original surface."""
 		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
 		surface.set_device_scale(self.scale_factor(), self.scale_factor())
 		width = source_pixbuf.get_width()
 		height = source_pixbuf.get_height()
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		cairo_context = cairo.Context(new_surface)
-		cairo_context.set_operator(cairo.Operator.SOURCE)
 		cairo_context.set_source_surface(surface)
+
+		cairo_context.set_operator(cairo.Operator.SOURCE)
 		cairo_context.paint_with_alpha(1.0 - percent)
 
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
