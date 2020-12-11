@@ -20,6 +20,10 @@ from gi.repository import Gdk, GdkPixbuf
 from .abstract_transform_tool import AbstractCanvasTool
 from .filter_blur import FilterBlur
 from .filter_colors import FilterColors
+from .filter_contrast import FilterContrast
+from .filter_saturation import FilterSaturation
+from .filter_transparency import FilterTransparency
+from .filter_veil import FilterVeil
 from .optionsbar_filters import OptionsBarFilters
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
@@ -30,6 +34,7 @@ class ToolFilters(AbstractCanvasTool):
 		super().__init__('filters', _("Filters"), 'tool-filters-symbolic', window)
 		self.cursor_name = 'pointer'
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
+
 		self.add_tool_action_enum('filters_type', 'saturation')
 		self.add_tool_action_enum('filters_blur_dir', 'none')
 		self.blur_direction = BlurDirection.BOTH

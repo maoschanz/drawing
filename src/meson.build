@@ -90,6 +90,10 @@ drawing_sources = [
 	'tools/transform_tools/filters/abstract_filter.py',
 	'tools/transform_tools/filters/filter_blur.py',
 	'tools/transform_tools/filters/filter_colors.py',
+	'tools/transform_tools/filters/filter_contrast.py',
+	'tools/transform_tools/filters/filter_saturation.py',
+	'tools/transform_tools/filters/filter_transparency.py',
+	'tools/transform_tools/filters/filter_veil.py',
 ]
 
 install_data(drawing_sources, install_dir: moduledir)
