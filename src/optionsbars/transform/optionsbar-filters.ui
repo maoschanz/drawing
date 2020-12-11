@@ -1,40 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
 
-  <object class="GtkAdjustment" id="adj_blur">
-    <property name="lower">1</property>
-    <property name="upper">99</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <property name="value">5</property>
-  </object>
-
-  <object class="GtkAdjustment" id="adj_saturation">
-    <property name="lower">0</property>
-    <property name="upper">10000</property>
-    <property name="step_increment">10</property>
-    <property name="page_increment">30</property>
-    <property name="value">100</property>
-  </object>
-
-  <object class="GtkAdjustment" id="adj_transparency">
-    <property name="lower">0</property>
-    <property name="upper">100</property>
-    <property name="step_increment">5</property>
-    <property name="page_increment">10</property>
-    <property name="value">0</property>
-  </object>
-
-  <object class="GtkAdjustment" id="adj_contrast">
-    <property name="lower">100</property>
-    <property name="upper">200</property>
-    <property name="step_increment">5</property>
-    <property name="page_increment">10</property>
-    <property name="value">100</property>
-  </object>
-
-  <!-- -->
-
   <object class="GtkActionBar" id="bottom-pane">
     <property name="visible">False</property>
     <property name="expand">True</property>
@@ -57,7 +23,7 @@
     </child>
 
     <child type="center">
-      <object class="GtkBox">
+      <object class="GtkBox" id="centered_box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
 
@@ -89,62 +55,6 @@
                 </child>
               </object>
             </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="cont_label">
-            <property name="label" translatable="yes">Contrast</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="cont_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_contrast</property>
-            <property name="tooltip_text" translatable="yes">Contrast</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="sat_label">
-            <property name="label" translatable="yes">Saturation</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="sat_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_saturation</property>
-            <property name="tooltip_text" translatable="yes">Saturation</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="blur_label">
-            <property name="label" translatable="yes">Blur radius</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="blur_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_blur</property>
-            <property name="tooltip_text" translatable="yes">Blur radius</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="tspc_label">
-            <property name="label" translatable="yes">Transparency</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="tspc_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_transparency</property>
-            <property name="tooltip_text" translatable="yes">Transparency</property>
           </object>
         </child>
 

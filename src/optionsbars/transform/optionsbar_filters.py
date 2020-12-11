@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
-from .utilities_blur import BlurType
 from .utilities import utilities_add_unit_to_spinbtn
 
 class OptionsBarFilters(AbstractOptionsBar):
@@ -28,24 +28,22 @@ class OptionsBarFilters(AbstractOptionsBar):
 		self.filters_tool = filters_tool
 		builder = self.build_ui('optionsbars/transform/optionsbar-filters.ui')
 		self.menu_btn = builder.get_object('menu_btn')
-		self.menu_label = builder.get_object('menu_label')
-		self.menu_icon = builder.get_object('menu_icon')
+		self._menu_label = builder.get_object('menu_label')
+		self._menu_icon = builder.get_object('menu_icon')
+		self._centered_box = builder.get_object('centered_box')
 
-		self.sat_label = builder.get_object('sat_label')
-		self.sat_btn = builder.get_object('sat_btn')
-		utilities_add_unit_to_spinbtn(self.sat_btn, 3, '%')
+	def add_spinbtn(self, caption, adj_as_array, spin_chars, unit):
+		widget_label = Gtk.Label(label=caption)
+		widget_spinbtn = Gtk.SpinButton(tooltip_text=caption)
+		adj = Gtk.Adjustment()
+		# it's [value, lower, upper, step_increment, page_increment, page_size]
+		adj.configure(*adj_as_array)
+		widget_spinbtn.set_adjustment(adj)
+		utilities_add_unit_to_spinbtn(widget_spinbtn, spin_chars, unit)
 
-		self.cont_label = builder.get_object('cont_label')
-		self.cont_btn = builder.get_object('cont_btn')
-		utilities_add_unit_to_spinbtn(self.cont_btn, 3, '%')
-
-		self.tspc_label = builder.get_object('tspc_label')
-		self.tspc_btn = builder.get_object('tspc_btn')
-		utilities_add_unit_to_spinbtn(self.tspc_btn, 3, '%')
-
-		self.blur_label = builder.get_object('blur_label')
-		self.blur_btn = builder.get_object('blur_btn')
-		utilities_add_unit_to_spinbtn(self.blur_btn, 2, 'px')
+		self._centered_box.add(widget_label)
+		self._centered_box.add(widget_spinbtn)
+		return widget_label, widget_spinbtn
 
 	############################################################################
 
@@ -57,16 +55,8 @@ class OptionsBarFilters(AbstractOptionsBar):
 
 	def init_adaptability(self):
 		super().init_adaptability()
-		self.menu_icon.set_visible(False)
-		# XXX zebi c'est vraiment moche
-		widgets_size = max( self.sat_label.get_preferred_width()[0] + \
-		                    self.sat_btn.get_preferred_width()[0], \
-		                    self.cont_label.get_preferred_width()[0] + \
-		                    self.cont_btn.get_preferred_width()[0], \
-		                    self.tspc_label.get_preferred_width()[0] + \
-		                    self.tspc_btn.get_preferred_width()[0], \
-		                    self.blur_label.get_preferred_width()[0] + \
-		                    self.blur_btn.get_preferred_width()[0])
+		self._menu_icon.set_visible(False)
+		widgets_size = self.filters_tool.get_max_filter_width()
 		temp_limit_size = self.menu_btn.get_preferred_width()[0] + \
 		                  50 + widgets_size + \
 		                  self.cancel_btn.get_preferred_width()[0] + \
@@ -80,21 +70,9 @@ class OptionsBarFilters(AbstractOptionsBar):
 
 	def set_compact(self, state):
 		super().set_compact(state)
-		self.menu_label.set_visible(not state)
-		self.menu_icon.set_visible(state)
-
-		self.cont_label.set_visible(self.filters_tool.contrast and not state)
-		self.cont_btn.set_visible(self.filters_tool.contrast)
-
-		self.tspc_label.set_visible(self.filters_tool.transparency and not state)
-		self.tspc_btn.set_visible(self.filters_tool.transparency)
-
-		self.sat_label.set_visible(self.filters_tool.saturate and not state)
-		self.sat_btn.set_visible(self.filters_tool.saturate)
-
-		blurring = (self.filters_tool.blur_algo != BlurType.INVALID)
-		self.blur_label.set_visible(blurring and not state)
-		self.blur_btn.set_visible(blurring)
+		self._menu_label.set_visible(not state)
+		self._menu_icon.set_visible(state)
+		self.filters_tool.set_filters_compact(state)
 
 	############################################################################
 ################################################################################

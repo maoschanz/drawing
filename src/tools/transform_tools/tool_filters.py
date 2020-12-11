@@ -36,10 +36,22 @@ class ToolFilters(AbstractCanvasTool):
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
 
 		self.add_tool_action_enum('filters_type', 'saturation')
-		self.add_tool_action_enum('filters_blur_dir', 'none')
-		self.blur_direction = BlurDirection.BOTH
 		self.type_label = _("Change saturation")
-		self._reset_type_values()
+		self._active_filter = 'saturation'
+
+		# Options specific to filters but which are here for no good reason
+		self.add_tool_action_enum('filters_blur_dir', 'none')
+		self.blur_algo = BlurType.INVALID
+
+		# Initialisation of the filters
+		self._all_filters = {
+			'blur': FilterBlur('blur', self),
+			'colors': FilterColors('colors', self),
+			'contrast': FilterContrast('contrast', self),
+			'saturation': FilterSaturation('saturation', self),
+			'transparency': FilterTransparency('transparency', self),
+			'veil': FilterVeil('veil', self),
+		}
 
 	def try_build_pane(self):
 		self.pane_id = 'filters'
@@ -51,75 +63,59 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar.menu_btn.connect('notify::active', self._set_blur_direction)
 		return self.bar
 
+	def get_max_filter_width(self):
+		width = 0
+		for f in self._all_filters.values():
+			width = max(f.get_preferred_minimum_width(), width)
+		return width
+
+	def set_filters_compact(self, is_compact):
+		for f_id, f in self._all_filters.items():
+			f.set_filter_compact(f_id == self._active_filter, is_compact)
+
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
 		return self.type_label + ' - ' + tip_label
 
 	############################################################################
 
-	def _reset_type_values(self):
-		self.blur_algo = BlurType.INVALID
-		# The active filter is memorized using individual booleans because they
-		# make it easier to write conditionals, concerning both the panel and
-		# the tool operation.
-		self.saturate = False
-		self.contrast = False
-		self.pixelate = False
-		self.invert = False
-		self.transparency = False
-
 	def _set_blur_direction(self, *args):
-		state_as_string = self.get_option_value('filters_blur_dir')
-		if state_as_string == 'none':
-			self.blur_direction = BlurDirection.BOTH
-		elif state_as_string == 'horizontal':
-			self.blur_direction = BlurDirection.HORIZONTAL
-		elif state_as_string == 'vertical':
-			self.blur_direction = BlurDirection.VERTICAL
+		self._all_filters['blur'].set_attributes_values()
 
 	def _set_active_type(self, *args):
 		state_as_string = self.get_option_value('filters_type')
-		self._reset_type_values()
+		self.blur_algo = BlurType.INVALID
 		if state_as_string == 'blur_fast':
 			self.blur_algo = BlurType.CAIRO_REPAINTS
 			self.type_label =  _("Fast blur")
+			self._active_filter = 'blur'
 		elif state_as_string == 'blur_slow':
 			self.blur_algo = BlurType.PX_BOX
 			self.type_label = _("Slow blur")
+			self._active_filter = 'blur'
 		elif state_as_string == 'tiles':
 			self.blur_algo = BlurType.TILES
 			self.type_label = _("Pixelization")
+			self._active_filter = 'blur'
 		elif state_as_string == 'saturation':
-			self.saturate = True
 			self.type_label = _("Change saturation")
+			self._active_filter = 'saturation'
 		elif state_as_string == 'contrast':
-			self.contrast = True
 			self.type_label = _("Increase contrast")
+			self._active_filter = 'contrast'
 		# TODO changer la luminosity tant qu'à faire
 		elif state_as_string == 'veil':
-			self.pixelate = True
 			self.type_label = _("Veil")
+			self._active_filter = 'veil'
 		elif state_as_string == 'invert':
-			self.invert = True
 			self.type_label = _("Invert colors")
+			self._active_filter = 'colors'
 		elif state_as_string == 'transparency':
-			self.transparency = True
 			self.type_label = _("Add transparency")
+			self._active_filter = 'transparency'
 		else:
 			self.type_label = _("Select a filter…")
 		self.bar.on_filter_changed()
-
-	def _get_saturation(self, *args):
-		return self.bar.sat_btn.get_value()/100
-
-	def _get_transparency(self, *args):
-		return self.bar.tspc_btn.get_value()/100
-
-	def _get_contrast(self, *args):
-		return self.bar.cont_btn.get_value()/100
-
-	def _get_blur_radius(self, *args):
-		return self.bar.blur_btn.get_value_as_int()
 
 	############################################################################
 
@@ -149,75 +145,10 @@ class ToolFilters(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': 0,
 			'local_dy': 0,
-
-			'pixelate': self.pixelate,
-			'invert': self.invert,
-
-			'saturate': self.saturate,
-			'saturation': self._get_saturation(),
-
-			'use_transparency': self.transparency,
-			'transpercent': self._get_transparency(),
-
-			'use_contrast': self.contrast,
-			'contr_percent': self._get_contrast(),
-
-			'blur_algo': self.blur_algo,
-			'radius': self._get_blur_radius(),
-			'blur_direction': self.blur_direction
+			'filter_id': self._active_filter
 		}
-		return operation
-
-
-	def op_transparency(self, source_pixbuf, percent):
-		"""Create a temp_pixbuf from a surface of the same size, whose cairo
-		context is painted (with alpha) using the original surface."""
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		surface.set_device_scale(self.scale_factor(), self.scale_factor())
-		width = source_pixbuf.get_width()
-		height = source_pixbuf.get_height()
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		cairo_context = cairo.Context(new_surface)
-		cairo_context.set_source_surface(surface)
-
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		cairo_context.paint_with_alpha(1.0 - percent)
-
-		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
-		                      new_surface.get_width(), new_surface.get_height())
-		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	def op_contrast(self, source_pixbuf, percent):
-		"""Create a temp_pixbuf from a surface of the same size, whose cairo
-		context is first painted using the original surface (source operator),
-		which is basically a stupid way to copy it, and then painted again (with
-		alpha this time) using a blending mode that will increase the contrast.
-		OVERLAY, """
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		surface.set_device_scale(self.scale_factor(), self.scale_factor())
-		width = source_pixbuf.get_width()
-		height = source_pixbuf.get_height()
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		cairo_context = cairo.Context(new_surface)
-		cairo_context.set_source_surface(surface)
-
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		cairo_context.paint()
-
-		cairo_context.set_operator(cairo.Operator.SOFT_LIGHT)
-		# OVERLAY SOFT_LIGHT HARD_LIGHT
-		cairo_context.paint_with_alpha(percent - 1.0)
-
-		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
-		                      new_surface.get_width(), new_surface.get_height())
-		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	def op_blur(self, source_pixbuf, blur_algo, blur_direction, radius):
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		surface.set_device_scale(self.scale_factor(), self.scale_factor())
-		bs = utilities_blur_surface(surface, radius, blur_algo, blur_direction)
-		bp = Gdk.pixbuf_get_from_surface(bs, 0, 0, bs.get_width(), bs.get_height())
-		self.get_image().set_temp_pixbuf(bp)
+		options = self._all_filters[self._active_filter].build_filter_op()
+		return {**operation, **options}
 
 	def do_tool_operation(self, operation):
 		self.start_tool_operation(operation)
@@ -226,25 +157,8 @@ class ToolFilters(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 
-		blur_algo = operation['blur_algo']
-		if blur_algo != BlurType.INVALID:
-			blur_radius = operation['radius']
-			blur_direction = operation['blur_direction']
-			self.op_blur(source_pixbuf, blur_algo, blur_direction, blur_radius)
-		elif operation['use_transparency']:
-			self.op_transparency(source_pixbuf, operation['transpercent'])
-		elif operation['use_contrast']:
-			self.op_contrast(source_pixbuf, operation['contr_percent'])
-		elif operation['invert']:
-			test_filter = FilterColors('colors', self)
-			test_filter.do_filter_operation(source_pixbuf, operation)
-		else:
-			self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-			temp = self.get_image().temp_pixbuf
-			if operation['saturate']:
-				source_pixbuf.saturate_and_pixelate(temp, operation['saturation'], False)
-			elif operation['pixelate']:
-				source_pixbuf.saturate_and_pixelate(temp, 1, True)
+		active_filter = self._all_filters[operation['filter_id']]
+		active_filter.do_filter_operation(source_pixbuf, operation)
 
 		self.common_end_operation(operation)
 
