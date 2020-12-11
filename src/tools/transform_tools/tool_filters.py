@@ -18,6 +18,7 @@
 import cairo
 from gi.repository import Gdk, GdkPixbuf
 from .abstract_transform_tool import AbstractCanvasTool
+from .filter_blur import FilterBlur
 from .filter_colors import FilterColors
 from .optionsbar_filters import OptionsBarFilters
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection

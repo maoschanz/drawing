@@ -88,6 +88,7 @@ drawing_sources = [
 	'tools/transform_tools/tool_skew.py',
 
 	'tools/transform_tools/filters/abstract_filter.py',
+	'tools/transform_tools/filters/filter_blur.py',
 	'tools/transform_tools/filters/filter_colors.py',
 ]
 

@@ -59,7 +59,7 @@ If your language is not here, or is incompletely translated, you can
 | da   | Danish       | 0.4.10 | 93%        | [scootergrisen](https://github.com/scootergrisen)
 | de_DE | German      | 0.4.1  | 100%       | [Onno Giesmann](https://github.com/Etamuk)
 |      | English      | 0.2    | 100%       | help welcome **                  |
-| es   | Castillan    | 0.2    | 88%        | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
+| es   | Castillan    | 0.2    | 100%       | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
 | eu   | Basque       | 0.4.14 | 88%        | [alexgabi](https://github.com/alexgabi)
 | fi   | Finnish      | 0.4.10 | 81%        | [MahtiAnkka](https://github.com/mahtiankka)
 | fr   | French       | 0.2    | 100%       |                                  |
@@ -130,14 +130,13 @@ These tools can edit the whole image, or edit a selected part of it.
 - Crop
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
-<!-- - Skew (horizontally or vertically) -->
 - Filters:
 	- Blur (various types)
 	- Pixelization
 	- Saturation (increase or decrease)
 	- Transparency
 	- Invert colors
-	- …
+<!-- - Skew (horizontally or vertically) -->
 
 ----
 
