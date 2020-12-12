@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 02:27+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: 2020-11-23 15:35+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -1397,8 +1397,8 @@ msgstr "Fler alternativ"
 msgid "Expand with…"
 msgstr "Expandera med…"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Transparens"
 
@@ -1406,76 +1406,6 @@ msgstr "Transparens"
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
 msgstr "Välj ett filter…"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "Mättnad"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr "Oskärperadie"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Change saturation"
-msgstr "Ändra mättnad"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr "Slöja"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-msgid "Add transparency"
-msgstr "Lägg till transparens"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr "Invertera färger"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr "Oskärpa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr "Snabb oskärpa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr "Långsam oskärpa"
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelisering"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Blur direction"
-msgstr "Oskärpans riktning"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Horisontellt"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Vertikalt"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "No direction"
-msgstr "Ingen riktning"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1600,6 +1530,77 @@ msgstr "Varierande streck"
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Kantutjämning"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Active filter"
+msgstr "Aktivt verktyg"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "Ändra mättnad"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "Slöja"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "Lägg till transparens"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "Oskärpa"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "Snabb oskärpa"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "Långsam oskärpa"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pixelisering"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "Oskärpans riktning"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "Horisontellt"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "Vertikalt"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "Ingen riktning"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Invertera färger"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Dark text on light background"
@@ -1920,6 +1921,14 @@ msgstr "Skalar arbetsytan"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr "Snedställ"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Oskärperadie"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Mättnad"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Avsluta fullskärmsläget"

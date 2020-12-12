@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 19:16+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -1414,8 +1414,8 @@ msgstr "Daljnje opcije"
 msgid "Expand with…"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Prozirnost"
 
@@ -1423,76 +1423,6 @@ msgstr "Prozirnost"
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
 msgstr "Odaberi filtar …"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "Zasićenost"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr "Radijus mutnoće"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Change saturation"
-msgstr "Promijeni zasićenost"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr "Veo"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-msgid "Add transparency"
-msgstr "Dodaj prozirnost"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr "Invertiraj boje"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr "Zamućivanje"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr "Brza mutnoća"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr "Spora mutnoća"
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pikselizacija"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Blur direction"
-msgstr "Smjer mutnoće"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Vodoravno"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Okomito"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "No direction"
-msgstr "Bez smjera"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1624,6 +1554,77 @@ msgstr ""
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Zaglađivanje rubova"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Active filter"
+msgstr "Drugi modusi"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "Promijeni zasićenost"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "Veo"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "Dodaj prozirnost"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "Zamućivanje"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "Brza mutnoća"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "Spora mutnoća"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pikselizacija"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "Smjer mutnoće"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "Vodoravno"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "Okomito"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "Bez smjera"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Invertiraj boje"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -1955,6 +1956,14 @@ msgstr "Skaliranje platna"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr "Ukosi"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Radijus mutnoće"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Zasićenost"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Zatvori cjeloekranski prikaz"

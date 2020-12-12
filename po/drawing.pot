@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 19:16+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1383,84 +1383,14 @@ msgstr ""
 msgid "Expand with…"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr ""
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Change saturation"
-msgstr ""
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-msgid "Add transparency"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr ""
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr ""
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Blur direction"
-msgstr ""
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr ""
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr ""
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "No direction"
 msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1585,6 +1515,76 @@ msgstr ""
 #: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr ""
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr ""
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr ""
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr ""
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr ""
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
 msgstr ""
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
@@ -1905,4 +1905,12 @@ msgstr ""
 #. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
+msgstr ""
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr ""
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
 msgstr ""

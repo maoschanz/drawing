@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 19:16+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -1406,8 +1406,8 @@ msgstr "Aukera gehiago"
 msgid "Expand with…"
 msgstr "Zabaldu honekin…"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Gardentasuna"
 
@@ -1415,76 +1415,6 @@ msgstr "Gardentasuna"
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
 msgstr "Aukeratu iragazkia…"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "Saturazioa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr "Lausotze erradioa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Change saturation"
-msgstr "Aldatu saturazioa"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr "Beloa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-msgid "Add transparency"
-msgstr "Gehitu gardentasuna"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr "Trukatu koloreak"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr "Lausotzea"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr "Lausotze azkarra"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr "Lausotze motela"
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelizazioa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Blur direction"
-msgstr "Lausotzearen norabidea"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Horizontala"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Bertikala"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "No direction"
-msgstr "Norabiderik gabe"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1616,6 +1546,77 @@ msgstr ""
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Antialiasing-a"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Active filter"
+msgstr "Beste tresnak"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "Aldatu saturazioa"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "Beloa"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "Gehitu gardentasuna"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "Lausotzea"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "Lausotze azkarra"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "Lausotze motela"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pixelizazioa"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "Lausotzearen norabidea"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "Horizontala"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "Bertikala"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "Norabiderik gabe"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Trukatu koloreak"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -1942,6 +1943,14 @@ msgstr "Oihala eskalatzen"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr "Etzan"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Lausotze erradioa"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Saturazioa"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Irten pantaila osotik"

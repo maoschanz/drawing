@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 19:16+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -1455,8 +1455,8 @@ msgstr "אין אפשרויות"
 msgid "Expand with…"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "שקיפות"
 
@@ -1465,86 +1465,6 @@ msgstr "שקיפות"
 #, fuzzy
 msgid "Select a filter…"
 msgstr "בחירה בהכל"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "רוויה"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Change saturation"
-msgstr "רוויה"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Add transparency"
-msgstr "שקיפות"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Invert colors"
-msgstr "החלף צבעים"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr ""
-
-# Perhaps this should be renamed to "Editing"?
-# I had a hard time understanding what this term was supposed to mean.
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Pixelization"
-msgstr "עריכה"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Blur direction"
-msgstr "אפשרויות צבע"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Horizontal"
-msgstr "הפוך אופקית"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Vertical"
-msgstr "בוחר צבעים"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "No direction"
-msgstr "אפשרויות צבע"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1679,6 +1599,86 @@ msgstr ""
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr ""
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Change saturation"
+msgstr "רוויה"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Add transparency"
+msgstr "שקיפות"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr ""
+
+# Perhaps this should be renamed to "Editing"?
+# I had a hard time understanding what this term was supposed to mean.
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Pixelization"
+msgstr "עריכה"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur direction"
+msgstr "אפשרויות צבע"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Horizontal"
+msgstr "הפוך אופקית"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Vertical"
+msgstr "בוחר צבעים"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "No direction"
+msgstr "אפשרויות צבע"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Invert colors"
+msgstr "החלף צבעים"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -2019,6 +2019,14 @@ msgstr "שינוי קנה מידה של לוח הציור"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr ""
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr ""
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "רוויה"
 
 #~ msgid "Edit"
 #~ msgstr "עריכה"

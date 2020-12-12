@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 19:16+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
 "Language-Team: \n"
@@ -1440,8 +1440,8 @@ msgstr "Варианты окружности"
 msgid "Expand with…"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 #, fuzzy
 msgid "Transparency"
 msgstr "Добавить прозрачность"
@@ -1451,85 +1451,6 @@ msgstr "Добавить прозрачность"
 #, fuzzy
 msgid "Select a filter…"
 msgstr "Выбрать все"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-#, fuzzy
-msgid "Saturation"
-msgstr "Насыщенность (%)"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Change saturation"
-msgstr "Насыщенность (%)"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Add transparency"
-msgstr "Добавить прозрачность"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Invert colors"
-msgstr "Поменять цвета"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr ""
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Pixelization"
-msgstr "Издание"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Blur direction"
-msgstr "Выбор цвета"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Horizontal"
-msgstr "Перевернуть по горизонтали"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Vertical"
-msgstr "Выбор цвета"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "No direction"
-msgstr "Выбор цвета"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1664,6 +1585,84 @@ msgstr ""
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr ""
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Change saturation"
+msgstr "Насыщенность (%)"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Add transparency"
+msgstr "Добавить прозрачность"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr ""
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Pixelization"
+msgstr "Издание"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur direction"
+msgstr "Выбор цвета"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Horizontal"
+msgstr "Перевернуть по горизонтали"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Vertical"
+msgstr "Выбор цвета"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "No direction"
+msgstr "Выбор цвета"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Invert colors"
+msgstr "Поменять цвета"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -2002,6 +2001,15 @@ msgstr "Масштабировать холст"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr ""
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr ""
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+#, fuzzy
+msgid "Saturation"
+msgstr "Насыщенность (%)"
 
 #~ msgid "Edit"
 #~ msgstr "Правка"

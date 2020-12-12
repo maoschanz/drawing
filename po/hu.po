@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 19:16+0100\n"
+"POT-Creation-Date: 2020-12-12 22:10+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -1438,8 +1438,8 @@ msgstr "További lehetőségek"
 msgid "Expand with…"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Átlátszóság"
 
@@ -1447,83 +1447,6 @@ msgstr "Átlátszóság"
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
 msgstr "Válassza ki a szűrőt…"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "Telítettség"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr "Elmosás sugara"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Change saturation"
-msgstr "Telítettség"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-highlight.ui src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Add transparency"
-msgstr "Átlátszóság"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr "Színek invertálása"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-#, fuzzy
-msgid "Blurring"
-msgstr "Elmosás"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr ""
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelesítés"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Blur direction"
-msgstr "Színválasztó"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Horizontal"
-msgstr "Vízszintes elmosás"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Vertical"
-msgstr "Függőleges elmosás"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "No direction"
-msgstr "Színválasztó"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1659,6 +1582,83 @@ msgstr ""
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr ""
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Change saturation"
+msgstr "Telítettség"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Add transparency"
+msgstr "Átlátszóság"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr ""
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blurring"
+msgstr "Elmosás"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr ""
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr ""
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pixelesítés"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur direction"
+msgstr "Színválasztó"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Horizontal"
+msgstr "Vízszintes elmosás"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Vertical"
+msgstr "Függőleges elmosás"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "No direction"
+msgstr "Színválasztó"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Színek invertálása"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -1995,6 +1995,14 @@ msgstr "Rajzvászon átméretezése"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr ""
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Elmosás sugara"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Telítettség"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Kilépés a teljes képernyős módból"
