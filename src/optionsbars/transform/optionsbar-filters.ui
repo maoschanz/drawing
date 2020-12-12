@@ -87,6 +87,9 @@
   <!-- -->
 
   <menu id="filters-section">
+    <!-- TODO modulo les commentaires, ce menu est le même que le sous-menu -->
+    <!-- "active filter" défini dans src/tools/ui/tool-filters.ui, ça peut -->
+    <!-- être construit plus pertinemment -->
     <section>
       <item>
         <attribute name="label" translatable="yes">Change saturation</attribute>
@@ -99,11 +102,6 @@
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">veil</attribute>
       </item>
-      <item>
-        <attribute name="label" translatable="yes">Increase contrast</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">contrast</attribute>
-      </item>
     </section>
     <section>
       <item>
@@ -111,10 +109,12 @@
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">transparency</attribute>
       </item>
+    </section>
+    <section>
       <item>
-        <attribute name="label" translatable="yes">Invert colors</attribute>
+        <attribute name="label" translatable="yes">Increase contrast</attribute>
         <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">invert</attribute>
+        <attribute name="target">contrast</attribute>
       </item>
     </section>
     <section>
@@ -131,11 +131,6 @@
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">blur_slow</attribute>
       </item>
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">???</attribute> -->
-      <!--   <attribute name="action">win.filters_type</attribute> -->
-      <!--   <attribute name="target">blur_multi</attribute> -->
-      <!-- </item> -->
       <item>
         <!-- Context: a filter that censors the image with some kind of tiles -->
         <attribute name="label" translatable="yes">Pixelization</attribute>
@@ -163,6 +158,13 @@
           <attribute name="target">none</attribute>
         </item>
       </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Invert colors</attribute>
+        <attribute name="action">win.filters_type</attribute>
+        <attribute name="target">invert</attribute>
+      </item>
     </section>
   </menu>
 

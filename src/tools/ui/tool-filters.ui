@@ -3,70 +3,76 @@
 
   <menu id="options-menu">
     <section>
-      <item>
-        <attribute name="label" translatable="yes">Change saturation</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">saturation</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Veil</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">veil</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Increase contrast</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">contrast</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Add transparency</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">transparency</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Invert colors</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">invert</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Fast blur</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">blur_fast</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Slow blur</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">blur_slow</attribute>
-      </item>
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">???</attribute> -->
-      <!--   <attribute name="action">win.filters_type</attribute> -->
-      <!--   <attribute name="target">blur_multi</attribute> -->
-      <!-- </item> -->
-      <item>
-        <attribute name="label" translatable="yes">Pixelization</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">tiles</attribute>
-      </item>
       <submenu>
-        <attribute name="label" translatable="yes">Blur direction</attribute>
-        <item>
-          <attribute name="label" translatable="yes">Horizontal</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">horizontal</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Vertical</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">vertical</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">No direction</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">none</attribute>
-        </item>
+        <attribute name="label" translatable="yes">Active filter</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Change saturation</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">saturation</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Veil</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">veil</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Add transparency</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">transparency</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Increase contrast</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">contrast</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Fast blur</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">blur_fast</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Slow blur</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">blur_slow</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Pixelization</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">tiles</attribute>
+          </item>
+          <submenu>
+            <attribute name="label" translatable="yes">Blur direction</attribute>
+            <item>
+              <attribute name="label" translatable="yes">Horizontal</attribute>
+              <attribute name="action">win.filters_blur_dir</attribute>
+              <attribute name="target">horizontal</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Vertical</attribute>
+              <attribute name="action">win.filters_blur_dir</attribute>
+              <attribute name="target">vertical</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">No direction</attribute>
+              <attribute name="action">win.filters_blur_dir</attribute>
+              <attribute name="target">none</attribute>
+            </item>
+          </submenu>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Invert colors</attribute>
+            <attribute name="action">win.filters_type</attribute>
+            <attribute name="target">invert</attribute>
+          </item>
+        </section>
       </submenu>
     </section>
     <section>

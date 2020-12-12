@@ -84,6 +84,7 @@ class ToolFilters(AbstractCanvasTool):
 
 	def _set_active_type(self, *args):
 		state_as_string = self.get_option_value('filters_type')
+
 		self.blur_algo = BlurType.INVALID
 		if state_as_string == 'blur_fast':
 			self.blur_algo = BlurType.CAIRO_REPAINTS
@@ -97,19 +98,23 @@ class ToolFilters(AbstractCanvasTool):
 			self.blur_algo = BlurType.TILES
 			self.type_label = _("Pixelization")
 			self._active_filter = 'blur'
+
 		elif state_as_string == 'saturation':
 			self.type_label = _("Change saturation")
 			self._active_filter = 'saturation'
+		elif state_as_string == 'veil':
+			self.type_label = _("Veil")
+			self._active_filter = 'veil'
+
 		elif state_as_string == 'contrast':
 			self.type_label = _("Increase contrast")
 			self._active_filter = 'contrast'
 		# TODO changer la luminosity tant qu'à faire
-		elif state_as_string == 'veil':
-			self.type_label = _("Veil")
-			self._active_filter = 'veil'
+
 		elif state_as_string == 'invert':
 			self.type_label = _("Invert colors")
 			self._active_filter = 'colors'
+
 		elif state_as_string == 'transparency':
 			self.type_label = _("Add transparency")
 			self._active_filter = 'transparency'

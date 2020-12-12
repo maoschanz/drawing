@@ -836,6 +836,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
+		if self.former_tool_id == self.active_tool_id:
+			self.force_selection()
+			# avoid cases where applying a transform tool keeps the tool active
 		self.tools[self.former_tool_id].row.set_active(True)
 
 	def _build_options_menu(self):
