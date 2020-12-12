@@ -28,6 +28,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 		self.filters_tool = filters_tool
 		builder = self.build_ui('optionsbars/transform/optionsbar-filters.ui')
 		self.menu_btn = builder.get_object('menu_btn')
+		self.menu_btn.set_menu_model(self.filters_tool.get_filters_menu())
 		self._menu_label = builder.get_object('menu_label')
 		self._menu_icon = builder.get_object('menu_icon')
 		self._centered_box = builder.get_object('centered_box')

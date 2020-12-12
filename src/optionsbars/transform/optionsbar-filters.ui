@@ -30,7 +30,6 @@
         <child>
           <object class="GtkMenuButton" id="menu_btn">
             <property name="visible">True</property>
-            <property name="menu-model">filters-section</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -84,93 +83,5 @@
 
   </object>
 
-  <!-- -->
-
-  <menu id="filters-section">
-    <!-- TODO modulo les commentaires, ce menu est le même que le sous-menu -->
-    <!-- "active filter" défini dans src/tools/ui/tool-filters.ui, ça peut -->
-    <!-- être construit plus pertinemment -->
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Change saturation</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">saturation</attribute>
-      </item>
-      <item>
-          <!-- Context: a filter adding like a light veil on the image -->
-        <attribute name="label" translatable="yes">Veil</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">veil</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Add transparency</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">transparency</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Increase contrast</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">contrast</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Emboss</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">emboss</attribute>
-      </item>
-    </section>
-    <section>
-      <!-- Context: the title of the menu with various types of blurring -->
-      <!-- filters and their options. -->
-      <attribute name="label" translatable="yes">Blurring</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Fast blur</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">blur_fast</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Slow blur</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">blur_slow</attribute>
-      </item>
-      <item>
-        <!-- Context: a filter that censors the image with some kind of tiles -->
-        <attribute name="label" translatable="yes">Pixelization</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">tiles</attribute>
-      </item>
-      <submenu>
-        <attribute name="label" translatable="yes">Blur direction</attribute>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">Horizontal</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">horizontal</attribute>
-        </item>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">Vertical</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">vertical</attribute>
-        </item>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">No direction</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">none</attribute>
-        </item>
-      </submenu>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Invert colors</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">invert</attribute>
-      </item>
-    </section>
-  </menu>
-
 </interface>
+

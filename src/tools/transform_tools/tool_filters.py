@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, Gio
 from .abstract_transform_tool import AbstractCanvasTool
 from .filter_blur import FilterBlur
 from .filter_colors import FilterColors
@@ -78,6 +78,12 @@ class ToolFilters(AbstractCanvasTool):
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
 		return self.type_label + ' - ' + tip_label
+
+	def get_filters_menu(self):
+		"""Returns the Gio.MenuModel with the list of filters and some of their
+		options, for the optionsbar."""
+		model = self.get_options_model().get_item_link(0, Gio.MENU_LINK_SECTION)
+		return model.get_item_link(0, Gio.MENU_LINK_SUBMENU)
 
 	############################################################################
 
