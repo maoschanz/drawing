@@ -39,8 +39,8 @@ class FilterTransparency(AbstractFilter):
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		cairo_context = cairo.Context(new_surface)
 		cairo_context.set_source_surface(surface)
-
 		cairo_context.set_operator(cairo.Operator.SOURCE)
+
 		cairo_context.paint_with_alpha(1.0 - percent)
 		# TODO if percent is negative, paint first the normal version, and then
 		# paint with [-1 * percent] alpha the pixbuf

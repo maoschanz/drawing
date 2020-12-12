@@ -21,6 +21,7 @@ from .abstract_transform_tool import AbstractCanvasTool
 from .filter_blur import FilterBlur
 from .filter_colors import FilterColors
 from .filter_contrast import FilterContrast
+from .filter_emboss import FilterEmboss
 from .filter_saturation import FilterSaturation
 from .filter_transparency import FilterTransparency
 from .filter_veil import FilterVeil
@@ -48,6 +49,7 @@ class ToolFilters(AbstractCanvasTool):
 			'blur': FilterBlur('blur', self),
 			'colors': FilterColors('colors', self),
 			'contrast': FilterContrast('contrast', self),
+			'emboss': FilterEmboss('emboss', self),
 			'saturation': FilterSaturation('saturation', self),
 			'transparency': FilterTransparency('transparency', self),
 			'veil': FilterVeil('veil', self),
@@ -110,6 +112,9 @@ class ToolFilters(AbstractCanvasTool):
 			self.type_label = _("Increase contrast")
 			self._active_filter = 'contrast'
 		# TODO changer la luminosity tant qu'à faire
+		elif state_as_string == 'emboss':
+			self.type_label = _("Emboss")
+			self._active_filter = 'emboss'
 
 		elif state_as_string == 'invert':
 			self.type_label = _("Invert colors")
