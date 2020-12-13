@@ -99,7 +99,7 @@ class DrOptionsManager():
 		use_antialiasing = self.get_value('antialias')
 		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
 
-		# XXX more ?
+		# add more? on what criteria?
 
 	############################################################################
 	# Bottom panes management ##################################################

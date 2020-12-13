@@ -27,7 +27,7 @@ class OptionsBarSelection(AbstractOptionsBar):
 
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')
-		self.cb_box_narrow = builder.get_object('cb_box_narrow')
+		self.clipboard_box = builder.get_object('clipboard_box')
 		self.actions_btn = builder.get_object('actions_btn')
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
@@ -53,7 +53,7 @@ class OptionsBarSelection(AbstractOptionsBar):
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.import_box_long.get_preferred_width()[0] + \
-		                    self.cb_box_narrow.get_preferred_width()[0] + \
+		                    self.clipboard_box.get_preferred_width()[0] + \
 		                      self.actions_btn.get_preferred_width()[0] + \
 		                      self.minimap_btn.get_preferred_width()[0]
 		self.set_limit_size(temp_limit_size)

@@ -663,6 +663,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return # there is no active pane nor active image yet
 		self.options_manager.adapt_to_window_size(available_width)
 
+		# Check whether or not the scrollbars should now be displayed
 		self.get_active_image().fake_scrollbar_update()
 
 	def hide_message(self, *args):
