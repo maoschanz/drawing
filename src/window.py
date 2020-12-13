@@ -400,6 +400,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
 		# Managing drag-and-drop
+		if self.app.runs_in_sandbox:
+			return # no dnd with actual file paths in the flatpak sandbox
+			# XXX i could test if the app has home:ro permissions instead? eg to
+			# help during development (where builder does have the permission)
 		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
 		self.notebook.connect('drag-data-received', self.on_data_dropped)
 		self.notebook.drag_dest_add_uri_targets()

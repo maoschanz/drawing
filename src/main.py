@@ -26,6 +26,7 @@ from .utilities import utilities_gfile_is_image
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
 BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
+FLATPAK_BINARY_PATH = '/app/bin/drawing'
 
 def main(version):
 	app = Application(version)
@@ -48,7 +49,7 @@ class Application(Gtk.Application):
 		GLib.set_prgname(APP_ID)
 		self._version = version
 		self.has_tools_in_menubar = False
-		self._runs_in_sandbox = False
+		self.runs_in_sandbox = False
 
 		self.connect('startup', self.on_startup)
 		self.register(None)
@@ -110,7 +111,7 @@ class Application(Gtk.Application):
 		win.present()
 		win.init_window_content(gfile, get_cb) # this optimization has no effect
 		# because of GLib unknown magic, but should be kept anyway because the
-		# window is presented to the user regarless of loading errors, making
+		# window is presented to the user regardless of loading errors, making
 		# any issue in `init_window_content` very explicit, and more likely to
 		# be reported.
 		return win
@@ -129,6 +130,8 @@ class Application(Gtk.Application):
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
+		if arguments[0] == FLATPAK_BINARY_PATH:
+			self.runs_in_sandbox = True
 
 		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
 		# 'new-window', in this order: only one option can be applied, '-ntvc'
@@ -253,10 +256,6 @@ class Application(Gtk.Application):
 		manual."""
 		self._show_help_page('/preferences')
 
-	def _show_help_page(self, suffix):
-		win = self.props.active_window
-		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
-
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
@@ -326,12 +325,16 @@ class Application(Gtk.Application):
 		action.connect('change-state', callback)
 		self.add_action(action)
 
+	def _show_help_page(self, suffix):
+		win = self.props.active_window
+		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
+
 	def _get_valid_file(self, app, path):
 		"""Creates a GioFile object if the path corresponds to an image. If no
 		GioFile can be created, it returns a boolean telling whether or not a
 		window should be opened anyway."""
-		if path == '/app/bin/drawing':
-			self._runs_in_sandbox = True
+		if path == FLATPAK_BINARY_PATH:
+			self.runs_in_sandbox = True
 			# when it's /app/bin/drawing, the situation is normal, and
 			# it tells the app it's running in a flatpak sandbox
 			return False
@@ -340,7 +343,7 @@ class Application(Gtk.Application):
 		try:
 			gfile = app.create_file_for_arg(path)
 		except Exception as excp:
-			if self._runs_in_sandbox:
+			if self.runs_in_sandbox:
 				command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
 				command = command.format(APP_ID, path)
 				# This is an error message, %s is a better command suggestion
