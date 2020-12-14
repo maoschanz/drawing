@@ -188,11 +188,10 @@
         <attribute name="action">win.selection-color</attribute>
         <attribute name="target">secondary</attribute>
       </item>
-      <!-- TODO allow changing secondary from here? with a dialog?? -->
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">Select replacement color</attribute> -->
-      <!--   <attribute name="action">win.selection-color-edit</attribute> -->
-      <!-- </item> -->
+      <item>
+        <attribute name="label" translatable="yes">Extract from this color</attribute>
+        <attribute name="action">win.selection-extract</attribute>
+      </item>
     </section>
     <section>
       <item>
