@@ -18,6 +18,28 @@
       </item>
     </section>
     <section>
+      <attribute name="label" translatable="yes">Replace with…</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Transparency</attribute>
+        <attribute name="action">win.selection-color</attribute>
+        <attribute name="target">alpha</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Default color</attribute>
+        <attribute name="action">win.selection-color</attribute>
+        <attribute name="target">initial</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.selection-color</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Extract from this color</attribute>
+        <attribute name="action">win.selection-extract</attribute>
+      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Delete</attribute>
         <attribute name="action">win.selection_delete</attribute>

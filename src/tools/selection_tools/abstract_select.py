@@ -37,6 +37,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.local_dy = 0
 		self.operation_type = None # 'op-define'
 
+		# Possible values are 'alpha', 'initial', 'secondary'
+		self.add_tool_action_enum('selection-color', 'alpha')
+		self.add_tool_action_boolean('selection-extract', False)
+
 	############################################################################
 	# UI implementations #######################################################
 
@@ -274,7 +278,9 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		cairo_context = self.get_context()
 		cairo_context.new_path()
 		cairo_context.append_path(operation['initial_path'])
-		cairo_context.set_operator(cairo.Operator.CLEAR)
+		replacement_rgba = operation['replacement']
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.set_source_rgba(*replacement_rgba)
 		cairo_context.fill()
 		cairo_context.set_operator(cairo.Operator.OVER)
 
@@ -287,7 +293,11 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		if op['initial_path'] is None:
 			return # The user double-clicked: there is no path, and it's normal
 		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
-		self.get_selection().load_from_path(op['initial_path'])
+		if op['extract']:
+			replacement = op['replacement']
+		else:
+			replacement = None
+		self.get_selection().load_from_path(op['initial_path'], replacement)
 
 	def _op_apply(self):
 		cairo_context = self.get_context()
@@ -308,10 +318,28 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		else: # Case of importation only
 			pixbuf = self._future_pixbuf.copy()
 			self._future_pixbuf = None
+
+		replacement_type = self.get_option_value('selection-color')
+		# XXX the result is questionable when there was alpha in the area...
+		if replacement_type == 'initial':
+			gdk_rgba = self.get_image().get_initial_rgba()
+			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]
+		elif replacement_type == 'secondary':
+			gdk_rgba = self.window.options_manager.get_right_color()
+			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]
+		else: # == 'alpha':
+			color = [1.0, 1.0, 1.0, 0.0]
+		# XXX the replacement is performed when the selection is defined, which
+		# isn't the most intuitive behaviour: if the user sees a wrong
+		# replacement color and changes the value to fix his manipulation, it's
+		# already too late
+
 		operation = {
 			'tool_id': self.id,
 			'operation_type': self.operation_type,
 			'initial_path': self.get_selection().get_future_path(),
+			'replacement': color,
+			'extract': self.get_option_value('selection-extract'),
 			'pixbuf': pixbuf,
 			'pixb_x': self.get_selection().get_future_coords()[0],
 			'pixb_y': self.get_selection().get_future_coords()[1]

@@ -2,6 +2,8 @@ drawing (0.6.5) unstable; urgency=low
 
   * fix unexplained regression of bottom panes responsiveness
   * disable importing or opening an image using drag-and-drop with flatpak (it was broken)
+  * deleting the selection could leave something else than transparency #232
+  * exclude the color left under the selection from the selection itself #232
   * update several translations
 
  -- Romain F. T. <rrroschan@gmail.com>  Sat, 02 Jan 2020 13:12:00 +0100

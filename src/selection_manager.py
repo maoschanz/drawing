@@ -53,7 +53,7 @@ class DrSelectionManager():
 		self.selection_path = None
 		self.is_active = False
 
-	def load_from_path(self, new_path):
+	def load_from_path(self, new_path, rgba=None):
 		"""Create a selection_pixbuf from a minimal part of the main surface by
 		erasing everything outside of the provided path."""
 		if new_path is None:
@@ -94,6 +94,10 @@ class DrSelectionManager():
 			pixbuf = Gdk.pixbuf_get_from_surface(surface, int(xmin), int(ymin),\
 			                                  selection_width, selection_height)
 			if pixbuf is not None:
+				if rgba is not None and rgba[3] > 0.0:
+					pixbuf = pixbuf.add_alpha(True, int(rgba[0] * 255), \
+					                                int(rgba[1] * 255), \
+					                                int(rgba[2] * 255))
 				self.selection_pixbuf = pixbuf
 			# can't use `set_pixbuf` here ^ because it would replace the free
 			# path with a rectangle path
