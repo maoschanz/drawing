@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-12 22:10+0100\n"
-"PO-Revision-Date: 2020-11-01 21:28+0100\n"
+"PO-Revision-Date: 2020-12-15 21:15+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -337,7 +337,7 @@ msgstr "Vollbildansicht"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Werkzeugleisten ausblenden"
 
 #: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
@@ -639,7 +639,7 @@ msgstr "Zurück zum vorherigen Werkzeug"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Anwenden einer Umwandlung"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -689,13 +689,12 @@ msgid "Toggle the preview"
 msgstr "Vorschau umschalten"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Vollbildansicht starten"
+msgstr "Vollbildansicht umschalten"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Sichtbarkeit der Werkzeugleisten umschalten"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -801,15 +800,14 @@ msgid "Official webpage"
 msgstr "Offizielle Internetseite"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
+msgstr "Fehler beim Öffnen dieser Datei."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Meinten Sie vielleicht %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1223,19 +1221,20 @@ msgid "degrees"
 msgstr "Grad"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Ein Bild öffnen"
+msgstr "%s ist kein Bild."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
 msgstr ""
+"Entschuldigung, WEBP-Bilder können in dieser Anwendung nicht geladen werden."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Trotz seines Namens ist %s eine WEBP-Datei."
 
 #. Context: an error message
 #: src/window.py
@@ -1245,7 +1244,7 @@ msgstr "Fehler beim Laden des Werkzeugs: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Die Zwischenablage enthält keine Bilder."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1260,11 +1259,12 @@ msgstr "Keine Optionen"
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
+"Mittelklick, Tippen mit drei Fingern oder F8 drücken, um Steuerung "
+"anzuzeigen bzw. zu verstecken."
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Vollbildansicht schließen"
+msgstr "Taste F11 drücken, um Vollbildansicht zu schließen"
 
 #: src/window.py
 #, python-format
@@ -1549,9 +1549,8 @@ msgid "Antialiasing"
 msgstr "Kantenglättung"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Active filter"
-msgstr "Aktives Werkzeug"
+msgstr "Aktiver Filter"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1570,12 +1569,12 @@ msgstr "Transparenz hinzufügen"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Kontrast erhöhen"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Prägung"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
