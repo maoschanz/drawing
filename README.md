@@ -7,6 +7,8 @@ at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
 
+[<img alt="" height="100" src="https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-i.svg">](https://circle.gnome.org/)
+
 Besides GNOME, some more traditional design layouts are available too, as well
 as an [elementaryOS layout](./docs/screenshots/0.6/elementary_save_as.png). It
 should also be compatible with the *Pinephone* and *Librem 5*
