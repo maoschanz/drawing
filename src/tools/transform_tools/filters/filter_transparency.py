@@ -3,7 +3,6 @@
 import cairo
 from gi.repository import Gdk
 from .abstract_filter import AbstractFilter
-from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
 class FilterTransparency(AbstractFilter):
 	__gtype_name__ = 'FilterTransparency'
@@ -24,8 +23,7 @@ class FilterTransparency(AbstractFilter):
 
 	def build_filter_op(self):
 		options = {
-			'percent': self._spinbtn.get_value() / 100,
-			'glow': False,
+			'percent': self._spinbtn.get_value() / 100
 		}
 		return options
 
@@ -42,13 +40,6 @@ class FilterTransparency(AbstractFilter):
 		cairo_context = cairo.Context(new_surface)
 		cairo_context.set_source_surface(surface)
 		cairo_context.set_operator(cairo.Operator.SOURCE)
-
-		if operation['glow']:
-			cairo_context.paint()
-			bdir = BlurDirection.BOTH # a more interesting param than the radius
-			bs = utilities_blur_surface(surface, 5, BlurType.CAIRO_REPAINTS, bdir)
-			cairo_context.set_source_surface(bs)
-			cairo_context.set_operator(cairo.Operator.OVER)
 
 		cairo_context.paint_with_alpha(1.0 - percent)
 		# TODO if percent is negative, paint first the normal version, and then

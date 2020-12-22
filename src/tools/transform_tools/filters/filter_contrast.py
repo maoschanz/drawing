@@ -3,7 +3,6 @@
 import cairo
 from gi.repository import Gdk
 from .abstract_filter import AbstractFilter
-from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
 class FilterContrast(AbstractFilter):
 	__gtype_name__ = 'FilterContrast'
@@ -24,8 +23,7 @@ class FilterContrast(AbstractFilter):
 
 	def build_filter_op(self):
 		options = {
-			'percent': self._spinbtn.get_value() / 100,
-			'smooth': False,
+			'percent': self._spinbtn.get_value() / 100
 		}
 		return options
 
@@ -47,10 +45,6 @@ class FilterContrast(AbstractFilter):
 
 		cairo_context.set_operator(cairo.Operator.SOURCE)
 		cairo_context.paint()
-
-		if operation['smooth']:
-			bs = utilities_blur_surface(surface, 5, BlurType.CAIRO_REPAINTS, BlurDirection.BOTH)
-			cairo_context.set_source_surface(bs)
 
 		cairo_context.set_operator(cairo.Operator.SOFT_LIGHT)
 		# OVERLAY SOFT_LIGHT HARD_LIGHT
