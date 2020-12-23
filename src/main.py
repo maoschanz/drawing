@@ -79,9 +79,6 @@ class Application(Gtk.Application):
 		builder = Gtk.Builder.new_from_resource(APP_PATH + '/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
-		if self.prefers_app_menu():
-			appmenu_model = builder.get_object('app-menu')
-			self.set_app_menu(appmenu_model)
 
 	def _build_actions(self):
 		"""Add app-wide actions."""

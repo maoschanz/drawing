@@ -1,47 +1,6 @@
 <?xml version="1.0"?>
 <interface domain="drawing">
 
-<!-- Application menu -->
-  <menu id="app-menu">
-    <section>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New Window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.settings</attribute>
-        <attribute name="label" translatable="yes">Preferences</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Report a bug</attribute>
-        <attribute name="action">app.report_bug</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.shortcuts</attribute>
-        <attribute name="label" translatable="yes">Shortcuts</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.help</attribute>
-        <attribute name="label" translatable="yes">Help</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">About</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.quit</attribute>
-        <attribute name="label" translatable="yes">Quit</attribute>
-      </item>
-    </section>
-  </menu>
-
 <!-- Menubar -->
   <menu id="menu-bar">
     <submenu>
@@ -106,7 +65,6 @@
         <item>
           <attribute name="action">win.save_alphaless</attribute>
           <attribute name="label" translatable="yes">Save without transparency</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Save as…</attribute>
@@ -459,6 +417,13 @@
           <attribute name="action">win.size_less</attribute>
         </item>
       </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
+          <attribute name="action">win.get_values</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+        </item>
+      </section>
     </submenu>
 
     <submenu>
@@ -527,3 +492,4 @@
   </menu>
 
 </interface>
+
