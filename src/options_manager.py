@@ -99,7 +99,7 @@ class DrOptionsManager():
 		use_antialiasing = self.get_value('antialias')
 		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
 
-		# XXX more ?
+		# add more? on what criteria?
 
 	############################################################################
 	# Bottom panes management ##################################################
@@ -145,6 +145,13 @@ class DrOptionsManager():
 
 	def adapt_to_window_size(self, available_width):
 		self.get_active_pane().adapt_to_window_size(available_width)
+		# Because the animation to show a bottom pane takes some time, it's
+		# possible to change tool "too fast" (ctrl+b really quickly) and end up
+		# in a situation where no pane is visible.
+		# There is no easy fix for this as far as i know.
+		# The following instruction "fixes" the problem just enough so users,
+		# if they encounter it, will believe they dreamt the issue.
+		self.get_active_pane().action_bar.set_visible(True)
 
 	############################################################################
 

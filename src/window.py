@@ -300,7 +300,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# qu'un petit pixbuf rouge
 		else:
 			new_image.init_background(width, height, background_rgba)
-		self.update_tabs_visibility()
+		self._update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
 
 	def on_active_tab_changed(self, *args):
@@ -347,7 +347,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			if not is_saved:
 				return False
 		self.notebook.remove_page(index)
-		self.update_tabs_visibility()
+		self._update_tabs_visibility()
 		return True
 
 	def action_close_tab(self, *args):
@@ -399,6 +399,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
 		# Managing drag-and-drop
+		if self.app.runs_in_sandbox:
+			return # no dnd with actual file paths in the flatpak sandbox
+			# XXX i could test if the app has home:ro permissions instead? eg to
+			# help during development (where builder does have the permission)
 		self.notebook.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
 		self.notebook.connect('drag-data-received', self.on_data_dropped)
 		self.notebook.drag_dest_add_uri_targets()
@@ -698,7 +702,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_action_name(action_name)
 		self.info_action.set_label(action_label)
 
-	def update_tabs_visibility(self):
+	def _update_tabs_visibility(self):
 		should_show = (self.notebook.get_n_pages() > 1) and not self.fullscreened
 		self.notebook.set_show_tabs(should_show)
 
@@ -721,7 +725,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.tools_flowbox.set_visible(not state)
 		self.toolbar_box.set_visible(not state) # XXX not if empty!!
 		self.fullscreen_btn.set_visible(state)
-		self.update_tabs_visibility()
+		self._update_tabs_visibility()
 
 	############################################################################
 	# SIDE PANE (TOOLS) ########################################################
@@ -830,6 +834,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
+		if self.former_tool_id == self.active_tool_id:
+			self.force_selection()
+			# avoid cases where applying a transform tool keeps the tool active
 		self.tools[self.former_tool_id].row.set_active(True)
 
 	def _build_options_menu(self):
@@ -955,11 +962,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		for uri in uris:
 			try:
 				gfile = Gio.File.new_for_uri(uri)
-				is_image, error_msg = utilities_gfile_is_image(gfile)
+				is_valid_image, error_msg = utilities_gfile_is_image(gfile)
 			except Exception as excp:
-				is_image = False
+				is_valid_image = False
 				error_msg = excp.message
-			if is_image:
+			if is_valid_image:
 				gfiles.append(gfile)
 			else:
 				self.prompt_message(True, error_msg)

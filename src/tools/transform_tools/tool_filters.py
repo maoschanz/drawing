@@ -31,6 +31,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.add_tool_action_enum('filters_type', 'saturation')
 		self.add_tool_action_enum('filters_blur_dir', 'none')
 		self.blur_direction = BlurDirection.BOTH
+		self.type_label = _("Change saturation")
 		self._reset_type_values()
 
 	def try_build_pane(self):

@@ -90,7 +90,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 		temp_limit_size = self.color_box.get_preferred_width()[0] + \
 		          self.thickness_spinbtn.get_preferred_width()[0] + \
 		           self.options_long_box.get_preferred_width()[0] + \
-		                self.minimap_btn.get_preferred_width()[0]
+		                self.minimap_btn.get_preferred_width()[0] + 50
+		# assuming 50px is enough to compensate the length of the label
 		self.set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
