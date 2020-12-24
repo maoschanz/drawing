@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-11-25 18:15+0100\n"
 "Last-Translator: Vojtěch Perník <v.pernik@centrum.cz>\n"
 "Language-Team: Czech <@>\n"
@@ -27,11 +27,6 @@ msgstr "Kreslení"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Jednoduchý kreslicí nástroj"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr ""
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -106,31 +101,6 @@ msgstr "Přiblížení v různých tvarech"
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr "Otevřeno menu „nový obrázek“"
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Předvolby"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Nahlásit chybu"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Zkratky"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Nápověda"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "O aplikaci"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Zavřít"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -223,7 +193,7 @@ msgstr "Zpět"
 msgid "Redo"
 msgstr "Dopředu"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr ""
 
@@ -258,6 +228,11 @@ msgstr "Vložit"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importovat"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Předvolby"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -323,7 +298,7 @@ msgstr "Záložka nalevo"
 msgid "Tab at the right"
 msgstr "Záložka napravo"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Obnovit"
 
@@ -461,6 +436,10 @@ msgstr "Větší šířka"
 msgid "Smaller width"
 msgstr "Menší šířka"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Odstranit potíže s výběrem"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Možnosti"
@@ -468,6 +447,14 @@ msgstr "_Možnosti"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "Ná_pověda"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Zkratky"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Nahlásit chybu"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -605,6 +592,10 @@ msgstr "Obecné"
 msgid "Main menu"
 msgstr "Hlavní menu"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Nápověda"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Obrázek"
@@ -694,10 +685,6 @@ msgstr "Zobrazit/skrýt nástrojové panely"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Dotyková gesta"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Odstranit potíže s výběrem"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -827,7 +814,9 @@ msgstr "Výchozí výška"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Výchozí barva"
 
@@ -1255,8 +1244,9 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Stiskněte F11 pro ukončení zobrazení na celou obrazovku"
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Chyba: neplatná oblast pro \"%s\". Prosím, nahlaste tuto chybu."
 
 #: src/window.py
@@ -1343,8 +1333,10 @@ msgstr "Hlavní barva"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Vedlejší barva"
 
@@ -1379,6 +1371,22 @@ msgstr "Použít tento editor jako výchozí"
 msgid "More actions"
 msgstr "Více akcí"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Rozbalit pomocí..."
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Průhlednost"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1397,11 +1405,6 @@ msgstr "Více možností"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Rozbalit pomocí..."
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Průhlednost"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1931,11 +1934,11 @@ msgstr "Poloměr rozostření"
 msgid "Saturation"
 msgstr "Saturace"
 
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Ukončit zobrazení na celou obrazovku"
+#~ msgid "About"
+#~ msgstr "O aplikaci"
+
+#~ msgid "Quit"
+#~ msgstr "Zavřít"
 
 #~ msgid "Other tools"
 #~ msgstr "Ostatní nástroje"
-
-#~ msgid "Opened images"
-#~ msgstr "Otevřené obrázky"

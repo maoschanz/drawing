@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-10-25 01:41+0700\n"
 "Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
 "Language-Team: Indonesian\n"
@@ -26,11 +26,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Utilitas menggambar yang sederhana"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -101,31 +96,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr ""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Prefrensi"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Laporkan kutu"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Pintasan"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Bantuan"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Tentang"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Keluar"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -218,7 +188,7 @@ msgstr "Nirjadikan"
 msgid "Redo"
 msgstr "Jadikan lagi"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Bangun ulang dari riwayat"
 
@@ -253,6 +223,11 @@ msgstr "Tempel"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Impor"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Prefrensi"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -318,7 +293,7 @@ msgstr ""
 msgid "Tab at the right"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Segarkan"
 
@@ -457,6 +432,10 @@ msgstr "Lebar yang lebih besar"
 msgid "Smaller width"
 msgstr "Lebar yang lebih kecil"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr ""
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opsi"
@@ -464,6 +443,14 @@ msgstr "_Opsi"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "Ba_ntuan"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Pintasan"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Laporkan kutu"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -601,6 +588,10 @@ msgstr "Umum"
 msgid "Main menu"
 msgstr "Menu utama"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Bantuan"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Gambar"
@@ -690,10 +681,6 @@ msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
 msgstr ""
 
 #: src/ui/window.ui
@@ -825,7 +812,9 @@ msgstr "Tinggi bawaan"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Warna bawaan"
 
@@ -1249,9 +1238,10 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Keluar dari layar penuh"
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
-msgstr ""
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr "Kesalahan saat memulai aplikasi, silakan laporkan kutu ini."
 
 #: src/window.py
 #, python-format
@@ -1336,8 +1326,10 @@ msgstr "Warna utama"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Warna sekunder"
 
@@ -1372,6 +1364,22 @@ msgstr "Gunakan penyunting ini secara bawaan"
 msgid "More actions"
 msgstr ""
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Ganti"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Transparansi"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1390,11 +1398,6 @@ msgstr "Lebih banyak opsi"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr ""
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Transparansi"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1931,11 +1934,12 @@ msgstr "Radius pengaburan"
 msgid "Saturation"
 msgstr "Penjenuhan"
 
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Keluar mode layar penuh"
+#~ msgid "About"
+#~ msgstr "Tentang"
+
+#~ msgid "Quit"
+#~ msgstr "Keluar"
 
 #~ msgid "Other tools"
 #~ msgstr "Alat lainnya"
 
-#~ msgid "Opened images"
-#~ msgstr "Gambar yang terbuka"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -30,11 +30,6 @@ msgstr "Drawing"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "簡單的繪圖工具"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -106,31 +101,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr ""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "偏好設定"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "報告程式錯誤"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "捷徑"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "說明"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "關於"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "結束"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -224,7 +194,7 @@ msgstr "復原"
 msgid "Redo"
 msgstr "重做"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "從歷史記錄重建"
 
@@ -259,6 +229,11 @@ msgstr "貼上"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "匯入"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "偏好設定"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -324,7 +299,7 @@ msgstr "左側的分頁"
 msgid "Tab at the right"
 msgstr "右側的分頁"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "重新整理"
 
@@ -464,6 +439,10 @@ msgstr ""
 msgid "Smaller width"
 msgstr "預設寬度"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "對選擇區域排查問題"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "選項(_O)"
@@ -471,6 +450,14 @@ msgstr "選項(_O)"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "說明(_H)"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "捷徑"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "報告程式錯誤"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -608,6 +595,10 @@ msgstr "通用"
 msgid "Main menu"
 msgstr "主選單"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "說明"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "影像"
@@ -699,10 +690,6 @@ msgstr ""
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "觸控手勢"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "對選擇區域排查問題"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -836,7 +823,9 @@ msgstr "預設高度"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "預設色彩"
 
@@ -1260,7 +1249,8 @@ msgstr "結束全螢幕"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "啟動應用程式時發生錯誤。請向我們報告這個問題。"
 
 #: src/window.py
@@ -1348,8 +1338,10 @@ msgstr "主色彩"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "副色彩"
 
@@ -1384,6 +1376,22 @@ msgstr "預設使用此編輯器"
 msgid "More actions"
 msgstr "更多操作"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "擴展使用…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "透明"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1402,11 +1410,6 @@ msgstr "更多選項"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "擴展使用…"
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "透明"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1949,14 +1952,17 @@ msgstr "模糊半徑"
 msgid "Saturation"
 msgstr "飽和度"
 
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "結束全螢幕模式"
+#~ msgid "com.github.maoschanz.drawing"
+#~ msgstr "com.github.maoschanz.drawing"
+
+#~ msgid "About"
+#~ msgstr "關於"
+
+#~ msgid "Quit"
+#~ msgstr "結束"
 
 #~ msgid "Other tools"
 #~ msgstr "其他工具"
-
-#~ msgid "Opened images"
-#~ msgstr "已開啟的影像"
 
 #~ msgid "Edit"
 #~ msgstr "編輯"

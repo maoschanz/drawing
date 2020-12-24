@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -27,11 +27,6 @@ msgstr "Rajzolás"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Egyszerű rajzoló alkalmazás"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -108,31 +103,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr ""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Hibajelentés küldése"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Gyorsbillentyűk"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Súgó"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Névjegy"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Kilépés"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -226,7 +196,7 @@ msgstr "Visszavonás"
 msgid "Redo"
 msgstr "Mégis"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Újra-összeállítás az előzményekből"
 
@@ -261,6 +231,11 @@ msgstr "Beillesztés"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importálás"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Beállítások"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -328,7 +303,7 @@ msgstr "Vissza a palettához"
 msgid "Tab at the right"
 msgstr "Forgatás jobbra"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Frissítés"
 
@@ -478,6 +453,10 @@ msgstr ""
 msgid "Smaller width"
 msgstr "Alapértelmezett szélesség"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Hibakeresés"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Beállítások"
@@ -485,6 +464,14 @@ msgstr "_Beállítások"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "_Súgó"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Gyorsbillentyűk"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Hibajelentés küldése"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -625,6 +612,10 @@ msgstr "Általános"
 msgid "Main menu"
 msgstr "Főmenü"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Súgó"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Kép"
@@ -716,10 +707,6 @@ msgstr ""
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Hibakeresés"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -855,7 +842,9 @@ msgstr "Alapértelmezett magasság"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Alapértelmezett háttér"
@@ -1289,7 +1278,8 @@ msgstr "Kilépés a teljes képernyős módból"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
 "Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
 "hibát a fejlesztőknek!"
@@ -1383,8 +1373,10 @@ msgstr "Elsődleges szín"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Másodlagos szín"
 
@@ -1419,6 +1411,21 @@ msgstr "Legyen ez az lapértelmezett szerkesztő"
 msgid "More actions"
 msgstr "További műveletek"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Replace with…"
+msgstr ""
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Átlátszóság"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1437,11 +1444,6 @@ msgstr "További lehetőségek"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr ""
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Átlátszóság"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -2004,11 +2006,14 @@ msgstr "Elmosás sugara"
 msgid "Saturation"
 msgstr "Telítettség"
 
+#~ msgid "About"
+#~ msgstr "Névjegy"
+
+#~ msgid "Quit"
+#~ msgstr "Kilépés"
+
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Kilépés a teljes képernyős módból"
-
-#~ msgid "Opened images"
-#~ msgstr "Megnyitott képek"
 
 #~ msgid "Edit"
 #~ msgstr "Szerkesztés"

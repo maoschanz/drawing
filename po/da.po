@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -25,11 +25,6 @@ msgstr "Drawing"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Simpelt tegneredskab"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -106,31 +101,6 @@ msgstr "Zooming i diverse forme"
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr "Den åbnede menu \"nyt billede\""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Præferencer"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Rapportér en fejl"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Genveje"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hjælp"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Om"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Afslut"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -223,7 +193,7 @@ msgstr "Fortryd"
 msgid "Redo"
 msgstr "Omgør"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Genbyg fra historik"
 
@@ -258,6 +228,11 @@ msgstr "Indsæt"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importér"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Præferencer"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -323,7 +298,7 @@ msgstr "Tabulator til venstre"
 msgid "Tab at the right"
 msgstr "Tabulator til højre"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Opdater"
 
@@ -461,6 +436,10 @@ msgstr "Bredere"
 msgid "Smaller width"
 msgstr "Smallere"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Fejlsøg markering"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "Valg_muligheder"
@@ -468,6 +447,14 @@ msgstr "Valg_muligheder"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "_Hjælp"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Genveje"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Rapportér en fejl"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -605,6 +592,10 @@ msgstr "Generelt"
 msgid "Main menu"
 msgstr "Hovedmenu"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hjælp"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Billede"
@@ -695,10 +686,6 @@ msgstr ""
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Berøringsbevægelser"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Fejlsøg markering"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -829,7 +816,9 @@ msgstr "Standardhøjde"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Standardfarve"
 
@@ -1257,8 +1246,9 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Afslut fuldskærm"
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Fejl: rude ugyldig for '%s'. Rapportér venligst fejlen."
 
 #: src/window.py
@@ -1344,8 +1334,10 @@ msgstr "Primær farve"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Sekundær farve"
 
@@ -1380,6 +1372,22 @@ msgstr "Brug editoren som standard"
 msgid "More actions"
 msgstr "Flere handlinger"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Udvid med …"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Gennemsigtighed"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1398,11 +1406,6 @@ msgstr "Flere valgmuligheder"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Udvid med …"
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Gennemsigtighed"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1932,11 +1935,12 @@ msgstr "Sløringsradius"
 msgid "Saturation"
 msgstr "Farvemætning"
 
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Afslut fuldskærmstilstand"
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Quit"
+#~ msgstr "Afslut"
 
 #~ msgid "Other tools"
 #~ msgstr "Andre værktøjer"
 
-#~ msgid "Opened images"
-#~ msgstr "Åbne billeder"

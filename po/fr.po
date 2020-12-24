@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
-"PO-Revision-Date: 2020-12-12 22:27+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
+"PO-Revision-Date: 2020-12-24 18:17+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -26,11 +26,6 @@ msgstr "Dessin"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Utilitaire simple pour le dessin"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -107,31 +102,6 @@ msgstr "Zoomer sur divers formes"
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr "Le menu \"nouvelle image\" ouvert"
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Préférences"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Reporter un bug"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Raccourcis clavier"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Aide"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "À propos"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Quitter"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -224,7 +194,7 @@ msgstr "Annuler"
 msgid "Redo"
 msgstr "Rétablir"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Reconstruire depuis l'historique"
 
@@ -259,6 +229,11 @@ msgstr "Coller"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importer"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Préférences"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -324,7 +299,7 @@ msgstr "Onglet à gauche"
 msgid "Tab at the right"
 msgstr "Onglet à droite"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -462,6 +437,10 @@ msgstr "Plus large"
 msgid "Smaller width"
 msgstr "Moins large"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Débuggage de la sélection"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Options"
@@ -469,6 +448,14 @@ msgstr "_Options"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "A_ide"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Raccourcis clavier"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Reporter un bug"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -606,6 +593,10 @@ msgstr "Général"
 msgid "Main menu"
 msgstr "Menu principal"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Aide"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Image"
@@ -695,10 +686,6 @@ msgstr "Basculer la visibilité des barres d'outils"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Gestuelles tactiles"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Débuggage de la sélection"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -828,7 +815,9 @@ msgstr "Hauteur par défaut"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Couleur par défaut"
 
@@ -1261,8 +1250,11 @@ msgstr "Appuyer sur F11 pour quitter le plein écran."
 
 #: src/window.py
 #, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Erreur : panneau invalide pour '%s', veuillez reporter ce problème."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"Erreur de chargement du panneau du bas pour l'outil '%s', veuillez reporter "
+"ce problème."
 
 #: src/window.py
 #, python-format
@@ -1349,8 +1341,10 @@ msgstr "Couleur principale"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Couleur secondaire"
 
@@ -1385,6 +1379,21 @@ msgstr "Utiliser cet éditeur par défaut"
 msgid "More actions"
 msgstr "Plus d'options"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Replace with…"
+msgstr "Remplacer par…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Transparence"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "Extraire depuis cette couleur"
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1403,11 +1412,6 @@ msgstr "Plus d'options"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Étendre avec…"
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Transparence"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1935,3 +1939,4 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
+

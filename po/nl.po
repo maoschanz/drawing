@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-12-10 13:33+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -27,11 +27,6 @@ msgstr "Tekenen"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Eenvoudig tekenprogramma"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -108,31 +103,6 @@ msgstr "Verschillende soorten zoom"
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr "Het menu 'Nieuwe afbeelding'"
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Meld een fout (bug)"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Sneltoetsen"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hulp"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Over"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Afsluiten"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -225,7 +195,7 @@ msgstr "Ongedaan maken"
 msgid "Redo"
 msgstr "Opnieuw"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Opnieuw laden uit geschiedenis"
 
@@ -260,6 +230,11 @@ msgstr "Plakken"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importeren"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Voorkeuren"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -325,7 +300,7 @@ msgstr "Tabblad links"
 msgid "Tab at the right"
 msgstr "Tabblad rechts"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Verversen"
 
@@ -463,6 +438,10 @@ msgstr "Breder"
 msgid "Smaller width"
 msgstr "Smaller"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Problemen oplossen met selecties"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opties"
@@ -470,6 +449,14 @@ msgstr "_Opties"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "_Hulp"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Sneltoetsen"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Meld een fout (bug)"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -607,6 +594,10 @@ msgstr "Algemeen"
 msgid "Main menu"
 msgstr "Hoofdmenu"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hulp"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Afbeelding"
@@ -696,10 +687,6 @@ msgstr "Werkbalken tonen/verbergen"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Aanraakgebaren"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Problemen oplossen met selecties"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -829,7 +816,9 @@ msgstr "Standaardhoogte"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Standaardkleur"
 
@@ -1260,8 +1249,9 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Druk op F11 om de beeldvullende modus te verlaten."
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Fout: ongeldig paneel voor '%s'. Meld deze bug."
 
 #: src/window.py
@@ -1350,8 +1340,10 @@ msgstr "Hoofdkleur"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Alternatieve kleur"
 
@@ -1386,6 +1378,22 @@ msgstr "Gebruik standaard deze bewerker"
 msgid "More actions"
 msgstr "Meer acties"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Uitbreiden met…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Doorzichtigheid"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1404,11 +1412,6 @@ msgstr "Meer opties"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Uitbreiden met…"
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Doorzichtigheid"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1938,6 +1941,15 @@ msgstr "Vervaagstraal"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Verzadiging"
+
+#~ msgid "com.github.maoschanz.drawing"
+#~ msgstr "com.github.maoschanz.drawing"
+
+#~ msgid "About"
+#~ msgstr "Over"
+
+#~ msgid "Quit"
+#~ msgstr "Afsluiten"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Beeldvullende modus verlaten"

@@ -830,8 +830,8 @@ class DrWindow(Gtk.ApplicationWindow):
 			self._build_options_menu()
 			self._adapt_to_window_size()
 		except Exception as e:
-			self.prompt_message(True, _("Error loading the bottom pane for the " + \
-			        " tool '%s',please report this bug.") % self.active_tool_id)
+			self.prompt_message(True, _("Error loading the bottom pane for " + \
+			    "the tool '%s', please report this bug.") % self.active_tool_id)
 			print(e)
 
 	def active_tool(self):

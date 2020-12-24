@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -28,11 +28,6 @@ msgstr "Piirtäminen"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Helppo piirustus apuohjelma"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -108,31 +103,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr ""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Asetukset"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Ilmoita virheestä"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Pikakuvakkeet"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Apua"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Tietoja"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Sulje"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -226,7 +196,7 @@ msgstr "Kumoa"
 msgid "Redo"
 msgstr "Toista"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Rakenna uudelleen historiasta"
 
@@ -261,6 +231,11 @@ msgstr "Liitä"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Tuonti"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Asetukset"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -328,7 +303,7 @@ msgstr "Takaisin palettiin"
 msgid "Tab at the right"
 msgstr "Kierrä oikealle"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Virkistä"
 
@@ -472,6 +447,10 @@ msgstr ""
 msgid "Smaller width"
 msgstr "Oletusleveys"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Vianmääritys"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Valinnat"
@@ -479,6 +458,14 @@ msgstr "_Valinnat"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "_Apua"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Pikakuvakkeet"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Ilmoita virheestä"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -618,6 +605,10 @@ msgstr "Yleinen"
 msgid "Main menu"
 msgstr "Päävalikko"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Apua"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Kuva"
@@ -709,10 +700,6 @@ msgstr ""
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Vianmääritys"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -844,7 +831,9 @@ msgstr "Oletuskorkeus"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Oletustausta"
@@ -1273,7 +1262,8 @@ msgstr "Poistu kokonäytöstä"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
 
 #: src/window.py
@@ -1361,8 +1351,10 @@ msgstr "Pääväri"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Seuraava väri"
 
@@ -1397,6 +1389,22 @@ msgstr "Käytä tätä editoria oletuksena"
 msgid "More actions"
 msgstr "Lisää toimintoja"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Korvaa"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Läpinäkyvyys"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1415,11 +1423,6 @@ msgstr "Lisää vaihtoehtoja"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr ""
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Läpinäkyvyys"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1966,11 +1969,11 @@ msgstr "Hämärrä säde"
 msgid "Saturation"
 msgstr "Kylläisyys"
 
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Poistu koko näytöstä"
+#~ msgid "About"
+#~ msgstr "Tietoja"
 
-#~ msgid "Opened images"
-#~ msgstr "Avatut kuvat"
+#~ msgid "Quit"
+#~ msgstr "Sulje"
 
 #~ msgid "Edit"
 #~ msgstr "Muokkaa"

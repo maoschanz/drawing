@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -28,11 +28,6 @@ msgstr "Crtanje"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Jednostavan program za crtanje"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -109,31 +104,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr ""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Postavke"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Prijavi grešku"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Prečaci"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Pomoć"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Informacije"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Izlaz"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -227,7 +197,7 @@ msgstr "Poništi"
 msgid "Redo"
 msgstr "Ponovi"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Izgradi ponovo iz kronologije"
 
@@ -262,6 +232,11 @@ msgstr "Umetni"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Uvezi"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Postavke"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -327,7 +302,7 @@ msgstr "Kartica lijevo"
 msgid "Tab at the right"
 msgstr "Kartica desno"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Aktualiziraj"
 
@@ -467,6 +442,10 @@ msgstr ""
 msgid "Smaller width"
 msgstr "Standardna širina"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Ispravi problem s odabirom"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Opcije"
@@ -474,6 +453,14 @@ msgstr "_Opcije"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "_Pomoć"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Prečaci"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Prijavi grešku"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -613,6 +600,10 @@ msgstr "Opće"
 msgid "Main menu"
 msgstr "Glavni izbornik"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Pomoć"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Slika"
@@ -704,10 +695,6 @@ msgstr ""
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Ispravi problem s odabirom"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -840,7 +827,9 @@ msgstr "Standardna visina"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Standardna pozadina"
@@ -1269,7 +1258,8 @@ msgstr "Zatvori cjeloekranski prikaz"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi grešku."
 
 #: src/window.py
@@ -1359,8 +1349,10 @@ msgstr "Glavna boja"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Sporedna boja"
 
@@ -1395,6 +1387,22 @@ msgstr "Standardno koristi ovaj uređivač"
 msgid "More actions"
 msgstr "Daljnje radnje"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Zamijeni"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Prozirnost"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1413,11 +1421,6 @@ msgstr "Daljnje opcije"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr ""
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Prozirnost"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1965,15 +1968,14 @@ msgstr "Radijus mutnoće"
 msgid "Saturation"
 msgstr "Zasićenost"
 
+#~ msgid "About"
+#~ msgstr "Informacije"
+
+#~ msgid "Quit"
+#~ msgstr "Izlaz"
+
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Zatvori cjeloekranski prikaz"
-
-#, fuzzy
-#~ msgid "Other tools"
-#~ msgstr "Drugi modusi"
-
-#~ msgid "Opened images"
-#~ msgstr "Otvorene slike"
 
 #~ msgid "Edit"
 #~ msgstr "Uredi"

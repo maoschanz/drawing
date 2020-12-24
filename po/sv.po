@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 22:10+0100\n"
+"POT-Creation-Date: 2020-12-24 18:18+0100\n"
 "PO-Revision-Date: 2020-12-16 10:48+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -27,11 +27,6 @@ msgstr "Drawing"
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Enkelt ritverktyg"
-
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
 
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -107,31 +102,6 @@ msgstr "Zooma i olika figurer"
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr "Menyn \"Ny bild\" öppnas"
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Rapportera ett fel"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Genvägar"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hjälp"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Om"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Avsluta"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -224,7 +194,7 @@ msgstr "Ångra"
 msgid "Redo"
 msgstr "Upprepa"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Bygg om från historiken"
 
@@ -259,6 +229,11 @@ msgstr "Klistra in"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importera"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Inställningar"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -324,7 +299,7 @@ msgstr "Flik åt vänster"
 msgid "Tab at the right"
 msgstr "Flik åt höger"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Uppdatera"
 
@@ -462,6 +437,10 @@ msgstr "Större bredd"
 msgid "Smaller width"
 msgstr "Mindre bredd"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Felsök markering"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "A_lternativ"
@@ -469,6 +448,14 @@ msgstr "A_lternativ"
 #: src/ui/app-menus.ui
 msgid "_Help"
 msgstr "_Hjälp"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Genvägar"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+msgid "Report a bug"
+msgstr "Rapportera ett fel"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
@@ -606,6 +593,10 @@ msgstr "Allmänt"
 msgid "Main menu"
 msgstr "Huvudmeny"
 
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hjälp"
+
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Bild"
@@ -695,10 +686,6 @@ msgstr "Växla verktygsfältens synlighet"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Pekgester"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Felsök markering"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -828,7 +815,9 @@ msgstr "Standardhöjd"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
 msgid "Default color"
 msgstr "Standardfärg"
 
@@ -1256,8 +1245,9 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Tryck F11 för att avsluta fullskärm."
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Fel: Ogiltig panel för \"%s\". Rapportera felet."
 
 #: src/window.py
@@ -1343,8 +1333,10 @@ msgstr "Primär färg"
 
 #. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_shape.py
 msgid "Secondary color"
 msgstr "Sekundär färg"
 
@@ -1379,6 +1371,22 @@ msgstr "Använd denna redigerare som standard"
 msgid "More actions"
 msgstr "Fler åtgärder"
 
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Expandera med…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Transparens"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr ""
+
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1397,11 +1405,6 @@ msgstr "Fler alternativ"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Expandera med…"
-
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
-#: src/tools/transform_tools/filters/filter_transparency.py
-msgid "Transparency"
-msgstr "Transparens"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1929,6 +1932,15 @@ msgstr "Oskärperadie"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Mättnad"
+
+#~ msgid "com.github.maoschanz.drawing"
+#~ msgstr "com.github.maoschanz.drawing"
+
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Quit"
+#~ msgstr "Avsluta"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Avsluta fullskärmsläget"
