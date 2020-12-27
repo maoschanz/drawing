@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-24 18:18+0100\n"
-"PO-Revision-Date: 2020-12-16 10:48+0100\n"
+"PO-Revision-Date: 2020-12-27 06:26+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -1245,10 +1245,12 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Tryck F11 för att avsluta fullskärm."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Fel: Ogiltig panel för \"%s\". Rapportera felet."
+msgstr ""
+"Kunde inte läsa in undre panelen för verktyget \"%s\". Rapportera gärna "
+"felet."
 
 #: src/window.py
 #, python-format
@@ -1372,9 +1374,8 @@ msgid "More actions"
 msgstr "Fler åtgärder"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Expandera med…"
+msgstr "Ersätt med…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1385,7 +1386,7 @@ msgstr "Transparens"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Extrahera från den här färgen"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
