@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-24 18:18+0100\n"
-"PO-Revision-Date: 2020-12-13 12:09+0100\n"
+"PO-Revision-Date: 2020-12-27 13:50+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -1255,10 +1255,12 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Presione F11 para salir de la pantalla completa."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Error: panel inválido para '%s', por favor informe de este error."
+msgstr ""
+"Error al cargar el panel inferior de la herramienta '%s', por favor informe "
+"de este error."
 
 #: src/window.py
 #, python-format
@@ -1387,9 +1389,8 @@ msgid "More actions"
 msgstr "Más acciones"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Expandir con…"
+msgstr "Reemplazar con…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1400,7 +1401,7 @@ msgstr "Transparencia"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Extraer de este color"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
