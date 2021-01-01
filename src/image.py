@@ -1,6 +1,6 @@
 # image.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ class DrMotionBehavior():
 
 	_LIMIT = 10
 	def is_moving(x1, x2, y1, y2):
-		# no `self` because it's static
+		# no `self` argument here, because it's static
 		moves_x = abs(x1 - x2) < DrMotionBehavior._LIMIT
 		moves_y = abs(y1 - y2) < DrMotionBehavior._LIMIT
 		return moves_x and moves_y
@@ -394,17 +394,20 @@ class DrImage(Gtk.Box):
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
 		event_x, event_y = self.get_event_coords(event)
+
 		if self.motion_behavior == DrMotionBehavior.HOVER:
 			# TODO ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
+
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
 			self.update() # <<< comment this for better perfs
+
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			delta_x = int(self.drag_scroll_x - event_x)
 			delta_y = int(self.drag_scroll_y - event_y)
-			self.add_deltas(delta_x, delta_y, 0.8)
+			self.add_deltas(delta_x, delta_y, 1.0)
 			self.drag_scroll_x = event_x
 			self.drag_scroll_y = event_y
 

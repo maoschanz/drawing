@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -181,7 +181,7 @@ class Application(Gtk.Application):
 			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolea; True would mean the app
+				# here f can be a GioFile or a boolean: True would mean the app
 				# should open a new blank image.
 				if f != False:
 					f = None if f == True else f
@@ -256,7 +256,7 @@ class Application(Gtk.Application):
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
-			copyright="© 2018-2020 Romain F. T.",
+			copyright="© 2018-2021 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio"],
 			# To tranlators: "translate" this by a list of your names (one name
 			# per line), they will be displayed in the "about" dialog
