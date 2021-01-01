@@ -676,9 +676,8 @@ msgid "Toggle the preview"
 msgstr "Mostra/nascondi anteprima"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Entra in modalità schermo intero"
+msgstr "Attiva/disattiva modalità schermo intero"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
@@ -1203,9 +1202,9 @@ msgid "degrees"
 msgstr "gradi"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Apri un' immagine"
+msgstr "%s non è un'immagine."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
@@ -1238,19 +1237,19 @@ msgid "No options"
 msgstr "Nessuna opzione"
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
-msgstr "Premi il tasto centrale o F8 per mostrare/nascondere i controlli."
+msgstr "Fare clic con il pulsante centrale, toccare con 3 dita o premere F8 per mostrare/nascondere i controlli."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
 msgstr "Premi F11 per uscire dalla modalità a schermo intero."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
+msgstr ""
+"Errore durante il caricamento del pannello inferiore per lo strumento '%s', segnala questo bug."
 
 #: src/window.py
 #, python-format
@@ -1281,7 +1280,7 @@ msgstr "questi file"
 #. Context: %s will be replaced by the name of a file. The possible
 #. answers are "cancel", "open", and "import"
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid "What do you want to do with %s?"
 msgstr "Cosa vuoi fare con %s?"
 
@@ -1377,9 +1376,8 @@ msgid "More actions"
 msgstr "Più azioni"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Espandi con..."
+msgstr "Sostituisci con..."
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1390,7 +1388,7 @@ msgstr "Trasparenza"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Estratto da questo colore"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
@@ -1541,9 +1539,8 @@ msgid "Antialiasing"
 msgstr "Antialiasing"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Active filter"
-msgstr "Strumento attivo"
+msgstr "Filtro attivo"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1562,12 +1559,12 @@ msgstr "Aggiungi trasparenza"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Aumenta il contrasto"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Rilievo"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
