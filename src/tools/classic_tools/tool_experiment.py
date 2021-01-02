@@ -50,7 +50,6 @@ class ToolExperiment(AbstractClassicTool):
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
-		self.add_tool_action_simple('experiment_macro_scie', self._macro_scie)
 
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
@@ -73,39 +72,6 @@ class ToolExperiment(AbstractClassicTool):
 		state_as_string = self.get_option_value('experiment_operator')
 		self.operator2 = self._operators_dict[state_as_string]
 		self._operator_label = state_as_string
-
-	############################################################################
-
-	def _macro_scie(self, *args):
-		cairo_context = self.get_context()
-		# cairo_context.move_to(50, 50)
-		# cairo_context.move_to(0, 150) # quel que soit le 1er trait, dynamic2 lui
-		# mets une largeur délirante XXX ; à voir comment ça marche dans le cas
-		# réel d'un tracé depuis un path
-		cairo_context.line_to(50, 50)
-		cairo_context.line_to(100, 150)
-		cairo_context.line_to(150, 50)
-		cairo_context.line_to(250, 250)
-		cairo_context.line_to(350, 50)
-		cairo_context.line_to(375, 100) #
-		cairo_context.line_to(400, 50) # dents moins hautes
-		cairo_context.line_to(425, 100) #
-		cairo_context.line_to(450, 50)
-		cairo_context.line_to(500, 150)
-		cairo_context.line_to(550, 50)
-		cairo_context.line_to(570, 100) #
-		cairo_context.line_to(575, 100) # court palier
-		cairo_context.line_to(580, 100) #
-		cairo_context.line_to(600, 150)
-		cairo_context.line_to(650, 50)
-		self._path = cairo_context.copy_path()
-		self._macros_common()
-
-	def _macros_common(self):
-		self.set_common_values(1, 1, 1)
-		operation = self.build_operation()
-		operation['is_preview'] = False
-		self.apply_operation(operation)
 
 	############################################################################
 
