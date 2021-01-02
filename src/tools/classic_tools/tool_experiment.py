@@ -52,7 +52,7 @@ class ToolExperiment(AbstractClassicTool):
 		}
 		self._operator_label = "OVER"
 		self.operator2 = cairo.Operator.OVER
-		self._selected_mode = 'dynamic2'
+		self._selected_mode = 'pressure'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
@@ -136,7 +136,7 @@ class ToolExperiment(AbstractClassicTool):
 		# à cette information à l'avenir.
 
 		pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
-		print(pressure)
+		# print(pressure)
 		if pressure is None:
 			return None
 		return pressure
@@ -335,7 +335,7 @@ class ToolExperiment(AbstractClassicTool):
 		elif pts[0] == cairo.PathDataType.LINE_TO:
 			return True, pts[1][0], pts[1][1]
 		else: # all paths start with a cairo.PathDataType.MOVE_TO
-			return False, 0, 0
+			return False, pts[1][0], pts[1][1]
 
 	def _get_dist(self, x1, y1, x2, y2):
 		dist2 = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
@@ -344,29 +344,68 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def op_pressure(self, operation, cairo_context):
-		cairo_context.set_operator(cairo.Operator.OVER)
+		# -> mieux factorisable !
+		"""..."""
 
+		# 1. construction d'un path et initialisation d'un array de width
 		line_width = operation['line_width']
-		scaled_path = []
-		for point in operation['manual_path']:
-			# A copy has to be made because the history shouldn't be edited
-			new_point = {'x': point['x'], 'y': point['y']}
-			if point['p'] is None:
-				new_point['p'] = line_width
+		widths = []
+		dists = []
+		cairo_context.new_path()
+		p2 = None
+		for pt in operation['manual_path']:
+			cairo_context.line_to(pt['x'], pt['y'])
+			if pt['p'] is None:
+				# No data about pressure
+				if p2 is not None:
+					dists.append(self._get_dist(pt['x'], pt['y'], p2['x'], p2['y']))
 			else:
-				new_point['p'] = line_width * point['p'] * 2
-			scaled_path.append(new_point)
+				# There are data about pressure
+				if p2 is not None:
+					if p2['p'] == 0 or pt['p'] == 0:
+						seg_width = 0
+					else:
+						seg_width = (p2['p'] + pt['p']) / 2
+					# A segment whose 2 points have a 50% pressure shall have a
+					# width of "100%" of operation['line_width'], so "* 2"
+					widths.append(line_width * seg_width * 2)
+			p2 = pt
 
-		previous_point = None
-		for point in scaled_path:
-			if previous_point is not None:
-				line_width = (previous_point['p'] + point['p']) / 2
-				cairo_context.set_line_width(line_width)
-				cairo_context.new_path()
-				cairo_context.move_to(previous_point['x'], previous_point['y'])
-				cairo_context.line_to(point['x'], point['y'])
-				cairo_context.stroke()
-			previous_point = point
+		# If nothing in widths, it has to be filled from dists
+		if len(widths) == 0:
+			min_dist = min(dists)
+			max_dist = max(dists)
+			for dist in dists:
+				width = line_width # TODO
+				widths.append(width)
+
+		raw_path = cairo_context.copy_path()
+
+		# 2. smoothing du path
+		cairo_context.new_path()
+		utilities_smooth_path(cairo_context, raw_path)
+		smoothed_path = cairo_context.copy_path()
+
+		# 3. création d'un contexte d'une surface vierge
+		# TODO
+
+		# 4. parcours du path : dessin manuel (op source) avec widths associées
+		i = 0
+		cairo_context.new_path()
+		for segment in smoothed_path:
+			i = i + 1
+			ok, future_x, future_y = self._future_point(segment)
+			if not ok:
+				cairo_context.move_to(future_x, future_y)
+				continue
+			current_x, current_y = cairo_context.get_current_point()
+			cairo_context.set_line_width(widths[i - 1])
+			self._add_segment(cairo_context, segment)
+			cairo_context.stroke()
+			cairo_context.move_to(future_x, future_y)
+
+		# 5. painting sur la vraie surface selon l'opérateur choisi
+		# TODO
 
 	############################################################################
 ################################################################################
