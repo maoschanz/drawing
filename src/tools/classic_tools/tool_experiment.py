@@ -1,6 +1,7 @@
 # tool_experiment.py
 
 import cairo, math
+from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_smooth_path
 
@@ -11,6 +12,11 @@ class ToolExperiment(AbstractClassicTool):
 		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
 		self.row.get_style_context().add_class('destructive-action')
 		self._path = None
+
+		# In order to draw pressure-sensitive lines, the path is collected as
+		# an array whose elements are dicts (keys are 'x', 'y', 'p'). An actual
+		# cairo path will be built from this data when necessary.
+		self._manual_path = []
 
 		self._use_antialias = True
 		self._operators_dict = {
@@ -82,6 +88,58 @@ class ToolExperiment(AbstractClassicTool):
 		self.y_press = event_y
 		self.set_common_values(event.button, event_x, event_y)
 		self._path = None
+		self._manual_path = []
+		self._add_pressured_point(event_x, event_y, event)
+
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		self._add_point(event_x, event_y)
+		self._add_pressured_point(event_x, event_y, event)
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+
+	def on_release_on_area(self, event, surface, event_x, event_y):
+		self._add_point(event_x, event_y)
+		self._add_pressured_point(event_x, event_y, event)
+		operation = self.build_operation()
+		operation['is_preview'] = False
+		# TODO dans un monde parfait c'est là qu'on smooth le path je pense
+		self.apply_operation(operation)
+
+	############################################################################
+
+	def _add_pressured_point(self, event_x, event_y, event):
+		new_point = {
+			'x': event_x,
+			'y': event_y,
+			'p': self._get_pressure(event)
+		}
+		self._manual_path.append(new_point)
+
+	def _get_pressure(self, event):
+		device = event.get_source_device()
+		# print(device)
+		if device is None:
+			return None
+		source = device.get_source()
+		# print(source) # TODO ça peut être Gdk.InputSource.MOUSE, ou .TOUCHPAD,
+		# ou bien des trucs pertinents comme Gdk.InputSource.ERASER ou .PEN
+		# J'ignore s'il faut faire quelque chose de cette information ? Il y a
+		# ptêt des touchpads ou des touchscreens sensibles à la pression non ?
+
+		tool = event.get_device_tool()
+		# print(tool) # TODO ça indique qu'on a ici un appareil dédié au dessin
+		# (vaut `None` si c'est pas le cas). Autrement on peut avoir des valeurs
+		# comme Gdk.DeviceToolType.PEN, .ERASER, .BRUSH, .PENCIL, ou .AIRBRUSH,
+		# et aussi (même si jsuis pas sûr ce soit pertinent) .UNKNOWN, .MOUSE et
+		# .LENS (fuck ces bourgeois avec des tablettes haut de gamme au pire).
+		# On pourrait adapter le comportement (couleur/opérateur/aliasing/etc.)
+		# à cette information à l'avenir.
+
+		pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
+		print(pressure)
+		if pressure is None:
+			return None
+		return pressure
 
 	def _add_point(self, event_x, event_y):
 		cairo_context = self.get_context()
@@ -91,17 +149,6 @@ class ToolExperiment(AbstractClassicTool):
 			cairo_context.append_path(self._path)
 		cairo_context.line_to(event_x, event_y)
 		self._path = cairo_context.copy_path()
-
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		self._add_point(event_x, event_y)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-
-	def on_release_on_area(self, event, surface, event_x, event_y):
-		self._add_point(event_x, event_y)
-		operation = self.build_operation()
-		operation['is_preview'] = False
-		self.apply_operation(operation)
 
 	############################################################################
 
@@ -116,7 +163,8 @@ class ToolExperiment(AbstractClassicTool):
 			'line_join': cairo.LineJoin.ROUND,
 			'antialias': self._use_antialias,
 			'is_preview': True,
-			'path': self._path
+			'path': self._path,
+			'manual_path': self._manual_path
 		}
 		return operation
 
@@ -296,9 +344,29 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def op_pressure(self, operation, cairo_context):
-		pass
-		# TODO là c'est carrément l'input qui doit changer, la largeur variable
-		# utilisera probablement le même code que dynamic3
+		cairo_context.set_operator(cairo.Operator.OVER)
+
+		line_width = operation['line_width']
+		scaled_path = []
+		for point in operation['manual_path']:
+			# A copy has to be made because the history shouldn't be edited
+			new_point = {'x': point['x'], 'y': point['y']}
+			if point['p'] is None:
+				new_point['p'] = line_width
+			else:
+				new_point['p'] = line_width * point['p'] * 2
+			scaled_path.append(new_point)
+
+		previous_point = None
+		for point in scaled_path:
+			if previous_point is not None:
+				line_width = (previous_point['p'] + point['p']) / 2
+				cairo_context.set_line_width(line_width)
+				cairo_context.new_path()
+				cairo_context.move_to(previous_point['x'], previous_point['y'])
+				cairo_context.line_to(point['x'], point['y'])
+				cairo_context.stroke()
+			previous_point = point
 
 	############################################################################
 ################################################################################
