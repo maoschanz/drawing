@@ -1,6 +1,6 @@
 # tool_experiment.py
 
-import cairo, math
+import cairo, math, random
 from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_smooth_path
@@ -170,6 +170,9 @@ class ToolExperiment(AbstractClassicTool):
 		elif operation['mode'] == 'smooth':
 			# self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
+		elif operation['mode'] == 'airbrush':
+			# self.op_simple(operation, cairo_context)
+			self.op_airbrush(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
 
@@ -199,6 +202,25 @@ class ToolExperiment(AbstractClassicTool):
 
 		# Draw it
 		cairo_context.stroke()
+
+	############################################################################
+
+	def op_airbrush(self, operation, cairo_context):
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_line_width(1)
+		random.seed(1) # this hardcoded seed avoids the droplets changing their
+		# positions when the user undoes an following operation
+		droplets = 20 # could be like 15 + log(width) maybe?
+		for pt in operation['path']:
+			for i in range(droplets):
+				cairo_context.new_path()
+				x = pt['x'] + random.randint(0, operation['line_width'])
+				y = pt['y'] + random.randint(0, operation['line_width'])
+				cairo_context.move_to(x, y)
+				cairo_context.rel_line_to(1, 1)
+				cairo_context.stroke()
+		# maybe a portion of these droplets could be 2px wide? to add diversity
+		# in the pattern, especially with large widths
 
 	############################################################################
 
