@@ -154,7 +154,7 @@ class ToolExperiment(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
-		if operation['path'] is None or len(operation['path']) == 0:
+		if operation['path'] is None or len(operation['path']) < 1:
 			return
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(operation['line_cap'])
@@ -168,10 +168,8 @@ class ToolExperiment(AbstractClassicTool):
 		if operation['mode'] == 'pressure':
 			self.op_pressure(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
-			# self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
 		elif operation['mode'] == 'airbrush':
-			# self.op_simple(operation, cairo_context)
 			self.op_airbrush(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
@@ -290,6 +288,11 @@ class ToolExperiment(AbstractClassicTool):
 		sensitive, otherwise it's speed-sensitive (with a heavy ponderation to
 		make it less ugly).
 		For now it looks awful with semi-transparent colors."""
+
+		if len(operation['path']) < 3:
+			# XXX minimum 3 points to get minimum 2 segments to avoid "list
+			# index out of range" errors when running the for loops
+			return
 
 		# Build an array with all the widths for each segment
 		widths = self._build_widths(operation['path'], operation['line_width'])
