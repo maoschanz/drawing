@@ -286,8 +286,7 @@ class ToolExperiment(AbstractClassicTool):
 		"""Brush with dynamic width, where the variation of width is drawn by a
 		succession of segments. If pressure is detected, the width is pressure-
 		sensitive, otherwise it's speed-sensitive (with a heavy ponderation to
-		make it less ugly).
-		For now it looks awful with semi-transparent colors."""
+		make it less ugly)."""
 
 		if len(operation['path']) < 3:
 			# XXX minimum 3 points to get minimum 2 segments to avoid "list
@@ -308,28 +307,37 @@ class ToolExperiment(AbstractClassicTool):
 		utilities_smooth_path(cairo_context, raw_path)
 		smoothed_path = cairo_context.copy_path()
 
-		# 3. création d'un contexte d'une surface vierge
-		# TODO
+		# Creation of a blank surface with a new context using the options set
+		# by the user, except the operator.
+		w = self.get_surface().get_width()
+		h = self.get_surface().get_height()
+		mask = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
+		context2 = cairo.Context(mask)
+		context2.set_line_cap(operation['line_cap'])
+		context2.set_line_join(operation['line_join'])
+		rgba = operation['rgba']
+		context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 
 		# Run through the path to manually draw each segment with its width
-		cairo_context.set_operator(cairo.Operator.SOURCE)
+		context2.set_operator(cairo.Operator.SOURCE)
 		i = 0
-		cairo_context.new_path()
+		context2.new_path()
 		for segment in smoothed_path:
 			i = i + 1
 			ok, future_x, future_y = self._future_point(segment)
 			if not ok:
-				cairo_context.move_to(future_x, future_y)
+				context2.move_to(future_x, future_y)
 				continue
-			current_x, current_y = cairo_context.get_current_point()
-			cairo_context.set_line_width(widths[i - 1])
-			self._add_segment(cairo_context, segment)
-			cairo_context.stroke()
-			cairo_context.move_to(future_x, future_y)
+			current_x, current_y = context2.get_current_point()
+			context2.set_line_width(widths[i - 1])
+			self._add_segment(context2, segment)
+			context2.stroke()
+			context2.move_to(future_x, future_y)
 
-		# 5. painting sur la vraie surface selon l'opérateur choisi
+		# Paint the surface onto the actual image with the chosen operator
 		cairo_context.set_operator(operation['operator'])
-		# TODO
+		cairo_context.set_source_surface(mask)
+		cairo_context.paint()
 
 	############################################################################
 ################################################################################
