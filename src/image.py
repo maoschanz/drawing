@@ -25,16 +25,11 @@ from .utilities import InvalidFileFormatException
 from .gi_composites import GtkTemplate
 
 class DrMotionBehavior():
+	_LIMIT = 10
+
 	HOVER = 0
 	DRAW = 1
 	SLIP = 2
-
-	_LIMIT = 10
-	def is_moving(x1, x2, y1, y2):
-		# no `self` because it's static
-		moves_x = abs(x1 - x2) < DrMotionBehavior._LIMIT
-		moves_y = abs(y1 - y2) < DrMotionBehavior._LIMIT
-		return moves_x and moves_y
 
 class NoPixbufNoChangeException(Exception):
 	def __init__(self, pb_name):
@@ -104,8 +99,8 @@ class DrImage(Gtk.Box):
 		rgba = self.window._settings.get_strv('ui-background-rgba')
 		self._bg_rgba = (float(rgba[0]), float(rgba[1]), \
 		                                         float(rgba[2]), float(rgba[3]))
-		# We remember this data here for performance, since it's used by the
-		# on_draw method which is called a lot.
+		# We remember this data here for performance: it's used by the `on_draw`
+		# method which is called a lot, and reading a gsettings costs a lot.
 
 	def _update_zoom_behavior(self, *args):
 		self._ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
@@ -123,10 +118,10 @@ class DrImage(Gtk.Box):
 		self.scroll_y = 0
 		self.set_zoom_level(100) # will do `self.zoom_level = 1.0`
 		self.motion_behavior = DrMotionBehavior.HOVER
-		self.press2_x = 0.0
-		self.press2_y = 0.0
-		self.drag_scroll_x = 0.0
-		self.drag_scroll_y = 0.0
+		self._slip_press_x = 0.0
+		self._slip_press_y = 0.0
+		self._slip_init_x = 0.0
+		self._slip_init_y = 0.0
 
 		# Selection initialization
 		self.selection = DrSelectionManager(self)
@@ -361,7 +356,8 @@ class DrImage(Gtk.Box):
 		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 
-		# TODO transform tools may appreciate to draw *before* the image
+		# TODO transform tools may appreciate to draw *before* the image (issue
+		# when the canvas becomes larger)
 
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
@@ -376,14 +372,16 @@ class DrImage(Gtk.Box):
 		self._drawing_area, if the button is the mouse wheel the colors are
 		exchanged, otherwise the signal is transmitted to the selected tool."""
 		if self._is_pressed:
+			# reject attempts to draw with a given button if an other one is
+			# already doing something
 			return
 		event_x, event_y = self.get_event_coords(event)
 		if event.button == 2:
 			self.motion_behavior = DrMotionBehavior.SLIP
-			self.press2_x = event_x
-			self.press2_y = event_y
-			self.drag_scroll_x = event_x
-			self.drag_scroll_y = event_y
+			self._slip_press_x = event.x
+			self._slip_press_y = event.y
+			self._slip_init_x = self.scroll_x
+			self._slip_init_y = self.scroll_y
 			return
 		self.motion_behavior = DrMotionBehavior.DRAW
 		self.active_tool().on_press_on_area(event, self.surface, event_x, event_y)
@@ -395,28 +393,31 @@ class DrImage(Gtk.Box):
 		If a button (not the mouse wheel) is pressed, the tool's method should
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
-		event_x, event_y = self.get_event_coords(event)
+
 		if self.motion_behavior == DrMotionBehavior.HOVER:
-			# TODO ça apprécierait sans doute d'avoir direct les bonnes coordonnées ?
+			# Some tools need the coords in the image, others need the coords on
+			# the widget, so the entire event is given.
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
+
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
+			event_x, event_y = self.get_event_coords(event)
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
 			self.update() # <<< comment this for better perfs
+
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
-			delta_x = int(self.drag_scroll_x - event_x)
-			delta_y = int(self.drag_scroll_y - event_y)
-			self.add_deltas(delta_x, delta_y, 0.8)
-			self.drag_scroll_x = event_x
-			self.drag_scroll_y = event_y
+			self.scroll_x = self._slip_init_x
+			self.scroll_y = self._slip_init_y
+			delta_x = self._slip_press_x - event.x
+			delta_y = self._slip_press_y - event.y
+			self.add_deltas(delta_x, delta_y, 1 / self.zoom_level)
 
 	def on_release_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is released on
 		self._drawing_area, if the button is not the signal is transmitted to
 		the selected tool."""
 		if self.motion_behavior == DrMotionBehavior.SLIP:
-			if DrMotionBehavior.is_moving(self.press2_x, self.drag_scroll_x, \
-			                              self.press2_y, self.drag_scroll_y):
+			if not self._is_slip_moving():
 				self.window.options_manager.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return
@@ -425,6 +426,13 @@ class DrImage(Gtk.Box):
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
 		self.window.set_picture_title()
 		self._is_pressed = False
+
+	def _is_slip_moving(self):
+		"""Tells if the pointer moved while the middle button of the mouse is
+		pressed, depending on a constant hardcoded limit."""
+		mx = abs(self._slip_init_x - self.scroll_x) > DrMotionBehavior._LIMIT
+		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
+		return mx or my
 
 	def update(self):
 		# print('image.py: _drawing_area.queue_draw')
