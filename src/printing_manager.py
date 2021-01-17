@@ -68,7 +68,7 @@ class DrPrintingManager():
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
 
 	def _show_pixbuf_on_page(self, print_ctx, pixbuf):
-
+		"""Paint the (scaled) image on the page using cairo."""
 		scale = self._get_scale(print_ctx, pixbuf)
 		# XXX the image should be centered in the page
 		cairo_context = print_ctx.get_cairo_context()
