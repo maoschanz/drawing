@@ -208,7 +208,7 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def op_airbrush(self, operation, cairo_context):
-		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_operator(operation['operator']) # XXX but the blur?
 		cairo_context.set_line_width(1)
 		random.seed(1) # this hardcoded seed avoids the droplets changing their
 		# positions when the user undoes an following operation
@@ -341,7 +341,7 @@ class ToolExperiment(AbstractClassicTool):
 			context2.move_to(future_x, future_y)
 
 		# Paint the surface onto the actual image with the chosen operator
-		cairo_context.set_operator(operation['operator'])
+		cairo_context.set_operator(operation['operator']) # XXX but the blur?
 		cairo_context.set_source_surface(mask)
 		cairo_context.paint()
 

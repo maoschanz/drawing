@@ -20,22 +20,27 @@ from gi.repository import Gtk, Gdk
 class DrPrintingManager():
 	__gtype_name__ = 'DrPrintingManager'
 
+	# Debug purpose only
+	_AUTO_SETTINGS = False
+
 	def __init__(self, window):
 		self._window = window
 
 	def print_pixbuf(self, pixbuf):
-		print_op = Gtk.PrintOperation() # ça a des signaux pour des widgets
-		# custom ça, c'est vraiment le portal flatpak ?
+		"""Starts the GTK "print" dialog with a few pre-defined settings."""
+		print_op = Gtk.PrintOperation()
 
 		psetup = Gtk.PageSetup()
 		if pixbuf.get_height() < pixbuf.get_width():
 			psetup.set_orientation(Gtk.PageOrientation.LANDSCAPE)
 		else:
 			psetup.set_orientation(Gtk.PageOrientation.PORTRAIT)
+		if self._AUTO_SETTINGS:
+			psetup.set_paper_size(Gtk.PaperSize('A4'))
 		print_op.set_default_page_setup(psetup)
-		# print_op.set_use_full_page(True) # XXX what does it do?
+		# print_op.set_use_full_page(True) # removes margins, do i want it?
 
-		# FIXME the default preview doesn't always work, i guess it's because of
+		# XXX the default preview doesn't always work, i guess it's because of
 		# the sandbox, or the flatpak implementation.
 		# The default preview says "evince-previewer" ???
 		# I could implement a custom callback to the 'preview' signal but that
@@ -44,12 +49,15 @@ class DrPrintingManager():
 		print_op.connect('draw-page', self._do_draw_page, pixbuf)
 		print_op.connect('begin-print', self._do_begin_print, pixbuf)
 
-		res = print_op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self._window)
-		# si on apply réellement (du moins avec l'impression vers pdf), ça
-		# begin-print puis ça draw-page *avant* de retourner du run
-		print(res) # it's Gtk.PrintOperationResult.APPLY even when "Preview" is
+		if self._AUTO_SETTINGS:
+			print_op.set_export_filename("Documents/sortie.pdf")
+			action_type = Gtk.PrintOperationAction.EXPORT
+		else:
+			action_type = Gtk.PrintOperationAction.PRINT_DIALOG
+		# `res` will be Gtk.PrintOperationResult.APPLY even when "Preview" is
 		# clicked, because the possible values are actually "APPLY", "CANCEL",
 		# "IN_PROGRESS" and "ERROR"
+		res = print_op.run(action_type, self._window)
 		# I'll assume print_op continues to live enough to be used by signals.
 
 	def _do_draw_page(self, op, print_ctx, page_num, pixbuf):
@@ -60,20 +68,22 @@ class DrPrintingManager():
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
 
 	def _show_pixbuf_on_page(self, print_ctx, pixbuf):
+
+		scale = self._get_scale(print_ctx, pixbuf)
+		# XXX the image should be centered in the page
+		cairo_context = print_ctx.get_cairo_context()
+		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
+		cairo_context.paint()
+		cairo_context.scale(scale, scale)
+
+	def _get_scale(self, print_ctx, pixbuf):
 		h_ratio = print_ctx.get_height() / pixbuf.get_height()
 		w_ratio = print_ctx.get_width() / pixbuf.get_width()
 		if h_ratio < 1.0 or w_ratio < 1.0:
 			scale = min(h_ratio, w_ratio)
 		else:
 			scale = 1.0
-		# XXX too much
-		# TODO should be centered
-		print(scale)
-
-		cairo_context = print_ctx.get_cairo_context()
-		cairo_context.scale(scale, scale)
-		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
-		cairo_context.paint()
+		return scale
 
 	############################################################################
 ################################################################################
