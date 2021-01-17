@@ -162,14 +162,18 @@ class ToolExperiment(AbstractClassicTool):
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 
-		if operation['is_preview']:
-			self.op_simple(operation, cairo_context)
-			return # Previewing helps performance and debug
 		if operation['mode'] == 'pressure':
+			if operation['is_preview']: # Previewing helps performance & debug
+				operation['line_width'] = int(operation['line_width'] / 2)
+				return self.op_simple(operation, cairo_context)
 			self.op_pressure(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
+			if operation['is_preview']: # Previewing helps performance & debug
+				return self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
 		elif operation['mode'] == 'airbrush':
+			# if operation['is_preview']: # Previewing helps performance & debug
+			# 	return self.op_simple(operation, cairo_context)
 			self.op_airbrush(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
@@ -208,17 +212,19 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.set_line_width(1)
 		random.seed(1) # this hardcoded seed avoids the droplets changing their
 		# positions when the user undoes an following operation
+		half_width = operation['line_width'] / 2
 		droplets = 20 # could be like 15 + log(width) maybe?
 		for pt in operation['path']:
+			if pt['p'] is not None:
+				droplets = int(40 * pt['p'])
 			for i in range(droplets):
 				cairo_context.new_path()
-				x = pt['x'] + random.randint(0, operation['line_width'])
-				y = pt['y'] + random.randint(0, operation['line_width'])
+				x = pt['x'] + random.randint(-1 * half_width, half_width)
+				y = pt['y'] + random.randint(-1 * half_width, half_width)
 				cairo_context.move_to(x, y)
 				cairo_context.rel_line_to(1, 1)
 				cairo_context.stroke()
-		# maybe a portion of these droplets could be 2px wide? to add diversity
-		# in the pattern, especially with large widths
+		# XXX the pattern is square, not round
 
 	############################################################################
 
