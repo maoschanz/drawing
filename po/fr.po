@@ -386,7 +386,7 @@ msgstr "Annuler"
 msgid "Redo"
 msgstr "Rétablir"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Reconstruire depuis l'historique"
 
@@ -486,7 +486,7 @@ msgstr "Onglet à gauche"
 msgid "Tab at the right"
 msgstr "Onglet à droite"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -619,6 +619,10 @@ msgstr "Plus large"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
 msgstr "Moins large"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Débuggage de la sélection"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -853,10 +857,6 @@ msgstr "Quitter le mode plein écran"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Gestuelles tactiles"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Débuggage de la sélection"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -1417,8 +1417,11 @@ msgstr "Images ouvertes"
 
 #: src/window.py
 #, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Erreur : panneau invalide pour '%s', veuillez reporter ce problème."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"Erreur de chargement du panneau du bas pour l'outil '%s', veuillez reporter "
+"ce problème."
 
 #: src/window.py
 #, python-format

@@ -371,7 +371,7 @@ msgstr "Fortryd"
 msgid "Redo"
 msgstr "Omgør"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Genbyg fra historik"
 
@@ -471,7 +471,7 @@ msgstr "Tabulator til venstre"
 msgid "Tab at the right"
 msgstr "Tabulator til højre"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Opdater"
 
@@ -604,6 +604,10 @@ msgstr "Bredere"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
 msgstr "Smallere"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Fejlsøg markering"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -840,10 +844,6 @@ msgid "Touch gestures"
 msgstr "Berøringsbevægelser"
 
 #: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Fejlsøg markering"
-
-#: src/ui/win-menus.ui
 msgid "Other tools"
 msgstr "Andre værktøjer"
 
@@ -941,15 +941,14 @@ msgid "Official webpage"
 msgstr "Officiel webside"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Fejl ved åbning af filen. Mente du %s?"
+msgstr "Fejl ved åbning af filen."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Mente du %s?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1399,8 +1398,9 @@ msgid "Opened images"
 msgstr "Åbne billeder"
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Fejl: rude ugyldig for '%s'. Rapportér venligst fejlen."
 
 #: src/window.py

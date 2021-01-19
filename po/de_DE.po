@@ -381,7 +381,7 @@ msgstr "Rückgängig"
 msgid "Redo"
 msgstr "Wiederherstellen"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Wiederherstellen aus Verlauf"
 
@@ -481,7 +481,7 @@ msgstr "Reiter links"
 msgid "Tab at the right"
 msgstr "Reiter rechts"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Aktualisieren"
 
@@ -614,6 +614,10 @@ msgstr "Größere Breite"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
 msgstr "Kleinere Breite"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Problembehandlung bei der Auswahl"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -789,7 +793,7 @@ msgstr "Zurück zum vorherigen Werkzeug"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Anwenden einer Umwandlung"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -849,10 +853,6 @@ msgstr "Vollbildansicht beenden"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Touch-Gesten"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Problembehandlung bei der Auswahl"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -954,15 +954,14 @@ msgid "Official webpage"
 msgstr "Offizielle Internetseite"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Fehler beim Öffnen dieser Datei. Meinten Sie %s ?"
+msgstr "Fehler beim Öffnen dieser Datei."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Meinten Sie %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1376,19 +1375,20 @@ msgid "degrees"
 msgstr "Grad"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Ein Bild öffnen"
+msgstr "%s ist kein Bild."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
 msgstr ""
+"Entschuldigung, WEBP-Bilder können in dieser Anwendung nicht geladen werden."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Trotz seines Namens ist %s eine WEBP-Datei."
 
 #. Context: an error message
 #: src/window.py
@@ -1398,7 +1398,7 @@ msgstr "Fehler beim Laden des Werkzeugs: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Die Zwischenablage enthält keine Bilder."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1415,8 +1415,9 @@ msgid "Opened images"
 msgstr "Geöffnete Bilder"
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Fehler: Bereich ungültig für '%s'. Bitte melden Sie diesen Fehler."
 
 #: src/window.py

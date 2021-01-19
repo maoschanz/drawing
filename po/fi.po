@@ -358,7 +358,7 @@ msgstr "Kumoa"
 msgid "Redo"
 msgstr "Toista"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Rakenna uudelleen historiasta"
 
@@ -460,7 +460,7 @@ msgstr "Takaisin palettiin"
 msgid "Tab at the right"
 msgstr "Kierrä oikealle"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Virkistä"
 
@@ -600,6 +600,10 @@ msgstr ""
 msgid "Smaller width"
 msgstr "Oletusleveys"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Vianmääritys"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "_Valinnat"
@@ -734,7 +738,6 @@ msgid "Open As New Image"
 msgstr "Avaa uutena kuvana"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
 msgstr "Pikakuvakkeet"
 
@@ -838,10 +841,6 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Vianmääritys"
-
-#: src/ui/win-menus.ui
 msgid "Other tools"
 msgstr ""
 
@@ -940,15 +939,14 @@ msgid "Official webpage"
 msgstr "Virallinen verkkosivu"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Virhe avatessa tiedostoa. Tarkoititko %s ?"
+msgstr "Virhe avatessa tiedostoa."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Tarkoititko %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1399,7 +1397,8 @@ msgstr "Avatut kuvat"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
 
 #: src/window.py

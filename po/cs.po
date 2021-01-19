@@ -343,7 +343,7 @@ msgstr "Zpět"
 msgid "Redo"
 msgstr "Dopředu"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr ""
 
@@ -443,7 +443,7 @@ msgstr "Záložka nalevo"
 msgid "Tab at the right"
 msgstr "Záložka napravo"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Obnovit"
 
@@ -576,6 +576,10 @@ msgstr "Větší šířka"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
 msgstr "Menší šířka"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Odstranit potíže s výběrem"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -810,10 +814,6 @@ msgstr "Ukončit zobrazení na celou obrazovku"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Dotyková gesta"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Odstranit potíže s výběrem"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -1110,7 +1110,7 @@ msgstr "Kompaktní"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -1368,8 +1368,9 @@ msgid "Opened images"
 msgstr "Otevřené obrázky"
 
 #: src/window.py
-#, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+#, fuzzy, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Chyba: neplatná oblast pro \"%s\". Prosím, nahlaste tuto chybu."
 
 #: src/window.py
@@ -2034,4 +2035,3 @@ msgstr "Změna velikosti plátna"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr "Zšikmit"
-

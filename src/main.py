@@ -256,10 +256,6 @@ class Application(Gtk.Application):
 		manual."""
 		self._show_help_page('/preferences')
 
-	def _show_help_page(self, suffix):
-		win = self.props.active_window
-		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
-
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
@@ -328,6 +324,10 @@ class Application(Gtk.Application):
 		                                      GLib.Variant.new_boolean(default))
 		action.connect('change-state', callback)
 		self.add_action(action)
+
+	def _show_help_page(self, suffix):
+		win = self.props.active_window
+		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
 
 	def _get_valid_file(self, app, path):
 		"""Creates a GioFile object if the path corresponds to an image. If no
