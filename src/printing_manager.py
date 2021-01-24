@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk
+import math
 
 class DrPrintingManager():
 	__gtype_name__ = 'DrPrintingManager'
@@ -25,6 +26,7 @@ class DrPrintingManager():
 
 	def __init__(self, window):
 		self._window = window
+		self._auto_orientation = None
 
 	def print_pixbuf(self, pixbuf):
 		"""Starts the GTK "print" dialog with a few pre-defined settings."""
@@ -32,13 +34,15 @@ class DrPrintingManager():
 
 		psetup = Gtk.PageSetup()
 		if pixbuf.get_height() < pixbuf.get_width():
-			psetup.set_orientation(Gtk.PageOrientation.LANDSCAPE)
+			self._auto_orientation = Gtk.PageOrientation.LANDSCAPE
 		else:
-			psetup.set_orientation(Gtk.PageOrientation.PORTRAIT)
+			self._auto_orientation = Gtk.PageOrientation.PORTRAIT
+		psetup.set_orientation(self._auto_orientation)
 		if self._AUTO_SETTINGS:
 			psetup.set_paper_size(Gtk.PaperSize('A4'))
 		print_op.set_default_page_setup(psetup)
-		# print_op.set_use_full_page(True) # removes margins, do i want it?
+
+		# print_op.set_use_full_page(True) # removes margins; do i want it?
 
 		# XXX the default preview doesn't always work, i guess it's because of
 		# the sandbox, or the flatpak implementation.
@@ -69,21 +73,54 @@ class DrPrintingManager():
 
 	def _show_pixbuf_on_page(self, print_ctx, pixbuf):
 		"""Paint the (scaled) image on the page using cairo."""
-		scale = self._get_scale(print_ctx, pixbuf)
-		# XXX the image should be centered in the page
+		print_ctx.get_page_setup().set_orientation(self._auto_orientation)
+		# FIXME ce bricolage ^ ne marche même pas putain de merde
+		angle = self._get_delta_orientation(print_ctx)
+		use_natural_ratios = (angle == 0 or angle == 180)
+		scale = self._get_scale(print_ctx, pixbuf, use_natural_ratios)
+
 		cairo_context = print_ctx.get_cairo_context()
 		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
-		cairo_context.paint()
+
+		# Scale down the context if necessary (otherwise scale may be 1.0)
 		cairo_context.scale(scale, scale)
 
-	def _get_scale(self, print_ctx, pixbuf):
-		h_ratio = print_ctx.get_height() / pixbuf.get_height()
-		w_ratio = print_ctx.get_width() / pixbuf.get_width()
+		# XXX the image should be centered in the page
+
+		# Render the pixbuf on the page
+		cairo_context.paint()
+
+	def _get_scale(self, print_ctx, pixbuf, use_natural_ratios):
+		if use_natural_ratios:
+			h_ratio = print_ctx.get_height() / pixbuf.get_height()
+			w_ratio = print_ctx.get_width() / pixbuf.get_width()
+		else:
+			h_ratio = print_ctx.get_height() / pixbuf.get_width()
+			w_ratio = print_ctx.get_width() / pixbuf.get_height()
+
 		if h_ratio < 1.0 or w_ratio < 1.0:
 			scale = min(h_ratio, w_ratio)
 		else:
 			scale = 1.0
 		return scale
+
+	def _get_delta_orientation(self, print_ctx):
+		if self._auto_orientation == Gtk.PageOrientation.PORTRAIT:
+			initial_angle = 0
+		else: # if self._auto_orientation == Gtk.PageOrientation.LANDSCAPE:
+			initial_angle = 90
+
+		current_orientation = print_ctx.get_page_setup().get_orientation()
+		if current_orientation == Gtk.PageOrientation.PORTRAIT:
+			new_angle = 0
+		elif current_orientation == Gtk.PageOrientation.LANDSCAPE:
+			new_angle = 90
+		elif current_orientation == Gtk.PageOrientation.REVERSE_PORTRAIT:
+			new_angle = 180
+		else: # if current_orientation == Gtk.PageOrientation.REVERSE_LANDSCAPE:
+			new_angle = 270
+
+		return new_angle - initial_angle
 
 	############################################################################
 ################################################################################
