@@ -71,16 +71,20 @@ class DrPrintingManager():
 		op.set_n_pages(1)
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
 
+	# XXX là je ne restaure aucun PrintSettings ce qui est un problème
+
 	def _show_pixbuf_on_page(self, print_ctx, pixbuf):
 		"""Paint the (scaled) image on the page using cairo."""
-		print_ctx.get_page_setup().set_orientation(self._auto_orientation)
-		# FIXME ce bricolage ^ ne marche même pas putain de merde
 		angle = self._get_delta_orientation(print_ctx)
 		use_natural_ratios = (angle == 0 or angle == 180)
 		scale = self._get_scale(print_ctx, pixbuf, use_natural_ratios)
 
+		# Rotate the pixbuf
+		rotated_pixbuf = pixbuf.rotate_simple(angle)
+
+		# Set the rotated pixbuf as the context's source
 		cairo_context = print_ctx.get_cairo_context()
-		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
+		Gdk.cairo_set_source_pixbuf(cairo_context, rotated_pixbuf, 0, 0)
 
 		# Scale down the context if necessary (otherwise scale may be 1.0)
 		cairo_context.scale(scale, scale)
@@ -120,7 +124,10 @@ class DrPrintingManager():
 		else: # if current_orientation == Gtk.PageOrientation.REVERSE_LANDSCAPE:
 			new_angle = 270
 
-		return new_angle - initial_angle
+		delta_angle = new_angle - initial_angle
+		if delta_angle < 0:
+			delta_angle = delta_angle + 360
+		return delta_angle
 
 	############################################################################
 ################################################################################
