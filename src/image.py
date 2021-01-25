@@ -690,32 +690,5 @@ class DrImage(Gtk.Box):
 		self.scroll_y = 0
 
 	############################################################################
-	# Printing #################################################################
-
-	def print_image(self):
-		op = Gtk.PrintOperation()
-		# FIXME the preview doesn't work, i guess it's because of flatpak ?
-		# I could connect to the 'preview' signal but that would be weird
-		op.connect('draw-page', self.do_draw_page)
-		op.connect('begin-print', self.do_begin_print)
-		op.connect('end-print', self.do_end_print)
-		res = op.run(Gtk.PrintOperationAction.PRINT_DIALOG, self.window)
-
-	def do_end_print(self, *args):
-		pass
-
-	def do_draw_page(self, op, print_ctx, page_num):
-		# TODO if it's too big for one page ?
-		cairo_context = print_ctx.get_cairo_context()
-		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
-		cairo_context.paint()
-
-	def do_begin_print(self, op, print_ctx):
-		op.set_n_pages(1)
-		cairo_context = print_ctx.get_cairo_context()
-		Gdk.cairo_set_source_pixbuf(cairo_context, self.main_pixbuf, 0, 0)
-		cairo_context.paint()
-
-	############################################################################
 ################################################################################
 

@@ -54,6 +54,7 @@ from .deco_manager import DrDecoManagerMenubar, \
                           DrDecoManagerHeaderbar, \
                           DrDecoManagerToolbar
 from .saving_manager import DrSavingManager
+from .printing_manager import DrPrintingManager
 
 from .utilities import utilities_add_filechooser_filters
 from .utilities import utilities_gfile_is_image
@@ -122,6 +123,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.minimap = DrMinimap(self, None)
 		self.options_manager = DrOptionsManager(self)
 		self.saving_manager = DrSavingManager(self)
+		self.printing_manager = DrPrintingManager(self)
 
 		self.add_all_win_actions()
 		self._init_tools()
@@ -1015,7 +1017,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.saving_manager.save_current_image(True, True, False, True)
 
 	def action_print(self, *args):
-		self.get_active_image().print_image()
+		pixbuf = self.get_active_image().main_pixbuf
+		self.printing_manager.print_pixbuf(pixbuf)
 
 	def action_export_cb(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
