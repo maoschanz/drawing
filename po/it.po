@@ -377,7 +377,7 @@ msgstr "Annulla"
 msgid "Redo"
 msgstr "Ripeti"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Ricrea dalla cronologia"
 
@@ -477,7 +477,7 @@ msgstr "Scheda a sinistra"
 msgid "Tab at the right"
 msgstr "Scheda a destra"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Aggiorna"
 
@@ -610,6 +610,10 @@ msgstr "Larghezza maggiore"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
 msgstr "Larghezza ridotta"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Risolvere i problemi di selezione"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -844,10 +848,6 @@ msgstr "Esci dalla modalità schermo intero"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Modalità touch"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Risolvere i problemi di selezione"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -1407,7 +1407,8 @@ msgstr "Immagini aperte"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
 
 #: src/window.py

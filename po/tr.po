@@ -363,7 +363,7 @@ msgstr "Geri al"
 msgid "Redo"
 msgstr "Yinele"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Geçmişten yeniden oluştur"
 
@@ -463,7 +463,7 @@ msgstr "Soldaki sekme"
 msgid "Tab at the right"
 msgstr "Sağdaki sekme"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Yenile"
 
@@ -598,6 +598,10 @@ msgstr ""
 #, fuzzy
 msgid "Smaller width"
 msgstr "Öntanımlı genişlik"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Seçimle ilgili sorunları giderme"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -833,10 +837,6 @@ msgstr "Tam ekran kipinden çık"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Dokunmatik hareketleri"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Seçimle ilgili sorunları giderme"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -1397,7 +1397,8 @@ msgstr "Açılan görüntüler"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
 
 #: src/window.py
@@ -2078,18 +2079,8 @@ msgstr "Tuvali ölçeklendir"
 msgid "Skew"
 msgstr "Eğrilik"
 
-#~ msgid "Flip"
-#~ msgstr "Çevir"
-
-#, fuzzy
-#~ msgid "Add semi-transparency"
-#~ msgstr "Saydamlık ekle"
-
 #~ msgid "Thin"
 #~ msgstr "İnce"
-
-#~ msgid "Clipping"
-#~ msgstr "Kırpma"
 
 #~ msgid "Edit"
 #~ msgstr "Düzenle"

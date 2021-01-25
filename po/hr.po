@@ -360,7 +360,7 @@ msgstr "Poništi"
 msgid "Redo"
 msgstr "Ponovi"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Izgradi ponovo iz kronologije"
 
@@ -460,7 +460,7 @@ msgstr "Kartica lijevo"
 msgid "Tab at the right"
 msgstr "Kartica desno"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Aktualiziraj"
 
@@ -595,6 +595,10 @@ msgstr ""
 #, fuzzy
 msgid "Smaller width"
 msgstr "Standardna širina"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Ispravi problem s odabirom"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -832,10 +836,6 @@ msgstr "Zatvori cjeloekranski prikaz"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Ispravi problem s odabirom"
 
 #: src/ui/win-menus.ui
 #, fuzzy
@@ -1397,7 +1397,8 @@ msgstr "Otvorene slike"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi grešku."
 
 #: src/window.py

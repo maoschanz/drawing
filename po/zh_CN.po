@@ -342,7 +342,7 @@ msgstr "撤销"
 msgid "Redo"
 msgstr "重做"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "从历史记录重建"
 
@@ -442,7 +442,7 @@ msgstr "左侧的标签页"
 msgid "Tab at the right"
 msgstr "右侧的标签页"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "刷新"
 
@@ -577,6 +577,10 @@ msgstr ""
 #, fuzzy
 msgid "Smaller width"
 msgstr "默认宽度"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "对选区排查问题"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -813,10 +817,6 @@ msgstr "退出全屏模式"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr ""
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "对选区排查问题"
 
 #: src/ui/win-menus.ui
 #, fuzzy
@@ -1371,7 +1371,8 @@ msgstr "已打开的图像"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "启动应用失败。请向我们报告这个问题。"
 
 #: src/window.py
@@ -2052,18 +2053,8 @@ msgstr "拉伸画布"
 msgid "Skew"
 msgstr "偏斜"
 
-#~ msgid "Flip"
-#~ msgstr "翻转"
-
-#, fuzzy
-#~ msgid "Add semi-transparency"
-#~ msgstr "增加透明度"
-
 #~ msgid "Thin"
 #~ msgstr "窄"
-
-#~ msgid "Clipping"
-#~ msgstr "剪裁"
 
 #~ msgid "Edit"
 #~ msgstr "编辑"

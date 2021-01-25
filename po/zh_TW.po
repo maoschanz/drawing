@@ -348,7 +348,7 @@ msgstr "復原"
 msgid "Redo"
 msgstr "重做"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "從歷史記錄重建"
 
@@ -448,7 +448,7 @@ msgstr "左側的分頁"
 msgid "Tab at the right"
 msgstr "右側的分頁"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "重新整理"
 
@@ -583,6 +583,10 @@ msgstr ""
 #, fuzzy
 msgid "Smaller width"
 msgstr "預設寬度"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "對選擇區域排查問題"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -818,10 +822,6 @@ msgstr "結束全螢幕模式"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "觸控手勢"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "對選擇區域排查問題"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -1378,7 +1378,8 @@ msgstr "已開啟的影像"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "啟動應用程式時發生錯誤。請向我們報告這個問題。"
 
 #: src/window.py
@@ -2057,9 +2058,6 @@ msgstr "縮放畫布"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr "扭曲"
-
-#~ msgid "Flip"
-#~ msgstr "翻轉"
 
 #~ msgid "Edit"
 #~ msgstr "編輯"

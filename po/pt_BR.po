@@ -361,7 +361,7 @@ msgstr "Desfazer"
 msgid "Redo"
 msgstr "Refazer"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Refazer do histórico"
 
@@ -461,7 +461,7 @@ msgstr "Ir para a esquerda"
 msgid "Tab at the right"
 msgstr "Ir para a direita"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Atualizar"
 
@@ -596,6 +596,10 @@ msgstr ""
 #, fuzzy
 msgid "Smaller width"
 msgstr "Largura padrão"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Resolver problemas de seleção"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -831,10 +835,6 @@ msgstr "Sair da tela cheia"
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Gestos de toque"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Resolver problemas de seleção"
 
 #: src/ui/win-menus.ui
 msgid "Other tools"
@@ -1395,7 +1395,8 @@ msgstr "Imagens abertas"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 
 #: src/window.py
@@ -2075,18 +2076,8 @@ msgstr "Redimensionar a tela"
 msgid "Skew"
 msgstr "Entortar"
 
-#~ msgid "Flip"
-#~ msgstr "Virar"
-
-#, fuzzy
-#~ msgid "Add semi-transparency"
-#~ msgstr "Adicionar transparência"
-
 #~ msgid "Thin"
 #~ msgstr "Fino"
-
-#~ msgid "Clipping"
-#~ msgstr "Recorte"
 
 #~ msgid "Edit"
 #~ msgstr "Editar"
