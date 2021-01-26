@@ -1,17 +1,18 @@
 # Spanish translation of drawing.
-# Copyright (C) 2018-2020 Romain F. T.
+# Copyright (C) 2018-2021 Romain F. T.
 # This file is distributed under the same license as the drawing package.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020
 # Xoán Sampaíño <xoansampainho@gmail.com>, 2019
+# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-24 04:28+0100\n"
-"PO-Revision-Date: 2020-12-27 13:50+0100\n"
+"PO-Revision-Date: 2021-01-26 11:25+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
-"Language-Team: \n"
+"Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr "Drawing"
+msgstr "Dibujo"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
@@ -38,13 +39,13 @@ msgstr "Paint;Boceto;Lápiz;"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
-msgstr "Ventana nueva"
+msgstr "Nueva ventana"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "New Image"
-msgstr "Imagen nueva"
+msgstr "Nueva imagen"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
@@ -58,7 +59,7 @@ msgstr "Una aplicación de dibujo para el escritorio GNOME"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"«Drawing» es un editor de imagen básico compatible con los tipos de archivo "
+"«Dibujo» es un editor de imagen básico compatible con los tipos de archivo "
 "PNG, JPEG y BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -78,18 +79,26 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"Con Dibujo 0.8.0, por fin podrás utilizar una tableta y un lápiz óptico para "
+"dibujar con herramientas sensibles a la presión, como el nuevo \"pincel\" y "
+"el \"aerógrafo\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"El modo de pantalla completa ha sido completamente rediseñado para "
+"proporcionar un acceso más fácil y menos intrusivo a las herramientas y sus "
+"opciones."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"Se han reescrito los filtros para que sean más fiables y se ha añadido un "
+"nuevo filtro para aumentar armoniosamente el contraste."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,6 +107,11 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Cuando se mueve o se borra la selección, ahora los píxeles que quedan pueden "
+"ser opcionalmente de un color específico, en lugar de ser siempre "
+"transparentes. Este color específico puede ser excluido de la selección. "
+"Esta característica es compleja de explicar con palabras, pruébala tú mismo "
+"y verás."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -111,12 +125,17 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Entre los errores curiosos: los paneles inferiores a veces se negaban a "
+"adaptarse al tamaño de la pantalla, y podían desaparecer bajo ciertas "
+"condiciones."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"La catastrófica acción de \"imprimir\", que nadie utilizó nunca, por lo que "
+"nadie se dio cuenta, es ahora algo utilizable."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -525,7 +544,7 @@ msgstr "Ayuda acerca de la selección"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "Acerca de Drawing"
+msgstr "Acerca de Dibujo"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
@@ -807,7 +826,7 @@ msgid "translator-credits"
 msgstr ""
 "Xoán Sampaíño <xoansampainho@gmail.com>, 2019\n"
 "Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020\n"
-"Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2020"
+"Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2020-2021"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1989,27 +2008,3 @@ msgstr "Radio de desenfoque"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturación"
-
-#~ msgid "About"
-#~ msgstr "Acerca de"
-
-#~ msgid "Quit"
-#~ msgstr "Salir"
-
-#~ msgid "Other tools"
-#~ msgstr "Otras herramientas"
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
-
-#~ msgid "Keyboard"
-#~ msgstr "Teclado"
-
-#~ msgid "Close"
-#~ msgstr "Cerrar"
-
-#~ msgid "Freehand"
-#~ msgstr "Mano alzada"
-
-#~ msgid "Selection options"
-#~ msgstr "Opciones de selección"
