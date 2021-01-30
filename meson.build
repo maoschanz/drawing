@@ -1,7 +1,7 @@
 
 project(
 	'drawing',
-	version: '0.6.4',
+	version: '0.6.5',
 	meson_version: '>= 0.50.0',
 )
 app_uuid = 'com.github.maoschanz.drawing'
@@ -11,7 +11,6 @@ app_uuid = 'com.github.maoschanz.drawing'
 # XXX the proper way to check python3 libs dependencies is this:
 # https://mesonbuild.com/Python-module.html#dependency but the doc is quite bad
 # so i've no idea how to make it work
-
 
 ################################################################################
 
