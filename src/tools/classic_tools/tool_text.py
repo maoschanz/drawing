@@ -87,8 +87,7 @@ class ToolText(AbstractClassicTool):
 			self._bg_label = _("Rectangle background")
 
 	def get_options_label(self):
-		# XXX use "text options" instead
-		return _("Font options")
+		return _("Text options")
 
 	def get_edition_status(self):
 		self._set_background_style()
