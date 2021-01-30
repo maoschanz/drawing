@@ -2,20 +2,21 @@
 # Copyright (C) 2020
 # This file is distributed under the same license as the drawing package.
 # Serdar Sağlam <teknomobil@yandex.com>, 2018, 2019, 2020.
+# Serkan ÖNDER <serkanonder@outlook.com>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-24 04:28+0100\n"
-"PO-Revision-Date: 2020-08-26 18:01+0300\n"
-"Last-Translator: Serdar Sağlam <teknomobil@yandex.com>\n"
-"Language-Team: Serdar Sağlam <teknomobil@yandex.com>\n"
+"PO-Revision-Date: 2021-01-25 17:27+0300\n"
+"Last-Translator: serkanonder@outlook.com\n"
+"Language-Team: \n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -77,18 +78,24 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"Çizim 0.8.0 ile, nihayet yeni 'fırça' ve 'pistole' gibi basınca duyarlı "
+"araçlarla çizim yapmak için bir tablet ve bir kalem kullanabilirsiniz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"Tam ekran modu, araçlara ve seçeneklerine daha kolay ancak daha az "
+"müdahaleci erişim sağlamak için tamamen yeniden tasarlandı."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"Filtreler daha güvenilir olacak şekilde yeniden yazıldı ve kontrastı uyumlu "
+"bir şekilde artırmak için yeni bir filtre eklendi."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -97,6 +104,10 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Seçimi taşıdığınızda veya sildiğinizde, artık geride kalan pikseller her "
+"zaman şeffaflık yerine isteğe bağlı olarak belirli bir renk olabilir. Bu "
+"belirli renk seçimin dışında bırakılabilir. Bu özelliği kelimelerle "
+"açıklamak karmaşıktır, kendiniz deneyin göreceksiniz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -110,12 +121,16 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Komik hatalar arasında: alt bölmeler bazen ekran boyutuna uyum sağlamayı "
+"reddediyor ve belirli koşullar altında kaybolabiliyordu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"Hiç kimsenin kullanmadığı ve hiç kimsenin fark etmediği yıkıcı \"baskı\" "
+"eylemi şimdi bir şekilde kullanılabilir."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -125,22 +140,22 @@ msgstr "Romain F. T."
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Pencere ve birincil menüsü"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "Seçim ve onunla ilişkili eylemler"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Çeşitli şekillerde yakınlaştırma"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "\"Yeni resim\" menüsü açıldı"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -182,9 +197,8 @@ msgid "Save"
 msgstr "Kaydet"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Saydamlık ekle"
+msgstr "Şeffaflık olmadan kaydedin"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -199,7 +213,7 @@ msgstr "Farklı aktar…"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Panoya kopyala"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -349,7 +363,7 @@ msgstr "Tam ekran"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Araç çubuklarını gizle"
 
 #: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
@@ -461,9 +475,8 @@ msgid "Previous tool"
 msgstr "Önceki araç"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Diğer araçlar"
+msgstr "Etkin araç"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -472,12 +485,11 @@ msgstr "Araç adlarını göster"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Daha büyük genişlik"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Öntanımlı genişlik"
+msgstr "Daha küçük genişlik"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
@@ -502,7 +514,7 @@ msgstr "Hata bildir"
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr "İndeks"
+msgstr "Dizin"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -536,7 +548,7 @@ msgstr "Aç"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Resmi paylaşın"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -660,9 +672,8 @@ msgid "Close the active image"
 msgstr "Aktif resmi kapat"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Seçenekler menüsü"
+msgstr "Araç seçenekleri menüsünü açın"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -670,7 +681,7 @@ msgstr "Önceki araca dön"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Bir dönüşüm uygulayın"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -719,13 +730,12 @@ msgid "Toggle the preview"
 msgstr "Önizlemeyi değiştir"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Tam ekran kipine gir"
+msgstr "Tam ekran modunu değiştir"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Araç çubuklarının görünürlüğünü değiştir"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -749,7 +759,7 @@ msgstr "Yinele %s"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Yeni pixbuf boş,% s için hiçbir değişiklik uygulanmadı"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
@@ -808,7 +818,9 @@ msgstr "Hata veya fikir bildirin"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Serdar Sağlam <teknomobil@yandex.com>"
+msgstr ""
+"Serdar Sağlam <teknomobil@yandex.com>\n"
+"Serkan Önder <serkanonder@outlook.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -825,15 +837,14 @@ msgid "Official webpage"
 msgstr "Resmi sayfa"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Bu dosyayı açarken hata. %s demek mi istediniz?"
+msgstr "Bu dosyayı açarken hata."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "%s mi demek istediniz?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -961,7 +972,7 @@ msgstr "İşaretleyici"
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr ""
+msgstr "Noktalar"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1118,16 +1129,15 @@ msgstr "%s üstünde kaydedilmemiş değişiklikler."
 msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
-msgstr ""
+msgstr "Görüntünün bir bölümü seçildi ve seçimin altındaki pikseller boş."
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "Mevcut araçtaki değişiklikler uygulanmadı."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Nerede açmak istiyorsunuz %s?"
+msgstr "Yine de kaydetmek istiyor musun?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1248,19 +1258,19 @@ msgid "degrees"
 msgstr "derece"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Bir görüntü aç"
+msgstr "%s bir resim değil."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "Üzgünüz, WEBP resimleri bu uygulama tarafından yüklenemez."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Adına rağmen %s bir WEBP dosyasıdır."
 
 #. Context: an error message
 #: src/window.py
@@ -1270,7 +1280,7 @@ msgstr "Araç yüklenemedi: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Pano herhangi bir görüntü içermiyor."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1285,17 +1295,20 @@ msgstr "Seçenek yok"
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
+"Denetimleri göstermek / gizlemek için orta tıklayın, 3 parmağınızla dokunun "
+"veya F8 tuşuna basın."
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Tam ekrandan çık"
+msgstr "Tam ekrandan çıkmak için F11'e basın."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
+msgstr ""
+"'% s' aracı için alt bölme yüklenirken hata oluştu, lütfen bu hatayı "
+"bildirin."
 
 #: src/window.py
 #, python-format
@@ -1331,18 +1344,16 @@ msgid "What do you want to do with %s?"
 msgstr "%s ile ne yapmak istersin?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Panodaki Resmi Düzenle"
+msgstr "Resim panoya kopyalandı"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Diskteki görüntü değişti, yeniden yüklemek istiyor musunuz?"
 
 #: src/window.py
-#, fuzzy
 msgid "Reload"
-msgstr "Yeniden yükle"
+msgstr "Tekrar yükle"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1356,7 +1367,7 @@ msgstr "Gerekli araç kullanılamıyor"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
+msgstr "İşlem başlatılamıyor: yanlış araç kimliği ({0} bekleniyor, {1} var)"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1422,9 +1433,8 @@ msgid "More actions"
 msgstr "Daha fazla eylem"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Şununla genişlet..."
+msgstr "Şununla genişlet…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1435,7 +1445,7 @@ msgstr "Saydamlık"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Bu renkten ayıkla"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
@@ -1454,7 +1464,7 @@ msgstr "Daha fazla seçenek"
 
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr "Şununla genişlet..."
+msgstr "Şununla genişlet…"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1517,9 +1527,8 @@ msgid "Vertical deformation"
 msgstr "Dikey deformasyon"
 
 #: src/tools/ui/selection.ui
-#, fuzzy
 msgid "Transform"
-msgstr "Saydam"
+msgstr "Dönüşüm"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1544,47 +1553,41 @@ msgid "Square"
 msgstr "Kare"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Oklar"
+msgstr "Ok yok"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Basit ok"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Kesikli ok"
+msgstr "Çift ok"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Kısa çizgiler"
+msgstr "Çizgi yok"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Kısa çizgiler"
+msgstr "Basit çizgiler"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Kısa çizgiler"
+msgstr "Uzun çizgiler"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
 msgstr "Kısa çizgiler"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Dönüşümlü çizgiler"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
 #: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
@@ -1593,9 +1596,8 @@ msgid "Antialiasing"
 msgstr "Düzgünleştir"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Active filter"
-msgstr "Diğer araçlar"
+msgstr "Aktif filtre"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1614,12 +1616,12 @@ msgstr "Saydamlık ekle"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Kontrast arttırın"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Kabartma"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -1664,13 +1666,12 @@ msgid "Invert colors"
 msgstr "Renkleri ters çevir"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Dikdörtgen arka plan"
+msgstr "Açık arka plan üzerinde koyu metin"
 
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Koyu arka plan üzerinde açık renkli metin"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1700,22 +1701,20 @@ msgstr "Temizle ve değiştir"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Açılan görüntüler"
+msgstr "Resmin tamamı"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Ham kaynak rengi"
+msgstr "Rengi kaldır"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Nokta türü"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -1724,31 +1723,31 @@ msgstr "Daire"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Çapraz"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "X şeklindeki çapraz"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Bir numara ekleyin"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Sonraki numara"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Numarayı sıfırla"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Numarayı küçült"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Bumarayı büyüt"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1874,9 +1873,8 @@ msgid "Dashed"
 msgstr "Kesik"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "İşaretleyici"
+msgstr "Fosforlu kalem seçenekleri"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1895,9 +1893,8 @@ msgid "Click on an area to replace its color by transparency"
 msgstr "Rengi saydamlıkla değiştirmek için bir alana tıkla"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Kapatmak için şeklin ilk noktasına tıklayın."
+msgstr "Tamamen boyamak için tuvali tıklayın"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
@@ -1908,14 +1905,13 @@ msgid "Pencil options"
 msgstr "Fırça seçenekleri"
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Yazıtipi seçenekleri"
+msgstr "Noktalama seçenekleri"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr ""
+msgstr "Sonraki numara: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
