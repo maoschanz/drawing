@@ -1,22 +1,23 @@
 # Spanish translation of drawing.
-# Copyright (C) 2018-2020 Romain F. T.
+# Copyright (C) 2018-2021
 # This file is distributed under the same license as the drawing package.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020
 # Xoán Sampaíño <xoansampainho@gmail.com>, 2019
+# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 10:12+0100\n"
-"PO-Revision-Date: 2020-08-24 05:01-0500\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2021-01-30 20:50+0100\n"
+"PO-Revision-Date: 2021-01-26 11:25+0100\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
+"Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -38,13 +39,13 @@ msgstr "Paint;Boceto;Lápiz;"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
-msgstr "Ventana nueva"
+msgstr "Nueva ventana"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "New Image"
-msgstr "Imagen nueva"
+msgstr "Nueva imagen"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
@@ -85,12 +86,17 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Entre los errores curiosos: los paneles inferiores a veces se negaban a "
+"adaptarse al tamaño de la pantalla, y podían desaparecer bajo ciertas "
+"condiciones."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"La catastrófica acción de \"imprimir\", que nadie utilizó nunca, por lo que "
+"nadie se dio cuenta, es ahora algo utilizable."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -906,7 +912,7 @@ msgstr "Edita el contenido del portapapeles"
 
 #: src/main.py
 msgid "This version isn't stable!"
-msgstr "Esta versión no es estable."
+msgstr "¡Esta versión no es estable!"
 
 #: src/main.py
 msgid "Report bugs or ideas"
@@ -918,7 +924,8 @@ msgstr "Informar de fallos o proponer ideas"
 msgid "translator-credits"
 msgstr ""
 "Xoán Sampaíño <xoansampainho@gmail.com>, 2019\n"
-"Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020"
+"Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020\n"
+"Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2020-2021"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -936,13 +943,13 @@ msgstr "Sitio web oficial"
 
 #: src/main.py
 msgid "Error opening this file."
-msgstr "Error al abrir el archivo."
+msgstr "Error al abrir este archivo."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr "¿Quizá quería decir %s?"
+msgstr "¿Quiso decir %s?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1396,10 +1403,12 @@ msgid "Opened images"
 msgstr "Imágenes abiertas"
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Error al iniciar la aplicación; por favor, informe acerca del fallo."
+msgstr ""
+"Error al cargar el panel inferior de la herramienta '%s', por favor informe "
+"de este error."
 
 #: src/window.py
 #, python-format
@@ -2071,17 +2080,11 @@ msgstr "Escalando el lienzo"
 msgid "Skew"
 msgstr "Inclinar"
 
-#~ msgid "Thin"
-#~ msgstr "Extremos apuntados"
-
 #~ msgid "Edit"
 #~ msgstr "Editar"
 
 #~ msgid "Open a file"
 #~ msgstr "Abrir un archivo"
-
-#~ msgid "Save as"
-#~ msgstr "Guardar como"
 
 #~ msgid "Keyboard"
 #~ msgstr "Teclado"

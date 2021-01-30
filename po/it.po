@@ -1,14 +1,14 @@
 # ITALIAN TRANSLATION FOR DRAWING.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# ALBANO BATTISTELLA <albano_battistella@hotmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 10:12+0100\n"
-"PO-Revision-Date: 2020-10-25 21:15+0100\n"
+"POT-Creation-Date: 2021-01-30 20:50+0100\n"
+"PO-Revision-Date: 2021-01-30 13:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -89,6 +89,8 @@ msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"La catastrofica azione \"stampa\", che nessuno ha mai usato quindi nessuno "
+"mai ha notato, ora è in qualche modo utilizzabile."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -789,7 +791,7 @@ msgstr "Ritorna allo strumento precedente"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Applica una trasformazione"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -949,15 +951,14 @@ msgid "Official webpage"
 msgstr "Pagina Web Ufficiale"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Errore nell'apertura del file. Intendevi %s ?"
+msgstr "Errore durante l'apertura di questo file."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Intendevi %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1367,19 +1368,19 @@ msgid "degrees"
 msgstr "gradi"
 
 #: src/utilities.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Apri un' immagine"
+msgstr "%s non è un'immagine."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "Spiacenti, le immagini WEBP non possono essere caricate da questa app."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Nonostante il nome, %s è un file WEBP."
 
 #. Context: an error message
 #: src/window.py
@@ -1389,7 +1390,7 @@ msgstr "Strumento di caricamento non riuscito: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Gli appunti non contengono nessuna immagine"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1406,10 +1407,12 @@ msgid "Opened images"
 msgstr "Immagini aperte"
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
+msgstr ""
+"Errore durante il caricamento del pannello inferiore per lo strumento '%s', "
+"segnala questo bug."
 
 #: src/window.py
 #, python-format
@@ -1440,7 +1443,7 @@ msgstr "questi file"
 #. Context: %s will be replaced by the name of a file. The possible
 #. answers are "cancel", "open", and "import"
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid "What do you want to do with %s?"
 msgstr "Cosa vuoi fare con %s?"
 
@@ -2076,9 +2079,6 @@ msgstr "Ridimensionamento della tela"
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
 msgstr "Storto"
-
-#~ msgid "Flip"
-#~ msgstr "Ribalta"
 
 #~ msgid "Edit"
 #~ msgstr "Modifica"
