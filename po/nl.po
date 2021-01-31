@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-24 04:28+0100\n"
-"PO-Revision-Date: 2020-12-10 13:33+0100\n"
+"PO-Revision-Date: 2021-01-31 17:42+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
@@ -77,18 +77,25 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"Met Drawing 0.8.0 kun je eindelijk je tablet en stylus gebruiken om te "
+"tekenen. Hiervoor kun je gebruikmaken van de nieuwe drukgevoelige "
+"gereedschappen, zoals de kwast en airbrush."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"De beeldvullende modus is volledig opnieuw ontworpen en daardoor eenvoudiger "
+"in het gebruik, met toegang tot meer gereedschappen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"De filters zijn opnieuw geïmplementeerd waardoor ze betrouwbaarder zijn. "
+"Daarnaast is er een filter voor het verhogen van het contrast toegevoegd."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -97,6 +104,10 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Als je selectie verplaatst of wist, kunnen de achtergebleven pixels voortaan "
+"een specifieke kleur tonen in plaats van doorzichtigheid. Deze kleur kun je "
+"ook uitsluiten van de selectie. Het is moeilijk onder woorden te brengen, "
+"dus probeer het gewoon eens uit."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -110,12 +121,16 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Een interessante bug opgelost: het onderste paneel paste zich soms niet aan "
+"aan de schermgrootte en verdween soms zelfs volledig."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"De catastrofale afdrukactie, die niemand ooit gebruikte of zelfs maar kende, "
+"is nu enigszins bruikbaar."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1287,10 +1302,10 @@ msgid "Press F11 to exit fullscreen."
 msgstr "Druk op F11 om de beeldvullende modus te verlaten."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Fout: ongeldig paneel voor '%s'. Meld deze bug."
+msgstr "Fout: het paneel van '%s' kan niet worden geladen. Meld deze bug."
 
 #: src/window.py
 #, python-format
@@ -1417,9 +1432,8 @@ msgid "More actions"
 msgstr "Meer acties"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Uitbreiden met…"
+msgstr "Vervangen door…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1430,7 +1444,7 @@ msgstr "Doorzichtigheid"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Extraheren uit deze kleur"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
@@ -1581,9 +1595,8 @@ msgid "Antialiasing"
 msgstr "Anti-kartelvorming"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Active filter"
-msgstr "Actief gereedschap"
+msgstr "Actief filter"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1602,12 +1615,12 @@ msgstr "Doorzichtigheid toevoegen"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Contrast verhogen"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Reliëf toepassen"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
