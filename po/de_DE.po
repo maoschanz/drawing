@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Onno Giesmann <nutzer3105@gmail.com>, 2019-2020.
+# Onno Giesmann <nutzer3105@gmail.com>, 2019-2021.
 # Milo Ivir <mail@milotype.de>, 2020.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-24 04:28+0100\n"
-"PO-Revision-Date: 2020-12-26 23:13+0100\n"
+"PO-Revision-Date: 2021-01-31 15:36+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -78,18 +78,26 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"Mit Zeichnung 0.8.0 können Sie nun endlich auch ein Tablet und einen Stylus "
+"verwenden, um mit druckempfindlichen Werkzeugen, wie dem neuen 'Pinsel' und "
+"'Airbrush', zu zeichnen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"Der Vollbild-Modus wurde komplett überarbeitet, um einen einfacheren und "
+"dennoch weniger aufdringlicheren Zugriff auf die Werkzeuge und ihren "
+"Optionen zu bieten."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"Filter wurden umgeschrieben, damit sie zuverlässiger funktionieren. Auch ein "
+"neuer Filter zur harmonischen Erhöhung des Kontrasts wurde hinzugefügt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,6 +106,11 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Wenn Sie eine Auswahl löschen oder verschieben, können Sie jetzt den "
+"verbleibenden Pixeln eine Farbe zuweisen, anstelle sie transparent zu "
+"lassen. Diese bestimmte Farbe kann von der Auswahl ausgeschlossen werden. "
+"Aber die Funktion ist zu komplex, um es in Worten zu beschreiben. Probieren "
+"Sie es selber aus und Sie werden verstehen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -111,12 +124,17 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Zu den lustigen Fehlern: die unteren Felder wollten sich manchmal nicht an "
+"die Bildschirmgröße anpassen und konnten unter bestimmten Bedingungen "
+"verschwinden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"Die katastrophale \"Druck\"-Aktion, die niemand bemerkt und daher niemand "
+"genutzt hat, ist nun etwas mehr brauchbar."
 
 # Copied & pasted into the translated-field to get 100% translated. Did no change to the source string.
 #. This is just my name, do not translate it.
@@ -1464,7 +1482,7 @@ msgstr "Erweitern mit…"
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
-msgstr "Wählen Sie einen Filter…"
+msgstr "Filter auswählen…"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1811,7 +1829,7 @@ msgstr "Schriftart"
 
 #: src/tools/ui/tool-text.ui
 msgid "Select a font…"
-msgstr "Wählen Sie eine Schriftart…"
+msgstr "Schriftart auswählen…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
