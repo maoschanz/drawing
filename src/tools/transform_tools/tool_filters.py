@@ -40,7 +40,7 @@ class ToolFilters(AbstractCanvasTool):
 		self.type_label = _("Change saturation")
 		self._active_filter = 'saturation'
 
-		# Options specific to filters but which are here for no good reason
+		# Options specific to filters, but which are here for no good reason
 		self.add_tool_action_enum('filters_blur_dir', 'none')
 		self.blur_algo = BlurType.INVALID
 
@@ -119,6 +119,7 @@ class ToolFilters(AbstractCanvasTool):
 			self._active_filter = 'contrast'
 		# TODO changer la luminosity tant qu'à faire
 		elif state_as_string == 'emboss':
+			# Context: a filter. See "image embossing" on wikipedia
 			self.type_label = _("Emboss")
 			self._active_filter = 'emboss'
 

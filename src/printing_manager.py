@@ -71,6 +71,12 @@ class DrPrintingManager():
 		op.set_n_pages(1)
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
 
+	# The typical way to use the high-level printing API is to create a
+	# Gtk.PrintOperation object with Gtk.PrintOperation.new() when the user
+	# selects to print. Then you set some properties on it, e.g. the page size,
+	# any Gtk.PrintSettings from previous print operations, the number of pages,
+	# the current page, etc.
+	#
 	# XXX là je ne restaure aucun PrintSettings ce qui est un problème
 
 	def _show_pixbuf_on_page(self, print_ctx, pixbuf):
