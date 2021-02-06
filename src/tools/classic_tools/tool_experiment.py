@@ -51,7 +51,7 @@ class ToolExperiment(AbstractClassicTool):
 		}
 		self._operator_label = "OVER"
 		self.operator2 = cairo.Operator.OVER
-		self._selected_mode = 'pressure'
+		self._selected_mode = 'feather-simple'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
@@ -175,6 +175,10 @@ class ToolExperiment(AbstractClassicTool):
 			# if operation['is_preview']: # Previewing helps performance & debug
 			# 	return self.op_simple(operation, cairo_context)
 			self.op_airbrush(operation, cairo_context)
+		elif operation['mode'] == 'feather-simple':
+			if operation['is_preview']: # Previewing helps performance & debug
+				return self.op_simple(operation, cairo_context)
+			self.op_feather_simple(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
 
@@ -204,6 +208,42 @@ class ToolExperiment(AbstractClassicTool):
 
 		# Draw it
 		cairo_context.stroke()
+
+	############################################################################
+
+	def op_feather_simple(self, operation, cairo_context):
+		# TODO ok it draws something cool but filling a path isn't enough, it
+		# has to one parallelogram per segment and paint it on the canvas using
+		# an intermediate layer, like with the dynamic brush...
+		cairo_context.set_operator(cairo.Operator.OVER)
+		line_width = operation['line_width'] / 2
+		two_ways_path = []
+
+		feather_point = {'x': 1, 'y': -1}
+		for pt in operation['path']:
+			x = pt['x'] + feather_point['x'] * line_width
+			y = pt['y'] + feather_point['y'] * line_width
+			two_ways_path.append({'x': int(x), 'y': int(y)})
+
+		feather_point = {'x': -1, 'y': 1}
+		reversed_path = list(reversed(operation['path']))
+		for pt in reversed_path:
+			x = pt['x'] + feather_point['x'] * line_width
+			y = pt['y'] + feather_point['y'] * line_width
+			two_ways_path.append({'x': int(x), 'y': int(y)})
+
+		# Build a cairo path from the raw data
+		cairo_context.new_path()
+		for pt in two_ways_path:
+			cairo_context.line_to(pt['x'], pt['y'])
+		path = cairo_context.copy_path()
+
+		# Smooth it
+		cairo_context.new_path()
+		utilities_smooth_path(cairo_context, path)
+
+		# Draw it
+		cairo_context.fill()
 
 	############################################################################
 

@@ -3,29 +3,40 @@
   <menu id="options-menu">
 
     <section>
-      <attribute name="label">Pinceaux</attribute>
+      <attribute name="label">Pinceaux simples</attribute>
       <item>
-        <attribute name="label">Simple</attribute>
+        <attribute name="label">Tracé brut</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">simple</attribute>
       </item>
       <item>
-        <attribute name="label">Lisse (ajout de points)</attribute>
+        <attribute name="label">Lissé (ajout de points)</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">smooth</attribute>
       </item>
       <item>
-        <attribute name="label">Dynamique (mixte)</attribute>
+        <attribute name="label">Plume pleine fixe</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">feather-simple</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label">Pinceaux dynamiques</attribute>
+      <item>
+        <attribute name="label">Tracé brut (mixte)</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">pressure</attribute>
       </item>
-      <!-- <item> -->
-      <!--   <attribute name="label">Pinceau à motif</attribute> -->
-      <!--   <attribute name="action">win.experiment_mode</attribute> -->
-      <!--   <attribute name="target">pattern</attribute> -->
-      <!-- </item> -->
       <item>
-        <attribute name="label">Aérographe</attribute>
+        <attribute name="label">Plume dynamique</attribute>
+        <!-- <attribute name="action">win.experiment_mode</attribute> -->
+        <!-- <attribute name="target">feather</attribute> -->
+      </item>
+    </section>
+    <section>
+      <attribute name="label">Pinceaux à motifs</attribute>
+      <item>
+        <attribute name="label">Aérographe aléatoire</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">airbrush</attribute>
       </item>
