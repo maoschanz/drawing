@@ -1,22 +1,21 @@
 # Language xx translations for drawing package.
 # Copyright (C) 2020 THE drawing'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Vojtěch Perník <v.pernik@centrum.cz>, 2020.
+# Vojtěch Perník <pervoj@gmx.com>, 2020-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-24 04:28+0100\n"
-"PO-Revision-Date: 2020-11-25 18:15+0100\n"
-"Last-Translator: Vojtěch Perník <v.pernik@centrum.cz>\n"
-"Language-Team: Czech <@>\n"
+"PO-Revision-Date: 2021-02-07 11:30+0100\n"
+"Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -31,7 +30,7 @@ msgstr "Jednoduchý kreslicí nástroj"
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Skica;Tužka;"
+msgstr "Paint;Kreslení;Skica;Tužka;"
 
 #. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
@@ -47,7 +46,7 @@ msgstr "Nový obrázek"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr "Upravit obrázek v clipboardu"
+msgstr "Upravit obrázek ve schránce"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "A drawing application for the GNOME desktop"
@@ -76,18 +75,24 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"S Kreslením 0.8.0 můžete konečně používat tablet a stylus ke kreslení pomocí "
+"nástrojů citlivých na tlak, jako je nový „brush“ a „airbrush“."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"Zobrazení na celou obrazovku bylo zcela přepracováno, aby poskytovalo "
+"snadnější, ale méně rušivý přístup k nástrojům a jejich možnostem."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"Filtry byly přeprogramovány, aby byly spolehlivější, a byl přidán nový "
+"filtr, který harmonicky zvyšuje kontrast."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -96,6 +101,10 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Když přesunete nebo odstraníte výběr, nyní mohou volitelně mít zbývající "
+"pixely konkrétní barvu, nemusí být vždy průhledné. Tuto konkrétní barvu lze "
+"z výběru vyloučit. Ale je složité vysvětlit tuto funkci slovy, zkuste sami, "
+"uvidíte."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -108,12 +117,16 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Legrační chyby: spodní panely se někdy odmítly přizpůsobit velikosti "
+"obrazovky a za určitých podmínek mohly zmizet."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"Katastrofální funkce „tisk“, kterou nikdo nikdy nepoužil, takže si ji ani "
+"nevšiml, je nyní do jisté míry použitelná."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -163,7 +176,7 @@ msgstr "Nový obrázek z výběru"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
-msgstr "Nový obrázek z clipboardu"
+msgstr "Nový obrázek ze schránky"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
@@ -196,7 +209,7 @@ msgstr "Exportovat jako..."
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr "Kopírovat do clipboardu"
+msgstr "Kopírovat do schránky"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -233,7 +246,7 @@ msgstr "Dopředu"
 
 #: src/ui/app-menus.ui
 msgid "Rebuild from history"
-msgstr ""
+msgstr "Znovu načíst z historie"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -787,7 +800,7 @@ msgstr "Otevřít novou záložku"
 #. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
-msgstr "Upravit obsah clipboardu"
+msgstr "Upravit obsah schránky"
 
 #: src/main.py
 msgid "This version isn't stable!"
@@ -801,7 +814,7 @@ msgstr "Nahlásit chyby nebo nápady"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Vojtěch Perník <v.pernik@centrum.cz>"
+msgstr "Vojtěch Perník <pervoj@gmx.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1258,7 +1271,7 @@ msgstr "Nepodařilo se načíst nástroj: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr "Clipboard neobsahuje žádný obrázek."
+msgstr "Schránka neobsahuje žádný obrázek."
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1271,21 +1284,22 @@ msgid "No options"
 msgstr "Žádné možnosti"
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
-"Stisknutím středního tlačítka nebo klávesy F8 zobrazíte/skryjete panely "
-"nástrojů."
+"Stisknutím prostředního tlačítka myši, tapnutím třemi prsty, nebo stisknutím "
+"klávesy F8 zobrazíte/skryjete panely nástrojů."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
 msgstr "Stiskněte F11 pro ukončení zobrazení na celou obrazovku"
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Chyba: neplatná oblast pro \"%s\". Prosím, nahlaste tuto chybu."
+msgstr ""
+"Chyba při načítání spodního panelu pro nástroj \"%s\", prosím, nahlaste tuto "
+"chybu."
 
 #: src/window.py
 #, python-format
@@ -1322,7 +1336,7 @@ msgstr "Co si přejete udělat s %s?"
 
 #: src/window.py
 msgid "Image copied to clipboard"
-msgstr "Obrázek zkopírován do clipboardu."
+msgstr "Obrázek zkopírován do schránky."
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
@@ -1410,9 +1424,8 @@ msgid "More actions"
 msgstr "Více akcí"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Rozbalit pomocí..."
+msgstr "Nahradit s..."
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1574,9 +1587,8 @@ msgid "Antialiasing"
 msgstr "Uhladit"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Active filter"
-msgstr "Aktivní nástroj"
+msgstr "Aktivní filtr"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1595,12 +1607,12 @@ msgstr "Přidat průhlednost"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Zvýšit kontrast"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Převést na reliéf"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
