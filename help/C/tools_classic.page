@@ -73,9 +73,9 @@
         <p>Photo-oriented mode: these options don't make much sense when you're
         drawing something, but they can help you when editing photos.</p>
         <note style="advanced">
-          <p>The idea is to apply <em>only</em> a dimension of the current color
-          in the hue-saturation-luminosity representation, and not the other
-          ones.</p>
+          <p>The idea is to apply <em>only</em> a dimension from the selected
+          color in the hue-saturation-luminosity representation, and not the
+          other ones.</p>
         </note>
         <p>For example, you can draw with a red hue but not affect the
         luminosity of the existing pixels; or draw with a light luminosity but
@@ -107,15 +107,21 @@
     support translucent colors but only works for pixels from the image.</p>
   </section>
 
-  <section>
+  <section id="basic-draw">
     <title>Draw things</title>
 
-    <p>Aside of the colors, most options for these tools concern the ends of the
-    line: it can be thin, rounded or square. You can also draw dashed lines.</p>
+    <p>Aside of the colors, a common option for classic tools is whether or not
+    you want to use anti-aliasing. If you use anti-aliasing, the lines will look
+    smoother, but it may negatively affect any following use of the <gui
+    style="menuitem">Paint</gui> tool, as well as several options of the <link
+    xref="tools_selection">selection</link>.</p>
+    <p>With several tools, you can change the ends of the line: it can be
+    rounded or square. You can also draw various patterns of dashed lines with a
+    few tools.</p>
     <list>
       <item>
-        <p>Pencil: The pencil draws following the pointer, and according to the
-        chosen color.</p>
+        <p>Pencil: The pencil draws following the mouse pointer, and according
+        to the chosen color.</p>
         <note style="tip">
           <p>Using the "eraser" mode from the color menu, the pencil can delete
           all existing colors. Using the "highlight" mode and a semi-transparent
@@ -149,6 +155,21 @@
         straight line, that line is drawn temporarily until a second click.</p>
         <media type="image" mime="image/png" width="80%" its:translate="no"
                src="figures/screenshot_arrow.png" />
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Pressure-sensitive tools</title>
+
+    <p>If you use a drawing tablet and a stylus, you may appreciate these tools,
+    which react to the pressure of your input.</p>
+    <list>
+      <item>
+        <p>Brush: this tool is basically a pencil with less options. The line
+        will be wider if you apply more pressure. Otherwise (if you use a mouse
+        for example), the width of the line will vary according to the speed of
+        your movement.</p>
       </item>
     </list>
   </section>

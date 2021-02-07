@@ -84,21 +84,33 @@
       </item>
       <item>
         <p><gui style="menuitem">Veil</gui> will add a slightly desaturated veil
-        upon the image, with a thin pixelated pattern.</p>
+        upon the image, with a thin grey pixelated pattern.</p>
+        <!-- une trame se dit "screentone" mais ici ça ne s'applique guère -->
+        <!-- puisque c'est gris -->
       </item>
       <item>
-        <p><gui style="menuitem">Transparency</gui> can make the image partly
-        translucent, according to the percentage in the bottom bar.</p>
+        <p><gui style="menuitem">Add transparency</gui> can make the image
+        partly translucent, depending on the percentage you can set in the
+        bottom bar.</p>
       </item>
       <item>
-        <p><gui style="menuitem">Invert colors</gui>.</p>
+        <p><gui style="menuitem">Increase contrast</gui> will increast the
+        contrast in the picture: dark areas will be darker, light areas will be
+        lighter, and color will be stronger. Using the option in the bottom bar,
+        you can choose how strong the effect will be.</p>
       </item>
+      <!-- <item> -->
+      <!--   <p><gui style="menuitem">Emboss</gui>, disabled for now</p> -->
+      <!-- </item> -->
       <item>
         <p><gui style="menuitem">Blur</gui>, and several variations of it, will
         blur the image using a parametrable radius.</p>
         <note style="warning">
           <p>Be careful, applying blur to the image can take a few seconds.</p>
         </note>
+      </item>
+      <item>
+        <p><gui style="menuitem">Invert colors</gui>.</p>
       </item>
     </list>
 
