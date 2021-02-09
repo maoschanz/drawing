@@ -31,6 +31,30 @@
       </item>
     </section>
     <section>
+      <attribute name="label">Orientation de la plume</attribute>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label">—</attribute>
+        <attribute name="action">win.exp_feather_direction</attribute>
+        <attribute name="target">horizontal</attribute>
+      </item>
+      <item>
+        <attribute name="label">Descendant</attribute>
+        <attribute name="action">win.exp_feather_direction</attribute>
+        <attribute name="target">down</attribute>
+      </item>
+      <item>
+        <attribute name="label">|</attribute>
+        <attribute name="action">win.exp_feather_direction</attribute>
+        <attribute name="target">vertical</attribute>
+      </item>
+      <item>
+        <attribute name="label">Montant</attribute>
+        <attribute name="action">win.exp_feather_direction</attribute>
+        <attribute name="target">up</attribute>
+      </item>
+    </section>
+    <section>
       <attribute name="label">Pinceaux à motifs</attribute>
       <item>
         <attribute name="label">Aérographe aléatoire</attribute>

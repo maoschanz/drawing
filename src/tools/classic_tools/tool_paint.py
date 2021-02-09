@@ -163,7 +163,7 @@ class ToolPaint(AbstractClassicTool):
 			self._replace_temp_with_alpha(red, green, blue)
 			i = i+1
 
-		# The main pixbuf is restored, since its alteration were a side effect
+		# The main pixbuf is restored, since its alterations were a side effect
 		# of this highly stupid algorithm
 		self.restore_pixbuf()
 		# We get a context from it again

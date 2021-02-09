@@ -320,7 +320,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			self._future_pixbuf = None
 
 		replacement_type = self.get_option_value('selection-color')
-		# XXX the result is questionable when there was alpha in the area...
+		# FIXME the result is questionable when there was alpha in the area...
 		if replacement_type == 'initial':
 			gdk_rgba = self.get_image().get_initial_rgba()
 			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]

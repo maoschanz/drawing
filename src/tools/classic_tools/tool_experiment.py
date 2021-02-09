@@ -52,9 +52,11 @@ class ToolExperiment(AbstractClassicTool):
 		self._operator_label = "OVER"
 		self.operator2 = cairo.Operator.OVER
 		self._selected_mode = 'feather'
+		self._feather_dir = 'down'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
+		self.add_tool_action_enum('exp_feather_direction', self._feather_dir)
 
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
@@ -62,6 +64,7 @@ class ToolExperiment(AbstractClassicTool):
 	def get_options_label(self):
 		self._set_active_operator()
 		self._set_active_mode()
+		self._set_active_featherdir()
 		if self._selected_mode == 'simple':
 			return self._operator_label
 		else:
@@ -73,6 +76,10 @@ class ToolExperiment(AbstractClassicTool):
 		state_as_string = self.get_option_value('experiment_mode')
 		self._selected_mode = state_as_string
 
+	def _set_active_featherdir(self, *args):
+		state_as_string = self.get_option_value('exp_feather_direction')
+		self._feather_dir = state_as_string
+
 	def _set_active_operator(self, *args):
 		state_as_string = self.get_option_value('experiment_operator')
 		self.operator2 = self._operators_dict[state_as_string]
@@ -81,8 +88,7 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self._set_active_operator()
-		self._set_active_mode()
+		self.get_options_label()
 		self.x_press = event_x
 		self.y_press = event_y
 		self.set_common_values(event.button, event_x, event_y)
@@ -147,6 +153,7 @@ class ToolExperiment(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'line_cap': cairo.LineCap.ROUND,
 			'line_join': cairo.LineJoin.ROUND,
+			'feather_dir': self._feather_dir,
 			'antialias': self._use_antialias,
 			'is_preview': True,
 			'path': self._manual_path
@@ -212,33 +219,53 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def op_feather(self, operation, cairo_context):
-		# TODO feather_def should be a parameter
+		"""Straight-shaped brush, like an orientable feather pen. The width is
+		pressure-sensitive but otherwise it's NOT speed sensitive."""
 		cairo_context.set_operator(cairo.Operator.OVER)
 		line_width = operation['line_width'] / 2
 		two_ways_path = []
 
-		feather_def = {'x': 1, 'y': -1}
-		former_point = None
+		if operation['feather_dir'] == 'up':
+			feather_def = {'x': 1, 'y': -1}
+		elif operation['feather_dir'] == 'down':
+			feather_def = {'x': 1, 'y': 1}
+		elif operation['feather_dir'] == 'horizontal':
+			feather_def = {'x': 1, 'y': 0}
+		elif operation['feather_dir'] == 'vertical':
+			feather_def = {'x': 0, 'y': 1}
 
-		for pt in operation['path']:
+		dx_base = feather_def['x'] * line_width
+		dy_base = feather_def['y'] * line_width
+		use_pressure = operation['path'][0]['p'] is not None
+		if not use_pressure:
+			dx1 = dx_base
+			dy1 = dy_base
+			dx2 = dx_base
+			dy2 = dy_base
+
+		former_point = None
+		for current_point in operation['path']:
 			if former_point is not None:
-				x_delta = feather_def['x'] * line_width
-				y_delta = feather_def['y'] * line_width
+				if use_pressure:
+					dx1 = dx_base * former_point['p']
+					dy1 = dy_base * former_point['p']
+					dx2 = dx_base * current_point['p']
+					dy2 = dy_base * current_point['p']
 				cairo_context.new_path()
-				x = pt['x'] + x_delta
-				y = pt['y'] + y_delta
+				x = current_point['x'] + dx2
+				y = current_point['y'] + dy2
 				cairo_context.move_to(x, y)
-				x = pt['x'] + x_delta * -1
-				y = pt['y'] + y_delta * -1
+				x = current_point['x'] + dx2 * -1
+				y = current_point['y'] + dy2 * -1
 				cairo_context.line_to(x, y)
-				x = former_point['x'] + x_delta * -1
-				y = former_point['y'] + y_delta * -1
+				x = former_point['x'] + dx1 * -1
+				y = former_point['y'] + dy1 * -1
 				cairo_context.line_to(x, y)
-				x = former_point['x'] + x_delta
-				y = former_point['y'] + y_delta
+				x = former_point['x'] + dx1
+				y = former_point['y'] + dy1
 				cairo_context.line_to(x, y)
 				cairo_context.fill()
-			former_point = pt
+			former_point = current_point
 
 	############################################################################
 
