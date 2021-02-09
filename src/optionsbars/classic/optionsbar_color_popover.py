@@ -23,13 +23,12 @@ PREFIX = '/com/github/maoschanz/drawing/'
 
 CAIRO_OP_VALUES = {
 	'over': cairo.Operator.OVER,
-
 	'clear': cairo.Operator.CLEAR,
-	'dest-in': cairo.Operator.DEST_IN,
 
-	'difference': cairo.Operator.DIFFERENCE,
-	'multiply': cairo.Operator.MULTIPLY,
 	'source': cairo.Operator.SOURCE,
+	'difference': cairo.Operator.DIFFERENCE,
+
+	'multiply': cairo.Operator.MULTIPLY,
 
 	'hsl-hue': cairo.Operator.HSL_HUE,
 	'hsl-saturation': cairo.Operator.HSL_SATURATION,
@@ -39,9 +38,7 @@ CAIRO_OP_VALUES = {
 
 CAIRO_OP_LABELS = {
 	'over': _("Normal"),
-
 	'clear': _("Erase"),
-	'dest-in': _("Blur"),
 
 	'difference': _("Difference"),
 	'multiply': _("Highlight"),
@@ -123,7 +120,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self.adapt_to_operator(op_as_string)
 
 	def _operator_supports_color(self, op_as_string):
-		return not (op_as_string == 'clear' or op_as_string == 'dest-in')
+		return not op_as_string == 'clear'
 
 	def adapt_to_operator(self, op_as_string):
 		self._operator_enum = CAIRO_OP_VALUES[op_as_string]
@@ -154,9 +151,6 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		# Draw the thumbnail of the button
 		if op_as_string == 'clear':
 			self._thumbnail_image.set_from_icon_name('tool-eraser-symbolic', \
-			                                         Gtk.IconSize.SMALL_TOOLBAR)
-		elif op_as_string == 'dest-in': # blur
-			self._thumbnail_image.set_from_icon_name('mode-blur-symbolic', \
 			                                         Gtk.IconSize.SMALL_TOOLBAR)
 		else:
 			surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
