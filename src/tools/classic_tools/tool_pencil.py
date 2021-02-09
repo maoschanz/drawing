@@ -81,7 +81,6 @@ class ToolPencil(AbstractClassicTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
 		operation = self.build_operation()
-		operation['is_preview'] = False
 		self.apply_operation(operation)
 
 	############################################################################
@@ -96,7 +95,6 @@ class ToolPencil(AbstractClassicTool):
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,
 			'dashes_type': self._dashes_type,
-			'is_preview': True,
 			'path': self._path
 		}
 		return operation
@@ -112,8 +110,7 @@ class ToolPencil(AbstractClassicTool):
 		self.set_dashes_and_cap(cairo_context, line_width, \
 		                        operation['dashes_type'], operation['line_cap'])
 		utilities_smooth_path(cairo_context, operation['path'])
-		self.stroke_with_operator(operation['operator'], cairo_context, \
-		                                    line_width, operation['is_preview'])
+		self.stroke_with_operator(operation['operator'], cairo_context, line_width)
 
 	############################################################################
 ################################################################################

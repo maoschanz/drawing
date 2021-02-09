@@ -76,7 +76,7 @@ class ToolHighlighter(ToolPencil):
 		else:
 			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		utilities_smooth_path(ccontext, operation['path'])
-		self.stroke_with_operator(op, ccontext, line_width, False)
+		self.stroke_with_operator(op, ccontext, line_width)
 
 	############################################################################
 ################################################################################

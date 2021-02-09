@@ -69,16 +69,16 @@ class ToolLine(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
-		operation = self.build_operation(event_x, event_y, True)
+		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		operation = self.build_operation(event_x, event_y, False)
+		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
 
 	############################################################################
 
-	def build_operation(self, event_x, event_y, is_preview):
+	def build_operation(self, event_x, event_y):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
@@ -90,7 +90,6 @@ class ToolLine(AbstractClassicTool):
 			'dashes_type': self._dashes_type,
 			'arrow_type': self._arrow_type,
 			'use_gradient': self._use_gradient,
-			'is_preview': is_preview,
 			'x_release': event_x,
 			'y_release': event_y,
 			'x_press': self.x_press,
@@ -131,8 +130,7 @@ class ToolLine(AbstractClassicTool):
 		if operation['arrow_type'] != 'none':
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
-		self.stroke_with_operator(operation['operator'], cairo_context, \
-		                                    line_width, operation['is_preview'])
+		self.stroke_with_operator(operation['operator'], cairo_context, line_width)
 
 	############################################################################
 ################################################################################
