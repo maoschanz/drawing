@@ -21,9 +21,9 @@
         <child>
           <object class="GtkBox" id="operator-box-start">
             <property name="visible">True</property>
+            <property name="spacing">10</property>
             <property name="orientation">horizontal</property>
             <property name="tooltip-text" translatable="yes">How the color will be applied to the existing pixels</property>
-            <style><class name="linked"/></style>
             <child>
               <object class="GtkRadioButton" id="op-group">
                 <property name="visible">True</property>
@@ -33,82 +33,154 @@
                 <property name="action-target">'over'</property>
               </object>
             </child>
+
+            <!-- -->
+
             <child>
-              <object class="GtkMenuButton" id="op-menubtn">
+              <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="menu-model">other-operators-menu</property>
+                <property name="orientation">horizontal</property>
+                <style><class name="linked"/></style>
+
                 <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon-name">pan-down-symbolic</property>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'multiply'</property>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'source'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'multiply'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'difference'</property>
-              </object>
-            </child>
-          </object>
-        </child>
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'screen'</property>
+                  </object>
+                </child>
 
-        <child>
-          <object class="GtkBox">
-            <!-- <property name="visible">True</property> -->
-            <property name="orientation">horizontal</property>
-            <style><class name="linked"/></style>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-hue'</property>
+                <child>
+                  <object class="GtkMenuButton" id="op-menubtn1">
+                    <property name="visible">True</property>
+                    <property name="menu-model">highlight-operators-menu</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">tool-highlight-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
               </object>
             </child>
+
+            <!-- -->
+
             <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-saturation'</property>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">horizontal</property>
+                <style><class name="linked"/></style>
+
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'hsl-hue'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'hsl-saturation'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'hsl-color'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'hsl-luminosity'</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkMenuButton" id="op-menubtn2">
+                    <property name="visible">True</property>
+                    <property name="menu-model">hsl-operators-menu</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">display-brightness-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
               </object>
             </child>
+
+            <!-- -->
+
             <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-color'</property>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">horizontal</property>
+                <style><class name="linked"/></style>
+
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'source'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkRadioButton">
+                    <property name="group">op-group</property>
+                    <!-- <property name="visible">True</property> -->
+                    <property name="draw-indicator">False</property>
+                    <property name="action-name">win.cairo_op_mirror</property>
+                    <property name="action-target">'difference'</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkMenuButton" id="op-menubtn">
+                    <property name="visible">True</property>
+                    <property name="menu-model">other-operators-menu</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">view-more-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
               </object>
             </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-luminosity'</property>
-              </object>
-            </child>
+
           </object>
         </child>
 
@@ -202,19 +274,35 @@
       </item>
       <item>
         <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Highlight</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">multiply</attribute>
-      </item>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
         <attribute name="label" translatable="yes">Difference</attribute>
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">difference</attribute>
       </item>
       <!-- and more...? -->
     </section>
-    <submenu>
+  </menu>
+
+  <menu id="highlight-operators-menu">
+    <section>
+      <!-- Context: possible ways to apply the color to the canvas -->
+      <attribute name="label" translatable="yes">Highlight</attribute>
+      <item>
+        <!-- Context: a possible way to highlight text -->
+        <attribute name="label" translatable="yes">Dark text on light background</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">multiply</attribute>
+      </item>
+      <item>
+        <!-- Context: a possible way to highlight text -->
+        <attribute name="label" translatable="yes">Light text on dark background</attribute>
+        <attribute name="action">win.cairo_operator</attribute>
+        <attribute name="target">screen</attribute>
+      </item>
+    </section>
+  </menu>
+
+  <menu id="hsl-operators-menu">
+    <section>
       <!-- Context: possible ways to apply the color to the canvas -->
       <attribute name="label" translatable="yes">Photo-oriented modes</attribute>
       <item>
@@ -241,7 +329,7 @@
         <attribute name="action">win.cairo_operator</attribute>
         <attribute name="target">hsl-luminosity</attribute>
       </item>
-    </submenu>
+    </section>
   </menu>
 
 </interface>

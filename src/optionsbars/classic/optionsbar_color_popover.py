@@ -28,7 +28,9 @@ CAIRO_OP_VALUES = {
 	'source': cairo.Operator.SOURCE,
 	'difference': cairo.Operator.DIFFERENCE,
 
+	# "Highlight" submenu
 	'multiply': cairo.Operator.MULTIPLY,
+	'screen': cairo.Operator.SCREEN,
 
 	'hsl-hue': cairo.Operator.HSL_HUE,
 	'hsl-saturation': cairo.Operator.HSL_SATURATION,
@@ -40,9 +42,12 @@ CAIRO_OP_LABELS = {
 	'over': _("Normal"),
 	'clear': _("Erase"),
 
-	'difference': _("Difference"),
-	'multiply': _("Highlight"),
 	'source': _("Raw source color"),
+	'difference': _("Difference"),
+
+	# "Highlight" submenu
+	'multiply': _("Highlight") + " - " + _("Dark text on light background"),
+	'screen': _("Highlight") + " - " + _("Light text on dark background"),
 
 	'hsl-hue': _("Hue only"),
 	'hsl-saturation': _("Saturation only"),
@@ -84,7 +89,6 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 		self._operator_box_1 = builder.get_object('operator-box-start')
 		self._operator_box_2 = builder.get_object('operator-box-end')
-		self._operator_menubtn = builder.get_object('op-menubtn')
 
 		########################################################################
 		# Color chooser widget #################################################
@@ -127,7 +131,6 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._operator_label = CAIRO_OP_LABELS[op_as_string]
 		# print("adapt to operator :", op_as_string)
 		supports_colors = self._operator_supports_color(op_as_string)
-		self._operator_menubtn.get_popover().popdown()
 		self.color_widget.set_sensitive(supports_colors)
 		self._set_thumbnail_color(op_as_string)
 

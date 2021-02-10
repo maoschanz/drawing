@@ -311,33 +311,17 @@
           <attribute name="target">over</attribute>
         </item>
         <submenu>
-          <attribute name="label" translatable="yes">Other modes</attribute>
+          <attribute name="label" translatable="yes">Highlight</attribute>
           <item>
-            <attribute name="label" translatable="yes">Raw source color</attribute>
-            <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">source</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Highlight</attribute>
+            <attribute name="label" translatable="yes">Dark text on light background</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">multiply</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="label" translatable="yes">Light text on dark background</attribute>
             <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">difference</attribute>
+            <attribute name="target">screen</attribute>
           </item>
-          <!-- TODO ? -->
-          <!-- <item> -->
-          <!--   <attribute name="label" translatable="yes">Lighten</attribute> -->
-          <!--   <attribute name="action">win.cairo_operator</attribute> -->
-          <!--   <attribute name="target">lighten</attribute> -->
-          <!-- </item> -->
-          <!-- <item> -->
-          <!--   <attribute name="label" translatable="yes">Darken</attribute> -->
-          <!--   <attribute name="action">win.cairo_operator</attribute> -->
-          <!--   <attribute name="target">darken</attribute> -->
-          <!-- </item> -->
         </submenu>
         <submenu>
           <attribute name="label" translatable="yes">Photo-oriented modes</attribute>
@@ -360,6 +344,19 @@
             <attribute name="label" translatable="yes">Luminosity only</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">hsl-luminosity</attribute>
+          </item>
+        </submenu>
+        <submenu>
+          <attribute name="label" translatable="yes">Other modes</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Raw source color</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">source</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">difference</attribute>
           </item>
         </submenu>
       </section>
