@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019-2020.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-24 04:28+0100\n"
-"PO-Revision-Date: 2020-12-27 06:26+0100\n"
+"PO-Revision-Date: 2021-02-09 08:15+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -76,18 +76,25 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"Med Drawing 0.8.0 kan du äntligen använda en surfplatta och en stylus-penna "
+"för att rita med tryckkänsliga verktyg, som den nya \"penseln\" och "
+"\"airbrush\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"Helskärmsläget har gjorts om helt för att ge en enklare men mindre "
+"inkräktande åtkomst till verktygen och dess alternativ."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"Filter har skrivits om för att vara mer tillförlitliga, och ett nytt filter "
+"för att öka kontrasten harmoniskt har lagts till."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -96,6 +103,10 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Nu kan de kvarvarande pixlarna valfritt vara en av specifik färg, snarare än "
+"alltid tranparenta, när du flyttar eller tar bort en markering. Denna "
+"specifika färg kan uteslutas från markeringen. Den här funktionen är för "
+"komplex för att förklaras med ord, prova själv så ser du."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -109,12 +120,16 @@ msgid ""
 "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
 "screen size, and could disappear under certain conditions."
 msgstr ""
+"Bland de roliga buggarna: De undre panelerna vägrade ibland att anpassa sig "
+"till skärmstorleken, och kunde försvinna under vissa förhållanden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The catastrophic \"print\" action, that no one ever used so no one ever "
 "noticed, is now somewhat usable."
 msgstr ""
+"Den katastrofala funktionen \"utskrift\", som ingen någonsin använt och "
+"därför inte lagt märke till, är nu något mer användbar."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1910,7 +1925,7 @@ msgstr "Text"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
-msgstr "Teckensnittsalternativ"
+msgstr "Textalternativ"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
