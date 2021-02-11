@@ -30,13 +30,10 @@ class ToolBrush(AbstractClassicTool):
 		self._last_use_pressure = False
 		self.row.get_style_context().add_class('destructive-action')
 
-	# TODO options potentielles : des brosses différentes ? l'antialiasing ?
-
-	def get_options_model(self):
-		return None
+	# TODO options : brush-type ; brush-dir ; et l'antialiasing ?
 
 	def get_options_label(self):
-		return _("No options")
+		return _("Brush options")
 
 	def get_edition_status(self):
 		label = self.label + ' - '
