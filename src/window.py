@@ -22,6 +22,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 # Import tools
 from .tool_arc import ToolArc
 from .tool_brush import ToolBrush
+from .tool_censor import ToolCensor
 from .tool_eraser import ToolEraser
 from .tool_experiment import ToolExperiment
 from .tool_highlight import ToolHighlighter
@@ -154,6 +155,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._load_tool('pencil', ToolPencil, disabled_tools, dev)
 		if dev:
 			self._load_tool('brush', ToolBrush, disabled_tools, dev)
+			self._load_tool('censor', ToolCensor, disabled_tools, dev)
 		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
 		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
 		self._load_tool('text', ToolText, disabled_tools, dev)
