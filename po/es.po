@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-12 02:18+0100\n"
-"PO-Revision-Date: 2021-01-26 11:25+0100\n"
+"PO-Revision-Date: 2021-02-12 17:06+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -39,13 +39,13 @@ msgstr "Paint;Boceto;Lápiz;"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
-msgstr "Nueva ventana"
+msgstr "Ventana nueva"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
 msgid "New Image"
-msgstr "Nueva imagen"
+msgstr "Imagen nueva"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
@@ -59,7 +59,7 @@ msgstr "Una aplicación de dibujo para el escritorio GNOME"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"«Dibujo» es un editor de imagen básico compatible con los tipos de archivo "
+"Dibujo es un editor de imagen básico compatible con los tipos de archivo "
 "PNG, JPEG y BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -79,7 +79,7 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
-"Con Dibujo 0.8.0, por fin podrás utilizar una tableta y un lápiz óptico para "
+"Con Dibujo 0.8.0, por fin podrá utilizar una tableta y un lápiz óptico para "
 "dibujar con herramientas sensibles a la presión, como el nuevo \"pincel\" y "
 "el \"aerógrafo\"."
 
@@ -110,8 +110,8 @@ msgstr ""
 "Cuando se mueve o se borra la selección, ahora los píxeles que quedan pueden "
 "ser opcionalmente de un color específico, en lugar de ser siempre "
 "transparentes. Este color específico puede ser excluido de la selección. "
-"Esta característica es compleja de explicar con palabras, pruébala tú mismo "
-"y verás."
+"Esta característica es compleja de explicar con palabras, pruébela Ud. mismo "
+"y verá."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -143,7 +143,7 @@ msgstr "Hacer zoom de varias formas"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr "El menú de \"nueva imagen\" se abrió"
+msgstr "El menú de \"imagen nueva\" se abrió"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -156,11 +156,11 @@ msgstr "Abrir una imagen"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Blank Image"
-msgstr "Imagen en blanco nueva"
+msgstr "Imagen nueva en blanco"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
 msgid "New Image With Custom Size"
-msgstr "Imagen de tamaño personalizado nueva"
+msgstr "Imagen nueva con tamaño personalizado"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Selection"
@@ -343,7 +343,7 @@ msgstr "Pestaña a la derecha"
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
-msgstr "Actualizar"
+msgstr "Refrescar"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -351,7 +351,7 @@ msgstr "Pantalla completa"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr "Ocultar las barras de herramientas"
+msgstr "Ocultar barras de herramientas"
 
 #: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
@@ -371,7 +371,7 @@ msgstr "Editar color secundario…"
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
-msgstr "Utilizar editor de colores de manera predeterminada"
+msgstr "Utilizar editor de colores por defecto"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -691,7 +691,7 @@ msgstr "Selección"
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Delete the selection"
-msgstr "Borrar la selección"
+msgstr "Eliminar la selección"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -786,7 +786,7 @@ msgstr "Crear"
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
-msgstr "Muestra la versión"
+msgstr "Muestra la versión de la aplicación"
 
 #. Description of a command line option
 #: src/main.py
@@ -824,7 +824,7 @@ msgstr ""
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr "Autores del juego de iconos «Art Libre» de GNOME"
+msgstr "Autores del conjunto de iconos «Art Libre» de GNOME"
 
 #: src/main.py
 msgid "A drawing application for the GNOME desktop."
@@ -918,9 +918,7 @@ msgstr "Preguntar antes de guardar"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr ""
-"Puede ampliar con Ctrl + la ruedecilla del ratón, o bien con solo la "
-"ruedecilla."
+msgstr "Puede ampliar con Ctrl + rueda del ratón, o bien solo la rueda."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
@@ -1122,7 +1120,7 @@ msgstr "Descartar"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Hay cambios no guardados en «%s»."
+msgstr "Hay cambios no guardados en %s."
 
 #: src/saving_manager.py
 msgid ""
@@ -1249,7 +1247,7 @@ msgstr "Imágenes BMP"
 #. To translators: it appears in tooltips over numerical inputs
 #: src/utilities.py
 msgid "percents"
-msgstr "porcentaje"
+msgstr "porcentajes"
 
 #. To translators: it's the angle measure unit, it appears in a tooltip
 #. over a numerical input
@@ -1329,7 +1327,7 @@ msgstr "Descartar cambios"
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr "¿Dónde quiere abrir «%s»?"
+msgstr "¿Dónde quiere abrir %s?"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
@@ -1342,7 +1340,7 @@ msgstr "estos archivos"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "¿Qué quiere hacer con «%s»?"
+msgstr "¿Qué quiere hacer con %s?"
 
 #: src/window.py
 msgid "Image copied to clipboard"
@@ -1430,7 +1428,7 @@ msgstr "Paleta"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Use this editor by default"
-msgstr "Utilizar este editor de manera predeterminada"
+msgstr "Utilizar este editor por defecto"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-rotate.ui
@@ -1601,35 +1599,32 @@ msgid "Antialiasing"
 msgstr "Antidistorsión"
 
 #: src/tools/ui/tool-brush.ui
-#, fuzzy
 msgid "Simple brush"
-msgstr "Guiones simples"
+msgstr "Pincel sencillo"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Airbrush"
-msgstr ""
+msgstr "Aerógrafo"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Calligraphic nib"
-msgstr ""
+msgstr "Punta caligráfica"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Right-handed nib"
-msgstr ""
+msgstr "Punta para diestros"
 
 #: src/tools/ui/tool-brush.ui
-#, fuzzy
 msgid "Vertical nib"
-msgstr "Vertical"
+msgstr "Punta vertical"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Punta para zurdos"
 
 #: src/tools/ui/tool-brush.ui
-#, fuzzy
 msgid "Horizontal nib"
-msgstr "Horizontal"
+msgstr "Punta horizontal"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1733,7 +1728,7 @@ msgstr "Imagen completa"
 #. background.
 #: src/tools/ui/tool-paint.ui
 msgid "Remove color"
-msgstr "Eliminar el color"
+msgstr "Eliminar color"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
@@ -1827,7 +1822,7 @@ msgstr "Forma libre"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
-msgstr "Cerrar forma"
+msgstr "Forma cerrada"
 
 #: src/tools/ui/tool-text.ui
 msgid "Insert here"
@@ -1897,20 +1892,19 @@ msgstr "Discontinua"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Pincel"
 
 #: src/tools/classic_tools/tool_brush.py
-#, fuzzy
 msgid "Brush options"
-msgstr "Más opciones"
+msgstr "Opciones de pincel"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Width depends on the stylus pressure"
-msgstr ""
+msgstr "La anchura depende de la presión del lápiz óptico"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Width depends on the mouse speed"
-msgstr ""
+msgstr "La anchura depende de la velocidad del ratón"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2039,6 +2033,3 @@ msgstr "Radio de desenfoque"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturación"
-
-#~ msgid "Blur"
-#~ msgstr "Desenfocar"
