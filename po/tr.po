@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 04:28+0100\n"
+"POT-Creation-Date: 2021-02-12 02:18+0100\n"
 "PO-Revision-Date: 2021-01-25 17:27+0300\n"
 "Last-Translator: serkanonder@outlook.com\n"
 "Language-Team: \n"
@@ -115,22 +115,6 @@ msgid ""
 msgstr ""
 "Sürüm 0.6.5, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
 "içermektedir."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-"screen size, and could disappear under certain conditions."
-msgstr ""
-"Komik hatalar arasında: alt bölmeler bazen ekran boyutuna uyum sağlamayı "
-"reddediyor ve belirli koşullar altında kaybolabiliyordu."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The catastrophic \"print\" action, that no one ever used so no one ever "
-"noticed, is now somewhat usable."
-msgstr ""
-"Hiç kimsenin kullanmadığı ve hiç kimsenin fark etmediği yıkıcı \"baskı\" "
-"eylemi şimdi bir şekilde kullanılabilir."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -399,28 +383,26 @@ msgstr "Renk uygulama kipi"
 msgid "Normal"
 msgstr "Normal"
 
+#. "Highlight" submenu
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
-msgstr "Diğer kipler"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Raw source color"
-msgstr "Ham kaynak rengi"
-
-#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Vurgu"
 
-#. Context: a possible way to apply the color to the canvas
+#. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Farklılık"
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Açık arka plan üzerinde koyu metin"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Koyu arka plan üzerinde açık renkli metin"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
@@ -451,15 +433,26 @@ msgstr "Ton ve doygunluk"
 msgid "Luminosity only"
 msgstr "Sadece parlaklık"
 
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Other modes"
+msgstr "Diğer kipler"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Raw source color"
+msgstr "Ham kaynak rengi"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Difference"
+msgstr "Farklılık"
+
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
 msgstr "Renkleri kullanmayın ama…"
-
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr "Bulanıklık"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -1595,6 +1588,37 @@ msgstr "Dönüşümlü çizgiler"
 msgid "Antialiasing"
 msgstr "Düzgünleştir"
 
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Simple brush"
+msgstr "Basit çizgiler"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Airbrush"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Calligraphic nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Vertical nib"
+msgstr "Dikey"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Horizontal nib"
+msgstr "Yatay"
+
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
 msgstr "Aktif filtre"
@@ -1617,11 +1641,6 @@ msgstr "Saydamlık ekle"
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
 msgstr "Kontrast arttırın"
-
-#. Context: a filter. See "image embossing" on wikipedia
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Emboss"
-msgstr "Kabartma"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -1664,14 +1683,6 @@ msgstr "Yön yok"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Renkleri ters çevir"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Dark text on light background"
-msgstr "Açık arka plan üzerinde koyu metin"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr "Koyu arka plan üzerinde açık renkli metin"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1872,6 +1883,23 @@ msgstr "Oklar"
 msgid "Dashed"
 msgstr "Kesik"
 
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+#, fuzzy
+msgid "Brush options"
+msgstr "Daha fazla seçenek"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the stylus pressure"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the mouse speed"
+msgstr ""
+
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
 msgstr "Fosforlu kalem seçenekleri"
@@ -1961,6 +1989,11 @@ msgstr "Tuvali kırp"
 msgid "Click on the image to preview the selected filter"
 msgstr "Seçilen süzgeci önizlemek için resme tıklayın"
 
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "Kabartma"
+
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Seçimi döndür"
@@ -1992,11 +2025,9 @@ msgstr "Bulanıklık yarıçapı"
 msgid "Saturation"
 msgstr "Doygunluk"
 
-#~ msgid "com.github.maoschanz.drawing"
-#~ msgstr "com.github.maoschanz.drawing"
+#~ msgid "Blur"
+#~ msgstr "Bulanıklık"
 
-#~ msgid "About"
-#~ msgstr "Hakkında"
 
 #~ msgid "Quit"
 #~ msgstr "Çıkış"

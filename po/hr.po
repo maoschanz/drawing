@@ -1,5 +1,4 @@
 # Croatian translation of Drawing.
-# Copyright (C) 2018-2020 Romain F. T.
 # This file is distributed under the same license as the drawing package.
 # Milo Ivir <mail@milotype.de>, 2020.
 #
@@ -7,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 04:28+0100\n"
+"POT-Creation-Date: 2021-02-12 02:18+0100\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -105,18 +104,6 @@ msgid ""
 msgstr ""
 "Verzija 0.6.5 sadrži nekoliko ispravki manjih programskih grešaka i razne "
 "nove prijevode."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-"screen size, and could disappear under certain conditions."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The catastrophic \"print\" action, that no one ever used so no one ever "
-"noticed, is now somewhat usable."
-msgstr ""
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -386,28 +373,27 @@ msgstr "Modus programa u boji"
 msgid "Normal"
 msgstr "Normalno"
 
+#. "Highlight" submenu
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
-msgstr "Drugi modusi"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Raw source color"
-msgstr "Neobrađena izvorna boja"
-
-#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Isticanje"
 
-#. Context: a possible way to apply the color to the canvas
+#. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Razlika"
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Pravokutna pozadina"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr ""
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
@@ -438,15 +424,26 @@ msgstr "Nijansa i zasićenost"
 msgid "Luminosity only"
 msgstr "Samo osvjetljenost"
 
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Other modes"
+msgstr "Drugi modusi"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Raw source color"
+msgstr "Neobrađena izvorna boja"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Difference"
+msgstr "Razlika"
+
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
 msgstr "Ne koristi boje, već …"
-
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr "Zamuti"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -1596,6 +1593,37 @@ msgstr ""
 msgid "Antialiasing"
 msgstr "Zaglađivanje rubova"
 
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Simple brush"
+msgstr "Koristi crtice"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Airbrush"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Calligraphic nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Vertical nib"
+msgstr "Okomito"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Horizontal nib"
+msgstr "Vodoravno"
+
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
 msgid "Active filter"
@@ -1618,11 +1646,6 @@ msgstr "Dodaj prozirnost"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
-
-#. Context: a filter. See "image embossing" on wikipedia
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Emboss"
 msgstr ""
 
 #. Context: the title of the menu with various types of blurring
@@ -1666,15 +1689,6 @@ msgstr "Bez smjera"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Invertiraj boje"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-#, fuzzy
-msgid "Dark text on light background"
-msgstr "Pravokutna pozadina"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr ""
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1882,6 +1896,23 @@ msgstr "Strelica"
 msgid "Dashed"
 msgstr "Iscrtkano"
 
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+#, fuzzy
+msgid "Brush options"
+msgstr "Daljnje opcije"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the stylus pressure"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the mouse speed"
+msgstr ""
+
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
 msgid "Highlighter options"
@@ -1974,6 +2005,11 @@ msgstr "Rezanje platna"
 msgid "Click on the image to preview the selected filter"
 msgstr "Klikni na sliku za pretprikaz odabranog filtra"
 
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Okretanje odabira"
@@ -2005,6 +2041,8 @@ msgstr "Radijus mutnoće"
 msgid "Saturation"
 msgstr "Zasićenost"
 
+#~ msgid "Blur"
+#~ msgstr "Zamuti"
 #~ msgid "About"
 #~ msgstr "Informacije"
 

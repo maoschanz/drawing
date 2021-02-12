@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 04:28+0100\n"
+"POT-Creation-Date: 2021-02-12 02:18+0100\n"
 "PO-Revision-Date: 2020-10-25 01:41+0700\n"
 "Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
 "Language-Team: Indonesian\n"
@@ -96,18 +96,6 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.6.5 features several minor bug fixes, and various new translations."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-"screen size, and could disappear under certain conditions."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The catastrophic \"print\" action, that no one ever used so no one ever "
-"noticed, is now somewhat usable."
 msgstr ""
 
 #. This is just my name, do not translate it.
@@ -377,28 +365,26 @@ msgstr ""
 msgid "Normal"
 msgstr "Normal"
 
+#. "Highlight" submenu
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
-msgstr "Mode lain"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Raw source color"
-msgstr ""
-
-#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Sorot"
 
-#. Context: a possible way to apply the color to the canvas
+#. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Perbedaan"
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Teks gelap pada latar belakang terang"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Teks terang pada latar belakang gelap"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
@@ -429,15 +415,26 @@ msgstr "Hue dan penjenuhan"
 msgid "Luminosity only"
 msgstr ""
 
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Other modes"
+msgstr "Mode lain"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Raw source color"
+msgstr ""
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Difference"
+msgstr "Perbedaan"
+
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
 msgstr ""
-
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr "Kabur"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -1572,6 +1569,37 @@ msgstr ""
 msgid "Antialiasing"
 msgstr "Antialias"
 
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Simple brush"
+msgstr "Gunakan garis putus-putus"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Airbrush"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Calligraphic nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Vertical nib"
+msgstr "Vertikal"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Horizontal nib"
+msgstr "horisontal"
+
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
 msgid "Active filter"
@@ -1594,11 +1622,6 @@ msgstr "Tambahkan transparansi"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
-
-#. Context: a filter. See "image embossing" on wikipedia
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Emboss"
 msgstr ""
 
 #. Context: the title of the menu with various types of blurring
@@ -1642,14 +1665,6 @@ msgstr "Tanpa arah"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Balik warna"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Dark text on light background"
-msgstr "Teks gelap pada latar belakang terang"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr "Teks terang pada latar belakang gelap"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1850,6 +1865,23 @@ msgstr "Panah"
 msgid "Dashed"
 msgstr "Putus-putus"
 
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+#, fuzzy
+msgid "Brush options"
+msgstr "Lebih banyak opsi"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the stylus pressure"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the mouse speed"
+msgstr ""
+
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
 msgstr "Opsi stabilo"
@@ -1940,6 +1972,11 @@ msgstr "Pangkas kanvas"
 msgid "Click on the image to preview the selected filter"
 msgstr "Klik gambar untuk melihat pratinjau penapis pilihan"
 
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr ""
+
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Putar seleksi"
@@ -1970,6 +2007,9 @@ msgstr "Radius pengaburan"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Penjenuhan"
+
+#~ msgid "Blur"
+#~ msgstr "Kabur"
 
 #~ msgid "About"
 #~ msgstr "Tentang"

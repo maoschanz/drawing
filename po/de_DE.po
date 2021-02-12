@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 04:28+0100\n"
+"POT-Creation-Date: 2021-02-12 02:18+0100\n"
 "PO-Revision-Date: 2021-01-31 15:36+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -119,24 +119,6 @@ msgstr ""
 "Die Version 0.6.5 enthält mehrere kleine Fehlerbehebungen und verschiedene "
 "neue Übersetzungen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-"screen size, and could disappear under certain conditions."
-msgstr ""
-"Zu den lustigen Fehlern: die unteren Felder wollten sich manchmal nicht an "
-"die Bildschirmgröße anpassen und konnten unter bestimmten Bedingungen "
-"verschwinden."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The catastrophic \"print\" action, that no one ever used so no one ever "
-"noticed, is now somewhat usable."
-msgstr ""
-"Die katastrophale \"Druck\"-Aktion, die niemand bemerkt und daher niemand "
-"genutzt hat, ist nun etwas mehr brauchbar."
-
-# Copied & pasted into the translated-field to get 100% translated. Did no change to the source string.
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Romain F. T."
@@ -404,28 +386,26 @@ msgstr "Farbanwendungsmodus"
 msgid "Normal"
 msgstr "Normal"
 
+#. "Highlight" submenu
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
-msgstr "Andere Modi"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Raw source color"
-msgstr "Quellfarbe"
-
-#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Highlight"
 msgstr "Hervorheben"
 
-#. Context: a possible way to apply the color to the canvas
+#. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Gegensätzlich"
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Dunkler Text auf hellem Hintergrund"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Heller Text auf dunklem Hintergrund"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
@@ -456,15 +436,26 @@ msgstr "Farbton und Sättigung"
 msgid "Luminosity only"
 msgstr "Nur Helligkeit"
 
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Other modes"
+msgstr "Andere Modi"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Raw source color"
+msgstr "Quellfarbe"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Difference"
+msgstr "Gegensätzlich"
+
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Don't use the colors but…"
 msgstr "Benutze nicht die Farben, sondern …"
-
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr "Verwischen"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -1608,6 +1599,37 @@ msgstr "Abwechselnde Striche"
 msgid "Antialiasing"
 msgstr "Kantenglättung"
 
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Simple brush"
+msgstr "Einfache Striche"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Airbrush"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Calligraphic nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Vertical nib"
+msgstr "Vertikal"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Horizontal nib"
+msgstr "Horizontal"
+
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
 msgstr "Aktiver Filter"
@@ -1630,11 +1652,6 @@ msgstr "Transparenz hinzufügen"
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
 msgstr "Kontrast erhöhen"
-
-#. Context: a filter. See "image embossing" on wikipedia
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Emboss"
-msgstr "Prägung"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -1677,14 +1694,6 @@ msgstr "Keine Richtung"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Farben tauschen"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Dark text on light background"
-msgstr "Dunkler Text auf hellem Hintergrund"
-
-#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr "Heller Text auf dunklem Hintergrund"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1885,6 +1894,23 @@ msgstr "Pfeil"
 msgid "Dashed"
 msgstr "Gestrichelt"
 
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+#, fuzzy
+msgid "Brush options"
+msgstr "Weitere Optionen"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the stylus pressure"
+msgstr ""
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Width depends on the mouse speed"
+msgstr ""
+
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
 msgstr "Hervorhebe-Optionen"
@@ -1975,6 +2001,11 @@ msgstr "Leinwand zuschneiden"
 msgid "Click on the image to preview the selected filter"
 msgstr "Klicken Sie für eine Vorschau zum ausgewählten Filter auf das Bild"
 
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "Prägung"
+
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Auswahl drehen"
@@ -2006,11 +2037,10 @@ msgstr "Unschärferadius"
 msgid "Saturation"
 msgstr "Sättigung"
 
-#~ msgid "com.github.maoschanz.drawing"
-#~ msgstr "com.github.maoschanz.drawing"
 
-#~ msgid "About"
-#~ msgstr "Info zu"
+#~ msgid "Blur"
+#~ msgstr "Verwischen"
+
 
 #~ msgid "Quit"
 #~ msgstr "Beenden"
