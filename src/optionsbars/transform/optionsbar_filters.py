@@ -62,7 +62,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 		                  50 + widgets_size + \
 		                  self.cancel_btn.get_preferred_width()[0] + \
 		                  self.apply_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
+		self._set_limit_size(temp_limit_size)
 
 	def on_filter_changed(self):
 		self.set_compact(self._is_narrow)

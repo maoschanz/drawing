@@ -109,11 +109,18 @@ class AbstractAbstractTool():
 		tools_menu.append(self.label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
+		"""Returns a Gio.MenuModel corresponding to the tool's options. It'll be
+		shown in the menubar (if any) and in the bottom pane (if the tool's
+		bottom pane supports such a feature)."""
 		fpath = self.UI_PATH + 'tool-' + self.id + '.ui'
 		builder = Gtk.Builder.new_from_resource(fpath)
 		return builder.get_object('options-menu')
 
 	def get_options_widget(self):
+		"""Returns a Gtk.Widget (normally a box) corresponding to the tool's
+		options. It'll be in the bottom pane (if the tool's bottom pane supports
+		such a feature) in replacement of the Gio.MenuModel if such a simple
+		menu can't provide all the features."""
 		return None
 
 	def get_edition_status(self):
@@ -193,6 +200,8 @@ class AbstractAbstractTool():
 		self._ongoing_operation = True
 
 	def apply_operation(self, operation):
+		"""Complete method to apply an operation: the operation is applied and
+		the image is updated as well as the state of actions."""
 		self.simple_apply_operation(operation)
 		self.get_image().update_actions_state()
 		self.get_image().update_history_sensitivity()
@@ -201,10 +210,10 @@ class AbstractAbstractTool():
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
 		try:
 			self.do_tool_operation(operation)
+			self.get_image().add_to_history(operation)
 		except Exception as e:
 			self.show_error(str(e))
 		self._ongoing_operation = False
-		self.get_image().add_to_history(operation)
 		self.non_destructive_show_modif()
 
 	############################################################################

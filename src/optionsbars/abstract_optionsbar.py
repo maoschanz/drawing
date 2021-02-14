@@ -37,9 +37,15 @@ class AbstractOptionsBar():
 		return builder # for implementations-specific widgets
 
 	def build_options_menu(self, widget, model, label):
+		"""Set a widget (or a menu) as the popover with tools options. In
+		practice this is used only with the classic tools' pane, and all classic
+		tools provide a menu instead of a widget."""
 		pass
 
 	def update_for_new_tool(self, tool):
+		"""Update the pane when a tool using it has just been activated. Widgets
+		may be hidden/shown or enabled/disabled depending on the properties of
+		the given tool."""
 		pass
 
 	def get_minimap_btn(self):
@@ -58,21 +64,31 @@ class AbstractOptionsBar():
 		pass
 
 	def init_adaptability(self):
+		"""Instructions to run during the first window size allocation (and only
+		the first). Calling this is managed by the window's `DrOptionsManager`.
+		It estimates the minimal amount of pixels for the mobile version, and
+		gives it to the `_set_limit_size` method.
+		Any implementation HAS TO end with a call to `_set_limit_size`!"""
 		self.set_compact(False)
 		self.action_bar.show_all()
 		# + implementation-specific instructions
 
-	def set_limit_size(self, temp_limit_size):
+	def _set_limit_size(self, temp_limit_size):
 		self._limit_size = int(1.25 * temp_limit_size)
 		self.set_compact(True)
 
 	def adapt_to_window_size(self, allocated_width):
+		"""Check whether or not the costly `set_compact` method should be
+		called, depending on a given window width, and the pane's limit
+		previously set."""
 		can_expand = (allocated_width > self._limit_size)
 		incoherent = (can_expand == self._is_narrow)
 		if incoherent:
 			self.set_compact(not self._is_narrow)
 
 	def set_compact(self, state):
+		"""The parameter is a boolean telling if the bottom pane should become
+		compact or not."""
 		self._is_narrow = state
 		# + implementation-specific instructions
 

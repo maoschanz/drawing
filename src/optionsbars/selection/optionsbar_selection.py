@@ -56,7 +56,7 @@ class OptionsBarSelection(AbstractOptionsBar):
 		                    self.clipboard_box.get_preferred_width()[0] + \
 		                      self.actions_btn.get_preferred_width()[0] + \
 		                      self.minimap_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
+		self._set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)
