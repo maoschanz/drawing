@@ -23,22 +23,35 @@ class ToolCensor(AbstractClassicTool):
 	__gtype_name__ = 'ToolCensor'
 
 	def __init__(self, window, **kwargs):
+		# Context: a tool to hide things like text. You can translate it as
+		# "hide informations" if you think "censor" has a negative connotation
 		super().__init__('censor', _("Censor"), 'tool-censor-symbolic', window)
 		self.use_operator = True
 		self.row.get_style_context().add_class('destructive-action')
 
-		self.add_tool_action_enum('censor-type', 'blur')
+		self.add_tool_action_enum('censor-type', 'mosaic')
 		self._set_options_attributes() # Not optimal but more readable
 
 	def get_options_label(self):
 		return _("Censoring options")
 
 	def _set_options_attributes(self):
-		self._censor_type = self.get_option_value('censor-type')
+		state_as_string = self.get_option_value('censor-type')
+		self._censor_type = state_as_string
+		if state_as_string == 'blur':
+			self._censor_label = _("Blur")
+		elif state_as_string == 'shuffle':
+			self._censor_label = _("Shuffle pixels")
+		elif state_as_string == 'mixed':
+			self._censor_label = _("Shuffle and blur")
+		elif state_as_string == 'mosaic':
+			self._censor_label = _("Mosaic")
+		else: # if state_as_string == 'solid':
+			self._censor_label = _("Solid color")
 
 	def get_edition_status(self):
 		self._set_options_attributes()
-		return self.label
+		return self.label + ' - ' + self._censor_label
 
 	############################################################################
 
@@ -46,64 +59,64 @@ class ToolCensor(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
-		operation = self.build_operation(event_x, event_y, True)
+		self._draw_rectangle(event_x, event_y)
+		operation = self.build_operation(self._path, False)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		operation = self.build_operation(event_x, event_y, False)
+		self._draw_rectangle(event_x, event_y)
+		operation = self.build_operation(self._path, True)
 		self.apply_operation(operation)
+		self._reset_temp_points()
+
+	def _draw_rectangle(self, event_x, event_y):
+		cairo_context = self.get_context()
+		cairo_context.move_to(self.x_press, self.y_press)
+		cairo_context.line_to(self.x_press, event_y)
+		cairo_context.line_to(event_x, event_y)
+		cairo_context.line_to(event_x, self.y_press)
+		cairo_context.close_path()
+		self._path = cairo_context.copy_path()
+
+	def _reset_temp_points(self):
+		self._path = None
+		self.x_press = -1.0
+		self.y_press = -1.0
 
 	############################################################################
 
-	def build_operation(self, event_x, event_y, is_preview):
+	def build_operation(self, path, is_preview):
 		operation = {
 			'tool_id': self.id,
-			'line_width': self.tool_width,
+			'noise': self.tool_width,
+			'rgba': self.main_color,
 			'censor-type': self._censor_type,
 			'is_preview': is_preview,
-			'x_release': event_x,
-			'y_release': event_y,
-			'x_press': self.x_press,
-			'y_press': self.y_press
+			'path': path
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
 		censor_type = operation['censor-type']
-		line_width = operation['line_width']
-		cairo_context.set_line_width(line_width)
-		x1 = operation['x_press']
-		y1 = operation['y_press']
-		x2 = operation['x_release']
-		y2 = operation['y_release']
 
-		# We don't memorize the path because all coords are here anyway for the
-		# surface clipping.
-		cairo_context.move_to(x1, y1)
-		cairo_context.line_to(x2, y2)
+		if operation['is_preview'] or censor_type == 'solid':
+			pass
+			# TODO fill the path with rgba
+			return
 
-		# self.stroke_with_operator(operation['operator'], cairo_context, \
-		#                                     line_width, operation['is_preview'])
-		# FIXME TODO
+		# TODO define a pixbuf from the path
 
-		# is_blur = (operator == cairo.Operator.DEST_IN)
-		# if is_blur and is_preview:
-		# 	context.set_operator(cairo.Operator.CLEAR)
+		if censor_type == 'mosaic':
+			pass # TODO call the tiled blur
+		elif censor_type == 'blur':
+			pass # TODO call the slow blur
+		elif censor_type == 'shuffle':
+			pass # TODO call an utility that'll shuffle the pixels
+		elif censor_type == 'mixed':
+			pass # TODO call that utility + the fast blur
 
-		# if is_blur and not is_preview:
-		# 	context.set_line_width(line_width)
-		# 	context.stroke_preserve()
-		# 	radius = int(line_width / 2)
-		# 	source_surface = self.get_surface()
-			# XXX using the whole surface is suboptimal
-		# 	blurred_surface = utilities_blur_surface(source_surface, radius, 3, 0)
-			# where 0 == BlurType.CAIRO_REPAINTS and 0 == BlurDirection.BOTH
-		# 	self.restore_pixbuf()
-		# 	context = self.get_context()
-		# 	context.set_operator(cairo.Operator.OVER)
-		# 	context.set_source_surface(blurred_surface, 0, 0)
-		# 	context.paint()
+		# TODO paint the pixbuf on the normal surface
 
 	############################################################################
 ################################################################################

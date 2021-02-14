@@ -14,9 +14,19 @@
         <attribute name="target">shuffle</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Both</attribute>
+        <attribute name="label" translatable="yes">Shuffle and blur</attribute>
         <attribute name="action">win.censor-type</attribute>
-        <attribute name="target">both</attribute>
+        <attribute name="target">mixed</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Mosaic</attribute>
+        <attribute name="action">win.censor-type</attribute>
+        <attribute name="target">mosaic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Solid color</attribute>
+        <attribute name="action">win.censor-type</attribute>
+        <attribute name="target">solid</attribute>
       </item>
     </section>
   </menu>
