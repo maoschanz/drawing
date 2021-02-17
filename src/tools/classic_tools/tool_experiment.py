@@ -52,7 +52,7 @@ class ToolExperiment(AbstractClassicTool):
 		self._operator_label = "OVER"
 		self.operator2 = cairo.Operator.OVER
 		self._selected_mode = 'feather'
-		self._feather_dir = 'down'
+		self._feather_dir = 'up'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
@@ -186,8 +186,35 @@ class ToolExperiment(AbstractClassicTool):
 			if operation['is_preview']: # Previewing helps performance & debug
 				return self.op_simple(operation, cairo_context)
 			self.op_feather(operation, cairo_context)
+		elif operation['mode'] == 'macro-w':
+			self.op_macro_w(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
+
+	############################################################################
+
+	def op_macro_w(self, operation, cairo_context):
+		"""Trying to study whatever tf is the rendering issue #337"""
+		cairo_context.set_antialias(cairo.Antialias.DEFAULT)
+		cairo_context.set_operator(cairo.Operator.HSL_HUE)
+		cairo_context.set_line_width(operation['line_width'])
+		cairo_context.new_path()
+		cairo_context.line_to(50, 70)
+		cairo_context.line_to(70, 50)
+		cairo_context.line_to(90, 60)
+		cairo_context.line_to(110, 85)
+		cairo_context.line_to(130, 120)
+		cairo_context.line_to(150, 110)
+		cairo_context.line_to(170, 80)
+		cairo_context.line_to(190, 50)
+		cairo_context.line_to(210, 75)
+		cairo_context.line_to(230, 90)
+		cairo_context.line_to(250, 110)
+		cairo_context.line_to(270, 70)
+		cairo_context.line_to(290, 50)
+		cairo_context.line_to(310, 75)
+		cairo_context.line_to(330, 90)
+		cairo_context.stroke()
 
 	############################################################################
 
