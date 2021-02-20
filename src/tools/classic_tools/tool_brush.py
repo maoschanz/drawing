@@ -30,7 +30,10 @@ class ToolBrush(AbstractClassicTool):
 		self._last_use_pressure = False
 		self.row.get_style_context().add_class('destructive-action')
 
-	# TODO options : brush-type ; brush-dir ; et l'antialiasing ?
+		self.add_tool_action_enum('brush-type', 'simple')
+		self.add_tool_action_enum('brush-dir', 'right')
+
+	# TODO update ces valeurs ; et l'antialiasing ?
 
 	def get_options_label(self):
 		return _("Brush options")
@@ -221,17 +224,23 @@ class ToolBrush(AbstractClassicTool):
 
 		# Creation of a blank surface with a new context using the options set
 		# by the user, except the operator.
-		w = self.get_surface().get_width()
-		h = self.get_surface().get_height()
-		mask = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
-		context2 = cairo.Context(mask)
+		if operation['operator'] == cairo.Operator.CLEAR:
+			context2 = cairo_context
+		else:
+			w = self.get_surface().get_width()
+			h = self.get_surface().get_height()
+			mask = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
+			context2 = cairo.Context(mask)
 		context2.set_line_cap(cairo.LineCap.ROUND)
 		context2.set_line_join(cairo.LineJoin.ROUND)
-		rgba = operation['rgba']
-		context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		if operation['operator'] == cairo.Operator.CLEAR:
+			context2.set_operator(cairo.Operator.CLEAR)
+		else:
+			context2.set_operator(cairo.Operator.SOURCE)
+			rgba = operation['rgba']
+			context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 
 		# Run through the path to manually draw each segment with its width
-		context2.set_operator(cairo.Operator.SOURCE)
 		i = 0
 		context2.new_path()
 		for segment in smoothed_path:
@@ -246,8 +255,11 @@ class ToolBrush(AbstractClassicTool):
 			context2.stroke()
 			context2.move_to(future_x, future_y)
 
+		if operation['operator'] == cairo.Operator.CLEAR:
+			return
+
 		# Paint the surface onto the actual image with the chosen operator
-		cairo_context.set_operator(operation['operator']) # TODO but the blur?
+		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_source_surface(mask)
 		cairo_context.paint()
 
