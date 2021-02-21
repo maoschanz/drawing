@@ -20,6 +20,7 @@ from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 
 from .brush_simple import BrushSimple
+from .brush_airbrush import BrushAirbrush
 
 class ToolBrush(AbstractClassicTool):
 	__gtype_name__ = 'ToolBrush'
@@ -32,17 +33,23 @@ class ToolBrush(AbstractClassicTool):
 
 		self._brushes_dict = {
 			'simple': BrushSimple('simple', self),
+			'airbrush': BrushAirbrush('airbrush', self),
+			'calligraphic': BrushSimple('calligraphic', self),
 		}
 
-		self.add_tool_action_enum('brush-type', 'simple')
-		self.add_tool_action_enum('brush-dir', 'right')
+		self._brush_type = 'simple'
+		self._brush_dir = 'right'
+		self.add_tool_action_enum('brush-type', self._brush_type)
+		self.add_tool_action_enum('brush-dir', self._brush_dir)
 
-	# TODO update ces valeurs ; et l'antialiasing ?
 
 	def get_options_label(self):
 		return _("Brush options")
 
 	def get_edition_status(self):
+		self._brush_type = self.get_option_value('brush-type')
+		self._brush_dir = self.get_option_value('brush-dir')
+
 		label = self.label + ' - '
 		if self._last_use_pressure:
 			label = label + _("Width depends on the stylus pressure")
@@ -106,7 +113,8 @@ class ToolBrush(AbstractClassicTool):
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
-			'brush_id': 'simple',
+			'brush_id': self._brush_type,
+			'nip_dir': self._brush_dir,
 			'rgba': self.main_color,
 			'operator': self._operator,
 			'line_width': self.tool_width,

@@ -77,6 +77,7 @@ drawing_sources = [
 	'tools/classic_tools/tool_text.py',
 
 	'tools/classic_tools/brushes/abstract_brush.py',
+	'tools/classic_tools/brushes/brush_airbrush.py',
 	'tools/classic_tools/brushes/brush_simple.py',
 
 	'tools/selection_tools/abstract_select.py',

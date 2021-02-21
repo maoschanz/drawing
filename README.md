@@ -90,7 +90,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.6.5**)
+(last update: **version 0.7.0+**)
 
 *Tools in italic can be disabled.*
 
@@ -99,6 +99,9 @@ incorrect english labels, please report an issue about it.
 General options for these tools: colors, use antialiasing, size, …
 
 - Pencil (options: dashes, line shape, …)
+- *Brushes (pressure sensitive)*:
+	- *Simple round brush*
+	- *Airbrush*
 - *Eraser*
 - *Highlighter* (options: highlight on dark background)
 - Line (options: arrow, dashes, gradient, …)
@@ -133,10 +136,11 @@ These tools can edit the whole image, or edit a selected part of it.
 - Scale (options: keep proportions or not)
 - Rotate (rotate or flip)
 - Filters:
+	- Saturation (increase or decrease)<!-- - Veil -->
+	- Transparency
+	- Increase contrast
 	- Blur (various types)
 	- Pixelization
-	- Saturation (increase or decrease)
-	- Transparency
 	- Invert colors
 <!-- - Skew (horizontally or vertically) -->
 

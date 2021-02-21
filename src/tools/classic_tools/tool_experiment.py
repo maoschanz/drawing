@@ -178,10 +178,6 @@ class ToolExperiment(AbstractClassicTool):
 			if operation['is_preview']: # Previewing helps performance & debug
 				return self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
-		elif operation['mode'] == 'airbrush':
-			# if operation['is_preview']: # Previewing helps performance & debug
-			# 	return self.op_simple(operation, cairo_context)
-			self.op_airbrush(operation, cairo_context)
 		elif operation['mode'] == 'feather':
 			if operation['is_preview']: # Previewing helps performance & debug
 				return self.op_simple(operation, cairo_context)
@@ -293,27 +289,6 @@ class ToolExperiment(AbstractClassicTool):
 				cairo_context.line_to(x, y)
 				cairo_context.fill()
 			former_point = current_point
-
-	############################################################################
-
-	def op_airbrush(self, operation, cairo_context):
-		cairo_context.set_operator(operation['operator']) # XXX but the blur?
-		cairo_context.set_line_width(1)
-		random.seed(1) # this hardcoded seed avoids the droplets changing their
-		# positions when the user undoes an following operation
-		half_width = operation['line_width'] / 2
-		droplets = 20 # could be like 15 + log(width) maybe?
-		for pt in operation['path']:
-			if pt['p'] is not None:
-				droplets = int(40 * pt['p'])
-			for i in range(droplets):
-				cairo_context.new_path()
-				x = pt['x'] + random.randint(-1 * half_width, half_width)
-				y = pt['y'] + random.randint(-1 * half_width, half_width)
-				cairo_context.move_to(x, y)
-				cairo_context.rel_line_to(1, 1)
-				cairo_context.stroke()
-		# XXX the pattern is square, not round
 
 	############################################################################
 

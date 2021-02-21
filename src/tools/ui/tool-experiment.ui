@@ -39,7 +39,7 @@
         <attribute name="target">horizontal</attribute>
       </item>
       <item>
-        <attribute name="label">Descendant</attribute>
+        <attribute name="label">downw</attribute>
         <attribute name="action">win.exp_feather_direction</attribute>
         <attribute name="target">down</attribute>
       </item>
@@ -49,17 +49,22 @@
         <attribute name="target">vertical</attribute>
       </item>
       <item>
-        <attribute name="label">Montant</attribute>
+        <attribute name="label">upw</attribute>
         <attribute name="action">win.exp_feather_direction</attribute>
         <attribute name="target">up</attribute>
       </item>
     </section>
     <section>
-      <attribute name="label">Pinceaux à motifs</attribute>
+      <attribute name="label">Autres</attribute>
       <item>
-        <attribute name="label">Aérographe aléatoire</attribute>
+        <attribute name="label">Pinceaux à motif par masque</attribute>
         <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">airbrush</attribute>
+        <attribute name="target">pattern</attribute>
+      </item>
+      <item>
+        <attribute name="label">Macro HSL en W</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">macro-w</attribute>
       </item>
     </section>
 
