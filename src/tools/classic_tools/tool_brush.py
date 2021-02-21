@@ -122,12 +122,12 @@ class ToolBrush(AbstractClassicTool):
 
 		if operation['is_preview']: # Previewing helps performance & debug
 			operation['line_width'] = int(operation['line_width'] / 2)
-			return self.op_simple(operation, cairo_context)
+			return self.draw_preview(operation, cairo_context)
 		self.op_pressure(operation, cairo_context)
 
 	############################################################################
 
-	def op_simple(self, operation, cairo_context):
+	def draw_preview(self, operation, cairo_context):
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_width(operation['line_width'])
 		cairo_context.new_path()
@@ -224,22 +224,24 @@ class ToolBrush(AbstractClassicTool):
 
 		# Creation of a blank surface with a new context using the options set
 		# by the user, except the operator.
-		if operation['operator'] == cairo.Operator.CLEAR:
+		if operation['operator'] == cairo.Operator.CLEAR \
+		or operation['operator'] == cairo.Operator.SOURCE:
 			context2 = cairo_context
 		else:
 			w = self.get_surface().get_width()
 			h = self.get_surface().get_height()
 			mask = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
 			context2 = cairo.Context(mask)
-		context2.set_line_cap(cairo.LineCap.ROUND)
-		context2.set_line_join(cairo.LineJoin.ROUND)
-		if operation['operator'] == cairo.Operator.CLEAR:
-			context2.set_operator(cairo.Operator.CLEAR)
+		if operation['operator'] == cairo.Operator.CLEAR \
+		or operation['operator'] == cairo.Operator.SOURCE:
+			context2.set_operator(operation['operator'])
 		else:
 			context2.set_operator(cairo.Operator.SOURCE)
 			rgba = operation['rgba']
 			context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 
+		context2.set_line_cap(cairo.LineCap.ROUND)
+		context2.set_line_join(cairo.LineJoin.ROUND)
 		# Run through the path to manually draw each segment with its width
 		i = 0
 		context2.new_path()
@@ -255,7 +257,8 @@ class ToolBrush(AbstractClassicTool):
 			context2.stroke()
 			context2.move_to(future_x, future_y)
 
-		if operation['operator'] == cairo.Operator.CLEAR:
+		if operation['operator'] == cairo.Operator.CLEAR \
+		or operation['operator'] == cairo.Operator.SOURCE:
 			return
 
 		# Paint the surface onto the actual image with the chosen operator
