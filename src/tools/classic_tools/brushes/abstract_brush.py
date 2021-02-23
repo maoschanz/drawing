@@ -38,6 +38,13 @@ class AbstractBrush():
 		h = self._tool.get_surface().get_height()
 		mask = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
 		context2 = cairo.Context(mask)
+
+		if operation['antialias']:
+			antialias = cairo.Antialias.DEFAULT
+		else:
+			antialias = cairo.Antialias.NONE
+		context2.set_antialias(antialias)
+
 		context2.set_operator(cairo.Operator.SOURCE)
 		rgba = operation['rgba']
 		context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)

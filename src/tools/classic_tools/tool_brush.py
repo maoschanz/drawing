@@ -43,7 +43,6 @@ class ToolBrush(AbstractClassicTool):
 		self.add_tool_action_enum('brush-type', self._brush_type)
 		self.add_tool_action_enum('brush-dir', self._brush_dir)
 
-
 	def get_options_label(self):
 		return _("Brush options")
 
