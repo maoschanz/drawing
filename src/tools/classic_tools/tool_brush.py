@@ -21,6 +21,7 @@ from .abstract_classic_tool import AbstractClassicTool
 
 from .brush_simple import BrushSimple
 from .brush_airbrush import BrushAirbrush
+from .brush_nip import BrushNip
 
 class ToolBrush(AbstractClassicTool):
 	__gtype_name__ = 'ToolBrush'
@@ -34,7 +35,7 @@ class ToolBrush(AbstractClassicTool):
 		self._brushes_dict = {
 			'simple': BrushSimple('simple', self),
 			'airbrush': BrushAirbrush('airbrush', self),
-			'calligraphic': BrushSimple('calligraphic', self),
+			'calligraphic': BrushNip('calligraphic', self),
 		}
 
 		self._brush_type = 'simple'

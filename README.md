@@ -102,6 +102,7 @@ General options for these tools: colors, use antialiasing, size, …
 - *Brushes (pressure sensitive)*:
 	- *Simple round brush*
 	- *Airbrush*
+	- *Calligraphic nibs*
 - *Eraser*
 - *Highlighter* (options: highlight on dark background)
 - Line (options: arrow, dashes, gradient, …)
