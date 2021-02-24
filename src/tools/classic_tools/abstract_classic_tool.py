@@ -116,11 +116,5 @@ class AbstractClassicTool(AbstractAbstractTool):
 			i = i + 1
 		cairo_context.set_dash(dashes_descriptor)
 
-	def stroke_with_operator(self, operator, context, line_width):
-		# TODO l'entièreté de la fonction est supprimable mdr
-		context.set_operator(operator)
-		context.set_line_width(line_width)
-		context.stroke()
-
 	############################################################################
 ################################################################################

@@ -103,14 +103,19 @@ class ToolPencil(AbstractClassicTool):
 		if operation['path'] is None:
 			return
 		cairo_context = self.start_tool_operation(operation)
-		cairo_context.set_line_join(operation['line_join']) # XXX useless?
-		line_width = operation['line_width']
+
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_operator(operation['operator'])
+
+		line_width = operation['line_width']
+		cairo_context.set_line_width(line_width)
 		self.set_dashes_and_cap(cairo_context, line_width, \
 		                        operation['dashes_type'], operation['line_cap'])
+		cairo_context.set_line_join(operation['line_join']) # XXX useless?
+
 		utilities_smooth_path(cairo_context, operation['path'])
-		self.stroke_with_operator(operation['operator'], cairo_context, line_width)
+		cairo_context.stroke()
 
 	############################################################################
 ################################################################################

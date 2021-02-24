@@ -56,9 +56,11 @@ class ToolEraser(ToolPencil):
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(cairo.LineCap.ROUND)
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)
-		line_width = operation['line_width']
+		cairo_context.set_operator(cairo.Operator.CLEAR)
+		cairo_context.set_line_width(operation['line_width'])
+
 		utilities_smooth_path(cairo_context, operation['path'])
-		self.stroke_with_operator(cairo.Operator.CLEAR, cairo_context, line_width)
+		cairo_context.stroke()
 
 	############################################################################
 ################################################################################

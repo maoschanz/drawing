@@ -65,18 +65,22 @@ class ToolHighlighter(ToolPencil):
 		ccontext = self.get_context()
 		ccontext.set_line_cap(cairo.LineCap.SQUARE)
 		ccontext.set_line_join(cairo.LineJoin.ROUND)
-		line_width = operation['width']
+		ccontext.set_line_width(operation['width'])
+
 		if operation['bg-type'] == 'light':
-			op = cairo.Operator.MULTIPLY
+			operator = cairo.Operator.MULTIPLY
 		else:
-			op = cairo.Operator.SCREEN
+			operator = cairo.Operator.SCREEN
+		ccontext.set_operator(operator)
+
 		rgba = operation['rgba']
 		if operation['halpha']:
 			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.5)
 		else:
 			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+
 		utilities_smooth_path(ccontext, operation['path'])
-		self.stroke_with_operator(op, ccontext, line_width)
+		ccontext.stroke()
 
 	############################################################################
 ################################################################################

@@ -128,10 +128,13 @@ class ToolArc(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
-		line_width = operation['line_width']
-		cairo_context.set_line_width(line_width)
+
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_operator(operation['operator'])
+
+		line_width = operation['line_width']
+		cairo_context.set_line_width(line_width)
 		self.set_dashes_and_cap(cairo_context, line_width, \
 		                        operation['dashes_type'], operation['line_cap'])
 
@@ -155,7 +158,7 @@ class ToolArc(AbstractClassicTool):
 			y2 = operation['y_release']
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
-		self.stroke_with_operator(operation['operator'], cairo_context, line_width)
+		cairo_context.stroke()
 
 	############################################################################
 ################################################################################

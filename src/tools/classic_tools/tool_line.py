@@ -130,7 +130,7 @@ class ToolLine(AbstractClassicTool):
 		if operation['arrow_type'] != 'none':
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
-		self.stroke_with_operator(operation['operator'], cairo_context, line_width)
+		cairo_context.stroke()
 
 	############################################################################
 ################################################################################
