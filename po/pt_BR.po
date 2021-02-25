@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-12 02:18+0100\n"
+"POT-Creation-Date: 2021-02-25 01:38+0100\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -373,71 +373,73 @@ msgstr "Modo de aplicação da cor"
 msgid "Normal"
 msgstr "Normal"
 
-#. "Highlight" submenu
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Highlight"
 msgstr "Ênfase"
 
 #. Context: a possible way to highlight text
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
 msgid "Dark text on light background"
 msgstr "Fundo retangular"
 
 #. Context: a possible way to highlight text
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
 msgstr ""
 
-#. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo-oriented modes"
-msgstr "Modos foto-orientados"
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+#, fuzzy
+msgid "HSL modes"
+msgstr "Outros modos"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue only"
 msgstr "Apenas hue"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Saturation only"
 msgstr "Somente saturação"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue and saturation"
 msgstr "Hue e saturação"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
 msgstr "Somente luminosidade"
 
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Other modes"
 msgstr "Outros modos"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Raw source color"
 msgstr "Cor de origem"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Difference"
 msgstr "Diferença"
 
@@ -1372,6 +1374,13 @@ msgstr "Esse algoritmo pode não ser capaz de gerir a area desejada."
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr "Você deseja cancelar essa operacao, ou deixar a ferramenta tentar ?"
 
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#, fuzzy
+msgid "Highlight (dark)"
+msgstr "Realçador"
+
 #. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
@@ -1583,9 +1592,10 @@ msgstr "Usar traços"
 msgid "Alternated dashes"
 msgstr ""
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
-#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Antiserrilhado"
 
@@ -1597,6 +1607,11 @@ msgstr "Usar traços"
 #: src/tools/ui/tool-brush.ui
 msgid "Airbrush"
 msgstr ""
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Hairy brush"
+msgstr "Usar traços"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Calligraphic nib"
@@ -1619,6 +1634,33 @@ msgstr ""
 #, fuzzy
 msgid "Horizontal nib"
 msgstr "horizontal"
+
+#: src/tools/ui/tool-censor.ui
+msgid "Censor type"
+msgstr ""
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Blur"
+msgstr "Borrar"
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#, fuzzy
+msgid "Shuffle pixels"
+msgstr "Pixeis"
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Shuffle and blur"
+msgstr ""
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Mosaic"
+msgstr ""
+
+#. if state_as_string == 'solid':
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#, fuzzy
+msgid "Solid color"
+msgstr "Cor secundária"
 
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
@@ -1904,6 +1946,17 @@ msgstr ""
 msgid "Width depends on the mouse speed"
 msgstr ""
 
+#. Context: a tool to hide things like text. You can translate it as
+#. "hide informations" if you think "censor" has a negative connotation
+#: src/tools/classic_tools/tool_censor.py
+msgid "Censor"
+msgstr ""
+
+#: src/tools/classic_tools/tool_censor.py
+#, fuzzy
+msgid "Censoring options"
+msgstr "Opções da pintura"
+
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
 msgid "Highlighter options"
@@ -2032,8 +2085,8 @@ msgstr "Raio do borrado"
 msgid "Saturation"
 msgstr "Saturação"
 
-#~ msgid "Blur"
-#~ msgstr "Borrar"
+#~ msgid "Photo-oriented modes"
+#~ msgstr "Modos foto-orientados"
 
 #~ msgid "Quit"
 #~ msgstr "Sair"

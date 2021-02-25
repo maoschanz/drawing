@@ -43,8 +43,8 @@ src/optionsbars/transform/optionsbar_scale.py
 src/optionsbars/transform/optionsbar_skew.py
 
 src/optionsbars/classic/optionsbar-classic.ui
-src/optionsbars/classic/optionsbar-color-menus.ui
 src/optionsbars/classic/optionsbar-color-popover.ui
+src/optionsbars/classic/optionsbar-operator-menus.ui
 src/optionsbars/selection/optionsbar-selection.ui
 src/optionsbars/transform/optionsbar-crop.ui
 src/optionsbars/transform/optionsbar-filters.ui
@@ -55,6 +55,7 @@ src/optionsbars/transform/optionsbar-skew.ui
 src/tools/ui/selection.ui
 src/tools/ui/tool-arc.ui
 src/tools/ui/tool-brush.ui
+src/tools/ui/tool-censor.ui
 src/tools/ui/tool-crop.ui
 src/tools/ui/tool-experiment.ui
 src/tools/ui/tool-filters.ui
@@ -72,6 +73,7 @@ src/tools/ui/tool-text.ui
 src/tools/classic_tools/abstract_classic_tool.py
 src/tools/classic_tools/tool_arc.py
 src/tools/classic_tools/tool_brush.py
+src/tools/classic_tools/tool_censor.py
 src/tools/classic_tools/tool_eraser.py
 src/tools/classic_tools/tool_highlight.py
 src/tools/classic_tools/tool_line.py
@@ -81,6 +83,12 @@ src/tools/classic_tools/tool_points.py
 src/tools/classic_tools/tool_picker.py
 src/tools/classic_tools/tool_shape.py
 src/tools/classic_tools/tool_text.py
+
+src/tools/classic_tools/brushes/abstract_brush.py
+src/tools/classic_tools/brushes/brush_airbrush.py
+src/tools/classic_tools/brushes/brush_hairy.py
+src/tools/classic_tools/brushes/brush_nip.py
+src/tools/classic_tools/brushes/brush_simple.py
 
 src/tools/selection_tools/abstract_select.py
 src/tools/selection_tools/select_color.py
