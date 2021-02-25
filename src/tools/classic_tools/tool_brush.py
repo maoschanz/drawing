@@ -22,6 +22,7 @@ from .abstract_classic_tool import AbstractClassicTool
 from .brush_simple import BrushSimple
 from .brush_airbrush import BrushAirbrush
 from .brush_nip import BrushNip
+from .brush_hairy import BrushHairy
 
 class ToolBrush(AbstractClassicTool):
 	__gtype_name__ = 'ToolBrush'
@@ -36,6 +37,7 @@ class ToolBrush(AbstractClassicTool):
 			'simple': BrushSimple('simple', self),
 			'airbrush': BrushAirbrush('airbrush', self),
 			'calligraphic': BrushNip('calligraphic', self),
+			'hairy': BrushHairy('hairy', self),
 		}
 
 		self._brush_type = 'simple'

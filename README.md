@@ -59,7 +59,7 @@ If your language is not here, or is incompletely translated, you can
 |------|--------------|--------|------------|----------------------------------|
 | cs   | Czech        | 0.6.4  | 96%        | [Vojtěch Perník](https://github.com/pervoj)
 | da   | Danish       | 0.4.10 | 92%        | [scootergrisen](https://github.com/scootergrisen)
-| de_DE | German      | 0.4.1  | 97%        | [Onno Giesmann](https://github.com/Etamuk)
+| de   | German       | 0.4.1  | 100%       | [Onno Giesmann](https://github.com/Etamuk)
 |      | English      | 0.2    | 100%       | help welcome **                  |
 | es   | Castillan    | 0.2    | 97%        | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
 | eu   | Basque       | 0.4.14 | 81%        | [alexgabi](https://github.com/alexgabi)
@@ -101,6 +101,7 @@ General options for these tools: colors, use antialiasing, size, …
 - Pencil (options: dashes, line shape, …)
 - *Brushes (pressure sensitive)*:
 	- *Simple round brush*
+	- *Hairy brush*
 	- *Airbrush*
 	- *Calligraphic nibs*
 - *Eraser*
