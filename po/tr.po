@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-12 02:18+0100\n"
-"PO-Revision-Date: 2021-02-17 10:19+0300\n"
-"Last-Translator: serkanonder@outlook.com\n"
+"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"PO-Revision-Date: 2021-02-28 22:15+0300\n"
+"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -383,70 +383,71 @@ msgstr "Renk uygulama kipi"
 msgid "Normal"
 msgstr "Normal"
 
-#. "Highlight" submenu
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Highlight"
 msgstr "Vurgu"
 
 #. Context: a possible way to highlight text
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Dark text on light background"
 msgstr "Açık arka plan üzerinde koyu metin"
 
 #. Context: a possible way to highlight text
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
 msgstr "Koyu arka plan üzerinde açık renkli metin"
 
-#. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo-oriented modes"
-msgstr "Fotoğraf odaklı kipler"
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "HSL modes"
+msgstr "HSL modları"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue only"
 msgstr "Sadece ton"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Saturation only"
 msgstr "Sadece doygunluk"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue and saturation"
 msgstr "Ton ve doygunluk"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
 msgstr "Sadece parlaklık"
 
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Other modes"
 msgstr "Diğer kipler"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Raw source color"
 msgstr "Ham kaynak rengi"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Difference"
 msgstr "Farklılık"
 
@@ -873,7 +874,7 @@ msgstr "Öntanımlı renk"
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
-msgstr "Görüntüleri kaydetme"
+msgstr "Görüntüler kayediliyor"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
@@ -1379,6 +1380,12 @@ msgid "Do you want to abort the operation, or to let the tool struggle ?"
 msgstr ""
 "İşlemi iptal etmek mi yoksa aracın denemesine izin vermek mi istiyorsunuz?"
 
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
+#: src/optionsbars/classic/optionsbar_color_popover.py
+msgid "Highlight (dark)"
+msgstr "Vurgu (koyu)"
+
 #. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
@@ -1582,9 +1589,10 @@ msgstr "Kısa çizgiler"
 msgid "Alternated dashes"
 msgstr "Dönüşümlü çizgiler"
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-highlight.ui
-#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Düzgünleştir"
 
@@ -1595,6 +1603,10 @@ msgstr "Basit fırça"
 #: src/tools/ui/tool-brush.ui
 msgid "Airbrush"
 msgstr "Sprey"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Hairy brush"
+msgstr "Tüylü fırça"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Calligraphic nib"
@@ -1615,6 +1627,31 @@ msgstr "Sol elle kullanılan uç"
 #: src/tools/ui/tool-brush.ui
 msgid "Horizontal nib"
 msgstr "Yatay uç"
+
+#: src/tools/ui/tool-censor.ui
+msgid "Censor type"
+msgstr "Sansür türü"
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Blur"
+msgstr "Bulanıklık"
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Shuffle pixels"
+msgstr "Pikselleri karıştır"
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Shuffle and blur"
+msgstr "Karıştır ve bulanıklaştır"
+
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Mosaic"
+msgstr "Mozaik"
+
+#. if state_as_string == 'solid':
+#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+msgid "Solid color"
+msgstr "Koyu renk"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1896,6 +1933,16 @@ msgstr "Genişlik, prob ucu basıncına bağlıdır"
 msgid "Width depends on the mouse speed"
 msgstr "Genişlik fare hızına bağlıdır"
 
+#. Context: a tool to hide things like text. You can translate it as
+#. "hide informations" if you think "censor" has a negative connotation
+#: src/tools/classic_tools/tool_censor.py
+msgid "Censor"
+msgstr "Sansür"
+
+#: src/tools/classic_tools/tool_censor.py
+msgid "Censoring options"
+msgstr "Sansür seçenekleri"
+
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
 msgstr "Fosforlu kalem seçenekleri"
@@ -1955,7 +2002,7 @@ msgstr "Metin"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
-msgstr "Metin seçenekleri"
+msgstr "Yazıtipi seçenekleri"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -2021,28 +2068,8 @@ msgstr "Bulanıklık yarıçapı"
 msgid "Saturation"
 msgstr "Doygunluk"
 
-#~ msgid ""
-#~ "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-#~ "screen size, and could disappear under certain conditions."
-#~ msgstr ""
-#~ "Komik hatalar arasında: alt bölmeler bazen ekran boyutuna uyum sağlamayı "
-#~ "reddediyor ve belirli koşullar altında kaybolabiliyordu."
-
-#~ msgid ""
-#~ "The catastrophic \"print\" action, that no one ever used so no one ever "
-#~ "noticed, is now somewhat usable."
-#~ msgstr ""
-#~ "Hiç kimsenin kullanmadığı ve hiç kimsenin fark etmediği yıkıcı \"baskı\" "
-#~ "eylemi şimdi bir şekilde kullanılabilir."
-
-#~ msgid "Blur"
-#~ msgstr "Bulanıklık"
-
-#~ msgid "com.github.maoschanz.drawing"
-#~ msgstr "com.github.maoschanz.drawing"
-
-#~ msgid "About"
-#~ msgstr "Hakkında"
+#~ msgid "Photo-oriented modes"
+#~ msgstr "Fotoğraf odaklı kipler"
 
 #~ msgid "Quit"
 #~ msgstr "Çıkış"
