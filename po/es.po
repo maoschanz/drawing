@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 01:38+0100\n"
-"PO-Revision-Date: 2021-02-12 17:06+0100\n"
+"PO-Revision-Date: 2021-03-01 10:31+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -410,9 +410,8 @@ msgstr "Texto claro sobre fondo oscuro"
 #. hue-saturation-luminosity (HSL) representation
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "HSL modes"
-msgstr "Otros modos"
+msgstr "Modos HSL"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -1394,9 +1393,8 @@ msgstr ""
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Rotulador"
+msgstr "Rotulador (oscuro)"
 
 #. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1617,9 +1615,8 @@ msgid "Airbrush"
 msgstr "Aerógrafo"
 
 #: src/tools/ui/tool-brush.ui
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Aerógrafo"
+msgstr "Pincel peludo"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Calligraphic nib"
@@ -1642,33 +1639,29 @@ msgid "Horizontal nib"
 msgstr "Punta horizontal"
 
 #: src/tools/ui/tool-censor.ui
-#, fuzzy
 msgid "Censor type"
-msgstr "Tipo de puntos"
+msgstr "Tipo de censura"
 
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
-#, fuzzy
 msgid "Blur"
-msgstr "Desenfoque"
+msgstr "Difuminar"
 
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "píxeles"
+msgstr "Mezclar píxeles"
 
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Mezclar y difuminar"
 
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mosaico"
 
 #. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
-#, fuzzy
 msgid "Solid color"
-msgstr "Color secundario"
+msgstr "Color sólido"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1954,12 +1947,11 @@ msgstr "La anchura depende de la velocidad del ratón"
 #. "hide informations" if you think "censor" has a negative connotation
 #: src/tools/classic_tools/tool_censor.py
 msgid "Censor"
-msgstr ""
+msgstr "Censura"
 
 #: src/tools/classic_tools/tool_censor.py
-#, fuzzy
 msgid "Censoring options"
-msgstr "Opciones de relleno"
+msgstr "Opciones de censura"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2088,6 +2080,3 @@ msgstr "Radio de desenfoque"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturación"
-
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Modos orientados a la fotografía"
