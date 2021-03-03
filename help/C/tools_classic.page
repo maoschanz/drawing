@@ -57,21 +57,17 @@
         resulting pixels would be opaque green.</p>
       </item>
       <item>
-        <p>Raw source color: the selected color replaces the pixels where it's
-        applied. If your color is semi-transparent yellow, the resulting pixels
-        would be semi-transparent yellow.</p>
-      </item>
-      <item>
         <p>Highlight: the selected color is added to the lighter pixels only,
-        which highlights dark text on light background.</p>
+        which highlights dark text on light background. The opposite
+        (highlighting light text on a dark background) is also possible.</p>
+        <note style="tip">
+          <p>The same result can be achieved used the <link xref="preferences#tools">
+          optional</link> <gui style="menuitem">Highlighter</gui> tool.</p>
+        </note>
       </item>
       <item>
-        <p>Difference: the resulting color is the difference between the
-        selected color and the existing pixels.</p>
-      </item>
-      <item>
-        <p>Photo-oriented mode: these options don't make much sense when you're
-        drawing something, but they can help you when editing photos.</p>
+        <p>HSL modes: these options don't make much sense when you're drawing
+        something, but they can help you when editing photos or drawings.</p>
         <note style="advanced">
           <p>The idea is to apply <em>only</em> a dimension from the selected
           color in the hue-saturation-luminosity representation, and not the
@@ -84,9 +80,13 @@
                src="figures/screenshot_hsl.png" />
       </item>
       <item>
-        <p>Blur: blurs the hovered pixels regardless of the selected color. The
-        quality of this blur is far behind the blurring you can get using the
-        <link xref="tools_transform#filters">"Filters" tool</link>.</p>
+        <p>Raw source color: the selected color replaces the pixels where it's
+        applied. If your color is semi-transparent yellow, the resulting pixels
+        would be semi-transparent yellow.</p>
+      </item>
+      <item>
+        <p>Difference: the resulting color is the difference between the
+        selected color and the existing pixels.</p>
       </item>
       <item>
         <p>Erase: deletes any color where the tool is applied.</p>
@@ -161,6 +161,9 @@
 
   <section>
     <title>Pressure-sensitive brushes</title>
+    <note style="warning">
+      <p>This tool is disabled by default, because it has performance issues.</p>
+    </note>
 
     <p>If you use a drawing tablet and a stylus, you may appreciate the "brush"
     tool, which reacts to the pressure of your input. Various possible brushes
@@ -176,6 +179,11 @@
         <p>Airbrush: small "droplets" of color will be added to the canvas. If
         you apply more pressure, there will be more droplets. Without a
         pressure-sensitive device, their density is constant.</p>
+      </item>
+      <item>
+        <p>Hairy brush: thin parallel lines will be added to the canvas. If you
+        apply more pressure, the lines will be more outspread. Without a
+        pressure-sensitive device, their proximity is constant.</p>
       </item>
       <item>
         <p>Calligraphic nib: this brush draws wider in one direction than in the

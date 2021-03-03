@@ -26,7 +26,7 @@
       <description>User can zoom with scrolling or ctrl+scrolling.</description>
     </key>
     <key type="as" name="disabled-tools">
-      <default>['eraser', 'highlight', 'color_select', 'points', 'picker', 'paint']</default>
+      <default>['brush', 'censor', 'eraser', 'color_select', 'points', 'picker', 'paint']</default>
       <summary>Optional tools to disable</summary>
       <description>A list of optional tools' id to disable.</description>
     </key>
@@ -97,6 +97,12 @@
       <description>The id of the last active tool, saved when closing a
       window.</description>
     </key>
+    <key type="b" name="direct-color-edit">
+      <default>false</default>
+      <summary>Don't use a color palette</summary>
+      <description>If a click on the color button should display directly
+      the complete color selector.</description>
+    </key>
 
     <!-- Tools options state -->
     <key type="as" name="last-right-rgba">
@@ -115,12 +121,6 @@
       <default>5</default>
       <summary>Last tool size</summary>
       <description>The last tool size (px), saved when closing a window.</description>
-    </key>
-    <key type="b" name="direct-color-edit">
-      <default>false</default>
-      <summary>Don't use a color palette</summary>
-      <description>If a click on the color button should display directly
-      the complete color selector.</description>
     </key>
     <key type="s" name="last-active-shape">
       <default>'polygon'</default>
