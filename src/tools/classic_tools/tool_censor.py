@@ -16,8 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
+from gi.repository import Gdk, GdkPixbuf
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_add_arrow_triangle
+from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
 class ToolCensor(AbstractClassicTool):
 	__gtype_name__ = 'ToolCensor'
@@ -60,12 +62,12 @@ class ToolCensor(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self._draw_rectangle(event_x, event_y)
-		operation = self.build_operation(self._path, False)
+		operation = self.build_operation(self._path, True)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._draw_rectangle(event_x, event_y)
-		operation = self.build_operation(self._path, True)
+		operation = self.build_operation(self._path, False)
 		self.apply_operation(operation)
 		self._reset_temp_points()
 
@@ -101,22 +103,39 @@ class ToolCensor(AbstractClassicTool):
 		censor_type = operation['censor-type']
 
 		if operation['is_preview'] or censor_type == 'solid':
-			pass
-			# TODO fill the path with rgba
+			cairo_context.append_path(operation['path'])
+			cairo_context.set_operator(cairo.Operator.SOURCE)
+			c1 = operation['rgba']
+			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+			cairo_context.fill()
 			return
 
-		# TODO define a pixbuf from the path
+		cairo_context.append_path(operation['path'])
+		path_extents = cairo_context.path_extents()
+		width = int(path_extents[2] - path_extents[0])
+		height = int(path_extents[3] - path_extents[1])
+		surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
+		ccontext2 = cairo.Context(surface)
+		ccontext2.set_source_surface(self.get_surface(), -1 * path_extents[0], -1 * path_extents[1])
+		ccontext2.paint()
+		scale = self.scale_factor()
+		surface.set_device_scale(scale, scale)
 
+		b_rad = 12 # XXX la largeur du rectangle ? la "width" de l'outil ?
+		b_dir = BlurDirection.BOTH
 		if censor_type == 'mosaic':
-			pass # TODO call the tiled blur
+			bs = utilities_blur_surface(surface, b_rad, BlurType.TILES, b_dir)
 		elif censor_type == 'blur':
-			pass # TODO call the slow blur
+			bs = utilities_blur_surface(surface, b_rad, BlurType.PX_BOX, b_dir)
 		elif censor_type == 'shuffle':
 			pass # TODO call an utility that'll shuffle the pixels
 		elif censor_type == 'mixed':
-			pass # TODO call that utility + the fast blur
+			bs = utilities_blur_surface(surface, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
-		# TODO paint the pixbuf on the normal surface
+		cairo_context.clip()
+		cairo_context.set_operator(cairo.Operator.OVER)
+		cairo_context.set_source_surface(bs, path_extents[0], path_extents[1])
+		cairo_context.paint()
 
 	############################################################################
 ################################################################################
