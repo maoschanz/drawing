@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo
+import cairo, random
 from gi.repository import Gdk, GdkPixbuf
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_add_arrow_triangle
@@ -121,21 +121,71 @@ class ToolCensor(AbstractClassicTool):
 		scale = self.scale_factor()
 		surface.set_device_scale(scale, scale)
 
-		b_rad = 12 # XXX la largeur du rectangle ? la "width" de l'outil ?
+		b_rad = min(15, int(min(width, height) / 3))
 		b_dir = BlurDirection.BOTH
+		shuffle_intensity = int((width * height) / 2)
 		if censor_type == 'mosaic':
 			bs = utilities_blur_surface(surface, b_rad, BlurType.TILES, b_dir)
 		elif censor_type == 'blur':
 			bs = utilities_blur_surface(surface, b_rad, BlurType.PX_BOX, b_dir)
 		elif censor_type == 'shuffle':
-			pass # TODO call an utility that'll shuffle the pixels
+			bs = self._shuffle_pixels(surface, shuffle_intensity)
 		elif censor_type == 'mixed':
-			bs = utilities_blur_surface(surface, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
+			bs = self._shuffle_pixels(surface, shuffle_intensity / 2)
+			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
 		cairo_context.clip()
 		cairo_context.set_operator(cairo.Operator.OVER)
-		cairo_context.set_source_surface(bs, path_extents[0], path_extents[1])
+		cairo_context.set_source_surface(bs, int(path_extents[0]), int(path_extents[1]))
 		cairo_context.paint()
+
+	############################################################################
+
+	def _shuffle_pixels(self, surface, iterations):
+		w = surface.get_width()
+		h = surface.get_height()
+		channels = 4 # ARGB
+		pixels = surface.get_data()
+
+		random.seed(1)
+		while iterations > 0:
+			iterations = iterations - 1
+			self._shuffle_one_iteration(w, h, channels, pixels)
+		return surface
+
+	def _shuffle_one_iteration(self, w, h, channels, pixels):
+		pix1_x = random.randint(0, w - 4)
+		pix1_y = random.randint(0, h - 4)
+
+		# Get data for a first pixel
+		cur_pixel = (pix1_y * w + pix1_x) * channels
+		a1 = pixels[cur_pixel + 0]
+		r1 = pixels[cur_pixel + 1]
+		g1 = pixels[cur_pixel + 2]
+		b1 = pixels[cur_pixel + 3]
+
+		pix2_x = random.randint(0, w - 4)
+		pix2_y = random.randint(0, h - 4)
+
+		# Get data for a second pixel
+		cur_pixel = (pix2_y * w + pix2_x) * channels
+		a2 = pixels[cur_pixel + 0]
+		r2 = pixels[cur_pixel + 1]
+		g2 = pixels[cur_pixel + 2]
+		b2 = pixels[cur_pixel + 3]
+
+		# Data of the 1st pixel is written in the 2nd one
+		pixels[cur_pixel + 0] = a1
+		pixels[cur_pixel + 1] = r1
+		pixels[cur_pixel + 2] = g1
+		pixels[cur_pixel + 3] = b1
+
+		# Data of the 2nd pixel is written in the 1st one
+		cur_pixel = (pix1_y * w + pix1_x) * channels
+		pixels[cur_pixel + 0] = a2
+		pixels[cur_pixel + 1] = r2
+		pixels[cur_pixel + 2] = g2
+		pixels[cur_pixel + 3] = b2
 
 	############################################################################
 ################################################################################
