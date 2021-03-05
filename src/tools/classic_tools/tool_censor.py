@@ -28,32 +28,29 @@ class ToolCensor(AbstractClassicTool):
 		# Context: a tool to hide things like text. You can translate it as
 		# "hide informations" if you think "censor" has a negative connotation
 		super().__init__('censor', _("Censor"), 'tool-censor-symbolic', window)
-		self.use_operator = True
+		self.use_operator = False
+		self.use_size = False
 		self.row.get_style_context().add_class('destructive-action')
 
-		self.add_tool_action_enum('censor-type', 'mosaic')
-		self._set_options_attributes() # Not optimal but more readable
+		self._censor_type = 'mosaic'
+		self.add_tool_action_enum('censor-type', self._censor_type)
 
 	def get_options_label(self):
 		return _("Censoring options")
 
 	def _set_options_attributes(self):
-		state_as_string = self.get_option_value('censor-type')
-		self._censor_type = state_as_string
-		if state_as_string == 'blur':
-			self._censor_label = _("Blur")
-		elif state_as_string == 'shuffle':
-			self._censor_label = _("Shuffle pixels")
-		elif state_as_string == 'mixed':
-			self._censor_label = _("Shuffle and blur")
-		elif state_as_string == 'mosaic':
-			self._censor_label = _("Mosaic")
-		else: # if state_as_string == 'solid':
-			self._censor_label = _("Solid color")
+		self._censor_type = self.get_option_value('censor-type')
 
 	def get_edition_status(self):
 		self._set_options_attributes()
-		return self.label + ' - ' + self._censor_label
+		censor_label = {
+			'blur': _("Blur"),
+			'shuffle': _("Shuffle pixels"),
+			'mixed': _("Shuffle and blur"),
+			'mosaic': _("Mosaic"),
+			'solid': _("Solid color"),
+		}[self._censor_type]
+		return self.label + ' - ' + censor_label
 
 	############################################################################
 
@@ -145,6 +142,9 @@ class ToolCensor(AbstractClassicTool):
 		w = surface.get_width()
 		h = surface.get_height()
 		channels = 4 # ARGB
+		if w <= 1 or h <= 1:
+			return surface
+
 		pixels = surface.get_data()
 
 		random.seed(1)
@@ -154,8 +154,8 @@ class ToolCensor(AbstractClassicTool):
 		return surface
 
 	def _shuffle_one_iteration(self, w, h, channels, pixels):
-		pix1_x = random.randint(0, w - 4)
-		pix1_y = random.randint(0, h - 4)
+		pix1_x = random.randint(0, w - 1)
+		pix1_y = random.randint(0, h - 1)
 
 		# Get data for a first pixel
 		cur_pixel = (pix1_y * w + pix1_x) * channels
@@ -164,8 +164,8 @@ class ToolCensor(AbstractClassicTool):
 		g1 = pixels[cur_pixel + 2]
 		b1 = pixels[cur_pixel + 3]
 
-		pix2_x = random.randint(0, w - 4)
-		pix2_y = random.randint(0, h - 4)
+		pix2_x = random.randint(0, w - 1)
+		pix2_y = random.randint(0, h - 1)
 
 		# Get data for a second pixel
 		cur_pixel = (pix2_y * w + pix2_x) * channels
