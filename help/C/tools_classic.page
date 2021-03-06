@@ -91,7 +91,7 @@
       <item>
         <p>Erase: deletes any color where the tool is applied.</p>
         <note style="tip">
-          <p>The same result can be achieved used the <link xref="preferences#tools">
+          <p>The same result can be achieved using the <link xref="preferences#tools">
           optional</link> <gui style="menuitem">Eraser</gui> tool.</p>
         </note>
       </item>
@@ -108,16 +108,7 @@
   </section>
 
   <section id="basic-draw">
-    <title>Draw things</title>
-
-    <p>Aside of the colors, a common option for classic tools is whether or not
-    you want to use anti-aliasing. If you use anti-aliasing, the lines will look
-    smoother, but it may negatively affect any following use of the <gui
-    style="menuitem">Paint</gui> tool, as well as several options of the <link
-    xref="tools_selection">selection</link>.</p>
-    <p>With several tools, you can change the ends of the line: it can be
-    rounded or square. You can also draw various patterns of dashed lines with a
-    few tools.</p>
+    <title>Basic lines</title>
     <list>
       <item>
         <p>Pencil: The pencil draws following the mouse pointer, and according
@@ -134,8 +125,8 @@
         transparent pixels.</p>
       </item>
       <item>
-        <p>Highlighter: Ignore some of the color settings, and draw with a
-        semi-transparent version of the current color.</p>
+        <p>Highlighter: Ignore the transparency of the current color, and draw
+        with a semi-transparent version of the current color.</p>
         <p>The "highlight" color application mode is used, so the selected color
         is added to the lighter pixels only, which highlights dark text on light
         background. An option can be used to do the opposite (highlight light
@@ -145,9 +136,6 @@
         <p>Line: This tool can draw straight lines. Its options also include
         ending the line with an arrow, and using a gradient from the main color
         to the secondary color.</p>
-        <note style="tip">
-          <p>You can use the "blur" mode from the color menu to hide text!</p>
-        </note>
       </item>
       <item>
         <p>Curve: This tool can draw Bézier curves, optionally with an arrow at
@@ -157,6 +145,15 @@
                src="figures/screenshot_arrow.png" />
       </item>
     </list>
+
+    <p>Aside of the colors, a common option for classic tools is whether or not
+    you want to use anti-aliasing. If you use anti-aliasing, the lines will look
+    smoother, but it may negatively affect any following use of the <gui
+    style="menuitem">Paint</gui> tool, as well as several options of the <link
+    xref="tools_selection">selection</link>.</p>
+    <p>With several tools, you can change the ends of the line: it can be
+    rounded or square. You can also draw various patterns of dashed lines with a
+    few tools.</p>
   </section>
 
   <section>

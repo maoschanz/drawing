@@ -18,20 +18,22 @@
   <p>These tools are available from the side bar (along with
   <link xref="tools_classic">the other tools</link>), or from a right click on
   a <link xref="tools_selection">selected area</link>.</p>
-  <p>If a selection is defined, these tools will have transform the selected
-  area, otherwise they will transform the picture as a whole.</p>
 
   <note style="important">
-    <p>With these tools, once you have the transformation you want, you should
+    <p>With these tools, once you have the transformation you want, you have to
     apply the result with the <gui style="button">Apply</gui> button at the
     right.</p>
     <p>Otherwise you can cancel the transformation with the <gui style="button">
     Cancel</gui> button at the left.</p>
   </note>
+
+  <p>If a selection is defined, these tools will have transform the selected
+  area, otherwise they will transform the picture as a whole.</p>
+
   <note style="tip">
-    <p>When you change the current tool without applying explicitely, the
-    transformation will be automatically applied if it concerns the selection,
-    but cancelled if it concerns the whole image.</p>
+    <p>If you switch to another tool without applying the transformation
+    explicitely, the transformation will be automatically applied if it concerns
+    the selection, but automatically cancelled if it concerns the whole image.</p>
     <p>If you try to save without applying the transformation, a dialog will
     remind you that you should apply it before saving.</p>
   </note>
