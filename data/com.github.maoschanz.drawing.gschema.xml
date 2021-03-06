@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="drawing">
 
-  <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
+  <schema id="com.github.maoschanz.drawing"
+          path="/com/github/maoschanz/drawing/">
+
     <!-- Actual options -->
     <key type="s" name="deco-type">
       <default>''</default>
@@ -105,6 +107,14 @@
     </key>
 
     <!-- Tools options state -->
+    <child name="tools-options" schema="com.github.maoschanz.drawing.tools-options"/>
+  </schema>
+
+  <!-- ##################################################################### -->
+
+  <schema id="com.github.maoschanz.drawing.tools-options"
+          path="/com/github/maoschanz/drawing/tools-options/">
+
     <key type="as" name="last-right-rgba">
       <default>['1.0', '1.0', '0.0', '0.5']</default>
       <summary>Last right-click color</summary>
@@ -152,6 +162,10 @@
       <description>The default value of the 'antialiasing' boolean option, for
       any compatible tools.</description>
     </key>
+
+    <!-- TODO persist also: selection's "replace with"? active filter? -->
+    <!-- active brush? crop's "expand with"? color application mode?-->
   </schema>
+
 </schemalist>
 

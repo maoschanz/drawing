@@ -26,7 +26,7 @@ class DrMinimap(Gtk.Popover):
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)
 		self._window = window
-		self._preview_size = self._window._settings.get_int('preview-size')
+		self._preview_size = self._window.gsettings.get_int('preview-size')
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300)
 		self._mini_surface = cairo.ImageSurface(cairo.Format.ARGB32, 5, 5)
 

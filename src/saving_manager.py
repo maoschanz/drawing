@@ -61,7 +61,7 @@ class DrSavingManager():
 			else:
 				can_save_as = not is_export
 			if file_format not in ['png'] or not allow_alpha:
-				replacement = self._window._settings.get_string('replace-alpha')
+				replacement = self._window.gsettings.get_string('replace-alpha')
 				if replacement == 'ask':
 					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)

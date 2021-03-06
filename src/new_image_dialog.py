@@ -25,7 +25,7 @@ class DrCustomImageDialog(Gtk.Dialog):
 		wants_csd = 'h' in appwindow.deco_layout
 		super().__init__(use_header_bar=wants_csd, destroy_with_parent=True, \
 		         transient_for=appwindow, title=_("New Image With Custom Size"))
-		self._app_settings = appwindow._settings
+		self._app_settings = appwindow.gsettings
 		self._build_ui()
 		self.set_default_size(450, 200)
 

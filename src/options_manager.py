@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 
 class DrOptionsManager():
 	__gtype_name__ = 'DrOptionsManager'
-	# TODO this class should raise/catch exceptions instead of trusting me
+	# XXX this class should raise/catch more exceptions
+
+	_tools_gsettings = Gio.Settings.new('com.github.maoschanz.drawing.tools-options')
 
 	def __init__(self, window):
 		self.window = window
@@ -80,30 +82,30 @@ class DrOptionsManager():
 	def remember_options(self, *args):
 		"""Called before closing to write the current values of a few options
 		into dconf."""
-		self.window._settings.set_int('last-size', self.get_tool_width())
+		self._tools_gsettings.set_int('last-size', self.get_tool_width())
 
 		rgba = self.get_left_color()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self.window._settings.set_strv('last-left-rgba', rgba)
+		self._tools_gsettings.set_strv('last-left-rgba', rgba)
 
 		rgba = self.get_right_color()
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self.window._settings.set_strv('last-right-rgba', rgba)
+		self._tools_gsettings.set_strv('last-right-rgba', rgba)
 
 		shape_name = self.get_value('shape_type')
-		self.window._settings.set_string('last-active-shape', shape_name)
+		self._tools_gsettings.set_string('last-active-shape', shape_name)
 
 		shape_filling = self.get_value('shape_filling')
-		self.window._settings.set_string('last-shape-filling', shape_filling)
+		self._tools_gsettings.set_string('last-shape-filling', shape_filling)
 
 		font_fam_name = self.window.tools['text'].font_fam_name
-		self.window._settings.set_string('last-font-name', font_fam_name)
+		self._tools_gsettings.set_string('last-font-name', font_fam_name)
 
 		text_bg_style = self.get_value('text-background')
-		self.window._settings.set_string('last-text-background', text_bg_style)
+		self._tools_gsettings.set_string('last-text-background', text_bg_style)
 
 		use_antialiasing = self.get_value('antialias')
-		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
+		self._tools_gsettings.set_boolean('use-antialiasing', use_antialiasing)
 
 		# add more? on what criteria?
 

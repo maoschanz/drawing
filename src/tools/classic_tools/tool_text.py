@@ -28,7 +28,7 @@ class ToolText(AbstractClassicTool):
 		self._should_cancel = False
 		self._last_click_btn = 1
 
-		self.font_fam_name = self.window._settings.get_string('last-font-name')
+		self.font_fam_name = self.get_settings().get_string('last-font-name')
 
 		self.add_tool_action_simple('text-set-font', self._set_font)
 		self.add_tool_action_boolean('text-bold', False)
