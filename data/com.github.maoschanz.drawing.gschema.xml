@@ -128,10 +128,22 @@
       <description>The id of the last active shape from the "shape" tool, saved
       when closing a window.</description>
     </key>
+    <key type="s" name="last-shape-filling">
+      <default>'empty'</default>
+      <summary>Default shape filling style</summary>
+      <description>The name of the last active shape filling style from the
+      "shape" tool, saved when closing a window.</description>
+    </key>
     <key type="s" name="last-font-name">
       <default>'Sans'</default>
       <summary>Default active font</summary>
       <description>The name of the last active font family, from the "text"
+      tool, saved when closing a window.</description>
+    </key>
+    <key type="s" name="last-text-background">
+      <default>'outline'</default>
+      <summary>Text insertion background style</summary>
+      <description>The name of the last active background style, from the "text"
       tool, saved when closing a window.</description>
     </key>
     <key type="b" name="use-antialiasing">

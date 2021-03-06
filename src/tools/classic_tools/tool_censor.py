@@ -70,10 +70,10 @@ class ToolCensor(AbstractClassicTool):
 
 	def _draw_rectangle(self, event_x, event_y):
 		cairo_context = self.get_context()
-		cairo_context.move_to(self.x_press, self.y_press)
-		cairo_context.line_to(self.x_press, event_y)
-		cairo_context.line_to(event_x, event_y)
-		cairo_context.line_to(event_x, self.y_press)
+		cairo_context.move_to(int(self.x_press), int(self.y_press))
+		cairo_context.line_to(int(self.x_press), int(event_y))
+		cairo_context.line_to(int(event_x), int(event_y))
+		cairo_context.line_to(int(event_x), int(self.y_press))
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
@@ -108,17 +108,18 @@ class ToolCensor(AbstractClassicTool):
 			return
 
 		cairo_context.append_path(operation['path'])
-		path_extents = cairo_context.path_extents()
-		width = int(path_extents[2] - path_extents[0])
-		height = int(path_extents[3] - path_extents[1])
+		[r0, r1, r2, r3] = cairo_context.path_extents()
+		[r0, r1, r2, r3] = [int(r0), int(r1), int(r2), int(r3)]
+		width = r2 - r0
+		height = r3 - r1
 		surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		ccontext2 = cairo.Context(surface)
-		ccontext2.set_source_surface(self.get_surface(), -1 * path_extents[0], -1 * path_extents[1])
+		ccontext2.set_source_surface(self.get_surface(), -1 * r0, -1 * r1)
 		ccontext2.paint()
 		scale = self.scale_factor()
 		surface.set_device_scale(scale, scale)
 
-		b_rad = min(15, int(min(width, height) / 3))
+		b_rad = min(15, int(min(width, height) / 4))
 		b_dir = BlurDirection.BOTH
 		shuffle_intensity = int((width * height) / 2)
 		if censor_type == 'mosaic':
@@ -132,8 +133,8 @@ class ToolCensor(AbstractClassicTool):
 			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
 		cairo_context.clip()
-		cairo_context.set_operator(cairo.Operator.OVER)
-		cairo_context.set_source_surface(bs, int(path_extents[0]), int(path_extents[1]))
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.set_source_surface(bs, r0, r1)
 		cairo_context.paint()
 
 	############################################################################

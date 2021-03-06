@@ -35,9 +35,9 @@ class ToolShape(AbstractClassicTool):
 		self.add_tool_action_enum('shape_type', self._shape_id)
 		self._set_active_shape()
 
-		self._filling_id = 'empty'
-		self._filling_label = _("Empty shape")
+		self._filling_id = self.get_settings().get_string('last-shape-filling')
 		self.add_tool_action_enum('shape_filling', self._filling_id)
+		self._set_filling_style()
 
 		self._outline_id = 'solid'
 		self._outline_label = _("Solid outline")

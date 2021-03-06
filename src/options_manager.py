@@ -93,8 +93,14 @@ class DrOptionsManager():
 		shape_name = self.get_value('shape_type')
 		self.window._settings.set_string('last-active-shape', shape_name)
 
+		shape_filling = self.get_value('shape_filling')
+		self.window._settings.set_string('last-shape-filling', shape_filling)
+
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self.window._settings.set_string('last-font-name', font_fam_name)
+
+		text_bg_style = self.get_value('text-background')
+		self.window._settings.set_string('last-text-background', text_bg_style)
 
 		use_antialiasing = self.get_value('antialias')
 		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
