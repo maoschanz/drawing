@@ -91,7 +91,10 @@ class Application(Gtk.Application):
 
 		self.add_action_simple('help', self.on_help_index, ['F1'])
 		self.add_action_simple('help_main', self.on_help_main, None)
+		self.add_action_simple('help_zoom', self.on_help_zoom, None)
+		self.add_action_simple('help_fullscreen', self.on_help_fullscreen, None)
 		self.add_action_simple('help_tools', self.on_help_tools, None)
+		self.add_action_simple('help_colors', self.on_help_colors, None)
 		self.add_action_simple('help_transform', self.on_help_transform, None)
 		self.add_action_simple('help_selection', self.on_help_selection, None)
 		self.add_action_simple('help_prefs', self.on_help_prefs, None)
@@ -233,8 +236,17 @@ class Application(Gtk.Application):
 	def on_help_main(self, *args):
 		self._show_help_page('/main_features')
 
+	def on_help_zoom(self, *args):
+		self._show_help_page('/zoom_preview')
+
+	def on_help_fullscreen(self, *args):
+		self._show_help_page('/fullscreen')
+
 	def on_help_tools(self, *args):
 		self._show_help_page('/tools_classic')
+
+	def on_help_colors(self, *args):
+		self._show_help_page('/tools_classic_colors')
 
 	def on_help_transform(self, *args):
 		self._show_help_page('/tools_transform')

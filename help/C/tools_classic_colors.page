@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="tools_classic_colors">
+
+  <info>
+    <link type="guide" xref="index#tools"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name>Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Manage colors and the way they're applied on the image by a classic
+    tool.</desc>
+  </info>
+  <title>Colors and color modes</title>
+
+  <p>When you use a <link xref="tools_classic">classic drawing tool</link>, the
+  options are located at the left of the bottom bar: they include two buttons
+  with two colors.</p>
+  <p>The color of the left button corresponds to the left click, and is usually
+  labeled "Main color", while the color at the right is the "Secondary color".
+  Click on these buttons to edit their respective colors:</p>
+
+  <section>
+    <title>Colors</title>
+    <p>In the menu, you can select a color directly from the default palette, or
+    from the recently picked custom colors at the bottom.</p>
+
+    <note style="tip">
+      <p>If the exact color you want isn't listed in the palette (picture at the
+      left), click the <gui style="button">+</gui> button to use the color
+      editor (picture at the right).</p>
+    </note>
+
+    <table rules="colgroups">
+      <!-- Unusual width because the pics are in a table, side-by-side, with -->
+      <!-- different aspect ratios. -->
+      <tr>
+        <td>
+          <media type="image" mime="image/png" width="100%" its:translate="no"
+                 src="figures/screenshot_color_palette.png" />
+        </td>
+        <td>
+          <media type="image" mime="image/png" width="60%" its:translate="no"
+                 src="figures/screenshot_color_editor.png" />
+        </td>
+      </tr>
+    </table>
+
+    <p>An <link xref="preferences#tools">optional</link> <gui style="button">
+    Color Picker</gui> tool can also help you to select a color.
+    While the color picker from within the color editor can select a RGB color
+    anywhere on the screen, the <gui style="menuitem">Color Picker</gui> tool
+    supports translucent colors but only works for pixels from the image.</p>
+  </section>
+
+  <section>
+    <title>Color application modes</title>
+    <p><em>With compatible tools</em>, you can select at the top of the palette
+    the way the color will be applied to the image:</p>
+    <list>
+      <item>
+        <p>Normal: the selected color is added over the existing image. If your
+        color is semi-transparent yellow and your image is opaque blue, the
+        resulting pixels would be opaque green.</p>
+      </item>
+      <item>
+        <p>Highlight: the selected color is added to the lighter pixels only,
+        which highlights dark text on light background. The opposite
+        (highlighting light text on a dark background) is also possible.</p>
+        <note style="tip">
+          <p>The same result can be achieved used the <link xref="preferences#tools">
+          optional</link> <gui style="menuitem">Highlighter</gui> tool.</p>
+        </note>
+      </item>
+      <item>
+        <p>HSL modes: these options don't make much sense when you're drawing
+        something, but they can help you when editing photos or drawings.</p>
+        <note style="advanced">
+          <p>The idea is to apply <em>only</em> a dimension from the selected
+          color in the hue-saturation-luminosity representation, and not the
+          other ones.</p>
+        </note>
+        <p>For example, you can draw with a red hue but not affect the
+        luminosity of the existing pixels; or draw with a light luminosity but
+        not affect the hue of the existing pixels.</p>
+        <media type="image" mime="image/png" width="80%" its:translate="no"
+               src="figures/screenshot_hsl.png" />
+      </item>
+      <item>
+        <p>Raw source color: the selected color replaces the pixels where it's
+        applied. If your color is semi-transparent yellow, the resulting pixels
+        would be semi-transparent yellow.</p>
+      </item>
+      <item>
+        <p>Difference: the resulting color is the difference between the
+        selected color and the existing pixels.</p>
+      </item>
+      <item>
+        <p>Erase: deletes any color where the tool is applied.</p>
+        <note style="tip">
+          <p>The same result can be achieved using the <link xref="preferences#tools">
+          optional</link> <gui style="menuitem">Eraser</gui> tool.</p>
+        </note>
+      </item>
+    </list>
+    <note style="warning">
+      <p>Not all tools are compatible with these color application modes!</p>
+    </note>
+  </section>
+
+</page>
+
