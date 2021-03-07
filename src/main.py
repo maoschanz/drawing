@@ -81,19 +81,21 @@ class Application(Gtk.Application):
 		self.set_menubar(menubar_model)
 
 	def _build_actions(self):
-		"""Add app-wide actions."""
+		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs, None)
 		if self.is_beta():
 			self.add_action_simple('report_bug', self.on_report, None)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
+
 		self.add_action_simple('help', self.on_help_index, ['F1'])
 		self.add_action_simple('help_main', self.on_help_main, None)
 		self.add_action_simple('help_tools', self.on_help_tools, None)
 		self.add_action_simple('help_transform', self.on_help_transform, None)
 		self.add_action_simple('help_selection', self.on_help_selection, None)
 		self.add_action_simple('help_prefs', self.on_help_prefs, None)
+
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
@@ -229,28 +231,18 @@ class Application(Gtk.Application):
 		self._show_help_page('')
 
 	def on_help_main(self, *args):
-		"""Action callback, showing the 'basic features' page of the user help
-		manual."""
 		self._show_help_page('/main_features')
 
 	def on_help_tools(self, *args):
-		"""Action callback, showing the 'classic tools' page of the user help
-		manual."""
 		self._show_help_page('/tools_classic')
 
 	def on_help_transform(self, *args):
-		"""Action callback, showing the 'transform tools' page of the user help
-		manual."""
 		self._show_help_page('/tools_transform')
 
 	def on_help_selection(self, *args):
-		"""Action callback, showing the 'selection tools' page of the user help
-		manual."""
 		self._show_help_page('/tools_selection')
 
 	def on_help_prefs(self, *args):
-		"""Action callback, showing the 'preferences' page of the user help
-		manual."""
 		self._show_help_page('/preferences')
 
 	def on_about(self, *args):

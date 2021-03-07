@@ -440,38 +440,39 @@
         </item>
       </section>
       <section>
-        <!-- TODO change all these labels -->
         <item>
           <!-- Context: open the index of all help pages -->
           <attribute name="label" translatable="yes">Index</attribute>
           <attribute name="action">app.help</attribute>
           <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
-        <item>
-          <!-- Context: open the help page about general use of the app -->
-          <attribute name="label" translatable="yes">Basic help</attribute>
-          <attribute name="action">app.help_main</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <!-- Context: open the help page about classic tools -->
-          <attribute name="label" translatable="yes">Help about tools</attribute>
-          <attribute name="action">app.help_tools</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <!-- Context: open the help page about transformation tools (crop, -->
-          <!-- scale, rotate, filters, ... -->
-          <attribute name="label" translatable="yes">Canvas and selection</attribute>
-          <attribute name="action">app.help_transform</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <!-- Context: open the help page about the selection -->
-          <attribute name="label" translatable="yes">Help about selection</attribute>
-          <attribute name="action">app.help_selection</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
+        <submenu>
+          <!-- Context: submenu listing individual help pages -->
+          <attribute name="label" translatable="yes">Individual pages</attribute>
+          <section>
+            <item>
+              <!-- Context: open the help page about general use of the app -->
+              <attribute name="label" translatable="yes">Basic help</attribute>
+              <attribute name="action">app.help_main</attribute>
+            </item>
+          </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Help about classic tools</attribute>
+              <attribute name="action">app.help_tools</attribute>
+            </item>
+            <item>
+              <!-- Context: open the help page about transformation tools (crop, -->
+              <!-- scale, rotate, filters, ... -->
+              <attribute name="label" translatable="yes">Help about transformation tools</attribute>
+              <attribute name="action">app.help_transform</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about selection</attribute>
+              <attribute name="action">app.help_selection</attribute>
+            </item>
+          </section>
+        </submenu>
       </section>
       <section>
         <item>
