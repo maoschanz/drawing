@@ -34,7 +34,7 @@ class DrDecoManagerMenubar():
 	############################################################################
 
 	def set_titles(self, title_label, subtitle_label):
-		full_title = _("Drawing") + ' - ' + title_label + ' - ' + subtitle_label
+		full_title = _("Drawing") + ' ~ ' + title_label + ' ~ ' + subtitle_label
 		self._window.set_title(full_title)
 
 	def toggle_menu(self):
