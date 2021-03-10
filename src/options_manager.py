@@ -79,35 +79,36 @@ class DrOptionsManager():
 
 	############################################################################
 
-	def remember_options(self, *args):
-		"""Called before closing to write the current values of a few options
-		into dconf."""
+	def persist_tools_options(self, *args):
+		"""Called before closing to persist the current values of a few options
+		into gsettings (dconf or key-value file)."""
+
+		# Panel-wide classic tools options (they are not Gio actions!)
 		self._tools_gsettings.set_int('last-size', self.get_tool_width())
+		self._persist_color(self.get_left_color(), 'last-left-rgba')
+		self._persist_color(self.get_right_color(), 'last-right-rgba')
 
-		rgba = self.get_left_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self._tools_gsettings.set_strv('last-left-rgba', rgba)
+		self._persist_boolean('antialias', 'use-antialiasing')
 
-		rgba = self.get_right_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self._tools_gsettings.set_strv('last-right-rgba', rgba)
+		self._persist_string('shape_type', 'last-active-shape')
+		self._persist_string('shape_filling', 'last-shape-filling')
 
-		shape_name = self.get_value('shape_type')
-		self._tools_gsettings.set_string('last-active-shape', shape_name)
-
-		shape_filling = self.get_value('shape_filling')
-		self._tools_gsettings.set_string('last-shape-filling', shape_filling)
+		self._persist_string('text-background', 'last-text-background')
 
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self._tools_gsettings.set_string('last-font-name', font_fam_name)
 
-		text_bg_style = self.get_value('text-background')
-		self._tools_gsettings.set_string('last-text-background', text_bg_style)
+	def _persist_string(self, action_name, key_name):
+		action_value = self.get_value(action_name)
+		self._tools_gsettings.set_string(key_name, action_value)
 
-		use_antialiasing = self.get_value('antialias')
-		self._tools_gsettings.set_boolean('use-antialiasing', use_antialiasing)
+	def _persist_boolean(self, action_name, key_name):
+		action_value = self.get_value(action_name)
+		self._tools_gsettings.set_boolean(key_name, action_value)
 
-		# add more? on what criteria?
+	def _persist_color(self, rgba, key_name):
+		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
+		self._tools_gsettings.set_strv(key_name, rgba)
 
 	############################################################################
 	# Bottom panes management ##################################################
