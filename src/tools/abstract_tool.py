@@ -61,10 +61,18 @@ class AbstractAbstractTool():
 		self.window.add_action_simple(action_name, callback, None)
 
 	def add_tool_action_boolean(self, action_name, default):
-		self.window.options_manager.add_tool_option_boolean(action_name, default)
+		self.window.options_manager.add_option_boolean(action_name, default)
 
 	def add_tool_action_enum(self, action_name, default):
-		self.window.options_manager.add_tool_option_enum(action_name, default)
+		self.window.options_manager.add_option_enum(action_name, default)
+
+	def load_tool_action_boolean(self, action_name, key_name):
+		om = self.window.options_manager
+		return om.add_option_from_bool_key(action_name, key_name)
+
+	def load_tool_action_enum(self, action_name, key_name):
+		om = self.window.options_manager
+		return om.add_option_from_enum_key(action_name, key_name)
 
 	def get_option_value(self, action_name):
 		return self.window.options_manager.get_value(action_name)

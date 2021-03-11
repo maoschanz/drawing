@@ -31,13 +31,12 @@ class ToolShape(AbstractClassicTool):
 		self.add_tool_action_simple('shape_close', self._force_close_shape)
 		self.set_action_sensitivity('shape_close', False)
 
-		self._shape_id = self.get_settings().get_string('last-active-shape')
-		self.add_tool_action_enum('shape_type', self._shape_id)
-		self._set_active_shape()
+		self._shape_id = self.load_tool_action_enum('shape_type', \
+		                                                    'last-active-shape')
+		self._set_active_shape() # initialize a consistent join_id
 
-		self._filling_id = self.get_settings().get_string('last-shape-filling')
-		self.add_tool_action_enum('shape_filling', self._filling_id)
-		self._set_filling_style()
+		self._filling_id = self.load_tool_action_enum('shape_filling', \
+		                                                   'last-shape-filling')
 
 		self._outline_id = 'solid'
 		self._outline_label = _("Solid outline")

@@ -34,9 +34,8 @@ class ToolText(AbstractClassicTool):
 		self.add_tool_action_boolean('text-bold', False)
 		self.add_tool_action_boolean('text-italic', False)
 
-		self._background_id = self.get_settings().get_string('last-text-background')
-		self.add_tool_action_enum('text-background', self._background_id)
-		self._set_background_style()
+		self._background_id = self.load_tool_action_enum('text-background', \
+		                                                 'last-text-background')
 
 		# TODO actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)

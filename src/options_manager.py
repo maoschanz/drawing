@@ -27,6 +27,8 @@ class DrOptionsManager():
 		self.window = window
 		self._bottom_panes_dict = {}
 		self._active_pane_id = None
+		self._boolean_actions_from_gsetting = {}
+		self._string_actions_from_gsetting = {}
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -34,15 +36,27 @@ class DrOptionsManager():
 	############################################################################
 	# Gio.Action for tool options ##############################################
 
-	def add_tool_option_boolean(self, name, default):
+	def add_option_boolean(self, name, default):
 		if self._action_exists(name):
 			return
 		self.window.add_action_boolean(name, default, self._boolean_callback)
 
-	def add_tool_option_enum(self, name, default):
+	def add_option_enum(self, name, default):
 		if self._action_exists(name):
 			return
 		self.window.add_action_enum(name, default, self._enum_callback)
+
+	def add_option_from_bool_key(self, action_name, key_name):
+		default_value = self._tools_gsettings.get_boolean(key_name)
+		self.add_option_boolean(action_name, default_value)
+		self._boolean_actions_from_gsetting[action_name] = key_name
+		return default_value
+
+	def add_option_from_enum_key(self, action_name, key_name):
+		default_value = self._tools_gsettings.get_string(key_name)
+		self.add_option_enum(action_name, default_value)
+		self._string_actions_from_gsetting[action_name] = key_name
+		return default_value
 
 	def get_value(self, name):
 		if not self._action_exists(name):
@@ -88,12 +102,15 @@ class DrOptionsManager():
 		self._persist_color(self.get_left_color(), 'last-left-rgba')
 		self._persist_color(self.get_right_color(), 'last-right-rgba')
 
-		self._persist_boolean('antialias', 'use-antialiasing')
+		# Tool-wide boolean actions
+		for action_name in self._boolean_actions_from_gsetting:
+			key_name = self._boolean_actions_from_gsetting[action_name]
+			self._persist_boolean(action_name, key_name)
 
-		self._persist_string('shape_type', 'last-active-shape')
-		self._persist_string('shape_filling', 'last-shape-filling')
-
-		self._persist_string('text-background', 'last-text-background')
+		# Tool-wide "enum" actions
+		for action_name in self._string_actions_from_gsetting:
+			key_name = self._string_actions_from_gsetting[action_name]
+			self._persist_string(action_name, key_name)
 
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self._tools_gsettings.set_string('last-font-name', font_fam_name)
