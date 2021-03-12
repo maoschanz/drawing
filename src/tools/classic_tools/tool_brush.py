@@ -31,7 +31,6 @@ class ToolBrush(AbstractClassicTool):
 		super().__init__('brush', _("Brush"), 'tool-brush-symbolic', window)
 		self.use_operator = True
 		self._last_use_pressure = False
-		self.row.get_style_context().add_class('destructive-action')
 
 		self._brushes_dict = {
 			'simple': BrushSimple('simple', self),
@@ -52,12 +51,8 @@ class ToolBrush(AbstractClassicTool):
 		self._brush_type = self.get_option_value('brush-type')
 		self._brush_dir = self.get_option_value('brush-dir')
 
-		label = self.label + ' - '
-		if self._last_use_pressure:
-			label = label + _("Width depends on the stylus pressure")
-		else:
-			label = label + _("Width depends on the mouse speed")
-		return label
+		active_brush = self._brushes_dict[self._brush_type]
+		return active_brush._get_status(self._last_use_pressure)
 
 	############################################################################
 
