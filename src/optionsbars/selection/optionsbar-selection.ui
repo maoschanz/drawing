@@ -107,7 +107,6 @@
 
     <child>
       <object class="GtkMenuButton" id="actions_btn">
-        <property name="tooltip-text" translatable="yes">More actions</property>
         <property name="visible">True</property>
         <property name="menu-model">actions-menu</property>
         <child>
@@ -158,20 +157,6 @@
 
   <menu id="actions-menu">
     <section>
-      <item>
-        <attribute name="label" translatable="yes">Select all</attribute>
-        <attribute name="action">win.select_all</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Unselect</attribute>
-        <attribute name="action">win.unselect</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Close selection</attribute>
-        <attribute name="action">win.selection_close</attribute>
-      </item>
-    </section>
-    <section>
       <attribute name="label" translatable="yes">Replace with…</attribute>
       <item>
         <attribute name="label" translatable="yes">Transparency</attribute>
@@ -194,13 +179,38 @@
       </item>
     </section>
     <section>
+      <submenu>
+        <attribute name="label" translatable="yes">More actions</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Select all</attribute>
+            <attribute name="action">win.select_all</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Unselect</attribute>
+            <attribute name="action">win.unselect</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Close selection</attribute>
+            <attribute name="action">win.selection_close</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Open As New Image</attribute>
+            <attribute name="action">win.new_tab_selection</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Export as…</attribute>
+            <attribute name="action">win.selection_export</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
       <item>
-        <attribute name="label" translatable="yes">Open As New Image</attribute>
-        <attribute name="action">win.new_tab_selection</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Export as…</attribute>
-        <attribute name="action">win.selection_export</attribute>
+        <attribute name="label" translatable="yes">Help about selection</attribute>
+        <attribute name="action">app.help_selection</attribute>
       </item>
     </section>
   </menu>
