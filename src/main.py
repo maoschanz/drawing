@@ -98,6 +98,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_transform', self.on_help_transform, None)
 		self.add_action_simple('help_selection', self.on_help_selection, None)
 		self.add_action_simple('help_prefs', self.on_help_prefs, None)
+		self.add_action_simple('help_whats_new', self.on_help_whats_new, None)
 
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
@@ -256,6 +257,9 @@ class Application(Gtk.Application):
 
 	def on_help_prefs(self, *args):
 		self._show_help_page('/preferences')
+
+	def on_help_whats_new(self, *args):
+		self._show_help_page('/whats_new')
 
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
