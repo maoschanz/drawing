@@ -106,6 +106,17 @@
       the complete color selector.</description>
     </key>
 
+    <!-- Release notes handling -->
+    <key type="s" name="last-version">
+      <default>'0.0.0'</default>
+      <summary>Last used app version</summary>
+      <description>
+        The last version of the app that the user has started. If the string
+        doesn't correspond to the running version of the app, a dialog is shown
+        to tell the user to read the release notes.
+      </description>
+    </key>
+
     <!-- Tools options state -->
     <child name="tools-options" schema="com.github.maoschanz.drawing.tools-options"/>
   </schema>

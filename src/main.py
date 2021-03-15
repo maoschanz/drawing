@@ -317,6 +317,9 @@ class Application(Gtk.Application):
 		the headerbar."""
 		return (int(self._version.split('.')[1]) * 5) % 10 == 5
 
+	def get_current_version(self):
+		return self._version
+
 	def add_action_simple(self, action_name, callback, shortcuts):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)

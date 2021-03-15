@@ -143,6 +143,31 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self._enable_first_tool()
 		self.set_picture_title()
+		self._try_show_release_notes()
+
+	def _try_show_release_notes(self):
+		last_version = self.gsettings.get_string('last-version')
+		current_version = self.app.get_current_version()
+		if current_version == last_version:
+			return
+
+		dialog = DrMessageDialog(self)
+		# Context: %s is the version number of the app
+		label = _("It's the first time you use Drawing %s, " + \
+		                                   "would you like to read what's new?")
+		dialog.add_string(label % current_version)
+
+		no_id = dialog.set_action(_("No"), None, False)
+		later_id = dialog.set_action(_("Later"), None, False)
+		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
+		result = dialog.run()
+		dialog.destroy()
+
+		if result == later_id:
+			return
+		if result == yes_id:
+			self.app.on_help_whats_new()
+		self.gsettings.set_string('last-version', current_version)
 
 	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
