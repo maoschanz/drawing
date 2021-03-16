@@ -29,6 +29,9 @@ class OptionsBarSelection(AbstractOptionsBar):
 		self.import_box_long = builder.get_object('import_box_long')
 		self.clipboard_box = builder.get_object('clipboard_box')
 		self.actions_btn = builder.get_object('actions_btn')
+		self.options_btn = builder.get_object('options_btn')
+
+		self.help_btn = builder.get_object('help_btn')
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap_arrow = builder.get_object('minimap_arrow')
@@ -55,6 +58,8 @@ class OptionsBarSelection(AbstractOptionsBar):
 		temp_limit_size = self.import_box_long.get_preferred_width()[0] + \
 		                    self.clipboard_box.get_preferred_width()[0] + \
 		                      self.actions_btn.get_preferred_width()[0] + \
+		                      self.options_btn.get_preferred_width()[0] + \
+		                         self.help_btn.get_preferred_width()[0] + \
 		                      self.minimap_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)
 
@@ -62,6 +67,9 @@ class OptionsBarSelection(AbstractOptionsBar):
 		super().set_compact(state)
 		self.import_box_narrow.set_visible(state)
 		self.import_box_long.set_visible(not state)
+		self.actions_btn.set_visible(not state)
+		self.clipboard_box.set_visible(not state)
+		self.help_btn.set_visible(not state)
 		self.minimap_arrow.set_visible(not state)
 
 	############################################################################
