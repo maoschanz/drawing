@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2021-03-11 14:05+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -41,7 +41,7 @@ msgstr "Nieuw venster"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Nieuwe afbeelding"
 
@@ -1595,19 +1595,19 @@ msgstr "Afwisselende streepjes"
 msgid "Antialiasing"
 msgstr "Anti-kartelvorming"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 msgid "Simple brush"
 msgstr "Eenvoudige kwast"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr "Airbrush"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 msgid "Hairy brush"
 msgstr "Harige borstel"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr "Kalligrafisch uiteinde"
 
@@ -1647,7 +1647,6 @@ msgstr "Husselen en vervagen"
 msgid "Mosaic"
 msgstr "Mozaïek"
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 msgid "Solid color"
 msgstr "Vlakke kleur"
@@ -1801,7 +1800,6 @@ msgstr "Effen contour"
 msgid "Dashed outline"
 msgstr "Gestreepte rand"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Geen randcontour"
@@ -2068,17 +2066,11 @@ msgstr "Vervaagstraal"
 msgid "Saturation"
 msgstr "Verzadiging"
 
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Fotobewerkingsmodi"
-
 #~ msgid "Quit"
 #~ msgstr "Afsluiten"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Beeldvullende modus verlaten"
-
-#~ msgid "Other tools"
-#~ msgstr "Overig gereedschap"
 
 #~ msgid "Edit"
 #~ msgstr "Bewerken"

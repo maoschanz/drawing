@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -41,7 +41,7 @@ msgstr "Leiho berria"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Irudi berria"
 
@@ -443,7 +443,7 @@ msgstr "Jatorrizko kolorea"
 msgid "Difference"
 msgstr "Diferentzia"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr "Ez erabili koloreak baina…"
 
@@ -495,7 +495,7 @@ msgstr "_Laguntza"
 msgid "Shortcuts"
 msgstr "Laster-teklak"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "Report a bug"
 msgstr "Errore baten berri eman"
 
@@ -862,7 +862,7 @@ msgstr "Altuera lehenetsia"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 msgid "Default color"
 msgstr "Kolore lehenetsia"
 
@@ -1117,7 +1117,9 @@ msgstr "%s fitxategian gorde gabeko aldaketak daude."
 msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
-msgstr "Irudiaren zati bat hautatuta dago eta hautapenaren azpiko pixelak hutsik daude"
+msgstr ""
+"Irudiaren zati bat hautatuta dago eta hautapenaren azpiko pixelak hutsik "
+"daude"
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
@@ -1273,15 +1275,15 @@ msgstr "Arbelean ez dago irudirik."
 msgid "Modifications will take effect in the next new window."
 msgstr "Aldaketok hurrengo leiho berrian gauzatuko dira."
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Aukerarik gabe"
 
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
-msgstr "Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
+msgstr ""
+"Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
 
 #: src/window.py
 #, fuzzy
@@ -1378,18 +1380,16 @@ msgstr "Nahi duzu ataza gelditu, edo tresna horrekin saiakera egin?"
 msgid "Highlight (dark)"
 msgstr "Nabarmentzailea"
 
-#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "Kolore nagusia"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Secondary color"
 msgstr "Bigarren kolorea"
 
@@ -1425,13 +1425,14 @@ msgid "More actions"
 msgstr "Ekintza gehiago"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Replace with…"
 msgstr "Zabaldu honekin…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Gardentasuna"
@@ -1596,21 +1597,21 @@ msgstr "Txandakatutako marratxoak"
 msgid "Antialiasing"
 msgstr "Antialiasing-a"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 #, fuzzy
 msgid "Simple brush"
 msgstr "Pintzel sinplea"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr "Aerografoa"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
 msgid "Hairy brush"
 msgstr "Pintzel iletsua"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr "Luma kaligrafikoa"
 
@@ -1653,7 +1654,6 @@ msgstr "Ausazkoak eta lausotu"
 msgid "Mosaic"
 msgstr "Mosaikoa"
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Solid color"
@@ -1811,7 +1811,6 @@ msgstr "Ertz jarraia"
 msgid "Dashed outline"
 msgstr "Ertz etena"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Ertzik gabe"
@@ -2082,14 +2081,8 @@ msgstr "Lausotze erradioa"
 msgid "Saturation"
 msgstr "Saturazioa"
 
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Argazkira bideratutako moduak"
-
 #~ msgid "Quit"
 #~ msgstr "Irten"
-
-#~ msgid "Other tools"
-#~ msgstr "Beste tresnak"
 
 #~ msgid "Edit"
 #~ msgstr "Editatu"

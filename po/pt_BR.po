@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -42,7 +42,7 @@ msgstr "Nova janela"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Nova Imagem"
 
@@ -1599,21 +1599,21 @@ msgstr ""
 msgid "Antialiasing"
 msgstr "Antiserrilhado"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 #, fuzzy
 msgid "Simple brush"
 msgstr "Usar traços"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
 msgid "Hairy brush"
 msgstr "Usar traços"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1656,7 +1656,6 @@ msgstr ""
 msgid "Mosaic"
 msgstr ""
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Solid color"
@@ -1814,7 +1813,6 @@ msgstr "Borda sólida"
 msgid "Dashed outline"
 msgstr "Borda traçada"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Sem borda"
@@ -2085,14 +2083,8 @@ msgstr "Raio do borrado"
 msgid "Saturation"
 msgstr "Saturação"
 
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Modos foto-orientados"
-
 #~ msgid "Quit"
 #~ msgstr "Sair"
-
-#~ msgid "Other tools"
-#~ msgstr "Outras ferramentas"
 
 #~ msgid "Edit"
 #~ msgstr "Editar"
@@ -2100,8 +2092,3 @@ msgstr "Saturação"
 #~ msgid "Close"
 #~ msgstr "Fechar"
 
-#~ msgid "Similar color"
-#~ msgstr "Cor semelhante"
-
-#~ msgid "Selection options"
-#~ msgstr "Opções da seleção"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -41,7 +41,7 @@ msgstr "Új ablak"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Új kép"
 
@@ -454,7 +454,7 @@ msgstr "Forrás szín"
 msgid "Difference"
 msgstr "Különbség"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr ""
 
@@ -506,7 +506,7 @@ msgstr "_Súgó"
 msgid "Shortcuts"
 msgstr "Gyorsbillentyűk"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "Report a bug"
 msgstr "Hibajelentés küldése"
 
@@ -531,8 +531,7 @@ msgstr "Súgó az eszközökről"
 msgid "Canvas and selection"
 msgstr "Rajzvászon és kijelölés"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
 msgstr "Súgó a kiválasztásról"
 
@@ -881,7 +880,7 @@ msgstr "Alapértelmezett magasság"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Default color"
 msgstr "Alapértelmezett háttér"
@@ -1298,9 +1297,8 @@ msgid "Modifications will take effect in the next new window."
 msgstr ""
 "A beállított módosítások a következő megnyitott új ablaknál jutnak érvényre."
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Nincs beállítás"
 
@@ -1409,18 +1407,16 @@ msgstr ""
 msgid "Highlight (dark)"
 msgstr "Magasság"
 
-#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "Elsődleges szín"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Secondary color"
 msgstr "Másodlagos szín"
 
@@ -1456,12 +1452,13 @@ msgid "More actions"
 msgstr "További műveletek"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
 msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Átlátszóság"
@@ -1630,21 +1627,21 @@ msgstr ""
 msgid "Antialiasing"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 #, fuzzy
 msgid "Simple brush"
 msgstr "Vonalkázás"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
 msgid "Hairy brush"
 msgstr "Vonalkázás"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1687,7 +1684,6 @@ msgstr ""
 msgid "Mosaic"
 msgstr ""
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Solid color"
@@ -1853,7 +1849,6 @@ msgstr "Nincs körvonal"
 msgid "Dashed outline"
 msgstr "Szaggatott nyíl"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 #, fuzzy
 msgid "No outline"
@@ -2147,11 +2142,3 @@ msgstr "Telítettség"
 #~ msgid "Close"
 #~ msgstr "Bezár"
 
-#~ msgid "Freehand"
-#~ msgstr "Szabadkézi"
-
-#~ msgid "Similar color"
-#~ msgstr "Hasonló szín"
-
-#~ msgid "Selection options"
-#~ msgstr "Kijelölés beállításai"

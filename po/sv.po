@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2021-02-09 08:15+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -41,7 +41,7 @@ msgstr "Nytt fönster"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Ny bild"
 
@@ -451,7 +451,7 @@ msgstr "Rå källfärg"
 msgid "Difference"
 msgstr "Skillnad"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr "Använd inte dessa färger, men…"
 
@@ -501,7 +501,7 @@ msgstr "_Hjälp"
 msgid "Shortcuts"
 msgstr "Genvägar"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "Report a bug"
 msgstr "Rapportera ett fel"
 
@@ -526,8 +526,7 @@ msgstr "Hjälp om verktyg"
 msgid "Canvas and selection"
 msgstr "Arbetsyta och markering"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
 msgstr "Hjälp om markering"
 
@@ -865,7 +864,7 @@ msgstr "Standardhöjd"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 msgid "Default color"
 msgstr "Standardfärg"
 
@@ -1276,9 +1275,8 @@ msgstr "Urklipp innehåller ingen bild."
 msgid "Modifications will take effect in the next new window."
 msgstr "Ändringarna tillämpas i nästa nya fönster."
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Inga alternativ"
 
@@ -1382,18 +1380,16 @@ msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
 msgid "Highlight (dark)"
 msgstr "Markeringspenna"
 
-#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "Primär färg"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Secondary color"
 msgstr "Sekundär färg"
 
@@ -1429,12 +1425,13 @@ msgid "More actions"
 msgstr "Fler åtgärder"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
 msgstr "Ersätt med…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Transparens"
@@ -2073,17 +2070,11 @@ msgstr "Oskärperadie"
 msgid "Saturation"
 msgstr "Mättnad"
 
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Fotoorienterade lägen"
-
 #~ msgid "Quit"
 #~ msgstr "Avsluta"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Avsluta fullskärmsläget"
-
-#~ msgid "Other tools"
-#~ msgstr "Andra verktyg"
 
 #~ msgid "Edit"
 #~ msgstr "Redigera"

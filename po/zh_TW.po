@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -44,7 +44,7 @@ msgstr "新視窗"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "新影像"
 
@@ -441,7 +441,7 @@ msgstr "原始來源的色彩"
 msgid "Difference"
 msgstr "差異"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr "不要使用色彩，而是…"
 
@@ -493,7 +493,7 @@ msgstr "說明(_H)"
 msgid "Shortcuts"
 msgstr "捷徑"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "Report a bug"
 msgstr "報告程式錯誤"
 
@@ -518,8 +518,7 @@ msgstr "關於工具的說明"
 msgid "Canvas and selection"
 msgstr "畫布和選擇區域說明"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
 msgstr "關於選擇區域的說明"
 
@@ -863,7 +862,7 @@ msgstr "預設高度"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 msgid "Default color"
 msgstr "預設色彩"
 
@@ -1270,9 +1269,8 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "修改將在下一個新視窗生效。"
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "無選項"
 
@@ -1375,18 +1373,16 @@ msgstr "您想要中止該操作嗎？"
 msgid "Highlight (dark)"
 msgstr "螢光筆"
 
-#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "主色彩"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Secondary color"
 msgstr "副色彩"
 
@@ -1422,13 +1418,14 @@ msgid "More actions"
 msgstr "更多操作"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Replace with…"
 msgstr "擴展使用…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "透明"
@@ -1593,21 +1590,21 @@ msgstr ""
 msgid "Antialiasing"
 msgstr "反鋸齒"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 #, fuzzy
 msgid "Simple brush"
 msgstr "使用虛線"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
 msgid "Hairy brush"
 msgstr "使用虛線"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1650,7 +1647,6 @@ msgstr ""
 msgid "Mosaic"
 msgstr ""
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Solid color"
@@ -1808,7 +1804,6 @@ msgstr "實心輪廓"
 msgid "Dashed outline"
 msgstr "虛線輪廓"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "無輪廓"
@@ -2079,20 +2074,11 @@ msgstr "模糊半徑"
 msgid "Saturation"
 msgstr "飽和度"
 
-#~ msgid "Photo-oriented modes"
-#~ msgstr "匹配目標圖片"
-
-#~ msgid "com.github.maoschanz.drawing"
-#~ msgstr "com.github.maoschanz.drawing"
-
 #~ msgid "About"
 #~ msgstr "關於"
 
 #~ msgid "Quit"
 #~ msgstr "結束"
-
-#~ msgid "Other tools"
-#~ msgstr "其他工具"
 
 #~ msgid "Edit"
 #~ msgstr "編輯"

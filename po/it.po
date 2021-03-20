@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2021-02-28 13:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -41,7 +41,7 @@ msgstr "Nuova finestra"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Nuova Immagine"
 
@@ -1598,19 +1598,19 @@ msgstr "Trattini alternati"
 msgid "Antialiasing"
 msgstr "Antialiasing"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 msgid "Simple brush"
 msgstr "Pennello semplice"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr "Aerografo"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 msgid "Hairy brush"
 msgstr "Pennello peloso"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr "Pennino calligrafico"
 
@@ -1650,7 +1650,6 @@ msgstr "Mescola e sfoca"
 msgid "Mosaic"
 msgstr "Mosaico"
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 msgid "Solid color"
 msgstr "Colore solido"
@@ -1804,7 +1803,6 @@ msgstr "Profilo solido"
 msgid "Dashed outline"
 msgstr "Profilo tratteggiato"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Nessun contorno"
@@ -2071,17 +2069,11 @@ msgstr "Raggio di sfocatura"
 msgid "Saturation"
 msgstr "Saturazione"
 
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Modalità orientamento foto"
-
 #~ msgid "Quit"
 #~ msgstr "Esci"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Esci dalla modalità schermo intero"
-
-#~ msgid "Other tools"
-#~ msgstr "Altri strumenti"
 
 #~ msgid "Edit"
 #~ msgstr "Modifica"
@@ -2092,8 +2084,3 @@ msgstr "Saturazione"
 #~ msgid "Keyboard"
 #~ msgstr "Tastiera"
 
-#~ msgid "Similar color"
-#~ msgstr "Color simile"
-
-#~ msgid "Selection options"
-#~ msgstr "Opzioni selezione"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-20 19:57+0100\n"
 "PO-Revision-Date: 2021-02-12 02:15+0100\n"
 "Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language-Team: Czech <>\n"
@@ -41,7 +41,7 @@ msgstr "Nové okno"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Nový obrázek"
 
@@ -449,7 +449,7 @@ msgstr "Barva plátna"
 msgid "Difference"
 msgstr "Rozdíl"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr "Nepoužívat barvy, ale ..."
 
@@ -499,7 +499,7 @@ msgstr "Ná_pověda"
 msgid "Shortcuts"
 msgstr "Zkratky"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "Report a bug"
 msgstr "Nahlásit chybu"
 
@@ -524,8 +524,7 @@ msgstr "Nápověda k nástrojům"
 msgid "Canvas and selection"
 msgstr "Plátno a výběr"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
 msgstr "Nápověda k výběru"
 
@@ -863,7 +862,7 @@ msgstr "Výchozí výška"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 msgid "Default color"
 msgstr "Výchozí barva"
 
@@ -1648,7 +1647,6 @@ msgstr ""
 msgid "Mosaic"
 msgstr ""
 
-#. if state_as_string == 'solid':
 #: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Solid color"
@@ -1803,7 +1801,6 @@ msgstr "Plný obrys"
 msgid "Dashed outline"
 msgstr "Přerušovaný obrys"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Žádný obrys"
@@ -2074,5 +2071,3 @@ msgstr "Saturace"
 #~ msgid "Quit"
 #~ msgstr "Zavřít"
 
-#~ msgid "Other tools"
-#~ msgstr "Ostatní nástroje"
