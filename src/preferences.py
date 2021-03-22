@@ -142,7 +142,6 @@ class DrPrefsWindow(Gtk.Window):
 		tools_dict = {
 			'eraser': _("Eraser"),
 			'highlight': _("Highlighter"),
-			# 'censor': _("Censor"),
 			'brush': _("Brush"),
 			'points': _("Points"),
 			'free_select': _("Free selection"),

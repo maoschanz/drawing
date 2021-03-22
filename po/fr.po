@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-20 19:57+0100\n"
+"POT-Creation-Date: 2021-03-23 00:02+0100\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -1014,7 +1014,6 @@ msgstr "Gomme"
 msgid "Highlighter"
 msgstr "Surligneur"
 
-#. 'censor': _("Censor"),
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
@@ -1724,29 +1723,35 @@ msgstr "Plume de gaucher"
 msgid "Horizontal nib"
 msgstr "Plume horizontale"
 
-#: src/tools/ui/tool-censor.ui
-msgid "Censor type"
-msgstr "Type de censure"
-
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Blur"
 msgstr "Flouter"
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Shuffle pixels"
 msgstr "Mélanger les pixels"
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Shuffle and blur"
 msgstr "Mélanger et flouter"
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Mosaic"
 msgstr "Mosaïque"
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Solid color"
 msgstr "Couleur opaque"
+
+#: src/tools/ui/tool-eraser.ui
+#, fuzzy
+msgid "Eraser type"
+msgstr "Gomme"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -2015,16 +2020,6 @@ msgstr "En pointillés"
 msgid "Brush options"
 msgstr "Options du pinceau"
 
-#. Context: a tool to hide things like text. You can translate it as
-#. "hide informations" if you think "censor" has a negative connotation
-#: src/tools/classic_tools/tool_censor.py
-msgid "Censor"
-msgstr "Censure"
-
-#: src/tools/classic_tools/tool_censor.py
-msgid "Censoring options"
-msgstr "Options de censure"
-
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "Options de la gomme"
@@ -2185,3 +2180,4 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
+

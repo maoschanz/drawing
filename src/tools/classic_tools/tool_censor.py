@@ -27,7 +27,7 @@ class ToolCensor(AbstractClassicTool):
 	def __init__(self, window, **kwargs):
 		# Context: a tool to hide things like text. You can translate it as
 		# "hide informations" if you think "censor" has a negative connotation
-		super().__init__('censor', _("Censor"), 'tool-censor-symbolic', window)
+		super().__init__('censor', "Censor", 'tool-censor-symbolic', window)
 		self.use_operator = False
 		self.use_size = False
 		self.row.get_style_context().add_class('destructive-action')
@@ -36,7 +36,7 @@ class ToolCensor(AbstractClassicTool):
 		self.add_tool_action_enum('censor-type', self._censor_type)
 
 	def get_options_label(self):
-		return _("Censoring options")
+		return "Censoring options"
 
 	def _set_options_attributes(self):
 		self._censor_type = self.get_option_value('censor-type')

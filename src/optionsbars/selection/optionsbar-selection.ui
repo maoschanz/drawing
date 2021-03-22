@@ -165,6 +165,7 @@
       <object class="GtkMenuButton" id="options_btn">
         <property name="visible">True</property>
         <property name="menu-model">options-menu</property>
+        <property name="tooltip-text" translatable="yes">Selection options</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">view-more-symbolic</property>
@@ -211,6 +212,7 @@
       <object class="GtkButton" id="help_btn">
         <property name="visible">True</property>
         <property name="relief">none</property>
+        <property name="tooltip-text" translatable="yes">Help about selection</property>
         <property name="action-name">app.help_selection</property>
         <child>
           <object class="GtkImage">
