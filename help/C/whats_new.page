@@ -4,7 +4,7 @@
       id="whats_new">
 
   <info>
-    <link type="guide"/>
+    <link type="guide" xref="index#news"/>
     <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
     <credit type="author">
       <name>Romain F. T.</name>
@@ -16,14 +16,14 @@
   <title>What's new?</title>
 
   <p>The most recent versions are listed first.</p>
-  <!-- TODO liens vers le reste du manuel ? -->
 
   <section>
     <title>Version 0.8.0</title>
 
     <p>
-      The fullscreen mode has been completely redesigned to provide an easier
-      yet less intrusive access to the tools and their options.
+      The <link xref="fullscreen">fullscreen mode</link> has been completely
+      redesigned to provide an easier yet less intrusive access to the tools and
+      their options.
     </p>
     <p>
       The help manual has been splitted in smaller pages to be easier to read,
@@ -34,9 +34,10 @@
     <subsection>
       <title>New tools</title>
       <p>
-        You can now use a tablet and a stylus to draw with pressure-sensitive
-        brushes, available under the new optional 'brush' tool: a simple brush,
-        an airbrush, a hairy brush, and a calligraphic nib.
+        You can now use a tablet and a stylus to <link xref="tools_classic#brushes">
+        draw with pressure-sensitive brushes</link>, available under the new
+        optional 'brush' tool: a simple brush, an airbrush, a hairy brush, and a
+        calligraphic nib.
       </p>
     </subsection>
 
@@ -54,8 +55,9 @@
           is complex to explain with words, try it yourself you'll see.
         </p></item>
         <item><p>
-          Filters have been rewritten to be more reliable, and a new filter to
-          harmoniously increase contrast has been added.
+          <link xref="tools_transform#filters">Filters</link> have been
+          rewritten to be more reliable, and a new filter to harmoniously
+          increase contrast has been added.
         </p></item>
         <item><p>
           The "eraser" tool got a new icon, based on the Adwaita theme.
@@ -70,14 +72,14 @@
     <subsection>
       <title>Color modes</title>
       <p>
-        The user interface for selecting the active color application mode has
-        been rewritten to better show the accurate label, and better organize
-        the possible modes as submenus.
+        The user interface for selecting the <link xref="tools_classic_colors">
+        active color application mode</link> has been redesigned to better show
+        the accurate label, and better organize the possible modes as submenus.
       </p>
       <p>
         The "blur" mode has been removed, which simplifies the situation and
-        allows several tools ("shapes" and "brushes") to get support for the
-        color application modes in general.
+        allows <link xref="tools_classic">several tools</link> ("shapes" and
+        "brushes") to get support for the color application modes in general.
       </p>
     </subsection>
 
@@ -106,8 +108,8 @@
       flatpak, because it can't work with the sandbox.
     </p>
     <p>
-      The movements of the view when holding and moving the middle-click are now
-      far more accurate.
+      The <link xref="zoom_preview">movements of the view</link> when holding
+      and moving the middle-click are now far more accurate.
     </p>
   </section>
 
@@ -192,8 +194,8 @@
     <subsection>
       <title>Zoom</title>
       <p>
-        The most prominent new feature is the ability to zoom in (or zoom out)
-        on the image. It can be done using:
+        The most prominent new feature is the ability to <link xref="zoom_preview">
+        zoom in (or zoom out)</link> on the image. It can be achieved using:
       </p>
       <list>
         <item><p>
@@ -218,9 +220,10 @@
     <subsection>
       <title>Improvements to tools</title>
       <p>
-        An "additional tools" section has been added to the preferences window,
-        and several tools listed in this section are disabled by default. It
-        includes tools that are redundant with other more powerful tools, or
+        An "additional tools" section has been added to <link xref="preferences#tools">
+        the preferences window</link>, and several tools listed in this section
+        are disabled by default.
+        It includes tools that are redundant with other more powerful tools, or
         tools whose implementation isn't reliable enough.
       </p>
       <p>
@@ -228,8 +231,9 @@
       </p>
       <list>
         <item><p>
-          Rectangle selection and freehand selection are now distinct tools,
-          that share the same bottom pane.
+          <link xref="tools_selection">Rectangle selection and freehand
+          selection</link> are now distinct tools, that share the same bottom
+          pane.
         </p></item>
         <item><p>
           The 'rotate' tool now supports any angle when rotating the selection,
@@ -246,9 +250,9 @@
           more complex characters to be used (e.g. Asian characters).
         </p></item>
         <item><p>
-          The 'saturate' tool has been replaced by 'filters', a more powerful
-          tool with several types of blur, color inversion, pixelization,
-          saturation and transparency.
+          The 'saturate' tool has been replaced by <link xref="tools_transform#filters">
+          'filters'</link>, a more powerful tool with several types of blur,
+          color inversion, pixelization, saturation and transparency.
         </p></item>
         <item><p>
           Specialized types of pencils (eraser, highlighter) have been added, as
@@ -262,15 +266,15 @@
       </list>
       <p>
         Concerning common options, you can now disable anti-aliasing. Also, the
-        "color application mode" is now an option listed in the colors menus and
-        popovers.
+        "color application mode" is now an option listed in the
+        <link xref="tools_classic_colors">colors menus and popovers</link>.
       </p>
     </subsection>
 
     <subsection>
       <title>Other features</title>
       <p>
-        A fullscreen mode is now available.
+        A <link xref="fullscreen">fullscreen mode</link> is now available.
       </p>
       <p>
         The "windows" menu has been removed from the menubar.
