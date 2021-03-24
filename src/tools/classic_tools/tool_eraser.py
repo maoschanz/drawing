@@ -28,23 +28,44 @@ class ToolEraser(ToolPencil):
 		# Context: this is the name of a tool, in the meaning "a rubber eraser"
 		AbstractClassicTool.__init__(self, 'eraser', _("Eraser"), \
 		                                         'tool-eraser-symbolic', window)
-		self.use_color = False
+		self.use_operator = False
 		self._fallback_operator = 'clear'
+		self.add_tool_action_enum('selection-color', 'alpha')
+		self.add_tool_action_enum('eraser-type', 'solid')
 
-	def get_options_model(self):
-		return None
+	def get_edition_status(self):
+		self._eraser_type = self.get_option_value('eraser-type')
+		self._replacement_type = self.get_option_value('selection-color')
+
+		if self._eraser_type == 'solid' and self._replacement_type != 'alpha':
+			self._fallback_operator = 'source'
+		else:
+			self._fallback_operator = 'clear'
+		self.window.options_manager.update_pane(self)
+
+		return self.label
 
 	def get_options_label(self):
-		return _("No options")
+		return _("Eraser options")
 
 	############################################################################
 
 	def build_operation(self):
+		if self._replacement_type == 'alpha':
+			color = None
+		elif self._replacement_type == 'initial':
+			gdk_rgba = self.get_image().get_initial_rgba()
+			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]
+		elif self._replacement_type == 'secondary':
+			gdk_rgba = self.window.options_manager.get_right_color()
+			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]
+
 		operation = {
 			'tool_id': self.id,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,
+			'replacement': color,
 			'antialias': self._use_antialias,
 			'path': self._path
 		}
@@ -56,8 +77,13 @@ class ToolEraser(ToolPencil):
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(cairo.LineCap.ROUND)
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)
-		cairo_context.set_operator(cairo.Operator.CLEAR)
 		cairo_context.set_line_width(operation['line_width'])
+
+		if operation['replacement'] is None:
+			cairo_context.set_operator(cairo.Operator.CLEAR)
+		else:
+			cairo_context.set_source_rgba(*operation['replacement'])
+			cairo_context.set_operator(cairo.Operator.SOURCE)
 
 		utilities_smooth_path(cairo_context, operation['path'])
 		cairo_context.stroke()
