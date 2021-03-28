@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-23 00:02+0100\n"
-"PO-Revision-Date: 2021-02-28 13:15+0100\n"
+"PO-Revision-Date: 2021-03-28 15:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -115,6 +115,8 @@ msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
+"Ora sono disponibili opzioni come il tipo di sfondo del testo e lo stile di riempimento della forma"
+"che sono persistenti alla chiusura dell'applicazione."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -122,6 +124,9 @@ msgid ""
 "rewritten to better show the accurate label, and better organize the "
 "possible modes as submenus."
 msgstr ""
+"L'interfaccia utente per la selezione della modalità di applicazione attiva del colore è stata "
+"riscritta per mostrare meglio l'etichetta accurata e organizzare le "
+"possibili modalità come sottomenu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -129,6 +134,9 @@ msgid ""
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
 msgstr ""
+La modalità \"sfocatura\" è stata rimossa, il che ha semplificato la situazione e "
+"consentendo a diversi strumenti (\"forme\" e \"pennelli\") ad ottenere supporto per la "
+"modalità di applicazione del colore in generale."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -427,9 +435,8 @@ msgstr "Testo chiaro su sfondo scuro"
 #. hue-saturation-luminosity (HSL) representation
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "HSL modes"
-msgstr "Altre modalità"
+msgstr "Modalità HSL"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -535,7 +542,7 @@ msgstr "Indice"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Pagine singole"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -543,31 +550,26 @@ msgid "Basic help"
 msgstr "Aiuto generico"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Aiuto sugli strumenti"
+msgstr "Aiuto sullo zoom"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Attiva/disattiva modalità schermo intero"
+msgstr "Aiuto sulla modalità a schermo intero"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Aiuto sugli strumenti"
+msgstr "Aiuto sugli strumenti classici"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Aiuto sugli strumenti"
+msgstr "Aiuto sui colori"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Aiuto sugli strumenti"
+msgstr "Aiuto sugli strumenti di trasformazione"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -575,7 +577,7 @@ msgstr "Aiuto sugli selezione"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Cosa c'è di nuovo"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -798,12 +800,12 @@ msgstr "Ripeti %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Tentativo di salvare uno stato non valido"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Errore: nessuno strumento '%s'"
 
 #. Context: an error message
 #: src/image.py
@@ -1214,12 +1216,11 @@ msgstr "Sostituisci la trasparenza con:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "Il pixbuf di selezione è vuoto."
 
 #: src/selection_manager.py
-#, fuzzy
 msgid "The selection path is empty."
-msgstr "La selezione e le azioni ad essa associate"
+msgstr "Il percorso selezionato è vuoto."
 
 #: src/utilities.py
 msgid "Transparent"
@@ -1341,18 +1342,19 @@ msgstr "Nonostante il nome, %s è un file WEBP."
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
+"È la prima volta che usi Drawing %s, vuoi leggere le novità?
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Dopo"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "Si"
 
 #. Context: an error message
 #: src/window.py
@@ -1745,9 +1747,8 @@ msgid "Solid color"
 msgstr "Colore solido"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Eraser type"
-msgstr "Gomma"
+msgstr "Tipo di gomma"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -2017,9 +2018,8 @@ msgid "Brush options"
 msgstr "Opzioni pennello"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Più opzioni"
+msgstr "Opzioni gomma"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
