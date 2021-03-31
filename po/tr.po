@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-23 00:02+0100\n"
-"PO-Revision-Date: 2021-02-28 22:15+0300\n"
+"PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -114,6 +114,8 @@ msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
+"Metin arka plan türü ve şekil doldurma stili gibi seçenekler artık uygulama "
+"kapatılırken korunmaktadır."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -121,6 +123,9 @@ msgid ""
 "rewritten to better show the accurate label, and better organize the "
 "possible modes as submenus."
 msgstr ""
+"Etkin renk uygulama modunu seçmek için kullanıcı arayüzü, doğru etiketi daha "
+"iyi göstermek ve olası modları alt menüler olarak daha iyi organize etmek "
+"için yeniden yazılmıştır."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -128,6 +133,9 @@ msgid ""
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
 msgstr ""
+"Durumu basitleştiren ve çeşitli araçların (\"şekiller\" ve \"fırçalar\") "
+"genel olarak renk uygulama modları için destek almasına izin veren "
+"\"bulanıklaştırma\" modu kaldırıldı."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -533,7 +541,7 @@ msgstr "Dizin"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Ayrı sayfalar"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -541,31 +549,26 @@ msgid "Basic help"
 msgstr "Basit yardım"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Araçlar hakkında yardım"
+msgstr "Yakınlaştırma hakkında yardım"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Tam ekran modunu değiştir"
+msgstr "Tam ekran modu hakkında yardım"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Araçlar hakkında yardım"
+msgstr "Klasik araçlar hakkında yardım"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Araçlar hakkında yardım"
+msgstr "Renkler hakkında yardım"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Araçlar hakkında yardım"
+msgstr "Dönüştürme araçları hakkında yardım"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -573,7 +576,7 @@ msgstr "Seçim hakkında yardım"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Neler yeni"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -796,12 +799,12 @@ msgstr "Yinele %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Geçersiz bir durumu kaydetmeye çalışın"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Hata: '%s' aracı yok"
 
 #. Context: an error message
 #: src/image.py
@@ -1214,12 +1217,11 @@ msgstr "Saydamlığı şununla değiştir:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "Pixbuf seçimi boş."
 
 #: src/selection_manager.py
-#, fuzzy
 msgid "The selection path is empty."
-msgstr "Seçim ve onunla ilişkili eylemler"
+msgstr "Seçim yolu boş."
 
 #: src/utilities.py
 msgid "Transparent"
@@ -1341,18 +1343,20 @@ msgstr "Adına rağmen %s bir WEBP dosyasıdır."
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
+"Draving in %s sürümünü ilk kez kullanıyorsunuz, yenilikleri okumak ister "
+"misiniz?"
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Sonra"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #. Context: an error message
 #: src/window.py
@@ -1743,9 +1747,8 @@ msgid "Solid color"
 msgstr "Koyu renk"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Eraser type"
-msgstr "Silgi"
+msgstr "Silgi tipi"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -2015,9 +2018,8 @@ msgid "Brush options"
 msgstr "Fırça seçenekleri"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Daha fazla seçenek"
+msgstr "Silgi seçenekleri"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2070,15 +2072,13 @@ msgstr "Biçim seçenekleri"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Ana Rengi Düzenle…"
+msgstr "Ana renkle dolu"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "İkincil Rengi Düzenle…"
+msgstr "İkincil renkle dolu"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
@@ -2093,14 +2093,12 @@ msgid "Text options"
 msgstr "Yazıtipi seçenekleri"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
-#, fuzzy
 msgid "Density depends on the stylus pressure"
-msgstr "Genişlik, prob ucu basıncına bağlıdır"
+msgstr "Yoğunluk, prob ucu basıncına bağlıdır"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
-#, fuzzy
 msgid "Density depends on the mouse speed"
-msgstr "Genişlik fare hızına bağlıdır"
+msgstr "Yoğunluk, fare hızına bağlıdır"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
 #: src/tools/classic_tools/brushes/brush_nip.py
@@ -2109,9 +2107,8 @@ msgid "Width depends on the stylus pressure"
 msgstr "Genişlik, prob ucu basıncına bağlıdır"
 
 #: src/tools/classic_tools/brushes/brush_nip.py
-#, fuzzy
 msgid "Width depends on the line orientation"
-msgstr "Genişlik fare hızına bağlıdır"
+msgstr "Genişlik, çizgi yönüne bağlıdır"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
