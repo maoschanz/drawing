@@ -22,7 +22,6 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 # Import tools
 from .tool_arc import ToolArc
 from .tool_brush import ToolBrush
-from .tool_censor import ToolCensor
 from .tool_eraser import ToolEraser
 from .tool_experiment import ToolExperiment
 from .tool_highlight import ToolHighlighter
@@ -81,7 +80,7 @@ DEFAULT_TOOL_ID = 'pencil'
 class DrWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrWindow'
 
-	_settings = Gio.Settings.new('com.github.maoschanz.drawing')
+	gsettings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	# Window empty widgets
 	tools_flowbox = Gtk.Template.Child()
@@ -106,7 +105,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.active_tool_id = None
 		self._is_tools_initialisation_finished = False
 
-		if self._settings.get_boolean('maximized'):
+		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
 		# self.resize(360, 648)
 		# self.resize(720, 288)
@@ -143,19 +142,42 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self._enable_first_tool()
 		self.set_picture_title()
+		self._try_show_release_notes()
+
+	def _try_show_release_notes(self):
+		last_version = self.gsettings.get_string('last-version')
+		current_version = self.app.get_current_version()
+		if current_version == last_version:
+			return
+
+		dialog = DrMessageDialog(self)
+		# Context: %s is the version number of the app
+		label = _("It's the first time you use Drawing %s, " + \
+		                                   "would you like to read what's new?")
+		dialog.add_string(label % current_version)
+
+		no_id = dialog.set_action(_("No"), None, False)
+		later_id = dialog.set_action(_("Later"), None, False)
+		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
+		result = dialog.run()
+		dialog.destroy()
+
+		if result == later_id:
+			return
+		if result == yes_id:
+			self.app.on_help_whats_new()
+		self.gsettings.set_string('last-version', current_version)
 
 	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
 		and enable the default tool."""
-		disabled_tools = self._settings.get_strv('disabled-tools')
-		dev = self._settings.get_boolean('devel-only')
+		disabled_tools = self.gsettings.get_strv('disabled-tools')
+		dev = self.gsettings.get_boolean('devel-only')
 		self.tools = {}
 		self.prompt_message(False, 'window has started, now loading tools')
 		# The order might be improvable
 		self._load_tool('pencil', ToolPencil, disabled_tools, dev)
-		if dev:
-			self._load_tool('brush', ToolBrush, disabled_tools, dev)
-			self._load_tool('censor', ToolCensor, disabled_tools, dev)
+		self._load_tool('brush', ToolBrush, disabled_tools, dev)
 		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
 		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
 		self._load_tool('text', ToolText, disabled_tools, dev)
@@ -183,7 +205,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.build_menubar_tools_menu()
 
 		# Initialisation of which tool is active
-		tool_id = self._settings.get_string('last-active-tool')
+		tool_id = self.gsettings.get_string('last-active-tool')
 		if tool_id not in self.tools:
 			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
@@ -255,9 +277,9 @@ class DrWindow(Gtk.ApplicationWindow):
 	def build_new_image(self, *args):
 		"""Open a new tab with a drawable blank image using the default values
 		defined by user's settings."""
-		width = self._settings.get_int('default-width')
-		height = self._settings.get_int('default-height')
-		rgba = self._settings.get_strv('default-rgba')
+		width = self.gsettings.get_int('default-width')
+		height = self.gsettings.get_int('default-height')
+		rgba = self.gsettings.get_strv('default-rgba')
 		self.build_new_tab(width=width, height=height, background_rgba=rgba)
 		self.set_picture_title()
 
@@ -370,9 +392,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			if not self.get_active_image().try_close_tab():
 				return True
 
-		self.options_manager.remember_options()
-		self._settings.set_string('last-active-tool', self.active_tool_id)
-		self._settings.set_boolean('maximized', self.is_maximized())
+		self.options_manager.persist_tools_options()
+		self.gsettings.set_string('last-active-tool', self.active_tool_id)
+		self.gsettings.set_boolean('maximized', self.is_maximized())
 		return False
 
 	############################################################################
@@ -390,12 +412,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.connect('configure-event', self._adapt_to_window_size)
 
 		# When a setting changes
-		self._settings.connect('changed::show-labels', self.on_show_labels_setting_changed)
-		self._settings.connect('changed::deco-type', self.on_layout_changed)
-		self._settings.connect('changed::big-icons', self.on_icon_size_changed)
-		# self._settings.connect('changed::preview-size', self.show_info_settings)
-		# self._settings.connect('changed::devel-only', self.show_info_settings)
-		self._settings.connect('changed::disabled-tools', self.show_info_settings)
+		self.gsettings.connect('changed::show-labels', self.on_show_labels_setting_changed)
+		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
+		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
+		# self.gsettings.connect('changed::preview-size', self.show_info_settings)
+		# self.gsettings.connect('changed::devel-only', self.show_info_settings)
+		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
 		# Other settings are connected in DrImage
 
 		# What happens when the active image change
@@ -463,7 +485,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
-		show_labels = self._settings.get_boolean('show-labels')
+		show_labels = self.gsettings.get_boolean('show-labels')
 		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
 
@@ -529,13 +551,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl><Shift>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
 
-		editor = self._settings.get_boolean('direct-color-edit')
+		editor = self.gsettings.get_boolean('direct-color-edit')
 		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
-		if self._settings.get_boolean('devel-only'):
+		if self.gsettings.get_boolean('devel-only'):
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
@@ -619,7 +641,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.placeholder_model = builder.get_object('tool-placeholder')
 
 		# Remember the setting, so no need to restart this at each dialog.
-		self.deco_layout = self._settings.get_string('deco-type')
+		self.deco_layout = self.gsettings.get_string('deco-type')
 		if self.deco_layout == '':
 			self.deco_layout = self.get_auto_decorations()
 
@@ -634,7 +656,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			menubar = 'm' in self.deco_layout
 			self._decorations = DrDecoManagerToolbar(symbolic, menubar, self)
 		else:
-			self._settings.set_string('deco-type', '')
+			self.gsettings.set_string('deco-type', '')
 			self.set_ui_bars() # yes, recursion.
 
 		if self.app.is_beta():
@@ -677,7 +699,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show or self._settings.get_boolean('devel-only'):
+		if show or self.gsettings.get_boolean('devel-only'):
 			print('Drawing: ' + label)
 
 	def prompt_action(self, message, action_name, action_label):
@@ -774,11 +796,11 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def on_show_labels_setting_changed(self, *args):
 		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
-		self.set_tools_labels_visibility(self._settings.get_boolean('show-labels'))
+		self.set_tools_labels_visibility(self.gsettings.get_boolean('show-labels'))
 
 	def action_show_labels(self, *args):
 		show_labels = not args[0].get_state()
-		self._settings.set_boolean('show-labels', show_labels)
+		self.gsettings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
 
 	############################################################################
@@ -868,7 +890,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_use_editor(self, *args):
 		use_editor = not args[0].get_state()
-		self._settings.set_boolean('direct-color-edit', use_editor)
+		self.gsettings.set_boolean('direct-color-edit', use_editor)
 		args[0].set_state(GLib.Variant.new_boolean(use_editor))
 		self.options_manager.set_palette_setting(use_editor)
 

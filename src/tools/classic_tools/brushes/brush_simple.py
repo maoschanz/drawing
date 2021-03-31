@@ -8,6 +8,14 @@ from .utilities_paths import utilities_smooth_path
 class BrushSimple(AbstractBrush):
 	__gtype_name__ = 'BrushSimple'
 
+	def _get_status(self, use_pressure):
+		label = _("Simple brush") + " - "
+		if use_pressure:
+			label += _("Width depends on the stylus pressure")
+		else:
+			label += _("Width depends on the mouse speed")
+		return label
+
 	def draw_preview(self, operation, cairo_context):
 		cairo_context.set_line_cap(cairo.LineCap.ROUND)
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)

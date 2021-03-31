@@ -61,10 +61,18 @@ class AbstractAbstractTool():
 		self.window.add_action_simple(action_name, callback, None)
 
 	def add_tool_action_boolean(self, action_name, default):
-		self.window.options_manager.add_tool_option_boolean(action_name, default)
+		self.window.options_manager.add_option_boolean(action_name, default)
 
 	def add_tool_action_enum(self, action_name, default):
-		self.window.options_manager.add_tool_option_enum(action_name, default)
+		self.window.options_manager.add_option_enum(action_name, default)
+
+	def load_tool_action_boolean(self, action_name, key_name):
+		om = self.window.options_manager
+		return om.add_option_from_bool_key(action_name, key_name)
+
+	def load_tool_action_enum(self, action_name, key_name):
+		om = self.window.options_manager
+		return om.add_option_from_enum_key(action_name, key_name)
 
 	def get_option_value(self, action_name):
 		return self.window.options_manager.get_value(action_name)
@@ -79,7 +87,7 @@ class AbstractAbstractTool():
 		self.set_action_sensitivity('cairo_operator', self.use_operator)
 
 	def get_settings(self):
-		return self.window._settings
+		return self.window.options_manager._tools_gsettings
 
 	############################################################################
 	# Various utilities ########################################################
@@ -137,7 +145,7 @@ class AbstractAbstractTool():
 		                                                tooltip_text=self.label)
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
 		self.label_widget = Gtk.Label(label=self.label) #, use_underline=True)
-		if self.get_settings().get_boolean('big-icons'):
+		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR
@@ -157,7 +165,7 @@ class AbstractAbstractTool():
 
 	def update_icon_size(self):
 		image = self.row.get_children()[0].get_children()[0]
-		if self.get_settings().get_boolean('big-icons'):
+		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR

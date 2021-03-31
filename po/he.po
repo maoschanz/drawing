@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 01:38+0100\n"
+"POT-Creation-Date: 2021-03-23 00:02+0100\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -42,7 +42,7 @@ msgstr "חלון חדש"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "תמונה חדשה"
 
@@ -93,6 +93,26 @@ msgid ""
 "optionally be a specific color, rather than always tranparency. This "
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Options such as the text background type and the shape filling style are now "
+"persisted when closing the application."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface for selecting the active color application mode has been "
+"rewritten to better show the accurate label, and better organize the "
+"possible modes as submenus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The \"blur\" mode has been removed, which simplified the situation and "
+"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
+"color application modes in general."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -467,7 +487,7 @@ msgstr "צבע מקור"
 msgid "Difference"
 msgstr "שוני"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr ""
 
@@ -520,7 +540,7 @@ msgstr "_עזרה"
 msgid "Shortcuts"
 msgstr "קיצורי דרך"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "Report a bug"
 msgstr "דווח על באג"
 
@@ -529,29 +549,51 @@ msgstr "דווח על באג"
 msgid "Index"
 msgstr ""
 
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr ""
+
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 #, fuzzy
 msgid "Basic help"
 msgstr "בסיסי"
 
-#. Context: open the help page about classic tools
 #: src/ui/app-menus.ui
-msgid "Help about tools"
+#, fuzzy
+msgid "Help about zooming"
+msgstr "שינוי קנה מידה של הבחירה"
+
+#: src/ui/app-menus.ui
+msgid "Help about the full-screen mode"
 msgstr ""
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Help about classic tools"
+msgstr "שינוי קנה מידה של הבחירה"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#, fuzzy
+msgid "Help about colors"
+msgstr "שינוי קנה מידה של הבחירה"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #, fuzzy
-msgid "Canvas and selection"
+msgid "Help about transformation tools"
 msgstr "שינוי קנה מידה של הבחירה"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 #, fuzzy
 msgid "Help about selection"
 msgstr "שינוי קנה מידה של הבחירה"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -564,6 +606,10 @@ msgstr "פתיחה"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
+msgstr ""
+
+#: src/ui/minimap.ui
+msgid "100%"
 msgstr ""
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
@@ -588,9 +634,19 @@ msgstr "צבעים"
 msgid "Use these settings by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
-#: src/ui/minimap.ui
-msgid "100%"
-msgstr ""
+#: src/ui/preferences.ui
+#, fuzzy
+msgid "Images"
+msgstr "תמונה"
+
+#: src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "כלים"
+
+#: src/ui/preferences.ui
+#, fuzzy
+msgid "Window"
+msgstr "חלון חדש"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
@@ -605,20 +661,6 @@ msgstr "סנטימטרים"
 #: src/ui/properties.ui
 msgid "inches"
 msgstr "אינצ'ים"
-
-#: src/ui/preferences.ui
-#, fuzzy
-msgid "Images"
-msgstr "תמונה"
-
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "כלים"
-
-#: src/ui/preferences.ui
-#, fuzzy
-msgid "Window"
-msgstr "חלון חדש"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -782,6 +824,16 @@ msgid "Redo %s"
 msgstr "חידוש פעולה %s"
 
 #. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr ""
+
+#: src/history_manager.py
+#, python-format
+msgid "Error: no tool '%s'"
+msgstr ""
+
+#. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
@@ -794,23 +846,6 @@ msgstr ""
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "קובץ לא שמור"
-
-#: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/tools/utilities_paths.py src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
-msgid "Cancel"
-msgstr "ביטול"
-
-#. Context: Create a new image
-#: src/new_image_dialog.py
-msgid "Create"
-msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -883,6 +918,23 @@ msgstr ""
 msgid "%s%%"
 msgstr ""
 
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "ביטול"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
@@ -903,7 +955,7 @@ msgstr "גובה ברירת מחדל"
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Default color"
 msgstr "רקע ברירת מחדל"
@@ -990,6 +1042,11 @@ msgstr "מחק"
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
+msgstr ""
+
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
 msgstr ""
 
 #. Context: this is the name of a tool to draw little circles, crosses,
@@ -1188,6 +1245,15 @@ msgstr ""
 msgid "Replace transparency with:"
 msgstr ""
 
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr ""
+
+#: src/selection_manager.py
+msgid "The selection path is empty."
+msgstr ""
+
 #: src/utilities.py
 #, fuzzy
 msgid "Transparent"
@@ -1305,6 +1371,25 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: %s is the version number of the app
+#: src/window.py
+#, python-format
+msgid ""
+"It's the first time you use Drawing %s, would you like to read what's new?"
+msgstr ""
+
+#: src/window.py
+msgid "No"
+msgstr ""
+
+#: src/window.py
+msgid "Later"
+msgstr ""
+
+#: src/window.py
+msgid "Yes"
+msgstr ""
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1319,9 +1404,8 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "אין אפשרויות"
 
@@ -1395,28 +1479,6 @@ msgstr "יבא תמונה"
 msgid "Required tool is not available"
 msgstr ""
 
-#. Context: an error message
-#: src/tools/abstract_tool.py
-#, python-brace-format
-msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "המשך"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "האזור לא נראה תחום בראוי, או שמאוד מסובך."
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "לא בטוח שסדרה זו תוכל לנהל את האזור הרצוי."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "האם ברצונך לבטל את הפעולה, או לתת לכלי להיאבק?"
-
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1424,18 +1486,16 @@ msgstr "האם ברצונך לבטל את הפעולה, או לתת לכלי ל�
 msgid "Highlight (dark)"
 msgstr "גובה"
 
-#. Context: fill a shape with the color of the left click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "צבע ראשי"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Secondary color"
 msgstr "צבע משנה"
 
@@ -1466,18 +1526,17 @@ msgid "Use this editor by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#, fuzzy
-msgid "More actions"
-msgstr "אין אפשרויות"
+msgid "Selection options"
+msgstr "אפשרויות בחירה"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
 msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "שקיפות"
@@ -1519,6 +1578,11 @@ msgstr "זווית (מעלות)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr ""
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#, fuzzy
+msgid "More actions"
+msgstr "אין אפשרויות"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1569,6 +1633,28 @@ msgstr "הפוך אופקית"
 #, fuzzy
 msgid "Vertical deformation"
 msgstr "בוחר צבעים"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
+
+#: src/tools/utilities_paths.py
+msgid "Continue"
+msgstr "המשך"
+
+#: src/tools/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "האזור לא נראה תחום בראוי, או שמאוד מסובך."
+
+#: src/tools/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "לא בטוח שסדרה זו תוכל לנהל את האזור הרצוי."
+
+#: src/tools/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "האם ברצונך לבטל את הפעולה, או לתת לכלי להיאבק?"
 
 #: src/tools/ui/selection.ui
 #, fuzzy
@@ -1647,21 +1733,21 @@ msgstr ""
 msgid "Antialiasing"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
 #, fuzzy
 msgid "Simple brush"
 msgstr "השתמש בקווים מפרידים"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
 msgid "Hairy brush"
 msgstr "השתמש בקווים מפרידים"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1683,32 +1769,37 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr "הפוך אופקית"
 
-#: src/tools/ui/tool-censor.ui
-msgid "Censor type"
-msgstr ""
-
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "פיקסלים"
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 msgid "Mosaic"
 msgstr ""
 
-#. if state_as_string == 'solid':
-#: src/tools/ui/tool-censor.ui src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_censor.py
 #, fuzzy
 msgid "Solid color"
 msgstr "צבע משנה"
+
+#: src/tools/ui/tool-eraser.ui
+#, fuzzy
+msgid "Eraser type"
+msgstr "מחק"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1871,7 +1962,6 @@ msgstr ""
 msgid "Dashed outline"
 msgstr ""
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 #, fuzzy
 msgid "No outline"
@@ -1999,32 +2089,14 @@ msgid "Dashed"
 msgstr ""
 
 #: src/tools/classic_tools/tool_brush.py
-msgid "Brush"
-msgstr ""
-
-#: src/tools/classic_tools/tool_brush.py
 #, fuzzy
 msgid "Brush options"
 msgstr "אין אפשרויות"
 
-#: src/tools/classic_tools/tool_brush.py
-msgid "Width depends on the stylus pressure"
-msgstr ""
-
-#: src/tools/classic_tools/tool_brush.py
-msgid "Width depends on the mouse speed"
-msgstr ""
-
-#. Context: a tool to hide things like text. You can translate it as
-#. "hide informations" if you think "censor" has a negative connotation
-#: src/tools/classic_tools/tool_censor.py
-msgid "Censor"
-msgstr ""
-
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/classic_tools/tool_eraser.py
 #, fuzzy
-msgid "Censoring options"
-msgstr "אפשרויות צביעה"
+msgid "Eraser options"
+msgstr "אין אפשרויות"
 
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -2077,6 +2149,18 @@ msgstr "צורה"
 msgid "Shape options"
 msgstr "אפשרויות"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with main color"
+msgstr "צבע ראשי"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with secondary color"
+msgstr "צבע משנה"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
 msgstr ""
@@ -2089,6 +2173,28 @@ msgstr "טקסט"
 #, fuzzy
 msgid "Text options"
 msgstr "אין אפשרויות"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the stylus pressure"
+msgstr ""
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the mouse speed"
+msgstr ""
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr ""
+
+#: src/tools/classic_tools/brushes/brush_nip.py
+msgid "Width depends on the line orientation"
+msgstr ""
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr ""
 
 # I had to translate "right-click" to "click a right-click", since it would not make any sense otherwise.
 #: src/tools/selection_tools/abstract_select.py
@@ -2156,9 +2262,6 @@ msgstr ""
 msgid "Saturation"
 msgstr "רוויה"
 
-#~ msgid "About"
-#~ msgstr "אודות"
-
 #~ msgid "Quit"
 #~ msgstr "יציאה"
 
@@ -2185,9 +2288,6 @@ msgstr "רוויה"
 
 #~ msgid "Similar color"
 #~ msgstr "צבע דומה"
-
-#~ msgid "Selection options"
-#~ msgstr "אפשרויות בחירה"
 
 #~ msgid "Similar color selection"
 #~ msgstr "בחירת צבע דומה"

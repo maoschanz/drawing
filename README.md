@@ -119,6 +119,7 @@ General options for these tools: colors, use antialiasing, size, …
 	- free shape
 - *Color picker*
 - *Paint (options: remove a color, …)*
+- *Censor/hide elements*
 
 #### Selection tools
 

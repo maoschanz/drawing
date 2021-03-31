@@ -46,12 +46,16 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
-		self.thickness_spinbtn.set_value(window._settings.get_int('last-size'))
+		last_size = self._get_tool_options().get_int('last-size')
+		self.thickness_spinbtn.set_value(last_size)
 		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap_arrow = builder.get_object('minimap_arrow')
+
+	def _get_tool_options(self):
+		return self.window.options_manager._tools_gsettings
 
 	def update_for_new_tool(self, tool):
 		self.color_box.set_sensitive(tool.use_color)
@@ -113,8 +117,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
-		right_rgba = self.window._settings.get_strv('last-right-rgba')
-		left_rgba = self.window._settings.get_strv('last-left-rgba')
+		right_rgba = self._get_tool_options().get_strv('last-right-rgba')
+		left_rgba = self._get_tool_options().get_strv('last-left-rgba')
 		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
 		             builder.get_object('r_btn_image'), right_rgba, False, self)
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \

@@ -28,15 +28,14 @@ class ToolText(AbstractClassicTool):
 		self._should_cancel = False
 		self._last_click_btn = 1
 
-		self.font_fam_name = self.window._settings.get_string('last-font-name')
-		self._bg_id = 'outline'
-		self._bg_label = _("Outline")
+		self.font_fam_name = self.get_settings().get_string('last-font-name')
 
 		self.add_tool_action_simple('text-set-font', self._set_font)
-		# TODO remember and restore the selected font and its options
 		self.add_tool_action_boolean('text-bold', False)
 		self.add_tool_action_boolean('text-italic', False)
-		self.add_tool_action_enum('text-background', self._bg_id)
+
+		self._background_id = self.load_tool_action_enum('text-background', \
+		                                                 'last-text-background')
 
 		# TODO actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
@@ -75,25 +74,23 @@ class ToolText(AbstractClassicTool):
 		self._is_bold = self.get_option_value('text-bold')
 
 	def _set_background_style(self, *args):
-		state_as_string = self.get_option_value('text-background')
-		self._bg_id = state_as_string
-		if state_as_string == 'none':
-			self._bg_label = _("No background")
-		elif state_as_string == 'shadow':
-			self._bg_label = _("Shadow")
-		elif state_as_string == 'outline':
-			self._bg_label = _("Outline")
-		else:
-			self._bg_label = _("Rectangle background")
+		self._background_id = self.get_option_value('text-background')
 
 	def get_options_label(self):
 		return _("Text options")
 
 	def get_edition_status(self):
-		self._set_background_style()
 		self._set_font_options()
-		label = self.label + ' - ' + self.font_fam_name + ' - ' + self._bg_label
-		return label
+
+		self._set_background_style()
+		bg_label = {
+			'none': _("No background"),
+			'shadow': _("Shadow"),
+			'outline': _("Outline"),
+			'rectangle': _("Rectangle background"),
+		}[self._background_id]
+
+		return self.label + ' - ' + self.font_fam_name + ' - ' + bg_label
 
 	############################################################################
 
@@ -201,7 +198,7 @@ class ToolText(AbstractClassicTool):
 			# 'antialias': self._use_antialias, # XXX ne marche pas ??
 			'x': self.x_press,
 			'y': self.y_press,
-			'background': self._bg_id,
+			'background': self._background_id,
 			'text': self.text_string
 		}
 		return operation

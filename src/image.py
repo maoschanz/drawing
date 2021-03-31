@@ -57,11 +57,11 @@ class DrImage(Gtk.Box):
 		self._init_drawing_area()
 
 		self._update_background_color()
-		self.window._settings.connect('changed::ui-background-rgba', \
+		self.window.gsettings.connect('changed::ui-background-rgba', \
 		                                          self._update_background_color)
 
 		self._update_zoom_behavior()
-		self.window._settings.connect('changed::ctrl-zoom', \
+		self.window.gsettings.connect('changed::ctrl-zoom', \
 		                                             self._update_zoom_behavior)
 
 	def _init_drawing_area(self):
@@ -93,14 +93,14 @@ class DrImage(Gtk.Box):
 		self._drawing_area.connect('leave-notify-event', self.on_leave_image)
 
 	def _update_background_color(self, *args):
-		rgba = self.window._settings.get_strv('ui-background-rgba')
+		rgba = self.window.gsettings.get_strv('ui-background-rgba')
 		self._bg_rgba = (float(rgba[0]), float(rgba[1]), \
 		                                         float(rgba[2]), float(rgba[3]))
 		# We remember this data here for performance: it's used by the `on_draw`
 		# method which is called a lot, and reading a gsettings costs a lot.
 
 	def _update_zoom_behavior(self, *args):
-		self._ctrl_to_zoom = self.window._settings.get_boolean('ctrl-zoom')
+		self._ctrl_to_zoom = self.window.gsettings.get_boolean('ctrl-zoom')
 
 	############################################################################
 	# Image initialization #####################################################
@@ -175,7 +175,7 @@ class DrImage(Gtk.Box):
 	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
 			pixbuf = pixbuf.add_alpha(False, 255, 255, 255)
-		background_rgba = self.window._settings.get_strv('default-rgba')
+		background_rgba = self.window.gsettings.get_strv('default-rgba')
 		self._history.set_initial_operation(background_rgba, pixbuf, \
 		                                pixbuf.get_width(), pixbuf.get_height())
 		self.set_main_pixbuf(pixbuf)

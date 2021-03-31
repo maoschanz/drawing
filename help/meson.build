@@ -4,10 +4,14 @@ gnome.yelp(
 	sources: [
 		'index.page',
 		'main_features.page',
+		'zoom_preview.page',
+		'fullscreen.page',
 		'preferences.page',
 		'tools_classic.page',
+		'tools_classic_colors.page',
 		'tools_selection.page',
 		'tools_transform.page',
+		'whats_new.page',
 		'legal.xml'
 	],
 	media: [

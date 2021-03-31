@@ -6,7 +6,7 @@
 	"command" : "drawing",
 	"finish-args" : [
 		"--share=ipc",
-		"--socket=x11",
+		"--socket=fallback-x11",
 		"--socket=wayland",
 		"--metadata=X-DConf=migrate-path=/com/github/maoschanz/drawing/"
 	],
@@ -14,8 +14,8 @@
 		"name" : "drawing",
 		"buildsystem" : "meson",
 		"sources" : [{
-			"type" : "git",
-			"url" : "https://github.com/maoschanz/drawing"
+			"type" : "dir",
+			"path" : "."
 		}]
 	}],
 	"build-options" : {

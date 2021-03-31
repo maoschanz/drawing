@@ -1,18 +1,25 @@
 drawing (0.8.0) unstable; urgency=low
 
+  * new, richer, more readable bottom pane for the selection tool
+  * add a "replace with" option to the eraser tool
+  * force the release notes down users' throat (#347)
+  * rewrite the help manual to better force it down users' throat (#347)
+  * add color application mode support to the "shape" tool (#329)
+  * persist the text background style (#340) and the shape filling style options
   * brush supporting pressure-sensitive input (#69, #116)
   * hairy brush supporting pressure-sensitive input (#69, #116)
   * airbrush supporting pressure-sensitive input (#69, #116)
   * calligraphic nip supporting pressure-sensitive input (#69, #116)
   * improve the fullscreen mode, with a way to toggle the tools list (#265, #189)
   * add an "increase constrast" filter (#308)
-  * remove the cool but deprecated GNOME Shell app menu
   * deleting the selection can now leave something else than transparency #232
   * option to exclude the color left under the selection from the selection itself #232
-  * rewrite the UI to change the color application mode (#329)
+  * rewrite the UI for changing the color application mode (#329)
+  * remove the cool but deprecated GNOME Shell app menu
+  * improve flatpak CI (#319, Bilel Moussaoui)
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 27 Feb 2021 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 20 Mar 2021 13:12:00 +0100
 
 drawing (0.6.5) unstable; urgency=low
 

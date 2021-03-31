@@ -360,8 +360,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			# On charge un pixbuf dans le selection_manager.
 			self._op_import(operation)
 		elif operation['operation_type'] == 'op-define':
-			# Opération instantanée (sans preview), correspondant à une sélection
-			# (rectangulaire ou non) par définition d'un path.
+			# Opération instantanée (sans preview), correspondant à une
+			# sélection (rectangulaire ou non) par définition d'un path.
 			# On charge un pixbuf dans le selection_manager.
 			self._op_define(operation)
 			self._op_clean(operation)

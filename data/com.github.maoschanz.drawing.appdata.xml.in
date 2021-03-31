@@ -29,7 +29,8 @@
   </description>
 
   <releases>
-    <release version="0.8.0" date="2021-02-27">
+    <release version="0.8.0" date="2021-03-06">
+    <!-- <release version="0.8.0" date="2021-03-20"> -->
       <description>
         <p>
           With Drawing 0.8.0, you can finally use a tablet and a stylus to draw
@@ -48,6 +49,20 @@
           optionally be a specific color, rather than always tranparency.
           This specific color can be excluded from the selection. That feature
           is complex to explain with words, try it yourself you'll see.
+        </p>
+        <p>
+          Options such as the text background type and the shape filling style
+          are now persisted when closing the application.
+        </p>
+        <p>
+          The user interface for selecting the active color application mode has
+          been rewritten to better show the accurate label, and better organize
+          the possible modes as submenus.
+        </p>
+        <p>
+          The "blur" mode has been removed, which simplified the situation and
+          allowed several tools ("shapes" and "brushes") to get support for the
+          color application modes in general.
         </p>
       </description>
     </release>

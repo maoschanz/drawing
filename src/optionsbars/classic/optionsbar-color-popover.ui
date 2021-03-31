@@ -8,7 +8,7 @@
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="spacing">10</property>
+        <property name="spacing">6</property>
         <property name="orientation">horizontal</property>
         <child>
           <object class="GtkLabel" id="popover-title">
@@ -21,7 +21,7 @@
         <child>
           <object class="GtkBox" id="operator-box-start">
             <property name="visible">True</property>
-            <property name="spacing">10</property>
+            <property name="spacing">6</property>
             <property name="orientation">horizontal</property>
             <property name="tooltip-text" translatable="yes">How the color will be applied to the existing pixels</property>
             <child>
@@ -33,24 +33,36 @@
                 <property name="action-target">'over'</property>
               </object>
             </child>
-
           </object>
         </child>
 
         <child>
-          <object class="GtkBox" id="operator-box-end">
+          <object class="GtkRadioButton" id="operator-box-end">
             <property name="visible">True</property>
-            <property name="orientation">horizontal</property>
-            <property name="tooltip-text" translatable="yes">Don't use the colors but…</property>
-            <style><class name="linked"/></style>
+            <property name="group">op-group</property>
+            <property name="draw-indicator">False</property>
+            <property name="tooltip-text" translatable="yes">Erase</property>
+            <property name="action-name">win.cairo_op_mirror</property>
+            <property name="action-target">'clear'</property>
             <child>
-              <object class="GtkRadioButton">
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="group">op-group</property>
-                <property name="draw-indicator">False</property>
-                <property name="label" translatable="yes">Erase</property>
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'clear'</property>
+                <property name="icon-name">tool-eraser-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="tooltip-text" translatable="yes">Help about colors</property>
+            <property name="action-name">app.help_colors</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">help-faq-symbolic</property>
               </object>
             </child>
           </object>

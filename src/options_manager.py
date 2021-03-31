@@ -15,16 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 
 class DrOptionsManager():
 	__gtype_name__ = 'DrOptionsManager'
-	# TODO this class should raise/catch exceptions instead of trusting me
+	# XXX this class should raise/catch more exceptions
+
+	_tools_gsettings = Gio.Settings.new('com.github.maoschanz.drawing.tools-options')
 
 	def __init__(self, window):
 		self.window = window
 		self._bottom_panes_dict = {}
 		self._active_pane_id = None
+		self._boolean_actions_from_gsetting = {}
+		self._string_actions_from_gsetting = {}
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -32,15 +36,27 @@ class DrOptionsManager():
 	############################################################################
 	# Gio.Action for tool options ##############################################
 
-	def add_tool_option_boolean(self, name, default):
+	def add_option_boolean(self, name, default):
 		if self._action_exists(name):
 			return
 		self.window.add_action_boolean(name, default, self._boolean_callback)
 
-	def add_tool_option_enum(self, name, default):
+	def add_option_enum(self, name, default):
 		if self._action_exists(name):
 			return
 		self.window.add_action_enum(name, default, self._enum_callback)
+
+	def add_option_from_bool_key(self, action_name, key_name):
+		default_value = self._tools_gsettings.get_boolean(key_name)
+		self.add_option_boolean(action_name, default_value)
+		self._boolean_actions_from_gsetting[action_name] = key_name
+		return default_value
+
+	def add_option_from_enum_key(self, action_name, key_name):
+		default_value = self._tools_gsettings.get_string(key_name)
+		self.add_option_enum(action_name, default_value)
+		self._string_actions_from_gsetting[action_name] = key_name
+		return default_value
 
 	def get_value(self, name):
 		if not self._action_exists(name):
@@ -77,29 +93,39 @@ class DrOptionsManager():
 
 	############################################################################
 
-	def remember_options(self, *args):
-		"""Called before closing to write the current values of a few options
-		into dconf."""
-		self.window._settings.set_int('last-size', self.get_tool_width())
+	def persist_tools_options(self, *args):
+		"""Called before closing to persist the current values of a few options
+		into gsettings (dconf or key-value file)."""
 
-		rgba = self.get_left_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self.window._settings.set_strv('last-left-rgba', rgba)
+		# Panel-wide classic tools options (they are not Gio actions!)
+		self._tools_gsettings.set_int('last-size', self.get_tool_width())
+		self._persist_color(self.get_left_color(), 'last-left-rgba')
+		self._persist_color(self.get_right_color(), 'last-right-rgba')
 
-		rgba = self.get_right_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self.window._settings.set_strv('last-right-rgba', rgba)
+		# Tool-wide boolean actions
+		for action_name in self._boolean_actions_from_gsetting:
+			key_name = self._boolean_actions_from_gsetting[action_name]
+			self._persist_boolean(action_name, key_name)
 
-		shape_name = self.get_value('shape_type')
-		self.window._settings.set_string('last-active-shape', shape_name)
+		# Tool-wide "enum" actions
+		for action_name in self._string_actions_from_gsetting:
+			key_name = self._string_actions_from_gsetting[action_name]
+			self._persist_string(action_name, key_name)
 
 		font_fam_name = self.window.tools['text'].font_fam_name
-		self.window._settings.set_string('last-font-name', font_fam_name)
+		self._tools_gsettings.set_string('last-font-name', font_fam_name)
 
-		use_antialiasing = self.get_value('antialias')
-		self.window._settings.set_boolean('use-antialiasing', use_antialiasing)
+	def _persist_string(self, action_name, key_name):
+		action_value = self.get_value(action_name)
+		self._tools_gsettings.set_string(key_name, action_value)
 
-		# add more? on what criteria?
+	def _persist_boolean(self, action_name, key_name):
+		action_value = self.get_value(action_name)
+		self._tools_gsettings.set_boolean(key_name, action_value)
+
+	def _persist_color(self, rgba, key_name):
+		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
+		self._tools_gsettings.set_strv(key_name, rgba)
 
 	############################################################################
 	# Bottom panes management ##################################################

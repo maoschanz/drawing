@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="drawing">
 
-  <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
+  <schema id="com.github.maoschanz.drawing"
+          path="/com/github/maoschanz/drawing/">
+
     <!-- Actual options -->
     <key type="s" name="deco-type">
       <default>''</default>
@@ -26,7 +28,7 @@
       <description>User can zoom with scrolling or ctrl+scrolling.</description>
     </key>
     <key type="as" name="disabled-tools">
-      <default>['eraser', 'highlight', 'color_select', 'points', 'picker', 'paint']</default>
+      <default>['brush', 'censor', 'eraser', 'color_select', 'points', 'picker', 'paint']</default>
       <summary>Optional tools to disable</summary>
       <description>A list of optional tools' id to disable.</description>
     </key>
@@ -97,8 +99,33 @@
       <description>The id of the last active tool, saved when closing a
       window.</description>
     </key>
+    <key type="b" name="direct-color-edit">
+      <default>false</default>
+      <summary>Don't use a color palette</summary>
+      <description>If a click on the color button should display directly
+      the complete color selector.</description>
+    </key>
+
+    <!-- Release notes handling -->
+    <key type="s" name="last-version">
+      <default>'0.0.0'</default>
+      <summary>Last used app version</summary>
+      <description>
+        The last version of the app that the user has started. If the string
+        doesn't correspond to the running version of the app, a dialog is shown
+        to tell the user to read the release notes.
+      </description>
+    </key>
 
     <!-- Tools options state -->
+    <child name="tools-options" schema="com.github.maoschanz.drawing.tools-options"/>
+  </schema>
+
+  <!-- ##################################################################### -->
+
+  <schema id="com.github.maoschanz.drawing.tools-options"
+          path="/com/github/maoschanz/drawing/tools-options/">
+
     <key type="as" name="last-right-rgba">
       <default>['1.0', '1.0', '0.0', '0.5']</default>
       <summary>Last right-click color</summary>
@@ -116,22 +143,28 @@
       <summary>Last tool size</summary>
       <description>The last tool size (px), saved when closing a window.</description>
     </key>
-    <key type="b" name="direct-color-edit">
-      <default>false</default>
-      <summary>Don't use a color palette</summary>
-      <description>If a click on the color button should display directly
-      the complete color selector.</description>
-    </key>
     <key type="s" name="last-active-shape">
       <default>'polygon'</default>
       <summary>Default active shape</summary>
       <description>The id of the last active shape from the "shape" tool, saved
       when closing a window.</description>
     </key>
+    <key type="s" name="last-shape-filling">
+      <default>'empty'</default>
+      <summary>Default shape filling style</summary>
+      <description>The name of the last active shape filling style from the
+      "shape" tool, saved when closing a window.</description>
+    </key>
     <key type="s" name="last-font-name">
       <default>'Sans'</default>
       <summary>Default active font</summary>
       <description>The name of the last active font family, from the "text"
+      tool, saved when closing a window.</description>
+    </key>
+    <key type="s" name="last-text-background">
+      <default>'outline'</default>
+      <summary>Text insertion background style</summary>
+      <description>The name of the last active background style, from the "text"
       tool, saved when closing a window.</description>
     </key>
     <key type="b" name="use-antialiasing">
@@ -140,6 +173,10 @@
       <description>The default value of the 'antialiasing' boolean option, for
       any compatible tools.</description>
     </key>
+
+    <!-- TODO persist also: selection's "replace with"? active filter? -->
+    <!-- active brush? crop's "expand with"? color application mode?-->
   </schema>
+
 </schemalist>
 
