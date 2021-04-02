@@ -31,9 +31,8 @@ class ToolShape(AbstractClassicTool):
 		self.add_tool_action_simple('shape_close', self._force_close_shape)
 		self.set_action_sensitivity('shape_close', False)
 
-		self._shape_id = self.load_tool_action_enum('shape_type', \
-		                                                    'last-active-shape')
-		self._set_active_shape() # initialize a consistent join_id
+		self.load_tool_action_enum('shape_type', 'last-active-shape')
+		self._set_active_shape() # that's to initialize a consistent join_id too
 
 		self._filling_id = self.load_tool_action_enum('shape_filling', \
 		                                                   'last-shape-filling')

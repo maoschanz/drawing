@@ -37,8 +37,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.local_dy = 0
 		self.operation_type = None # 'op-define'
 
-		# Possible values are 'alpha', 'initial', 'secondary'
-		self.add_tool_action_enum('selection-color', 'alpha')
+		self.load_tool_action_enum('selection-color', 'last-delete-replace')
 		self.add_tool_action_boolean('selection-extract', False)
 
 	############################################################################

@@ -173,9 +173,17 @@
       <description>The default value of the 'antialiasing' boolean option, for
       any compatible tools.</description>
     </key>
+    <key type="s" name="last-delete-replace">
+      <default>'alpha'</default>
+      <summary>Type of color left behind by a deletion</summary>
+      <description>A deletion is any use of the solid eraser, or any area under
+      a selection that will be moved, cut, or deleted. Values can be 'alpha'
+      (transparency), 'initial' (the initial color of the canvas), or
+      'secondary' (the color of the right-click).</description>
+    </key>
 
-    <!-- TODO persist also: selection's "replace with"? active filter? -->
-    <!-- active brush? crop's "expand with"? color application mode?-->
+    <!-- TODO persist also: active filter? active brush? -->
+    <!-- crop's "expand with"? color application mode?-->
   </schema>
 
 </schemalist>

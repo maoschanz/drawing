@@ -32,8 +32,8 @@ class ToolEraser(ToolPencil):
 		                                         'tool-eraser-symbolic', window)
 		self.use_operator = False
 		self._fallback_operator = 'clear'
-		self.add_tool_action_enum('selection-color', 'alpha')
-		self.add_tool_action_enum('eraser-type', 'solid')
+		self.load_tool_action_enum('selection-color', 'last-delete-replace')
+		self.add_tool_action_enum('eraser-type', 'mosaic')
 		self.add_tool_action_enum('eraser-shape', 'pencil')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
