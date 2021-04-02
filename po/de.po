@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"POT-Creation-Date: 2021-04-03 01:48+0200\n"
 "PO-Revision-Date: 2021-02-22 20:22+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -927,6 +927,7 @@ msgstr "Standardhöhe"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Standardfarbe"
 
@@ -1468,7 +1469,7 @@ msgstr "Hauptfarbe"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Zweitfarbe"
 
@@ -1510,6 +1511,7 @@ msgstr "Ersetzen mit…"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Transparenz"
@@ -1731,37 +1733,37 @@ msgstr "Links gehaltene Feder"
 msgid "Horizontal nib"
 msgstr "Horizontale Feder"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Bleistift"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rechteck"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Verwischen"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "Pixel"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Zweitfarbe"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Radiergummi"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1937,10 +1939,6 @@ msgid "Radial gradient"
 msgstr "Radialer Farbverlauf"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Rechteck"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Abgerundetes Rechteck"
 
@@ -2059,10 +2057,6 @@ msgstr ""
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Leinwand anklicken, um sie vollständig auszumalen"
-
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Bleistift"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"

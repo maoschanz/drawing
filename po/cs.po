@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"POT-Creation-Date: 2021-04-03 01:48+0200\n"
 "PO-Revision-Date: 2021-02-12 02:15+0100\n"
 "Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language-Team: Czech <>\n"
@@ -918,6 +918,7 @@ msgstr "Výchozí výška"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Výchozí barva"
 
@@ -1453,7 +1454,7 @@ msgstr "Hlavní barva"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Vedlejší barva"
 
@@ -1496,6 +1497,7 @@ msgstr "Nahradit s..."
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Průhlednost"
@@ -1716,37 +1718,37 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr "Horizontální"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Tužka"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Obdélník"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Rozmazat"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "pixely"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Vedlejší barva"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Guma"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1922,10 +1924,6 @@ msgid "Radial gradient"
 msgstr "Kruhový přechod"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Obdélník"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Zaoblený obdélník"
 
@@ -2044,10 +2042,6 @@ msgstr "Kliknutím na oblast nahradíte její barvu průhledností"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Kliknutím na plátno jej vyplníte"
-
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Tužka"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"

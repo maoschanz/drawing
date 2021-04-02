@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"POT-Creation-Date: 2021-04-03 01:48+0200\n"
 "PO-Revision-Date: 2021-03-28 15:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -115,8 +115,8 @@ msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
-"Ora sono disponibili opzioni come il tipo di sfondo del testo e lo stile di riempimento della forma "
-"che sono persistenti alla chiusura dell'applicazione."
+"Ora sono disponibili opzioni come il tipo di sfondo del testo e lo stile di "
+"riempimento della forma che sono persistenti alla chiusura dell'applicazione."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -124,9 +124,9 @@ msgid ""
 "rewritten to better show the accurate label, and better organize the "
 "possible modes as submenus."
 msgstr ""
-"L'interfaccia utente per la selezione della modalità di applicazione attiva del colore è stata "
-"riscritta per mostrare meglio l'etichetta accurata e organizzare le "
-"possibili modalità come sottomenu."
+"L'interfaccia utente per la selezione della modalità di applicazione attiva "
+"del colore è stata riscritta per mostrare meglio l'etichetta accurata e "
+"organizzare le possibili modalità come sottomenu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -134,9 +134,9 @@ msgid ""
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
 msgstr ""
-"La modalità \"sfocatura\" è stata rimossa, il che ha semplificato la situazione e "
-"consentendo a diversi strumenti (\"forme\" e \"pennelli\") ad ottenere supporto per la "
-"modalità di applicazione del colore in generale."
+"La modalità \"sfocatura\" è stata rimossa, il che ha semplificato la "
+"situazione e consentendo a diversi strumenti (\"forme\" e \"pennelli\") ad "
+"ottenere supporto per la modalità di applicazione del colore in generale."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -926,6 +926,7 @@ msgstr "Altezza standard"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Colore predefinito"
 
@@ -1341,8 +1342,7 @@ msgstr "Nonostante il nome, %s è un file WEBP."
 #, python-format
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"È la prima volta che usi Drawing %s, vuoi leggere le novità?"
+msgstr "È la prima volta che usi Drawing %s, vuoi leggere le novità?"
 
 #: src/window.py
 msgid "No"
@@ -1461,7 +1461,7 @@ msgstr "Colore primario"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Colore secondario"
 
@@ -1503,6 +1503,7 @@ msgstr "Sostituisci con..."
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Trasparenza"
@@ -1721,34 +1722,35 @@ msgstr "Pennino per mancini"
 msgid "Horizontal nib"
 msgstr "Pennino orizzontale"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Matita"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rettangolo"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Sfocatura"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle pixels"
 msgstr "Mescola pixel"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr "Mescola e sfoca"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr "Mosaico"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Colore solido"
-
-#: src/tools/ui/tool-eraser.ui
-msgid "Eraser type"
-msgstr "Tipo di gomma"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1924,10 +1926,6 @@ msgid "Radial gradient"
 msgstr "Gradiente radiale"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Rettangolo"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Rettangolo arrotondato"
 
@@ -2044,10 +2042,6 @@ msgstr "Clicca su un'area per sostituire il suo colore con la trasparenza"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Fare clic sulla tela per dipingerla interamente"
-
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Matita"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"

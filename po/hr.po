@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"POT-Creation-Date: 2021-04-03 01:48+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -921,6 +921,7 @@ msgstr "Standardna visina"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Default color"
 msgstr "Standardna pozadina"
@@ -1456,7 +1457,7 @@ msgstr "Glavna boja"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Sporedna boja"
 
@@ -1500,6 +1501,7 @@ msgstr "Zamijeni"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Prozirnost"
@@ -1728,37 +1730,37 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr "Vodoravno"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Olovka"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Pravokutnik"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Zamuti"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "pikslova"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Sporedna boja"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Gumica"
 
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
@@ -1941,10 +1943,6 @@ msgid "Radial gradient"
 msgstr "Kružni gradijent"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Pravokutnik"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Obli pravokutnik"
 
@@ -2066,10 +2064,6 @@ msgstr "Klikni na područje čiju boju želiš zamijeniti s prozirnošću"
 #, fuzzy
 msgid "Click on the canvas to entirely paint it"
 msgstr "Za zatvaranje oblika, klikni na njegovu prvu točku."
-
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Olovka"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"

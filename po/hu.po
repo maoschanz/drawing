@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"POT-Creation-Date: 2021-04-03 01:48+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -936,6 +936,7 @@ msgstr "Alapértelmezett magasság"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Default color"
 msgstr "Alapértelmezett háttér"
@@ -1479,7 +1480,7 @@ msgstr "Elsődleges szín"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Másodlagos szín"
 
@@ -1521,6 +1522,7 @@ msgstr ""
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Átlátszóság"
@@ -1754,37 +1756,37 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr "Vízszintes elmosás"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Ceruza"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Téglalap"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Elmosás"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "képpont"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Másodlagos szín"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Radír"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -1973,10 +1975,6 @@ msgid "Radial gradient"
 msgstr "Sugaras színátmenet"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Téglalap"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 #, fuzzy
 msgid "Rounded rectangle"
 msgstr "Téglalap"
@@ -2101,10 +2099,6 @@ msgstr "Kattintson egy területre, hogy a színét átlátszóra cserélje"
 #, fuzzy
 msgid "Click on the canvas to entirely paint it"
 msgstr "Az alakzat bezárásához kattintson az első pontjára."
-
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Ceruza"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
