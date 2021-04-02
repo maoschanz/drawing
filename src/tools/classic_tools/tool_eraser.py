@@ -42,15 +42,36 @@ class ToolEraser(ToolPencil):
 		self._rgba_type = self.get_option_value('selection-color')
 		self._eraser_shape = self.get_option_value('eraser-shape')
 
+		can_blur = self._eraser_shape != 'pencil'
+		self.set_action_sensitivity('eraser-type', can_blur)
+		if not can_blur:
+			self._eraser_type = 'solid'
+
 		if 'solid' == self._eraser_type and 'secondary' == self._rgba_type:
-			self._fallback_operator = 'source'
-		elif self._eraser_shape == 'pencil' and 'secondary' == self._rgba_type:
 			self._fallback_operator = 'source'
 		else:
 			self._fallback_operator = 'clear'
 		self.window.options_manager.update_pane(self)
 
-		return self.label
+		label = self.label
+		# if self._eraser_shape == 'pencil':
+		# 	label += ' - ' + _("Pencil")
+		# else:
+		# 	label += ' - ' + _("Rectangle")
+		if self._eraser_type == 'solid':
+			label += ' - ' + {
+				'alpha': _("Transparency"),
+				'initial': _("Default color"),
+				'secondary': _("Secondary color")
+			}[self._rgba_type]
+		else:
+			label += ' - ' + {
+				'blur': _("Blur"),
+				'shuffle': _("Shuffle pixels"),
+				'mixed': _("Shuffle and blur"),
+				'mosaic': _("Mosaic")
+			}[self._eraser_type]
+		return label
 
 	def get_options_label(self):
 		return _("Eraser options")
@@ -103,7 +124,7 @@ class ToolEraser(ToolPencil):
 	############################################################################
 
 	def build_operation(self, is_preview):
-		if is_preview or self._eraser_shape == 'pencil':
+		if is_preview:
 			eraser_type = 'solid'
 		else:
 			eraser_type = self._eraser_type

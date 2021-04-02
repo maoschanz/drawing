@@ -104,7 +104,7 @@ General options for these tools: colors, use antialiasing, size, …
 	- *Hairy brush*
 	- *Airbrush*
 	- *Calligraphic nibs*
-- *Eraser*
+- *Eraser* (options: blur, mosaic, transparency, solid color, …)
 - *Highlighter* (options: highlight on dark background)
 - Line (options: arrow, dashes, gradient, …)
 - Curve (options: arrow, dashes, …)
@@ -119,7 +119,6 @@ General options for these tools: colors, use antialiasing, size, …
 	- free shape
 - *Color picker*
 - *Paint (options: remove a color, …)*
-- *Censor/hide elements*
 
 #### Selection tools
 
