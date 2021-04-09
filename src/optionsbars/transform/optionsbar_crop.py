@@ -49,6 +49,7 @@ class OptionsBarCrop(AbstractOptionsBar):
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
 		                   self.options_btn.get_preferred_width()[0] + \
+		                      self.help_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)
 

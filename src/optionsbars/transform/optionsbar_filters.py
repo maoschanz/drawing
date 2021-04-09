@@ -61,6 +61,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 		temp_limit_size = self.menu_btn.get_preferred_width()[0] + \
 		                  50 + widgets_size + \
 		                  self.cancel_btn.get_preferred_width()[0] + \
+		                  self.help_btn.get_preferred_width()[0] + \
 		                  self.apply_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)
 

@@ -31,7 +31,6 @@ class OptionsBarSelection(AbstractOptionsBar):
 		self.actions_btn = builder.get_object('actions_btn')
 		self.options_btn = builder.get_object('options_btn')
 
-		self.help_btn = builder.get_object('help_btn')
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap_arrow = builder.get_object('minimap_arrow')
@@ -69,7 +68,6 @@ class OptionsBarSelection(AbstractOptionsBar):
 		self.import_box_long.set_visible(not state)
 		self.actions_btn.set_visible(not state)
 		self.clipboard_box.set_visible(not state)
-		self.help_btn.set_visible(not state)
 		self.minimap_arrow.set_visible(not state)
 
 	############################################################################

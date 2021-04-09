@@ -34,6 +34,7 @@ class AbstractOptionsBar():
 		self.cancel_btn = builder.get_object('cancel_btn') # may be None
 		self.centered_box = builder.get_object('centered_box') # may be None
 		self.apply_btn = builder.get_object('apply_btn') # may be None
+		self.help_btn = builder.get_object('help_btn') # may be None
 		return builder # for implementations-specific widgets
 
 	def build_options_menu(self, widget, model, label):
@@ -90,6 +91,8 @@ class AbstractOptionsBar():
 		"""The parameter is a boolean telling if the bottom pane should become
 		compact or not."""
 		self._is_narrow = state
+		if self.help_btn is not None:
+			self.help_btn.set_visible(not state)
 		# + implementation-specific instructions
 
 	############################################################################

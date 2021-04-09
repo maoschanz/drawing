@@ -116,5 +116,24 @@
       </packing>
     </child>
 
+    <child>
+      <object class="GtkButton" id="help_btn">
+        <property name="visible">True</property>
+        <property name="relief">none</property>
+        <property name="tooltip-text" translatable="yes">Help about transformation tools</property>
+        <property name="action-name">app.help_transform</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">help-faq-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
   </object>
 </interface>
+
