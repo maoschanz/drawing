@@ -61,7 +61,7 @@ If your language is not here, or is incompletely translated, you can
 | da   | Danish       | 0.4.10 | 92%        | [scootergrisen](https://github.com/scootergrisen)
 | de   | German       | 0.4.1  | 100%       | [Onno Giesmann](https://github.com/Etamuk)
 |      | English      | 0.2    | 100%       | help welcome **                  |
-| es   | Castillan    | 0.2    | 97%        | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
+| es   | Castillan    | 0.2    | 100%       | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
 | eu   | Basque       | 0.4.14 | 81%        | [alexgabi](https://github.com/alexgabi)
 | fi   | Finnish      | 0.4.10 | 75%        | [MahtiAnkka](https://github.com/mahtiankka)
 | fr   | French       | 0.2    | 100%       |                                  |
@@ -70,12 +70,13 @@ If your language is not here, or is incompletely translated, you can
 | hu   | Hungarian    | 0.4.10 | **62%**    | [Kálmán „KAMI” Szalai](https://github.com/kami911)
 | id   | Indonesian   | 0.6.3  | 76%        | [Ghani Rafif](https://github.com/ekickx)
 | it   | Italian      | 0.4.1  | 97%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella](https://github.com/albanobattistella)
-| nl   | Dutch        | 0.4.1  | 97%        | [Heimen Stoffels](https://github.com/Vistaus)
+| ja   | Japanese     | 0.8.0  | 100%       | [rlbxku1r](https://github.com/rlbxku1r)
+| nl   | Dutch        | 0.4.1  | 100%       | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | 0.4.10 | **72%**    | [Piotr Komur](https://github.com/pkomur)
 | pt_BR | Br. portuguese | 0.4.3 | 81%      | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
 | ru   | Russian      | 0.4.1  | **35%**    | [Artem Polishchuk](https://github.com/tim77)
-| sv   | Swedish      | 0.4.11 | 97%       | [Åke Engelbrektson](https://github.com/eson57)
-| tr   | Turkish      | 0.2    | 97%        | [Serdar Sağlam](https://github.com/TeknoMobil)
+| sv   | Swedish      | 0.4.11 | 100%       | [Åke Engelbrektson](https://github.com/eson57)
+| tr   | Turkish      | 0.2    | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil) and [serkan-maker](https://github.com/serkan-maker)
 | zh_CN | Chinese, simpl. | 0.4.14 | 80%    | [OverflowCat](https://github.com/OverflowCat)
 | zh_TW | Chinese, tradi. | 0.4.14 | 81%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
 
