@@ -622,7 +622,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return 'ts'
 		elif 'Cinnamon' in desktop_env:
 			return 'mts'
-		elif 'MATE' in desktop_env or 'XFCE' in desktop_env:
+		elif desktop_env in ['MATE', 'XFCE', 'LXDE', 'LXQt']:
 			return 'mtc'
 		else:
 			return 'hg' # Use the GNOME layout if the desktop is unknown,
