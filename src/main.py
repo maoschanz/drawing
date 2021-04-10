@@ -281,6 +281,8 @@ class Application(Gtk.Application):
 		bug_report_btn = Gtk.LinkButton(halign=Gtk.Align.CENTER, visible=True, \
 		                    label=_("Report bugs or ideas"), uri=BUG_REPORT_URL)
 		# about_dialog.get_content_area().add(bug_report_btn) # should i?
+		about_dialog.set_icon_name('com.github.maoschanz.drawing')
+
 		about_dialog.run()
 		about_dialog.destroy()
 

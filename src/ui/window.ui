@@ -11,6 +11,7 @@
   <template class="DrWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
+    <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>

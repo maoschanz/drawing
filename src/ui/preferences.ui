@@ -26,6 +26,7 @@
 
   <template class="DrPrefsWindow" parent="GtkWindow">
     <property name="title" translatable="yes">Preferences</property>
+    <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkBox" id="content_area">
         <property name="visible">True</property>
