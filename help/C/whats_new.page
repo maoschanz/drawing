@@ -27,8 +27,7 @@
     </p>
     <p>
       The help manual has been splitted in smaller pages to be easier to read,
-      and several buttons to access it have been added in various popovers
-      across the application.
+      and several buttons to access it have been added across the application.
     </p>
 
     <subsection>
@@ -46,7 +45,12 @@
       <list>
         <item><p>
           The <link xref="tools_selection">selection tools</link> have a new,
-          richer, more readable bottom pane.
+          more rich, more readable bottom pane.
+        </p></item>
+        <item><p>
+          <link xref="tools_transform#filters">Filters</link> have been
+          rewritten to be more reliable, and a new filter to harmoniously
+          increase contrast has been added.
         </p></item>
         <item><p>
           When you move or delete the selection, now the pixels left behind can
@@ -56,18 +60,14 @@
         </p></item>
         <item><p>
           The eraser tool now as options: it can use a specific color, rather
-          than always tranparency. This options has the same value as the
+          than always tranparency. This option has the same value as the
           selection replacement color mentioned above. This tool also have a new
           icon, based on the Adwaita theme.
         </p></item>
         <item><p>
-          <link xref="tools_transform#filters">Filters</link> have been
-          rewritten to be more reliable, and a new filter to harmoniously
-          increase contrast has been added.
-        </p></item>
-        <item><p>
-          Options such as the text background type and the shape filling style
-          are now persisted when closing the application.
+          Options such as the text background type, the shape filling style, or
+          the aforementioned eraser/selection replacement color, are now
+          persisted when closing the application.
         </p></item>
       </list>
     </subsection>
@@ -79,6 +79,8 @@
         active color application mode</link> has been redesigned to better show
         the accurate label, and better organize the possible modes as submenus.
       </p>
+      <media type="image" mime="image/png" width="80%" its:translate="no"
+             src="figures/screenshot_color_palette.png" />
       <p>
         The "blur" mode has been removed, which simplifies the situation and
         allows <link xref="tools_classic">several tools</link> ("shapes" and
@@ -99,8 +101,8 @@
     <title>Version 0.6.5</title>
 
     <p>
-      Bug fixes: the bottom panes sometimes refused to adapt to the screen size,
-      and could disappear under certain conditions.
+      Bugs fixed: the bottom panes sometimes refused to adapt to the screen
+      size, and could disappear under certain conditions.
     </p>
     <p>
       The catastrophic "print" action, that no one ever used so no one ever
@@ -214,8 +216,10 @@
           keyboard shortcuts.
         </p></item>
       </list>
+      <media type="image" mime="image/png" width="80%" its:translate="no"
+             src="figures/screenshot_zoom.png" />
       <p>
-        With HiDPI displays, the situation has been fixed: the canvas should be
+        With HiDPI displays, most problems have been fixed: the canvas should be
         displayed without unwanted rescalings and destructive croppings.
       </p>
     </subsection>
