@@ -168,15 +168,15 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		elif self.behavior == 'drag':
 			self._apply_drag_to(event_x, event_y)
 
-	def on_draw(self, area, cairo_context):
+	def on_draw(self, area, ccontext):
 		if not self.selection_is_active():
 			return
-		self.get_selection().show_selection_on_surface(cairo_context, True, \
-		                                           self.local_dx, self.local_dy)
-		dragged_path = self.get_selection().get_path_with_scroll( \
-		                                           self.local_dx, self.local_dy)
-		# Method not really use elsewhere.
-		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
+		ldx = self.local_dx
+		ldy = self.local_dy
+		self.get_selection().show_selection_on_surface(ccontext, True, ldx, ldy)
+		dragged_path = self.get_selection().get_path_with_scroll(ldx, ldy)
+		# ^ Method not really use elsewhere, could be private?
+		utilities_show_overlay_on_context(ccontext, dragged_path, True)
 
 	############################################################################
 	# Path management ##########################################################

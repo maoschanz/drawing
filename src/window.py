@@ -699,7 +699,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show or self.gsettings.get_boolean('devel-only'):
+		if show or self.gsettings.get_boolean('devel-only') and label != "":
 			print('Drawing: ' + label)
 
 	def prompt_action(self, message, action_name, action_label):
