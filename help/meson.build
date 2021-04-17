@@ -16,9 +16,9 @@ gnome.yelp(
 	],
 	media: [
 		'figures/icon.png',
-		'figures/screenshot_arrow.png',
-		'figures/screenshot_color_editor.png',
-		'figures/screenshot_color_palette.png',
+		'figures/screenshot_arrow.png', # 0.8.0
+		'figures/screenshot_color_editor.png', # 0.8.0
+		'figures/screenshot_color_palette.png', # 0.8.0
 		'figures/screenshot_filters.png',
 		'figures/screenshot_fullscreen.png',
 		'figures/screenshot_hsl.png',
