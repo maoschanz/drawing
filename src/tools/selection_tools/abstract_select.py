@@ -104,23 +104,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def release_define(self, surface, event_x, event_y):
 		pass # implemented by actual tools
 
-	def _apply_drag_to(self, event_x, event_y):
-		x = self.get_selection().selection_x
-		y = self.get_selection().selection_y
-		fx = x + event_x - self.x_press
-		fy = y + event_y - self.y_press
-		self._pre_load_coords(fx, fy)
-
-		self.operation_type = 'op-drag'
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
-		self.operation_type = 'op-define'
-
-	def _preview_drag_to(self, event_x, event_y):
-		self.local_dx = event_x - self.x_press
-		self.local_dy = event_y - self.y_press
-		self.non_destructive_show_modif()
-
 	############################################################################
 	# Signal callbacks implementations #########################################
 
@@ -144,6 +127,11 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			self.motion_define(event_x, event_y)
 		elif self.behavior == 'drag':
 			self._preview_drag_to(event_x, event_y)
+
+	def _preview_drag_to(self, event_x, event_y):
+		self.local_dx = event_x - self.x_press
+		self.local_dy = event_y - self.y_press
+		self.non_destructive_show_modif()
 
 	def on_unclicked_motion_on_area(self, event, surface):
 		x, y = self.get_image().get_event_coords(event)
@@ -221,7 +209,20 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self._pre_load_path(cairo_context.copy_path(), False)
 
 	############################################################################
-	# Operations management methods ############################################
+	# Operations producing methods #############################################
+
+	def _apply_drag_to(self, event_x, event_y):
+		x = self.get_selection().selection_x
+		y = self.get_selection().selection_y
+		fx = x + event_x - self.x_press
+		fy = y + event_y - self.y_press
+		self._pre_load_coords(fx, fy)
+		print("pre-loaded coords:", fx, fy)
+
+		self.operation_type = 'op-drag'
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+		self.operation_type = 'op-define'
 
 	def select_all(self):
 		total_w = self.get_main_pixbuf().get_width()
@@ -265,52 +266,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-	def _op_import(self, op):
-		if op['pixbuf'] is None:
-			raise NoSelectionPixbufException()
-			# XXX does it run cleanly after the "return" to the calling method?
-			# (compared to a more normal return)
-		self._pre_load_coords(op['pixb_x'], op['pixb_y'])
-		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
-		self.get_selection().set_pixbuf(op['pixbuf'].copy())
-
-	def _op_clean(self, operation):
-		if operation['initial_path'] is None:
-			return # The user double-clicked: there is no path, and it's normal
-		cairo_context = self.get_context()
-		cairo_context.new_path()
-		cairo_context.append_path(operation['initial_path'])
-		replacement_rgba = operation['replacement']
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		cairo_context.set_source_rgba(*replacement_rgba)
-		cairo_context.fill()
-		cairo_context.set_operator(cairo.Operator.OVER)
-
-	def _op_drag(self, op):
-		# print('drag to : ', op['pixb_x'], op['pixb_y'])
-		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
-		self.non_destructive_show_modif()
-
-	def _op_define(self, op):
-		if op['initial_path'] is None:
-			return # The user double-clicked: there is no path, and it's normal
-		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
-		if op['extract']:
-			replacement = op['replacement']
-		else:
-			replacement = None
-		self.get_selection().load_from_path(op['initial_path'], replacement)
-
-	def _op_apply(self):
-		cairo_context = self.get_context()
-		self.get_selection().show_selection_on_surface(cairo_context, False, \
-		                                           self.local_dx, self.local_dy)
-		self.get_selection().reset(True)
-		self.get_selection().reset_future_data()
-
-	############################################################################
-	# Operations management implementations ####################################
-
 	def build_operation(self):
 		"""Operation is built from the operation_type, the current tool's
 		'future_pixbuf' attribute, and '_future_*' attributes from the
@@ -344,9 +299,59 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			'extract': self.get_option_value('selection-extract'),
 			'pixbuf': pixbuf,
 			'pixb_x': self.get_selection().get_future_coords()[0],
-			'pixb_y': self.get_selection().get_future_coords()[1]
+			'pixb_y': self.get_selection().get_future_coords()[1],
+			'local_dx': self.local_dx,
+			'local_dy': self.local_dy,
 		}
 		return operation
+
+	############################################################################
+	# Operations consuming methods #############################################
+
+	def _op_import(self, op):
+		if op['pixbuf'] is None:
+			raise NoSelectionPixbufException()
+			# XXX does it run cleanly after the "return" to the calling method?
+			# (compared to a more normal return)
+		self._pre_load_coords(op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_pixbuf(op['pixbuf'].copy())
+
+	def _op_clean(self, operation):
+		if operation['initial_path'] is None:
+			return # The user double-clicked: there is no path, and it's normal
+		cairo_context = self.get_context()
+		cairo_context.new_path()
+		cairo_context.append_path(operation['initial_path'])
+		replacement_rgba = operation['replacement']
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.set_source_rgba(*replacement_rgba)
+		cairo_context.fill()
+		cairo_context.set_operator(cairo.Operator.OVER)
+
+	def _op_drag(self, op):
+		# print("drag to :", op['pixb_x'], op['pixb_y'])
+		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
+		self.non_destructive_show_modif()
+
+	def _op_define(self, op):
+		if op['initial_path'] is None:
+			return # The user double-clicked: there is no path, and it's normal
+		self.get_selection().set_coords(True, op['pixb_x'], op['pixb_y'])
+		if op['extract']:
+			replacement = op['replacement']
+		else:
+			replacement = None
+		self.get_selection().load_from_path(op['initial_path'], replacement)
+
+	def _op_apply(self):
+		cairo_context = self.get_context()
+		self.get_selection().show_selection_on_surface(cairo_context, False, \
+		                                           self.local_dx, self.local_dy)
+		self.get_selection().reset(True)
+		self.get_selection().reset_future_data()
+
+	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 	def do_tool_operation(self, operation):
 		self.start_tool_operation(operation)
