@@ -109,7 +109,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		y = self.get_selection().selection_y
 		fx = x + event_x - self.x_press
 		fy = y + event_y - self.y_press
-		self.get_selection().set_future_coords(fx, fy)
+		self._pre_load_coords(fx, fy)
 
 		self.operation_type = 'op-drag'
 		operation = self.build_operation()
@@ -159,6 +159,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		if event.button == 3:
 			if not self.get_selection().is_active:
 				self.get_selection().set_coords(True, event_x, event_y)
+				# TODO je ne devrais jamais appeler cette méthode ^ ici
 			self.get_selection().set_popovers_position(event.x, event.y)
 			self.get_selection().show_popover()
 			return
@@ -175,11 +176,52 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		ldy = self.local_dy
 		self.get_selection().show_selection_on_surface(ccontext, True, ldx, ldy)
 		dragged_path = self.get_selection().get_path_with_scroll(ldx, ldy)
-		# ^ Method not really use elsewhere, could be private?
+		# ^ Method not really use elsewhere, could it be private?
 		utilities_show_overlay_on_context(ccontext, dragged_path, True)
 
 	############################################################################
-	# Path management ##########################################################
+	# Pre-loading the selection manager with non-essential data ################
+
+	# In the first phase of the tool execution (pre-building operations), the
+	# code should never call methods from `self.get_selection().*` aside of:
+	# - the getters (safe by definition)
+	# - the things to show/hide popovers (no actual effect on the image)
+	# - the `set_future_*` methods, which are designed to preload data whose
+	# values don't have any impact on the following operations, but which should
+	# stored image-wide anyway (to avoid inconsistencies when switching to other
+	# tabs and then switching back, for example).
+
+	def _pre_load_coords(self, x, y):
+		self.get_selection().set_future_coords(x, y)
+
+	def _pre_load_path(self, path, resync_coords=True):
+		self.get_selection().set_future_path(path, resync_coords)
+
+	def _build_rectangle_path(self, press_x, press_y, release_x, release_y):
+		"""Build rectangle path and pre-load it in the selection manager. This
+		is used in `self.select_all` (abstract, here), and in the "rectangle
+		selection" implementation."""
+		# XXX could be in the selection manager?
+		x0 = int( min(press_x, release_x) )
+		y0 = int( min(press_y, release_y) )
+		x1 = int( max(press_x, release_x) )
+		y1 = int( max(press_y, release_y) )
+		w = x1 - x0
+		h = y1 - y0
+		if w <= 0 or h <= 0:
+			return
+		self._pre_load_coords(x0, y0)
+		cairo_context = self.get_context()
+		cairo_context.new_path()
+		cairo_context.move_to(x0, y0)
+		cairo_context.line_to(x1, y0)
+		cairo_context.line_to(x1, y1)
+		cairo_context.line_to(x0, y1)
+		cairo_context.close_path()
+		self._pre_load_path(cairo_context.copy_path(), False)
+
+	############################################################################
+	# Operations management methods ############################################
 
 	def select_all(self):
 		total_w = self.get_main_pixbuf().get_width()
@@ -189,43 +231,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		operation = self.build_operation()
 		self.apply_operation(operation)
 		self.get_selection().show_popover()
-
-	def _build_rectangle_path(self, press_x, press_y, release_x, release_y):
-		# XXX could be in the selection manager
-		x0 = int( min(press_x, release_x) )
-		y0 = int( min(press_y, release_y) )
-		x1 = int( max(press_x, release_x) )
-		y1 = int( max(press_y, release_y) )
-		w = x1 - x0
-		h = y1 - y0
-		if w <= 0 or h <= 0:
-			return
-		self.get_selection().set_future_coords(x0, y0)
-		cairo_context = self.get_context()
-		cairo_context.new_path()
-		cairo_context.move_to(x0, y0)
-		cairo_context.line_to(x1, y0)
-		cairo_context.line_to(x1, y1)
-		cairo_context.line_to(x0, y1)
-		cairo_context.close_path()
-		self.get_selection().set_future_path(cairo_context.copy_path())
-
-	def _set_future_coords_for_free_path(self):
-		"""Convert selection manager's future_path coords from absolute to
-		relative ones, and sets future coords accordingly."""
-		# XXX could be in the selection manager
-		main_width = self.get_main_pixbuf().get_width()
-		main_height = self.get_main_pixbuf().get_height()
-		xmin, ymin = main_width, main_height # TODO context.path_extents() ?
-		future_path = self.get_selection().get_future_path()
-		for pts in future_path:
-			if pts[1] != ():
-				xmin = min(pts[1][0], xmin)
-				ymin = min(pts[1][1], ymin)
-		self.get_selection().set_future_coords(max(xmin, 0.0), max(ymin, 0.0))
-
-	############################################################################
-	# Operations management methods ############################################
 
 	def delete_selection(self):
 		self.operation_type = 'op-delete'
@@ -240,13 +245,11 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 		sx = self.get_selection().selection_x
 		sy = self.get_selection().selection_y
-		if sx == 0 and sy == 0 :
-			scroll_x = self.get_image().scroll_x + 2
-			scroll_y = self.get_image().scroll_y + 2
-			self.get_selection().set_future_coords(scroll_x, scroll_y)
-			self.get_selection().set_coords(False, scroll_x, scroll_y)
-		else:
-			self.get_selection().set_future_coords(sx, sy)
+		# when it's 0 and 0, it's pretty hard for the user to understand that
+		# there is an active selection, but changing the coords here sucks, it
+		# would be a pretty bad design, breaking the rules i've decided
+		# concerning interactions with the selection manager.
+		self._pre_load_coords(sx, sy)
 
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -267,7 +270,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			raise NoSelectionPixbufException()
 			# XXX does it run cleanly after the "return" to the calling method?
 			# (compared to a more normal return)
-		self.get_selection().set_future_coords(op['pixb_x'], op['pixb_y'])
+		self._pre_load_coords(op['pixb_x'], op['pixb_y'])
 		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
 		self.get_selection().set_pixbuf(op['pixbuf'].copy())
 
