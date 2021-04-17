@@ -178,6 +178,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	# values don't have any impact on the following operations, but which should
 	# stored image-wide anyway (to avoid inconsistencies when switching to other
 	# tabs and then switching back, for example).
+	#
+	# XXX c'est faux le préchargement des coordonnées ça a un réel impact
 
 	def _pre_load_coords(self, x, y):
 		self.get_selection().set_future_coords(x, y)
@@ -217,7 +219,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		fx = x + event_x - self.x_press
 		fy = y + event_y - self.y_press
 		self._pre_load_coords(fx, fy)
-		print("pre-loaded coords:", fx, fy)
 
 		self.operation_type = 'op-drag'
 		operation = self.build_operation()
@@ -257,6 +258,13 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.operation_type = 'op-define'
 
 	def unselect_and_apply(self):
+		# Pre-loading the coords is NEEDED because we may "unselect_and_apply" a
+		# selection which was defined by a selection manager in very different
+		# state, but was consumed by an "undo".
+		sx = self.get_selection().selection_x
+		sy = self.get_selection().selection_y
+		self._pre_load_coords(sx, sy)
+
 		self.operation_type = 'op-apply'
 		operation = self.build_operation()
 		self.apply_operation(operation)
@@ -344,10 +352,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			replacement = None
 		self.get_selection().load_from_path(op['initial_path'], replacement)
 
-	def _op_apply(self):
+	def _op_apply(self, operation):
 		cairo_context = self.get_context()
 		self.get_selection().show_selection_on_surface(cairo_context, False, \
-		                                           self.local_dx, self.local_dy)
+		                           operation['local_dx'], operation['local_dy'])
 		self.get_selection().reset(True)
 		self.get_selection().reset_future_data()
 
@@ -387,7 +395,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			if self.get_selection_pixbuf() is None:
 				return
 			self._op_drag(operation)
-			self._op_apply()
+			self._op_apply(operation)
 
 	############################################################################
 ################################################################################
