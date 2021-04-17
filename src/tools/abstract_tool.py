@@ -57,7 +57,8 @@ class AbstractAbstractTool():
 	def add_tool_action_simple(self, action_name, callback):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
-		trigger the method 'callback'.""" # XXX allow to set shortcuts ?
+		trigger the method 'callback'."""
+		# TODO allow to set shortcuts here
 		self.window.add_action_simple(action_name, callback, None)
 
 	def add_tool_action_boolean(self, action_name, default):
