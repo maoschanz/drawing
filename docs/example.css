@@ -105,7 +105,7 @@ kbd {
 }
 
 /* Style classes to get tabs */
-input, .tab {
+input[type="radio"], .tab {
 	display: none;
 }
 
@@ -115,7 +115,7 @@ input, .tab {
 	display: block;
 }
 
-input + label {
+input[type="radio"] + label {
 	display: inline-block;
 	border: 1px solid #999;
 	background: #EEE;
@@ -125,14 +125,28 @@ input + label {
 	top: 1px;
 	/* text-align: center; */
 }
-input:checked + label {
+input[type="radio"]:checked + label {
 	background: #FFF;
 	border-bottom: 1px solid transparent;
 }
-input ~ .tab {
+input[type="radio"] ~ .tab {
 	border: 1px solid #999;
 	padding: 12px;
 	box-shadow: 5px 5px 10px black;
+}
+
+.zoomable-img-100 {
+	width: 100%;
+}
+.zoomable-img-100:active {
+	width: unset;
+	position: fixed;
+	max-width: 90%;
+	max-height: 90%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
 }
 
 /******************************************************************************/
@@ -156,12 +170,24 @@ input ~ .tab {
 		width: 100%;
 	}
 
+	/* Images */
+	.zoomable-img-100:active {
+		width: 100%;
+		position: static;
+		max-width: unset;
+		max-height: unset;
+		left: 0;
+		top: 0;
+		transform: none;
+		z-index: auto;
+	}
+
 	/* Tabs */
 	label h4 {
 		font-size: 16px;
 		line-height: 24px;
 	}
-	input + label {
+	input[type="radio"] + label {
 		padding: 4px 4px;
 	}
 }
