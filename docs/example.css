@@ -30,6 +30,10 @@ h1 {
 h2 {
 	font-size: 24px;
 }
+h2::before {
+	padding-right: 8px;
+	content: "🖍";
+}
 h3 {
 	font-size: 20px;
 }
