@@ -107,6 +107,9 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
+
+		self.update_theme_variant()
+		
 		# self.resize(360, 648)
 		# self.resize(720, 288)
 		self.set_ui_bars()
@@ -418,6 +421,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self.gsettings.connect('changed::preview-size', self.show_info_settings)
 		# self.gsettings.connect('changed::devel-only', self.show_info_settings)
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
+		self.gsettings.connect('changed::theme-variant', self.update_theme_variant)
 		# Other settings are connected in DrImage
 
 		# What happens when the active image change
@@ -575,6 +579,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			name = 'default'
 		cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
 		self.get_window().set_cursor(cursor)
+
+	def update_theme_variant(self, *args):
+		label = 'gtk-application-prefer-dark-theme';
+		variant = self.gsettings.get_string('theme-variant')
+		if variant == 'default':
+			Gtk.Settings.get_default().reset_property(label)
+		else:
+			Gtk.Settings.get_default().set_property(label, variant == 'dark')
 
 	############################################################################
 	# WINDOW DECORATIONS AND LAYOUTS ###########################################
