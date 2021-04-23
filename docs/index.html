@@ -93,7 +93,7 @@
 
       <h2><a id="installation"></a>Installation</h2><!-- ******************* -->
 
-       
+       <!-- (no-break space) -->
       <!-- It would look better if in a div, but that would break the CSS, -->
       <!-- which relies on the "~" combinator. -->
       <input type="radio" name="tabs" id="tab1" checked="yes" />
@@ -168,6 +168,86 @@
       </div>
 
       <br />
+
+      <h2><a id="news"></a>What's new</h2><!-- ***************************** -->
+
+      <details open="open">
+        <summary>New features in version 0.6</summary>
+
+        <p>Drawing 0.6.5:</p>
+        <ul>
+          <li>fix unexplained regression of bottom panes responsiveness</li>
+          <li>mitigation of the "very quick series of ctrl+b" bug</li>
+          <li>disable importing or opening an image using drag-and-drop with flatpak (it was broken)</li>
+          <li>fix printing</li>
+          <li>more pertinent movements of the view when holding and moving the middle-click</li>
+        </ul>
+
+        <p>Drawing 0.6.4:</p>
+        <ul>
+          <li>add more keyboard shortcuts</li>
+          <li>slightly better "erase and replace" algo for the paint tool</li>
+          <li>better handle attempts to open webp images</li>
+          <li>better handle attempts to open incorrect file types</li>
+          <li>remember the value of the antialiasing option</li>
+        </ul>
+
+        <p>Drawing 0.6.3:</p>
+        <ul>
+          <li>use submenus for the "tools" menu in the menubar</li>
+          <li>fix arrows' heads when the line was semi-transparent</li>
+          <li>fix arrows' heads with specific angles (#286)</li>
+          <li>fix arrows' heads when the line had a square end</li>
+          <li>add option for double-ended arrows</li>
+          <li>add more options for dashed lines</li>
+          <li>support for older distributions (pygobject older than 3.30)</li>
+        </ul>
+
+        <p>Drawing 0.6.2:</p>
+        <ul>
+          <li>add keyboard shortcuts for increasing and decreasing the tool width</li>
+          <li>ensure all features are available with all layouts (e.g. "reload" with Cinnamon and eOS)</li>
+          <li>suggest to reload when the file has been saved without transparency</li>
+          <li>new 'copy to clipboard' action</li>
+          <li>new "paint over the entire image" option to the paint tool</li>
+          <li>fix Debian Buster (and PureOS Amber) support</li>
+          <li>add option for the 'highlighter' tool to highlight on dark background</li>
+        </ul>
+
+        <p>Drawing 0.6.1:</p>
+        <ul>
+          <li>new 'save without transparency' action, that works with PNG</li>
+          <li>add 'initial color' as a replacement for transparent pixels</li>
+          <li>fix a bug in the 'rotate' tool that occured when the selection was flipped before being rotated</li>
+          <li>add the additional tool 'points', to help captioning</li>
+          <li>update the user help manual</li>
+        </ul>
+
+        <p>Drawing 0.6.0:</p>
+        <ul>
+          <li>remove the "windows" menu from the menubar</li>
+          <li>refactor bottom panes management to allow several tools to share the same pane</li>
+          <li>rectangle selection, freehand selection, and color selection, are now distinct tools</li>
+          <li>the 'rotate' tool now handles horizontal or vertical flipping</li>
+          <li>the 'rotate' tool now supports any angle when rotationg the selection</li>
+          <li>tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool</li>
+          <li>"close shape" action for the 'shape' tool</li>
+          <li>"close selection" action for the 'free selection' tool</li>
+          <li>replace the 'saturate' tool by a new 'filters' tool</li>
+          <li>add several types of blur to 'filters'</li>
+          <li>add color inversion, pixelization, partial transparency to 'filters'</li>
+          <li>add "additional tools" section to the preferences window</li>
+          <li>add specialized types of pencils (eraser, highlighter) as optional tools</li>
+          <li>a fullscreen mode is now available</li>
+          <li>zoom in (or out) using the minimap, the touch gestures, the mouse wheel, or keyboard shortcuts</li>
+          <li>move the "color application mode" selection to the colors menus/popovers</li>
+          <li>add "antialiasing" option to several tools</li>
+          <li>fix how the canvas is displayed on HiDPI screens</li>
+          <li>warn the user when they try to save despite the current operation not being applied</li>
+          <li>rewrite the user help manual</li>
+        </ul>
+      </details>
+      <!-- It's not useful to do 0.4 or 0.2, no one uses that -->
 
       <!-- Other useful but not sexy infos -->
       <h2><a id="tools"></a>Tools</h2><!-- ********************************* -->
