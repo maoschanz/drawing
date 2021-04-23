@@ -169,9 +169,9 @@ class DrPrefsWindow(Gtk.Window):
 		
 		self.add_section_title(_("Theme variant"))
 		variants_dict = {
-			'default': _("Default"),
-			'light': _("Light"),
-			'dark': _("Dark")
+			'default': _("Default variant"),
+			'light': _("Light variant"),
+			'dark': _("Dark variant")
 		}
 		self.add_radio_flowbox('theme-variant', variants_dict)
 
