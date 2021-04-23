@@ -164,13 +164,16 @@ class DrPrefsWindow(Gtk.Window):
 		else:
 			self._gsettings.set_boolean('devel-only', False)
 		self.add_colorbtn(_("Background color"), 'ui-background-rgba')
+
+		self.add_section_separator()
 		
+		self.add_section_title(_("Theme variant"))
 		variants_dict = {
 			'default': _("Default"),
 			'light': _("Light"),
 			'dark': _("Dark")
 		}
-		self.add_combobox(_("Theme variant"), 'theme-variant', variants_dict)
+		self.add_radio_flowbox('theme-variant', variants_dict)
 
 		self.add_section_separator()
 		# Context: title of a section of the preferences. It corresponds to the
@@ -287,14 +290,6 @@ class DrPrefsWindow(Gtk.Window):
 		btn.connect('toggled', self.on_check_btn_changed, key, row_id)
 		return btn
 
-	def add_combobox(self, label_text, setting_key, labels_dict):
-		combobox = Gtk.ComboBoxText()
-		for id0 in labels_dict:
-			combobox.append(id0, labels_dict[id0])
-		combobox.set_active_id(self._gsettings.get_string(setting_key))
-		combobox.connect('changed', self.on_combobox_changed, setting_key)
-		self.add_row(label_text, combobox)
-
 	############################################################################
 	# Generic callbacks ########################################################
 
@@ -320,9 +315,6 @@ class DrPrefsWindow(Gtk.Window):
 		c = color_btn.get_rgba()
 		color_array = [str(c.red), str(c.green), str(c.blue), str(c.alpha)]
 		self._gsettings.set_strv(key, color_array)
-
-	def on_combobox_changed(self, combobox, key):
-		self._gsettings.set_string(key, combobox.get_active_id())
 
 	############################################################################
 	# Low-level packing ########################################################
