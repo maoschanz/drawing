@@ -112,6 +112,7 @@ class DrOptionsManager():
 			key_name = self._string_actions_from_gsetting[action_name]
 			self._persist_string(action_name, key_name)
 
+		# TODO faire une gaction pour ça !
 		font_fam_name = self.window.tools['text'].font_fam_name
 		self._tools_gsettings.set_string('last-font-name', font_fam_name)
 

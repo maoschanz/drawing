@@ -29,7 +29,7 @@ class BrushAirbrush(AbstractBrush):
 		cairo_context.set_line_width(1)
 		random.seed(1) # this hardcoded seed avoids the droplets changing their
 		# positions when the user undoes an following operation
-		half_width = operation['line_width'] / 2
+		half_width = int(operation['line_width'] / 2)
 		droplets = 20 # could be like 15 + log(width) maybe?
 
 		for pt in operation['path']:

@@ -33,9 +33,9 @@ class BrushNip(AbstractBrush):
 		self.operation_on_mask(operation, cairo_context)
 
 	def do_masked_brush_op(self, cairo_context, operation):
-		cairo_context.set_line_cap(cairo.LineCap.ROUND)
-		cairo_context.set_line_join(cairo.LineJoin.ROUND)
-		cairo_context.set_line_width(1)
+		# cairo_context.set_line_cap(cairo.LineCap.BUTT)
+		# cairo_context.set_line_join(cairo.LineJoin.BEVEL)
+		# cairo_context.set_line_width(1)
 
 		line_width = operation['line_width'] / 2
 		two_ways_path = []

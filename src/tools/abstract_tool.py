@@ -223,7 +223,7 @@ class AbstractAbstractTool():
 		except Exception as e:
 			self.show_error(str(e))
 		self._ongoing_operation = False
-		self.non_destructive_show_modif()
+		self.non_destructive_show_modif() # XXX nécessaire ?
 
 	############################################################################
 	# Selection ################################################################
