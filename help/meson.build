@@ -22,7 +22,7 @@ gnome.yelp(
 		'figures/screenshot_filters.png', # 0.6.?
 		'figures/screenshot_fullscreen.png', # 0.8.0
 		'figures/screenshot_hsl.png', # 0.8.0
-		'figures/screenshot_menu.png',
+		'figures/screenshot_menu.png', # 0.8.0
 		'figures/screenshot_prefs_images.png', # 0.8.0
 		'figures/screenshot_prefs_tools.png', # 0.8.0
 		'figures/screenshot_scale.png', # 0.8.0
