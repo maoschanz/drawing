@@ -572,6 +572,7 @@ class DrImage(Gtk.Box):
 		                                               apply_to_selection, True)
 		# FIXME using local deltas this way "works" but isn't mathematically
 		# correct: scaled selections have a "null" and excentred central nineth
+		# ^ c'est vrai ça ??
 		wl += 0.4 * width * self.zoom_level
 		wr -= 0.4 * width * self.zoom_level
 		ht += 0.4 * height * self.zoom_level
