@@ -19,7 +19,7 @@ gnome.yelp(
 		'figures/screenshot_arrow.png', # 0.8.0
 		'figures/screenshot_color_editor.png', # 0.8.0
 		'figures/screenshot_color_palette.png', # 0.8.0
-		'figures/screenshot_filters.png',
+		'figures/screenshot_filters.png', # 0.6.?
 		'figures/screenshot_fullscreen.png', # 0.8.0
 		'figures/screenshot_hsl.png', # 0.8.0
 		'figures/screenshot_menu.png',
