@@ -107,6 +107,9 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
+
+		self._update_theme_variant()
+		
 		# self.resize(360, 648)
 		# self.resize(720, 288)
 		self.set_ui_bars()
@@ -418,6 +421,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self.gsettings.connect('changed::preview-size', self.show_info_settings)
 		# self.gsettings.connect('changed::devel-only', self.show_info_settings)
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
+		self.gsettings.connect('changed::theme-variant', self._update_theme_variant)
 		# Other settings are connected in DrImage
 
 		# What happens when the active image change
@@ -714,6 +718,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		controls_hidden = self.lookup_action('hide_controls').get_state()
 		should_show = (self.notebook.get_n_pages() > 1) and not controls_hidden
 		self.notebook.set_show_tabs(should_show)
+
+	def _update_theme_variant(self, *args):
+		key = 'gtk-application-prefer-dark-theme';
+		variant = self.gsettings.get_string('theme-variant')
+		if variant == 'default':
+			Gtk.Settings.get_default().reset_property(key)
+		else:
+			Gtk.Settings.get_default().set_property(key, variant == 'dark')
 
 	############################################################################
 	# FULLSCREEN ###############################################################

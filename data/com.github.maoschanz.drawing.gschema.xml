@@ -61,7 +61,12 @@
       <summary>Experimental features</summary>
       <description>Turn on devel features (not recommended).</description>
     </key>
-
+    <key type="s" name="theme-variant">
+      <default>'default'</default>
+      <summary>Theme variant</summary>
+      <description>Can be 'default', 'light' or 'dark'.</description>
+    </key>
+    
     <!-- Default new canvas -->
     <key type="as" name="default-rgba">
       <default>['1.0', '1.0', '1.0', '1.0']</default>
