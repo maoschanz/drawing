@@ -51,6 +51,10 @@ class ToolEraser(ToolPencil):
 			self._fallback_operator = 'source'
 		else:
 			self._fallback_operator = 'clear'
+			# TODO en pratique non il y a des cas où on est plutôt en train de
+			# flouter, il faudrait un elif, et un autre système pour l'opérateur
+			# en fallback qui afficherait l'icône avec les gouttes.
+			# En fait on devrait yeet le délire du `_fallback_operator` ?
 		self.window.options_manager.update_pane(self)
 
 		label = self.label
