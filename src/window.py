@@ -109,10 +109,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.maximize()
 
 		self._update_theme_variant()
-		
 		# self.resize(360, 648)
 		# self.resize(720, 288)
-		self.set_ui_bars()
+		self._set_ui_bars()
 
 	def init_window_content(self, gfile, get_cb):
 		"""Initialize the window's content, such as the minimap, the color
@@ -586,7 +585,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def on_layout_changed(self, *args):
 		try:
 			is_narrow = self._decorations.remove_from_ui()
-			self.set_ui_bars()
+			self._set_ui_bars()
 			self._decorations.set_compact(is_narrow)
 			self.set_picture_title()
 		except:
@@ -632,7 +631,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return 'hg' # Use the GNOME layout if the desktop is unknown,
 		# because i don't know how the env variable is on mobile.
 
-	def set_ui_bars(self):
+	def _set_ui_bars(self):
 		"""Set the UI "bars" (headerbar, menubar, titlebar, toolbar, whatever)
 		according to the user's preference, which by default is an empty string.
 		In this case, an useful string is set by `get_auto_decorations()`."""
@@ -661,7 +660,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self._decorations = DrDecoManagerToolbar(symbolic, menubar, self)
 		else:
 			self.gsettings.set_string('deco-type', '')
-			self.set_ui_bars() # yes, recursion.
+			self._set_ui_bars() # yes, recursion.
 
 		if self.app.is_beta():
 			self.get_style_context().add_class('devel')
