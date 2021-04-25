@@ -18,7 +18,7 @@ should also be compatible with the *Pinephone* and *Librem 5*
 
 ### Default user interface (for GNOME/Budgie)
 
-![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/0.6/gnome_menu.png)
+![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/0.8/gnome_menu.png)
 
 [More screenshots](https://maoschanz.github.io/drawing/gallery.html)
 
@@ -39,7 +39,7 @@ You can install it from flathub.org using the instructions on
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04, 20.04, and 20.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- Ubuntu 18.04, 20.10 and 21.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Gentoo package](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/media-gfx/drawing) from an external overlay
 - ["Snap" package](https://snapcraft.io/drawing)
 
@@ -91,7 +91,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.7.0+**)
+(last update: **version 0.8.0**)
 
 *Tools in italic can be disabled.*
 
