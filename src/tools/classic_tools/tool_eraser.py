@@ -34,7 +34,7 @@ class ToolEraser(ToolPencil):
 		self._fallback_operator = 'clear'
 		self.load_tool_action_enum('selection-color', 'last-delete-replace')
 		self.add_tool_action_enum('eraser-type', 'mosaic')
-		self.add_tool_action_enum('eraser-shape', 'pencil')
+		self.add_tool_action_enum('eraser-shape', 'rectangle')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
 	def get_edition_status(self):
@@ -54,10 +54,10 @@ class ToolEraser(ToolPencil):
 		self.window.options_manager.update_pane(self)
 
 		label = self.label
-		# if self._eraser_shape == 'pencil':
-		# 	label += ' - ' + _("Pencil")
-		# else:
-		# 	label += ' - ' + _("Rectangle")
+		if self._eraser_shape == 'pencil':
+			label += ' - ' + _("Pencil")
+		else:
+			label += ' - ' + _("Rectangle")
 		if self._eraser_type == 'solid':
 			label += ' - ' + {
 				'alpha': _("Transparency"),
@@ -189,6 +189,8 @@ class ToolEraser(ToolPencil):
 			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
 		cairo_context.clip()
+		# XXX this ^ doesn't work with the 'pencil' shape, which forces me to
+		# disable the 'eraser-type' option in this case
 		cairo_context.set_source_surface(bs, r0, r1)
 		cairo_context.paint()
 
