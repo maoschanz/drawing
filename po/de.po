@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-03 01:48+0200\n"
-"PO-Revision-Date: 2021-02-22 20:22+0100\n"
+"PO-Revision-Date: 2021-04-26 13:36+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -117,6 +117,8 @@ msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
+"Optionen, wie der Texthintergrund und der Formen-Ausfüllstil bleiben nun "
+"bestehen, wenn die Anwendung geschlossen wird."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -124,6 +126,9 @@ msgid ""
 "rewritten to better show the accurate label, and better organize the "
 "possible modes as submenus."
 msgstr ""
+"Die Benutzeroberfläche zur Auswahl des aktiven Farbanwendungsmodus wurde "
+"umgestaltet, um die genaue Bezeichnung besser anzuzeigen und die möglichen "
+"Modi besser als Untermenüs zu organisieren."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -131,6 +136,9 @@ msgid ""
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
 msgstr ""
+"Der Modus \"Verwischen\" wurde entfernt, was die Situation vereinfachte und "
+"es verschiedenen Werkzeugen (\"Formen\" und \"Pinsel\") nun erlaubt, im "
+"Allgemeinen den Farbanwendungsmodus zu nutzen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -429,9 +437,8 @@ msgstr "Heller Text auf dunklem Hintergrund"
 #. hue-saturation-luminosity (HSL) representation
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "HSL modes"
-msgstr "Andere Modi"
+msgstr "HSL-Modi"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -537,7 +544,7 @@ msgstr "Index"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Individuelle Seiten"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -545,31 +552,26 @@ msgid "Basic help"
 msgstr "Grundlegende Hilfe"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Hilfe zu Werkzeugen"
+msgstr "Hilfe zu Zoomen"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Vollbildansicht umschalten"
+msgstr "Hilfe zur Vollbildansicht"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Hilfe zu Werkzeugen"
+msgstr "Hilfe zu klassischen Werkzeugen"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Hilfe zu Werkzeugen"
+msgstr "Hilfe zu Farben"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Hilfe zu Werkzeugen"
+msgstr "Hilfe zu umwandelnden Werkzeugen"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -577,7 +579,7 @@ msgstr "Hilfe zur Auswahl"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Was gibt es Neues?"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -801,12 +803,12 @@ msgstr "Wiederherstellen %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Versuch, einen ungültigen Status zu speichern"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Fehler: Kein Werkzeug '%s'"
 
 #. Context: an error message
 #: src/image.py
@@ -1220,12 +1222,11 @@ msgstr "Transparenz ersetzen mit:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "Die Auswahl pixbuf ist leer."
 
 #: src/selection_manager.py
-#, fuzzy
 msgid "The selection path is empty."
-msgstr "Die Auswahl und die damit verknüpften Aktionen"
+msgstr "Der Auswahlpfad ist leer."
 
 #: src/utilities.py
 msgid "Transparent"
@@ -1350,18 +1351,20 @@ msgstr "Trotz seines Namens ist %s eine WEBP-Datei."
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
+"Sie nutzen das erste Mal Zeichnung %s. Wollen Sie sich ansehen, was es Neues "
+"gibt?"
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Später"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #. Context: an error message
 #: src/window.py
@@ -1456,9 +1459,8 @@ msgstr "Benötigtes Werkzeug ist nicht verfügbar"
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Hervorhebung"
+msgstr "Hervorhebung (dunkel)"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
@@ -1709,9 +1711,8 @@ msgid "Airbrush"
 msgstr "Airbrush"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Airbrush"
+msgstr "Haariger Pinsel"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
 msgid "Calligraphic nib"
@@ -1748,22 +1749,20 @@ msgid "Blur"
 msgstr "Verwischen"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "Pixel"
+msgstr "Pixel mischen"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Mischen und Verwischen"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mosaik"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Zweitfarbe"
+msgstr "Einfarbig"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Active filter"
@@ -2029,9 +2028,8 @@ msgid "Brush options"
 msgstr "Pinsel-Optionen"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Weitere Optionen"
+msgstr "Radiergummi-Optionen"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2081,15 +2079,13 @@ msgstr "Form-Optionen"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Hauptfarbe bearbeiten…"
+msgstr "Füllen mit der Hauptfarbe"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "Zweitfarbe bearbeiten…"
+msgstr "Füllen mit der Zweitfarbe"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
@@ -2104,14 +2100,12 @@ msgid "Text options"
 msgstr "Schriftart-Optionen"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
-#, fuzzy
 msgid "Density depends on the stylus pressure"
-msgstr "Die Breite hängt vom Druck auf den Stylus ab"
+msgstr "Die Dichte hängt vom Druck auf den Stylus ab"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
-#, fuzzy
 msgid "Density depends on the mouse speed"
-msgstr "Die Breite hängt von der Mausgeschwindigkeit ab"
+msgstr "Die Dichte hängt von der Mausgeschwindigkeit ab"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
 #: src/tools/classic_tools/brushes/brush_nip.py
@@ -2120,9 +2114,8 @@ msgid "Width depends on the stylus pressure"
 msgstr "Die Breite hängt vom Druck auf den Stylus ab"
 
 #: src/tools/classic_tools/brushes/brush_nip.py
-#, fuzzy
 msgid "Width depends on the line orientation"
-msgstr "Die Breite hängt von der Mausgeschwindigkeit ab"
+msgstr "Die Breite hängt von der Linienausrichtung ab"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
