@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:52+0200\n"
 "PO-Revision-Date: 2019-05-06 22:22+0300\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -34,7 +34,6 @@ msgstr "Простой инструмент для рисования"
 msgid "Paint;Sketch;Pencil;"
 msgstr ""
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -550,7 +549,7 @@ msgstr "Отдельные страницы"
 msgid "Basic help"
 msgstr "Базовая справка"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "Справка по масштабированию"
@@ -571,7 +570,11 @@ msgstr "Справка по цвету"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "Справка по инструментам преобразования"
@@ -962,7 +965,9 @@ msgstr "Изображения JPEG и BMP не поддерживают про�
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
-msgstr "Если вы сохраняете изображения в этих форматах, что вы будете использовать для замены прозрачных пикселей?"
+msgstr ""
+"Если вы сохраняете изображения в этих форматах, что вы  будете использовать "
+"для замены прозрачных пикселей?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
@@ -990,7 +995,8 @@ msgstr "Спросить перед сохранением"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Вы можете масштабировать с помощью Ctrl + прокрутка или только прокруткой."
+msgstr ""
+"Вы можете масштабировать с помощью Ctrl + прокрутка или только прокруткой."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
@@ -1019,7 +1025,9 @@ msgstr "Дополнительные инструменты"
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
-msgstr "Эти инструменты не так надежны и полезны, как должны быть, поэтому не все они включены по умолчанию."
+msgstr ""
+"Эти инструменты не так надежны и полезны, как должны быть, поэтому не все "
+"они включены по умолчанию."
 
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -1089,6 +1097,24 @@ msgstr "Особенности разработки"
 #, fuzzy
 msgid "Background color"
 msgstr "Цвет фона"
+
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "Ширина по умолчанию"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1227,7 +1253,8 @@ msgstr "Этот формат файла не поддерживает проз�
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr "Вы можете сохранить изображение как PNG-файл или заменить прозрачность на:"
+msgstr ""
+"Вы можете сохранить изображение как PNG-файл или заменить прозрачность на:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
@@ -1399,7 +1426,9 @@ msgstr "Без параметров"
 
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
-msgstr "Щелкните средней кнопкой мыши, коснитесь тремя пальцами или нажмите F8, чтобы отобразить / скрыть элементы управления."
+msgstr ""
+"Щелкните средней кнопкой мыши, коснитесь тремя пальцами или нажмите F8, "
+"чтобы отобразить / скрыть элементы управления."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1409,14 +1438,14 @@ msgstr "Нажмите F11 для выхода из полноэкранного
 #, fuzzy, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Ошибка загрузки нижней панели для инструмента '%s', сообщите об этой ошибке."
+msgstr ""
+"Ошибка загрузки нижней панели для инструмента '%s', сообщите об этой ошибке."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Новая вкладка"
@@ -1627,7 +1656,9 @@ msgstr "Вертикальная деформация"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr "Не удается начать операцию: неверный идентификатор инструмента (ожидалось {0}, получено {1})"
+msgstr ""
+"Не удается начать операцию: неверный идентификатор инструмента (ожидалось "
+"{0}, получено {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"

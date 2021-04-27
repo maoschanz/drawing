@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,6 @@ msgstr ""
 msgid "Paint;Sketch;Pencil;"
 msgstr ""
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -520,7 +519,7 @@ msgstr ""
 msgid "Basic help"
 msgstr ""
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
 msgstr ""
 
@@ -538,7 +537,11 @@ msgstr ""
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Help about transformation tools"
 msgstr ""
 
@@ -1029,6 +1032,15 @@ msgstr ""
 msgid "Preview size"
 msgstr ""
 
+#. This label will not be displayed in the UI of stable versions
+#: src/preferences.py
+msgid "Development features"
+msgstr ""
+
+#: src/preferences.py
+msgid "Background color"
+msgstr ""
+
 #: src/preferences.py
 msgid "Theme variant"
 msgstr ""
@@ -1043,15 +1055,6 @@ msgstr ""
 
 #: src/preferences.py
 msgid "Dark variant"
-msgstr ""
-
-#. This label will not be displayed in the UI of stable versions
-#: src/preferences.py
-msgid "Development features"
-msgstr ""
-
-#: src/preferences.py
-msgid "Background color"
 msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
@@ -1374,7 +1377,6 @@ msgstr ""
 msgid "Loading %s"
 msgstr ""
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr ""

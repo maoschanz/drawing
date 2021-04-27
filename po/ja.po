@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
 "PO-Revision-Date: 2021-04-03 19:20+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -33,7 +33,6 @@ msgstr "シンプルな描画ユーティリティ"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Sketch;Pencil;ペイント;描画;スケッチ;ペンシル;鉛筆;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -543,7 +542,7 @@ msgstr "個々のページ"
 msgid "Basic help"
 msgstr "基本的なヘルプ"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
 msgstr "ズームについてのヘルプ"
 
@@ -561,7 +560,11 @@ msgstr "色についてのヘルプ"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Help about transformation tools"
 msgstr "変換ツールについてのヘルプ"
 
@@ -1066,6 +1069,24 @@ msgstr "開発中の機能"
 msgid "Background color"
 msgstr "背景色"
 
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "既定の幅"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
+
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
@@ -1391,7 +1412,6 @@ msgstr ""
 msgid "Loading %s"
 msgstr "%s を読み込んでいます"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "新しいタブ"

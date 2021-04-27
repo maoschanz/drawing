@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -32,7 +32,6 @@ msgstr "Utilitaire simple pour le dessin"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Croquis;Crayon;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -549,7 +548,7 @@ msgstr "Pages spécifiques"
 msgid "Basic help"
 msgstr "Aide basique"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
 msgstr "Aide à propos du zoom"
 
@@ -567,7 +566,11 @@ msgstr "Aide sur les couleurs"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Help about transformation tools"
 msgstr "Aide sur les outils de transformation"
 
@@ -1062,6 +1065,15 @@ msgstr "Options avancées"
 msgid "Preview size"
 msgstr "Taille de l'aperçu"
 
+#. This label will not be displayed in the UI of stable versions
+#: src/preferences.py
+msgid "Development features"
+msgstr "Fonctionnalités de test"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "Couleur d'arrière-plan"
+
 #: src/preferences.py
 msgid "Theme variant"
 msgstr "Variante de thème"
@@ -1077,15 +1089,6 @@ msgstr "Variante claire"
 #: src/preferences.py
 msgid "Dark variant"
 msgstr "Variante foncée"
-
-#. This label will not be displayed in the UI of stable versions
-#: src/preferences.py
-msgid "Development features"
-msgstr "Fonctionnalités de test"
-
-#: src/preferences.py
-msgid "Background color"
-msgstr "Couleur d'arrière-plan"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1418,7 +1421,6 @@ msgstr ""
 msgid "Loading %s"
 msgstr "Chargement de %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Nouvel onglet"
@@ -2190,4 +2192,3 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
-
