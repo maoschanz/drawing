@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:52+0200\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -34,7 +34,6 @@ msgstr "Ferramenta de desenho simples"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Pintura;Esboço;Lápis;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -534,7 +533,7 @@ msgstr ""
 msgid "Basic help"
 msgstr "Ajuda básica"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "Ajuda sobre as ferramentas"
@@ -556,7 +555,11 @@ msgstr "Ajuda sobre as ferramentas"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "Ajuda sobre as ferramentas"
@@ -1067,6 +1070,24 @@ msgstr "Características de desenvolvimento"
 msgid "Background color"
 msgstr "Cor de fundo"
 
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "Largura padrão"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
+
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
@@ -1389,7 +1410,6 @@ msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 msgid "Loading %s"
 msgstr "Carregando %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Nova aba"

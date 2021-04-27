@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -34,7 +34,6 @@ msgstr "כלי ציור פשוט"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;שרטט;עיפרון;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -560,7 +559,7 @@ msgstr ""
 msgid "Basic help"
 msgstr "בסיסי"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "שינוי קנה מידה של הבחירה"
@@ -581,7 +580,11 @@ msgstr "שינוי קנה מידה של הבחירה"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "שינוי קנה מידה של הבחירה"
@@ -1103,6 +1106,24 @@ msgstr "תכונות פיתוח"
 msgid "Background color"
 msgstr "רקע אטום"
 
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "רוחב ברירת מחדל"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
+
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
@@ -1429,7 +1450,6 @@ msgstr "שגיאה בפתיחת היישום, נא לדווח באג זה."
 msgid "Loading %s"
 msgstr "טוען %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "לשונית חדשה"

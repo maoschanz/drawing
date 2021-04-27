@@ -955,9 +955,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.try_load_file(gfile)
 		else:
 			dialog = DrMessageDialog(self)
-			# Context: answer to "where do you want to open the image?"
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
-			# Context: answer to "where do you want to open the image?"
 			new_window_id = dialog.set_action(_("New Window"), None, False)
 			discard_id = dialog.set_action(_("Discard changes"), \
 			                                        'destructive-action', False)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -33,7 +33,6 @@ msgstr "Marrazteko utilitate sinplea"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Zirriborroa;Arkatza;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -534,7 +533,7 @@ msgstr ""
 msgid "Basic help"
 msgstr "Oinarrizko laguntza"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "Tresnen gaineko laguntza"
@@ -556,7 +555,11 @@ msgstr "Tresnen gaineko laguntza"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "Tresnen gaineko laguntza"
@@ -1064,6 +1067,24 @@ msgstr "Garapen eginbideak"
 msgid "Background color"
 msgstr "Atzeko planoaren kolorea"
 
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "Zabalera lehenetsia"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
+
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
@@ -1390,7 +1411,6 @@ msgstr "Errorea aplikazioa abiaraztean, mesedez eman errorearen berri."
 msgid "Loading %s"
 msgstr "Kargatzen %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Fitxa berria"

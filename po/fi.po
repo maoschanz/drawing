@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-03 01:48+0200\n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -34,7 +34,6 @@ msgstr "Helppo piirustus apuohjelma"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Maali;Luonnos;Lyijykynä;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -539,7 +538,7 @@ msgstr ""
 msgid "Basic help"
 msgstr "Perusohjeet"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "Ohje työkaluista"
@@ -561,7 +560,11 @@ msgstr "Ohje työkaluista"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "Ohje työkaluista"
@@ -1073,6 +1076,24 @@ msgstr "Kehitysvaiheen ominaisuudet"
 msgid "Background color"
 msgstr "Taustaväri"
 
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "Oletusleveys"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
+
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
@@ -1395,7 +1416,6 @@ msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
 msgid "Loading %s"
 msgstr "Ladataan %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Uusi välilehti"
