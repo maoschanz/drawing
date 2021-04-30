@@ -75,18 +75,24 @@ msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
+"С Drawing 0.8.0 вы, наконец, можете использовать планшет и стилус для рисования с помощью "
+"чувствительных к давлению инструментов, таких как новая «кисть» и «аэрограф»."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The fullscreen mode has been completely redesigned to provide an easier yet "
 "less intrusive access to the tools and their options."
 msgstr ""
+"Полноэкранный режим был полностью переработан, чтобы обеспечить более простой, "
+"но менее навязчивый доступ к инструментам и их параметрам."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Filters have been rewritten to be more reliable, and a new filter to "
 "harmoniously increase contrast has been added."
 msgstr ""
+"Фильтры были переписаны, чтобы сделать их более надежными, а так же был "
+"добавлен новый фильтр для гармоничного увеличения контрастности."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -95,12 +101,17 @@ msgid ""
 "specific color can be excluded from the selection. That feature is complex "
 "to explain with words, try it yourself you'll see."
 msgstr ""
+"Теперь, когда вы перемещаете или удаляете выделенную область, оставленные "
+"пиксели могут иметь определенный цвет, а не быть только прозрачными. Этот конкретный "
+"цвет можно выбрать из списка. Эту функцию сложно объяснить словами, попробуйте сами, вы увидите."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
+"Такие параметры, как тип фона текста и стиль заливки формы, теперь при "
+"закрытии приложения сохраняются."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -108,6 +119,9 @@ msgid ""
 "rewritten to better show the accurate label, and better organize the "
 "possible modes as submenus."
 msgstr ""
+"Пользовательский интерфейс для выбора активного режима цветового применения был "
+"переписан, чтобы лучше отображать точную метку и лучше организовать возможные "
+"режимы в виде подменю."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -115,11 +129,15 @@ msgid ""
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
 msgstr ""
+"Режим \"размытие\" был удален, что упростило ситуацию и позволило нескольким "
+"инструментам («формам» и «кистям») получить поддержку режимов цветового "
+"приложения в целом."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.6.5 features several minor bug fixes, and various new translations."
 msgstr ""
+"Версия 0.6.5 содержит несколько мелких исправлений и несколько новых переводов."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -408,7 +426,7 @@ msgstr "Обычный"
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 #, fuzzy
 msgid "Highlight"
-msgstr "Выделить"
+msgstr "Выделять"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
@@ -537,7 +555,7 @@ msgstr "Сообщить об ошибке"
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr ""
+msgstr "Индекс"
 
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
@@ -770,12 +788,12 @@ msgstr "Цвета"
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
-msgstr "Редактирование основного цвета (щелчок левой кнопкой мыши)"
+msgstr "Изменить основной цвет (левая кнопка мыши)"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the secondary color (right click)"
-msgstr "Редактирование дополнительного цвета (щелчок правой кнопкой мыши)"
+msgstr "Изменить дополнительный цвеа (правая кнопка мыши)"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
@@ -789,7 +807,7 @@ msgstr "Навигация"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "Переключить предварительный просмотр"
+msgstr "Предварительный просмотр"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"
@@ -797,7 +815,7 @@ msgstr "Полноэкранный режим"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr "Переключить отображение панелей инструментов"
+msgstr "Отобразить панель инструментов"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -1100,7 +1118,7 @@ msgstr "Цвет фона"
 
 #: src/preferences.py
 msgid "Theme variant"
-msgstr "Тема"
+msgstr "Варианты тем"
 
 #: src/preferences.py
 #, fuzzy
@@ -1137,7 +1155,7 @@ msgstr "Компактная"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -1169,7 +1187,7 @@ msgstr "Только панель инструментов (символьные
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr "%s пикс"
+msgstr "%s px"
 
 #: src/properties.py
 #, python-format
@@ -1215,7 +1233,7 @@ msgstr "Без названия"
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/saving_manager.py
 msgid "this picture"
-msgstr "этом рисунке"
+msgstr "рисунке"
 
 #: src/saving_manager.py
 msgid "Discard"
@@ -1253,8 +1271,7 @@ msgstr "Этот формат файла не поддерживает проз�
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr ""
-"Вы можете сохранить изображение как PNG-файл или заменить прозрачность на:"
+msgstr "Вы можете сохранить изображение как PNG-файл или заменить прозрачность на:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
@@ -1428,7 +1445,7 @@ msgstr "Без параметров"
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
 "Щелкните средней кнопкой мыши, коснитесь тремя пальцами или нажмите F8, "
-"чтобы отобразить / скрыть элементы управления."
+"чтобы отобразить/скрыть элементы управления."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1881,7 +1898,7 @@ msgstr "Горизонтальное"
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
 msgid "Vertical"
-msgstr "Вертикальноеа"
+msgstr "Вертикальное"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
@@ -2046,11 +2063,11 @@ msgstr "Выбрать шрифт…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
-msgstr ""
+msgstr "Italic"
 
 #: src/tools/ui/tool-text.ui
 msgid "Bold"
-msgstr ""
+msgstr "Bold"
 
 #. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
@@ -2186,7 +2203,7 @@ msgstr "Параметры текста"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
-msgstr "Плотность зависит от давления пера"
+msgstr "Плотность зависит от давления стилуса"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the mouse speed"
@@ -2196,7 +2213,7 @@ msgstr "Плотность зависит от скорости движения
 #: src/tools/classic_tools/brushes/brush_nip.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
-msgstr "Ширина зависит от давления пера"
+msgstr "Ширина зависит от давления стилуса"
 
 #: src/tools/classic_tools/brushes/brush_nip.py
 msgid "Width depends on the line orientation"
@@ -2208,11 +2225,11 @@ msgstr "Ширина зависит от скорости движения мы�
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Перетащите выделение или щелкните правой кнопкой мыши по холсту"
+msgstr "Перетащите выделенную область или щелкните правой кнопкой мыши по холсту"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Выберите область или щелкните правой кнопкой мыши на холсте"
+msgstr "Выделите область или щелкните правой кнопкой мыши на холсте"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
