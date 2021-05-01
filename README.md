@@ -74,7 +74,7 @@ If your language is not here, or is incompletely translated, you can
 | nl   | Dutch        | 100%       | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | **72%**    | [Piotr Komur](https://github.com/pkomur)  |
 | pt_BR | Br. portuguese | 81%     | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
-| ru   | Russian      | 70%        | [Artem Polishchuk](https://github.com/tim77)
+| ru   | Russian      | 74%        | [Artem Polishchuk](https://github.com/tim77) ++++??????
 | sv   | Swedish      | 100%       | [Åke Engelbrektson](https://github.com/eson57)
 | tr   | Turkish      | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil) and [serkan-maker](https://github.com/serkan-maker)
 | zh_CN | Chinese, simpl. | 80%    | [OverflowCat](https://github.com/OverflowCat)
