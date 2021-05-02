@@ -365,11 +365,5 @@ your commit(s).
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
 icons into a `.gresource` file)
 
-Aside of this, **since 0.6.0**, the main `meson.build` script will try to check
-if your system does have **the dependencies to run the app**.
-
-The tag 0.6.0 can't be built if `appstream-util` is on the system, the other
-tags should be fine.
-
 ----
 
