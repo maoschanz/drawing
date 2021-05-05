@@ -183,7 +183,7 @@ msgstr "Новое изображение с настройкой размера
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Selection"
-msgstr "Новое изображение из буфера обмена"
+msgstr "Новое изображение из выделенного"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
@@ -262,7 +262,7 @@ msgstr "Восстановить из истории"
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Select all"
-msgstr "Выбрать все"
+msgstr "Выделить все"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -354,11 +354,11 @@ msgstr "Переместить вправо"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
-msgstr "Сместить вкладку влево"
+msgstr "Перейти на вкладку слева"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the right"
-msgstr "Сместить вкладку вправо"
+msgstr "Перейти на вкладку справа"
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
@@ -620,11 +620,11 @@ msgstr "Изображение"
 
 #: src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
-msgstr "_Инструменты"
+msgstr "Инструменты"
 
 #: src/ui/preferences.ui
 msgid "Window"
-msgstr "Новое окно"
+msgstr "Окно"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
@@ -929,7 +929,7 @@ msgstr "Цвет по умолчанию"
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
-msgstr "Сохранение изображения"
+msgstr "Сохранение изображений"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
@@ -1184,7 +1184,7 @@ msgstr "Без названия"
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/saving_manager.py
 msgid "this picture"
-msgstr "рисунке"
+msgstr "этом рисунке"
 
 #: src/saving_manager.py
 msgid "Discard"
@@ -1645,7 +1645,7 @@ msgstr "Форма линии"
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Круглая"
+msgstr "Круг"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1654,7 +1654,7 @@ msgstr "Круглая"
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
-msgstr "Квадратная"
+msgstr "Квадрат"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "No arrow"
@@ -1671,27 +1671,27 @@ msgstr "Двойная стрелка"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "No dashes"
-msgstr "Без пунктира"
+msgstr "Непрерывная"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Simple dashes"
-msgstr "Простой пунктир"
+msgstr "Простые штрихи"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Long dashes"
-msgstr "Длинный пунктир"
+msgstr "Длинные штрихи"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Short dashes"
-msgstr "Короткий пунктир"
+msgstr "Короткие штрихи"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr "Чередующийся пунктир"
+msgstr "Чередующиеся штрихи"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -2172,7 +2172,7 @@ msgstr "Масштабировать холст"
 #. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
-msgstr "Сдвинуть"
+msgstr "Наклон"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
