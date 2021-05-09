@@ -155,5 +155,5 @@ These tools can edit the whole image, or edit a selected part of it.
 
 [To contribute](./CONTRIBUTING.md)
 
-the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic)
+the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the Adwaita theme.
 

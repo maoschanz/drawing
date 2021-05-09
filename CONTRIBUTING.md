@@ -152,7 +152,7 @@ According to some people, this directory should contain the UI resources, but
 here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
 along with the python code.
 
->See [here](./diagrams/) for explanations about the architecture and class
+>See [here](./documentation/) for explanations about the architecture and class
 diagrams
 
 ### UI design
