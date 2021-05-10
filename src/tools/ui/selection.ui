@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
 
-  <!-- for the menubar of any selection tool -->
-  <!-- (the optionsbar uses a different model!) -->
+  <!-- For the menubar of any selection tool -->
+  <!-- (the optionsbar uses a different model, in optionsbar-selection.ui) -->
   <menu id="options-menu">
     <section>
       <item>
@@ -19,45 +19,7 @@
       </item>
     </section>
     <section>
-      <attribute name="label" translatable="yes">Replace with…</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Transparency</attribute>
-        <attribute name="action">win.selection-color</attribute>
-        <attribute name="target">alpha</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Default color</attribute>
-        <attribute name="action">win.selection-color</attribute>
-        <attribute name="target">initial</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Secondary color</attribute>
-        <attribute name="action">win.selection-color</attribute>
-        <attribute name="target">secondary</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Extract from this color</attribute>
-        <attribute name="action">win.selection-extract</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Delete</attribute>
-        <attribute name="action">win.selection_delete</attribute>
-        <attribute name="verb-icon">edit-delete-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Cut</attribute>
-        <attribute name="action">win.selection_cut</attribute>
-        <attribute name="verb-icon">edit-cut-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Copy</attribute>
-        <attribute name="action">win.selection_copy</attribute>
-        <attribute name="verb-icon">edit-copy-symbolic</attribute>
-      </item>
-    </section>
-    <section>
+
       <submenu>
         <attribute name="label" translatable="yes">Transform</attribute>
         <!-- XXX inconsistent with the idea of additional tools -->
@@ -92,15 +54,59 @@
           <attribute name="verb-icon">tool-filters-symbolic</attribute>
         </item>
       </submenu>
+
+      <submenu>
+        <attribute name="label" translatable="yes">More actions</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Delete</attribute>
+            <attribute name="action">win.selection_delete</attribute>
+            <attribute name="verb-icon">edit-delete-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Cut</attribute>
+            <attribute name="action">win.selection_cut</attribute>
+            <attribute name="verb-icon">edit-cut-symbolic</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Copy</attribute>
+            <attribute name="action">win.selection_copy</attribute>
+            <attribute name="verb-icon">edit-copy-symbolic</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Open As New Image</attribute>
+            <attribute name="action">win.new_tab_selection</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Export as…</attribute>
+            <attribute name="action">win.selection_export</attribute>
+          </item>
+        </section>
+      </submenu>
+
     </section>
     <section>
+      <attribute name="label" translatable="yes">Replace with…</attribute>
       <item>
-        <attribute name="label" translatable="yes">Open As New Image</attribute>
-        <attribute name="action">win.new_tab_selection</attribute>
+        <attribute name="label" translatable="yes">Transparency</attribute>
+        <attribute name="action">win.selection-color</attribute>
+        <attribute name="target">alpha</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Export as…</attribute>
-        <attribute name="action">win.selection_export</attribute>
+        <attribute name="label" translatable="yes">Default color</attribute>
+        <attribute name="action">win.selection-color</attribute>
+        <attribute name="target">initial</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.selection-color</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Extract from this color</attribute>
+        <attribute name="action">win.selection-extract</attribute>
       </item>
     </section>
   </menu>
