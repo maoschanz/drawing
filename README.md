@@ -151,6 +151,17 @@ These tools can edit the whole image, or edit a selected part of it.
 
 ----
 
+### Settings
+
+The settings are managed by the `Gio.Settings` abstraction, which will probably
+corresponds to the `dconf` database once the app is installed as a native
+package.
+
+With flatpak however, the settings are stored in a key-value file, which can be
+found (and edited) at `~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/settings/keyfile`.
+
+----
+
 [Donations (paypal)](https://paypal.me/maoschannz)
 
 [To contribute](./CONTRIBUTING.md)

@@ -1131,6 +1131,15 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_selection_export(self, *args):
 		return self.saving_manager.save_current_image(True, True, True, True)
 
+	def action_selection_replace_canvas(self, *args):
+		pass
+
+	def action_selection_expand_canvas(self, *args):
+		pass
+
+	def action_selection_invert(self, *args):
+		pass
+
 	def get_selection_tool(self):
 		if 'rect_select' in self.tools:
 			return self.tools['rect_select']

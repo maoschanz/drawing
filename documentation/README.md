@@ -1,7 +1,4 @@
 
-
-
-
 # Syntax and comments
 
 - Use 2 spaces in `.ui` or `.xml` files.
@@ -17,16 +14,6 @@ welcome.
 - Try to not write lines longer than 80 characters.
 - Use double quotes for strings the user might see, and single quotes otherwise
 (paths, constants, enumerations, dict keys, …)
-
-# Settings
-
-The settings are managed by the `Gio.Settings` abstraction, which will probably
-corresponds to the `dconf` database once the app is installed as a native
-package.
-
-With flatpak however, which includes the recommended development setup, the
-settings are stored in a key-value file, which can be found (and edited) at
-`~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/settings/keyfile`.
 
 ----
 
@@ -93,7 +80,7 @@ instead of directly connecting buttons/menu-items to a method.
 
 In my opinion, the difficulties with the code can come mainly from 3 points:
 
-- tools are window-wide, while [the operations they produce](./design-tools#command-pattern),
+- tools are window-wide, while [the operations they produce](./design-tools.md#command-pattern),
 which are stored in the history, are image-wide.
 - the interactions between the tools and the selection manager are ridiculously
 complex and numerous _(defining, explicit applying, explicit canceling, import,
