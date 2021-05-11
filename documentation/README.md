@@ -1,129 +1,119 @@
 
-Be sure to read [general contributing guidelines](../CONTRIBUTING.md#contribute-to-the-code)
-first.
 
-<!--[TOC]-->
-<!--XXX quand un objet retient qui l'a invoqué, c'est tjrs de la compo ??-->
 
-# Overview
 
->See general-class-diagram.dia
+# Syntax and comments
 
-## The application
+- Use 2 spaces in `.ui` or `.xml` files.
+- Good comments explain *why* the code does what it does. If a comment explains
+*what* it does, the comment is useless, or the code is bad. (useless comments
+are fine, don't worry)
+- Upon translatable strings, comments explaining the context to translators are
+welcome.
 
-`main.py` defines the application, which has:
+**In python code only:**
 
-- implementations of CLI handling methods
-- some `GioAction`s
-- a preferences window (`preferences.py`)
-- a menubar (hidden with most layouts)
-- an appmenu (for GNOME Shell ≤ 3.30)
-- dialogs (about, shortcuts)
-- several **windows**
+- Use actual tabs (4 columns wide).
+- Try to not write lines longer than 80 characters.
+- Use double quotes for strings the user might see, and single quotes otherwise
+(paths, constants, enumerations, dict keys, …)
 
-## Windows
+# Settings
 
-`window.py` defines a GtkApplicationWindow:
+The settings are managed by the `Gio.Settings` abstraction, which will probably
+corresponds to the `dconf` database once the app is installed as a native
+package.
 
-- some `GioAction`s
-- a window's decorations can change quite a lot, which is mostly handled by
-`deco_manager.py`. Three classes are defined in this file:
-	- **`DrDecoManagerMenubar`** just hides or shows the menubar. Most of its
-	methods are empty.
-	- **`DrDecoManagerToolbar`** loads a toolbar from an UI file. This class
-	extends `DrDecoManagerMenubar`, and will manage a small "hamburger menu" at
-	the end of the toolbar if the menubar is hidden.
-	- **`DrDecoManagerHeaderbar`** loads a headerbar from an UI file. This class
-	extends `DrDecoManagerMenubar` but the menubar will always stay hidden.
-	It handles how widgets are shown or hidden depending on the size of the
-	window, and will display various menus depending on the visibility of the
-	buttons, to ensure all features are always available.
-- a window has several **tools**
-- a window has several **images**
-- `minimap.py` for the minimap, which shows a thumbnail of the currently opened image.
-- each window has an **options_manager** (`options_manager.py`). It will display
-the correct bottom bar (= the one required by the current **tool**) and manage
-tools' options. All bottom options bars can be found in the sub-directories of
-`src/optionsbars/`, and are specialized from `src/optionsbars/abstract_optionsbar.py`
+With flatpak however, which includes the recommended development setup, the
+settings are stored in a key-value file, which can be found (and edited) at
+`~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/settings/keyfile`.
 
-## Images
+----
 
-`image.py` defines an image (= a tab), which contains:
+# Structure of the code
 
-- a `GdkPixbuf.Pixbuf` (as an attribute), named `main_pixbuf`, which corresponds
-to the current state of the edited image.
-- a file (`Gio.File`) which can be `None` (if it's a new image never saved).
-- a history, managed by `history_manager.py`
-- a selection, managed by `selection_manager.py`
-- methods to manage the zoom and the scroll.
-- methods to manage printing.
-- methods to receive signals from the mouse, and transmit them to the tools.
+The `data` directory contains data useful for installation but useless to the
+execution (app icons, desktop launcher, settings schemas, appdata, …).
 
-# The tools
+According to some people, this directory should contain the UI resources, but
+here no: resources used by the app (`.ui` files, in-app icons, …) are in `src`,
+along with the python code.
 
->See tools-class-diagram.dia
+>See [here](./design-general.md) for explanations about the architecture and
+class diagrams
 
-The tools are managed by a bunch of files in the `src/tools` directory.
+----
 
->The relationship between the window and the tools is a
-**[State](https://en.wikipedia.org/wiki/State_pattern)** design pattern.
+# UI design
 
-The active tool's methods are called from the currently active image's code (or
-the window's code) regardless of what tool is active. To achieve that, all tools
-inherit from **abstract** classes defining common methods.
+If you want to change something to the user interface:
 
-First of all, `src/tools/abstract_tool.py` defines how the tool will be added in
-the UI, provides several wrappers to add options, to access the pixbufs, to add
-an operation to the edition history, etc.
+### About Glade
 
-Other common features, when they don't depend on the image or the tool at all
-(such as blurring, computing some paths, displaying an overlay on the image (for
-the selection for example)), may be provided by one of the
-`src/tools/utilities_*.py` files.
+People sometimes like to design their apps in Glade, or in the "GUI designer"
+extension integrated in GNOME Builder.
 
-Then, an other layer of abstract classes is used, depending on the subcategory a
-tool is in:
+But in Drawing, the UI is modular, and the `.ui` files are mere templates filled
+algorithmically according to the user's actions and settings. So you have to:
 
-- the classic tools, draw on the main pixbuf using **`cairo`**
-- the selection tools translates the user's input into operations using the
-image's **selection_manager**. These operations are quite complex, and are
-almost entirely managed in `abstract_select.py`.
-- the transformation tools (scale/crop/rotate/filters/…) can be applied to the
-selection pixbuf or the main pixbuf, and will use the image's `temp_pixbuf`
-attribute to store a preview of their changes. These tools have to be
-explicitely applied by the user, using a button in the bottom bar.
+- edit them with a text editor, since the point of a given file is hard to
+understand by just looking at the Glade preview;
+- run the app to be sure of how your changes to these files actually look like
+once filled with the accurate widgets.
 
-# The bottom bar
+If you **ever** even try to use Glade or a similar software, the auto-generated
+code will re-order all the lines, and add dozens of useless properties. Such a
+commit diff would be unreadable.
 
->See bottombar-class-diagram.dia
+Glade also removes all comments, which are essential to the understanding of the
+code, to the generation of the translation files, or which may be disabled code
+for future features. It also removes some of the empty containers meant to be
+filled by the python code, thus breaking the app.
 
-Each tool is associated to a bottom bar, providing access the tool's options.
-They're named "optionsbar(s)" in the code, and are managed mostly by the
-window's **"options manager"**.
+Please do not use Glade here. Merge requests with such changes will be rejected.
 
-Several tools can share the same bottom bar, so the optionsbars are distinct
-from the tools. Although both work according to a similar "state" pattern.
+### Guidelines
 
-While tools are mostly defining the way the image will behave depending on the
-user input, optionsbars also define actual GTK widgets, which have to be
-responsive (adapt to mobile phones' window size).
+Try to respect [GNOME Human Interface Guidelines](https://developer.gnome.org/hig/stable/)
+as much as possible, while making your feature available from the menubar
+(in `app-menus.ui`). The menubar is hidden in most cases, but it should contains
+as many `GAction`s as possible for testing purposes (and also because searchable
+menus still exist).
 
-They also have to list options (of course) and actions depending on the current
-tool, respond to a few keyboard shortcuts (<kbd>Ctrl</kbd>+<kbd>M</kbd>,
-<kbd>Shift</kbd>+<kbd>F10</kbd>, …), and -when it's pertinent- they should
-provide access to the minimap and/or the zoom controls.
+If you're contributing to an alternative layout ("elementary OS", "Cinnamon", or
+any other), please be sure to not hurt the UX of the GNOME layout (since it's
+the one used on smartphone, be careful: it has to stay very resizable).
 
-- classic optionsbar: the distinctive feature here is the pair of color picking
-popovers. The default associated set of options and actions is pretty rich
-(color, size, cairo operator, zoom controls, …) and the tools each provide a
-`Gio.MenuModel` to plug here, with their specific options.
-- selection optionsbar: all selection tools have roughly the same actions, which
-are hardcoded in the optionsbar, although tools can disable actions they don't
-support (e.g. "Closing selection", useless for the rectangle selection).
-- transformation tools: each of these tools defines its own optionsbar. All of
-them have a layout with a "cancel" button at the left and an "apply" button at
-the right. The rest differs greatly, but it's usually spinbuttons to provide
-precise control over numerical values (sizes, angles, percentages, …) in the
-middle, and a small menu with options at the right.
+----
 
+# Other remarks
+
+I like `GAction`s and i've added wrapper methods for using them, try to use that
+instead of directly connecting buttons/menu-items to a method.
+
+In my opinion, the difficulties with the code can come mainly from 3 points:
+
+- tools are window-wide, while [the operations they produce](./design-tools#command-pattern),
+which are stored in the history, are image-wide.
+- the interactions between the tools and the selection manager are ridiculously
+complex and numerous _(defining, explicit applying, explicit canceling, import,
+clipboard methods, use by the transformation tools (whose operation can be
+cancelled or confirmed), deletion, implicit applying, implicit canceling, …)_
+which can easily create small bugs or regressions.
+- the horizontal and vertical scrollings (and their scrollbars) are managed
+"manually" and quite poorly.
+
+These 3 points sometimes can lead to object-oriented spaghetti code.
+
+If you change anything regarding the selection and/or the transformation tools
+(which can edit the selection content), make sure to test various scenarios like
+this one:
+
+1. several images edited in different tabs of the same window;
+2. zoom and/or scroll;
+3. select things, or import/paste things (in both tabs);
+4. edit the selection (in both tabs, don't forget to click "apply" before
+switching to the other tab);
+5. unselect it (in both tabs);
+6. undo/redo.
 
