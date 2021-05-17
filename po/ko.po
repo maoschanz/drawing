@@ -1,0 +1,2094 @@
+# Korean translations for drawing package.
+# Copyright (C) 2021 THE drawing'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the drawing package.
+# hamonikr <root@hamonikr.org>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: drawing\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-27 02:52+0200\n"
+"PO-Revision-Date: 2021-05-17 11:59+0900\n"
+"Last-Translator: Kevin Kim <root@hamonikr.org>\n"
+"Language-Team: Korean\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+#: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
+#: src/main.py
+msgid "Drawing"
+msgstr "그림판"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Simple drawing utility"
+msgstr "간단한 그리기 유틸리티"
+
+#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Paint;Sketch;Pencil;"
+msgstr "페인트, 스케치, 연필;"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
+msgid "New Window"
+msgstr "새창"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "New Image"
+msgstr "새로운 이미지"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Edit Image in Clipboard"
+msgstr "클립 보드에서 이미지 편집"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "A drawing application for the GNOME desktop"
+msgstr "그놈 데스크탑 그림판 프로그램"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+msgstr "\"Drawing\"은 PNG, JPEG 및 BMP 파일 유형을 지원하는 기본 이미지 편집기입니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "It allows you to draw or edit pictures with tools such as pencil, line or arc (with various options), selection (cut/copy/paste/drag/…), shapes (rectangle, circle, polygon, …), text insertion, resizing, cropping, rotating, …"
+msgstr "연필, 선 또는 호 (다양한 옵션 포함), 선택 (잘라 내기 / 복사 / 붙여 넣기 / 끌기 /…), 도형 (사각형, 원, 다각형 등), 텍스트 삽입, 크기 조정, 자르기, 회전"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
+msgstr "Drawing 0.8.0을 사용하면 마침내 태블릿과 스타일러스를 사용하여 새로운 '브러시'및 '에어 브러시'와 같은 압력 감지 도구로 그릴 수 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The fullscreen mode has been completely redesigned to provide an easier yet less intrusive access to the tools and their options."
+msgstr "전체 화면 모드가 완전히 재 설계되어 도구 및 옵션에 더 쉽고 덜 방해가되지 않게 액세스 할 수 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Filters have been rewritten to be more reliable, and a new filter to harmoniously increase contrast has been added."
+msgstr "필터의 안정성을 높이기 위해 다시 작성되었으며 조화롭게 대비를 증가시키는 새로운 필터가 추가되었습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "When you move or delete the selection, now the pixels left behind can optionally be a specific color, rather than always transparency. This specific color can be excluded from the selection. That feature is complex to explain with words, try it yourself you'll see."
+msgstr "선택 항목을 이동하거나 삭제할 때 이제 남은 픽셀은 항상 투명도가 아닌 특정 색상이 될 수 있습니다. 이 특정 색상은 선택에서 제외 할 수 있습니다. 이 기능은 말로 설명하기가 복잡합니다. 직접 시도해보세요."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Options such as the text background type and the shape filling style are now persisted when closing the application."
+msgstr "이제 응용 프로그램을 닫을 때 텍스트 배경 유형 및 모양 채우기 스타일과 같은 옵션이 유지됩니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The user interface for selecting the active color application mode has been rewritten to better show the accurate label, and better organize the possible modes as submenus."
+msgstr "활성 색상 응용 프로그램 모드를 선택하기위한 사용자 인터페이스는 정확한 레이블을 더 잘 표시하고 가능한 모드를 하위 메뉴로 더 잘 구성 할 수 있도록 다시 작성되었습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The \"blur\" mode has been removed, which simplified the situation and allowed several tools (\"shapes\" and \"brushes\") to get support for the color application modes in general."
+msgstr "\"흐림\"모드가 제거되어 상황이 단순화되고 여러 도구 ( \"모양\"및 \"브러시\")가 일반적으로 색상 적용 모드를 지원할 수 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr "버전 0.8.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#. This is just my name, do not translate it.
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Romain F. T."
+msgstr "로맹 F. T."
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The window and its primary menu"
+msgstr "창 및 기본 메뉴"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The selection and the actions associated with it"
+msgstr "선택 및 관련 작업"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Zooming in various shapes"
+msgstr "다양한 모양 확대"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The \"new image\" menu opened"
+msgstr "\"새 이미지\" 메뉴가 열립니다"
+
+#: src/ui/app-menus.ui
+msgid "_File"
+msgstr "_파일"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Open an image"
+msgstr "이미지 열기"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Blank Image"
+msgstr "새 빈 이미지"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
+msgid "New Image With Custom Size"
+msgstr "사용자 정의 크기의 새 이미지"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Selection"
+msgstr "선택한 새 이미지"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Clipboard"
+msgstr "클립 보드의 새 이미지"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Reload file"
+msgstr "파일 다시로드"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
+msgid "Image properties"
+msgstr "이미지 속성"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/saving_manager.py
+msgid "Save"
+msgstr "저장"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Save without transparency"
+msgstr "투명하지 않고 저장"
+
+#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
+#: src/saving_manager.py
+msgid "Save as…"
+msgstr "다른 이름으로 저장"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Export as…"
+msgstr "다른 이름으로 내보내기…"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr "클립 보드에 복사"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Print"
+msgstr "인쇄"
+
+#: src/ui/app-menus.ui
+msgid "Close Image"
+msgstr "이미지 닫기"
+
+#: src/ui/app-menus.ui
+msgid "Close Window"
+msgstr "창 닫기"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Quit all windows"
+msgstr "모든 창 종료"
+
+#: src/ui/app-menus.ui
+msgid "_Edit"
+msgstr "_편집"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Undo"
+msgstr "실행 취소"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Redo"
+msgstr "다시 실행"
+
+#: src/ui/app-menus.ui
+msgid "Rebuild from history"
+msgstr "이전기록에서 다시빌드"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Select all"
+msgstr "모두 선택"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Cut"
+msgstr "잘라내기"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Copy"
+msgstr "복사"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Delete"
+msgstr "삭제"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Paste"
+msgstr "붙여넣기"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Import"
+msgstr "불러오기"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "환경 설정"
+
+#: src/ui/app-menus.ui
+msgid "_View"
+msgstr "_보기"
+
+#: src/ui/app-menus.ui
+msgid "Show the preview"
+msgstr "미리보기 표시"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
+msgid "Zoom"
+msgstr "줌"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Optimal Zoom"
+msgstr "최적의 줌"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Zoom Out"
+msgstr "축소"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Original Zoom"
+msgstr "원래 크기"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Zoom In"
+msgstr "확대"
+
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
+#: src/ui/app-menus.ui
+msgid "Position"
+msgstr "위치"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Left"
+msgstr "왼쪽으로 이동"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Up"
+msgstr "위로 이동"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Down"
+msgstr "아래로 이동"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Right"
+msgstr "오른쪽으로 이동"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the left"
+msgstr "왼쪽 탭"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the right"
+msgstr "오른쪽 탭"
+
+#: src/ui/app-menus.ui
+msgid "Refresh"
+msgstr "새로고침"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "전체 화면"
+
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "도구 모음 숨기기"
+
+#: src/ui/app-menus.ui src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "전체 화면 종료"
+
+#: src/ui/app-menus.ui
+msgid "_Colors"
+msgstr "색상(_C)"
+
+#: src/ui/app-menus.ui
+msgid "Edit Main Color…"
+msgstr "기본 색상 편집"
+
+#: src/ui/app-menus.ui
+msgid "Edit Secondary Color…"
+msgstr "보조 색상 편집"
+
+#: src/ui/app-menus.ui
+msgid "Use color editor by default"
+msgstr "기본 색상 편집기 사용"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Exchange colors"
+msgstr "색상 교환"
+
+#: src/ui/app-menus.ui
+msgid "Color application mode"
+msgstr "색상 적용 모드"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Normal"
+msgstr "일반"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Highlight"
+msgstr "하이라이트"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "밝은 배경에 어두운 텍스트"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "어두운 배경에 밝은 텍스트"
+
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "HSL modes"
+msgstr "HSL 모드"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue only"
+msgstr "색조 만"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Saturation only"
+msgstr "채도 만"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue and saturation"
+msgstr "색조 및 채도"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Luminosity only"
+msgstr "광도 만"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Other modes"
+msgstr "기타 모드"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Raw source color"
+msgstr "원본 소스 색상"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Difference"
+msgstr "차이"
+
+#: src/ui/app-menus.ui
+msgid "Don't use the colors but…"
+msgstr "색상을 사용하지 않고"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Erase"
+msgstr "삭제"
+
+#: src/ui/app-menus.ui
+msgid "_Tools"
+msgstr "도구(_T)"
+
+#: src/ui/app-menus.ui
+msgid "Previous tool"
+msgstr "이전 도구"
+
+#: src/ui/app-menus.ui
+msgid "Active tool"
+msgstr "활성 도구"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Show tools names"
+msgstr "도구 이름 표시"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr "더 큰 너비"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Smaller width"
+msgstr "더 작은 너비"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "선택 문제 해결"
+
+#: src/ui/app-menus.ui src/window.py
+msgid "_Options"
+msgstr "옵션(_O)"
+
+#: src/ui/app-menus.ui
+msgid "_Help"
+msgstr "_도움말"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "단축키"
+
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "Report a bug"
+msgstr "버그 신고"
+
+#. Context: open the index of all help pages
+#: src/ui/app-menus.ui
+msgid "Index"
+msgstr "인덱스"
+
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr "개별 페이지"
+
+#. Context: open the help page about general use of the app
+#: src/ui/app-menus.ui
+msgid "Basic help"
+msgstr "기본 도움말"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui
+msgid "Help about zooming"
+msgstr "확대 / 축소에 대한 도움말"
+
+#: src/ui/app-menus.ui
+msgid "Help about the full-screen mode"
+msgstr "전체 화면 모드에 대한 도움말"
+
+#: src/ui/app-menus.ui
+msgid "Help about classic tools"
+msgstr "클래식 도구에 대한 도움말"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Help about colors"
+msgstr "색상에 대한 도움말"
+
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Help about transformation tools"
+msgstr "변형 도구에 대한 도움말"
+
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
+msgid "Help about selection"
+msgstr "선택에 대한 도움말"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr "새로운 소식"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "About Drawing"
+msgstr "프로그램 정보"
+
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+msgid "Open"
+msgstr "열기"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr "이미지 공유"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "100%"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Width"
+msgstr "가로"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Height"
+msgstr "세로"
+
+#: src/ui/new-image-dialog.ui
+msgid "Color"
+msgstr "색상"
+
+#: src/ui/new-image-dialog.ui
+msgid "Use these settings by default"
+msgstr "기본으로 이 설정 사용"
+
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "이미지"
+
+#: src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "도구"
+
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "창"
+
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
+#: src/ui/properties.ui src/utilities.py
+msgid "pixels"
+msgstr "픽셀"
+
+#: src/ui/properties.ui
+msgid "centimeters"
+msgstr "센티미터"
+
+#: src/ui/properties.ui
+msgid "inches"
+msgstr "인치"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Close selection"
+msgstr "선택 닫기"
+
+#: src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Unselect"
+msgstr "선택 취소"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_crop.py
+msgid "Crop"
+msgstr "자르기"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scale"
+msgstr "비율"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotate"
+msgstr "회전"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Filters"
+msgstr "필터"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Open As New Image"
+msgstr "새 이미지로 열기"
+
+#: src/ui/shortcuts.ui
+msgid "Keyboard Shortcuts"
+msgstr "키보드 단축키"
+
+#: src/ui/shortcuts.ui
+msgid "General"
+msgstr "일반"
+
+#: src/ui/shortcuts.ui
+msgid "Main menu"
+msgstr "메인 메뉴"
+
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "도움말"
+
+#: src/ui/shortcuts.ui
+msgid "Image"
+msgstr "이미지"
+
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "이미지 열기"
+
+#: src/ui/shortcuts.ui
+msgid "Reload image from disk"
+msgstr "디스크에서 이미지 다시로드"
+
+#: src/ui/shortcuts.ui src/saving_manager.py
+msgid "Save picture as…"
+msgstr "다른 이름으로 사진 저장"
+
+#: src/ui/shortcuts.ui
+msgid "Close the active image"
+msgstr "작업중인 이미지 닫기"
+
+#: src/ui/shortcuts.ui
+msgid "Open the tool options menu"
+msgstr "도구 옵션 메뉴 열기"
+
+#: src/ui/shortcuts.ui
+msgid "Back to previous tool"
+msgstr "이전 도구로 돌아 가기"
+
+#: src/ui/shortcuts.ui
+msgid "Apply a transformation"
+msgstr "변형 적용"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "히스토리"
+
+#: src/ui/shortcuts.ui
+msgid "Selection"
+msgstr "선택"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Delete the selection"
+msgstr "선택 삭제"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Import a file as the selection"
+msgstr "선택 항목으로 파일 가져 오기"
+
+#: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "색상"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "기본 색상 편집 (왼쪽 클릭)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "보조 색상 편집 (오른쪽 클릭)"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "탭"
+
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
+#: src/ui/shortcuts.ui
+msgid "Navigation"
+msgstr "네비게이션"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "미리보기 전환"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr "전체 화면 모드 전환"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "툴바 보이기 전환"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr "터치 제스처"
+
+#: src/ui/window.ui
+msgid "Error starting the application, please report this bug."
+msgstr "응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
+
+#: src/deco_manager.py
+msgid "Undo %s"
+msgstr "실행 취소 %s"
+
+#: src/deco_manager.py
+msgid "Redo %s"
+msgstr "재실행 %s"
+
+#. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr "유효하지 않은 상태 저장 시도"
+
+#: src/history_manager.py
+msgid "Error: no tool '%s'"
+msgstr "오류 : '%s' 도구 없음"
+
+#. Context: an error message
+#: src/image.py
+msgid "New pixbuf empty, no change applied to %s"
+msgstr "새 pixbuf가 비어 있고 %s 에 변경 사항이 적용되지 않았습니다"
+
+#: src/image.py
+msgid "Can't reload a never-saved file from the disk."
+msgstr "디스크에서 저장하지 않은 파일을 다시로드 할 수 없습니다."
+
+#: src/image.py src/properties.py
+msgid "Unsaved file"
+msgstr "저장되지 않은 파일"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Show the app version"
+msgstr "프로그램 버전 표시"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new window"
+msgstr "새 창 열기"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new tab"
+msgstr "새 탭 열기"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Edit the clipboard content"
+msgstr "클립 보드 내용 편집"
+
+#: src/main.py
+msgid "This version isn't stable!"
+msgstr "이 버전은 안정적이지 않습니다!"
+
+#: src/main.py
+msgid "Report bugs or ideas"
+msgstr "버그 또는 아이디어보고"
+
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
+#: src/main.py
+msgid "translator-credits"
+msgstr "번역자 크레딧"
+
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
+#: src/main.py
+msgid "GNOME's \"Art Libre\" icon set authors"
+msgstr "그놈 \"Free Art\" 아이콘 세트 작성자"
+
+#: src/main.py
+msgid "A drawing application for the GNOME desktop."
+msgstr "그놈 데스크탑용 그리기 프로그램입니다."
+
+#: src/main.py
+msgid "Official webpage"
+msgstr "공식 웹 페이지"
+
+#: src/main.py
+msgid "Error opening this file."
+msgstr "이 파일을 여는 동안 오류가 발생했습니다."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+msgid "Did you mean %s ?"
+msgstr "%s 를 의미 했습니까?"
+
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
+#: src/minimap.py
+msgid "%s%%"
+msgstr "%s%%"
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "취소"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr "만들기"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "New images"
+msgstr "새로운 이미지"
+
+#: src/preferences.py
+msgid "Default width"
+msgstr "기본 너비"
+
+#: src/preferences.py
+msgid "Default height"
+msgstr "기본 높이"
+
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Default color"
+msgstr "기본 색상"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Images saving"
+msgstr "이미지 저장"
+
+#: src/preferences.py
+msgid "JPEG and BMP images can't handle transparency."
+msgstr "JPEG 및 BMP 이미지는 투명도를 처리 할 수 없습니다."
+
+#: src/preferences.py
+msgid "If you save your images in these formats, what do want to use to replace transparent pixels?"
+msgstr "이미지를 이러한 형식으로 저장하는 경우 투명 픽셀을 대체하기 위해 무엇을 사용 하시겠습니까?"
+
+#: src/preferences.py src/saving_manager.py src/utilities.py
+msgid "White"
+msgstr "흰색"
+
+#: src/preferences.py src/saving_manager.py src/utilities.py
+msgid "Black"
+msgstr "검정"
+
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
+#: src/preferences.py src/saving_manager.py
+msgid "Checkboard"
+msgstr "체크 보드"
+
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
+#: src/preferences.py src/saving_manager.py
+msgid "Nothing"
+msgstr "없음"
+
+#: src/preferences.py
+msgid "Ask before saving"
+msgstr "저장하기 전에 확인"
+
+#: src/preferences.py
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr "Ctrl + 스크롤로 확대하거나 스크롤만 할 수 있습니다."
+
+#: src/preferences.py
+msgid "See the user help manual for explanations."
+msgstr "설명은 사용자 도움말 설명서를 참조하십시오."
+
+#: src/preferences.py
+msgid "Use 'Ctrl' to zoom"
+msgstr "'Ctrl' 을 사용하여 확대 / 축소"
+
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
+#: src/preferences.py
+msgid "Appearance"
+msgstr "외형"
+
+#: src/preferences.py
+msgid "Use big icons"
+msgstr "큰 아이콘 사용"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Additional tools"
+msgstr "추가 도구"
+
+#: src/preferences.py
+msgid "These tools are not as reliable and useful as they should be, so they are not all enabled by default."
+msgstr "이러한 도구는 신뢰할 수 있고 유용하지 않으므로 기본적으로 모두 활성화되어 있지 않습니다."
+
+#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#: src/preferences.py src/tools/classic_tools/tool_eraser.py
+msgid "Eraser"
+msgstr "지우개"
+
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
+#: src/preferences.py src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter"
+msgstr "형광펜"
+
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
+msgstr "브러시"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
+msgid "Points"
+msgstr "점"
+
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
+#: src/preferences.py src/tools/selection_tools/select_free.py
+msgid "Free selection"
+msgstr "자유 선택"
+
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
+#: src/preferences.py src/tools/selection_tools/select_color.py
+msgid "Color selection"
+msgstr "색상 선택"
+
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
+#: src/preferences.py src/tools/classic_tools/tool_picker.py
+msgid "Color Picker"
+msgstr "색상 선택기"
+
+#. Context: the name of a tool to fill an area of one color with an other
+#: src/preferences.py src/tools/classic_tools/tool_paint.py
+msgid "Paint"
+msgstr "그리기"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Advanced options"
+msgstr "고급 옵션"
+
+#: src/preferences.py
+msgid "Preview size"
+msgstr "미리보기 크기"
+
+#. This label will not be displayed in the UI of stable versions
+#: src/preferences.py
+msgid "Development features"
+msgstr "시험적 기능"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "배경색"
+
+#: src/preferences.py
+msgid "Theme variant"
+msgstr "테마 변형"
+
+#: src/preferences.py
+msgid "Default variant"
+msgstr "기본 변형"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr "가벼운 변형"
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr "어두운 변형"
+
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
+#: src/preferences.py
+msgid "Layout"
+msgstr "레이아웃"
+
+#: src/preferences.py
+msgid "The recommended value is \"Automatic\"."
+msgstr "권장 값은 \"자동\"입니다."
+
+#. It has to match what's written in the previous string.
+#: src/preferences.py
+msgid "Automatic"
+msgstr "자동"
+
+#: src/preferences.py
+msgid "Compact"
+msgstr "콤팩트"
+
+#: src/preferences.py
+msgid "elementary OS"
+msgstr "elementray OS"
+
+#. Legacy" is about the window layout, it means menubar+toolbar, yo
+#. can translate it like if it was "Traditional"
+#: src/preferences.py
+msgid "Legacy"
+msgstr "레거시"
+
+#. Legacy" is about the window layout, it means menubar+toolbar, yo
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Legacy (symbolic icons)"
+msgstr "레거시 (기호 아이콘)"
+
+#: src/preferences.py
+msgid "Menubar only"
+msgstr "메뉴바 만"
+
+#: src/preferences.py
+msgid "Toolbar only"
+msgstr "툴바 만"
+
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Toolbar only (symbolic icons)"
+msgstr "도구 모음 만 (기호 아이콘)"
+
+#: src/properties.py
+msgid "%s px"
+msgstr "%s px"
+
+#: src/properties.py
+msgid "%s cm"
+msgstr "%s cm"
+
+#: src/properties.py
+msgid "%s in"
+msgstr "%s in"
+
+#. Context: the path of the edited file
+#: src/properties.py
+msgid "Path"
+msgstr "경로"
+
+#. Context: the file format of the edited file
+#: src/properties.py
+msgid "Format"
+msgstr "파일유형"
+
+#: src/properties.py
+msgid "Colorspace"
+msgstr "색 공간"
+
+#. Context: an invalid colorspace format
+#: src/properties.py
+msgid "Invalid format"
+msgstr "잘못된 형식"
+
+#. Context: an error message
+#: src/saving_manager.py
+msgid "Failed to save %s"
+msgstr "%s 을(를) 저장하지 못했습니다"
+
+#. Context: Untitled(.png) is the default name of a newly saved file
+#: src/saving_manager.py
+msgid "Untitled"
+msgstr "제목 없음"
+
+#. Context: the sentence "There are unsaved modifications to %s."
+#: src/saving_manager.py
+msgid "this picture"
+msgstr "이 이미지"
+
+#: src/saving_manager.py
+msgid "Discard"
+msgstr "버리기"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/saving_manager.py src/window.py
+msgid "There are unsaved modifications to %s."
+msgstr "%s 에 저장되지 않은 수정 사항이 있습니다."
+
+#: src/saving_manager.py
+msgid "A part of the image is selected, and the pixels beneath the selection are blank."
+msgstr "이미지의 일부가 선택되고 선택 영역 아래의 픽셀은 비어 있습니다."
+
+#: src/saving_manager.py
+msgid "Modifications from the current tool haven't been applied."
+msgstr "현재 도구의 수정 사항이 적용되지 않았습니다."
+
+#: src/saving_manager.py
+msgid "Do you want to save anyway?"
+msgstr "그래도 저장 하시겠습니까?"
+
+#. Context: confirm replacing transparent pixels with the selected color
+#: src/saving_manager.py
+msgid "Replace"
+msgstr "바꾸기"
+
+#: src/saving_manager.py
+msgid "This file format doesn't support transparent colors."
+msgstr "이 파일 형식은 투명 색상을 지원하지 않습니다."
+
+#: src/saving_manager.py
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr "이미지를 PNG 파일로 저장하거나 투명도를 다음으로 바꿀 수 있습니다"
+
+#: src/saving_manager.py
+msgid "Replace transparency with:"
+msgstr "투명도를 다음으로 대체하십시오"
+
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr "pixbuf 선택이 비어 있습니다"
+
+#: src/selection_manager.py
+msgid "The selection path is empty."
+msgstr "선택 경로가 비어 있습니다."
+
+#: src/utilities.py
+msgid "Transparent"
+msgstr "투명한"
+
+#: src/utilities.py
+msgid "%s%% transparent"
+msgstr "%s%% 투명도"
+
+#: src/utilities.py
+msgid "Grey"
+msgstr "회색"
+
+#: src/utilities.py
+msgid "Orange"
+msgstr "주황색"
+
+#: src/utilities.py
+msgid "Brown"
+msgstr "갈색"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities.py
+msgid "Probably brown"
+msgstr "갈색계열"
+
+#: src/utilities.py
+msgid "Red"
+msgstr "빨간"
+
+#: src/utilities.py
+msgid "Green"
+msgstr "초록"
+
+#: src/utilities.py
+msgid "Blue"
+msgstr "푸른"
+
+#: src/utilities.py
+msgid "Yellow"
+msgstr "노랑"
+
+#: src/utilities.py
+msgid "Magenta"
+msgstr "마젠타"
+
+#: src/utilities.py
+msgid "Purple"
+msgstr "보라색"
+
+#: src/utilities.py
+msgid "Cyan"
+msgstr "청록색"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities.py
+msgid "Probably teal"
+msgstr "아마 청록색"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities.py
+msgid "Unknown color name"
+msgstr "알 수없는 색상 이름"
+
+#: src/utilities.py
+msgid "All pictures"
+msgstr "모든 이미지"
+
+#: src/utilities.py
+msgid "PNG images"
+msgstr "PNG 이미지"
+
+#: src/utilities.py
+msgid "JPEG images"
+msgstr "JPEG 이미지"
+
+#: src/utilities.py
+msgid "BMP images"
+msgstr "BMP 이미지"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities.py
+msgid "percents"
+msgstr "퍼센트"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities.py
+msgid "degrees"
+msgstr "도"
+
+#: src/utilities.py
+msgid "%s isn't an image."
+msgstr "%s 는 이미지가 아닙니다."
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "이 앱은 WEBP 이미지를로드 할 수 없습니다."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+msgid "Despite its name, %s is a WEBP file."
+msgstr "%s 는 WEBP 파일입니다."
+
+#. Context: %s is the version number of the app
+#: src/window.py
+msgid "It's the first time you use Drawing %s, would you like to read what's new?"
+msgstr "Drawing %s 를 처음 사용하는 것입니다. 새로운 기능을 읽으시겠습니까?"
+
+#: src/window.py
+msgid "No"
+msgstr "아니오"
+
+#: src/window.py
+msgid "Later"
+msgstr "나중에"
+
+#: src/window.py
+msgid "Yes"
+msgstr "예"
+
+#. Context: an error message
+#: src/window.py
+msgid "Failed to load tool: %s"
+msgstr "도구를로드하지 못했습니다 : %s"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "클립 보드에 이미지가 없습니다."
+
+#: src/window.py
+msgid "Modifications will take effect in the next new window."
+msgstr "수정 사항은 다음 새 창에서 적용됩니다."
+
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
+msgid "No options"
+msgstr "옵션 없음"
+
+#: src/window.py
+msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgstr "컨트롤을 표시하거나 숨기려면 가운데 클릭하거나 세 손가락으로 탭하거나 F8 키를 누릅니다."
+
+#: src/window.py
+msgid "Press F11 to exit fullscreen."
+msgstr "F11을 눌러 전체 화면을 종료하십시오."
+
+#: src/window.py
+msgid "Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr "도구 '%s'의 하단 창을로드하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
+
+#: src/window.py
+msgid "Loading %s"
+msgstr "로딩 %s"
+
+#: src/window.py
+msgid "New Tab"
+msgstr "새 탭"
+
+#: src/window.py
+msgid "Discard changes"
+msgstr "변경 사항을 취소"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/window.py
+msgid "Where do you want to open %s?"
+msgstr "%s 을(를) 어디에서 열고 싶습니까?"
+
+#. Context for translation:
+#. What do you want to do with *these files*?
+#: src/window.py
+msgid "these files"
+msgstr "이 파일들"
+
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
+#: src/window.py
+msgid "What do you want to do with %s?"
+msgstr "%s 로 무엇을 하시겠습니까?"
+
+#: src/window.py
+msgid "Image copied to clipboard"
+msgstr "이미지가 클립 보드에 복사되었습니다"
+
+#: src/window.py
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "디스크에서 이미지가 변경되었습니다. 다시로드 하시겠습니까?"
+
+#: src/window.py
+msgid "Reload"
+msgstr "새로 고침"
+
+#: src/window.py
+msgid "Import a picture"
+msgstr "사진 가져 오기"
+
+#: src/window.py
+msgid "Required tool is not available"
+msgstr "필요한 도구를 사용할 수 없습니다"
+
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
+#: src/optionsbars/classic/optionsbar_color_popover.py
+msgid "Highlight (dark)"
+msgstr "하이라이트 (어두움)"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
+msgid "Main color"
+msgstr "메인 색상"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+msgid "Secondary color"
+msgstr "보조 색상"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Tool size"
+msgstr "도구 크기"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+msgid "Preview"
+msgstr "미리보기"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "How the color will be applied to the existing pixels"
+msgstr "기존 픽셀에 색상을 적용하는 방법"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Back to the palette"
+msgstr "팔레트로 돌아 가기"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Palette"
+msgstr "팔레트"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Use this editor by default"
+msgstr "기본적으로 이 편집기 사용"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Selection options"
+msgstr "선택 옵션"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
+msgid "Replace with…"
+msgstr "다음으로 바꾸기"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "투명도"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "이 색상에서 추출"
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+msgid "Apply"
+msgstr "적용"
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "More options"
+msgstr "더 많은 옵션"
+
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr "확장"
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Select a filter…"
+msgstr "필터 선택"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle (degrees)"
+msgstr "각도 (도)"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle"
+msgstr "각도"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "More actions"
+msgstr "더 많은 행동"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate left"
+msgstr "왼쪽으로 회전"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate right"
+msgstr "오른쪽으로 회전"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip horizontally"
+msgstr "수평으로 뒤집기"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip vertically"
+msgstr "수직으로 뒤집기"
+
+#. Context: the title of a menu to chose how the image will be scaled
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Keep proportions"
+msgstr "비율 유지"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Always [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Always"
+msgstr "항상"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When scaling from corners"
+msgstr "모서리에서 크기를 조정할 때"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Never [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Never"
+msgstr "절대"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Horizontal deformation"
+msgstr "수평 변형"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Vertical deformation"
+msgstr "수직 변형"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr "작업을 시작할 수 없음 : 잘못된 도구 ID (예상 : {0}, {1}를 얻음)"
+
+#: src/tools/utilities_paths.py
+msgid "Continue"
+msgstr "계속"
+
+#: src/tools/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "영역이 제대로 구분되지 않거나 매우 복잡합니다."
+
+#: src/tools/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "이 알고리즘은 원하는 영역을 관리하지 못할 수 있습니다."
+
+#: src/tools/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "작업을 중단 하시겠습니까, 아니면 도구가 제대로 작동하지 않게 하시겠습니까?"
+
+#: src/tools/ui/selection.ui
+msgid "Transform"
+msgstr "변환"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Line shape"
+msgstr "선 모양"
+
+#. Context: this is the name of a line shape
+#. Default values
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+msgid "Round"
+msgstr "둘레"
+
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
+msgid "Square"
+msgstr "사각형"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "화살표 없음"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "간단한 화살표"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "이중 화살표"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "No dashes"
+msgstr "점선 없음"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Simple dashes"
+msgstr "단순 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Long dashes"
+msgstr "긴 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Short dashes"
+msgstr "짧은 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Alternated dashes"
+msgstr "대체 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
+msgid "Antialiasing"
+msgstr "안티 앨리어싱"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
+msgid "Simple brush"
+msgstr "간단한 브러시"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Airbrush"
+msgstr "에어 브러시"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
+msgid "Hairy brush"
+msgstr "헤어 브러시"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+msgid "Calligraphic nib"
+msgstr "붓글씨 펜촉"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr "오른 손잡이 펜촉"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Vertical nib"
+msgstr "수직 펜촉"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr "왼손잡이 펜촉"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Horizontal nib"
+msgstr "수평 펜촉"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "연필"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "직사각형"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Blur"
+msgstr "흐림"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle pixels"
+msgstr "픽셀 셔플"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle and blur"
+msgstr "셔플 및 블러"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Mosaic"
+msgstr "모자이크"
+
+#: src/tools/ui/tool-eraser.ui
+msgid "Solid color"
+msgstr "단색"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr "활성 필터"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "채도 변경"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "베일"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "투명도 추가"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr "대비를 증가"
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "흐리게(Blurring)"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "빠른 흐림"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "느린 흐림"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "픽셀 화"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "블러 방향"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "수평"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "수직"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "방향 없음"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "색상 반전"
+
+#: src/tools/ui/tool-line.ui
+msgid "Color gradient"
+msgstr "그라디언트 색상"
+
+#. Context: title for the list of the possible painting algorithms.
+#: src/tools/ui/tool-paint.ui
+msgid "Behavior"
+msgstr "행동"
+
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
+#: src/tools/ui/tool-paint.ui
+msgid "Encircle and fill"
+msgstr "둘러싸고 채우기"
+
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
+#: src/tools/ui/tool-paint.ui
+msgid "Erase and replace"
+msgstr "지우기 및 교체"
+
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+msgid "Entire image"
+msgstr "전체 이미지"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#: src/tools/ui/tool-paint.ui
+msgid "Remove color"
+msgstr "색상 제거"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr "도트 유형"
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "원"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr "십자가"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr "X자형 십자가"
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr "숫자를 포함"
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr "다음 번호"
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr "번호 재설정"
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr "숫자 감소"
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr "숫자 증가"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr "단색 윤곽"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr "점선 윤곽"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "No outline"
+msgstr "윤곽선 없음"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "채우기"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Empty shape"
+msgstr "빈 도형"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "수평 기울기"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "수직 기울기"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "방사형 그래디언트"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rounded rectangle"
+msgstr "둥근 직사각형"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Oval"
+msgstr "타원"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Polygon"
+msgstr "다각형"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Free shape"
+msgstr "자유로운 모양"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Close shape"
+msgstr "도형 닫기"
+
+#: src/tools/ui/tool-text.ui
+msgid "Insert here"
+msgstr "여기에 삽입"
+
+#: src/tools/ui/tool-text.ui
+msgid "Font"
+msgstr "글꼴"
+
+#: src/tools/ui/tool-text.ui
+msgid "Select a font…"
+msgstr "글꼴 선택"
+
+#: src/tools/ui/tool-text.ui
+msgid "Italic"
+msgstr "이탤릭체"
+
+#: src/tools/ui/tool-text.ui
+msgid "Bold"
+msgstr "굵게"
+
+#. Context: the types of background behind the inserted text
+#: src/tools/ui/tool-text.ui
+msgid "Background"
+msgstr "배경"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "No background"
+msgstr "배경 없음"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Shadow"
+msgstr "그림자"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "윤곽선"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Rectangle background"
+msgstr "사각형 배경"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve"
+msgstr "곡선"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve options"
+msgstr "곡선 옵션"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Dashed arrow"
+msgstr "점선 화살표"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Arrow"
+msgstr "화살표"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Dashed"
+msgstr "점선"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush options"
+msgstr "브러시 옵션"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Eraser options"
+msgstr "지우개 옵션"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter options"
+msgstr "형광펜 옵션"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line"
+msgstr "선"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line options"
+msgstr "라인 옵션"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Painting options"
+msgstr "페인팅 옵션"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on an area to replace its color by transparency"
+msgstr "색상을 투명도로 바꿀 영역을 클릭하십시오"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr "캔버스를 클릭하여 완전히 칠하십시오"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil options"
+msgstr "연필 옵션"
+
+#: src/tools/classic_tools/tool_points.py
+msgid "Points options"
+msgstr "포인트 옵션"
+
+#: src/tools/classic_tools/tool_points.py
+msgid "Next number: %s"
+msgstr "다음 숫자 : %s"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape"
+msgstr "도형"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape options"
+msgstr "도형 옵션"
+
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "메인 컬러로 채우기"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "보조 색상으로 채우기"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Click on the shape's first point to close it."
+msgstr "도형의 첫 번째 지점을 클릭하여 닫습니다."
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text"
+msgstr "글자"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text options"
+msgstr "텍스트 옵션"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the stylus pressure"
+msgstr "밀도는 스타일러스 압력에 따라 다릅니다"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the mouse speed"
+msgstr "밀도는 마우스 속도에 따라 다릅니다"
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr "너비는 스타일러스 압력에 따라 다릅니다"
+
+#: src/tools/classic_tools/brushes/brush_nip.py
+msgid "Width depends on the line orientation"
+msgstr "너비는 선 방향에 따라 다릅니다"
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr "너비는 마우스 속도에 따라 다릅니다"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Drag the selection or right-click on the canvas"
+msgstr "선택 항목을 드래그하거나 캔버스를 마우스 오른쪽 버튼으로 클릭합니다"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Select an area or right-click on the canvas"
+msgstr "영역을 선택하거나 캔버스를 마우스 오른쪽 버튼으로 클릭"
+
+#: src/tools/selection_tools/select_rect.py
+msgid "Rectangle selection"
+msgstr "직사각형 선택"
+
+#: src/tools/transform_tools/abstract_transform_tool.py
+msgid "Error: invalid values"
+msgstr "오류 : 잘못된 값"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the selection"
+msgstr "선택 자르기"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the canvas"
+msgstr "캔버스 자르기"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Click on the image to preview the selected filter"
+msgstr "선택한 필터를 미리 보려면 이미지를 클릭하십시오"
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "엠보싱"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the selection"
+msgstr "선택 회전"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the canvas"
+msgstr "캔버스 회전"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the selection"
+msgstr "선택 크기 조정"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the canvas"
+msgstr "캔버스 크기 조정"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. Stretch/Skew" dialog
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "스크류"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "흐림 반경"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "채도"
