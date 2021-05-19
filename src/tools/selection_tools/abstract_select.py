@@ -257,6 +257,20 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.apply_operation(operation)
 		self.operation_type = 'op-define'
 
+	def replace_canvas(self):
+		self.operation_type = 'op-replace-canvas'
+		# XXX it's copied so many times?! ugly but seems necessary
+		self._future_pixbuf = self.get_selection_pixbuf().copy()
+		operation = self.build_operation()
+		self.apply_operation(operation)
+		self.operation_type = 'op-define'
+
+	def expand_canvas(self):
+		pass
+
+	def invert_selection(self):
+		pass # TODO
+
 	def unselect_and_apply(self):
 		# Pre-loading the coords is NEEDED because we may "unselect_and_apply" a
 		# selection which was defined by a selection manager in very different
@@ -325,6 +339,14 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().set_coords(False, op['pixb_x'], op['pixb_y'])
 		self.get_selection().set_pixbuf(op['pixbuf'].copy())
 
+	def _op_replace_canvas(self, op):
+		if op['pixbuf'] is None:
+			raise NoSelectionPixbufException()
+		self.get_image().set_main_pixbuf(op['pixbuf'].copy())
+		self.get_image().use_stable_pixbuf()
+		self.get_selection().reset(True)
+		self.get_selection().reset_future_data()
+
 	def _op_clean(self, operation):
 		if operation['initial_path'] is None:
 			return # The user double-clicked: there is no path, and it's normal
@@ -374,6 +396,9 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			# de type "clic-droit > importer" ou "clic-droit > coller".
 			# On charge un pixbuf dans le selection_manager.
 			self._op_import(operation)
+		elif operation['operation_type'] == 'op-replace-canvas':
+			# TODO commentaire
+			self._op_replace_canvas(operation)
 		elif operation['operation_type'] == 'op-define':
 			# Opération instantanée (sans preview), correspondant à une
 			# sélection (rectangulaire ou non) par définition d'un path.

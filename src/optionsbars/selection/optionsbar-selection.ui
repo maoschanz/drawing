@@ -241,6 +241,11 @@
         <attribute name="action">win.unselect</attribute>
       </item>
       <item>
+        <attribute name="label" translatable="yes">Invert selection</attribute>
+        <attribute name="action">win.selection_invert</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Close selection</attribute>
         <attribute name="action">win.selection_close</attribute>
       </item>
@@ -261,6 +266,18 @@
         <attribute name="label" translatable="yes">Copy</attribute>
         <attribute name="action">win.selection_copy</attribute>
         <attribute name="verb-icon">edit-copy-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Define as current image</attribute>
+        <attribute name="action">win.selection-replace-canvas</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Expand image to fit</attribute>
+        <attribute name="action">win.selection-expand-canvas</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
       </item>
     </section>
     <section>
@@ -292,8 +309,25 @@
         <attribute name="action">win.unselect</attribute>
       </item>
       <item>
+        <attribute name="label" translatable="yes">Invert selection</attribute>
+        <attribute name="action">win.selection_invert</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">Close selection</attribute>
         <attribute name="action">win.selection_close</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Define as current image</attribute>
+        <attribute name="action">win.selection-replace-canvas</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Expand image to fit</attribute>
+        <attribute name="action">win.selection-expand-canvas</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
       </item>
     </section>
     <section>

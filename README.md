@@ -55,6 +55,8 @@ app from source code.
 If your language is not here, or is incompletely translated, you can
 [contribute](./CONTRIBUTING.md#translating) to the translations.
 
+<!-- TODO just @ their account instead of writing full links myself? -->
+
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
 | cs   | Czech        | 96%        | [Vojtěch Perník](https://github.com/pervoj)
@@ -74,7 +76,7 @@ If your language is not here, or is incompletely translated, you can
 | nl   | Dutch        | 100%       | [Heimen Stoffels](https://github.com/Vistaus)
 | pl   | Polish       | **72%**    | [Piotr Komur](https://github.com/pkomur)  |
 | pt_BR | Br. portuguese | 81%     | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
-| ru   | Russian      | 74%        | [Artem Polishchuk](https://github.com/tim77) ++++??????
+| ru   | Russian      | 99%        | [Artem Polishchuk](https://github.com/tim77) and [Ser82-png](https://github.com/Ser82-png)
 | sv   | Swedish      | 100%       | [Åke Engelbrektson](https://github.com/eson57)
 | tr   | Turkish      | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil) and [serkan-maker](https://github.com/serkan-maker)
 | zh_CN | Chinese, simpl. | 80%    | [OverflowCat](https://github.com/OverflowCat)
@@ -149,9 +151,20 @@ These tools can edit the whole image, or edit a selected part of it.
 
 ----
 
+### Settings
+
+The settings are managed by the `Gio.Settings` abstraction, which will probably
+corresponds to the `dconf` database once the app is installed as a native
+package.
+
+With flatpak however, the settings are stored in a key-value file, which can be
+found (and edited) at `~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/settings/keyfile`.
+
+----
+
 [Donations (paypal)](https://paypal.me/maoschannz)
 
 [To contribute](./CONTRIBUTING.md)
 
-the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic)
+the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the Adwaita theme.
 

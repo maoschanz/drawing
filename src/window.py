@@ -539,10 +539,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl><Shift>a'])
+		#self.add_action_simple('selection_invert', self.action_selection_invert, None)
 		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
 		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
 		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
+
 		self.add_action_simple('selection_export', self.action_selection_export, None)
+		self.add_action_simple('selection-replace-canvas', \
+		                             self.action_selection_replace_canvas, None)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
@@ -1130,6 +1134,15 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_selection_export(self, *args):
 		return self.saving_manager.save_current_image(True, True, True, True)
+
+	def action_selection_replace_canvas(self, *args):
+		self.get_selection_tool().replace_canvas()
+
+	def action_selection_expand_canvas(self, *args):
+		self.get_selection_tool().expand_canvas()
+
+	def action_selection_invert(self, *args):
+		self.get_selection_tool().invert_selection()
 
 	def get_selection_tool(self):
 		if 'rect_select' in self.tools:
