@@ -420,7 +420,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self.gsettings.connect('changed::preview-size', self.show_info_settings)
 		# self.gsettings.connect('changed::devel-only', self.show_info_settings)
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
-		self.gsettings.connect('changed::theme-variant', self._update_theme_variant)
+		self.gsettings.connect('changed::dark-theme-variant', self._update_theme_variant)
 		# Other settings are connected in DrImage
 
 		# What happens when the active image change
@@ -724,11 +724,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def _update_theme_variant(self, *args):
 		key = 'gtk-application-prefer-dark-theme';
-		variant = self.gsettings.get_string('theme-variant')
-		if variant == 'default':
-			Gtk.Settings.get_default().reset_property(key)
-		else:
-			Gtk.Settings.get_default().set_property(key, variant == 'dark')
+		use_dark_theme = self.gsettings.get_boolean('dark-theme-variant')
+		Gtk.Settings.get_default().set_property(key, use_dark_theme)
 
 	############################################################################
 	# FULLSCREEN ###############################################################

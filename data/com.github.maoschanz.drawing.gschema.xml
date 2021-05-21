@@ -61,10 +61,14 @@
       <summary>Experimental features</summary>
       <description>Turn on devel features (not recommended).</description>
     </key>
-    <key type="s" name="theme-variant">
-      <default>'default'</default>
-      <summary>Theme variant</summary>
-      <description>Can be 'default', 'light' or 'dark'.</description>
+    <key type="b" name="dark-theme-variant">
+      <default>false</default>
+      <summary>If the app prefers the dark theme variant</summary>
+      <description>
+        This setting impacts the related boolean setting from GTK, but doesn't
+        change the actual theme. So if the global theme is already dark, it has
+        no effect.
+      </description>
     </key>
     
     <!-- Default new canvas -->
