@@ -265,9 +265,6 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.apply_operation(operation)
 		self.operation_type = 'op-define'
 
-	def expand_canvas(self):
-		pass
-
 	def invert_selection(self):
 		pass # TODO
 

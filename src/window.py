@@ -547,6 +547,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('selection_export', self.action_selection_export, None)
 		self.add_action_simple('selection-replace-canvas', \
 		                             self.action_selection_replace_canvas, None)
+		self.add_action_simple('selection-expand-canvas', \
+		                              self.action_selection_expand_canvas, None)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('force_selection', self.force_selection, None)
@@ -1136,7 +1138,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_selection_tool().replace_canvas()
 
 	def action_selection_expand_canvas(self, *args):
-		self.get_selection_tool().expand_canvas()
+		crop_tool = self.tools['crop']
+		operation = crop_tool.build_selection_fit_operation()
+		crop_tool.apply_operation(operation) # calling this here isn't elegant
 
 	def action_selection_invert(self, *args):
 		self.get_selection_tool().invert_selection()

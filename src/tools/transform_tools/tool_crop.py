@@ -66,8 +66,8 @@ class ToolCrop(AbstractCanvasTool):
 		self.build_and_do_op()
 
 	def init_if_selection(self):
-		self.original_width = self.get_selection().selection_pixbuf.get_width()
-		self.original_height = self.get_selection().selection_pixbuf.get_height()
+		self.original_width = self.get_selection_pixbuf().get_width()
+		self.original_height = self.get_selection_pixbuf().get_height()
 		self.width_btn.set_range(1, self.original_width)
 		self.height_btn.set_range(1, self.original_height)
 
@@ -84,11 +84,10 @@ class ToolCrop(AbstractCanvasTool):
 		color_type = self.get_option_value('crop-expand')
 		if color_type == 'initial':
 			exp_rgba = self.get_image().get_initial_rgba()
-		elif color_type == 'secondary':
-			if event_btn == 1:
-				exp_rgba = self.window.options_manager.get_right_color()
-			if event_btn == 3:
-				exp_rgba = self.window.options_manager.get_left_color()
+		elif color_type == 'secondary' and event_btn == 1:
+			exp_rgba = self.window.options_manager.get_right_color()
+		elif color_type == 'secondary' and event_btn == 3:
+			exp_rgba = self.window.options_manager.get_left_color()
 		else: # color_type == 'alpha':
 			exp_rgba = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=0.0)
 		self._expansion_color = self._rgba_as_hexa_int(exp_rgba)
@@ -192,6 +191,28 @@ class ToolCrop(AbstractCanvasTool):
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
 
 	############################################################################
+
+	def build_selection_fit_operation(self):
+		self._update_expansion_color()
+		selection = self.get_selection()
+		new_origin_x = min(0, selection.selection_x)
+		new_origin_y = min(0, selection.selection_y)
+		s_width = selection.selection_x + selection.selection_pixbuf.get_width()
+		new_width = max(self.get_main_pixbuf().get_width(), s_width)
+		s_height = selection.selection_y + selection.selection_pixbuf.get_height()
+		new_height = max(self.get_main_pixbuf().get_height(), s_height)
+
+		operation = {
+			'tool_id': self.id,
+			'is_selection': False,
+			'is_preview': False,
+			'local_dx': int(new_origin_x),
+			'local_dy': int(new_origin_y),
+			'width': new_width,
+			'height': new_height,
+			'rgba': self._expansion_color
+		}
+		return operation
 
 	def build_operation(self):
 		operation = {
