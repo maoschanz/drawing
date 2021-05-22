@@ -240,23 +240,27 @@ class ToolCrop(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		self.crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
+		self._crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
 		self.common_end_operation(operation)
 
-	def crop_temp_pixbuf(self, x, y, width, height, is_selection, rgba):
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
-		new_pixbuf.fill(rgba)
+	def _crop_temp_pixbuf(self, x, y, width, height, is_selection, rgba):
 		src_x = max(x, 0)
 		src_y = max(y, 0)
+
 		if is_selection:
 			dest_x = 0
 			dest_y = 0
 		else:
 			dest_x = max(-1 * x, 0)
 			dest_y = max(-1 * y, 0)
+
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		new_pixbuf.fill(rgba)
+
 		temp_p = self.get_image().temp_pixbuf
-		min_w = min(width, temp_p.get_width() - src_x)
-		min_h = min(height, temp_p.get_height() - src_y)
+		min_w = min(width - dest_x, temp_p.get_width() - src_x)
+		min_h = min(height - dest_y, temp_p.get_height() - src_y)
+
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 
