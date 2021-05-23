@@ -193,6 +193,9 @@ class ToolCrop(AbstractCanvasTool):
 	############################################################################
 
 	def build_selection_fit_operation(self):
+		"""Special way to build an operation, not from the present crop tool,
+		but from the selection menu. The parameters are determined automatically
+		from the state of the selection manager."""
 		self._update_expansion_color()
 		selection = self.get_selection()
 		new_origin_x = min(0, selection.selection_x)
@@ -244,9 +247,13 @@ class ToolCrop(AbstractCanvasTool):
 		self.common_end_operation(operation)
 
 	def _crop_temp_pixbuf(self, x, y, width, height, is_selection, rgba):
+		"""Crop and/or expand the temp pixbuf according to given parameters."""
+
+		# Coordinates of the origin of the source pixbuf (temp_p)
 		src_x = max(x, 0)
 		src_y = max(y, 0)
 
+		# Coordinates of the origin of the destination pixbuf (new_pixbuf)
 		if is_selection:
 			dest_x = 0
 			dest_y = 0
@@ -254,13 +261,46 @@ class ToolCrop(AbstractCanvasTool):
 			dest_x = max(-1 * x, 0)
 			dest_y = max(-1 * y, 0)
 
-		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, width, height)
+		# Dotted lines == new sizes; plain line == old sizes.
+		#
+		# If the origin has been cropped, `src` == the new coordinates, and
+		# `dest` == 0 (in the considered direction x or y):
+		#
+		# dest____________________
+		# |                       |
+		# |  src------------------|
+		# |   ⁝                   |
+		# |___⁝___________________|
+		#
+		# With the selection, it's not possible to expand, so we're always in
+		# this first case, with `dest` == 0.
+		# Else (if it hasn't moved, or if it has been expanded) `src` has to be
+		# 0 (because the coordinates GdkPixbuf will use can't be negative), and
+		# `dest` is (-1 * the new coordinates):
+		#
+		# dest---------------------
+		# ⁝                       ⁝
+		# ⁝  src__________________⁝
+		# ⁝   |                   |
+		# ⁝___|___________________|
+		#
+		# The sign inversion is completely artificial (again: it's because the
+		# coordinates GdkPixbuf will use can't be negative).
+
+		# Initialisation of an EMPTY pixbuf with the wanted size and color
+		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, \
+		                                                          width, height)
 		new_pixbuf.fill(rgba)
 
 		temp_p = self.get_image().temp_pixbuf
+		# The width/height we want (mesured from the respective origins of the
+		# `src` and the `dest` rectangles)
 		min_w = min(width - dest_x, temp_p.get_width() - src_x)
 		min_h = min(height - dest_y, temp_p.get_height() - src_y)
 
+		# Copy an area of the source pixbuf `temp_p`; the area starts at `src_*`
+		# and has the dimensions `min_*`. It's painted on the destination pixbuf
+		# (`new_pixbuf`) starting at the coordinates `dest_*`.
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 
