@@ -1,6 +1,6 @@
 # optionsbar_classic.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,12 +46,16 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
-		self.thickness_spinbtn.set_value(window._settings.get_int('last-size'))
+		last_size = self._get_tool_options().get_int('last-size')
+		self.thickness_spinbtn.set_value(last_size)
 		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap_arrow = builder.get_object('minimap_arrow')
+
+	def _get_tool_options(self):
+		return self.window.options_manager._tools_gsettings
 
 	def update_for_new_tool(self, tool):
 		self.color_box.set_sensitive(tool.use_color)
@@ -90,8 +94,9 @@ class OptionsBarClassic(AbstractOptionsBar):
 		temp_limit_size = self.color_box.get_preferred_width()[0] + \
 		          self.thickness_spinbtn.get_preferred_width()[0] + \
 		           self.options_long_box.get_preferred_width()[0] + \
-		                self.minimap_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
+		                self.minimap_btn.get_preferred_width()[0] + 50
+		# assuming 50px is enough to compensate the length of the label
+		self._set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)
@@ -112,8 +117,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
-		right_rgba = self.window._settings.get_strv('last-right-rgba')
-		left_rgba = self.window._settings.get_strv('last-left-rgba')
+		right_rgba = self._get_tool_options().get_strv('last-right-rgba')
+		left_rgba = self._get_tool_options().get_strv('last-left-rgba')
 		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
 		             builder.get_object('r_btn_image'), right_rgba, False, self)
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \

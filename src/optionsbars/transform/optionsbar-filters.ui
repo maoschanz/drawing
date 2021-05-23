@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
 
-  <object class="GtkAdjustment" id="adj_blur">
-    <property name="lower">1</property>
-    <property name="upper">99</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <property name="value">5</property>
-  </object>
-
-  <object class="GtkAdjustment" id="adj_saturation">
-    <property name="lower">0</property>
-    <property name="upper">10000</property>
-    <property name="step_increment">10</property>
-    <property name="page_increment">30</property>
-    <property name="value">100</property>
-  </object>
-
-  <object class="GtkAdjustment" id="adj_transparency">
-    <property name="lower">0</property>
-    <property name="upper">100</property>
-    <property name="step_increment">5</property>
-    <property name="page_increment">10</property>
-    <property name="value">0</property>
-  </object>
-
-  <!-- -->
-
   <object class="GtkActionBar" id="bottom-pane">
     <property name="visible">False</property>
     <property name="expand">True</property>
@@ -49,14 +23,13 @@
     </child>
 
     <child type="center">
-      <object class="GtkBox">
+      <object class="GtkBox" id="centered_box">
         <property name="visible">True</property>
         <property name="spacing">10</property>
 
         <child>
           <object class="GtkMenuButton" id="menu_btn">
             <property name="visible">True</property>
-            <property name="menu-model">filters-section</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -84,54 +57,12 @@
           </object>
         </child>
 
-        <child>
-          <object class="GtkLabel" id="sat_label">
-            <property name="label" translatable="yes">Saturation</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="sat_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_saturation</property>
-            <property name="tooltip_text" translatable="yes">Saturation</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="blur_label">
-            <property name="label" translatable="yes">Blur radius</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="blur_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_blur</property>
-            <property name="tooltip_text" translatable="yes">Blur radius</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="tspc_label">
-            <property name="label" translatable="yes">Transparency</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="tspc_btn">
-            <property name="visible">True</property>
-            <property name="adjustment">adj_transparency</property>
-            <property name="tooltip_text" translatable="yes">Transparency</property>
-          </object>
-        </child>
-
       </object>
     </child>
 
     <child>
       <object class="GtkButton" id="apply_btn">
-        <property name="action_name">win.apply_transform_tool</property>
+        <property name="action_name">win.apply_transform</property>
         <property name="tooltip-text" translatable="yes">Apply</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -150,83 +81,25 @@
       </packing>
     </child>
 
+    <child>
+      <object class="GtkButton" id="help_btn">
+        <property name="visible">True</property>
+        <property name="relief">none</property>
+        <property name="tooltip-text" translatable="yes">Help about transformation tools</property>
+        <property name="action-name">app.help_transform</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">help-faq-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
   </object>
 
-  <!-- -->
-
-  <menu id="filters-section">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Change saturation</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">saturation</attribute>
-      </item>
-      <item>
-          <!-- Context: a filter adding like a light veil on the image -->
-        <attribute name="label" translatable="yes">Veil</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">veil</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Add transparency</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">transparency</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Invert colors</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">invert</attribute>
-      </item>
-    </section>
-    <section>
-      <!-- Context: the title of the menu with various types of blurring -->
-      <!-- filters and their options. -->
-      <attribute name="label" translatable="yes">Blurring</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Fast blur</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">blur_fast</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Slow blur</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">blur_slow</attribute>
-      </item>
-      <!-- <item> -->
-      <!--   <attribute name="label" translatable="yes">???</attribute> -->
-      <!--   <attribute name="action">win.filters_type</attribute> -->
-      <!--   <attribute name="target">blur_multi</attribute> -->
-      <!-- </item> -->
-      <item>
-        <!-- Context: a filter that censors the image with some kind of tiles -->
-        <attribute name="label" translatable="yes">Pixelization</attribute>
-        <attribute name="action">win.filters_type</attribute>
-        <attribute name="target">tiles</attribute>
-      </item>
-      <submenu>
-        <attribute name="label" translatable="yes">Blur direction</attribute>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">Horizontal</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">horizontal</attribute>
-        </item>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">Vertical</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">vertical</attribute>
-        </item>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">No direction</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">none</attribute>
-        </item>
-      </submenu>
-    </section>
-  </menu>
-
 </interface>
+

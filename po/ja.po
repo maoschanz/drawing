@@ -1,0 +1,2185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the drawing package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: drawing\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
+"PO-Revision-Date: 2021-04-03 19:20+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+#: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
+#: src/main.py
+msgid "Drawing"
+msgstr "Drawing"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Simple drawing utility"
+msgstr "シンプルな描画ユーティリティ"
+
+#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Paint;Sketch;Pencil;"
+msgstr "Paint;Sketch;Pencil;ペイント;描画;スケッチ;ペンシル;鉛筆;"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
+msgid "New Window"
+msgstr "新しいウィンドウ"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "New Image"
+msgstr "新しい画像"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Edit Image in Clipboard"
+msgstr "クリップボードの画像を編集"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "A drawing application for the GNOME desktop"
+msgstr "GNOME デスクトップ用の描画アプリケーション"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+msgstr ""
+"\"Drawing\" は基本的な画像エディターです。PNG, JPEG, BMP 形式をサポートしてい"
+"ます。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It allows you to draw or edit pictures with tools such as pencil, line or "
+"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
+"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
+"rotating, …"
+msgstr ""
+"鉛筆、直線・曲線 (多彩な効果も適用可)、領域の選択 (切り取り/コピー/貼り付け/"
+"ドラッグ…)、シェイプ (四辺形/円/多辺形…)、テキストの挿入、伸縮、トリミング、"
+"回転などのツールを使い、画像を描画・編集できます。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
+"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
+msgstr ""
+"Drawing 0.8.0 では、タブレットとスタイラスペンを利用できるようになりました。"
+"新しい 'ブラシ' と 'エアブラシ' ツールには、スタイラスペンに加えられた力を感"
+"知し、描画効果を変化させる機能があります。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The fullscreen mode has been completely redesigned to provide an easier yet "
+"less intrusive access to the tools and their options."
+msgstr ""
+"全画面表示が一から作り直され、ツールとそのオプションへのアクセスは簡単にしつ"
+"つも、作業の邪魔にならないよう改善されました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Filters have been rewritten to be more reliable, and a new filter to "
+"harmoniously increase contrast has been added."
+msgstr ""
+"フィルターが書き直され、より緻密な効果を適用できるようになりました。また、調"
+"和の取れたコントラストを表現するフィルターも追加されました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When you move or delete the selection, now the pixels left behind can "
+"optionally be a specific color, rather than always transparency. This "
+"specific color can be excluded from the selection. That feature is complex "
+"to explain with words, try it yourself you'll see."
+msgstr ""
+"選択した領域を削除、もしくは移動したときに、背後のピクセルを特定の色で埋める"
+"か、それとも透過させるかを選べます。この特定の色は、選択領域から除外できま"
+"す。言葉で説明するのは難しい機能なので、実際にご自身で試してみてください。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Options such as the text background type and the shape filling style are now "
+"persisted when closing the application."
+msgstr ""
+"テキストの背景や、シェイプの塗り潰しなどのオプションが、アプリケーションを閉"
+"じても記憶されるようになりました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface for selecting the active color application mode has been "
+"rewritten to better show the accurate label, and better organize the "
+"possible modes as submenus."
+msgstr ""
+"色の描画モードを選択する UI が書き直され、より正確なラベル表示と、より分かり"
+"やすく整理されたメニューを利用できるようになりました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The \"blur\" mode has been removed, which simplified the situation and "
+"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
+"color application modes in general."
+msgstr ""
+"\"ぼかし\" モードが削除されました。\"シェイプ\" と \"ブラシ\" ツールにぼかし"
+"効果を組み合わせることはできなくなります。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"バージョン 0.8.1 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
+
+#. This is just my name, do not translate it.
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Romain F. T."
+msgstr "Romain F. T."
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The window and its primary menu"
+msgstr "ウィンドウと主要メニュー"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The selection and the actions associated with it"
+msgstr "画像の選択とアクション"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Zooming in various shapes"
+msgstr "ズーム表示"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The \"new image\" menu opened"
+msgstr "\"新しい画像\" メニュー"
+
+#: src/ui/app-menus.ui
+msgid "_File"
+msgstr "ファイル (_F)"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Open an image"
+msgstr "画像を開く"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Blank Image"
+msgstr "新しい空の画像"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
+msgid "New Image With Custom Size"
+msgstr "新しい画像を任意のサイズで作成"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Selection"
+msgstr "新しい画像を選択領域から作成"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Clipboard"
+msgstr "新しい画像をクリップボードから作成"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Reload file"
+msgstr "ファイルを再読み込み"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
+msgid "Image properties"
+msgstr "画像のプロパティ"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/saving_manager.py
+msgid "Save"
+msgstr "保存"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Save without transparency"
+msgstr "透過なしで保存"
+
+#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
+#: src/saving_manager.py
+msgid "Save as…"
+msgstr "名前を付けて保存…"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Export as…"
+msgstr "名前を付けてエクスポート…"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Print"
+msgstr "印刷"
+
+#: src/ui/app-menus.ui
+msgid "Close Image"
+msgstr "画像を閉じる"
+
+#: src/ui/app-menus.ui
+msgid "Close Window"
+msgstr "ウィンドウを閉じる"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Quit all windows"
+msgstr "全てのウィンドウを終了"
+
+#: src/ui/app-menus.ui
+msgid "_Edit"
+msgstr "編集 (_E)"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Undo"
+msgstr "元に戻す"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Redo"
+msgstr "やり直す"
+
+#: src/ui/app-menus.ui
+msgid "Rebuild from history"
+msgstr "履歴から復元"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Select all"
+msgstr "全て選択"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Cut"
+msgstr "切り取り"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Copy"
+msgstr "コピー"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Delete"
+msgstr "削除"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Paste"
+msgstr "貼り付け"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Import"
+msgstr "インポート"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "設定"
+
+#: src/ui/app-menus.ui
+msgid "_View"
+msgstr "表示 (_V)"
+
+#: src/ui/app-menus.ui
+msgid "Show the preview"
+msgstr "プレビューを表示"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
+msgid "Zoom"
+msgstr "ズーム"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Optimal Zoom"
+msgstr "画面に合わせる"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Zoom Out"
+msgstr "ズームアウト"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Original Zoom"
+msgstr "等倍"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Zoom In"
+msgstr "ズームイン"
+
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
+#: src/ui/app-menus.ui
+msgid "Position"
+msgstr "位置"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Left"
+msgstr "左へ移動"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Up"
+msgstr "上へ移動"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Down"
+msgstr "下へ移動"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Right"
+msgstr "右へ移動"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the left"
+msgstr "左のタブ"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the right"
+msgstr "右のタブ"
+
+#: src/ui/app-menus.ui
+msgid "Refresh"
+msgstr "再読み込み"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "全画面表示"
+
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "ツールバーを隠す"
+
+#: src/ui/app-menus.ui src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "全画面表示を終了"
+
+#: src/ui/app-menus.ui
+msgid "_Colors"
+msgstr "色 (_C)"
+
+#: src/ui/app-menus.ui
+msgid "Edit Main Color…"
+msgstr "メインの色を編集…"
+
+#: src/ui/app-menus.ui
+msgid "Edit Secondary Color…"
+msgstr "サブの色を編集…"
+
+#: src/ui/app-menus.ui
+msgid "Use color editor by default"
+msgstr "既定で色エディターを使用"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Exchange colors"
+msgstr "色を入れ替え"
+
+#: src/ui/app-menus.ui
+msgid "Color application mode"
+msgstr "色の描画モード"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Normal"
+msgstr "通常"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Highlight"
+msgstr "蛍光ペン"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "明るい背景に暗いテキストを描く"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "暗い背景に明るいテキストを描く"
+
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "HSL modes"
+msgstr "HSL モード"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue only"
+msgstr "色相のみ"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Saturation only"
+msgstr "彩度のみ"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue and saturation"
+msgstr "色相と彩度"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Luminosity only"
+msgstr "輝度のみ"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Other modes"
+msgstr "他のモード"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Raw source color"
+msgstr "完全に置換"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Difference"
+msgstr "色差"
+
+#: src/ui/app-menus.ui
+msgid "Don't use the colors but…"
+msgstr "色を使用しないツール…"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Erase"
+msgstr "消去"
+
+#: src/ui/app-menus.ui
+msgid "_Tools"
+msgstr "ツール (_T)"
+
+#: src/ui/app-menus.ui
+msgid "Previous tool"
+msgstr "前のツール"
+
+#: src/ui/app-menus.ui
+msgid "Active tool"
+msgstr "使用中のツール"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Show tools names"
+msgstr "ツール名を表示"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr "幅を太くする"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Smaller width"
+msgstr "幅を細くする"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "選択領域のトラブルシューティング"
+
+#: src/ui/app-menus.ui src/window.py
+msgid "_Options"
+msgstr "オプション (_O)"
+
+#: src/ui/app-menus.ui
+msgid "_Help"
+msgstr "ヘルプ (_H)"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "ショートカット"
+
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "Report a bug"
+msgstr "バグを報告"
+
+#. Context: open the index of all help pages
+#: src/ui/app-menus.ui
+msgid "Index"
+msgstr "索引"
+
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr "個々のページ"
+
+#. Context: open the help page about general use of the app
+#: src/ui/app-menus.ui
+msgid "Basic help"
+msgstr "基本的なヘルプ"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui
+msgid "Help about zooming"
+msgstr "ズームについてのヘルプ"
+
+#: src/ui/app-menus.ui
+msgid "Help about the full-screen mode"
+msgstr "全画面表示についてのヘルプ"
+
+#: src/ui/app-menus.ui
+msgid "Help about classic tools"
+msgstr "クラシックツールについてのヘルプ"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Help about colors"
+msgstr "色についてのヘルプ"
+
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Help about transformation tools"
+msgstr "変換ツールについてのヘルプ"
+
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
+msgid "Help about selection"
+msgstr "領域選択についてのヘルプ"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr "新着情報"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "About Drawing"
+msgstr "Drawing について"
+
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+msgid "Open"
+msgstr "開く"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr "画像を共有"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "100%"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Width"
+msgstr "幅"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Height"
+msgstr "高さ"
+
+#: src/ui/new-image-dialog.ui
+msgid "Color"
+msgstr "色"
+
+#: src/ui/new-image-dialog.ui
+msgid "Use these settings by default"
+msgstr "今後の既定値として使用"
+
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "画像"
+
+#: src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "ツール"
+
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "ウィンドウ"
+
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
+#: src/ui/properties.ui src/utilities.py
+msgid "pixels"
+msgstr "ピクセル"
+
+#: src/ui/properties.ui
+msgid "centimeters"
+msgstr "センチメートル"
+
+#: src/ui/properties.ui
+msgid "inches"
+msgstr "インチ"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Close selection"
+msgstr "選択を閉じる"
+
+#: src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Unselect"
+msgstr "選択を解除"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_crop.py
+msgid "Crop"
+msgstr "トリミング"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scale"
+msgstr "伸縮"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotate"
+msgstr "回転"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Filters"
+msgstr "フィルター"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Open As New Image"
+msgstr "新しい画像として開く"
+
+#: src/ui/shortcuts.ui
+msgid "Keyboard Shortcuts"
+msgstr "キーボードショートカット"
+
+#: src/ui/shortcuts.ui
+msgid "General"
+msgstr "一般"
+
+#: src/ui/shortcuts.ui
+msgid "Main menu"
+msgstr "メインメニュー"
+
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "ヘルプ"
+
+#: src/ui/shortcuts.ui
+msgid "Image"
+msgstr "画像"
+
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "画像を開く"
+
+#: src/ui/shortcuts.ui
+msgid "Reload image from disk"
+msgstr "ディスクから画像を再読み込み"
+
+#: src/ui/shortcuts.ui src/saving_manager.py
+msgid "Save picture as…"
+msgstr "名前を付けて画像を保存…"
+
+#: src/ui/shortcuts.ui
+msgid "Close the active image"
+msgstr "現在の画像を閉じる"
+
+#: src/ui/shortcuts.ui
+msgid "Open the tool options menu"
+msgstr "ツールのオプションメニューを開く"
+
+#: src/ui/shortcuts.ui
+msgid "Back to previous tool"
+msgstr "前のツールに戻る"
+
+#: src/ui/shortcuts.ui
+msgid "Apply a transformation"
+msgstr "変換を適用"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "履歴"
+
+#: src/ui/shortcuts.ui
+msgid "Selection"
+msgstr "領域を選択"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Delete the selection"
+msgstr "選択した領域を削除"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Import a file as the selection"
+msgstr "ファイルを画像内にインポート"
+
+#: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "色"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "メインの色を編集 (左クリック)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "サブの色を編集 (右クリック)"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "タブ"
+
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
+#: src/ui/shortcuts.ui
+msgid "Navigation"
+msgstr "ナビゲーション"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "プレビューを切り替え"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr "全画面表示を切り替え"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "ツールバーの表示/非表示"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr "タッチ操作"
+
+#: src/ui/window.ui
+msgid "Error starting the application, please report this bug."
+msgstr ""
+"アプリケーションの開始中にエラーがありました。バグとして報告してください。"
+
+#: src/deco_manager.py
+#, python-format
+msgid "Undo %s"
+msgstr "%sを元に戻す"
+
+#: src/deco_manager.py
+#, python-format
+msgid "Redo %s"
+msgstr "%sをやり直す"
+
+#. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr "無効な状態を保存しようとしました"
+
+#: src/history_manager.py
+#, python-format
+msgid "Error: no tool '%s'"
+msgstr "エラー: ツール '%s' は存在しません"
+
+#. Context: an error message
+#: src/image.py
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr "新しいピクセルバッファーが空です。%s に適用された変更はありません"
+
+#: src/image.py
+msgid "Can't reload a never-saved file from the disk."
+msgstr "保存していないファイルをディスクから再読み込みすることはできません。"
+
+#: src/image.py src/properties.py
+msgid "Unsaved file"
+msgstr "未保存のファイル"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Show the app version"
+msgstr "アプリのバージョンを表示"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new window"
+msgstr "新しいウィンドウを開く"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new tab"
+msgstr "新しいタブを開く"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Edit the clipboard content"
+msgstr "クリップボードの内容を編集"
+
+#: src/main.py
+msgid "This version isn't stable!"
+msgstr "このバージョンは安定していません！"
+
+#: src/main.py
+msgid "Report bugs or ideas"
+msgstr "バグやアイデアを報告"
+
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
+#: src/main.py
+msgid "translator-credits"
+msgstr ""
+
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
+#: src/main.py
+msgid "GNOME's \"Art Libre\" icon set authors"
+msgstr "GNOME の \"Art Libre\" アイコンセットの制作者"
+
+#: src/main.py
+msgid "A drawing application for the GNOME desktop."
+msgstr "GNOME デスクトップ用の描画アプリケーションです。"
+
+#: src/main.py
+msgid "Official webpage"
+msgstr "公式ウェブページ"
+
+#: src/main.py
+msgid "Error opening this file."
+msgstr "このファイルを開く際にエラーがありました。"
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr "もしかして %s ？"
+
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
+#: src/minimap.py
+#, python-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "キャンセル"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr "作成"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "New images"
+msgstr "新しい画像"
+
+#: src/preferences.py
+msgid "Default width"
+msgstr "既定の幅"
+
+#: src/preferences.py
+msgid "Default height"
+msgstr "既定の高さ"
+
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Default color"
+msgstr "既定の色"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Images saving"
+msgstr "画像の保存"
+
+#: src/preferences.py
+msgid "JPEG and BMP images can't handle transparency."
+msgstr "JPEG と BMP 画像は、透過色に対応していません。"
+
+#: src/preferences.py
+msgid ""
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
+msgstr "これらの形式で画像を保存するとき、透過部分をどう処理しますか？"
+
+#: src/preferences.py src/saving_manager.py src/utilities.py
+msgid "White"
+msgstr "白"
+
+#: src/preferences.py src/saving_manager.py src/utilities.py
+msgid "Black"
+msgstr "黒"
+
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
+#: src/preferences.py src/saving_manager.py
+msgid "Checkboard"
+msgstr "格子"
+
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
+#: src/preferences.py src/saving_manager.py
+msgid "Nothing"
+msgstr "何もしない"
+
+#: src/preferences.py
+msgid "Ask before saving"
+msgstr "保存前に確認"
+
+#: src/preferences.py
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr ""
+"Ctrl キー + スクロールでズームするか、単にスクロールだけでズームするかを選べ"
+"ます。"
+
+#: src/preferences.py
+msgid "See the user help manual for explanations."
+msgstr "詳しくはヘルプをご覧ください。"
+
+#: src/preferences.py
+msgid "Use 'Ctrl' to zoom"
+msgstr "'Ctrl' キーによるズーム"
+
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
+#: src/preferences.py
+msgid "Appearance"
+msgstr "外観"
+
+#: src/preferences.py
+msgid "Use big icons"
+msgstr "大きなアイコンを使用"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Additional tools"
+msgstr "追加のツール"
+
+#: src/preferences.py
+msgid ""
+"These tools are not as reliable and useful as they should be, so they are "
+"not all enabled by default."
+msgstr ""
+"これらのツールを使う機会は少なく、あまり役に立たないかもしれません。そのた"
+"め、既定では無効化されています。"
+
+#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#: src/preferences.py src/tools/classic_tools/tool_eraser.py
+msgid "Eraser"
+msgstr "消しゴム"
+
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
+#: src/preferences.py src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter"
+msgstr "蛍光ペン"
+
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
+msgstr "ブラシ"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
+msgid "Points"
+msgstr "点"
+
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
+#: src/preferences.py src/tools/selection_tools/select_free.py
+msgid "Free selection"
+msgstr "自由選択"
+
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
+#: src/preferences.py src/tools/selection_tools/select_color.py
+msgid "Color selection"
+msgstr "色の選択"
+
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
+#: src/preferences.py src/tools/classic_tools/tool_picker.py
+msgid "Color Picker"
+msgstr "スポイト"
+
+#. Context: the name of a tool to fill an area of one color with an other
+#: src/preferences.py src/tools/classic_tools/tool_paint.py
+msgid "Paint"
+msgstr "染色"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Advanced options"
+msgstr "詳細オプション"
+
+#: src/preferences.py
+msgid "Preview size"
+msgstr "プレビューのサイズ"
+
+#. This label will not be displayed in the UI of stable versions
+#: src/preferences.py
+msgid "Development features"
+msgstr "開発中の機能"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "背景色"
+
+#: src/preferences.py
+msgid "Theme variant"
+msgstr ""
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "既定の幅"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr ""
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr ""
+
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
+#: src/preferences.py
+msgid "Layout"
+msgstr "レイアウト"
+
+#: src/preferences.py
+msgid "The recommended value is \"Automatic\"."
+msgstr "お勧めの設定は \"自動\" です。"
+
+#. It has to match what's written in the previous string.
+#: src/preferences.py
+msgid "Automatic"
+msgstr "自動"
+
+#: src/preferences.py
+msgid "Compact"
+msgstr "コンパクト"
+
+#: src/preferences.py
+msgid "elementary OS"
+msgstr "elementary OS"
+
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional"
+#: src/preferences.py
+msgid "Legacy"
+msgstr "レガシー"
+
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Legacy (symbolic icons)"
+msgstr "レガシー (シンボリックアイコン)"
+
+#: src/preferences.py
+msgid "Menubar only"
+msgstr "メニューバーのみ"
+
+#: src/preferences.py
+msgid "Toolbar only"
+msgstr "ツールバーのみ"
+
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Toolbar only (symbolic icons)"
+msgstr "ツールバーのみ (シンボリックアイコン)"
+
+#: src/properties.py
+#, python-format
+msgid "%s px"
+msgstr "%s ピクセル"
+
+#: src/properties.py
+#, python-format
+msgid "%s cm"
+msgstr "%s センチメートル"
+
+#: src/properties.py
+#, python-format
+msgid "%s in"
+msgstr "%s インチ"
+
+#. Context: the path of the edited file
+#: src/properties.py
+msgid "Path"
+msgstr "パス"
+
+#. Context: the file format of the edited file
+#: src/properties.py
+msgid "Format"
+msgstr "形式"
+
+#: src/properties.py
+msgid "Colorspace"
+msgstr "色空間"
+
+#. Context: an invalid colorspace format
+#: src/properties.py
+msgid "Invalid format"
+msgstr "無効な形式"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to save %s"
+msgstr "%s の保存に失敗しました"
+
+#. Context: Untitled(.png) is the default name of a newly saved file
+#: src/saving_manager.py
+msgid "Untitled"
+msgstr "無題"
+
+#. Context: the sentence "There are unsaved modifications to %s."
+#: src/saving_manager.py
+msgid "this picture"
+msgstr "この画像"
+
+#: src/saving_manager.py
+msgid "Discard"
+msgstr "破棄"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/saving_manager.py src/window.py
+#, python-format
+msgid "There are unsaved modifications to %s."
+msgstr "%s への編集が保存されていません。"
+
+#: src/saving_manager.py
+msgid ""
+"A part of the image is selected, and the pixels beneath the selection are "
+"blank."
+msgstr "画像の一部領域を選択中です。この部分のピクセルは空白になります。"
+
+#: src/saving_manager.py
+msgid "Modifications from the current tool haven't been applied."
+msgstr "現在のツールで行った変更が適用されていません。"
+
+#: src/saving_manager.py
+msgid "Do you want to save anyway?"
+msgstr "それでも保存しますか？"
+
+#. Context: confirm replacing transparent pixels with the selected color
+#: src/saving_manager.py
+msgid "Replace"
+msgstr "置換"
+
+#: src/saving_manager.py
+msgid "This file format doesn't support transparent colors."
+msgstr "このファイル形式は、透過色をサポートしていません。"
+
+#: src/saving_manager.py
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
+"画像を PNG ファイルとして保存するか、透過色を置き換えるかを選択できます:"
+
+#: src/saving_manager.py
+msgid "Replace transparency with:"
+msgstr "透過色を置き換えます:"
+
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr "選択したピクセルバッファーが空です。"
+
+#: src/selection_manager.py
+msgid "The selection path is empty."
+msgstr "選択したパスが空です。"
+
+#: src/utilities.py
+msgid "Transparent"
+msgstr "透過"
+
+#: src/utilities.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% の透過"
+
+#: src/utilities.py
+msgid "Grey"
+msgstr "灰色"
+
+#: src/utilities.py
+msgid "Orange"
+msgstr "オレンジ色"
+
+#: src/utilities.py
+msgid "Brown"
+msgstr "褐色"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities.py
+msgid "Probably brown"
+msgstr "褐色に類似"
+
+#: src/utilities.py
+msgid "Red"
+msgstr "赤色"
+
+#: src/utilities.py
+msgid "Green"
+msgstr "緑色"
+
+#: src/utilities.py
+msgid "Blue"
+msgstr "青色"
+
+#: src/utilities.py
+msgid "Yellow"
+msgstr "黄色"
+
+#: src/utilities.py
+msgid "Magenta"
+msgstr "赤紫色"
+
+#: src/utilities.py
+msgid "Purple"
+msgstr "紫色"
+
+#: src/utilities.py
+msgid "Cyan"
+msgstr "水色"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities.py
+msgid "Probably teal"
+msgstr "青緑色に類似"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities.py
+msgid "Unknown color name"
+msgstr "不明な色名"
+
+#: src/utilities.py
+msgid "All pictures"
+msgstr "全ての画像"
+
+#: src/utilities.py
+msgid "PNG images"
+msgstr "PNG 画像"
+
+#: src/utilities.py
+msgid "JPEG images"
+msgstr "JPEG 画像"
+
+#: src/utilities.py
+msgid "BMP images"
+msgstr "BMP 画像"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities.py
+msgid "percents"
+msgstr "パーセント"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities.py
+msgid "degrees"
+msgstr "度"
+
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s は画像ではありません。"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "すみません、このアプリは WebP 画像を扱えません。"
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "拡張子は異なりますが、%s は WebP ファイルです。"
+
+#. Context: %s is the version number of the app
+#: src/window.py
+#, python-format
+msgid ""
+"It's the first time you use Drawing %s, would you like to read what's new?"
+msgstr "Drawing %s を初めて起動しました。何が新しくなったかを確認しますか？"
+
+#: src/window.py
+msgid "No"
+msgstr "いいえ"
+
+#: src/window.py
+msgid "Later"
+msgstr "後で"
+
+#: src/window.py
+msgid "Yes"
+msgstr "はい"
+
+#. Context: an error message
+#: src/window.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "ツールの読み込みに失敗しました: %s"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "クリップボードに画像がありません。"
+
+#: src/window.py
+msgid "Modifications will take effect in the next new window."
+msgstr "新しい設定の効果は、次に開いたウィンドウから適用されます。"
+
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
+msgid "No options"
+msgstr "オプションなし"
+
+#: src/window.py
+msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgstr ""
+"中クリック、3 本指でのタップ、F8 キーの入力でコントロールを表示/非表示にしま"
+"す。"
+
+#: src/window.py
+msgid "Press F11 to exit fullscreen."
+msgstr "F11 キーで全画面表示を終了します。"
+
+#: src/window.py
+#, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"ツール '%s' 下側のペインの読み込み中にエラーがありました。バグとして報告して"
+"ください。"
+
+#: src/window.py
+#, python-format
+msgid "Loading %s"
+msgstr "%s を読み込んでいます"
+
+#: src/window.py
+msgid "New Tab"
+msgstr "新しいタブ"
+
+#: src/window.py
+msgid "Discard changes"
+msgstr "変更を破棄"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/window.py
+#, python-format
+msgid "Where do you want to open %s?"
+msgstr "どこで %s を開きますか？"
+
+#. Context for translation:
+#. "What do you want to do with *these files*?"
+#: src/window.py
+msgid "these files"
+msgstr "これらのファイル"
+
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
+#: src/window.py
+#, python-format
+msgid "What do you want to do with %s?"
+msgstr "%s をどうしますか？"
+
+#: src/window.py
+msgid "Image copied to clipboard"
+msgstr "クリップボードに画像をコピーしました"
+
+#: src/window.py
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "ディスク上の画像が変更されました。再読み込みしますか？"
+
+#: src/window.py
+msgid "Reload"
+msgstr "再読み込み"
+
+#: src/window.py
+msgid "Import a picture"
+msgstr "画像をインポート"
+
+#: src/window.py
+msgid "Required tool is not available"
+msgstr "必要なツールが利用できません"
+
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
+#: src/optionsbars/classic/optionsbar_color_popover.py
+msgid "Highlight (dark)"
+msgstr "蛍光ペン (暗)"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
+msgid "Main color"
+msgstr "メインの色"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+msgid "Secondary color"
+msgstr "サブの色"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Tool size"
+msgstr "ツールの大きさ"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+msgid "Preview"
+msgstr "プレビュー"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "How the color will be applied to the existing pixels"
+msgstr "ピクセルにどう色を適用するかです"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Back to the palette"
+msgstr "パレットに戻る"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Palette"
+msgstr "パレット"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Use this editor by default"
+msgstr "既定でこのエディターを使用"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Selection options"
+msgstr "選択のオプション"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
+msgid "Replace with…"
+msgstr "置換する色…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "透過"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "この色から抽出"
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+msgid "Apply"
+msgstr "適用"
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "More options"
+msgstr "他のオプション"
+
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr "伸張方法…"
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Select a filter…"
+msgstr "フィルターを選択…"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle (degrees)"
+msgstr "角度 (デグリー)"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle"
+msgstr "角度"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "More actions"
+msgstr "他のアクション"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate left"
+msgstr "左へ回転"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate right"
+msgstr "右へ回転"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip horizontally"
+msgstr "水平に裏返す"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip vertically"
+msgstr "垂直に裏返す"
+
+#. Context: the title of a menu to chose how the image will be scaled
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Keep proportions"
+msgstr "比率を維持"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Always [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Always"
+msgstr "常時"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When scaling from corners"
+msgstr "四隅からの伸縮時のみ"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Never [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Never"
+msgstr "常にしない"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Horizontal deformation"
+msgstr "水平に変形"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Vertical deformation"
+msgstr "垂直に変形"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
+"操作を開始できません: ツール ID が間違っています (期待した値 {0}, 実際の値 "
+"{1})"
+
+#: src/tools/utilities_paths.py
+msgid "Continue"
+msgstr "続行"
+
+#: src/tools/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "とても粗い、または複雑な領域を選択しました。"
+
+#: src/tools/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "このアルゴリズムでは、対象の領域を上手く処理できないかもしれません。"
+
+#: src/tools/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "操作を中断しますか？それとも無理矢理続行しますか？"
+
+#: src/tools/ui/selection.ui
+msgid "Transform"
+msgstr "変換"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Line shape"
+msgstr "直線の形状"
+
+#. Context: this is the name of a line shape
+#. Default values
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+msgid "Round"
+msgstr "丸"
+
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
+msgid "Square"
+msgstr "角"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "矢印なし"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "普通の矢印"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "二重の矢印"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "No dashes"
+msgstr "破線なし"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Simple dashes"
+msgstr "普通の破線"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Long dashes"
+msgstr "長い破線"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Short dashes"
+msgstr "短い破線"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Alternated dashes"
+msgstr "長短交互の破線"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
+msgid "Antialiasing"
+msgstr "アンチエイリアス"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
+msgid "Simple brush"
+msgstr "普通のブラシ"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Airbrush"
+msgstr "エアブラシ"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
+msgid "Hairy brush"
+msgstr "ヘアブラシ"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+msgid "Calligraphic nib"
+msgstr "万年筆"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr "右手持ちの筆"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Vertical nib"
+msgstr "垂直な筆"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr "左手持ちの筆"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Horizontal nib"
+msgstr "水平な筆"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "鉛筆"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "四辺形"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Blur"
+msgstr "ぼかし"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle pixels"
+msgstr "ピクセルをシャッフル"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle and blur"
+msgstr "シャッフルとぼかし"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Mosaic"
+msgstr "モザイク"
+
+#: src/tools/ui/tool-eraser.ui
+msgid "Solid color"
+msgstr "単色"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr "使用中のフィルター"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "輝度を変更"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "網目模様"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "透過を適用"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr "コントラストを増加"
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "ぼかし処理"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "ぼかし (簡易)"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "ぼかし (高負荷)"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "ピクセル化"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "ぼかしの方向"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "水平"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "垂直"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "方向なし"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "色を反転"
+
+#: src/tools/ui/tool-line.ui
+msgid "Color gradient"
+msgstr "グラディエーション"
+
+#. Context: title for the list of the possible painting algorithms.
+#: src/tools/ui/tool-paint.ui
+msgid "Behavior"
+msgstr "振る舞い"
+
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
+#: src/tools/ui/tool-paint.ui
+msgid "Encircle and fill"
+msgstr "囲んで塗り潰す"
+
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
+#: src/tools/ui/tool-paint.ui
+msgid "Erase and replace"
+msgstr "消して塗り直す"
+
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+msgid "Entire image"
+msgstr "全体の画像"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#: src/tools/ui/tool-paint.ui
+msgid "Remove color"
+msgstr "色を除去"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr "点の種類"
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "円"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr "交差"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr "斜め交差"
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr "番号を付ける"
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr "次の番号"
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr "番号をリセット"
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr "番号を減らす"
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr "番号を増やす"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr "無地のシェイプ"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr "破線のシェイプ"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "No outline"
+msgstr "シェイプなし"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "塗り潰し"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Empty shape"
+msgstr "空のシェイプ"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "水平のグラディエーション"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "垂直のグラディエーション"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "放射状のグラディエーション"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rounded rectangle"
+msgstr "丸い四辺形"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Oval"
+msgstr "楕円"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Polygon"
+msgstr "多辺形"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Free shape"
+msgstr "自由シェイプ"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Close shape"
+msgstr "シェイプを閉じる"
+
+#: src/tools/ui/tool-text.ui
+msgid "Insert here"
+msgstr "ここに挿入"
+
+#: src/tools/ui/tool-text.ui
+msgid "Font"
+msgstr "フォント"
+
+#: src/tools/ui/tool-text.ui
+msgid "Select a font…"
+msgstr "フォントを選択…"
+
+#: src/tools/ui/tool-text.ui
+msgid "Italic"
+msgstr "斜体"
+
+#: src/tools/ui/tool-text.ui
+msgid "Bold"
+msgstr "太字"
+
+#. Context: the types of background behind the inserted text
+#: src/tools/ui/tool-text.ui
+msgid "Background"
+msgstr "背景"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "No background"
+msgstr "背景なし"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Shadow"
+msgstr "影"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "輪郭線"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Rectangle background"
+msgstr "四辺形の背景"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve"
+msgstr "曲線"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve options"
+msgstr "曲線のオプション"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Dashed arrow"
+msgstr "破線の矢印"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Arrow"
+msgstr "矢印"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Dashed"
+msgstr "破線"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush options"
+msgstr "ブラシのオプション"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Eraser options"
+msgstr "消しゴムのオプション"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter options"
+msgstr "蛍光ペンのオプション"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line"
+msgstr "直線"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line options"
+msgstr "直線のオプション"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Painting options"
+msgstr "染色のオプション"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on an area to replace its color by transparency"
+msgstr "透過色に置き換える領域をクリックします"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr "クリックでキャンバス全体を染色します"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil options"
+msgstr "鉛筆のオプション"
+
+#: src/tools/classic_tools/tool_points.py
+msgid "Points options"
+msgstr "点のオプション"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr "次の番号: %s"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape"
+msgstr "シェイプ"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape options"
+msgstr "シェイプのオプション"
+
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "メインの色で塗り潰し"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "サブの色で塗り潰し"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Click on the shape's first point to close it."
+msgstr "シェイプの開始点をクリックすると成形します。"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text"
+msgstr "テキスト"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text options"
+msgstr "テキストのオプション"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the stylus pressure"
+msgstr "スタイラスペンにかける力で密度が変わります"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the mouse speed"
+msgstr "マウスの移動速度で密度が変わります"
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr "スタイラスペンにかける力で幅が変わります"
+
+#: src/tools/classic_tools/brushes/brush_nip.py
+msgid "Width depends on the line orientation"
+msgstr "線を引く方向で幅が変わります"
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr "マウスの移動速度で幅が変わります"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Drag the selection or right-click on the canvas"
+msgstr "選択をドラッグするか、キャンバスを右クリックします"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Select an area or right-click on the canvas"
+msgstr "領域を選択するか、キャンバスを右クリックします"
+
+#: src/tools/selection_tools/select_rect.py
+msgid "Rectangle selection"
+msgstr "四辺形選択"
+
+#: src/tools/transform_tools/abstract_transform_tool.py
+msgid "Error: invalid values"
+msgstr "エラー: 無効な値です"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the selection"
+msgstr "選択領域をトリミングします"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the canvas"
+msgstr "キャンバスをトリミングします"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Click on the image to preview the selected filter"
+msgstr "画像をクリックすると、選択したフィルターのプレビューを表示します"
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "エンボス"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the selection"
+msgstr "選択領域を回転します"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the canvas"
+msgstr "キャンバスを回転します"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the selection"
+msgstr "選択領域を伸縮します"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the canvas"
+msgstr "キャンバスを伸縮します"
+
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "傾斜"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "ぼかしの半径"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "輝度"

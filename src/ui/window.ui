@@ -11,6 +11,7 @@
   <template class="DrWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
+    <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
@@ -134,23 +135,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="bottom_meta_box">
             <property name="orientation">horizontal</property>
             <property name="visible">True</property>
             <property name="expand">False</property>
-            <child>
-              <object class="GtkMenuButton" id="fullscreen_btn">
-                <property name="visible">False</property>
-                <property name="valign">center</property>
-                <property name="margin-left">6</property>
-                <child>
-                  <object class="GtkImage" id="fullscreen_icon">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
             <child>
               <object class="GtkBox" id="bottom_panes_box">
                 <property name="orientation">vertical</property>
@@ -158,6 +146,21 @@
                 <property name="expand">True</property>
                 <property name="halign">fill</property>
                 <!-- Tools will add their optionsbars here -->
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="unfullscreen_btn">
+                <property name="visible">False</property>
+                <property name="valign">center</property>
+                <property name="margin-right">6</property>
+                <property name="tooltip-text" translatable="yes">Exit fullscreen</property>
+                <property name="action-name">win.unfullscreen</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">view-restore-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

@@ -17,7 +17,7 @@ footer a, footer a:hover {
 }
 
 /* Titles */
-h1, h2, h3, h4 {
+h1, h2, h3, h4, summary {
 	color: #404040;
 	line-height: 36px;
 	margin: 0px;
@@ -30,7 +30,11 @@ h1 {
 h2 {
 	font-size: 24px;
 }
-h3 {
+h2::before {
+	padding-right: 8px;
+	content: "🖍";
+}
+h3, summary {
 	font-size: 20px;
 }
 h4 {
@@ -44,7 +48,7 @@ body {
 	             "Hiragino Sans GB", Arial, sans-serif;
 	font-size: 16px;
 	line-height: 20px;
-	color: #737373;
+	color: #373737;
 	margin: 0px;
 }
 main {
@@ -77,6 +81,11 @@ kbd {
 	width: 90%;
 	max-width: 350px;
 }
+.description {
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
 
 /* Style classes to get collapsable columns */
 .responsive-row {
@@ -96,7 +105,7 @@ kbd {
 }
 
 /* Style classes to get tabs */
-input, .tab {
+input[type="radio"], .tab {
 	display: none;
 }
 
@@ -106,7 +115,7 @@ input, .tab {
 	display: block;
 }
 
-input + label {
+input[type="radio"] + label {
 	display: inline-block;
 	border: 1px solid #999;
 	background: #EEE;
@@ -116,13 +125,28 @@ input + label {
 	top: 1px;
 	/* text-align: center; */
 }
-input:checked + label {
+input[type="radio"]:checked + label {
 	background: #FFF;
 	border-bottom: 1px solid transparent;
 }
-input ~ .tab {
-	border-top: 1px solid #999;
+input[type="radio"] ~ .tab {
+	border: 1px solid #999;
 	padding: 12px;
+	box-shadow: 5px 5px 10px black;
+}
+
+.zoomable-img-100 {
+	width: 100%;
+}
+.zoomable-img-100:active {
+	width: unset;
+	position: fixed;
+	max-width: 90%;
+	max-height: 90%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
 }
 
 /******************************************************************************/
@@ -146,12 +170,24 @@ input ~ .tab {
 		width: 100%;
 	}
 
+	/* Images */
+	.zoomable-img-100:active {
+		width: 100%;
+		position: static;
+		max-width: unset;
+		max-height: unset;
+		left: 0;
+		top: 0;
+		transform: none;
+		z-index: auto;
+	}
+
 	/* Tabs */
 	label h4 {
-		font-size: 12px;
-		line-height: 20px;
+		font-size: 16px;
+		line-height: 24px;
 	}
-	input + label {
+	input[type="radio"] + label {
 		padding: 4px 4px;
 	}
 }

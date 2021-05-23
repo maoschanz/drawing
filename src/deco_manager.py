@@ -1,6 +1,6 @@
 # deco_manager.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ class DrDecoManagerMenubar():
 	############################################################################
 
 	def set_titles(self, title_label, subtitle_label):
-		full_title = _("Drawing") + ' - ' + title_label + ' - ' + subtitle_label
+		full_title = _("Drawing") + ' ~ ' + title_label + ' ~ ' + subtitle_label
 		self._window.set_title(full_title)
 
 	def toggle_menu(self):

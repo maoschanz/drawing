@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <menu id="options-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Simple brush</attribute>
+        <attribute name="action">win.brush-type</attribute>
+        <attribute name="target">simple</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Airbrush</attribute>
+        <attribute name="action">win.brush-type</attribute>
+        <attribute name="target">airbrush</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Hairy brush</attribute>
+        <attribute name="action">win.brush-type</attribute>
+        <attribute name="target">hairy</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Calligraphic nib</attribute>
+        <attribute name="action">win.brush-type</attribute>
+        <attribute name="target">calligraphic</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Right-handed nib</attribute>
+        <attribute name="action">win.brush-dir</attribute>
+        <attribute name="target">right</attribute>
+        <attribute name="verb-icon">brush-right-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Vertical nib</attribute>
+        <attribute name="action">win.brush-dir</attribute>
+        <attribute name="target">vertical</attribute>
+        <attribute name="verb-icon">brush-vertical-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Left-handed nib</attribute>
+        <attribute name="action">win.brush-dir</attribute>
+        <attribute name="target">left</attribute>
+        <attribute name="verb-icon">brush-left-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Horizontal nib</attribute>
+        <attribute name="action">win.brush-dir</attribute>
+        <attribute name="target">horizontal</attribute>
+        <attribute name="verb-icon">brush-horizontal-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Antialiasing</attribute>
+        <attribute name="action">win.antialias</attribute>
+      </item>
+    </section>
+  </menu>
+
+</interface>
+

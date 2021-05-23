@@ -1,47 +1,6 @@
 <?xml version="1.0"?>
 <interface domain="drawing">
 
-<!-- Application menu -->
-  <menu id="app-menu">
-    <section>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New Window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.settings</attribute>
-        <attribute name="label" translatable="yes">Preferences</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Report a bug</attribute>
-        <attribute name="action">app.report_bug</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.shortcuts</attribute>
-        <attribute name="label" translatable="yes">Shortcuts</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.help</attribute>
-        <attribute name="label" translatable="yes">Help</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">About</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.quit</attribute>
-        <attribute name="label" translatable="yes">Quit</attribute>
-      </item>
-    </section>
-  </menu>
-
 <!-- Menubar -->
   <menu id="menu-bar">
     <submenu>
@@ -106,7 +65,6 @@
         <item>
           <attribute name="action">win.save_alphaless</attribute>
           <attribute name="label" translatable="yes">Save without transparency</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Save as…</attribute>
@@ -309,6 +267,10 @@
           <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
         </item>
         <item>
+          <attribute name="label" translatable="yes">Hide toolbars</attribute>
+          <attribute name="action">win.hide_controls</attribute>
+        </item>
+        <item>
           <attribute name="label" translatable="yes">Exit fullscreen</attribute>
           <attribute name="action">win.unfullscreen</attribute>
           <attribute name="verb-icon">view-restore-symbolic</attribute>
@@ -349,36 +311,20 @@
           <attribute name="target">over</attribute>
         </item>
         <submenu>
-          <attribute name="label" translatable="yes">Other modes</attribute>
+          <attribute name="label" translatable="yes">Highlight</attribute>
           <item>
-            <attribute name="label" translatable="yes">Raw source color</attribute>
-            <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">source</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Highlight</attribute>
+            <attribute name="label" translatable="yes">Dark text on light background</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">multiply</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="label" translatable="yes">Light text on dark background</attribute>
             <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">difference</attribute>
+            <attribute name="target">screen</attribute>
           </item>
-          <!-- TODO ? -->
-          <!-- <item> -->
-          <!--   <attribute name="label" translatable="yes">Lighten</attribute> -->
-          <!--   <attribute name="action">win.cairo_operator</attribute> -->
-          <!--   <attribute name="target">lighten</attribute> -->
-          <!-- </item> -->
-          <!-- <item> -->
-          <!--   <attribute name="label" translatable="yes">Darken</attribute> -->
-          <!--   <attribute name="action">win.cairo_operator</attribute> -->
-          <!--   <attribute name="target">darken</attribute> -->
-          <!-- </item> -->
         </submenu>
         <submenu>
-          <attribute name="label" translatable="yes">Photo-oriented modes</attribute>
+          <attribute name="label" translatable="yes">HSL modes</attribute>
           <item>
             <attribute name="label" translatable="yes">Hue only</attribute>
             <attribute name="action">win.cairo_operator</attribute>
@@ -400,14 +346,22 @@
             <attribute name="target">hsl-luminosity</attribute>
           </item>
         </submenu>
+        <submenu>
+          <attribute name="label" translatable="yes">Other modes</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Raw source color</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">source</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">difference</attribute>
+          </item>
+        </submenu>
       </section>
       <section>
         <attribute name="label" translatable="yes">Don't use the colors but…</attribute>
-        <item>
-          <attribute name="label" translatable="yes">Blur</attribute>
-          <attribute name="action">win.cairo_operator</attribute>
-          <attribute name="target">dest-in</attribute>
-        </item>
         <item>
           <attribute name="label" translatable="yes">Erase</attribute>
           <attribute name="action">win.cairo_operator</attribute>
@@ -455,6 +409,13 @@
           <attribute name="action">win.size_less</attribute>
         </item>
       </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
+          <attribute name="action">win.get_values</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+        </item>
+      </section>
     </submenu>
 
     <submenu>
@@ -479,37 +440,55 @@
         </item>
       </section>
       <section>
-        <!-- TODO change all these labels -->
         <item>
           <!-- Context: open the index of all help pages -->
           <attribute name="label" translatable="yes">Index</attribute>
           <attribute name="action">app.help</attribute>
           <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
+        <submenu>
+          <!-- Context: submenu listing individual help pages -->
+          <attribute name="label" translatable="yes">Individual pages</attribute>
+          <section>
+            <item>
+              <!-- Context: open the help page about general use of the app -->
+              <attribute name="label" translatable="yes">Basic help</attribute>
+              <attribute name="action">app.help_main</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about zooming</attribute>
+              <attribute name="action">app.help_zoom</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about the full-screen mode</attribute>
+              <attribute name="action">app.help_fullscreen</attribute>
+            </item>
+          </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Help about classic tools</attribute>
+              <attribute name="action">app.help_tools</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about colors</attribute>
+              <attribute name="action">app.help_colors</attribute>
+            </item>
+            <item>
+              <!-- Context: open the help page about transformation tools (crop, -->
+              <!-- scale, rotate, filters, ... -->
+              <attribute name="label" translatable="yes">Help about transformation tools</attribute>
+              <attribute name="action">app.help_transform</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about selection</attribute>
+              <attribute name="action">app.help_selection</attribute>
+            </item>
+          </section>
+        </submenu>
         <item>
-          <!-- Context: open the help page about general use of the app -->
-          <attribute name="label" translatable="yes">Basic help</attribute>
-          <attribute name="action">app.help_main</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <!-- Context: open the help page about classic tools -->
-          <attribute name="label" translatable="yes">Help about tools</attribute>
-          <attribute name="action">app.help_tools</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <!-- Context: open the help page about transformation tools (crop, -->
-          <!-- scale, rotate, filters, ... -->
-          <attribute name="label" translatable="yes">Canvas and selection</attribute>
-          <attribute name="action">app.help_transform</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <!-- Context: open the help page about the selection -->
-          <attribute name="label" translatable="yes">Help about selection</attribute>
-          <attribute name="action">app.help_selection</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
+          <attribute name="label" translatable="yes">What's new</attribute>
+          <attribute name="action">app.help_whats_new</attribute>
+          <attribute name="verb-icon">document-open-recent-symbolic</attribute>
         </item>
       </section>
       <section>
@@ -523,3 +502,4 @@
   </menu>
 
 </interface>
+

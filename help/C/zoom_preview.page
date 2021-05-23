@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="zoom_preview">
+
+  <info>
+    <link type="guide" xref="index#main"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name>Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Zoom level, scrolling, and the preview thumbnail.</desc>
+  </info>
+
+  <title>Zooming and scrolling</title>
+
+  <p>In the bottom bar, the <gui style="button">Preview</gui> button
+  (available with <link xref="tools_classic">most tools</link>) displays the
+  current zoom level.</p>
+  <p>Clicking on this button opens a menu with a thumbnail of the full picture
+  you're editing, along with zoom level controls.</p>
+
+  <section>
+    <title>Moving the view</title>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_zoom.png" />
+
+    <p>You may use the thumbnail preview to move the view within a huge image,
+    but it's not the simplest way to do it:</p>
+    <p>Aside of the scrollbars, using keyboard shortcuts, touch gestures, or
+    sliding with the mouse middle-click, might be more efficient.</p>
+  </section>
+
+  <section>
+    <title>Zooming in or out</title>
+
+    <p>You can use the thumbnail preview controls to change the zoom level, but
+    you can also use keyboard shortcuts, touch gestures, or you can scroll while
+    pressing the <key>Ctrl</key> key. This behavior can be changed:</p>
+  </section>
+
+  <section id="configuration">
+    <title>Configuration</title>
+
+    <p>In <link xref="preferences">the app preferences</link>, you can set how
+    you want to zoom on the image: by default, scrolling on the canvas <em>moves
+    the current view</em> in the direction of the scrolling, and scrolling while
+    holding the <key>Ctrl</key> key <em>zooms in or out</em>. You can turn off
+    the switch to invert these behaviors.</p>
+
+    <p>If you rely on an old-school mouse, it's pertinent to turn this setting
+    off: the mouse wheel will then directly zoom in and out. To browse the
+    image, you can move your mouse on the canvas while you hold its middle
+    button: it'll to move the current view in any direction.</p>
+
+    <p>If you have a trackpad, or a touchscreen, it's recommended to keep using
+    the <key>Ctrl</key> key to zoom (default behavior): with such a device,
+    you're able to intuitively scroll in both directions to browse the entire
+    image. If your device supports multi-touch gestures, you'll even be able to
+    zoom in and out using the default <em>touch gestures (stretch or pinch with
+    two fingers)</em>, which will not work if you turn off this setting.</p>
+    <p>Of course, it's always possible to control the zoom level with the
+    keyboard shortcuts, or the buttons under the thumbnail preview.</p>
+  </section>
+
+</page>
+

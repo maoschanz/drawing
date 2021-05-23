@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019-2020.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 02:08+0100\n"
-"PO-Revision-Date: 2020-10-19 08:59+0200\n"
+"POT-Creation-Date: 2021-04-27 02:52+0200\n"
+"PO-Revision-Date: 2021-05-02 16:52+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -28,17 +28,11 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "Enkelt ritverktyg"
 
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
-
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Måla;Rita;Penna;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -46,7 +40,7 @@ msgstr "Nytt fönster"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Ny bild"
 
@@ -78,130 +72,75 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The version 0.6.3 improves the option to draw arrows: several issues have "
-"been fixed and double-ended arrows are now possible."
+"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
+"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
-"Versionen 0.6.3 förbättrar alternativet att rita pilar. Flera problem har "
-"åtgärdats och dubbelsidiga pilar är nu möjliga."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "There is also more options to draw using dashes."
-msgstr ""
+"Med Drawing 0.8.0 kan du äntligen använda en surfplatta och en stylus-penna "
+"för att rita med tryckkänsliga verktyg, som den nya \"penseln\" och "
+"\"airbrush\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"This version is finally compatible with older distributions (versions of "
-"GNOME libraries older than 3.30)."
+"The fullscreen mode has been completely redesigned to provide an easier yet "
+"less intrusive access to the tools and their options."
 msgstr ""
+"Helskärmsläget har gjorts om helt för att ge en enklare men mindre "
+"inkräktande åtkomst till verktygen och dess alternativ."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.6.2 features several minor bug fixes, and various new translations."
+"Filters have been rewritten to be more reliable, and a new filter to "
+"harmoniously increase contrast has been added."
 msgstr ""
-"Version 0.6.2 innehåller ett flertal mindre felkorrigeringar, och diverse "
+"Filter har skrivits om för att vara mer tillförlitliga, och ett nytt filter "
+"för att öka kontrasten harmoniskt har lagts till."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When you move or delete the selection, now the pixels left behind can "
+"optionally be a specific color, rather than always transparency. This "
+"specific color can be excluded from the selection. That feature is complex "
+"to explain with words, try it yourself you'll see."
+msgstr ""
+"Nu kan de kvarvarande pixlarna valfritt vara en av specifik färg, snarare än "
+"alltid tranparenta, när du flyttar eller tar bort en markering. Denna "
+"specifika färg kan uteslutas från markeringen. Den här funktionen är för "
+"komplex för att förklaras med ord, prova själv så ser du."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Options such as the text background type and the shape filling style are now "
+"persisted when closing the application."
+msgstr ""
+"Alternativ som textbakgrundstyp och figurfyllnadsformat finns nu kvar när "
+"programmet stängs."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface for selecting the active color application mode has been "
+"rewritten to better show the accurate label, and better organize the "
+"possible modes as submenus."
+msgstr ""
+"Användargränssnittet för att välja aktivt färgprogramsläge, har skrivits om "
+"för att bättre visa den exakta etiketten och bättre organisera möjliga lägen "
+"som undermenyer."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The \"blur\" mode has been removed, which simplified the situation and "
+"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
+"color application modes in general."
+msgstr ""
+"Läget \"Oskärpa\" har tagits bort, vilket förenklade situationen och tillät "
+"flera verktyg (\"Former\" och \"Penslar\") att få stöd för "
+"färgprogramslägena i allmänhet."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"Version 0.8.1 innehåller ett flertal mindre felkorrigeringar, och diverse "
 "nya översättningar."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
-msgstr ""
-"Verktyget 'Markeringspenna' ger nu alternativ för att markera ljus text mot "
-"en mörk bakgrund."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When an image has been saved without its transparency, the app now suggests "
-"to reload the image from the disk. Also, the 'reload from disk' feature is "
-"now available with every possible window layout."
-msgstr ""
-"När en bild har sparats utan dess transparens, föreslår programmet nu att "
-"läsa om bilden från disk. Funktionen \"Läs om bilden från disk\" är nu också "
-"tillgänglig vid varje möjlig fönsterlayout."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "An action to copy the whole image to clipboard has been added."
-msgstr "En åtgärd för att kopiera hela bilden till urklipp har lagts till."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"It's now possible to remove transparency when saving PNG files too. And "
-"there are more color options to replace the transparent pixels."
-msgstr ""
-"Det är nu möjligt att ta bort transparens när PNG-filer sparas också. Det "
-"finns också fler färgalternativ att ersätta de transparenta bildpunkterna "
-"med."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A new optional tool named \"Points\" has been added, it may help captioning "
-"pictures."
-msgstr ""
-"Ett nytt tilläggsverktyg kallat \"Punkter\" har lagts till, det kan hjälpa "
-"till med att textsätta bilder."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr "Mindre fel i verktyget \"Rotera\" har fixats."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.6 is a major update, with various important changes. The app is "
-"more robust and has more tools:"
-msgstr ""
-"Version 0.6 är en stor uppdatering med olika viktiga förändringar. "
-"Programmet är mer robust och har fler verktyg:"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Rectangle selection and freehand selection are now distinct tools, and the "
-"'rotate' tool now supports any angle and handles horizontal or vertical "
-"flipping."
-msgstr ""
-"Rektangelmarkering och frihandsmarkering är nu olika verktyg, och verktyget "
-"\"Rotera\" stödjer nu alla vinklar och hanterar horisontell eller vertikal "
-"vändning."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
-"been merged into a single, more consistent 'shape' tool, along with 'rounded "
-"rectangle' and 'ellipse'. Their filling options now include various types of "
-"gradients."
-msgstr ""
-"De många verktyg som producerar former (Cirkel, Rektangel, Polygon…), har nu "
-"slagits samman till ett enda, mer konsekvent \"formverktyg\", tillsammans "
-"med \"Rundad rektangel\" och \"Ellips\". Deras fyllningsalternativ "
-"innehåller nu olika typer av övertoningar."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The text tool can now write using most system fonts, thus allowing more "
-"complex characters to be used (e.g. Asian characters)."
-msgstr ""
-"Textverktyget kan nu skriva med de flesta systemteckensnitt, vilket gör att "
-"mer komplexa tecken kan användas (t.ex. asiatiska tecken)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
-"with several types of blur, color inversion, pixelization, saturation and "
-"transparency."
-msgstr ""
-"Mättnadsverktyget har ersatts av\"Filter\", ett mer kraftfullt verktyg med "
-"flera typer av oskärpa, färginversion, pixelering, mättnad och transparens."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A fullscreen mode is now available."
-msgstr "Fullskärmsläge är nu tillgängligt."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The most prominent new feature is the ability to zoom in (or out) on the "
-"image, using the minimap, the touchpad or the mouse wheel."
-msgstr ""
-"Den mest framträdande nya funktionen är möjligheten att zooma in (eller ut) "
-"i bilden, med hjälp av miniatyren, pekplattan eller mushjulet."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -216,7 +155,7 @@ msgstr "Fönstret och dess primära meny"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr "Markeringen och de åtgärder som associeras med den."
+msgstr "Markeringen och de åtgärder som associeras med den"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -227,31 +166,6 @@ msgstr "Zooma i olika figurer"
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
 msgstr "Menyn \"Ny bild\" öppnas"
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Rapportera ett fel"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Genvägar"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hjälp"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Om"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Avsluta"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -288,7 +202,7 @@ msgstr "Bildegenskaper"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/saving_manager.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr "Spara"
 
@@ -306,8 +220,8 @@ msgstr "Spara som…"
 msgid "Export as…"
 msgstr "Exportera som…"
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
 msgstr "Kopiera till urklipp"
 
@@ -334,17 +248,17 @@ msgstr "_Redigera"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr "Ångra"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr "Upprepa"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Bygg om från historiken"
 
@@ -379,6 +293,11 @@ msgstr "Klistra in"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Importera"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Inställningar"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -444,7 +363,7 @@ msgstr "Flik åt vänster"
 msgid "Tab at the right"
 msgstr "Flik åt höger"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Uppdatera"
 
@@ -452,7 +371,11 @@ msgstr "Uppdatera"
 msgid "Fullscreen"
 msgstr "Fullskärm"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "Dölj verktygsfält"
+
+#: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr "Avsluta fullskärm"
 
@@ -487,66 +410,76 @@ msgid "Normal"
 msgstr "Normal"
 
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
-msgstr "Andra lägen"
-
-#. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Raw source color"
-msgstr "Rå källfärg"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Highlight"
 msgstr "Markera"
 
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Mörk text på ljus bakgrund"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Ljus text på mörk bakgrund"
+
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "HSL modes"
+msgstr "HLS-lägen"
+
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Skillnad"
-
-#. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo-oriented modes"
-msgstr "Fotoorienterade lägen"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue only"
 msgstr "Endast nyans"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Saturation only"
 msgstr "Endast mättnad"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue and saturation"
 msgstr "Nyans och mättnad"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
 msgstr "Endast ljusstyrka"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Other modes"
+msgstr "Andra lägen"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Raw source color"
+msgstr "Rå källfärg"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Difference"
+msgstr "Skillnad"
+
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr "Använd inte dessa färger, men…"
-
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr "Oskärpa"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -562,9 +495,8 @@ msgid "Previous tool"
 msgstr "Föregående verktyg"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Andra verktyg"
+msgstr "Aktivt verktyg"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -579,6 +511,10 @@ msgstr "Större bredd"
 msgid "Smaller width"
 msgstr "Mindre bredd"
 
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Felsök markering"
+
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
 msgstr "A_lternativ"
@@ -587,31 +523,62 @@ msgstr "A_lternativ"
 msgid "_Help"
 msgstr "_Hjälp"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Genvägar"
+
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "Report a bug"
+msgstr "Rapportera ett fel"
+
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
 msgstr "Index"
+
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr "Individuella sidor"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
 msgstr "Grundläggande hjälp"
 
-#. Context: open the help page about classic tools
+#: src/ui/app-menus.ui src/ui/minimap.ui
+msgid "Help about zooming"
+msgstr "Hjälp om zoomning"
+
 #: src/ui/app-menus.ui
-msgid "Help about tools"
-msgstr "Hjälp om verktyg"
+msgid "Help about the full-screen mode"
+msgstr "Hjälp om helskärmsläge"
+
+#: src/ui/app-menus.ui
+msgid "Help about classic tools"
+msgstr "Hjälp om klassiska verktyg"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Help about colors"
+msgstr "Hjälp om färger"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
-msgid "Canvas and selection"
-msgstr "Arbetsyta och markering"
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Help about transformation tools"
+msgstr "Hjälp om omvandlingsverktyg"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
 msgstr "Hjälp om markering"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr "Vad nytt"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -625,6 +592,10 @@ msgstr "Öppna"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "Dela bilden"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "100%"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -646,9 +617,17 @@ msgstr "Färg"
 msgid "Use these settings by default"
 msgstr "Använd dessa inställningar som standard"
 
-#: src/ui/minimap.ui
-msgid "100%"
-msgstr "100%"
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "Bilder"
+
+#: src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Verktyg"
+
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "Fönster"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
@@ -663,18 +642,6 @@ msgstr "centimeter"
 #: src/ui/properties.ui
 msgid "inches"
 msgstr "tum"
-
-#: src/ui/preferences.ui
-msgid "Images"
-msgstr "Bilder"
-
-#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Tools"
-msgstr "Verktyg"
-
-#: src/ui/preferences.ui
-msgid "Window"
-msgstr "Fönster"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -723,13 +690,9 @@ msgstr "Allmänt"
 msgid "Main menu"
 msgstr "Huvudmeny"
 
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Växla till fullskärmsläge"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Avsluta fullskärmsläget"
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hjälp"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -752,10 +715,6 @@ msgid "Close the active image"
 msgstr "Stäng den aktiva bilden"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historik"
-
-#: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
 msgstr "Öppna verktygsalternativmeny"
 
@@ -764,18 +723,12 @@ msgid "Back to previous tool"
 msgstr "Tillbaka till föregående verktyg"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Färger"
+msgid "Apply a transformation"
+msgstr "Tillämpa en omvandling"
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Redigera den primära färgen (vänsterklick)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Redigera den sekundära färgen (högerklick)"
+msgid "History"
+msgstr "Historik"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -792,6 +745,20 @@ msgid "Import a file as the selection"
 msgstr "Importera en bildfil till markeringen"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Färger"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Redigera den primära färgen (vänsterklick)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Redigera den sekundära färgen (högerklick)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Flikar"
 
@@ -806,16 +773,16 @@ msgid "Toggle the preview"
 msgstr "Visa/Dölj förhandsgranskningen"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr "Växla mellan fönster- och helskärmsläge"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "Växla verktygsfältens synlighet"
+
+#: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Pekgester"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Felsök markering"
-
-#: src/ui/win-menus.ui
-msgid "Other tools"
-msgstr "Andra verktyg"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -832,6 +799,16 @@ msgid "Redo %s"
 msgstr "Upprepa %s"
 
 #. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr "Försök att spara ett ogiltigt tillstånd"
+
+#: src/history_manager.py
+#, python-format
+msgid "Error: no tool '%s'"
+msgstr "Fel: Inget verktyg \"%s\""
+
+#. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
@@ -844,23 +821,6 @@ msgstr "Kan inte läsa om en fil som aldrig sparats på disk."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Osparad fil"
-
-#: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/tools/utilities_paths.py src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
-msgid "Cancel"
-msgstr "Avbryt"
-
-#. Context: Create a new image
-#: src/new_image_dialog.py
-msgid "Create"
-msgstr "Skapa"
 
 #. Description of a command line option
 #: src/main.py
@@ -911,9 +871,14 @@ msgid "Official webpage"
 msgstr "Officiell webbplats"
 
 #: src/main.py
+msgid "Error opening this file."
+msgstr "Kunde inte öppna den här filen."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
 #, python-format
-msgid "Error opening this file. Did you mean %s ?"
-msgstr "Kunde inte öppna den här filen. Menade du %s ?"
+msgid "Did you mean %s ?"
+msgstr "Menade du %s?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -921,6 +886,23 @@ msgstr "Kunde inte öppna den här filen. Menade du %s ?"
 #, python-format
 msgid "%s%%"
 msgstr "%s%%"
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "Avbryt"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr "Skapa"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -940,7 +922,10 @@ msgstr "Standardhöjd"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Standardfärg"
 
@@ -1031,7 +1016,17 @@ msgstr "Suddgummi"
 msgid "Highlighter"
 msgstr "Markeringspenna"
 
-#: src/preferences.py
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
+msgstr "Pensel"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
 msgstr "Punkter"
 
@@ -1076,6 +1071,22 @@ msgstr "Utvecklingsfunktioner"
 #: src/preferences.py
 msgid "Background color"
 msgstr "Bakgrundsfärg"
+
+#: src/preferences.py
+msgid "Theme variant"
+msgstr "Temavariant"
+
+#: src/preferences.py
+msgid "Default variant"
+msgstr "Standardvariant"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr "Ljus variant"
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr "Mörk variant"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1218,6 +1229,15 @@ msgstr "Du kan spara bilden som en PNG-fil, eller ersätta transparens med:"
 msgid "Replace transparency with:"
 msgstr "Ersätt transparens med:"
 
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr "Markeringens pixbuffert är tom."
+
+#: src/selection_manager.py
+msgid "The selection path is empty."
+msgstr "Markeringens sökväg är tom."
+
 #: src/utilities.py
 msgid "Transparent"
 msgstr "Transparent"
@@ -1317,6 +1337,41 @@ msgstr "procent"
 msgid "degrees"
 msgstr "grader"
 
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s är ingen bild."
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "WEBP-bilder kan inte läsas av det här programmet."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Trots namnet, så är %s en WEBP-fil."
+
+#. Context: %s is the version number of the app
+#: src/window.py
+#, python-format
+msgid ""
+"It's the first time you use Drawing %s, would you like to read what's new?"
+msgstr ""
+"Det är första gången du använder Drawing %s, vill du läsa vad som är nytt?"
+
+#: src/window.py
+msgid "No"
+msgstr "Nej"
+
+#: src/window.py
+msgid "Later"
+msgstr "Senare"
+
+#: src/window.py
+msgid "Yes"
+msgstr "Ja"
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1324,30 +1379,41 @@ msgid "Failed to load tool: %s"
 msgstr "Kunde inte läsa in verktyg: %s"
 
 #: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "Urklipp innehåller ingen bild."
+
+#: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Ändringarna tillämpas i nästa nya fönster."
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Inga alternativ"
 
 #: src/window.py
-msgid "Opened images"
-msgstr "Öppna bilder"
+msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgstr ""
+"Klicka på mushjulet, tryck med 3 fingrar eller tryck F8 för att visa/dölja "
+"kontroller."
+
+#: src/window.py
+msgid "Press F11 to exit fullscreen."
+msgstr "Tryck F11 för att avsluta fullskärm."
 
 #: src/window.py
 #, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Fel: Ogiltig panel för \"%s\". Rapportera felet."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"Kunde inte läsa in undre panelen för verktyget \"%s\". Rapportera gärna "
+"felet."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
 msgstr "Läser in %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Ny flik"
@@ -1395,38 +1461,22 @@ msgstr "Importera en bild"
 msgid "Required tool is not available"
 msgstr "Det erforderliga verktyget är inte tillgängligt"
 
-#. Context: an error message
-#: src/tools/abstract_tool.py
-#, python-brace-format
-msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr "Kan inte starta åtgärden: Fel verktygs-ID (förväntade {0}, fick {1})"
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "Fortsätt"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Området verkar dåligt avgränsat, eller är väldigt komplext."
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Denna algoritm kanske inte kan hantera det önskade området."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
-
-#. Context: fill a shape with the color of the left click
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Highlight (dark)"
+msgstr "Framhäv (mörk)"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "Primär färg"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Sekundär färg"
 
@@ -1435,8 +1485,8 @@ msgid "Tool size"
 msgstr "Verktygsstorlek"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-filters.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Förhandsgranska"
 
@@ -1457,9 +1507,25 @@ msgid "Use this editor by default"
 msgstr "Använd denna redigerare som standard"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Fler åtgärder"
+msgid "Selection options"
+msgstr "Markeringsalternativ"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
+msgid "Replace with…"
+msgstr "Ersätt med…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Transparens"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "Extrahera från den här färgen"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
@@ -1480,85 +1546,10 @@ msgstr "Fler alternativ"
 msgid "Expand with…"
 msgstr "Expandera med…"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
-msgid "Transparency"
-msgstr "Transparens"
-
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
 msgstr "Välj ett filter…"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "Mättnad"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr "Oskärperadie"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Change saturation"
-msgstr "Ändra mättnad"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr "Slöja"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Add transparency"
-msgstr "Lägg till transparens"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr "Invertera färger"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr "Oskärpa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr "Snabb oskärpa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr "Långsam oskärpa"
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelisering"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Blur direction"
-msgstr "Oskärpans riktning"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Horisontellt"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Vertikalt"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "No direction"
-msgstr "Ingen riktning"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1567,6 +1558,10 @@ msgstr "Vinkel (grader)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Vinkel"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "More actions"
+msgstr "Fler åtgärder"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1615,6 +1610,32 @@ msgstr "Horisontell deformation"
 msgid "Vertical deformation"
 msgstr "Vertikal deformation"
 
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr "Kan inte starta åtgärden: Fel verktygs-ID (förväntade {0}, fick {1})"
+
+#: src/tools/utilities_paths.py
+msgid "Continue"
+msgstr "Fortsätt"
+
+#: src/tools/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Området verkar dåligt avgränsat, eller är väldigt komplext."
+
+#: src/tools/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Denna algoritm kanske inte kan hantera det önskade området."
+
+#: src/tools/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Vill du avbryta åtgärden eller låta verktyget kämpa?"
+
+#: src/tools/ui/selection.ui
+msgid "Transform"
+msgstr "Omvandla"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1630,58 +1651,183 @@ msgstr "Rund"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Kvadrat"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Pil"
+msgstr "Ingen pil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Enkel pil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Streckad pil"
+msgstr "Dubbelpil"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Streckad"
+msgstr "Inga streck"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Streckad"
+msgstr "Enkla streck"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Streckad"
+msgstr "Långa streck"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Streckad"
+msgstr "Korta streck"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Varierande streck"
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Kantutjämning"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
+msgid "Simple brush"
+msgstr "Enkel pensel"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Airbrush"
+msgstr "Airbrush"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
+msgid "Hairy brush"
+msgstr "Hårig pensel"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+msgid "Calligraphic nib"
+msgstr "Kalligrafisk spets"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr "Högerhandsspets"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Vertical nib"
+msgstr "Vertikal spets"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr "Vänsterhandsspets"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Horizontal nib"
+msgstr "Horisontell spets"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Penna"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rektangel"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Blur"
+msgstr "Oskärpa"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle pixels"
+msgstr "Blanda pixlar"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle and blur"
+msgstr "Blandning och oskärpa"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Mosaic"
+msgstr "Mosaik"
+
+#: src/tools/ui/tool-eraser.ui
+msgid "Solid color"
+msgstr "Solid färg"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Active filter"
+msgstr "Aktivt filter"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "Ändra mättnad"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "Slöja"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "Lägg till transparens"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr "Öka kontrasten"
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "Oskärpa"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "Snabb oskärpa"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "Långsam oskärpa"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pixelisering"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "Oskärpans riktning"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "Horisontellt"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "Vertikalt"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "Ingen riktning"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Invertera färger"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1722,6 +1868,43 @@ msgstr "Hela bilden"
 msgid "Remove color"
 msgstr "Ta bort färg"
 
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr "Punkttyp"
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "Cirkel"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr "Kryss"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr "X-formade kors"
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr "Inkludera ett nummer"
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr "Nästa nummer"
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr "Återställ nummer"
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr "Minska nummer"
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr "Öka nummer"
+
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
 msgstr "Solid kontur"
@@ -1730,7 +1913,6 @@ msgstr "Solid kontur"
 msgid "Dashed outline"
 msgstr "Streckad kontur"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Ingen kontur"
@@ -1756,10 +1938,6 @@ msgid "Radial gradient"
 msgstr "Radiell toning"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Rektangel"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Rundad rektangel"
 
@@ -1774,10 +1952,6 @@ msgstr "Polygon"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Free shape"
 msgstr "Fri figur"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Circle"
-msgstr "Cirkel"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
@@ -1828,21 +2002,6 @@ msgstr "Kontur"
 msgid "Rectangle background"
 msgstr "Rektangelbakgrund"
 
-#: src/tools/ui/selection.ui
-msgid "Transform"
-msgstr "Omvandla"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Vänd"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Snedställ"
-
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Kurva"
@@ -1864,13 +2023,13 @@ msgstr "Pil"
 msgid "Dashed"
 msgstr "Streckad"
 
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Dark text on light background"
-msgstr "Mörk text på ljus bakgrund"
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush options"
+msgstr "Penselalternativ"
 
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr "Ljus text på mörk bakgrund"
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Eraser options"
+msgstr "Raderingsalternativ"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -1894,15 +2053,20 @@ msgstr "Klicka på ett område för att byta ut färgen mot transparens"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
-msgstr "Klicka på arbetsytan för att färgsätta den."
-
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Penna"
+msgstr "Klicka på arbetsytan för att färgsätta den"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Pennalternativ"
+
+#: src/tools/classic_tools/tool_points.py
+msgid "Points options"
+msgstr "Punktalternativ"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr "Nästa nummer: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -1912,6 +2076,16 @@ msgstr "Figur"
 msgid "Shape options"
 msgstr "Figuralternativ"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Fylld med primär färg"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Fylld med sekundär färg"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
 msgstr "Klicka på figurens första punkt för att stänga den."
@@ -1920,10 +2094,31 @@ msgstr "Klicka på figurens första punkt för att stänga den."
 msgid "Text"
 msgstr "Text"
 
-#. XXX use "text options" instead
 #: src/tools/classic_tools/tool_text.py
-msgid "Font options"
-msgstr "Teckensnittsalternativ"
+msgid "Text options"
+msgstr "Textalternativ"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the stylus pressure"
+msgstr "Densiteten beror på trycket på pennan"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the mouse speed"
+msgstr "Densiteten beror på musens hastighet"
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr "Bredden beror på trycket på pennan"
+
+#: src/tools/classic_tools/brushes/brush_nip.py
+msgid "Width depends on the line orientation"
+msgstr "Bredden beror på linjens orientering"
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr "Bredden beror på musens hastighet"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -1953,6 +2148,11 @@ msgstr "Beskär arbetsytan"
 msgid "Click on the image to preview the selected filter"
 msgstr "Klicka på bilden för att granska det valda filtret"
 
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "Relief"
+
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Roterar markering"
@@ -1969,26 +2169,61 @@ msgstr "Skalar markering"
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
 
-#~ msgid "Thin"
-#~ msgstr "Tunn"
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Snedställ"
 
-#~ msgid "The thumbnail preview, showing various shapes zoomed in"
-#~ msgstr "Miniatyrförhandsvisning, visande diverse inzoomade figurer"
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Oskärperadie"
 
-#~ msgid "The \"new image\" menu opened while the selection is being scaled up"
-#~ msgstr "Menyn \"Ny bild\" öppnad medan markeringen skalas upp"
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Mättnad"
 
-#~ msgid "Clipping"
-#~ msgstr "Klippning"
+#~ msgid ""
+#~ "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
+#~ "screen size, and could disappear under certain conditions."
+#~ msgstr ""
+#~ "Bland de roliga buggarna: De undre panelerna vägrade ibland att anpassa "
+#~ "sig till skärmstorleken, och kunde försvinna under vissa förhållanden."
+
+#~ msgid ""
+#~ "The catastrophic \"print\" action, that no one ever used so no one ever "
+#~ "noticed, is now somewhat usable."
+#~ msgstr ""
+#~ "Den katastrofala funktionen \"utskrift\", som ingen någonsin använt och "
+#~ "därför inte lagt märke till, är nu något mer användbar."
+
+#~ msgid "Photo-oriented modes"
+#~ msgstr "Fotoorienterade lägen"
+
+#~ msgid "Canvas and selection"
+#~ msgstr "Arbetsyta och markering"
+
+#~ msgid "com.github.maoschanz.drawing"
+#~ msgstr "com.github.maoschanz.drawing"
+
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Quit"
+#~ msgstr "Avsluta"
+
+#~ msgid "Exit fullscreen mode"
+#~ msgstr "Avsluta fullskärmsläget"
+
+#~ msgid "Other tools"
+#~ msgstr "Andra verktyg"
 
 #~ msgid "Edit"
 #~ msgstr "Redigera"
 
 #~ msgid "Open a file"
 #~ msgstr "Öppna en fil"
-
-#~ msgid "Save as"
-#~ msgstr "Spara som"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tangentbord"

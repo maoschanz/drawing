@@ -1,6 +1,6 @@
 # selection_manager.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ class DrSelectionManager():
 		self.selection_path = None
 		self.is_active = False
 
-	def load_from_path(self, new_path):
+	def load_from_path(self, new_path, rgba=None):
 		"""Create a selection_pixbuf from a minimal part of the main surface by
 		erasing everything outside of the provided path."""
 		if new_path is None:
@@ -94,6 +94,10 @@ class DrSelectionManager():
 			pixbuf = Gdk.pixbuf_get_from_surface(surface, int(xmin), int(ymin),\
 			                                  selection_width, selection_height)
 			if pixbuf is not None:
+				if rgba is not None and rgba[3] > 0.0:
+					pixbuf = pixbuf.add_alpha(True, int(rgba[0] * 255), \
+					                                int(rgba[1] * 255), \
+					                                int(rgba[2] * 255))
 				self.selection_pixbuf = pixbuf
 			# can't use `set_pixbuf` here ^ because it would replace the free
 			# path with a rectangle path
@@ -154,6 +158,18 @@ class DrSelectionManager():
 		h = self.selection_pixbuf.get_height()
 		return self.selection_x + w / 2, self.selection_y + h / 2
 
+	def point_is_in_selection(self, tested_x, tested_y):
+		"""Returns a boolean if the point whose coordinates are "(tested_x,
+		tested_y)" is in the path defining the selection. If such path doesn't
+		exist, it returns None."""
+		if not self.is_active:
+			return True # shouldn't happen
+		scrolled_path = self.get_path_with_scroll(self.image.scroll_x, self.image.scroll_y)
+		cairo_context = self._get_context()
+		cairo_context.new_path()
+		cairo_context.append_path(scrolled_path)
+		return cairo_context.in_fill(tested_x, tested_y)
+
 	############################################################################
 
 	def _create_path_from_pixbuf(self):
@@ -175,18 +191,6 @@ class DrSelectionManager():
 		self.selection_path = cairo_context.copy_path()
 		self.hide_popovers()
 		self.image.update_actions_state()
-
-	def point_is_in_selection(self, tested_x, tested_y):
-		"""Returns a boolean if the point whose coordinates are "(tested_x,
-		tested_y)" is in the path defining the selection. If such path doesn't
-		exist, it returns None."""
-		if not self.is_active:
-			return True # shouldn't happen
-		scrolled_path = self.get_path_with_scroll(self.image.scroll_x, self.image.scroll_y)
-		cairo_context = self._get_context()
-		cairo_context.new_path()
-		cairo_context.append_path(scrolled_path)
-		return cairo_context.in_fill(tested_x, tested_y)
 
 	def _get_context(self):
 		return cairo.Context(self.image.surface)
@@ -240,8 +244,21 @@ class DrSelectionManager():
 	def get_future_coords(self):
 		return self._future_x, self._future_y
 
-	def set_future_path(self, path):
+	def set_future_path(self, path, resync_coords):
 		self._future_path = path
+
+		if not resync_coords:
+			return
+		# Convert selection manager's future_path coords from absolute to
+		# relative ones, and sets future coords accordingly.
+		main_width = self.image.main_pixbuf.get_width()
+		main_height = self.image.main_pixbuf.get_height()
+		xmin, ymin = main_width, main_height # TODO context.path_extents() ?
+		for pts in self._future_path:
+			if pts[1] != ():
+				xmin = min(pts[1][0], xmin)
+				ymin = min(pts[1][1], ymin)
+		self.set_future_coords(max(xmin, 0.0), max(ymin, 0.0))
 
 	def get_future_path(self):
 		return self._future_path

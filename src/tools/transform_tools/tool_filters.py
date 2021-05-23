@@ -1,6 +1,6 @@
 # tool_filters.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,8 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, Gio
 from .abstract_transform_tool import AbstractCanvasTool
+from .filter_blur import FilterBlur
+from .filter_colors import FilterColors
+from .filter_contrast import FilterContrast
+from .filter_emboss import FilterEmboss
+from .filter_saturation import FilterSaturation
+from .filter_transparency import FilterTransparency
+from .filter_veil import FilterVeil
 from .optionsbar_filters import OptionsBarFilters
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
@@ -28,10 +35,25 @@ class ToolFilters(AbstractCanvasTool):
 		super().__init__('filters', _("Filters"), 'tool-filters-symbolic', window)
 		self.cursor_name = 'pointer'
 		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
+
 		self.add_tool_action_enum('filters_type', 'saturation')
+		self.type_label = _("Change saturation")
+		self._active_filter = 'saturation'
+
+		# Options specific to filters, but which are here for no good reason
 		self.add_tool_action_enum('filters_blur_dir', 'none')
-		self.blur_direction = BlurDirection.BOTH
-		self._reset_type_values()
+		self.blur_algo = BlurType.INVALID
+
+		# Initialisation of the filters
+		self._all_filters = {
+			'blur': FilterBlur('blur', self),
+			'colors': FilterColors('colors', self),
+			'contrast': FilterContrast('contrast', self),
+			'emboss': FilterEmboss('emboss', self),
+			'saturation': FilterSaturation('saturation', self),
+			'transparency': FilterTransparency('transparency', self),
+			'veil': FilterVeil('veil', self),
+		}
 
 	def try_build_pane(self):
 		self.pane_id = 'filters'
@@ -43,67 +65,74 @@ class ToolFilters(AbstractCanvasTool):
 		self.bar.menu_btn.connect('notify::active', self._set_blur_direction)
 		return self.bar
 
+	def get_max_filter_width(self):
+		width = 0
+		for f in self._all_filters.values():
+			width = max(f.get_preferred_minimum_width(), width)
+		return width
+
+	def set_filters_compact(self, is_compact):
+		for f_id, f in self._all_filters.items():
+			f.set_filter_compact(f_id == self._active_filter, is_compact)
+
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
 		return self.type_label + ' - ' + tip_label
 
+	def get_filters_menu(self):
+		"""Returns the Gio.MenuModel with the list of filters and some of their
+		options, for the optionsbar."""
+		model = self.get_options_model().get_item_link(0, Gio.MENU_LINK_SECTION)
+		return model.get_item_link(0, Gio.MENU_LINK_SUBMENU)
+
 	############################################################################
 
-	def _reset_type_values(self):
-		self.blur_algo = BlurType.INVALID
-		# The active filter is memorized using individual booleans because they
-		# make it easier to write conditionals, concerning both the panel and
-		# the tool operation.
-		self.saturate = False
-		self.pixelate = False
-		self.invert = False
-		self.transparency = False
-
 	def _set_blur_direction(self, *args):
-		state_as_string = self.get_option_value('filters_blur_dir')
-		if state_as_string == 'none':
-			self.blur_direction = BlurDirection.BOTH
-		elif state_as_string == 'horizontal':
-			self.blur_direction = BlurDirection.HORIZONTAL
-		elif state_as_string == 'vertical':
-			self.blur_direction = BlurDirection.VERTICAL
+		self._all_filters['blur'].set_attributes_values()
 
 	def _set_active_type(self, *args):
 		state_as_string = self.get_option_value('filters_type')
-		self._reset_type_values()
+
+		self.blur_algo = BlurType.INVALID
 		if state_as_string == 'blur_fast':
 			self.blur_algo = BlurType.CAIRO_REPAINTS
 			self.type_label =  _("Fast blur")
+			self._active_filter = 'blur'
 		elif state_as_string == 'blur_slow':
 			self.blur_algo = BlurType.PX_BOX
 			self.type_label = _("Slow blur")
+			self._active_filter = 'blur'
 		elif state_as_string == 'tiles':
 			self.blur_algo = BlurType.TILES
 			self.type_label = _("Pixelization")
+			self._active_filter = 'blur'
+
 		elif state_as_string == 'saturation':
-			self.saturate = True
 			self.type_label = _("Change saturation")
+			self._active_filter = 'saturation'
 		elif state_as_string == 'veil':
-			self.pixelate = True
 			self.type_label = _("Veil")
+			self._active_filter = 'veil'
+
+		elif state_as_string == 'contrast':
+			self.type_label = _("Increase contrast")
+			self._active_filter = 'contrast'
+		# TODO changer la luminosity tant qu'à faire
+		elif state_as_string == 'emboss':
+			# Context: a filter. See "image embossing" on wikipedia
+			self.type_label = _("Emboss")
+			self._active_filter = 'emboss'
+
 		elif state_as_string == 'invert':
-			self.invert = True
 			self.type_label = _("Invert colors")
+			self._active_filter = 'colors'
+
 		elif state_as_string == 'transparency':
-			self.transparency = True
 			self.type_label = _("Add transparency")
+			self._active_filter = 'transparency'
 		else:
 			self.type_label = _("Select a filter…")
 		self.bar.on_filter_changed()
-
-	def _get_saturation(self, *args):
-		return self.bar.sat_btn.get_value()/100
-
-	def _get_transparency(self, *args):
-		return self.bar.tspc_btn.get_value()/100
-
-	def _get_blur_radius(self, *args):
-		return self.bar.blur_btn.get_value_as_int()
 
 	############################################################################
 
@@ -133,48 +162,10 @@ class ToolFilters(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': 0,
 			'local_dy': 0,
-			'saturation': self._get_saturation(),
-			'radius': self._get_blur_radius(),
-			'pixelate': self.pixelate,
-			'invert': self.invert,
-			'saturate': self.saturate,
-			'use_transparency': self.transparency,
-			'transpercent': self._get_transparency(),
-			'blur_algo': self.blur_algo,
-			'blur_direction': self.blur_direction
+			'filter_id': self._active_filter
 		}
-		return operation
-
-	def op_invert_color(self, source_pixbuf):
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		cairo_context = cairo.Context(surface)
-		cairo_context.set_operator(cairo.Operator.DIFFERENCE)
-		cairo_context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
-		cairo_context.paint()
-		new_pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, \
-		                              surface.get_width(), surface.get_height())
-		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	def op_transparency(self, source_pixbuf, percent):
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		surface.set_device_scale(self.scale_factor(), self.scale_factor())
-		width = source_pixbuf.get_width()
-		height = source_pixbuf.get_height()
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		cairo_context = cairo.Context(new_surface)
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		cairo_context.set_source_surface(surface)
-		cairo_context.paint_with_alpha(1.0 - percent)
-		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
-		                      new_surface.get_width(), new_surface.get_height())
-		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	def op_blur(self, source_pixbuf, blur_algo, blur_direction, radius):
-		surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		surface.set_device_scale(self.scale_factor(), self.scale_factor())
-		bs = utilities_blur_surface(surface, radius, blur_algo, blur_direction)
-		bp = Gdk.pixbuf_get_from_surface(bs, 0, 0, bs.get_width(), bs.get_height())
-		self.get_image().set_temp_pixbuf(bp)
+		options = self._all_filters[self._active_filter].build_filter_op()
+		return {**operation, **options}
 
 	def do_tool_operation(self, operation):
 		self.start_tool_operation(operation)
@@ -183,23 +174,8 @@ class ToolFilters(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 
-		blur_algo = operation['blur_algo']
-		if blur_algo != BlurType.INVALID:
-			blur_radius = operation['radius']
-			blur_direction = operation['blur_direction']
-			self.op_blur(source_pixbuf, blur_algo, blur_direction, blur_radius)
-		elif operation['use_transparency']:
-			percent = operation['transpercent']
-			self.op_transparency(source_pixbuf, percent)
-		elif operation['invert']:
-			self.op_invert_color(source_pixbuf)
-		else:
-			self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-			temp = self.get_image().temp_pixbuf
-			if operation['saturate']:
-				source_pixbuf.saturate_and_pixelate(temp, operation['saturation'], False)
-			elif operation['pixelate']:
-				source_pixbuf.saturate_and_pixelate(temp, 1, True)
+		active_filter = self._all_filters[operation['filter_id']]
+		active_filter.do_filter_operation(source_pixbuf, operation)
 
 		self.common_end_operation(operation)
 

@@ -10,7 +10,7 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Opening and saving files.</desc>
+    <desc>Creating, opening and saving files.</desc>
   </info>
 
   <title>Basic features</title>
@@ -28,8 +28,8 @@
     <title>The "Open" button</title>
 
     <p>Open a picture file from your documents.</p>
-    <p>If the window size is too small to display its button, the
-    <gui style="button">Open</gui> button is available in the primary menu.</p>
+    <p>If the window size is too small to display the <gui style="button">Open</gui>
+    button, it's available in the primary menu.</p>
   </section>
 
   <section>
@@ -74,7 +74,7 @@
         <p>See the pictures properties, such as its size and colorspace.</p>
       </item>
       <item>
-        <p>Enable the fullscreen mode.</p>
+        <p>Enable the <link xref="fullscreen">fullscreen mode</link>.</p>
       </item>
       <item>
         <p>Export the image or save it as a new file. Both options don't overwrite
@@ -84,6 +84,10 @@
       </item>
       <item>
         <p>Print the picture.</p>
+      </item>
+      <item>
+        <p>Copy the picture to the clipboard, for example to share it with an
+        other app.</p>
       </item>
       <item>
         <p>Show tools names. Edit <link xref="preferences">preferences</link>.</p>
@@ -109,7 +113,7 @@
       <item>
         <p>Finally, <link xref="tools_transform">some tools</link> can transform
         either the selection or the entire canvas. This includes cropping,
-        rotating, scaling, or applying a filter.</p>
+        rotating or flipping, scaling, or applying a filter.</p>
       </item>
     </list>
     <p>With the related buttons in the header of the window, you can
@@ -118,18 +122,8 @@
     <p>In the bottom bar, each tool can provide various options and actions.</p>
   </section>
 
-  <section>
-    <title>Zoom and thumbnail preview</title>
-
-    <p>Also in the bottom bar, the <gui style="button">Preview</gui> button
-    (available with <link xref="tools_classic">most tools</link>) displays the
-    current zoom level.</p>
-    <p>Clicking on this button opens a menu with a thumbnail of the full picture
-    you're editing, along with zoom level controls.</p>
-
-    <media type="image" mime="image/png" width="80%" its:translate="no"
-           src="figures/screenshot_zoom.png" />
-  </section>
+  <p>See also <link xref="zoom_preview">this page about adjusting the zoom level
+  </link> of the image.</p>
 
 </page>
 

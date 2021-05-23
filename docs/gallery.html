@@ -2,6 +2,7 @@
   <head>
     <title>Drawing - screenshots gallery</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,width=device-width" />
     <link rel="stylesheet" href="example.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
   </head>
@@ -36,73 +37,74 @@
       </div>
     </header>
     <main class="main">
-      <h2>Screenshots</h2>
-      <!-- <p>Warning: the following gallery includes screenshots from unstable -->
-      <!-- and unreleased versions.</p> -->
+      <h3>Screenshots gallery</h3>
+      <hr />
 
-      <h3>GNOME and Budgie</h3><!-- **************************************** -->
+      <h2>GNOME and Budgie</h2><!-- **************************************** -->
 
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
-               src="screenshots/0.6/gnome_menu.png" />
-          <p>The primary menu opened (version 0.6.0)</p>
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.8/gnome_menu.png" />
+          <p>The primary menu opened (version 0.8.0)</p>
         </div>
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
-               src="screenshots/0.6/gnome_selection.png" />
-          <p>The "selection" tool and its menu (version 0.6.0)</p>
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.8/gnome_selection.png" />
+          <p>The "selection" tool and its menu (version 0.8.0)</p>
         </div>
       </div>
 
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
+          <img alt="screenshot" class="zoomable-img-100"
                src="screenshots/0.6/gnome_new.png" />
           <p>The "new image" menu opened while the selection is being scaled up (version 0.6.0)</p>
         </div>
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
+          <img alt="screenshot" class="zoomable-img-100"
                src="screenshots/0.6/gnome_tools_preview.png" />
-          <p>The thumbnail preview, showing various shapes zoomed in (version 0.6.0)</p>
+          <p>The thumbnail preview, showing various shapes (version 0.6.0)</p>
         </div>
       </div>
 
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
-               src="screenshots/0.4/gnome_zoom_selection.png" />
-          <p>Zooming on the image (version 0.5.3-unstable)</p>
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.8/gnome_zoom_preview.png" />
+          <p>Zooming on the image (version 0.8.0)</p>
         </div>
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
-               src="screenshots/0.4/gnome_saturate.png" />
-          <p>Change the saturation (version 0.4.8)</p>
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.8/gnome_saturate.png" />
+          <p>Change the saturation (version 0.8.0)</p>
         </div>
       </div>
 
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
-               src="screenshots/0.4/gnome_colors.png" />
-          <p>Select a color (version 0.4.7)</p>
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.8/gnome_colors.png" />
+          <p>Select a color (version 0.8.0)</p>
         </div>
         <div class="col50">
-          <img alt="screenshot" style="width:100%"
+          <img alt="screenshot" class="zoomable-img-100"
                src="screenshots/0.4/gnome_text.png" />
           <p>Add text to a picture (version 0.4.1)</p>
         </div>
       </div>
 
-      <h3>Traditional-looking environments</h3><!-- ************************ -->
+      <h2>Traditional-looking environments</h2><!-- ************************ -->
 
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" src="screenshots/0.6/plasma_global.png" style="width:100%" />
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.6/plasma_global.png" />
           <p>Integration with KDE Plasma global menu-bar (version 0.6.1)</p>
         </div>
         <div class="col50">
-          <img alt="screenshot" src="screenshots/0.4/cinnamon.png" style="width:100%" />
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.4/cinnamon.png" />
           <p>Both the menubar and the toolbar (version 0.4.8)</p>
         </div>
       </div>
@@ -111,47 +113,53 @@
       environment, but you can change that in the app preferences.</p>
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" src="screenshots/0.4/mate_scale.png" style="width:100%" />
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.4/mate_scale.png" />
           <p>Scaling the picture, with the menubar and the toolbar with colorful
           icons (version 0.4.7)</p>
         </div>
         <div class="col50">
-          <!-- XXX incorrect proportions -->
-          <img alt="screenshot" src="screenshots/0.6/cinnamon_scale.png" style="width:100%" />
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.6/cinnamon_scale.png" />
           <p>Toolbar only, scaling the picture on Cinnamon (version 0.6.0)</p>
         </div>
       </div>
 
-      <h3>elementaryOS</h3><!-- ******************************************** -->
+      <h2>elementaryOS</h2><!-- ******************************************** -->
 
       <div class="responsive-row">
         <div class="col50">
-          <img alt="screenshot" src="screenshots/0.6/elementary_save_as.png" style="width:100%" />
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.6/elementary_save_as.png" />
           <p>The elementaryOS design guidelines (version 0.6.0)</p>
         </div>
         <div class="col50">
-          <img alt="screenshot" src="screenshots/0.4/elementary_labels.png" style="width:100%" />
-          <p>Using the primary menu to show the tools names (version 0.4.8)</p>
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.8/elementary_labels.png" />
+          <p>Using the primary menu to show the tools names (version 0.8.0)</p>
         </div>
       </div>
 
-      <h3>Linux smartphones</h3><!-- *************************************** -->
+      <h2>Linux smartphones</h2><!-- *************************************** -->
       <div class="responsive-row">
         <div class="col33">
           <p>With the default "GNOME" layout, the window can fit in the narrow
           screen of a smartphone such as Purism's Librem 5 or the PinePhone.</p>
-          <!-- <hr /> -->
-          <!-- <p>Here is a <a href="https://www.youtube.com/watch?v=xwfDnPd5NDU"> -->
-          <!-- youtube screencast</a> on the librem5 devkit (version 0.2).</p> -->
+          <hr />
+          <p>Here is a <a href="https://puri.sm/posts/app-showcase-drawing/">
+          video showcase</a> of a few features (from version 0.6.5), using the
+          Librem 5.</p>
         </div>
         <div class="col33">
-          <img alt="screenshot" src="screenshots/0.6/librem_menu.png" style="width:100%" />
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.6/librem_menu.png" />
           <p>When features can't fit in the headerbar, they are available from
           the primary menu (version 0.6.0)</p>
         </div>
         <div class="col33">
-          <img alt="screenshot" src="screenshots/0.4/librem_options.png" style="width:100%" />
-          <p>Pencil options menu  on a window resized to fit a Librem 5 screen.
+          <img alt="screenshot" class="zoomable-img-100"
+               src="screenshots/0.4/librem_options.png" />
+          <p>Pencil options menu in a window resized to fit a Librem 5 screen.
           (version 0.4.7)</p>
         </div>
       </div>

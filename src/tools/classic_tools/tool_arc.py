@@ -1,6 +1,6 @@
 # tool_arc.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y, True)
+		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
@@ -103,16 +103,15 @@ class ToolArc(AbstractClassicTool):
 			self._1st_segment = None
 
 		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y, False)
+		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
 
 	############################################################################
 
-	def build_operation(self, event_x, event_y, is_preview):
+	def build_operation(self, event_x, event_y):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'is_preview': is_preview,
 			'antialias': self._use_antialias,
 			'operator': self._operator,
 			'line_width': self.tool_width,
@@ -129,10 +128,13 @@ class ToolArc(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
-		line_width = operation['line_width']
-		cairo_context.set_line_width(line_width)
+
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_operator(operation['operator'])
+
+		line_width = operation['line_width']
+		cairo_context.set_line_width(line_width)
 		self.set_dashes_and_cap(cairo_context, line_width, \
 		                        operation['dashes_type'], operation['line_cap'])
 
@@ -156,8 +158,7 @@ class ToolArc(AbstractClassicTool):
 			y2 = operation['y_release']
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
-		self.stroke_with_operator(operation['operator'], cairo_context, \
-		                                    line_width, operation['is_preview'])
+		cairo_context.stroke()
 
 	############################################################################
 ################################################################################

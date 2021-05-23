@@ -10,126 +10,40 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Draw with simple tools</desc>
+    <desc>Draw with simple tools.</desc>
   </info>
 
   <title>Classic tools</title>
 
   <p>Draw on the image with the color and options you selected!</p>
 
-  <section>
-    <title>Color and size</title>
+  <p>When you use a classic drawing tool, the options are located at the left of
+  the bottom bar: there are two colors, the tool size, and a menu (whose content
+  changes depending on the tool).</p>
+  <p>To better understand the options when you change the colors, see
+  <link xref="tools_classic_colors">the explanations on this page</link>.</p>
 
-    <p>The options for the tool you're using are located at the right of the
-    bottom bar: there are two colors, the tool size, and a menu (whose content
-    changes depending on the tool).</p>
-    <p>The color of the left button corresponds to the left click, and is
-    labeled "Main color", while the color at the right is the "Secondary color".
-    Click on these buttons to change their respective colors:</p>
-
-    <table rules="colgroups">
-      <!-- Unusual width because the pics are in a table, side-by-side, with -->
-      <!-- different aspect ratios. -->
-      <tr>
-        <td>
-          <media type="image" mime="image/png" width="100%" its:translate="no"
-                 src="figures/screenshot_color_palette.png" />
-        </td>
-        <td>
-          <media type="image" mime="image/png" width="60%" its:translate="no"
-                 src="figures/screenshot_color_editor.png" />
-        </td>
-      </tr>
-    </table>
-
-    <note style="tip">
-      <p>If the exact color you want isn't listed in the palette (picture at the
-      left), click the <gui style="button">+</gui> button to use the color
-      editor (picture at the right).</p>
-    </note>
-
-    <p><em>With compatible tools</em>, you can select at the top of the palette
-    the way the color will be applied to the image:</p>
+  <section id="basic-draw">
+    <title>Basic lines</title>
     <list>
       <item>
-        <p>Normal: the selected color is added over the existing image. If your
-        color is semi-transparent yellow and your image is opaque blue, the
-        resulting pixels would be opaque green.</p>
-      </item>
-      <item>
-        <p>Raw source color: the selected color replaces the pixels where it's
-        applied. If your color is semi-transparent yellow, the resulting pixels
-        would be semi-transparent yellow.</p>
-      </item>
-      <item>
-        <p>Highlight: the selected color is added to the lighter pixels only,
-        which highlights dark text on light background.</p>
-      </item>
-      <item>
-        <p>Difference: the resulting color is the difference between the
-        selected color and the existing pixels.</p>
-      </item>
-      <item>
-        <p>Photo-oriented mode: these options don't make much sense when you're
-        drawing something, but they can help you when editing photos.</p>
-        <note style="advanced">
-          <p>The idea is to apply <em>only</em> a dimension of the current color
-          in the hue-saturation-luminosity representation, and not the other
-          ones.</p>
-        </note>
-        <p>For example, you can draw with a red hue but not affect the
-        luminosity of the existing pixels; or draw with a light luminosity but
-        not affect the hue of the existing pixels.</p>
-        <media type="image" mime="image/png" width="80%" its:translate="no"
-               src="figures/screenshot_hsl.png" />
-      </item>
-      <item>
-        <p>Blur: blurs the hovered pixels regardless of the selected color. The
-        quality of this blur is far behind the blurring you can get using the
-        <link xref="tools_transform#filters">"Filters" tool</link>.</p>
-      </item>
-      <item>
-        <p>Erase: deletes any color where the tool is applied.</p>
-        <note style="tip">
-          <p>The same result can be achieved used the <link xref="preferences#tools">
-          optional</link> <gui style="menuitem">Eraser</gui> tool.</p>
-        </note>
-      </item>
-    </list>
-    <note style="warning">
-      <p>Not all tools are compatible with these color application modes!</p>
-    </note>
-
-    <p>An <link xref="preferences#tools">optional</link> <gui style="button">
-    Color Picker</gui> tool can also help you to select a color.
-    While the color picker from within the color editor can select a RGB color
-    anywhere on the screen, the <gui style="menuitem">Color Picker</gui> tool
-    support translucent colors but only works for pixels from the image.</p>
-  </section>
-
-  <section>
-    <title>Draw things</title>
-
-    <p>Aside of the colors, most options for these tools concern the ends of the
-    line: it can be thin, rounded or square. You can also draw dashed lines.</p>
-    <list>
-      <item>
-        <p>Pencil: The pencil draws following the pointer, and according to the
-        chosen color.</p>
+        <p>Pencil: The pencil draws following the mouse pointer, and according
+        to the chosen color.</p>
         <note style="tip">
           <p>Using the "eraser" mode from the color menu, the pencil can delete
           all existing colors. Using the "highlight" mode and a semi-transparent
           color, it can also highlight text. For this reason, the two next tools
-          are <link xref="preferences#tools">disabled by default</link>.</p>
+          are <link xref="preferences#tools">optional</link>.</p>
         </note>
       </item>
       <item>
         <p>Eraser: Ignore the current color settings and just erase to get fully
-        transparent pixels.</p>
+        transparent pixels. Optionally, the erased pixels can be changed to the
+        initial color of the canvas, or to the secondary color.</p>
       </item>
       <item>
-        <p>Highlighter: Ignore some of the color settings, and draw with a
-        semi-transparent version of the current color.</p>
+        <p>Highlighter: Ignore the transparency of the current color, and draw
+        with a semi-transparent version of the current color.</p>
         <p>The "highlight" color application mode is used, so the selected color
         is added to the lighter pixels only, which highlights dark text on light
         background. An option can be used to do the opposite (highlight light
@@ -139,9 +53,6 @@
         <p>Line: This tool can draw straight lines. Its options also include
         ending the line with an arrow, and using a gradient from the main color
         to the secondary color.</p>
-        <note style="tip">
-          <p>You can use the "blur" mode from the color menu to hide text!</p>
-        </note>
       </item>
       <item>
         <p>Curve: This tool can draw Bézier curves, optionally with an arrow at
@@ -149,6 +60,51 @@
         straight line, that line is drawn temporarily until a second click.</p>
         <media type="image" mime="image/png" width="80%" its:translate="no"
                src="figures/screenshot_arrow.png" />
+      </item>
+    </list>
+
+    <p>Aside of the colors, a common option for classic tools is whether or not
+    you want to use anti-aliasing. If you use anti-aliasing, the lines will look
+    smoother, but it may negatively affect any following use of the <gui
+    style="menuitem">Paint</gui> tool, as well as several options of the <link
+    xref="tools_selection">selection</link>.</p>
+    <p>With several tools, you can change the ends of the line: it can be
+    rounded or square. You can also draw various patterns of dashed lines with a
+    few tools.</p>
+  </section>
+
+  <section id="brushes">
+    <title>Pressure-sensitive brushes</title>
+    <note style="warning">
+      <p>This tool is disabled by default, because it has performance issues.</p>
+    </note>
+
+    <p>If you use a drawing tablet and a stylus, you may appreciate the "brush"
+    tool, which reacts to the pressure of your input. Various possible brushes
+    are available:</p>
+    <list>
+      <item>
+        <p>Simple: this brush is basically a pencil with no options. The line
+        will be wider if you apply more pressure. Otherwise (if you use a mouse
+        for example), the width of the line will vary according to the speed of
+        your movement.</p>
+      </item>
+      <item>
+        <p>Airbrush: small "droplets" of color will be added to the canvas. If
+        you apply more pressure, there will be more droplets. Without a
+        pressure-sensitive device, their density is constant.</p>
+      </item>
+      <item>
+        <p>Hairy brush: thin parallel lines will be added to the canvas. If you
+        apply more pressure, the lines will be more outspread. Without a
+        pressure-sensitive device, their proximity is constant.</p>
+      </item>
+      <item>
+        <p>Calligraphic nib: this brush draws wider in one direction than in the
+        other, according to an angle which is an option of the brush. For a
+        given direction, the line will be wider if you apply more pressure.
+        Without a pressure-sensitive device, the width is constant for a given
+        direction.</p>
       </item>
     </list>
   </section>
@@ -214,7 +170,7 @@
   </section>
 
   <section>
-    <title>See also</title>
+    <title>Other kinds of tools</title>
 
     <p>The <link xref="tools_selection">selection tools</link> don't draw, but
     their capabilities are very powerful and useful for any image editing.</p>

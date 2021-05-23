@@ -1,6 +1,6 @@
 # tool_text.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,17 +28,16 @@ class ToolText(AbstractClassicTool):
 		self._should_cancel = False
 		self._last_click_btn = 1
 
-		self.font_fam_name = self.window._settings.get_string('last-font-name')
-		self._bg_id = 'outline'
-		self._bg_label = _("Outline")
-
 		self.add_tool_action_simple('text-set-font', self._set_font)
-		# TODO remember and restore the selected font and its options
 		self.add_tool_action_boolean('text-bold', False)
 		self.add_tool_action_boolean('text-italic', False)
-		self.add_tool_action_enum('text-background', self._bg_id)
 
-		# TODO actions sensitivity?
+		self._background_id = self.load_tool_action_enum('text-background', \
+		                                                 'last-text-background')
+		self._font_fam_name = self.load_tool_action_enum('text-active-family', \
+		                                                 'last-font-name')
+
+		# XXX actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
 		self.add_tool_action_simple('text-preview', self._force_refresh)
 		self.add_tool_action_simple('text-insert', self._on_insert_text)
@@ -57,15 +56,14 @@ class ToolText(AbstractClassicTool):
 	def _set_font(self, *args):
 		dialog = Gtk.FontChooserDialog(show_preview_entry=False)
 		dialog.set_level(Gtk.FontChooserLevel.FAMILY)
-		dialog.set_font(self.font_fam_name) # FIXME doesn't work
+		dialog.set_font(self._font_fam_name)
 
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())
 		status = dialog.run()
 		if(status == Gtk.ResponseType.OK):
-			self.font_fam_name = dialog.get_font_family().get_name()
-			print(dialog.get_font()) # TODO changer les options (italic, bold)
-			# pour les adapter au contenu de cette ^ chaîne là
+			self._font_fam_name = dialog.get_font_family().get_name()
+			# print(dialog.get_font())
 			self._preview_text()
 		dialog.destroy()
 
@@ -75,26 +73,23 @@ class ToolText(AbstractClassicTool):
 		self._is_bold = self.get_option_value('text-bold')
 
 	def _set_background_style(self, *args):
-		state_as_string = self.get_option_value('text-background')
-		self._bg_id = state_as_string
-		if state_as_string == 'none':
-			self._bg_label = _("No background")
-		elif state_as_string == 'shadow':
-			self._bg_label = _("Shadow")
-		elif state_as_string == 'outline':
-			self._bg_label = _("Outline")
-		else:
-			self._bg_label = _("Rectangle background")
+		self._background_id = self.get_option_value('text-background')
 
 	def get_options_label(self):
-		# XXX use "text options" instead
-		return _("Font options")
+		return _("Text options")
 
 	def get_edition_status(self):
-		self._set_background_style()
 		self._set_font_options()
-		label = self.label + ' - ' + self.font_fam_name + ' - ' + self._bg_label
-		return label
+
+		self._set_background_style()
+		bg_label = {
+			'none': _("No background"),
+			'shadow': _("Shadow"),
+			'outline': _("Outline"),
+			'rectangle': _("Rectangle background"),
+		}[self._background_id]
+
+		return self.label + ' - ' + self._font_fam_name + ' - ' + bg_label
 
 	############################################################################
 
@@ -195,14 +190,14 @@ class ToolText(AbstractClassicTool):
 			'tool_id': self.id,
 			'rgba1': self.main_color,
 			'rgba2': self.secondary_color,
-			'font_fam': self.font_fam_name,
+			'font_fam': self._font_fam_name,
 			'is_italic': self._is_italic,
 			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
 			# 'antialias': self._use_antialias, # XXX ne marche pas ??
 			'x': self.x_press,
 			'y': self.y_press,
-			'background': self._bg_id,
+			'background': self._background_id,
 			'text': self.text_string
 		}
 		return operation
@@ -229,7 +224,7 @@ class ToolText(AbstractClassicTool):
 		layout.set_font_description(font)
 
 		########################################################################
-		# Draw background for the line #########################################
+		# Draw background ######################################################
 
 		if operation['background'] == 'rectangle':
 			lines = entire_text.split('\n')
@@ -240,35 +235,37 @@ class ToolText(AbstractClassicTool):
 		elif operation['background'] == 'shadow':
 			dist = max(min(int(font_size/16), 4), 1)
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
-			self._show_text_with_options(cairo_context, layout, entire_text, \
+			self._show_text_at_coords(cairo_context, layout, entire_text, \
 			                                       text_x + dist, text_y + dist)
 		elif operation['background'] == 'outline':
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
 			dist = max(min(int(font_size/16), 8), 1)
 			for dx in range(-dist, dist):
 				for dy in range(-dist, dist):
-					self._show_text_with_options(cairo_context, layout, \
+					self._show_text_at_coords(cairo_context, layout, \
 					                      entire_text, text_x + dx, text_y + dy)
 
 		########################################################################
-		# Draw text for the line ###############################################
+		# Draw text ############################################################
 
 		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-		self._show_text_with_options(cairo_context, layout, entire_text, \
+		self._show_text_at_coords(cairo_context, layout, entire_text, \
 		                                                         text_x, text_y)
 
 		self.non_destructive_show_modif()
 
-	def _show_text_with_options(self, cc, pl, text, text_x, text_y):
-		cc.move_to(text_x, text_y)
-		pl.set_text(text, -1)
-		PangoCairo.update_layout(cc, pl)
-		PangoCairo.show_layout(cc, pl)
+	def _show_text_at_coords(self, cairo_c, pango_l, text, text_x, text_y):
+		"""Use a pango layout (pango_l) to show a line of text (text) on a cairo
+		context (cairo_c) at given coordinates (text_x, text_y)."""
+		cairo_c.move_to(text_x, text_y)
+		pango_l.set_text(text, -1)
+		PangoCairo.update_layout(cairo_c, pango_l)
+		PangoCairo.show_layout(cairo_c, pango_l)
 
 	def _op_bg_rectangle(self, context, layout, c2, text_x, line_y, line_text):
 		# The text is first "displayed" in a transparent color…
 		context.set_source_rgba(0.0, 0.0, 0.0, 0.50)
-		self._show_text_with_options(context, layout, line_text, text_x, line_y)
+		self._show_text_at_coords(context, layout, line_text, text_x, line_y)
 		# …so we can get the size of the displayed line…
 		ink_rect, logical_rect = layout.get_pixel_extents()
 		delta_y = logical_rect.height

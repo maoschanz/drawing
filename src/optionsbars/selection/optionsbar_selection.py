@@ -1,6 +1,6 @@
 # optionsbar_selection.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,8 +27,10 @@ class OptionsBarSelection(AbstractOptionsBar):
 
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')
-		self.cb_box_narrow = builder.get_object('cb_box_narrow')
+		self.clipboard_box = builder.get_object('clipboard_box')
 		self.actions_btn = builder.get_object('actions_btn')
+		self.options_btn = builder.get_object('options_btn')
+
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap_arrow = builder.get_object('minimap_arrow')
@@ -53,15 +55,19 @@ class OptionsBarSelection(AbstractOptionsBar):
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.import_box_long.get_preferred_width()[0] + \
-		                    self.cb_box_narrow.get_preferred_width()[0] + \
+		                    self.clipboard_box.get_preferred_width()[0] + \
 		                      self.actions_btn.get_preferred_width()[0] + \
+		                      self.options_btn.get_preferred_width()[0] + \
+		                         self.help_btn.get_preferred_width()[0] + \
 		                      self.minimap_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
+		self._set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)
 		self.import_box_narrow.set_visible(state)
 		self.import_box_long.set_visible(not state)
+		self.actions_btn.set_visible(not state)
+		self.clipboard_box.set_visible(not state)
 		self.minimap_arrow.set_visible(not state)
 
 	############################################################################

@@ -1,6 +1,6 @@
-# blurring.py
+# utilities_blur.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,8 +35,9 @@ class BlurDirection(int):
 ################################################################################
 
 def utilities_blur_surface(surface, radius, blur_type, blur_direction):
-	"""This is the 'official' method to access the blur algorithms. The last
-	argument is an integer corresponding to the BlurType enumeration."""
+	"""This is the 'official' method to access the blur algorithms.
+	The third argument is an integer corresponding to the BlurType enumeration.
+	The 4th one is an integer corresponding to the BlurDirection enumeration."""
 	radius = int(radius)
 	if radius < 1:
 		return surface
@@ -71,7 +72,7 @@ def _generic_px_box_blur(surface, radius, blur_direction):
 	h = surface.get_height()
 	channels = 4 # ARGB
 	if radius > w - 1 or radius > h - 1:
-		return
+		return surface
 
 	# this code a modified version of this https://github.com/elementary/granite/blob/14e3aaa216b61f7e63762214c0b36ee97fa7c52b/lib/Drawing/BufferSurface.vala#L230
 	# the main differences (aside of the language) is the poor attempt to use

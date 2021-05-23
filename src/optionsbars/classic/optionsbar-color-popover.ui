@@ -8,7 +8,7 @@
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="spacing">10</property>
+        <property name="spacing">6</property>
         <property name="orientation">horizontal</property>
         <child>
           <object class="GtkLabel" id="popover-title">
@@ -21,9 +21,9 @@
         <child>
           <object class="GtkBox" id="operator-box-start">
             <property name="visible">True</property>
+            <property name="spacing">6</property>
             <property name="orientation">horizontal</property>
             <property name="tooltip-text" translatable="yes">How the color will be applied to the existing pixels</property>
-            <style><class name="linked"/></style>
             <child>
               <object class="GtkRadioButton" id="op-group">
                 <property name="visible">True</property>
@@ -33,110 +33,36 @@
                 <property name="action-target">'over'</property>
               </object>
             </child>
-            <child>
-              <object class="GtkMenuButton" id="op-menubtn">
-                <property name="visible">True</property>
-                <property name="menu-model">other-operators-menu</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon-name">pan-down-symbolic</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'source'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'multiply'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'difference'</property>
-              </object>
-            </child>
           </object>
         </child>
 
         <child>
-          <object class="GtkBox">
-            <!-- <property name="visible">True</property> -->
-            <property name="orientation">horizontal</property>
-            <style><class name="linked"/></style>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-hue'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-saturation'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-color'</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkRadioButton">
-                <property name="group">op-group</property>
-                <!-- <property name="visible">True</property> -->
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'hsl-luminosity'</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkBox" id="operator-box-end">
+          <object class="GtkRadioButton" id="operator-box-end">
             <property name="visible">True</property>
-            <property name="orientation">horizontal</property>
-            <property name="tooltip-text" translatable="yes">Don't use the colors but…</property>
-            <style><class name="linked"/></style>
+            <property name="group">op-group</property>
+            <property name="draw-indicator">False</property>
+            <property name="tooltip-text" translatable="yes">Erase</property>
+            <property name="action-name">win.cairo_op_mirror</property>
+            <property name="action-target">'clear'</property>
             <child>
-              <object class="GtkRadioButton">
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="group">op-group</property>
-                <property name="draw-indicator">False</property>
-                <!-- To translators: this is a verb -->
-                <property name="label" translatable="yes">Blur</property>
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'dest-in'</property>
+                <property name="icon-name">tool-eraser-symbolic</property>
               </object>
             </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="tooltip-text" translatable="yes">Help about colors</property>
+            <property name="action-name">app.help_colors</property>
+            <property name="relief">none</property>
             <child>
-              <object class="GtkRadioButton">
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="group">op-group</property>
-                <property name="draw-indicator">False</property>
-                <property name="label" translatable="yes">Erase</property>
-                <property name="action-name">win.cairo_op_mirror</property>
-                <property name="action-target">'clear'</property>
+                <property name="icon-name">help-faq-symbolic</property>
               </object>
             </child>
           </object>
@@ -198,62 +124,6 @@
       </object>
     </child>
   </object>
-
-  <!-- -->
-
-  <menu id="other-operators-menu">
-    <section>
-      <!-- Context: possible ways to apply the color to the canvas -->
-      <attribute name="label" translatable="yes">Other modes</attribute>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Raw source color</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">source</attribute>
-      </item>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Highlight</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">multiply</attribute>
-      </item>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Difference</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">difference</attribute>
-      </item>
-      <!-- and more...? -->
-    </section>
-    <submenu>
-      <!-- Context: possible ways to apply the color to the canvas -->
-      <attribute name="label" translatable="yes">Photo-oriented modes</attribute>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Hue only</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">hsl-hue</attribute>
-      </item>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Saturation only</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">hsl-saturation</attribute>
-      </item>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Hue and saturation</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">hsl-color</attribute>
-      </item>
-      <item>
-        <!-- Context: a possible way to apply the color to the canvas -->
-        <attribute name="label" translatable="yes">Luminosity only</attribute>
-        <attribute name="action">win.cairo_operator</attribute>
-        <attribute name="target">hsl-luminosity</attribute>
-      </item>
-    </submenu>
-  </menu>
 
 </interface>
 

@@ -1,13 +1,13 @@
 # Basque translation of drawing.
 # Copyright (C) 2018-2020 Romain F. T.
 # This file is distributed under the same license as the drawing package.
-# Alexander Gabilondo <alexgabi@disroot.org>, 2020
+# Alexander Gabilondo <alexgabi@disroot.org>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 02:08+0100\n"
+"POT-Creation-Date: 2021-04-27 02:51+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -28,17 +28,11 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "Marrazteko utilitate sinplea"
 
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr "com.github.maoschanz.drawing"
-
 #. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Zirriborroa;Arkatza;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -46,7 +40,7 @@ msgstr "Leiho berria"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Irudi berria"
 
@@ -79,119 +73,75 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The version 0.6.3 improves the option to draw arrows: several issues have "
-"been fixed and double-ended arrows are now possible."
+"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
+"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "There is also more options to draw using dashes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version is finally compatible with older distributions (versions of "
-"GNOME libraries older than 3.30)."
-msgstr ""
+"Drawing 0.8.0rekin, azkenean, tableta eta arkatza erabili ditzakezu presiorarekiko "
+"sentikorrak diren marrazteko tresnekin, hala nola 'brotxa' berria eta 'aerografoa'."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.6.2 features several minor bug fixes, and various new translations."
+"The fullscreen mode has been completely redesigned to provide an easier yet "
+"less intrusive access to the tools and their options."
 msgstr ""
-"0.6.2 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
+"Pantaila osoko modua goitik behera birdiseinatu da eskaintzeko tresnak eta "
+"euren aukerak errazago erabili ahal izateko."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Filters have been rewritten to be more reliable, and a new filter to "
+"harmoniously increase contrast has been added."
+msgstr ""
+"Iragazkiak berridatzi dira fidagarriagoak izan daitezen, eta kontrastea "
+"harmonikoki handitzeko iragazki berri bat gehitu da."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"When you move or delete the selection, now the pixels left behind can "
+"optionally be a specific color, rather than always transparency. This "
+"specific color can be excluded from the selection. That feature is complex "
+"to explain with words, try it yourself you'll see."
+msgstr ""
+"Hautaketa bat mugitzen edo ezabatzen duzunean,  orain utzitako pixelek "
+"kolore jakin bat izan kezakete, beti ere gardentasuna izan beharrean. Kolore "
+"kolore zehatz hau hautaketarik kanpo egon daiteke. Ezaugarri hori konplexua da "
+"hitzez azaltzeko, probatu zuk eta ikusiko duzu."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Options such as the text background type and the shape filling style are now "
+"persisted when closing the application."
+msgstr ""
+"Testuaren atzeko kolorea eta formen kolore betegarria bezalako aukerek 2"
+"jarraitzen dute aplikazioa ixterakoan."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface for selecting the active color application mode has been "
+"rewritten to better show the accurate label, and better organize the "
+"possible modes as submenus."
+msgstr ""
+"Kolore aktiboaren aplikazio modua hautatzeko erabiltzaile interfazea berridatzi "
+"da etiketa zehatza hobeto erakusteko eta modu posibleak azpimenu gisa hobeto "
+"antolatzeko."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The \"blur\" mode has been removed, which simplified the situation and "
+"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
+"color application modes in general."
+msgstr ""
+"\"Lausotu\" modua kendu da, eta horrek egoera erraztu du eta hainbat "
+"tresnari (\"forma\" eta \"brotxak\") aukera ematen die orokorrean kolorea "
+"aplikatzeko moduei laguntzeko."
+
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"0.8.1 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
 "ditu."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When an image has been saved without its transparency, the app now suggests "
-"to reload the image from the disk. Also, the 'reload from disk' feature is "
-"now available with every possible window layout."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "An action to copy the whole image to clipboard has been added."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"It's now possible to remove transparency when saving PNG files too. And "
-"there are more color options to replace the transparent pixels."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A new optional tool named \"Points\" has been added, it may help captioning "
-"pictures."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Minors bugs to the 'rotate' tool have been fixed."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.6 is a major update, with various important changes. The app is "
-"more robust and has more tools:"
-msgstr ""
-"0.6 bertsioa pisuzko eguneraketa da, aldaketa esanguratsuak dakartzana. "
-"Aplikazioa egonkorragoa da eta tresna gehiago ditu:"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Rectangle selection and freehand selection are now distinct tools, and the "
-"'rotate' tool now supports any angle and handles horizontal or vertical "
-"flipping."
-msgstr ""
-"Laukizuzena hautatzea eta eskuzko hautaketa tresnak desberdinak dira orain,  "
-"'biratu' tresnak edozein angelu onartzen du eta  horizontalki edo bertikalki "
-"iraultzeko aukera ematen du."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
-"been merged into a single, more consistent 'shape' tool, along with 'rounded "
-"rectangle' and 'ellipse'. Their filling options now include various types of "
-"gradients."
-msgstr ""
-"Formak sortzen dituzten tresna ugariak (zirkulua, laukizuzena, "
-"poligonoa ...), \"forma\" tresna koherente bakar batera batu dira,  gainera "
-"\"laukizuzen biribila\" eta \"elipsea\" gehitu dira. Orain betetzeko aukerek "
-"gradiente mota desberdinak ditu."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The text tool can now write using most system fonts, thus allowing more "
-"complex characters to be used (e.g. Asian characters)."
-msgstr ""
-"Testu tresnak sistemako letra gehienak erabiliz idatzi dezake, eta horrela, "
-"karaktere konplexuagoak erabil daitezke (adibidez, Asiako karaktereak)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
-"with several types of blur, color inversion, pixelization, saturation and "
-"transparency."
-msgstr ""
-"'Saturatu' tresnaren ordez 'iragazkiak' tresna jarri da, lausoak, kolorearen "
-"alderantziketa, pixelizazioa, saturazioa eta gardentasuna tresna "
-"indartsuagoa."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A fullscreen mode is now available."
-msgstr "Orain pantaila osoko modua erabili daiteke."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The most prominent new feature is the ability to zoom in (or out) on the "
-"image, using the minimap, the touchpad or the mouse wheel."
-msgstr ""
-"Ezaugarri berririk nabarmenena irudia handitzeko (edo txikitzeko) gaitasuna "
-"da, mapa txikia, ukipen-area edo saguaren gurpila erabiliz."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -201,47 +151,22 @@ msgstr "Romain F. T."
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Leihoa eta bere menu nagusia"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "Hautapena eta horrekin lotutako ekintzak"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Hainbat formaren zooma"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
-
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Hobespenak"
-
-#: src/ui/app-menus.ui src/ui/win-menus.ui src/ui/window.ui
-msgid "Report a bug"
-msgstr "Errore baten berri eman"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Laster-teklak"
-
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Laguntza"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "Honi buruz"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Irten"
+msgstr "\"irudi berria\" menu irekia"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -278,7 +203,7 @@ msgstr "Irudiaren propietateak"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/saving_manager.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr "Gorde"
 
@@ -297,10 +222,10 @@ msgstr "Gorde honela…"
 msgid "Export as…"
 msgstr "Esportatu honela…"
 
-#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiatu arbelera"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -325,17 +250,17 @@ msgstr "_Editatu"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr "Desegin"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr "Berregin"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
 msgstr "Leheneratu historialetik"
 
@@ -370,6 +295,11 @@ msgstr "Itsatsi"
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
 msgstr "Inportatu"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Hobespenak"
 
 #: src/ui/app-menus.ui
 msgid "_View"
@@ -435,7 +365,7 @@ msgstr "Ezkerreko fitxa"
 msgid "Tab at the right"
 msgstr "Eskuineko fitxa"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Freskatu"
 
@@ -443,7 +373,11 @@ msgstr "Freskatu"
 msgid "Fullscreen"
 msgstr "Pantaila osoa"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "Ezkutatu tresna-barrak"
+
+#: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr "Irten pantaila osotik"
 
@@ -478,66 +412,78 @@ msgid "Normal"
 msgstr "Normala"
 
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Highlight"
+msgstr "Nabarmendu"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+#, fuzzy
+msgid "Dark text on light background"
+msgstr "Betegarri laukizuzena"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Testu argia atzeko plano ilunean"
+
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+#, fuzzy
+msgid "HSL modes"
 msgstr "Bestelako moduak"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Raw source color"
-msgstr "Jatorrizko kolorea"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Highlight"
-msgstr "Nabarmendu"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Batuketa"
-
-#. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo-oriented modes"
-msgstr "Argazkira bideratutako moduak"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue only"
 msgstr "Ñabardura bakarrik"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Saturation only"
 msgstr "Saturazioa bakarrik"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue and saturation"
 msgstr "Ñabardura eta saturazioa"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
 msgstr "Argitasuna bakarrik"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Other modes"
+msgstr "Bestelako moduak"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Raw source color"
+msgstr "Jatorrizko kolorea"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Difference"
+msgstr "Diferentzia"
+
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
 msgstr "Ez erabili koloreak baina…"
-
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr "Lausotu"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -564,12 +510,16 @@ msgstr "Erakutsi tresnen izenak"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Zabalagoa"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #, fuzzy
 msgid "Smaller width"
-msgstr "Zabalera lehenetsia"
+msgstr "Estuagoa"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "Hautapen arazoak konpontzen"
 
 #: src/ui/app-menus.ui src/window.py
 msgid "_Options"
@@ -579,31 +529,67 @@ msgstr "_Aukerak"
 msgid "_Help"
 msgstr "_Laguntza"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Laster-teklak"
+
+#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "Report a bug"
+msgstr "Errore baten berri eman"
+
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
 msgstr "Aurkibidea"
+
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr ""
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
 msgstr "Oinarrizko laguntza"
 
-#. Context: open the help page about classic tools
-#: src/ui/app-menus.ui
-msgid "Help about tools"
+#: src/ui/app-menus.ui src/ui/minimap.ui
+#, fuzzy
+msgid "Help about zooming"
 msgstr "Tresnen gaineko laguntza"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Help about the full-screen mode"
+msgstr "Pantaila osoko moduaren gainek laguntza"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Help about classic tools"
+msgstr "Tresnen gaineko laguntza"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#, fuzzy
+msgid "Help about colors"
+msgstr "Koloreen gaineko laguntza"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui
-msgid "Canvas and selection"
-msgstr "Oihala eta aukeraketa"
+#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+#, fuzzy
+msgid "Help about transformation tools"
+msgstr "Eraldatzeko tresnen gaineko laguntza"
 
-#. Context: open the help page about the selection
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
 msgstr "Hautaketaren gaineko laguntza"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr "Zer berri"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -616,7 +602,11 @@ msgstr "Ireki"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Partekatu irudia"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "%100"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -638,9 +628,17 @@ msgstr "Kolorea"
 msgid "Use these settings by default"
 msgstr "Erabili ezarpen hauek lehenespenez"
 
-#: src/ui/minimap.ui
-msgid "100%"
-msgstr "% 100"
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "Irudiak"
+
+#: src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Tresnak"
+
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "Leihoa"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
@@ -656,22 +654,10 @@ msgstr "zentimetro"
 msgid "inches"
 msgstr "hazbete"
 
-#: src/ui/preferences.ui
-msgid "Images"
-msgstr "Irudiak"
-
-#: src/ui/preferences.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Tools"
-msgstr "Tresnak"
-
-#: src/ui/preferences.ui
-msgid "Window"
-msgstr "Leihoa"
-
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Close selection"
-msgstr "Itxi hautapena"
+msgstr "Itxi hautaketa"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -715,13 +701,9 @@ msgstr "Orokorra"
 msgid "Main menu"
 msgstr "Menu nagusia"
 
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr "Pantaila osoko modura"
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr "Irten pantaila osotik"
+#: src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Laguntza"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -744,31 +726,21 @@ msgid "Close the active image"
 msgstr "Itxi uneko irudia"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historiala"
-
-#: src/ui/shortcuts.ui
 #, fuzzy
 msgid "Open the tool options menu"
-msgstr "Aukeren menua"
+msgstr "Ireki aukeren menua"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
 msgstr "Atzera aurreko tresnara"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Koloreak"
+msgid "Apply a transformation"
+msgstr "Aplikatu eraldaketa"
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Editatu kolore nagusia (saguaren ezker klika)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Editatu bigarren kolorea (saguaren eskuin klika)"
+msgid "History"
+msgstr "Historiala"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -785,6 +757,20 @@ msgid "Import a file as the selection"
 msgstr "Inportatu fitxategia hautapen gisa"
 
 #: src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Koloreak"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Editatu kolore nagusia (saguaren ezker klika)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Editatu bigarren kolorea (saguaren eskuin klika)"
+
+#: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr "Fitxak"
 
@@ -799,16 +785,17 @@ msgid "Toggle the preview"
 msgstr "Trukatu aurrebista"
 
 #: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle fullscreen mode"
+msgstr "Pantaila osoko modura"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "Txandakat tresna-barren ikusgaitasuna"
+
+#: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Ukipen keinuak"
-
-#: src/ui/win-menus.ui
-msgid "Troubleshoot selection"
-msgstr "Hautapen arazoak konpontzen"
-
-#: src/ui/win-menus.ui
-msgid "Other tools"
-msgstr "Beste tresnak"
 
 #: src/ui/window.ui
 msgid "Error starting the application, please report this bug."
@@ -825,10 +812,20 @@ msgid "Redo %s"
 msgstr "Berregin %s"
 
 #. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr "Saiatu egoera baliogabea gordetzen"
+
+#: src/history_manager.py
+#, python-format
+msgid "Error: no tool '%s'"
+msgstr "Errorea: ez dago '%s' tresna"
+
+#. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Pixbuf berria hutsik dago, ez zaio aldaketarik aplikatu %s-ri"
 
 #: src/image.py
 msgid "Can't reload a never-saved file from the disk."
@@ -837,23 +834,6 @@ msgstr "Ezin da birkargatu diskoan inoiz gorde ez den fitxategia."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Gorde gabeko fitxategia"
-
-#: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/tools/utilities_paths.py src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
-msgid "Cancel"
-msgstr "Utzi"
-
-#. Context: Create a new image
-#: src/new_image_dialog.py
-msgid "Create"
-msgstr "Sortu"
 
 #. Description of a command line option
 #: src/main.py
@@ -904,16 +884,39 @@ msgid "Official webpage"
 msgstr "Webgune ofiziala"
 
 #: src/main.py
-#, python-format
-msgid "Error opening this file. Did you mean %s ?"
+#, fuzzy
+msgid "Error opening this file."
 msgstr "Errorea fitxategia irekitzean. %s esan nahi zenuen?"
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr "Esan nahi duzu %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
-msgstr "%s %%"
+msgstr "%s%%"
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/optionsbars/transform/optionsbar-rotate.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "Utzi"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr "Sortu"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -933,7 +936,10 @@ msgstr "Altuera lehenetsia"
 #. size" dialog). This is displayed in the context of editing or
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Kolore lehenetsia"
 
@@ -988,7 +994,7 @@ msgstr "Begiratu erabiltzailearen laguntza-eskuliburua azalpenetarako."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "Erabili Ktrl handiagotzeko"
+msgstr "Erabili 'Ktrl' zoomerako"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1024,9 +1030,19 @@ msgstr "Borragoma"
 msgid "Highlighter"
 msgstr "Nabarmentzailea"
 
-#: src/preferences.py
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
+msgstr "Pintzela"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr ""
+msgstr "Puntuak"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1039,7 +1055,7 @@ msgstr "Hautapen librea"
 #. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Kolore hautapena"
+msgstr "Kolore hautaketa "
 
 #. Context: this is a tool to pick a RGBA color in the image in order to
 #. use it to draw with other tools
@@ -1069,6 +1085,24 @@ msgstr "Garapen eginbideak"
 #: src/preferences.py
 msgid "Background color"
 msgstr "Atzeko planoaren kolorea"
+
+#: src/preferences.py
+msgid "Theme variant"
+msgstr "Gaiaren aldaera"
+
+#: src/preferences.py
+#, fuzzy
+#| msgid "Default width"
+msgid "Default variant"
+msgstr "Zabalera lehenetsia"
+
+#: src/preferences.py
+msgid "Light variant"
+msgstr "Aldaera argia"
+
+#: src/preferences.py
+msgid "Dark variant"
+msgstr "Aldaera iluna"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1184,10 +1218,12 @@ msgid ""
 "A part of the image is selected, and the pixels beneath the selection are "
 "blank."
 msgstr ""
+"Irudiaren zati bat hautatuta dago eta hautapenaren azpiko pixelak hutsik "
+"daude"
 
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "Uneko tresnaren aldaketak ez dira aplikatu"
 
 #: src/saving_manager.py
 #, fuzzy
@@ -1210,6 +1246,16 @@ msgstr "Irudia PDF formatuan gorde dezakezu edo gardentasunen ordez hau jarri:"
 #: src/saving_manager.py
 msgid "Replace transparency with:"
 msgstr "Gardentasunaren ordez hau jarri:"
+
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr "Pixbuf hautaketa hutsik dago"
+
+#: src/selection_manager.py
+#, fuzzy
+msgid "The selection path is empty."
+msgstr "Hautaketaren bidea hutsik dago"
 
 #: src/utilities.py
 msgid "Transparent"
@@ -1310,6 +1356,41 @@ msgstr "ehunekoak"
 msgid "degrees"
 msgstr "graduak"
 
+#: src/utilities.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "Ireki irudi bat"
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "Sentitzen dugu, aplikazio honek ezin ditu WEBP irudiak kargatu."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Duen izena izan arren, %s WEBP fitxategia da."
+
+#. Context: %s is the version number of the app
+#: src/window.py
+#, python-format
+msgid ""
+"It's the first time you use Drawing %s, would you like to read what's new?"
+msgstr ""
+"Drawing %s erabiltzen duzun lehenengo aldia da, nahi duzu jakin zer dagoen berri?"
+
+#: src/window.py
+msgid "No"
+msgstr "Ez"
+
+#: src/window.py
+msgid "Later"
+msgstr "Geroago"
+
+#: src/window.py
+msgid "Yes"
+msgstr "Bai"
+
 #. Context: an error message
 #: src/window.py
 #, python-format
@@ -1317,30 +1398,40 @@ msgid "Failed to load tool: %s"
 msgstr "Errorea tresna kargatzean: %s"
 
 #: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "Arbelean ez dago irudirik."
+
+#: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Aldaketok hurrengo leiho berrian gauzatuko dira."
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
+#: src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Aukerarik gabe"
 
 #: src/window.py
-msgid "Opened images"
-msgstr "Irudi irekiak"
+msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgstr ""
+"Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
+
+#: src/window.py
+#, fuzzy
+msgid "Press F11 to exit fullscreen."
+msgstr "Irten pantaila osotik"
 
 #: src/window.py
 #, fuzzy, python-format
-msgid "Error: pane invalid for '%s', please report this bug."
-msgstr "Errorea aplikazioa abiaraztean, mesedez eman errorearen berri."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"Errore bat gertatu da %s tresnaren beheko panela kargatzen, mesedez eman errorearen berri."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
 msgstr "Kargatzen %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Fitxa berria"
@@ -1375,12 +1466,12 @@ msgstr "Arbeleko irudia editatu"
 
 #: src/window.py
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Irudia aldatua izan da diskoan, nahi duzu berriro kargatzea?"
 
 #: src/window.py
 #, fuzzy
 msgid "Reload"
-msgstr "Birkargatu fitxategia"
+msgstr "Birkargatu"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1390,38 +1481,23 @@ msgstr "Inportatu irudi bat"
 msgid "Required tool is not available"
 msgstr "Eskatutako tresna ez dago erabilgarri"
 
-#. Context: an error message
-#: src/tools/abstract_tool.py
-#, python-brace-format
-msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "Jarraitu"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Area hori ongi zehaztu gabe dago, edo oso konplexua da."
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Algoritmo horrek agian ezin du eskatutako area kudeatu."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Nahi duzu ataza gelditu, edo tresna horrekin saiakera egin?"
-
-#. Context: fill a shape with the color of the left click
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Highlight (dark)"
+msgstr "Nabarmentzailea"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "Kolore nagusia"
 
-#. Context: fill a shape with the color of the right click
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-shape.ui
-#: src/tools/ui/tool-crop.ui src/tools/classic_tools/tool_shape.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Bigarren kolorea"
 
@@ -1430,8 +1506,8 @@ msgid "Tool size"
 msgstr "Tresnaren tamaina"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-filters.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Aurrebista"
 
@@ -1452,9 +1528,27 @@ msgid "Use this editor by default"
 msgstr "Erabili editore hau lehenespenez"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Ekintza gehiago"
+#, fuzzy
+msgid "Selection options"
+msgstr "Arkatzaren aukerak"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
+#, fuzzy
+msgid "Replace with…"
+msgstr "Zabaldu honekin…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Gardentasuna"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "Atera kolore horretatik"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-filters.ui
@@ -1475,85 +1569,10 @@ msgstr "Aukera gehiago"
 msgid "Expand with…"
 msgstr "Zabaldu honekin…"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-crop.ui
-msgid "Transparency"
-msgstr "Gardentasuna"
-
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
 msgstr "Aukeratu iragazkia…"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Saturation"
-msgstr "Saturazioa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr "Lausotze erradioa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Change saturation"
-msgstr "Aldatu saturazioa"
-
-#. Context: a filter adding like a light veil on the image
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Veil"
-msgstr "Beloa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Add transparency"
-msgstr "Gehitu gardentasuna"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Invert colors"
-msgstr "Trukatu koloreak"
-
-#. Context: the title of the menu with various types of blurring
-#. filters and their options.
-#: src/optionsbars/transform/optionsbar-filters.ui
-msgid "Blurring"
-msgstr "Lausotzea"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Fast blur"
-msgstr "Lausotze azkarra"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Slow blur"
-msgstr "Lausotze motela"
-
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelizazioa"
-
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Blur direction"
-msgstr "Lausotzearen norabidea"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Horizontala"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Bertikala"
-
-#. Context: about the blur direction
-#: src/optionsbars/transform/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-msgid "No direction"
-msgstr "Norabiderik gabe"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1562,6 +1581,10 @@ msgstr "Angelua (gradu)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Angelua"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "More actions"
+msgstr "Ekintza gehiago"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1610,6 +1633,33 @@ msgstr "Itxuraldaketa horizontala"
 msgid "Vertical deformation"
 msgstr "Itxuraldaketa bertikala"
 
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr "Ezin izan da eragiketa hasi: ID trena okerra (espero zen {0}, {1} lortu da)"
+
+#: src/tools/utilities_paths.py
+msgid "Continue"
+msgstr "Jarraitu"
+
+#: src/tools/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Area hori ongi zehaztu gabe dago, edo oso konplexua da."
+
+#: src/tools/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Algoritmo horrek agian ezin du eskatutako area kudeatu."
+
+#: src/tools/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Nahi duzu ataza gelditu, edo tresna horrekin saiakera egin?"
+
+#: src/tools/ui/selection.ui
+#, fuzzy
+msgid "Transform"
+msgstr "Eraldatu"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
@@ -1625,19 +1675,21 @@ msgstr "Mutur borobilduak"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Mutur karratuak"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #, fuzzy
 msgid "No arrow"
-msgstr "Gezia"
+msgstr "Gezirik ez"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Gezi sinplea"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #, fuzzy
@@ -1648,35 +1700,171 @@ msgstr "Puntukako gezia"
 #: src/tools/ui/tool-pencil.ui
 #, fuzzy
 msgid "No dashes"
-msgstr "Erabili marratxoak"
+msgstr "Marratxorik ez"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 #, fuzzy
 msgid "Simple dashes"
-msgstr "Erabili marratxoak"
+msgstr "Marratxo sinpleak"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 #, fuzzy
 msgid "Long dashes"
-msgstr "Erabili marratxoak"
+msgstr "Marratxo luzeak"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 #, fuzzy
 msgid "Short dashes"
-msgstr "Erabili marratxoak"
+msgstr "Marratxo laburrak"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Txandakatutako marratxoak"
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "Antialiasing-a"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
+#, fuzzy
+msgid "Simple brush"
+msgstr "Pintzel sinplea"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Airbrush"
+msgstr "Aerografoa"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
+#, fuzzy
+msgid "Hairy brush"
+msgstr "Pintzel iletsua"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+msgid "Calligraphic nib"
+msgstr "Luma kaligrafikoa"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr "Eskuineko luma"
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Vertical nib"
+msgstr "Luma bertikala"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr "Ezkerreko luma"
+
+#: src/tools/ui/tool-brush.ui
+#, fuzzy
+msgid "Horizontal nib"
+msgstr "luma horizontala"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Arkatza"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Laukizuzena"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Blur"
+msgstr "Lausotu"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#, fuzzy
+msgid "Shuffle pixels"
+msgstr "Ausazko píxelak"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle and blur"
+msgstr "Ausazkoak eta lausotu"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Mosaic"
+msgstr "Mosaikoa"
+
+#: src/tools/ui/tool-eraser.ui
+#, fuzzy
+msgid "Solid color"
+msgstr "Bigarren kolorea"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Active filter"
+msgstr "Beste tresnak"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "Aldatu saturazioa"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "Beloa"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "Gehitu gardentasuna"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr "Handitu kontrastea"
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "Lausotzea"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "Lausotze azkarra"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "Lausotze motela"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Pixelizazioa"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "Lausotzearen norabidea"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Horizontal"
+msgstr "Horizontala"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "Vertical"
+msgstr "Bertikala"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "Norabiderik gabe"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Trukatu koloreak"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -1708,7 +1896,7 @@ msgstr "Ezabatu eta ordeztu"
 #: src/tools/ui/tool-paint.ui
 #, fuzzy
 msgid "Entire image"
-msgstr "Irudi irekiak"
+msgstr "Irudi osoa"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -1717,7 +1905,44 @@ msgstr "Irudi irekiak"
 #: src/tools/ui/tool-paint.ui
 #, fuzzy
 msgid "Remove color"
-msgstr "Jatorrizko kolorea"
+msgstr "Kendu kolorea"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr "Puntukakoa"
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "Zirkulua"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr "Gurutzea"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr "X formako gurutzea"
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr "Zenbakia barnean"
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr "Hurrengo zenbakia"
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr "Berrabiarazi zenbakiak"
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr "Atzerako zenbakia"
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr "Aurrerako zenbakia"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -1727,7 +1952,6 @@ msgstr "Ertz jarraia"
 msgid "Dashed outline"
 msgstr "Ertz etena"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
 msgstr "Ertzik gabe"
@@ -1753,10 +1977,6 @@ msgid "Radial gradient"
 msgstr "Gradiente erradiala"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Laukizuzena"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Laukizuzen borobildua"
 
@@ -1771,10 +1991,6 @@ msgstr "Poligonoa"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Free shape"
 msgstr "Forma librea"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Circle"
-msgstr "Zirkulua"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
@@ -1825,22 +2041,6 @@ msgstr "Ertza"
 msgid "Rectangle background"
 msgstr "Betegarri laukizuzena"
 
-#: src/tools/ui/selection.ui
-#, fuzzy
-msgid "Transform"
-msgstr "Gardena"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Irauli"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/ui/selection.ui src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Etzan"
-
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
 msgstr "Kurba"
@@ -1862,19 +2062,20 @@ msgstr "Gezia"
 msgid "Dashed"
 msgstr "Etena"
 
-#: src/tools/classic_tools/tool_highlight.py
+#: src/tools/classic_tools/tool_brush.py
 #, fuzzy
-msgid "Dark text on light background"
-msgstr "Betegarri laukizuzena"
+msgid "Brush options"
+msgstr "Pintzelaren aukerak"
 
-#: src/tools/classic_tools/tool_highlight.py
-msgid "Light text on dark background"
-msgstr ""
+#: src/tools/classic_tools/tool_eraser.py
+#, fuzzy
+msgid "Eraser options"
+msgstr "Aukera gehiago"
 
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
 msgid "Highlighter options"
-msgstr "Nabarmentzailea"
+msgstr "Nabarmentzailearen aukerak"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1898,12 +2099,18 @@ msgid "Click on the canvas to entirely paint it"
 msgstr "Klikatu formaren lehenengo puntuan bera ixteko."
 
 #: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Arkatza"
-
-#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Arkatzaren aukerak"
+
+#: src/tools/classic_tools/tool_points.py
+#, fuzzy
+msgid "Points options"
+msgstr "Letra motaren aukerak"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr "Hurrengo zenbakia: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -1913,6 +2120,18 @@ msgstr "Forma"
 msgid "Shape options"
 msgstr "Formaren aukerak"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with main color"
+msgstr "Kolore nagusiaz betea"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with secondary color"
+msgstr "Bigarren kolorez betea"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
 msgstr "Klikatu formaren lehenengo puntuan bera ixteko."
@@ -1921,10 +2140,34 @@ msgstr "Klikatu formaren lehenengo puntuan bera ixteko."
 msgid "Text"
 msgstr "Testua"
 
-#. XXX use "text options" instead
 #: src/tools/classic_tools/tool_text.py
-msgid "Font options"
+msgid "Text options"
 msgstr "Letra motaren aukerak"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+#, fuzzy
+msgid "Density depends on the stylus pressure"
+msgstr "Zabalera lumaren presioaren araberakoa"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+#, fuzzy
+msgid "Density depends on the mouse speed"
+msgstr "Dentsitatea saguaren abiaduraren araberakoa"
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr "Zabalera lumaren presioaren araberakoa"
+
+#: src/tools/classic_tools/brushes/brush_nip.py
+#, fuzzy
+msgid "Width depends on the line orientation"
+msgstr "Zabalera saguaren abiaduraren araberakoa"
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr "Zabalera saguaren abiaduraren araberakoa"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -1954,6 +2197,11 @@ msgstr "Oihala mozten"
 msgid "Click on the image to preview the selected filter"
 msgstr "Klikatu irudia hautatutako iragazkia aurreikusteko"
 
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "Bozeldu"
+
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Hautapena biratzen"
@@ -1970,17 +2218,23 @@ msgstr "Oihala biratzen"
 msgid "Scaling the canvas"
 msgstr "Oihala eskalatzen"
 
-#~ msgid "Thin"
-#~ msgstr "Mutur zorrotzak"
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Etzan"
 
-#~ msgid "Clipping"
-#~ msgstr "Mozketa"
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Lausotze erradioa"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Saturazioa"
+
+#~ msgid "Quit"
+#~ msgstr "Irten"
 
 #~ msgid "Edit"
 #~ msgstr "Editatu"
-
-#~ msgid "Open a file"
-#~ msgstr "Ireki fitxategia"
-
-#~ msgid "Save as"
-#~ msgstr "Gorde honela"

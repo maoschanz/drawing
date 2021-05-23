@@ -17,9 +17,15 @@ conf.set('VERSION', meson.project_version())
 conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
+if get_option('use-uuid-as-binary-name')
+	binary_name = app_uuid
+else
+	binary_name = meson.project_name()
+endif
+
 configure_file(
 	input: meson.project_name() + '.in',
-	output: meson.project_name(),
+	output: binary_name,
 	configuration: conf,
 	install: true,
 	install_dir: get_option('bindir')
@@ -36,6 +42,7 @@ drawing_sources = [
 
 	'image.py',
 	'history_manager.py',
+	'printing_manager.py',
 	'saving_manager.py',
 	'selection_manager.py',
 
@@ -62,6 +69,7 @@ drawing_sources = [
 
 	'tools/classic_tools/abstract_classic_tool.py',
 	'tools/classic_tools/tool_arc.py',
+	'tools/classic_tools/tool_brush.py',
 	'tools/classic_tools/tool_eraser.py',
 	'tools/classic_tools/tool_experiment.py',
 	'tools/classic_tools/tool_highlight.py',
@@ -73,6 +81,12 @@ drawing_sources = [
 	'tools/classic_tools/tool_shape.py',
 	'tools/classic_tools/tool_text.py',
 
+	'tools/classic_tools/brushes/abstract_brush.py',
+	'tools/classic_tools/brushes/brush_airbrush.py',
+	'tools/classic_tools/brushes/brush_nip.py',
+	'tools/classic_tools/brushes/brush_hairy.py',
+	'tools/classic_tools/brushes/brush_simple.py',
+
 	'tools/selection_tools/abstract_select.py',
 	'tools/selection_tools/select_rect.py',
 	'tools/selection_tools/select_free.py',
@@ -83,7 +97,17 @@ drawing_sources = [
 	'tools/transform_tools/tool_filters.py',
 	'tools/transform_tools/tool_rotate.py',
 	'tools/transform_tools/tool_scale.py',
-	'tools/transform_tools/tool_skew.py'
+	'tools/transform_tools/tool_skew.py',
+
+	'tools/transform_tools/filters/abstract_filter.py',
+	'tools/transform_tools/filters/filter_blur.py',
+	'tools/transform_tools/filters/filter_colors.py',
+	'tools/transform_tools/filters/filter_contrast.py',
+	'tools/transform_tools/filters/filter_emboss.py',
+	'tools/transform_tools/filters/filter_saturation.py',
+	'tools/transform_tools/filters/filter_transparency.py',
+	'tools/transform_tools/filters/filter_veil.py',
 ]
 
 install_data(drawing_sources, install_dir: moduledir)
+

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <interface domain="drawing">
 
-<!-- Hamburger menu for smartphone -->
+  <!-- Hamburger menu for smartphone -->
   <menu id="long-window-menu">
     <section>
       <item>
@@ -60,7 +60,6 @@
       <item>
         <attribute name="action">win.save_alphaless</attribute>
         <attribute name="label" translatable="yes">Save without transparency</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
       </item>
       <item>
         <attribute name="action">win.save_as</attribute>
@@ -112,7 +111,7 @@
     </section>
   </menu>
 
-<!-- Hamburger menu for desktop -->
+  <!-- Hamburger menu for desktop -->
   <menu id="short-window-menu">
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
@@ -136,7 +135,6 @@
       <item>
         <attribute name="action">win.save_alphaless</attribute>
         <attribute name="label" translatable="yes">Save without transparency</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
       </item>
       <item>
         <attribute name="action">win.save_as</attribute>
@@ -155,23 +153,6 @@
       <item>
         <attribute name="label" translatable="yes">Print</attribute>
         <attribute name="action">win.print</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Refresh</attribute>
-        <attribute name="action">win.restore_pixbuf</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Rebuild from history</attribute>
-        <attribute name="action">win.rebuild_from_histo</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
-        <attribute name="action">win.get_values</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
       </item>
     </section>
     <section>
@@ -205,6 +186,7 @@
     </section>
   </menu>
 
+  <!-- Hamburger menu for layouts with a more rich toolbar -->
   <menu id="minimal-window-menu">
     <section>
       <item>
@@ -254,53 +236,5 @@
     </section>
   </menu>
 
-  <menu id="fullscreen-menu">
-    <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Undo</attribute>
-        <attribute name="action">win.undo</attribute>
-        <attribute name="verb-icon">edit-undo-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Redo</attribute>
-        <attribute name="action">win.redo</attribute>
-        <attribute name="verb-icon">edit-redo-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">win.unfullscreen</attribute>
-        <attribute name="label" translatable="yes">Exit fullscreen</attribute>
-      </item>
-    </section>
-    <section>
-      <attribute name="display-hint">horizontal-buttons</attribute>
-      <item>
-        <attribute name="label" translatable="yes">New Image</attribute>
-        <attribute name="action">win.new_tab</attribute>
-        <attribute name="verb-icon">document-new-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Open an image</attribute>
-        <attribute name="action">win.open</attribute>
-        <attribute name="verb-icon">document-open-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Save</attribute>
-        <attribute name="action">win.save</attribute>
-        <attribute name="verb-icon">document-save-symbolic</attribute>
-      </item>
-    </section>
-    <section>
-      <attribute name="label" translatable="yes">Tools</attribute>
-      <!-- here will be a section of tools -->
-      <submenu>
-        <attribute name="label" translatable="yes">Other tools</attribute>
-        <!-- here will be 2 sections of tools -->
-      </submenu>
-    </section>
-    <!-- here will be  list of tabs -->
-  </menu>
-
 </interface>
+

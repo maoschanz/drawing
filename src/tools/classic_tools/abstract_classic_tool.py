@@ -1,6 +1,6 @@
 # abstract_classic_tool.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,10 +34,11 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.main_color = None
 		self.secondary_color = None
 		self._fallback_operator = 'over'
-		self._use_antialias = True
 		self.x_press = 0.0
 		self.y_press = 0.0
-		self.add_tool_action_boolean('antialias', self._use_antialias)
+		self._use_antialias = self.load_tool_action_boolean('antialias', \
+		                                                     'use-antialiasing')
+		# XXX honteusement sous-performant ^
 
 	############################################################################
 	# UI implementations #######################################################
@@ -113,29 +114,6 @@ class AbstractClassicTool(AbstractAbstractTool):
 			dashes_descriptor[i] = actual_length
 			i = i + 1
 		cairo_context.set_dash(dashes_descriptor)
-
-	def stroke_with_operator(self, operator, context, line_width, is_preview):
-		context.set_operator(operator)
-		is_blur = (operator == cairo.Operator.DEST_IN)
-		if is_blur and is_preview:
-			context.set_operator(cairo.Operator.CLEAR)
-
-		if is_blur and not is_preview:
-			context.set_line_width(line_width)
-			context.stroke_preserve()
-			radius = int(line_width / 2)
-			source_surface = self.get_surface()
-			# XXX using the whole surface is suboptimal
-			blurred_surface = utilities_blur_surface(source_surface, radius, 3, 0)
-			# where 0 == BlurType.CAIRO_REPAINTS and 0 == BlurDirection.BOTH
-			self.restore_pixbuf()
-			context = self.get_context()
-			context.set_operator(cairo.Operator.OVER)
-			context.set_source_surface(blurred_surface, 0, 0)
-			context.paint()
-		else:
-			context.set_line_width(line_width)
-			context.stroke()
 
 	############################################################################
 ################################################################################

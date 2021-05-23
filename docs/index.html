@@ -2,6 +2,7 @@
   <head>
     <title>Drawing - an alternative to Paint for Linux</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,width=device-width" />
     <link rel="stylesheet" href="example.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
   </head>
@@ -41,26 +42,30 @@
       <div class="responsive-row">
         <div class="col33">
           <!-- Description -->
-          <p>
+          <p class="description">
             This application is a free basic image editor, similar to Microsoft
             Paint, but aiming at the GNOME desktop.
           </p>
-          <p>PNG, JPEG and BMP files are supported.</p>
+          <p class="description">PNG, JPEG and BMP files are supported.</p>
 
-          <!-- Links to anchors -->
-          <!-- <ul> -->
-          <!--   <li><a href="#installation">Installation</a></li> -->
-          <!--   <li><a href="#tools">Tools</a></li> -->
-          <!--   <li><a href="#translations">Available languages</a></li> -->
-          <!-- </ul> -->
+          <p>
+            <a
+              href="https://circle.gnome.org/"
+              class="limited-image">
+              <img
+                class="limited-image"
+                src="https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-i.svg"
+                title="Drawing is a 'GNOME Circle' app!"
+                alt="Drawing is a 'GNOME Circle' app!" />
+            </a>
+          </p>
+
         </div>
         <div class="col66">
           <!-- Main screenshot -->
           <p>
-            <img
-              alt="screenshot"
-              style="width:100%"
-              src="screenshots/0.6/gnome_menu.png" />
+            <img alt="screenshot" class="zoomable-img-100"
+                 src="screenshots/0.8/gnome_menu.png" />
           </p>
         </div>
       </div>
@@ -68,13 +73,13 @@
       <!-- Smaller screenshots -->
       <div class="responsive-row">
         <div class="col33">
-          <img alt="screenshot" src="screenshots/0.6/gnome_selection.png" style="width:100%" />
+          <img alt="screenshot" src="screenshots/0.8/gnome_selection.png" class="zoomable-img-100" />
         </div>
         <div class="col33">
-          <img alt="screenshot" src="screenshots/0.6/gnome_new.png" style="width:100%" />
+          <img alt="screenshot" src="screenshots/0.6/gnome_new.png" class="zoomable-img-100" />
         </div>
         <div class="col33">
-          <img alt="screenshot" src="screenshots/0.6/gnome_tools_preview.png" style="width:100%" />
+          <img alt="screenshot" src="screenshots/0.6/gnome_tools_preview.png" class="zoomable-img-100" />
         </div>
       </div>
       <p>
@@ -86,7 +91,7 @@
 
       <h2><a id="installation"></a>Installation</h2><!-- ******************* -->
 
-      &nbsp;
+       <!-- (no-break space) -->
       <!-- It would look better if in a div, but that would break the CSS, -->
       <!-- which relies on the "~" combinator. -->
       <input type="radio" name="tabs" id="tab1" checked="yes" />
@@ -108,9 +113,10 @@
             class="limited-image">
             <img
               class="limited-image"
-              src="https://raw.githubusercontent.com/flatpak-design-team/flathub-mockups/master/assets/download-button/download-i.png"
-              alt="Install it from Flathub" />
-            <p>(version 0.6.2)</p>
+              src="https://flathub.org/assets/badges/flathub-badge-en.png"
+              alt="Install it from Flathub"
+              title="Install it from Flathub" />
+            <p>(version 0.8.0)</p>
           </a>
         </p>
         <p>Permissions required: ipc/x11/wayland</p>
@@ -135,20 +141,19 @@
       </div>
 
       <div class="tab content3">
-        <p>Alternative installation methods for Ubuntu :</p>
+        <p>Alternative installation methods for Ubuntu:</p>
         <ul>
           <li>
             <a href="https://launchpad.net/~cartes/+archive/ubuntu/drawing/">
-              <b>PPA repository (version 0.6.2)</b>
+              <b>PPA repository (version 0.8.0)</b>
             </a>
+            except for Ubuntu 18.04 which only has 0.6.5
           </li>
           <li>
-            <!-- <a href="https://snapcraft.io/drawing"> -->
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-               title="very outdated version. And the code isn't even correctly
-packaged??? I will NOT provide any support for it. And i don't
-provide the actual link either. Use flatpak instead.">
-              Snap package (0.4.7? 0.4.8? unstable?)
+            <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" -->
+            <a href="https://snapcraft.io/drawing"
+               title="is the code even packaged from a tag?">
+              Snap package (0.6.3? unstable?)
             </a>
           </li>
         </ul>
@@ -161,7 +166,115 @@ provide the actual link either. Use flatpak instead.">
         </p>
       </div>
 
-      <hr />
+      <br />
+
+      <h2><a id="news"></a>What's new</h2><!-- ***************************** -->
+
+      <details open="open">
+        <summary>New features in version 0.8</summary>
+
+        <p>Drawing 0.8.0:</p>
+        <ul>
+          <li>new, richer, more readable bottom pane for the selection tool</li>
+          <li>add a "replace with" option to the eraser tool</li>
+          <li>use an adequate layout on LXDE or LXQt</li>
+          <li>force the release notes down users' throat</li>
+          <li>rewrite the help manual to better force it down users' throat</li>
+          <li>add color application mode support to the "shape" tool</li>
+          <li>persist the text background style and the shape filling style options</li>
+          <li>brush supporting pressure-sensitive input</li>
+          <li>hairy brush supporting pressure-sensitive input</li>
+          <li>airbrush supporting pressure-sensitive input</li>
+          <li>calligraphic nip supporting pressure-sensitive input</li>
+          <li>fix unexpected "jumps" when unselecting a selection that was defined by an undo</li>
+          <li>improve the fullscreen mode, with a way to toggle the tools list</li>
+          <li>add an "increase constrast" filter</li>
+          <li>deleting the selection can now leave something else than transparency</li>
+          <li>option to exclude the color left under the selection from the selection itself</li>
+          <li>rewrite the UI for changing the color application mode</li>
+          <li>remove the cool but deprecated GNOME Shell app menu</li>
+          <li>improve flatpak CI</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>New features in version 0.6</summary>
+
+        <p>Drawing 0.6.5:</p>
+        <ul>
+          <li>fix unexplained regression of bottom panes responsiveness</li>
+          <li>mitigation of the "very quick series of ctrl+b" bug</li>
+          <li>disable importing or opening an image using drag-and-drop with flatpak (it was broken)</li>
+          <li>fix printing</li>
+          <li>more pertinent movements of the view when holding and moving the middle-click</li>
+        </ul>
+
+        <p>Drawing 0.6.4:</p>
+        <ul>
+          <li>add more keyboard shortcuts</li>
+          <li>slightly better "erase and replace" algo for the paint tool</li>
+          <li>better handle attempts to open webp images</li>
+          <li>better handle attempts to open incorrect file types</li>
+          <li>remember the value of the antialiasing option</li>
+        </ul>
+
+        <p>Drawing 0.6.3:</p>
+        <ul>
+          <li>use submenus for the "tools" menu in the menubar</li>
+          <li>fix arrows' heads when the line was semi-transparent</li>
+          <li>fix arrows' heads with specific angles (#286)</li>
+          <li>fix arrows' heads when the line had a square end</li>
+          <li>add option for double-ended arrows</li>
+          <li>add more options for dashed lines</li>
+          <li>support for older distributions (pygobject older than 3.30)</li>
+        </ul>
+
+        <p>Drawing 0.6.2:</p>
+        <ul>
+          <li>add keyboard shortcuts for increasing and decreasing the tool width</li>
+          <li>ensure all features are available with all layouts (e.g. "reload" with Cinnamon and eOS)</li>
+          <li>suggest to reload when the file has been saved without transparency</li>
+          <li>new 'copy to clipboard' action</li>
+          <li>new "paint over the entire image" option to the paint tool</li>
+          <li>fix Debian Buster (and PureOS Amber) support</li>
+          <li>add option for the 'highlighter' tool to highlight on dark background</li>
+        </ul>
+
+        <p>Drawing 0.6.1:</p>
+        <ul>
+          <li>new 'save without transparency' action, that works with PNG</li>
+          <li>add 'initial color' as a replacement for transparent pixels</li>
+          <li>fix a bug in the 'rotate' tool that occured when the selection was flipped before being rotated</li>
+          <li>add the additional tool 'points', to help captioning</li>
+          <li>update the user help manual</li>
+        </ul>
+
+        <p>Drawing 0.6.0:</p>
+        <ul>
+          <li>remove the "windows" menu from the menubar</li>
+          <li>refactor bottom panes management to allow several tools to share the same pane</li>
+          <li>rectangle selection, freehand selection, and color selection, are now distinct tools</li>
+          <li>the 'rotate' tool now handles horizontal or vertical flipping</li>
+          <li>the 'rotate' tool now supports any angle when rotationg the selection</li>
+          <li>tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool</li>
+          <li>"close shape" action for the 'shape' tool</li>
+          <li>"close selection" action for the 'free selection' tool</li>
+          <li>replace the 'saturate' tool by a new 'filters' tool</li>
+          <li>add several types of blur to 'filters'</li>
+          <li>add color inversion, pixelization, partial transparency to 'filters'</li>
+          <li>add "additional tools" section to the preferences window</li>
+          <li>add specialized types of pencils (eraser, highlighter) as optional tools</li>
+          <li>a fullscreen mode is now available</li>
+          <li>zoom in (or out) using the minimap, the touch gestures, the mouse wheel, or keyboard shortcuts</li>
+          <li>move the "color application mode" selection to the colors menus/popovers</li>
+          <li>add "antialiasing" option to several tools</li>
+          <li>fix how the canvas is displayed on HiDPI screens</li>
+          <li>warn the user when they try to save despite the current operation not being applied</li>
+          <li>rewrite the user help manual</li>
+        </ul>
+      </details>
+      <!-- It's not useful to do 0.4 or 0.2, no one uses that -->
+      <br />
 
       <!-- Other useful but not sexy infos -->
       <h2><a id="tools"></a>Tools</h2><!-- ********************************* -->
@@ -174,7 +287,7 @@ provide the actual link either. Use flatpak instead.">
             <li>Eraser*</li>
             <li>Highlighter*</li>
             <li>Insert text</li>
-            <li>Points</li>
+            <li>Points*</li>
             <li>Shape
               <ul>
                 <li>Rectangle</li>
@@ -190,6 +303,8 @@ provide the actual link either. Use flatpak instead.">
             <li>Color picker*</li>
             <li>Paint*</li>
           </ul>
+
+          <p>*these tools are disabled by default.</p>
         </div>
 
         <div class="col50">
@@ -216,8 +331,7 @@ provide the actual link either. Use flatpak instead.">
             </li>
           </ul>
 
-          <p>(version 0.6.1)</p>
-          <p>*these tools are disabled by default.</p>
+          <p>(last update of this list: version 0.6.5)</p>
         </div>
 
       </div>
@@ -239,6 +353,7 @@ provide the actual link either. Use flatpak instead.">
         <li>Hebrew</li>
         <li>Hungarian</li>
         <li>Italian</li>
+        <li>Japanese</li>
         <li>Polish</li>
         <li>Russian</li>
         <li>Swedish</li>

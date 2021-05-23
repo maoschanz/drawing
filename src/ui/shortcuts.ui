@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
-  <object class="GtkShortcutsWindow" id="shortcuts">
+  <object class="GtkShortcutsWindow" id="shortcuts-window">
+    <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkShortcutsSection">
         <property name="visible">True</property>
         <property name="section-name">shortcuts</property>
         <property name="title" translatable="yes">Keyboard Shortcuts</property>
         <property name="max-height">9</property>
+        <!-- 9 is actually the minimum possible -->
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
@@ -44,26 +46,6 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Quit all windows</property>
                 <property name="accelerator">&lt;Primary&gt;q</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkShortcutsGroup">
-            <property name="visible">True</property>
-            <property name="title" translatable="yes">Fullscreen</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Enter fullscreen mode</property>
-                <property name="accelerator">F11</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Exit fullscreen mode</property>
-                <property name="accelerator">Escape</property>
               </object>
             </child>
           </object>
@@ -117,6 +99,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">Copy to clipboard</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;c</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Close the active image</property>
                 <property name="accelerator">&lt;Primary&gt;w</property>
               </object>
@@ -124,26 +113,6 @@
           </object>
         </child>
 
-        <child>
-          <object class="GtkShortcutsGroup">
-            <property name="visible">True</property>
-            <property name="title" translatable="yes">History</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Undo</property>
-                <property name="accelerator">&lt;Primary&gt;z</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Redo</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;z</property>
-              </object>
-            </child>
-          </object>
-        </child>
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
@@ -183,33 +152,34 @@
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;Down</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Apply a transformation</property>
+                <property name="accelerator">&lt;Primary&gt;Return</property>
+              </object>
+            </child>
+            <!-- The "cancel transformation" button is linked to a -->
+            <!-- "force_selection" action so it wouldn't be pertinent to add -->
+            <!-- a shortcut for it in my opinion -->
           </object>
         </child>
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
-            <property name="title" translatable="yes">Colors</property>
+            <property name="title" translatable="yes">History</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <!-- Label displayed in the keyboard shortcuts dialog -->
-                <property name="title" translatable="yes">Edit the main color (left click)</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;l</property>
+                <property name="title" translatable="yes">Undo</property>
+                <property name="accelerator">&lt;Primary&gt;z</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <!-- Label displayed in the keyboard shortcuts dialog -->
-                <property name="title" translatable="yes">Edit the secondary color (right click)</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;r</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Exchange colors</property>
-                <property name="accelerator">&lt;Primary&gt;e</property>
+                <property name="title" translatable="yes">Redo</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;z</property>
               </object>
             </child>
           </object>
@@ -316,6 +286,35 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
+            <property name="title" translatable="yes">Colors</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <!-- Label displayed in the keyboard shortcuts dialog -->
+                <property name="title" translatable="yes">Edit the main color (left click)</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;l</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <!-- Label displayed in the keyboard shortcuts dialog -->
+                <property name="title" translatable="yes">Edit the secondary color (right click)</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;r</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Exchange colors</property>
+                <property name="accelerator">&lt;Primary&gt;e</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="visible">True</property>
             <property name="title" translatable="yes">Tabs</property>
             <child>
               <object class="GtkShortcutsShortcut">
@@ -333,6 +332,7 @@
             </child>
           </object>
         </child>
+
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
@@ -376,17 +376,37 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Fullscreen</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Toggle fullscreen mode</property>
+                <property name="accelerator">F11</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Toggle toolbars visibility</property>
+                <property name="accelerator">F8</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
 
-    <!-- -->
+    <!-- ******************************************************************* -->
 
     <child>
       <object class="GtkShortcutsSection">
         <property name="visible">True</property>
         <property name="section-name">gestures</property>
         <property name="title" translatable="yes">Touch gestures</property>
-        <property name="max-height">9</property>
+        <property name="max-height">5</property>
 
         <child>
           <object class="GtkShortcutsGroup">

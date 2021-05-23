@@ -1,6 +1,6 @@
 # optionsbar_skew.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,8 +38,9 @@ class OptionsBarSkew(AbstractOptionsBar):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
+		                      self.help_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
+		self._set_limit_size(temp_limit_size)
 
 	def update_for_new_tool(self, tool):
 		self.set_compact(self._is_narrow)

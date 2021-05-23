@@ -1,3 +1,66 @@
+drawing (0.8.1) unstable; urgency=low
+
+  * add an action "selection > define as current image" (#332)
+  * fix how the canvas was ERASED if it was being cropped on one side but expanded on the other side
+  * add an action "selection > expand image to fit [the size of the selection]" (#332)
+  * add a several ways of censoring information as an option to the eraser tool
+  * preference to select a theme variant (#360, #361, by @alexislozano)
+  * add "nip direction" option to the calligraphic nip (#69, #116)
+  * better pre-select the currently used font in the font chooser dialog (#359)
+  * add optional outline to the pencil tool (#369)
+  * install files in /usr instead of /usr/local
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 28 May 2021 13:12:00 +0100
+
+drawing (0.8.0) unstable; urgency=low
+
+  * new, richer, more readable bottom pane for the selection tool
+  * add a "replace with" option to the eraser tool
+  * use an adequate layout on LXDE or LXQt
+  * force the release notes down users' throat (#347)
+  * rewrite the help manual to better force it down users' throat (#347)
+  * add color application mode support to the "shape" tool (#329)
+  * persist the text background style (#340) and the shape filling style options
+  * brush supporting pressure-sensitive input (#69, #116)
+  * hairy brush supporting pressure-sensitive input (#69, #116)
+  * airbrush supporting pressure-sensitive input (#69, #116)
+  * calligraphic nip supporting pressure-sensitive input (#69, #116)
+  * fix unexpected "jumps" when unselecting a selection that was defined by an undo
+  * improve the fullscreen mode, with a way to toggle the tools list (#265, #189)
+  * add an "increase constrast" filter (#308)
+  * deleting the selection can now leave something else than transparency #232
+  * option to exclude the color left under the selection from the selection itself #232
+  * rewrite the UI for changing the color application mode (#329)
+  * remove the cool but deprecated GNOME Shell app menu
+  * improve flatpak CI (#319, Bilel Moussaoui)
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 24 Apr 2021 13:12:00 +0100
+
+drawing (0.6.5) unstable; urgency=low
+
+  * fix unexplained regression of bottom panes responsiveness
+  * mitigation of the "very quick series of ctrl+b" bug
+  * disable importing or opening an image using drag-and-drop with flatpak (it was broken)
+  * fix printing (issue #20)
+  * more pertinent movements of the view when holding and moving the middle-click
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 30 Jan 2021 13:12:00 +0100
+
+drawing (0.6.4) unstable; urgency=low
+
+  * add more keyboard shortcuts
+  * slightly better "erase and replace" algo for the paint tool
+  * better handle attempts to open webp images (#217)
+  * better handle attempts to open incorrect file types
+  * update help manual
+  * remember the value of the antialiasing option
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 28 Nov 2020 13:12:00 +0100
+
 drawing (0.6.3) unstable; urgency=low
 
   * use submenus for the "tools" menu in the menubar
@@ -7,6 +70,7 @@ drawing (0.6.3) unstable; urgency=low
   * add option for double-ended arrows
   * add more options for dashed lines
   * update several translations
+  * support for older distributions (pygobject < 3.30)
 
  -- Romain F. T. <rrroschan@gmail.com>  Sat, 31 Oct 2020 13:12:00 +0100
 
@@ -53,8 +117,9 @@ drawing (0.6.0) unstable; urgency=low
   * zoom in (or out) using the minimap, the touch gestures, the mouse wheel, or keyboard shortcuts
   * move the "color application mode" selection to the colors menus/popovers
   * add "antialiasing" option to several tools
+  * fix how the canvas is displayed on HiDPI screens
   * warn the user when they try to save despite the current operation not being applied
   * rewrite the user help manual
 
- -- Romain F. T. <rrroschan@gmail.com>  Sun, 20 Sep 2020 13:18:12 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sun, 20 Sep 2020 13:12:00 +0100
 

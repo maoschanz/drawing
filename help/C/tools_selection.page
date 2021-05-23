@@ -10,7 +10,7 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Select a part of the image</desc>
+    <desc>Select a part of the image.</desc>
   </info>
 
   <title>Selection</title>
@@ -43,6 +43,32 @@
       as expected so this tool is <link xref="preferences#tools">disabled by
       default</link>.</p>
     </note>
+
+    <p>Before you start to define a selection, you may want to choose what color
+    will replace the selected pixels once they'll be moved or deleted:</p>
+    <list>
+      <item>
+        <p><gui style="menuitem">Transparency</gui>.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Default color</gui> (the color of your initial
+        canvas, as defined in <link xref="preferences#image">the app preferences
+        </link>).</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Secondary color</gui> (the color corresponding
+        to the right-click when you use a <link xref="tools_classic">classic
+        tool</link>).</p>
+      </item>
+    </list>
+    <p>The option "<gui style="menuitem">Extract from this color</gui>" means,
+    if it's checked, that the pixels corresponding to the replacement color will
+    not be included in the selection.</p>
+    <p>Example: if you replace the selected pixels with white, and you select a
+    figure on a white background, only the figure will be selected. If this
+    figure has been drawn without <link xref="tools_classic#basic-draw">
+    anti-aliasing</link>, it can easily be moved to a background of an other
+    color and it would look good.</p>
   </section>
 
   <section>
