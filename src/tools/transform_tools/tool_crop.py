@@ -197,20 +197,23 @@ class ToolCrop(AbstractCanvasTool):
 		but from the selection menu. The parameters are determined automatically
 		from the state of the selection manager."""
 		self._update_expansion_color()
-		selection = self.get_selection()
-		new_origin_x = min(0, selection.selection_x)
-		new_origin_y = min(0, selection.selection_y)
-		s_width = selection.selection_x + selection.selection_pixbuf.get_width()
-		new_width = max(self.get_main_pixbuf().get_width(), s_width)
-		s_height = selection.selection_y + selection.selection_pixbuf.get_height()
-		new_height = max(self.get_main_pixbuf().get_height(), s_height)
+		s = self.get_selection()
+		new_x = min(0, s.selection_x)
+		new_y = min(0, s.selection_y)
+
+		s_width = max(0, s.selection_x) + s.selection_pixbuf.get_width()
+		new_width = max(-1 * new_x + self.get_main_pixbuf().get_width(), s_width)
+
+		s_height = max(0, s.selection_y) + s.selection_pixbuf.get_height()
+		new_height = max(-1 * new_y + self.get_main_pixbuf().get_height(), s_height)
 
 		operation = {
 			'tool_id': self.id,
 			'is_selection': False,
 			'is_preview': False,
-			'local_dx': int(new_origin_x),
-			'local_dy': int(new_origin_y),
+			'is_etf': True,
+			'local_dx': int(new_x),
+			'local_dy': int(new_y),
 			'width': new_width,
 			'height': new_height,
 			'rgba': self._expansion_color
@@ -222,6 +225,7 @@ class ToolCrop(AbstractCanvasTool):
 			'tool_id': self.id,
 			'is_selection': self.apply_to_selection,
 			'is_preview': True,
+			'is_etf': False,
 			'local_dx': int(self._x),
 			'local_dy': int(self._y),
 			'width': self.get_width(),
@@ -244,6 +248,9 @@ class ToolCrop(AbstractCanvasTool):
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		self._crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
+		if operation['is_etf']:
+			s_pixbuf = self.get_selection_pixbuf()
+			self.get_selection().update_from_transform_tool(s_pixbuf, -1 * x, -1 * y)
 		self.common_end_operation(operation)
 
 	def _crop_temp_pixbuf(self, x, y, width, height, is_selection, rgba):
