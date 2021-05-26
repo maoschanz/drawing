@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # Import libs
-import os
+import os, traceback
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 # Import tools
@@ -118,7 +118,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		popovers, the tools, their options, and a new image. Depending on the
 		parameters, the new image can be imported from the clipboard, loaded
 		from a GioFile, or (else) it can be a blank image."""
-		self.tools = None
+		self.prompt_action(_("Error starting the application, please report this bug."))
+
+		self.tools = {}
 		self.minimap = DrMinimap(self, None)
 		self.options_manager = DrOptionsManager(self)
 		self.saving_manager = DrSavingManager(self)
@@ -231,14 +233,13 @@ class DrWindow(Gtk.ApplicationWindow):
 	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
 		"""Given its id and its python class, this method tries to load a tool,
 		and show an error message if the tool initialization failed."""
-		if dev: # Simplest way to get an error stack
-			self.tools[tool_id] = tool_class(self)
-		elif tool_id not in disabled_tools:
+		if tool_id not in disabled_tools:
 			try:
 				self.tools[tool_id] = tool_class(self)
-			except:
+			except Exception as err:
 				# Context: an error message
-				self.prompt_message(True, _("Failed to load tool: %s") % tool_id)
+				self.prompt_action(_("Failed to load tool: %s") % tool_id)
+				traceback.print_exc()
 
 	def _build_tool_rows(self):
 		"""Adds each tool's button to the side pane."""
@@ -708,10 +709,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show or self.gsettings.get_boolean('devel-only') and label != "":
+		if show and self.gsettings.get_boolean('devel-only') and label != "":
 			print('Drawing: ' + label)
 
-	def prompt_action(self, message, action_name, action_label):
+	def prompt_action(self, message, action_name='app.report_bug', action_label=_("Report a bug")):
 		"""Update the content of the info bar, including its actionable button
 		which is set as visible."""
 		self.prompt_message(True, message)
