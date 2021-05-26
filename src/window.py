@@ -113,12 +113,21 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self.resize(720, 288)
 		self._set_ui_bars()
 
-	def init_window_content(self, gfile, get_cb):
+	def init_window_content_async(self, content_params):
 		"""Initialize the window's content, such as the minimap, the color
 		popovers, the tools, their options, and a new image. Depending on the
 		parameters, the new image can be imported from the clipboard, loaded
-		from a GioFile, or (else) it can be a blank image."""
+		from a GioFile, or (else) it can be a blank image.
+
+		This method is called asynchronously, which isn't *correct* (not very
+		thread-safe or anything) but it allows the window to be shown quicker.
+		If it fails, a window is here anyway because this is independant from
+		the object constructor."""
+
 		self.prompt_action(_("Error starting the application, please report this bug."))
+
+		gfile = content_params['gfile']
+		get_cb = content_params['get_cb']
 
 		self.tools = {}
 		self.minimap = DrMinimap(self, None)
@@ -147,6 +156,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._enable_first_tool()
 		self.set_picture_title()
 		self._try_show_release_notes()
+
+		# has to return False to be removed from the mainloop immediatly
+		return False
 
 	def _try_show_release_notes(self):
 		last_version = self.gsettings.get_string('last-version')
