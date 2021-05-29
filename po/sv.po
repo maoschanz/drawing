@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:52+0200\n"
+"POT-Creation-Date: 2021-05-30 01:17+0200\n"
 "PO-Revision-Date: 2021-05-02 16:52+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -69,6 +69,37 @@ msgstr ""
 "Det låter dig rita eller redigera bilder med verktyg såsom penna, linje "
 "eller båge (med olika alternativ), markering (klipp ut/kopiera/klistra in/"
 "dra/…), textinfogning, storleksändring, beskärning, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"Version 0.8.1 innehåller ett flertal mindre felkorrigeringar, och diverse "
+"nya översättningar."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -134,13 +165,6 @@ msgstr ""
 "Läget \"Oskärpa\" har tagits bort, vilket förenklade situationen och tillät "
 "flera verktyg (\"Former\" och \"Penslar\") att få stöd för "
 "färgprogramslägena i allmänhet."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Version 0.8.1 innehåller ett flertal mindre felkorrigeringar, och diverse "
-"nya översättningar."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -527,7 +551,7 @@ msgstr "_Hjälp"
 msgid "Shortcuts"
 msgstr "Genvägar"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Rapportera ett fel"
 
@@ -673,6 +697,33 @@ msgstr "Rotera"
 msgid "Filters"
 msgstr "Filter"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Fler åtgärder"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "Fri markering"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "Öppna en bild"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -785,8 +836,10 @@ msgid "Touch gestures"
 msgstr "Pekgester"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "Läser in %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -1073,20 +1126,10 @@ msgid "Background color"
 msgstr "Bakgrundsfärg"
 
 #: src/preferences.py
-msgid "Theme variant"
+#, fuzzy
+#| msgid "Theme variant"
+msgid "Prefer dark theme variant"
 msgstr "Temavariant"
-
-#: src/preferences.py
-msgid "Default variant"
-msgstr "Standardvariant"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "Ljus variant"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "Mörk variant"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1352,6 +1395,10 @@ msgstr "WEBP-bilder kan inte läsas av det här programmet."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Trots namnet, så är %s en WEBP-fil."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1558,10 +1605,6 @@ msgstr "Vinkel (grader)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Vinkel"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Fler åtgärder"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1868,6 +1911,12 @@ msgstr "Hela bilden"
 msgid "Remove color"
 msgstr "Ta bort färg"
 
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Kontur"
+
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Punkttyp"
@@ -1991,11 +2040,6 @@ msgstr "Ingen bakgrund"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Skugga"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Kontur"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2183,29 +2227,6 @@ msgstr "Oskärperadie"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Mättnad"
-
-#~ msgid ""
-#~ "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-#~ "screen size, and could disappear under certain conditions."
-#~ msgstr ""
-#~ "Bland de roliga buggarna: De undre panelerna vägrade ibland att anpassa "
-#~ "sig till skärmstorleken, och kunde försvinna under vissa förhållanden."
-
-#~ msgid ""
-#~ "The catastrophic \"print\" action, that no one ever used so no one ever "
-#~ "noticed, is now somewhat usable."
-#~ msgstr ""
-#~ "Den katastrofala funktionen \"utskrift\", som ingen någonsin använt och "
-#~ "därför inte lagt märke till, är nu något mer användbar."
-
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Fotoorienterade lägen"
-
-#~ msgid "Canvas and selection"
-#~ msgstr "Arbetsyta och markering"
-
-#~ msgid "com.github.maoschanz.drawing"
-#~ msgstr "com.github.maoschanz.drawing"
 
 #~ msgid "About"
 #~ msgstr "Om"

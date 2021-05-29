@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-29 17:33+0200\n"
+"POT-Creation-Date: 2021-05-30 01:17+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -70,6 +70,36 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 0.8.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
@@ -123,16 +153,12 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and allowed "
-"several tools (\"shapes\" and \"brushes\") to get support for the color "
-"application modes in general."
+"The \"blur\" mode has been removed, which simplified the situation and "
+"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
+"color application modes in general."
 msgstr ""
-"\"흐림\"모드가 제거되어 상황이 단순화되고 여러 도구 ( \"모양\"및 \"브러시\")가 일반"
-"적으로 색상 적용 모드를 지원할 수 있습니다."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr "버전 0.8.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+"\"흐림\"모드가 제거되어 상황이 단순화되고 여러 도구 ( \"모양\"및 \"브러시\")"
+"가 일반적으로 색상 적용 모드를 지원할 수 있습니다."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -665,8 +691,35 @@ msgstr "회전"
 msgid "Filters"
 msgstr "필터"
 
-#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
 #: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "더 많은 행동"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "자유 선택"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "이미지 열기"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
 msgstr "새 이미지로 열기"
 
@@ -777,8 +830,10 @@ msgid "Touch gestures"
 msgstr "터치 제스처"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "로딩 %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -935,8 +990,8 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"이미지를 이러한 형식으로 저장하는 경우 투명 픽셀을 대체하기 위해 무엇을 사용 하시겠"
-"습니까?"
+"이미지를 이러한 형식으로 저장하는 경우 투명 픽셀을 대체하기 위해 무엇을 사용 "
+"하시겠습니까?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
@@ -991,10 +1046,9 @@ msgstr "추가 도구"
 
 #: src/preferences.py
 msgid ""
-"These tools are not as reliable and useful as they should be, so they are not all "
-"enabled by default."
-msgstr ""
-"기본적으로 모두 활성화되어 있지 않습니다"
+"These tools are not as reliable and useful as they should be, so they are "
+"not all enabled by default."
+msgstr "기본적으로 모두 활성화되어 있지 않습니다"
 
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -1064,20 +1118,10 @@ msgid "Background color"
 msgstr "배경색"
 
 #: src/preferences.py
-msgid "Theme variant"
+#, fuzzy
+#| msgid "Theme variant"
+msgid "Prefer dark theme variant"
 msgstr "테마 변경"
-
-#: src/preferences.py
-msgid "Default variant"
-msgstr "기본 테마"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "밝은 테마"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "어두운 테마"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1342,6 +1386,11 @@ msgstr "이 앱은 WEBP 이미지를로드 할 수 없습니다."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "%s 는 WEBP 파일입니다."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr ""
+"응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1383,8 +1432,8 @@ msgstr "옵션 없음"
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
-"컨트롤을 표시하거나 숨기려면 가운데 클릭하거나 세 손가락으로 탭하거나 F8 키를 누릅"
-"니다."
+"컨트롤을 표시하거나 숨기려면 가운데 클릭하거나 세 손가락으로 탭하거나 F8 키"
+"를 누릅니다."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1463,8 +1512,8 @@ msgstr "메인 색상"
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "보조 색상"
 
@@ -1473,8 +1522,8 @@ msgid "Tool size"
 msgstr "도구 크기"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "미리보기"
 
@@ -1546,10 +1595,6 @@ msgstr "각도 (도)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "각도"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "더 많은 행동"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1857,6 +1902,12 @@ msgstr "전체 이미지"
 msgid "Remove color"
 msgstr "색상 제거"
 
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "윤곽선"
+
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "도트 유형"
@@ -1980,11 +2031,6 @@ msgstr "배경 없음"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "그림자"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "윤곽선"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

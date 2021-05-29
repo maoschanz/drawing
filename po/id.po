@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
+"POT-Creation-Date: 2021-05-30 01:17+0200\n"
 "PO-Revision-Date: 2020-10-25 01:41+0700\n"
 "Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
 "Language-Team: Indonesian\n"
@@ -68,6 +68,35 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
@@ -110,11 +139,6 @@ msgid ""
 "The \"blur\" mode has been removed, which simplified the situation and "
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
 msgstr ""
 
 #. This is just my name, do not translate it.
@@ -504,7 +528,7 @@ msgstr "Ba_ntuan"
 msgid "Shortcuts"
 msgstr "Pintasan"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Laporkan kutu"
 
@@ -655,6 +679,33 @@ msgstr "Putar"
 msgid "Filters"
 msgstr "Penapis"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr ""
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "Seleksi bebas"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "Buka gambar"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -768,8 +819,10 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Kesalahan saat memulai aplikasi, silakan laporkan kutu ini."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "Memuat %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -1053,22 +1106,10 @@ msgid "Background color"
 msgstr "Warna latar belakang"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr ""
-
-#: src/preferences.py
 #, fuzzy
 #| msgid "Default width"
-msgid "Default variant"
+msgid "Prefer dark theme variant"
 msgstr "Lebar bawaan"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr ""
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1335,6 +1376,10 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Kesalahan saat memulai aplikasi, silakan laporkan kutu ini."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1540,10 +1585,6 @@ msgstr "Sudut (derajat)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Sudut"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1863,6 +1904,12 @@ msgstr "Seluruh gambar"
 msgid "Remove color"
 msgstr "Hilangkan warna"
 
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Garis luar"
+
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr ""
@@ -1986,11 +2033,6 @@ msgstr "Tanpa latar belakang"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Bayangan"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Garis luar"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

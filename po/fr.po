@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-29 17:33+0200\n"
+"POT-Creation-Date: 2021-05-30 01:17+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -81,30 +81,34 @@ msgstr ""
 msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
-msgstr "Vous pouvez maintenant rogner ou étendre le canvas à une taille basée "
-"sur celle de la sélection, en utilisant de nouvelles actions disponibles dans "
+msgstr ""
+"Vous pouvez maintenant rogner ou étendre le canvas à une taille basée sur "
+"celle de la sélection, en utilisant de nouvelles actions disponibles dans "
 "les menus de la sélection."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
-msgstr "Un bug, où l'outil \"rogner\" pouvait effacer l'image sous certaines "
+msgstr ""
+"Un bug, où l'outil \"rogner\" pouvait effacer l'image sous certaines "
 "conditions, a été corrigé."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
-msgstr "Dans la fenêtre des préférences, il y a désormais une option pour "
-"dire si vous préférez la variante sombre de votre thème."
+msgstr ""
+"Dans la fenêtre des préférences, il y a désormais une option pour dire si "
+"vous préférez la variante sombre de votre thème."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush and the "
-"\"eraser\" tool."
-msgstr "Plusieurs options ont été ajoutées, à la brosse \"plume "
-"calligraphique\" et à l'outil \"gomme\"."
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+"Plusieurs options ont été ajoutées, à la brosse \"plume calligraphique\", à "
+"l'outil \"gomme\", et au \"crayon\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -720,8 +724,8 @@ msgstr "Inverser la sélection"
 msgid "Define as current image"
 msgstr "Définir comme image actuelle"
 
-#. Expand the canvas of the current image to make the current
-#. selection fit in it
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
@@ -2233,4 +2237,3 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
-
