@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
+"POT-Creation-Date: 2021-05-30 01:17+0200\n"
 "PO-Revision-Date: 2021-04-26 13:36+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -71,6 +71,37 @@ msgstr ""
 "Linien oder Kurven (mit verschiedenen Optionen), Auswahl (Ausschneiden/"
 "Kopieren/Einfügen/Ziehen/…), Formen (Rechteck, Kreis, Vieleck, …) "
 "Texteingabe, Größenänderung, Zuschneiden, Drehen, usw.…"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"Die Version 0.8.1 enthält mehrere kleine Fehlerbehebungen und verschiedene "
+"neue Übersetzungen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -138,13 +169,6 @@ msgstr ""
 "Der Modus \"Verwischen\" wurde entfernt, was die Situation vereinfachte und "
 "es verschiedenen Werkzeugen (\"Formen\" und \"Pinsel\") nun erlaubt, im "
 "Allgemeinen den Farbanwendungsmodus zu nutzen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Die Version 0.8.1 enthält mehrere kleine Fehlerbehebungen und verschiedene "
-"neue Übersetzungen."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -531,7 +555,7 @@ msgstr "_Hilfe"
 msgid "Shortcuts"
 msgstr "Tastenkürzel"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Einen Fehler melden"
 
@@ -677,6 +701,33 @@ msgstr "Drehen"
 msgid "Filters"
 msgstr "Filter"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Weitere Aktionen"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "Freie Auswahl"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "Ein Bild öffnen"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -790,8 +841,10 @@ msgid "Touch gestures"
 msgstr "Touch-Gesten"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Fehler beim Starten der Anwendung. Bitte melden Sie diesen Fehler."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "Wird geladen %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -1080,22 +1133,10 @@ msgid "Background color"
 msgstr "Hintergrundfarbe"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr ""
-
-#: src/preferences.py
 #, fuzzy
 #| msgid "Default width"
-msgid "Default variant"
+msgid "Prefer dark theme variant"
 msgstr "Standardbreite"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr ""
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1366,6 +1407,10 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Trotz seines Namens ist %s eine WEBP-Datei."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Fehler beim Starten der Anwendung. Bitte melden Sie diesen Fehler."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1573,10 +1618,6 @@ msgstr "Winkel (Grad)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Winkel"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Weitere Aktionen"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1888,6 +1929,12 @@ msgstr "Gesamtes Bild"
 msgid "Remove color"
 msgstr "Farbe entfernen"
 
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Außenlinie"
+
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Punktetyp"
@@ -2011,11 +2058,6 @@ msgstr "Ohne Hintergrund"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Schatten"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Außenlinie"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

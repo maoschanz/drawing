@@ -1,5 +1,8 @@
 drawing (0.8.1) unstable; urgency=low
 
+  * add an action "selection > define as current image" (#332)
+  * fix how the canvas was ERASED if it was being cropped on one side but expanded on the other side
+  * add an action "selection > expand image to fit [the size of the selection]" (#332)
   * add a several ways of censoring information as an option to the eraser tool
   * preference to select a theme variant (#360, #361, by @alexislozano)
   * add "nip direction" option to the calligraphic nip (#69, #116)
@@ -8,7 +11,7 @@ drawing (0.8.1) unstable; urgency=low
   * install files in /usr instead of /usr/local
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 15 May 2021 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 5 Jun 2021 13:12:00 +0100
 
 drawing (0.8.0) unstable; urgency=low
 

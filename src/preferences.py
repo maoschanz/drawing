@@ -165,15 +165,7 @@ class DrPrefsWindow(Gtk.Window):
 			self._gsettings.set_boolean('devel-only', False)
 		self.add_colorbtn(_("Background color"), 'ui-background-rgba')
 
-		self.add_section_separator()
-		
-		self.add_section_title(_("Theme variant"))
-		variants_dict = {
-			'default': _("Default variant"),
-			'light': _("Light variant"),
-			'dark': _("Dark variant")
-		}
-		self.add_radio_flowbox('theme-variant', variants_dict)
+		self.add_switch(_("Prefer dark theme variant"), 'dark-theme-variant')
 
 		self.add_section_separator()
 		# Context: title of a section of the preferences. It corresponds to the

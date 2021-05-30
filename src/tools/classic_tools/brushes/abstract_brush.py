@@ -9,7 +9,7 @@ class AbstractBrush():
 		self._id = brush_id
 		self._tool = brush_tool
 
-	def _get_status(self, use_pressure):
+	def _get_status(self, use_pressure, brush_direction):
 		return _("Brush")
 
 	############################################################################

@@ -55,32 +55,32 @@ app from source code.
 If your language is not here, or is incompletely translated, you can
 [contribute](./CONTRIBUTING.md#translating) to the translations.
 
-<!-- TODO just @ their account instead of writing full links myself? -->
 
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
-| cs   | Czech        | 96%        | [Vojtěch Perník](https://github.com/pervoj)
-| da   | Danish       | 92%        | [scootergrisen](https://github.com/scootergrisen)
-| de   | German       | 99%        | [Onno Giesmann](https://github.com/Etamuk)
+| cs   | Czech        | 96%        | @pervoj                                   |
+| da   | Danish       | 92%        | @scootergrisen                            |
+| de   | German       | 99%        | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
-| es   | Castillan    | 100%       | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
-| eu   | Basque       | 88%        | [alexgabi](https://github.com/alexgabi)
-| fi   | Finnish      | 75%        | [MahtiAnkka](https://github.com/mahtiankka)
+| es   | Castillan    | 100%       | @fitojb and @xoan                         |
+| eu   | Basque       | 88%        | @alexgabi                                 |
+| fi   | Finnish      | 75%        | @mahtiankka                               |
 | fr   | French       | 100%       |                                           |
-| he   | Hebrew       | **39%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
-| hr   | Croatian     | 78%        | [Milo Ivir](https://github.com/milotype)  |
-| hu   | Hungarian    | **62%**    | [Kálmán „KAMI” Szalai](https://github.com/kami911)
-| id   | Indonesian   | 76%        | [Ghani Rafif](https://github.com/ekickx)  |
-| it   | Italian      | 97%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella](https://github.com/albanobattistella)
-| ja   | Japanese     | 100%       | [rlbxku1r](https://github.com/rlbxku1r)   |
-| nl   | Dutch        | 100%       | [Heimen Stoffels](https://github.com/Vistaus)
-| pl   | Polish       | **72%**    | [Piotr Komur](https://github.com/pkomur)  |
-| pt_BR | Br. portuguese | 81%     | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
-| ru   | Russian      | 99%        | [Artem Polishchuk](https://github.com/tim77) and [Ser82-png](https://github.com/Ser82-png)
-| sv   | Swedish      | 100%       | [Åke Engelbrektson](https://github.com/eson57)
-| tr   | Turkish      | 100%       | [Serdar Sağlam](https://github.com/TeknoMobil) and [serkan-maker](https://github.com/serkan-maker)
-| zh_CN | Chinese, simpl. | 80%    | [OverflowCat](https://github.com/OverflowCat)
-| zh_TW | Chinese, tradi. | 81%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
+| he   | Hebrew       | **39%**    | @moriel5 and @shaqash                     |
+| hr   | Croatian     | 78%        | @milotype                                 |
+| hu   | Hungarian    | **62%**    | @kami911                                  |
+| id   | Indonesian   | 76%        | @ekickx                                   |
+| it   | Italian      | 97%        | @amivaleo and @albanobattistella          |
+| ja   | Japanese     | 100%       | @rlbxku1r                                 |
+| kr   | Korean       | 100%       | @chaeya                                   |
+| nl   | Dutch        | 100%       | @Vistaus                                  |
+| pl   | Polish       | **72%**    | @pkomur)                                  |
+| pt_BR | Br. portuguese | 81%     | @haurenburu and @ArthurBacci64            |
+| ru   | Russian      | 99%        | @tim77 and @Ser82-png                     |
+| sv   | Swedish      | 100%       | @eson57                                   |
+| tr   | Turkish      | 100%       | @TeknoMobil and @serkan-maker             |
+| zh_CN | Chinese, simpl. | 80%    | @OverflowCat                              |
+| zh_TW | Chinese, tradi. | 81%    | @pan93412, @OverflowCat and @cges30901    |
 
 \*Completion percentages correspond to **the next** major version, still in
 development.

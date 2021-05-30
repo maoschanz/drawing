@@ -31,7 +31,7 @@ def utilities_get_rgba_name(red, green, blue, alpha):
 
 	total = red + green + blue
 	orange_coef = 0.0
-	lumin = total/3.0
+	lumin = total / 3.0
 	# print(lumin)
 	if green != 0:
 		orange_coef = (red/green) * lumin
