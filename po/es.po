@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-30 01:17+0200\n"
-"PO-Revision-Date: 2021-04-27 14:02+0200\n"
+"PO-Revision-Date: 2021-05-30 17:26+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -85,24 +85,33 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"Ahora puede recortar o ampliar el lienzo a un tamaño basado en el tamaño de "
+"la selección actual, utilizando nuevas acciones disponibles en los menús de "
+"selección."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"Se ha corregido un error por el que la herramienta de \"recorte\" podía "
+"borrar la imagen en determinadas condiciones."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
+"En la ventana de preferencias, ahora hay una opción para seleccionar si "
+"prefieres la variante de tema oscuro."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Several options have been added, to the \"calligraphic nip\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"Se han añadido varias opciones, al pincel \"pluma caligráfica\", a la "
+"herramienta \"goma de borrar\" y al \"lápiz\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -709,25 +718,21 @@ msgstr "Más acciones"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
-msgstr "Selección libre"
+msgstr "Invertir selección"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
-msgstr "Abrir una imagen"
+msgstr "Definir como imagen actual"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Ampliar la imagen para que se ajuste"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -841,10 +846,8 @@ msgid "Touch gestures"
 msgstr "Gestos táctiles"
 
 #: src/ui/window.ui
-#, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
-msgstr "Cargando %s"
+msgstr "Cargando…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1134,10 +1137,8 @@ msgid "Background color"
 msgstr "Color de fondo"
 
 #: src/preferences.py
-#, fuzzy
-#| msgid "Theme variant"
 msgid "Prefer dark theme variant"
-msgstr "Variante del tema"
+msgstr "Preferir la variante de tema oscuro"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
