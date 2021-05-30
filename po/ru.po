@@ -85,24 +85,32 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"Теперь вы можете обрезать или расширять холст до размера текущего выделения, "
+"используя новые действия, доступные в меню выбора."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"Исправлена ошибка, при которой инструмент \"Обрезать\" мог стереть "
+"изображение при определенных условиях."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
+"В окне настроек теперь есть новая опция выбора, "
+"если вы предпочитаете темную тему."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Several options have been added, to the \"calligraphic nip\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"Было добавлено несколько новых параметов к \"графическому перу\", "
+"\"ластику\", и \"карандашу\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -725,7 +733,7 @@ msgstr "Открыть изображение"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Расширить изображение до размера окна"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -1132,10 +1140,9 @@ msgid "Background color"
 msgstr "Цвет фона"
 
 #: src/preferences.py
-#, fuzzy
 #| msgid "Theme variant"
 msgid "Prefer dark theme variant"
-msgstr "Варианты тем"
+msgstr "Предпочитаю темный вариант темы"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
