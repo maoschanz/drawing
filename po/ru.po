@@ -85,8 +85,8 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
-"Теперь вы можете обрезать или расширять холст до размера текущего выделения, "
-"используя новые действия, доступные в меню выбора."
+"Теперь вы можете обрезать или расширять холст в зависимости от размера "
+"текущего выделения, используя новые действия, доступные в меню для выделения."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -715,25 +715,23 @@ msgstr "Больше действий"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 #| msgid "Free selection"
 msgid "Invert selection"
-msgstr "Свободное выделение"
+msgstr "Инвертировать выделение"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 #| msgid "Open an image"
 msgid "Define as current image"
-msgstr "Открыть изображение"
+msgstr "Определить как текущее изображение"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr "Расширить изображение до размера окна"
+msgstr "Расширить изображение до подходящего размера"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -847,10 +845,9 @@ msgid "Touch gestures"
 msgstr "Сенсорные жесты"
 
 #: src/ui/window.ui
-#, fuzzy
 #| msgid "Loading %s"
 msgid "Loading…"
-msgstr "Загрузка %s"
+msgstr "Загрузка…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1009,7 +1006,7 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Если вы сохраняете изображения в этих форматах, что вы  будете использовать "
+"Если вы сохраняете изображения в этих форматах, что будете использовать "
 "для замены прозрачных пикселей?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
@@ -1039,7 +1036,7 @@ msgstr "Спросить перед сохранением"
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr ""
-"Вы можете масштабировать с помощью Ctrl + прокрутка или только прокруткой."
+"Вы можете масштабировать с помощью Ctrl+прокрутка или только прокруткой."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
@@ -2033,11 +2030,11 @@ msgstr "Выбрать шрифт…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
-msgstr "Italic"
+msgstr "Курсив"
 
 #: src/tools/ui/tool-text.ui
 msgid "Bold"
-msgstr "Bold"
+msgstr "Жирный"
 
 #. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
