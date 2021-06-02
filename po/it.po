@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-30 01:17+0200\n"
-"PO-Revision-Date: 2021-05-02 11:15+0100\n"
+"PO-Revision-Date: 2021-06-02 09:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -82,24 +82,32 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"Ora puoi ritagliare o espandere la tela a una dimensione basata sull'attuale "
+"dimensione della selezione, utilizzando le nuove azioni disponibili nei menu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"Un bug, per cui lo strumento \"ritaglia\" poteva cancellare l'immagine in determinate "
+"condizioni, è stato risolto."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
+"Nella finestra delle preferenze, ora c'è un'opzione per selezionare se preferisci "
+"la variante del tema scuro."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Several options have been added, to the \"calligraphic nip\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"Sono state aggiunte diverse opzioni, al pennello \"linea calligrafica\", lo "
+"strumento \"gomma\" e \"matita\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -706,10 +714,9 @@ msgstr "Più azioni"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 #| msgid "Free selection"
 msgid "Invert selection"
-msgstr "Selezione libera"
+msgstr "Inverti selezione"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
@@ -724,7 +731,7 @@ msgstr "Apri un' immagine"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Espandi l'immagine per adattarla"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -838,10 +845,9 @@ msgid "Touch gestures"
 msgstr "Modalità touch"
 
 #: src/ui/window.ui
-#, fuzzy
 #| msgid "Loading %s"
 msgid "Loading…"
-msgstr "Caricamento %s"
+msgstr "Caricamento…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1130,10 +1136,9 @@ msgid "Background color"
 msgstr "Colore sfondo"
 
 #: src/preferences.py
-#, fuzzy
 #| msgid "Theme variant"
 msgid "Prefer dark theme variant"
-msgstr "Variante del tema"
+msgstr "Preferisci la variante del tema scuro"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
