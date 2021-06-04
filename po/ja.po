@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-30 01:17+0200\n"
-"PO-Revision-Date: 2021-04-03 19:20+0900\n"
+"PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -81,24 +81,31 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"選択している領域の広さに合わせて、キャンバスをトリミング・拡張できるアクショ"
+"ンが追加されました。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"\"トリミング\" ツールが、特定の条件下で画像を消してしまうバグを修正しました。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
+"ダークテーマを優先して使うオプションが実装されました (設定ウィンドウから有効"
+"にできます)。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Several options have been added, to the \"calligraphic nip\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"様々なオプションが \"万年筆\" ブラシ、\"消しゴム\" ツール、\"鉛筆\" に追加さ"
+"れました。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -700,25 +707,21 @@ msgstr "他のアクション"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
-msgstr "自由選択"
+msgstr "選択領域を反転"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
-msgstr "画像を開く"
+msgstr "現在の画像として設定"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "画像に合わせて拡張"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -832,10 +835,8 @@ msgid "Touch gestures"
 msgstr "タッチ操作"
 
 #: src/ui/window.ui
-#, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
-msgstr "%s を読み込んでいます"
+msgstr "読み込んでいます…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1122,10 +1123,8 @@ msgid "Background color"
 msgstr "背景色"
 
 #: src/preferences.py
-#, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
-msgstr "既定の幅"
+msgstr "ダークテーマを優先的に使用"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
