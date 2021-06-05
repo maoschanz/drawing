@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-30 01:17+0200\n"
-"PO-Revision-Date: 2021-05-02 16:52+0200\n"
+"PO-Revision-Date: 2021-06-05 08:56+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -82,24 +82,33 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"Du kan nu beskära eller expandera arbetsytan till en storlek baserat på den "
+"aktuella markeringens storlek med hjälp av nya åtgärder som är tillgängliga "
+"på markeringsmenyerna."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"Ett fel, där verktyget \"Beskär\" kunde radera bilden under vissa "
+"förhållanden, har åtgärdats."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
+"I inställningarna finns nu ett alternativ att välja om du föredrar den mörka "
+"temavarianten."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Several options have been added, to the \"calligraphic nip\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"Flera alternativ har lagts till i verktygen kalligrafisk spets, pensel, "
+"radergummi och penna."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -704,25 +713,21 @@ msgstr "Fler åtgärder"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
-msgstr "Fri markering"
+msgstr "Omvänd markering"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
-msgstr "Öppna en bild"
+msgstr "Definiera som aktuell bild"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Expandera bilden för att passa"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -836,10 +841,8 @@ msgid "Touch gestures"
 msgstr "Pekgester"
 
 #: src/ui/window.ui
-#, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
-msgstr "Läser in %s"
+msgstr "Läser in…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1126,10 +1129,8 @@ msgid "Background color"
 msgstr "Bakgrundsfärg"
 
 #: src/preferences.py
-#, fuzzy
-#| msgid "Theme variant"
 msgid "Prefer dark theme variant"
-msgstr "Temavariant"
+msgstr "Föredra mörk temavariant"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -2227,6 +2228,38 @@ msgstr "Oskärperadie"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Mättnad"
+
+#~ msgid "Default variant"
+#~ msgstr "Standardvariant"
+
+#~ msgid "Light variant"
+#~ msgstr "Ljus variant"
+
+#~ msgid "Dark variant"
+#~ msgstr "Mörk variant"
+
+#~ msgid ""
+#~ "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
+#~ "screen size, and could disappear under certain conditions."
+#~ msgstr ""
+#~ "Bland de roliga buggarna: De undre panelerna vägrade ibland att anpassa "
+#~ "sig till skärmstorleken, och kunde försvinna under vissa förhållanden."
+
+#~ msgid ""
+#~ "The catastrophic \"print\" action, that no one ever used so no one ever "
+#~ "noticed, is now somewhat usable."
+#~ msgstr ""
+#~ "Den katastrofala funktionen \"utskrift\", som ingen någonsin använt och "
+#~ "därför inte lagt märke till, är nu något mer användbar."
+
+#~ msgid "Photo-oriented modes"
+#~ msgstr "Fotoorienterade lägen"
+
+#~ msgid "Canvas and selection"
+#~ msgstr "Arbetsyta och markering"
+
+#~ msgid "com.github.maoschanz.drawing"
+#~ msgstr "com.github.maoschanz.drawing"
 
 #~ msgid "About"
 #~ msgstr "Om"
