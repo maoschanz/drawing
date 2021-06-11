@@ -104,6 +104,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
 		self._is_tools_initialisation_finished = False
+		self._enable_cli_logging = False
 
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
@@ -156,6 +157,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._enable_first_tool()
 		self.set_picture_title()
 		self._try_show_release_notes()
+		self._enable_cli_logging = self.gsettings.get_boolean('devel-only')
 
 		# has to return False to be removed from the mainloop immediatly
 		return False
@@ -721,8 +723,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show and self.gsettings.get_boolean('devel-only') and label != "":
-			print('Drawing: ' + label)
+		if show and self._enable_cli_logging and label != "":
+			print("Drawing: " + label)
 
 	def prompt_action(self, message, action_name='app.report_bug', action_label=_("Report a bug")):
 		"""Update the content of the info bar, including its actionable button
