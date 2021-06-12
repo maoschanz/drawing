@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-30 01:17+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
 "PO-Revision-Date: 2021-06-02 09:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -90,16 +90,16 @@ msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
-"Un bug, per cui lo strumento \"ritaglia\" poteva cancellare l'immagine in determinate "
-"condizioni, è stato risolto."
+"Un bug, per cui lo strumento \"ritaglia\" poteva cancellare l'immagine in "
+"determinate condizioni, è stato risolto."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
-"Nella finestra delle preferenze, ora c'è un'opzione per selezionare se preferisci "
-"la variante del tema scuro."
+"Nella finestra delle preferenze, ora c'è un'opzione per selezionare se "
+"preferisci la variante del tema scuro."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -714,7 +714,6 @@ msgstr "Più azioni"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Inverti selezione"
 
@@ -845,7 +844,6 @@ msgid "Touch gestures"
 msgstr "Modalità touch"
 
 #: src/ui/window.ui
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Caricamento…"
 
@@ -1136,7 +1134,6 @@ msgid "Background color"
 msgstr "Colore sfondo"
 
 #: src/preferences.py
-#| msgid "Theme variant"
 msgid "Prefer dark theme variant"
 msgstr "Preferisci la variante del tema scuro"
 
@@ -1696,33 +1693,25 @@ msgid "Line shape"
 msgstr "Forma della linea"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Tondo"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Quadrato"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "Nessuna Freccia"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Freccia semplice"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "Doppia freccia"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Contorno"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1748,6 +1737,18 @@ msgstr "Trattini piccoli"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr "Trattini alternati"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Nessuna Freccia"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Freccia semplice"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Doppia freccia"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -1921,12 +1922,6 @@ msgstr "Immagine intera"
 #: src/tools/ui/tool-paint.ui
 msgid "Remove color"
 msgstr "Rimuovi colore"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Contorno"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
