@@ -15,8 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
+
+RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
 
 class OptionsBarRotate(AbstractOptionsBar):
 	__gtype_name__ = 'OptionsBarRotate'
@@ -26,7 +29,14 @@ class OptionsBarRotate(AbstractOptionsBar):
 		# knowing the tool is needed because the pane doesn't compact the same
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool
-		builder = self.build_ui('transform/optionsbar-rotate.ui')
+
+		self.build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + \
+		                                       'transform/optionsbar-rotate.ui')
+		self.centered_box = builder.get_object('centered_box')
+		self.action_bar.set_center_widget(self.centered_box)
+		self.options_btn.set_menu_model(builder.get_object('actions-menu'))
+
 		self.angle_btn = builder.get_object('angle_btn')
 		utilities_add_unit_to_spinbtn(self.angle_btn, 3, '°')
 

@@ -1,4 +1,4 @@
-# bottombar.py
+# abstract_optionsbar.py
 #
 # Copyright 2018-2021 Romain F. T.
 #
@@ -21,7 +21,6 @@ RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
 
 class AbstractOptionsBar():
 	__gtype_name__ = 'AbstractOptionsBar'
-	# Abstract class
 
 	def __init__(self):
 		# Quite high as a precaution, will be more precise later
@@ -36,7 +35,7 @@ class AbstractOptionsBar():
 		self.apply_btn = builder.get_object('apply_btn') # may be None
 		self.help_btn = builder.get_object('help_btn') # may be None
 		self.options_btn = builder.get_object('options_btn') # may be None
-		self._togglable_btn = self.options_btn
+		self._togglable_btn = self.options_btn # default value, may change later
 		return builder # for implementations-specific widgets
 
 	def build_options_menu(self, widget, model, label):

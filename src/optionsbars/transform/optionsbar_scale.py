@@ -19,15 +19,21 @@ from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
 
+RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
+
 class OptionsBarScale(AbstractOptionsBar):
 	__gtype_name__ = 'OptionsBarScale'
 
 	def __init__(self, scale_tool):
 		super().__init__()
-		# future possible improvement: the pane may not compact the same way if
-		# the manipulation concerns the selection.
 		#self.scale_tool = scale_tool
-		builder = self.build_ui('transform/optionsbar-scale.ui')
+
+		self.build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + \
+		                                        'transform/optionsbar-scale.ui')
+		self.centered_box = builder.get_object('centered_box')
+		self.action_bar.set_center_widget(self.centered_box)
+		self.options_btn.set_menu_model(builder.get_object('actions-menu'))
 
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')
@@ -53,6 +59,8 @@ class OptionsBarScale(AbstractOptionsBar):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+		# future possible improvement: the pane may not compact the same way if
+		# the manipulation concerns the selection.
 		self.width_label.set_visible(not state)
 		self.height_label.set_visible(not state)
 		self.separator.set_visible(not state)
