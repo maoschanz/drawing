@@ -314,6 +314,8 @@ class DrWindow(Gtk.ApplicationWindow):
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
 		empty, the new image will be blank."""
+		# TODO pour le coup ce truc là il doit réellement être async sinon c'est
+		# un bug (#377)
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
@@ -762,6 +764,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.prompt_message(True, _("Middle-click, tap with 3 fingers, " + \
 			                           "or press F8 to show/hide controls.") + \
 			                           " " + _("Press F11 to exit fullscreen."))
+			# TODO à confirmer que 3 doigts c'est réel ^
 		else:
 			self.unfullscreen()
 		self._set_controls_hidden(shall_fullscreen)
