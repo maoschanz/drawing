@@ -26,10 +26,10 @@ class OptionsBarRotate(AbstractOptionsBar):
 		# knowing the tool is needed because the pane doesn't compact the same
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool
-		builder = self.build_ui('optionsbars/transform/optionsbar-rotate.ui')
+		builder = self.build_ui('transform/optionsbar-rotate.ui')
 		self.angle_btn = builder.get_object('angle_btn')
 		utilities_add_unit_to_spinbtn(self.angle_btn, 3, '°')
-		self.more_btn = builder.get_object('more_btn')
+
 		self.angle_box = builder.get_object('angle_box')
 		self.rotate_box = builder.get_object('rotate_box')
 		self.flip_box = builder.get_object('flip_box')
@@ -45,22 +45,15 @@ class OptionsBarRotate(AbstractOptionsBar):
 	def update_for_new_tool(self, tool):
 		self.set_compact(self._is_narrow)
 
-	def toggle_options_menu(self):
-		if self.more_btn.get_visible():
-			self.more_btn.set_active(not self.more_btn.get_active())
-
-	def hide_options_menu(self):
-		self.more_btn.set_active(False)
-
 	def set_compact(self, state):
 		super().set_compact(state)
 		if self.rotate_tool.apply_to_selection:
-			self.more_btn.set_visible(state)
+			self.options_btn.set_visible(state)
 			self.angle_box.set_visible(True)
 			self.rotate_box.set_visible(not state)
 			self.flip_box.set_visible(not state)
 		else:
-			self.more_btn.set_visible(False)
+			self.options_btn.set_visible(False)
 			self.angle_box.set_visible(False)
 			self.rotate_box.set_visible(True)
 			self.flip_box.set_visible(True)

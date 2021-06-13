@@ -24,7 +24,7 @@ class OptionsBarSkew(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('optionsbars/transform/optionsbar-skew.ui')
+		builder = self.build_ui('transform/optionsbar-skew.ui')
 		self.xy_label = builder.get_object('xy_label')
 		self.yx_label = builder.get_object('yx_label')
 		self.separator = builder.get_object('separator')

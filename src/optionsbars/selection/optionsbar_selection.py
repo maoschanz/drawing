@@ -23,13 +23,13 @@ class OptionsBarSelection(AbstractOptionsBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('optionsbars/selection/optionsbar-selection.ui')
+		builder = self.build_ui('selection/optionsbar-selection.ui')
 
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')
 		self.clipboard_box = builder.get_object('clipboard_box')
 		self.actions_btn = builder.get_object('actions_btn')
-		self.options_btn = builder.get_object('options_btn')
+		self._togglable_btn = self.actions_btn
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
@@ -40,12 +40,6 @@ class OptionsBarSelection(AbstractOptionsBar):
 
 	def set_minimap_label(self, label):
 		self.minimap_label.set_label(label)
-
-	def toggle_options_menu(self):
-		self.actions_btn.set_active(not self.actions_btn.get_active())
-
-	def hide_options_menu(self):
-		self.actions_btn.set_active(False)
 
 	def middle_click_action(self):
 		self.window.lookup_action('new_tab_selection').activate()

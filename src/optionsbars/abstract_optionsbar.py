@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-RSRC_PREFIX = '/com/github/maoschanz/drawing/'
+RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
 
 class AbstractOptionsBar():
 	__gtype_name__ = 'AbstractOptionsBar'
@@ -35,6 +35,8 @@ class AbstractOptionsBar():
 		self.centered_box = builder.get_object('centered_box') # may be None
 		self.apply_btn = builder.get_object('apply_btn') # may be None
 		self.help_btn = builder.get_object('help_btn') # may be None
+		self.options_btn = builder.get_object('options_btn') # may be None
+		self._togglable_btn = self.options_btn
 		return builder # for implementations-specific widgets
 
 	def build_options_menu(self, widget, model, label):
@@ -55,11 +57,13 @@ class AbstractOptionsBar():
 	def set_minimap_label(self, label):
 		pass
 
-	def hide_options_menu(self):
-		pass
-
 	def toggle_options_menu(self):
-		pass
+		if self._togglable_btn and self._togglable_btn.get_visible():
+			self._togglable_btn.set_active(not self._togglable_btn.get_active())
+
+	def hide_options_menu(self):
+		if self._togglable_btn:
+			self._togglable_btn.set_active(False)
 
 	def middle_click_action(self):
 		pass

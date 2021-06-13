@@ -28,7 +28,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('optionsbars/classic/optionsbar-classic.ui')
+		builder = self.build_ui('classic/optionsbar-classic.ui')
 
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
@@ -39,7 +39,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 		window.add_action_enum('cairo_op_mirror', 'over', self._cairop_mirror)
 		self._cairo_operator_lock = False
 
-		self.options_btn = builder.get_object('options_btn')
 		self.options_label = builder.get_object('options_label')
 		self.options_long_box = builder.get_object('options_long_box')
 		self.options_short_box = builder.get_object('options_short_box')
@@ -73,12 +72,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 
 	def set_minimap_label(self, label):
 		self.minimap_label.set_label(label)
-
-	def toggle_options_menu(self):
-		self.options_btn.set_active(not self.options_btn.get_active())
-
-	def hide_options_menu(self):
-		self.options_btn.set_active(False)
 
 	def build_options_menu(self, widget, model, label):
 		if widget is not None:
