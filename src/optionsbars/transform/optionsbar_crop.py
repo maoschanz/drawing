@@ -19,20 +19,14 @@ from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
 
-RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
-
 class OptionsBarCrop(AbstractOptionsBar):
 	__gtype_name__ = 'OptionsBarCrop'
 
 	def __init__(self):
 		super().__init__()
 
-		self.build_ui('transform/abstract-optionsbar-transform.ui')
-		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + \
-		                                         'transform/optionsbar-crop.ui')
-		self.centered_box = builder.get_object('centered_box')
-		self.action_bar.set_center_widget(self.centered_box)
-		self.options_btn.set_menu_model(builder.get_object('actions-menu'))
+		self._build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = self._hydrate_transform_tool('transform/optionsbar-crop.ui')
 
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')

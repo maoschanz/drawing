@@ -23,7 +23,7 @@ class OptionsBarSelection(AbstractOptionsBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('selection/optionsbar-selection.ui')
+		builder = self._build_ui('selection/optionsbar-selection.ui')
 
 		self.import_box_narrow = builder.get_object('import_box_narrow')
 		self.import_box_long = builder.get_object('import_box_long')

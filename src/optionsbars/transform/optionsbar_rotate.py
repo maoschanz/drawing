@@ -19,8 +19,6 @@ from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
 from .utilities import utilities_add_unit_to_spinbtn
 
-RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
-
 class OptionsBarRotate(AbstractOptionsBar):
 	__gtype_name__ = 'OptionsBarRotate'
 
@@ -30,12 +28,8 @@ class OptionsBarRotate(AbstractOptionsBar):
 		# way if it's applied to the selection
 		self.rotate_tool = rotate_tool
 
-		self.build_ui('transform/abstract-optionsbar-transform.ui')
-		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + \
-		                                       'transform/optionsbar-rotate.ui')
-		self.centered_box = builder.get_object('centered_box')
-		self.action_bar.set_center_widget(self.centered_box)
-		self.options_btn.set_menu_model(builder.get_object('actions-menu'))
+		self._build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = self._hydrate_transform_tool('transform/optionsbar-rotate.ui')
 
 		self.angle_btn = builder.get_object('angle_btn')
 		utilities_add_unit_to_spinbtn(self.angle_btn, 3, '°')
