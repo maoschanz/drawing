@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -69,6 +69,46 @@ msgstr ""
 "crayon, trait ou arc (avec diverses options), sélection (couper/copier/"
 "coller/déplacer…), formes (rectangle, cercle, polygone, …), insertion de "
 "texte, redimensionnement, recadrage, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.8.1 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+"Vous pouvez maintenant rogner ou étendre le canvas à une taille basée sur "
+"celle de la sélection, en utilisant de nouvelles actions disponibles dans "
+"les menus de la sélection."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+"Un bug, où l'outil \"rogner\" pouvait effacer l'image sous certaines "
+"conditions, a été corrigé."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+"Dans la fenêtre des préférences, il y a désormais une option pour dire si "
+"vous préférez la variante sombre de votre thème."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+"Plusieurs options ont été ajoutées, à la brosse \"plume calligraphique\", à "
+"l'outil \"gomme\", et au \"crayon\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -136,13 +176,6 @@ msgstr ""
 "Le mode \"floutage\" a été retiré, ce qui simplifie la situation et permet à "
 "plusieurs outils (\"formes\" et \"pinceaux\") de devenir compatible avec le "
 "concept de modes d'application des couleurs en général."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"La version 0.8.1 comporte plusieurs correctifs de bugs mineurs, et diverses "
-"nouvelles traductions."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -529,7 +562,7 @@ msgstr "A_ide"
 msgid "Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Reporter un bug"
 
@@ -675,6 +708,29 @@ msgstr "Pivoter"
 msgid "Filters"
 msgstr "Filtres"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Plus d'options"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr "Inverser la sélection"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "Définir comme image actuelle"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "Étendre l'image à cette taille"
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -787,8 +843,8 @@ msgid "Touch gestures"
 msgstr "Gestuelles tactiles"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Erreur au démarrage de l'application, veuillez reporter ce problème."
+msgid "Loading…"
+msgstr "Chargement…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1075,20 +1131,8 @@ msgid "Background color"
 msgstr "Couleur d'arrière-plan"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr "Variante de thème"
-
-#: src/preferences.py
-msgid "Default variant"
-msgstr "Variante par défaut"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "Variante claire"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "Variante foncée"
+msgid "Prefer dark theme variant"
+msgstr "Préférer le thème sombre"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1358,6 +1402,10 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Malgré son nom, %s est une image WEBP."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Erreur au démarrage de l'application, veuillez reporter ce problème."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1566,10 +1614,6 @@ msgstr "Angle (degrés)"
 msgid "Angle"
 msgstr "Angle"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Plus d'options"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "Pivoter à gauche"
@@ -1651,33 +1695,25 @@ msgid "Line shape"
 msgstr "Forme de mine"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Ronde"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Carrée"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "Pas de flèche"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Flèche simple"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "Flèche double"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Contour"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1703,6 +1739,18 @@ msgstr "Pointillés courts"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr "Pointillés alternés"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Pas de flèche"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Flèche simple"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Flèche double"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -2000,11 +2048,6 @@ msgstr "Aucun arrière-plan"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Ombre"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Contour"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

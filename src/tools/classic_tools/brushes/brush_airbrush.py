@@ -6,7 +6,7 @@ from .abstract_brush import AbstractBrush
 class BrushAirbrush(AbstractBrush):
 	__gtype_name__ = 'BrushAirbrush'
 
-	def _get_status(self, use_pressure):
+	def _get_status(self, use_pressure, brush_direction):
 		label = _("Airbrush") + " - "
 		if use_pressure:
 			label += _("Density depends on the stylus pressure")

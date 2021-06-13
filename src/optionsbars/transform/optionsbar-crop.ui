@@ -18,139 +18,56 @@
 
   <!-- -->
 
-  <object class="GtkActionBar" id="bottom-pane">
-    <property name="visible">False</property>
-    <property name="expand">True</property>
+  <object class="GtkBox" id="centered_box">
+    <property name="visible">True</property>
+    <property name="spacing">10</property>
 
     <child>
-      <object class="GtkButton" id="cancel_btn">
-        <property name="tooltip_text" translatable="yes">Cancel</property>
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="action_name">win.force_selection</property>
-        <style>
-          <class name="destructive-action"/>
-        </style>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">go-previous-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-      </object>
-    </child>
-
-    <child type="center">
-      <object class="GtkBox" id="centered_box">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="spacing">10</property>
-
+        <property name="orientation">horizontal</property>
         <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel" id="width_label">
-                <property name="label" translatable="yes">Width</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="width_btn">
-                <property name="visible">True</property>
-                <property name="adjustment">adj_width</property>
-                <property name="tooltip_text" translatable="yes">Width</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkSeparator" id="separator">
+          <object class="GtkLabel" id="width_label">
+            <property name="label" translatable="yes">Width</property>
             <property name="visible">True</property>
           </object>
         </child>
-
         <child>
-          <object class="GtkBox">
+          <object class="GtkSpinButton" id="width_btn">
             <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel" id="height_label">
-                <property name="label" translatable="yes">Height</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="height_btn">
-                <property name="visible">True</property>
-                <property name="adjustment">adj_height</property>
-                <property name="tooltip_text" translatable="yes">Height</property>
-              </object>
-            </child>
+            <property name="adjustment">adj_width</property>
+            <property name="tooltip_text" translatable="yes">Width</property>
           </object>
         </child>
-
       </object>
     </child>
 
     <child>
-      <object class="GtkButton" id="apply_btn">
-        <property name="action_name">win.apply_transform</property>
-        <property name="tooltip-text" translatable="yes">Apply</property>
+      <object class="GtkSeparator" id="separator">
         <property name="visible">True</property>
-        <property name="valign">center</property>
-        <style>
-          <class name="suggested-action"/>
-        </style>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">emblem-ok-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
     <child>
-      <object class="GtkMenuButton" id="options_btn">
-        <property name="tooltip-text" translatable="yes">More options</property>
-        <property name="menu-model">actions-menu</property>
-        <property name="valign">center</property>
-        <property name="halign">center</property>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">view-more-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-
-    <child>
-      <object class="GtkButton" id="help_btn">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="relief">none</property>
-        <property name="tooltip-text" translatable="yes">Help about transformation tools</property>
-        <property name="action-name">app.help_transform</property>
+        <property name="spacing">10</property>
+        <property name="orientation">horizontal</property>
         <child>
-          <object class="GtkImage">
-            <property name="icon-name">help-faq-symbolic</property>
+          <object class="GtkLabel" id="height_label">
+            <property name="label" translatable="yes">Height</property>
             <property name="visible">True</property>
           </object>
         </child>
+        <child>
+          <object class="GtkSpinButton" id="height_btn">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_height</property>
+            <property name="tooltip_text" translatable="yes">Height</property>
+          </object>
+        </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
   </object>

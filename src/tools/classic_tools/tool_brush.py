@@ -51,8 +51,11 @@ class ToolBrush(AbstractClassicTool):
 		self._brush_type = self.get_option_value('brush-type')
 		self._brush_dir = self.get_option_value('brush-dir')
 
+		enable_direction = self._brush_type == 'calligraphic'
+		self.set_action_sensitivity('brush-dir', enable_direction)
+
 		active_brush = self._brushes_dict[self._brush_type]
-		return active_brush._get_status(self._last_use_pressure)
+		return active_brush._get_status(self._last_use_pressure, self._brush_dir)
 
 	############################################################################
 

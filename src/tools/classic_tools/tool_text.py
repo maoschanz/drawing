@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk, Pango, PangoCairo
+from gi.repository import Gtk, Gdk, GLib, Pango, PangoCairo
 from .abstract_classic_tool import AbstractClassicTool
 
 class ToolText(AbstractClassicTool):
@@ -64,6 +64,8 @@ class ToolText(AbstractClassicTool):
 		if(status == Gtk.ResponseType.OK):
 			self._font_fam_name = dialog.get_font_family().get_name()
 			# print(dialog.get_font())
+			font_gvar = GLib.Variant.new_string(self._font_fam_name)
+			self.window.lookup_action('text-active-family').set_state(font_gvar)
 			self._preview_text()
 		dialog.destroy()
 
@@ -239,11 +241,15 @@ class ToolText(AbstractClassicTool):
 			                                       text_x + dist, text_y + dist)
 		elif operation['background'] == 'outline':
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
-			dist = max(min(int(font_size/16), 8), 1)
+			dist = min(int(font_size/16), 10)
+			dist = max(dist, 2)
 			for dx in range(-dist, dist):
 				for dy in range(-dist, dist):
-					self._show_text_at_coords(cairo_context, layout, \
-					                      entire_text, text_x + dx, text_y + dy)
+					if abs(dx) + abs(dy) <= dist * 1.5:
+						self._show_text_at_coords(cairo_context, layout, \
+						                  entire_text, text_x + dx, text_y + dy)
+			# these `for`s and this `if` should outline with an octogonal shape,
+			# which is close enough to a smooth round outline imho.
 
 		########################################################################
 		# Draw text ############################################################

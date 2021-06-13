@@ -99,7 +99,7 @@ class ToolPencil(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,
-			'dashes_type': self._dashes_type,
+			'dashes': self._dashes_type,
 			'path': self._path
 		}
 		return operation
@@ -112,12 +112,12 @@ class ToolPencil(AbstractClassicTool):
 		cairo_context.set_operator(operation['operator'])
 		line_width = operation['line_width']
 		self.set_dashes_and_cap(cairo_context, line_width, \
-		                        operation['dashes_type'], operation['line_cap'])
+		                        operation['dashes'], operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join']) # XXX useless?
 
 		utilities_smooth_path(cairo_context, operation['path'])
 
-		if operation ['outline']:
+		if operation['outline']:
 			rgba = operation['rgba2']
 			cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 			cairo_context.set_line_width(line_width * 1.2 + 2)

@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
-"PO-Revision-Date: 2021-04-27 14:02+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"PO-Revision-Date: 2021-05-30 17:26+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -72,6 +72,46 @@ msgstr ""
 "arco (con varias opciones), selección (cortar/copiar/pegar/arrastrar/…), "
 "formas (rectángulo, círculo, polígono, …), inserción de texto, cambio de "
 "tamaño, recorte, rotación, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"La versión 0.8.1 presenta varias correcciones de errores menores y varias "
+"traducciones nuevas."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+"Ahora puede recortar o ampliar el lienzo a un tamaño basado en el tamaño de "
+"la selección actual, utilizando nuevas acciones disponibles en los menús de "
+"selección."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+"Se ha corregido un error por el que la herramienta de \"recorte\" podía "
+"borrar la imagen en determinadas condiciones."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+"En la ventana de preferencias, ahora hay una opción para seleccionar si "
+"prefieres la variante de tema oscuro."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+"Se han añadido varias opciones, al pincel \"pluma caligráfica\", a la "
+"herramienta \"goma de borrar\" y al \"lápiz\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -139,13 +179,6 @@ msgstr ""
 "Se ha eliminado el modo de \"desenfoque\", lo que ha simplificado la "
 "situación y ha permitido que varias herramientas (\"formas\" y \"pinceles\") "
 "sean compatibles con los modos de aplicación del color en general."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"La versión 0.8.1 presenta varias correcciones de errores menores y varias "
-"traducciones nuevas."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -532,7 +565,7 @@ msgstr "Ay_uda"
 msgid "Shortcuts"
 msgstr "Atajos"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Informar de un fallo"
 
@@ -678,6 +711,29 @@ msgstr "Girar"
 msgid "Filters"
 msgstr "Filtros"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Más acciones"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr "Invertir selección"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "Definir como imagen actual"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "Ampliar la imagen para que se ajuste"
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -790,8 +846,8 @@ msgid "Touch gestures"
 msgstr "Gestos táctiles"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Error al iniciar la aplicación; por favor, informe acerca del fallo."
+msgid "Loading…"
+msgstr "Cargando…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1081,20 +1137,8 @@ msgid "Background color"
 msgstr "Color de fondo"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr "Variante del tema"
-
-#: src/preferences.py
-msgid "Default variant"
-msgstr "Variante por defecto"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "Variante clara"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "Variante oscura"
+msgid "Prefer dark theme variant"
+msgstr "Preferir la variante de tema oscuro"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1363,6 +1407,10 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr "A pesar de su nombre, %s es un archivo WEBP."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Error al iniciar la aplicación; por favor, informe acerca del fallo."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1569,10 +1617,6 @@ msgstr "Ángulo (grados)"
 msgid "Angle"
 msgstr "Ángulo"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Más acciones"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "Girar a la izquierda"
@@ -1657,33 +1701,25 @@ msgid "Line shape"
 msgstr "Forma de línea"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Extremos redondeados"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Extremos cuadrados"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "Sin flecha"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Flecha simple"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "Doble flecha"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Contorno"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1709,6 +1745,18 @@ msgstr "Guiones cortos"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr "Guiones alternados"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Sin flecha"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Flecha simple"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Doble flecha"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -2006,11 +2054,6 @@ msgstr "Sin fondo"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Sombra"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Contorno"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

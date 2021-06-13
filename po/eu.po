@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -73,11 +73,43 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"0.8.1 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
+"ditu."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
-"Drawing 0.8.0rekin, azkenean, tableta eta arkatza erabili ditzakezu presiorarekiko "
-"sentikorrak diren marrazteko tresnekin, hala nola 'brotxa' berria eta 'aerografoa'."
+"Drawing 0.8.0rekin, azkenean, tableta eta arkatza erabili ditzakezu "
+"presiorarekiko sentikorrak diren marrazteko tresnekin, hala nola 'brotxa' "
+"berria eta 'aerografoa'."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -104,16 +136,16 @@ msgid ""
 msgstr ""
 "Hautaketa bat mugitzen edo ezabatzen duzunean,  orain utzitako pixelek "
 "kolore jakin bat izan kezakete, beti ere gardentasuna izan beharrean. Kolore "
-"kolore zehatz hau hautaketarik kanpo egon daiteke. Ezaugarri hori konplexua da "
-"hitzez azaltzeko, probatu zuk eta ikusiko duzu."
+"kolore zehatz hau hautaketarik kanpo egon daiteke. Ezaugarri hori konplexua "
+"da hitzez azaltzeko, probatu zuk eta ikusiko duzu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
-"Testuaren atzeko kolorea eta formen kolore betegarria bezalako aukerek 2"
-"jarraitzen dute aplikazioa ixterakoan."
+"Testuaren atzeko kolorea eta formen kolore betegarria bezalako aukerek "
+"2jarraitzen dute aplikazioa ixterakoan."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -121,9 +153,9 @@ msgid ""
 "rewritten to better show the accurate label, and better organize the "
 "possible modes as submenus."
 msgstr ""
-"Kolore aktiboaren aplikazio modua hautatzeko erabiltzaile interfazea berridatzi "
-"da etiketa zehatza hobeto erakusteko eta modu posibleak azpimenu gisa hobeto "
-"antolatzeko."
+"Kolore aktiboaren aplikazio modua hautatzeko erabiltzaile interfazea "
+"berridatzi da etiketa zehatza hobeto erakusteko eta modu posibleak azpimenu "
+"gisa hobeto antolatzeko."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -134,14 +166,6 @@ msgstr ""
 "\"Lausotu\" modua kendu da, eta horrek egoera erraztu du eta hainbat "
 "tresnari (\"forma\" eta \"brotxak\") aukera ematen die orokorrean kolorea "
 "aplikatzeko moduei laguntzeko."
-
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"0.8.1 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
-"ditu."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -533,7 +557,7 @@ msgstr "_Laguntza"
 msgid "Shortcuts"
 msgstr "Laster-teklak"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Errore baten berri eman"
 
@@ -684,6 +708,33 @@ msgstr "Biratu"
 msgid "Filters"
 msgstr "Iragazkiak"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Ekintza gehiago"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "Hautapen librea"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "Ireki irudi bat"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -798,8 +849,10 @@ msgid "Touch gestures"
 msgstr "Ukipen keinuak"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Errorea aplikazioa abiaraztean, mesedez eman errorearen berri."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "Kargatzen %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -1087,22 +1140,10 @@ msgid "Background color"
 msgstr "Atzeko planoaren kolorea"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr "Gaiaren aldaera"
-
-#: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
-msgid "Default variant"
-msgstr "Zabalera lehenetsia"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "Aldaera argia"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "Aldaera iluna"
+#| msgid "Theme variant"
+msgid "Prefer dark theme variant"
+msgstr "Gaiaren aldaera"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1371,13 +1412,18 @@ msgstr "Sentitzen dugu, aplikazio honek ezin ditu WEBP irudiak kargatu."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Duen izena izan arren, %s WEBP fitxategia da."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Errorea aplikazioa abiaraztean, mesedez eman errorearen berri."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
-"Drawing %s erabiltzen duzun lehenengo aldia da, nahi duzu jakin zer dagoen berri?"
+"Drawing %s erabiltzen duzun lehenengo aldia da, nahi duzu jakin zer dagoen "
+"berri?"
 
 #: src/window.py
 msgid "No"
@@ -1425,7 +1471,8 @@ msgstr "Irten pantaila osotik"
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
-"Errore bat gertatu da %s tresnaren beheko panela kargatzen, mesedez eman errorearen berri."
+"Errore bat gertatu da %s tresnaren beheko panela kargatzen, mesedez eman "
+"errorearen berri."
 
 #: src/window.py
 #, python-format
@@ -1582,10 +1629,6 @@ msgstr "Angelua (gradu)"
 msgid "Angle"
 msgstr "Angelua"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Ekintza gehiago"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "Biratu ezkerrera"
@@ -1637,7 +1680,8 @@ msgstr "Itxuraldaketa bertikala"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr "Ezin izan da eragiketa hasi: ID trena okerra (espero zen {0}, {1} lortu da)"
+msgstr ""
+"Ezin izan da eragiketa hasi: ID trena okerra (espero zen {0}, {1} lortu da)"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1666,35 +1710,25 @@ msgid "Line shape"
 msgstr "Marraren forma"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Mutur borobilduak"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Mutur karratuak"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
-msgid "No arrow"
-msgstr "Gezirik ez"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Gezi sinplea"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
-msgid "Double arrow"
-msgstr "Puntukako gezia"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Ertza"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1724,6 +1758,20 @@ msgstr "Marratxo laburrak"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr "Txandakatutako marratxoak"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "No arrow"
+msgstr "Gezirik ez"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Gezi sinplea"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "Double arrow"
+msgstr "Puntukako gezia"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -2030,11 +2078,6 @@ msgstr "Atzeko kolorerik gabe"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Itzala"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Ertza"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

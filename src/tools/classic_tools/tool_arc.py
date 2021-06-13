@@ -26,17 +26,17 @@ class ToolArc(AbstractClassicTool):
 		super().__init__('arc', _("Curve"), 'tool-arc-symbolic', window)
 		self.use_operator = True
 
-		self.add_tool_action_enum('line_shape', 'round')
-		self.add_tool_action_enum('dashes-type', 'none')
-		self.add_tool_action_enum('arrow-type', 'none')
-
 		# Default values
-		self._shape_label = _("Round")
 		self._cap_id = cairo.LineCap.ROUND
-
 		self._1st_segment = None
-		self._use_dashes = False
 		self._dashes_type = 'none'
+		self._arrow_type = 'none'
+		self._use_outline = False
+
+		self.add_tool_action_enum('line_shape', 'round')
+		self.add_tool_action_enum('dashes-type', self._dashes_type)
+		self.add_tool_action_enum('arrow-type', self._arrow_type)
+		self.add_tool_action_boolean('pencil-outline', self._use_outline)
 
 	def give_back_control(self, preserve_selection):
 		self._1st_segment = None
@@ -49,15 +49,14 @@ class ToolArc(AbstractClassicTool):
 		state_as_string = self.get_option_value('line_shape')
 		if state_as_string == 'thin':
 			self._cap_id = cairo.LineCap.BUTT
-			self._shape_label = _("Square")
 		else:
 			self._cap_id = cairo.LineCap.ROUND
-			self._shape_label = _("Round")
 
 	def get_options_label(self):
 		return _("Curve options")
 
 	def get_edition_status(self):
+		self._use_outline = self.get_option_value('pencil-outline')
 		self._dashes_type = self.get_option_value('dashes-type')
 		self._arrow_type = self.get_option_value('arrow-type')
 		self.set_active_shape()
@@ -112,12 +111,14 @@ class ToolArc(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
+			'rgba2': self.secondary_color,
 			'antialias': self._use_antialias,
 			'operator': self._operator,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
-			'dashes_type': self._dashes_type,
-			'arrow_type': self._arrow_type,
+			'dashes': self._dashes_type,
+			'arrow': self._arrow_type,
+			'outline': self._use_outline,
 			'path': self._path,
 			'x_release': event_x,
 			'y_release': event_y,
@@ -129,16 +130,13 @@ class ToolArc(AbstractClassicTool):
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
 
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.set_operator(operation['operator'])
-
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
 		self.set_dashes_and_cap(cairo_context, line_width, \
-		                        operation['dashes_type'], operation['line_cap'])
+		                             operation['dashes'], operation['line_cap'])
 
-		if operation['arrow_type'] == 'double':
+		if operation['arrow'] == 'double':
 			for pts in operation['path']:
 				# how to do without a for???
 				if(pts[0] == cairo.PathDataType.MOVE_TO):
@@ -151,13 +149,22 @@ class ToolArc(AbstractClassicTool):
 
 		cairo_context.append_path(operation['path'])
 
-		if operation['arrow_type'] != 'none':
+		if operation['arrow'] != 'none':
 			x1 = operation['x_press']
 			y1 = operation['y_press']
 			x2 = operation['x_release']
 			y2 = operation['y_release']
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
+		if operation['outline']:
+			c2 = operation['rgba2']
+			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_line_width(line_width * 1.2 + 2)
+			cairo_context.stroke_preserve()
+
+		cairo_context.set_line_width(line_width)
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.stroke()
 
 	############################################################################

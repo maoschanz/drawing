@@ -72,6 +72,29 @@
   </section>
 
   <section>
+    <title>Define an image from the selection</title>
+
+    <p>If the selected area interests you more than the rest of the image,
+    several actions — in the <gui style="menuitem">More actions</gui> submenu of
+    the right-click — may help you:</p>
+    <list>
+      <item>
+        <p>Define the selection as the current image.</p>
+      </item>
+      <item>
+        <p>Reshape the current image so its size should match the size of the
+        selection (for example if you import or paste a big image).</p>
+      </item>
+      <item>
+        <p>Open the selection as a new image.</p>
+      </item>
+      <item>
+        <p>Export the selection as a new file.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
     <title>Using the selection</title>
 
     <p>Once the selection is defined, you can then perform various actions with
@@ -81,22 +104,16 @@
         <p>Move it on the canvas.</p>
       </item>
       <item>
-        <p>Copy it (or cut it) to the clipboard.</p>
-      </item>
-      <item>
         <p>Transform it with tools. <link xref="tools_transform">The compatible
         tools</link> can be accessed with a right-click on the selection.</p>
         <media type="image" mime="image/png" width="80%" its:translate="no"
                src="figures/screenshot_selection.png" />
       </item>
       <item>
+        <p>Copy it (or cut it) to the clipboard.</p>
+      </item>
+      <item>
         <p>Delete it.</p>
-      </item>
-      <item>
-        <p>Open it as a new image.</p>
-      </item>
-      <item>
-        <p>Export it as a new file.</p>
       </item>
     </list>
     <p>Click outside of the selected area to unselect, or use the <gui

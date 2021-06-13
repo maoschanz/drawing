@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:52+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -19,7 +19,8 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
-#: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py src/main.py
+#: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
+#: src/main.py
 msgid "Drawing"
 msgstr "그림판"
 
@@ -52,83 +53,112 @@ msgid "A drawing application for the GNOME desktop"
 msgstr "그놈 데스크탑 그림판 프로그램"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+msgid ""
+"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
 "\"Drawing\"은 PNG, JPEG 및 BMP 파일 유형을 지원하는 기본 이미지 편집기입니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or arc "
-"(with various options), selection (cut/copy/paste/drag/…), shapes (rectangle, "
-"circle, polygon, …), text insertion, resizing, cropping, rotating, …"
+"It allows you to draw or edit pictures with tools such as pencil, line or "
+"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
+"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
+"rotating, …"
 msgstr ""
-"연필, 선 또는 호 (다양한 옵션 포함), 선택 (잘라 내기 / 복사 / 붙여 넣기 / 끌기 /"
-"…) , 도형 (사각형, 원, 다각형 등), 텍스트 삽입, 크기 조정, 자르기, 회전"
+"연필, 선 또는 호 (다양한 옵션 포함), 선택 (잘라 내기 / 복사 / 붙여 넣기 / 끌"
+"기 /…) , 도형 (사각형, 원, 다각형 등), 텍스트 삽입, 크기 조정, 자르기, 회전"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 0.8.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
-"Drawing 0.8.0을 사용하면 마침내 태블릿과 스타일러스를 사용하여 새로운 '브러시' 및  "
-"'에어 브러시'와 같은 압력 감지 도구로 그릴 수 있습니다."
+"Drawing 0.8.0을 사용하면 마침내 태블릿과 스타일러스를 사용하여 새로운 '브러"
+"시' 및  '에어 브러시'와 같은 압력 감지 도구로 그릴 수 있습니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet less "
-"intrusive access to the tools and their options."
+"The fullscreen mode has been completely redesigned to provide an easier yet "
+"less intrusive access to the tools and their options."
 msgstr ""
-"전체 화면 모드가 완전히 재 설계되어 도구 및 옵션에 더 쉽고 덜 방해가 되지 않게 액세"
-"스 할 수  있습니다."
+"전체 화면 모드가 완전히 재 설계되어 도구 및 옵션에 더 쉽고 덜 방해가 되지 않"
+"게 액세스 할 수  있습니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to harmoniously "
-"increase contrast has been added."
+"Filters have been rewritten to be more reliable, and a new filter to "
+"harmoniously increase contrast has been added."
 msgstr ""
-"필터의 안정성을 높이기 위해 다시 작성되었으며 조화롭게 대비를 증가시키는 새로운 필"
-"터가 추가되었습니다."
+"필터의 안정성을 높이기 위해 다시 작성되었으며 조화롭게 대비를 증가시키는 새로"
+"운 필터가 추가되었습니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"When you move or delete the selection, now the pixels left behind can optionally "
-"be a specific color, rather than always transparency. This specific color can be "
-"excluded from the selection. That feature is complex to explain with words, try it "
-"yourself you'll see."
+"When you move or delete the selection, now the pixels left behind can "
+"optionally be a specific color, rather than always transparency. This "
+"specific color can be excluded from the selection. That feature is complex "
+"to explain with words, try it yourself you'll see."
 msgstr ""
-"선택 항목을 이동하거나 삭제할 때 이제 남은 픽셀은 항상 투명도가 아닌 특정 색상이 "
-"될 수 있습니다. 이 특정 색상은 선택에서 제외 할 수 있습니다. 이 기능은 말로 설명하"
-"기가  복잡합니다. 직접 시도해보세요."
+"선택 항목을 이동하거나 삭제할 때 이제 남은 픽셀은 항상 투명도가 아닌 특정 색"
+"상이 될 수 있습니다. 이 특정 색상은 선택에서 제외 할 수 있습니다. 이 기능은 "
+"말로 설명하기가  복잡합니다. 직접 시도해보세요."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Options such as the text background type and the shape filling style are now "
 "persisted when closing the application."
 msgstr ""
-"이제 응용 프로그램을 닫을 때 텍스트 배경 유형 및 모양 채우기 스타일과 같은 옵션이 "
-"유지됩니다."
+"이제 응용 프로그램을 닫을 때 텍스트 배경 유형 및 모양 채우기 스타일과 같은 옵"
+"션이 유지됩니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the possible "
-"modes as submenus."
+"rewritten to better show the accurate label, and better organize the "
+"possible modes as submenus."
 msgstr ""
-"활성 색상 응용 프로그램 모드를 선택하기위한 사용자 인터페이스는 정확한 레이블을 더 "
-"잘 표시하고 가능한 모드를 하위 메뉴로 더 잘 구성 할 수 있도록 다시 작성되었습니다."
+"활성 색상 응용 프로그램 모드를 선택하기위한 사용자 인터페이스는 정확한 레이블"
+"을 더 잘 표시하고 가능한 모드를 하위 메뉴로 더 잘 구성 할 수 있도록 다시 작성"
+"되었습니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and allowed "
-"several tools (\"shapes\" and \"brushes\") to get support for the color "
-"application modes in general."
+"The \"blur\" mode has been removed, which simplified the situation and "
+"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
+"color application modes in general."
 msgstr ""
-"\"흐림\"모드가 제거되어 상황이 단순화되고 여러 도구 ( \"모양\"및 \"브러시\")가 일반"
-"적으로 색상 적용 모드를 지원할 수 있습니다."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr "버전 0.8.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+"\"흐림\"모드가 제거되어 상황이 단순화되고 여러 도구 ( \"모양\"및 \"브러시\")"
+"가 일반적으로 색상 적용 모드를 지원할 수 있습니다."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -282,7 +312,8 @@ msgstr "붙여넣기"
 msgid "Import"
 msgstr "불러오기"
 
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui src/preferences.py
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
 msgid "Preferences"
 msgstr "환경 설정"
 
@@ -485,7 +516,8 @@ msgstr "이전 도구"
 msgid "Active tool"
 msgstr "도구 선택"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui src/preferences.py
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/preferences.py
 msgid "Show tools names"
 msgstr "도구 이름 표시"
 
@@ -513,7 +545,7 @@ msgstr "도움말(_H)"
 msgid "Shortcuts"
 msgstr "단축키"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "버그 신고"
 
@@ -629,8 +661,8 @@ msgstr "센티미터"
 msgid "inches"
 msgstr "인치"
 
-#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Close selection"
 msgstr "선택 닫기"
 
@@ -659,8 +691,35 @@ msgstr "회전"
 msgid "Filters"
 msgstr "필터"
 
-#: src/ui/selection-manager.ui src/optionsbars/selection/optionsbar-selection.ui
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
 #: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "더 많은 행동"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "자유 선택"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "이미지 열기"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
 msgstr "새 이미지로 열기"
 
@@ -771,8 +830,10 @@ msgid "Touch gestures"
 msgstr "터치 제스처"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "로딩 %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -840,7 +901,7 @@ msgstr "버그 또는 아이디어보고"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr ""
+msgstr "Kevin Kim"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -879,8 +940,9 @@ msgstr "%s%%"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "취소"
 
@@ -928,8 +990,8 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"이미지를 이러한 형식으로 저장하는 경우 투명 픽셀을 대체하기 위해 무엇을 사용 하시겠"
-"습니까?"
+"이미지를 이러한 형식으로 저장하는 경우 투명 픽셀을 대체하기 위해 무엇을 사용 "
+"하시겠습니까?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
@@ -984,10 +1046,9 @@ msgstr "추가 도구"
 
 #: src/preferences.py
 msgid ""
-"These tools are not as reliable and useful as they should be, so they are not all "
-"enabled by default."
-msgstr ""
-"기본적으로 모두 활성화되어 있지 않습니다"
+"These tools are not as reliable and useful as they should be, so they are "
+"not all enabled by default."
+msgstr "기본적으로 모두 활성화되어 있지 않습니다"
 
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -1057,20 +1118,10 @@ msgid "Background color"
 msgstr "배경색"
 
 #: src/preferences.py
-msgid "Theme variant"
+#, fuzzy
+#| msgid "Theme variant"
+msgid "Prefer dark theme variant"
 msgstr "테마 변경"
-
-#: src/preferences.py
-msgid "Default variant"
-msgstr "기본 테마"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "밝은 테마"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "어두운 테마"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1183,7 +1234,8 @@ msgstr "%s 에 저장되지 않은 수정 사항이 있습니다."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are blank."
+"A part of the image is selected, and the pixels beneath the selection are "
+"blank."
 msgstr "이미지의 일부가 선택되고 선택 영역 아래의 픽셀은 비어 있습니다."
 
 #: src/saving_manager.py
@@ -1334,10 +1386,16 @@ msgstr "이 앱은 WEBP 이미지를로드 할 수 없습니다."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "%s 는 WEBP 파일입니다."
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr ""
+"응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
-msgid "It's the first time you use Drawing %s, would you like to read what's new?"
+msgid ""
+"It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr "처음으로 Drawing %s 를 사용합니다. 새로운 기능을 읽으시겠습니까?"
 
 #: src/window.py
@@ -1374,8 +1432,8 @@ msgstr "옵션 없음"
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
-"컨트롤을 표시하거나 숨기려면 가운데 클릭하거나 세 손가락으로 탭하거나 F8 키를 누릅"
-"니다."
+"컨트롤을 표시하거나 숨기려면 가운데 클릭하거나 세 손가락으로 탭하거나 F8 키"
+"를 누릅니다."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1383,7 +1441,8 @@ msgstr "F11을 눌러 전체 화면을 종료하십시오."
 
 #: src/window.py
 #, python-format
-msgid "Error loading the bottom pane for the tool '%s', please report this bug."
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
 "도구 '%s'의 하단 창을로드하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
 
@@ -1445,15 +1504,16 @@ msgstr "필요한 도구를 사용할 수 없습니다"
 msgid "Highlight (dark)"
 msgstr "하이라이트 (어두움)"
 
-#: src/optionsbars/classic/optionsbar_color_popover.py src/tools/ui/tool-shape.ui
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
 msgid "Main color"
 msgstr "메인 색상"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "보조 색상"
 
@@ -1462,8 +1522,8 @@ msgid "Tool size"
 msgstr "도구 크기"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "미리보기"
 
@@ -1536,10 +1596,6 @@ msgstr "각도 (도)"
 msgid "Angle"
 msgstr "각도"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "더 많은 행동"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "왼쪽으로 회전"
@@ -1607,31 +1663,63 @@ msgstr "이 알고리즘은 원하는 영역을 관리하지 못할 수 있습�
 
 #: src/tools/utilities_paths.py
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "작업을 중단 하시겠습니까, 아니면 도구가 제대로 작동하지 않게 하시겠습니까?"
+msgstr ""
+"작업을 중단 하시겠습니까, 아니면 도구가 제대로 작동하지 않게 하시겠습니까?"
 
 #: src/tools/ui/selection.ui
 msgid "Transform"
 msgstr "변환"
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
 msgstr "선 모양"
 
 #. Context: this is the name of a line shape
-#. Default values
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
-#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "원형"
 
 #. Context: this is the name of a line shape
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "사각형"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "윤곽선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "No dashes"
+msgstr "점선 없음"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Simple dashes"
+msgstr "단순 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Long dashes"
+msgstr "긴 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Short dashes"
+msgstr "짧은 점선"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Alternated dashes"
+msgstr "대체 점선"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "No arrow"
@@ -1645,28 +1733,9 @@ msgstr "간단한 화살표"
 msgid "Double arrow"
 msgstr "이중 화살표"
 
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-msgid "No dashes"
-msgstr "점선 없음"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-msgid "Simple dashes"
-msgstr "단순 점선"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-msgid "Long dashes"
-msgstr "긴 점선"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-msgid "Short dashes"
-msgstr "짧은 점선"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui
-msgid "Alternated dashes"
-msgstr "대체 점선"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui src/tools/ui/tool-highlight.ui
-#: src/tools/ui/tool-line.ui src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
 #: src/tools/ui/tool-shape.ui
 msgid "Antialiasing"
 msgstr "안티 앨리어싱"
@@ -1960,11 +2029,6 @@ msgstr "배경 없음"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "그림자"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "윤곽선"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

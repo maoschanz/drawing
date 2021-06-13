@@ -84,8 +84,7 @@ class Application(Gtk.Application):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs, None)
-		if self.is_beta():
-			self.add_action_simple('report_bug', self.on_report, None)
+		self.add_action_simple('report_bug', self.on_report, None)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
 
@@ -112,11 +111,11 @@ class Application(Gtk.Application):
 		clipboard content."""
 		win = DrWindow(application=self)
 		win.present()
-		win.init_window_content(gfile, get_cb) # this optimization has no effect
-		# because of GLib unknown magic, but should be kept anyway because the
-		# window is presented to the user regardless of loading errors, making
-		# any issue in `init_window_content` very explicit, and more likely to
-		# be reported.
+
+		content_params = {'gfile': gfile, 'get_cb': get_cb}
+		# Parameters are: time in milliseconds, method, data # XXX todo?
+		# GLib.timeout_add(10, win.init_window_content_async, content_params)
+		win.init_window_content_async(content_params)
 		return win
 
 	def on_activate(self, *args):

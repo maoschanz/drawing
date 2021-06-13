@@ -336,6 +336,8 @@ class DrImage(Gtk.Box):
 		self.set_action_sensitivity('selection_delete', state)
 		self.set_action_sensitivity('selection_export', state)
 		self.set_action_sensitivity('new_tab_selection', state)
+		self.set_action_sensitivity('selection-replace-canvas', state)
+		self.set_action_sensitivity('selection-expand-canvas', state)
 		self.active_tool().update_actions_state()
 
 	def active_tool(self):

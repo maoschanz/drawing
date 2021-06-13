@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:52+0200\n"
-"PO-Revision-Date: 2021-05-09 14:33+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"PO-Revision-Date: 2021-06-04 14:53+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -56,7 +56,7 @@ msgstr "Een tekenprogramma voor de GNOME-werkomgeving"
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"'Tekenen' is een eenvoudige afbeeldingsbewerker, met ondersteuning voor "
+"‘Tekenen’ is een eenvoudige afbeeldingsbewerker, met ondersteuning voor "
 "png-, jpeg- en bmp-afbeeldingen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -71,6 +71,43 @@ msgstr ""
 "selectie (knippen/kopiëren/plakken/verslepen/…), vormen (rechthoek, cirkel, "
 "polygoon, …) en tekst. Ook kun je de grootte aanpassen, bijsnijden, draaien, "
 "enz."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"Versie 0.8.1 bevat verschillende kleine foutoplossingen en nieuwe "
+"vertalingen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+"[NIEUW] Je kunt voortaan het canvas verkleinen of vergroten op basis van de "
+"huidige selectiegrootte. Deze acties zijn te vinden in de selectiemenu's."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+"[OPGELOST] Bug waardoor het bijsnijdgereepschap soms de afbeelding wiste."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+"[NIEUW] In de voorkeuren vind je nu een optie om het donkere thema te kiezen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+"[NIEUW] Verschillende nieuwe opties, zoals de kalligrafische kwast, gum en "
+"pen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -137,13 +174,6 @@ msgstr ""
 "hebben enkele gereedschappen (vormen en kwasten) ondersteuning voor algemene "
 "kleurmodi gekregen."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Versie 0.8.1 bevat verschillende kleine foutoplossingen en nieuwe "
-"vertalingen."
-
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Romain F. T."
@@ -167,7 +197,7 @@ msgstr "Verschillende soorten zoom"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr "Het menu 'Nieuwe afbeelding'"
+msgstr "Het menu ‘Nieuwe afbeelding’"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -529,7 +559,7 @@ msgstr "_Hulp"
 msgid "Shortcuts"
 msgstr "Sneltoetsen"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Meld een fout (bug)"
 
@@ -675,6 +705,29 @@ msgstr "Draaien"
 msgid "Filters"
 msgstr "Filters"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Meer acties"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr "Selectie omkeren"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "Instellen als huidige afbeelding"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "Afbeelding inpassen"
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -787,8 +840,8 @@ msgid "Touch gestures"
 msgstr "Aanraakgebaren"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Kan de toepassing niet starten - meld deze fout aan de ontwikkelaar."
+msgid "Loading…"
+msgstr "Bezig met laden…"
 
 #: src/deco_manager.py
 #, python-format
@@ -856,13 +909,13 @@ msgstr "Meld bugs of deel ideëen"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Heimen Stoffels"
+msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr "De makers van GNOME's 'Art Libre'-pictogramset"
+msgstr "De makers van GNOME's ‘Art Libre’-pictogramset"
 
 #: src/main.py
 msgid "A drawing application for the GNOME desktop."
@@ -880,7 +933,7 @@ msgstr "Dit bestand kan niet worden geopend."
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr "Bedoelde je '%s'?"
+msgstr "Bedoelde je ‘%s’?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -982,7 +1035,7 @@ msgstr "Neem voor meer informatie de handleiding door."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "'Ctrl' gebruiken om in/uit te zoomen"
+msgstr "Ctrl gebruiken om in/uit te zoomen"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1075,20 +1128,8 @@ msgid "Background color"
 msgstr "Achtergrondkleur"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr "Thema"
-
-#: src/preferences.py
-msgid "Default variant"
-msgstr "Standaard"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr "Licht"
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr "Donker"
+msgid "Prefer dark theme variant"
+msgstr "Donker thema gebruiken"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1098,7 +1139,7 @@ msgstr "Indeling"
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr "De aanbevolen instelling is 'Automatisch'."
+msgstr "De aanbevolen instelling is ‘Automatisch’."
 
 #. It has to match what's written in the previous string.
 #: src/preferences.py
@@ -1177,7 +1218,7 @@ msgstr "Ongeldig formaat"
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "'%s' kan niet worden opgeslagen"
+msgstr "‘%s’ kan niet worden opgeslagen"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1197,7 +1238,7 @@ msgstr "Verwerpen"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "'%s' bevat niet-opgeslagen aanpassingen."
+msgstr "‘%s’ bevat niet-opgeslagen aanpassingen."
 
 #: src/saving_manager.py
 msgid ""
@@ -1346,7 +1387,7 @@ msgstr "graden"
 #: src/utilities.py
 #, python-format
 msgid "%s isn't an image."
-msgstr "'%s' is geen afbeelding."
+msgstr "‘%s’ is geen afbeelding."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
@@ -1356,7 +1397,11 @@ msgstr "Tekenen heeft geen ondersteuning voor webp-afbeeldingen."
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr "Ondanks de naam is '%s' toch echt een webp-bestand."
+msgstr "Ondanks de naam is ‘%s’ toch echt een webp-bestand."
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Kan de toepassing niet starten - meld deze fout aan de ontwikkelaar."
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1383,7 +1428,7 @@ msgstr "Ja"
 #: src/window.py
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr "Het gereedschap '%s' kan niet worden geladen"
+msgstr "‘%s’ kan niet worden geladen"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -1413,7 +1458,7 @@ msgstr "Druk op F11 om de beeldvullende modus te verlaten."
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
-"Fout: het paneel van '%s' kan niet worden geladen. Meld deze fout aan de "
+"Fout: het paneel van ‘%s’ kan niet worden geladen. Meld deze fout aan de "
 "ontwikkelaar."
 
 #: src/window.py
@@ -1446,7 +1491,7 @@ msgstr "deze bestanden"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "Wat wil je doen met '%s'?"
+msgstr "Wat wil je doen met ‘%s’?"
 
 #: src/window.py
 msgid "Image copied to clipboard"
@@ -1566,10 +1611,6 @@ msgstr "Hoek (graden)"
 msgid "Angle"
 msgstr "Hoek"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Meer acties"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "Naar links draaien"
@@ -1652,33 +1693,25 @@ msgid "Line shape"
 msgstr "Lijnvorm"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Rond"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Vierkant"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "Geen pijl"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Eenvoudige pijl"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "Dubbele pijl"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Contour"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1704,6 +1737,18 @@ msgstr "Korte streepjes"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr "Afwisselende streepjes"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Geen pijl"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Eenvoudige pijl"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Dubbele pijl"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -2001,11 +2046,6 @@ msgstr "Geen achtergrond"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Kleurschaduw"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Contour"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

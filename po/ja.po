@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
-"PO-Revision-Date: 2021-04-03 19:20+0900\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -72,6 +72,43 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"バージョン 0.8.1 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+"選択している領域の広さに合わせて、キャンバスをトリミング・拡張できるアクショ"
+"ンが追加されました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+"\"トリミング\" ツールが、特定の条件下で画像を消してしまうバグを修正しました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+"ダークテーマを優先して使うオプションが実装されました (設定ウィンドウから有効"
+"にできます)。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+"様々なオプションが \"万年筆\" ブラシ、\"消しゴム\" ツール、\"鉛筆\" に追加さ"
+"れました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
@@ -131,12 +168,6 @@ msgid ""
 msgstr ""
 "\"ぼかし\" モードが削除されました。\"シェイプ\" と \"ブラシ\" ツールにぼかし"
 "効果を組み合わせることはできなくなります。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"バージョン 0.8.1 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -523,7 +554,7 @@ msgstr "ヘルプ (_H)"
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "バグを報告"
 
@@ -669,6 +700,29 @@ msgstr "回転"
 msgid "Filters"
 msgstr "フィルター"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "他のアクション"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr "選択領域を反転"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "現在の画像として設定"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "画像に合わせて拡張"
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -781,9 +835,8 @@ msgid "Touch gestures"
 msgstr "タッチ操作"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr ""
-"アプリケーションの開始中にエラーがありました。バグとして報告してください。"
+msgid "Loading…"
+msgstr "読み込んでいます…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1070,22 +1123,8 @@ msgid "Background color"
 msgstr "背景色"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr ""
-
-#: src/preferences.py
-#, fuzzy
-#| msgid "Default width"
-msgid "Default variant"
-msgstr "既定の幅"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr ""
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr ""
+msgid "Prefer dark theme variant"
+msgstr "ダークテーマを優先的に使用"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1351,6 +1390,11 @@ msgstr "すみません、このアプリは WebP 画像を扱えません。"
 msgid "Despite its name, %s is a WEBP file."
 msgstr "拡張子は異なりますが、%s は WebP ファイルです。"
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr ""
+"アプリケーションの開始中にエラーがありました。バグとして報告してください。"
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1557,10 +1601,6 @@ msgstr "角度 (デグリー)"
 msgid "Angle"
 msgstr "角度"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "他のアクション"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "左へ回転"
@@ -1642,33 +1682,25 @@ msgid "Line shape"
 msgstr "直線の形状"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "丸"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "角"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "矢印なし"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "普通の矢印"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "二重の矢印"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "輪郭線"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1694,6 +1726,18 @@ msgstr "短い破線"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr "長短交互の破線"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "矢印なし"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "普通の矢印"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "二重の矢印"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -1991,11 +2035,6 @@ msgstr "背景なし"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "影"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "輪郭線"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

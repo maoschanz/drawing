@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 02:51+0200\n"
+"POT-Creation-Date: 2021-06-13 01:50+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -74,6 +74,36 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"Versio 0.8.1 sisältää useita pieniä virhekorjauksia ja uusia käännöksiä."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now crop or expand the canvas to a size based on the current "
+"selection size, using new actions available in the selection menus."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A bug, where the \"crop\" tool could erase the image under certain "
+"conditions, has been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"In the preferences window, there is now an option to select if you prefer "
+"the dark theme variant."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Several options have been added, to the \"calligraphic nip\" brush, the "
+"\"eraser\" tool, and the \"pencil\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
 "pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
 msgstr ""
@@ -117,12 +147,6 @@ msgid ""
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Versio 0.8.1 sisältää useita pieniä virhekorjauksia ja uusia käännöksiä."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -519,7 +543,7 @@ msgstr "_Apua"
 msgid "Shortcuts"
 msgstr "Pikakuvakkeet"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Ilmoita virheestä"
 
@@ -671,6 +695,33 @@ msgstr "Kieritä"
 msgid "Filters"
 msgstr "Suodattimet"
 
+#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
+#: src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Lisää toimintoja"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Free selection"
+msgid "Invert selection"
+msgstr "Vapaa valinta"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+#| msgid "Open an image"
+msgid "Define as current image"
+msgstr "Avaa kuva"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -786,8 +837,10 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
+#, fuzzy
+#| msgid "Loading %s"
+msgid "Loading…"
+msgstr "Ladataan %s"
 
 #: src/deco_manager.py
 #, python-format
@@ -1077,22 +1130,10 @@ msgid "Background color"
 msgstr "Taustaväri"
 
 #: src/preferences.py
-msgid "Theme variant"
-msgstr ""
-
-#: src/preferences.py
 #, fuzzy
 #| msgid "Default width"
-msgid "Default variant"
+msgid "Prefer dark theme variant"
 msgstr "Oletusleveys"
-
-#: src/preferences.py
-msgid "Light variant"
-msgstr ""
-
-#: src/preferences.py
-msgid "Dark variant"
-msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1358,6 +1399,10 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1566,10 +1611,6 @@ msgstr "Kulma (astetta)"
 msgid "Angle"
 msgstr "Kulma"
 
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Lisää toimintoja"
-
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
 msgstr "Kierrä vasemmalle"
@@ -1650,35 +1691,25 @@ msgid "Line shape"
 msgstr "Viivan muoto"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Pyöreä"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Neliö"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
-msgid "No arrow"
-msgstr "Nuoli"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr ""
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
-msgid "Double arrow"
-msgstr "Katkoviivattu nuoli"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Ääriviiva"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1708,6 +1739,20 @@ msgstr "Käytä viivoja"
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
 msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "No arrow"
+msgstr "Nuoli"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "Double arrow"
+msgstr "Katkoviivattu nuoli"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -2018,11 +2063,6 @@ msgstr "Ei taustaa"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Varjo"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Ääriviiva"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

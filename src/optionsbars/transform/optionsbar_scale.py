@@ -24,27 +24,19 @@ class OptionsBarScale(AbstractOptionsBar):
 
 	def __init__(self, scale_tool):
 		super().__init__()
-		# future possible improvement: the pane may not compact the same way if
-		# the manipulation concerns the selection.
 		#self.scale_tool = scale_tool
-		builder = self.build_ui('optionsbars/transform/optionsbar-scale.ui')
+
+		self._build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = self._hydrate_transform_tool('transform/optionsbar-scale.ui')
 
 		self.width_btn = builder.get_object('width_btn')
 		self.height_btn = builder.get_object('height_btn')
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
 		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 
-		self.options_btn = builder.get_object('options_btn')
-
 		self.width_label = builder.get_object('width_label')
 		self.height_label = builder.get_object('height_label')
 		self.separator = builder.get_object('separator')
-
-	def toggle_options_menu(self):
-		self.options_btn.set_active(not self.options_btn.get_active())
-
-	def hide_options_menu(self):
-		self.options_btn.set_active(False)
 
 	def init_adaptability(self):
 		super().init_adaptability()
@@ -61,6 +53,8 @@ class OptionsBarScale(AbstractOptionsBar):
 			self.centered_box.set_orientation(Gtk.Orientation.VERTICAL)
 		else:
 			self.centered_box.set_orientation(Gtk.Orientation.HORIZONTAL)
+		# future possible improvement: the pane may not compact the same way if
+		# the manipulation concerns the selection.
 		self.width_label.set_visible(not state)
 		self.height_label.set_visible(not state)
 		self.separator.set_visible(not state)

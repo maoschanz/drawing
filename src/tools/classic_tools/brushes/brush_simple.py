@@ -8,7 +8,7 @@ from .utilities_paths import utilities_smooth_path
 class BrushSimple(AbstractBrush):
 	__gtype_name__ = 'BrushSimple'
 
-	def _get_status(self, use_pressure):
+	def _get_status(self, use_pressure, brush_direction):
 		label = _("Simple brush") + " - "
 		if use_pressure:
 			label += _("Width depends on the stylus pressure")
