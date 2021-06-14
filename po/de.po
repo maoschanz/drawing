@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-13 01:50+0200\n"
-"PO-Revision-Date: 2021-04-26 13:36+0200\n"
+"PO-Revision-Date: 2021-06-14 22:33+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -84,24 +84,33 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"Sie können die Leinwand auf eine Größe zuschneiden oder erweitern, die der "
+"aktuellen Auswahl entspricht. Das ist möglich durch neue Aktionen, die im "
+"Auswahlmenü zu finden sind."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"Der Fehler, wodurch das Werkzeug \"Zuschneiden\" das Bild unter bestimmten "
+"Bedingungen entfernt hat, wurde behoben."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
 msgstr ""
+"Im Fenster Einstellungen können Sie jetzt, sofern Sie möchten, ein "
+"dunkles Thema auswählen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Several options have been added, to the \"calligraphic nip\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"Zu dem Pinsel \"Kalligraphische Feder\", dem Werkzeug \"Radiergummi\" und "
+"dem \"Bleistift\" wurden mehrere Optionen hinzugefügt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -606,7 +615,7 @@ msgstr "Hilfe zur Auswahl"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr "Was gibt es Neues?"
+msgstr "Neuigkeiten"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -708,25 +717,21 @@ msgstr "Weitere Aktionen"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
-msgstr "Freie Auswahl"
+msgstr "Auswahl umkehren"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
-msgstr "Ein Bild öffnen"
+msgstr "Als aktuelles Bild bestimmen"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Bild passend erweitern"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -841,10 +846,8 @@ msgid "Touch gestures"
 msgstr "Touch-Gesten"
 
 #: src/ui/window.ui
-#, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
-msgstr "Wird geladen %s"
+msgstr "Wird geladen…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1133,10 +1136,8 @@ msgid "Background color"
 msgstr "Hintergrundfarbe"
 
 #: src/preferences.py
-#, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
-msgstr "Standardbreite"
+msgstr "Dunkles Thema anwenden"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
