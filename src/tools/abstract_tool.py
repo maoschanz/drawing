@@ -237,7 +237,7 @@ class AbstractAbstractTool():
 		return self.get_selection().get_pixbuf()
 
 	def get_overlay_thickness(self):
-		return (1 / self.get_image().zoom_level) * 1.2
+		return (1 / self.get_image().zoom_level)
 
 	############################################################################
 	# Image management #########################################################

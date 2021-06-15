@@ -37,12 +37,18 @@ def utilities_show_overlay_on_context(ccontext, cpath, is_dashed, thickness=1):
 	ccontext.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	ccontext.stroke()
 
-def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2):
+def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness=1):
 	"""Request the drawing of handles for a rectangle pixbuf having the provided
 	coords. Handles are only decorative objects drawn on the surface to help the
 	user understand the rationale of tools without relying on the mouse cursor."""
-	rayon = min([(x2 - x1)/5, (y2 - y1)/5, 12])
+	rayon = min([(x2 - x1)/5, (y2 - y1)/5, 12 * thickness])
 	lateral_handles = True # may be a parameter later
+	if rayon < 4 * thickness:
+		cairo_context.set_line_width(thickness)
+	elif rayon < 8 * thickness:
+		cairo_context.set_line_width(2 * thickness)
+	else:
+		cairo_context.set_line_width(3 * thickness)
 
 	_draw_arc_handle(cairo_context, x1, y1, rayon, 'nw')
 	_draw_arc_handle(cairo_context, x2, y1, rayon, 'ne')
@@ -60,8 +66,8 @@ def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2):
 	cairo_context.line_to(x2, y1)
 	cairo_context.close_path()
 
-	cairo_context.set_line_width(1)
-	cairo_context.set_dash([2, 2])
+	cairo_context.set_line_width(thickness)
+	cairo_context.set_dash([2 * thickness, 2 * thickness])
 	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	cairo_context.stroke()
 
@@ -97,8 +103,6 @@ def _draw_arc_handle(cairo_context, x, y, rayon, orientation):
 	cairo_context.move_to(x, y)
 	cairo_context.arc(x, y, rayon, angle_1, angle_2)
 	cairo_context.close_path()
-
-	cairo_context.set_line_width(3)
 	cairo_context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
 	cairo_context.fill_preserve()
 	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
