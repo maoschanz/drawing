@@ -17,7 +17,6 @@
 
 import cairo
 from gi.repository import Gtk
-from .utilities_overlay import utilities_show_overlay_on_context
 
 class WrongToolIdException(Exception):
 	def __init__(self, expected, actual):
@@ -237,6 +236,9 @@ class AbstractAbstractTool():
 	def get_selection_pixbuf(self):
 		return self.get_selection().get_pixbuf()
 
+	def get_overlay_thickness(self):
+		return (1 / self.get_image().zoom_level)
+
 	############################################################################
 	# Image management #########################################################
 
@@ -281,12 +283,6 @@ class AbstractAbstractTool():
 			return
 		if not self.selection_is_active():
 			return
-		# Basic "wrong" implementation (wtf is "0, 0"), which is never executed
-		# because tools needing to draw an overlay will do it better to fit
-		# their needs.
-		self.get_selection().show_selection_on_surface(cairo_context, True, 0, 0)
-		dragged_path = self.get_selection().get_path_with_scroll(0, 0)
-		utilities_show_overlay_on_context(cairo_context, dragged_path, True)
 
 	############################################################################
 ################################################################################

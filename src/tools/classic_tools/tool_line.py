@@ -30,12 +30,15 @@ class ToolLine(AbstractClassicTool):
 		self._dashes_type = 'none'
 		self._arrow_type = 'none'
 		self._use_gradient = False
+		# Lock the tool to only draw orthogonal lines (multiples of 45°)
+		self._ortholock = False # Unrelated to Maïté's ortolan.
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_enum('dashes-type', self._dashes_type)
 		self.add_tool_action_enum('arrow-type', self._arrow_type)
 		self.add_tool_action_boolean('use_gradient', self._use_gradient)
 		self.add_tool_action_boolean('pencil-outline', self._use_outline)
+		self.add_tool_action_boolean('line-ortholock', self._ortholock)
 		self._set_options_attributes() # Not optimal but more readable
 
 	def _set_active_shape(self):
@@ -53,6 +56,7 @@ class ToolLine(AbstractClassicTool):
 		self._dashes_type = self.get_option_value('dashes-type')
 		self._arrow_type = self.get_option_value('arrow-type')
 		self._use_gradient = self.get_option_value('use_gradient')
+		self._ortholock = self.get_option_value('line-ortholock')
 		self._set_active_shape()
 
 	def get_edition_status(self):
@@ -96,6 +100,7 @@ class ToolLine(AbstractClassicTool):
 			'arrow': self._arrow_type,
 			'gradient': self._use_gradient,
 			'outline': self._use_outline,
+			'ortholock': self._ortholock,
 			'x_release': event_x,
 			'y_release': event_y,
 			'x_press': self.x_press,
@@ -114,6 +119,23 @@ class ToolLine(AbstractClassicTool):
 		y1 = operation['y_press']
 		x2 = operation['x_release']
 		y2 = operation['y_release']
+
+		if operation['ortholock']:
+			x1, y1 = int(x1), int(y1)
+			x2, y2 = int(x2), int(y2)
+			delta_x = abs(x1 - x2)
+			delta_y = abs(y1 - y2)
+			if delta_x > 2 * delta_y:
+				# Strictly horizontal line
+				y2 = y1
+			elif delta_x * 2 < delta_y:
+				# Strictly vertical line
+				x2 = x1
+			else:
+				# 45° line
+				delta45 = min(delta_x, delta_y)
+				x2 = x1 + delta45 if (x1 - x2 < 0) else x1 - delta45
+				y2 = y1 + delta45 if (y1 - y2 < 0) else y1 - delta45
 
 		self.set_dashes_and_cap(cairo_context, line_width, \
 		                             operation['dashes'], operation['line_cap'])
