@@ -22,20 +22,20 @@ from .selection_manager import NoSelectionPathException
 ################################################################################
 # Selection overlay ############################################################
 
-def utilities_show_overlay_on_context(cairo_context, cairo_path, has_dashes):
-	"""Draw a blueish area on `cairo_context`, with or without dashes. This is
-	mainly used for the selection."""
-	if cairo_path is None:
+def utilities_show_overlay_on_context(ccontext, cpath, is_dashed, thickness=1):
+	"""Draw a blueish area on `ccontext`, with or without dashes. This is mainly
+	used for the selection, but also for the minimap."""
+	if cpath is None:
 		raise NoSelectionPathException()
-	cairo_context.new_path()
-	cairo_context.set_line_width(1)
-	if has_dashes:
-		cairo_context.set_dash([3, 3])
-	cairo_context.append_path(cairo_path)
-	cairo_context.set_source_rgba(0.1, 0.1, 0.3, 0.2)
-	cairo_context.fill_preserve()
-	cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-	cairo_context.stroke()
+	ccontext.new_path()
+	ccontext.set_line_width(thickness)
+	if is_dashed:
+		ccontext.set_dash([thickness * 3, thickness * 3])
+	ccontext.append_path(cpath)
+	ccontext.set_source_rgba(0.1, 0.1, 0.3, 0.2)
+	ccontext.fill_preserve()
+	ccontext.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+	ccontext.stroke()
 
 def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2):
 	"""Request the drawing of handles for a rectangle pixbuf having the provided

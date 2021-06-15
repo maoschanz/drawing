@@ -165,7 +165,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().show_selection_on_surface(ccontext, True, ldx, ldy)
 		dragged_path = self.get_selection().get_path_with_scroll(ldx, ldy)
 		# ^ Method not really use elsewhere, could it be private?
-		utilities_show_overlay_on_context(ccontext, dragged_path, True)
+		thickness = self.get_overlay_thickness()
+		utilities_show_overlay_on_context(ccontext, dragged_path, True, thickness)
 
 	############################################################################
 	# Pre-loading the selection manager with non-essential data ################
