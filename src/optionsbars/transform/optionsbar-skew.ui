@@ -18,122 +18,60 @@
 
   <!-- -->
 
-  <object class="GtkActionBar" id="bottom-pane">
-    <property name="visible">False</property>
-    <property name="expand">True</property>
+  <object class="GtkBox" id="centered_box">
+    <property name="visible">True</property>
+    <property name="spacing">10</property>
+    <property name="orientation">horizontal</property>
 
     <child>
-      <object class="GtkButton" id="cancel_btn">
-        <property name="tooltip_text" translatable="yes">Cancel</property>
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="action_name">win.force_selection</property>
-        <style><class name="destructive-action"/></style>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">go-previous-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-      </object>
-    </child>
-
-    <child type="center">
-      <object class="GtkBox" id="centered_box">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
-
         <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel" id="xy_label">
-                <property name="label" translatable="yes">Horizontal deformation</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="xy_spinbtn">
-                <property name="visible">True</property>
-                <property name="adjustment">adj_xy</property>
-                <property name="tooltip_text" translatable="yes">Horizontal deformation</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkSeparator" id="separator">
+          <object class="GtkLabel" id="xy_label">
+            <property name="label" translatable="yes">Horizontal deformation</property>
             <property name="visible">True</property>
           </object>
         </child>
-
         <child>
-          <object class="GtkBox">
+          <object class="GtkSpinButton" id="xy_spinbtn">
             <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkLabel" id="yx_label">
-                <property name="label" translatable="yes">Vertical deformation</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="yx_spinbtn">
-                <property name="visible">True</property>
-                <property name="adjustment">adj_yx</property>
-                <property name="tooltip_text" translatable="yes">Vertical deformation</property>
-              </object>
-            </child>
+            <property name="adjustment">adj_xy</property>
+            <property name="tooltip_text" translatable="yes">Horizontal deformation</property>
           </object>
         </child>
-
       </object>
     </child>
 
     <child>
-      <object class="GtkButton" id="apply_btn">
-        <property name="action_name">win.apply_transform</property>
-        <property name="tooltip-text" translatable="yes">Apply</property>
+      <object class="GtkSeparator" id="separator">
         <property name="visible">True</property>
-        <property name="valign">center</property>
-        <style>
-          <class name="suggested-action"/>
-        </style>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">emblem-ok-symbolic</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
     <child>
-      <object class="GtkButton" id="help_btn">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="relief">none</property>
-        <property name="tooltip-text" translatable="yes">Help about transformation tools</property>
-        <property name="action-name">app.help_transform</property>
+        <property name="spacing">10</property>
+        <property name="orientation">horizontal</property>
         <child>
-          <object class="GtkImage">
-            <property name="icon-name">help-faq-symbolic</property>
+          <object class="GtkLabel" id="yx_label">
+            <property name="label" translatable="yes">Vertical deformation</property>
             <property name="visible">True</property>
           </object>
         </child>
+        <child>
+          <object class="GtkSpinButton" id="yx_spinbtn">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_yx</property>
+            <property name="tooltip_text" translatable="yes">Vertical deformation</property>
+          </object>
+        </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
   </object>
+
 </interface>
 

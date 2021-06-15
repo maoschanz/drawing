@@ -26,12 +26,15 @@ class OptionsBarFilters(AbstractOptionsBar):
 		super().__init__()
 		self.window = window
 		self.filters_tool = filters_tool
-		builder = self.build_ui('optionsbars/transform/optionsbar-filters.ui')
+
+		self._build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = self._hydrate_transform_tool('transform/optionsbar-filters.ui')
+
 		self.menu_btn = builder.get_object('menu_btn')
+		self._togglable_btn = self.menu_btn
 		self.menu_btn.set_menu_model(self.filters_tool.get_filters_menu())
 		self._menu_label = builder.get_object('menu_label')
 		self._menu_icon = builder.get_object('menu_icon')
-		self._centered_box = builder.get_object('centered_box')
 
 	def add_spinbtn(self, caption, adj_as_array, spin_chars, unit):
 		widget_label = Gtk.Label(label=caption)
@@ -42,17 +45,11 @@ class OptionsBarFilters(AbstractOptionsBar):
 		widget_spinbtn.set_adjustment(adj)
 		utilities_add_unit_to_spinbtn(widget_spinbtn, spin_chars, unit)
 
-		self._centered_box.add(widget_label)
-		self._centered_box.add(widget_spinbtn)
+		self.centered_box.add(widget_label)
+		self.centered_box.add(widget_spinbtn)
 		return widget_label, widget_spinbtn
 
 	############################################################################
-
-	def toggle_options_menu(self):
-		self.menu_btn.set_active(not self.menu_btn.get_active())
-
-	def hide_options_menu(self):
-		self.menu_btn.set_active(False)
 
 	def init_adaptability(self):
 		super().init_adaptability()
