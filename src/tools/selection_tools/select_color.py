@@ -1,4 +1,4 @@
-# color_select.py
+# select_color.py
 #
 # Copyright 2018-2021 Romain F. T.
 #

@@ -1,4 +1,3 @@
-
 # tool_brush.py
 #
 # Copyright 2018-2021 Romain F. T.

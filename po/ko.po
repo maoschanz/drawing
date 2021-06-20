@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"POT-Creation-Date: 2021-06-20 03:05+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -67,6 +67,41 @@ msgid ""
 msgstr ""
 "연필, 선 또는 호 (다양한 옵션 포함), 선택 (잘라 내기 / 복사 / 붙여 넣기 / 끌"
 "기 /…) , 도형 (사각형, 원, 다각형 등), 텍스트 삽입, 크기 조정, 자르기, 회전"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 0.8.2에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The straight line tool has a new option to lock its angle, so you can draw "
+"perfect horizontal, vertical, or 45° strokes."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The `--edit-clipboard` command line option now works with Wayland."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Scaling an image using the numerical inputs now preserves the original "
+"proportions of the image (unless the \"never keep proportions\" option is "
+"enabled)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
+"18.04)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -582,11 +617,8 @@ msgstr "색상에 대한 도움말"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Help about transformation tools"
 msgstr "변형 도구에 대한 도움말"
 
@@ -691,8 +723,7 @@ msgstr "회전"
 msgid "Filters"
 msgstr "필터"
 
-#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
 msgid "More actions"
 msgstr "더 많은 행동"
 
@@ -935,14 +966,11 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "취소"
 
@@ -1564,18 +1592,14 @@ msgstr "투명도"
 msgid "Extract from this color"
 msgstr "이 색상에서 추출"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "적용"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "더 많은 옵션"
 
@@ -1870,6 +1894,12 @@ msgstr "색상 반전"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "그라디언트 색상"
+
+#: src/tools/ui/tool-line.ui
+#, fuzzy
+#| msgid "No direction"
+msgid "Locked direction"
+msgstr "방향 없음"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui

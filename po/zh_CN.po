@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"POT-Creation-Date: 2021-06-20 03:05+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -66,6 +66,40 @@ msgstr ""
 "借助本应用，你可以图画、编辑图片，并使用诸如铅笔、直线、弧线（多种选项）、选"
 "择（复制、粘贴、剪切、拖曳等）、形状（矩形、圆形、多边形等）、插入文本、调整"
 "大小、裁切、旋转、…"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr "0.8.2 版修复了一些小的错误，增加了新的翻译。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The straight line tool has a new option to lock its angle, so you can draw "
+"perfect horizontal, vertical, or 45° strokes."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The `--edit-clipboard` command line option now works with Wayland."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Scaling an image using the numerical inputs now preserves the original "
+"proportions of the image (unless the \"never keep proportions\" option is "
+"enabled)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
+"18.04)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -573,11 +607,8 @@ msgstr "关于工具的帮助"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "关于工具的帮助"
@@ -683,8 +714,7 @@ msgstr "旋转"
 msgid "Filters"
 msgstr "滤镜"
 
-#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
 msgid "More actions"
 msgstr "更多操作"
 
@@ -931,14 +961,11 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "取消"
 
@@ -1561,18 +1588,14 @@ msgstr "透明度"
 msgid "Extract from this color"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "应用"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "更多选项"
 
@@ -1880,6 +1903,12 @@ msgstr "插入颜色"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "颜色渐变"
+
+#: src/tools/ui/tool-line.ui
+#, fuzzy
+#| msgid "No direction"
+msgid "Locked direction"
+msgstr "无方向"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
