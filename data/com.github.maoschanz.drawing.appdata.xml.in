@@ -29,6 +29,35 @@
   </description>
 
   <releases>
+    <release version="0.8.2" date="2021-06-26">
+      <description>
+        <p>
+          Version 0.8.2 features several minor bug fixes, and various new
+          translations.
+        </p>
+        <p>
+          The straight line tool has a new option to lock its angle, so you can
+          draw perfect horizontal, vertical, or 45° strokes.
+        </p>
+        <p>
+          The `--edit-clipboard` command line option now works with Wayland.
+        </p>
+        <p>
+          Scaling an image using the numerical inputs now preserves the original
+          proportions of the image (unless the "never keep proportions" option
+          is enabled).
+        </p>
+        <p>
+          After rotating the selection, it had an incorrectly big height, but
+          now it's fixed.
+        </p>
+        <p>
+          This version of the app is compatible with older GNOME versions
+          (Ubuntu LTS 18.04).
+        </p>
+      </description>
+    </release>
+
     <release version="0.8.1" date="2021-06-12">
       <description>
         <p>

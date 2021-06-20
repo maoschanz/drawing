@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"POT-Creation-Date: 2021-06-20 03:05+0200\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -69,6 +69,41 @@ msgstr ""
 "鉛筆、直線・曲線 (多彩な効果も適用可)、領域の選択 (切り取り/コピー/貼り付け/"
 "ドラッグ…)、シェイプ (四辺形/円/多辺形…)、テキストの挿入、伸縮、トリミング、"
 "回転などのツールを使い、画像を描画・編集できます。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"バージョン 0.8.2 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The straight line tool has a new option to lock its angle, so you can draw "
+"perfect horizontal, vertical, or 45° strokes."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The `--edit-clipboard` command line option now works with Wayland."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Scaling an image using the numerical inputs now preserves the original "
+"proportions of the image (unless the \"never keep proportions\" option is "
+"enabled)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
+"18.04)."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -591,11 +626,8 @@ msgstr "色についてのヘルプ"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Help about transformation tools"
 msgstr "変換ツールについてのヘルプ"
 
@@ -700,8 +732,7 @@ msgstr "回転"
 msgid "Filters"
 msgstr "フィルター"
 
-#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
 msgid "More actions"
 msgstr "他のアクション"
 
@@ -938,14 +969,11 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1569,18 +1597,14 @@ msgstr "透過"
 msgid "Extract from this color"
 msgstr "この色から抽出"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "適用"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "他のオプション"
 
@@ -1876,6 +1900,12 @@ msgstr "色を反転"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "グラディエーション"
+
+#: src/tools/ui/tool-line.ui
+#, fuzzy
+#| msgid "No direction"
+msgid "Locked direction"
+msgstr "方向なし"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui

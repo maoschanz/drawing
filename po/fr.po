@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-13 01:50+0200\n"
+"POT-Creation-Date: 2021-06-20 03:05+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -69,6 +69,49 @@ msgstr ""
 "crayon, trait ou arc (avec diverses options), sélection (couper/copier/"
 "coller/déplacer…), formes (rectangle, cercle, polygone, …), insertion de "
 "texte, redimensionnement, recadrage, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.8.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The straight line tool has a new option to lock its angle, so you can draw "
+"perfect horizontal, vertical, or 45° strokes."
+msgstr ""
+"L'outil 'ligne droite' a maintenant une nouvelle option pour verrouiller son "
+"angle, tel que vous pouvez tracer des traits parfaitement horizontaux, "
+"verticaux, ou à 45°"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The `--edit-clipboard` command line option now works with Wayland."
+msgstr ""
+"L'option en ligne de commande `--edit-clipboard` fonctionne désormais avec "
+"Wayland."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Scaling an image using the numerical inputs now preserves the original "
+"proportions of the image (unless the \"never keep proportions\" option is "
+"enabled)."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
+"18.04)."
+msgstr ""
+"Cette version de l'application est maintenant compatible avec les versions "
+"plus anciennes de GNOME (Ubuntu LTS 18.04)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -599,11 +642,8 @@ msgstr "Aide sur les couleurs"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Help about transformation tools"
 msgstr "Aide sur les outils de transformation"
 
@@ -708,8 +748,7 @@ msgstr "Pivoter"
 msgid "Filters"
 msgstr "Filtres"
 
-#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
 msgid "More actions"
 msgstr "Plus d'options"
 
@@ -946,14 +985,11 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1582,18 +1618,14 @@ msgstr "Transparence"
 msgid "Extract from this color"
 msgstr "Extraire depuis cette couleur"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Appliquer"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Plus d'options"
 
@@ -1889,6 +1921,10 @@ msgstr "Inverser les couleurs"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Dégradé"
+
+#: src/tools/ui/tool-line.ui
+msgid "Locked direction"
+msgstr "Direction verrouillée"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
