@@ -26,8 +26,8 @@ class ToolScale(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'not-allowed'
-		self.keep_proportions = True
-		self.directions = ''
+		self._preserve_ratio = True
+		self._directions = ''
 		self._x = 0
 		self._y = 0
 		self._x2 = 0
@@ -61,15 +61,15 @@ class ToolScale(AbstractCanvasTool):
 		super().on_tool_selected()
 		self._x = 0
 		self._y = 0
-		self.directions = ''
+		self._directions = ''
 		if self.apply_to_selection:
 			width = self.get_selection_pixbuf().get_width()
 			height = self.get_selection_pixbuf().get_height()
 		else:
 			width = self.get_image().get_pixbuf_width()
 			height = self.get_image().get_pixbuf_height()
-		self.set_keep_proportions()
-		self.proportion = width/height
+		self.set_preserve_ratio()
+		self._ratio = width / height
 		self.width_btn.set_value(width)
 		self.height_btn.set_value(height)
 		self.build_and_do_op()
@@ -78,36 +78,36 @@ class ToolScale(AbstractCanvasTool):
 
 	def should_set_value(self, *args):
 		current_prop = self.get_width() / self.get_height()
-		return self.keep_proportions and self.proportion != current_prop
+		return self._preserve_ratio and self._ratio != current_prop
 
-	def set_keep_proportions(self, *args):
-		former_setting = self.keep_proportions
+	def set_preserve_ratio(self, *args):
+		former_setting = self._preserve_ratio
 		setting = self.get_option_value('scale-proportions')
 		if setting == 'corners':
-			self.keep_proportions = len(self.directions) != 1
+			self._preserve_ratio = len(self._directions) != 1
 		else:
-			self.keep_proportions = setting == 'always'
-		if self.keep_proportions == former_setting:
+			self._preserve_ratio = setting == 'always'
+		if self._preserve_ratio == former_setting:
 			return
-		if self.keep_proportions:
-			self.proportion = self.get_width() / self.get_height()
+		if self._preserve_ratio:
+			self._ratio = self.get_width() / self.get_height()
 
 	############################################################################
 
 	def on_width_changed(self, *args):
-		if self.directions == '':
+		if self._directions == '':
 			# Means we use the spinbtn directly, instead of the surface signals
-			self.set_keep_proportions()
+			self.set_preserve_ratio()
 		if self.should_set_value():
-			self.height_btn.set_value(self.get_width() / self.proportion)
+			self.height_btn.set_value(self.get_width() / self._ratio)
 		self.build_and_do_op()
 
 	def on_height_changed(self, *args):
-		if self.directions == '':
+		if self._directions == '':
 			# Means we use the spinbtn directly, instead of the surface signals
-			self.set_keep_proportions()
+			self.set_preserve_ratio()
 		if self.should_set_value():
-			self.width_btn.set_value(self.get_height() * self.proportion)
+			self.width_btn.set_value(self.get_height() * self._ratio)
 		else:
 			self.build_and_do_op()
 
@@ -128,8 +128,8 @@ class ToolScale(AbstractCanvasTool):
 		self.y_press = event_y
 		self._x2 = self._x + self.get_width()
 		self._y2 = self._y + self.get_height()
-		self.directions = self.cursor_name.replace('-resize', '')
-		self.set_keep_proportions()
+		self._directions = self.cursor_name.replace('-resize', '')
+		self.set_preserve_ratio()
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		if self.cursor_name == 'not-allowed':
@@ -141,24 +141,24 @@ class ToolScale(AbstractCanvasTool):
 
 		height = self.get_height()
 		width = self.get_width()
-		if 'n' in self.directions:
+		if 'n' in self._directions:
 			height -= delta_y
 			self._y = self._y + delta_y
-		if 's' in self.directions:
+		if 's' in self._directions:
 			height += delta_y
-		if 'w' in self.directions:
+		if 'w' in self._directions:
 			width -= delta_x
 			self._x = self._x + delta_x
-		if 'e' in self.directions:
+		if 'e' in self._directions:
 			width += delta_x
 
-		if self.apply_to_selection and self.keep_proportions:
-			if 'w' in self.directions:
+		if self.apply_to_selection and self._preserve_ratio:
+			if 'w' in self._directions:
 				self._x = self._x2 - width
-			if 'n' in self.directions:
+			if 'n' in self._directions:
 				self._y = self._y2 - height
 
-		if self.keep_proportions:
+		if self._preserve_ratio:
 			if abs(delta_y) > abs(delta_x):
 				self.height_btn.set_value(height)
 			else:
@@ -169,7 +169,7 @@ class ToolScale(AbstractCanvasTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
-		self.directions = ''
+		self._directions = ''
 		self.build_and_do_op() # technically already done
 
 	############################################################################
