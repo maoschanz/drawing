@@ -84,7 +84,7 @@ class ToolScale(AbstractCanvasTool):
 		former_setting = self.keep_proportions
 		setting = self.get_option_value('scale-proportions')
 		if setting == 'corners':
-			self.keep_proportions = len(self.directions) == 2
+			self.keep_proportions = len(self.directions) != 1
 		else:
 			self.keep_proportions = setting == 'always'
 		if self.keep_proportions == former_setting:
