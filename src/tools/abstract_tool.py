@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 class WrongToolIdException(Exception):
 	def __init__(self, expected, actual):
@@ -46,6 +46,7 @@ class AbstractAbstractTool():
 		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
+		self._modifier_keys = []
 		# Once everything is set, build the UI
 		self.build_row()
 		self.try_build_pane()
@@ -88,6 +89,16 @@ class AbstractAbstractTool():
 
 	def get_settings(self):
 		return self.window.options_manager._tools_gsettings
+
+	def update_modifier_state(self, event_state):
+		modifier_keys = []
+		if (event_state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK:
+			modifier_keys.append("CTRL")
+		if (event_state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK:
+			modifier_keys.append("SHIFT")
+		if (event_state & Gdk.ModifierType.MOD1_MASK) == Gdk.ModifierType.MOD1_MASK:
+			modifier_keys.append("ALT")
+		self._modifier_keys = modifier_keys
 
 	############################################################################
 	# Various utilities ########################################################

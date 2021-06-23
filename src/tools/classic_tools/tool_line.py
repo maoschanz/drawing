@@ -77,6 +77,9 @@ class ToolLine(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event.button, event_x, event_y)
 
+		self.update_modifier_state(event.state)
+		self._ortholock = self._ortholock or "SHIFT" in self._modifier_keys
+
 	def on_motion_on_area(self, event, surface, event_x, event_y):
 		operation = self.build_operation(event_x, event_y)
 		self.do_tool_operation(operation)
