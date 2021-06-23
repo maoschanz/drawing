@@ -27,6 +27,7 @@ class ToolScale(AbstractCanvasTool):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self._preserve_ratio = True
+		self._spinbtns_disabled = True
 		self._directions = ''
 		self._x = 0
 		self._y = 0
@@ -70,15 +71,12 @@ class ToolScale(AbstractCanvasTool):
 			height = self.get_image().get_pixbuf_height()
 		self.set_preserve_ratio()
 		self._ratio = width / height
+		self._spinbtns_disabled = False
 		self.width_btn.set_value(width)
 		self.height_btn.set_value(height)
 		self.build_and_do_op()
 
 	############################################################################
-
-	def should_set_value(self, *args):
-		current_prop = self.get_width() / self.get_height()
-		return self._preserve_ratio and self._ratio != current_prop
 
 	def set_preserve_ratio(self, *args):
 		former_setting = self._preserve_ratio
@@ -92,24 +90,49 @@ class ToolScale(AbstractCanvasTool):
 		if self._preserve_ratio:
 			self._ratio = self.get_width() / self.get_height()
 
+	def _try_scale_dimensions(self, data_dict={}):
+		if not self._preserve_ratio:
+			# Guard clause: if the ratio isn't locked, the dimension should be
+			# applied as such. Calculations are only useful when trying to
+			# preserve the image proportions.
+			self.build_and_do_op()
+			return
+
+		pixbuf = self.get_image().temp_pixbuf
+		existing_width = pixbuf.get_width()
+		existing_height = pixbuf.get_height()
+
+		new_width = self.get_width()
+		new_height = self.get_height()
+		self._spinbtns_disabled = True
+
+		if existing_width != new_width:
+			new_height = new_width / self._ratio
+			self.height_btn.set_value(new_height)
+		if existing_height != new_height:
+			new_width = new_height * self._ratio
+			self.width_btn.set_value(new_width)
+
+		self._spinbtns_disabled = False
+		self.build_and_do_op()
+
 	############################################################################
 
 	def on_width_changed(self, *args):
+		if self._spinbtns_disabled:
+			return
 		if self._directions == '':
 			# Means we use the spinbtn directly, instead of the surface signals
 			self.set_preserve_ratio()
-		if self.should_set_value():
-			self.height_btn.set_value(self.get_width() / self._ratio)
-		self.build_and_do_op()
+		self._try_scale_dimensions()
 
 	def on_height_changed(self, *args):
+		if self._spinbtns_disabled:
+			return
 		if self._directions == '':
 			# Means we use the spinbtn directly, instead of the surface signals
 			self.set_preserve_ratio()
-		if self.should_set_value():
-			self.width_btn.set_value(self.get_height() * self._ratio)
-		else:
-			self.build_and_do_op()
+		self._try_scale_dimensions()
 
 	def get_width(self):
 		return self.width_btn.get_value_as_int()
