@@ -79,6 +79,8 @@ class ToolScale(AbstractCanvasTool):
 	############################################################################
 
 	def set_preserve_ratio(self, *args):
+		"""Set whether or not `self._preserve_ratio` should be true. If it is,
+		and that wasn't the case before, it sets the `self._ratio` value too."""
 		former_setting = self._preserve_ratio
 		setting = self.get_option_value('scale-proportions')
 		if setting == 'corners':
@@ -88,13 +90,16 @@ class ToolScale(AbstractCanvasTool):
 		if self._preserve_ratio == former_setting:
 			return
 		if self._preserve_ratio:
-			self._ratio = self.get_width() / self.get_height()
+			self._ratio = self._get_width() / self._get_height()
 
 	def _try_scale_dimensions(self, data_dict={}):
+		"""When the value in a spinbutton changes, adjust the values in the
+		spinbuttons if necessary, and build-and-do the corresponding tool
+		operation."""
 		if not self._preserve_ratio:
 			# Guard clause: if the ratio isn't locked, the dimension should be
-			# applied as such. Calculations are only useful when trying to
-			# preserve the image proportions.
+			# applied without any change. Calculations are only useful when
+			# trying to preserve the image proportions.
 			self.build_and_do_op()
 			return
 
@@ -102,8 +107,8 @@ class ToolScale(AbstractCanvasTool):
 		existing_width = pixbuf.get_width()
 		existing_height = pixbuf.get_height()
 
-		new_width = self.get_width()
-		new_height = self.get_height()
+		new_width = self._get_width()
+		new_height = self._get_height()
 		self._spinbtns_disabled = True
 
 		if existing_width != new_width:
@@ -134,10 +139,10 @@ class ToolScale(AbstractCanvasTool):
 			self.set_preserve_ratio()
 		self._try_scale_dimensions()
 
-	def get_width(self):
+	def _get_width(self):
 		return self.width_btn.get_value_as_int()
 
-	def get_height(self):
+	def _get_height(self):
 		return self.height_btn.get_value_as_int()
 
 	############################################################################
@@ -149,8 +154,8 @@ class ToolScale(AbstractCanvasTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self._x2 = self._x + self.get_width()
-		self._y2 = self._y + self.get_height()
+		self._x2 = self._x + self._get_width()
+		self._y2 = self._y + self._get_height()
 		self._directions = self.cursor_name.replace('-resize', '')
 		self.set_preserve_ratio()
 
@@ -162,8 +167,8 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = event_x
 		self.y_press = event_y
 
-		height = self.get_height()
-		width = self.get_width()
+		height = self._get_height()
+		width = self._get_width()
 		if 'n' in self._directions:
 			height -= delta_y
 			self._y = self._y + delta_y
@@ -204,8 +209,8 @@ class ToolScale(AbstractCanvasTool):
 		else:
 			x1 = 0
 			y1 = 0
-		x2 = x1 + self.get_width()
-		y2 = y1 + self.get_height()
+		x2 = x1 + self._get_width()
+		y2 = y1 + self._get_height()
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
 		thickness = self.get_overlay_thickness()
@@ -220,8 +225,8 @@ class ToolScale(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': int(self._x),
 			'local_dy': int(self._y),
-			'width': self.get_width(),
-			'height': self.get_height()
+			'width': self._get_width(),
+			'height': self._get_height()
 		}
 		return operation
 
