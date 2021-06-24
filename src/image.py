@@ -21,6 +21,7 @@ from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
 from .utilities import InvalidFileFormatException
+from .utilities_overlay import utilities_generic_canvas_outline
 
 class DrMotionBehavior():
 	_LIMIT = 10
@@ -380,7 +381,11 @@ class DrImage(Gtk.Box):
 		cairo_context.paint()
 
 		# What the tool is painting
-		self.active_tool().on_draw(area, cairo_context)
+		self.active_tool().on_draw_above(area, cairo_context)
+
+		# Limit of the canvas (for readability)
+		utilities_generic_canvas_outline(cairo_context, self.get_pixbuf_width(), \
+		                              self.get_pixbuf_height(), self.zoom_level)
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on

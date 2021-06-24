@@ -174,7 +174,7 @@ class ToolScale(AbstractCanvasTool):
 
 	############################################################################
 
-	def on_draw(self, area, cairo_context):
+	def on_draw_above(self, area, cairo_context):
 		if self.apply_to_selection:
 			x1 = int(self._x)
 			y1 = int(self._y)

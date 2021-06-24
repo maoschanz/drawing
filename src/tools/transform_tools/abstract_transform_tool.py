@@ -135,7 +135,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			cursor_name = cursor_name + '-resize'
 		return cursor_name
 
-	def on_draw(self, area, cairo_context):
+	def on_draw_above(self, area, cairo_context):
 		pass
 
 	def get_deformed_surface(self, source_surface, coefs):

@@ -157,7 +157,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		elif self.behavior == 'drag':
 			self._apply_drag_to(event_x, event_y)
 
-	def on_draw(self, area, ccontext):
+	def on_draw_above(self, area, ccontext):
 		if not self.selection_is_active():
 			return
 		ldx = self.local_dx

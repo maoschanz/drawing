@@ -281,11 +281,8 @@ class AbstractAbstractTool():
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_draw(self, area, cairo_context):
-		if not self.accept_selection:
-			return
-		if not self.selection_is_active():
-			return
+	def on_draw_above(self, area, cairo_context):
+		pass
 
 	############################################################################
 ################################################################################
