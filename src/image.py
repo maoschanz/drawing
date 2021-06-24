@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo
+import cairo, random, math
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango, GLib
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
@@ -56,6 +56,7 @@ class DrImage(Gtk.Box):
 		self._fps_counter = 0
 		if self.window.enable_cli_logging:
 			self._reset_fps_counter()
+		self._framerate_hint = 1.0
 
 		self._init_drawing_area()
 
@@ -417,7 +418,7 @@ class DrImage(Gtk.Box):
 			# implicitely impossible if not self._is_pressed
 			event_x, event_y = self.get_event_coords(event)
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update() # <<< comment this for better perfs
+			self.update(True)
 
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			self.scroll_x = self._slip_init_x
@@ -448,12 +449,12 @@ class DrImage(Gtk.Box):
 		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
 		return mx or my
 
-	def update(self):
-		# print('image.py: _drawing_area.queue_draw')
-		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
-		# l'utilisation pour les trop grandes images, il faudrait n'update que
-		# la partie qui change, ou au pire que la partie affichée
-		self._drawing_area.queue_draw()
+	def update(self, allow_imperfect=False):
+		if allow_imperfect and random.random() > self._framerate_hint:
+			pass
+		else:
+			# print('image.py: _drawing_area.queue_draw')
+			self._drawing_area.queue_draw()
 
 	def get_surface(self):
 		return self.surface
@@ -469,16 +470,19 @@ class DrImage(Gtk.Box):
 		self.update()
 
 	def set_surface_as_stable_pixbuf(self):
-		# print('image.py: set_surface_as_stable_pixbuf')
-		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-		                    self.surface.get_width(), self.surface.get_height())
+		w = self.surface.get_width()
+		h = self.surface.get_height()
+		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, w, h)
+		self._framerate_hint = math.sqrt(500000 / (w * h))
+		# print("hint :", self._framerate_hint)
 
-	def use_stable_pixbuf(self):
-		# print('image.py: use_stable_pixbuf')
-		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
-		# l'utilisation pour les trop grandes images, il faudrait n'update que
-		# la partie qui change, ou au pire que la partie affichée
-		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+	def use_stable_pixbuf(self, allow_imperfect=False):
+		if allow_imperfect and random.random() > self._framerate_hint:
+			pass
+		else:
+			# print('image.py: use_stable_pixbuf')
+			# maybe the "scale" parameter should be 1 instead of 0
+			self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 		self.surface.set_device_scale(self.SCALE_FACTOR, self.SCALE_FACTOR)
 
 	def get_pixbuf_width(self):
