@@ -372,15 +372,13 @@ class DrImage(Gtk.Box):
 		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 
-		# TODO transform tools may appreciate to draw *before* the image (issue
-		# when the canvas becomes larger)
-
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
-		# What the tool is painting
+		# What the tool shows on the canvas, upon what it paints, for example an
+		# overlay to imply how to interact with a previewed operation.
 		self.active_tool().on_draw_above(area, cairo_context)
 
 		# Limit of the canvas (for readability)

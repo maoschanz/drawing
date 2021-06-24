@@ -188,6 +188,7 @@ class ToolCrop(AbstractCanvasTool):
 		y2 = y1 + self.get_height()
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
+		self._draw_temp_pixbuf(cairo_context, x1, y1)
 		thickness = self.get_overlay_thickness()
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness)
 
