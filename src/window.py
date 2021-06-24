@@ -147,7 +147,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# can continue normally.
 		try:
 			if get_cb:
-				self.build_image_from_clipboard()
+				self.delayed_build_from_clipboard()
 			elif gfile is not None:
 				self.build_new_tab(gfile=gfile)
 			else:
@@ -311,11 +311,19 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.set_picture_title()
 		dialog.destroy()
 
+	def delayed_build_from_clipboard(self, *args):
+		"""Calls `async_build_from_clipboard` asynchronously."""
+		self.build_new_tab() # temporary image to avoid errors when the window
+		# finishes its initialisation.
+		GLib.timeout_add(500, self.async_build_from_clipboard, {})
+
+	def async_build_from_clipboard(self, content_params):
+		self.get_active_image().try_close_tab()
+		self.build_image_from_clipboard()
+
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
 		empty, the new image will be blank."""
-		# TODO pour le coup ce truc là il doit réellement être async sinon c'est
-		# un bug (#377)
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
