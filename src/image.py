@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango, GLib
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
@@ -53,6 +53,9 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
+		self._fps_counter = 0
+		if self.window.enable_cli_logging:
+			self._reset_fps_counter()
 
 		self._init_drawing_area()
 
@@ -96,8 +99,9 @@ class DrImage(Gtk.Box):
 		rgba = self.window.gsettings.get_strv('ui-background-rgba')
 		self._bg_rgba = (float(rgba[0]), float(rgba[1]), \
 		                                         float(rgba[2]), float(rgba[3]))
-		# We remember this data here for performance: it's used by the `on_draw`
-		# method which is called a lot, and reading a gsettings costs a lot.
+		# We remember this data here for performance: it will eb used by the
+		# `on_draw` method which is called a lot, and reading a gsettings costs
+		# a lot.
 
 	def _update_zoom_behavior(self, *args):
 		self._ctrl_to_zoom = self.window.gsettings.get_boolean('ctrl-zoom')
@@ -346,8 +350,19 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
+	def _reset_fps_counter(self, async_cb_data={}):
+		"""Development only: print in the console the evolution of the framerate
+		of the drawing area. The max should be 60, but many tools don't require
+		so many redraws."""
+		if self._fps_counter != 0:
+			print("%s frames per second" % self._fps_counter)
+		self._fps_counter = 0
+		GLib.timeout_add(1000, self._reset_fps_counter, {})
+
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""
+		self._fps_counter += 1
+
 		# Background color
 		cairo_context.set_source_rgba(*self._bg_rgba)
 		cairo_context.paint()

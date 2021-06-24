@@ -104,7 +104,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
 		self._is_tools_initialisation_finished = False
-		self._enable_cli_logging = False
+		self.enable_cli_logging = False
 
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
@@ -139,6 +139,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_all_win_actions()
 		self._init_tools()
 		self.connect_signals()
+		self.enable_cli_logging = self.gsettings.get_boolean('devel-only')
 
 		# The picture is built as late as possible in the init process because
 		# reading files is too prone to exceptions that may fuck everything up,
@@ -157,7 +158,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._enable_first_tool()
 		self.set_picture_title()
 		self._try_show_release_notes()
-		self._enable_cli_logging = self.gsettings.get_boolean('devel-only')
 
 		# has to return False to be removed from the mainloop immediatly
 		return False
@@ -693,9 +693,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
-		action to ease the accelerator (shift+f10). This action could be
-		disable when the current pane doesn't contain the corresponding button,
-		but will not be."""
+		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
 
 	def _adapt_to_window_size(self, *args):
@@ -725,7 +723,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show and self._enable_cli_logging and label != "":
+		if show and self.enable_cli_logging and label != "":
 			print("Drawing: " + label)
 
 	def prompt_action(self, message, action_name='app.report_bug', action_label=_("Report a bug")):
