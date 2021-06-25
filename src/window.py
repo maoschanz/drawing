@@ -104,7 +104,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
 		self._is_tools_initialisation_finished = False
-		self.enable_cli_logging = False
+		self.devel_mode = False
+		self.should_track_framerate = False
 
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
@@ -136,10 +137,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.saving_manager = DrSavingManager(self)
 		self.printing_manager = DrPrintingManager(self)
 
+		self.devel_mode = self.gsettings.get_boolean('devel-only')
 		self.add_all_win_actions()
 		self._init_tools()
 		self.connect_signals()
-		self.enable_cli_logging = self.gsettings.get_boolean('devel-only')
 
 		# The picture is built as late as possible in the init process because
 		# reading files is too prone to exceptions that may fuck everything up,
@@ -591,10 +592,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
-		if self.gsettings.get_boolean('devel-only'):
+		if self.devel_mode:
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
+			self.add_action_boolean('track_framerate', False, self.action_fsp)
 
 		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
 		self.add_action(action)
@@ -731,7 +733,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show and self.enable_cli_logging and label != "":
+		if show and self.devel_mode and label != "":
 			print("Drawing: " + label)
 
 	def prompt_action(self, message, action_name='app.report_bug', action_label=_("Report a bug")):
@@ -956,6 +958,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""Display the properties dialog for the current image. This could be
 		done here but it's done in DrImage to have a satisfying UML diagram."""
 		self.get_active_image().show_properties()
+
+	def action_fsp(self, *args):
+		"""Development only: tracks and displays the framerate, thus it helps
+		debugging how Gdk/cairo draws on the widget."""
+		self.should_track_framerate = not self.should_track_framerate
+		for img in self.notebook.get_children():
+			img.reset_fps_counter()
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:

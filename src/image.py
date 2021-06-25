@@ -55,8 +55,7 @@ class DrImage(Gtk.Box):
 		self.gfile = None
 		self.filename = None
 		self._fps_counter = 0
-		if self.window.enable_cli_logging:
-			self._reset_fps_counter()
+		self.reset_fps_counter()
 		self._framerate_hint = 1.0
 
 		self._init_drawing_area()
@@ -352,14 +351,17 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
-	def _reset_fps_counter(self, async_cb_data={}):
-		"""Development only: print in the console the evolution of the framerate
-		of the drawing area. The max should be 60, but many tools don't require
+	def reset_fps_counter(self, async_cb_data={}):
+		"""Development only: live-display the evolution of the framerate of the
+		drawing area. The max should be around 60, but many tools don't require
 		so many redraws."""
-		if self._fps_counter != 0:
-			print("%s frames per second" % self._fps_counter)
-		self._fps_counter = 0
-		GLib.timeout_add(1000, self._reset_fps_counter, {})
+		if self.window.should_track_framerate:
+			# Context: this is a debug information that users will never see
+			self.window.prompt_message(True, _("%s frames per second") % self._fps_counter)
+			self._fps_counter = 0
+			GLib.timeout_add(1000, self.reset_fps_counter, {})
+		else:
+			self.window.prompt_message(False, "")
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""
@@ -476,7 +478,7 @@ class DrImage(Gtk.Box):
 		w = self.surface.get_width()
 		h = self.surface.get_height()
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, w, h)
-		self._framerate_hint = math.sqrt(500000 / (w * h))
+		# self._framerate_hint = math.sqrt(500000 / (w * h))
 		# print("hint :", self._framerate_hint)
 
 	def use_stable_pixbuf(self, allow_imperfect=False):

@@ -259,6 +259,12 @@
           <attribute name="hidden-when">action-missing</attribute>
           <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>
+        <item>
+          <!-- Label shown only in developer mode -->
+          <attribute name="label" translatable="yes">Track framerate</attribute>
+          <attribute name="action">win.track_framerate</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+        </item>
       </section>
       <section>
         <item>
