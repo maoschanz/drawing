@@ -339,7 +339,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.build_new_tab(pixbuf=pixbuf)
 
 	def build_new_tab(self, gfile=None, pixbuf=None, \
-		           width=200, height=200, background_rgba=[1.0, 0.0, 0.0, 1.0]):
+		           width=200, height=200, background_rgba=[0.5, 0.5, 0.5, 0.5]):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
