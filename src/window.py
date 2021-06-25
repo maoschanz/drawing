@@ -510,6 +510,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
+		self.add_action_simple('toggle_menubar', self.action_menubar, ['<Ctrl>F2'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
@@ -705,6 +706,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""This displays/hides the tool's options menu, and is implemented as an
 		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
+
+	def action_menubar(self, *args):
+		self.set_show_menubar(not self.get_show_menubar())
 
 	def _adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom pane to the new
