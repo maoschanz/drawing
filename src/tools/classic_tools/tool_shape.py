@@ -226,6 +226,9 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.scale(halfw, halfh)
 		cairo_context.arc(0, 0, 1, 0, 2 * math.pi)
 		cairo_context.set_matrix(saved_matrix)
+		# FIXME
+		# cairo.Error: invalid matrix (not invertible)
+
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 

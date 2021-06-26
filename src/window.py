@@ -59,19 +59,6 @@ from .utilities import utilities_add_filechooser_filters
 from .utilities import utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
-
-PLACEHOLDER_UI_STRING = '''<?xml version="1.0"?>
-<interface>
-  <menu id="tool-placeholder">
-    <section>
-      <item>
-        <attribute name="action">none</attribute>
-        <attribute name="label">%s</attribute>
-      </item>
-    </section>
-  </menu>
-</interface>'''
-
 DEFAULT_TOOL_ID = 'pencil'
 
 ################################################################################
@@ -671,12 +658,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		In this case, an useful string is set by `get_auto_decorations()`."""
 		self.has_good_width_limits = False
 
-		builder = Gtk.Builder.new_from_string(PLACEHOLDER_UI_STRING \
-		                                                  % _("No options"), -1)
-		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
-		# so it's built from a string.
-		self.placeholder_model = builder.get_object('tool-placeholder')
-
 		# Remember the setting, so no need to restart this at each dialog.
 		self.deco_layout = self.gsettings.get_string('deco-type')
 		if self.deco_layout == '':
@@ -917,8 +898,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
-		The first menu is the popover from the bottom bar. It can contain any
-		widget, or it can be build from a Gio.MenuModel
+		The first menu is the popover from the bottom bar. It can be built from
+		a Gio.MenuModel, or it can contain any widget.
 		The second menu is build from a Gio.MenuModel and is in the menubar (not
 		available with all layouts)."""
 		widget = self.active_tool().get_options_widget()
@@ -926,10 +907,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		label = self.active_tool().get_options_label()
 		if model is None:
 			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("_Options"), self.placeholder_model)
+			item = Gio.MenuItem()
+			item.set_label(label)
+			item.set_action_and_target_value('win.PLACEHOLDER', None)
+			self.app.get_menubar().insert_item(5, item)
 		else:
 			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
+			self.app.get_menubar().insert_submenu(5, label, model)
 		pane = self.options_manager.get_active_pane()
 		pane.build_options_menu(widget, model, label)
 
