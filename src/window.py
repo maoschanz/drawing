@@ -577,8 +577,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                              self.action_selection_expand_canvas, None)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
-		self.add_action_simple('force_selection', self.force_selection, None)
 		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
+		self.add_action_simple('cancel_transform', self.action_cancel_transform, None)
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -1190,11 +1190,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.prompt_message(True, _("Required tool is not available"))
 			return self.active_tool()
 
-	def force_selection(self, *args):
-		self.get_selection_tool().row.set_active(True) # XXX not enable_tool?
+	def force_selection(self):
+		self.get_selection_tool().row.set_active(True)
 
 	def action_apply_transform(self, *args):
-		self.active_tool().on_apply_temp_pixbuf_tool_operation()
+		self.active_tool().on_apply_transform_tool_operation()
+
+	def action_cancel_transform(self, *args):
+		self.active_tool().on_cancel_transform_tool_operation()
 
 	############################################################################
 	# HISTORY MANAGEMENT #######################################################

@@ -105,7 +105,10 @@ class AbstractAbstractTool():
 	def build_bottom_pane(self):
 		return None
 
-	def on_apply_temp_pixbuf_tool_operation(self, *args):
+	def on_apply_transform_tool_operation(self, *args):
+		pass # implemented only by transform tools
+
+	def on_cancel_transform_tool_operation(self, *args):
 		pass # implemented only by transform tools
 
 	def get_options_label(self):
