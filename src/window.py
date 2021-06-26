@@ -443,8 +443,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.gsettings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
 		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
-		# self.gsettings.connect('changed::preview-size', self.show_info_settings)
-		# self.gsettings.connect('changed::devel-only', self.show_info_settings)
+		self.gsettings.connect('changed::preview-size', self.show_info_settings)
+		self.gsettings.connect('changed::devel-only', self.show_info_settings)
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
 		self.gsettings.connect('changed::dark-theme-variant', self._update_theme_variant)
 		# Other settings are connected in DrImage
@@ -908,7 +908,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		if self.former_tool_id == self.active_tool_id:
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active
-		self.tools[self.former_tool_id].row.set_active(True)
+		else:
+			self.tools[self.former_tool_id].row.set_active(True)
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
