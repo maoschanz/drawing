@@ -37,6 +37,9 @@ def utilities_show_overlay_on_context(ccontext, cpath, is_dashed, thickness=1):
 	ccontext.set_source_rgba(0.5, 0.5, 0.5, 0.5)
 	ccontext.stroke()
 
+################################################################################
+# Transform tools overlay ######################################################
+
 def utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness=1):
 	"""Request the drawing of handles for a rectangle pixbuf having the provided
 	coords. Handles are only decorative objects drawn on the surface to help the
@@ -109,3 +112,21 @@ def _draw_arc_handle(cairo_context, x, y, rayon, orientation):
 	cairo_context.stroke()
 
 ################################################################################
+# Canvas generic ouline ########################################################
+
+def utilities_generic_canvas_outline(cairo_context, w, h, zoom_level):
+	cairo_context.set_source_rgba(0.0, 0.0, 0.0, 1.0)
+	cairo_context.set_dash([])
+	size = max(1, int(1 / zoom_level))
+	cairo_context.set_line_width(size)
+	cairo_context.move_to(w + size, 0)
+	cairo_context.rel_line_to(0, h + size)
+	cairo_context.line_to(0, h + size)
+	cairo_context.stroke_preserve()
+
+	cairo_context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+	cairo_context.set_dash([2 * size, 2 * size])
+	cairo_context.stroke()
+
+################################################################################
+

@@ -46,6 +46,7 @@ class AbstractAbstractTool():
 		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
+		self._allow_imperfect = True
 		# Once everything is set, build the UI
 		self.build_row()
 		self.try_build_pane()
@@ -217,7 +218,9 @@ class AbstractAbstractTool():
 	def simple_apply_operation(self, operation):
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
 		try:
+			self._allow_imperfect = False
 			self.do_tool_operation(operation)
+			self._allow_imperfect = True
 			self.get_image().add_to_history(operation)
 		except Exception as e:
 			self.show_error(str(e))
@@ -261,7 +264,7 @@ class AbstractAbstractTool():
 		self.get_image().update()
 
 	def restore_pixbuf(self):
-		self.get_image().use_stable_pixbuf()
+		self.get_image().use_stable_pixbuf(self._allow_imperfect)
 
 	############################################################################
 	# Signals handling #########################################################
@@ -278,11 +281,8 @@ class AbstractAbstractTool():
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_draw(self, area, cairo_context):
-		if not self.accept_selection:
-			return
-		if not self.selection_is_active():
-			return
+	def on_draw_above(self, area, cairo_context):
+		pass
 
 	############################################################################
 ################################################################################

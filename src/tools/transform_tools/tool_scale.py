@@ -202,7 +202,7 @@ class ToolScale(AbstractCanvasTool):
 
 	############################################################################
 
-	def on_draw(self, area, cairo_context):
+	def on_draw_above(self, area, cairo_context):
 		if self.apply_to_selection:
 			x1 = int(self._x)
 			y1 = int(self._y)
@@ -213,6 +213,7 @@ class ToolScale(AbstractCanvasTool):
 		y2 = y1 + self._get_height()
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
+		self._draw_temp_pixbuf(cairo_context, x1, y1)
 		thickness = self.get_overlay_thickness()
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness)
 

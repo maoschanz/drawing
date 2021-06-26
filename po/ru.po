@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-20 03:05+0200\n"
-"PO-Revision-Date: 2021-06-19 22:38+1000\n"
+"PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -85,10 +85,13 @@ msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
 msgstr ""
+"Инструмент прямой линии имеет новую опцию для фиксации угла, поэтому вы "
+"можете рисовать идеальные горизонтальные, вертикальные или под 45 ° линии."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The `--edit-clipboard` command line option now works with Wayland."
 msgstr ""
+"Параметр командной строки '--edit-clipboard' теперь работает с Wayland."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -96,18 +99,25 @@ msgid ""
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
 msgstr ""
+"Масштабирование изображения с использованием числовых значений теперь "
+"сохраняет исходные пропорции изображения (если не включена опция «никогда не "
+"сохранять пропорции»)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
+"После поворота, выделенная область имела неверно большую высоту, но теперь "
+"это исправлено."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
 msgstr ""
+"Эта версия приложения совместима со старыми версиями GNOME (Ubuntu LTS "
+"18.04)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -142,7 +152,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 "Было добавлено несколько новых параметов к \"графическому перу\", \"ластику"
@@ -1792,7 +1802,7 @@ msgstr "Аэрогрф"
 msgid "Hairy brush"
 msgstr "Кисть с волосами"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Каллиграфическое перо"
 
@@ -1912,10 +1922,8 @@ msgid "Color gradient"
 msgstr "Градиент цвета"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
-msgstr "Без направления"
+msgstr "Закрепленное направление"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2095,7 +2103,7 @@ msgstr "Пунктирная стрелка"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Arrow"
-msgstr "Срелка"
+msgstr "Стрелка"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
@@ -2186,12 +2194,12 @@ msgid "Density depends on the mouse speed"
 msgstr "Плотность зависит от скорости движения мыши"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "Ширина зависит от давления стилуса"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr "Ширина зависит от направления линии"
 

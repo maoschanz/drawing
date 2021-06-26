@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-20 03:05+0200\n"
-"PO-Revision-Date: 2021-05-30 17:26+0200\n"
+"PO-Revision-Date: 2021-06-23 17:03+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -85,10 +85,14 @@ msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
 msgstr ""
+"La herramienta de línea recta tiene una nueva opción para bloquear su "
+"ángulo, de modo que puedes dibujar trazos perfectos horizontales, verticales "
+"o de 45°."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The `--edit-clipboard` command line option now works with Wayland."
 msgstr ""
+"La opción de línea de comandos `--edit-clipboard` ahora funciona con Wayland."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -96,18 +100,25 @@ msgid ""
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
 msgstr ""
+"Al escalar una imagen utilizando las entradas numéricas, ahora se conservan "
+"las proporciones originales de la imagen (a menos que esté activada la "
+"opción \"no conservar nunca las proporciones\")."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
+"Después de girar la selección, tenía una altura demasiado grande, pero ahora "
+"está arreglado."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
 msgstr ""
+"Esta versión de la aplicación es compatible con versiones anteriores de "
+"GNOME (Ubuntu LTS 18.04)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -143,7 +154,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 "Se han añadido varias opciones, al pincel \"pluma caligráfica\", a la "
@@ -1802,7 +1813,7 @@ msgstr "Aerógrafo"
 msgid "Hairy brush"
 msgstr "Pincel peludo"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Punta caligráfica"
 
@@ -1922,10 +1933,8 @@ msgid "Color gradient"
 msgstr "Degradado de colores"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
-msgstr "Sin dirección"
+msgstr "Dirección bloqueada"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2196,12 +2205,12 @@ msgid "Density depends on the mouse speed"
 msgstr "La densidad depende de la velocidad del ratón"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "La anchura depende de la presión del lápiz óptico"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr "La anchura depende de la orientación de la línea"
 
