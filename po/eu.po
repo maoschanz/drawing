@@ -86,26 +86,29 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
+msgstr "`--editatu-arbela` lineako aginduaren aukera ez du funtzionatzen Wayland-ekin"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Scaling an image using the numerical inputs now preserves the original "
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
-msgstr ""
+msgstr "Zenbakizko sarrerak erabiliz irudi bat eskalatzeak orain jatorrizkoa mantentzen du "
+"irudiaren proportzioak (\"inoiz ez proportzioak gorde\"aukera gaituta"
+"ez badago)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
-msgstr ""
+msgstr "Hautapena biratu ondoren, altuera okerra zuen, baina orain hori zuzendu da."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
-msgstr ""
+msgstr "Aplikazioaren bertsio hau GNOME bertsio zaharragoekin (Ubuntu LTS "
+"18.04) bateragarria da."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -119,12 +122,16 @@ msgid ""
 "You can now crop or expand the canvas to a size based on the current "
 "selection size, using new actions available in the selection menus."
 msgstr ""
+"Orain oihala moztu edo zabaldu dezakezu uneko neurrian"
+"oinarritutako tamainara, hautapen menuetan eskuragarri dauden ekintza berriak erabiliz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
 msgstr ""
+"Akats bat, \"moztu\"tresnak irudia ezabatu dezake zenbait baldintzatan, "
+"konpondu da".
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -137,6 +144,8 @@ msgid ""
 "Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
+"Hainbat aukera gehitu dira \"punta kaligrafikoa\" pintzelari,"
+"\"borragoma\"tresna eta \"arkatza\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -482,7 +491,7 @@ msgstr "Nabarmendu"
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 #, fuzzy
 msgid "Dark text on light background"
-msgstr "Betegarri laukizuzena"
+msgstr "Testu iluna atzeko plano argian"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
@@ -497,7 +506,7 @@ msgstr "Testu argia atzeko plano ilunean"
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 #, fuzzy
 msgid "HSL modes"
-msgstr "Bestelako moduak"
+msgstr "HSL moduak"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -605,7 +614,7 @@ msgstr "Aurkibidea"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Banakako orriak"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -1493,7 +1502,7 @@ msgstr ""
 #: src/window.py
 #, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Irten pantaila osotik"
+msgstr "Sakatu F11 pantaila osotik irteteko"
 
 #: src/window.py
 #, fuzzy, python-format
@@ -1606,13 +1615,13 @@ msgstr "Erabili editore hau lehenespenez"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #, fuzzy
 msgid "Selection options"
-msgstr "Arkatzaren aukerak"
+msgstr "Hautatzeko aukerak"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Replace with…"
-msgstr "Zabaldu honekin…"
+msgstr "Ordeztu honekin…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1871,12 +1880,12 @@ msgstr "Mosaikoa"
 #: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
-msgstr "Bigarren kolorea"
+msgstr "Kolore solidoa"
 
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
 msgid "Active filter"
-msgstr "Beste tresnak"
+msgstr "Iragazki aktiboa"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1947,7 +1956,7 @@ msgstr "Kolore gradientea"
 #, fuzzy
 #| msgid "No direction"
 msgid "Locked direction"
-msgstr "Norabiderik gabe"
+msgstr "Blokeatutako norabidea"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2025,7 +2034,7 @@ msgstr "Aurrerako zenbakia"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
-msgstr "Ertz jarraia"
+msgstr "Ertz solidoa"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Dashed outline"
@@ -2161,7 +2170,7 @@ msgstr "Marraren aukerak"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Betegarriaren aukerak"
+msgstr "Margoaren aukerak"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
@@ -2282,11 +2291,11 @@ msgstr "Hautapena biratzen"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
-msgstr "Girando el lienzo"
+msgstr "Oihala biratzen"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
-msgstr "Oihala biratzen"
+msgstr "Hautapena eskalatzen"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
