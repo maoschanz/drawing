@@ -437,6 +437,11 @@ msgstr "Scheda a destra"
 msgid "Refresh"
 msgstr "Aggiorna"
 
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr "Schero Intero"
@@ -910,6 +915,12 @@ msgstr "Impossibile ricaricare un file mai salvato dal disco."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "File non salvato"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
