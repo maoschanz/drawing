@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"POT-Creation-Date: 2021-06-28 00:53+0200\n"
 "PO-Revision-Date: 2021-06-04 14:53+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -84,146 +84,6 @@ msgid ""
 msgstr ""
 "Versie 0.8.2 bevat verschillende kleine foutoplossingen en nieuwe "
 "vertalingen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The boundaries of the canvas are now always visibly delimited, to better "
-"render the area where you can draw, even if the canvas is transparent. It "
-"also helps to see what parts of the selection may disappear when you will "
-"unselect it."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Transform tools can now draw a preview of the pixels they may create outside "
-"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
-"more intuitive to use."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Versie 0.8.1 bevat verschillende kleine foutoplossingen en nieuwe "
-"vertalingen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-"[NIEUW] Je kunt voortaan het canvas verkleinen of vergroten op basis van de "
-"huidige selectiegrootte. Deze acties zijn te vinden in de selectiemenu's."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-"[OPGELOST] Bug waardoor het bijsnijdgereepschap soms de afbeelding wiste."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-"[NIEUW] In de voorkeuren vind je nu een optie om het donkere thema te kiezen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-"[NIEUW] Verschillende nieuwe opties, zoals de kalligrafische kwast, gum en "
-"pen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Met Tekenen 0.8.0 kun je eindelijk je tablet en stylus gebruiken om te "
-"tekenen. Hiervoor kun je gebruikmaken van de nieuwe drukgevoelige "
-"gereedschappen, zoals de kwast en airbrush."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"De beeldvullende modus is volledig opnieuw ontworpen en daardoor eenvoudiger "
-"in het gebruik, met toegang tot meer gereedschappen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"De filters zijn opnieuw geïmplementeerd waardoor ze betrouwbaarder zijn. "
-"Daarnaast is er een filter voor het verhogen van het contrast toegevoegd."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Als je selectie verplaatst of wist, kunnen de achtergebleven pixels voortaan "
-"een specifieke kleur tonen in plaats van doorzichtigheid. Deze kleur kun je "
-"ook uitsluiten van de selectie. Het is moeilijk onder woorden te brengen, "
-"dus probeer het gewoon eens uit."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"Opties als de tekstachtergrond en vormopvulstijl worden voortaan bewaard als "
-"je Tekenen afsluit."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"Het venster waar je de actieve kleur kiest is opnieuw ontworpen. Voortaan "
-"toont het venster het juiste label en zijn de modi handig onderverdeeld in "
-"onderliggende menu's."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"De vervaagmodus is verwijderd. Hierdoor is de situatie vereenvoudigd en "
-"hebben enkele gereedschappen (vormen en kwasten) ondersteuning voor algemene "
-"kleurmodi gekregen."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -2294,9 +2154,6 @@ msgstr "Verzadiging"
 
 #~ msgid "Quit"
 #~ msgstr "Afsluiten"
-
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Beeldvullende modus verlaten"
 
 #~ msgid "Edit"
 #~ msgstr "Bewerken"

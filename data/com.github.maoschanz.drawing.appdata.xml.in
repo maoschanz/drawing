@@ -28,100 +28,20 @@
   </description>
 
   <releases>
+    <release version="1.0.0" date="2021-06-26">
+      <description>
+        <p>
+          After rotating the selection, it had an incorrectly big height, but
+          now it's fixed.
+        </p>
+      </description>
+    </release>
+
     <release version="0.8.2" date="2021-06-26">
       <description>
         <p>
           Version 0.8.2 features several minor bug fixes, and various new
           translations.
-        </p>
-        <p>
-          The boundaries of the canvas are now always visibly delimited, to
-          better render the area where you can draw, even if the canvas is
-          transparent. It also helps to see what parts of the selection may
-          disappear when you will unselect it.
-        </p>
-        <p>
-          Transform tools can now draw a preview of the pixels they may create
-          outside of the current canvas, which makes the 'crop', 'scale', and
-          'rotate' tools more intuitive to use.
-        </p>
-        <p>
-          The straight line tool has a new option to lock its angle, so you can
-          draw perfect horizontal, vertical, or 45° strokes.
-        </p>
-        <p>
-          The `--edit-clipboard` command line option now works with Wayland.
-        </p>
-        <p>
-          Scaling an image using the numerical inputs now preserves the original
-          proportions of the image (unless the "never keep proportions" option
-          is enabled).
-        </p>
-        <p>
-          This version of the app is compatible with older GNOME versions
-          (Ubuntu LTS 18.04).
-        </p>
-      </description>
-    </release>
-
-    <release version="0.8.1" date="2021-06-12">
-      <description>
-        <p>
-          Version 0.8.1 features several minor bug fixes, and various new
-          translations.
-        </p>
-        <p>
-          You can now crop or expand the canvas to a size based on the current
-          selection size, using new actions available in the selection menus.
-        </p>
-        <p>
-          A bug, where the "crop" tool could erase the image under certain
-          conditions, has been fixed.
-        </p>
-        <p>
-          In the preferences window, there is now an option to select if you
-          prefer the dark theme variant.
-        </p>
-        <p>
-          Several options have been added, to the "calligraphic nib" brush, the
-          "eraser" tool, and the "pencil".
-        </p>
-      </description>
-    </release>
-
-    <release version="0.8.0" date="2021-04-24">
-      <description>
-        <p>
-          With Drawing 0.8.0, you can finally use a tablet and a stylus to draw
-          with pressure-sensitive tools, such as the new 'brush' and 'airbrush'.
-        </p>
-        <p>
-          The fullscreen mode has been completely redesigned to provide an
-          easier yet less intrusive access to the tools and their options.
-        </p>
-        <p>
-          Filters have been rewritten to be more reliable, and a new filter to
-          harmoniously increase contrast has been added.
-        </p>
-        <p>
-          When you move or delete the selection, now the pixels left behind can
-          optionally be a specific color, rather than always transparency.
-          This specific color can be excluded from the selection. That feature
-          is complex to explain with words, try it yourself you'll see.
-        </p>
-        <p>
-          Options such as the text background type and the shape filling style
-          are now persisted when closing the application.
-        </p>
-        <p>
-          The user interface for selecting the active color application mode has
-          been rewritten to better show the accurate label, and better organize
-          the possible modes as submenus.
-        </p>
-        <p>
-          The "blur" mode has been removed, which simplified the situation and
-          allowed several tools ("shapes" and "brushes") to get support for the
-          color application modes in general.
         </p>
       </description>
     </release>

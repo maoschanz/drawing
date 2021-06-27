@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"POT-Creation-Date: 2021-06-28 00:53+0200\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -81,143 +81,6 @@ msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "バージョン 0.8.2 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The boundaries of the canvas are now always visibly delimited, to better "
-"render the area where you can draw, even if the canvas is transparent. It "
-"also helps to see what parts of the selection may disappear when you will "
-"unselect it."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Transform tools can now draw a preview of the pixels they may create outside "
-"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
-"more intuitive to use."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"バージョン 0.8.1 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-"選択している領域の広さに合わせて、キャンバスをトリミング・拡張できるアクショ"
-"ンが追加されました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-"\"トリミング\" ツールが、特定の条件下で画像を消してしまうバグを修正しました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-"ダークテーマを優先して使うオプションが実装されました (設定ウィンドウから有効"
-"にできます)。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-"様々なオプションが \"万年筆\" ブラシ、\"消しゴム\" ツール、\"鉛筆\" に追加さ"
-"れました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Drawing 0.8.0 では、タブレットとスタイラスペンを利用できるようになりました。"
-"新しい 'ブラシ' と 'エアブラシ' ツールには、スタイラスペンに加えられた力を感"
-"知し、描画効果を変化させる機能があります。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"全画面表示が一から作り直され、ツールとそのオプションへのアクセスは簡単にしつ"
-"つも、作業の邪魔にならないよう改善されました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"フィルターが書き直され、より緻密な効果を適用できるようになりました。また、調"
-"和の取れたコントラストを表現するフィルターも追加されました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"選択した領域を削除、もしくは移動したときに、背後のピクセルを特定の色で埋める"
-"か、それとも透過させるかを選べます。この特定の色は、選択領域から除外できま"
-"す。言葉で説明するのは難しい機能なので、実際にご自身で試してみてください。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"テキストの背景や、シェイプの塗り潰しなどのオプションが、アプリケーションを閉"
-"じても記憶されるようになりました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"色の描画モードを選択する UI が書き直され、より正確なラベル表示と、より分かり"
-"やすく整理されたメニューを利用できるようになりました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"\"ぼかし\" モードが削除されました。\"シェイプ\" と \"ブラシ\" ツールにぼかし"
-"効果を組み合わせることはできなくなります。"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -2278,3 +2141,4 @@ msgstr "ぼかしの半径"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "輝度"
+
