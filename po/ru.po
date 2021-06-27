@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-27 17:25+0200\n"
-"PO-Revision-Date: 2021-06-23 23:06+1000\n"
+"PO-Revision-Date: 2021-06-28 08:07+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -95,6 +95,10 @@ msgid ""
 "also helps to see what parts of the selection may disappear when you will "
 "unselect it."
 msgstr ""
+"Границы холста теперь всегда четко разграничены, чтобы лучше отображать "
+"область, в которой вы можете рисовать, даже если холст прозрачный. Это также "
+"помогает увидеть, какие части выделения могут исчезнуть, когда вы его "
+"отмените."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -102,6 +106,10 @@ msgid ""
 "of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
 "more intuitive to use."
 msgstr ""
+"Инструменты преобразования теперь могут отображать предварительный просмотр "
+"пикселей, которые они могут создавать за пределами текущего холста, что "
+"делает инструменты \"обрезка\", \"масштабирование\" и \"поворот\" более "
+"интуитивно понятными в использовании."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -170,8 +178,8 @@ msgid ""
 "Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
-"Было добавлено несколько новых параметов к \"графическому перу\", \"ластику"
-"\", и \"карандашу\"."
+"Было добавлено несколько новых параметров к \"калиграфическому перу\", "
+"\"ластику\", и \"карандашу\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -466,7 +474,7 @@ msgstr "Обновить"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Отслеживать частоту кадров"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -946,7 +954,7 @@ msgstr "Несохраненный файл"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s кадров в секунду"
 
 #. Description of a command line option
 #: src/main.py
