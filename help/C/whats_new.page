@@ -16,6 +16,37 @@
   <title>What's new?</title>
 
   <p>The most recent versions are listed first.</p>
+  <section>
+    <title>Version 0.8.2</title>
+
+    <p>
+      The boundaries of the canvas are now always visibly delimited, to better
+      render the areas where you can draw, even if the canvas is transparent. It
+      also helps to see what parts of the selection may disappear when you will
+      unselect it.
+    </p>
+    <p>
+      <link xref="tools_transform">Transform tools</link> can now draw a preview
+      of the pixels they may create outside of the current canvas, which makes
+      the crop, scale, and rotate tools quite more intuitive to use.
+    </p>
+    <p>
+      The straight line tool has a new option to lock its angle, so you can
+      draw perfect horizontal, vertical, or 45° strokes.
+    </p>
+    <p>
+      The `--edit-clipboard` command line option now works better with Wayland.
+    </p>
+    <p>
+      Scaling an image using the numerical inputs now preserves the original
+      proportions of the image (unless the "never keep proportions" option
+      is enabled).
+    </p>
+    <p>
+      This version of the app is compatible with older GNOME versions
+      (Ubuntu LTS 18.04).
+    </p>
+  </section>
 
   <section>
     <title>Version 0.8.1</title>
@@ -177,8 +208,8 @@
       to draw double-ended arrows is available.
     </p>
     <p>
-      This version is finally compatible with older distributions (versions
-      of GNOME libraries older than 3.30).
+      This version is compatible with older distributions (versions of GNOME
+      libraries older than 3.30).
     </p>
     <p>
       When the app uses a menu-bar, the tools have been arranged in a submenu:

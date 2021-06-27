@@ -5,7 +5,6 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <kudos>
-    <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
@@ -36,6 +35,17 @@
           translations.
         </p>
         <p>
+          The boundaries of the canvas are now always visibly delimited, to
+          better render the areas where you can draw, even if the canvas is
+          transparent. It also helps to see what parts of the selection may
+          disappear when you will unselect it.
+        </p>
+        <p>
+          Transform tools can now draw a preview of the pixels they may create
+          outside of the current canvas, which makes the crop, scale, and rotate
+          tools quite more intuitive to use.
+        </p>
+        <p>
           The straight line tool has a new option to lock its angle, so you can
           draw perfect horizontal, vertical, or 45° strokes.
         </p>
@@ -46,10 +56,6 @@
           Scaling an image using the numerical inputs now preserves the original
           proportions of the image (unless the "never keep proportions" option
           is enabled).
-        </p>
-        <p>
-          After rotating the selection, it had an incorrectly big height, but
-          now it's fixed.
         </p>
         <p>
           This version of the app is compatible with older GNOME versions
