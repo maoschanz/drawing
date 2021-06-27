@@ -237,6 +237,28 @@
               <attribute name="verb-icon">pan-end-symbolic</attribute>
             </item>
           </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Go to the left end</attribute>
+              <attribute name="action">win.go_first</attribute>
+              <attribute name="verb-icon">go-first-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the top</attribute>
+              <attribute name="action">win.go_top</attribute>
+              <attribute name="verb-icon">go-top-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the bottom</attribute>
+              <attribute name="action">win.go_bottom</attribute>
+              <attribute name="verb-icon">go-bottom-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the right end</attribute>
+              <attribute name="action">win.go_last</attribute>
+              <attribute name="verb-icon">go-last-symbolic</attribute>
+            </item>
+          </section>
         </submenu>
       </section>
       <section id="view-tabs-section">

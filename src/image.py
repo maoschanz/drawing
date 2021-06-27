@@ -617,6 +617,24 @@ class DrImage(Gtk.Box):
 		self.correct_coords(self._h_scrollbar.get_value(), self._v_scrollbar.get_value())
 		self.update()
 
+	def reset_deltas(self, delta_x, delta_y):
+		if delta_x > 0:
+			wanted_x = self.get_pixbuf_width()
+		elif delta_x < 0:
+			wanted_x = 0
+		else:
+			wanted_x = self.scroll_x
+
+		if delta_y > 0:
+			wanted_y = self.get_pixbuf_height()
+		elif delta_y < 0:
+			wanted_y = 0
+		else:
+			wanted_y = self.scroll_y
+
+		self.correct_coords(wanted_x, wanted_y)
+		self.window.minimap.update_minimap(False)
+
 	def add_deltas(self, delta_x, delta_y, factor):
 		wanted_x = self.scroll_x + int(delta_x * factor)
 		wanted_y = self.scroll_y + int(delta_y * factor)

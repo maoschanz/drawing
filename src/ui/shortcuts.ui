@@ -198,6 +198,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">Toggle the preview</property>
+                <property name="accelerator">&lt;Primary&gt;m</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Zoom Out</property>
                 <property name="accelerator">&lt;Primary&gt;minus</property>
               </object>
@@ -342,13 +349,6 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Toggle the preview</property>
-                <property name="accelerator">&lt;Primary&gt;m</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Go Left</property>
                 <property name="accelerator">&lt;Primary&gt;Left</property>
               </object>
@@ -372,6 +372,34 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Go Right</property>
                 <property name="accelerator">&lt;Primary&gt;Right</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Go to the left end</property>
+                <property name="accelerator">&lt;Primary&gt;Home</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Go to the top</property>
+                <property name="accelerator">&lt;Primary&gt;Page_Up</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Go to the bottom</property>
+                <property name="accelerator">&lt;Primary&gt;Page_Down</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Go to the right end</property>
+                <property name="accelerator">&lt;Primary&gt;End</property>
               </object>
             </child>
           </object>
