@@ -134,7 +134,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 
@@ -428,6 +428,11 @@ msgstr "Eskuineko fitxa"
 #: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Freskatu"
+
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -919,6 +924,12 @@ msgstr "Ezin da birkargatu diskoan inoiz gorde ez den fitxategia."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Gorde gabeko fitxategia"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -1819,7 +1830,7 @@ msgstr "Aerografoa"
 msgid "Hairy brush"
 msgstr "Pintzel iletsua"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Luma kaligrafikoa"
 
@@ -2229,12 +2240,12 @@ msgid "Density depends on the mouse speed"
 msgstr "Dentsitatea saguaren abiaduraren araberakoa"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "Zabalera lumaren presioaren araberakoa"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #, fuzzy
 msgid "Width depends on the line orientation"
 msgstr "Zabalera saguaren abiaduraren araberakoa"

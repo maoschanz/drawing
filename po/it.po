@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-20 03:05+0200\n"
-"PO-Revision-Date: 2021-06-13 11:15+0100\n"
+"PO-Revision-Date: 2021-06-27 15:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -82,10 +82,12 @@ msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
 msgstr ""
+"Lo strumento linea retta ha una nuova opzione per bloccare il suo angolo, così puoi disegnare "
+"perfetti tratti orizzontali, verticali o a 45°."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
+msgstr "L'opzione della riga di comando `--edit-clipboard` ora funziona con Wayland."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -93,18 +95,25 @@ msgid ""
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
 msgstr ""
+"Ridimensionare un'immagine utilizzando gli input numerici ora conserva le proporzioni "
+"originali dell'immagine (a meno che l'opzione \"non mantenere mai le proporzioni\" sia "
+"abilitato)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
+"Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, ma ora è "
+"stato sistemato."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
 msgstr ""
+"Questa versione dell'app è compatibile con le versioni precedenti di GNOME (Ubuntu LTS "
+"18.04)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -139,7 +148,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 "Sono state aggiunte diverse opzioni, al pennello \"linea calligrafica\", lo "
@@ -436,6 +445,11 @@ msgstr "Scheda a destra"
 #: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Aggiorna"
+
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -910,6 +924,12 @@ msgstr "Impossibile ricaricare un file mai salvato dal disco."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "File non salvato"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -1792,7 +1812,7 @@ msgstr "Aerografo"
 msgid "Hairy brush"
 msgstr "Pennello peloso"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Pennino calligrafico"
 
@@ -1912,10 +1932,9 @@ msgid "Color gradient"
 msgstr "Gradiente di colore"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 #| msgid "No direction"
 msgid "Locked direction"
-msgstr "Nessuna direzione"
+msgstr "Direzione bloccata"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2186,12 +2205,12 @@ msgid "Density depends on the mouse speed"
 msgstr "La densità dipende dalla velocità del mouse"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "La larghezza dipende dalla pressione dello stilo"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr "La larghezza dipende dall'orientamento della linea"
 

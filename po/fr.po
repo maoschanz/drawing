@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"POT-Creation-Date: 2021-06-27 17:25+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -72,6 +72,14 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+"Après avoir fait pivoté la sélection, elle avait une hauteur incorrectement "
+"grande, mais c'est maintenant réparé."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "La version 0.8.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
@@ -79,11 +87,33 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"The boundaries of the canvas are now always visibly delimited, to better "
+"render the area where you can draw, even if the canvas is transparent. It "
+"also helps to see what parts of the selection may disappear when you will "
+"unselect it."
+msgstr ""
+"Les bords du canevas sont maintenant toujours visiblement délimités, pour "
+"mieux afficher la zone où vous pouvez dessiner, même si le canevas est "
+"transparent. Ça aide aussi à voir quelles parties de la sélection pourraient "
+"disparaître lorsque vous la désélectionnerez."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transform tools can now draw a preview of the pixels they may create outside "
+"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
+"more intuitive to use."
+msgstr ""
+"Les outils de transformation peuvent désormais dessiner un aperçu des pixels "
+"qu'ils pourraient créer hors du canevas actuel, ce qui rend les outils "
+"'rogner', 'redimensionner', et 'pivoter' plus intuitifs à utiliser."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
 msgstr ""
-"L'outil 'ligne droite' a maintenant une nouvelle option pour verrouiller son "
-"angle, tel que vous pouvez tracer des traits parfaitement horizontaux, "
+"L'outil « ligne droite » a maintenant une nouvelle option pour verrouiller "
+"son angle, tel que vous pouvez tracer des traits parfaitement horizontaux, "
 "verticaux, ou à 45°"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -97,12 +127,6 @@ msgid ""
 "Scaling an image using the numerical inputs now preserves the original "
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -147,7 +171,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 "Plusieurs options ont été ajoutées, à la brosse \"plume calligraphique\", à "
@@ -444,6 +468,11 @@ msgstr "Onglet à droite"
 #: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Actualiser"
+
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr "Suivre la fréquence d'affichage"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -918,6 +947,12 @@ msgstr "Impossible de recharger depuis le disque un fichier jamais enregistré."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Fichier non enregistré"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr "%s images par seconde"
 
 #. Description of a command line option
 #: src/main.py
@@ -1803,7 +1838,7 @@ msgstr "Aérographe"
 msgid "Hairy brush"
 msgstr "Pinceau poilu"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Plume calligraphique"
 
@@ -2195,12 +2230,12 @@ msgid "Density depends on the mouse speed"
 msgstr "La densité dépend de la vitesse de la souris"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "La largeur dépend de la pression du stylet"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr "La largeur dépend de l'orientation du trait"
 

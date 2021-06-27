@@ -123,6 +123,19 @@ class ToolRotate(AbstractCanvasTool):
 			self.angle_btn.set_value(0)
 		self.build_and_do_op()
 
+	############################################################################
+
+	def on_draw_above(self, area, cairo_context):
+		x1 = 0
+		y1 = 0
+		x2 = x1 + self.get_image().temp_pixbuf.get_width()
+		y2 = y1 + self.get_image().temp_pixbuf.get_height()
+		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
+		                                         self.apply_to_selection, False)
+		self._draw_temp_pixbuf(cairo_context, x1, y1)
+
+	############################################################################
+
 	def build_operation(self):
 		operation = {
 			'tool_id': self.id,

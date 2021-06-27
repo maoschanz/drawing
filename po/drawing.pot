@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"POT-Creation-Date: 2021-06-27 17:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,28 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The boundaries of the canvas are now always visibly delimited, to better "
+"render the area where you can draw, even if the canvas is transparent. It "
+"also helps to see what parts of the selection may disappear when you will "
+"unselect it."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transform tools can now draw a preview of the pixels they may create outside "
+"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
+"more intuitive to use."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -84,12 +105,6 @@ msgid ""
 "Scaling an image using the numerical inputs now preserves the original "
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -123,7 +138,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 
@@ -396,6 +411,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
+msgstr ""
+
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
@@ -870,6 +890,12 @@ msgstr ""
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
+msgstr ""
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
 msgstr ""
 
 #. Description of a command line option
@@ -1739,7 +1765,7 @@ msgstr ""
 msgid "Hairy brush"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -2131,12 +2157,12 @@ msgid "Density depends on the mouse speed"
 msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr ""
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr ""
 

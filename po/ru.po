@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
-"PO-Revision-Date: 2021-06-23 23:06+1000\n"
+"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"PO-Revision-Date: 2021-06-28 08:07+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -75,10 +75,41 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+"После поворота, выделенная область имела неверно большую высоту, но теперь "
+"это исправлено."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "Версия 0.8.2 содержит несколько мелких исправлений и несколько новых "
 "переводов."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The boundaries of the canvas are now always visibly delimited, to better "
+"render the area where you can draw, even if the canvas is transparent. It "
+"also helps to see what parts of the selection may disappear when you will "
+"unselect it."
+msgstr ""
+"Границы холста теперь всегда четко разграничены, чтобы лучше отображать "
+"область, в которой вы можете рисовать, даже если холст прозрачный. Это также "
+"помогает увидеть, какие части выделения могут исчезнуть, когда вы его "
+"отмените."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transform tools can now draw a preview of the pixels they may create outside "
+"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
+"more intuitive to use."
+msgstr ""
+"Инструменты преобразования теперь могут отображать предварительный просмотр "
+"пикселей, которые они могут создавать за пределами текущего холста, что "
+"делает инструменты \"обрезка\", \"масштабирование\" и \"поворот\" более "
+"интуитивно понятными в использовании."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -102,14 +133,6 @@ msgstr ""
 "Масштабирование изображения с использованием числовых значений теперь "
 "сохраняет исходные пропорции изображения (если не включена опция «никогда не "
 "сохранять пропорции»)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
-msgstr ""
-"После поворота, выделенная область имела неверно большую высоту, но теперь "
-"это исправлено."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -152,11 +175,11 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
-"Было добавлено несколько новых параметов к \"графическому перу\", \"ластику"
-"\", и \"карандашу\"."
+"Было добавлено несколько новых параметров к \"калиграфическому перу\", "
+"\"ластику\", и \"карандашу\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -447,6 +470,11 @@ msgstr "Перейти на вкладку справа"
 #: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Обновить"
+
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr "Отслеживать частоту кадров"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -921,6 +949,12 @@ msgstr "Невозможно перезагрузить не сохраненн�
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Несохраненный файл"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr "%s кадров в секунду"
 
 #. Description of a command line option
 #: src/main.py
@@ -1802,7 +1836,7 @@ msgstr "Аэрогрф"
 msgid "Hairy brush"
 msgstr "Кисть с волосами"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Каллиграфическое перо"
 
@@ -2194,12 +2228,12 @@ msgid "Density depends on the mouse speed"
 msgstr "Плотность зависит от скорости движения мыши"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "Ширина зависит от давления стилуса"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr "Ширина зависит от направления линии"
 

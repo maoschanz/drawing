@@ -92,9 +92,9 @@ class ToolArc(AbstractClassicTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._1st_segment is None:
 			self._1st_segment = (self.x_press, self.y_press, event_x, event_y)
+			self.restore_pixbuf()
 			return
 		else:
-			self.restore_pixbuf()
 			cairo_context = self.get_context()
 			cairo_context.move_to(self._1st_segment[0], self._1st_segment[1])
 			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \

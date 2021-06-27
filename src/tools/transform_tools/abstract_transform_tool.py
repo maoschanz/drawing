@@ -135,8 +135,13 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			cursor_name = cursor_name + '-resize'
 		return cursor_name
 
-	def on_draw(self, area, cairo_context):
+	def on_draw_above(self, area, cairo_context):
 		pass
+
+	def _draw_temp_pixbuf(self, cairo_context, x, y):
+		pixbuf = self.get_image().temp_pixbuf
+		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
+		cairo_context.paint()
 
 	def get_deformed_surface(self, source_surface, coefs):
 		"""Use cairo.Matrix to apply a transformation to `source_surface` using
