@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-13 01:50+0200\n"
-"PO-Revision-Date: 2019-05-06 22:22+0300\n"
+"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
@@ -75,6 +75,67 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+"После поворота, выделенная область имела неверно большую высоту, но теперь "
+"это исправлено."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Версия 0.8.2 содержит несколько мелких исправлений и несколько новых "
+"переводов."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The boundaries of the canvas are now always visibly delimited, to better "
+"render the area where you can draw, even if the canvas is transparent. It "
+"also helps to see what parts of the selection may disappear when you will "
+"unselect it."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transform tools can now draw a preview of the pixels they may create outside "
+"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
+"more intuitive to use."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The straight line tool has a new option to lock its angle, so you can draw "
+"perfect horizontal, vertical, or 45° strokes."
+msgstr ""
+"Инструмент прямой линии имеет новую опцию для фиксации угла, поэтому вы "
+"можете рисовать идеальные горизонтальные, вертикальные или под 45 ° линии."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The `--edit-clipboard` command line option now works with Wayland."
+msgstr ""
+"Параметр командной строки '--edit-clipboard' теперь работает с Wayland."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Scaling an image using the numerical inputs now preserves the original "
+"proportions of the image (unless the \"never keep proportions\" option is "
+"enabled)."
+msgstr ""
+"Масштабирование изображения с использованием числовых значений теперь "
+"сохраняет исходные пропорции изображения (если не включена опция «никогда не "
+"сохранять пропорции»)."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
+"18.04)."
+msgstr ""
+"Эта версия приложения совместима со старыми версиями GNOME (Ubuntu LTS "
+"18.04)."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.8.1 features several minor bug fixes, and various new translations."
 msgstr ""
 "Версия 0.8.1 содержит несколько мелких исправлений и несколько новых "
@@ -106,7 +167,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
+"Several options have been added, to the \"calligraphic nib\" brush, the "
 "\"eraser\" tool, and the \"pencil\"."
 msgstr ""
 "Было добавлено несколько новых параметов к \"графическому перу\", \"ластику"
@@ -402,6 +463,11 @@ msgstr "Перейти на вкладку справа"
 msgid "Refresh"
 msgstr "Обновить"
 
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
@@ -599,11 +665,8 @@ msgstr "Справка по цвету"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
-#: src/ui/app-menus.ui src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Help about transformation tools"
 msgstr "Справка по инструментам преобразования"
 
@@ -708,8 +771,7 @@ msgstr "Повернуть"
 msgid "Filters"
 msgstr "Фильтры"
 
-#: src/ui/selection-manager.ui src/optionsbars/transform/optionsbar-rotate.ui
-#: src/tools/ui/selection.ui
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
 msgid "More actions"
 msgstr "Больше действий"
 
@@ -880,6 +942,12 @@ msgstr "Невозможно перезагрузить не сохраненн�
 msgid "Unsaved file"
 msgstr "Несохраненный файл"
 
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
+
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
@@ -948,14 +1016,11 @@ msgid "%s%%"
 msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1238,13 +1303,13 @@ msgstr "этом рисунке"
 
 #: src/saving_manager.py
 msgid "Discard"
-msgstr "Сбросить"
+msgstr "Не сохранять"
 
 #. Context: %s will be replaced by the name of a file.
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Несохраненные изменения в %s."
+msgstr "Имеются несохраненные изменения в %s."
 
 #: src/saving_manager.py
 msgid ""
@@ -1578,18 +1643,14 @@ msgstr "Прозрачность"
 msgid "Extract from this color"
 msgstr "Исключить из этого цвет"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
+#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
+#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Применить"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Больше параметров"
 
@@ -1767,7 +1828,7 @@ msgstr "Аэрогрф"
 msgid "Hairy brush"
 msgstr "Кисть с волосами"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Каллиграфическое перо"
 
@@ -1885,6 +1946,10 @@ msgstr "Инвертировать цвета"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Градиент цвета"
+
+#: src/tools/ui/tool-line.ui
+msgid "Locked direction"
+msgstr "Закрепленное направление"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2064,7 +2129,7 @@ msgstr "Пунктирная стрелка"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Arrow"
-msgstr "Срелка"
+msgstr "Стрелка"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
@@ -2155,12 +2220,12 @@ msgid "Density depends on the mouse speed"
 msgstr "Плотность зависит от скорости движения мыши"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "Ширина зависит от давления стилуса"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr "Ширина зависит от направления линии"
 

@@ -157,7 +157,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		elif self.behavior == 'drag':
 			self._apply_drag_to(event_x, event_y)
 
-	def on_draw(self, area, ccontext):
+	def on_draw_above(self, area, ccontext):
 		if not self.selection_is_active():
 			return
 		ldx = self.local_dx
@@ -165,7 +165,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		self.get_selection().show_selection_on_surface(ccontext, True, ldx, ldy)
 		dragged_path = self.get_selection().get_path_with_scroll(ldx, ldy)
 		# ^ Method not really use elsewhere, could it be private?
-		utilities_show_overlay_on_context(ccontext, dragged_path, True)
+		thickness = self.get_overlay_thickness()
+		utilities_show_overlay_on_context(ccontext, dragged_path, True, thickness)
 
 	############################################################################
 	# Pre-loading the selection manager with non-essential data ################

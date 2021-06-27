@@ -1,3 +1,19 @@
+drawing (0.8.2) unstable; urgency=low
+
+  * refactoring of the optionsbars (bottom panes) of the transform tools
+  * add a "lock line direction" option to the line tool (#369)
+  * fix shift+f10 action when using a selection tool on mobile
+  * add an outline to the canvas (#299, #184)
+  * fix the `-c` option when using Wayland (#377)
+  * lock image proportions by default when scaling with the numerical inputs
+  * fix an unexpected way the "crop" tool could expand the selection (#369)
+  * preview correctly the areas created by a transform tool before applying a change (#396)
+  * fix when the app starts with a transform tool, and this tool is immediately used and applied
+  * compatibility with older distributions
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 26 Jun 2021 13:12:00 +0100
+
 drawing (0.8.1) unstable; urgency=low
 
   * add an action "selection > define as current image" (#332)
@@ -5,7 +21,7 @@ drawing (0.8.1) unstable; urgency=low
   * add an action "selection > expand image to fit [the size of the selection]" (#332)
   * add a several ways of censoring information as an option to the eraser tool
   * preference to select a theme variant (#360, #361, by @alexislozano)
-  * add "nip direction" option to the calligraphic nip (#69, #116)
+  * add "nib direction" option to the calligraphic nib (#69, #116)
   * better pre-select the currently used font in the font chooser dialog (#359)
   * add optional outline to the pencil, line, and curve tools (#369)
   * better looking outline for the "insert text" tool
@@ -16,24 +32,27 @@ drawing (0.8.1) unstable; urgency=low
 
 drawing (0.8.0) unstable; urgency=low
 
-  * new, richer, more readable bottom pane for the selection tool
   * add a "replace with" option to the eraser tool
-  * use an adequate layout on LXDE or LXQt
-  * force the release notes down users' throat (#347)
-  * rewrite the help manual to better force it down users' throat (#347)
   * add color application mode support to the "shape" tool (#329)
   * persist the text background style (#340) and the shape filling style options
   * brush supporting pressure-sensitive input (#69, #116)
   * hairy brush supporting pressure-sensitive input (#69, #116)
   * airbrush supporting pressure-sensitive input (#69, #116)
-  * calligraphic nip supporting pressure-sensitive input (#69, #116)
-  * fix unexpected "jumps" when unselecting a selection that was defined by an undo
-  * improve the fullscreen mode, with a way to toggle the tools list (#265, #189)
+  * calligraphic nib supporting pressure-sensitive input (#69, #116)
   * add an "increase constrast" filter (#308)
+  *
+  * new, richer, more readable bottom pane for the selection tool
   * deleting the selection can now leave something else than transparency #232
   * option to exclude the color left under the selection from the selection itself #232
+  * fix unexpected "jumps" when unselecting a selection that was defined by an undo
+  *
+  * improve the fullscreen mode, with a way to toggle the tools list (#265, #189)
   * rewrite the UI for changing the color application mode (#329)
+  * use an adequate layout on LXDE or LXQt
   * remove the cool but deprecated GNOME Shell app menu
+  * rewrite the help manual to better force it down users' throat (#347)
+  * force the release notes down users' throat (#347)
+  *
   * improve flatpak CI (#319, Bilel Moussaoui)
   * update several translations
 
@@ -101,26 +120,30 @@ drawing (0.6.1) unstable; urgency=low
 
 drawing (0.6.0) unstable; urgency=low
 
-  * remove the "windows" menu from the menubar
-  * refactor bottom panes management to allow several tools to share the same pane
-  * rectangle selection, freehand selection, and color selection, are now distinct tools
-  * the 'rotate' tool now handles horizontal or vertical flipping
-  * the 'rotate' tool now supports any angle when rotationg the selection
-  * the tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool
-  * "close shape" action for the 'shape' tool
-  * "close selection" action for the 'free selection' tool
+  * add specialized types of pencils (eraser, highlighter) as optional tools
   * replace the 'saturate' tool by a new 'filters' tool
   * add several types of blur to 'filters'
   * add color inversion, pixelization, partial transparency to 'filters'
+  * the 'rotate' tool now handles horizontal or vertical flipping
+  * the 'rotate' tool now supports any angle when rotating the selection
+  * add "antialiasing" option to several tools
+  * the tools producing shapes (circle, rectangle, polygon, …) are merged into a single 'shape' tool
+  * "close shape" action for the 'shape' tool
+  *
+  * rectangle selection, freehand selection, and color selection, are now distinct tools
+  * "close selection" action for the 'free selection' tool
+  *
   * add "additional tools" section to the preferences window
-  * add specialized types of pencils (eraser, highlighter) as optional tools
+  * remove the "windows" menu from the menubar
+  * refactor bottom panes management to allow several tools to share the same pane
+  * move the "color application mode" option to the colors menus/popovers
   * a fullscreen mode is now available
   * zoom in (or out) using the minimap, the touch gestures, the mouse wheel, or keyboard shortcuts
-  * move the "color application mode" selection to the colors menus/popovers
-  * add "antialiasing" option to several tools
   * fix how the canvas is displayed on HiDPI screens
   * warn the user when they try to save despite the current operation not being applied
+  *
   * rewrite the user help manual
+  * update several translations
 
  -- Romain F. T. <rrroschan@gmail.com>  Sun, 20 Sep 2020 13:12:00 +0100
 

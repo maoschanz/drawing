@@ -1,4 +1,4 @@
-# rect_select.py
+# select_rect.py
 #
 # Copyright 2018-2021 Romain F. T.
 #
@@ -30,10 +30,11 @@ class ToolRectSelect(AbstractSelectionTool):
 	def motion_define(self, event_x, event_y):
 		self._build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 		self.restore_pixbuf()
-		cairo_context = self.get_context()
 		rect = self.get_selection().get_future_path()
 		if rect is not None:
-			utilities_show_overlay_on_context(cairo_context, rect, True)
+			ccontext = self.get_context()
+			thickness = self.get_overlay_thickness()
+			utilities_show_overlay_on_context(ccontext, rect, True, thickness)
 
 	def release_define(self, surface, event_x, event_y):
 		self._build_rectangle_path(self.x_press, self.y_press, event_x, event_y)

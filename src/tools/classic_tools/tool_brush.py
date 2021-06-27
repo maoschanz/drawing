@@ -1,4 +1,3 @@
-
 # tool_brush.py
 #
 # Copyright 2018-2021 Romain F. T.
@@ -21,7 +20,7 @@ from .abstract_classic_tool import AbstractClassicTool
 
 from .brush_simple import BrushSimple
 from .brush_airbrush import BrushAirbrush
-from .brush_nip import BrushNip
+from .brush_nib import BrushNib
 from .brush_hairy import BrushHairy
 
 class ToolBrush(AbstractClassicTool):
@@ -35,7 +34,7 @@ class ToolBrush(AbstractClassicTool):
 		self._brushes_dict = {
 			'simple': BrushSimple('simple', self),
 			'airbrush': BrushAirbrush('airbrush', self),
-			'calligraphic': BrushNip('calligraphic', self),
+			'calligraphic': BrushNib('calligraphic', self),
 			'hairy': BrushHairy('hairy', self),
 		}
 
@@ -114,7 +113,7 @@ class ToolBrush(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'brush_id': self._brush_type,
-			'nip_dir': self._brush_dir,
+			'nib_dir': self._brush_dir,
 			'rgba': self.main_color,
 			'operator': self._operator,
 			'line_width': self.tool_width,

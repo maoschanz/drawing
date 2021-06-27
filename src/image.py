@@ -15,12 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo
-from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango
+import cairo, random, math
+from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango, GLib
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
 from .utilities import InvalidFileFormatException
+from .utilities_overlay import utilities_generic_canvas_outline
 
 class DrMotionBehavior():
 	_LIMIT = 10
@@ -53,6 +54,9 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
+		self._fps_counter = 0
+		self.reset_fps_counter()
+		self._framerate_hint = 1.0
 
 		self._init_drawing_area()
 
@@ -96,8 +100,9 @@ class DrImage(Gtk.Box):
 		rgba = self.window.gsettings.get_strv('ui-background-rgba')
 		self._bg_rgba = (float(rgba[0]), float(rgba[1]), \
 		                                         float(rgba[2]), float(rgba[3]))
-		# We remember this data here for performance: it's used by the `on_draw`
-		# method which is called a lot, and reading a gsettings costs a lot.
+		# We remember this data here for performance: it will eb used by the
+		# `on_draw` method which is called a lot, and reading a gsettings costs
+		# a lot.
 
 	def _update_zoom_behavior(self, *args):
 		self._ctrl_to_zoom = self.window.gsettings.get_boolean('ctrl-zoom')
@@ -346,8 +351,22 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
+	def reset_fps_counter(self, async_cb_data={}):
+		"""Development only: live-display the evolution of the framerate of the
+		drawing area. The max should be around 60, but many tools don't require
+		so many redraws."""
+		if self.window.should_track_framerate:
+			# Context: this is a debug information that users will never see
+			self.window.prompt_message(True, _("%s frames per second") % self._fps_counter)
+			self._fps_counter = 0
+			GLib.timeout_add(1000, self.reset_fps_counter, {})
+		else:
+			self.window.prompt_message(False, "")
+
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""
+		self._fps_counter += 1
+
 		# Background color
 		cairo_context.set_source_rgba(*self._bg_rgba)
 		cairo_context.paint()
@@ -355,16 +374,18 @@ class DrImage(Gtk.Box):
 		# Zoom level
 		cairo_context.scale(self.zoom_level, self.zoom_level)
 
-		# TODO transform tools may appreciate to draw *before* the image (issue
-		# when the canvas becomes larger)
-
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
 		cairo_context.paint()
 
-		# What the tool is painting
-		self.active_tool().on_draw(area, cairo_context)
+		# What the tool shows on the canvas, upon what it paints, for example an
+		# overlay to imply how to interact with a previewed operation.
+		self.active_tool().on_draw_above(area, cairo_context)
+
+		# Limit of the canvas (for readability)
+		utilities_generic_canvas_outline(cairo_context, self.get_pixbuf_width(), \
+		                              self.get_pixbuf_height(), self.zoom_level)
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on
@@ -402,7 +423,7 @@ class DrImage(Gtk.Box):
 			# implicitely impossible if not self._is_pressed
 			event_x, event_y = self.get_event_coords(event)
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update() # <<< comment this for better perfs
+			self.update(True)
 
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			self.scroll_x = self._slip_init_x
@@ -433,12 +454,12 @@ class DrImage(Gtk.Box):
 		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
 		return mx or my
 
-	def update(self):
-		# print('image.py: _drawing_area.queue_draw')
-		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
-		# l'utilisation pour les trop grandes images, il faudrait n'update que
-		# la partie qui change, ou au pire que la partie affichée
-		self._drawing_area.queue_draw()
+	def update(self, allow_imperfect=False):
+		if allow_imperfect and random.random() > self._framerate_hint:
+			pass
+		else:
+			# print('image.py: _drawing_area.queue_draw')
+			self._drawing_area.queue_draw()
 
 	def get_surface(self):
 		return self.surface
@@ -454,16 +475,19 @@ class DrImage(Gtk.Box):
 		self.update()
 
 	def set_surface_as_stable_pixbuf(self):
-		# print('image.py: set_surface_as_stable_pixbuf')
-		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, \
-		                    self.surface.get_width(), self.surface.get_height())
+		w = self.surface.get_width()
+		h = self.surface.get_height()
+		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, w, h)
+		# self._framerate_hint = math.sqrt(500000 / (w * h))
+		# print("hint :", self._framerate_hint)
 
-	def use_stable_pixbuf(self):
-		# print('image.py: use_stable_pixbuf')
-		# TODO immensément utilisée, mais qui ne scale pas : ça gêne clairement
-		# l'utilisation pour les trop grandes images, il faudrait n'update que
-		# la partie qui change, ou au pire que la partie affichée
-		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+	def use_stable_pixbuf(self, allow_imperfect=False):
+		if allow_imperfect and random.random() > self._framerate_hint:
+			pass
+		else:
+			# print('image.py: use_stable_pixbuf')
+			# maybe the "scale" parameter should be 1 instead of 0
+			self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
 		self.surface.set_device_scale(self.SCALE_FACTOR, self.SCALE_FACTOR)
 
 	def get_pixbuf_width(self):

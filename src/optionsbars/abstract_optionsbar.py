@@ -47,7 +47,7 @@ class AbstractOptionsBar():
 		"""Same as above, BUT this isn't valid for any instance of
 		`AbstractOptionsBar`: only an optionsbar for a transform tool should
 		call that method, and it should call it *after* `_build_ui`. This method
-		will "hydrate" the previously built but still incomplete widgets."""
+		will "hydrate" the previously built (but still incomplete) widgets."""
 		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + end_of_path)
 		self.centered_box = builder.get_object('centered_box')
 		self.action_bar.set_center_widget(self.centered_box)

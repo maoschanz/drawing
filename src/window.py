@@ -104,7 +104,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                      # notebook widget being pure shit
 		self.active_tool_id = None
 		self._is_tools_initialisation_finished = False
-		self._enable_cli_logging = False
+		self.devel_mode = False
+		self.should_track_framerate = False
 
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
@@ -136,6 +137,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.saving_manager = DrSavingManager(self)
 		self.printing_manager = DrPrintingManager(self)
 
+		self.devel_mode = self.gsettings.get_boolean('devel-only')
 		self.add_all_win_actions()
 		self._init_tools()
 		self.connect_signals()
@@ -146,7 +148,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# can continue normally.
 		try:
 			if get_cb:
-				self.build_image_from_clipboard()
+				self.delayed_build_from_clipboard()
 			elif gfile is not None:
 				self.build_new_tab(gfile=gfile)
 			else:
@@ -157,7 +159,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._enable_first_tool()
 		self.set_picture_title()
 		self._try_show_release_notes()
-		self._enable_cli_logging = self.gsettings.get_boolean('devel-only')
 
 		# has to return False to be removed from the mainloop immediatly
 		return False
@@ -311,11 +312,19 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.set_picture_title()
 		dialog.destroy()
 
+	def delayed_build_from_clipboard(self, *args):
+		"""Calls `async_build_from_clipboard` asynchronously."""
+		self.build_new_tab() # temporary image to avoid errors when the window
+		# finishes its initialisation.
+		GLib.timeout_add(500, self.async_build_from_clipboard, {})
+
+	def async_build_from_clipboard(self, content_params):
+		self.get_active_image().try_close_tab()
+		self.build_image_from_clipboard()
+
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
 		empty, the new image will be blank."""
-		# TODO pour le coup ce truc là il doit réellement être async sinon c'est
-		# un bug (#377)
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
@@ -330,7 +339,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.build_new_tab(pixbuf=pixbuf)
 
 	def build_new_tab(self, gfile=None, pixbuf=None, \
-		           width=200, height=200, background_rgba=[1.0, 0.0, 0.0, 1.0]):
+		           width=200, height=200, background_rgba=[0.5, 0.5, 0.5, 0.5]):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
@@ -434,8 +443,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.gsettings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
 		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
-		# self.gsettings.connect('changed::preview-size', self.show_info_settings)
-		# self.gsettings.connect('changed::devel-only', self.show_info_settings)
+		self.gsettings.connect('changed::preview-size', self.show_info_settings)
+		# devel-only' isn't connected because it's auto-updated to False
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
 		self.gsettings.connect('changed::dark-theme-variant', self._update_theme_variant)
 		# Other settings are connected in DrImage
@@ -583,10 +592,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
-		if self.gsettings.get_boolean('devel-only'):
+		if self.devel_mode:
 			self.add_action_simple('restore_pixbuf', self.action_restore, None)
 			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
+			self.add_action_boolean('track_framerate', False, self.action_fsp)
 
 		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
 		self.add_action(action)
@@ -693,9 +703,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_options_menu(self, *args):
 		"""This displays/hides the tool's options menu, and is implemented as an
-		action to ease the accelerator (shift+f10). This action could be
-		disable when the current pane doesn't contain the corresponding button,
-		but will not be."""
+		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
 
 	def _adapt_to_window_size(self, *args):
@@ -725,7 +733,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		if show:
 			self.info_label.set_label(label)
-		if show and self._enable_cli_logging and label != "":
+		if show and self.devel_mode and label != "":
 			print("Drawing: " + label)
 
 	def prompt_action(self, message, action_name='app.report_bug', action_label=_("Report a bug")):
@@ -900,7 +908,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		if self.former_tool_id == self.active_tool_id:
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active
-		self.tools[self.former_tool_id].row.set_active(True)
+		else:
+			self.tools[self.former_tool_id].row.set_active(True)
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
@@ -950,6 +959,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""Display the properties dialog for the current image. This could be
 		done here but it's done in DrImage to have a satisfying UML diagram."""
 		self.get_active_image().show_properties()
+
+	def action_fsp(self, *args):
+		"""Development only: tracks and displays the framerate, thus it helps
+		debugging how Gdk/cairo draws on the widget."""
+		self.should_track_framerate = not self.should_track_framerate
+		for img in self.notebook.get_children():
+			img.reset_fps_counter()
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:

@@ -101,7 +101,7 @@ incorrect english labels, please report an issue about it.
 
 General options for these tools: colors, use antialiasing, size, …
 
-- Pencil (options: dashes, line shape, …)
+- Pencil (options: dashes, line shape, outline, …)
 - *Brushes (pressure sensitive)*:
 	- *Simple round brush*
 	- *Hairy brush*
