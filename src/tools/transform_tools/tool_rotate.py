@@ -45,6 +45,9 @@ class ToolRotate(AbstractCanvasTool):
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
 		return pane
 
+	def get_options_label(self):
+		return _("Rotating options")
+
 	def get_edition_status(self):
 		if self.apply_to_selection:
 			return _("Rotating the selection")

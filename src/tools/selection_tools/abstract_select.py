@@ -43,6 +43,9 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	############################################################################
 	# UI implementations #######################################################
 
+	def get_options_label(self):
+		return _("Selection options")
+
 	def get_edition_status(self):
 		if self.selection_is_active():
 			label = _("Drag the selection or right-click on the canvas")

@@ -49,6 +49,9 @@ class ToolScale(AbstractCanvasTool):
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		return bar
 
+	def get_options_label(self):
+		return _("Scaling options")
+
 	def get_edition_status(self):
 		if self.apply_to_selection:
 			return _("Scaling the selection")
