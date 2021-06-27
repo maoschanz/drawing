@@ -16,22 +16,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio, Gdk
+from .gi_composites import GtkTemplate
 from .utilities import utilities_add_unit_to_spinbtn
 
-@Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/preferences.ui')
+@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/preferences.ui')
 class DrPrefsWindow(Gtk.Window):
 	__gtype_name__ = 'DrPrefsWindow'
 
-	content_area = Gtk.Template.Child()
-	stack = Gtk.Template.Child()
+	content_area = GtkTemplate.Child()
+	stack = GtkTemplate.Child()
 
-	page_images = Gtk.Template.Child()
-	page_tools = Gtk.Template.Child()
-	page_advanced = Gtk.Template.Child()
+	page_images = GtkTemplate.Child()
+	page_tools = GtkTemplate.Child()
+	page_advanced = GtkTemplate.Child()
 
-	adj_width = Gtk.Template.Child()
-	adj_height = Gtk.Template.Child()
-	adj_preview = Gtk.Template.Child()
+	adj_width = GtkTemplate.Child()
+	adj_height = GtkTemplate.Child()
+	adj_preview = GtkTemplate.Child()
 
 	_current_grid = None
 	_grid_attach_cpt = 0
@@ -39,6 +40,7 @@ class DrPrefsWindow(Gtk.Window):
 
 	def __init__(self, is_beta, wants_csd, **kwargs):
 		super().__init__(**kwargs)
+		self.init_template()
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(
 				visible=True, \

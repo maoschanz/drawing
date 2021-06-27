@@ -17,6 +17,7 @@
 
 import cairo, random, math
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango, GLib
+from .gi_composites import GtkTemplate
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
@@ -38,18 +39,19 @@ class NoPixbufNoChangeException(Exception):
 
 ################################################################################
 
-@Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/image.ui')
+@GtkTemplate(ui='/com/github/maoschanz/drawing/ui/image.ui')
 class DrImage(Gtk.Box):
 	__gtype_name__ = 'DrImage'
 
-	_drawing_area = Gtk.Template.Child()
-	_h_scrollbar = Gtk.Template.Child()
-	_v_scrollbar = Gtk.Template.Child()
+	_drawing_area = GtkTemplate.Child()
+	_h_scrollbar = GtkTemplate.Child()
+	_v_scrollbar = GtkTemplate.Child()
 
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
+		self.init_template()
 		self.window = window
 
 		self.gfile = None

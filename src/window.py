@@ -18,6 +18,7 @@
 # Import libs
 import os, traceback
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
+from .gi_composites import GtkTemplate
 
 # Import tools
 from .tool_arc import ToolArc
@@ -76,27 +77,28 @@ DEFAULT_TOOL_ID = 'pencil'
 
 ################################################################################
 
-@Gtk.Template(resource_path=UI_PATH+'window.ui')
+@GtkTemplate(ui=UI_PATH+'window.ui')
 class DrWindow(Gtk.ApplicationWindow):
 	__gtype_name__ = 'DrWindow'
 
 	gsettings = Gio.Settings.new('com.github.maoschanz.drawing')
 
 	# Window empty widgets
-	tools_flowbox = Gtk.Template.Child()
-	toolbar_box = Gtk.Template.Child()
-	info_bar = Gtk.Template.Child()
-	info_label = Gtk.Template.Child()
-	info_action = Gtk.Template.Child()
-	notebook = Gtk.Template.Child()
-	bottom_panes_box = Gtk.Template.Child()
-	unfullscreen_btn = Gtk.Template.Child()
-	bottom_meta_box = Gtk.Template.Child()
-	tools_scrollable_box = Gtk.Template.Child()
-	tools_nonscrollable_box = Gtk.Template.Child()
+	tools_flowbox = GtkTemplate.Child()
+	toolbar_box = GtkTemplate.Child()
+	info_bar = GtkTemplate.Child()
+	info_label = GtkTemplate.Child()
+	info_action = GtkTemplate.Child()
+	notebook = GtkTemplate.Child()
+	bottom_panes_box = GtkTemplate.Child()
+	unfullscreen_btn = GtkTemplate.Child()
+	bottom_meta_box = GtkTemplate.Child()
+	tools_scrollable_box = GtkTemplate.Child()
+	tools_nonscrollable_box = GtkTemplate.Child()
 
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
+		self.init_template()
 		self.app = kwargs['application']
 
 		self.pointer_to_current_page = None # this ridiculous hack allows to
