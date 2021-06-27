@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-20 03:05+0200\n"
-"PO-Revision-Date: 2021-06-13 11:15+0100\n"
+"PO-Revision-Date: 2021-06-27 15:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -82,10 +82,12 @@ msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
 msgstr ""
+"Lo strumento linea retta ha una nuova opzione per bloccare il suo angolo, così puoi disegnare "
+"perfetti tratti orizzontali, verticali o a 45°."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
+msgstr "L'opzione della riga di comando `--edit-clipboard` ora funziona con Wayland."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -93,18 +95,25 @@ msgid ""
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
 msgstr ""
+Ridimensionare un'immagine utilizzando gli input numerici ora conserva le proporzioni "
+"originali dell'immagine (a meno che l'opzione \"non mantenere mai le proporzioni\" sia "
+"abilitato)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
+"Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, ma ora è "
+"stato sistemato."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
 msgstr ""
+"Questa versione dell'app è compatibile con le versioni precedenti di GNOME (Ubuntu LTS "
+"18.04)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1912,10 +1921,9 @@ msgid "Color gradient"
 msgstr "Gradiente di colore"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 #| msgid "No direction"
 msgid "Locked direction"
-msgstr "Nessuna direzione"
+msgstr "Direzione bloccata"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
