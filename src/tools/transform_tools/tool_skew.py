@@ -18,6 +18,7 @@
 from gi.repository import Gdk
 from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_skew import OptionsBarSkew
+from .utilities_overlay import utilities_show_handles_on_context
 
 class ToolSkew(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSkew'
@@ -58,19 +59,19 @@ class ToolSkew(AbstractCanvasTool):
 	def get_xy(self):
 		return self.xy_spinbtn.get_value_as_int()
 
-	def get_width(self):
+	def _get_width(self):
 		if self.apply_to_selection:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		return source_pixbuf.get_width()
 
-	def get_height(self):
+	def _get_height(self):
 		if self.apply_to_selection:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
 			source_pixbuf = self.get_main_pixbuf()
-		return source_pixbuf.get_width()
+		return source_pixbuf.get_height()
 
 	def on_coord_changed(self, *args):
 		self.build_and_do_op()
@@ -103,8 +104,8 @@ class ToolSkew(AbstractCanvasTool):
 
 		yx = self._yx
 		xy = self._xy
-		yx += 100 * delta_y/self.get_height()
-		xy += 100 * delta_x/self.get_width()
+		yx += 100 * delta_y/self._get_height()
+		xy += 100 * delta_x/self._get_width()
 		self.yx_spinbtn.set_value(yx)
 		self.xy_spinbtn.set_value(xy)
 
@@ -114,7 +115,21 @@ class ToolSkew(AbstractCanvasTool):
 
 	############################################################################
 
-	# TODO draw custom avec des handles
+	def on_draw_above(self, area, cairo_context):
+		x1 = 0
+		y1 = 0
+		scaled_xy = abs(self.get_xy()) * (self._get_height() /  self._get_width())
+		scaled_yx = abs(self.get_yx()) * (self._get_width() /  self._get_height())
+		p_xy = (scaled_xy + 100) / 100
+		p_yx = (scaled_yx + 100) / 100
+		x2 = x1 + self._get_width() * p_xy
+		y2 = y1 + self._get_height() * p_yx
+
+		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
+		                                         self.apply_to_selection, False)
+		self._draw_temp_pixbuf(cairo_context, x1, y1)
+		thickness = self.get_overlay_thickness()
+		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness)
 
 	############################################################################
 
