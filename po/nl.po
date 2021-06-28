@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-28 00:53+0200\n"
-"PO-Revision-Date: 2021-06-04 14:53+0200\n"
+"PO-Revision-Date: 2021-06-28 17:13+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -77,6 +77,8 @@ msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
+"Na het draaien van de selectie klopte de hoogte niet meer - dat is nu "
+"opgelost."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -313,7 +315,7 @@ msgstr "Verversen"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Framesnelheid bijhouden"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -793,7 +795,7 @@ msgstr "Niet-opgeslagen bestand"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s frames per seconde"
 
 #. Description of a command line option
 #: src/main.py
@@ -1800,10 +1802,8 @@ msgid "Color gradient"
 msgstr "Kleurverloop"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
-msgstr "Geen richting"
+msgstr "Vergrendelde richting"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
