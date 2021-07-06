@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Project-Id-Version: drawing\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -305,16 +305,16 @@ msgstr ""
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
 msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -453,7 +453,7 @@ msgstr ""
 msgid "Troubleshoot selection"
 msgstr ""
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr ""
 
@@ -743,6 +743,10 @@ msgstr ""
 
 #: src/ui/window.ui
 msgid "Loading…"
+msgstr ""
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
 msgstr ""
 
 #: src/deco_manager.py
@@ -1332,11 +1336,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr ""
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1426,6 +1425,10 @@ msgstr ""
 msgid "Tool size"
 msgstr ""
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr ""
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1449,6 +1452,7 @@ msgid "Use this editor by default"
 msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr ""
 
@@ -2074,11 +2078,19 @@ msgid "Error: invalid values"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
+msgid "Cropping options"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
+msgstr ""
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Filters options"
 msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
@@ -2091,11 +2103,19 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating options"
+msgstr ""
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
+msgstr ""
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling options"
 msgstr ""
 
 #: src/tools/transform_tools/tool_scale.py

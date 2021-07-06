@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -315,17 +315,18 @@ msgstr "Atualizar"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Tela cheia"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Alternar a pré-visualização"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Sair da tela cheia"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Tela cheia"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -467,7 +468,7 @@ msgstr "Largura padrão"
 msgid "Troubleshoot selection"
 msgstr "Resolver problemas de seleção"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Opções"
 
@@ -634,7 +635,6 @@ msgstr "Mais ações"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Seleção livre"
 
@@ -642,7 +642,6 @@ msgstr "Seleção livre"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Abrir uma imagem"
 
@@ -768,9 +767,12 @@ msgstr "Gestos de toque"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Carregando %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Sair da tela cheia"
 
 #: src/deco_manager.py
 #, python-format
@@ -1065,7 +1067,6 @@ msgstr "Cor de fundo"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Largura padrão"
 
@@ -1370,11 +1371,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Modificações vão ter efeito na próxima janela"
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Sem opções"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1468,6 +1464,10 @@ msgstr "Cor secundária"
 msgid "Tool size"
 msgstr "Ferramenta de tamanho"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Sem opções"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1491,6 +1491,7 @@ msgid "Use this editor by default"
 msgstr "Usar esse editor por padrão"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Opções da seleção"
 
@@ -1830,7 +1831,6 @@ msgstr "Gradiente de cor"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Sem direão"
 
@@ -2142,12 +2142,22 @@ msgid "Error: invalid values"
 msgstr "Erro: valores inválidos"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Opções de fonte"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Recortar a seleção"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Recortar a tela"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Realçador"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2159,12 +2169,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Opções da pintura"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Girar a seleção"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Girando a tela"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Opções da pintura"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

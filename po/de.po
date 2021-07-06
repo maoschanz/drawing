@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-06-14 22:33+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -315,17 +315,18 @@ msgstr "Aktualisieren"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Vollbildansicht"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Vorschau umschalten"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Werkzeugleisten ausblenden"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Vollbildansicht schließen"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Vollbildansicht"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -463,7 +464,7 @@ msgstr "Kleinere Breite"
 msgid "Troubleshoot selection"
 msgstr "Problembehandlung bei der Auswahl"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Optionen"
 
@@ -755,6 +756,10 @@ msgstr "Touch-Gesten"
 #: src/ui/window.ui
 msgid "Loading…"
 msgstr "Wird geladen…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Vollbildansicht schließen"
 
 #: src/deco_manager.py
 #, python-format
@@ -1357,11 +1362,6 @@ msgstr "Die Zwischenablage enthält keine Bilder."
 msgid "Modifications will take effect in the next new window."
 msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Keine Optionen"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1455,6 +1455,10 @@ msgstr "Zweitfarbe"
 msgid "Tool size"
 msgstr "Werkzeuggröße"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Keine Optionen"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1478,6 +1482,7 @@ msgid "Use this editor by default"
 msgstr "Diesen Farbwähler standardmäßig nutzen"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Auswahl-Optionen"
 
@@ -1807,7 +1812,6 @@ msgstr "Farbverlauf"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Keine Richtung"
 
@@ -2111,12 +2115,22 @@ msgid "Error: invalid values"
 msgstr "Fehler: Ungültige Werte"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Punkte-Optionen"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Auswahl zuschneiden"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Leinwand zuschneiden"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Hervorhebe-Optionen"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2128,12 +2142,22 @@ msgid "Emboss"
 msgstr "Prägung"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Füll-Optionen"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Auswahl drehen"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Leinwand drehen"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Füll-Optionen"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

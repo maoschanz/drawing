@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -315,17 +315,18 @@ msgstr "Yenile"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Tam ekran"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Önizlemeyi değiştir"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Araç çubuklarını gizle"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Tam ekrandan çık"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Tam ekran"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -463,7 +464,7 @@ msgstr "Daha küçük genişlik"
 msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Seçenekler"
 
@@ -625,7 +626,6 @@ msgstr "Daha fazla eylem"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Serbest seçim"
 
@@ -633,7 +633,6 @@ msgstr "Serbest seçim"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Bir görüntü aç"
 
@@ -757,9 +756,12 @@ msgstr "Dokunmatik hareketleri"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Yükleniyor %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Tam ekrandan çık"
 
 #: src/deco_manager.py
 #, python-format
@@ -1053,7 +1055,6 @@ msgstr "Arkaplan rengi"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Öntanımlı genişlik"
 
@@ -1361,11 +1362,6 @@ msgstr "Pano herhangi bir görüntü içermiyor."
 msgid "Modifications will take effect in the next new window."
 msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Seçenek yok"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1459,6 +1455,10 @@ msgstr "İkincil renk"
 msgid "Tool size"
 msgstr "Araç boyutu"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Seçenek yok"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1482,6 +1482,7 @@ msgid "Use this editor by default"
 msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Seçici seçenekleri"
 
@@ -1807,7 +1808,6 @@ msgstr "Geçiş rengi"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Yön yok"
 
@@ -2110,12 +2110,22 @@ msgid "Error: invalid values"
 msgstr "Hata: geçersiz değerler"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Noktalama seçenekleri"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Seçimi kırp"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Tuvali kırp"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Fosforlu kalem seçenekleri"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2127,12 +2137,22 @@ msgid "Emboss"
 msgstr "Kabartma"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Boyama seçenekleri"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Seçimi döndür"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Tuvali döndür"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Boyama seçenekleri"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

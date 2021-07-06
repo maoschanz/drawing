@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-06-28 17:13+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -317,17 +317,18 @@ msgstr "Verversen"
 msgid "Track framerate"
 msgstr "Framesnelheid bijhouden"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Beeldvullend"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Voorvertoning aan/uit"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Werkbalken verbergen"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Beeldvullende modus verlaten"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Beeldvullend"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -465,7 +466,7 @@ msgstr "Smaller"
 msgid "Troubleshoot selection"
 msgstr "Problemen omtrent selecties oplossen"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Opties"
 
@@ -756,6 +757,10 @@ msgstr "Aanraakgebaren"
 #: src/ui/window.ui
 msgid "Loading…"
 msgstr "Bezig met laden…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Beeldvullende modus verlaten"
 
 #: src/deco_manager.py
 #, python-format
@@ -1355,11 +1360,6 @@ msgstr "Het klembord bevat geen afbeelding."
 msgid "Modifications will take effect in the next new window."
 msgstr "Herstart om de wijzigingen toe te passen."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Geen opties"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1453,6 +1453,10 @@ msgstr "Alternatieve kleur"
 msgid "Tool size"
 msgstr "Gereedschapsgrootte"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Geen opties"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1476,6 +1480,7 @@ msgid "Use this editor by default"
 msgstr "Gebruik standaard deze bewerker"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Selectie-opties"
 
@@ -2105,12 +2110,22 @@ msgid "Error: invalid values"
 msgstr "Fout: ongeldige waarden"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Puntopties"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Bezig met bijsnijden van selectie"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Bezig met bijsnijden van canvas"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Markeeropties"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2122,12 +2137,22 @@ msgid "Emboss"
 msgstr "Reliëf toepassen"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Kwastopties"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Bezig met draaien van selectie"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Bezig met draaien van canvas"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Kwastopties"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

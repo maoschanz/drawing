@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -310,17 +310,18 @@ msgstr "새로고침"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "전체 화면"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "미리보기 전환"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "도구 모음 숨기기"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "전체 화면 종료"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "전체 화면"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -458,7 +459,7 @@ msgstr "더 작은 너비"
 msgid "Troubleshoot selection"
 msgstr "선택 문제 해결"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "옵션(_O)"
 
@@ -620,7 +621,6 @@ msgstr "더 많은 행동"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "자유 선택"
 
@@ -628,7 +628,6 @@ msgstr "자유 선택"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "이미지 열기"
 
@@ -752,9 +751,12 @@ msgstr "터치 제스처"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "로딩 %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "전체 화면 종료"
 
 #: src/deco_manager.py
 #, python-format
@@ -1043,7 +1045,6 @@ msgstr "배경색"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Theme variant"
 msgid "Prefer dark theme variant"
 msgstr "테마 변경"
 
@@ -1348,11 +1349,6 @@ msgstr "클립 보드에 이미지가 없습니다."
 msgid "Modifications will take effect in the next new window."
 msgstr "수정 사항은 다음 새 창에서 적용됩니다."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "옵션 없음"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1445,6 +1441,10 @@ msgstr "보조 색상"
 msgid "Tool size"
 msgstr "도구 크기"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "옵션 없음"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1468,6 +1468,7 @@ msgid "Use this editor by default"
 msgstr "기본적으로 이 편집기 사용"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "선택 옵션"
 
@@ -1793,7 +1794,6 @@ msgstr "그라디언트 색상"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "방향 없음"
 
@@ -2096,12 +2096,22 @@ msgid "Error: invalid values"
 msgstr "오류 : 잘못된 값"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "포인트 옵션"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "선택 자르기"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "캔버스 자르기"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "형광펜 옵션"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2113,12 +2123,22 @@ msgid "Emboss"
 msgstr "엠보싱"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "페인팅 옵션"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "선택 회전"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "캔버스 회전"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "페인팅 옵션"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2142,4 +2162,3 @@ msgstr "흐림 반경"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "채도"
-

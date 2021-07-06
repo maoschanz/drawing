@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-02-12 02:15+0100\n"
 "Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language-Team: Czech <>\n"
@@ -312,17 +312,18 @@ msgstr "Obnovit"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Zapnout zobrazení na celou obrazovku"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Přepnout náhled"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Skrýt panely nástrojů"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Ukončit zobrazení na celou obrazovku"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Zapnout zobrazení na celou obrazovku"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -461,7 +462,7 @@ msgstr "Menší šířka"
 msgid "Troubleshoot selection"
 msgstr "Odstranit potíže s výběrem"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Možnosti"
 
@@ -628,7 +629,6 @@ msgstr "Více akcí"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Volný výběr"
 
@@ -636,7 +636,6 @@ msgstr "Volný výběr"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Otevřít obrázek"
 
@@ -760,9 +759,12 @@ msgstr "Dotyková gesta"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Načítání %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Ukončit zobrazení na celou obrazovku"
 
 #: src/deco_manager.py
 #, python-format
@@ -1053,7 +1055,6 @@ msgstr "Barva pozadí"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Výchozí šířka"
 
@@ -1358,11 +1359,6 @@ msgstr "Schránka neobsahuje žádný obrázek."
 msgid "Modifications will take effect in the next new window."
 msgstr "Úpravy se projeví v dalším novém okně."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Žádné možnosti"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1457,6 +1453,10 @@ msgstr "Vedlejší barva"
 msgid "Tool size"
 msgstr "Velikost nástroje"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Žádné možnosti"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1480,6 +1480,7 @@ msgid "Use this editor by default"
 msgstr "Použít tento editor jako výchozí"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Možnosti tužky"
@@ -1812,7 +1813,6 @@ msgstr "Barevný přechod"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Žádný směr"
 
@@ -2119,12 +2119,22 @@ msgid "Error: invalid values"
 msgstr "Chyba: neplatné hodnoty"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Možnosti bodů"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Oříznutí výběru"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Oříznutí plátna"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Možnosti zvýrazňovače"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2136,12 +2146,22 @@ msgid "Emboss"
 msgstr "Převést na reliéf"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Možnosti výplně"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Otočení výběru"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Otočení plátna"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Možnosti výplně"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2165,7 +2185,6 @@ msgstr "Poloměr rozostření"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturace"
-
 
 #~ msgid "Quit"
 #~ msgstr "Zavřít"

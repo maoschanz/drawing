@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -309,17 +309,18 @@ msgstr "刷新"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "全屏"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "切换预览"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "退出全屏"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "全屏"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -461,7 +462,7 @@ msgstr "默认宽度"
 msgid "Troubleshoot selection"
 msgstr "对选区排查问题"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "选项(_O)"
 
@@ -628,7 +629,6 @@ msgstr "更多操作"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "自由选择"
 
@@ -636,7 +636,6 @@ msgstr "自由选择"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "打开图像"
 
@@ -763,9 +762,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "已加载 %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "退出全屏"
 
 #: src/deco_manager.py
 #, python-format
@@ -1053,7 +1055,6 @@ msgstr "背景颜色"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "默认宽度"
 
@@ -1358,11 +1359,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "修改将在下一个新窗口生效。"
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "无选项"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1456,6 +1452,10 @@ msgstr "副颜色"
 msgid "Tool size"
 msgstr "工具大小"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "无选项"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1479,6 +1479,7 @@ msgid "Use this editor by default"
 msgstr "默认使用此编辑器"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "铅笔选项"
@@ -1819,7 +1820,6 @@ msgstr "颜色渐变"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "无方向"
 
@@ -2132,12 +2132,22 @@ msgid "Error: invalid values"
 msgstr "错误：值无效"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "字体选项"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "裁切选区"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "裁切画布"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "荧光笔"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2149,12 +2159,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "绘画选项"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "旋转选区"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "旋转画布"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "绘画选项"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -330,16 +330,18 @@ msgstr "רענון"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr ""
+# There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "הצג/הסתר תצוגה מקדימה"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -492,7 +494,7 @@ msgstr "רוחב ברירת מחדל"
 msgid "Troubleshoot selection"
 msgstr "אפשרויות צבע"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_אפשרויות"
 
@@ -666,7 +668,6 @@ msgstr "אין אפשרויות"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "בחירה חופשית"
 
@@ -674,7 +675,6 @@ msgstr "בחירה חופשית"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "פתיחת תמונה"
 
@@ -803,9 +803,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "טוען %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr ""
 
 #: src/deco_manager.py
 #, python-format
@@ -1102,7 +1105,6 @@ msgstr "רקע אטום"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "רוחב ברירת מחדל"
 
@@ -1412,11 +1414,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "אין אפשרויות"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1510,6 +1507,10 @@ msgstr "צבע משנה"
 msgid "Tool size"
 msgstr "גודל כלי"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "אין אפשרויות"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1533,6 +1534,7 @@ msgid "Use this editor by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "אפשרויות בחירה"
 
@@ -2210,12 +2212,22 @@ msgid "Error: invalid values"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "אין אפשרויות"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "חיתוך הבחירה"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "חיתוך לוח הציור"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "אפשרויות קו"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2227,12 +2239,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "אפשרויות צביעה"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "סיבוב הבחירה"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "סיבוב לוח הציור"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "אפשרויות צביעה"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

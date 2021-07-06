@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -317,17 +317,18 @@ msgstr "Odśwież"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Pełny ekran"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Przełącz podgląd"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Zamknij pełny ekran"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Pełny ekran"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -472,7 +473,7 @@ msgstr "Domyślna szerokość"
 msgid "Troubleshoot selection"
 msgstr "Rozwiąż problemy z wyborem"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Opcje"
 
@@ -640,7 +641,6 @@ msgstr "Więcej poleceń"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Zaznaczanie (dowolne)"
 
@@ -648,7 +648,6 @@ msgstr "Zaznaczanie (dowolne)"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Otwórz obraz"
 
@@ -775,9 +774,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Ładowanie %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Zamknij pełny ekran"
 
 #: src/deco_manager.py
 #, python-format
@@ -1072,7 +1074,6 @@ msgstr "Kolor tła"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Domyślna szerokość"
 
@@ -1378,11 +1379,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Zmiana znajdzie zastosowanie w nowym oknie."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Brak opcji"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1476,6 +1472,10 @@ msgstr "Kontur z wypełnieniem"
 msgid "Tool size"
 msgstr "Rozmiar narządzia"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Brak opcji"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1499,6 +1499,7 @@ msgid "Use this editor by default"
 msgstr "Używaj tego edytora domyślnie"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Opcje ołówka"
@@ -2160,12 +2161,22 @@ msgid "Error: invalid values"
 msgstr "Błąd: nieprawidłowe wartości"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Opcje tekstu"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Przycinanie zaznaczenia"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Przycinanie płótna"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Wyróżnij zakreślaczem"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2177,12 +2188,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Opcje malowania"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Obracanie zaznaczenia"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Obracanie płótna"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Opcje malowania"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

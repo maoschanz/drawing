@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2020-10-25 01:41+0700\n"
 "Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
 "Language-Team: Indonesian\n"
@@ -307,17 +307,18 @@ msgstr "Segarkan"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Layar penuh"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Jungkitkan pratinjau"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Keluar dari layar penuh"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Layar penuh"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -457,7 +458,7 @@ msgstr "Lebar yang lebih kecil"
 msgid "Troubleshoot selection"
 msgstr ""
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Opsi"
 
@@ -624,7 +625,6 @@ msgstr ""
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Seleksi bebas"
 
@@ -632,7 +632,6 @@ msgstr "Seleksi bebas"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Buka gambar"
 
@@ -757,9 +756,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Memuat %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Keluar dari layar penuh"
 
 #: src/deco_manager.py
 #, python-format
@@ -1047,7 +1049,6 @@ msgstr "Warna latar belakang"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Lebar bawaan"
 
@@ -1353,11 +1354,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Tidak ada opsi"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1449,6 +1445,10 @@ msgstr "Warna sekunder"
 msgid "Tool size"
 msgstr "Ukuran alat"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Tidak ada opsi"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1472,6 +1472,7 @@ msgid "Use this editor by default"
 msgstr "Gunakan penyunting ini secara bawaan"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Opsi pensil"
@@ -1811,7 +1812,6 @@ msgstr "Gradasi warna"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Tanpa arah"
 
@@ -2119,12 +2119,22 @@ msgid "Error: invalid values"
 msgstr "Galat: nilai tidak valid"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Opsi teks"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Pangkas seleksi"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Pangkas kanvas"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Opsi stabilo"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2136,12 +2146,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Opsi pengecatan"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Putar seleksi"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Putar kanvas"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Opsi pengecatan"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -312,17 +312,18 @@ msgstr "再読み込み"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "全画面表示"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "プレビューを切り替え"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "ツールバーを隠す"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "全画面表示を終了"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "全画面表示"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -460,7 +461,7 @@ msgstr "幅を細くする"
 msgid "Troubleshoot selection"
 msgstr "選択領域のトラブルシューティング"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "オプション (_O)"
 
@@ -751,6 +752,10 @@ msgstr "タッチ操作"
 #: src/ui/window.ui
 msgid "Loading…"
 msgstr "読み込んでいます…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "全画面表示を終了"
 
 #: src/deco_manager.py
 #, python-format
@@ -1345,11 +1350,6 @@ msgstr "クリップボードに画像がありません。"
 msgid "Modifications will take effect in the next new window."
 msgstr "新しい設定の効果は、次に開いたウィンドウから適用されます。"
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "オプションなし"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1443,6 +1443,10 @@ msgstr "サブの色"
 msgid "Tool size"
 msgstr "ツールの大きさ"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "オプションなし"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1466,6 +1470,7 @@ msgid "Use this editor by default"
 msgstr "既定でこのエディターを使用"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "選択のオプション"
 
@@ -1792,7 +1797,6 @@ msgstr "グラディエーション"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "方向なし"
 
@@ -2095,12 +2099,22 @@ msgid "Error: invalid values"
 msgstr "エラー: 無効な値です"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "点のオプション"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "選択領域をトリミングします"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "キャンバスをトリミングします"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "蛍光ペンのオプション"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2112,12 +2126,22 @@ msgid "Emboss"
 msgstr "エンボス"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "染色のオプション"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "選択領域を回転します"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "キャンバスを回転します"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "染色のオプション"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2141,4 +2165,3 @@ msgstr "ぼかしの半径"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "輝度"
-

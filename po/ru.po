@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -318,17 +318,18 @@ msgstr "Обновить"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Полноэкранный режим"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Предварительный просмотр"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Скрыть панель инструментов"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Выход из полноэкранного режима"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Полноэкранный режим"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -466,7 +467,7 @@ msgstr "Уменьшить размер"
 msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Параметры"
 
@@ -757,6 +758,10 @@ msgstr "Сенсорные жесты"
 #: src/ui/window.ui
 msgid "Loading…"
 msgstr "Загрузка…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Выход из полноэкранного режима"
 
 #: src/deco_manager.py
 #, python-format
@@ -1353,11 +1358,6 @@ msgstr "В буфере обмена нет изображений."
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Без параметров"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1450,6 +1450,10 @@ msgstr "Дополнительный цвет"
 msgid "Tool size"
 msgstr "Размер инструмента"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Без параметров"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1473,6 +1477,7 @@ msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Параметры выделения"
 
@@ -2101,12 +2106,22 @@ msgid "Error: invalid values"
 msgstr "Ошибка: недопустимые значения"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Параметры точек"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Обрезать выделенное"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Обрезать холст"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Параметры маркера"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2118,12 +2133,22 @@ msgid "Emboss"
 msgstr "Тиснение"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Параметры заливки"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Повернуть выделенное"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Повернуть холст"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Параметры заливки"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
