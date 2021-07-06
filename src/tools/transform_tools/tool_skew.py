@@ -28,6 +28,8 @@ class ToolSkew(AbstractCanvasTool):
 		# into parallelograms (= tilt, slant, bend). Named after MS Paint's
 		# "Stretch/Skew" dialog.
 		super().__init__('skew', _("Skew"), 'tool-skew-symbolic', window)
+		self._x = 0
+		self._y = 0
 
 	def try_build_pane(self):
 		self.pane_id = 'skew'
@@ -88,27 +90,37 @@ class ToolSkew(AbstractCanvasTool):
 
 	############################################################################
 
-	# def on_unclicked_motion_on_area(self, event, surface):
-		# TODO h/v_double_arrow
+	def on_unclicked_motion_on_area(self, event, surface):
+		# TODO h/v_double_arrow instead
+		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
+		self.window.set_cursor(True)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-
+		self.directions = self.cursor_name.replace('-resize', '')
 		self._yx = self.get_yx() # vertical deformation
 		self._xy = self.get_xy() # horizontal deformation
+		# TODO répliquer ce que fait le scale avec son x2/y2 qui évite un effet
+		# flamby dégueulasse lié aux arrondis ?
 
 	def on_motion_on_area(self, event, surface, event_x, event_y):
+		if self.cursor_name == 'not-allowed':
+			return
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press
 
-		# TODO tout ça fonctionne mais est très peu intuitif, il faut vraiment
-		# traquer le curseur pour savoir quand inverser le delta
-
 		yx = self._yx
 		xy = self._xy
-		yx += 100 * delta_y/self._get_height()
-		xy += 100 * delta_x/self._get_width()
+		if 'n' in self.directions:
+			xy -= 100 * delta_x/self._get_width()
+		if 's' in self.directions:
+			xy += 100 * delta_x/self._get_width()
+		if 'w' in self.directions:
+			yx -= 100 * delta_y/self._get_height()
+		if 'e' in self.directions:
+			yx += 100 * delta_y/self._get_height()
+
 		self.yx_spinbtn.set_value(yx)
 		self.xy_spinbtn.set_value(xy)
 
