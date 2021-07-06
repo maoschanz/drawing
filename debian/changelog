@@ -1,3 +1,20 @@
+drawing (1.0.0) unstable; urgency=low
+
+  * dynamically change the label of the "options" submenu in the menu-bar, to increase its discoverability
+  * toggle the menubar with ctrl+f2
+  *
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 28 Aug 2021 13:12:00 +0100
+
+drawing (0.8.3) unstable; urgency=low
+
+  * don't try to open the app binary as an image when running outside of a flatpak sandbox (#390)
+  * fix incorrectly huge height of the selection after rotating it (#369)
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 10 Jul 2021 13:12:00 +0100
+
 drawing (0.8.2) unstable; urgency=low
 
   * refactoring of the optionsbars (bottom panes) of the transform tools
@@ -8,6 +25,8 @@ drawing (0.8.2) unstable; urgency=low
   * lock image proportions by default when scaling with the numerical inputs
   * fix an unexpected way the "crop" tool could expand the selection (#369)
   * preview correctly the areas created by a transform tool before applying a change (#396)
+  * fix when the app starts with a transform tool, and this tool is immediately used and applied
+  * compatibility with older distributions
   * update several translations
 
  -- Romain F. T. <rrroschan@gmail.com>  Sat, 26 Jun 2021 13:12:00 +0100

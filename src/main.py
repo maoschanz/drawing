@@ -27,6 +27,7 @@ APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
 BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
 FLATPAK_BINARY_PATH = '/app/bin/drawing'
+CURRENT_BINARY_PATH = '/app/bin/drawing'
 
 def main(version):
 	app = Application(version)
@@ -132,7 +133,8 @@ class Application(Gtk.Application):
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
-		if arguments[0] == FLATPAK_BINARY_PATH:
+		CURRENT_BINARY_PATH = arguments[0]
+		if CURRENT_BINARY_PATH == FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
 
 		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
@@ -170,7 +172,7 @@ class Application(Gtk.Application):
 			windows_counter = 0
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolea; True would mean the app
+				# here, f can be a GioFile or a boolean. True would mean the app
 				# should open a new blank image.
 				if f != False:
 					f = None if f == True else f
@@ -344,8 +346,11 @@ class Application(Gtk.Application):
 		window should be opened anyway."""
 		if path == FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
-			# when it's /app/bin/drawing, the situation is normal, and
-			# it tells the app it's running in a flatpak sandbox
+			# when it's /app/bin/drawing, the app is in a flatpak sandbox. It'll
+			# match the following condition too.
+		if path == CURRENT_BINARY_PATH:
+			# when it's CURRENT_BINARY_PATH, the situation is normal (no error)
+			# and nothing to open.
 			return False
 
 		err = _("Error opening this file.") + ' '

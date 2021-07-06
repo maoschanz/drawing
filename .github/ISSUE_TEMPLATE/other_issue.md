@@ -21,4 +21,3 @@ assignees: ''
 - Desktop environment:
 - Package format<!-- (flatpak, native package from the distribution repository, package from a 3rd party repository, snap?)-->:
 - App version:
-

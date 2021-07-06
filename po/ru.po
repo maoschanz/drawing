@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -75,36 +75,6 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
-msgstr ""
-"Версия 0.8.2 содержит несколько мелких исправлений и несколько новых "
-"переводов."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-"Инструмент прямой линии имеет новую опцию для фиксации угла, поэтому вы "
-"можете рисовать идеальные горизонтальные, вертикальные или под 45 ° линии."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-"Параметр командной строки '--edit-clipboard' теперь работает с Wayland."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-"Масштабирование изображения с использованием числовых значений теперь "
-"сохраняет исходные пропорции изображения (если не включена опция «никогда не "
-"сохранять пропорции»)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
@@ -113,115 +83,10 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
-"Эта версия приложения совместима со старыми версиями GNOME (Ubuntu LTS "
-"18.04)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Версия 0.8.1 содержит несколько мелких исправлений и несколько новых "
+"Версия 0.8.2 содержит несколько мелких исправлений и несколько новых "
 "переводов."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-"Теперь вы можете обрезать или расширять холст в зависимости от размера "
-"текущего выделения, используя новые действия, доступные в меню для выделения."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-"Исправлена ошибка, при которой инструмент \"Обрезать\" мог стереть "
-"изображение при определенных условиях."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-"В окне настроек теперь есть новая опция выбора, если вы предпочитаете темную "
-"тему."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-"Было добавлено несколько новых параметов к \"графическому перу\", \"ластику"
-"\", и \"карандашу\"."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"С Drawing 0.8.0 вы, наконец, можете использовать планшет и стилус для "
-"рисования с помощью чувствительных к давлению инструментов, таких как новая "
-"«кисть» и «аэрограф»."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"Полноэкранный режим был полностью переработан, чтобы обеспечить более "
-"простой, но менее навязчивый доступ к инструментам и их параметрам."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"Фильтры были переписаны, чтобы сделать их более надежными, а так же был "
-"добавлен новый фильтр для гармоничного увеличения контрастности."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Теперь, когда вы перемещаете или удаляете выделенную область, оставленные "
-"пиксели могут иметь определенный цвет, а не быть только прозрачными. Этот "
-"конкретный цвет можно выбрать из списка. Эту функцию сложно объяснить "
-"словами, попробуйте сами, вы увидите."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"Такие параметры, как тип фона текста и стиль заливки формы, теперь при "
-"закрытии приложения сохраняются."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"Пользовательский интерфейс для выбора активного режима цветового применения "
-"был переписан, чтобы лучше отображать точную метку и лучше организовать "
-"возможные режимы в виде подменю."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"Режим \"размытие\" был удален, что упростило ситуацию и позволило нескольким "
-"инструментам («формам» и «кистям») получить поддержку режимов цветового "
-"приложения в целом."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -448,17 +313,23 @@ msgstr "Перейти на вкладку справа"
 msgid "Refresh"
 msgstr "Обновить"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Полноэкранный режим"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Предварительный просмотр"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Скрыть панель инструментов"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Выход из полноэкранного режима"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Полноэкранный режим"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -596,7 +467,7 @@ msgstr "Уменьшить размер"
 msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_Параметры"
 
@@ -888,6 +759,10 @@ msgstr "Сенсорные жесты"
 msgid "Loading…"
 msgstr "Загрузка…"
 
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Выход из полноэкранного режима"
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -921,6 +796,12 @@ msgstr "Невозможно перезагрузить не сохраненн�
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Несохраненный файл"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -1477,11 +1358,6 @@ msgstr "В буфере обмена нет изображений."
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Без параметров"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1574,6 +1450,10 @@ msgstr "Дополнительный цвет"
 msgid "Tool size"
 msgstr "Размер инструмента"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Без параметров"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1597,6 +1477,7 @@ msgid "Use this editor by default"
 msgstr "Использовать этот редактор по умолчанию"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Параметры выделения"
 
@@ -2225,12 +2106,22 @@ msgid "Error: invalid values"
 msgstr "Ошибка: недопустимые значения"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Параметры точек"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Обрезать выделенное"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Обрезать холст"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Параметры маркера"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2242,12 +2133,22 @@ msgid "Emboss"
 msgstr "Тиснение"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Параметры заливки"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Повернуть выделенное"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Повернуть холст"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Параметры заливки"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

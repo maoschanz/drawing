@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -72,137 +72,15 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
-msgstr ""
-"バージョン 0.8.2 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"バージョン 0.8.1 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-"選択している領域の広さに合わせて、キャンバスをトリミング・拡張できるアクショ"
-"ンが追加されました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-"\"トリミング\" ツールが、特定の条件下で画像を消してしまうバグを修正しました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-"ダークテーマを優先して使うオプションが実装されました (設定ウィンドウから有効"
-"にできます)。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-"様々なオプションが \"万年筆\" ブラシ、\"消しゴム\" ツール、\"鉛筆\" に追加さ"
-"れました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Drawing 0.8.0 では、タブレットとスタイラスペンを利用できるようになりました。"
-"新しい 'ブラシ' と 'エアブラシ' ツールには、スタイラスペンに加えられた力を感"
-"知し、描画効果を変化させる機能があります。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"全画面表示が一から作り直され、ツールとそのオプションへのアクセスは簡単にしつ"
-"つも、作業の邪魔にならないよう改善されました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"フィルターが書き直され、より緻密な効果を適用できるようになりました。また、調"
-"和の取れたコントラストを表現するフィルターも追加されました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"選択した領域を削除、もしくは移動したときに、背後のピクセルを特定の色で埋める"
-"か、それとも透過させるかを選べます。この特定の色は、選択領域から除外できま"
-"す。言葉で説明するのは難しい機能なので、実際にご自身で試してみてください。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"テキストの背景や、シェイプの塗り潰しなどのオプションが、アプリケーションを閉"
-"じても記憶されるようになりました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"色の描画モードを選択する UI が書き直され、より正確なラベル表示と、より分かり"
-"やすく整理されたメニューを利用できるようになりました。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"\"ぼかし\" モードが削除されました。\"シェイプ\" と \"ブラシ\" ツールにぼかし"
-"効果を組み合わせることはできなくなります。"
+"バージョン 0.8.2 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -429,17 +307,23 @@ msgstr "右のタブ"
 msgid "Refresh"
 msgstr "再読み込み"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "全画面表示"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "プレビューを切り替え"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "ツールバーを隠す"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "全画面表示を終了"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "全画面表示"
 
 #: src/ui/app-menus.ui
 msgid "_Colors"
@@ -577,7 +461,7 @@ msgstr "幅を細くする"
 msgid "Troubleshoot selection"
 msgstr "選択領域のトラブルシューティング"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "オプション (_O)"
 
@@ -869,6 +753,10 @@ msgstr "タッチ操作"
 msgid "Loading…"
 msgstr "読み込んでいます…"
 
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "全画面表示を終了"
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -902,6 +790,12 @@ msgstr "保存していないファイルをディスクから再読み込みす
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "未保存のファイル"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -1456,11 +1350,6 @@ msgstr "クリップボードに画像がありません。"
 msgid "Modifications will take effect in the next new window."
 msgstr "新しい設定の効果は、次に開いたウィンドウから適用されます。"
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "オプションなし"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1554,6 +1443,10 @@ msgstr "サブの色"
 msgid "Tool size"
 msgstr "ツールの大きさ"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "オプションなし"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1577,6 +1470,7 @@ msgid "Use this editor by default"
 msgstr "既定でこのエディターを使用"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "選択のオプション"
 
@@ -1903,7 +1797,6 @@ msgstr "グラディエーション"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "方向なし"
 
@@ -2206,12 +2099,22 @@ msgid "Error: invalid values"
 msgstr "エラー: 無効な値です"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "点のオプション"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "選択領域をトリミングします"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "キャンバスをトリミングします"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "蛍光ペンのオプション"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2223,12 +2126,22 @@ msgid "Emboss"
 msgstr "エンボス"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "染色のオプション"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "選択領域を回転します"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "キャンバスを回転します"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "染色のオプション"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-06 18:51+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -70,111 +70,13 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 
 #. This is just my name, do not translate it.
@@ -423,16 +325,23 @@ msgstr "סובב ימינה"
 msgid "Refresh"
 msgstr "רענון"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
 msgstr ""
+
+# There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "הצג/הסתר תצוגה מקדימה"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -585,7 +494,7 @@ msgstr "רוחב ברירת מחדל"
 msgid "Troubleshoot selection"
 msgstr "אפשרויות צבע"
 
-#: src/ui/app-menus.ui src/window.py
+#: src/ui/app-menus.ui
 msgid "_Options"
 msgstr "_אפשרויות"
 
@@ -759,7 +668,6 @@ msgstr "אין אפשרויות"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "בחירה חופשית"
 
@@ -767,7 +675,6 @@ msgstr "בחירה חופשית"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "פתיחת תמונה"
 
@@ -896,9 +803,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "טוען %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr ""
 
 #: src/deco_manager.py
 #, python-format
@@ -933,6 +843,12 @@ msgstr ""
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "קובץ לא שמור"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -1189,7 +1105,6 @@ msgstr "רקע אטום"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "רוחב ברירת מחדל"
 
@@ -1499,11 +1414,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "אין אפשרויות"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1597,6 +1507,10 @@ msgstr "צבע משנה"
 msgid "Tool size"
 msgstr "גודל כלי"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "אין אפשרויות"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1620,6 +1534,7 @@ msgid "Use this editor by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "אפשרויות בחירה"
 
@@ -2297,12 +2212,22 @@ msgid "Error: invalid values"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "אין אפשרויות"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "חיתוך הבחירה"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "חיתוך לוח הציור"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "אפשרויות קו"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2314,12 +2239,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "אפשרויות צביעה"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "סיבוב הבחירה"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "סיבוב לוח הציור"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "אפשרויות צביעה"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
