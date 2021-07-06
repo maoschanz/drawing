@@ -41,6 +41,9 @@ class ToolSkew(AbstractCanvasTool):
 		self.xy_spinbtn.connect('value-changed', self.on_coord_changed)
 		return bar
 
+	def get_options_label(self):
+		return _("Skewing options")
+
 	def get_edition_status(self):
 		if self.apply_to_selection:
 			return _("Skewing the selection")

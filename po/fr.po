@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"POT-Creation-Date: 2021-06-28 00:53+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -84,165 +84,6 @@ msgid ""
 msgstr ""
 "La version 0.8.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
 "nouvelles traductions."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The boundaries of the canvas are now always visibly delimited, to better "
-"render the area where you can draw, even if the canvas is transparent. It "
-"also helps to see what parts of the selection may disappear when you will "
-"unselect it."
-msgstr ""
-"Les bords du canevas sont maintenant toujours visiblement délimités, pour "
-"mieux afficher la zone où vous pouvez dessiner, même si le canevas est "
-"transparent. Ça aide aussi à voir quelles parties de la sélection pourraient "
-"disparaître lorsque vous la désélectionnerez."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Transform tools can now draw a preview of the pixels they may create outside "
-"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
-"more intuitive to use."
-msgstr ""
-"Les outils de transformation peuvent désormais dessiner un aperçu des pixels "
-"qu'ils pourraient créer hors du canevas actuel, ce qui rend les outils "
-"'rogner', 'redimensionner', et 'pivoter' plus intuitifs à utiliser."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-"L'outil « ligne droite » a maintenant une nouvelle option pour verrouiller "
-"son angle, tel que vous pouvez tracer des traits parfaitement horizontaux, "
-"verticaux, ou à 45°"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-"L'option en ligne de commande `--edit-clipboard` fonctionne désormais avec "
-"Wayland."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
-msgstr ""
-"Cette version de l'application est maintenant compatible avec les versions "
-"plus anciennes de GNOME (Ubuntu LTS 18.04)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"La version 0.8.1 comporte plusieurs correctifs de bugs mineurs, et diverses "
-"nouvelles traductions."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-"Vous pouvez maintenant rogner ou étendre le canvas à une taille basée sur "
-"celle de la sélection, en utilisant de nouvelles actions disponibles dans "
-"les menus de la sélection."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-"Un bug, où l'outil \"rogner\" pouvait effacer l'image sous certaines "
-"conditions, a été corrigé."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-"Dans la fenêtre des préférences, il y a désormais une option pour dire si "
-"vous préférez la variante sombre de votre thème."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-"Plusieurs options ont été ajoutées, à la brosse \"plume calligraphique\", à "
-"l'outil \"gomme\", et au \"crayon\"."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Avec Dessin 0.8.0, vous pouvez enfin utiliser une tablette et un stylet pour "
-"dessiner avec des outils sensibles à la pression, tels que les nouveaux "
-"'pinceaux' et 'aérographe'."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"Le mode plein-écran a été repensé pour fournir un moyen plus simple mais "
-"moins intrusive d'accéder aux outils et leurs options."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"Les filtres ont été réécrits pour être plus fiables, et un nouveau filtre "
-"pour harmonieusement augmenter le contraste a été ajouté."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Lorsque vous déplacez ou supprimez la sélection, désormais les pixels "
-"laissés derrière peuvent optionnellement être d'une couleur spécifique, "
-"plutôt que toujours être transparents. Cette couleur spécifique peut être "
-"exclue de la sélection. C'est une fonctionnalité compliquée à expliquer avec "
-"des mots, essayez-la par vous-mêmes vous verrez."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"Davantage d'options, telles que le style de remplissage des formes ou le "
-"type d'arrière-plan du texte, sont maintenant persistées quand l'application "
-"se ferme."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"L'interface pour choisir le mode d'application des couleurs a été réécrite, "
-"pour mieux montrer le label du mode actif, et mieux organiser les modes "
-"possibles en différents sous-menus."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"Le mode \"floutage\" a été retiré, ce qui simplifie la situation et permet à "
-"plusieurs outils (\"formes\" et \"pinceaux\") de devenir compatible avec le "
-"concept de modes d'application des couleurs en général."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -2306,3 +2147,4 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
+

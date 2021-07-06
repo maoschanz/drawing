@@ -75,6 +75,9 @@ class ToolFilters(AbstractCanvasTool):
 		for f_id, f in self._all_filters.items():
 			f.set_filter_compact(f_id == self._active_filter, is_compact)
 
+	def get_options_label(self):
+		return _("Filters options")
+
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
 		return self.type_label + ' - ' + tip_label
