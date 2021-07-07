@@ -29,7 +29,3 @@ situation? -->
 ### Possible alternatives
 
 <!-- Describe alternatives solutions you've considered, if any. -->
-
-
-
-

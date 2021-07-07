@@ -141,11 +141,15 @@ class AbstractAbstractTool():
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method stores it as
 		'self.row', but does not pack it in the bar, and does not return it."""
-		self.row = Gtk.RadioButton(relief=Gtk.ReliefStyle.NONE, \
-		                        draw_indicator=False, valign=Gtk.Align.CENTER, \
-		                                                tooltip_text=self.label)
+		self.row = Gtk.RadioButton(
+			relief = Gtk.ReliefStyle.NONE, \
+			draw_indicator = False, \
+			valign = Gtk.Align.CENTER, \
+			tooltip_text = self.label \
+		)
+
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		self.label_widget = Gtk.Label(label=self.label) #, use_underline=True)
+		self.label_widget = Gtk.Label(label=self.label)
 		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:

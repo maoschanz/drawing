@@ -431,7 +431,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
 		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
 		self.gsettings.connect('changed::preview-size', self.show_info_settings)
-		self.gsettings.connect('changed::devel-only', self.show_info_settings)
+		# devel-only' isn't connected because it's auto-updated to False
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
 		self.gsettings.connect('changed::dark-theme-variant', self._update_theme_variant)
 		# Other settings are connected in DrImage
