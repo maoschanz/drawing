@@ -55,6 +55,8 @@ class DrImage(Gtk.Box):
 		self.gfile = None
 		self.filename = None
 		self._fps_counter = 0
+		self._fps_counter2 = 0
+		self._reload_is_locked = False
 		self.reset_fps_counter()
 		self._framerate_hint = 1.0
 
@@ -357,8 +359,12 @@ class DrImage(Gtk.Box):
 		so many redraws."""
 		if self.window.should_track_framerate:
 			# Context: this is a debug information that users will never see
-			self.window.prompt_message(True, _("%s frames per second") % self._fps_counter)
+			msg = _("%s frames per second") % (self._fps_counter + self._fps_counter2)
+			msg += " (" + str(self._fps_counter) + " rendered, "
+			msg += str(self._fps_counter2) + " skipped)"
+			self.window.prompt_message(True, msg)
 			self._fps_counter = 0
+			self._fps_counter2 = 0
 			GLib.timeout_add(1000, self.reset_fps_counter, {})
 		else:
 			self.window.prompt_message(False, "")
@@ -455,11 +461,19 @@ class DrImage(Gtk.Box):
 		return mx or my
 
 	def update(self, allow_imperfect=False):
-		if allow_imperfect and random.random() > self._framerate_hint:
-			pass
+		if allow_imperfect:
+			if self._reload_is_locked:
+				self._fps_counter2 += 1
+				return
+			self._reload_is_locked = True
+			GLib.timeout_add(83, self.async_update_surface, {})
 		else:
-			# print('image.py: _drawing_area.queue_draw')
-			self._drawing_area.queue_draw()
+			self.async_update_surface()
+
+	def async_update_surface(self, content_params={}):
+		self._reload_is_locked = False
+		# print('image.py: _drawing_area.queue_draw')
+		self._drawing_area.queue_draw()
 
 	def get_surface(self):
 		return self.surface
@@ -482,7 +496,7 @@ class DrImage(Gtk.Box):
 		# print("hint :", self._framerate_hint)
 
 	def use_stable_pixbuf(self, allow_imperfect=False):
-		if allow_imperfect and random.random() > self._framerate_hint:
+		if allow_imperfect and self._reload_is_locked:
 			pass
 		else:
 			# print('image.py: use_stable_pixbuf')
@@ -615,7 +629,7 @@ class DrImage(Gtk.Box):
 
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self._h_scrollbar.get_value(), self._v_scrollbar.get_value())
-		self.update()
+		self.update() # allowing imperfect framerate would likely be useless
 
 	def add_deltas(self, delta_x, delta_y, factor):
 		wanted_x = self.scroll_x + int(delta_x * factor)
