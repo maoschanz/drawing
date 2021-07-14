@@ -954,6 +954,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.should_track_framerate = not self.should_track_framerate
 		for img in self.notebook.get_children():
 			img.reset_fps_counter()
+		args[0].set_state(GLib.Variant.new_boolean(self.should_track_framerate))
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:

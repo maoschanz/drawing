@@ -54,11 +54,12 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
+
 		self._fps_counter = 0
 		self._fps_counter2 = 0
 		self._reload_is_locked = False
 		self.reset_fps_counter()
-		self._framerate_hint = 1.0
+		self._framerate_hint = 0
 
 		self._init_drawing_area()
 
@@ -492,16 +493,18 @@ class DrImage(Gtk.Box):
 		w = self.surface.get_width()
 		h = self.surface.get_height()
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, w, h)
-		# self._framerate_hint = math.sqrt(500000 / (w * h))
-		# print("hint :", self._framerate_hint)
+		self._framerate_hint = math.sqrt(w * h) - 1000
+		self._framerate_hint = int(self._framerate_hint * 0.2)
+		# between 500 and 33ms (= between 2 and 30 fps)
+		self._framerate_hint = max(33, min(500, self._framerate_hint))
+		# print("image.py: hint =", self._framerate_hint)
 
-	def use_stable_pixbuf(self, allow_imperfect=False):
-		if allow_imperfect and self._reload_is_locked:
-			pass
-		else:
-			# print('image.py: use_stable_pixbuf')
-			# maybe the "scale" parameter should be 1 instead of 0
-			self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+	def use_stable_pixbuf(self):
+		"""This is called by tools' `restore_pixbuf`, so at the beginning of
+		each operation (even unapplied)."""
+		# maybe the "scale" parameter should be 1 instead of 0
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+		# print('image.py: use_stable_pixbuf')
 		self.surface.set_device_scale(self.SCALE_FACTOR, self.SCALE_FACTOR)
 
 	def get_pixbuf_width(self):
