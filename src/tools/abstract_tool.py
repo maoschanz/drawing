@@ -46,7 +46,6 @@ class AbstractAbstractTool():
 		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
-		self._allow_imperfect = True
 		# Once everything is set, build the UI
 		self.build_row()
 		self.try_build_pane()
@@ -144,11 +143,15 @@ class AbstractAbstractTool():
 	def build_row(self):
 		"""Build the GtkRadioButton for the sidebar. This method stores it as
 		'self.row', but does not pack it in the bar, and does not return it."""
-		self.row = Gtk.RadioButton(relief=Gtk.ReliefStyle.NONE, \
-		                        draw_indicator=False, valign=Gtk.Align.CENTER, \
-		                                                tooltip_text=self.label)
+		self.row = Gtk.RadioButton(
+			relief = Gtk.ReliefStyle.NONE, \
+			draw_indicator = False, \
+			valign = Gtk.Align.CENTER, \
+			tooltip_text = self.label \
+		)
+
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		self.label_widget = Gtk.Label(label=self.label) #, use_underline=True)
+		self.label_widget = Gtk.Label(label=self.label)
 		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
@@ -221,9 +224,7 @@ class AbstractAbstractTool():
 	def simple_apply_operation(self, operation):
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
 		try:
-			self._allow_imperfect = False
 			self.do_tool_operation(operation)
-			self._allow_imperfect = True
 			self.get_image().add_to_history(operation)
 		except Exception as e:
 			self.show_error(str(e))
@@ -267,7 +268,7 @@ class AbstractAbstractTool():
 		self.get_image().update()
 
 	def restore_pixbuf(self):
-		self.get_image().use_stable_pixbuf(self._allow_imperfect)
+		self.get_image().use_stable_pixbuf()
 
 	############################################################################
 	# Signals handling #########################################################
@@ -275,7 +276,7 @@ class AbstractAbstractTool():
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		pass
 
 	def on_unclicked_motion_on_area(self, event, surface):

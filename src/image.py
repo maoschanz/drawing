@@ -54,9 +54,12 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
+
 		self._fps_counter = 0
+		self._skipped_frames = 0
+		self._rendering_is_locked = False
+		self._framerate_hint = 0
 		self.reset_fps_counter()
-		self._framerate_hint = 1.0
 
 		self._init_drawing_area()
 
@@ -357,8 +360,11 @@ class DrImage(Gtk.Box):
 		so many redraws."""
 		if self.window.should_track_framerate:
 			# Context: this is a debug information that users will never see
-			self.window.prompt_message(True, _("%s frames per second") % self._fps_counter)
+			msg = _("%s frames per second") % self._fps_counter
+			msg += " (" + str(self._skipped_frames) + " motion inputs skipped)"
+			self.window.prompt_message(True, msg)
 			self._fps_counter = 0
+			self._skipped_frames = 0
 			GLib.timeout_add(1000, self.reset_fps_counter, {})
 		else:
 			self.window.prompt_message(False, "")
@@ -422,8 +428,14 @@ class DrImage(Gtk.Box):
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
 			event_x, event_y = self.get_event_coords(event)
-			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update(True)
+			self.active_tool().on_motion_on_area(event, self.surface, event_x, \
+			                                 event_y, self._rendering_is_locked)
+			if self._rendering_is_locked:
+				self._skipped_frames += 1
+				return
+			self._rendering_is_locked = True
+			self.update()
+			GLib.timeout_add(self._framerate_hint, self._async_unlock, {})
 
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			self.scroll_x = self._slip_init_x
@@ -454,12 +466,12 @@ class DrImage(Gtk.Box):
 		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
 		return mx or my
 
-	def update(self, allow_imperfect=False):
-		if allow_imperfect and random.random() > self._framerate_hint:
-			pass
-		else:
-			# print('image.py: _drawing_area.queue_draw')
-			self._drawing_area.queue_draw()
+	def update(self):
+		# print('image.py: _drawing_area.queue_draw')
+		self._drawing_area.queue_draw()
+
+	def _async_unlock(self, content_params={}):
+		self._rendering_is_locked = False
 
 	def get_surface(self):
 		return self.surface
@@ -478,16 +490,18 @@ class DrImage(Gtk.Box):
 		w = self.surface.get_width()
 		h = self.surface.get_height()
 		self.main_pixbuf = Gdk.pixbuf_get_from_surface(self.surface, 0, 0, w, h)
-		# self._framerate_hint = math.sqrt(500000 / (w * h))
-		# print("hint :", self._framerate_hint)
+		self._framerate_hint = math.sqrt(w * h) - 1000
+		self._framerate_hint = int(self._framerate_hint * 0.2)
+		# between 500 and 33ms (= between 2 and 30 fps)
+		self._framerate_hint = max(33, min(500, self._framerate_hint))
+		# print("image.py: hint =", self._framerate_hint)
 
-	def use_stable_pixbuf(self, allow_imperfect=False):
-		if allow_imperfect and random.random() > self._framerate_hint:
-			pass
-		else:
-			# print('image.py: use_stable_pixbuf')
-			# maybe the "scale" parameter should be 1 instead of 0
-			self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+	def use_stable_pixbuf(self):
+		"""This is called by tools' `restore_pixbuf`, so at the beginning of
+		each operation (even unapplied)."""
+		# maybe the "scale" parameter should be 1 instead of 0
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+		# print('image.py: use_stable_pixbuf')
 		self.surface.set_device_scale(self.SCALE_FACTOR, self.SCALE_FACTOR)
 
 	def get_pixbuf_width(self):
@@ -615,7 +629,7 @@ class DrImage(Gtk.Box):
 
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self._h_scrollbar.get_value(), self._v_scrollbar.get_value())
-		self.update()
+		self.update() # allowing imperfect framerate would likely be useless
 
 	def reset_deltas(self, delta_x, delta_y):
 		if delta_x > 0:

@@ -77,9 +77,10 @@ class ToolLine(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event.button, event_x, event_y)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		operation = self.build_operation(event_x, event_y)
-		self.do_tool_operation(operation)
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		if render:
+			operation = self.build_operation(event_x, event_y)
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		operation = self.build_operation(event_x, event_y)

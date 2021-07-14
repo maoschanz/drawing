@@ -59,19 +59,6 @@ from .utilities import utilities_add_filechooser_filters
 from .utilities import utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
-
-PLACEHOLDER_UI_STRING = '''<?xml version="1.0"?>
-<interface>
-  <menu id="tool-placeholder">
-    <section>
-      <item>
-        <attribute name="action">none</attribute>
-        <attribute name="label">%s</attribute>
-      </item>
-    </section>
-  </menu>
-</interface>'''
-
 DEFAULT_TOOL_ID = 'pencil'
 
 ################################################################################
@@ -444,7 +431,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
 		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
 		self.gsettings.connect('changed::preview-size', self.show_info_settings)
-		self.gsettings.connect('changed::devel-only', self.show_info_settings)
+		# devel-only' isn't connected because it's auto-updated to False
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
 		self.gsettings.connect('changed::dark-theme-variant', self._update_theme_variant)
 		# Other settings are connected in DrImage
@@ -510,6 +497,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
+		self.add_action_simple('toggle_menubar', self.action_menubar, ['<Ctrl>F2'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
@@ -681,12 +669,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		In this case, an useful string is set by `get_auto_decorations()`."""
 		self.has_good_width_limits = False
 
-		builder = Gtk.Builder.new_from_string(PLACEHOLDER_UI_STRING \
-		                                                  % _("No options"), -1)
-		# Loading a whole file in a GtkBuilder just for this looked ridiculous,
-		# so it's built from a string.
-		self.placeholder_model = builder.get_object('tool-placeholder')
-
 		# Remember the setting, so no need to restart this at each dialog.
 		self.deco_layout = self.gsettings.get_string('deco-type')
 		if self.deco_layout == '':
@@ -716,6 +698,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""This displays/hides the tool's options menu, and is implemented as an
 		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
+
+	def action_menubar(self, *args):
+		self.set_show_menubar(not self.get_show_menubar())
 
 	def _adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom pane to the new
@@ -924,8 +909,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
-		The first menu is the popover from the bottom bar. It can contain any
-		widget, or it can be build from a Gio.MenuModel
+		The first menu is the popover from the bottom bar. It can be built from
+		a Gio.MenuModel, or it can contain any widget.
 		The second menu is build from a Gio.MenuModel and is in the menubar (not
 		available with all layouts)."""
 		widget = self.active_tool().get_options_widget()
@@ -933,10 +918,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		label = self.active_tool().get_options_label()
 		if model is None:
 			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("_Options"), self.placeholder_model)
+			item = Gio.MenuItem()
+			item.set_label(label)
+			item.set_action_and_target_value('win.PLACEHOLDER', None)
+			self.app.get_menubar().insert_item(5, item)
 		else:
 			self.app.get_menubar().remove(5)
-			self.app.get_menubar().insert_submenu(5, _("_Options"), model)
+			self.app.get_menubar().insert_submenu(5, label, model)
 		pane = self.options_manager.get_active_pane()
 		pane.build_options_menu(widget, model, label)
 
@@ -977,6 +965,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.should_track_framerate = not self.should_track_framerate
 		for img in self.notebook.get_children():
 			img.reset_fps_counter()
+		args[0].set_state(GLib.Variant.new_boolean(self.should_track_framerate))
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:
