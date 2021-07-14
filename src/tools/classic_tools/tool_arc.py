@@ -86,8 +86,9 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y)
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation(event_x, event_y)
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._1st_segment is None:

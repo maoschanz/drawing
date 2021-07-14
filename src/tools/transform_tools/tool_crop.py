@@ -174,7 +174,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = event_x
 		self.y_press = event_y
 		# not adding the condition would be a better UX but slower to compute
-		if not self.apply_to_selection:
+		if render and not self.apply_to_selection:
 			self.build_and_do_op()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):

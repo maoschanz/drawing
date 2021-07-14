@@ -131,7 +131,8 @@ class ToolShape(AbstractClassicTool):
 			elif self._shape_id == 'circle':
 				self._draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
-		self.do_tool_operation(operation)
+		if render:
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape' or self._shape_id == 'polygon':
@@ -176,7 +177,6 @@ class ToolShape(AbstractClassicTool):
 		if not should_close:
 			# print('continue polygon')
 			cairo_context.line_to(event_x, event_y)
-			cairo_context.stroke_preserve()
 		if memorize:
 			# print('memorize polygon')
 			self._path = cairo_context.copy_path()

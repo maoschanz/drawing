@@ -89,8 +89,9 @@ class ToolRotate(AbstractCanvasTool):
 		delta_y = center_y - event_y
 		release_angle = ( math.atan2(delta_x, delta_y) * 180 ) / math.pi
 		self.angle_btn.set_value(int(release_angle) + self.angle_press)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)

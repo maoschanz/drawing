@@ -99,8 +99,9 @@ class ToolEraser(ToolPencil):
 			self._draw_rectangle(event_x, event_y)
 		else:
 			self._add_point(event_x, event_y)
-		operation = self.build_operation(True)
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation(True)
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._eraser_shape == 'rectangle':
