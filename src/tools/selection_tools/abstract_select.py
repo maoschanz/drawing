@@ -125,7 +125,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self.behavior == 'define':
 			self.motion_define(event_x, event_y)
 		elif self.behavior == 'drag':

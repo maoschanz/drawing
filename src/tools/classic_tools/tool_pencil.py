@@ -76,7 +76,7 @@ class ToolPencil(AbstractClassicTool):
 		cairo_context.line_to(event_x, event_y)
 		self._path = cairo_context.copy_path()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self._add_point(event_x, event_y)
 		operation = self.build_operation()
 		self.do_tool_operation(operation)

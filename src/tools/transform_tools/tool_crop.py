@@ -146,7 +146,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.unclicked = False
 		self._update_expansion_color(event.button)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = int(event_x - self.x_press)
 		delta_y = int(event_y - self.y_press)
 

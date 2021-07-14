@@ -94,7 +94,7 @@ class ToolEraser(ToolPencil):
 			clr = self.secondary_color
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._eraser_shape == 'rectangle':
 			self._draw_rectangle(event_x, event_y)
 		else:

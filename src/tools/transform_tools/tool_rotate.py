@@ -81,7 +81,7 @@ class ToolRotate(AbstractCanvasTool):
 		press_as_degrees = (math.atan2(delta_x0, delta_y0) * 180) / math.pi
 		self.angle_press = self.get_angle() - int(press_as_degrees)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if not self.apply_to_selection:
 			return
 		center_x, center_y = self.get_selection().get_center_coords()

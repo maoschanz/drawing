@@ -76,7 +76,7 @@ class ToolArc(AbstractClassicTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event.button, event_x, event_y)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		cairo_context = self.get_context()
 		if self._1st_segment is None:
 			cairo_context.move_to(self.x_press, self.y_press)
