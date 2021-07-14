@@ -134,7 +134,7 @@ class ToolScale(AbstractCanvasTool):
 		self.directions = self.cursor_name.replace('-resize', '')
 		self.set_keep_proportions()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self.cursor_name == 'not-allowed':
 			return
 		delta_x = event_x - self.x_press
