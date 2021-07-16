@@ -204,6 +204,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self._load_tool('skew', ToolSkew, disabled_tools, dev)
 		self._load_tool('filters', ToolFilters, disabled_tools, dev)
 
+		self._add_auto_mnemonics()
+
 		# Side pane buttons for tools, and their menubar items if they don't
 		# exist yet (they're defined on the application level)
 		self._build_tool_rows()
@@ -219,6 +221,59 @@ class DrWindow(Gtk.ApplicationWindow):
 		# the end of this process, implemented in the `_enable_first_tool`
 		# method, will be called later because it requires an active image,
 		# which doesn't exist yet at this point of the window init process.
+
+	def _add_auto_mnemonics(self):
+		# I don't want useful tools lacking a mnemonic accelerator because a
+		# useless one "stole" its letters, so the mnemonics are decided in the
+		# following order:
+		sorted_tools = [
+			'pencil',
+			'text',
+			'rect_select',
+			'crop',
+			'scale',
+			'rotate',
+			'shape',
+			'filters',
+			'line',
+			'highlight',
+			'arc',
+			'picker',
+			'brush',
+			'free_select',
+			'eraser',
+			'skew',
+			'paint',
+			'color_select',
+			'points',
+			'experiment'
+		]
+		for tool_id in self.tools:
+			if tool_id not in sorted_tools:
+				print("Warning: " + tool_id + "will not have a mnemonic")
+
+		underlined_chars = {}
+		for tool_id in sorted_tools:
+			if tool_id not in self.tools:
+				continue
+			letter_index = 0
+			while(letter_index >= 0):
+				if letter_index == len(self.tools[tool_id].label):
+					letter_index = -1
+					continue
+				ith_char = self.tools[tool_id].label[letter_index]
+				letter_index += 1
+
+				if ith_char.isalpha() \
+				and ith_char.upper() not in underlined_chars.values() \
+				and ith_char.lower() not in underlined_chars.values():
+					underlined_chars[tool_id] = ith_char
+					letter_index = -1
+
+		for tool_id in underlined_chars:
+			c = underlined_chars[tool_id]
+			new_label = self.tools[tool_id].label.replace(c, "_" + c, 1)
+			self.tools[tool_id].mnemolabel = new_label
 
 	def _enable_first_tool(self):
 		"""Near the end of the window initialisation process, this method is
@@ -247,7 +302,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""Adds each tool's button to the side pane."""
 		group = None
 		for tool_id in self.tools:
-			row = self.tools[tool_id].row
+			row = self.tools[tool_id].build_row()
 			if group is None:
 				group = row
 			else:
