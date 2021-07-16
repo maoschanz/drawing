@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -110,8 +110,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Tiedosto"
+msgid "File"
+msgstr "Tiedosto"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +186,8 @@ msgid "Quit all windows"
 msgstr "Sulje kaikki ikkunat"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Muokkaa"
+msgid "Edit"
+msgstr "Muokkaa"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +243,8 @@ msgid "Preferences"
 msgstr "Asetukset"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Näytä"
+msgid "View"
+msgstr "Näytä"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -330,9 +330,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "Kokonäyttö"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Värit"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Värit"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -443,9 +443,9 @@ msgstr "Älä käytä värejä, mutta…"
 msgid "Erase"
 msgstr "Pyyhi"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Työkalut"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Työkalut"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -474,12 +474,12 @@ msgid "Troubleshoot selection"
 msgstr "Vianmääritys"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Valinnat"
+msgid "Options"
+msgstr "Valinnat"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Apua"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Apua"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -582,10 +582,6 @@ msgstr "Käytä näitä asetuksia oletuksena"
 msgid "Images"
 msgstr "Kuvat"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Työkalut"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Ikkuna"
@@ -676,10 +672,6 @@ msgstr "Yleinen"
 msgid "Main menu"
 msgstr "Päävalikko"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Apua"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Kuva"
@@ -730,10 +722,6 @@ msgstr "Poista valinta"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Tuo tiedosto valintana"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Värit"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2222,9 +2210,6 @@ msgstr "Kylläisyys"
 
 #~ msgid "Quit"
 #~ msgstr "Sulje"
-
-#~ msgid "Edit"
-#~ msgstr "Muokkaa"
 
 #~ msgid "Keyboard"
 #~ msgstr "Näppäimistö"

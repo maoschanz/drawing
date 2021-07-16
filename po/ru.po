@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -114,8 +114,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Меню \"Новое изображение\" было открыто"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Файл"
+msgid "File"
+msgstr "Файл"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -189,8 +189,8 @@ msgid "Quit all windows"
 msgstr "Закрыть все окна"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Правка"
+msgid "Edit"
+msgstr "Правка"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -246,8 +246,8 @@ msgid "Preferences"
 msgstr "Параметры"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Вид"
+msgid "View"
+msgstr "Вид"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -331,9 +331,9 @@ msgstr "Скрыть панель инструментов"
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Цвета"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Цвета"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -438,9 +438,9 @@ msgstr "Без использования цвета…"
 msgid "Erase"
 msgstr "Ластик"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Инструменты"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Инструменты"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -468,12 +468,12 @@ msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Параметры"
+msgid "Options"
+msgstr "Параметры"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Справка"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Справка"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -570,10 +570,6 @@ msgstr "Использовать эти настройки по умолчани
 msgid "Images"
 msgstr "Изображение"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Инструменты"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Окно"
@@ -661,10 +657,6 @@ msgstr "Общие"
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Справка"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Изображение"
@@ -714,10 +706,6 @@ msgstr "Удалить выделенное"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Импортировать файл как выделенное"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Цвета"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2175,9 +2163,6 @@ msgstr "Насыщенность"
 
 #~ msgid "Quit"
 #~ msgstr "Завершить"
-
-#~ msgid "Edit"
-#~ msgstr "Правка"
 
 #~ msgid "Open a file"
 #~ msgstr "Открыть файл"

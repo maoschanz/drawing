@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -108,8 +108,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Den åbnede menu \"nyt billede\""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Fil"
+msgid "File"
+msgstr "Fil"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -183,8 +183,8 @@ msgid "Quit all windows"
 msgstr "Afslut alle vinduer"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Rediger"
+msgid "Edit"
+msgstr "Rediger"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -240,8 +240,8 @@ msgid "Preferences"
 msgstr "Præferencer"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Vis"
+msgid "View"
+msgstr "Vis"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -325,9 +325,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "Farv_er"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Farver"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -433,9 +433,9 @@ msgstr "Brug ikke farverne men …"
 msgid "Erase"
 msgstr "Viskelæder"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "Værk_tøjer"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Værktøjer"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -463,12 +463,12 @@ msgid "Troubleshoot selection"
 msgstr "Fejlsøg markering"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "Valg_muligheder"
+msgid "Options"
+msgstr "Valgmuligheder"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Hjælp"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hjælp"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -570,10 +570,6 @@ msgstr "Brug indstillingerne som standard"
 msgid "Images"
 msgstr "Billeder"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Værktøjer"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Vindue"
@@ -663,10 +659,6 @@ msgstr "Generelt"
 msgid "Main menu"
 msgstr "Hovedmenu"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hjælp"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Billede"
@@ -716,10 +708,6 @@ msgstr "Slet markeringen"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Importér en fil som markeringen"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Farver"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui

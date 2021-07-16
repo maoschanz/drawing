@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -73,14 +73,13 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
-msgstr "Hautapena biratu ondoren, altuera okerra zuen, baina orain hori zuzendu da."
+msgstr ""
+"Hautapena biratu ondoren, altuera okerra zuen, baina orain hori zuzendu da."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "0.8.2 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
@@ -112,8 +111,8 @@ msgid "The \"new image\" menu opened"
 msgstr "\"irudi berria\" menu irekia"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Fitxategia"
+msgid "File"
+msgstr "Fitxategia"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -188,8 +187,8 @@ msgid "Quit all windows"
 msgstr "Itxi leiho guztiak"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Editatu"
+msgid "Edit"
+msgstr "Editatu"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -245,8 +244,8 @@ msgid "Preferences"
 msgstr "Hobespenak"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Ikusi"
+msgid "View"
+msgstr "Ikusi"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -330,9 +329,9 @@ msgstr "Ezkutatu tresna-barrak"
 msgid "Fullscreen"
 msgstr "Pantaila osoa"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Koloreak"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Koloreak"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -439,9 +438,9 @@ msgstr "Ez erabili koloreak baina…"
 msgid "Erase"
 msgstr "Ezabatu"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Tresnak"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Tresnak"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -471,12 +470,12 @@ msgid "Troubleshoot selection"
 msgstr "Hautapen arazoak konpontzen"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Aukerak"
+msgid "Options"
+msgstr "Aukerak"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Laguntza"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Laguntza"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -578,10 +577,6 @@ msgstr "Erabili ezarpen hauek lehenespenez"
 msgid "Images"
 msgstr "Irudiak"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Tresnak"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Leihoa"
@@ -671,10 +666,6 @@ msgstr "Orokorra"
 msgid "Main menu"
 msgstr "Menu nagusia"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Laguntza"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Irudia"
@@ -725,10 +716,6 @@ msgstr "Ezabatu hautapena"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Inportatu fitxategia hautapen gisa"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Koloreak"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2223,6 +2210,3 @@ msgstr "Saturazioa"
 
 #~ msgid "Quit"
 #~ msgstr "Irten"
-
-#~ msgid "Edit"
-#~ msgstr "Editatu"

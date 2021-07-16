@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2021-06-05 08:56+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -109,8 +109,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Menyn \"Ny bild\" öppnas"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Arkiv"
+msgid "File"
+msgstr "Arkiv"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -184,8 +184,8 @@ msgid "Quit all windows"
 msgstr "Stäng alla fönster"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Redigera"
+msgid "Edit"
+msgstr "Redigera"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -241,8 +241,8 @@ msgid "Preferences"
 msgstr "Inställningar"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "Vi_sa"
+msgid "View"
+msgstr "Visa"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -326,9 +326,9 @@ msgstr "Dölj verktygsfält"
 msgid "Fullscreen"
 msgstr "Fullskärm"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Färger"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Färger"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -433,9 +433,9 @@ msgstr "Använd inte dessa färger, men…"
 msgid "Erase"
 msgstr "Sudda"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Verktyg"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Verktyg"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -463,12 +463,12 @@ msgid "Troubleshoot selection"
 msgstr "Felsök markering"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "A_lternativ"
+msgid "Options"
+msgstr "Alternativ"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Hjälp"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hjälp"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -565,10 +565,6 @@ msgstr "Använd dessa inställningar som standard"
 msgid "Images"
 msgstr "Bilder"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Verktyg"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Fönster"
@@ -656,10 +652,6 @@ msgstr "Allmänt"
 msgid "Main menu"
 msgstr "Huvudmeny"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hjälp"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Bild"
@@ -709,10 +701,6 @@ msgstr "Ta bort markerat"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Importera en bildfil till markeringen"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Färger"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2165,38 +2153,6 @@ msgstr "Oskärperadie"
 msgid "Saturation"
 msgstr "Mättnad"
 
-#~ msgid "Default variant"
-#~ msgstr "Standardvariant"
-
-#~ msgid "Light variant"
-#~ msgstr "Ljus variant"
-
-#~ msgid "Dark variant"
-#~ msgstr "Mörk variant"
-
-#~ msgid ""
-#~ "Among the funny bugs: the bottom panes sometimes refused to adapt to the "
-#~ "screen size, and could disappear under certain conditions."
-#~ msgstr ""
-#~ "Bland de roliga buggarna: De undre panelerna vägrade ibland att anpassa "
-#~ "sig till skärmstorleken, och kunde försvinna under vissa förhållanden."
-
-#~ msgid ""
-#~ "The catastrophic \"print\" action, that no one ever used so no one ever "
-#~ "noticed, is now somewhat usable."
-#~ msgstr ""
-#~ "Den katastrofala funktionen \"utskrift\", som ingen någonsin använt och "
-#~ "därför inte lagt märke till, är nu något mer användbar."
-
-#~ msgid "Photo-oriented modes"
-#~ msgstr "Fotoorienterade lägen"
-
-#~ msgid "Canvas and selection"
-#~ msgstr "Arbetsyta och markering"
-
-#~ msgid "com.github.maoschanz.drawing"
-#~ msgstr "com.github.maoschanz.drawing"
-
 #~ msgid "About"
 #~ msgstr "Om"
 
@@ -2208,9 +2164,6 @@ msgstr "Mättnad"
 
 #~ msgid "Other tools"
 #~ msgstr "Andra verktyg"
-
-#~ msgid "Edit"
-#~ msgstr "Redigera"
 
 #~ msgid "Open a file"
 #~ msgstr "Öppna en fil"

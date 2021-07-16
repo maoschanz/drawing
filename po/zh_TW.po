@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -108,8 +108,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "檔案(_F)"
+msgid "File"
+msgstr "檔案"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -184,8 +184,8 @@ msgid "Quit all windows"
 msgstr "結束所有視窗"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "編輯(_E)"
+msgid "Edit"
+msgstr "編輯"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -241,8 +241,8 @@ msgid "Preferences"
 msgstr "偏好設定"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "檢視(_V)"
+msgid "View"
+msgstr "檢視"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -326,9 +326,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "色彩(_C)"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "色彩"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -435,9 +435,9 @@ msgstr "不要使用色彩，而是…"
 msgid "Erase"
 msgstr "擦除"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "工具(_T)"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "工具"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -467,12 +467,12 @@ msgid "Troubleshoot selection"
 msgstr "對選擇區域排查問題"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "選項(_O)"
+msgid "Options"
+msgstr "選項"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "說明(_H)"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "說明"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -574,10 +574,6 @@ msgstr "預設使用這些設定"
 msgid "Images"
 msgstr "影像"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "工具"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "視窗"
@@ -667,10 +663,6 @@ msgstr "通用"
 msgid "Main menu"
 msgstr "主選單"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "說明"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "影像"
@@ -721,10 +713,6 @@ msgstr "刪除選擇區域"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "匯入檔案作為選擇區域"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "色彩"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2206,9 +2194,6 @@ msgstr "飽和度"
 
 #~ msgid "Quit"
 #~ msgstr "結束"
-
-#~ msgid "Edit"
-#~ msgstr "編輯"
 
 #~ msgid "Open a file"
 #~ msgstr "開啟檔案"

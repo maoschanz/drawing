@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -111,8 +111,8 @@ msgid "The \"new image\" menu opened"
 msgstr "\"Yeni resim\" menüsü açıldı"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Dosya"
+msgid "File"
+msgstr "Dosya"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +186,8 @@ msgid "Quit all windows"
 msgstr "Tüm pencerelerden çık"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Düzenle"
+msgid "Edit"
+msgstr "Düzenle"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +243,8 @@ msgid "Preferences"
 msgstr "Tercihler"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Görünüm"
+msgid "View"
+msgstr "Görünüm"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -328,9 +328,9 @@ msgstr "Araç çubuklarını gizle"
 msgid "Fullscreen"
 msgstr "Tam ekran"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Renkler"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Renkler"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -435,9 +435,9 @@ msgstr "Renkleri kullanmayın ama…"
 msgid "Erase"
 msgstr "Silgi"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Araçlar"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Araçlar"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -465,12 +465,12 @@ msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Seçenekler"
+msgid "Options"
+msgstr "Seçenekler"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Yardım"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Yardım"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -567,10 +567,6 @@ msgstr "Bu ayarları varsayılan olarak kullan"
 msgid "Images"
 msgstr "Görüntüler"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Araçlar"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Pencere"
@@ -660,10 +656,6 @@ msgstr "Genel"
 msgid "Main menu"
 msgstr "Ana menü"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Yardım"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Görüntü"
@@ -713,10 +705,6 @@ msgstr "Seçimi sil"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Bir dosyayı seçim olarak al"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Renkler"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2182,9 +2170,6 @@ msgstr "Doygunluk"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Tam ekran kipinden çık"
-
-#~ msgid "Edit"
-#~ msgstr "Düzenle"
 
 #~ msgid "Open a file"
 #~ msgstr "Bir dosya aç"

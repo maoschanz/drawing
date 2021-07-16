@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -105,8 +105,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_קובץ"
+msgid "File"
+msgstr "קובץ"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -187,8 +187,8 @@ msgid "Quit all windows"
 msgstr "יציאה מכל החלונות"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_עריכה"
+msgid "Edit"
+msgstr "עריכה"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -244,8 +244,8 @@ msgid "Preferences"
 msgstr "מאפיינים"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_הצגה"
+msgid "View"
+msgstr "הצגה"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -344,9 +344,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_צבעים"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "צבעים"
 
 #: src/ui/app-menus.ui
 #, fuzzy
@@ -463,9 +463,9 @@ msgstr ""
 msgid "Erase"
 msgstr "מחק"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_כלים"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "כלים"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -495,12 +495,12 @@ msgid "Troubleshoot selection"
 msgstr "אפשרויות צבע"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_אפשרויות"
+msgid "Options"
+msgstr "אפשרויות"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_עזרה"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "עזרה"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -606,10 +606,6 @@ msgstr "עשה שימוש בעורך זה בברירת המחדל"
 msgid "Images"
 msgstr "תמונה"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "כלים"
-
 #: src/ui/preferences.ui
 #, fuzzy
 msgid "Window"
@@ -703,10 +699,6 @@ msgstr "כללי"
 msgid "Main menu"
 msgstr "תפריט ראשי"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "עזרה"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "תמונה"
@@ -759,10 +751,6 @@ msgstr "שינוי קנה מידה של הבחירה"
 #, fuzzy
 msgid "Import a file as the selection"
 msgstr "סיבוב הבחירה"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "צבעים"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -2281,9 +2269,6 @@ msgstr "רוויה"
 
 #~ msgid "Quit"
 #~ msgstr "יציאה"
-
-#~ msgid "Edit"
-#~ msgstr "עריכה"
 
 #~ msgid "Open a file"
 #~ msgstr "פתיחת קובץ"

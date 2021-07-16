@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2021-02-12 02:15+0100\n"
 "Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language-Team: Czech <>\n"
@@ -108,8 +108,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Otevřeno menu „nový obrázek“"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Soubor"
+msgid "File"
+msgstr "Soubor"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -183,8 +183,8 @@ msgid "Quit all windows"
 msgstr "Zavřít všechna okna"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Upravit"
+msgid "Edit"
+msgstr "Upravit"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -240,8 +240,8 @@ msgid "Preferences"
 msgstr "Předvolby"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Zobrazit"
+msgid "View"
+msgstr "Zobrazit"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -325,9 +325,9 @@ msgstr "Skrýt panely nástrojů"
 msgid "Fullscreen"
 msgstr "Zapnout zobrazení na celou obrazovku"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Barvy"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Barvy"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -433,9 +433,9 @@ msgstr "Nepoužívat barvy, ale ..."
 msgid "Erase"
 msgstr "Vymazat"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Nástroje"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Nástroje"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -463,12 +463,12 @@ msgid "Troubleshoot selection"
 msgstr "Odstranit potíže s výběrem"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Možnosti"
+msgid "Options"
+msgstr "Možnosti"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "Ná_pověda"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Nápověda"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -570,10 +570,6 @@ msgstr "Používat toto nastavení automaticky"
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Nástroje"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Okno"
@@ -663,10 +659,6 @@ msgstr "Obecné"
 msgid "Main menu"
 msgstr "Hlavní menu"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Nápověda"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Obrázek"
@@ -716,10 +708,6 @@ msgstr "Smazat výběr"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Importovat soubor jako výběr"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Barvy"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui

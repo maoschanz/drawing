@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2021-07-08 20:47+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
@@ -114,8 +114,8 @@ msgid "The \"new image\" menu opened"
 msgstr "El menú de \"imagen nueva\" se abrió"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Archivo"
+msgid "File"
+msgstr "Archivo"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -189,8 +189,8 @@ msgid "Quit all windows"
 msgstr "Cerrar todas las ventanas"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Editar"
+msgid "Edit"
+msgstr "Editar"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -246,8 +246,8 @@ msgid "Preferences"
 msgstr "Preferencias"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Ver"
+msgid "View"
+msgstr "Ver"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -330,9 +330,9 @@ msgstr "Ocultar barras de herramientas"
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Colores"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Colores"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -437,9 +437,9 @@ msgstr "No utilizar los colores pero…"
 msgid "Erase"
 msgstr "Borrar"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Herramientas"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Herramientas"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -467,12 +467,12 @@ msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Opciones"
+msgid "Options"
+msgstr "Opciones"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "Ay_uda"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Ayuda"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -569,10 +569,6 @@ msgstr "Utilizar estos ajustes de manera predeterminada"
 msgid "Images"
 msgstr "Imágenes"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Herramientas"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Ventana"
@@ -660,10 +656,6 @@ msgstr "General"
 msgid "Main menu"
 msgstr "Menú principal"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Ayuda"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Imagen"
@@ -713,10 +705,6 @@ msgstr "Eliminar la selección"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Importar un archivo como selección"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Colores"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
