@@ -80,9 +80,10 @@ class ToolLine(AbstractClassicTool):
 		self.update_modifier_state(event.state)
 		self._ortholock = self._ortholock or "SHIFT" in self._modifier_keys
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		operation = self.build_operation(event_x, event_y)
-		self.do_tool_operation(operation)
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		if render:
+			operation = self.build_operation(event_x, event_y)
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		operation = self.build_operation(event_x, event_y)

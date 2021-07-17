@@ -44,6 +44,9 @@ class ToolCrop(AbstractCanvasTool):
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		return bar
 
+	def get_options_label(self):
+		return _("Cropping options")
+
 	def get_edition_status(self):
 		if self.apply_to_selection:
 			return _("Cropping the selection")
@@ -57,25 +60,25 @@ class ToolCrop(AbstractCanvasTool):
 		self._x = 0
 		self._y = 0
 		if self.apply_to_selection:
-			self.init_if_selection()
+			self._init_if_selection()
 		else:
-			self.init_if_main()
-		self.width_btn.set_value(self.original_width)
-		self.height_btn.set_value(self.original_height)
+			self._init_if_main()
+		self.width_btn.set_value(self._original_width)
+		self.height_btn.set_value(self._original_height)
 		self.set_action_sensitivity('crop-expand', not self.apply_to_selection)
 		self.build_and_do_op()
 
-	def init_if_selection(self):
-		self.original_width = self.get_selection_pixbuf().get_width()
-		self.original_height = self.get_selection_pixbuf().get_height()
-		self.width_btn.set_range(1, self.original_width)
-		self.height_btn.set_range(1, self.original_height)
+	def _init_if_selection(self):
+		self._original_width = self.get_selection_pixbuf().get_width()
+		self._original_height = self.get_selection_pixbuf().get_height()
+		self.width_btn.set_range(1, self._original_width)
+		self.height_btn.set_range(1, self._original_height)
 
-	def init_if_main(self):
-		self.original_width = self.get_image().get_pixbuf_width()
-		self.original_height = self.get_image().get_pixbuf_height()
-		self.width_btn.set_range(1, 10 * self.original_width)
-		self.height_btn.set_range(1, 10 * self.original_height)
+	def _init_if_main(self):
+		self._original_width = self.get_image().get_pixbuf_width()
+		self._original_height = self.get_image().get_pixbuf_height()
+		self.width_btn.set_range(1, 10 * self._original_width)
+		self.height_btn.set_range(1, 10 * self._original_height)
 
 	############################################################################
 
@@ -103,10 +106,10 @@ class ToolCrop(AbstractCanvasTool):
 
 	############################################################################
 
-	def get_width(self):
+	def _get_width(self):
 		return self.width_btn.get_value_as_int()
 
-	def get_height(self):
+	def _get_height(self):
 		return self.height_btn.get_value_as_int()
 
 	def on_width_changed(self, *args):
@@ -143,9 +146,9 @@ class ToolCrop(AbstractCanvasTool):
 		self.unclicked = False
 		self._update_expansion_color(event.button)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		delta_x = event_x - self.x_press
-		delta_y = event_y - self.y_press
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		delta_x = int(event_x - self.x_press)
+		delta_y = int(event_y - self.y_press)
 
 		if self.cursor_name == 'not-allowed':
 			return
@@ -163,11 +166,15 @@ class ToolCrop(AbstractCanvasTool):
 		if self.apply_to_selection:
 			self._x = max(0, self._x)
 			self._y = max(0, self._y)
+			width = min(self._original_width - self._x, self._get_width())
+			height = min(self._original_height - self._y, self._get_height())
+			self.width_btn.set_value(width)
+			self.height_btn.set_value(height)
 
 		self.x_press = event_x
 		self.y_press = event_y
-		# self.build_and_do_op() # better UX but slower to compute
-		if not self.apply_to_selection:
+		# not adding the condition would be a better UX but slower to compute
+		if render and not self.apply_to_selection:
 			self.build_and_do_op()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
@@ -177,17 +184,19 @@ class ToolCrop(AbstractCanvasTool):
 
 	############################################################################
 
-	def on_draw(self, area, cairo_context):
+	def on_draw_above(self, area, cairo_context):
 		if self.apply_to_selection:
 			x1 = int(self._x)
 			y1 = int(self._y)
 		else:
 			x1 = 0
 			y1 = 0
-		x2 = x1 + self.get_width()
-		y2 = y1 + self.get_height()
+		x2 = x1 + self._get_width()
+		y2 = y1 + self._get_height()
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
+		if not self.apply_to_selection:
+			self._draw_temp_pixbuf(cairo_context, x1, y1)
 		thickness = self.get_overlay_thickness()
 		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness)
 
@@ -229,8 +238,8 @@ class ToolCrop(AbstractCanvasTool):
 			'is_etf': False,
 			'local_dx': int(self._x),
 			'local_dy': int(self._y),
-			'width': self.get_width(),
-			'height': self.get_height(),
+			'width': self._get_width(),
+			'height': self._get_height(),
 			'rgba': self._expansion_color
 		}
 		return operation

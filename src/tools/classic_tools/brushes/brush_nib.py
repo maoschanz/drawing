@@ -3,8 +3,8 @@
 import cairo
 from .abstract_brush import AbstractBrush
 
-class BrushNip(AbstractBrush):
-	__gtype_name__ = 'BrushNip'
+class BrushNib(AbstractBrush):
+	__gtype_name__ = 'BrushNib'
 
 	def _get_status(self, use_pressure, brush_direction):
 		label = _("Calligraphic nib") + " - "
@@ -41,13 +41,13 @@ class BrushNip(AbstractBrush):
 		line_width = operation['line_width'] / 2
 		two_ways_path = []
 
-		if operation['nip_dir'] == 'left':
+		if operation['nib_dir'] == 'left':
 			feather_def = {'x': 1, 'y': 1}
-		elif operation['nip_dir'] == 'horizontal':
+		elif operation['nib_dir'] == 'horizontal':
 			feather_def = {'x': 1, 'y': 0}
-		elif operation['nip_dir'] == 'vertical':
+		elif operation['nib_dir'] == 'vertical':
 			feather_def = {'x': 0, 'y': 1}
-		else: # operation['nip_dir'] == 'right':
+		else: # operation['nib_dir'] == 'right':
 			feather_def = {'x': 1, 'y': -1}
 
 		dx_base = feather_def['x'] * line_width

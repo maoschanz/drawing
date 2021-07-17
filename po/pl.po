@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-03-19 15:58+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
@@ -74,114 +74,15 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
-msgstr ""
-"Wersja 0.8.2 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Wersja 0.8.1 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nip\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
+"Wersja 0.8.2 zawiera kilka drobnych poprawek błędów i nowe tłumaczenia."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -209,8 +110,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Plik"
+msgid "File"
+msgstr "Plik"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -285,8 +186,8 @@ msgid "Quit all windows"
 msgstr "Zamknij wszystkie okna"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Edytuj"
+msgid "Edit"
+msgstr "Edytuj"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -342,8 +243,8 @@ msgid "Preferences"
 msgstr "Preferencje"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Podgląd"
+msgid "View"
+msgstr "Podgląd"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -411,21 +312,27 @@ msgstr "Obróć w prawo"
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Pełny ekran"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Przełącz podgląd"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Zamknij pełny ekran"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Pełny ekran"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Kolory"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Kolory"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -536,9 +443,9 @@ msgstr "Nie używaj kolorów, ale…"
 msgid "Erase"
 msgstr "Wymaż"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Narzędzia"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Narzędzia"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -566,13 +473,13 @@ msgstr "Domyślna szerokość"
 msgid "Troubleshoot selection"
 msgstr "Rozwiąż problemy z wyborem"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Opcje"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Pomoc"
+msgid "Options"
+msgstr "Opcje"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Pomoc"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -675,10 +582,6 @@ msgstr "Użyj tych ustawień domyślnie"
 msgid "Images"
 msgstr "Obrazy"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Narzędzia"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Okno"
@@ -734,7 +637,6 @@ msgstr "Więcej poleceń"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Zaznaczanie (dowolne)"
 
@@ -742,7 +644,6 @@ msgstr "Zaznaczanie (dowolne)"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Otwórz obraz"
 
@@ -770,10 +671,6 @@ msgstr "Ogólne"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Menu główne"
-
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Pomoc"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -826,10 +723,6 @@ msgstr "Usuń zaznaczenie"
 msgid "Import a file as the selection"
 msgstr "Importuj plik jako zaznaczenie"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Kolory"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -869,9 +762,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Ładowanie %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Zamknij pełny ekran"
 
 #: src/deco_manager.py
 #, python-format
@@ -907,6 +803,12 @@ msgstr "Nie można przeładować z dysku niezapisanego wcześniej pliku."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Niezapisany plik"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -1160,7 +1062,6 @@ msgstr "Kolor tła"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Domyślna szerokość"
 
@@ -1466,11 +1367,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Zmiana znajdzie zastosowanie w nowym oknie."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Brak opcji"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1564,6 +1460,10 @@ msgstr "Kontur z wypełnieniem"
 msgid "Tool size"
 msgstr "Rozmiar narządzia"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Brak opcji"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1587,6 +1487,7 @@ msgid "Use this editor by default"
 msgstr "Używaj tego edytora domyślnie"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Opcje ołówka"
@@ -1802,7 +1703,7 @@ msgstr ""
 msgid "Hairy brush"
 msgstr "Kreskowanie"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -2218,12 +2119,12 @@ msgid "Density depends on the mouse speed"
 msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr ""
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr ""
 
@@ -2248,12 +2149,22 @@ msgid "Error: invalid values"
 msgstr "Błąd: nieprawidłowe wartości"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Opcje tekstu"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Przycinanie zaznaczenia"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Przycinanie płótna"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Wyróżnij zakreślaczem"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2265,12 +2176,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Opcje malowania"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Obracanie zaznaczenia"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Obracanie płótna"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Opcje malowania"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2297,9 +2218,6 @@ msgstr "Nasycenie"
 
 #~ msgid "Quit"
 #~ msgstr "Wyjście"
-
-#~ msgid "Edit"
-#~ msgstr "Edytuj"
 
 #~ msgid "Open a file"
 #~ msgstr "Otwórz plik"

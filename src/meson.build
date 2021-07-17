@@ -39,6 +39,7 @@ drawing_sources = [
 	'deco_manager.py',
 	'options_manager.py',
 	'minimap.py',
+	'tools_initializer.py',
 
 	'image.py',
 	'history_manager.py',
@@ -83,7 +84,7 @@ drawing_sources = [
 
 	'tools/classic_tools/brushes/abstract_brush.py',
 	'tools/classic_tools/brushes/brush_airbrush.py',
-	'tools/classic_tools/brushes/brush_nip.py',
+	'tools/classic_tools/brushes/brush_nib.py',
 	'tools/classic_tools/brushes/brush_hairy.py',
 	'tools/classic_tools/brushes/brush_simple.py',
 
