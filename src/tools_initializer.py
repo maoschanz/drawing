@@ -1,4 +1,4 @@
-# window.py
+# tools_initializer.py
 #
 # Copyright 2018-2021 Romain F. T.
 #

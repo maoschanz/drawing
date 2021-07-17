@@ -67,7 +67,9 @@ class ToolFreeSelect(AbstractSelectionTool):
 		boolean, true if the shape should be closed."""
 		cairo_context = self.get_context()
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		cairo_context.set_dash([3, 3])
+		thickness = self.get_overlay_thickness()
+		cairo_context.set_dash([3 * thickness, 3 * thickness])
+		cairo_context.set_line_width(thickness)
 		if self.get_selection().get_future_path() is None:
 			self.closing_x = event_x
 			self.closing_y = event_y
