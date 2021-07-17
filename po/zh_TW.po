@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -108,8 +108,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "檔案(_F)"
+msgid "File"
+msgstr "檔案"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -184,8 +184,8 @@ msgid "Quit all windows"
 msgstr "結束所有視窗"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "編輯(_E)"
+msgid "Edit"
+msgstr "編輯"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -241,8 +241,8 @@ msgid "Preferences"
 msgstr "偏好設定"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "檢視(_V)"
+msgid "View"
+msgstr "檢視"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -313,21 +313,22 @@ msgstr "重新整理"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "全螢幕"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "切換預覽"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "結束全螢幕"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "全螢幕"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "色彩(_C)"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "色彩"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -434,9 +435,9 @@ msgstr "不要使用色彩，而是…"
 msgid "Erase"
 msgstr "擦除"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "工具(_T)"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "工具"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -465,13 +466,13 @@ msgstr "預設寬度"
 msgid "Troubleshoot selection"
 msgstr "對選擇區域排查問題"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "選項(_O)"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "說明(_H)"
+msgid "Options"
+msgstr "選項"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "說明"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -573,10 +574,6 @@ msgstr "預設使用這些設定"
 msgid "Images"
 msgstr "影像"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "工具"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "視窗"
@@ -632,7 +629,6 @@ msgstr "更多操作"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "自由選擇"
 
@@ -640,7 +636,6 @@ msgstr "自由選擇"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "開啟影像"
 
@@ -667,10 +662,6 @@ msgstr "通用"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "主選單"
-
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "說明"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -723,10 +714,6 @@ msgstr "刪除選擇區域"
 msgid "Import a file as the selection"
 msgstr "匯入檔案作為選擇區域"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "色彩"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -766,9 +753,12 @@ msgstr "觸控手勢"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "正在載入 %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "結束全螢幕"
 
 #: src/deco_manager.py
 #, python-format
@@ -1059,7 +1049,6 @@ msgstr "背景色彩"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "預設寬度"
 
@@ -1364,11 +1353,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "修改將在下一個新視窗生效。"
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "無選項"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1462,6 +1446,10 @@ msgstr "副色彩"
 msgid "Tool size"
 msgstr "工具大小"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "無選項"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1485,6 +1473,7 @@ msgid "Use this editor by default"
 msgstr "預設使用此編輯器"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "鉛筆選項"
@@ -1825,7 +1814,6 @@ msgstr "色彩漸層"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "無方向"
 
@@ -2137,12 +2125,22 @@ msgid "Error: invalid values"
 msgstr "錯誤：數值無效"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "字型選項"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "裁切選擇區域"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "裁切畫布"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "螢光筆"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2154,12 +2152,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "繪畫選項"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "旋轉選擇區域"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "旋轉畫布"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "繪畫選項"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2186,9 +2194,6 @@ msgstr "飽和度"
 
 #~ msgid "Quit"
 #~ msgstr "結束"
-
-#~ msgid "Edit"
-#~ msgstr "編輯"
 
 #~ msgid "Open a file"
 #~ msgstr "開啟檔案"

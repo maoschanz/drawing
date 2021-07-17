@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -110,8 +110,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Tiedosto"
+msgid "File"
+msgstr "Tiedosto"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +186,8 @@ msgid "Quit all windows"
 msgstr "Sulje kaikki ikkunat"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Muokkaa"
+msgid "Edit"
+msgstr "Muokkaa"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +243,8 @@ msgid "Preferences"
 msgstr "Asetukset"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Näytä"
+msgid "View"
+msgstr "Näytä"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -317,21 +317,22 @@ msgstr "Virkistä"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Kokonäyttö"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Vaihda esikatseluun"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Poistu kokonäytöstä"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Kokonäyttö"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Värit"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Värit"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -442,9 +443,9 @@ msgstr "Älä käytä värejä, mutta…"
 msgid "Erase"
 msgstr "Pyyhi"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Työkalut"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Työkalut"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -472,13 +473,13 @@ msgstr "Oletusleveys"
 msgid "Troubleshoot selection"
 msgstr "Vianmääritys"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Valinnat"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Apua"
+msgid "Options"
+msgstr "Valinnat"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Apua"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -581,10 +582,6 @@ msgstr "Käytä näitä asetuksia oletuksena"
 msgid "Images"
 msgstr "Kuvat"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Työkalut"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Ikkuna"
@@ -640,7 +637,6 @@ msgstr "Lisää toimintoja"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Vapaa valinta"
 
@@ -648,7 +644,6 @@ msgstr "Vapaa valinta"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Avaa kuva"
 
@@ -676,10 +671,6 @@ msgstr "Yleinen"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Päävalikko"
-
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Apua"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -732,10 +723,6 @@ msgstr "Poista valinta"
 msgid "Import a file as the selection"
 msgstr "Tuo tiedosto valintana"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Värit"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -775,9 +762,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Ladataan %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Poistu kokonäytöstä"
 
 #: src/deco_manager.py
 #, python-format
@@ -1071,7 +1061,6 @@ msgstr "Taustaväri"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Oletusleveys"
 
@@ -1376,11 +1365,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Muutokset tulevat voimaan seuraavassa uudessa ikkunassa."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Ei vaihtoehtoja"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1474,6 +1458,10 @@ msgstr "Seuraava väri"
 msgid "Tool size"
 msgstr "Työkalun koko"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Ei vaihtoehtoja"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1497,6 +1485,7 @@ msgid "Use this editor by default"
 msgstr "Käytä tätä editoria oletuksena"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Lyijykynän asetukset"
@@ -1836,7 +1825,6 @@ msgstr "Värin liukuväri"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Ei suuntaa"
 
@@ -2153,12 +2141,22 @@ msgid "Error: invalid values"
 msgstr "Virhe: virheelliset arvot"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Fontin asetukset"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Rajaa valintaan"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Alustan rajaaminen"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Korostekynä"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2170,12 +2168,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Maalauksen vaihtoehdot"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Valinnan kääntäminen"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Alustan kääntäminen"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Maalauksen vaihtoehdot"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2202,9 +2210,6 @@ msgstr "Kylläisyys"
 
 #~ msgid "Quit"
 #~ msgstr "Sulje"
-
-#~ msgid "Edit"
-#~ msgstr "Muokkaa"
 
 #~ msgid "Keyboard"
 #~ msgstr "Näppäimistö"

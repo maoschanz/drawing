@@ -37,7 +37,7 @@ class AbstractAbstractTool():
 		# The tool's identity
 		self.id = tool_id
 		self.menu_id = 0
-		self.label = label
+		self.label = self.mnemolabel = label
 		self.icon_name = icon_name
 		# The options it supports
 		self.accept_selection = False
@@ -46,9 +46,7 @@ class AbstractAbstractTool():
 		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
-		self._allow_imperfect = True
 		# Once everything is set, build the UI
-		self.build_row()
 		self.try_build_pane()
 
 	############################################################################
@@ -115,7 +113,7 @@ class AbstractAbstractTool():
 		pass
 
 	def add_item_to_menu(self, tools_menu):
-		tools_menu.append(self.label, 'win.active_tool::' + self.id)
+		tools_menu.append(self.mnemolabel, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
 		"""Returns a Gio.MenuModel corresponding to the tool's options. It'll be
@@ -145,11 +143,11 @@ class AbstractAbstractTool():
 			relief = Gtk.ReliefStyle.NONE, \
 			draw_indicator = False, \
 			valign = Gtk.Align.CENTER, \
-			tooltip_text = self.label \
+			tooltip_text = self.label, \
 		)
 
 		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		self.label_widget = Gtk.Label(label=self.label)
+		self._label_widget = Gtk.Label(use_underline=True, label=self.mnemolabel)
 		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
@@ -157,12 +155,13 @@ class AbstractAbstractTool():
 		image = Gtk.Image().new_from_icon_name(self.icon_name, size)
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 		box.add(image)
-		box.add(self.label_widget)
+		box.add(self._label_widget)
 		self.row.add(box)
 		self.row.show_all()
+		return self.row
 
 	def set_show_label(self, label_visible):
-		self.label_widget.set_visible(label_visible)
+		self._label_widget.set_visible(label_visible)
 		if label_visible:
 			self.row.get_children()[0].set_halign(Gtk.Align.START)
 		else:
@@ -222,9 +221,7 @@ class AbstractAbstractTool():
 	def simple_apply_operation(self, operation):
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
 		try:
-			self._allow_imperfect = False
 			self.do_tool_operation(operation)
-			self._allow_imperfect = True
 			self.get_image().add_to_history(operation)
 		except Exception as e:
 			self.show_error(str(e))
@@ -268,7 +265,7 @@ class AbstractAbstractTool():
 		self.get_image().update()
 
 	def restore_pixbuf(self):
-		self.get_image().use_stable_pixbuf(self._allow_imperfect)
+		self.get_image().use_stable_pixbuf()
 
 	############################################################################
 	# Signals handling #########################################################
@@ -276,7 +273,7 @@ class AbstractAbstractTool():
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		pass
 
 	def on_unclicked_motion_on_area(self, event, surface):

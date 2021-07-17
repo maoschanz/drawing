@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -110,8 +110,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Datoteka"
+msgid "File"
+msgstr "Datoteka"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +186,8 @@ msgid "Quit all windows"
 msgstr "Zatvori sve prozore"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Uredi"
+msgid "Edit"
+msgstr "Uredi"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +243,8 @@ msgid "Preferences"
 msgstr "Postavke"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Prikaz"
+msgid "View"
+msgstr "Prikaz"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -315,29 +315,30 @@ msgstr "Aktualiziraj"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Cjeloekranski prikaz"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Uključi/isključi pretprikaz"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Zatvori cjeloekranski prikaz"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Cjeloekranski prikaz"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Boje"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Boje"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Uredi glavnu boju …"
+msgstr "Uredi glavnu boju…"
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Uredi sporednu boju …"
+msgstr "Uredi sporednu boju…"
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
@@ -436,9 +437,9 @@ msgstr "Ne koristi boje, već …"
 msgid "Erase"
 msgstr "Izbriši"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Alati"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Alati"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -467,13 +468,13 @@ msgstr "Standardna širina"
 msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Opcije"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Pomoć"
+msgid "Options"
+msgstr "Opcije"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Pomoć"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -576,10 +577,6 @@ msgstr "Standardno koristi ove postavke"
 msgid "Images"
 msgstr "Slike"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Alati"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Prozor"
@@ -635,7 +632,6 @@ msgstr "Daljnje radnje"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Prostoručni odabir"
 
@@ -643,7 +639,6 @@ msgstr "Prostoručni odabir"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Otvori sliku"
 
@@ -671,10 +666,6 @@ msgstr "Opće"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Glavni izbornik"
-
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Pomoć"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -727,10 +718,6 @@ msgstr "Izbriši odabir"
 msgid "Import a file as the selection"
 msgstr "Uvezi datoteku kao odabir"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Boje"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -770,9 +757,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Učitava se %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Zatvori cjeloekranski prikaz"
 
 #: src/deco_manager.py
 #, python-format
@@ -1067,7 +1057,6 @@ msgstr "Boja pozadine"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Standardna širina"
 
@@ -1372,11 +1361,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Bez opcija"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1470,6 +1454,10 @@ msgstr "Sporedna boja"
 msgid "Tool size"
 msgstr "Veličina alata"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Bez opcija"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1493,6 +1481,7 @@ msgid "Use this editor by default"
 msgstr "Standardno koristi ovaj uređivač"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Opcije za olovku"
@@ -1835,7 +1824,6 @@ msgstr "Gradijent u boji"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Bez smjera"
 
@@ -2152,12 +2140,22 @@ msgid "Error: invalid values"
 msgstr "Greška: nevaljane vrijednosti"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Opcije za font"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Rezanje odabira"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Rezanje platna"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Isticanje"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2169,12 +2167,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Opcije za crtanje"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Okretanje odabira"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Okretanje platna"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Opcije za crtanje"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2201,9 +2209,6 @@ msgstr "Zasićenost"
 
 #~ msgid "Quit"
 #~ msgstr "Izlaz"
-
-#~ msgid "Edit"
-#~ msgstr "Uredi"
 
 #~ msgid "Open a file"
 #~ msgstr "Otvori datoteku"

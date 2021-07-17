@@ -8,16 +8,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
-"PO-Revision-Date: 2021-06-23 17:03+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
+"PO-Revision-Date: 2021-07-08 20:47+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -114,8 +114,8 @@ msgid "The \"new image\" menu opened"
 msgstr "El menú de \"imagen nueva\" se abrió"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Archivo"
+msgid "File"
+msgstr "Archivo"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -189,8 +189,8 @@ msgid "Quit all windows"
 msgstr "Cerrar todas las ventanas"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Editar"
+msgid "Edit"
+msgstr "Editar"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -246,8 +246,8 @@ msgid "Preferences"
 msgstr "Preferencias"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Ver"
+msgid "View"
+msgstr "Ver"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -316,23 +316,23 @@ msgstr "Refrescar"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Controlar la velocidad de los fotogramas"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Pantalla completa"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "Conmutar la barra de menús"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Ocultar barras de herramientas"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Salir de pantalla completa"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Pantalla completa"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Colores"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Colores"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -437,9 +437,9 @@ msgstr "No utilizar los colores pero…"
 msgid "Erase"
 msgstr "Borrar"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Herramientas"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Herramientas"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -466,13 +466,13 @@ msgstr "Menor anchura"
 msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Opciones"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "Ay_uda"
+msgid "Options"
+msgstr "Opciones"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Ayuda"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -569,10 +569,6 @@ msgstr "Utilizar estos ajustes de manera predeterminada"
 msgid "Images"
 msgstr "Imágenes"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Herramientas"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Ventana"
@@ -660,10 +656,6 @@ msgstr "General"
 msgid "Main menu"
 msgstr "Menú principal"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Ayuda"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Imagen"
@@ -714,10 +706,6 @@ msgstr "Eliminar la selección"
 msgid "Import a file as the selection"
 msgstr "Importar un archivo como selección"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Colores"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -758,6 +746,10 @@ msgstr "Gestos táctiles"
 msgid "Loading…"
 msgstr "Cargando…"
 
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Salir de pantalla completa"
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -796,7 +788,7 @@ msgstr "Archivo no guardado"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s fotogramas por segundo"
 
 #. Description of a command line option
 #: src/main.py
@@ -1356,11 +1348,6 @@ msgstr "El portapapeles no contiene ninguna imagen."
 msgid "Modifications will take effect in the next new window."
 msgstr "Los cambios tendrán efecto en la próxima ventana nueva."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Sin opciones"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1454,6 +1441,10 @@ msgstr "Color secundario"
 msgid "Tool size"
 msgstr "Tamaño de herramienta"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Sin opciones"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1477,6 +1468,7 @@ msgid "Use this editor by default"
 msgstr "Utilizar este editor por defecto"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Opciones de selección"
 
@@ -2109,12 +2101,20 @@ msgid "Error: invalid values"
 msgstr "Error: valores no válidos"
 
 #: src/tools/transform_tools/tool_crop.py
+msgid "Cropping options"
+msgstr "Opciones de recorte"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Recortando la selección"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Recortando el lienzo"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Filters options"
+msgstr "Opciones de filtros"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2127,12 +2127,20 @@ msgid "Emboss"
 msgstr "Repujado"
 
 #: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating options"
+msgstr "Opciones de rotación"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Girando la selección"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Girando el lienzo"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling options"
+msgstr "Opciones de escalado"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2156,4 +2164,3 @@ msgstr "Radio de desenfoque"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturación"
-

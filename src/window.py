@@ -19,31 +19,7 @@
 import os, traceback
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
-# Import tools
-from .tool_arc import ToolArc
-from .tool_brush import ToolBrush
-from .tool_eraser import ToolEraser
-from .tool_experiment import ToolExperiment
-from .tool_highlight import ToolHighlighter
-from .tool_line import ToolLine
-from .tool_paint import ToolPaint
-from .tool_pencil import ToolPencil
-from .tool_picker import ToolPicker
-from .tool_points import ToolPoints
-from .tool_shape import ToolShape
-from .tool_text import ToolText
-
-from .tool_crop import ToolCrop
-from .tool_filters import ToolFilters
-from .tool_rotate import ToolRotate
-from .tool_scale import ToolScale
-from .tool_skew import ToolSkew
-
-from .select_rect import ToolRectSelect
-from .select_free import ToolFreeSelect
-from .select_color import ToolColorSelect
-
-# Other imports
+# Import various classes
 from .image import DrImage
 from .new_image_dialog import DrCustomImageDialog
 from .minimap import DrMinimap
@@ -54,7 +30,9 @@ from .deco_manager import DrDecoManagerMenubar, \
                           DrDecoManagerToolbar
 from .saving_manager import DrSavingManager
 from .printing_manager import DrPrintingManager
+from .tools_initializer import DrToolsInitializer
 
+# Import various functions
 from .utilities import utilities_add_filechooser_filters
 from .utilities import utilities_gfile_is_image
 
@@ -181,28 +159,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		dev = self.gsettings.get_boolean('devel-only')
 		self.tools = {}
 		self.prompt_message(False, 'window has started, now loading tools')
-		# The order might be improvable
-		self._load_tool('pencil', ToolPencil, disabled_tools, dev)
-		self._load_tool('brush', ToolBrush, disabled_tools, dev)
-		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
-		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
-		self._load_tool('text', ToolText, disabled_tools, dev)
-		self._load_tool('points', ToolPoints, disabled_tools, dev)
-		self._load_tool('rect_select', ToolRectSelect, disabled_tools, dev)
-		self._load_tool('free_select', ToolFreeSelect, disabled_tools, dev)
-		self._load_tool('line', ToolLine, disabled_tools, dev)
-		self._load_tool('arc', ToolArc, disabled_tools, dev)
-		self._load_tool('shape', ToolShape, disabled_tools, dev)
-		self._load_tool('picker', ToolPicker, disabled_tools, dev)
-		self._load_tool('color_select', ToolColorSelect, disabled_tools, dev)
-		self._load_tool('paint', ToolPaint, disabled_tools, dev)
-		if dev:
-			self._load_tool('experiment', ToolExperiment, disabled_tools, dev)
-		self._load_tool('crop', ToolCrop, disabled_tools, dev)
-		self._load_tool('scale', ToolScale, disabled_tools, dev)
-		self._load_tool('rotate', ToolRotate, disabled_tools, dev)
-		self._load_tool('skew', ToolSkew, disabled_tools, dev)
-		self._load_tool('filters', ToolFilters, disabled_tools, dev)
+
+		tools_initializer = DrToolsInitializer(self)
+		self.tools = tools_initializer.load_all_tools(dev, disabled_tools)
 
 		# Side pane buttons for tools, and their menubar items if they don't
 		# exist yet (they're defined on the application level)
@@ -232,22 +191,11 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.active_tool().row.set_active(True)
 		self._is_tools_initialisation_finished = True
 
-	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
-		"""Given its id and its python class, this method tries to load a tool,
-		and show an error message if the tool initialization failed."""
-		if tool_id not in disabled_tools:
-			try:
-				self.tools[tool_id] = tool_class(self)
-			except Exception as err:
-				# Context: an error message
-				self.prompt_action(_("Failed to load tool: %s") % tool_id)
-				traceback.print_exc()
-
 	def _build_tool_rows(self):
 		"""Adds each tool's button to the side pane."""
 		group = None
 		for tool_id in self.tools:
-			row = self.tools[tool_id].row
+			row = self.tools[tool_id].build_row()
 			if group is None:
 				group = row
 			else:
@@ -954,6 +902,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.should_track_framerate = not self.should_track_framerate
 		for img in self.notebook.get_children():
 			img.reset_fps_counter()
+		args[0].set_state(GLib.Variant.new_boolean(self.should_track_framerate))
 
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:

@@ -104,8 +104,8 @@ class ToolSkew(AbstractCanvasTool):
 		# TODO répliquer ce que fait le scale avec son x2/y2 qui évite un effet
 		# flamby dégueulasse lié aux arrondis ?
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		if self.cursor_name == 'not-allowed':
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		if self.cursor_name == 'not-allowed' or not render:
 			return
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press

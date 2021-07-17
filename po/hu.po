@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -110,8 +110,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Fájl"
+msgid "File"
+msgstr "Fájl"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +186,8 @@ msgid "Quit all windows"
 msgstr "Minden ablak bezárása"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "S_zerkesztés"
+msgid "Edit"
+msgstr "Szerkesztés"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +243,8 @@ msgid "Preferences"
 msgstr "Beállítások"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Nézet"
+msgid "View"
+msgstr "Nézet"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -317,21 +317,22 @@ msgstr "Frissítés"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Teljes képernyő"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Előnézet megjelenítése"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Kilépés a teljes képernyős módból"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Színek"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Színek"
 
 #: src/ui/app-menus.ui
 #, fuzzy
@@ -448,9 +449,9 @@ msgstr ""
 msgid "Erase"
 msgstr "Radír"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Eszközök"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Eszközök"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -478,13 +479,13 @@ msgstr "Alapértelmezett szélesség"
 msgid "Troubleshoot selection"
 msgstr "Hibakeresés"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Beállítások"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Súgó"
+msgid "Options"
+msgstr "Beállítások"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Súgó"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -587,10 +588,6 @@ msgstr "Ezek legyenek az alapértelmezett beállítások"
 msgid "Images"
 msgstr "Képek"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Eszközök"
-
 #: src/ui/preferences.ui
 #, fuzzy
 msgid "Window"
@@ -647,7 +644,6 @@ msgstr "További műveletek"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Szabad kijelölés"
 
@@ -655,7 +651,6 @@ msgstr "Szabad kijelölés"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Képfájl megnyitása"
 
@@ -683,10 +678,6 @@ msgstr "Általános"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Főmenü"
-
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Súgó"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -739,10 +730,6 @@ msgstr "A kijelölés törlése"
 msgid "Import a file as the selection"
 msgstr "Fájl importálása kijelölésként"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Színek"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -782,9 +769,12 @@ msgstr ""
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "%s fájl betöltése"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Kilépés a teljes képernyős módból"
 
 #: src/deco_manager.py
 #, python-format
@@ -1083,7 +1073,6 @@ msgstr "Háttérszín"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Alapértelmezett szélesség"
 
@@ -1392,11 +1381,6 @@ msgid "Modifications will take effect in the next new window."
 msgstr ""
 "A beállított módosítások a következő megnyitott új ablaknál jutnak érvényre."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Nincs beállítás"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1493,6 +1477,10 @@ msgstr "Másodlagos szín"
 msgid "Tool size"
 msgstr "Eszközméret"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Nincs beállítás"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1516,6 +1504,7 @@ msgid "Use this editor by default"
 msgstr "Legyen ez az lapértelmezett szerkesztő"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Kijelölés beállításai"
 
@@ -2188,12 +2177,22 @@ msgid "Error: invalid values"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Betűbeállítások"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Kijelölés vágása"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Rajzvászon vágása"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Vonal beállítások"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2205,12 +2204,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Festés beállítások"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Kijelölés forgatása"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Rajzvászon forgatása"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Festés beállítások"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2240,9 +2249,6 @@ msgstr "Telítettség"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Kilépés a teljes képernyős módból"
-
-#~ msgid "Edit"
-#~ msgstr "Szerkesztés"
 
 #~ msgid "Close"
 #~ msgstr "Bezár"

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -108,8 +108,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Den åbnede menu \"nyt billede\""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Fil"
+msgid "File"
+msgstr "Fil"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -183,8 +183,8 @@ msgid "Quit all windows"
 msgstr "Afslut alle vinduer"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Rediger"
+msgid "Edit"
+msgstr "Rediger"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -240,8 +240,8 @@ msgid "Preferences"
 msgstr "Præferencer"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Vis"
+msgid "View"
+msgstr "Vis"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -312,21 +312,22 @@ msgstr "Opdater"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Fuldskærm"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Forhåndsvisning til/fra"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Afslut fuldskærm"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Fuldskærm"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "Farv_er"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Farver"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -432,9 +433,9 @@ msgstr "Brug ikke farverne men …"
 msgid "Erase"
 msgstr "Viskelæder"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "Værk_tøjer"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Værktøjer"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -461,13 +462,13 @@ msgstr "Smallere"
 msgid "Troubleshoot selection"
 msgstr "Fejlsøg markering"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "Valg_muligheder"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Hjælp"
+msgid "Options"
+msgstr "Valgmuligheder"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hjælp"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -569,10 +570,6 @@ msgstr "Brug indstillingerne som standard"
 msgid "Images"
 msgstr "Billeder"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Værktøjer"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Vindue"
@@ -628,7 +625,6 @@ msgstr "Flere handlinger"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Fri markering"
 
@@ -636,7 +632,6 @@ msgstr "Fri markering"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Åbn et billede"
 
@@ -663,10 +658,6 @@ msgstr "Generelt"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Hovedmenu"
-
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hjælp"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -718,10 +709,6 @@ msgstr "Slet markeringen"
 msgid "Import a file as the selection"
 msgstr "Importér en fil som markeringen"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Farver"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -761,9 +748,12 @@ msgstr "Berøringsbevægelser"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Indlæser %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Afslut fuldskærm"
 
 #: src/deco_manager.py
 #, python-format
@@ -1055,7 +1045,6 @@ msgstr "Baggrundsfarve"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Standardbredde"
 
@@ -1362,11 +1351,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr "Ændringerne træder i kraft i det næste nye vindue."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Ingen valgmuligheder"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1458,6 +1442,10 @@ msgstr "Sekundær farve"
 msgid "Tool size"
 msgstr "Værktøjsstørrelse"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Ingen valgmuligheder"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1481,6 +1469,7 @@ msgid "Use this editor by default"
 msgstr "Brug editoren som standard"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Valgmuligheder for blyant"
@@ -1814,7 +1803,6 @@ msgstr "Farvegradient"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Ingen retning"
 
@@ -2121,12 +2109,22 @@ msgid "Error: invalid values"
 msgstr "Fejl: ugyldige værdier"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Valgmuligheder for punkter"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Beskær markeringen"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Beskær lærredet"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "Valgmuligheder for overstregningspen"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2138,12 +2136,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Valgmuligheder for malerbøtte"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Drej markeringen"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Drej lærredet"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Valgmuligheder for malerbøtte"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

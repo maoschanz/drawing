@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 00:53+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-16 21:49+0200\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -108,8 +108,8 @@ msgid "The \"new image\" menu opened"
 msgstr "\"新しい画像\" メニュー"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "ファイル (_F)"
+msgid "File"
+msgstr "ファイル "
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -183,8 +183,8 @@ msgid "Quit all windows"
 msgstr "全てのウィンドウを終了"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "編集 (_E)"
+msgid "Edit"
+msgstr "編集"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -240,8 +240,8 @@ msgid "Preferences"
 msgstr "設定"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "表示 (_V)"
+msgid "View"
+msgstr "表示"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -312,21 +312,22 @@ msgstr "再読み込み"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "全画面表示"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "プレビューを切り替え"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "ツールバーを隠す"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "全画面表示を終了"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "全画面表示"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "色 (_C)"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "色"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -431,9 +432,9 @@ msgstr "色を使用しないツール…"
 msgid "Erase"
 msgstr "消去"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "ツール (_T)"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "ツール"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -460,13 +461,13 @@ msgstr "幅を細くする"
 msgid "Troubleshoot selection"
 msgstr "選択領域のトラブルシューティング"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "オプション (_O)"
-
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "ヘルプ (_H)"
+msgid "Options"
+msgstr "オプション"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "ヘルプ"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -563,10 +564,6 @@ msgstr "今後の既定値として使用"
 msgid "Images"
 msgstr "画像"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "ツール"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "ウィンドウ"
@@ -654,10 +651,6 @@ msgstr "一般"
 msgid "Main menu"
 msgstr "メインメニュー"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "ヘルプ"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "画像"
@@ -708,10 +701,6 @@ msgstr "選択した領域を削除"
 msgid "Import a file as the selection"
 msgstr "ファイルを画像内にインポート"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "色"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -751,6 +740,10 @@ msgstr "タッチ操作"
 #: src/ui/window.ui
 msgid "Loading…"
 msgstr "読み込んでいます…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "全画面表示を終了"
 
 #: src/deco_manager.py
 #, python-format
@@ -1345,11 +1338,6 @@ msgstr "クリップボードに画像がありません。"
 msgid "Modifications will take effect in the next new window."
 msgstr "新しい設定の効果は、次に開いたウィンドウから適用されます。"
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "オプションなし"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
@@ -1443,6 +1431,10 @@ msgstr "サブの色"
 msgid "Tool size"
 msgstr "ツールの大きさ"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "オプションなし"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
@@ -1466,6 +1458,7 @@ msgid "Use this editor by default"
 msgstr "既定でこのエディターを使用"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "選択のオプション"
 
@@ -1792,7 +1785,6 @@ msgstr "グラディエーション"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "方向なし"
 
@@ -2095,12 +2087,22 @@ msgid "Error: invalid values"
 msgstr "エラー: 無効な値です"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "点のオプション"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "選択領域をトリミングします"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "キャンバスをトリミングします"
+
+#: src/tools/transform_tools/tool_filters.py
+#, fuzzy
+msgid "Filters options"
+msgstr "蛍光ペンのオプション"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2112,12 +2114,22 @@ msgid "Emboss"
 msgstr "エンボス"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "染色のオプション"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "選択領域を回転します"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "キャンバスを回転します"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "染色のオプション"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2141,4 +2153,3 @@ msgstr "ぼかしの半径"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "輝度"
-

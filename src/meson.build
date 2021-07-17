@@ -39,6 +39,7 @@ drawing_sources = [
 	'deco_manager.py',
 	'options_manager.py',
 	'minimap.py',
+	'tools_initializer.py',
 
 	'image.py',
 	'history_manager.py',
