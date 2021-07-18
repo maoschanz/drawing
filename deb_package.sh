@@ -2,7 +2,7 @@
 
 DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing" # XXX ask it as an input maybe?
-VERSION="0.7.0"
+VERSION="0.8.3"
 
 function separator () {
 	echo ""
@@ -34,6 +34,7 @@ cp -r help $DIR_PATH/$DIR_NAME/
 cp -r po $DIR_PATH/$DIR_NAME/
 cp -r src $DIR_PATH/$DIR_NAME/
 cp meson.build $DIR_PATH/$DIR_NAME/
+cp meson_options.txt $DIR_PATH/$DIR_NAME/
 cd $DIR_PATH/
 tar -Jcvf $FILE_NAME.orig.tar.xz $DIR_NAME
 cd $DIR_PATH/$DIR_NAME/
