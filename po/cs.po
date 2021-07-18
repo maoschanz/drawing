@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"POT-Creation-Date: 2021-07-18 05:21+0200\n"
 "PO-Revision-Date: 2021-02-12 02:15+0100\n"
 "Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language-Team: Czech <>\n"
@@ -72,8 +72,20 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.3 features several minor bug fixes, and various new translations."
+msgstr ""
+"Verze 0.8.3 obsahuje několik drobných oprav chyb a různé nové překlady."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The outline of the free selection is now visible even when the image is very "
+"zoomed out."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -752,7 +764,6 @@ msgstr "Více akcí"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Volný výběr"
 
@@ -760,7 +771,6 @@ msgstr "Volný výběr"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Otevřít obrázek"
 
@@ -884,7 +894,6 @@ msgstr "Dotyková gesta"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Načítání %s"
 
@@ -1177,7 +1186,6 @@ msgstr "Barva pozadí"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Výchozí šířka"
 
@@ -1936,7 +1944,6 @@ msgstr "Barevný přechod"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Žádný směr"
 

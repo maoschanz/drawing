@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
+"POT-Creation-Date: 2021-07-18 05:21+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -73,10 +73,44 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.3 features several minor bug fixes, and various new translations."
+msgstr ""
+"0.8.3 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
+"ditu."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"After rotating the selection, it had an incorrectly big height, but now it's "
+"fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The outline of the free selection is now visible even when the image is very "
+"zoomed out."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "0.8.2 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
 "ditu."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The boundaries of the canvas are now always visibly delimited, to better "
+"render the area where you can draw, even if the canvas is transparent. It "
+"also helps to see what parts of the selection may disappear when you will "
+"unselect it."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transform tools can now draw a preview of the pixels they may create outside "
+"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
+"more intuitive to use."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -93,12 +127,6 @@ msgid ""
 "Scaling an image using the numerical inputs now preserves the original "
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -753,7 +781,6 @@ msgstr "Ekintza gehiago"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Hautapen librea"
 
@@ -761,7 +788,6 @@ msgstr "Hautapen librea"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Ireki irudi bat"
 
@@ -887,7 +913,6 @@ msgstr "Ukipen keinuak"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Kargatzen %s"
 
@@ -1181,7 +1206,6 @@ msgstr "Atzeko planoaren kolorea"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Theme variant"
 msgid "Prefer dark theme variant"
 msgstr "Gaiaren aldaera"
 
@@ -1956,7 +1980,6 @@ msgstr "Kolore gradientea"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Norabiderik gabe"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"POT-Creation-Date: 2021-07-18 05:21+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -70,8 +70,20 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 0.8.3 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 0.8.3에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The outline of the free selection is now visible even when the image is very "
+"zoomed out."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -750,7 +762,6 @@ msgstr "더 많은 행동"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "자유 선택"
 
@@ -758,7 +769,6 @@ msgstr "자유 선택"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "이미지 열기"
 
@@ -882,7 +892,6 @@ msgstr "터치 제스처"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "로딩 %s"
 
@@ -1173,7 +1182,6 @@ msgstr "배경색"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Theme variant"
 msgid "Prefer dark theme variant"
 msgstr "테마 변경"
 
@@ -1923,7 +1931,6 @@ msgstr "그라디언트 색상"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "방향 없음"
 
