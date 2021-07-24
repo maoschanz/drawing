@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -344,9 +344,9 @@ msgstr "Freskatu"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "Trukatu aurrebista"
 
 #: src/ui/app-menus.ui
@@ -496,6 +496,16 @@ msgstr "Estuagoa"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Hautapen arazoak konpontzen"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Aplikatu eraldaketa"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Aplikatu eraldaketa"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -693,6 +703,11 @@ msgstr "Orokorra"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Menu nagusia"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Trukatu aurrebista"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -899,10 +914,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Utzi"
 
@@ -1491,8 +1503,7 @@ msgid "No options"
 msgstr "Aukerarik gabe"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Aurrebista"
 
@@ -1537,9 +1548,6 @@ msgid "Extract from this color"
 msgstr "Atera kolore horretatik"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Aplikatu"
 
@@ -1782,11 +1790,6 @@ msgstr "Mosaikoa"
 #, fuzzy
 msgid "Solid color"
 msgstr "Kolore solidoa"
-
-#: src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Active filter"
-msgstr "Iragazki aktiboa"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2183,8 +2186,8 @@ msgstr "Oihala mozten"
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
-msgid "Filters options"
-msgstr "Nabarmentzailearen aukerak"
+msgid "Active filter"
+msgstr "Iragazki aktiboa"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
