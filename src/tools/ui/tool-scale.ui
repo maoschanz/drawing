@@ -2,18 +2,6 @@
 <interface domain="drawing">
 
   <menu id="options-menu">
-    <!-- <section> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Pixels</attribute> -->
-    <!--     <attribute name="action">win.scale-unit</attribute> -->
-    <!--     <attribute name="target">pixels</attribute> -->
-    <!--   </item> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Percentage</attribute> -->
-    <!--     <attribute name="action">win.scale-unit</attribute> -->
-    <!--     <attribute name="target">percents</attribute> -->
-    <!--   </item> -->
-    <!-- </section> -->
     <section>
       <attribute name="label" translatable="yes">Keep proportions</attribute>
       <item>
@@ -33,6 +21,20 @@
         <attribute name="label" translatable="yes">Never</attribute>
         <attribute name="action">win.scale-proportions</attribute>
         <attribute name="target">never</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Pixels</attribute>
+        <attribute name="action">win.scale-unit</attribute>
+        <attribute name="target">pixels</attribute>
+        <attribute name="verb-icon">unit-pixels-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Percentage</attribute>
+        <attribute name="action">win.scale-unit</attribute>
+        <attribute name="target">percents</attribute>
+        <attribute name="verb-icon">unit-percents-symbolic</attribute>
       </item>
     </section>
     <section>

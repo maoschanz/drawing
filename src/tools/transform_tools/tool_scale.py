@@ -36,7 +36,7 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 		self.add_tool_action_enum('scale-proportions', 'corners')
-		# self.add_tool_action_enum('scale-unit', 'pixels') # TODO
+		self.add_tool_action_enum('scale-unit', 'pixels')
 
 	def try_build_pane(self):
 		self.pane_id = 'scale'
