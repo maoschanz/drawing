@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-19 23:55+0200\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -49,9 +49,10 @@ msgstr "Nova Imagem"
 msgid "Edit Image in Clipboard"
 msgstr "Editar Imagem no Clipboard"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Uma aplicação de desenho para o ambiente GNOME"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -74,10 +75,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -110,8 +139,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Arquivo"
+msgid "File"
+msgstr "Arquivo"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +215,8 @@ msgid "Quit all windows"
 msgstr "Fechar todas as janelas"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Editar"
+msgid "Edit"
+msgstr "Editar"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +272,8 @@ msgid "Preferences"
 msgstr "Preferências"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Vista"
+msgid "View"
+msgstr "Vista"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -328,9 +357,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "Tela cheia"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Cores"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Cores"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -437,9 +466,9 @@ msgstr "Não use cores, mas…"
 msgid "Erase"
 msgstr "Borracha"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Ferramentas"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Ferramentas"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -469,12 +498,12 @@ msgid "Troubleshoot selection"
 msgstr "Resolver problemas de seleção"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Opções"
+msgid "Options"
+msgstr "Opções"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Ajuda"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Ajuda"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -576,10 +605,6 @@ msgstr "Usar essas opções por padrão"
 msgid "Images"
 msgstr "Imagens"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Ferramentas"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Janela"
@@ -669,10 +694,6 @@ msgstr "Geral"
 msgid "Main menu"
 msgstr "Menu principal"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Ajuda"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Imagem"
@@ -723,10 +744,6 @@ msgstr "Deletar seleção"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Importar um arquivo como a seleção"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Cores"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -1334,6 +1351,12 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Falha ao carregar a ferramenta: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
@@ -1356,12 +1379,6 @@ msgstr ""
 #: src/window.py
 msgid "Yes"
 msgstr ""
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Falha ao carregar a ferramenta: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -2209,11 +2226,11 @@ msgstr "Raio do borrado"
 msgid "Saturation"
 msgstr "Saturação"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Uma aplicação de desenho para o ambiente GNOME"
+
 #~ msgid "Quit"
 #~ msgstr "Sair"
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
 
 #~ msgid "Close"
 #~ msgstr "Fechar"

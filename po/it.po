@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-19 23:55+0200\n"
 "PO-Revision-Date: 2021-07-10 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -48,9 +48,10 @@ msgstr "Nuova Immagine"
 msgid "Edit Image in Clipboard"
 msgstr "Modifica l'Immagine negli Appunti"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -72,12 +73,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
-"Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, ma "
-"ora è stato sistemato."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -111,8 +138,8 @@ msgid "The \"new image\" menu opened"
 msgstr "La \"nuova immagine\" menu aperto"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_File"
+msgid "File"
+msgstr "File"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +213,8 @@ msgid "Quit all windows"
 msgstr "Chiudi tutte le finestre"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Modifica"
+msgid "Edit"
+msgstr "Modifica"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +270,8 @@ msgid "Preferences"
 msgstr "Preferenze"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Vista"
+msgid "View"
+msgstr "Vista"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -327,9 +354,9 @@ msgstr "Nascondi barre degli strumenti"
 msgid "Fullscreen"
 msgstr "Schero Intero"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Colori"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Colori"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -434,9 +461,9 @@ msgstr "Non usare i colori ma…"
 msgid "Erase"
 msgstr "Cancella"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Strumenti"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Strumenti"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -464,12 +491,12 @@ msgid "Troubleshoot selection"
 msgstr "Risolvere i problemi di selezione"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Opzioni"
+msgid "Options"
+msgstr "Opzioni"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Aiuto"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Aiuto"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -566,10 +593,6 @@ msgstr "Utilizzare queste impostazioni come predefinita"
 msgid "Images"
 msgstr "Immagini"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Strumenti"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Finestra"
@@ -657,10 +680,6 @@ msgstr "Generale"
 msgid "Main menu"
 msgstr "Menu principale"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Aiuto"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Immagine"
@@ -710,10 +729,6 @@ msgstr "Elimina la selezione"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Importa un file come selezione"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Colori"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -1316,6 +1331,12 @@ msgstr "Spiacenti, le immagini WEBP non possono essere caricate da questa app."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Nonostante il nome, %s è un file WEBP."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Strumento di caricamento non riuscito: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
@@ -1338,12 +1359,6 @@ msgstr "Dopo"
 #: src/window.py
 msgid "Yes"
 msgstr "Si"
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Strumento di caricamento non riuscito: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -2166,11 +2181,18 @@ msgstr "Raggio di sfocatura"
 msgid "Saturation"
 msgstr "Saturazione"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
+
+#~ msgid ""
+#~ "After rotating the selection, it had an incorrectly big height, but now "
+#~ "it's fixed."
+#~ msgstr ""
+#~ "Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, "
+#~ "ma ora è stato sistemato."
+
 #~ msgid "Quit"
 #~ msgstr "Esci"
-
-#~ msgid "Edit"
-#~ msgstr "Modifica"
 
 #~ msgid "Save as"
 #~ msgstr "Salve come"

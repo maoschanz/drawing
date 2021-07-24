@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-19 23:55+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -51,9 +51,10 @@ msgstr "新影像"
 msgid "Edit Image in Clipboard"
 msgstr "在剪貼簿中編輯影像"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "為 GNOME 桌面環境打造的繪圖應用程式"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -73,10 +74,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -108,8 +137,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "檔案(_F)"
+msgid "File"
+msgstr "檔案"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -184,8 +213,8 @@ msgid "Quit all windows"
 msgstr "結束所有視窗"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "編輯(_E)"
+msgid "Edit"
+msgstr "編輯"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -241,8 +270,8 @@ msgid "Preferences"
 msgstr "偏好設定"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "檢視(_V)"
+msgid "View"
+msgstr "檢視"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -326,9 +355,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "色彩(_C)"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "色彩"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -435,9 +464,9 @@ msgstr "不要使用色彩，而是…"
 msgid "Erase"
 msgstr "擦除"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "工具(_T)"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "工具"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -467,12 +496,12 @@ msgid "Troubleshoot selection"
 msgstr "對選擇區域排查問題"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "選項(_O)"
+msgid "Options"
+msgstr "選項"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "說明(_H)"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "說明"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -574,10 +603,6 @@ msgstr "預設使用這些設定"
 msgid "Images"
 msgstr "影像"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "工具"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "視窗"
@@ -667,10 +692,6 @@ msgstr "通用"
 msgid "Main menu"
 msgstr "主選單"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "說明"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "影像"
@@ -721,10 +742,6 @@ msgstr "刪除選擇區域"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "匯入檔案作為選擇區域"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "色彩"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -1328,6 +1345,12 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "載入工具失敗：%s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "啟動應用程式時發生錯誤。請向我們報告這個問題。"
@@ -1350,12 +1373,6 @@ msgstr ""
 #: src/window.py
 msgid "Yes"
 msgstr ""
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "載入工具失敗：%s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -2204,11 +2221,11 @@ msgstr "模糊半徑"
 msgid "Saturation"
 msgstr "飽和度"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "為 GNOME 桌面環境打造的繪圖應用程式"
+
 #~ msgid "Quit"
 #~ msgstr "結束"
-
-#~ msgid "Edit"
-#~ msgstr "編輯"
 
 #~ msgid "Open a file"
 #~ msgstr "開啟檔案"

@@ -19,31 +19,7 @@
 import os, traceback
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
-# Import tools
-from .tool_arc import ToolArc
-from .tool_brush import ToolBrush
-from .tool_eraser import ToolEraser
-from .tool_experiment import ToolExperiment
-from .tool_highlight import ToolHighlighter
-from .tool_line import ToolLine
-from .tool_paint import ToolPaint
-from .tool_pencil import ToolPencil
-from .tool_picker import ToolPicker
-from .tool_points import ToolPoints
-from .tool_shape import ToolShape
-from .tool_text import ToolText
-
-from .tool_crop import ToolCrop
-from .tool_filters import ToolFilters
-from .tool_rotate import ToolRotate
-from .tool_scale import ToolScale
-# from .tool_skew import ToolSkew
-
-from .select_rect import ToolRectSelect
-from .select_free import ToolFreeSelect
-from .select_color import ToolColorSelect
-
-# Other imports
+# Import various classes
 from .image import DrImage
 from .new_image_dialog import DrCustomImageDialog
 from .minimap import DrMinimap
@@ -54,7 +30,9 @@ from .deco_manager import DrDecoManagerMenubar, \
                           DrDecoManagerToolbar
 from .saving_manager import DrSavingManager
 from .printing_manager import DrPrintingManager
+from .tools_initializer import DrToolsInitializer
 
+# Import various functions
 from .utilities import utilities_add_filechooser_filters
 from .utilities import utilities_gfile_is_image
 
@@ -147,7 +125,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 		self._try_show_release_notes()
 
-		# has to return False to be removed from the mainloop immediatly
+		# has to return False to be removed from the mainloop immediately
 		return False
 
 	def _try_show_release_notes(self):
@@ -181,28 +159,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		dev = self.gsettings.get_boolean('devel-only')
 		self.tools = {}
 		self.prompt_message(False, 'window has started, now loading tools')
-		# The order might be improvable
-		self._load_tool('pencil', ToolPencil, disabled_tools, dev)
-		self._load_tool('brush', ToolBrush, disabled_tools, dev)
-		self._load_tool('eraser', ToolEraser, disabled_tools, dev)
-		self._load_tool('highlight', ToolHighlighter, disabled_tools, dev)
-		self._load_tool('text', ToolText, disabled_tools, dev)
-		self._load_tool('points', ToolPoints, disabled_tools, dev)
-		self._load_tool('rect_select', ToolRectSelect, disabled_tools, dev)
-		self._load_tool('free_select', ToolFreeSelect, disabled_tools, dev)
-		self._load_tool('line', ToolLine, disabled_tools, dev)
-		self._load_tool('arc', ToolArc, disabled_tools, dev)
-		self._load_tool('shape', ToolShape, disabled_tools, dev)
-		self._load_tool('picker', ToolPicker, disabled_tools, dev)
-		self._load_tool('color_select', ToolColorSelect, disabled_tools, dev)
-		self._load_tool('paint', ToolPaint, disabled_tools, dev)
-		if dev:
-			self._load_tool('experiment', ToolExperiment, disabled_tools, dev)
-		self._load_tool('crop', ToolCrop, disabled_tools, dev)
-		self._load_tool('scale', ToolScale, disabled_tools, dev)
-		self._load_tool('rotate', ToolRotate, disabled_tools, dev)
-		# self._load_tool('skew', ToolSkew, disabled_tools, dev)
-		self._load_tool('filters', ToolFilters, disabled_tools, dev)
+
+		tools_initializer = DrToolsInitializer(self)
+		self.tools = tools_initializer.load_all_tools(dev, disabled_tools)
 
 		# Side pane buttons for tools, and their menubar items if they don't
 		# exist yet (they're defined on the application level)
@@ -232,22 +191,11 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.active_tool().row.set_active(True)
 		self._is_tools_initialisation_finished = True
 
-	def _load_tool(self, tool_id, tool_class, disabled_tools, dev):
-		"""Given its id and its python class, this method tries to load a tool,
-		and show an error message if the tool initialization failed."""
-		if tool_id not in disabled_tools:
-			try:
-				self.tools[tool_id] = tool_class(self)
-			except Exception as err:
-				# Context: an error message
-				self.prompt_action(_("Failed to load tool: %s") % tool_id)
-				traceback.print_exc()
-
 	def _build_tool_rows(self):
 		"""Adds each tool's button to the side pane."""
 		group = None
 		for tool_id in self.tools:
-			row = self.tools[tool_id].row
+			row = self.tools[tool_id].build_row()
 			if group is None:
 				group = row
 			else:
@@ -462,15 +410,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			current_item = current_item.get_item_link(item[1], link_type)
 		return current_item
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.app.set_accels_for_action('win.' + action_name, shortcuts)
+		self.app.set_accels_for_action('win.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		"""Convenient wrapper method adding a stateful action to the window. It
@@ -497,7 +444,10 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
-		self.add_action_simple('toggle_menubar', self.action_menubar, ['<Ctrl>F2'])
+
+		action = Gio.PropertyAction.new('show-menubar', self, 'show-menubar')
+		self.add_action(action)
+		self.app.set_accels_for_action('win.show-menubar', ['<Ctrl>F2'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
@@ -514,8 +464,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
-		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, None)
+		self.add_action_simple('properties', self.action_properties)
+		self.add_action_simple('unfullscreen', self.action_unfullscreen)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -539,7 +489,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
-		self.add_action_simple('new_tab_custom', self.build_new_custom, None)
+		self.add_action_simple('new_tab_custom', self.build_new_custom)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
@@ -548,36 +498,36 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
 		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
-		self.add_action_simple('close', self.action_close_window, None)
+		self.add_action_simple('close', self.action_close_window)
 
 		self.add_action_simple('undo', self.action_undo, ['<Ctrl>z'])
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
-		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
+		self.add_action_simple('save_alphaless', self.action_save_alphaless)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
-		self.add_action_simple('export_as', self.action_export_as, None)
+		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
-		self.add_action_simple('print', self.action_print, None)
+		self.add_action_simple('print', self.action_print)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl><Shift>a'])
-		#self.add_action_simple('selection_invert', self.action_selection_invert, None)
+		#self.add_action_simple('selection_invert', self.action_selection_invert)
 		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
 		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
 		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
 
-		self.add_action_simple('selection_export', self.action_selection_export, None)
+		self.add_action_simple('selection_export', self.action_selection_export)
 		self.add_action_simple('selection-replace-canvas', \
-		                             self.action_selection_replace_canvas, None)
+		                                   self.action_selection_replace_canvas)
 		self.add_action_simple('selection-expand-canvas', \
-		                              self.action_selection_expand_canvas, None)
+		                                    self.action_selection_expand_canvas)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
 		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
-		self.add_action_simple('cancel_transform', self.action_cancel_transform, None)
+		self.add_action_simple('cancel_transform', self.action_cancel_transform)
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -592,8 +542,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
 		if self.devel_mode:
-			self.add_action_simple('restore_pixbuf', self.action_restore, None)
-			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
+			self.add_action_simple('restore_pixbuf', self.action_restore)
+			self.add_action_simple('rebuild_from_histo', self.action_rebuild)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
 			self.add_action_boolean('track_framerate', False, self.action_fsp)
 
@@ -698,9 +648,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""This displays/hides the tool's options menu, and is implemented as an
 		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
-
-	def action_menubar(self, *args):
-		self.set_show_menubar(not self.get_show_menubar())
 
 	def _adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom pane to the new

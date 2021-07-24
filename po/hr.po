@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-19 23:55+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -48,9 +48,10 @@ msgstr "Nova slika"
 msgid "Edit Image in Clipboard"
 msgstr "Uredi sliku u međuspremniku"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Program za crtanje za GNOME desktop"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -73,10 +74,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -110,8 +139,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Datoteka"
+msgid "File"
+msgstr "Datoteka"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -186,8 +215,8 @@ msgid "Quit all windows"
 msgstr "Zatvori sve prozore"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Uredi"
+msgid "Edit"
+msgstr "Uredi"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,8 +272,8 @@ msgid "Preferences"
 msgstr "Postavke"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Prikaz"
+msgid "View"
+msgstr "Prikaz"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -328,17 +357,17 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "Cjeloekranski prikaz"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Boje"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Boje"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Uredi glavnu boju …"
+msgstr "Uredi glavnu boju…"
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Uredi sporednu boju …"
+msgstr "Uredi sporednu boju…"
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
@@ -437,9 +466,9 @@ msgstr "Ne koristi boje, već …"
 msgid "Erase"
 msgstr "Izbriši"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Alati"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Alati"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -469,12 +498,12 @@ msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Opcije"
+msgid "Options"
+msgstr "Opcije"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Pomoć"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Pomoć"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -577,10 +606,6 @@ msgstr "Standardno koristi ove postavke"
 msgid "Images"
 msgstr "Slike"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Alati"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Prozor"
@@ -671,10 +696,6 @@ msgstr "Opće"
 msgid "Main menu"
 msgstr "Glavni izbornik"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Pomoć"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Slika"
@@ -725,10 +746,6 @@ msgstr "Izbriši odabir"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Uvezi datoteku kao odabir"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Boje"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -1336,6 +1353,12 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Neuspjelo učitavanje alata: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi grešku."
@@ -1358,12 +1381,6 @@ msgstr ""
 #: src/window.py
 msgid "Yes"
 msgstr ""
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Neuspjelo učitavanje alata: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -2219,11 +2236,11 @@ msgstr "Radijus mutnoće"
 msgid "Saturation"
 msgstr "Zasićenost"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Program za crtanje za GNOME desktop"
+
 #~ msgid "Quit"
 #~ msgstr "Izlaz"
-
-#~ msgid "Edit"
-#~ msgstr "Uredi"
 
 #~ msgid "Open a file"
 #~ msgstr "Otvori datoteku"

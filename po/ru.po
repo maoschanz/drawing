@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-06 18:51+0200\n"
+"POT-Creation-Date: 2021-07-19 23:55+0200\n"
 "PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -49,9 +49,10 @@ msgstr "Новое изображение"
 msgid "Edit Image in Clipboard"
 msgstr "Редактировать изображение в буфере обмена"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Графический редактор для рабочего стола GNOME"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -75,12 +76,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
-"После поворота, выделенная область имела неверно большую высоту, но теперь "
-"это исправлено."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -114,8 +141,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Меню \"Новое изображение\" было открыто"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Файл"
+msgid "File"
+msgstr "Файл"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -189,8 +216,8 @@ msgid "Quit all windows"
 msgstr "Закрыть все окна"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Правка"
+msgid "Edit"
+msgstr "Правка"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -246,8 +273,8 @@ msgid "Preferences"
 msgstr "Параметры"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Вид"
+msgid "View"
+msgstr "Вид"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -331,9 +358,9 @@ msgstr "Скрыть панель инструментов"
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Цвета"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Цвета"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -438,9 +465,9 @@ msgstr "Без использования цвета…"
 msgid "Erase"
 msgstr "Ластик"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Инструменты"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Инструменты"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -468,12 +495,12 @@ msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
 #: src/ui/app-menus.ui
-msgid "_Options"
-msgstr "_Параметры"
+msgid "Options"
+msgstr "Параметры"
 
-#: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Справка"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Справка"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -570,10 +597,6 @@ msgstr "Использовать эти настройки по умолчани
 msgid "Images"
 msgstr "Изображение"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Инструменты"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Окно"
@@ -661,10 +684,6 @@ msgstr "Общие"
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Справка"
-
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Изображение"
@@ -714,10 +733,6 @@ msgstr "Удалить выделенное"
 #: src/ui/shortcuts.ui
 msgid "Import a file as the selection"
 msgstr "Импортировать файл как выделенное"
-
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Цвета"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -1321,6 +1336,12 @@ msgstr "Извините, WEBP изображение не может быть �
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Несмотря на название, %s - это файл WEBP."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Не удалось загрузить инструмент: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
@@ -1343,12 +1364,6 @@ msgstr "Позже"
 #: src/window.py
 msgid "Yes"
 msgstr "Да"
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Не удалось загрузить инструмент: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -2173,11 +2188,18 @@ msgstr "Радиус размытия"
 msgid "Saturation"
 msgstr "Насыщенность"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Графический редактор для рабочего стола GNOME"
+
+#~ msgid ""
+#~ "After rotating the selection, it had an incorrectly big height, but now "
+#~ "it's fixed."
+#~ msgstr ""
+#~ "После поворота, выделенная область имела неверно большую высоту, но "
+#~ "теперь это исправлено."
+
 #~ msgid "Quit"
 #~ msgstr "Завершить"
-
-#~ msgid "Edit"
-#~ msgstr "Правка"
 
 #~ msgid "Open a file"
 #~ msgstr "Открыть файл"
