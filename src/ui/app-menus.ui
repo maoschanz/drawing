@@ -421,6 +421,17 @@
           <attribute name="hidden-when">action-missing</attribute>
         </item>
       </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Cancel transformation</attribute>
+          <attribute name="action">win.cancel_transform</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Apply transformation</attribute>
+          <attribute name="action">win.apply_transform</attribute>
+          <attribute name="verb-icon">emblem-ok-symbolic</attribute>
+        </item>
+      </section>
     </submenu>
 
     <submenu>
