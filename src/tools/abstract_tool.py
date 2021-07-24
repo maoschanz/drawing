@@ -85,6 +85,9 @@ class AbstractAbstractTool():
 		self.set_action_sensitivity('exchange_color', self.use_color)
 		self.set_action_sensitivity('cairo_operator', self.use_operator)
 
+		self.set_action_sensitivity('cancel_transform', False)
+		self.set_action_sensitivity('apply_transform', False)
+
 	def get_settings(self):
 		return self.window.options_manager._tools_gsettings
 
