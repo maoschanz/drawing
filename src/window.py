@@ -452,6 +452,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
+		dark_variant = self.gsettings.get_boolean('dark-theme-variant')
+		self.add_action_boolean('dark-variant', dark_variant, self.action_dark_theme)
+
 		show_labels = self.gsettings.get_boolean('show-labels')
 		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
 		self.app.set_accels_for_action('win.show_labels', ['F9'])
@@ -681,10 +684,16 @@ class DrWindow(Gtk.ApplicationWindow):
 		should_show = (self.notebook.get_n_pages() > 1) and not controls_hidden
 		self.notebook.set_show_tabs(should_show)
 
+	def action_dark_theme(self, *args):
+		shall_be_dark = args[1]
+		self.gsettings.set_boolean('dark-theme-variant', shall_be_dark)
+		args[0].set_state(GLib.Variant.new_boolean(shall_be_dark))
+
 	def _update_theme_variant(self, *args):
 		key = 'gtk-application-prefer-dark-theme';
 		use_dark_theme = self.gsettings.get_boolean('dark-theme-variant')
 		Gtk.Settings.get_default().set_property(key, use_dark_theme)
+		# XXX vraiment intriguant ce truc là ^
 
 	############################################################################
 	# FULLSCREEN ###############################################################
