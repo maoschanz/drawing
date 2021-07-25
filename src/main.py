@@ -84,21 +84,21 @@ class Application(Gtk.Application):
 	def _build_actions(self):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
-		self.add_action_simple('settings', self.on_prefs, None)
-		self.add_action_simple('report_bug', self.on_report, None)
+		self.add_action_simple('settings', self.on_prefs)
+		self.add_action_simple('report_bug', self.on_report)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
 
 		self.add_action_simple('help', self.on_help_index, ['F1'])
-		self.add_action_simple('help_main', self.on_help_main, None)
-		self.add_action_simple('help_zoom', self.on_help_zoom, None)
-		self.add_action_simple('help_fullscreen', self.on_help_fullscreen, None)
-		self.add_action_simple('help_tools', self.on_help_tools, None)
-		self.add_action_simple('help_colors', self.on_help_colors, None)
-		self.add_action_simple('help_transform', self.on_help_transform, None)
-		self.add_action_simple('help_selection', self.on_help_selection, None)
-		self.add_action_simple('help_prefs', self.on_help_prefs, None)
-		self.add_action_simple('help_whats_new', self.on_help_whats_new, None)
+		self.add_action_simple('help_main', self.on_help_main)
+		self.add_action_simple('help_zoom', self.on_help_zoom)
+		self.add_action_simple('help_fullscreen', self.on_help_fullscreen)
+		self.add_action_simple('help_tools', self.on_help_tools)
+		self.add_action_simple('help_colors', self.on_help_colors)
+		self.add_action_simple('help_transform', self.on_help_transform)
+		self.add_action_simple('help_selection', self.on_help_selection)
+		self.add_action_simple('help_prefs', self.on_help_prefs)
+		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
@@ -323,12 +323,11 @@ class Application(Gtk.Application):
 	def get_current_version(self):
 		return self._version
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.set_accels_for_action('app.' + action_name, shortcuts)
+		self.set_accels_for_action('app.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		action = Gio.SimpleAction().new_stateful(action_name, None, \

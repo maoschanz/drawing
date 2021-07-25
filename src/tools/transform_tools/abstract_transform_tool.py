@@ -36,16 +36,20 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.apply_to_selection = self.selection_is_active()
 
 	def update_actions_state(self, *args):
+		# Changing this in on_tool_selected would be overridden by image.py
 		super().update_actions_state()
-		# Changing that in on_tool_selected would be overridden by image.py
+
 		self.set_action_sensitivity('selection_delete', False)
 		self.set_action_sensitivity('selection_cut', False)
 		self.set_action_sensitivity('unselect', False)
 		self.set_action_sensitivity('select_all', False)
 
+		self.set_action_sensitivity('cancel_transform', True)
+		self.set_action_sensitivity('apply_transform', True)
+
 	def give_back_control(self, preserve_selection):
 		if not preserve_selection and self.selection_is_active():
-			self.on_apply_temp_pixbuf_tool_operation()
+			self.on_apply_transform_tool_operation()
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
 
@@ -79,10 +83,13 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 	############################################################################
 
-	def on_apply_temp_pixbuf_tool_operation(self, *args):
+	def on_apply_transform_tool_operation(self, *args):
 		self.restore_pixbuf()
 		operation = self.build_operation()
 		self.apply_operation(operation)
+		self.on_cancel_transform_tool_operation()
+
+	def on_cancel_transform_tool_operation(self, *args):
 		if self.apply_to_selection:
 			self.window.force_selection()
 		else:

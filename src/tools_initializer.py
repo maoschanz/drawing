@@ -73,7 +73,7 @@ class DrToolsInitializer():
 				self._tools[tool_id] = tool_class(self._window)
 			except Exception as err:
 				# Context: an error message
-				self.prompt_action(_("Failed to load tool: %s") % tool_id)
+				self._window.prompt_action(_("Failed to load tool: %s") % tool_id)
 				traceback.print_exc()
 
 	def _add_auto_mnemonics(self):

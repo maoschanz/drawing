@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-16 21:49+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -48,9 +48,10 @@ msgstr "Nova slika"
 msgid "Edit Image in Clipboard"
 msgstr "Uredi sliku u međuspremniku"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Program za crtanje za GNOME desktop"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -73,10 +74,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -315,9 +344,9 @@ msgstr "Aktualiziraj"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "Uključi/isključi pretprikaz"
 
 #: src/ui/app-menus.ui
@@ -467,6 +496,16 @@ msgstr "Standardna širina"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Pomoć za alate"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Pomoć za alate"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -666,6 +705,11 @@ msgstr "Opće"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Glavni izbornik"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Uključi/isključi pretprikaz"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -874,10 +918,7 @@ msgstr "%s %%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -1324,6 +1365,12 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Neuspjelo učitavanje alata: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi grešku."
@@ -1346,12 +1393,6 @@ msgstr ""
 #: src/window.py
 msgid "Yes"
 msgstr ""
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Neuspjelo učitavanje alata: %s"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -1459,8 +1500,7 @@ msgid "No options"
 msgstr "Bez opcija"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Pretprikaz"
 
@@ -1505,9 +1545,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Primijeni"
 
@@ -1751,11 +1788,6 @@ msgstr ""
 #, fuzzy
 msgid "Solid color"
 msgstr "Sporedna boja"
-
-#: src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Active filter"
-msgstr "Drugi modusi"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2154,8 +2186,8 @@ msgstr "Rezanje platna"
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
-msgid "Filters options"
-msgstr "Isticanje"
+msgid "Active filter"
+msgstr "Drugi modusi"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2206,6 +2238,9 @@ msgstr "Radijus mutnoće"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Zasićenost"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Program za crtanje za GNOME desktop"
 
 #~ msgid "Quit"
 #~ msgstr "Izlaz"

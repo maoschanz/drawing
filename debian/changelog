@@ -1,8 +1,11 @@
 drawing (1.0.0) unstable; urgency=low
 
   * dynamically change the label of the "options" submenu in the menu-bar, to increase its discoverability
-  *
   * enable tools with "alt+letter" mnemonics
+  * suggest to "apply & save" when trying to save while an operation is unapplied
+  *
+  * suggest to "apply & unselect" when trying to save while the selection is active
+  *
   * artificially limited framerate to avoid overloading the CPU (#162)
   * toggle the menubar with ctrl+f2
   *

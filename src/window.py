@@ -125,7 +125,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 		self._try_show_release_notes()
 
-		# has to return False to be removed from the mainloop immediatly
+		# has to return False to be removed from the mainloop immediately
 		return False
 
 	def _try_show_release_notes(self):
@@ -140,8 +140,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                   "would you like to read what's new?")
 		dialog.add_string(label % current_version)
 
-		no_id = dialog.set_action(_("No"), None, False)
-		later_id = dialog.set_action(_("Later"), None, False)
+		no_id = dialog.set_action(_("No"), None)
+		later_id = dialog.set_action(_("Later"), None)
 		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
 		result = dialog.run()
 		dialog.destroy()
@@ -410,15 +410,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			current_item = current_item.get_item_link(item[1], link_type)
 		return current_item
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.app.set_accels_for_action('win.' + action_name, shortcuts)
+		self.app.set_accels_for_action('win.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		"""Convenient wrapper method adding a stateful action to the window. It
@@ -445,7 +444,10 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
-		self.add_action_simple('toggle_menubar', self.action_menubar, ['<Ctrl>F2'])
+
+		action = Gio.PropertyAction.new('show-menubar', self, 'show-menubar')
+		self.add_action(action)
+		self.app.set_accels_for_action('win.show-menubar', ['<Ctrl>F2'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
@@ -462,21 +464,32 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
-		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, None)
+		self.add_action_simple('properties', self.action_properties)
+		self.add_action_simple('unfullscreen', self.action_unfullscreen)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
 		self.add_action_simple('go_left', self.action_go_left, ['<Ctrl>Left'])
 		self.add_action_simple('go_right', self.action_go_right, ['<Ctrl>Right'])
 
-		self.add_action_simple('zoom_in', self.action_zoom_in, ['<Ctrl>plus', '<Ctrl>KP_Add'])
-		self.add_action_simple('zoom_out', self.action_zoom_out, ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
+		self.add_action_simple('go_top', self.action_go_top, \
+		                                  ['<Ctrl>Page_Up', '<Ctrl>KP_Page_Up'])
+		self.add_action_simple('go_bottom', self.action_go_bottom, \
+		                              ['<Ctrl>Page_Down', '<Ctrl>KP_Page_Down'])
+		self.add_action_simple('go_first', self.action_go_first, \
+		                                        ['<Ctrl>Home', '<Ctrl>KP_Home'])
+		self.add_action_simple('go_last', self.action_go_last, \
+		                                          ['<Ctrl>End', '<Ctrl>KP_End'])
+
+		self.add_action_simple('zoom_in', self.action_zoom_in, \
+		                                         ['<Ctrl>plus', '<Ctrl>KP_Add'])
+		self.add_action_simple('zoom_out', self.action_zoom_out, \
+		                                   ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
 		self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
-		self.add_action_simple('new_tab_custom', self.build_new_custom, None)
+		self.add_action_simple('new_tab_custom', self.build_new_custom)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
@@ -485,36 +498,36 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
 		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
-		self.add_action_simple('close', self.action_close_window, None)
+		self.add_action_simple('close', self.action_close_window)
 
 		self.add_action_simple('undo', self.action_undo, ['<Ctrl>z'])
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
-		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
+		self.add_action_simple('save_alphaless', self.action_save_alphaless)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
-		self.add_action_simple('export_as', self.action_export_as, None)
+		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
-		self.add_action_simple('print', self.action_print, None)
+		self.add_action_simple('print', self.action_print)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl><Shift>a'])
-		#self.add_action_simple('selection_invert', self.action_selection_invert, None)
+		#self.add_action_simple('selection_invert', self.action_selection_invert)
 		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
 		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
 		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
 
-		self.add_action_simple('selection_export', self.action_selection_export, None)
+		self.add_action_simple('selection_export', self.action_selection_export)
 		self.add_action_simple('selection-replace-canvas', \
-		                             self.action_selection_replace_canvas, None)
+		                                   self.action_selection_replace_canvas)
 		self.add_action_simple('selection-expand-canvas', \
-		                              self.action_selection_expand_canvas, None)
+		                                    self.action_selection_expand_canvas)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
-		self.add_action_simple('force_selection', self.force_selection, None)
 		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
+		self.add_action_simple('cancel_transform', self.action_cancel_transform)
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
 
@@ -529,8 +542,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
 		if self.devel_mode:
-			self.add_action_simple('restore_pixbuf', self.action_restore, None)
-			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
+			self.add_action_simple('restore_pixbuf', self.action_restore)
+			self.add_action_simple('rebuild_from_histo', self.action_rebuild)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
 			self.add_action_boolean('track_framerate', False, self.action_fsp)
 
@@ -635,9 +648,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""This displays/hides the tool's options menu, and is implemented as an
 		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
-
-	def action_menubar(self, *args):
-		self.set_show_menubar(not self.get_show_menubar())
 
 	def _adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom pane to the new
@@ -930,9 +940,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			dialog = DrMessageDialog(self)
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
-			new_window_id = dialog.set_action(_("New Window"), None, False)
-			discard_id = dialog.set_action(_("Discard changes"), \
-			                                        'destructive-action', False)
+			new_window_id = dialog.set_action(_("New Window"), None)
+			discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
 			if not self.get_active_image().is_saved():
 				# Context: %s will be replaced by the name of a file.
 				dialog.add_string(_("There are unsaved modifications to %s.") % \
@@ -967,8 +976,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		per image), or to import them (it will only import the first), or to
 		cancel (if the user dropped mistakenly)."""
 		dialog = DrMessageDialog(self)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		open_id = dialog.set_action(_("Open"), None, False)
+		cancel_id = dialog.set_action(_("Cancel"), None)
+		open_id = dialog.set_action(_("Open"), None)
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()
@@ -1127,11 +1136,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.prompt_message(True, _("Required tool is not available"))
 			return self.active_tool()
 
-	def force_selection(self, *args):
-		self.get_selection_tool().row.set_active(True) # XXX not enable_tool?
+	def force_selection(self):
+		self.get_selection_tool().row.set_active(True)
 
 	def action_apply_transform(self, *args):
-		self.active_tool().on_apply_temp_pixbuf_tool_operation()
+		self.active_tool().on_apply_transform_tool_operation()
+
+	def action_cancel_transform(self, *args):
+		self.active_tool().on_cancel_transform_tool_operation()
 
 	############################################################################
 	# HISTORY MANAGEMENT #######################################################
@@ -1160,16 +1172,6 @@ class DrWindow(Gtk.ApplicationWindow):
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################
 
-	def action_toggle_preview(self, *args):
-		"""Action callback, showing or hiding the "minimap" preview popover."""
-		preview_visible = not args[0].get_state()
-		if preview_visible:
-			self.minimap.popup()
-			self.minimap.update_minimap(True)
-		else:
-			self.minimap.popdown()
-		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
-
 	def action_go_up(self, *args):
 		self.get_active_image().add_deltas(0, -1, 100)
 
@@ -1181,6 +1183,28 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_go_right(self, *args):
 		self.get_active_image().add_deltas(1, 0, 100)
+
+	def action_go_top(self, *args):
+		self.get_active_image().reset_deltas(0, -1)
+
+	def action_go_bottom(self, *args):
+		self.get_active_image().reset_deltas(0, 1)
+
+	def action_go_first(self, *args):
+		self.get_active_image().reset_deltas(-1, 0)
+
+	def action_go_last(self, *args):
+		self.get_active_image().reset_deltas(1, 0)
+
+	def action_toggle_preview(self, *args):
+		"""Action callback, showing or hiding the "minimap" preview popover."""
+		preview_visible = not args[0].get_state()
+		if preview_visible:
+			self.minimap.popup()
+			self.minimap.update_minimap(True)
+		else:
+			self.minimap.popdown()
+		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
 
 	def action_zoom_in(self, *args):
 		self.get_active_image().inc_zoom_level(25)

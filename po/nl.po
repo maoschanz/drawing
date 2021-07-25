@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-16 21:49+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-06-28 17:13+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -48,9 +48,10 @@ msgstr "Nieuwe afbeelding"
 msgid "Edit Image in Clipboard"
 msgstr "Klembordafbeelding bewerken"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Een tekenprogramma voor de GNOME-werkomgeving"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -74,12 +75,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
-"Na het draaien van de selectie klopte de hoogte niet meer - dat is nu "
-"opgelost."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -317,9 +344,9 @@ msgstr "Verversen"
 msgid "Track framerate"
 msgstr "Framesnelheid bijhouden"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "Voorvertoning aan/uit"
 
 #: src/ui/app-menus.ui
@@ -465,6 +492,16 @@ msgstr "Smaller"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Problemen omtrent selecties oplossen"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Transformatie toepassen"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Transformatie toepassen"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -655,6 +692,11 @@ msgstr "Algemeen"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Hoofdmenu"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Voorvertoning aan/uit"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -857,10 +899,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1309,6 +1348,12 @@ msgstr "Tekenen heeft geen ondersteuning voor webp-afbeeldingen."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Ondanks de naam is ‘%s’ toch echt een webp-bestand."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "‘%s’ kan niet worden geladen"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Kan de toepassing niet starten - meld deze fout aan de ontwikkelaar."
@@ -1333,12 +1378,6 @@ msgstr "Later"
 #: src/window.py
 msgid "Yes"
 msgstr "Ja"
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "‘%s’ kan niet worden geladen"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -1446,8 +1485,7 @@ msgid "No options"
 msgstr "Geen opties"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Voorvertoning"
 
@@ -1490,9 +1528,6 @@ msgid "Extract from this color"
 msgstr "Extraheren uit deze kleur"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Toepassen"
 
@@ -1724,10 +1759,6 @@ msgstr "Mozaïek"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Vlakke kleur"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Actief filter"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2111,9 +2142,8 @@ msgid "Cropping the canvas"
 msgstr "Bezig met bijsnijden van canvas"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "Markeeropties"
+msgid "Active filter"
+msgstr "Actief filter"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2164,6 +2194,16 @@ msgstr "Vervaagstraal"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Verzadiging"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Een tekenprogramma voor de GNOME-werkomgeving"
+
+#~ msgid ""
+#~ "After rotating the selection, it had an incorrectly big height, but now "
+#~ "it's fixed."
+#~ msgstr ""
+#~ "Na het draaien van de selectie klopte de hoogte niet meer - dat is nu "
+#~ "opgelost."
 
 #~ msgid "Quit"
 #~ msgstr "Afsluiten"

@@ -237,6 +237,28 @@
               <attribute name="verb-icon">pan-end-symbolic</attribute>
             </item>
           </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Go to the left end</attribute>
+              <attribute name="action">win.go_first</attribute>
+              <attribute name="verb-icon">go-first-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the top</attribute>
+              <attribute name="action">win.go_top</attribute>
+              <attribute name="verb-icon">go-top-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the bottom</attribute>
+              <attribute name="action">win.go_bottom</attribute>
+              <attribute name="verb-icon">go-bottom-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the right end</attribute>
+              <attribute name="action">win.go_last</attribute>
+              <attribute name="verb-icon">go-last-symbolic</attribute>
+            </item>
+          </section>
         </submenu>
       </section>
       <section id="view-tabs-section">
@@ -268,8 +290,8 @@
       </section>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Toggle the menu-bar</attribute>
-          <attribute name="action">win.toggle_menubar</attribute>
+          <attribute name="label" translatable="yes">Show the menu-bar</attribute>
+          <attribute name="action">win.show-menubar</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Hide toolbars</attribute>
@@ -419,6 +441,17 @@
           <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
           <attribute name="action">win.get_values</attribute>
           <attribute name="hidden-when">action-missing</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Cancel transformation</attribute>
+          <attribute name="action">win.cancel_transform</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Apply transformation</attribute>
+          <attribute name="action">win.apply_transform</attribute>
+          <attribute name="verb-icon">emblem-ok-symbolic</attribute>
         </item>
       </section>
     </submenu>
