@@ -137,8 +137,7 @@ class ToolCrop(AbstractCanvasTool):
 	############################################################################
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
-		self.window.set_cursor(True)
+		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
@@ -150,17 +149,15 @@ class ToolCrop(AbstractCanvasTool):
 		delta_x = int(event_x - self.x_press)
 		delta_y = int(event_y - self.y_press)
 
-		if self.cursor_name == 'not-allowed':
+		if self._directions == '':
 			return
-		else:
-			directions = self.cursor_name.replace('-resize', '')
-		if 'n' in directions:
+		if 'n' in self._directions:
 			self.move_north(delta_y)
-		if 's' in directions:
+		if 's' in self._directions:
 			self.move_south(delta_y)
-		if 'w' in directions:
+		if 'w' in self._directions:
 			self.move_west(delta_x)
-		if 'e' in directions:
+		if 'e' in self._directions:
 			self.move_east(delta_x)
 
 		if self.apply_to_selection:

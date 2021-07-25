@@ -100,34 +100,31 @@ class ToolSkew(AbstractCanvasTool):
 	############################################################################
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		# TODO h/v_double_arrow instead
-		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
-		self.window.set_cursor(True)
+		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self.directions = self.cursor_name.replace('-resize', '')
 		self._yx = self.get_yx() # vertical deformation
 		self._xy = self.get_xy() # horizontal deformation
 		# TODO répliquer ce que fait le scale avec son x2/y2 qui évite un effet
 		# flamby dégueulasse lié aux arrondis ?
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if self.cursor_name == 'not-allowed' or not render:
+		if self._directions == '' or not render:
 			return
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press
 
 		yx = self._yx
 		xy = self._xy
-		if 'n' in self.directions:
+		if 'n' in self._directions:
 			xy -= 100 * delta_x/self._get_width()
-		if 's' in self.directions:
+		if 's' in self._directions:
 			xy += 100 * delta_x/self._get_width()
-		if 'w' in self.directions:
+		if 'w' in self._directions:
 			yx -= 100 * delta_y/self._get_height()
-		if 'e' in self.directions:
+		if 'e' in self._directions:
 			yx += 100 * delta_y/self._get_height()
 
 		self.yx_spinbtn.set_value(yx)

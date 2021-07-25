@@ -608,16 +608,16 @@ class DrImage(Gtk.Box):
 			x1 = 0
 			y1 = 0
 		# width_left, width_right, height_top, height_bottom
-		wl, wr, ht, hb = self.get_corrected_coords(x1, width, y1, height, \
-		                                               apply_to_selection, True)
-		# FIXME using local deltas this way "works" but isn't mathematically
+		wl, wr, ht, hb = self.get_corrected_coords(int(x1), width, int(y1), \
+		                                       height, apply_to_selection, True)
+		# XXX using local deltas this way "works" but isn't mathematically
 		# correct: scaled selections have a "null" and excentred central nineth
-		# ^ c'est vrai ça ??
+		# ^ c'est toujours vrai ça ??
 		wl += 0.4 * width * self.zoom_level
 		wr -= 0.4 * width * self.zoom_level
 		ht += 0.4 * height * self.zoom_level
 		hb -= 0.4 * height * self.zoom_level
-		return wl, wr, ht, hb
+		return {'wl': wl, 'wr': wr, 'ht': ht, 'hb': hb}
 
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll

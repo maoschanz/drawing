@@ -151,19 +151,17 @@ class ToolScale(AbstractCanvasTool):
 	############################################################################
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
-		self.window.set_cursor(True)
+		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
 		self._x2 = self._x + self._get_width()
 		self._y2 = self._y + self._get_height()
-		self._directions = self.cursor_name.replace('-resize', '')
 		self.set_preserve_ratio()
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if self.cursor_name == 'not-allowed':
+		if self._directions == '':
 			return
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press
