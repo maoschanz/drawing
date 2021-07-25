@@ -78,6 +78,19 @@ class ToolSkew(AbstractCanvasTool):
 	def get_xy(self):
 		return self.xy_spinbtn.get_value_as_int()
 
+	def _set_cursor_name(self):
+		if self._directions == '':
+			self.cursor_name = 'not-allowed'
+			return
+		if self._directions == 'nw' or self._directions == 'se':
+			self.cursor_name = 'nwse-resize'
+		elif self._directions == 'ne' or self._directions == 'sw':
+			self.cursor_name = 'nesw-resize'
+		elif self._directions == 'n' or self._directions == 's':
+			self.cursor_name = 'ew-resize'
+		elif self._directions == 'e' or self._directions == 'w':
+			self.cursor_name = 'ns-resize'
+
 	def _get_width(self):
 		if self.apply_to_selection:
 			source_pixbuf = self.get_selection_pixbuf()

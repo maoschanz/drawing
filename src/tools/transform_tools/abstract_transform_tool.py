@@ -119,9 +119,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	# Direction of the cursor depending on its position ########################
 
 	def _set_directions(self, event_x, event_y, n_sizes):
-		"""Set the directions of the user's future movement for tools such as
-		`scale` or `crop`. It depends on the pointer position, and the size and
-		position of the transformed area.
+		"""Set the directions of the user's future operation for tools such as
+		`scale` or `crop`.
 		It returns a boolean telling whether or not the directions changed since
 		the last call to this method."""
 		w_left = n_sizes['wl']
