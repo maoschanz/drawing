@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -355,9 +355,9 @@ msgstr "Actualiser"
 msgid "Track framerate"
 msgstr "Suivre la fréquence d'affichage"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-msgid "Toggle the menu-bar"
-msgstr "Afficher/masquer la barre de menus"
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
+msgstr "Afficher la barre de menus"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -502,6 +502,14 @@ msgstr "Moins large"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Débuggage de la sélection"
+
+#: src/ui/app-menus.ui
+msgid "Cancel transformation"
+msgstr "Annuler la transformation"
+
+#: src/ui/app-menus.ui
+msgid "Apply transformation"
+msgstr "Appliquer la transformation"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -692,6 +700,10 @@ msgstr "Général"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Menu principal"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "Afficher/masquer la barre de menus"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -894,10 +906,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1483,8 +1492,7 @@ msgid "No options"
 msgstr "Pas d'options"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -1527,9 +1535,6 @@ msgid "Extract from this color"
 msgstr "Extraire depuis cette couleur"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Appliquer"
 
@@ -1760,10 +1765,6 @@ msgstr "Mosaïque"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Couleur opaque"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Filtre actif"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2145,8 +2146,8 @@ msgid "Cropping the canvas"
 msgstr "Recadrer le canevas"
 
 #: src/tools/transform_tools/tool_filters.py
-msgid "Filters options"
-msgstr "Options des filtres"
+msgid "Active filter"
+msgstr "Filtre actif"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2195,3 +2196,4 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
+

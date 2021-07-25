@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
-"PO-Revision-Date: 2021-07-08 20:47+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"PO-Revision-Date: 2021-07-23 12:18+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -53,7 +53,7 @@ msgstr "Editar imagen del portapapeles"
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Simple image editor for the Linux desktop(s)"
-msgstr ""
+msgstr "Sencillo editor de imágenes para el escritorio de Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -79,6 +79,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"La versión 1.0.0 mejora el rendimiento de la renderización, lo que es "
+"visible cuando se editan imágenes grandes con una CPU poco potente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -86,12 +88,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Ahora puede utilizar la nueva herramienta \"inclinación\", para inclinar una "
+"imagen de un rectángulo a un paralelogramo. Dicha deformación puede "
+"aplicarse horizontal o verticalmente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Con la herramienta \"escala\", puede establecer opcionalmente el nuevo "
+"tamaño como un porcentaje relativo en lugar de un valor absoluto en píxeles."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -99,12 +106,18 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Si los nombres de las herramientas son visibles, puedes activar una "
+"herramienta específica con \"alt+[la letra subrayada]\". Es posible que esto "
+"no funcione todavía con los idiomas que utilizan un alfabeto no latino."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Al pulsar \"ctrl\", \"shift\" o \"alt\" cuando se utiliza una herramienta se "
+"activan opciones específicas, como \"añadir a la selección\" para las "
+"herramientas de selección."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -343,10 +356,11 @@ msgstr "Refrescar"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr "Controlar la velocidad de los fotogramas"
+msgstr "Monitorizar la velocidad de los fotogramas"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-msgid "Toggle the menu-bar"
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
 msgstr "Conmutar la barra de menús"
 
 #: src/ui/app-menus.ui
@@ -492,6 +506,16 @@ msgstr "Menor anchura"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Aplicar una transformación"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Aplicar una transformación"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -682,6 +706,10 @@ msgstr "General"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Menú principal"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "Conmutar la barra de menús"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -887,10 +915,7 @@ msgstr "%s %%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1473,8 +1498,7 @@ msgid "No options"
 msgstr "Sin opciones"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Previsualización"
 
@@ -1517,9 +1541,6 @@ msgid "Extract from this color"
 msgstr "Extraer de este color"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Aplicar"
 
@@ -1753,10 +1774,6 @@ msgstr "Mosaico"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Color sólido"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Filtro activo"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2140,8 +2157,8 @@ msgid "Cropping the canvas"
 msgstr "Recortando el lienzo"
 
 #: src/tools/transform_tools/tool_filters.py
-msgid "Filters options"
-msgstr "Opciones de filtros"
+msgid "Active filter"
+msgstr "Filtro activo"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2191,6 +2208,9 @@ msgstr "Radio de desenfoque"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturación"
+
+#~ msgid "Filters options"
+#~ msgstr "Opciones de filtros"
 
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Una aplicación de dibujo para el escritorio GNOME"

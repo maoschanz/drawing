@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-06-05 08:56+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -342,9 +342,9 @@ msgstr "Uppdatera"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "Visa/Dölj förhandsgranskningen"
 
 #: src/ui/app-menus.ui
@@ -490,6 +490,16 @@ msgstr "Mindre bredd"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Felsök markering"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Tillämpa en omvandling"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Tillämpa en omvandling"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -680,6 +690,11 @@ msgstr "Allmänt"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Huvudmeny"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Visa/Dölj förhandsgranskningen"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -882,10 +897,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1466,8 +1478,7 @@ msgid "No options"
 msgstr "Inga alternativ"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Förhandsgranska"
 
@@ -1510,9 +1521,6 @@ msgid "Extract from this color"
 msgstr "Extrahera från den här färgen"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Tillämpa"
 
@@ -1741,10 +1749,6 @@ msgstr "Mosaik"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Solid färg"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Aktivt filter"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2128,9 +2132,8 @@ msgid "Cropping the canvas"
 msgstr "Beskär arbetsytan"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "Markeringsalternativ"
+msgid "Active filter"
+msgstr "Aktivt filter"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"

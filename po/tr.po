@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -344,9 +344,9 @@ msgstr "Yenile"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "Önizlemeyi değiştir"
 
 #: src/ui/app-menus.ui
@@ -492,6 +492,16 @@ msgstr "Daha küçük genişlik"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Bir dönüşüm uygulayın"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Bir dönüşüm uygulayın"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -684,6 +694,11 @@ msgstr "Genel"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Ana menü"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Önizlemeyi değiştir"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -889,10 +904,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "İptal"
 
@@ -1477,8 +1489,7 @@ msgid "No options"
 msgstr "Seçenek yok"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Önizlenim"
 
@@ -1521,9 +1532,6 @@ msgid "Extract from this color"
 msgstr "Bu renkten ayıkla"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Onayla"
 
@@ -1753,10 +1761,6 @@ msgstr "Mozaik"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Koyu renk"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Aktif filtre"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2140,9 +2144,8 @@ msgid "Cropping the canvas"
 msgstr "Tuvali kırp"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "Fosforlu kalem seçenekleri"
+msgid "Active filter"
+msgstr "Aktif filtre"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"

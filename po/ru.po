@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-06-23 23:06+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -345,9 +345,9 @@ msgstr "Обновить"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "Предварительный просмотр"
 
 #: src/ui/app-menus.ui
@@ -493,6 +493,16 @@ msgstr "Уменьшить размер"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Применить изменение"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Применить изменение"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -683,6 +693,11 @@ msgstr "Общие"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Главное меню"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Предварительный просмотр"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -887,10 +902,7 @@ msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1470,8 +1482,7 @@ msgid "No options"
 msgstr "Без параметров"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
@@ -1514,9 +1525,6 @@ msgid "Extract from this color"
 msgstr "Исключить из этого цвет"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Применить"
 
@@ -1747,10 +1755,6 @@ msgstr "Мозаика"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Сплошной цвет"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Активный фильтр"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2134,9 +2138,8 @@ msgid "Cropping the canvas"
 msgstr "Обрезать холст"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "Параметры маркера"
+msgid "Active filter"
+msgstr "Активный фильтр"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"

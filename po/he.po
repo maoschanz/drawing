@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -359,9 +359,9 @@ msgid "Track framerate"
 msgstr ""
 
 # There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Show the menu-bar"
 msgstr "הצג/הסתר תצוגה מקדימה"
 
 #: src/ui/app-menus.ui
@@ -521,6 +521,16 @@ msgstr "רוחב ברירת מחדל"
 #, fuzzy
 msgid "Troubleshoot selection"
 msgstr "אפשרויות צבע"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "שינוי קנה מידה של הבחירה"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "שינוי קנה מידה של הבחירה"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -726,6 +736,12 @@ msgstr "כללי"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "תפריט ראשי"
+
+# There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "הצג/הסתר תצוגה מקדימה"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -939,10 +955,7 @@ msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -1528,8 +1541,7 @@ msgid "No options"
 msgstr "אין אפשרויות"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
@@ -1572,9 +1584,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "יישום"
 
@@ -1821,10 +1830,6 @@ msgstr ""
 #, fuzzy
 msgid "Solid color"
 msgstr "צבע משנה"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #, fuzzy
@@ -2241,9 +2246,8 @@ msgid "Cropping the canvas"
 msgstr "חיתוך לוח הציור"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "אפשרויות קו"
+msgid "Active filter"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"

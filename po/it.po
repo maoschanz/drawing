@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-07-10 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -342,8 +342,9 @@ msgstr "Aggiorna"
 msgid "Track framerate"
 msgstr "Traccia frequenza dei fotogrammi"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-msgid "Toggle the menu-bar"
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
 msgstr "Attiva/disattiva la barra dei menu"
 
 #: src/ui/app-menus.ui
@@ -489,6 +490,16 @@ msgstr "Larghezza ridotta"
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
 msgstr "Risolvere i problemi di selezione"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Applica una trasformazione"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Applica una trasformazione"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -679,6 +690,10 @@ msgstr "Generale"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Menu principale"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "Attiva/disattiva la barra dei menu"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -883,10 +898,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1466,8 +1478,7 @@ msgid "No options"
 msgstr "Nessuna opzione"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Anteprima"
 
@@ -1510,9 +1521,6 @@ msgid "Extract from this color"
 msgstr "Estratto da questo colore"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Applica"
 
@@ -1744,10 +1752,6 @@ msgstr "Mosaico"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Colore solido"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Filtro attivo"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2129,8 +2133,8 @@ msgid "Cropping the canvas"
 msgstr "Ritaglia la tela"
 
 #: src/tools/transform_tools/tool_filters.py
-msgid "Filters options"
-msgstr "Opzioni filtri"
+msgid "Active filter"
+msgstr "Filtro attivo"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2180,6 +2184,9 @@ msgstr "Raggio di sfocatura"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturazione"
+
+#~ msgid "Filters options"
+#~ msgstr "Opzioni filtri"
 
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-19 23:55+0200\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,8 +334,8 @@ msgstr ""
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-msgid "Toggle the menu-bar"
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -480,6 +480,14 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
+msgstr ""
+
+#: src/ui/app-menus.ui
+msgid "Cancel transformation"
+msgstr ""
+
+#: src/ui/app-menus.ui
+msgid "Apply transformation"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -670,6 +678,10 @@ msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Main menu"
+msgstr ""
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
 msgstr ""
 
 #: src/ui/shortcuts.ui
@@ -873,10 +885,7 @@ msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr ""
 
@@ -1447,8 +1456,7 @@ msgid "No options"
 msgstr ""
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr ""
 
@@ -1491,9 +1499,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr ""
 
@@ -1721,10 +1726,6 @@ msgstr ""
 
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
-msgstr ""
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
 msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
@@ -2107,7 +2108,7 @@ msgid "Cropping the canvas"
 msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
-msgid "Filters options"
+msgid "Active filter"
 msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py

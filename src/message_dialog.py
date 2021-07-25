@@ -38,7 +38,7 @@ class DrMessageDialog(Gtk.MessageDialog):
 			# be used if it's not required
 			self.should_wrap = False
 
-	def set_action(self, label, style, is_default):
+	def set_action(self, label, style, is_default=False):
 		"""Add a button (with the specified style) to the message dialog and
 		returns the corresponding response id."""
 		self._min_action_index = self._min_action_index + 1
