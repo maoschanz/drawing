@@ -50,7 +50,7 @@
       </item>
       <item>
         <!-- Context: a filter to censor the image with some little tiles -->
-        <attribute name="label" translatable="yes">Pixelization</attribute>
+        <attribute name="label" translatable="yes">Mosaic</attribute>
         <attribute name="action">win.filters_type</attribute>
         <attribute name="target">tiles</attribute>
       </item>
@@ -58,21 +58,19 @@
         <attribute name="label" translatable="yes">Blur direction</attribute>
         <item>
           <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">Horizontal</attribute>
+          <attribute name="label" translatable="yes">No direction</attribute>
+          <attribute name="action">win.filters_blur_dir</attribute>
+          <attribute name="target">none</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Blur horizontally</attribute>
           <attribute name="action">win.filters_blur_dir</attribute>
           <attribute name="target">horizontal</attribute>
         </item>
         <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">Vertical</attribute>
+          <attribute name="label" translatable="yes">Blur vertically</attribute>
           <attribute name="action">win.filters_blur_dir</attribute>
           <attribute name="target">vertical</attribute>
-        </item>
-        <item>
-          <!-- Context: about the blur direction -->
-          <attribute name="label" translatable="yes">No direction</attribute>
-          <attribute name="action">win.filters_blur_dir</attribute>
-          <attribute name="target">none</attribute>
         </item>
       </submenu>
     </section>

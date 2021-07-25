@@ -62,6 +62,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.build_and_do_op() # Show the temp_pixbuf before any event
 		if self.apply_to_selection:
 			self.cursor_name = 'move'
+			# XXX pas sérieux ça ^
 		else:
 			self.cursor_name = 'pointer'
 		# the pane is updated by the window according to self.apply_to_selection
