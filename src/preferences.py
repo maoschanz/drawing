@@ -147,7 +147,8 @@ class DrPrefsWindow(Gtk.Window):
 			'free_select': _("Free selection"),
 			'color_select': _("Color selection"),
 			'picker': _("Color Picker"),
-			'paint': _("Paint")
+			'paint': _("Paint"),
+			'skew': _("Skew"),
 		}
 		self.add_check_flowbox('disabled-tools', tools_dict)
 
