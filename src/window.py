@@ -140,8 +140,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                   "would you like to read what's new?")
 		dialog.add_string(label % current_version)
 
-		no_id = dialog.set_action(_("No"), None, False)
-		later_id = dialog.set_action(_("Later"), None, False)
+		no_id = dialog.set_action(_("No"), None)
+		later_id = dialog.set_action(_("Later"), None)
 		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
 		result = dialog.run()
 		dialog.destroy()
@@ -929,9 +929,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			dialog = DrMessageDialog(self)
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
-			new_window_id = dialog.set_action(_("New Window"), None, False)
-			discard_id = dialog.set_action(_("Discard changes"), \
-			                                        'destructive-action', False)
+			new_window_id = dialog.set_action(_("New Window"), None)
+			discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
 			if not self.get_active_image().is_saved():
 				# Context: %s will be replaced by the name of a file.
 				dialog.add_string(_("There are unsaved modifications to %s.") % \
@@ -966,8 +965,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		per image), or to import them (it will only import the first), or to
 		cancel (if the user dropped mistakenly)."""
 		dialog = DrMessageDialog(self)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		open_id = dialog.set_action(_("Open"), None, False)
+		cancel_id = dialog.set_action(_("Cancel"), None)
+		open_id = dialog.set_action(_("Open"), None)
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()

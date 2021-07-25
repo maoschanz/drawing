@@ -95,7 +95,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 
 def launch_infinite_loop_dialog(window):
 	dialog = DrMessageDialog(window)
-	cancel_id = dialog.set_action(_("Cancel"), None, False)
+	cancel_id = dialog.set_action(_("Cancel"), None)
 	continue_id = dialog.set_action(_("Continue"), None, True)
 	dialog.add_string(_("The area seems poorly delimited, or is very complex."))
 	dialog.add_string(_("This algorithm may not be able to manage the wanted area."))
