@@ -27,6 +27,7 @@ APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
 BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
 FLATPAK_BINARY_PATH = '/app/bin/drawing'
+CURRENT_BINARY_PATH = '/app/bin/drawing'
 
 def main(version):
 	app = Application(version)
@@ -83,21 +84,21 @@ class Application(Gtk.Application):
 	def _build_actions(self):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
-		self.add_action_simple('settings', self.on_prefs, None)
-		self.add_action_simple('report_bug', self.on_report, None)
+		self.add_action_simple('settings', self.on_prefs)
+		self.add_action_simple('report_bug', self.on_report)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
 
 		self.add_action_simple('help', self.on_help_index, ['F1'])
-		self.add_action_simple('help_main', self.on_help_main, None)
-		self.add_action_simple('help_zoom', self.on_help_zoom, None)
-		self.add_action_simple('help_fullscreen', self.on_help_fullscreen, None)
-		self.add_action_simple('help_tools', self.on_help_tools, None)
-		self.add_action_simple('help_colors', self.on_help_colors, None)
-		self.add_action_simple('help_transform', self.on_help_transform, None)
-		self.add_action_simple('help_selection', self.on_help_selection, None)
-		self.add_action_simple('help_prefs', self.on_help_prefs, None)
-		self.add_action_simple('help_whats_new', self.on_help_whats_new, None)
+		self.add_action_simple('help_main', self.on_help_main)
+		self.add_action_simple('help_zoom', self.on_help_zoom)
+		self.add_action_simple('help_fullscreen', self.on_help_fullscreen)
+		self.add_action_simple('help_tools', self.on_help_tools)
+		self.add_action_simple('help_colors', self.on_help_colors)
+		self.add_action_simple('help_transform', self.on_help_transform)
+		self.add_action_simple('help_selection', self.on_help_selection)
+		self.add_action_simple('help_prefs', self.on_help_prefs)
+		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
@@ -132,7 +133,8 @@ class Application(Gtk.Application):
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
-		if arguments[0] == FLATPAK_BINARY_PATH:
+		CURRENT_BINARY_PATH = arguments[0]
+		if CURRENT_BINARY_PATH == FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
 
 		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
@@ -170,7 +172,7 @@ class Application(Gtk.Application):
 			windows_counter = 0
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolea; True would mean the app
+				# here, f can be a GioFile or a boolean. True would mean the app
 				# should open a new blank image.
 				if f != False:
 					f = None if f == True else f
@@ -321,12 +323,11 @@ class Application(Gtk.Application):
 	def get_current_version(self):
 		return self._version
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.set_accels_for_action('app.' + action_name, shortcuts)
+		self.set_accels_for_action('app.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		action = Gio.SimpleAction().new_stateful(action_name, None, \
@@ -344,8 +345,11 @@ class Application(Gtk.Application):
 		window should be opened anyway."""
 		if path == FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
-			# when it's /app/bin/drawing, the situation is normal, and
-			# it tells the app it's running in a flatpak sandbox
+			# when it's /app/bin/drawing, the app is in a flatpak sandbox. It'll
+			# match the following condition too.
+		if path == CURRENT_BINARY_PATH:
+			# when it's CURRENT_BINARY_PATH, the situation is normal (no error)
+			# and nothing to open.
 			return False
 
 		err = _("Error opening this file.") + ' '

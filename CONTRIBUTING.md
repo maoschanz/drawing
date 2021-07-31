@@ -70,23 +70,6 @@ Example of something translators can't guess so it's written in the comments:
 since this app is a clone of MS Paint, `Paint;` (untranslated) has to be in the
 list of keywords for finding the app in searchable menus or software centers.
 
-##### Accelerators
-
-When words have an underscore in them, it defines a keyboard accelerator working
-with the <kbd>Alt</kbd> key: for example, if an english-speaking user uses a
-layout with a menu-bar, pressing <kbd>Alt</kbd>+<kbd>F</kbd> will open the
-`_File` menu.
-
-In translations, the underscore can be on another character of the word, but
-translators should take into account that 2 labels activatable at the same time
-can't share the same accelerator.
-
-Example: `Édi_tion` and `Ou_tils` can't work, but `É_dition` and `Ou_tils` can
-work.
-
-Also, the character should be accessible easily from the keyboard layouts of
-your language.
-
 ### Testing your translation (optional)
 
 If you want to test your translation:

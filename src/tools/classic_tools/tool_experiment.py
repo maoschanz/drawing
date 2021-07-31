@@ -10,7 +10,6 @@ class ToolExperiment(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
-		self.row.get_style_context().add_class('destructive-action')
 
 		# In order to draw pressure-sensitive lines, the path is collected as
 		# an array whose elements are dicts (keys are 'x', 'y', 'p'). An actual
@@ -57,6 +56,11 @@ class ToolExperiment(AbstractClassicTool):
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
 
+	def build_row(self):
+		super().build_row()
+		self.row.get_style_context().add_class('destructive-action')
+		return self.row
+
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
 
@@ -89,10 +93,11 @@ class ToolExperiment(AbstractClassicTool):
 		self._manual_path = []
 		self._add_pressured_point(event_x, event_y, event)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self._add_pressured_point(event_x, event_y, event)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_pressured_point(event_x, event_y, event)

@@ -55,32 +55,31 @@ app from source code.
 If your language is not here, or is incompletely translated, you can
 [contribute](./CONTRIBUTING.md#translating) to the translations.
 
-
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
-| cs   | Czech        | 96%        | @pervoj                                   |
-| da   | Danish       | 92%        | @scootergrisen                            |
-| de   | German       | 99%        | @Etamuk                                   |
+| cs   | Czech        | 85%        | @pervoj                                   |
+| da   | Danish       | 82%        | @scootergrisen                            |
+| de   | German       | 96%        | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
-| es   | Castillan    | 100%       | @fitojb and @xoan                         |
-| eu   | Basque       | 88%        | @alexgabi                                 |
-| fi   | Finnish      | 75%        | @mahtiankka                               |
+| es   | Castillan    | 99%        | @fitojb, @xoan, @oscfdezdz                |
+| eu   | Basque       | 84%        | @alexgabi                                 |
+| fi   | Finnish      | **67%**    | @mahtiankka                               |
 | fr   | French       | 100%       |                                           |
-| he   | Hebrew       | **39%**    | @moriel5 and @shaqash                     |
-| hr   | Croatian     | 78%        | @milotype                                 |
-| hu   | Hungarian    | **62%**    | @kami911                                  |
-| id   | Indonesian   | 76%        | @ekickx                                   |
-| it   | Italian      | 97%        | @amivaleo and @albanobattistella          |
-| ja   | Japanese     | 100%       | @rlbxku1r                                 |
-| kr   | Korean       | 100%       | @chaeya                                   |
-| nl   | Dutch        | 100%       | @Vistaus                                  |
-| pl   | Polish       | **72%**    | @pkomur)                                  |
-| pt_BR | Br. portuguese | 81%     | @haurenburu and @ArthurBacci64            |
-| ru   | Russian      | 99%        | @tim77 and @Ser82-png                     |
-| sv   | Swedish      | 100%       | @eson57                                   |
-| tr   | Turkish      | 100%       | @TeknoMobil and @serkan-maker             |
-| zh_CN | Chinese, simpl. | 80%    | @OverflowCat                              |
-| zh_TW | Chinese, tradi. | 81%    | @pan93412, @OverflowCat and @cges30901    |
+| he   | Hebrew       | **35%**    | @moriel5 and @shaqash                     |
+| hr   | Croatian     | **69%**    | @milotype                                 |
+| hu   | Hungarian    | **56%**    | @kami911                                  |
+| id   | Indonesian   | 68%        | @ekickx                                   |
+| it   | Italian      | 98%        | @amivaleo and @albanobattistella          |
+| ja   | Japanese     | 96%        | @rlbxku1r                                 |
+| kr   | Korean       | 95%        | @chaeya                                   |
+| nl   | Dutch        | 97%        | @Vistaus                                  |
+| pl   | Polish       | **64%**    | @pkomur)                                  |
+| pt_BR | Br. portuguese | 72%     | @haurenburu and @ArthurBacci64            |
+| ru   | Russian      | 96%        | @tim77 and @Ser82-png                     |
+| sv   | Swedish      | 96%        | @eson57                                   |
+| tr   | Turkish      | 95%        | @TeknoMobil and @serkan-maker             |
+| zh_CN | Chinese, simpl. | 71%    | @OverflowCat                              |
+| zh_TW | Chinese, tradi. | 72%    | @pan93412, @OverflowCat and @cges30901    |
 
 \*Completion percentages correspond to **the next** major version, still in
 development.

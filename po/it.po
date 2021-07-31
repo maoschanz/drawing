@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-20 03:05+0200\n"
-"PO-Revision-Date: 2021-06-27 15:15+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"PO-Revision-Date: 2021-07-26 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -48,9 +48,10 @@ msgstr "Nuova Immagine"
 msgid "Edit Image in Clipboard"
 msgstr "Modifica l'Immagine negli Appunti"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr "Semplice editor di immagini per desktop Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -72,154 +73,56 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
+msgstr ""
+"La versione 1.0.0 migliora le prestazioni di rendering, che sono visibili durante la modifica "
+"di immagini grandi con una CPU scadente."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+"Ora puoi usare il nuovo strumento \"inclina\", per inclinare un'immagine da un rettangolo a "
+"un parallelogramma. Tale deformazione può essere applicata orizzontalmente o "
+"verticalmente."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+"Utilizzando lo strumento \"scala\", puoi opzionalmente impostare la nuova dimensione con relativa "
+"percentuale piuttosto che un valore assoluto in pixel."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+"Se i nomi degli strumenti sono visibili, puoi abilitare uno strumento specifico con "
+"\"alt+[lettera sottolineata]\". Potrebbe non funzionare ancora con le lingue che utilizzano "
+"un alfabeto non latino."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+"Premendo \"ctrl\", \"shift\", o \"alt\" quando si utilizza uno strumento si attivano "
+"opzioni, come \"aggiungi alla selezione\" per gli strumenti di selezione."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "La versione 0.8.2 presenta diverse correzioni di bug minori e varie nuove "
 "traduzioni. "
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-"Lo strumento linea retta ha una nuova opzione per bloccare il suo angolo, così puoi disegnare "
-"perfetti tratti orizzontali, verticali o a 45°."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr "L'opzione della riga di comando `--edit-clipboard` ora funziona con Wayland."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-"Ridimensionare un'immagine utilizzando gli input numerici ora conserva le proporzioni "
-"originali dell'immagine (a meno che l'opzione \"non mantenere mai le proporzioni\" sia "
-"abilitato)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
-msgstr ""
-"Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, ma ora è "
-"stato sistemato."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
-msgstr ""
-"Questa versione dell'app è compatibile con le versioni precedenti di GNOME (Ubuntu LTS "
-"18.04)."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"La versione 0.8.1 presenta diverse correzioni di bug minori e varie nuove "
-"traduzioni. "
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-"Ora puoi ritagliare o espandere la tela a una dimensione basata sull'attuale "
-"dimensione della selezione, utilizzando le nuove azioni disponibili nei menu."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-"Un bug, per cui lo strumento \"ritaglia\" poteva cancellare l'immagine in "
-"determinate condizioni, è stato risolto."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-"Nella finestra delle preferenze, ora c'è un'opzione per selezionare se "
-"preferisci la variante del tema scuro."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-"Sono state aggiunte diverse opzioni, al pennello \"linea calligrafica\", lo "
-"strumento \"gomma\" e \"matita\"."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Con Drawing 0.8.0, puoi finalmente usare una tavoletta e uno stilo per "
-"disegnare strumenti sensibili alla pressione, come il nuovo 'pennello' e "
-"'aerografo'."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"La modalità a schermo intero è stata completamente ridisegnata per fornire "
-"un ancora più facile accesso meno invadente agli strumenti e alle loro "
-"opzioni."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"I filtri sono stati riscritti per essere più affidabili e un nuovo filtro "
-"per è stato aggiunto per aumentare armoniosamente il contrasto."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Quando sposti o elimini la selezione, ora i pixel lasciati indietro possono "
-"eventualmente avere un colore specifico, piuttosto che sempre in "
-"trasparenza. Questo colore specifico può essere escluso dalla selezione. "
-"Questa feature è complessa per spiegarla con poche parole, provala tu "
-"stesso, cosi' potrai vederla."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"Ora sono disponibili opzioni come il tipo di sfondo del testo e lo stile di "
-"riempimento della forma che sono persistenti alla chiusura dell'applicazione."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"L'interfaccia utente per la selezione della modalità di applicazione attiva "
-"del colore è stata riscritta per mostrare meglio l'etichetta accurata e "
-"organizzare le possibili modalità come sottomenu."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"La modalità \"sfocatura\" è stata rimossa, il che ha semplificato la "
-"situazione e consentendo a diversi strumenti (\"forme\" e \"pennelli\") ad "
-"ottenere supporto per la modalità di applicazione del colore in generale."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -247,8 +150,8 @@ msgid "The \"new image\" menu opened"
 msgstr "La \"nuova immagine\" menu aperto"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_File"
+msgid "File"
+msgstr "File"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -322,8 +225,8 @@ msgid "Quit all windows"
 msgstr "Chiudi tutte le finestre"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Modifica"
+msgid "Edit"
+msgstr "Modifica"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -379,8 +282,8 @@ msgid "Preferences"
 msgstr "Preferenze"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Vista"
+msgid "View"
+msgstr "Vista"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -449,23 +352,23 @@ msgstr "Aggiorna"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Traccia frequenza dei fotogrammi"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Schero Intero"
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
+msgstr "Mostra la barra del menu"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Nascondi barre degli strumenti"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Uscire da Schermo Intero"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Schero Intero"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Colori"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Colori"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -570,9 +473,9 @@ msgstr "Non usare i colori ma…"
 msgid "Erase"
 msgstr "Cancella"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Strumenti"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Strumenti"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -599,13 +502,21 @@ msgstr "Larghezza ridotta"
 msgid "Troubleshoot selection"
 msgstr "Risolvere i problemi di selezione"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Opzioni"
+#: src/ui/app-menus.ui
+msgid "Cancel transformation"
+msgstr "Annulla trasformazione"
 
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Aiuto"
+msgid "Apply transformation"
+msgstr "Applica trasformazione"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "Opzioni"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Aiuto"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -702,10 +613,6 @@ msgstr "Utilizzare queste impostazioni come predefinita"
 msgid "Images"
 msgstr "Immagini"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Strumenti"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Finestra"
@@ -793,9 +700,9 @@ msgstr "Generale"
 msgid "Main menu"
 msgstr "Menu principale"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Aiuto"
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "Attiva/disattiva la barra dei menu"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -847,10 +754,6 @@ msgstr "Elimina la selezione"
 msgid "Import a file as the selection"
 msgstr "Importa un file come selezione"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Colori"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -891,6 +794,10 @@ msgstr "Modalità touch"
 msgid "Loading…"
 msgstr "Caricamento…"
 
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Uscire da Schermo Intero"
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -929,7 +836,7 @@ msgstr "File non salvato"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s fotogrammi al secondo"
 
 #. Description of a command line option
 #: src/main.py
@@ -1000,10 +907,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1448,6 +1352,12 @@ msgstr "Spiacenti, le immagini WEBP non possono essere caricate da questa app."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Nonostante il nome, %s è un file WEBP."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Strumento di caricamento non riuscito: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
@@ -1471,12 +1381,6 @@ msgstr "Dopo"
 msgid "Yes"
 msgstr "Si"
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Strumento di caricamento non riuscito: %s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Gli appunti non contengono nessuna immagine"
@@ -1484,11 +1388,6 @@ msgstr "Gli appunti non contengono nessuna immagine"
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Le modifiche avranno effetto dalla prossima nuova finestra."
-
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Nessuna opzione"
 
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
@@ -1583,9 +1482,12 @@ msgstr "Colore secondario"
 msgid "Tool size"
 msgstr "Dimensione strumento"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Nessuna opzione"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Anteprima"
 
@@ -1606,6 +1508,7 @@ msgid "Use this editor by default"
 msgstr "Usa questo editor come predefinito"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Opzioni selezione"
 
@@ -1627,9 +1530,6 @@ msgid "Extract from this color"
 msgstr "Estratto da questo colore"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Applica"
 
@@ -1862,10 +1762,6 @@ msgstr "Mosaico"
 msgid "Solid color"
 msgstr "Colore solido"
 
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Filtro attivo"
-
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
 msgstr "Cambia saturazione"
@@ -1932,7 +1828,6 @@ msgid "Color gradient"
 msgstr "Gradiente di colore"
 
 #: src/tools/ui/tool-line.ui
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Direzione bloccata"
 
@@ -2235,12 +2130,20 @@ msgid "Error: invalid values"
 msgstr "Errore: valori non validi"
 
 #: src/tools/transform_tools/tool_crop.py
+msgid "Cropping options"
+msgstr "Opzioni di ritaglio"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Ritaglia la selezione"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Ritaglia la tela"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr "Filtro attivo"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2253,12 +2156,20 @@ msgid "Emboss"
 msgstr "Rilievo"
 
 #: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating options"
+msgstr "Opzioni di rotazione"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Rotazione della selezione"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Rotazione della tela"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling options"
+msgstr "Opzioni di ridimensionamento"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2283,14 +2194,21 @@ msgstr "Raggio di sfocatura"
 msgid "Saturation"
 msgstr "Saturazione"
 
+#~ msgid "Filters options"
+#~ msgstr "Opzioni filtri"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
+
+#~ msgid ""
+#~ "After rotating the selection, it had an incorrectly big height, but now "
+#~ "it's fixed."
+#~ msgstr ""
+#~ "Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, "
+#~ "ma ora è stato sistemato."
+
 #~ msgid "Quit"
 #~ msgstr "Esci"
-
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Esci dalla modalità schermo intero"
-
-#~ msgid "Edit"
-#~ msgstr "Modifica"
 
 #~ msgid "Save as"
 #~ msgstr "Salve come"

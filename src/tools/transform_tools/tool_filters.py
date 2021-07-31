@@ -34,7 +34,6 @@ class ToolFilters(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('filters', _("Filters"), 'tool-filters-symbolic', window)
 		self.cursor_name = 'pointer'
-		self.add_tool_action_simple('filters_preview', self.on_filter_preview)
 
 		self.add_tool_action_enum('filters_type', 'saturation')
 		self.type_label = _("Change saturation")
@@ -75,15 +74,12 @@ class ToolFilters(AbstractCanvasTool):
 		for f_id, f in self._all_filters.items():
 			f.set_filter_compact(f_id == self._active_filter, is_compact)
 
+	def get_options_label(self):
+		return _("Active filter")
+
 	def get_edition_status(self):
 		tip_label = _("Click on the image to preview the selected filter")
 		return self.type_label + ' - ' + tip_label
-
-	def get_filters_menu(self):
-		"""Returns the Gio.MenuModel with the list of filters and some of their
-		options, for the optionsbar."""
-		model = self.get_options_model().get_item_link(0, Gio.MENU_LINK_SECTION)
-		return model.get_item_link(0, Gio.MENU_LINK_SUBMENU)
 
 	############################################################################
 

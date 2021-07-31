@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 17:25+0200\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -49,9 +49,10 @@ msgstr "Yeni Görüntü"
 msgid "Edit Image in Clipboard"
 msgstr "Panodaki Resmi Düzenle"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "GNOME masaüstü için çizim uygulaması"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -74,149 +75,44 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "Sürüm 0.8.2, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
 "içermektedir."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The boundaries of the canvas are now always visibly delimited, to better "
-"render the area where you can draw, even if the canvas is transparent. It "
-"also helps to see what parts of the selection may disappear when you will "
-"unselect it."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Transform tools can now draw a preview of the pixels they may create outside "
-"of the current canvas, which makes the 'crop', 'scale', and 'rotate' tools "
-"more intuitive to use."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The straight line tool has a new option to lock its angle, so you can draw "
-"perfect horizontal, vertical, or 45° strokes."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "The `--edit-clipboard` command line option now works with Wayland."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Scaling an image using the numerical inputs now preserves the original "
-"proportions of the image (unless the \"never keep proportions\" option is "
-"enabled)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"This version of the app is compatible with older GNOME versions (Ubuntu LTS "
-"18.04)."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.8.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Sürüm 0.8.1, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
-"içermektedir."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"You can now crop or expand the canvas to a size based on the current "
-"selection size, using new actions available in the selection menus."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"A bug, where the \"crop\" tool could erase the image under certain "
-"conditions, has been fixed."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"In the preferences window, there is now an option to select if you prefer "
-"the dark theme variant."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Several options have been added, to the \"calligraphic nib\" brush, the "
-"\"eraser\" tool, and the \"pencil\"."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Çizim 0.8.0 ile, nihayet yeni 'fırça' ve 'pistole' gibi basınca duyarlı "
-"araçlarla çizim yapmak için bir tablet ve bir kalem kullanabilirsiniz."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"Tam ekran modu, araçlara ve seçeneklerine daha kolay ancak daha az "
-"müdahaleci erişim sağlamak için tamamen yeniden tasarlandı."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"Filtreler daha güvenilir olacak şekilde yeniden yazıldı ve kontrastı uyumlu "
-"bir şekilde artırmak için yeni bir filtre eklendi."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always transparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Seçimi taşıdığınızda veya sildiğinizde, artık geride kalan pikseller her "
-"zaman şeffaflık yerine isteğe bağlı olarak belirli bir renk olabilir. Bu "
-"belirli renk seçimin dışında bırakılabilir. Bu özelliği kelimelerle "
-"açıklamak karmaşıktır, kendiniz deneyin göreceksiniz."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
-msgstr ""
-"Metin arka plan türü ve şekil doldurma stili gibi seçenekler artık uygulama "
-"kapatılırken korunmaktadır."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-"Etkin renk uygulama modunu seçmek için kullanıcı arayüzü, doğru etiketi daha "
-"iyi göstermek ve olası modları alt menüler olarak daha iyi organize etmek "
-"için yeniden yazılmıştır."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-"Durumu basitleştiren ve çeşitli araçların (\"şekiller\" ve \"fırçalar\") "
-"genel olarak renk uygulama modları için destek almasına izin veren "
-"\"bulanıklaştırma\" modu kaldırıldı."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -244,8 +140,8 @@ msgid "The \"new image\" menu opened"
 msgstr "\"Yeni resim\" menüsü açıldı"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Dosya"
+msgid "File"
+msgstr "Dosya"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -319,8 +215,8 @@ msgid "Quit all windows"
 msgstr "Tüm pencerelerden çık"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Düzenle"
+msgid "Edit"
+msgstr "Düzenle"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -376,8 +272,8 @@ msgid "Preferences"
 msgstr "Tercihler"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Görünüm"
+msgid "View"
+msgstr "Görünüm"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -448,21 +344,22 @@ msgstr "Yenile"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Tam ekran"
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
+msgstr "Önizlemeyi değiştir"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Araç çubuklarını gizle"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Tam ekrandan çık"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Tam ekran"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Renkler"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Renkler"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -567,9 +464,9 @@ msgstr "Renkleri kullanmayın ama…"
 msgid "Erase"
 msgstr "Silgi"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Araçlar"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Araçlar"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -596,13 +493,23 @@ msgstr "Daha küçük genişlik"
 msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Seçenekler"
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Bir dönüşüm uygulayın"
 
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Yardım"
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Bir dönüşüm uygulayın"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "Seçenekler"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Yardım"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
@@ -699,10 +606,6 @@ msgstr "Bu ayarları varsayılan olarak kullan"
 msgid "Images"
 msgstr "Görüntüler"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Araçlar"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Pencere"
@@ -758,7 +661,6 @@ msgstr "Daha fazla eylem"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Free selection"
 msgid "Invert selection"
 msgstr "Serbest seçim"
 
@@ -766,7 +668,6 @@ msgstr "Serbest seçim"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
-#| msgid "Open an image"
 msgid "Define as current image"
 msgstr "Bir görüntü aç"
 
@@ -794,9 +695,10 @@ msgstr "Genel"
 msgid "Main menu"
 msgstr "Ana menü"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Yardım"
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Önizlemeyi değiştir"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -848,10 +750,6 @@ msgstr "Seçimi sil"
 msgid "Import a file as the selection"
 msgstr "Bir dosyayı seçim olarak al"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Renkler"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -890,9 +788,12 @@ msgstr "Dokunmatik hareketleri"
 
 #: src/ui/window.ui
 #, fuzzy
-#| msgid "Loading %s"
 msgid "Loading…"
 msgstr "Yükleniyor %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Tam ekrandan çık"
 
 #: src/deco_manager.py
 #, python-format
@@ -1003,10 +904,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "İptal"
 
@@ -1186,7 +1084,6 @@ msgstr "Arkaplan rengi"
 
 #: src/preferences.py
 #, fuzzy
-#| msgid "Default width"
 msgid "Prefer dark theme variant"
 msgstr "Öntanımlı genişlik"
 
@@ -1455,6 +1352,12 @@ msgstr "Üzgünüz, WEBP resimleri bu uygulama tarafından yüklenemez."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Adına rağmen %s bir WEBP dosyasıdır."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Araç yüklenemedi: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
@@ -1480,12 +1383,6 @@ msgstr "Sonra"
 msgid "Yes"
 msgstr "Evet"
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Araç yüklenemedi: %s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Pano herhangi bir görüntü içermiyor."
@@ -1493,11 +1390,6 @@ msgstr "Pano herhangi bir görüntü içermiyor."
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
-
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Seçenek yok"
 
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
@@ -1592,9 +1484,12 @@ msgstr "İkincil renk"
 msgid "Tool size"
 msgstr "Araç boyutu"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Seçenek yok"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Önizlenim"
 
@@ -1615,6 +1510,7 @@ msgid "Use this editor by default"
 msgstr "Bu düzenleyiciyi varsayılan olarak kullan"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Seçici seçenekleri"
 
@@ -1636,9 +1532,6 @@ msgid "Extract from this color"
 msgstr "Bu renkten ayıkla"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Onayla"
 
@@ -1869,10 +1762,6 @@ msgstr "Mozaik"
 msgid "Solid color"
 msgstr "Koyu renk"
 
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Aktif filtre"
-
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
 msgstr "Doygunluğu değiştir"
@@ -1940,7 +1829,6 @@ msgstr "Geçiş rengi"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
-#| msgid "No direction"
 msgid "Locked direction"
 msgstr "Yön yok"
 
@@ -2243,12 +2131,21 @@ msgid "Error: invalid values"
 msgstr "Hata: geçersiz değerler"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Noktalama seçenekleri"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Seçimi kırp"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Tuvali kırp"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr "Aktif filtre"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2260,12 +2157,22 @@ msgid "Emboss"
 msgstr "Kabartma"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Boyama seçenekleri"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Seçimi döndür"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Tuvali döndür"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Boyama seçenekleri"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2290,14 +2197,14 @@ msgstr "Bulanıklık yarıçapı"
 msgid "Saturation"
 msgstr "Doygunluk"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "GNOME masaüstü için çizim uygulaması"
+
 #~ msgid "Quit"
 #~ msgstr "Çıkış"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Tam ekran kipinden çık"
-
-#~ msgid "Edit"
-#~ msgstr "Düzenle"
 
 #~ msgid "Open a file"
 #~ msgstr "Bir dosya aç"
