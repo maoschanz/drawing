@@ -298,7 +298,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
-		args[1].update_history_sensitivity()
+		args[1].update_image_wide_actions()
 		# On devrait être moins bourrin et conserver la sélection # TODO ?
 
 	def update_tabs_menu_section(self, *args):
