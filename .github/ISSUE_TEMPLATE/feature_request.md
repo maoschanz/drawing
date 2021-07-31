@@ -29,7 +29,3 @@ assignees: ''
 
 <!-- Why do you think this feature should be in Drawing? You can describe how
 you would use it, or in what situation it may help the users. -->
-
-
-
-
