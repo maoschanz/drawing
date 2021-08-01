@@ -92,7 +92,7 @@ class AbstractAbstractTool():
 	# Various utilities ########################################################
 
 	def show_error(self, error_text):
-		self.window.prompt_message(True, error_text)
+		self.window.reveal_message(error_text)
 
 	############################################################################
 	# Bottom pane and menubar integration ######################################

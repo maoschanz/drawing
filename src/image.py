@@ -45,6 +45,7 @@ class DrImage(Gtk.Box):
 	_drawing_area = Gtk.Template.Child()
 	_h_scrollbar = Gtk.Template.Child()
 	_v_scrollbar = Gtk.Template.Child()
+	reload_info_bar = Gtk.Template.Child()
 
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
@@ -55,6 +56,10 @@ class DrImage(Gtk.Box):
 		self.gfile = None
 		self.filename = None
 		self._can_reload()
+
+		# Closing the info bar
+		self.reload_info_bar.connect('close', self.hide_reload_message)
+		self.reload_info_bar.connect('response', self.hide_reload_message)
 
 		self._fps_counter = 0
 		self._skipped_frames = 0
@@ -209,7 +214,7 @@ class DrImage(Gtk.Box):
 			if not ex.message:
 				ex.message = "[exception without a valid message]"
 			ex = InvalidFileFormatException(ex.message, gfile.get_path())
-			self.window.prompt_message(True, ex.message)
+			self.window.reveal_action_report(ex.message)
 			self.gfile = None
 			pixbuf = self._new_blank_pixbuf(100, 100)
 			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
@@ -217,6 +222,12 @@ class DrImage(Gtk.Box):
 			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
 		self._can_reload()
+
+	def reveal_reload_message(self, *args):
+		self.reload_info_bar.set_visible(True)
+
+	def hide_reload_message(self, *args):
+		self.reload_info_bar.set_visible(False)
 
 	def _can_reload(self):
 		self.set_action_sensitivity('reload_file', self.gfile is not None)
@@ -367,12 +378,12 @@ class DrImage(Gtk.Box):
 			# Context: this is a debug information that users will never see
 			msg = _("%s frames per second") % self._fps_counter
 			msg += " (" + str(self._skipped_frames) + " motion inputs skipped)"
-			self.window.prompt_message(True, msg)
+			self.window.reveal_message(msg)
 			self._fps_counter = 0
 			self._skipped_frames = 0
 			GLib.timeout_add(1000, self.reset_fps_counter, {})
 		else:
-			self.window.prompt_message(False, "")
+			self.window.hide_message()
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""

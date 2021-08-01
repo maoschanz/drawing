@@ -83,7 +83,7 @@ class DrSavingManager():
 			# the user clicked on "cancel" XXX that's dumb
 			print(e)
 			# Context: an error message
-			self._window.prompt_message(True, _("Failed to save %s") % file_path)
+			self._window.reveal_message(_("Failed to save %s") % file_path)
 			return False
 
 		return True
