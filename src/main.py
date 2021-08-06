@@ -339,6 +339,16 @@ class Application(Gtk.Application):
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
 
+	def has_image_opened(self, file_path):
+		"""Returns the window in which the given file is opened, and the index
+		of the tab where it is in the window's notebook.
+		Or `None, None` otherwise."""
+		for win in self.get_windows():
+			position_in_window = win.has_image_opened(file_path)
+			if position_in_window is not None:
+				return win, position_in_window
+		return None, None
+
 	def _get_valid_file(self, app, path):
 		"""Creates a GioFile object if the path corresponds to an image. If no
 		GioFile can be created, it returns a boolean telling whether or not a

@@ -276,7 +276,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.build_new_tab(pixbuf=pixbuf)
 
 	def build_new_tab(self, gfile=None, pixbuf=None, \
-		           width=200, height=200, background_rgba=[0.5, 0.5, 0.5, 0.5]):
+		                    width=200, height=200, \
+		                    background_rgba=[0.5, 0.5, 0.5, 0.5]):
 		"""Open a new tab with an optional file to open in it."""
 		new_image = DrImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
@@ -1024,6 +1025,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.set_picture_title() # often redundant but not useless
 		self.log_message('file successfully loaded')
 		self.hide_message()
+
+	def has_image_opened(self, file_path):
+		for tab in self.notebook.get_children():
+			if tab.get_file_path() == file_path:
+				return self.notebook.page_num(tab)
+		return None
 
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
