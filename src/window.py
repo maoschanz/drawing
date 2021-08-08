@@ -116,9 +116,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			if get_cb:
 				self.delayed_build_from_clipboard()
 			elif gfile is not None:
-				self.build_new_tab(gfile=gfile)
+				self._build_new_tab(gfile=gfile)
 			else:
-				self.build_new_image()
+				self.build_blank_image()
 		except Exception as excp:
 			self.reveal_message(str(excp))
 
@@ -229,13 +229,13 @@ class DrWindow(Gtk.ApplicationWindow):
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
 
-	def build_new_image(self, *args):
+	def build_blank_image(self, *args):
 		"""Open a new tab with a drawable blank image using the default values
 		defined by user's settings."""
 		width = self.gsettings.get_int('default-width')
 		height = self.gsettings.get_int('default-height')
 		rgba = self.gsettings.get_strv('default-rgba')
-		self.build_new_tab(width=width, height=height, background_rgba=rgba)
+		self._build_new_tab(width=width, height=height, background_rgba=rgba)
 		self.set_picture_title()
 
 	def build_new_custom(self, *args):
@@ -245,13 +245,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		result = dialog.run()
 		if result == Gtk.ResponseType.OK:
 			width, height, rgba = dialog.get_values()
-			self.build_new_tab(width=width, height=height, background_rgba=rgba)
+			self._build_new_tab(width=width, height=height, background_rgba=rgba)
 			self.set_picture_title()
 		dialog.destroy()
 
 	def delayed_build_from_clipboard(self, *args):
 		"""Calls `async_build_from_clipboard` asynchronously."""
-		self.build_new_tab() # temporary image to avoid errors when the window
+		self._build_new_tab() # temporary image to avoid errors when the window
 		# finishes its initialisation.
 		GLib.timeout_add(500, self.async_build_from_clipboard, {})
 
@@ -266,19 +266,28 @@ class DrWindow(Gtk.ApplicationWindow):
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
 			self.reveal_message(_("The clipboard doesn't contain any image."))
-			self.build_new_image()
+			self.build_blank_image()
 		else:
-			self.build_new_tab(pixbuf=pixbuf)
+			self._build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
 		pixbuf = self.get_active_image().selection.get_pixbuf()
-		self.build_new_tab(pixbuf=pixbuf)
+		self._build_new_tab(pixbuf=pixbuf)
 
-	def build_new_tab(self, gfile=None, pixbuf=None, \
-		                    width=200, height=200, \
-		                    background_rgba=[0.5, 0.5, 0.5, 0.5]):
-		"""Open a new tab with an optional file to open in it."""
+	def build_new_from_file(self, gfile):
+		w, duplicate = self.app.has_image_opened(gfile)
+		if duplicate is not None and not w.confirm_open_twice(gfile):
+			w.notebook.set_current_page(duplicate)
+			return
+		self._build_new_tab(gfile=gfile)
+
+	def _build_new_tab(self, gfile=None, pixbuf=None, \
+		                     width=200, height=200, \
+		                     background_rgba=[0.5, 0.5, 0.5, 0.5]):
+		"""Open a new tab with an optional file to load in it, or directly a
+		pixbuf, or the color and dimensions of a blank tab."""
+
 		new_image = DrImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
 		self.notebook.child_set_property(new_image, 'reorderable', True)
@@ -286,13 +295,28 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
-			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
-			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
-			# qu'un petit pixbuf rouge
+			# TODO dans l'idéal si on passe par les actions du clipboard, on
+			# devrait n'ouvrir que si il n'y a pas de fenêtre, et ouvrir un truc
+			# respectant les settings, plutôt qu'un petit pixbuf gris
 		else:
 			new_image.init_background(width, height, background_rgba)
 		self._update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
+
+	def confirm_open_twice(self, gfile):
+		image_name = gfile.get_path().split('/')[-1]
+		dialog = DrMessageDialog(self)
+		# Context: %s is a file name
+		label = _("The file %s is already opened")
+		dialog.add_string(label % image_name)
+		# Context: the user would click here to confirm they want to open the
+		# same file twice
+		open_again_id = dialog.set_action(_("Open again"), None)
+		switch_to_id = dialog.set_action(_("Switch to this image"), \
+		                                               'suggested-action', True)
+		result = dialog.run()
+		dialog.destroy()
+		return result == open_again_id
 
 	def on_active_tab_changed(self, *args):
 		if not self._is_tools_initialisation_finished:
@@ -483,7 +507,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
-		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
+		self.add_action_simple('new_tab', self.build_blank_image, ['<Ctrl>t'])
 		self.add_action_simple('new_tab_custom', self.build_new_custom)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
@@ -941,7 +965,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.reveal_message(_("Loading %s") % file_name)
 		if self.get_active_image().should_replace():
 			# If the current image is just a blank, unmodified canvas.
-			self.try_load_file(gfile)
+			self._try_load_file(gfile)
 		else:
 			dialog = DrMessageDialog(self)
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
@@ -956,9 +980,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
-				self.build_new_tab(gfile=gfile)
+				self._build_new_tab(gfile=gfile)
 			elif result == discard_id:
-				self.try_load_file(gfile)
+				self._try_load_file(gfile)
 			elif result == new_window_id:
 				self.app.open_window_with_content(gfile, False)
 		self.hide_message()
@@ -1015,16 +1039,21 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		if result == open_id:
 			for f in gfiles:
-				self.build_new_tab(gfile=f)
+				self._build_new_tab(gfile=f)
 		elif result == import_id:
 			self.import_from_path(gfiles[0].get_path())
 
-	def try_load_file(self, gfile):
-		if gfile is not None:
-			self.get_active_image().try_load_file(gfile)
-		self.set_picture_title() # often redundant but not useless
-		self.log_message('file successfully loaded')
-		self.hide_message()
+	def _try_load_file(self, gfile):
+		if gfile is None:
+			return
+		if self.get_active_image().get_file_path() != gfile.get_path():
+			w, duplicate = self.app.has_image_opened(gfile)
+			if w is not None and not w.confirm_open_twice(gfile):
+				w.notebook.set_current_page(duplicate)
+				return
+
+		self.get_active_image().try_load_file(gfile)
+		self.set_picture_title()
 
 	def has_image_opened(self, file_path):
 		for tab in self.notebook.get_children():

@@ -110,6 +110,13 @@ class Application(Gtk.Application):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
+		if gfile is not None:
+			w, already_opened_index = self.has_image_opened(gfile.get_path)
+			if w is not None:
+				if not w.confirm_open_twice(gfile):
+					w.notebook.set_current_page(already_opened_index)
+					return
+
 		win = DrWindow(application=self)
 		win.present()
 
@@ -155,7 +162,7 @@ class Application(Gtk.Application):
 				self.open_window_with_content(None, True)
 			else:
 				win.present()
-				self.props.active_window.build_image_from_clipboard()
+				win.build_image_from_clipboard()
 
 		elif options.contains('new-tab') and len(arguments) == 1:
 			# If '-t' but no file given as argument
@@ -164,7 +171,7 @@ class Application(Gtk.Application):
 				self.on_new_window()
 			else:
 				win.present()
-				self.props.active_window.build_new_image()
+				win.build_blank_image()
 
 		elif options.contains('new-window'):
 			# it opens one new window per file given as argument, or just one
@@ -188,16 +195,19 @@ class Application(Gtk.Application):
 			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolean: True would mean the app
+				# here f can be a Gio.File or a boolean: True would mean the app
 				# should open a new blank image.
 				if f != False:
-					f = None if f == True else f
 					win = self.props.active_window
 					if not win:
+						f = None if f == True else f
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
-						self.props.active_window.build_new_tab(gfile=f)
+						if f == True:
+							win.build_blank_image()
+						else:
+							win.build_new_from_file(gfile=f)
 
 		# I don't even know if i should return something
 		return 0
