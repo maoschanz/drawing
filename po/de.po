@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-07-24 03:48+0200\n"
-"PO-Revision-Date: 2021-06-14 22:33+0200\n"
+"PO-Revision-Date: 2021-08-08 21:16+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -52,7 +52,7 @@ msgstr "Bild in Zwischenablage bearbeiten"
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Simple image editor for the Linux desktop(s)"
-msgstr ""
+msgstr "Einfacher Bildbearbeiter für Linux-Desktop(s)"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -78,6 +78,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Version 1.0.0 verbessert die Rendering-Leistung. Das macht sich besonders "
+"bemerkbar beim Bearbeiten großer Bilder mit einem schwachen Prozessor."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -85,12 +87,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Sie können jetzt ein neues Werkzeug namens Verzerren verwenden, um ein Bild "
+"von einem Rechteck zu einem Parallelogramm zu neigen. So eine Verformung "
+"kann horizontal und vertikal angewendet werden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Mit dem Werkzeug \"Skalieren\" können Sie die neue Größe optional als "
+"relativen Prozentsatz statt als absoluten Wert in Pixeln festlegen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,12 +105,19 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Wenn die Namen der Werkzeuge sichtbar sind, können Sie das gewünschte "
+"Werkzeug mit \"Alt+[unterstrichenem Buchstaben] auswählen. Dies funktioniert "
+"möglicherweise noch nicht mit Sprachen, die ein nicht-lateinisches Alphabet "
+"verwenden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Das Drücken von \"Strg\", \"Shift\" oder \"Alt\" beim Verwenden eines "
+"Werkzeuges aktiviert bestimmte Optionen, wie z.B. \"Zur Auswahl hinzufügen\" "
+"bei den Auswählen-Werkzeugen."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -342,12 +356,11 @@ msgstr "Aktualisieren"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Track Framerate"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Vorschau umschalten"
+msgstr "Menüleiste anzeigen"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -494,14 +507,12 @@ msgid "Troubleshoot selection"
 msgstr "Problembehandlung bei der Auswahl"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Anwenden einer Umwandlung"
+msgstr "Umwandlung abbrechen"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Anwenden einer Umwandlung"
+msgstr "Umwandlung anwenden"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -694,9 +705,8 @@ msgid "Main menu"
 msgstr "Hauptmenü"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Vorschau umschalten"
+msgstr "Menüleiste umschalten"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -833,7 +843,7 @@ msgstr "Nicht gespeicherte Datei"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s Bilder pro Sekunde"
 
 #. Description of a command line option
 #: src/main.py
@@ -1832,9 +1842,8 @@ msgid "Color gradient"
 msgstr "Farbverlauf"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Keine Richtung"
+msgstr "Richtung gesperrt"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2136,9 +2145,8 @@ msgid "Error: invalid values"
 msgstr "Fehler: Ungültige Werte"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Punkte-Optionen"
+msgstr "Zuschneideoptionen"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2162,9 +2170,8 @@ msgid "Emboss"
 msgstr "Prägung"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Füll-Optionen"
+msgstr "Drehoptionen"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2175,9 +2182,8 @@ msgid "Rotating the canvas"
 msgstr "Leinwand drehen"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Füll-Optionen"
+msgstr "Skalierungsoptionen"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"

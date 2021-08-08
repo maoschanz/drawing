@@ -195,7 +195,7 @@ class DrHistoryManager():
 		if tool_id in all_tools:
 			return all_tools[tool_id]
 		else:
-			self._image.window.prompt_message(True, _("Error: no tool '%s'" % tool_id))
+			self._image.window.reveal_action_report(_("Error: no tool '%s'" % tool_id))
 			# no raise: this may happen normally if last_save_index is incorrect
 
 	############################################################################

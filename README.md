@@ -92,7 +92,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.8.0**)
+(last update: **version 0.8.3**)
 
 *Tools in italic can be disabled.*
 
