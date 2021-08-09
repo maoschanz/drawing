@@ -15,6 +15,20 @@
       </item>
     </section>
     <section>
+      <item>
+        <attribute name="label" translatable="yes">Color gradient</attribute>
+        <attribute name="action">win.use_gradient</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Outline</attribute>
+        <attribute name="action">win.pencil-outline</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Locked direction</attribute>
+        <attribute name="action">win.line-ortholock</attribute>
+      </item>
+    </section>
+    <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
         <attribute name="label" translatable="yes">No dashes</attribute>
@@ -65,10 +79,6 @@
       </item>
     </section>
     <section>
-      <item>
-        <attribute name="label" translatable="yes">Color gradient</attribute>
-        <attribute name="action">win.use_gradient</attribute>
-      </item>
       <item>
         <attribute name="label" translatable="yes">Antialiasing</attribute>
         <attribute name="action">win.antialias</attribute>

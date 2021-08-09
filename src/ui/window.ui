@@ -11,6 +11,7 @@
   <template class="DrWindow" parent="GtkApplicationWindow">
     <property name="default-width">900</property>
     <property name="default-height">500</property>
+    <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
@@ -40,7 +41,7 @@
                   <object class="GtkLabel" id="info_label">
                     <property name="visible">True</property>
                     <property name="wrap">True</property>
-                    <property name="label" translatable="yes">Error starting the application, please report this bug.</property>
+                    <property name="label" translatable="yes">Loading…</property>
                   </object>
                 </child>
               </object>

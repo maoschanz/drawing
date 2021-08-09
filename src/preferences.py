@@ -165,6 +165,8 @@ class DrPrefsWindow(Gtk.Window):
 			self._gsettings.set_boolean('devel-only', False)
 		self.add_colorbtn(_("Background color"), 'ui-background-rgba')
 
+		self.add_switch(_("Prefer dark theme variant"), 'dark-theme-variant')
+
 		self.add_section_separator()
 		# Context: title of a section of the preferences. It corresponds to the
 		# window layout (header-bar? tool-bar? menu-bar?)

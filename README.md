@@ -10,7 +10,7 @@ PNG, JPEG and BMP files are supported.
 [<img alt="" height="100" src="https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-i.svg">](https://circle.gnome.org/)
 
 Besides GNOME, some more traditional design layouts are available too, as well
-as an [elementaryOS layout](./docs/screenshots/0.6/elementary_save_as.png). It
+as an [elementaryOS layout](./docs/screenshots/0.8/elementary_labels.png). It
 should also be compatible with the *Pinephone* and *Librem 5*
 [smartphones](./docs/screenshots/0.6/librem_menu.png).
 
@@ -18,7 +18,7 @@ should also be compatible with the *Pinephone* and *Librem 5*
 
 ### Default user interface (for GNOME/Budgie)
 
-![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/0.6/gnome_menu.png)
+![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/0.8/gnome_menu.png)
 
 [More screenshots](https://maoschanz.github.io/drawing/gallery.html)
 
@@ -39,7 +39,7 @@ You can install it from flathub.org using the instructions on
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
 
-- Ubuntu 18.04, 20.04, and 20.10: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
+- Ubuntu 18.04, 20.10 and 21.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Gentoo package](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/media-gfx/drawing) from an external overlay
 - ["Snap" package](https://snapcraft.io/drawing)
 
@@ -55,29 +55,31 @@ app from source code.
 If your language is not here, or is incompletely translated, you can
 [contribute](./CONTRIBUTING.md#translating) to the translations.
 
-| code | name         | since… | complete*? | main translators                 |
-|------|--------------|--------|------------|----------------------------------|
-| cs   | Czech        | 0.6.4  | 96%        | [Vojtěch Perník](https://github.com/pervoj)
-| da   | Danish       | 0.4.10 | 92%        | [scootergrisen](https://github.com/scootergrisen)
-| de   | German       | 0.4.1  | 100%       | [Onno Giesmann](https://github.com/Etamuk)
-|      | English      | 0.2    | 100%       | help welcome **                  |
-| es   | Castillan    | 0.2    | 97%        | [Adolfo Jayme-Barrientos](https://github.com/fitojb) and [Xoan Sampaiño](https://github.com/xoan)
-| eu   | Basque       | 0.4.14 | 81%        | [alexgabi](https://github.com/alexgabi)
-| fi   | Finnish      | 0.4.10 | 75%        | [MahtiAnkka](https://github.com/mahtiankka)
-| fr   | French       | 0.2    | 100%       |                                  |
-| he   | Hebrew       | 0.4.1  | **39%**    | [moriel5](https://github.com/moriel5) and [Shaked Ashkenazi](https://github.com/shaqash)
-| hr   | Croatian     | 0.4.11 | 78%        | [Milo Ivir](https://github.com/milotype)
-| hu   | Hungarian    | 0.4.10 | **62%**    | [Kálmán „KAMI” Szalai](https://github.com/kami911)
-| id   | Indonesian   | 0.6.3  | 76%        | [Ghani Rafif](https://github.com/ekickx)
-| it   | Italian      | 0.4.1  | 97%        | [Jimmy Scionti](https://github.com/amivaleo) and [Albano Battistella](https://github.com/albanobattistella)
-| nl   | Dutch        | 0.4.1  | 97%        | [Heimen Stoffels](https://github.com/Vistaus)
-| pl   | Polish       | 0.4.10 | **72%**    | [Piotr Komur](https://github.com/pkomur)
-| pt_BR | Br. portuguese | 0.4.3 | 81%      | [Antonio Hauren](https://github.com/haurenburu) and [ArthurBacci64](https://github.com/ArthurBacci64)
-| ru   | Russian      | 0.4.1  | **35%**    | [Artem Polishchuk](https://github.com/tim77)
-| sv   | Swedish      | 0.4.11 | 97%       | [Åke Engelbrektson](https://github.com/eson57)
-| tr   | Turkish      | 0.2    | 97%        | [Serdar Sağlam](https://github.com/TeknoMobil)
-| zh_CN | Chinese, simpl. | 0.4.14 | 80%    | [OverflowCat](https://github.com/OverflowCat)
-| zh_TW | Chinese, tradi. | 0.4.14 | 81%    | [pan93412](https://github.com/pan93412), [OverflowCat](https://github.com/OverflowCat), [張修銘](https://github.com/cges30901)
+| code | name         | complete*? | main translators                          |
+|------|--------------|------------|-------------------------------------------|
+| cs   | Czech        | 85%        | @pervoj                                   |
+| da   | Danish       | 82%        | @scootergrisen                            |
+| de   | German       | 96%        | @Etamuk                                   |
+|      | English      | 100%       | help welcome **                           |
+| es   | Castillan    | 99%        | @fitojb, @xoan, @oscfdezdz                |
+| eu   | Basque       | 84%        | @alexgabi                                 |
+| fi   | Finnish      | **67%**    | @mahtiankka                               |
+| fr   | French       | 100%       |                                           |
+| he   | Hebrew       | **35%**    | @moriel5 and @shaqash                     |
+| hr   | Croatian     | **69%**    | @milotype                                 |
+| hu   | Hungarian    | **56%**    | @kami911                                  |
+| id   | Indonesian   | 68%        | @ekickx                                   |
+| it   | Italian      | 98%        | @amivaleo and @albanobattistella          |
+| ja   | Japanese     | 96%        | @rlbxku1r                                 |
+| kr   | Korean       | 95%        | @chaeya                                   |
+| nl   | Dutch        | 97%        | @Vistaus                                  |
+| pl   | Polish       | **64%**    | @pkomur)                                  |
+| pt_BR | Br. portuguese | 72%     | @haurenburu and @ArthurBacci64            |
+| ru   | Russian      | 96%        | @tim77 and @Ser82-png                     |
+| sv   | Swedish      | 96%        | @eson57                                   |
+| tr   | Turkish      | 95%        | @TeknoMobil and @serkan-maker             |
+| zh_CN | Chinese, simpl. | 71%    | @OverflowCat                              |
+| zh_TW | Chinese, tradi. | 72%    | @pan93412, @OverflowCat and @cges30901    |
 
 \*Completion percentages correspond to **the next** major version, still in
 development.
@@ -90,7 +92,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.7.0+**)
+(last update: **version 0.8.3**)
 
 *Tools in italic can be disabled.*
 
@@ -98,13 +100,13 @@ incorrect english labels, please report an issue about it.
 
 General options for these tools: colors, use antialiasing, size, …
 
-- Pencil (options: dashes, line shape, …)
+- Pencil (options: dashes, line shape, outline, …)
 - *Brushes (pressure sensitive)*:
 	- *Simple round brush*
 	- *Hairy brush*
 	- *Airbrush*
 	- *Calligraphic nibs*
-- *Eraser*
+- *Eraser* (options: blur, mosaic, transparency, solid color, …)
 - *Highlighter* (options: highlight on dark background)
 - Line (options: arrow, dashes, gradient, …)
 - Curve (options: arrow, dashes, …)
@@ -119,7 +121,6 @@ General options for these tools: colors, use antialiasing, size, …
 	- free shape
 - *Color picker*
 - *Paint (options: remove a color, …)*
-- *Censor/hide elements*
 
 #### Selection tools
 
@@ -149,9 +150,20 @@ These tools can edit the whole image, or edit a selected part of it.
 
 ----
 
+### Settings
+
+The settings are managed by the `Gio.Settings` abstraction, which will probably
+corresponds to the `dconf` database once the app is installed as a native
+package.
+
+With flatpak however, the settings are stored in a key-value file, which can be
+found (and edited) at `~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/settings/keyfile`.
+
+----
+
 [Donations (paypal)](https://paypal.me/maoschannz)
 
 [To contribute](./CONTRIBUTING.md)
 
-the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic)
+the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the Adwaita theme.
 

@@ -1,4 +1,3 @@
-
 # tool_brush.py
 #
 # Copyright 2018-2021 Romain F. T.
@@ -21,7 +20,7 @@ from .abstract_classic_tool import AbstractClassicTool
 
 from .brush_simple import BrushSimple
 from .brush_airbrush import BrushAirbrush
-from .brush_nip import BrushNip
+from .brush_nib import BrushNib
 from .brush_hairy import BrushHairy
 
 class ToolBrush(AbstractClassicTool):
@@ -35,7 +34,7 @@ class ToolBrush(AbstractClassicTool):
 		self._brushes_dict = {
 			'simple': BrushSimple('simple', self),
 			'airbrush': BrushAirbrush('airbrush', self),
-			'calligraphic': BrushNip('calligraphic', self),
+			'calligraphic': BrushNib('calligraphic', self),
 			'hairy': BrushHairy('hairy', self),
 		}
 
@@ -51,8 +50,11 @@ class ToolBrush(AbstractClassicTool):
 		self._brush_type = self.get_option_value('brush-type')
 		self._brush_dir = self.get_option_value('brush-dir')
 
+		enable_direction = self._brush_type == 'calligraphic'
+		self.set_action_sensitivity('brush-dir', enable_direction)
+
 		active_brush = self._brushes_dict[self._brush_type]
-		return active_brush._get_status(self._last_use_pressure)
+		return active_brush._get_status(self._last_use_pressure, self._brush_dir)
 
 	############################################################################
 
@@ -62,10 +64,11 @@ class ToolBrush(AbstractClassicTool):
 		self._add_pressured_point(event_x, event_y, event)
 		self._last_use_pressure = self._manual_path[0]['p'] is not None
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self._add_pressured_point(event_x, event_y, event)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_pressured_point(event_x, event_y, event)
@@ -111,7 +114,7 @@ class ToolBrush(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'brush_id': self._brush_type,
-			'nip_dir': self._brush_dir,
+			'nib_dir': self._brush_dir,
 			'rgba': self.main_color,
 			'operator': self._operator,
 			'line_width': self.tool_width,

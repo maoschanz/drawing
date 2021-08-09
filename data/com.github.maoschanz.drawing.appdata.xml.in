@@ -5,7 +5,6 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <kudos>
-    <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
@@ -17,7 +16,8 @@
   <content_rating type="oars-1.1" />
 
   <name>Drawing</name>
-  <summary>A drawing application for the GNOME desktop</summary>
+  <!-- VERY IMPORTANT description of the application -->
+  <summary>Simple image editor for the Linux desktop(s)</summary>
   <description>
     <p>"Drawing" is a basic image editor, supporting PNG, JPEG and BMP file types.</p>
     <p>
@@ -29,48 +29,39 @@
   </description>
 
   <releases>
-    <release version="0.8.0" date="2021-03-06">
-    <!-- <release version="0.8.0" date="2021-03-20"> -->
+    <release version="1.0.0" date="2021-06-26">
       <description>
         <p>
-          With Drawing 0.8.0, you can finally use a tablet and a stylus to draw
-          with pressure-sensitive tools, such as the new 'brush' and 'airbrush'.
+          Version 1.0.0 improves rendering performance, which is visible when
+          editing large images with a poor CPU.
         </p>
         <p>
-          The fullscreen mode has been completely redesigned to provide an
-          easier yet less intrusive access to the tools and their options.
+          You can now use the new "skew" tool, to tilt an image from a rectangle
+          to a parallelogram. Such a deformation can be applied horizontally or
+          vertically.
         </p>
         <p>
-          Filters have been rewritten to be more reliable, and a new filter to
-          harmoniously increase contrast has been added.
+          Using the "scale" tool, you may optionally set the new size as a
+          relative percentage rather than an absolute value in pixels.
         </p>
         <p>
-          When you move or delete the selection, now the pixels left behind can
-          optionally be a specific color, rather than always tranparency.
-          This specific color can be excluded from the selection. That feature
-          is complex to explain with words, try it yourself you'll see.
+          If the names of the tools are visible, you can enable a specific tool
+          with "alt+[the underlined letter]". This may not work yet with
+          languages using a non-latin alphabet.
         </p>
         <p>
-          Options such as the text background type and the shape filling style
-          are now persisted when closing the application.
-        </p>
-        <p>
-          The user interface for selecting the active color application mode has
-          been rewritten to better show the accurate label, and better organize
-          the possible modes as submenus.
-        </p>
-        <p>
-          The "blur" mode has been removed, which simplified the situation and
-          allowed several tools ("shapes" and "brushes") to get support for the
-          color application modes in general.
+          Pressing "ctrl", "shift", or "alt" when using a tool enables specific
+          options, such as "add to the selection" for the selection tools.
         </p>
       </description>
     </release>
 
-    <release version="0.6.5" date="2021-01-30">
+    <release version="0.8.2" date="2021-06-26">
       <description>
+        <!-- very generic release notes i use for ALL minor updates, please -->
+        <!-- translate this one! -->
         <p>
-          Version 0.6.5 features several minor bug fixes, and various new
+          Version 0.8.2 features several minor bug fixes, and various new
           translations.
         </p>
       </description>
@@ -87,7 +78,7 @@
   <screenshots>
     <screenshot type="default">
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_menu.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.8/gnome_menu.png
       </image>
       <!-- Caption of a screenshot, for appstores -->
       <caption>
@@ -96,7 +87,7 @@
     </screenshot>
     <screenshot>
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_selection.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.8/gnome_selection.png
       </image>
       <!-- Caption of a screenshot, for appstores -->
       <caption>
@@ -105,7 +96,7 @@
     </screenshot>
     <screenshot>
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_tools_preview.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.8/gnome_tools_preview.png
       </image>
       <!-- Caption of a screenshot, for appstores -->
       <caption>
@@ -114,7 +105,7 @@
     </screenshot>
     <screenshot>
       <image type="source">
-        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.6/gnome_new.png
+        https://raw.githubusercontent.com/maoschanz/drawing/master/docs/screenshots/0.8/gnome_new.png
       </image>
       <!-- Caption of a screenshot, for appstores -->
       <caption>

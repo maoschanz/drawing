@@ -24,7 +24,10 @@ class OptionsBarSkew(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('optionsbars/transform/optionsbar-skew.ui')
+
+		self._build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = self._hydrate_transform_tool('transform/optionsbar-skew.ui')
+
 		self.xy_label = builder.get_object('xy_label')
 		self.yx_label = builder.get_object('yx_label')
 		self.separator = builder.get_object('separator')
@@ -38,6 +41,7 @@ class OptionsBarSkew(AbstractOptionsBar):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
+		                      self.help_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)
 

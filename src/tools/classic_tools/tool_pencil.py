@@ -31,9 +31,11 @@ class ToolPencil(AbstractClassicTool):
 		self._cap_id = cairo.LineCap.ROUND
 		self._join_id = cairo.LineCap.ROUND
 		self._dashes_type = 'none'
+		self._use_outline = False
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_enum('dashes-type', self._dashes_type)
+		self.add_tool_action_boolean('pencil-outline', self._use_outline)
 
 	def _set_active_shape(self, *args):
 		state_as_string = self.get_option_value('line_shape')
@@ -52,6 +54,7 @@ class ToolPencil(AbstractClassicTool):
 	def get_edition_status(self):
 		self._dashes_type = self.get_option_value('dashes-type')
 		use_dashes = self._dashes_type != 'none'
+		self._use_outline = self.get_option_value('pencil-outline')
 		self._set_active_shape()
 		label = self.label
 		if use_dashes:
@@ -73,10 +76,11 @@ class ToolPencil(AbstractClassicTool):
 		cairo_context.line_to(event_x, event_y)
 		self._path = cairo_context.copy_path()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self._add_point(event_x, event_y)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
@@ -89,12 +93,14 @@ class ToolPencil(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
+			'rgba2': self.secondary_color,
 			'antialias': self._use_antialias,
+			'outline': self._use_outline,
 			'operator': self._operator,
 			'line_width': self.tool_width,
 			'line_cap': self._cap_id,
 			'line_join': self._join_id,
-			'dashes_type': self._dashes_type,
+			'dashes': self._dashes_type,
 			'path': self._path
 		}
 		return operation
@@ -104,17 +110,23 @@ class ToolPencil(AbstractClassicTool):
 			return
 		cairo_context = self.start_tool_operation(operation)
 
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 		cairo_context.set_operator(operation['operator'])
-
 		line_width = operation['line_width']
-		cairo_context.set_line_width(line_width)
 		self.set_dashes_and_cap(cairo_context, line_width, \
-		                        operation['dashes_type'], operation['line_cap'])
+		                        operation['dashes'], operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join']) # XXX useless?
 
 		utilities_smooth_path(cairo_context, operation['path'])
+
+		if operation['outline']:
+			rgba = operation['rgba2']
+			cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+			cairo_context.set_line_width(line_width * 1.2 + 2)
+			cairo_context.stroke_preserve()
+
+		rgba = operation['rgba']
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_line_width(line_width)
 		cairo_context.stroke()
 
 	############################################################################

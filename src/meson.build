@@ -17,9 +17,15 @@ conf.set('VERSION', meson.project_version())
 conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
 
+if get_option('use-uuid-as-binary-name')
+	binary_name = app_uuid
+else
+	binary_name = meson.project_name()
+endif
+
 configure_file(
 	input: meson.project_name() + '.in',
-	output: meson.project_name(),
+	output: binary_name,
 	configuration: conf,
 	install: true,
 	install_dir: get_option('bindir')
@@ -33,6 +39,7 @@ drawing_sources = [
 	'deco_manager.py',
 	'options_manager.py',
 	'minimap.py',
+	'tools_initializer.py',
 
 	'image.py',
 	'history_manager.py',
@@ -77,7 +84,7 @@ drawing_sources = [
 
 	'tools/classic_tools/brushes/abstract_brush.py',
 	'tools/classic_tools/brushes/brush_airbrush.py',
-	'tools/classic_tools/brushes/brush_nip.py',
+	'tools/classic_tools/brushes/brush_nib.py',
 	'tools/classic_tools/brushes/brush_hairy.py',
 	'tools/classic_tools/brushes/brush_simple.py',
 
@@ -104,3 +111,4 @@ drawing_sources = [
 ]
 
 install_data(drawing_sources, install_dir: moduledir)
+

@@ -2,18 +2,7 @@
 #
 # Copyright 2018-2021 Romain F. T.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# GPL 3
 
 import cairo, math
 from gi.repository import Gdk, GdkPixbuf
@@ -106,7 +95,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 
 def launch_infinite_loop_dialog(window):
 	dialog = DrMessageDialog(window)
-	cancel_id = dialog.set_action(_("Cancel"), None, False)
+	cancel_id = dialog.set_action(_("Cancel"), None)
 	continue_id = dialog.set_action(_("Continue"), None, True)
 	dialog.add_string(_("The area seems poorly delimited, or is very complex."))
 	dialog.add_string(_("This algorithm may not be able to manage the wanted area."))

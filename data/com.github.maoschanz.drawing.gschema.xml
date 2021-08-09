@@ -28,12 +28,12 @@
       <description>User can zoom with scrolling or ctrl+scrolling.</description>
     </key>
     <key type="as" name="disabled-tools">
-      <default>['brush', 'censor', 'eraser', 'color_select', 'points', 'picker', 'paint']</default>
+      <default>['brush', 'highlight', 'color_select', 'points', 'picker', 'paint']</default>
       <summary>Optional tools to disable</summary>
       <description>A list of optional tools' id to disable.</description>
     </key>
     <key type="i" name="preview-size">
-      <default>330</default>
+      <default>320</default>
       <summary>Preview size</summary>
       <description>Size of the bigger dimension of the preview (px).</description>
     </key>
@@ -61,7 +61,16 @@
       <summary>Experimental features</summary>
       <description>Turn on devel features (not recommended).</description>
     </key>
-
+    <key type="b" name="dark-theme-variant">
+      <default>false</default>
+      <summary>If the app prefers the dark theme variant</summary>
+      <description>
+        This setting impacts the related boolean setting from GTK, but doesn't
+        change the actual theme. So if the global theme is already dark, it has
+        no effect.
+      </description>
+    </key>
+    
     <!-- Default new canvas -->
     <key type="as" name="default-rgba">
       <default>['1.0', '1.0', '1.0', '1.0']</default>
@@ -173,9 +182,17 @@
       <description>The default value of the 'antialiasing' boolean option, for
       any compatible tools.</description>
     </key>
+    <key type="s" name="last-delete-replace">
+      <default>'alpha'</default>
+      <summary>Type of color left behind by a deletion</summary>
+      <description>A deletion is any use of the solid eraser, or any area under
+      a selection that will be moved, cut, or deleted. Values can be 'alpha'
+      (transparency), 'initial' (the initial color of the canvas), or
+      'secondary' (the color of the right-click).</description>
+    </key>
 
-    <!-- TODO persist also: selection's "replace with"? active filter? -->
-    <!-- active brush? crop's "expand with"? color application mode?-->
+    <!-- TODO persist also: active filter? active brush? -->
+    <!-- crop's "expand with"? color application mode?-->
   </schema>
 
 </schemalist>

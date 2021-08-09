@@ -24,31 +24,26 @@ class OptionsBarCrop(AbstractOptionsBar):
 
 	def __init__(self):
 		super().__init__()
-		builder = self.build_ui('optionsbars/transform/optionsbar-crop.ui')
+
+		self._build_ui('transform/abstract-optionsbar-transform.ui')
+		builder = self._hydrate_transform_tool('transform/optionsbar-crop.ui')
+
 		self.height_btn = builder.get_object('height_btn')
 		self.width_btn = builder.get_object('width_btn')
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
 		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 		# XXX top/bottom/left/right ?
 
-		self.options_btn = builder.get_object('options_btn')
-
 		self.width_label = builder.get_object('width_label')
 		self.height_label = builder.get_object('height_label')
 		self.separator = builder.get_object('separator')
-
-	def toggle_options_menu(self):
-		if self.options_btn.get_visible():
-			self.options_btn.set_active(not self.options_btn.get_active())
-
-	def hide_options_menu(self):
-		self.options_btn.set_active(False)
 
 	def init_adaptability(self):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
 		                   self.options_btn.get_preferred_width()[0] + \
+		                      self.help_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)
 

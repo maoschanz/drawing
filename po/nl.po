@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
-"PO-Revision-Date: 2021-03-11 14:05+0100\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"PO-Revision-Date: 2021-06-28 17:13+0200\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -33,7 +33,6 @@ msgstr "Eenvoudig tekenprogramma"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Verven;Schetsen;Potlood;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -49,16 +48,17 @@ msgstr "Nieuwe afbeelding"
 msgid "Edit Image in Clipboard"
 msgstr "Klembordafbeelding bewerken"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Een tekenprogramma voor de GNOME-werkomgeving"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"'Tekenen' is een eenvoudige afbeeldingsbewerker, met ondersteuning voor PNG, "
-"JPEG en BMP."
+"‘Tekenen’ is een eenvoudige afbeeldingsbewerker, met ondersteuning voor "
+"png-, jpeg- en bmp-afbeeldingen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -67,73 +67,51 @@ msgid ""
 "(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
 "rotating, …"
 msgstr ""
-"Het stelt je in staat om afbeeldingen te tekenen of bewerken met "
-"gereedschappen, zoals een potlood, lijn, boog (met verschillende "
-"mogelijkheden), selectie (knippen/kopiëren/plakken/verslepen/…), vormen "
-"(rechthoek, cirkel, polygoon, …), tekst, herschaling, bijsnijden, draaien, …"
+"Met deze toepassing kun je afbeeldingen maken (tekenen) of bewerken met "
+"gereedschappen, zoals een potlood, lijnen, bogen (verschillende soorten), "
+"selectie (knippen/kopiëren/plakken/verslepen/…), vormen (rechthoek, cirkel, "
+"polygoon, …) en tekst. Ook kun je de grootte aanpassen, bijsnijden, draaien, "
+"enz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"Met Drawing 0.8.0 kun je eindelijk je tablet en stylus gebruiken om te "
-"tekenen. Hiervoor kun je gebruikmaken van de nieuwe drukgevoelige "
-"gereedschappen, zoals de kwast en airbrush."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"De beeldvullende modus is volledig opnieuw ontworpen en daardoor eenvoudiger "
-"in het gebruik, met toegang tot meer gereedschappen."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"De filters zijn opnieuw geïmplementeerd waardoor ze betrouwbaarder zijn. "
-"Daarnaast is er een filter voor het verhogen van het contrast toegevoegd."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always tranparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Als je selectie verplaatst of wist, kunnen de achtergebleven pixels voortaan "
-"een specifieke kleur tonen in plaats van doorzichtigheid. Deze kleur kun je "
-"ook uitsluiten van de selectie. Het is moeilijk onder woorden te brengen, "
-"dus probeer het gewoon eens uit."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.6.5 features several minor bug fixes, and various new translations."
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
 msgstr ""
-"Versie 0.6.5 bevat verschillende kleine foutoplossingen en nieuwe "
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Versie 0.8.2 bevat verschillende kleine foutoplossingen en nieuwe "
 "vertalingen."
 
 #. This is just my name, do not translate it.
@@ -149,7 +127,7 @@ msgstr "Het venster en hoofdmenu"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr "De selectie en de bijbehorende acties"
+msgstr "De selectie en bijbehorende acties"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -159,11 +137,11 @@ msgstr "Verschillende soorten zoom"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr "Het menu 'Nieuwe afbeelding'"
+msgstr "Het menu ‘Nieuwe afbeelding’"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Bestand"
+msgid "File"
+msgstr "Bestand"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -172,7 +150,7 @@ msgstr "Afbeelding openen"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Blank Image"
-msgstr "Nieuwe lege afbeelding"
+msgstr "Nieuw canvas"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
 msgid "New Image With Custom Size"
@@ -237,8 +215,8 @@ msgid "Quit all windows"
 msgstr "Alle vensters sluiten"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "B_ewerken"
+msgid "Edit"
+msgstr "Bewerken"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -294,8 +272,8 @@ msgid "Preferences"
 msgstr "Voorkeuren"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Beeld"
+msgid "View"
+msgstr "Beeld"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -361,21 +339,27 @@ msgstr "Tabblad rechts"
 msgid "Refresh"
 msgstr "Verversen"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Beeldvullend"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr "Framesnelheid bijhouden"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
+msgstr "Voorvertoning aan/uit"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Werkbalken verbergen"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Beeldvullende modus verlaten"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Beeldvullend"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Kleuren"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Kleuren"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -387,7 +371,7 @@ msgstr "Alternatieve kleur aanpassen…"
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
-msgstr "Kleurbewerker standaard gebruiken"
+msgstr "Gebruik standaard de kleurbewerker"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -480,9 +464,9 @@ msgstr "Geen kleuren gebruiken…"
 msgid "Erase"
 msgstr "Wissen"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Gereedschap"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Gereedschappen"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -507,21 +491,31 @@ msgstr "Smaller"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
-msgstr "Problemen oplossen met selecties"
-
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Opties"
+msgstr "Problemen omtrent selecties oplossen"
 
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Hulp"
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Transformatie toepassen"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Transformatie toepassen"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "Opties"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Hulp"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
 msgstr "Sneltoetsen"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Meld een fout (bug)"
 
@@ -533,39 +527,35 @@ msgstr "Index"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Individuele pagina's"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
 msgstr "Algemene hulp"
 
-#: src/ui/app-menus.ui
-#, fuzzy
+#: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
-msgstr "Hulp omtrent gereedschappen"
+msgstr "Hulp omtrent zoomen"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Beeldvullende modus aan/uit"
+msgstr "Hulp omtrent de beeldvullende modus"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Hulp omtrent gereedschappen"
+msgstr "Hulp omtrent traditionele gereedschappen"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Hulp omtrent gereedschappen"
+msgstr "Hulp omtrent kleuren"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
-#, fuzzy
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Help about transformation tools"
-msgstr "Hulp omtrent gereedschappen"
+msgstr "Hulp omtrent transformatiegereedschappen"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -573,7 +563,7 @@ msgstr "Hulp omtrent selecties"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Wijzigingslog"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -616,10 +606,6 @@ msgstr "Instellingen onthouden"
 msgid "Images"
 msgstr "Afbeeldingen"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Gereedschappen"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Venster"
@@ -646,7 +632,7 @@ msgstr "Selectie sluiten"
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Unselect"
-msgstr "Selectie ongedaan maken"
+msgstr "Niets selecteren"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 #: src/tools/transform_tools/tool_crop.py
@@ -668,6 +654,28 @@ msgstr "Draaien"
 msgid "Filters"
 msgstr "Filters"
 
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Meer acties"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr "Selectie omkeren"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "Instellen als huidige afbeelding"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "Afbeelding inpassen"
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -685,9 +693,10 @@ msgstr "Algemeen"
 msgid "Main menu"
 msgstr "Hoofdmenu"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Hulp"
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Voorvertoning aan/uit"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -739,10 +748,6 @@ msgstr "Selectie verwijderen"
 msgid "Import a file as the selection"
 msgstr "Importeer een bestand als selectie"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Kleuren"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -780,8 +785,12 @@ msgid "Touch gestures"
 msgstr "Aanraakgebaren"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Kan de toepassing niet starten. Meld deze bug."
+msgid "Loading…"
+msgstr "Bezig met laden…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Beeldvullende modus verlaten"
 
 #: src/deco_manager.py
 #, python-format
@@ -796,12 +805,12 @@ msgstr "%s opnieuw toepassen"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Er werd getracht een ongeldige staat op te slaan"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Er is geen gereedschap genaamd \"%s\""
 
 #. Context: an error message
 #: src/image.py
@@ -816,6 +825,12 @@ msgstr "Niet-opgeslagen bestanden kunnen niet opnieuw worden ingelezen."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Niet-opgeslagen bestand"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr "%s frames per seconde"
 
 #. Description of a command line option
 #: src/main.py
@@ -849,13 +864,13 @@ msgstr "Meld bugs of deel ideëen"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Heimen Stoffels"
+msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr "De makers van GNOME's 'Art Libre'-pictogramset"
+msgstr "De makers van GNOME's ‘Art Libre’-pictogramset"
 
 #: src/main.py
 msgid "A drawing application for the GNOME desktop."
@@ -867,13 +882,13 @@ msgstr "Officiële website"
 
 #: src/main.py
 msgid "Error opening this file."
-msgstr "Kan dit bestand niet openen."
+msgstr "Dit bestand kan niet worden geopend."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr "Bedoelde je '%s'?"
+msgstr "Bedoelde je ‘%s’?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -883,14 +898,8 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -920,6 +929,7 @@ msgstr "Standaardhoogte"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Standaardkleur"
 
@@ -970,21 +980,21 @@ msgstr "Je kunt in-/uitzoomen met Ctrl+scrollen of alleen door te scrollen."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr "Bekijk de handleiding voor meer informatie."
+msgstr "Neem voor meer informatie de handleiding door."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "'Ctrl' gebruiken om in/uit te zoomen"
+msgstr "Ctrl gebruiken om in/uit te zoomen"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
-msgstr "Uiterlijk"
+msgstr "Vormgeving"
 
 #: src/preferences.py
 msgid "Use big icons"
-msgstr "Grote pictogrammen gebruiken"
+msgstr "Grote pictogrammen tonen"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1008,7 +1018,7 @@ msgstr "Gum"
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr "Markering"
+msgstr "Markeerstift"
 
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
@@ -1066,6 +1076,10 @@ msgstr "Experimentele functies"
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
+#: src/preferences.py
+msgid "Prefer dark theme variant"
+msgstr "Donker thema gebruiken"
+
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
@@ -1074,7 +1088,7 @@ msgstr "Indeling"
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr "De aanbevolen instelling is 'Automatisch'."
+msgstr "De aanbevolen instelling is ‘Automatisch’."
 
 #. It has to match what's written in the previous string.
 #: src/preferences.py
@@ -1153,7 +1167,7 @@ msgstr "Ongeldig formaat"
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "Kan %s niet opslaan"
+msgstr "‘%s’ kan niet worden opgeslagen"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1173,7 +1187,7 @@ msgstr "Verwerpen"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "%s bevat niet-opgeslagen aanpassingen."
+msgstr "‘%s’ bevat niet-opgeslagen aanpassingen."
 
 #: src/saving_manager.py
 msgid ""
@@ -1198,7 +1212,8 @@ msgstr "Vervangen"
 
 #: src/saving_manager.py
 msgid "This file format doesn't support transparent colors."
-msgstr "Dit bestandsformaat ondersteunt geen doorzichtige kleuren."
+msgstr ""
+"Dit bestandsformaat heeft geen ondersteuning voor doorzichtige kleuren."
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
@@ -1213,12 +1228,11 @@ msgstr "Doorzichtigheid vervangen door:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "De selectie-pixbuf is blanco."
 
 #: src/selection_manager.py
-#, fuzzy
 msgid "The selection path is empty."
-msgstr "De selectie en de bijbehorende acties"
+msgstr "Het selectiepad is leeg."
 
 #: src/utilities.py
 msgid "Transparent"
@@ -1322,17 +1336,27 @@ msgstr "graden"
 #: src/utilities.py
 #, python-format
 msgid "%s isn't an image."
-msgstr "'%s' is geen afbeelding."
+msgstr "‘%s’ is geen afbeelding."
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr "Deze toepassing biedt geen ondersteuning voor webp-afbeeldingen."
+msgstr "Tekenen heeft geen ondersteuning voor webp-afbeeldingen."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr "Ondanks de naam is '%s' toch echt een webp-bestand."
+msgstr "Ondanks de naam is ‘%s’ toch echt een webp-bestand."
+
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "‘%s’ kan niet worden geladen"
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Kan de toepassing niet starten - meld deze fout aan de ontwikkelaar."
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1340,24 +1364,20 @@ msgstr "Ondanks de naam is '%s' toch echt een webp-bestand."
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
+"Dit is de eerste keer dat je Tekenen %s hebt geopend. Wil je het "
+"wijzigingslog bekijken?"
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Later"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Kan gereedschap niet laden: %s"
+msgstr "Ja"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -1367,15 +1387,10 @@ msgstr "Het klembord bevat geen afbeelding."
 msgid "Modifications will take effect in the next new window."
 msgstr "Herstart om de wijzigingen toe te passen."
 
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Geen opties"
-
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
-"Druk op de middelste muisknop, F8, of tik met 3 vingers om de bediening te "
+"Druk op de middelste muisknop, F8 of tik met 3 vingers om de bediening te "
 "tonen/verbergen."
 
 #: src/window.py
@@ -1386,14 +1401,15 @@ msgstr "Druk op F11 om de beeldvullende modus te verlaten."
 #, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Fout: het paneel van '%s' kan niet worden geladen. Meld deze bug."
+msgstr ""
+"Fout: het paneel van ‘%s’ kan niet worden geladen. Meld deze fout aan de "
+"ontwikkelaar."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
 msgstr "Bezig met laden van %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Nieuw tabblad"
@@ -1419,7 +1435,7 @@ msgstr "deze bestanden"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "Wat wil je doen met %s?"
+msgstr "Wat wil je doen met ‘%s’?"
 
 #: src/window.py
 msgid "Image copied to clipboard"
@@ -1456,7 +1472,7 @@ msgstr "Hoofdkleur"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Alternatieve kleur"
 
@@ -1464,9 +1480,12 @@ msgstr "Alternatieve kleur"
 msgid "Tool size"
 msgstr "Gereedschapsgrootte"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Geen opties"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Voorvertoning"
 
@@ -1487,9 +1506,9 @@ msgid "Use this editor by default"
 msgstr "Gebruik standaard deze bewerker"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
-msgstr "Potloodopties"
+msgstr "Selectie-opties"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
@@ -1499,6 +1518,7 @@ msgstr "Vervangen door…"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Doorzichtigheid"
@@ -1507,18 +1527,11 @@ msgstr "Doorzichtigheid"
 msgid "Extract from this color"
 msgstr "Extraheren uit deze kleur"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply"
 msgstr "Toepassen"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Meer opties"
 
@@ -1538,10 +1551,6 @@ msgstr "Hoek (graden)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Hoek"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Meer acties"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1625,33 +1634,25 @@ msgid "Line shape"
 msgstr "Lijnvorm"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Rond"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Vierkant"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "Geen pijl"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Eenvoudige pijl"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "Dubbele pijl"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Contour"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1678,6 +1679,18 @@ msgstr "Korte streepjes"
 msgid "Alternated dashes"
 msgstr "Afwisselende streepjes"
 
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Geen pijl"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Eenvoudige pijl"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Dubbele pijl"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
@@ -1697,7 +1710,7 @@ msgstr "Airbrush"
 msgid "Hairy brush"
 msgstr "Harige borstel"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr "Kalligrafisch uiteinde"
 
@@ -1717,39 +1730,35 @@ msgstr "Linkshandig uiteinde"
 msgid "Horizontal nib"
 msgstr "Horizontaal uiteinde"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Potlood"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rechthoek"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Vervaging"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle pixels"
 msgstr "Pixels husselen"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr "Husselen en vervagen"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr "Mozaïek"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "Vlakke kleur"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Gum"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Actief filter"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1815,6 +1824,10 @@ msgstr "Kleuren omdraaien"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Kleurverloop"
+
+#: src/tools/ui/tool-line.ui
+msgid "Locked direction"
+msgstr "Vergrendelde richting"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -1921,10 +1934,6 @@ msgid "Radial gradient"
 msgstr "Straalverloop"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Rechthoek"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Afgeronde rechthoek"
 
@@ -1981,11 +1990,6 @@ msgstr "Kleurschaduw"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Contour"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "Rechthoekige achtergrond"
 
@@ -2015,9 +2019,8 @@ msgid "Brush options"
 msgstr "Kwastopties"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Meer opties"
+msgstr "Gumopties"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2045,10 +2048,6 @@ msgid "Click on the canvas to entirely paint it"
 msgstr "Klik op het canvas om het op te vullen"
 
 #: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Potlood"
-
-#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Potloodopties"
 
@@ -2071,15 +2070,13 @@ msgstr "Vormopties"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Hoofdkleur aanpassen…"
+msgstr "Opgevuld met hoofdkleur"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "Alternatieve kleur aanpassen…"
+msgstr "Opgevuld met alternatieve kleur"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
@@ -2094,25 +2091,22 @@ msgid "Text options"
 msgstr "Lettertype-opties"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
-#, fuzzy
 msgid "Density depends on the stylus pressure"
-msgstr "De breedte is afhankelijk van de stylusdruk"
+msgstr "De dichtheid is afhankelijk van de stylusdruk"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
-#, fuzzy
 msgid "Density depends on the mouse speed"
-msgstr "De breedte is afhankelijk van de cursorsnelheid"
+msgstr "De dichtheid is afhankelijk van de cursorsnelheid"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr "De breedte is afhankelijk van de stylusdruk"
 
-#: src/tools/classic_tools/brushes/brush_nip.py
-#, fuzzy
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
-msgstr "De breedte is afhankelijk van de cursorsnelheid"
+msgstr "De breedte is afhankelijk van de lijnoriëntatie"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
@@ -2135,12 +2129,21 @@ msgid "Error: invalid values"
 msgstr "Fout: ongeldige waarden"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Puntopties"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Bezig met bijsnijden van selectie"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Bezig met bijsnijden van canvas"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr "Actief filter"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2152,12 +2155,22 @@ msgid "Emboss"
 msgstr "Reliëf toepassen"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Kwastopties"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Bezig met draaien van selectie"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Bezig met draaien van canvas"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Kwastopties"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2182,14 +2195,18 @@ msgstr "Vervaagstraal"
 msgid "Saturation"
 msgstr "Verzadiging"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Een tekenprogramma voor de GNOME-werkomgeving"
+
+#~ msgid ""
+#~ "After rotating the selection, it had an incorrectly big height, but now "
+#~ "it's fixed."
+#~ msgstr ""
+#~ "Na het draaien van de selectie klopte de hoogte niet meer - dat is nu "
+#~ "opgelost."
+
 #~ msgid "Quit"
 #~ msgstr "Afsluiten"
-
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Beeldvullende modus verlaten"
-
-#~ msgid "Edit"
-#~ msgstr "Bewerken"
 
 #~ msgid "Close"
 #~ msgstr "Sluiten"

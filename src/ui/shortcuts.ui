@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkShortcutsWindow" id="shortcuts-window">
+    <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkShortcutsSection">
         <property name="visible">True</property>
         <property name="section-name">shortcuts</property>
         <property name="title" translatable="yes">Keyboard Shortcuts</property>
         <property name="max-height">9</property>
-        <!-- 9 is actually the minimum possible -->
+        <!-- 9 is actually both the maximum AND the minimum possible -->
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
@@ -24,6 +25,13 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Main menu</property>
                 <property name="accelerator">F10</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Toggle the menu-bar</property>
+                <property name="accelerator">&lt;Primary&gt;F2</property>
               </object>
             </child>
             <child>

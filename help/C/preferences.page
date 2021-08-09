@@ -43,18 +43,63 @@
   </section>
 
   <section id="tools">
-    <title><link xref="tools_classic">Tools</link></title>
-    <p>You can set whether you prefer normal icons (16 pixels) or large icons
-    (24 pixels).</p>
-    <p>Choosing whether or not you want to display the names of the tools next
-    to their icons is possible here, and it's also available from the
-    <link xref="main_features#main-menu">primary menu</link> of the window.</p>
+    <title>Tools</title>
 
-    <p>A few additional tools are also available. If they're not activated by
-    default, it's because they might be less reliable or useful.</p>
+    <subsection>
+      <title>Appearance</title>
+      <p>You can set whether you prefer normal icons (16 pixels) or large icons
+      (24 pixels).</p>
+
+      <p>Choosing whether or not you want to display the names of the tools next
+      to their icons is possible here, but the <link xref="main_features#main-menu">
+      primary menu</link> of the window also provides this option.</p>
+    </subsection>
 
     <media type="image" mime="image/png" width="80%" its:translate="no"
            src="figures/screenshot_prefs_tools.png" />
+
+    <subsection>
+      <title>Additional tools</title>
+      <p>Among the available tools, a few are optional. You can uncheck the
+      tools you don't need, or check the tools you need: the changes will be
+      applied in the next window you open.</p>
+      <note style="tip">
+        <p>If a tool isn't activated by default, it's because it might be less
+        reliable or useful than the enabled ones.</p>
+      </note>
+
+      <p>For example, the <gui style="menuitem">Paint</gui> bucket (which paints
+      an area of contiguous pixels of the same color into a new color), and the
+      <gui style="menuitem">Color selection</gui> (which creates a selection
+      from an area of same color), rely on code whose behavior is sometimes
+      unexpected: it might follow the edges of the area but paint the wrong side
+      of them, and at worst it may get stuck if the edges are too hard to
+      follow, thus crashing before being able to paint (if it happens to you,
+      try to redraw the shape without anti-aliasing).</p>
+
+      <p>On the other hand, "<gui style="menuitem">Brush</gui>" works fine, but
+      you may encounter performance issues if you press "undo" after it a few
+      times. If you enable it, it's advised to save your image regularly.</p>
+
+      <p>The <gui style="menuitem">Color picker</gui> tool, which picks a color
+      from the pixel you click, is disabled because it's a little redundant with
+      the color picker from <link xref="tools_classic_colors">the color edition
+      menu</link>. The one from the color edition menu can pick an RGB color
+      from any pixel of the display (yes, also from outside the window!), while
+      the tool is limited to pixels from the image but the colors it picks have
+      transparency (RGBA).</p>
+
+      <p>The <gui style="menuitem">Highlighter</gui> is a little redundant too,
+      since you can to the same with the pencil and <link xref="tools_classic_colors">
+      the adequate color application mode</link>.</p>
+
+      <p>The tool named "<gui style="menuitem">Points</gui>" works fine but it's
+      designed for a pretty specific captioning purpose that may not be useful
+      to everyone.</p>
+
+      <p>See <link xref="tools_classic">this page about tools</link> for more
+      information.</p>
+    </subsection>
   </section>
 
   <section>
@@ -64,6 +109,9 @@
     preview is not recommended for technical reasons.</p>
 
     <p>You can also set the color of the background "behind" the canvas.</p>
+
+    <p>The "theme variant" option can force the app to use the dark or light
+    variant of your current GTK theme.</p>
 
     <p>Finally, it's possible to choose the layout of the user interface: the
     "Compact" layout, designed for the GNOME desktop, is well tested. Other

@@ -32,8 +32,8 @@ class ToolEraser(ToolPencil):
 		                                         'tool-eraser-symbolic', window)
 		self.use_operator = False
 		self._fallback_operator = 'clear'
-		self.add_tool_action_enum('selection-color', 'alpha')
-		self.add_tool_action_enum('eraser-type', 'solid')
+		self.load_tool_action_enum('selection-color', 'last-delete-replace')
+		self.add_tool_action_enum('eraser-type', 'mosaic')
 		self.add_tool_action_enum('eraser-shape', 'pencil')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
@@ -42,15 +42,40 @@ class ToolEraser(ToolPencil):
 		self._rgba_type = self.get_option_value('selection-color')
 		self._eraser_shape = self.get_option_value('eraser-shape')
 
+		can_blur = self._eraser_shape != 'pencil'
+		self.set_action_sensitivity('eraser-type', can_blur)
+		if not can_blur:
+			self._eraser_type = 'solid'
+
 		if 'solid' == self._eraser_type and 'secondary' == self._rgba_type:
-			self._fallback_operator = 'source'
-		elif self._eraser_shape == 'pencil' and 'secondary' == self._rgba_type:
 			self._fallback_operator = 'source'
 		else:
 			self._fallback_operator = 'clear'
+			# TODO en pratique non il y a des cas où on est plutôt en train de
+			# flouter, il faudrait un elif, et un autre système pour l'opérateur
+			# en fallback qui afficherait l'icône avec les gouttes.
+			# En fait on devrait yeet le délire du `_fallback_operator` ?
 		self.window.options_manager.update_pane(self)
 
-		return self.label
+		label = self.label
+		if self._eraser_shape == 'pencil':
+			label += ' - ' + _("Pencil")
+		else:
+			label += ' - ' + _("Rectangle")
+		if self._eraser_type == 'solid':
+			label += ' - ' + {
+				'alpha': _("Transparency"),
+				'initial': _("Default color"),
+				'secondary': _("Secondary color")
+			}[self._rgba_type]
+		else:
+			label += ' - ' + {
+				'blur': _("Blur"),
+				'shuffle': _("Shuffle pixels"),
+				'mixed': _("Shuffle and blur"),
+				'mosaic': _("Mosaic")
+			}[self._eraser_type]
+		return label
 
 	def get_options_label(self):
 		return _("Eraser options")
@@ -69,13 +94,14 @@ class ToolEraser(ToolPencil):
 			clr = self.secondary_color
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._eraser_shape == 'rectangle':
 			self._draw_rectangle(event_x, event_y)
 		else:
 			self._add_point(event_x, event_y)
-		operation = self.build_operation(True)
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation(True)
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._eraser_shape == 'rectangle':
@@ -103,7 +129,7 @@ class ToolEraser(ToolPencil):
 	############################################################################
 
 	def build_operation(self, is_preview):
-		if is_preview or self._eraser_shape == 'pencil':
+		if is_preview:
 			eraser_type = 'solid'
 		else:
 			eraser_type = self._eraser_type
@@ -168,6 +194,8 @@ class ToolEraser(ToolPencil):
 			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
 		cairo_context.clip()
+		# XXX this ^ doesn't work with the 'pencil' shape, which forces me to
+		# disable the 'eraser-type' option in this case
 		cairo_context.set_source_surface(bs, r0, r1)
 		cairo_context.paint()
 

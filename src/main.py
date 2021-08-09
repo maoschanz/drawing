@@ -27,6 +27,7 @@ APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'
 BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
 FLATPAK_BINARY_PATH = '/app/bin/drawing'
+CURRENT_BINARY_PATH = '/app/bin/drawing'
 
 def main(version):
 	app = Application(version)
@@ -83,22 +84,21 @@ class Application(Gtk.Application):
 	def _build_actions(self):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
-		self.add_action_simple('settings', self.on_prefs, None)
-		if self.is_beta():
-			self.add_action_simple('report_bug', self.on_report, None)
+		self.add_action_simple('settings', self.on_prefs)
+		self.add_action_simple('report_bug', self.on_report)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
 
 		self.add_action_simple('help', self.on_help_index, ['F1'])
-		self.add_action_simple('help_main', self.on_help_main, None)
-		self.add_action_simple('help_zoom', self.on_help_zoom, None)
-		self.add_action_simple('help_fullscreen', self.on_help_fullscreen, None)
-		self.add_action_simple('help_tools', self.on_help_tools, None)
-		self.add_action_simple('help_colors', self.on_help_colors, None)
-		self.add_action_simple('help_transform', self.on_help_transform, None)
-		self.add_action_simple('help_selection', self.on_help_selection, None)
-		self.add_action_simple('help_prefs', self.on_help_prefs, None)
-		self.add_action_simple('help_whats_new', self.on_help_whats_new, None)
+		self.add_action_simple('help_main', self.on_help_main)
+		self.add_action_simple('help_zoom', self.on_help_zoom)
+		self.add_action_simple('help_fullscreen', self.on_help_fullscreen)
+		self.add_action_simple('help_tools', self.on_help_tools)
+		self.add_action_simple('help_colors', self.on_help_colors)
+		self.add_action_simple('help_transform', self.on_help_transform)
+		self.add_action_simple('help_selection', self.on_help_selection)
+		self.add_action_simple('help_prefs', self.on_help_prefs)
+		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
@@ -110,13 +110,20 @@ class Application(Gtk.Application):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
+		if gfile is not None:
+			w, already_opened_index = self.has_image_opened(gfile.get_path)
+			if w is not None:
+				if not w.confirm_open_twice(gfile):
+					w.notebook.set_current_page(already_opened_index)
+					return
+
 		win = DrWindow(application=self)
 		win.present()
-		win.init_window_content(gfile, get_cb) # this optimization has no effect
-		# because of GLib unknown magic, but should be kept anyway because the
-		# window is presented to the user regardless of loading errors, making
-		# any issue in `init_window_content` very explicit, and more likely to
-		# be reported.
+
+		content_params = {'gfile': gfile, 'get_cb': get_cb}
+		# Parameters are: time in milliseconds, method, data # XXX todo?
+		# GLib.timeout_add(10, win.init_window_content_async, content_params)
+		win.init_window_content_async(content_params)
 		return win
 
 	def on_activate(self, *args):
@@ -133,7 +140,8 @@ class Application(Gtk.Application):
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
 		arguments = args[1].get_arguments()
-		if arguments[0] == FLATPAK_BINARY_PATH:
+		CURRENT_BINARY_PATH = arguments[0]
+		if CURRENT_BINARY_PATH == FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
 
 		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
@@ -154,7 +162,7 @@ class Application(Gtk.Application):
 				self.open_window_with_content(None, True)
 			else:
 				win.present()
-				self.props.active_window.build_image_from_clipboard()
+				win.build_image_from_clipboard()
 
 		elif options.contains('new-tab') and len(arguments) == 1:
 			# If '-t' but no file given as argument
@@ -163,7 +171,7 @@ class Application(Gtk.Application):
 				self.on_new_window()
 			else:
 				win.present()
-				self.props.active_window.build_new_image()
+				win.build_blank_image()
 
 		elif options.contains('new-window'):
 			# it opens one new window per file given as argument, or just one
@@ -171,7 +179,7 @@ class Application(Gtk.Application):
 			windows_counter = 0
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolea; True would mean the app
+				# here, f can be a GioFile or a boolean. True would mean the app
 				# should open a new blank image.
 				if f != False:
 					f = None if f == True else f
@@ -187,16 +195,19 @@ class Application(Gtk.Application):
 			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolean: True would mean the app
+				# here f can be a Gio.File or a boolean: True would mean the app
 				# should open a new blank image.
 				if f != False:
-					f = None if f == True else f
 					win = self.props.active_window
 					if not win:
+						f = None if f == True else f
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
-						self.props.active_window.build_new_tab(gfile=f)
+						if f == True:
+							win.build_blank_image()
+						else:
+							win.build_new_from_file(gfile=f)
 
 		# I don't even know if i should return something
 		return 0
@@ -265,7 +276,7 @@ class Application(Gtk.Application):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
 			copyright="© 2018-2021 Romain F. T.",
-			authors=["Romain F. T.", "Fábio Colacio"],
+			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano"],
 			# To tranlators: "translate" this by a list of your names (one name
 			# per line), they will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
@@ -281,6 +292,8 @@ class Application(Gtk.Application):
 		bug_report_btn = Gtk.LinkButton(halign=Gtk.Align.CENTER, visible=True, \
 		                    label=_("Report bugs or ideas"), uri=BUG_REPORT_URL)
 		# about_dialog.get_content_area().add(bug_report_btn) # should i?
+		about_dialog.set_icon_name('com.github.maoschanz.drawing')
+
 		about_dialog.run()
 		about_dialog.destroy()
 
@@ -320,12 +333,11 @@ class Application(Gtk.Application):
 	def get_current_version(self):
 		return self._version
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.set_accels_for_action('app.' + action_name, shortcuts)
+		self.set_accels_for_action('app.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		action = Gio.SimpleAction().new_stateful(action_name, None, \
@@ -337,14 +349,27 @@ class Application(Gtk.Application):
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
 
+	def has_image_opened(self, file_path):
+		"""Returns the window in which the given file is opened, and the index
+		of the tab where it is in the window's notebook.
+		Or `None, None` otherwise."""
+		for win in self.get_windows():
+			position_in_window = win.has_image_opened(file_path)
+			if position_in_window is not None:
+				return win, position_in_window
+		return None, None
+
 	def _get_valid_file(self, app, path):
 		"""Creates a GioFile object if the path corresponds to an image. If no
 		GioFile can be created, it returns a boolean telling whether or not a
 		window should be opened anyway."""
 		if path == FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
-			# when it's /app/bin/drawing, the situation is normal, and
-			# it tells the app it's running in a flatpak sandbox
+			# when it's /app/bin/drawing, the app is in a flatpak sandbox. It'll
+			# match the following condition too.
+		if path == CURRENT_BINARY_PATH:
+			# when it's CURRENT_BINARY_PATH, the situation is normal (no error)
+			# and nothing to open.
 			return False
 
 		err = _("Error opening this file.") + ' '

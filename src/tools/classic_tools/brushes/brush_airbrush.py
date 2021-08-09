@@ -6,7 +6,7 @@ from .abstract_brush import AbstractBrush
 class BrushAirbrush(AbstractBrush):
 	__gtype_name__ = 'BrushAirbrush'
 
-	def _get_status(self, use_pressure):
+	def _get_status(self, use_pressure, brush_direction):
 		label = _("Airbrush") + " - "
 		if use_pressure:
 			label += _("Density depends on the stylus pressure")
@@ -29,7 +29,7 @@ class BrushAirbrush(AbstractBrush):
 		cairo_context.set_line_width(1)
 		random.seed(1) # this hardcoded seed avoids the droplets changing their
 		# positions when the user undoes an following operation
-		half_width = operation['line_width'] / 2
+		half_width = int(operation['line_width'] / 2)
 		droplets = 20 # could be like 15 + log(width) maybe?
 
 		for pt in operation['path']:

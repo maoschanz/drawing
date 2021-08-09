@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2019-12-12 10:58+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -33,7 +33,6 @@ msgstr "Egyszerű rajzoló alkalmazás"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Sketch;Pencil;Festés;Rajzolás;Skicc;Ceruza;Ecset;Festő"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -49,9 +48,10 @@ msgstr "Új kép"
 msgid "Edit Image in Clipboard"
 msgstr "Kép szerkesztése a vágólapról"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Rajzoló alkalmazás a GNOME asztali környezethez"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -74,55 +74,43 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always tranparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
 msgstr ""
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.6.5 features several minor bug fixes, and various new translations."
-msgstr ""
-"A 0.6.5 verzió számos kisebb hibajavítást, és új felhasználói felület nyelvi "
+"A 0.8.2 verzió számos kisebb hibajavítást, és új felhasználói felület nyelvi "
 "fordításokat hozott."
 
 #. This is just my name, do not translate it.
@@ -151,8 +139,8 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Fájl"
+msgid "File"
+msgstr "Fájl"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -227,8 +215,8 @@ msgid "Quit all windows"
 msgstr "Minden ablak bezárása"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "S_zerkesztés"
+msgid "Edit"
+msgstr "Szerkesztés"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -284,8 +272,8 @@ msgid "Preferences"
 msgstr "Beállítások"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Nézet"
+msgid "View"
+msgstr "Nézet"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -353,21 +341,27 @@ msgstr "Forgatás jobbra"
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Teljes képernyő"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
+msgstr "Előnézet megjelenítése"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Kilépés a teljes képernyős módból"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Színek"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Színek"
 
 #: src/ui/app-menus.ui
 #, fuzzy
@@ -484,9 +478,9 @@ msgstr ""
 msgid "Erase"
 msgstr "Radír"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Eszközök"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Eszközök"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -514,19 +508,29 @@ msgstr "Alapértelmezett szélesség"
 msgid "Troubleshoot selection"
 msgstr "Hibakeresés"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Beállítások"
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Súgó az eszközökről"
 
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Súgó"
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Súgó az eszközökről"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "Beállítások"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Súgó"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
 msgstr "Gyorsbillentyűk"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Hibajelentés küldése"
 
@@ -545,7 +549,7 @@ msgstr ""
 msgid "Basic help"
 msgstr "Súgó"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "Súgó az eszközökről"
@@ -568,6 +572,7 @@ msgstr "Súgó az eszközökről"
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "Súgó az eszközökről"
@@ -622,10 +627,6 @@ msgstr "Ezek legyenek az alapértelmezett beállítások"
 msgid "Images"
 msgstr "Képek"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Eszközök"
-
 #: src/ui/preferences.ui
 #, fuzzy
 msgid "Window"
@@ -675,6 +676,30 @@ msgstr "Forgatás"
 msgid "Filters"
 msgstr "Szűrők"
 
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "További műveletek"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Invert selection"
+msgstr "Szabad kijelölés"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Define as current image"
+msgstr "Képfájl megnyitása"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -693,9 +718,10 @@ msgstr "Általános"
 msgid "Main menu"
 msgstr "Főmenü"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Súgó"
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Előnézet megjelenítése"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -748,10 +774,6 @@ msgstr "A kijelölés törlése"
 msgid "Import a file as the selection"
 msgstr "Fájl importálása kijelölésként"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Színek"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -790,10 +812,13 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr ""
-"Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
-"hibát a fejlesztőknek!"
+#, fuzzy
+msgid "Loading…"
+msgstr "%s fájl betöltése"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Kilépés a teljes képernyős módból"
 
 #: src/deco_manager.py
 #, python-format
@@ -828,6 +853,12 @@ msgstr ""
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Mentetlen fájl"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -899,14 +930,8 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -936,6 +961,7 @@ msgstr "Alapértelmezett magasság"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Default color"
 msgstr "Alapértelmezett háttér"
@@ -1085,6 +1111,11 @@ msgstr "Fejlesztés"
 #: src/preferences.py
 msgid "Background color"
 msgstr "Háttérszín"
+
+#: src/preferences.py
+#, fuzzy
+msgid "Prefer dark theme variant"
+msgstr "Alapértelmezett szélesség"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1351,6 +1382,18 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Nem sikerült betölteni az eszközt: %s"
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr ""
+"Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
+"hibát a fejlesztőknek!"
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1370,12 +1413,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Nem sikerült betölteni az eszközt: %s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr ""
@@ -1384,11 +1421,6 @@ msgstr ""
 msgid "Modifications will take effect in the next new window."
 msgstr ""
 "A beállított módosítások a következő megnyitott új ablaknál jutnak érvényre."
-
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Nincs beállítás"
 
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
@@ -1412,7 +1444,6 @@ msgstr ""
 msgid "Loading %s"
 msgstr "%s fájl betöltése"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Új lap"
@@ -1479,7 +1510,7 @@ msgstr "Elsődleges szín"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Másodlagos szín"
 
@@ -1487,9 +1518,12 @@ msgstr "Másodlagos szín"
 msgid "Tool size"
 msgstr "Eszközméret"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Nincs beállítás"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Előnézet"
 
@@ -1510,6 +1544,7 @@ msgid "Use this editor by default"
 msgstr "Legyen ez az lapértelmezett szerkesztő"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Kijelölés beállításai"
 
@@ -1521,6 +1556,7 @@ msgstr ""
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Átlátszóság"
@@ -1529,18 +1565,11 @@ msgstr "Átlátszóság"
 msgid "Extract from this color"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply"
 msgstr "Alkalmaz"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "További lehetőségek"
 
@@ -1560,10 +1589,6 @@ msgstr "Szög (fok)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Szög"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "További műveletek"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1652,35 +1677,26 @@ msgid "Line shape"
 msgstr "Alakzat"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Kerekítés"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Négyzet"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
 #, fuzzy
-msgid "No arrow"
-msgstr "Nyíl"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr ""
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
-msgid "Double arrow"
-msgstr "Szaggatott nyíl"
+msgid "Outline"
+msgstr "Nincs körvonal"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1711,6 +1727,20 @@ msgstr "Vonalkázás"
 msgid "Alternated dashes"
 msgstr ""
 
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "No arrow"
+msgstr "Nyíl"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "Double arrow"
+msgstr "Szaggatott nyíl"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
@@ -1732,7 +1762,7 @@ msgstr ""
 msgid "Hairy brush"
 msgstr "Vonalkázás"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1754,41 +1784,37 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr "Vízszintes elmosás"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Ceruza"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Téglalap"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Elmosás"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "képpont"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Másodlagos szín"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Radír"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #, fuzzy
@@ -1861,6 +1887,11 @@ msgstr "Színek invertálása"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Színátmenet"
+
+#: src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "Locked direction"
+msgstr "Színválasztó"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -1973,10 +2004,6 @@ msgid "Radial gradient"
 msgstr "Sugaras színátmenet"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Téglalap"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 #, fuzzy
 msgid "Rounded rectangle"
 msgstr "Téglalap"
@@ -2032,12 +2059,6 @@ msgstr "Nincs háttér"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr ""
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
-msgid "Outline"
-msgstr "Nincs körvonal"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2103,10 +2124,6 @@ msgid "Click on the canvas to entirely paint it"
 msgstr "Az alakzat bezárásához kattintson az első pontjára."
 
 #: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Ceruza"
-
-#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Ceruza beállítások"
 
@@ -2161,12 +2178,12 @@ msgid "Density depends on the mouse speed"
 msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr ""
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr ""
 
@@ -2193,12 +2210,21 @@ msgid "Error: invalid values"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Betűbeállítások"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Kijelölés vágása"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Rajzvászon vágása"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2210,12 +2236,22 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Festés beállítások"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Kijelölés forgatása"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Rajzvászon forgatása"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Festés beállítások"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2240,14 +2276,14 @@ msgstr "Elmosás sugara"
 msgid "Saturation"
 msgstr "Telítettség"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Rajzoló alkalmazás a GNOME asztali környezethez"
+
 #~ msgid "Quit"
 #~ msgstr "Kilépés"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Kilépés a teljes képernyős módból"
-
-#~ msgid "Edit"
-#~ msgstr "Szerkesztés"
 
 #~ msgid "Close"
 #~ msgstr "Bezár"

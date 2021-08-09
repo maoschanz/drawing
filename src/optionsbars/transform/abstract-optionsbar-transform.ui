@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <object class="GtkActionBar" id="bottom-pane">
+    <property name="visible">False</property>
+    <property name="expand">True</property>
+
+    <child>
+      <object class="GtkButton" id="cancel_btn">
+        <property name="tooltip_text" translatable="yes">Cancel</property>
+        <!-- TODO dans le futur quand ce sera bien traduit, mettre plutôt -->
+        <!-- "Cancel transformation" ici -->
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <property name="action_name">win.force_selection</property>
+        <style>
+          <class name="destructive-action"/>
+        </style>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">go-previous-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <!-- <child type="center"> -->
+      <!-- Filled by the implementations -->
+    <!-- </child> -->
+
+    <child>
+      <object class="GtkButton" id="apply_btn">
+        <property name="action_name">win.apply_transform</property>
+        <property name="tooltip-text" translatable="yes">Apply</property>
+        <!-- TODO dans le futur quand ce sera bien traduit, mettre plutôt -->
+        <!-- "Apply transformation" ici -->
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <style>
+          <class name="suggested-action"/>
+        </style>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">emblem-ok-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkMenuButton" id="options_btn">
+        <property name="tooltip-text" translatable="yes">More options</property>
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">view-more-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="help_btn">
+        <property name="visible">True</property>
+        <property name="relief">none</property>
+        <property name="tooltip-text" translatable="yes">Help about transformation tools</property>
+        <property name="action-name">app.help_transform</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">help-faq-symbolic</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+  </object>
+</interface>
+

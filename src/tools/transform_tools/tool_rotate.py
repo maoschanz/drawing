@@ -45,6 +45,9 @@ class ToolRotate(AbstractCanvasTool):
 		self.angle_btn.connect('value-changed', self.on_angle_changed)
 		return pane
 
+	def get_options_label(self):
+		return _("Rotating options")
+
 	def get_edition_status(self):
 		if self.apply_to_selection:
 			return _("Rotating the selection")
@@ -78,7 +81,7 @@ class ToolRotate(AbstractCanvasTool):
 		press_as_degrees = (math.atan2(delta_x0, delta_y0) * 180) / math.pi
 		self.angle_press = self.get_angle() - int(press_as_degrees)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if not self.apply_to_selection:
 			return
 		center_x, center_y = self.get_selection().get_center_coords()
@@ -86,8 +89,9 @@ class ToolRotate(AbstractCanvasTool):
 		delta_y = center_y - event_y
 		release_angle = ( math.atan2(delta_x, delta_y) * 180 ) / math.pi
 		self.angle_btn.set_value(int(release_angle) + self.angle_press)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		if render:
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
@@ -122,6 +126,19 @@ class ToolRotate(AbstractCanvasTool):
 		if self.get_angle() == 360 or self.get_angle() == -360:
 			self.angle_btn.set_value(0)
 		self.build_and_do_op()
+
+	############################################################################
+
+	def on_draw_above(self, area, cairo_context):
+		x1 = 0
+		y1 = 0
+		x2 = x1 + self.get_image().temp_pixbuf.get_width()
+		y2 = y1 + self.get_image().temp_pixbuf.get_height()
+		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
+		                                         self.apply_to_selection, False)
+		self._draw_temp_pixbuf(cairo_context, x1, y1)
+
+	############################################################################
 
 	def build_operation(self):
 		operation = {

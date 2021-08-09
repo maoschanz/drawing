@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,6 @@ msgstr ""
 msgid "Paint;Sketch;Pencil;"
 msgstr ""
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -48,8 +47,9 @@ msgstr ""
 msgid "Edit Image in Clipboard"
 msgstr ""
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
+msgid "Simple image editor for the Linux desktop(s)"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -67,53 +67,41 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always tranparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
 msgstr ""
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.6.5 features several minor bug fixes, and various new translations."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 
 #. This is just my name, do not translate it.
@@ -142,7 +130,7 @@ msgid "The \"new image\" menu opened"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_File"
+msgid "File"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -217,7 +205,7 @@ msgid "Quit all windows"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
+msgid "Edit"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
@@ -274,7 +262,7 @@ msgid "Preferences"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_View"
+msgid "View"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -341,20 +329,25 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
 msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -460,8 +453,8 @@ msgstr ""
 msgid "Erase"
 msgstr ""
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
 msgstr ""
 
 #: src/ui/app-menus.ui
@@ -489,19 +482,27 @@ msgstr ""
 msgid "Troubleshoot selection"
 msgstr ""
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
+#: src/ui/app-menus.ui
+msgid "Cancel transformation"
 msgstr ""
 
 #: src/ui/app-menus.ui
-msgid "_Help"
+msgid "Apply transformation"
+msgstr ""
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr ""
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
 msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr ""
 
@@ -520,7 +521,7 @@ msgstr ""
 msgid "Basic help"
 msgstr ""
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
 msgstr ""
 
@@ -539,6 +540,7 @@ msgstr ""
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Help about transformation tools"
 msgstr ""
 
@@ -591,10 +593,6 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr ""
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr ""
@@ -643,6 +641,28 @@ msgstr ""
 msgid "Filters"
 msgstr ""
 
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+msgid "More actions"
+msgstr ""
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr ""
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr ""
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -660,8 +680,8 @@ msgstr ""
 msgid "Main menu"
 msgstr ""
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
 msgstr ""
 
 #: src/ui/shortcuts.ui
@@ -714,10 +734,6 @@ msgstr ""
 msgid "Import a file as the selection"
 msgstr ""
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr ""
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -755,7 +771,11 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
+msgid "Loading…"
+msgstr ""
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
 msgstr ""
 
 #: src/deco_manager.py
@@ -790,6 +810,12 @@ msgstr ""
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
+msgstr ""
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
 msgstr ""
 
 #. Description of a command line option
@@ -858,14 +884,8 @@ msgid "%s%%"
 msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr ""
 
@@ -895,6 +915,7 @@ msgstr ""
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr ""
 
@@ -1035,6 +1056,10 @@ msgstr ""
 
 #: src/preferences.py
 msgid "Background color"
+msgstr ""
+
+#: src/preferences.py
+msgid "Prefer dark theme variant"
 msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
@@ -1300,6 +1325,16 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr ""
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr ""
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1319,23 +1354,12 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr ""
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
-msgstr ""
-
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
 msgstr ""
 
 #: src/window.py
@@ -1357,7 +1381,6 @@ msgstr ""
 msgid "Loading %s"
 msgstr ""
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr ""
@@ -1420,7 +1443,7 @@ msgstr ""
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr ""
 
@@ -1428,9 +1451,12 @@ msgstr ""
 msgid "Tool size"
 msgstr ""
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr ""
+
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr ""
 
@@ -1451,6 +1477,7 @@ msgid "Use this editor by default"
 msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr ""
 
@@ -1462,6 +1489,7 @@ msgstr ""
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr ""
@@ -1470,18 +1498,11 @@ msgstr ""
 msgid "Extract from this color"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr ""
 
@@ -1500,10 +1521,6 @@ msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
-msgstr ""
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
 msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
@@ -1585,32 +1602,24 @@ msgid "Line shape"
 msgstr ""
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr ""
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr ""
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr ""
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr ""
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
 msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1638,6 +1647,18 @@ msgstr ""
 msgid "Alternated dashes"
 msgstr ""
 
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr ""
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr ""
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
@@ -1657,7 +1678,7 @@ msgstr ""
 msgid "Hairy brush"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1677,37 +1698,34 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr ""
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr ""
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle pixels"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
-msgid "Solid color"
-msgstr ""
-
 #: src/tools/ui/tool-eraser.ui
-msgid "Eraser type"
-msgstr ""
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
+msgid "Solid color"
 msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
@@ -1773,6 +1791,10 @@ msgstr ""
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
+msgstr ""
+
+#: src/tools/ui/tool-line.ui
+msgid "Locked direction"
 msgstr ""
 
 #. Context: title for the list of the possible painting algorithms.
@@ -1880,10 +1902,6 @@ msgid "Radial gradient"
 msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr ""
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr ""
 
@@ -1936,11 +1954,6 @@ msgstr ""
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
-msgstr ""
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
 msgstr ""
 
 #. Context: a type of background behind the inserted text
@@ -2002,10 +2015,6 @@ msgid "Click on the canvas to entirely paint it"
 msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr ""
-
-#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr ""
 
@@ -2057,12 +2066,12 @@ msgid "Density depends on the mouse speed"
 msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr ""
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr ""
 
@@ -2087,11 +2096,19 @@ msgid "Error: invalid values"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
+msgid "Cropping options"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
+msgstr ""
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
 msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
@@ -2104,11 +2121,19 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating options"
+msgstr ""
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
+msgstr ""
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling options"
 msgstr ""
 
 #: src/tools/transform_tools/tool_scale.py

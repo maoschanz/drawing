@@ -33,12 +33,18 @@
           <p>Using the "eraser" mode from the color menu, the pencil can delete
           all existing colors. Using the "highlight" mode and a semi-transparent
           color, it can also highlight text. For this reason, the two next tools
-          are <link xref="preferences#tools">disabled by default</link>.</p>
+          are <link xref="preferences#tools">optional</link>.</p>
         </note>
       </item>
       <item>
         <p>Eraser: Ignore the current color settings and just erase to get fully
-        transparent pixels.</p>
+        transparent pixels. Optionally, the erased pixels can be changed to the
+        initial color of the canvas, or to the secondary color.</p>
+        <p>Another option of this tool is its behavior: it can erase according
+        to the line you draw with it, or according to a rectangular shape you
+        define. Using this rectangle mode, you have more available options:
+        blur, mosaic, randomly shuffle pixels, etc. so you can — for example —
+        quickly censor text over wide areas of the image.</p>
       </item>
       <item>
         <p>Highlighter: Ignore the transparency of the current color, and draw
@@ -52,6 +58,8 @@
         <p>Line: This tool can draw straight lines. Its options also include
         ending the line with an arrow, and using a gradient from the main color
         to the secondary color.</p>
+        <p>The option to lock the orientation of the line will force the line to
+        be perfectly horizontal, at 45°, or vertical.</p>
       </item>
       <item>
         <p>Curve: This tool can draw Bézier curves, optionally with an arrow at
@@ -62,7 +70,7 @@
       </item>
     </list>
 
-    <p>Aside of the colors, a common option for classic tools is whether or not
+    <p>Aside of the colors, a usual option for classic tools is whether or not
     you want to use anti-aliasing. If you use anti-aliasing, the lines will look
     smoother, but it may negatively affect any following use of the <gui
     style="menuitem">Paint</gui> tool, as well as several options of the <link
@@ -70,6 +78,10 @@
     <p>With several tools, you can change the ends of the line: it can be
     rounded or square. You can also draw various patterns of dashed lines with a
     few tools.</p>
+    <p>The <gui style="menuitem">Outline</gui> option adds an outline around the
+    line you draw. This outline uses the secondary color, and is available with
+    the <gui style="menuitem">Pencil</gui>, <gui style="menuitem">Line</gui>,
+    and <gui style="menuitem">Curve</gui> tools.</p>
   </section>
 
   <section id="brushes">

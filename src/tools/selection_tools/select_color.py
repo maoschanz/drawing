@@ -1,4 +1,4 @@
-# color_select.py
+# select_color.py
 #
 # Copyright 2018-2021 Romain F. T.
 #
@@ -30,16 +30,15 @@ class ToolColorSelect(AbstractSelectionTool):
 	def press_define(self, event_x, event_y):
 		pass
 
-	def motion_define(self, event_x, event_y):
+	def motion_define(self, event_x, event_y, render):
 		pass
 
 	def release_define(self, surfc, event_x, event_y):
 		path = utilities_get_magic_path(surfc, event_x, event_y, self.window, 1)
-		self.get_selection().set_future_path(path)
+		self._pre_load_path(path)
 		if path is None:
 			return
 		self.operation_type = 'op-define'
-		self._set_future_coords_for_free_path()
 		operation = self.build_operation()
 		self.apply_operation(operation)
 

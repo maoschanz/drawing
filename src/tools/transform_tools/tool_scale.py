@@ -49,6 +49,9 @@ class ToolScale(AbstractCanvasTool):
 		self.height_btn.connect('value-changed', self.on_height_changed)
 		return bar
 
+	def get_options_label(self):
+		return _("Scaling options")
+
 	def get_edition_status(self):
 		if self.apply_to_selection:
 			return _("Scaling the selection")
@@ -84,7 +87,7 @@ class ToolScale(AbstractCanvasTool):
 		former_setting = self.keep_proportions
 		setting = self.get_option_value('scale-proportions')
 		if setting == 'corners':
-			self.keep_proportions = len(self.directions) == 2
+			self.keep_proportions = len(self.directions) != 1
 		else:
 			self.keep_proportions = setting == 'always'
 		if self.keep_proportions == former_setting:
@@ -131,7 +134,7 @@ class ToolScale(AbstractCanvasTool):
 		self.directions = self.cursor_name.replace('-resize', '')
 		self.set_keep_proportions()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self.cursor_name == 'not-allowed':
 			return
 		delta_x = event_x - self.x_press
@@ -174,7 +177,7 @@ class ToolScale(AbstractCanvasTool):
 
 	############################################################################
 
-	def on_draw(self, area, cairo_context):
+	def on_draw_above(self, area, cairo_context):
 		if self.apply_to_selection:
 			x1 = int(self._x)
 			y1 = int(self._y)
@@ -185,7 +188,9 @@ class ToolScale(AbstractCanvasTool):
 		y2 = y1 + self.get_height()
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
-		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2)
+		self._draw_temp_pixbuf(cairo_context, x1, y1)
+		thickness = self.get_overlay_thickness()
+		utilities_show_handles_on_context(cairo_context, x1, x2, y1, y2, thickness)
 
 	############################################################################
 

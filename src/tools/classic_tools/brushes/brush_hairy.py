@@ -6,7 +6,7 @@ from .abstract_brush import AbstractBrush
 class BrushHairy(AbstractBrush):
 	__gtype_name__ = 'BrushHairy'
 
-	def _get_status(self, use_pressure):
+	def _get_status(self, use_pressure, brush_direction):
 		label = _("Hairy brush")
 		if use_pressure:
 			label += " - " + _("Width depends on the stylus pressure")

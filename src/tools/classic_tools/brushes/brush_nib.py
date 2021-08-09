@@ -3,15 +3,16 @@
 import cairo
 from .abstract_brush import AbstractBrush
 
-class BrushNip(AbstractBrush):
-	__gtype_name__ = 'BrushNip'
+class BrushNib(AbstractBrush):
+	__gtype_name__ = 'BrushNib'
 
-	def _get_status(self, use_pressure):
+	def _get_status(self, use_pressure, brush_direction):
 		label = _("Calligraphic nib") + " - "
 		if use_pressure:
 			label += _("Width depends on the stylus pressure")
 		else:
 			label += _("Width depends on the line orientation")
+		# XXX do something from the `brush_direction` data
 		return label
 
 	def draw_preview(self, operation, cairo_context):
@@ -33,20 +34,20 @@ class BrushNip(AbstractBrush):
 		self.operation_on_mask(operation, cairo_context)
 
 	def do_masked_brush_op(self, cairo_context, operation):
-		cairo_context.set_line_cap(cairo.LineCap.ROUND)
-		cairo_context.set_line_join(cairo.LineJoin.ROUND)
-		cairo_context.set_line_width(1)
+		# cairo_context.set_line_cap(cairo.LineCap.BUTT)
+		# cairo_context.set_line_join(cairo.LineJoin.BEVEL)
+		# cairo_context.set_line_width(1)
 
 		line_width = operation['line_width'] / 2
 		two_ways_path = []
 
-		if operation['nip_dir'] == 'left':
+		if operation['nib_dir'] == 'left':
 			feather_def = {'x': 1, 'y': 1}
-		elif operation['nip_dir'] == 'horizontal':
+		elif operation['nib_dir'] == 'horizontal':
 			feather_def = {'x': 1, 'y': 0}
-		elif operation['nip_dir'] == 'vertical':
+		elif operation['nib_dir'] == 'vertical':
 			feather_def = {'x': 0, 'y': 1}
-		else: # operation['nip_dir'] == 'right':
+		else: # operation['nib_dir'] == 'right':
 			feather_def = {'x': 1, 'y': -1}
 
 		dx_base = feather_def['x'] * line_width

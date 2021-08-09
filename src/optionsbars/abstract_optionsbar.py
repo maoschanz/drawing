@@ -1,4 +1,4 @@
-# bottombar.py
+# abstract_optionsbar.py
 #
 # Copyright 2018-2021 Romain F. T.
 #
@@ -17,24 +17,47 @@
 
 from gi.repository import Gtk
 
-RSRC_PREFIX = '/com/github/maoschanz/drawing/'
+RSRC_PREFIX = '/com/github/maoschanz/drawing/optionsbars/'
 
 class AbstractOptionsBar():
 	__gtype_name__ = 'AbstractOptionsBar'
-	# Abstract class
 
 	def __init__(self):
 		# Quite high as a precaution, will be more precise later
 		self._limit_size = 700
 		self._is_narrow = False
 
-	def build_ui(self, end_of_path):
+	def _build_ui(self, end_of_path):
+		"""Creates a Gtk.Builder for the resource whose path is hinted in the
+		method parameter, and tries to extract usual widgets ids from it. Most
+		resulting widgets can be `None`, except `action_bar`. The builder is
+		returned if the caller wants to extract more objects from it.
+		This is valid for any instance of `AbstractOptionsBar`."""
 		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + end_of_path)
 		self.action_bar = builder.get_object('bottom-pane')
 		self.cancel_btn = builder.get_object('cancel_btn') # may be None
 		self.centered_box = builder.get_object('centered_box') # may be None
 		self.apply_btn = builder.get_object('apply_btn') # may be None
+		self.help_btn = builder.get_object('help_btn') # may be None
+		self.options_btn = builder.get_object('options_btn') # may be None
+		self._togglable_btn = self.options_btn # default value, may change later
 		return builder # for implementations-specific widgets
+
+	def _hydrate_transform_tool(self, end_of_path):
+		"""Same as above, BUT this isn't valid for any instance of
+		`AbstractOptionsBar`: only an optionsbar for a transform tool should
+		call that method, and it should call it *after* `_build_ui`. This method
+		will "hydrate" the previously built (but still incomplete) widgets."""
+		builder = Gtk.Builder.new_from_resource(RSRC_PREFIX + end_of_path)
+		self.centered_box = builder.get_object('centered_box')
+		self.action_bar.set_center_widget(self.centered_box)
+		actions_menu = builder.get_object('actions-menu')
+		if actions_menu:
+			self.options_btn.set_menu_model(actions_menu)
+		else:
+			self.options_btn.destroy()
+			self.options_btn = None
+		return builder
 
 	def build_options_menu(self, widget, model, label):
 		"""Set a widget (or a menu) as the popover with tools options. In
@@ -54,11 +77,13 @@ class AbstractOptionsBar():
 	def set_minimap_label(self, label):
 		pass
 
-	def hide_options_menu(self):
-		pass
-
 	def toggle_options_menu(self):
-		pass
+		if self._togglable_btn and self._togglable_btn.get_visible():
+			self._togglable_btn.set_active(not self._togglable_btn.get_active())
+
+	def hide_options_menu(self):
+		if self._togglable_btn:
+			self._togglable_btn.set_active(False)
 
 	def middle_click_action(self):
 		pass
@@ -90,6 +115,8 @@ class AbstractOptionsBar():
 		"""The parameter is a boolean telling if the bottom pane should become
 		compact or not."""
 		self._is_narrow = state
+		if self.help_btn is not None:
+			self.help_btn.set_visible(not state)
 		# + implementation-specific instructions
 
 	############################################################################

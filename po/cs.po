@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 00:02+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-07-24 03:48+0200\n"
 "PO-Revision-Date: 2021-02-12 02:15+0100\n"
 "Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
 "Language-Team: Czech <>\n"
@@ -33,7 +33,6 @@ msgstr "Jednoduchý kreslicí nástroj"
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Kreslení;Skica;Tužka;"
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -49,9 +48,10 @@ msgstr "Nový obrázek"
 msgid "Edit Image in Clipboard"
 msgstr "Upravit obrázek ve schránce"
 
+#. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Kreslicí aplikace pro prostředí GNOME"
+msgid "Simple image editor for the Linux desktop(s)"
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -73,65 +73,43 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"With Drawing 0.8.0, you can finally use a tablet and a stylus to draw with "
-"pressure-sensitive tools, such as the new 'brush' and 'airbrush'."
-msgstr ""
-"S Kreslením 0.8.0 můžete konečně používat tablet a stylus ke kreslení pomocí "
-"nástrojů citlivých na tlak, jako je nový „brush“ a „airbrush“."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The fullscreen mode has been completely redesigned to provide an easier yet "
-"less intrusive access to the tools and their options."
-msgstr ""
-"Zobrazení na celou obrazovku bylo zcela přepracováno, aby poskytovalo "
-"snadnější, ale méně rušivý přístup k nástrojům a jejich možnostem."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Filters have been rewritten to be more reliable, and a new filter to "
-"harmoniously increase contrast has been added."
-msgstr ""
-"Filtry byly přeprogramovány, aby byly spolehlivější, a byl přidán nový "
-"filtr, který harmonicky zvyšuje kontrast."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"When you move or delete the selection, now the pixels left behind can "
-"optionally be a specific color, rather than always tranparency. This "
-"specific color can be excluded from the selection. That feature is complex "
-"to explain with words, try it yourself you'll see."
-msgstr ""
-"Když přesunete nebo odstraníte výběr, nyní mohou volitelně mít zbývající "
-"pixely konkrétní barvu, nemusí být vždy průhledné. Tuto konkrétní barvu lze "
-"z výběru vyloučit. Ale je složité vysvětlit tuto funkci slovy, zkuste sami, "
-"uvidíte."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Options such as the text background type and the shape filling style are now "
-"persisted when closing the application."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The user interface for selecting the active color application mode has been "
-"rewritten to better show the accurate label, and better organize the "
-"possible modes as submenus."
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The \"blur\" mode has been removed, which simplified the situation and "
-"allowed several tools (\"shapes\" and \"brushes\") to get support for the "
-"color application modes in general."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.6.5 features several minor bug fixes, and various new translations."
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
 msgstr ""
-"Verze 0.6.5 obsahuje několik drobných oprav chyb a různé nové překlady."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Verze 0.8.2 obsahuje několik drobných oprav chyb a různé nové překlady."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -159,8 +137,8 @@ msgid "The \"new image\" menu opened"
 msgstr "Otevřeno menu „nový obrázek“"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Soubor"
+msgid "File"
+msgstr "Soubor"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -234,8 +212,8 @@ msgid "Quit all windows"
 msgstr "Zavřít všechna okna"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Upravit"
+msgid "Edit"
+msgstr "Upravit"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -291,8 +269,8 @@ msgid "Preferences"
 msgstr "Předvolby"
 
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Zobrazit"
+msgid "View"
+msgstr "Zobrazit"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -358,21 +336,27 @@ msgstr "Záložka napravo"
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Fullscreen"
-msgstr "Zapnout zobrazení na celou obrazovku"
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr ""
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
+msgstr "Přepnout náhled"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
 msgstr "Skrýt panely nástrojů"
 
-#: src/ui/app-menus.ui src/ui/window.ui
-msgid "Exit fullscreen"
-msgstr "Ukončit zobrazení na celou obrazovku"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "Zapnout zobrazení na celou obrazovku"
 
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Barvy"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Barvy"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
@@ -478,9 +462,9 @@ msgstr "Nepoužívat barvy, ale ..."
 msgid "Erase"
 msgstr "Vymazat"
 
-#: src/ui/app-menus.ui
-msgid "_Tools"
-msgstr "_Nástroje"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Nástroje"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
@@ -507,19 +491,29 @@ msgstr "Menší šířka"
 msgid "Troubleshoot selection"
 msgstr "Odstranit potíže s výběrem"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Možnosti"
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Použít transformaci"
 
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "Ná_pověda"
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Použít transformaci"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "Možnosti"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Nápověda"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
 msgstr "Zkratky"
 
-#: src/ui/app-menus.ui src/ui/window.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
 msgstr "Nahlásit chybu"
 
@@ -538,7 +532,7 @@ msgstr ""
 msgid "Basic help"
 msgstr "Základní nápověda"
 
-#: src/ui/app-menus.ui
+#: src/ui/app-menus.ui src/ui/minimap.ui
 #, fuzzy
 msgid "Help about zooming"
 msgstr "Nápověda k nástrojům"
@@ -561,6 +555,7 @@ msgstr "Nápověda k nástrojům"
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Help about transformation tools"
 msgstr "Nápověda k nástrojům"
@@ -614,10 +609,6 @@ msgstr "Používat toto nastavení automaticky"
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-msgid "Tools"
-msgstr "Nástroje"
-
 #: src/ui/preferences.ui
 msgid "Window"
 msgstr "Okno"
@@ -666,6 +657,30 @@ msgstr "Otočit"
 msgid "Filters"
 msgstr "Filtry"
 
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "Více akcí"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Invert selection"
+msgstr "Volný výběr"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#, fuzzy
+msgid "Define as current image"
+msgstr "Otevřít obrázek"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr ""
+
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
@@ -683,9 +698,10 @@ msgstr "Obecné"
 msgid "Main menu"
 msgstr "Hlavní menu"
 
-#: src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Nápověda"
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Přepnout náhled"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -737,10 +753,6 @@ msgstr "Smazat výběr"
 msgid "Import a file as the selection"
 msgstr "Importovat soubor jako výběr"
 
-#: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Barvy"
-
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
@@ -778,8 +790,13 @@ msgid "Touch gestures"
 msgstr "Dotyková gesta"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Při spuštění aplikace došlo k chybě, tuto chybu prosím nahlaste."
+#, fuzzy
+msgid "Loading…"
+msgstr "Načítání %s"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Ukončit zobrazení na celou obrazovku"
 
 #: src/deco_manager.py
 #, python-format
@@ -814,6 +831,12 @@ msgstr "Nelze znovu načíst nikdy neuložený soubor z disku."
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Neuložený soubor"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
@@ -881,14 +904,8 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/utilities_paths.py
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -918,6 +935,7 @@ msgstr "Výchozí výška"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
 msgstr "Výchozí barva"
 
@@ -1063,6 +1081,11 @@ msgstr "Funkce pro vývojáře"
 #: src/preferences.py
 msgid "Background color"
 msgstr "Barva pozadí"
+
+#: src/preferences.py
+#, fuzzy
+msgid "Prefer dark theme variant"
+msgstr "Výchozí šířka"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1328,6 +1351,16 @@ msgstr "Omlouváme se, ale tato aplikace nepodporuje obrázky WEBP."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Navzdory své příponě je %s stále obrázek WEBP."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Nepodařilo se načíst nástroj: %s"
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Při spuštění aplikace došlo k chybě, tuto chybu prosím nahlaste."
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1347,12 +1380,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Nepodařilo se načíst nástroj: %s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Schránka neobsahuje žádný obrázek."
@@ -1360,11 +1387,6 @@ msgstr "Schránka neobsahuje žádný obrázek."
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Úpravy se projeví v dalším novém okně."
-
-#: src/window.py src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/abstract_tool.py
-msgid "No options"
-msgstr "Žádné možnosti"
 
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
@@ -1389,7 +1411,6 @@ msgstr ""
 msgid "Loading %s"
 msgstr "Načítání %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Nová záložka"
@@ -1453,7 +1474,7 @@ msgstr "Hlavní barva"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
 msgstr "Vedlejší barva"
 
@@ -1461,9 +1482,12 @@ msgstr "Vedlejší barva"
 msgid "Tool size"
 msgstr "Velikost nástroje"
 
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Žádné možnosti"
+
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Náhled"
 
@@ -1484,6 +1508,7 @@ msgid "Use this editor by default"
 msgstr "Použít tento editor jako výchozí"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Možnosti tužky"
@@ -1496,6 +1521,7 @@ msgstr "Nahradit s..."
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Průhlednost"
@@ -1504,18 +1530,11 @@ msgstr "Průhlednost"
 msgid "Extract from this color"
 msgstr ""
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-filters.ui
-#: src/optionsbars/transform/optionsbar-rotate.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
-#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply"
 msgstr "Použít"
 
-#: src/optionsbars/transform/optionsbar-crop.ui
-#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Více možností"
 
@@ -1535,10 +1554,6 @@ msgstr "Úhel (stupně)"
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
 msgstr "Úhel"
-
-#: src/optionsbars/transform/optionsbar-rotate.ui
-msgid "More actions"
-msgstr "Více akcí"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1620,33 +1635,25 @@ msgid "Line shape"
 msgstr "Tvar konce čáry"
 
 #. Context: this is the name of a line shape
-#. Default values
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
 msgstr "Zakulacený"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
 msgstr "Rovný"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "No arrow"
-msgstr "Žádná šipka"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Simple arrow"
-msgstr "Jednoduchá šipka"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-msgid "Double arrow"
-msgstr "Dvojitá šipka"
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Obrys"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1673,6 +1680,18 @@ msgstr "Krátké přerušování"
 msgid "Alternated dashes"
 msgstr "Střídavé přerušování"
 
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Žádná šipka"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Jednoduchá šipka"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Dvojitá šipka"
+
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
@@ -1694,7 +1713,7 @@ msgstr ""
 msgid "Hairy brush"
 msgstr "Základní přerušování"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
 msgstr ""
 
@@ -1716,41 +1735,37 @@ msgstr ""
 msgid "Horizontal nib"
 msgstr "Horizontální"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Tužka"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Obdélník"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
 msgstr "Rozmazat"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Shuffle pixels"
 msgstr "pixely"
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
-#: src/tools/ui/tool-censor.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_censor.py
+#: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Vedlejší barva"
-
-#: src/tools/ui/tool-eraser.ui
-#, fuzzy
-msgid "Eraser type"
-msgstr "Guma"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Aktivní filtr"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1816,6 +1831,11 @@ msgstr "Invertovat barvy"
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Barevný přechod"
+
+#: src/tools/ui/tool-line.ui
+#, fuzzy
+msgid "Locked direction"
+msgstr "Žádný směr"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -1922,10 +1942,6 @@ msgid "Radial gradient"
 msgstr "Kruhový přechod"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Obdélník"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
 msgstr "Zaoblený obdélník"
 
@@ -1979,11 +1995,6 @@ msgstr "Žádné pozadí"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Stín"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr "Obrys"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2046,10 +2057,6 @@ msgid "Click on the canvas to entirely paint it"
 msgstr "Kliknutím na plátno jej vyplníte"
 
 #: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Tužka"
-
-#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Možnosti tužky"
 
@@ -2103,12 +2110,12 @@ msgid "Density depends on the mouse speed"
 msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
 msgstr ""
 
-#: src/tools/classic_tools/brushes/brush_nip.py
+#: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
 msgstr ""
 
@@ -2133,12 +2140,21 @@ msgid "Error: invalid values"
 msgstr "Chyba: neplatné hodnoty"
 
 #: src/tools/transform_tools/tool_crop.py
+#, fuzzy
+msgid "Cropping options"
+msgstr "Možnosti bodů"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Oříznutí výběru"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Oříznutí plátna"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr "Aktivní filtr"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2150,12 +2166,22 @@ msgid "Emboss"
 msgstr "Převést na reliéf"
 
 #: src/tools/transform_tools/tool_rotate.py
+#, fuzzy
+msgid "Rotating options"
+msgstr "Možnosti výplně"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Otočení výběru"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Otočení plátna"
+
+#: src/tools/transform_tools/tool_scale.py
+#, fuzzy
+msgid "Scaling options"
+msgstr "Možnosti výplně"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2179,6 +2205,9 @@ msgstr "Poloměr rozostření"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturace"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Kreslicí aplikace pro prostředí GNOME"
 
 #~ msgid "Quit"
 #~ msgstr "Zavřít"
