@@ -57,7 +57,7 @@ If your language is not here, or is incompletely translated, you can
 
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
-| cs   | Czech        | 85%        | @pervoj                                   |
+| cs   | Czech        | 100%       | @pervoj                                   |
 | da   | Danish       | 82%        | @scootergrisen                            |
 | de   | German       | 96%        | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
@@ -92,7 +92,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.8.0**)
+(last update: **version 0.8.3**)
 
 *Tools in italic can be disabled.*
 
