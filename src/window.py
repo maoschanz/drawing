@@ -276,10 +276,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._build_new_tab(pixbuf=pixbuf)
 
 	def build_new_from_file(self, gfile):
-		w, duplicate = self.app.has_image_opened(gfile)
-		if duplicate is not None and not w.confirm_open_twice(gfile):
-			w.notebook.set_current_page(duplicate)
-			return
+		if self.get_active_image().get_file_path() != gfile.get_path():
+			w, duplicate = self.app.has_image_opened(gfile.get_path())
+			if duplicate is not None and not w.confirm_open_twice(gfile):
+				w.notebook.set_current_page(duplicate)
+				return
 		self._build_new_tab(gfile=gfile)
 
 	def _build_new_tab(self, gfile=None, pixbuf=None, \
@@ -980,7 +981,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
-				self._build_new_tab(gfile=gfile)
+				self.build_new_from_file(gfile)
 			elif result == discard_id:
 				self._try_load_file(gfile)
 			elif result == new_window_id:
@@ -1047,7 +1048,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		if gfile is None:
 			return
 		if self.get_active_image().get_file_path() != gfile.get_path():
-			w, duplicate = self.app.has_image_opened(gfile)
+			w, duplicate = self.app.has_image_opened(gfile.get_path())
 			if w is not None and not w.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return

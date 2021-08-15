@@ -111,11 +111,13 @@ class Application(Gtk.Application):
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
 		if gfile is not None:
-			w, already_opened_index = self.has_image_opened(gfile.get_path)
-			if w is not None:
-				if not w.confirm_open_twice(gfile):
-					w.notebook.set_current_page(already_opened_index)
-					return
+			current_fp = self.props.active_window.get_active_image().get_file_path()
+			if current_fp != gfile.get_path():
+				w, already_opened_index = self.has_image_opened(gfile.get_path())
+				if w is not None:
+					if not w.confirm_open_twice(gfile):
+						w.notebook.set_current_page(already_opened_index)
+						return
 
 		win = DrWindow(application=self)
 		win.present()
