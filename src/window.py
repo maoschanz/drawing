@@ -275,8 +275,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		pixbuf = self.get_active_image().selection.get_pixbuf()
 		self._build_new_tab(pixbuf=pixbuf)
 
-	def build_new_from_file(self, gfile):
-		if self.get_active_image().get_file_path() != gfile.get_path():
+	def build_new_from_file(self, gfile, check_duplicates=True):
+		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
 			if duplicate is not None and not w.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
@@ -968,6 +968,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			# If the current image is just a blank, unmodified canvas.
 			self._try_load_file(gfile)
 		else:
+			# it makes more sense to ask *if* the user want to open it BEFORE
+			# asking *where* to open it
+			w, duplicate = self.app.has_image_opened(gfile.get_path())
+			if duplicate is not None and not w.confirm_open_twice(gfile):
+				w.notebook.set_current_page(duplicate)
+				self.hide_message()
+				return
+
 			dialog = DrMessageDialog(self)
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
 			new_window_id = dialog.set_action(_("New Window"), None)
@@ -981,11 +989,11 @@ class DrWindow(Gtk.ApplicationWindow):
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
-				self.build_new_from_file(gfile)
+				self.build_new_from_file(gfile, False)
 			elif result == discard_id:
-				self._try_load_file(gfile)
+				self._try_load_file(gfile, False)
 			elif result == new_window_id:
-				self.app.open_window_with_content(gfile, False)
+				self.app.open_window_with_content(gfile, False, False)
 		self.hide_message()
 
 	def file_chooser_open(self, *args):
@@ -1044,10 +1052,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		elif result == import_id:
 			self.import_from_path(gfiles[0].get_path())
 
-	def _try_load_file(self, gfile):
+	def _try_load_file(self, gfile, check_duplicates=True):
 		if gfile is None:
 			return
-		if self.get_active_image().get_file_path() != gfile.get_path():
+		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
 			if w is not None and not w.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)

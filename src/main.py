@@ -106,18 +106,16 @@ class Application(Gtk.Application):
 	############################################################################
 	# Opening windows & CLI handling ###########################################
 
-	def open_window_with_content(self, gfile, get_cb):
+	def open_window_with_content(self, gfile, get_cb, check_duplicates=True):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
-		if gfile is not None:
-			current_fp = self.props.active_window.get_active_image().get_file_path()
-			if current_fp != gfile.get_path():
-				w, already_opened_index = self.has_image_opened(gfile.get_path())
-				if w is not None:
-					if not w.confirm_open_twice(gfile):
-						w.notebook.set_current_page(already_opened_index)
-						return
+		if gfile is not None and check_duplicates:
+			w, already_opened_index = self.has_image_opened(gfile.get_path())
+			if w is not None:
+				if not w.confirm_open_twice(gfile):
+					w.notebook.set_current_page(already_opened_index)
+					return
 
 		win = DrWindow(application=self)
 		win.present()
