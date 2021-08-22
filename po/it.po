@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2021-07-26 15:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -50,8 +50,8 @@ msgstr "Modifica l'Immagine negli Appunti"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
-msgstr "Semplice editor di immagini per desktop Linux"
+msgid "Simple image editor for Linux"
+msgstr "Semplice editor di immagini per Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -76,8 +76,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
-"La versione 1.0.0 migliora le prestazioni di rendering, che sono visibili durante la modifica "
-"di immagini grandi con una CPU scadente."
+"La versione 1.0.0 migliora le prestazioni di rendering, che sono visibili "
+"durante la modifica di immagini grandi con una CPU scadente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -85,17 +85,18 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
-"Ora puoi usare il nuovo strumento \"inclina\", per inclinare un'immagine da un rettangolo a "
-"un parallelogramma. Tale deformazione può essere applicata orizzontalmente o "
-"verticalmente."
+"Ora puoi usare il nuovo strumento \"inclina\", per inclinare un'immagine da "
+"un rettangolo a un parallelogramma. Tale deformazione può essere applicata "
+"orizzontalmente o verticalmente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
-"Utilizzando lo strumento \"scala\", puoi opzionalmente impostare la nuova dimensione con relativa "
-"percentuale piuttosto che un valore assoluto in pixel."
+"Utilizzando lo strumento \"scala\", puoi opzionalmente impostare la nuova "
+"dimensione con relativa percentuale piuttosto che un valore assoluto in "
+"pixel."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -103,17 +104,18 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
-"Se i nomi degli strumenti sono visibili, puoi abilitare uno strumento specifico con "
-"\"alt+[lettera sottolineata]\". Potrebbe non funzionare ancora con le lingue che utilizzano "
-"un alfabeto non latino."
+"Se i nomi degli strumenti sono visibili, puoi abilitare uno strumento "
+"specifico con \"alt+[lettera sottolineata]\". Potrebbe non funzionare ancora "
+"con le lingue che utilizzano un alfabeto non latino."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
-"Premendo \"ctrl\", \"shift\", o \"alt\" quando si utilizza uno strumento si attivano "
-"opzioni, come \"aggiungi alla selezione\" per gli strumenti di selezione."
+"Premendo \"ctrl\", \"shift\", o \"alt\" quando si utilizza uno strumento si "
+"attivano opzioni, come \"aggiungi alla selezione\" per gli strumenti di "
+"selezione."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -355,6 +357,11 @@ msgid "Track framerate"
 msgstr "Traccia frequenza dei fotogrammi"
 
 #: src/ui/app-menus.ui
+#, fuzzy
+msgid "Dark theme variant"
+msgstr "Preferisci la variante del tema scuro"
+
+#: src/ui/app-menus.ui
 msgid "Show the menu-bar"
 msgstr "Mostra la barra del menu"
 
@@ -584,6 +591,14 @@ msgstr "Apri"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "Condividi l'immagine"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "L'immagine è cambiata sul disco, vuoi ricaricarla?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Ricarica"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -823,10 +838,6 @@ msgstr "Errore: nessuno strumento '%s'"
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Nuovo pixbuf vuoto, nessuna modifica applicata a %s"
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Impossibile ricaricare un file mai salvato dal disco."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1198,15 +1209,34 @@ msgid "There are unsaved modifications to %s."
 msgstr "Ci sono modifiche non salvate in %s."
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 "Una parte dell'immagine è selezionata e i pixel sotto la selezione sonovuoti."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Le modifiche dallo strumento corrente non sono state applicate."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "Deseleziona"
+
+#: src/saving_manager.py
+#, fuzzy
+msgid "Save anyway"
+msgstr "Salve come"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1385,6 +1415,24 @@ msgstr "Si"
 msgid "The clipboard doesn't contain any image."
 msgstr "Gli appunti non contengono nessuna immagine"
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Apri un' immagine"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "Condividi l'immagine"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Le modifiche avranno effetto dalla prossima nuova finestra."
@@ -1442,14 +1490,6 @@ msgstr "Cosa vuoi fare con %s?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "Immagine copiata negli appunti"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "L'immagine è cambiata sul disco, vuoi ricaricarla?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Ricarica"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2200,18 +2240,8 @@ msgstr "Saturazione"
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Un'applicazione per il disegno per l'interfaccia GNOME."
 
-#~ msgid ""
-#~ "After rotating the selection, it had an incorrectly big height, but now "
-#~ "it's fixed."
-#~ msgstr ""
-#~ "Dopo aver ruotato la selezione, avevate un'altezza erroneamente grande, "
-#~ "ma ora è stato sistemato."
-
 #~ msgid "Quit"
 #~ msgstr "Esci"
-
-#~ msgid "Save as"
-#~ msgstr "Salve come"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tastiera"

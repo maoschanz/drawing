@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2021-06-05 08:56+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -50,7 +50,7 @@ msgstr "Redigera bilden i urklipp"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
+msgid "Simple image editor for Linux"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -344,6 +344,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "Föredra mörk temavariant"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "Visa/Dölj förhandsgranskningen"
 
@@ -575,6 +580,14 @@ msgstr "Öppna"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "Dela bilden"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Bilden har ändrats på disk, vill du uppdatera den?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Uppdatera"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -815,10 +828,6 @@ msgstr "Fel: Inget verktyg \"%s\""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Ny pixbuf tom, ingen ändring tillämpas på %s"
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Kan inte läsa om en fil som aldrig sparats på disk."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1188,15 +1197,33 @@ msgid "There are unsaved modifications to %s."
 msgstr "Det finns osparade ändringar i %s."
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 "En del av bilden är markerad och bildpunkterna under markeringen är tomma."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Ändringar från det aktuella verktyget har inte tillämpats."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "Avmarkera"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1376,6 +1403,24 @@ msgstr "Ja"
 msgid "The clipboard doesn't contain any image."
 msgstr "Urklipp innehåller ingen bild."
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Öppna en fil"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "Dela bilden"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Ändringarna tillämpas i nästa nya fönster."
@@ -1433,14 +1478,6 @@ msgstr "Vad vill du göra med %s?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "Bilden kopierad till urklipp"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Bilden har ändrats på disk, vill du uppdatera den?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Uppdatera"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2199,9 +2236,6 @@ msgstr "Mättnad"
 
 #~ msgid "Other tools"
 #~ msgstr "Andra verktyg"
-
-#~ msgid "Open a file"
-#~ msgstr "Öppna en fil"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tangentbord"

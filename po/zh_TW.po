@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -53,7 +53,7 @@ msgstr "在剪貼簿中編輯影像"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
+msgid "Simple image editor for Linux"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -344,6 +344,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "預設寬度"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "切換預覽"
 
@@ -584,6 +589,15 @@ msgstr "開啟"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr ""
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "重新載入檔案"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -829,10 +843,6 @@ msgstr ""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "無法重新載入尚未儲存到磁碟的檔案。"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1204,13 +1214,31 @@ msgstr "%s 有未儲存的修改。"
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "取消選擇"
+
+#: src/saving_manager.py
+#, fuzzy
+msgid "Save anyway"
+msgstr "另存為"
 
 #: src/saving_manager.py
 #, fuzzy
@@ -1390,6 +1418,23 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "開啟檔案"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "修改將在下一個新視窗生效。"
@@ -1445,15 +1490,6 @@ msgstr "你想要對 %s 做什麼？"
 #, fuzzy
 msgid "Image copied to clipboard"
 msgstr "在剪貼簿中編輯影像"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "重新載入檔案"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2229,9 +2265,3 @@ msgstr "飽和度"
 
 #~ msgid "Quit"
 #~ msgstr "結束"
-
-#~ msgid "Open a file"
-#~ msgstr "開啟檔案"
-
-#~ msgid "Save as"
-#~ msgstr "另存為"
