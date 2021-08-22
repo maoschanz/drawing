@@ -587,6 +587,20 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Scroll and zoom levels ###################################################
 
+	def get_previewed_width(self):
+		# Indirect way to know if it's a transform tool
+		if self.active_tool().menu_id == 1:
+			if not self.active_tool().apply_to_selection:
+				return self.temp_pixbuf.get_width() * 1.05
+		return self.get_pixbuf_width()
+
+	def get_previewed_height(self):
+		# Indirect way to know if it's a transform tool
+		if self.active_tool().menu_id == 1:
+			if not self.active_tool().apply_to_selection:
+				return self.temp_pixbuf.get_height() * 1.05
+		return self.get_pixbuf_height()
+
 	def fake_scrollbar_update(self):
 		self.add_deltas(0, 0, 0)
 
@@ -649,14 +663,14 @@ class DrImage(Gtk.Box):
 
 	def reset_deltas(self, delta_x, delta_y):
 		if delta_x > 0:
-			wanted_x = self.get_pixbuf_width()
+			wanted_x = self.get_previewed_width()
 		elif delta_x < 0:
 			wanted_x = 0
 		else:
 			wanted_x = self.scroll_x
 
 		if delta_y > 0:
-			wanted_y = self.get_pixbuf_height()
+			wanted_y = self.get_previewed_height()
 		elif delta_y < 0:
 			wanted_y = 0
 		else:
@@ -678,13 +692,13 @@ class DrImage(Gtk.Box):
 			return # could be better handled
 
 		# Update the horizontal scrollbar
-		mpb_width = self.get_pixbuf_width()
+		mpb_width = self.get_previewed_width()
 		wanted_x = min(wanted_x, self.get_max_coord(mpb_width, available_w))
 		wanted_x = max(wanted_x, 0)
 		self.update_scrollbar(False, available_w, int(mpb_width), int(wanted_x))
 
 		# Update the vertical scrollbar
-		mpb_height = self.get_pixbuf_height()
+		mpb_height = self.get_previewed_height()
 		wanted_y = min(wanted_y, self.get_max_coord(mpb_height, available_h))
 		wanted_y = max(wanted_y, 0)
 		self.update_scrollbar(True, available_h, int(mpb_height), int(wanted_y))
@@ -726,7 +740,7 @@ class DrImage(Gtk.Box):
 		corner_w = event_x - self.scroll_x
 		corner_h = event_y - self.scroll_y
 
-		# Dark magic based on unsound experiments XXX
+		# Values based on empirical experiments
 		fake_delta_x = corner_w * (proportion_w - 0.5)
 		fake_delta_y = corner_h * (proportion_h - 0.5)
 		if zoom_delta > 0:
@@ -754,8 +768,8 @@ class DrImage(Gtk.Box):
 	def set_opti_zoom_level(self, *args):
 		allocated_width = self.get_widget_width()
 		allocated_height = self.get_widget_height()
-		h_ratio = allocated_width / self.get_pixbuf_width()
-		v_ratio = allocated_height / self.get_pixbuf_height()
+		h_ratio = allocated_width / self.get_previewed_width()
+		v_ratio = allocated_height / self.get_previewed_height()
 		opti = min(h_ratio, v_ratio) * 99 # Not 100 because some margin is cool
 		self.set_zoom_level(opti)
 		self.scroll_x = 0
