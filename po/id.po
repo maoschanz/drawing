@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-08-22 18:22+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2020-10-25 01:41+0700\n"
 "Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
 "Language-Team: Indonesian\n"
@@ -338,6 +338,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "Lebar bawaan"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "Jungkitkan pratinjau"
 
@@ -576,6 +581,14 @@ msgstr "Buka"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "Bagikan gambar"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Gambar telah diubah pada diska, apakah anda ingin memuatnya ulang?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Muat ulang"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -820,10 +833,6 @@ msgstr ""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Tak bisa memuat ulang berkas dari diska yang tidak pernah disimpan."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1192,13 +1201,30 @@ msgstr "Terdapat modifikasi yang belum tersimpan ke %s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Modifikasi dari alat saat ini belum diterapkan."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "Nirpilih"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1379,6 +1405,24 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Buka gambar"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "Bagikan gambar"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr ""
@@ -1433,14 +1477,6 @@ msgstr "Apa yang ingin anda lakukan dengan %s?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "Gambar tersalin ke papan klip"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Gambar telah diubah pada diska, apakah anda ingin memuatnya ulang?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Muat ulang"
 
 #: src/window.py
 msgid "Import a picture"

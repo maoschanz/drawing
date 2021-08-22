@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-08-22 18:22+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -343,6 +343,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "ダークテーマを優先的に使用"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "プレビューを切り替え"
 
@@ -574,6 +579,14 @@ msgstr "開く"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "画像を共有"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "ディスク上の画像が変更されました。再読み込みしますか？"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "再読み込み"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -814,10 +827,6 @@ msgstr "エラー: ツール '%s' は存在しません"
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "新しいピクセルバッファーが空です。%s に適用された変更はありません"
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "保存していないファイルをディスクから再読み込みすることはできません。"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1187,14 +1196,32 @@ msgid "There are unsaved modifications to %s."
 msgstr "%s への編集が保存されていません。"
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr "画像の一部領域を選択中です。この部分のピクセルは空白になります。"
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "現在のツールで行った変更が適用されていません。"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "選択を解除"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1375,6 +1402,24 @@ msgstr "はい"
 msgid "The clipboard doesn't contain any image."
 msgstr "クリップボードに画像がありません。"
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "画像を開く"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "画像を共有"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "新しい設定の効果は、次に開いたウィンドウから適用されます。"
@@ -1432,14 +1477,6 @@ msgstr "%s をどうしますか？"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "クリップボードに画像をコピーしました"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "ディスク上の画像が変更されました。再読み込みしますか？"
-
-#: src/window.py
-msgid "Reload"
-msgstr "再読み込み"
 
 #: src/window.py
 msgid "Import a picture"

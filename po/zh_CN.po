@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-08-22 18:22+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -340,6 +340,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "默认宽度"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "切换预览"
 
@@ -580,6 +585,15 @@ msgstr "打开"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr ""
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "重载文件"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -826,10 +840,6 @@ msgstr ""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "无法重载尚未保存到磁盘的文件。"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1198,13 +1208,31 @@ msgstr "%s 有未保存的修改。"
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "取消选择"
+
+#: src/saving_manager.py
+#, fuzzy
+msgid "Save anyway"
+msgstr "另存为"
 
 #: src/saving_manager.py
 #, fuzzy
@@ -1384,6 +1412,23 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "打开文件"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "修改将在下一个新窗口生效。"
@@ -1439,15 +1484,6 @@ msgstr "你想要对 %s 做什么？"
 #, fuzzy
 msgid "Image copied to clipboard"
 msgstr "在剪贴板中编辑图像"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "重载文件"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2224,12 +2260,6 @@ msgstr "饱和度"
 
 #~ msgid "Quit"
 #~ msgstr "退出"
-
-#~ msgid "Open a file"
-#~ msgstr "打开文件"
-
-#~ msgid "Save as"
-#~ msgstr "另存为"
 
 #~ msgid "Keyboard"
 #~ msgstr "键盘"

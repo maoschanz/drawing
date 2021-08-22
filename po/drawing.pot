@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -335,6 +335,10 @@ msgid "Track framerate"
 msgstr ""
 
 #: src/ui/app-menus.ui
+msgid "Dark theme variant"
+msgstr ""
+
+#: src/ui/app-menus.ui
 msgid "Show the menu-bar"
 msgstr ""
 
@@ -563,6 +567,14 @@ msgstr ""
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
+msgstr ""
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+msgid "Reload"
 msgstr ""
 
 #: src/ui/minimap.ui
@@ -802,10 +814,6 @@ msgstr ""
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
 msgstr ""
 
 #: src/image.py src/properties.py
@@ -1173,12 +1181,28 @@ msgstr ""
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
+msgstr ""
+
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
+#: src/saving_manager.py
+msgid "Modifications from the current tool haven't been applied."
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Unselect & save"
 msgstr ""
 
 #: src/saving_manager.py
-msgid "Modifications from the current tool haven't been applied."
+msgid "Save anyway"
 msgstr ""
 
 #: src/saving_manager.py
@@ -1358,6 +1382,22 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr ""
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr ""
@@ -1410,14 +1450,6 @@ msgstr ""
 
 #: src/window.py
 msgid "Image copied to clipboard"
-msgstr ""
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-msgid "Reload"
 msgstr ""
 
 #: src/window.py

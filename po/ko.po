@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-08-22 18:22+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -341,6 +341,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "테마 변경"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "미리보기 전환"
 
@@ -572,6 +577,14 @@ msgstr "열기"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "이미지 공유"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "디스크에서 이미지가 변경되었습니다. 다시로드 하시겠습니까?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "새로 고침"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -815,10 +828,6 @@ msgstr "오류 : '%s' 도구 없음"
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "새 pixbuf가 비어 있고 %s 에 변경 사항이 적용되지 않았습니다"
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "디스크에서 저장하지 않은 파일을 다시로드 할 수 없습니다."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1187,14 +1196,32 @@ msgid "There are unsaved modifications to %s."
 msgstr "%s 에 저장되지 않은 수정 사항이 있습니다."
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr "이미지의 일부가 선택되고 선택 영역 아래의 픽셀은 비어 있습니다."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "현재 도구의 수정 사항이 적용되지 않았습니다."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "선택 취소"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1374,6 +1401,24 @@ msgstr "예"
 msgid "The clipboard doesn't contain any image."
 msgstr "클립 보드에 이미지가 없습니다."
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "이미지 열기"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "이미지 공유"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "수정 사항은 다음 새 창에서 적용됩니다."
@@ -1430,14 +1475,6 @@ msgstr "%s 로 무엇을 하시겠습니까?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "이미지가 클립 보드에 복사되었습니다"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "디스크에서 이미지가 변경되었습니다. 다시로드 하시겠습니까?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "새로 고침"
 
 #: src/window.py
 msgid "Import a picture"

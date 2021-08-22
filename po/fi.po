@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -348,6 +348,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "Oletusleveys"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "Vaihda esikatseluun"
 
@@ -591,6 +596,15 @@ msgstr "Avaa"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr ""
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "Lataa uudelleen"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -838,11 +852,6 @@ msgstr ""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
-
-#: src/image.py
-#, fuzzy
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Koskaan tallennettua tiedostoa ei voi ladata uudelleen levyltä."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1216,12 +1225,29 @@ msgstr "Täällä on %s tallentamattomia muutoksia."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "Valitsematta"
+
+#: src/saving_manager.py
+msgid "Save anyway"
 msgstr ""
 
 #: src/saving_manager.py
@@ -1402,6 +1428,23 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Avaa kuva"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Muutokset tulevat voimaan seuraavassa uudessa ikkunassa."
@@ -1457,15 +1500,6 @@ msgstr "Mitä haluat tehdä kohteen %s kanssa?"
 #, fuzzy
 msgid "Image copied to clipboard"
 msgstr "Muokkaa kuvaa leikepöydällä"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "Lataa uudelleen"
 
 #: src/window.py
 msgid "Import a picture"

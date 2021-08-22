@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -346,6 +346,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "Standardna širina"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "Uključi/isključi pretprikaz"
 
@@ -586,6 +591,15 @@ msgstr "Otvori"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr ""
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "Ponovo učitaj datoteku"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -833,12 +847,6 @@ msgstr ""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr ""
-"Nije moguće s diska ponovo učitati sliku, koja još nikada nije bila "
-"spremljena."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1212,13 +1220,31 @@ msgstr "Postoje nespremljene promjene u %s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Unselect & save"
+msgstr "Odznači odabir"
+
+#: src/saving_manager.py
+#, fuzzy
+msgid "Save anyway"
+msgstr "Spremi kao"
 
 #: src/saving_manager.py
 #, fuzzy
@@ -1398,6 +1424,23 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Otvori datoteku"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
@@ -1453,15 +1496,6 @@ msgstr "Što želiš uraditi s %s?"
 #, fuzzy
 msgid "Image copied to clipboard"
 msgstr "Uredi sliku u međuspremniku"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "Ponovo učitaj datoteku"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2244,12 +2278,6 @@ msgstr "Zasićenost"
 
 #~ msgid "Quit"
 #~ msgstr "Izlaz"
-
-#~ msgid "Open a file"
-#~ msgstr "Otvori datoteku"
-
-#~ msgid "Save as"
-#~ msgstr "Spremi kao"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tipkovnica"
