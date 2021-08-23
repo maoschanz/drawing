@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-06-23 23:06+1000\n"
+"PO-Revision-Date: 2021-08-23 10:17+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -52,7 +52,7 @@ msgstr "Редактировать изображение в буфере обм
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Простой редактор изображений для Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -79,6 +79,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Версия 1.0.0 улучшает производительность рендеринга, что заметно при "
+"редактировании больших изображений на слабом процессоре."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -86,12 +88,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Теперь вы можете использовать новый инструмент \"Наклон\", чтобы наклонить "
+"изображение из прямоугольника в параллелограмм. Такое изменение можно "
+"проводить горизонтально или вертикально."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Используя инструмент «Масштаб», вы можете дополнительно устанавливать новый "
+"размер в процентах, а не только в виде абсолютных значений в пикселях."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -99,12 +106,18 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Если названия инструментов видны, вы можете включить определенный инструмент "
+"с помощью \"alt+[подчеркнутая буква]\". Это может еще не работать с языками, "
+"в которых используется нелатинский алфавит."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Нажатие \"ctrl\", \"shift\" или \"alt\" при использовании инструмента "
+"включает определенные параметры, как например, \"добавить к выделенному\" "
+"для инструментов выделения."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -167,7 +180,7 @@ msgstr "Новое изображение из буфера обмена"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr "Обновить файл"
+msgstr "Перезагрузить файл"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
@@ -343,17 +356,15 @@ msgstr "Обновить"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Отслеживать частоту кадров"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Предпочитаю темный вариант темы"
+msgstr "Темный вариант темы"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Предварительный просмотр"
+msgstr "Показывать строку меню"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -500,14 +511,12 @@ msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Применить изменение"
+msgstr "Отменить преобразование"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Применить изменение"
+msgstr "Применить преобразование"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -594,7 +603,7 @@ msgstr "Перезагрузить"
 
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -708,9 +717,8 @@ msgid "Main menu"
 msgstr "Главное меню"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Предварительный просмотр"
+msgstr "Строка меню"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -742,7 +750,7 @@ msgstr "Вернуться к предыдущему инструменту"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr "Применить изменение"
+msgstr "Применить преобразование"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -840,7 +848,7 @@ msgstr "Несохраненный файл"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s кадров в секунду"
 
 #. Description of a command line option
 #: src/main.py
@@ -1145,7 +1153,7 @@ msgstr "Только панель инструментов (символьные
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr "%s px"
+msgstr "%s пикс"
 
 #: src/properties.py
 #, python-format
@@ -1203,11 +1211,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "Имеются несохраненные изменения в %s."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
-msgstr "Выделена часть изображения, а пиксели под выделенной областью пусты."
+msgstr ""
+"Выделена часть изображения: пиксели под выделением будут сохранены с цветом, "
+"которого вы, возможно, не ожидали!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1218,18 +1227,16 @@ msgstr "Изменения текущего инструмента не были
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Применить и сохранить"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Unselect & save"
-msgstr "Снять выделение"
+msgstr "Снять выделение и сохранить"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Save anyway"
-msgstr "Сохранить как"
+msgstr "Все равно сохранить"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1413,19 +1420,17 @@ msgstr "В буфере обмена нет изображений."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "Файл %s уже открыт"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Открыть файл"
+msgstr "Открыть заново"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Поделиться изображением"
+msgstr "Переключиться на это изображение"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -2163,9 +2168,8 @@ msgid "Error: invalid values"
 msgstr "Ошибка: недопустимые значения"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Параметры точек"
+msgstr "Параметры обрезки"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2189,9 +2193,8 @@ msgid "Emboss"
 msgstr "Тиснение"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Параметры заливки"
+msgstr "Параметры поворота"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2202,9 +2205,8 @@ msgid "Rotating the canvas"
 msgstr "Повернуть холст"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Параметры заливки"
+msgstr "Параметры масштабирования"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
