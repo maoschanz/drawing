@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-07-26 15:15+0200\n"
+"PO-Revision-Date: 2021-08-23 20:15+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -357,9 +357,8 @@ msgid "Track framerate"
 msgstr "Traccia frequenza dei fotogrammi"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Preferisci la variante del tema scuro"
+msgstr "Variante tema scuro"
 
 #: src/ui/app-menus.ui
 msgid "Show the menu-bar"
@@ -1209,12 +1208,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "Ci sono modifiche non salvate in %s."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Una parte dell'immagine è selezionata e i pixel sotto la selezione sonovuoti."
+"Una parte dell'immagine è selezionata: i pixel sotto la selezione saranno "
+"salvati con un colore che non ti aspetti!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1225,18 +1224,16 @@ msgstr "Le modifiche dallo strumento corrente non sono state applicate."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Applica & salva"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Unselect & save"
-msgstr "Deseleziona"
+msgstr "Deseleziona e salva"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Save anyway"
-msgstr "Salve come"
+msgstr "Salve comunque"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1419,19 +1416,17 @@ msgstr "Gli appunti non contengono nessuna immagine"
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "Il file %s è già aperto"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Apri un' immagine"
+msgstr "Apri ancora"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Condividi l'immagine"
+msgstr "Passa a questa immagine"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
