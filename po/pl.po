@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-07-25 23:20+0200\n"
+"PO-Revision-Date: 2021-08-23 20:44+0200\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -357,9 +357,8 @@ msgid "Track framerate"
 msgstr "Śledź liczbę klatek na sekundę"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Preferuj ciemny wariant motywu"
+msgstr "Ciemny wariant motywu"
 
 #: src/ui/app-menus.ui
 msgid "Show the menu-bar"
@@ -1209,11 +1208,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "Zmiany nie zostały zapisane dla %s."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
-msgstr "Część obrazu jest zaznaczona, a piksele pod zaznaczeniem są puste."
+msgstr ""
+"Zaznaczona jest część obrazu: piksele pod zaznaczeniem zostaną zapisane w "
+"kolorze, którego możesz się nie spodziewać!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1224,17 +1224,16 @@ msgstr "Modyfikacje z obecnego narzędzia nie zostały zastosowane."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Zastosuj i zapisz"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Unselect & save"
-msgstr "Odznacz"
+msgstr "Odznacz i zapisz"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Zapisz mimo to"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1419,19 +1418,17 @@ msgstr "Schowek nie zawiera żadnego obrazu."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "Plik %s jest już otwarty"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Otwórz obraz"
+msgstr "Otwórz ponownie"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Udostępnij obraz"
+msgstr "Przełącz na ten obraz"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -2230,4 +2227,3 @@ msgstr "Stopień rozmycia"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Nasycenie"
-
