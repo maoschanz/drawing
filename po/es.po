@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-07-23 12:18+0200\n"
+"PO-Revision-Date: 2021-08-24 17:27+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -359,14 +359,12 @@ msgid "Track framerate"
 msgstr "Monitorizar la velocidad de los fotogramas"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Preferir la variante de tema oscuro"
+msgstr "Variante del tema oscuro"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Conmutar la barra de menús"
+msgstr "Mostrar la barra de menús"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -513,14 +511,12 @@ msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Aplicar una transformación"
+msgstr "Cancelar transformación"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Aplicar una transformación"
+msgstr "Aplicar transformación"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -1215,13 +1211,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "Hay cambios no guardados en %s."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Una parte de la imagen está seleccionada, y los píxeles debajo de la "
-"selección están en blanco."
+"Una parte de la imagen está seleccionada: ¡los píxeles que están debajo de "
+"la selección se guardarán con un color no esperado!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1232,17 +1227,16 @@ msgstr "No se han aplicado las modificaciones de la herramienta actual."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Aplicar y guardar"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Unselect & save"
-msgstr "Deseleccionar"
+msgstr "Desmarcar y guardar"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Guardar de todos modos"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1427,19 +1421,17 @@ msgstr "El portapapeles no contiene ninguna imagen."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "El archivo %s ya está abierto"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Abrir una imagen"
+msgstr "Abrir de nuevo"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Compartir la imagen"
+msgstr "Cambiar a esta imagen"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -2245,10 +2237,3 @@ msgstr "Radio de desenfoque"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturación"
-
-#~ msgid "Filters options"
-#~ msgstr "Opciones de filtros"
-
-#~ msgid "A drawing application for the GNOME desktop"
-#~ msgstr "Una aplicación de dibujo para el escritorio GNOME"
-
