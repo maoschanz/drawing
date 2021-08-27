@@ -44,7 +44,8 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	# UI implementations #######################################################
 
 	def get_options_label(self):
-		return _("Selection options")
+		return _("Selection")
+		# not just options, but mostly actions
 
 	def get_edition_status(self):
 		if self.selection_is_active():

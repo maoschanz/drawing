@@ -30,6 +30,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.needed_width_for_long = 0
 		self.accept_selection = True
 		self.apply_to_selection = False
+		self._directions = ''
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -115,32 +116,53 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.get_image().use_stable_pixbuf()
 
 	############################################################################
+	# Direction of the cursor depending on its position ########################
 
-	def get_handle_cursor_name(self, event_x, event_y):
-		"""Return the name of the accurate cursor for tools such as `scale` or
-		`crop`, with or without an active selection, depending on the size and
-		position of the resized/cropped area."""
-		w_left, w_right, h_top, h_bottom = self.get_image().get_nineths_sizes( \
-		                    self.apply_to_selection, int(self._x), int(self._y))
+	def _set_directions(self, event_x, event_y, n_sizes):
+		"""Set the directions of the user's future operation for tools such as
+		`scale` or `crop`.
+		It returns a boolean telling whether or not the directions changed since
+		the last call to this method."""
+		w_left = n_sizes['wl']
+		w_right = n_sizes['wr']
+		h_top = n_sizes['ht']
+		h_bottom = n_sizes['hb']
+		# print("set_directions", w_left, w_right, h_top, h_bottom)
+		directions = ''
+		if event_y < h_top:
+			directions += 'n'
+		elif event_y > h_bottom:
+			directions += 's'
+		if event_x < w_left:
+			directions += 'w'
+		elif event_x > w_right:
+			directions += 'e'
+
+		if self._directions == directions:
+			return False
+		else:
+			self._directions = directions
+			return True
+
+	def _set_cursor_name(self):
+		"""Set the cursor name, depending on the previously set directions."""
+		if self._directions == '':
+			self.cursor_name = 'not-allowed'
+		else:
+			self.cursor_name = self._directions + '-resize'
+
+	def set_directional_cursor(self, event_x, event_y):
+		"""Set the accurate cursor depending on the position of the pointer on
+		the canvas."""
+		n_sizes = self.get_image().get_nineths_sizes(self.apply_to_selection, \
+		                                                       self._x, self._y)
 		# if we're transforming the selection from its top and/or left, coords
 		# to decide the direction depend on local deltas (self._x and self._y)
+		if self._set_directions(event_x, event_y, n_sizes):
+			self._set_cursor_name()
+			self.window.set_cursor(True)
 
-		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
-		cursor_name = ''
-		if event_y < h_top:
-			cursor_name = cursor_name + 'n'
-		elif event_y > h_bottom:
-			cursor_name = cursor_name + 's'
-		if event_x < w_left:
-			cursor_name = cursor_name + 'w'
-		elif event_x > w_right:
-			cursor_name = cursor_name + 'e'
-
-		if cursor_name == '':
-			cursor_name = 'not-allowed'
-		else:
-			cursor_name = cursor_name + '-resize'
-		return cursor_name
+	############################################################################
 
 	def on_draw_above(self, area, cairo_context):
 		pass

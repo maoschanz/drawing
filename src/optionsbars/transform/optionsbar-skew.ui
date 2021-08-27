@@ -28,9 +28,10 @@
         <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
+        <property name="tooltip_text" translatable="yes">Horizontal deformation</property>
         <child>
-          <object class="GtkLabel" id="xy_label">
-            <property name="label" translatable="yes">Horizontal deformation</property>
+          <object class="GtkImage" id="xy_label">
+            <property name="icon-name">object-flip-horizontal-symbolic</property>
             <property name="visible">True</property>
           </object>
         </child>
@@ -38,7 +39,6 @@
           <object class="GtkSpinButton" id="xy_spinbtn">
             <property name="visible">True</property>
             <property name="adjustment">adj_xy</property>
-            <property name="tooltip_text" translatable="yes">Horizontal deformation</property>
           </object>
         </child>
       </object>
@@ -55,9 +55,10 @@
         <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
+        <property name="tooltip_text" translatable="yes">Vertical deformation</property>
         <child>
-          <object class="GtkLabel" id="yx_label">
-            <property name="label" translatable="yes">Vertical deformation</property>
+          <object class="GtkImage" id="yx_label">
+            <property name="icon-name">object-flip-vertical-symbolic</property>
             <property name="visible">True</property>
           </object>
         </child>
@@ -65,13 +66,54 @@
           <object class="GtkSpinButton" id="yx_spinbtn">
             <property name="visible">True</property>
             <property name="adjustment">adj_yx</property>
-            <property name="tooltip_text" translatable="yes">Vertical deformation</property>
           </object>
         </child>
       </object>
     </child>
 
   </object>
+
+  <!-- -->
+
+  <!-- Menu shown in the action bar (bottom-right) -->
+  <menu id="actions-menu">
+    <section>
+      <attribute name="label" translatable="yes">Expand with…</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Transparency</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">alpha</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Default color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">initial</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Zoom Out</attribute>
+        <attribute name="action">win.zoom_out</attribute>
+        <attribute name="verb-icon">zoom-out-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Original Zoom</attribute>
+        <attribute name="action">win.zoom_100</attribute>
+        <attribute name="verb-icon">zoom-original-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Zoom In</attribute>
+        <attribute name="action">win.zoom_in</attribute>
+        <attribute name="verb-icon">zoom-in-symbolic</attribute>
+      </item>
+    </section>
+  </menu>
 
 </interface>
 

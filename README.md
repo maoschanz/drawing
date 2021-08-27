@@ -146,7 +146,7 @@ These tools can edit the whole image, or edit a selected part of it.
 	- Blur (various types)
 	- Pixelization
 	- Invert colors
-<!-- - Skew (horizontally or vertically) -->
+- Skew (horizontally or vertically)
 
 ----
 
