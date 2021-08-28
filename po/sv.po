@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-06-05 08:56+0200\n"
+"PO-Revision-Date: 2021-08-24 21:49+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -51,7 +51,7 @@ msgstr "Redigera bilden i urklipp"
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Enkel bildredigerare för Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -340,17 +340,15 @@ msgstr "Uppdatera"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Spåra bildfrekvens"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Föredra mörk temavariant"
+msgstr "Mörk temavariant"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Visa/Dölj förhandsgranskningen"
+msgstr "Visa menyfältet"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -497,14 +495,12 @@ msgid "Troubleshoot selection"
 msgstr "Felsök markering"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Tillämpa en omvandling"
+msgstr "Avbryt omvandling"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Tillämpa en omvandling"
+msgstr "Tillämpa omvandling"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -705,9 +701,8 @@ msgid "Main menu"
 msgstr "Huvudmeny"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Visa/Dölj förhandsgranskningen"
+msgstr "Visa/Dölj menyfältet"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -837,7 +832,7 @@ msgstr "Osparad fil"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s bildrutor per sekund"
 
 #. Description of a command line option
 #: src/main.py
@@ -1197,12 +1192,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "Det finns osparade ändringar i %s."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"En del av bilden är markerad och bildpunkterna under markeringen är tomma."
+"En del av bilden är markerad och bildpunkterna under markeringen kommer att "
+"sparas i en färg du kanske inte väntar dig!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1213,17 +1208,16 @@ msgstr "Ändringar från det aktuella verktyget har inte tillämpats."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Tillämpa & spara"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Unselect & save"
-msgstr "Avmarkera"
+msgstr "Avmarkera och spara"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Spara ändå"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1407,19 +1401,17 @@ msgstr "Urklipp innehåller ingen bild."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "Filen %s är redan öppnad"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Öppna en fil"
+msgstr "Öppna igen"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Dela bilden"
+msgstr "Växla till den här bilden"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1853,9 +1845,8 @@ msgid "Color gradient"
 msgstr "Färgtoning"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Ingen riktning"
+msgstr "Låst riktning"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2156,9 +2147,8 @@ msgid "Error: invalid values"
 msgstr "Fel: Ogiltiga värden"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Punktalternativ"
+msgstr "Beskärningsalternativ"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2182,9 +2172,8 @@ msgid "Emboss"
 msgstr "Relief"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Målningsalternativ"
+msgstr "Rotationsalternativ"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2195,9 +2184,8 @@ msgid "Rotating the canvas"
 msgstr "Roterar arbetsytan"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Målningsalternativ"
+msgstr "Skalningsalternativ"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
