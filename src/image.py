@@ -406,8 +406,9 @@ class DrImage(Gtk.Box):
 		self.active_tool().on_draw_above(area, cairo_context)
 
 		# Limit of the canvas (for readability)
-		utilities_generic_canvas_outline(cairo_context, self.get_pixbuf_width(), \
-		                              self.get_pixbuf_height(), self.zoom_level)
+		utilities_generic_canvas_outline(cairo_context, self.zoom_level, \
+		                              self.get_pixbuf_width() - self.scroll_x, \
+		                             self.get_pixbuf_height() - self.scroll_y)
 
 	def on_press_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is pressed on

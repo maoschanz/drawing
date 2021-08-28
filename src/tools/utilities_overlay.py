@@ -103,7 +103,7 @@ def _draw_arc_handle(cairo_context, x, y, rayon, orientation):
 ################################################################################
 # Canvas generic ouline ########################################################
 
-def utilities_generic_canvas_outline(cairo_context, w, h, zoom_level):
+def utilities_generic_canvas_outline(cairo_context, zoom_level, w, h):
 	cairo_context.set_source_rgba(0.0, 0.0, 0.0, 1.0)
 	cairo_context.set_dash([])
 	size = max(1, int(1 / zoom_level))

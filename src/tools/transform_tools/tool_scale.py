@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, GLib
 from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_scale import OptionsBarScale
 from .utilities_overlay import utilities_show_handles_on_context
@@ -28,6 +28,7 @@ class ToolScale(AbstractCanvasTool):
 		self.cursor_name = 'not-allowed'
 		self._preserve_ratio = True
 		self._spinbtns_disabled = True
+		self._reload_is_locked = False
 		self._directions = ''
 		self._x = 0
 		self._y = 0
@@ -95,7 +96,18 @@ class ToolScale(AbstractCanvasTool):
 		if self._preserve_ratio:
 			self._ratio = self._get_width() / self._get_height()
 
-	def _try_scale_dimensions(self, data_dict={}):
+	def _try_scale_dimensions(self):
+		if self._reload_is_locked:
+			return
+		self._reload_is_locked = True
+		GLib.timeout_add(100, self._unlock_reload, {})
+		self._async_try_scale_dimensions()
+
+	def _unlock_reload(self, content_params):
+		self._reload_is_locked = False
+		self._async_try_scale_dimensions()
+
+	def _async_try_scale_dimensions(self, data_dict={}):
 		"""When the value in a spinbutton changes, adjust the values in the
 		spinbuttons if necessary, and build-and-do the corresponding tool
 		operation."""
