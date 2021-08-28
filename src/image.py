@@ -591,14 +591,14 @@ class DrImage(Gtk.Box):
 		# Indirect way to know if it's a transform tool
 		if self.active_tool().menu_id == 1:
 			if not self.active_tool().apply_to_selection:
-				return self.temp_pixbuf.get_width() * 1.05
+				return self.temp_pixbuf.get_width() + 12
 		return self.get_pixbuf_width()
 
 	def get_previewed_height(self):
 		# Indirect way to know if it's a transform tool
 		if self.active_tool().menu_id == 1:
 			if not self.active_tool().apply_to_selection:
-				return self.temp_pixbuf.get_height() * 1.05
+				return self.temp_pixbuf.get_height() + 12
 		return self.get_pixbuf_height()
 
 	def fake_scrollbar_update(self):

@@ -54,6 +54,15 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
 
+	def _scroll_to_end(self, h_growth, v_growth):
+		if h_growth > 0:
+			if 'e' in self._directions:
+				self.window.action_go_last()
+		if v_growth > 0:
+			if 's' in self._directions:
+				self.window.action_go_bottom()
+		self.get_image().fake_scrollbar_update()
+
 	############################################################################
 
 	def build_and_do_op(self):

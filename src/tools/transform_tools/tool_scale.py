@@ -33,8 +33,8 @@ class ToolScale(AbstractCanvasTool):
 		self._y = 0
 		self._x2 = 0
 		self._y2 = 0
-		self.x_press = 0
-		self.y_press = 0
+		self.x_press = self.x_motion = 0
+		self.y_press = self.y_motion = 0
 		self.add_tool_action_enum('scale-proportions', 'corners')
 		self.add_tool_action_enum('scale-unit', 'pixels')
 
@@ -154,8 +154,8 @@ class ToolScale(AbstractCanvasTool):
 		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
+		self.x_press = self.x_motion = event_x
+		self.y_press = self.y_motion = event_y
 		self._x2 = self._x + self._get_width()
 		self._y2 = self._y + self._get_height()
 		self.set_preserve_ratio()
@@ -163,10 +163,10 @@ class ToolScale(AbstractCanvasTool):
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._directions == '':
 			return
-		delta_x = event_x - self.x_press
-		delta_y = event_y - self.y_press
-		self.x_press = event_x
-		self.y_press = event_y
+		delta_x = event_x - self.x_motion
+		delta_y = event_y - self.y_motion
+		self.x_motion = event_x
+		self.y_motion = event_y
 
 		height = self._get_height()
 		width = self._get_width()
@@ -198,8 +198,9 @@ class ToolScale(AbstractCanvasTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
-		self._directions = ''
 		self.build_and_do_op() # technically already done
+		self._scroll_to_end(event_x - self.x_press, event_y - self.y_press)
+		self._directions = ''
 
 	############################################################################
 

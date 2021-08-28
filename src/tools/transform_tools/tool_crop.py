@@ -26,9 +26,9 @@ class ToolCrop(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
 		self.cursor_name = 'not-allowed'
-		self.x_press = 0
-		self.y_press = 0
-		self.unclicked = True
+		self.x_press = self.x_motion = 0
+		self.y_press = self.y_motion = 0
+		self._unclicked = True # locking operation execution to avoid inf. loops
 		self.add_tool_action_enum('crop-expand', 'initial')
 		self._expansion_color = 0 # transparent black, will be updated later
 
@@ -113,11 +113,11 @@ class ToolCrop(AbstractCanvasTool):
 		return self.height_btn.get_value_as_int()
 
 	def on_width_changed(self, *args):
-		if self.unclicked:
+		if self._unclicked:
 			self.build_and_do_op()
 
 	def on_height_changed(self, *args):
-		if self.unclicked:
+		if self._unclicked:
 			self.build_and_do_op()
 
 	def move_north(self, delta):
@@ -140,14 +140,14 @@ class ToolCrop(AbstractCanvasTool):
 		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.x_press = event_x
-		self.y_press = event_y
-		self.unclicked = False
+		self.x_press = self.x_motion = event_x
+		self.y_press = self.y_motion = event_y
+		self._unclicked = False
 		self._update_expansion_color(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		delta_x = int(event_x - self.x_press)
-		delta_y = int(event_y - self.y_press)
+		delta_x = int(event_x - self.x_motion)
+		delta_y = int(event_y - self.y_motion)
 
 		if self._directions == '':
 			return
@@ -168,15 +168,16 @@ class ToolCrop(AbstractCanvasTool):
 			self.width_btn.set_value(width)
 			self.height_btn.set_value(height)
 
-		self.x_press = event_x
-		self.y_press = event_y
+		self.x_motion = event_x
+		self.y_motion = event_y
 		# not adding the condition would be a better UX but slower to compute
 		if render and not self.apply_to_selection:
 			self.build_and_do_op()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self.unclicked = True
+		self._unclicked = True
 		self.build_and_do_op()
+		self._scroll_to_end(event_x - self.x_press, event_y - self.y_press)
 		self.window.set_cursor(False)
 
 	############################################################################
