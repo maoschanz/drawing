@@ -1,17 +1,18 @@
 # Drawing
 
-## A simple drawing application for Linux.
+## A simple image editor for Linux
 
-This application is a basic image editor, similar to Microsoft Paint, but aiming
+This is a basic drawing application, similar to Microsoft Paint, but aiming
 at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
 
 [<img alt="" height="100" src="https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-i.svg">](https://circle.gnome.org/)
 
-Besides GNOME, some more traditional design layouts are available too, as well
-as an [elementaryOS layout](./docs/screenshots/0.8/elementary_labels.png). It
-should also be compatible with the *Pinephone* and *Librem 5*
+Besides GNOME, the app is well integrated in traditional-looking desktops, as
+well as [elementaryOS](./docs/screenshots/0.8/elementary_labels.png).
+
+It should also be compatible with the *Pinephone* and *Librem 5*
 [smartphones](./docs/screenshots/0.6/librem_menu.png).
 
 ## Screenshots

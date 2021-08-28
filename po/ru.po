@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
-"PO-Revision-Date: 2021-06-23 23:06+1000\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
+"PO-Revision-Date: 2021-08-23 10:17+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -51,8 +51,8 @@ msgstr "Редактировать изображение в буфере обм
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
-msgstr ""
+msgid "Simple image editor for Linux"
+msgstr "Простой редактор изображений для Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -79,6 +79,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Версия 1.0.0 улучшает производительность рендеринга, что заметно при "
+"редактировании больших изображений на слабом процессоре."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -86,12 +88,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Теперь вы можете использовать новый инструмент \"Наклон\", чтобы наклонить "
+"изображение из прямоугольника в параллелограмм. Такое изменение можно "
+"проводить горизонтально или вертикально."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Используя инструмент «Масштаб», вы можете дополнительно устанавливать новый "
+"размер в процентах, а не только в виде абсолютных значений в пикселях."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -99,12 +106,18 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Если названия инструментов видны, вы можете включить определенный инструмент "
+"с помощью \"alt+[подчеркнутая буква]\". Это может еще не работать с языками, "
+"в которых используется нелатинский алфавит."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Нажатие \"ctrl\", \"shift\" или \"alt\" при использовании инструмента "
+"включает определенные параметры, как например, \"добавить к выделенному\" "
+"для инструментов выделения."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -167,7 +180,7 @@ msgstr "Новое изображение из буфера обмена"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr "Обновить файл"
+msgstr "Перезагрузить файл"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
@@ -343,12 +356,15 @@ msgstr "Обновить"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Отслеживать частоту кадров"
 
 #: src/ui/app-menus.ui
-#, fuzzy
+msgid "Dark theme variant"
+msgstr "Темный вариант темы"
+
+#: src/ui/app-menus.ui
 msgid "Show the menu-bar"
-msgstr "Предварительный просмотр"
+msgstr "Показывать строку меню"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -495,14 +511,12 @@ msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Применить изменение"
+msgstr "Отменить преобразование"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Применить изменение"
+msgstr "Применить преобразование"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -579,9 +593,17 @@ msgstr "Открыть"
 msgid "Share the image"
 msgstr "Поделиться изображением"
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Изображение на диске было изменено, хотите его перезагрузить?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Перезагрузить"
+
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -695,9 +717,8 @@ msgid "Main menu"
 msgstr "Главное меню"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Предварительный просмотр"
+msgstr "Строка меню"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -729,7 +750,7 @@ msgstr "Вернуться к предыдущему инструменту"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr "Применить изменение"
+msgstr "Применить преобразование"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -819,10 +840,6 @@ msgstr "Ошибка: нет инструмента '%s'"
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Новый pixbuf пуст, не внесены изменения %s"
 
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Невозможно перезагрузить не сохраненный на диск файл."
-
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Несохраненный файл"
@@ -831,7 +848,7 @@ msgstr "Несохраненный файл"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s кадров в секунду"
 
 #. Description of a command line option
 #: src/main.py
@@ -1136,7 +1153,7 @@ msgstr "Только панель инструментов (символьные
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr "%s px"
+msgstr "%s пикс"
 
 #: src/properties.py
 #, python-format
@@ -1195,13 +1212,31 @@ msgstr "Имеются несохраненные изменения в %s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
-msgstr "Выделена часть изображения, а пиксели под выделенной областью пусты."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
+msgstr ""
+"Выделена часть изображения: пиксели под выделением будут сохранены с цветом, "
+"которого вы, возможно, не ожидали!"
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Изменения текущего инструмента не были применены."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "Применить и сохранить"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Unselect & save"
+msgstr "Снять выделение и сохранить"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "Все равно сохранить"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1381,6 +1416,22 @@ msgstr "Да"
 msgid "The clipboard doesn't contain any image."
 msgstr "В буфере обмена нет изображений."
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "Файл %s уже открыт"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr "Открыть заново"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr "Переключиться на это изображение"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
@@ -1437,14 +1488,6 @@ msgstr "Что вы хотите сделать с %s?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "Изображение скопировано в буфер обмена"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Изображение на диске было изменено, хотите его перезагрузить?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Перезагрузить"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2125,9 +2168,8 @@ msgid "Error: invalid values"
 msgstr "Ошибка: недопустимые значения"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Параметры точек"
+msgstr "Параметры обрезки"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2151,9 +2193,8 @@ msgid "Emboss"
 msgstr "Тиснение"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Параметры заливки"
+msgstr "Параметры поворота"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2164,9 +2205,8 @@ msgid "Rotating the canvas"
 msgstr "Повернуть холст"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Параметры заливки"
+msgstr "Параметры масштабирования"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2194,21 +2234,8 @@ msgstr "Насыщенность"
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Графический редактор для рабочего стола GNOME"
 
-#~ msgid ""
-#~ "After rotating the selection, it had an incorrectly big height, but now "
-#~ "it's fixed."
-#~ msgstr ""
-#~ "После поворота, выделенная область имела неверно большую высоту, но "
-#~ "теперь это исправлено."
-
 #~ msgid "Quit"
 #~ msgstr "Завершить"
-
-#~ msgid "Open a file"
-#~ msgstr "Открыть файл"
-
-#~ msgid "Save as"
-#~ msgstr "Сохранить как"
 
 #~ msgid "Close"
 #~ msgstr "Закрыть"
