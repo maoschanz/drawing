@@ -67,7 +67,7 @@ class DrSavingManager():
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)
 
 			# The "reload?" message shouldn't be shown imho, so i do this
-			if not is_export:
+			if not is_export and allow_alpha:
 				image.lock_monitoring()
 
 			# Actually save the pixbuf to the given file path

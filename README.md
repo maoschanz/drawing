@@ -166,5 +166,5 @@ found (and edited) at `~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/s
 
 [To contribute](./CONTRIBUTING.md)
 
-the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the Adwaita theme.
+the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the [Adwaita icon theme](https://gitlab.gnome.org/GNOME/adwaita-icon-theme).
 
