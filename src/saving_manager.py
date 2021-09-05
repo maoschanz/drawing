@@ -167,7 +167,7 @@ class DrSavingManager():
 			# same label whether or not `can_unselect` too ^
 		elif can_unselect:
 			# To translators: this string should be quite short
-			apply_id = dialog.set_action(_("Unselect & save"), \
+			apply_id = dialog.set_action(_("Deselect & save"), \
 			                                           'suggested-action', True)
 		save_id = dialog.set_action(_("Save anyway"), save_style)
 
