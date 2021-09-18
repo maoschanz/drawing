@@ -7,10 +7,19 @@ header, footer {
 header h1 {
 	color: white;
 }
-header a, header a:hover,
-footer a, footer a:hover {
+.nav-item {
 	color: white;
 	font-weight: bold;
+	padding: 8px 12px;
+	border: 2px solid white;
+	border-radius: 24px;
+}
+.nav-item.primary-nav-item {
+	background-color: rgba(255,0,0,0.5) ;
+}
+.nav-item:hover {
+	background-color: white;
+	color: black;
 }
 .header-icon {
 	float:right;
@@ -81,7 +90,7 @@ kbd {
 	width: 90%;
 	max-width: 350px;
 }
-.description {
+.description p {
 	font-size: 18px;
 	font-weight: bold;
 	padding-bottom: 20px;
