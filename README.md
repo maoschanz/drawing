@@ -59,6 +59,7 @@ If your language is not here, or is incompletely translated, you can
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
 | cs   | Czech        | 98%        | @pervoj                                   |
+| ca   | Catalan      | 100%       | @jordimas                                 |
 | da   | Danish       | 81%        | @scootergrisen                            |
 | de   | German       | 100%       | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
