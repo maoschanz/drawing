@@ -26,11 +26,10 @@ msgstr "Dibuix"
 msgid "Simple drawing utility"
 msgstr "Utilitat de dibuix simple"
 
-#. This is a list of keywords. "Paint" should not be translated, the others
-#. should. Don't forget the semicolons.
+#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Pintura;Esbós;Pinzell;"
+msgstr "Paint;Pintura;Esbós;Pinzell;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -54,14 +53,13 @@ msgstr "Editor d'imatges senzill per a Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file "
-"types."
+"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
 msgstr ""
-"«Dibuix» és un editor d'imatges bàsic, que admet fitxers de tipus PNG, "
-"JPEG i BMP."
+"«Dibuix» és un editor d'imatges bàsic, que admet fitxers de tipus PNG, JPEG "
+"i BMP."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
 #
+#: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "It allows you to draw or edit pictures with tools such as pencil, line or "
 "arc (with various options), selection (cut/copy/paste/drag/…), shapes "
@@ -69,9 +67,9 @@ msgid ""
 "rotating, …"
 msgstr ""
 "Permet dibuixar o editar imatges amb eines com llapis, línia o arc (amb "
-"diverses opcions), selecció (retalla/copia/enganxa/arrossega/…), formes (rectangle, "
-"cercle, polígon, ...), inserció de text, redimensionament, escapçat, "
-"rotació, …"
+"diverses opcions), selecció (retalla/copia/enganxa/arrossega/…), formes "
+"(rectangle, cercle, polígon, ...), inserció de text, redimensionament, "
+"escapçat, rotació, …"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -87,8 +85,8 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
-"Ara podeu utilitzar la nova eina «Inclinar», per a inclinar una imatge des d'un "
-"rectangle a un paral·lelogram. Aquesta deformació es pot aplicar "
+"Ara podeu utilitzar la nova eina «Inclinar», per a inclinar una imatge des "
+"d'un rectangle a un paral·lelogram. Aquesta deformació es pot aplicar "
 "horitzontalment o verticalment."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -122,8 +120,7 @@ msgstr ""
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new "
-"translations."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
 "La versió 0.8.2 presenta diverses correccions d'errors menors i diverses "
 "traduccions noves."
@@ -692,8 +689,7 @@ msgstr "Inverteix la selecció"
 msgid "Define as current image"
 msgstr "Defineix com a imatge actual"
 
-#. Expand the canvas of the current image to make the current selection fit in
-#. it.
+#. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -961,14 +957,14 @@ msgstr "Desament d'imatges"
 msgid "JPEG and BMP images can't handle transparency."
 msgstr "Les imatges JPEG i BMP no poden gestionar la transparència."
 
-#: src/preferences.py
 #
+#: src/preferences.py
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Si deseu les imatges en aquests formats, què voleu utilitzar per a reemplaçar "
-"els píxels transparents?"
+"Si deseu les imatges en aquests formats, què voleu utilitzar per a "
+"reemplaçar els píxels transparents?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
@@ -996,7 +992,8 @@ msgstr "Pregunta abans de desar"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Podeu fer zoom amb Ctrl i el desplaçament, o només amb el desplaçament."
+msgstr ""
+"Podeu fer zoom amb Ctrl i el desplaçament, o només amb el desplaçament."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
@@ -1214,8 +1211,8 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"S'ha seleccionat una part de la imatge: els píxels de sota de la selecció es"
-" desaran amb un color que potser no espereu!"
+"S'ha seleccionat una part de la imatge: els píxels de sota de la selecció es "
+"desaran amb un color que potser no espereu!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1391,7 +1388,8 @@ msgstr "No s'ha pogut carregar l'eina: %s"
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr ""
-"S'ha produït un error en iniciar l'aplicació, si us plau, informeu d'aquest error."
+"S'ha produït un error en iniciar l'aplicació, si us plau, informeu d'aquest "
+"error."
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1440,8 +1438,8 @@ msgstr "Les modificacions tindran efecte en la següent finestra nova."
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
-"Feu clic amb el botó del mig, premeu amb 3 dits o premeu F8 per a mostrar o ocultar "
-"els controls."
+"Feu clic amb el botó del mig, premeu amb 3 dits o premeu F8 per a mostrar o "
+"ocultar els controls."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1622,8 +1620,7 @@ msgid "Always"
 msgstr "Sempre"
 
 #. Context: an item in a menu whose title is "Keep proportions"
-#. Context for translations: "[Keep proportions only] when scaling from
-#. corners"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
 msgstr "En escalar des de les cantonades"
@@ -1647,8 +1644,8 @@ msgstr "Deformació vertical"
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
-"No s'ha pogut iniciar l'operació: ID d'eina incorrecte (s'esperava {0}, s'ha"
-" obtingut {1})"
+"No s'ha pogut iniciar l'operació: ID d'eina incorrecte (s'esperava {0}, s'ha "
+"obtingut {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1744,8 +1741,7 @@ msgstr "Antialiàsing"
 msgid "Simple brush"
 msgstr "Pinzell simple"
 
-#: src/tools/ui/tool-brush.ui
-#: src/tools/classic_tools/brushes/brush_airbrush.py
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr "Aerògraf"
 
@@ -1779,8 +1775,7 @@ msgid "Pencil"
 msgstr "Llapis"
 
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Rectangle"
 
@@ -1913,8 +1908,7 @@ msgid "Dots type"
 msgstr "Tipus de punts"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_points.py
-#: src/tools/classic_tools/tool_shape.py
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
 msgid "Circle"
 msgstr "Cercle"
 
@@ -2085,7 +2079,8 @@ msgstr "Opcions de pintura"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
-msgstr "Feu clic en una àrea per a reemplaçar el seu color per la transparència"
+msgstr ""
+"Feu clic en una àrea per a reemplaçar el seu color per la transparència"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"

@@ -38,6 +38,7 @@ h1 {
 }
 h2 {
 	font-size: 24px;
+	padding-top: 8px;
 }
 h2::before {
 	padding-right: 8px;
@@ -90,10 +91,10 @@ kbd {
 	width: 90%;
 	max-width: 350px;
 }
-.description p {
+.description p, p.description {
 	font-size: 18px;
 	font-weight: bold;
-	padding-bottom: 20px;
+	padding-bottom: 16px;
 }
 
 /* Style classes to get collapsable columns */
