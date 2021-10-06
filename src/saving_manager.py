@@ -66,12 +66,17 @@ class DrSavingManager():
 					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)
 
+			# The "reload?" message shouldn't be shown imho, so i do this
+			if not is_export and allow_alpha:
+				image.lock_monitoring()
+
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
 
 			# Update the image and the window objects
 			if not is_export:
 				image.gfile = gfile
+				image.connect_gfile_monitoring()
 				image.remember_current_state()
 				image.post_save()
 				self._window.set_picture_title()
@@ -162,7 +167,7 @@ class DrSavingManager():
 			# same label whether or not `can_unselect` too ^
 		elif can_unselect:
 			# To translators: this string should be quite short
-			apply_id = dialog.set_action(_("Unselect & save"), \
+			apply_id = dialog.set_action(_("Deselect & save"), \
 			                                           'suggested-action', True)
 		save_id = dialog.set_action(_("Save anyway"), save_style)
 

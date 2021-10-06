@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-08-08 21:16+0200\n"
+"PO-Revision-Date: 2021-08-29 10:22+0200\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -358,10 +358,10 @@ msgstr "Aktualisieren"
 msgid "Track framerate"
 msgstr "Track Framerate"
 
+# Note for me as translator: check it in UI
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Dunkles Thema anwenden"
+msgstr "Variante mit dunklem Thema"
 
 #: src/ui/app-menus.ui
 msgid "Show the menu-bar"
@@ -655,7 +655,7 @@ msgstr "Auswahl schließen"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Abwählen"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -1210,12 +1210,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "Es gibt Änderungen an %s, die noch nicht gespeichert wurden."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Ein Teil des Bildes ist ausgewählt und die Pixel unter der Auswahl sind leer."
+"Ein Teil des Bildes ist ausgewählt: Die Pixel unter der Auswahl werden in "
+"einer Farbe gespeichert, die Sie vielleicht nicht erwarten!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1226,17 +1226,16 @@ msgstr "Änderungen aus dem aktuellen Werkzeug wurden nicht angewendet."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Anwenden & Speichern"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
-msgid "Unselect & save"
-msgstr "Abwählen"
+msgid "Deselect & save"
+msgstr "Abwählen & Speichern"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Trotzdem speichern"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1426,19 +1425,17 @@ msgstr "Die Zwischenablage enthält keine Bilder."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "Die Datei %s ist bereits geöffnet"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Ein Bild öffnen"
+msgstr "Nochmal öffnen"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Bild teilen"
+msgstr "Zu diesem Bild wechseln"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1465,7 +1462,7 @@ msgstr ""
 #: src/window.py
 #, python-format
 msgid "Loading %s"
-msgstr "Wird geladen %s"
+msgstr "%s wird geladen"
 
 #: src/window.py
 msgid "New Tab"

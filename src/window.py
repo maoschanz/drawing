@@ -1090,10 +1090,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.saving_manager.save_current_image(False, True, False, True)
 
 	def action_save_alphaless(self, *args):
-		if self.saving_manager.save_current_image(False, False, False, False):
-			self.get_active_image().ask_reload()
-			return True
-		return False
+		return self.saving_manager.save_current_image(False, False, False, False)
 
 	def action_export_as(self, *args):
 		return self.saving_manager.save_current_image(True, True, False, True)

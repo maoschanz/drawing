@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-08-22 18:43+0200\n"
-"PO-Revision-Date: 2021-06-28 17:13+0200\n"
+"PO-Revision-Date: 2021-09-24 14:34+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -51,7 +51,7 @@ msgstr "Klembordafbeelding bewerken"
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Een eenvoudige afbeeldingsbewerker voor Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -78,6 +78,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Nieuw in versie 1.0.0: verbeterde weergaveprestaties tijdens het bewerken "
+"van grote afbeeldingen op een langzame cpu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -85,12 +87,16 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Je kunt nu het nieuwe rechtzetgereedschap gebruiken om schuingemaakte foto's "
+"recht te zetten. Dit kan zowel horizontaal als verticaal."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Met het vernieuwde schaalgereedschap kun je afmetingen instellen door een "
+"percentage op te geven in plaats van pixelwaardes."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,12 +104,18 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Als de gereedschapsnamen worden getoond, dan kun je voortaan een gereedschap "
+"kiezen met Alt+[onderstreepte letter]. Let op: mogelijk werkt dit nog niet "
+"goed in talen met een niet-Latijns alfabet."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Door op Ctrl, Shift op Alt te drukken bij gebruik van een gereedschap, kun "
+"je verschillende opties instellen, zoals ‘Toevoegen aan selectie’ bij het "
+"selectiegereedschap."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -345,14 +357,12 @@ msgid "Track framerate"
 msgstr "Framesnelheid bijhouden"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
 msgstr "Donker thema gebruiken"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Voorvertoning aan/uit"
+msgstr "Menubalk tonen"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -499,12 +509,10 @@ msgid "Troubleshoot selection"
 msgstr "Problemen omtrent selecties oplossen"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Transformatie toepassen"
+msgstr "Transformatie afbreken"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
 msgstr "Transformatie toepassen"
 
@@ -644,7 +652,7 @@ msgstr "Selectie sluiten"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Niets selecteren"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -707,9 +715,8 @@ msgid "Main menu"
 msgstr "Hoofdmenu"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Voorvertoning aan/uit"
+msgstr "Menubalk aan/uit"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -1199,13 +1206,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "‘%s’ bevat niet-opgeslagen aanpassingen."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Er is een deel van de afbeelding geselecteerd en de pixels eronder zijn "
-"blanco."
+"Er is een deel van de afbeelding geselecteerd - de onderliggende pixels "
+"worden opgeslagen met een voor jou onverwachte kleur!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1216,17 +1222,16 @@ msgstr "De aangebrachte bewerkingen zijn nog niet toegepast."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Toepassen en opslaan"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
-msgid "Unselect & save"
-msgstr "Niets selecteren"
+msgid "Deselect & save"
+msgstr "Deselecteren en opslaan"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Tóch opslaan"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1414,19 +1419,17 @@ msgstr "Het klembord bevat geen afbeelding."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "‘%s’ is al geopend"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Afbeelding openen"
+msgstr "Opnieuw openen"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Afbeelding delen"
+msgstr "Ga naar deze afbeelding"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -2166,9 +2169,8 @@ msgid "Error: invalid values"
 msgstr "Fout: ongeldige waarden"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Puntopties"
+msgstr "Bijsnijdopties"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2192,9 +2194,8 @@ msgid "Emboss"
 msgstr "Reliëf toepassen"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Kwastopties"
+msgstr "Draaiopties"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2205,9 +2206,8 @@ msgid "Rotating the canvas"
 msgstr "Bezig met draaien van canvas"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Kwastopties"
+msgstr "Schaalopties"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
