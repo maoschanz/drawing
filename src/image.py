@@ -46,6 +46,7 @@ class DrImage(Gtk.Box):
 	_h_scrollbar = Gtk.Template.Child()
 	_v_scrollbar = Gtk.Template.Child()
 	reload_info_bar = Gtk.Template.Child()
+	reload_label = Gtk.Template.Child()
 
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
@@ -55,6 +56,8 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
+		self._waiting_for_monitor = False
+		self._gfile_monitor = None
 		self._can_reload()
 
 		# Closing the info bar
@@ -185,6 +188,7 @@ class DrImage(Gtk.Box):
 			self.use_stable_pixbuf()
 
 	############################################################################
+	# (re)loading the pixbuf of a given file ###################################
 
 	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
@@ -210,6 +214,7 @@ class DrImage(Gtk.Box):
 		try:
 			self.gfile = gfile
 			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+			self.connect_gfile_monitoring()
 		except Exception as ex:
 			if not ex.message:
 				ex.message = "[exception without a valid message]"
@@ -223,7 +228,23 @@ class DrImage(Gtk.Box):
 		self.try_load_pixbuf(pixbuf)
 		self._can_reload()
 
+	def connect_gfile_monitoring(self):
+		flags = Gio.FileMonitorFlags.WATCH_MOUNTS
+		self._gfile_monitor = self.gfile.monitor(flags)
+		self._gfile_monitor.connect('changed', self.reveal_reload_message)
+
+	def lock_monitoring(self):
+		self._waiting_for_monitor = True
+
 	def reveal_reload_message(self, *args):
+		if self._waiting_for_monitor:
+			# I'm not sure this lock is 100% correct because i'm monitoring the
+			# portal proxy file when testing with flatpak. Better than nothing.
+			if args[3] != Gio.FileMonitorEvent.CHANGED:
+				self._waiting_for_monitor = False
+			return
+		self._can_reload()
+		self.reload_label.set_visible(self.window.get_allocated_width() > 500)
 		self.reload_info_bar.set_visible(True)
 
 	def hide_reload_message(self, *args):

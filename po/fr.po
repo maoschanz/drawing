@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2021-03-20 22:03+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -49,8 +49,8 @@ msgstr "Éditer l'image dans le presse-papier"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
-msgstr "Éditeur d'images simple pour le(s) bureau(x) Linux"
+msgid "Simple image editor for Linux"
+msgstr "Éditeur d'images simple pour Linux"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -356,6 +356,10 @@ msgid "Track framerate"
 msgstr "Suivre la fréquence d'affichage"
 
 #: src/ui/app-menus.ui
+msgid "Dark theme variant"
+msgstr "Thème sombre"
+
+#: src/ui/app-menus.ui
 msgid "Show the menu-bar"
 msgstr "Afficher la barre de menus"
 
@@ -586,6 +590,14 @@ msgstr "Ouvrir"
 msgid "Share the image"
 msgstr "Partager l'image"
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "L'image a changé sur le disque, voulez-vous la recharger ?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Recharger"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "100%"
@@ -639,7 +651,7 @@ msgstr "Fermer la sélection"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Déselectionner"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -824,10 +836,6 @@ msgstr "Erreru : pas d'outil '%s'"
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Nouveau pixbuf vide, aucun changement appliqué à %s"
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Impossible de recharger depuis le disque un fichier jamais enregistré."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1198,15 +1206,31 @@ msgstr "Il y a des modifications non-enregistrées à %s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
-"Une partie de l'image est sélectionnée, et les pixels sous la sélection sont "
-"vides."
+"Une partie de l'image est sélectionnée : les pixels sous la sélection seront "
+"enregistrés avec une couleur à laquelle vous pourriez ne pas vous attendre."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Les modifications de l'outil actuel n'ont pas été appliquées."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "Appliquer & enregistrer"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Deselect & save"
+msgstr "Déselectionner & enregistrer"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "Enregistrer nonobstant"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1390,6 +1414,22 @@ msgstr "Oui"
 msgid "The clipboard doesn't contain any image."
 msgstr "Le presse-papier ne contient pas d'image."
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "Le fichier %s est déjà ouvert"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr "Ouvrir à nouveau"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr "Aller à cette image"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Les modifications prendront effet pour la prochaine nouvelle fenêtre."
@@ -1447,14 +1487,6 @@ msgstr "Que souhaitez-vous faire avec %s ?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "Image copiée dans le presse-papier"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "L'image a changé sur le disque, voulez-vous la recharger ?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Recharger"
 
 #: src/window.py
 msgid "Import a picture"

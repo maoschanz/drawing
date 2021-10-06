@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2020-09-03 11:30-0300\n"
 "Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -51,7 +51,7 @@ msgstr "Editar Imagem no Clipboard"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
+msgid "Simple image editor for Linux"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -346,6 +346,11 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "Largura padrão"
+
+#: src/ui/app-menus.ui
+#, fuzzy
 msgid "Show the menu-bar"
 msgstr "Alternar a pré-visualização"
 
@@ -587,6 +592,15 @@ msgstr "Abrir"
 msgid "Share the image"
 msgstr ""
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "Recarregar Arquivo"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "100%"
@@ -640,7 +654,7 @@ msgstr "Descartar seleção"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Desselecionar"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -831,10 +845,6 @@ msgstr ""
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Não é possível carregar uma imagem nunca salva do disco"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1210,12 +1220,29 @@ msgstr "Há mudancas não salvas em %s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Deselect & save"
+msgstr "Desselecionar"
+
+#: src/saving_manager.py
+msgid "Save anyway"
 msgstr ""
 
 #: src/saving_manager.py
@@ -1396,6 +1423,23 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Abrir uma imagem"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Modificações vão ter efeito na próxima janela"
@@ -1451,15 +1495,6 @@ msgstr "O quê você quer fazer com %s?"
 #, fuzzy
 msgid "Image copied to clipboard"
 msgstr "Editar Imagem no Clipboard"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "Recarregar Arquivo"
 
 #: src/window.py
 msgid "Import a picture"

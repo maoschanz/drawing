@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
 "PO-Revision-Date: 2019-06-03 23:22+0300\n"
 "Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -52,7 +52,7 @@ msgstr "עריכת תמונה מהלוח"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
+msgid "Simple image editor for Linux"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -358,6 +358,11 @@ msgstr "רענון"
 msgid "Track framerate"
 msgstr ""
 
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Dark theme variant"
+msgstr "רוחב ברירת מחדל"
+
 # There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
 #: src/ui/app-menus.ui
 #, fuzzy
@@ -613,6 +618,15 @@ msgstr "פתיחה"
 msgid "Share the image"
 msgstr ""
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "פתיחת קובץ"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr ""
@@ -671,7 +685,7 @@ msgstr "אפשרויות צבע"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "בטל בחירה"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -866,10 +880,6 @@ msgstr ""
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
 msgstr ""
 
 #: src/image.py src/properties.py
@@ -1250,13 +1260,31 @@ msgstr "ישנם שינויים אשר לא שמורים ל%s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Deselect & save"
+msgstr "בטל בחירה"
+
+#: src/saving_manager.py
+#, fuzzy
+msgid "Save anyway"
+msgstr "שמירה כ…"
 
 #: src/saving_manager.py
 #, fuzzy
@@ -1439,6 +1467,23 @@ msgstr ""
 msgid "The clipboard doesn't contain any image."
 msgstr ""
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "פתיחת קובץ"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr ""
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr ""
@@ -1494,15 +1539,6 @@ msgstr "היכן ברצונך לפתוח את %s?"
 #, fuzzy
 msgid "Image copied to clipboard"
 msgstr "עריכת תמונה מהלוח"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "פתיחת קובץ"
 
 #: src/window.py
 msgid "Import a picture"
@@ -2305,12 +2341,6 @@ msgstr "רוויה"
 
 #~ msgid "Quit"
 #~ msgstr "יציאה"
-
-#~ msgid "Open a file"
-#~ msgstr "פתיחת קובץ"
-
-#~ msgid "Save as"
-#~ msgstr "שמירה כ…"
 
 #~ msgid "Close"
 #~ msgstr "סגירה"

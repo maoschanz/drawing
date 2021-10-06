@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
-"PO-Revision-Date: 2021-06-03 01:53+0900\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
+"PO-Revision-Date: 2021-09-08 01:23+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -50,8 +50,8 @@ msgstr "クリップボードの画像を編集"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
-msgstr ""
+msgid "Simple image editor for Linux"
+msgstr "Linux 用のシンプルな画像エディター"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -76,6 +76,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"バージョン 1.0.0 では、レンダリングのパフォーマンスが向上しました。処理能力の"
+"低い CPU で大きな画像を編集すると、その違いをより体感できます。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -83,12 +85,16 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"新しい \"傾斜\" ツールでは、四角形の画像を傾けて、平行四辺形の画像を作ること"
+"ができます。このような変形は水平・垂直の両方向に適用可能です。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"\"伸縮\" ツールを使うと、従来の直接的なピクセル指定に加え、相対的な比率で自由"
+"に画像サイズを変更できます。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -96,12 +102,17 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"ツール名を表示している場合は \"Alt+[下線の文字]\" でそのツールに切り替えられ"
+"ます。ただし、ラテン文字のアルファベット表記を使用しない言語 (日本語など) で"
+"は、今のところ機能しません。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"ツールの使用中に \"Ctrl\", \"Shift\", または \"Alt\" を押すと、そのツール固有"
+"のオプション (選択ツールの \"選択に追加\" など) が発動します。"
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -138,7 +149,7 @@ msgstr "\"新しい画像\" メニュー"
 
 #: src/ui/app-menus.ui
 msgid "File"
-msgstr "ファイル "
+msgstr "ファイル"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -339,12 +350,15 @@ msgstr "再読み込み"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "フレームレートを追跡"
 
 #: src/ui/app-menus.ui
-#, fuzzy
+msgid "Dark theme variant"
+msgstr "ダーク系のテーマ"
+
+#: src/ui/app-menus.ui
 msgid "Show the menu-bar"
-msgstr "プレビューを切り替え"
+msgstr "メニューバーを表示"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -491,12 +505,10 @@ msgid "Troubleshoot selection"
 msgstr "選択領域のトラブルシューティング"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "変換を適用"
+msgstr "変換をキャンセル"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
 msgstr "変換を適用"
 
@@ -575,6 +587,14 @@ msgstr "開く"
 msgid "Share the image"
 msgstr "画像を共有"
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "ディスク上の画像が変更されました。再読み込みしますか？"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "再読み込み"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "100%"
@@ -628,7 +648,7 @@ msgstr "選択を閉じる"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "選択を解除"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -691,9 +711,8 @@ msgid "Main menu"
 msgstr "メインメニュー"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "プレビューを切り替え"
+msgstr "メニューバーを切り替え"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -815,10 +834,6 @@ msgstr "エラー: ツール '%s' は存在しません"
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "新しいピクセルバッファーが空です。%s に適用された変更はありません"
 
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "保存していないファイルをディスクから再読み込みすることはできません。"
-
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "未保存のファイル"
@@ -827,7 +842,7 @@ msgstr "未保存のファイル"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s フレーム/秒"
 
 #. Description of a command line option
 #: src/main.py
@@ -1075,7 +1090,7 @@ msgstr "背景色"
 
 #: src/preferences.py
 msgid "Prefer dark theme variant"
-msgstr "ダークテーマを優先的に使用"
+msgstr "ダーク系のテーマを優先的に使用"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1188,13 +1203,31 @@ msgstr "%s への編集が保存されていません。"
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
-msgstr "画像の一部領域を選択中です。この部分のピクセルは空白になります。"
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
+msgstr ""
+"画像の一部領域を選択中です: この部分のピクセルは、期待した通りの色で保存され"
+"ないかもしれません！"
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "現在のツールで行った変更が適用されていません。"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "適用 & 保存"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Deselect & save"
+msgstr "選択を解除 & 保存"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "とにかく保存"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1375,6 +1408,22 @@ msgstr "はい"
 msgid "The clipboard doesn't contain any image."
 msgstr "クリップボードに画像がありません。"
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "ファイル %s は既に開かれています"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr "再度開く"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr "この画像に切り替え"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "新しい設定の効果は、次に開いたウィンドウから適用されます。"
@@ -1432,14 +1481,6 @@ msgstr "%s をどうしますか？"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "クリップボードに画像をコピーしました"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "ディスク上の画像が変更されました。再読み込みしますか？"
-
-#: src/window.py
-msgid "Reload"
-msgstr "再読み込み"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1817,9 +1858,8 @@ msgid "Color gradient"
 msgstr "グラディエーション"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "方向なし"
+msgstr "方向を固定"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2120,9 +2160,8 @@ msgid "Error: invalid values"
 msgstr "エラー: 無効な値です"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "点のオプション"
+msgstr "トリミングのオプション"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2146,9 +2185,8 @@ msgid "Emboss"
 msgstr "エンボス"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "染色のオプション"
+msgstr "回転のオプション"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2159,9 +2197,8 @@ msgid "Rotating the canvas"
 msgstr "キャンバスを回転します"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "染色のオプション"
+msgstr "伸縮のオプション"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2185,6 +2222,3 @@ msgstr "ぼかしの半径"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "輝度"
-
-#~ msgid "A drawing application for the GNOME desktop"
-#~ msgstr "GNOME デスクトップ用の描画アプリケーション"

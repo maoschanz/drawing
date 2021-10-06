@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-24 03:48+0200\n"
-"PO-Revision-Date: 2021-03-31 20:57+0300\n"
+"POT-Creation-Date: 2021-08-22 18:43+0200\n"
+"PO-Revision-Date: 2021-08-09 23:18+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -51,8 +51,9 @@ msgstr "Panodaki Resmi Düzenle"
 
 #. VERY IMPORTANT description of the application
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for the Linux desktop(s)"
-msgstr ""
+#, fuzzy
+msgid "Simple image editor for Linux"
+msgstr "Linux masaüstü için basit resim düzenleyici"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -78,6 +79,8 @@ msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Sürüm 1.0.0, büyük görüntüleri zayıf bir CPU ile düzenlerken görülebilen "
+"işleme performansını iyileştirir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -85,12 +88,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Artık bir görüntüyü bir dikdörtgenden bir paralel kenara eğmek için yeni "
+"\"eğrilik\" aracını kullanabilirsiniz. Böyle bir deformasyon yatay veya "
+"dikey olarak uygulanabilir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"\"Ölçek\" aracını kullanarak, isteğe bağlı olarak yeni boyutu piksel "
+"cinsinden mutlak bir değer yerine göreli yüzde olarak ayarlayabilirsiniz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,12 +106,17 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Araçların adları görünüyorsa, \"alt+[altı çizili harf]\" ile belirli bir "
+"aracı etkinleştirebilirsiniz. Bu, latin olmayan bir alfabe kullanan dillerde "
+"henüz çalışmayabilir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Bir araç kullanırken \"ctrl\", \"shift\" veya \"alt\" tuşlarına basmak, "
+"seçim araçları için \"seçime ekle\" gibi belirli seçenekleri etkinleştirir."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -342,12 +355,16 @@ msgstr "Yenile"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Kare hızını izle"
 
 #: src/ui/app-menus.ui
 #, fuzzy
+msgid "Dark theme variant"
+msgstr "Karanlık tema varyantını tercih edin"
+
+#: src/ui/app-menus.ui
 msgid "Show the menu-bar"
-msgstr "Önizlemeyi değiştir"
+msgstr "Menü çubuğunu göster"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -494,14 +511,12 @@ msgid "Troubleshoot selection"
 msgstr "Seçimle ilgili sorunları giderme"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Bir dönüşüm uygulayın"
+msgstr "Dönüşümü iptal et"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Bir dönüşüm uygulayın"
+msgstr "Dönüşüm uygula"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -578,6 +593,14 @@ msgstr "Aç"
 msgid "Share the image"
 msgstr "Resmi paylaşın"
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Diskteki görüntü değişti, yeniden yüklemek istiyor musunuz?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Tekrar yükle"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "%100"
@@ -631,7 +654,7 @@ msgstr "Seçimi kapat"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Seçimi kaldır"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -660,23 +683,21 @@ msgstr "Daha fazla eylem"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Serbest seçim"
+msgstr "Zıt seçim"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Bir görüntü aç"
+msgstr "Geçerli görüntü olarak tanımla"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Görüntüyü sığacak şekilde genişlet"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -696,9 +717,8 @@ msgid "Main menu"
 msgstr "Ana menü"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Önizlemeyi değiştir"
+msgstr "Menü çubuğunu aç / kapat"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -787,9 +807,8 @@ msgid "Touch gestures"
 msgstr "Dokunmatik hareketleri"
 
 #: src/ui/window.ui
-#, fuzzy
 msgid "Loading…"
-msgstr "Yükleniyor %s"
+msgstr "Yükleniyor…"
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
@@ -821,10 +840,6 @@ msgstr "Hata: '%s' aracı yok"
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Yeni pixbuf boş,% s için hiçbir değişiklik uygulanmadı"
 
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Hiç kaydedilmemiş bir dosya diskten yeniden yüklenemiyor."
-
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
@@ -833,7 +848,7 @@ msgstr "Kaydedilmemiş dosya"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "saniyede %s kare"
 
 #. Description of a command line option
 #: src/main.py
@@ -1083,9 +1098,8 @@ msgid "Background color"
 msgstr "Arkaplan rengi"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Öntanımlı genişlik"
+msgstr "Karanlık tema varyantını tercih edin"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1197,14 +1211,32 @@ msgid "There are unsaved modifications to %s."
 msgstr "%s üstünde kaydedilmemiş değişiklikler."
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr "Görüntünün bir bölümü seçildi ve seçimin altındaki pikseller boş."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Mevcut araçtaki değişiklikler uygulanmadı."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Deselect & save"
+msgstr "Seçimi kaldır"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1387,6 +1419,24 @@ msgstr "Evet"
 msgid "The clipboard doesn't contain any image."
 msgstr "Pano herhangi bir görüntü içermiyor."
 
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Bir dosya aç"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "Resmi paylaşın"
+
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
@@ -1444,14 +1494,6 @@ msgstr "%s ile ne yapmak istersin?"
 #: src/window.py
 msgid "Image copied to clipboard"
 msgstr "Resim panoya kopyalandı"
-
-#: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Diskteki görüntü değişti, yeniden yüklemek istiyor musunuz?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Tekrar yükle"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1828,9 +1870,8 @@ msgid "Color gradient"
 msgstr "Geçiş rengi"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Yön yok"
+msgstr "Kilitli yön"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2131,9 +2172,8 @@ msgid "Error: invalid values"
 msgstr "Hata: geçersiz değerler"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Noktalama seçenekleri"
+msgstr "Kırpma seçenekleri"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2157,9 +2197,8 @@ msgid "Emboss"
 msgstr "Kabartma"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Boyama seçenekleri"
+msgstr "Döndürme seçenekleri"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2170,9 +2209,8 @@ msgid "Rotating the canvas"
 msgstr "Tuvali döndür"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Boyama seçenekleri"
+msgstr "Ölçekleme seçenekleri"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2205,9 +2243,6 @@ msgstr "Doygunluk"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Tam ekran kipinden çık"
-
-#~ msgid "Open a file"
-#~ msgstr "Bir dosya aç"
 
 #~ msgid "Close"
 #~ msgstr "Kapat"

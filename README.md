@@ -1,17 +1,18 @@
 # Drawing
 
-## A simple drawing application for Linux.
+## A simple image editor for Linux
 
-This application is a basic image editor, similar to Microsoft Paint, but aiming
+This is a basic drawing application, similar to Microsoft Paint, but aiming
 at the GNOME desktop.
 
 PNG, JPEG and BMP files are supported.
 
 [<img alt="" height="100" src="https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-i.svg">](https://circle.gnome.org/)
 
-Besides GNOME, some more traditional design layouts are available too, as well
-as an [elementaryOS layout](./docs/screenshots/0.8/elementary_labels.png). It
-should also be compatible with the *Pinephone* and *Librem 5*
+Besides GNOME, the app is well integrated in traditional-looking desktops, as
+well as [elementaryOS](./docs/screenshots/0.8/elementary_labels.png).
+
+It should also be compatible with the *Pinephone* and *Librem 5*
 [smartphones](./docs/screenshots/0.6/librem_menu.png).
 
 ## Screenshots
@@ -57,29 +58,30 @@ If your language is not here, or is incompletely translated, you can
 
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
-| cs   | Czech        | 85%        | @pervoj                                   |
-| da   | Danish       | 82%        | @scootergrisen                            |
-| de   | German       | 96%        | @Etamuk                                   |
+| cs   | Czech        | 98%        | @pervoj                                   |
+| ca   | Catalan      | 100%       | @jordimas                                 |
+| da   | Danish       | 81%        | @scootergrisen                            |
+| de   | German       | 100%       | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
-| es   | Castillan    | 99%        | @fitojb, @xoan, @oscfdezdz                |
-| eu   | Basque       | 84%        | @alexgabi                                 |
-| fi   | Finnish      | **67%**    | @mahtiankka                               |
+| es   | Castillan    | 100%       | @fitojb, @xoan, @oscfdezdz                |
+| eu   | Basque       | 83%        | @alexgabi                                 |
+| fi   | Finnish      | **66%**    | @mahtiankka                               |
 | fr   | French       | 100%       |                                           |
 | he   | Hebrew       | **35%**    | @moriel5 and @shaqash                     |
-| hr   | Croatian     | **69%**    | @milotype                                 |
-| hu   | Hungarian    | **56%**    | @kami911                                  |
-| id   | Indonesian   | 68%        | @ekickx                                   |
-| it   | Italian      | 98%        | @amivaleo and @albanobattistella          |
-| ja   | Japanese     | 96%        | @rlbxku1r                                 |
-| kr   | Korean       | 95%        | @chaeya                                   |
-| nl   | Dutch        | 97%        | @Vistaus                                  |
-| pl   | Polish       | **64%**    | @pkomur)                                  |
-| pt_BR | Br. portuguese | 72%     | @haurenburu and @ArthurBacci64            |
-| ru   | Russian      | 96%        | @tim77 and @Ser82-png                     |
-| sv   | Swedish      | 96%        | @eson57                                   |
-| tr   | Turkish      | 95%        | @TeknoMobil and @serkan-maker             |
-| zh_CN | Chinese, simpl. | 71%    | @OverflowCat                              |
-| zh_TW | Chinese, tradi. | 72%    | @pan93412, @OverflowCat and @cges30901    |
+| hr   | Croatian     | **68%**    | @milotype                                 |
+| hu   | Hungarian    | **55%**    | @kami911                                  |
+| id   | Indonesian   | 67%        | @ekickx                                   |
+| it   | Italian      | 100%       | @amivaleo and @albanobattistella          |
+| ja   | Japanese     | 99%        | @rlbxku1r                                 |
+| kr   | Korean       | 93%        | @chaeya                                   |
+| nl   | Dutch        | 95%        | @Vistaus                                  |
+| pl   | Polish       | 100%       | @pkomur                                   |
+| pt_BR | Br. portuguese | 71%     | @haurenburu and @ArthurBacci64            |
+| ru   | Russian      | 99%        | @tim77 and @Ser82-png                     |
+| sv   | Swedish      | 98%        | @eson57                                   |
+| tr   | Turkish      | 98%        | @TeknoMobil and @serkan-maker             |
+| zh_CN | Chinese, simpl. | 70%    | @OverflowCat                              |
+| zh_TW | Chinese, tradi. | 71%    | @pan93412, @OverflowCat and @cges30901    |
 
 \*Completion percentages correspond to **the next** major version, still in
 development.
@@ -165,5 +167,5 @@ found (and edited) at `~/.var/app/com.github.maoschanz.drawing/config/glib-2.0/s
 
 [To contribute](./CONTRIBUTING.md)
 
-the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the Adwaita theme.
+the code is under GPL3, some tools icons are from [here](https://github.com/gnome-design-team/gnome-icons/tree/master/art-libre-symbolic) or from the [Adwaita icon theme](https://gitlab.gnome.org/GNOME/adwaita-icon-theme).
 
