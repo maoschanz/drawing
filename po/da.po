@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-16 21:49+0200\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -26,7 +26,10 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "Simpelt tegneredskab"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Tegn;Blyant;"
@@ -46,35 +49,77 @@ msgstr "Nyt billede"
 msgid "Edit Image in Clipboard"
 msgstr "Rediger billede i udklipsholder"
 
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Et tegneprogram til GNOME-skrivebordet"
+msgid "Edit screenshots or memes"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (1/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (2/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
+msgstr ""
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
-"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG "
-"og BMP."
+"Version 1.0.0 forbedrer visnings ydeevne, som kan ses når man redigere store "
+"billeder med en langsom CPU."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
-"Det giver dig mulighed for at tegne og redigere billeder med værktøjer såsom "
-"blyant, linje eller bue (med diverse valgmuligheder), markering (klip/kopiér/"
-"indsæt/træk/ …), former (rektangel, cirkel, polygon …), indsættelse af "
-"tekst, tilpasning af størrelse, beskæring, drejning …"
+"Du kan nu bruge det nye \"Vrid\" værktøj til at tilte til billede fra et "
+"rektangel til et parallelogram. Sådan en deformation kan påføres vandret "
+"eller lodret."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+"Når du bruger \"Skaler\" værktøjet, kan du valgfrit indstille den nye "
+"størrelse som en relativ procentdel frem for en absolut værdi i pixels."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+"Hvis du trykker på \"ctrl\", \"shift\" eller \"alt\", imens du bruger et "
+"værktøj, aktiveres specifikke muligheder, f.eks. \"Tilføj til markeringen \" "
+"for markeringsværktøjerne."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -310,16 +355,21 @@ msgstr "Opdater"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Hvis billedfrekvent"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Dark theme variant"
+msgstr "Mørk tema variant"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
 msgstr "Forhåndsvisning til/fra"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Skjul værktøjslinjer"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -463,6 +513,16 @@ msgid "Troubleshoot selection"
 msgstr "Fejlsøg markering"
 
 #: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "Hjælp til værktøjer"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "Hjælp til værktøjer"
+
+#: src/ui/app-menus.ui
 msgid "Options"
 msgstr "Valgmuligheder"
 
@@ -486,7 +546,7 @@ msgstr "Indeks"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Individuelle sider"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -527,7 +587,7 @@ msgstr "Hjælp til markering"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Hvad er nyt"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -541,6 +601,14 @@ msgstr "Åbn"
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
 msgstr "Del billedet"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Billedet blev ændret på disken. Vil du genindlæse det?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Genindlæs"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -586,7 +654,7 @@ msgstr "centimeter"
 
 #: src/ui/properties.ui
 msgid "inches"
-msgstr "inch"
+msgstr "tommer"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -595,7 +663,7 @@ msgstr "Luk markering"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Fjern markering"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -640,7 +708,7 @@ msgstr "Åbn et billede"
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Udvid billedet, så det passer"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -658,6 +726,11 @@ msgstr "Generelt"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Hovedmenu"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "Forhåndsvisning til/fra"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -689,7 +762,7 @@ msgstr "Tilbage til forrige værktøj"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Anvend en transformation"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -740,7 +813,7 @@ msgstr "Gå i fuldskærmstilstand"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Skift synlighed af værktøjslinjer"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -768,22 +841,18 @@ msgstr "Omgør %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Forsøgt at gemme en ugyldig tilstand"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Fejl: intet værktøj '%s'"
 
 #. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Ny pixbuf tom, ingen ændring anvendt til %s"
-
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Kan ikke genindlæse en fil fra disken som aldrig er blevet gemt."
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -836,8 +905,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "Forfatterne af GNOMEs \"Art Libre\"-ikonsæt"
 
 #: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "Et tegneprogram til GNOME-skrivebordet."
+msgid "Simple image editor for Linux"
+msgstr "Simpelt billedredigeringsværktøj for Linux"
 
 #: src/main.py
 msgid "Official webpage"
@@ -852,7 +921,7 @@ msgstr "Fejl ved åbning af filen. Mente du %s?"
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Mente du %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -863,10 +932,7 @@ msgstr "%s %%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuller"
 
@@ -990,7 +1056,7 @@ msgstr "Overstregningspen"
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Pensel"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1158,15 +1224,33 @@ msgid "There are unsaved modifications to %s."
 msgstr "Der er ændringer i %s som ikke er blevet gemt."
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 "En del af billedet er markeret og pixelerne under markeringen er tomme."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Ændringerne fra det nuværende værktøj er ikke blevet anvendt."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "Anvend & gem"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Deselect & save"
+msgstr "Fjern markering"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "Gem alligevel"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1193,7 +1277,7 @@ msgstr "Erstat gennemsigtighed med:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "Markeringen pixbuf er tom"
 
 #: src/selection_manager.py
 #, fuzzy
@@ -1306,13 +1390,19 @@ msgstr "Åbn et billede"
 
 #: src/utilities.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "WEBP billeder kan ikke blive indlæst af denne app."
 
 #. Context: an error message, %s is a file path
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "På trods af sit navn, er %s en WEBP fil."
+
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Kunne ikke indlæse værktøj: %s"
 
 #: src/window.py
 msgid "Error starting the application, please report this bug."
@@ -1327,25 +1417,37 @@ msgstr ""
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Senere"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
-
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Kunne ikke indlæse værktøj: %s"
+msgstr "Ja"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Udklipsholderen indeholder ikke et billede."
+
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "Filen %s er allerede åbent"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "Åbn et billede"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "Del billedet"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1403,14 +1505,6 @@ msgid "Image copied to clipboard"
 msgstr "Billede kopieret til udklipsholder"
 
 #: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Billedet blev ændret på disken. Vil du genindlæse det?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Genindlæs"
-
-#: src/window.py
 msgid "Import a picture"
 msgstr "Importér et billede"
 
@@ -1447,8 +1541,7 @@ msgid "No options"
 msgstr "Ingen valgmuligheder"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
@@ -1490,12 +1583,9 @@ msgstr "Gennemsigtighed"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Uddrag fra denne farve"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Anvend"
 
@@ -1670,7 +1760,7 @@ msgstr "Simpel stiplet"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
-msgstr ""
+msgstr "Airbrush"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
@@ -1692,7 +1782,7 @@ msgstr "Lodret"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Venstrehåndet"
 
 #: src/tools/ui/tool-brush.ui
 #, fuzzy
@@ -1720,21 +1810,16 @@ msgstr "pixels"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Bland og slør"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mosaik"
 
 #: src/tools/ui/tool-eraser.ui
 #, fuzzy
 msgid "Solid color"
 msgstr "Sekundær farve"
-
-#: src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Active filter"
-msgstr "Aktive værktøj"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1753,7 +1838,7 @@ msgstr "Tilføj gennemsigtighed"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Forøg kontrasten"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -2072,25 +2157,25 @@ msgstr "Valgmuligheder for skrifttype"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
-msgstr ""
+msgstr "Tætheden afhænger af stylus trykket"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the mouse speed"
-msgstr ""
+msgstr "Tætheden afhænger af musens hastighed"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
 #: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
-msgstr ""
+msgstr "Bredden afhænger af stylus trykket"
 
 #: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
-msgstr ""
+msgstr "Bredden afhænger af linjens retning"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
-msgstr ""
+msgstr "Bredden afhænger af musens hastighed"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -2123,8 +2208,8 @@ msgstr "Beskær lærredet"
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
-msgid "Filters options"
-msgstr "Valgmuligheder for overstregningspen"
+msgid "Active filter"
+msgstr "Aktive værktøj"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2175,6 +2260,9 @@ msgstr "Sløringsradius"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Farvemætning"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Et tegneprogram til GNOME-skrivebordet"
 
 #~ msgid "Quit"
 #~ msgstr "Afslut"

@@ -268,8 +268,13 @@
       </section>
       <section>
         <item>
-          <attribute name="label" translatable="yes">Toggle the menu-bar</attribute>
-          <attribute name="action">win.toggle_menubar</attribute>
+          <attribute name="label" translatable="yes">Dark theme variant</attribute>
+          <attribute name="action">win.dark-variant</attribute>
+          <attribute name="verb-icon">night-light-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Show the menu-bar</attribute>
+          <attribute name="action">win.show-menubar</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Hide toolbars</attribute>
@@ -419,6 +424,17 @@
           <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
           <attribute name="action">win.get_values</attribute>
           <attribute name="hidden-when">action-missing</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Cancel transformation</attribute>
+          <attribute name="action">win.cancel_transform</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Apply transformation</attribute>
+          <attribute name="action">win.apply_transform</attribute>
+          <attribute name="verb-icon">emblem-ok-symbolic</attribute>
         </item>
       </section>
     </submenu>

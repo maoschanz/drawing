@@ -45,6 +45,8 @@ class DrImage(Gtk.Box):
 	_drawing_area = Gtk.Template.Child()
 	_h_scrollbar = Gtk.Template.Child()
 	_v_scrollbar = Gtk.Template.Child()
+	reload_info_bar = Gtk.Template.Child()
+	reload_label = Gtk.Template.Child()
 
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
@@ -54,6 +56,13 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
+		self._waiting_for_monitor = False
+		self._gfile_monitor = None
+		self._can_reload()
+
+		# Closing the info bar
+		self.reload_info_bar.connect('close', self.hide_reload_message)
+		self.reload_info_bar.connect('response', self.hide_reload_message)
 
 		self._fps_counter = 0
 		self._skipped_frames = 0
@@ -179,6 +188,7 @@ class DrImage(Gtk.Box):
 			self.use_stable_pixbuf()
 
 	############################################################################
+	# (re)loading the pixbuf of a given file ###################################
 
 	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
@@ -191,12 +201,8 @@ class DrImage(Gtk.Box):
 	def reload_from_disk(self):
 		"""Safely reloads the image from the disk."""
 		if self.gfile is None:
-			# XXX no, the action shouldn't be active in the first place
-			isnt_saved = not self.window.saving_manager.confirm_save_modifs()
-			if isnt_saved or self.get_file_path() is None:
-				self.window.prompt_message(True, \
-				            _("Can't reload a never-saved file from the disk."))
-				return
+			# the action shouldn't be active in the first place
+			return
 		disk_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		self._load_pixbuf_common(disk_pixbuf)
 		self.window.set_picture_title(self.update_title())
@@ -208,17 +214,44 @@ class DrImage(Gtk.Box):
 		try:
 			self.gfile = gfile
 			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
+			self.connect_gfile_monitoring()
 		except Exception as ex:
 			if not ex.message:
 				ex.message = "[exception without a valid message]"
 			ex = InvalidFileFormatException(ex.message, gfile.get_path())
-			self.window.prompt_message(True, ex.message)
+			self.window.reveal_action_report(ex.message)
 			self.gfile = None
 			pixbuf = self._new_blank_pixbuf(100, 100)
 			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
 			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
 			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
+		self._can_reload()
+
+	def connect_gfile_monitoring(self):
+		flags = Gio.FileMonitorFlags.WATCH_MOUNTS
+		self._gfile_monitor = self.gfile.monitor(flags)
+		self._gfile_monitor.connect('changed', self.reveal_reload_message)
+
+	def lock_monitoring(self):
+		self._waiting_for_monitor = True
+
+	def reveal_reload_message(self, *args):
+		if self._waiting_for_monitor:
+			# I'm not sure this lock is 100% correct because i'm monitoring the
+			# portal proxy file when testing with flatpak. Better than nothing.
+			if args[3] != Gio.FileMonitorEvent.CHANGED:
+				self._waiting_for_monitor = False
+			return
+		self._can_reload()
+		self.reload_label.set_visible(self.window.get_allocated_width() > 500)
+		self.reload_info_bar.set_visible(True)
+
+	def hide_reload_message(self, *args):
+		self.reload_info_bar.set_visible(False)
+
+	def _can_reload(self):
+		self.set_action_sensitivity('reload_file', self.gfile is not None)
 
 	############################################################################
 	# Image title and tab management ###########################################
@@ -292,6 +325,10 @@ class DrImage(Gtk.Box):
 	def show_properties(self):
 		DrPropertiesDialog(self.window, self)
 
+	def update_image_wide_actions(self):
+		self.update_history_sensitivity()
+		self._can_reload()
+
 	############################################################################
 	# History management #######################################################
 
@@ -362,12 +399,12 @@ class DrImage(Gtk.Box):
 			# Context: this is a debug information that users will never see
 			msg = _("%s frames per second") % self._fps_counter
 			msg += " (" + str(self._skipped_frames) + " motion inputs skipped)"
-			self.window.prompt_message(True, msg)
+			self.window.reveal_message(msg)
 			self._fps_counter = 0
 			self._skipped_frames = 0
 			GLib.timeout_add(1000, self.reset_fps_counter, {})
 		else:
-			self.window.prompt_message(False, "")
+			self.window.hide_message()
 
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""

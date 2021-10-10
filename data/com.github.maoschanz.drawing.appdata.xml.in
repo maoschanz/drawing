@@ -16,29 +16,60 @@
   <content_rating type="oars-1.1" />
 
   <name>Drawing</name>
-  <summary>A drawing application for the GNOME desktop</summary>
+  <!-- IMPORTANT: the summarized description of the application. -->
+  <!-- https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata -->
+  <summary>Edit screenshots or memes</summary>
+  <!--     123456789 123456789 123456789 12345 -->
   <description>
-    <p>"Drawing" is a basic image editor, supporting PNG, JPEG and BMP file types.</p>
+    <!-- IMPORTANT: complete description of the application (1/3) -->
     <p>
-      It allows you to draw or edit pictures with tools such as pencil, line or
-      arc (with various options), selection (cut/copy/paste/drag/…), shapes
-      (rectangle, circle, polygon, …), text insertion, resizing, cropping,
-      rotating, …
+      This basic image editor can resize, crop, or rotate an image, apply simple
+      filters, insert or censor text, and manipulate a selected portion of the
+      picture (cut/copy/paste/drag/…)
     </p>
+    <!-- IMPORTANT: complete description of the application (2/3) -->
+    <p>
+      And of course, you can draw! Using tools such as the pencil, the straight
+      line, the curve tool, many shapes, several brushes, and their various
+      colors and options.
+    </p>
+    <!-- IMPORTANT: complete description of the application (3/3) -->
+    <p>Supported file types include PNG, JPEG and BMP.</p>
   </description>
 
   <releases>
-    <release version="1.0.0" date="2021-06-26">
+    <!-- <release version="1.0.0" date="2021-09-12"> -->
+    <release version="1.0.0" date="2020-01-01">
       <description>
         <p>
-          After rotating the selection, it had an incorrectly big height, but
-          now it's fixed.
+          Version 1.0.0 improves rendering performance, which is visible when
+          editing large images with a poor CPU.
+        </p>
+        <p>
+          You can now use the new "skew" tool, to tilt an image from a rectangle
+          to a parallelogram. Such a deformation can be applied horizontally or
+          vertically.
+        </p>
+        <p>
+          Using the "scale" tool, you may optionally set the new size as a
+          relative percentage rather than an absolute value in pixels.
+        </p>
+        <p>
+          If the names of the tools are visible, you can enable a specific tool
+          with "alt+[the underlined letter]". This may not work yet with
+          languages using a non-latin alphabet.
+        </p>
+        <p>
+          Pressing "ctrl", "shift", or "alt" when using a tool enables specific
+          options, such as "add to the selection" for the selection tools.
         </p>
       </description>
     </release>
 
     <release version="0.8.2" date="2021-06-26">
       <description>
+        <!-- very generic release notes i use for ALL minor updates, please -->
+        <!-- translate this one! -->
         <p>
           Version 0.8.2 features several minor bug fixes, and various new
           translations.

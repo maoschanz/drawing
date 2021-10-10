@@ -91,7 +91,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		If it fails, a window is here anyway because this is independant from
 		the object constructor."""
 
-		self.prompt_action(_("Error starting the application, please report this bug."))
+		self.reveal_action_report(_("Error starting the application, please" + \
+		                                                   " report this bug."))
 
 		gfile = content_params['gfile']
 		get_cb = content_params['get_cb']
@@ -115,17 +116,17 @@ class DrWindow(Gtk.ApplicationWindow):
 			if get_cb:
 				self.delayed_build_from_clipboard()
 			elif gfile is not None:
-				self.build_new_tab(gfile=gfile)
+				self._build_new_tab(gfile=gfile)
 			else:
-				self.build_new_image()
+				self.build_blank_image()
 		except Exception as excp:
-			self.prompt_message(True, excp.message)
+			self.reveal_message(str(excp))
 
 		self._enable_first_tool()
 		self.set_picture_title()
 		self._try_show_release_notes()
 
-		# has to return False to be removed from the mainloop immediatly
+		# has to return False to be removed from the mainloop immediately
 		return False
 
 	def _try_show_release_notes(self):
@@ -140,8 +141,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                   "would you like to read what's new?")
 		dialog.add_string(label % current_version)
 
-		no_id = dialog.set_action(_("No"), None, False)
-		later_id = dialog.set_action(_("Later"), None, False)
+		no_id = dialog.set_action(_("No"), None)
+		later_id = dialog.set_action(_("Later"), None)
 		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
 		result = dialog.run()
 		dialog.destroy()
@@ -158,7 +159,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		disabled_tools = self.gsettings.get_strv('disabled-tools')
 		dev = self.gsettings.get_boolean('devel-only')
 		self.tools = {}
-		self.prompt_message(False, 'window has started, now loading tools')
+		self.log_message('window has started, now loading tools')
+		self.hide_message()
 
 		tools_initializer = DrToolsInitializer(self)
 		self.tools = tools_initializer.load_all_tools(dev, disabled_tools)
@@ -227,13 +229,13 @@ class DrWindow(Gtk.ApplicationWindow):
 	############################################################################
 	# TABS AND WINDOWS MANAGEMENT ##############################################
 
-	def build_new_image(self, *args):
+	def build_blank_image(self, *args):
 		"""Open a new tab with a drawable blank image using the default values
 		defined by user's settings."""
 		width = self.gsettings.get_int('default-width')
 		height = self.gsettings.get_int('default-height')
 		rgba = self.gsettings.get_strv('default-rgba')
-		self.build_new_tab(width=width, height=height, background_rgba=rgba)
+		self._build_new_tab(width=width, height=height, background_rgba=rgba)
 		self.set_picture_title()
 
 	def build_new_custom(self, *args):
@@ -243,13 +245,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		result = dialog.run()
 		if result == Gtk.ResponseType.OK:
 			width, height, rgba = dialog.get_values()
-			self.build_new_tab(width=width, height=height, background_rgba=rgba)
+			self._build_new_tab(width=width, height=height, background_rgba=rgba)
 			self.set_picture_title()
 		dialog.destroy()
 
 	def delayed_build_from_clipboard(self, *args):
 		"""Calls `async_build_from_clipboard` asynchronously."""
-		self.build_new_tab() # temporary image to avoid errors when the window
+		self._build_new_tab() # temporary image to avoid errors when the window
 		# finishes its initialisation.
 		GLib.timeout_add(500, self.async_build_from_clipboard, {})
 
@@ -263,19 +265,30 @@ class DrWindow(Gtk.ApplicationWindow):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
-			self.prompt_message(True, _("The clipboard doesn't contain any image."))
-			self.build_new_image()
+			self.reveal_message(_("The clipboard doesn't contain any image."))
+			self.build_blank_image()
 		else:
-			self.build_new_tab(pixbuf=pixbuf)
+			self._build_new_tab(pixbuf=pixbuf)
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
 		pixbuf = self.get_active_image().selection.get_pixbuf()
-		self.build_new_tab(pixbuf=pixbuf)
+		self._build_new_tab(pixbuf=pixbuf)
 
-	def build_new_tab(self, gfile=None, pixbuf=None, \
-		           width=200, height=200, background_rgba=[0.5, 0.5, 0.5, 0.5]):
-		"""Open a new tab with an optional file to open in it."""
+	def build_new_from_file(self, gfile, check_duplicates=True):
+		if check_duplicates:
+			w, duplicate = self.app.has_image_opened(gfile.get_path())
+			if duplicate is not None and not w.confirm_open_twice(gfile):
+				w.notebook.set_current_page(duplicate)
+				return
+		self._build_new_tab(gfile=gfile)
+
+	def _build_new_tab(self, gfile=None, pixbuf=None, \
+		                     width=200, height=200, \
+		                     background_rgba=[0.5, 0.5, 0.5, 0.5]):
+		"""Open a new tab with an optional file to load in it, or directly a
+		pixbuf, or the color and dimensions of a blank tab."""
+
 		new_image = DrImage(self)
 		self.notebook.append_page(new_image, new_image.build_tab_widget())
 		self.notebook.child_set_property(new_image, 'reorderable', True)
@@ -283,13 +296,28 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
-			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
-			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
-			# qu'un petit pixbuf rouge
+			# TODO dans l'idéal si on passe par les actions du clipboard, on
+			# devrait n'ouvrir que si il n'y a pas de fenêtre, et ouvrir un truc
+			# respectant les settings, plutôt qu'un petit pixbuf gris
 		else:
 			new_image.init_background(width, height, background_rgba)
 		self._update_tabs_visibility()
 		self.notebook.set_current_page(self.notebook.get_n_pages()-1)
+
+	def confirm_open_twice(self, gfile):
+		image_name = gfile.get_path().split('/')[-1]
+		dialog = DrMessageDialog(self)
+		# Context: %s is a file name
+		label = _("The file %s is already opened")
+		dialog.add_string(label % image_name)
+		# Context: the user would click here to confirm they want to open the
+		# same file twice
+		open_again_id = dialog.set_action(_("Open again"), None)
+		switch_to_id = dialog.set_action(_("Switch to this image"), \
+		                                               'suggested-action', True)
+		result = dialog.run()
+		dialog.destroy()
+		return result == open_again_id
 
 	def on_active_tab_changed(self, *args):
 		if not self._is_tools_initialisation_finished:
@@ -298,7 +326,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
-		args[1].update_history_sensitivity()
+		args[1].update_image_wide_actions()
 		# On devrait être moins bourrin et conserver la sélection # TODO ?
 
 	def update_tabs_menu_section(self, *args):
@@ -410,15 +438,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			current_item = current_item.get_item_link(item[1], link_type)
 		return current_item
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.app.set_accels_for_action('win.' + action_name, shortcuts)
+		self.app.set_accels_for_action('win.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		"""Convenient wrapper method adding a stateful action to the window. It
@@ -445,10 +472,16 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		self.add_action_simple('main_menu', self.action_main_menu, ['F10'])
 		self.add_action_simple('options_menu', self.action_options_menu, ['<Shift>F10'])
-		self.add_action_simple('toggle_menubar', self.action_menubar, ['<Ctrl>F2'])
+
+		action = Gio.PropertyAction.new('show-menubar', self, 'show-menubar')
+		self.add_action(action)
+		self.app.set_accels_for_action('win.show-menubar', ['<Ctrl>F2'])
 
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
+
+		dark_variant = self.gsettings.get_boolean('dark-theme-variant')
+		self.add_action_boolean('dark-variant', dark_variant, self.action_dark_theme)
 
 		show_labels = self.gsettings.get_boolean('show-labels')
 		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
@@ -462,8 +495,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
-		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, None)
+		self.add_action_simple('properties', self.action_properties)
+		self.add_action_simple('unfullscreen', self.action_unfullscreen)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -475,8 +508,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
-		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
-		self.add_action_simple('new_tab_custom', self.build_new_custom, None)
+		self.add_action_simple('new_tab', self.build_blank_image, ['<Ctrl>t'])
+		self.add_action_simple('new_tab_custom', self.build_new_custom)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
@@ -485,35 +518,35 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
 		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
-		self.add_action_simple('close', self.action_close_window, None)
+		self.add_action_simple('close', self.action_close_window)
 
 		self.add_action_simple('undo', self.action_undo, ['<Ctrl>z'])
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
-		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
+		self.add_action_simple('save_alphaless', self.action_save_alphaless)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
-		self.add_action_simple('export_as', self.action_export_as, None)
+		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
-		self.add_action_simple('print', self.action_print, None)
+		self.add_action_simple('print', self.action_print)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl><Shift>a'])
-		#self.add_action_simple('selection_invert', self.action_selection_invert, None)
+		#self.add_action_simple('selection_invert', self.action_selection_invert)
 		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
 		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
 		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
 
-		self.add_action_simple('selection_export', self.action_selection_export, None)
+		self.add_action_simple('selection_export', self.action_selection_export)
 		self.add_action_simple('selection-replace-canvas', \
-		                             self.action_selection_replace_canvas, None)
+		                             self.action_selection_replace_canvas)
 		self.add_action_simple('selection-expand-canvas', \
-		                              self.action_selection_expand_canvas, None)
+		                                    self.action_selection_expand_canvas)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
-		self.add_action_simple('force_selection', self.force_selection, None)
+		self.add_action_simple('force_selection', self.force_selection)
 		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
@@ -529,8 +562,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
 		if self.devel_mode:
-			self.add_action_simple('restore_pixbuf', self.action_restore, None)
-			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
+			self.add_action_simple('restore_pixbuf', self.action_restore)
+			self.add_action_simple('rebuild_from_histo', self.action_rebuild)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
 			self.add_action_boolean('track_framerate', False, self.action_fsp)
 
@@ -565,8 +598,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def show_info_settings(self, *args):
 		"""This is executed when a setting changed but the method to apply it
 		immediatly in the current window doesn't exist."""
-		self.prompt_message(True, \
-		            _("Modifications will take effect in the next new window."))
+		self.reveal_message(_("Modifications will take effect in the next new window."))
 
 	def set_picture_title(self, *args):
 		"""Set the window's title and subtitle (regardless of the preferred UI
@@ -636,9 +668,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		action to ease the accelerator (shift+f10)."""
 		self.options_manager.toggle_menu()
 
-	def action_menubar(self, *args):
-		self.set_show_menubar(not self.get_show_menubar())
-
 	def _adapt_to_window_size(self, *args):
 		"""Adapts the headerbar (if any) and the default bottom pane to the new
 		window size. If the current bottom pane isn't the default one, this
@@ -658,34 +687,45 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_active_image().fake_scrollbar_update()
 
 	def hide_message(self, *args):
-		self.prompt_message(False, '')
-
-	def prompt_message(self, show, label):
-		"""Update the content and the visibility of the info bar."""
-		self.info_bar.set_visible(show)
+		self.info_bar.set_visible(False)
 		self.info_action.set_visible(False)
-		if show:
-			self.info_label.set_label(label)
-		if show and self.devel_mode and label != "":
-			print("Drawing: " + label)
+		self.info_label.set_label("")
 
-	def prompt_action(self, message, action_name='app.report_bug', action_label=_("Report a bug")):
-		"""Update the content of the info bar, including its actionable button
-		which is set as visible."""
-		self.prompt_message(True, message)
+	def reveal_message(self, label):
+		"""Update the content and the visibility of the info bar."""
+		self.info_bar.set_visible(True)
+		self.info_action.set_visible(False)
+		self.info_label.set_label(label)
+		self.log_message(label)
+
+	def log_message(self, message):
+		if self.devel_mode:
+			print("Drawing: " + message)
+			self.reveal_message(message)
+
+	def reveal_action_report(self, message):
+		self.info_bar.set_visible(True)
+		self.info_label.set_label(message)
+		self.info_action.set_action_name('app.report_bug')
+		self.info_action.set_label(_("Report a bug"))
 		self.info_action.set_visible(True)
-		self.info_action.set_action_name(action_name)
-		self.info_action.set_label(action_label)
+		self.log_message(message)
 
 	def _update_tabs_visibility(self):
 		controls_hidden = self.lookup_action('hide_controls').get_state()
 		should_show = (self.notebook.get_n_pages() > 1) and not controls_hidden
 		self.notebook.set_show_tabs(should_show)
 
+	def action_dark_theme(self, *args):
+		shall_be_dark = args[1]
+		self.gsettings.set_boolean('dark-theme-variant', shall_be_dark)
+		args[0].set_state(GLib.Variant.new_boolean(shall_be_dark))
+
 	def _update_theme_variant(self, *args):
 		key = 'gtk-application-prefer-dark-theme';
 		use_dark_theme = self.gsettings.get_boolean('dark-theme-variant')
 		Gtk.Settings.get_default().set_property(key, use_dark_theme)
+		# XXX vraiment intriguant ce truc là ^
 
 	############################################################################
 	# FULLSCREEN ###############################################################
@@ -702,7 +742,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		shall_fullscreen = args[1]
 		if shall_fullscreen:
 			self.fullscreen()
-			self.prompt_message(True, _("Middle-click, tap with 3 fingers, " + \
+			self.reveal_message(_("Middle-click, tap with 3 fingers, " + \
 			                           "or press F8 to show/hide controls.") + \
 			                           " " + _("Press F11 to exit fullscreen."))
 			# TODO à confirmer que 3 doigts c'est réel ^
@@ -827,8 +867,8 @@ class DrWindow(Gtk.ApplicationWindow):
 			self._build_options_menu()
 			self._adapt_to_window_size()
 		except Exception as e:
-			self.prompt_message(True, _("Error loading the bottom pane for " + \
-			    "the tool '%s', please report this bug.") % self.active_tool_id)
+			self.reveal_message(_("Error loading the bottom pane for the " + \
+			        "tool '%s', please report this bug.") % self.active_tool_id)
 			print(e)
 
 	def active_tool(self):
@@ -923,16 +963,23 @@ class DrWindow(Gtk.ApplicationWindow):
 			return
 		else:
 			file_name = gfile.get_path().split('/')[-1]
-			self.prompt_message(True, _("Loading %s") % file_name)
+			self.reveal_message(_("Loading %s") % file_name)
 		if self.get_active_image().should_replace():
 			# If the current image is just a blank, unmodified canvas.
-			self.try_load_file(gfile)
+			self._try_load_file(gfile)
 		else:
+			# it makes more sense to ask *if* the user want to open it BEFORE
+			# asking *where* to open it
+			w, duplicate = self.app.has_image_opened(gfile.get_path())
+			if duplicate is not None and not w.confirm_open_twice(gfile):
+				w.notebook.set_current_page(duplicate)
+				self.hide_message()
+				return
+
 			dialog = DrMessageDialog(self)
 			new_tab_id = dialog.set_action(_("New Tab"), None, True)
-			new_window_id = dialog.set_action(_("New Window"), None, False)
-			discard_id = dialog.set_action(_("Discard changes"), \
-			                                        'destructive-action', False)
+			new_window_id = dialog.set_action(_("New Window"), None)
+			discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
 			if not self.get_active_image().is_saved():
 				# Context: %s will be replaced by the name of a file.
 				dialog.add_string(_("There are unsaved modifications to %s.") % \
@@ -942,11 +989,11 @@ class DrWindow(Gtk.ApplicationWindow):
 			result = dialog.run()
 			dialog.destroy()
 			if result == new_tab_id:
-				self.build_new_tab(gfile=gfile)
+				self.build_new_from_file(gfile, False)
 			elif result == discard_id:
-				self.try_load_file(gfile)
+				self._try_load_file(gfile, False)
 			elif result == new_window_id:
-				self.app.open_window_with_content(gfile, False)
+				self.app.open_window_with_content(gfile, False, False)
 		self.hide_message()
 
 	def file_chooser_open(self, *args):
@@ -967,8 +1014,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		per image), or to import them (it will only import the first), or to
 		cancel (if the user dropped mistakenly)."""
 		dialog = DrMessageDialog(self)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		open_id = dialog.set_action(_("Open"), None, False)
+		cancel_id = dialog.set_action(_("Cancel"), None)
+		open_id = dialog.set_action(_("Open"), None)
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()
@@ -983,7 +1030,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			if is_valid_image:
 				gfiles.append(gfile)
 			else:
-				self.prompt_message(True, error_msg)
+				self.reveal_message(error_msg)
 
 		if len(gfiles) == 0:
 			return
@@ -1001,15 +1048,27 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		if result == open_id:
 			for f in gfiles:
-				self.build_new_tab(gfile=f)
+				self._build_new_tab(gfile=f)
 		elif result == import_id:
 			self.import_from_path(gfiles[0].get_path())
 
-	def try_load_file(self, gfile):
-		if gfile is not None:
-			self.get_active_image().try_load_file(gfile)
-		self.set_picture_title() # often redundant but not useless
-		self.prompt_message(False, 'file successfully loaded')
+	def _try_load_file(self, gfile, check_duplicates=True):
+		if gfile is None:
+			return
+		if check_duplicates:
+			w, duplicate = self.app.has_image_opened(gfile.get_path())
+			if w is not None and not w.confirm_open_twice(gfile):
+				w.notebook.set_current_page(duplicate)
+				return
+
+		self.get_active_image().try_load_file(gfile)
+		self.set_picture_title()
+
+	def has_image_opened(self, file_path):
+		for tab in self.notebook.get_children():
+			if tab.get_file_path() == file_path:
+				return self.notebook.page_num(tab)
+		return None
 
 	def action_save(self, *args):
 		"""Try to save the active image, and return True if the image has been
@@ -1020,10 +1079,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.saving_manager.save_current_image(False, True, False, True)
 
 	def action_save_alphaless(self, *args):
-		if self.saving_manager.save_current_image(False, False, False, False):
-			self.ask_reload()
-			return True
-		return False
+		return self.saving_manager.save_current_image(False, False, False, False)
 
 	def action_export_as(self, *args):
 		return self.saving_manager.save_current_image(True, True, False, True)
@@ -1035,11 +1091,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_export_cb(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_active_image().main_pixbuf)
-		self.prompt_message(True, _("Image copied to clipboard"))
-
-	def ask_reload(self):
-		self.prompt_action(_("The image changed on the disk, do you want " + \
-		                       "to reload it?"), 'win.reload_file', _("Reload"))
+		self.reveal_message(_("Image copied to clipboard"))
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -1124,7 +1176,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		elif 'color_select' in self.tools:
 			return self.tools['color_select']
 		else:
-			self.prompt_message(True, _("Required tool is not available"))
+			self.reveal_action_report(_("Required tool is not available"))
 			return self.active_tool()
 
 	def force_selection(self, *args):
@@ -1137,9 +1189,10 @@ class DrWindow(Gtk.ApplicationWindow):
 	# HISTORY MANAGEMENT #######################################################
 
 	def action_undo(self, *args):
-		# self.prompt_message(True, _("Undoing…"))
+		# self.reveal_message(_("Undoing…"))
 		self.get_active_image().try_undo()
-		# self.prompt_message(False, 'finished undoing')
+		# self.log_message('finished undoing')
+		# self.hide_message()
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()

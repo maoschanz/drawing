@@ -66,12 +66,17 @@ class DrSavingManager():
 					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)
 
+			# The "reload?" message shouldn't be shown imho, so i do this
+			if not is_export and allow_alpha:
+				image.lock_monitoring()
+
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
 
 			# Update the image and the window objects
 			if not is_export:
 				image.gfile = gfile
+				image.connect_gfile_monitoring()
 				image.remember_current_state()
 				image.post_save()
 				self._window.set_picture_title()
@@ -83,7 +88,7 @@ class DrSavingManager():
 			# the user clicked on "cancel" XXX that's dumb
 			print(e)
 			# Context: an error message
-			self._window.prompt_message(True, _("Failed to save %s") % file_path)
+			self._window.reveal_message(_("Failed to save %s") % file_path)
 			return False
 
 		return True
@@ -107,8 +112,8 @@ class DrSavingManager():
 			unsaved_file_name = fn.split('/')[-1]
 			display_name = image.get_filename_for_display()
 		dialog = DrMessageDialog(self._window)
-		discard_id = dialog.set_action(_("Discard"), 'destructive-action', False)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		discard_id = dialog.set_action(_("Discard"), 'destructive-action')
+		cancel_id = dialog.set_action(_("Cancel"), None)
 		save_id = dialog.set_action(_("Save"), None, True)
 		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
 		self._window.minimap.update_minimap(True)
@@ -126,20 +131,46 @@ class DrSavingManager():
 			return False
 
 	def _confirm_despite_ongoing_operation(self):
-		"""Ask to the user whether or not the want to apply the operation of the
-		current tool (curve, shape, transform, selection) before saving."""
+		"""Ask to the user whether or not they want to apply the operation of
+		the current tool (curve, shape, transform, selection) before saving."""
 		msg = None
 		if self._window.get_selection_tool().selection_is_active():
-			msg = _("A part of the image is selected, and the pixels " + \
-			                                 "beneath the selection are blank.")
+			msg = _("A part of the image is selected: the pixels beneath " + \
+			   "the selection will be saved with a color you might not expect!")
 		elif self._window.active_tool().has_ongoing_operation():
+			# Context: the user tries to save the image while previewing an
+			# unapplied "transform" operation (scaling, cropping, whatever)
 			msg = _("Modifications from the current tool haven't been applied.")
 		if msg is None:
 			return True
-
 		dialog = DrMessageDialog(self._window)
-		cancel_id = dialog.set_action(_("Cancel"), None, True)
-		save_id = dialog.set_action(_("Save"), 'destructive-action', False)
+
+		# If we know how to finish the ongoing operation, then let's go
+		can_apply = self._window.lookup_action('apply_transform').get_enabled()
+		if can_apply:
+			can_unselect = self._window.active_tool().apply_to_selection
+		else:
+			can_unselect = self._window.lookup_action('unselect').get_enabled()
+		# Otherwise the user should cancel, and apply manually
+
+		only_2_items = not (can_apply or can_unselect)
+		cancel_id = dialog.set_action(_("Cancel"), None, only_2_items)
+		if only_2_items:
+			save_style = 'destructive-action'
+		else:
+			save_style = None
+		apply_id = None
+		if can_apply:
+			# To translators: this string should be quite short
+			apply_id = dialog.set_action(_("Apply & save"), \
+			                                           'suggested-action', True)
+			# same label whether or not `can_unselect` too ^
+		elif can_unselect:
+			# To translators: this string should be quite short
+			apply_id = dialog.set_action(_("Deselect & save"), \
+			                                           'suggested-action', True)
+		save_id = dialog.set_action(_("Save anyway"), save_style)
+
 		dialog.add_string(msg)
 		dialog.add_string(_("Do you want to save anyway?"))
 		self._window.minimap.update_minimap(True)
@@ -149,9 +180,18 @@ class DrSavingManager():
 		dialog.add_widget(frame)
 		result = dialog.run()
 		dialog.destroy()
+
 		if result == save_id:
 			return True
-		else: # cancel_id
+		elif result == cancel_id:
+			return False
+		elif result == apply_id:
+			if can_apply:
+				self._window.action_apply_transform()
+			if can_unselect:
+				self._window.action_unselect()
+			return True
+		else: # unknown id
 			return False
 
 	def _file_chooser_save(self):
@@ -193,9 +233,9 @@ class DrSavingManager():
 		BMP files, but it may quickly annoy users to see a dialog so it's an
 		option. Can be used on PNG files if 'allow_alpha' is false."""
 		dialog = DrMessageDialog(self._window)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		cancel_id = dialog.set_action(_("Cancel"), None)
 		if can_save_as:
-			save_as_id = dialog.set_action(_("Save as…"), None, False)
+			save_as_id = dialog.set_action(_("Save as…"), None)
 		# Context: confirm replacing transparent pixels with the selected color
 		replace_id = dialog.set_action(_("Replace"), None, True)
 

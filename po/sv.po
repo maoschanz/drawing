@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-16 21:49+0200\n"
-"PO-Revision-Date: 2021-06-05 08:56+0200\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
+"PO-Revision-Date: 2021-08-24 21:49+0200\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -28,7 +28,10 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "Enkelt ritverktyg"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Måla;Rita;Penna;"
@@ -48,34 +51,67 @@ msgstr "Ny bild"
 msgid "Edit Image in Clipboard"
 msgstr "Redigera bilden i urklipp"
 
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Ett ritprogram för GNOME skrivbordsmiljö"
+msgid "Edit screenshots or memes"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (1/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (2/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
+msgstr ""
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
-"\"Drawing \" är en grundläggande bildredigerare som stödjer PNG-, JPEG- och "
-"BMP-filer."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
-"Det låter dig rita eller redigera bilder med verktyg såsom penna, linje "
-"eller båge (med olika alternativ), markering (klipp ut/kopiera/klistra in/"
-"dra/…), textinfogning, storleksändring, beskärning, rotation, …"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -311,12 +347,15 @@ msgstr "Uppdatera"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Spåra bildfrekvens"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
-msgid "Toggle the menu-bar"
-msgstr "Visa/Dölj förhandsgranskningen"
+#: src/ui/app-menus.ui
+msgid "Dark theme variant"
+msgstr "Mörk temavariant"
+
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
+msgstr "Visa menyfältet"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -463,6 +502,14 @@ msgid "Troubleshoot selection"
 msgstr "Felsök markering"
 
 #: src/ui/app-menus.ui
+msgid "Cancel transformation"
+msgstr "Avbryt omvandling"
+
+#: src/ui/app-menus.ui
+msgid "Apply transformation"
+msgstr "Tillämpa omvandling"
+
+#: src/ui/app-menus.ui
 msgid "Options"
 msgstr "Alternativ"
 
@@ -537,6 +584,14 @@ msgstr "Öppna"
 msgid "Share the image"
 msgstr "Dela bilden"
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Bilden har ändrats på disk, vill du uppdatera den?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Uppdatera"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "100%"
@@ -590,7 +645,7 @@ msgstr "Stäng markering"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Avmarkera"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -651,6 +706,10 @@ msgstr "Allmänt"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "Huvudmeny"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "Visa/Dölj menyfältet"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -772,10 +831,6 @@ msgstr "Fel: Inget verktyg \"%s\""
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "Ny pixbuf tom, ingen ändring tillämpas på %s"
 
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "Kan inte läsa om en fil som aldrig sparats på disk."
-
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Osparad fil"
@@ -784,7 +839,7 @@ msgstr "Osparad fil"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s bildrutor per sekund"
 
 #. Description of a command line option
 #: src/main.py
@@ -827,8 +882,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "GNOME's \"Art Libre\" ikonset-utvecklare"
 
 #: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "Ett ritprogram för GNOME skrivbordsmiljö."
+msgid "Simple image editor for Linux"
+msgstr "Enkel bildredigerare för Linux"
 
 #: src/main.py
 msgid "Official webpage"
@@ -853,10 +908,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1148,14 +1200,31 @@ msgstr "Det finns osparade ändringar i %s."
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
-"En del av bilden är markerad och bildpunkterna under markeringen är tomma."
+"En del av bilden är markerad och bildpunkterna under markeringen kommer att "
+"sparas i en färg du kanske inte väntar dig!"
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Ändringar från det aktuella verktyget har inte tillämpats."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "Tillämpa & spara"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Deselect & save"
+msgstr "Avmarkera och spara"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "Spara ändå"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1301,6 +1370,12 @@ msgstr "WEBP-bilder kan inte läsas av det här programmet."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "Trots namnet, så är %s en WEBP-fil."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "Kunde inte läsa in verktyg: %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Kunde inte starta programmet. Vänligen, rapportera felet."
@@ -1325,15 +1400,25 @@ msgstr "Senare"
 msgid "Yes"
 msgstr "Ja"
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "Kunde inte läsa in verktyg: %s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Urklipp innehåller ingen bild."
+
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "Filen %s är redan öppnad"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr "Öppna igen"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr "Växla till den här bilden"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1394,14 +1479,6 @@ msgid "Image copied to clipboard"
 msgstr "Bilden kopierad till urklipp"
 
 #: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Bilden har ändrats på disk, vill du uppdatera den?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "Uppdatera"
-
-#: src/window.py
 msgid "Import a picture"
 msgstr "Importera en bild"
 
@@ -1437,8 +1514,7 @@ msgid "No options"
 msgstr "Inga alternativ"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "Förhandsgranska"
 
@@ -1481,9 +1557,6 @@ msgid "Extract from this color"
 msgstr "Extrahera från den här färgen"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Tillämpa"
 
@@ -1713,10 +1786,6 @@ msgstr "Mosaik"
 msgid "Solid color"
 msgstr "Solid färg"
 
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "Aktivt filter"
-
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
 msgstr "Ändra mättnad"
@@ -1783,9 +1852,8 @@ msgid "Color gradient"
 msgstr "Färgtoning"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Ingen riktning"
+msgstr "Låst riktning"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2086,9 +2154,8 @@ msgid "Error: invalid values"
 msgstr "Fel: Ogiltiga värden"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping options"
-msgstr "Punktalternativ"
+msgstr "Beskärningsalternativ"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2099,9 +2166,8 @@ msgid "Cropping the canvas"
 msgstr "Beskär arbetsytan"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "Markeringsalternativ"
+msgid "Active filter"
+msgstr "Aktivt filter"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2113,9 +2179,8 @@ msgid "Emboss"
 msgstr "Relief"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Målningsalternativ"
+msgstr "Rotationsalternativ"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2126,9 +2191,8 @@ msgid "Rotating the canvas"
 msgstr "Roterar arbetsytan"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Målningsalternativ"
+msgstr "Skalningsalternativ"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2153,6 +2217,9 @@ msgstr "Oskärperadie"
 msgid "Saturation"
 msgstr "Mättnad"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Ett ritprogram för GNOME skrivbordsmiljö"
+
 #~ msgid "About"
 #~ msgstr "Om"
 
@@ -2164,9 +2231,6 @@ msgstr "Mättnad"
 
 #~ msgid "Other tools"
 #~ msgstr "Andra verktyg"
-
-#~ msgid "Open a file"
-#~ msgstr "Öppna en fil"
 
 #~ msgid "Keyboard"
 #~ msgstr "Tangentbord"

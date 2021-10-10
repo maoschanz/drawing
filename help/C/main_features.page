@@ -15,8 +15,8 @@
 
   <title>Basic features</title>
 
-  <p>"Drawing" is a basic drawing application for the GNOME desktop, which can
-  edit or create pictures (PNG, JPEG or BMP).</p>
+  <p><app>Drawing</app> is a simple raster image editor for the GNOME desktop.
+  It'll help you to create and edit pictures.</p>
 
   <note style="tip">
     <p>Many features described here are located in the header of the window, but
@@ -30,6 +30,11 @@
     <p>Open a picture file from your documents.</p>
     <p>If the window size is too small to display the <gui style="button">Open</gui>
     button, it's available in the primary menu.</p>
+    <p>Supported file types include PNG, JPEG and BMP. The app could open any
+    file format known by your version of the GdkPixbuf library (TIFF, XPM, etc.
+    and maybe WebP if your distribution provide the related package), however
+    <app>Drawing</app> has not been developed with them in mind so it might not
+    be able to always save an image correctly with these formats.</p>
   </section>
 
   <section>

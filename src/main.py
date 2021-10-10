@@ -84,21 +84,21 @@ class Application(Gtk.Application):
 	def _build_actions(self):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
-		self.add_action_simple('settings', self.on_prefs, None)
-		self.add_action_simple('report_bug', self.on_report, None)
+		self.add_action_simple('settings', self.on_prefs)
+		self.add_action_simple('report_bug', self.on_report)
 		self.add_action_simple('shortcuts', self.on_shortcuts, \
 		                                         ['<Ctrl>question', '<Ctrl>F1'])
 
 		self.add_action_simple('help', self.on_help_index, ['F1'])
-		self.add_action_simple('help_main', self.on_help_main, None)
-		self.add_action_simple('help_zoom', self.on_help_zoom, None)
-		self.add_action_simple('help_fullscreen', self.on_help_fullscreen, None)
-		self.add_action_simple('help_tools', self.on_help_tools, None)
-		self.add_action_simple('help_colors', self.on_help_colors, None)
-		self.add_action_simple('help_transform', self.on_help_transform, None)
-		self.add_action_simple('help_selection', self.on_help_selection, None)
-		self.add_action_simple('help_prefs', self.on_help_prefs, None)
-		self.add_action_simple('help_whats_new', self.on_help_whats_new, None)
+		self.add_action_simple('help_main', self.on_help_main)
+		self.add_action_simple('help_zoom', self.on_help_zoom)
+		self.add_action_simple('help_fullscreen', self.on_help_fullscreen)
+		self.add_action_simple('help_tools', self.on_help_tools)
+		self.add_action_simple('help_colors', self.on_help_colors)
+		self.add_action_simple('help_transform', self.on_help_transform)
+		self.add_action_simple('help_selection', self.on_help_selection)
+		self.add_action_simple('help_prefs', self.on_help_prefs)
+		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
@@ -106,10 +106,17 @@ class Application(Gtk.Application):
 	############################################################################
 	# Opening windows & CLI handling ###########################################
 
-	def open_window_with_content(self, gfile, get_cb):
+	def open_window_with_content(self, gfile, get_cb, check_duplicates=True):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
+		if gfile is not None and check_duplicates:
+			w, already_opened_index = self.has_image_opened(gfile.get_path())
+			if w is not None:
+				if not w.confirm_open_twice(gfile):
+					w.notebook.set_current_page(already_opened_index)
+					return
+
 		win = DrWindow(application=self)
 		win.present()
 
@@ -155,7 +162,7 @@ class Application(Gtk.Application):
 				self.open_window_with_content(None, True)
 			else:
 				win.present()
-				self.props.active_window.build_image_from_clipboard()
+				win.build_image_from_clipboard()
 
 		elif options.contains('new-tab') and len(arguments) == 1:
 			# If '-t' but no file given as argument
@@ -164,7 +171,7 @@ class Application(Gtk.Application):
 				self.on_new_window()
 			else:
 				win.present()
-				self.props.active_window.build_new_image()
+				win.build_blank_image()
 
 		elif options.contains('new-window'):
 			# it opens one new window per file given as argument, or just one
@@ -188,16 +195,19 @@ class Application(Gtk.Application):
 			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
 				f = self._get_valid_file(args[1], fpath)
-				# here f can be a GioFile or a boolean: True would mean the app
+				# here f can be a Gio.File or a boolean: True would mean the app
 				# should open a new blank image.
 				if f != False:
-					f = None if f == True else f
 					win = self.props.active_window
 					if not win:
+						f = None if f == True else f
 						self.open_window_with_content(f, False)
 					else:
 						win.present()
-						self.props.active_window.build_new_tab(gfile=f)
+						if f == True:
+							win.build_blank_image()
+						else:
+							win.build_new_from_file(gfile=f)
 
 		# I don't even know if i should return something
 		return 0
@@ -274,7 +284,7 @@ class Application(Gtk.Application):
 			# To translators: this is credits for the icons, consider that "Art
 			# Libre" is proper name
 			                       _("GNOME's \"Art Libre\" icon set authors")],
-			comments=_("A drawing application for the GNOME desktop."),
+			comments=_("Simple image editor for Linux"),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self._version),
 			website='https://maoschanz.github.io/drawing/',
@@ -323,12 +333,11 @@ class Application(Gtk.Application):
 	def get_current_version(self):
 		return self._version
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.set_accels_for_action('app.' + action_name, shortcuts)
+		self.set_accels_for_action('app.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		action = Gio.SimpleAction().new_stateful(action_name, None, \
@@ -339,6 +348,16 @@ class Application(Gtk.Application):
 	def _show_help_page(self, suffix):
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, 'help:drawing' + suffix, Gdk.CURRENT_TIME)
+
+	def has_image_opened(self, file_path):
+		"""Returns the window in which the given file is opened, and the index
+		of the tab where it is in the window's notebook.
+		Or `None, None` otherwise."""
+		for win in self.get_windows():
+			position_in_window = win.has_image_opened(file_path)
+			if position_in_window is not None:
+				return win, position_in_window
+		return None, None
 
 	def _get_valid_file(self, app, path):
 		"""Creates a GioFile object if the path corresponds to an image. If no

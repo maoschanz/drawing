@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-16 21:49+0200\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -28,7 +28,10 @@ msgstr "그림판"
 msgid "Simple drawing utility"
 msgstr "간단한 그리기 유틸리티"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;그림판;페인트;스케치;"
@@ -48,32 +51,67 @@ msgstr "새로운 이미지"
 msgid "Edit Image in Clipboard"
 msgstr "클립 보드에서 이미지 편집"
 
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "그놈 데스크탑 그림판 프로그램"
+msgid "Edit screenshots or memes"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (1/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (2/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
+msgstr ""
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
-"\"Drawing\"은 PNG, JPEG 및 BMP 파일 유형을 지원하는 기본 이미지 편집기입니다."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
-"연필, 선 또는 호 (다양한 옵션 포함), 선택 (잘라 내기 / 복사 / 붙여 넣기 / 끌"
-"기 /…) , 도형 (사각형, 원, 다각형 등), 텍스트 삽입, 크기 조정, 자르기, 회전"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -310,9 +348,14 @@ msgstr "새로고침"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Dark theme variant"
+msgstr "테마 변경"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
 msgstr "미리보기 전환"
 
 #: src/ui/app-menus.ui
@@ -460,6 +503,16 @@ msgid "Troubleshoot selection"
 msgstr "선택 문제 해결"
 
 #: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "변형 적용"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "변형 적용"
+
+#: src/ui/app-menus.ui
 msgid "Options"
 msgstr "옵션"
 
@@ -534,6 +587,14 @@ msgstr "열기"
 msgid "Share the image"
 msgstr "이미지 공유"
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "디스크에서 이미지가 변경되었습니다. 다시로드 하시겠습니까?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "새로 고침"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "100%"
@@ -587,7 +648,7 @@ msgstr "선택 닫기"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "선택 취소"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -650,6 +711,11 @@ msgstr "일반"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "메인 메뉴"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "미리보기 전환"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -772,10 +838,6 @@ msgstr "오류 : '%s' 도구 없음"
 msgid "New pixbuf empty, no change applied to %s"
 msgstr "새 pixbuf가 비어 있고 %s 에 변경 사항이 적용되지 않았습니다"
 
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "디스크에서 저장하지 않은 파일을 다시로드 할 수 없습니다."
-
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "저장되지 않은 파일"
@@ -827,8 +889,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "그놈 \"Free Art\" 아이콘 세트 작성자"
 
 #: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "그놈 데스크탑용 그리기 프로그램입니다."
+msgid "Simple image editor for Linux"
+msgstr ""
 
 #: src/main.py
 msgid "Official webpage"
@@ -853,10 +915,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "취소"
 
@@ -1146,14 +1205,32 @@ msgid "There are unsaved modifications to %s."
 msgstr "%s 에 저장되지 않은 수정 사항이 있습니다."
 
 #: src/saving_manager.py
+#, fuzzy
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr "이미지의 일부가 선택되고 선택 영역 아래의 픽셀은 비어 있습니다."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "현재 도구의 수정 사항이 적용되지 않았습니다."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Deselect & save"
+msgstr "선택 취소"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1299,6 +1376,12 @@ msgstr "이 앱은 WEBP 이미지를로드 할 수 없습니다."
 msgid "Despite its name, %s is a WEBP file."
 msgstr "%s 는 WEBP 파일입니다."
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "도구를 불러오지 못했습니다 : %s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr ""
@@ -1323,15 +1406,27 @@ msgstr "나중에"
 msgid "Yes"
 msgstr "예"
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "도구를 불러오지 못했습니다 : %s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "클립 보드에 이미지가 없습니다."
+
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "이미지 열기"
+
+#: src/window.py
+#, fuzzy
+msgid "Switch to this image"
+msgstr "이미지 공유"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1391,14 +1486,6 @@ msgid "Image copied to clipboard"
 msgstr "이미지가 클립 보드에 복사되었습니다"
 
 #: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr "디스크에서 이미지가 변경되었습니다. 다시로드 하시겠습니까?"
-
-#: src/window.py
-msgid "Reload"
-msgstr "새로 고침"
-
-#: src/window.py
 msgid "Import a picture"
 msgstr "사진 가져 오기"
 
@@ -1434,8 +1521,7 @@ msgid "No options"
 msgstr "옵션 없음"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "미리보기"
 
@@ -1478,9 +1564,6 @@ msgid "Extract from this color"
 msgstr "이 색상에서 추출"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "적용"
 
@@ -1710,10 +1793,6 @@ msgstr "모자이크"
 #: src/tools/ui/tool-eraser.ui
 msgid "Solid color"
 msgstr "단색"
-
-#: src/tools/ui/tool-filters.ui
-msgid "Active filter"
-msgstr "활성 필터"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2097,9 +2176,8 @@ msgid "Cropping the canvas"
 msgstr "캔버스 자르기"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
-msgid "Filters options"
-msgstr "형광펜 옵션"
+msgid "Active filter"
+msgstr "활성 필터"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2150,3 +2228,6 @@ msgstr "흐림 반경"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "채도"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "그놈 데스크탑 그림판 프로그램"

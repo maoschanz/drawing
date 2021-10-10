@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-07-16 21:49+0200\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -31,7 +31,10 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "簡單的繪圖工具"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;素描;鉛筆;"
@@ -51,32 +54,67 @@ msgstr "新影像"
 msgid "Edit Image in Clipboard"
 msgstr "在剪貼簿中編輯影像"
 
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "為 GNOME 桌面環境打造的繪圖應用程式"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
-msgstr "Drawing 是一個基礎的影像編輯器，支援 PNG、JPEG 和 BMP 檔案格式。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
-msgstr ""
-"借助本應用程式，你可以圖畫、編輯圖片，並使用諸如鉛筆、直線、弧線（多種選"
-"項）、選擇（複製、貼上、剪下、拖曳等）、形狀（矩形、圓形、多邊形等）、插入文"
-"字、調整大小、裁切、旋轉、…"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"After rotating the selection, it had an incorrectly big height, but now it's "
-"fixed."
+msgid "Edit screenshots or memes"
 msgstr ""
 
+#. IMPORTANT: complete description of the application (1/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (2/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
+msgstr ""
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
@@ -313,9 +351,14 @@ msgstr "重新整理"
 msgid "Track framerate"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui
 #, fuzzy
-msgid "Toggle the menu-bar"
+msgid "Dark theme variant"
+msgstr "預設寬度"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Show the menu-bar"
 msgstr "切換預覽"
 
 #: src/ui/app-menus.ui
@@ -467,6 +510,16 @@ msgid "Troubleshoot selection"
 msgstr "對選擇區域排查問題"
 
 #: src/ui/app-menus.ui
+#, fuzzy
+msgid "Cancel transformation"
+msgstr "關於工具的說明"
+
+#: src/ui/app-menus.ui
+#, fuzzy
+msgid "Apply transformation"
+msgstr "關於工具的說明"
+
+#: src/ui/app-menus.ui
 msgid "Options"
 msgstr "選項"
 
@@ -546,6 +599,15 @@ msgstr "開啟"
 msgid "Share the image"
 msgstr ""
 
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr ""
+
+#: src/ui/image.ui
+#, fuzzy
+msgid "Reload"
+msgstr "重新載入檔案"
+
 #: src/ui/minimap.ui
 msgid "100%"
 msgstr "100%"
@@ -599,7 +661,7 @@ msgstr "關閉選擇區域"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "取消選擇"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
@@ -662,6 +724,11 @@ msgstr "通用"
 #: src/ui/shortcuts.ui
 msgid "Main menu"
 msgstr "主選單"
+
+#: src/ui/shortcuts.ui
+#, fuzzy
+msgid "Toggle the menu-bar"
+msgstr "切換預覽"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -786,10 +853,6 @@ msgstr ""
 msgid "New pixbuf empty, no change applied to %s"
 msgstr ""
 
-#: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr "無法重新載入尚未儲存到磁碟的檔案。"
-
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "未儲存的檔案"
@@ -844,8 +907,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "GNOME 的 Art Libre 圖示包作者"
 
 #: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "為 GNOME 桌面環境打造的繪圖應用程式。"
+msgid "Simple image editor for Linux"
+msgstr ""
 
 #: src/main.py
 msgid "Official webpage"
@@ -871,10 +934,7 @@ msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "取消"
 
@@ -1163,13 +1223,31 @@ msgstr "%s 有未儲存的修改。"
 
 #: src/saving_manager.py
 msgid ""
-"A part of the image is selected, and the pixels beneath the selection are "
-"blank."
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
 msgstr ""
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr ""
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+#, fuzzy
+msgid "Deselect & save"
+msgstr "取消選擇"
+
+#: src/saving_manager.py
+#, fuzzy
+msgid "Save anyway"
+msgstr "另存為"
 
 #: src/saving_manager.py
 #, fuzzy
@@ -1316,6 +1394,12 @@ msgstr ""
 msgid "Despite its name, %s is a WEBP file."
 msgstr ""
 
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "載入工具失敗：%s"
+
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "啟動應用程式時發生錯誤。請向我們報告這個問題。"
@@ -1339,14 +1423,25 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#. Context: an error message
-#: src/window.py
-#, python-format
-msgid "Failed to load tool: %s"
-msgstr "載入工具失敗：%s"
-
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
+msgstr ""
+
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr ""
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+#, fuzzy
+msgid "Open again"
+msgstr "開啟檔案"
+
+#: src/window.py
+msgid "Switch to this image"
 msgstr ""
 
 #: src/window.py
@@ -1406,15 +1501,6 @@ msgid "Image copied to clipboard"
 msgstr "在剪貼簿中編輯影像"
 
 #: src/window.py
-msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
-
-#: src/window.py
-#, fuzzy
-msgid "Reload"
-msgstr "重新載入檔案"
-
-#: src/window.py
 msgid "Import a picture"
 msgstr "匯入圖片"
 
@@ -1451,8 +1537,7 @@ msgid "No options"
 msgstr "無選項"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
 msgstr "預覽"
 
@@ -1497,9 +1582,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "套用"
 
@@ -1741,11 +1823,6 @@ msgstr ""
 #, fuzzy
 msgid "Solid color"
 msgstr "副色彩"
-
-#: src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Active filter"
-msgstr "其他工具"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -2139,8 +2216,8 @@ msgstr "裁切畫布"
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
-msgid "Filters options"
-msgstr "螢光筆"
+msgid "Active filter"
+msgstr "其他工具"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2192,11 +2269,8 @@ msgstr "模糊半徑"
 msgid "Saturation"
 msgstr "飽和度"
 
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "為 GNOME 桌面環境打造的繪圖應用程式"
+
 #~ msgid "Quit"
 #~ msgstr "結束"
-
-#~ msgid "Open a file"
-#~ msgstr "開啟檔案"
-
-#~ msgid "Save as"
-#~ msgstr "另存為"
