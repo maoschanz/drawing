@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-08-22 18:43+0200\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -26,7 +26,10 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "Simpelt tegneredskab"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Tegn;Blyant;"
@@ -46,51 +49,58 @@ msgstr "Nyt billede"
 msgid "Edit Image in Clipboard"
 msgstr "Rediger billede i udklipsholder"
 
-#. VERY IMPORTANT description of the application
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for Linux"
-msgstr "Simpelt billedredigeringsværktøj for Linux"
+msgid "Edit screenshots or memes"
+msgstr ""
 
+#. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
 msgstr ""
-"\"Drawing\" er en simpel billededitor som understøtter filtyperne PNG, JPEG "
-"og BMP."
 
+#. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
 msgstr ""
-"Det giver dig mulighed for at tegne og redigere billeder med værktøjer såsom "
-"blyant, linje eller bue (med diverse valgmuligheder), markering (klip/kopiér/"
-"indsæt/træk/ …), former (rektangel, cirkel, polygon …), indsættelse af "
-"tekst, tilpasning af størrelse, beskæring, drejning …"
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
-msgstr "Version 1.0.0 forbedrer visnings ydeevne, som kan ses når man redigere "
-"store billeder med en langsom CPU."
+msgstr ""
+"Version 1.0.0 forbedrer visnings ydeevne, som kan ses når man redigere store "
+"billeder med en langsom CPU."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
-msgstr "Du kan nu bruge det nye \"Vrid\" værktøj til at tilte til billede fra et rektangel "
-"til et parallelogram. Sådan en deformation kan påføres vandret eller lodret."
+msgstr ""
+"Du kan nu bruge det nye \"Vrid\" værktøj til at tilte til billede fra et "
+"rektangel til et parallelogram. Sådan en deformation kan påføres vandret "
+"eller lodret."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
-msgstr "Når du bruger \"Skaler\" værktøjet, kan du valgfrit indstille den nye størrelse som en relativ "
-"procentdel frem for en absolut værdi i pixels."
+msgstr ""
+"Når du bruger \"Skaler\" værktøjet, kan du valgfrit indstille den nye "
+"størrelse som en relativ procentdel frem for en absolut værdi i pixels."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -103,8 +113,10 @@ msgstr ""
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
-msgstr "Hvis du trykker på \"ctrl\", \"shift\" eller \"alt\", imens du bruger et værktøj, "
-"aktiveres specifikke muligheder, f.eks. \"Tilføj til markeringen \" for markeringsværktøjerne."
+msgstr ""
+"Hvis du trykker på \"ctrl\", \"shift\" eller \"alt\", imens du bruger et "
+"værktøj, aktiveres specifikke muligheder, f.eks. \"Tilføj til markeringen \" "
+"for markeringsværktøjerne."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -893,8 +905,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "Forfatterne af GNOMEs \"Art Libre\"-ikonsæt"
 
 #: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "Et tegneprogram til GNOME-skrivebordet."
+msgid "Simple image editor for Linux"
+msgstr "Simpelt billedredigeringsværktøj for Linux"
 
 #: src/main.py
 msgid "Official webpage"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-08-22 18:43+0200\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
 "PO-Revision-Date: 2021-10-09 22:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -28,7 +28,10 @@ msgstr "Crtanje"
 msgid "Simple drawing utility"
 msgstr "Jednostavan program za crtanje"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Slikanje;Skiciranje;Olovka;"
@@ -48,29 +51,32 @@ msgstr "Nova slika"
 msgid "Edit Image in Clipboard"
 msgstr "Uredi sliku u međuspremniku"
 
-#. VERY IMPORTANT description of the application
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Simple image editor for Linux"
-msgstr "Jednostavan program za crtanje za Linux"
+msgid "Edit screenshots or memes"
+msgstr ""
 
+#. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
 msgstr ""
-"„Crtanje” je osnovni program za uređivanje slika s podrškom za PNG, JPEG i "
-"BMP datoteke."
 
+#. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
 msgstr ""
-"Omogućuje crtanje ili uređivanje slika pomoću alata kao što su olovka, "
-"linija ili luk (s raznim opcijama), odabir (izrezivanje, kopiranje, "
-"umetanje, povlačenje, …), oblici (pravokutnik, krug, poligon, …), umetanje "
-"teksta, mijenjanje veličine, rezanje, okretanje, …"
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -86,8 +92,8 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
-"Sada se može koristiti novi alat „Ukosi” za naginjanje slike iz pravokutnika"
-" u paralelogram. Ta se deformacija može primijeniti vodoravno ili okomito."
+"Sada se može koristiti novi alat „Ukosi” za naginjanje slike iz pravokutnika "
+"u paralelogram. Ta se deformacija može primijeniti vodoravno ili okomito."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -103,17 +109,17 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
-"Ako su nazivi alata vidljivi, određeni alat se može aktivirati pomoću "
-"„alt+[podcrtano slovo]”. Ovo možda još neće raditi s jezicima koji ne koriste"
-"latiničnu abecedu."
+"Ako su nazivi alata vidljivi, određeni alat se može aktivirati pomoću „alt"
+"+[podcrtano slovo]”. Ovo možda još neće raditi s jezicima koji ne "
+"koristelatiničnu abecedu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
-"Pritiskom tipki „ctrl”, „shift” ili „alt” tijekom korištenja alata omogućuju"
-"se određene opcije, kao što je „Dodaj u odabir” za alate za biranje."
+"Pritiskom tipki „ctrl”, „shift” ili „alt” tijekom korištenja alata "
+"omogućujuse određene opcije, kao što je „Dodaj u odabir” za alate za biranje."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -121,8 +127,8 @@ msgstr ""
 msgid ""
 "Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
-"Verzija 0.8.2 sadrži nekoliko ispravki manjih programskih grešaka i "
-"razne nove prijevode."
+"Verzija 0.8.2 sadrži nekoliko ispravki manjih programskih grešaka i razne "
+"nove prijevode."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -591,8 +597,7 @@ msgstr "Dijeli sliku"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Slika se promijenila na disku. Želiš li je ponovo "
-"učitati?"
+msgstr "Slika se promijenila na disku. Želiš li je ponovo učitati?"
 
 #: src/ui/image.ui
 msgid "Reload"
@@ -889,8 +894,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "Autori GNOME-ovog kompleta ikona „Art Libre”"
 
 #: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "Program za crtanje za GNOME okruženje."
+msgid "Simple image editor for Linux"
+msgstr "Jednostavan program za crtanje za Linux"
 
 #: src/main.py
 msgid "Official webpage"
@@ -963,8 +968,8 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Ako spremiš slike u ovim formatima, što želiš koristiti kao zamjenu "
-"za prozirne pikslove?"
+"Ako spremiš slike u ovim formatima, što želiš koristiti kao zamjenu za "
+"prozirne pikslove?"
 
 #: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
@@ -1210,8 +1215,8 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Odabran je dio slike: pikseli ispod odabira neće biti spremljene u boji "
-"koju možda ne očekuješ! "
+"Odabran je dio slike: pikseli ispod odabira neće biti spremljene u boji koju "
+"možda ne očekuješ! "
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1392,8 +1397,7 @@ msgstr "Greška pri pokretanju programa. Prijavi ovu grešku."
 #, python-format
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"Ovo je prvi put da koristaš Crtanje %s. Želiš li pročitati novosti?"
+msgstr "Ovo je prvi put da koristaš Crtanje %s. Želiš li pročitati novosti?"
 
 #: src/window.py
 msgid "No"
@@ -1434,8 +1438,8 @@ msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 #: src/window.py
 msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
-"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša, dodirni s "
-"tri prsta ili pritisni F8"
+"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša, dodirni s tri "
+"prsta ili pritisni F8"
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1445,8 +1449,7 @@ msgstr "Za zatvaranje cjeloekranskog prikaza pritisni F11."
 #, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr ""
-"Greška pri učitavanje donje ploče alata „%s”. Prijavi ovu grešku."
+msgstr "Greška pri učitavanje donje ploče alata „%s”. Prijavi ovu grešku."
 
 #: src/window.py
 #, python-format
@@ -1638,8 +1641,8 @@ msgstr "Okomito izobličenje"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr "Operacija se ne može pokrenuti: krivi id alata (očekivan "
-" {0}, dobiven {1})"
+msgstr ""
+"Operacija se ne može pokrenuti: krivi id alata (očekivan  {0}, dobiven {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
