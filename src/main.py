@@ -284,7 +284,7 @@ class Application(Gtk.Application):
 			# To translators: this is credits for the icons, consider that "Art
 			# Libre" is proper name
 			                       _("GNOME's \"Art Libre\" icon set authors")],
-			comments=_("A drawing application for the GNOME desktop."),
+			comments=_("Simple image editor for Linux"),
 			license_type=Gtk.License.GPL_3_0,
 			logo_icon_name=APP_ID, version=str(self._version),
 			website='https://maoschanz.github.io/drawing/',
