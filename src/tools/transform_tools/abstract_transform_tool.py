@@ -32,6 +32,9 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.apply_to_selection = False
 		self._directions = ''
 
+		# hexa code (transparent black), will be updated later if needed
+		self._expansion_color = 0
+
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.apply_to_selection = self.selection_is_active()
@@ -194,6 +197,30 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		cairo_context.set_source_surface(source_surface, 0, 0)
 		cairo_context.paint()
 		return new_surface
+
+	############################################################################
+
+	def _update_expansion_color(self, event_btn=1):
+		"""When the canvas grows, the color of the new pixels is parametrable"""
+		color_type = self.get_option_value('crop-expand')
+		if color_type == 'initial':
+			exp_rgba = self.get_image().get_initial_rgba()
+		elif color_type == 'secondary' and event_btn == 1:
+			exp_rgba = self.window.options_manager.get_right_color()
+		elif color_type == 'secondary' and event_btn == 3:
+			exp_rgba = self.window.options_manager.get_left_color()
+		else: # color_type == 'alpha':
+			exp_rgba = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=0.0)
+		self._expansion_color = self._rgba_as_hexa_int(exp_rgba)
+
+	def _rgba_as_hexa_int(self, gdk_rgba):
+		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
+		format is 0xrrggbbaa so here are ugly binary operators."""
+		r = int(255 * gdk_rgba.red)
+		g = int(255 * gdk_rgba.green)
+		b = int(255 * gdk_rgba.blue)
+		a = int(255 * gdk_rgba.alpha)
+		return (((((r << 8) + g) << 8) + b) << 8) + a
 
 	############################################################################
 ################################################################################

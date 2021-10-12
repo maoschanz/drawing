@@ -24,13 +24,14 @@ class ToolSkew(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSkew'
 
 	def __init__(self, window):
-		# In this context, "Skew" is the name of the tool changing rectangles
-		# into parallelograms (= tilt, slant, bend). Named after MS Paint's
-		# "Stretch/Skew" dialog.
+		# This is the name of the tool changing rectangles into parallelograms.
+		# It's synonymous with tilt, slant, bend. If you need a reference to
+		# translate it, this is named after MS Paint's "Stretch/Skew" dialog.
 		super().__init__('skew', _("Skew"), 'tool-skew-symbolic', window)
 		self._x = 0
 		self._y = 0
 		self.add_tool_action_simple('skew-exists', self._enable)
+		self.add_tool_action_enum('crop-expand', 'initial')
 
 	def _enable(self, *args):
 		"""Ridiculous hack"""
@@ -127,6 +128,7 @@ class ToolSkew(AbstractCanvasTool):
 		self._xy = self.get_xy() # horizontal deformation
 		# TODO répliquer ce que fait le scale avec son x2/y2 qui évite un effet
 		# flamby dégueulasse lié aux arrondis ?
+		self._update_expansion_color(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._directions == '' or not render:
@@ -181,6 +183,7 @@ class ToolSkew(AbstractCanvasTool):
 			'local_dy': 0,
 			'yx': self.yx_spinbtn.get_value_as_int()/100,
 			'xy': self.xy_spinbtn.get_value_as_int()/100,
+			'rgba': self._expansion_color,
 		}
 		return operation
 
