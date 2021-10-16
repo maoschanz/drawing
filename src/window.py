@@ -712,7 +712,6 @@ class DrWindow(Gtk.ApplicationWindow):
 	def log_message(self, message):
 		if self.devel_mode:
 			print("Drawing: " + message)
-			self.reveal_message(message)
 
 	def reveal_action_report(self, message):
 		self.info_bar.set_visible(True)

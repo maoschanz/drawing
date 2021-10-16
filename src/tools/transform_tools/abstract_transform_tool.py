@@ -32,8 +32,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.apply_to_selection = False
 		self._directions = ''
 
-		# hexa code (transparent black), will be updated later if needed
-		self._expansion_color = 0
+		# Gdk.RGBA
+		self._expansion_rgba = None
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -175,7 +175,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
 		cairo_context.paint()
 
-	def get_deformed_surface(self, source_surface, coefs):
+	def get_deformed_surface(self, source_surface, coefs, prefill=False):
 		"""Use cairo.Matrix to apply a transformation to `source_surface` using
 		the coefficients in `coefs` and return a new surface with the result."""
 		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
@@ -187,6 +187,17 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 		cairo_context = cairo.Context(new_surface)
+
+		if prefill:
+			# TODO this exists only for the "skew" tool, and it shouldn't be
+			# here nor do this.
+			# TODO it should paint *around* the deformed surface after it's
+			# returned by the current method
+			cairo_context.set_source_rgba(self._expansion_rgba.red * 255, \
+			                                 self._expansion_rgba.green * 255, \
+			        self._expansion_rgba.blue * 255, self._expansion_rgba.alpha)
+			cairo_context.paint()
+
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=p_xx, yx=p_yx, xy=p_xy, yy=p_yy, x0=p_x0, y0=p_y0)
 		try:
@@ -200,7 +211,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 	############################################################################
 
-	def _update_expansion_color(self, event_btn=1):
+	def _update_expansion_rgba(self, event_btn=1):
 		"""When the canvas grows, the color of the new pixels is parametrable"""
 		color_type = self.get_option_value('crop-expand')
 		if color_type == 'initial':
@@ -211,16 +222,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			exp_rgba = self.window.options_manager.get_left_color()
 		else: # color_type == 'alpha':
 			exp_rgba = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=0.0)
-		self._expansion_color = self._rgba_as_hexa_int(exp_rgba)
-
-	def _rgba_as_hexa_int(self, gdk_rgba):
-		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
-		format is 0xrrggbbaa so here are ugly binary operators."""
-		r = int(255 * gdk_rgba.red)
-		g = int(255 * gdk_rgba.green)
-		b = int(255 * gdk_rgba.blue)
-		a = int(255 * gdk_rgba.alpha)
-		return (((((r << 8) + g) << 8) + b) << 8) + a
+		self._expansion_rgba = exp_rgba
 
 	############################################################################
 ################################################################################

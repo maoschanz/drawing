@@ -69,6 +69,7 @@ class ToolSkew(AbstractCanvasTool):
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
+		self.set_action_sensitivity('crop-expand', not self.apply_to_selection)
 		self._reset_values()
 
 	############################################################################
@@ -110,6 +111,7 @@ class ToolSkew(AbstractCanvasTool):
 		self.build_and_do_op()
 
 	def _reset_values(self, *args):
+		self._update_expansion_rgba()
 		self._yx = 0 # vertical deformation
 		self._xy = 0 # horizontal deformation
 		self.yx_spinbtn.set_value(0)
@@ -128,7 +130,7 @@ class ToolSkew(AbstractCanvasTool):
 		self._xy = self.get_xy() # horizontal deformation
 		# TODO répliquer ce que fait le scale avec son x2/y2 qui évite un effet
 		# flamby dégueulasse lié aux arrondis ?
-		self._update_expansion_color(event.button)
+		self._update_expansion_rgba(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._directions == '' or not render:
@@ -183,7 +185,7 @@ class ToolSkew(AbstractCanvasTool):
 			'local_dy': 0,
 			'yx': self.yx_spinbtn.get_value_as_int()/100,
 			'xy': self.xy_spinbtn.get_value_as_int()/100,
-			'rgba': self._expansion_color,
+			'rgba': self._expansion_rgba,
 		}
 		return operation
 
@@ -191,8 +193,10 @@ class ToolSkew(AbstractCanvasTool):
 		self.start_tool_operation(operation)
 		if operation['is_selection']:
 			source_pixbuf = self.get_selection_pixbuf()
+			prefill = False
 		else:
 			source_pixbuf = self.get_main_pixbuf()
+			prefill = True
 		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
 		source_surface.set_device_scale(self.scale_factor(), self.scale_factor())
 
@@ -206,7 +210,7 @@ class ToolSkew(AbstractCanvasTool):
 			y0 = int(-1 * yx * source_surface.get_width())
 		coefs = [1.0, yx, xy, 1.0, x0, y0]
 
-		new_surface = self.get_deformed_surface(source_surface, coefs)
+		new_surface = self.get_deformed_surface(source_surface, coefs, prefill)
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)

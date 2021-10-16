@@ -118,7 +118,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = event_x
 		self.y_press = event_y
 		self.unclicked = False
-		self._update_expansion_color(event.button)
+		self._update_expansion_rgba(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = int(event_x - self.x_press)
@@ -178,7 +178,7 @@ class ToolCrop(AbstractCanvasTool):
 		"""Special way to build an operation, not from the present crop tool,
 		but from the selection menu. The parameters are determined automatically
 		from the state of the selection manager."""
-		self._update_expansion_color()
+		self._update_expansion_rgba()
 		s = self.get_selection()
 		new_x = min(0, s.selection_x)
 		new_y = min(0, s.selection_y)
@@ -198,7 +198,7 @@ class ToolCrop(AbstractCanvasTool):
 			'local_dy': int(new_y),
 			'width': new_width,
 			'height': new_height,
-			'rgba': self._expansion_color
+			'rgba': self._expansion_rgba
 		}
 		return operation
 
@@ -212,7 +212,7 @@ class ToolCrop(AbstractCanvasTool):
 			'local_dy': int(self._y),
 			'width': self._get_width(),
 			'height': self._get_height(),
-			'rgba': self._expansion_color
+			'rgba': self._expansion_rgba
 		}
 		return operation
 
@@ -222,7 +222,7 @@ class ToolCrop(AbstractCanvasTool):
 		y = operation['local_dy']
 		width = operation['width']
 		height = operation['height']
-		rgba = operation['rgba']
+		rgba = self._rgba_as_hexa_int(operation['rgba'])
 		is_selection = operation['is_selection']
 		if is_selection:
 			source_pixbuf = self.get_selection_pixbuf()
@@ -231,6 +231,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		self._crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
 		if operation['is_etf']:
+			# Case of an "expand to fit" action
 			s_pixbuf = self.get_selection_pixbuf()
 			self.get_selection().update_from_transform_tool(s_pixbuf, -1 * x, -1 * y)
 		self.common_end_operation(operation)
@@ -292,6 +293,15 @@ class ToolCrop(AbstractCanvasTool):
 		# (`new_pixbuf`) starting at the coordinates `dest_*`.
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
+
+	def _rgba_as_hexa_int(self, gdk_rgba):
+		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
+		format is 0xrrggbbaa so here are ugly binary operators."""
+		r = int(255 * gdk_rgba.red)
+		g = int(255 * gdk_rgba.green)
+		b = int(255 * gdk_rgba.blue)
+		a = int(255 * gdk_rgba.alpha)
+		return (((((r << 8) + g) << 8) + b) << 8) + a
 
 	############################################################################
 ################################################################################
