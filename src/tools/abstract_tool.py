@@ -85,6 +85,9 @@ class AbstractAbstractTool():
 		self.set_action_sensitivity('exchange_color', self.use_color)
 		self.set_action_sensitivity('cairo_operator', self.use_operator)
 
+		self.set_action_sensitivity('cancel_transform', False)
+		self.set_action_sensitivity('apply_transform', False)
+
 	def get_settings(self):
 		return self.window.options_manager._tools_gsettings
 
@@ -103,7 +106,10 @@ class AbstractAbstractTool():
 	def build_bottom_pane(self):
 		return None
 
-	def on_apply_temp_pixbuf_tool_operation(self, *args):
+	def on_apply_transform_tool_operation(self, *args):
+		pass # implemented only by transform tools
+
+	def on_cancel_transform_tool_operation(self, *args):
 		pass # implemented only by transform tools
 
 	def get_options_label(self):
