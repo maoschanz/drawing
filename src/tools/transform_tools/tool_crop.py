@@ -30,7 +30,6 @@ class ToolCrop(AbstractCanvasTool):
 		self.y_press = self.y_motion = 0
 		self._unclicked = True # locking operation execution to avoid inf. loops
 		self.add_tool_action_enum('crop-expand', 'initial')
-		self._expansion_color = 0 # transparent black, will be updated later
 
 	def try_build_pane(self):
 		self.pane_id = 'crop'
@@ -82,30 +81,6 @@ class ToolCrop(AbstractCanvasTool):
 
 	############################################################################
 
-	def _update_expansion_color(self, event_btn=1):
-		"""When the canvas grows, the color of the new pixels is parametrable"""
-		color_type = self.get_option_value('crop-expand')
-		if color_type == 'initial':
-			exp_rgba = self.get_image().get_initial_rgba()
-		elif color_type == 'secondary' and event_btn == 1:
-			exp_rgba = self.window.options_manager.get_right_color()
-		elif color_type == 'secondary' and event_btn == 3:
-			exp_rgba = self.window.options_manager.get_left_color()
-		else: # color_type == 'alpha':
-			exp_rgba = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=0.0)
-		self._expansion_color = self._rgba_as_hexa_int(exp_rgba)
-
-	def _rgba_as_hexa_int(self, gdk_rgba):
-		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
-		format is 0xrrggbbaa so here are ugly binary operators."""
-		r = int(255 * gdk_rgba.red)
-		g = int(255 * gdk_rgba.green)
-		b = int(255 * gdk_rgba.blue)
-		a = int(255 * gdk_rgba.alpha)
-		return (((((r << 8) + g) << 8) + b) << 8) + a
-
-	############################################################################
-
 	def _get_width(self):
 		return self.width_btn.get_value_as_int()
 
@@ -143,7 +118,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = self.x_motion = event_x
 		self.y_press = self.y_motion = event_y
 		self._unclicked = False
-		self._update_expansion_color(event.button)
+		self._update_expansion_rgba(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = int(event_x - self.x_motion)
@@ -204,7 +179,7 @@ class ToolCrop(AbstractCanvasTool):
 		"""Special way to build an operation, not from the present crop tool,
 		but from the selection menu. The parameters are determined automatically
 		from the state of the selection manager."""
-		self._update_expansion_color()
+		self._update_expansion_rgba()
 		s = self.get_selection()
 		new_x = min(0, s.selection_x)
 		new_y = min(0, s.selection_y)
@@ -224,7 +199,7 @@ class ToolCrop(AbstractCanvasTool):
 			'local_dy': int(new_y),
 			'width': new_width,
 			'height': new_height,
-			'rgba': self._expansion_color
+			'rgba': self._expansion_rgba
 		}
 		return operation
 
@@ -238,7 +213,7 @@ class ToolCrop(AbstractCanvasTool):
 			'local_dy': int(self._y),
 			'width': self._get_width(),
 			'height': self._get_height(),
-			'rgba': self._expansion_color
+			'rgba': self._expansion_rgba
 		}
 		return operation
 
@@ -248,7 +223,7 @@ class ToolCrop(AbstractCanvasTool):
 		y = operation['local_dy']
 		width = operation['width']
 		height = operation['height']
-		rgba = operation['rgba']
+		rgba = self._rgba_as_hexa_int(operation['rgba'])
 		is_selection = operation['is_selection']
 		if is_selection:
 			source_pixbuf = self.get_selection_pixbuf()
@@ -257,6 +232,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
 		self._crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
 		if operation['is_etf']:
+			# Case of an "expand to fit" action
 			s_pixbuf = self.get_selection_pixbuf()
 			self.get_selection().update_from_transform_tool(s_pixbuf, -1 * x, -1 * y)
 		self.common_end_operation(operation)
@@ -318,6 +294,15 @@ class ToolCrop(AbstractCanvasTool):
 		# (`new_pixbuf`) starting at the coordinates `dest_*`.
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
+
+	def _rgba_as_hexa_int(self, gdk_rgba):
+		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
+		format is 0xrrggbbaa so here are ugly binary operators."""
+		r = int(255 * gdk_rgba.red)
+		g = int(255 * gdk_rgba.green)
+		b = int(255 * gdk_rgba.blue)
+		a = int(255 * gdk_rgba.alpha)
+		return (((((r << 8) + g) << 8) + b) << 8) + a
 
 	############################################################################
 ################################################################################

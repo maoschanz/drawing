@@ -1,9 +1,7 @@
 # Drawing
 
-## A simple image editor for Linux
-
-This is a basic drawing application, similar to Microsoft Paint, but aiming
-at the GNOME desktop.
+This simple image editor, similar to Microsoft Paint, is aiming at the GNOME
+desktop.
 
 PNG, JPEG and BMP files are supported.
 
