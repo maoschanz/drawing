@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gdk
-from .utilities import utilities_add_unit_to_spinbtn
+from .utilities_units import utilities_add_unit_to_spinbtn
 
 class DrCustomImageDialog(Gtk.Dialog):
 	__gtype_name__ = 'DrCustomImageDialog'

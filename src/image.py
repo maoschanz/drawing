@@ -20,7 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango, GLib
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
-from .utilities import InvalidFileFormatException
+from .utilities_files import InvalidFileFormatException
 from .utilities_overlay import utilities_generic_canvas_outline
 
 class DrMotionBehavior():

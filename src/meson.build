@@ -47,11 +47,17 @@ drawing_sources = [
 	'saving_manager.py',
 	'selection_manager.py',
 
-	'utilities.py',
 	'properties.py',
 	'preferences.py',
 	'message_dialog.py',
 	'new_image_dialog.py',
+
+	'utilities/utilities_blur.py',
+	'utilities/utilities_colors.py',
+	'utilities/utilities_files.py',
+	'utilities/utilities_overlay.py',
+	'utilities/utilities_paths.py',
+	'utilities/utilities_units.py',
 
 	'optionsbars/abstract_optionsbar.py',
 	'optionsbars/classic/optionsbar_classic.py',
@@ -64,9 +70,6 @@ drawing_sources = [
 	'optionsbars/transform/optionsbar_skew.py',
 
 	'tools/abstract_tool.py',
-	'tools/utilities_blur.py',
-	'tools/utilities_overlay.py',
-	'tools/utilities_paths.py',
 
 	'tools/classic_tools/abstract_classic_tool.py',
 	'tools/classic_tools/tool_arc.py',

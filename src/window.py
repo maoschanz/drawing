@@ -33,8 +33,8 @@ from .printing_manager import DrPrintingManager
 from .tools_initializer import DrToolsInitializer
 
 # Import various functions
-from .utilities import utilities_add_filechooser_filters
-from .utilities import utilities_gfile_is_image
+from .utilities_files import utilities_add_filechooser_filters, \
+                             utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 DEFAULT_TOOL_ID = 'pencil'
