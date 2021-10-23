@@ -34,6 +34,7 @@ def utilities_rgba_to_hexadecimal(r, g, b, a):
 	"""Methods such as `GdkPixbuf.Pixbuf.fill` wants an hexadecimal integer
 	whose format is 0xrrggbbaa so here are ugly binary operators.
 	All four values (even alpha!) must be between 0 and 255."""
+	r, g, b, a = int(r), int(g), int(b), int(a)
 	return (((((r << 8) + g) << 8) + b) << 8) + a
 
 def utilities_rgb_to_hexadecimal(r, g, b):

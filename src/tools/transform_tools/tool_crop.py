@@ -20,7 +20,7 @@ from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_crop import OptionsBarCrop
 from .utilities_overlay import utilities_show_handles_on_context
 from .utilities_colors import utilities_rgba_to_hexadecimal, \
-                              utilities_gdk_rgba_to_normalized_array
+                              utilities_gdk_rgba_to_color_array
 
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
@@ -64,6 +64,7 @@ class ToolCrop(AbstractCanvasTool):
 			self._init_if_selection()
 		else:
 			self._init_if_main()
+		self._update_expansion_rgba()
 		self.width_btn.set_value(self._original_width)
 		self.height_btn.set_value(self._original_height)
 		self.set_action_sensitivity('crop-expand', not self.apply_to_selection)
@@ -224,9 +225,11 @@ class ToolCrop(AbstractCanvasTool):
 		y = operation['local_dy']
 		width = operation['width']
 		height = operation['height']
-		rgba_array = utilities_gdk_rgba_to_normalized_array(operation['rgba'])
-		hexa_rgba = utilities_rgba_to_hexadecimal(rgba_array[0], rgba_array[1], \
-		                                          rgba_array[2], rgba_array[3])
+
+		rgba_array = utilities_gdk_rgba_to_color_array(operation['rgba'])
+		rgba_array[3] *= 255
+		hexa_rgba = utilities_rgba_to_hexadecimal(*rgba_array)
+
 		is_selection = operation['is_selection']
 		if is_selection:
 			source_pixbuf = self.get_selection_pixbuf()
