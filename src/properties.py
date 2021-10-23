@@ -1,6 +1,6 @@
 # properties.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -75,10 +75,12 @@ class DrPropertiesDialog(Gtk.Dialog):
 			(pb_format, w, h) = GdkPixbuf.Pixbuf.get_file_info(label_path)
 			label_file_format = pb_format.get_name()
 
+		# Context: the path of the edited file
 		self._add_grid_row(0, _("Path"), label_path)
+		# Context: the file format of the edited file
 		self._add_grid_row(1, _("Format"), label_file_format)
 		self._add_grid_row(2, _("Colorspace"), self._set_colorspace_label())
-		# TODO display both the colorspace of the file and off the surface, with
+		# TODO display both the colorspace of the file and of the surface, with
 		# a warning if there might be a loss of data
 
 	def _add_grid_row(self, index, key, value):
@@ -101,6 +103,7 @@ class DrPropertiesDialog(Gtk.Dialog):
 			5: "RGB30",
 		}
 		cairo_format = self._image.get_surface().get_format()
+		# Context: an invalid colorspace format
 		colorspace_text = enum.get(cairo_format, _("Invalid format"))
 		return colorspace_text
 

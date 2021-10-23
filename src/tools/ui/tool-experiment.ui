@@ -3,39 +3,29 @@
   <menu id="options-menu">
 
     <section>
-      <attribute name="label">Pinceaux</attribute>
+      <attribute name="label">Pinceaux simples</attribute>
       <item>
-        <attribute name="label">Simple</attribute>
+        <attribute name="label">Tracé brut</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">simple</attribute>
       </item>
       <item>
-        <attribute name="label">Lisse (ajout de points)</attribute>
+        <attribute name="label">Lissé (ajout de points)</attribute>
         <attribute name="action">win.experiment_mode</attribute>
         <attribute name="target">smooth</attribute>
       </item>
-      <item>
-        <attribute name="label">Dynamique par segments</attribute>
-        <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">dynamic</attribute>
-      </item>
-      <item>
-        <attribute name="label">Dynamique par superposition</attribute>
-        <attribute name="action">win.experiment_mode</attribute>
-        <attribute name="target">dynamic2</attribute>
-      </item>
-      <!-- <item> -->
-      <!--   <attribute name="label">Pinceau à motif</attribute> -->
-      <!--   <attribute name="action">win.experiment_mode</attribute> -->
-      <!--   <attribute name="target">pattern</attribute> -->
-      <!-- </item> -->
     </section>
-
     <section>
-      <attribute name="label">Actions</attribute>
+      <attribute name="label">Autres</attribute>
       <item>
-        <attribute name="label">Tracé en dents de scies</attribute>
-        <attribute name="action">win.experiment_macro_scie</attribute>
+        <attribute name="label">Pinceaux à motif par masque</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">pattern</attribute>
+      </item>
+      <item>
+        <attribute name="label">Macro HSL en W</attribute>
+        <attribute name="action">win.experiment_mode</attribute>
+        <attribute name="target">macro-w</attribute>
       </item>
     </section>
 

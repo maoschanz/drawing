@@ -1,6 +1,6 @@
 # tool_picker.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,11 +18,14 @@
 from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_get_rgba_for_xy
+from .utilities_colors import utilities_color_array_to_gdk_rgba
 
 class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'
 
 	def __init__(self, window, **kwargs):
+		# Context: this is a tool to pick a RGBA color in the image in order to
+		# use it to draw with other tools
 		super().__init__('picker', _("Color Picker"), 'color-select-symbolic', window)
 		self.use_size = False
 
@@ -33,11 +36,9 @@ class ToolPicker(AbstractClassicTool):
 		rgba_vals = utilities_get_rgba_for_xy(surface, event_x, event_y)
 		if rgba_vals is None:
 			return # click outside of the surface
-		r = rgba_vals[0] / 255
-		g = rgba_vals[1] / 255
-		b = rgba_vals[2] / 255
-		a = rgba_vals[3] / 255
-		color = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		rgba_vals = [*rgba_vals]
+		rgba_vals[3] /= 255 # alpha has to be between 0 and 1
+		color = utilities_color_array_to_gdk_rgba(*rgba_vals)
 		if event.button == 1:
 			self.window.options_manager.set_left_color(color)
 		elif event.button == 3:

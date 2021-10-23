@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="whats_new">
+
+  <info>
+    <link type="guide" xref="index#news"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name>Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Changes and new features in Drawing</desc>
+  </info>
+
+  <title>What's new?</title>
+
+  <p>The most recent versions are listed first.</p>
+  <section>
+    <title>Version 0.8.2</title>
+
+    <p>
+      The boundaries of the canvas are now always visibly delimited, to better
+      render the area where you can draw, even if the canvas is transparent. It
+      also helps to see what parts of the selection may disappear when you will
+      unselect it.
+    </p>
+    <p>
+      <link xref="tools_transform">Transform tools</link> can now draw a preview
+      of the pixels they may create outside of the current canvas, which makes
+      the 'crop', 'scale', and 'rotate' tools more intuitive to use.
+    </p>
+    <p>
+      The straight line tool has a new option to lock its angle, so you can
+      draw perfect horizontal, vertical, or 45° strokes.
+    </p>
+    <p>
+      The `--edit-clipboard` command line option now works better with Wayland.
+    </p>
+    <p>
+      Scaling an image using the numerical inputs now preserves the original
+      proportions of the image (unless the "never keep proportions" option
+      is enabled).
+    </p>
+    <p>
+      This version of the app is compatible with older GNOME versions
+      (Ubuntu LTS 18.04).
+    </p>
+  </section>
+
+  <section>
+    <title>Version 0.8.1</title>
+
+    <p>
+      You can now crop or expand the canvas to an "automatic" size based on the
+      current selection size, using new actions available in the selection
+      menus.
+    </p>
+    <p>
+      A bug, where the "crop" tool could erase the image under certain
+      conditions, has been fixed.
+    </p>
+    <p>
+      In the preferences window, there is now an option to select if you
+      prefer the dark theme variant.
+    </p>
+    <p>
+      Several minor options have been added to the tools:
+    </p>
+    <list>
+      <item><p>
+        The orientation of the calligraphic nib (<gui style="button">Brush</gui>
+        tool);
+      </p></item>
+      <item><p>
+        Various ways to censor an information using filters, with a far quicker
+        workflow, as an option of the <gui style="button">Eraser</gui> tool;
+      </p></item>
+      <item><p>
+        An "outline" option to the <gui style="button">Pencil</gui>,
+        <gui style="button">Line</gui> and <gui style="button">Curve</gui>
+        tools, to get better contrast, or just a cool effect around your lines.
+      </p></item>
+    </list>
+  </section>
+
+  <section>
+    <title>Version 0.8.0</title>
+
+    <p>
+      The <link xref="fullscreen">fullscreen mode</link> has been completely
+      redesigned to provide an easier yet less intrusive access to the tools and
+      their options.
+    </p>
+    <p>
+      The help manual has been splitted in smaller pages to be easier to read,
+      and several buttons to access it have been added across the application.
+    </p>
+
+    <subsection>
+      <title>New tools</title>
+      <p>
+        You can now use a tablet and a stylus to <link xref="tools_classic#brushes">
+        draw with pressure-sensitive brushes</link>, available under the new
+        optional 'brush' tool: a simple brush, an airbrush, a hairy brush, and a
+        calligraphic nib.
+      </p>
+    </subsection>
+
+    <subsection>
+      <title>New options for existing tools</title>
+      <list>
+        <item><p>
+          The <link xref="tools_selection">selection tools</link> have a new,
+          more rich, more readable bottom pane.
+        </p></item>
+        <item><p>
+          <link xref="tools_transform#filters">Filters</link> have been
+          rewritten to be more reliable, and a new filter to harmoniously
+          increase contrast has been added.
+        </p></item>
+        <item><p>
+          When you move or delete the selection, now the pixels left behind can
+          optionally be a specific color, rather than always transparency.
+          This specific color can be excluded from the selection. That feature
+          is complex to explain with words, try it yourself you'll see.
+        </p></item>
+        <item><p>
+          The eraser tool now as options: it can use a specific color, rather
+          than always transparency. This option has the same value as the
+          selection replacement color mentioned above. This tool also have a new
+          icon, based on the Adwaita theme.
+        </p></item>
+        <item><p>
+          Options such as the text background type, the shape filling style, or
+          the aforementioned eraser/selection replacement color, are now
+          persisted when closing the application.
+        </p></item>
+      </list>
+    </subsection>
+
+    <subsection>
+      <title>Color modes</title>
+      <p>
+        The user interface for selecting the <link xref="tools_classic_colors">
+        active color application mode</link> has been redesigned to better show
+        the accurate label, and better organize the possible modes as submenus.
+      </p>
+      <media type="image" mime="image/png" width="80%" its:translate="no"
+             src="figures/screenshot_color_palette.png" />
+      <p>
+        The "blur" mode has been removed, which simplifies the situation and
+        allows <link xref="tools_classic">several tools</link> ("shapes" and
+        "brushes") to get support for the color application modes in general.
+      </p>
+    </subsection>
+
+    <subsection>
+      <title>Bugs fixed</title>
+      <p>
+        Coordinates of the selection were lost when unselecting a selection
+        defined by an undo.
+      </p>
+    </subsection>
+  </section>
+
+  <section>
+    <title>Version 0.6.5</title>
+
+    <p>
+      Bugs fixed: the bottom panes sometimes refused to adapt to the screen
+      size, and could disappear under certain conditions.
+    </p>
+    <p>
+      The catastrophic "print" action, that no one ever used so no one ever
+      noticed, is now somewhat usable.
+    </p>
+    <p>
+      Importing or opening an image using drag-and-drop is now disabled with
+      flatpak, because it can't work with the sandbox.
+    </p>
+    <p>
+      The <link xref="zoom_preview">movements of the view</link> when holding
+      and moving the middle-click are now far more accurate.
+    </p>
+  </section>
+
+  <section>
+    <title>Version 0.6.4</title>
+
+    <p>
+      The value of the "use anti-aliasing" option is now persisted when the app
+      is closed, and restored when the app starts.
+    </p>
+    <p>
+      Various changes to the way file types are handled should help you to get
+      informative error messages, and the app should be usable despite these
+      errors.
+    </p>
+  </section>
+
+  <section>
+    <title>Version 0.6.3</title>
+
+    <p>
+      More options to draw using dashes (several type of dashes) and arrows
+      (several scenarios where they were broken have been addressed). An option
+      to draw double-ended arrows is available.
+    </p>
+    <p>
+      This version is compatible with older distributions (versions of GNOME
+      libraries older than 3.30).
+    </p>
+    <p>
+      When the app uses a menu-bar, the tools have been arranged in a submenu:
+      "Tools / Active tool".
+    </p>
+  </section>
+
+  <section>
+    <title>Version 0.6.2</title>
+
+    <p>
+      The 'highlighter' tool now provides options to highlight light text on a
+      dark background.
+    </p>
+    <p>
+      When an image has been saved without its transparency, the app now
+      suggests to reload the image from the disk. Also, this 'reload from disk'
+      feature is now available with every possible window layout.
+    </p>
+    <p>
+      An action to copy the whole image to clipboard has been added.
+    </p>
+    <p>
+      Keyboard shortcuts for increasing and decreasing the tool width have been
+      added.
+    </p>
+    <p>
+      The 'paint' tool can now optionally paint over the entire image.
+    </p>
+  </section>
+
+  <section>
+    <title>Version 0.6.1</title>
+
+    <p>
+      It's now possible to remove transparency when saving PNG files too. And
+      there are more color options to replace the transparent pixels: 'initial
+      color' means the transparent pixels will be replaced by the initial color
+      of the canvas, as set in the app preferences.
+    </p>
+    <p>
+      A new optional tool named "Points" has been added, it may help captioning
+      pictures.
+    </p>
+    <p>
+      Minors bugs to the 'rotate' tool have been fixed, that occurred when the
+      selection was flipped before being rotated.
+    </p>
+  </section>
+
+  <section>
+    <title>Version 0.6.0</title>
+
+    <subsection>
+      <title>Zoom</title>
+      <p>
+        The most prominent new feature is the ability to <link xref="zoom_preview">
+        zoom in (or zoom out)</link> on the image. It can be achieved using:
+      </p>
+      <list>
+        <item><p>
+          buttons in the minimap popover;
+        </p></item>
+        <item><p>
+          touch gestures (touchpad or touchscreen);
+        </p></item>
+        <item><p>
+          the mouse wheel;
+        </p></item>
+        <item><p>
+          keyboard shortcuts.
+        </p></item>
+      </list>
+      <media type="image" mime="image/png" width="80%" its:translate="no"
+             src="figures/screenshot_zoom.png" />
+      <p>
+        With HiDPI displays, most problems have been fixed: the canvas should be
+        displayed without unwanted rescalings and destructive croppings.
+      </p>
+    </subsection>
+
+    <subsection>
+      <title>Improvements to tools</title>
+      <p>
+        An "additional tools" section has been added to <link xref="preferences#tools">
+        the preferences window</link>, and several tools listed in this section
+        are disabled by default.
+        It includes tools that are redundant with other more powerful tools, or
+        tools whose implementation isn't reliable enough.
+      </p>
+      <p>
+        Otherwise, the following changes occurred:
+      </p>
+      <list>
+        <item><p>
+          <link xref="tools_selection">Rectangle selection and freehand
+          selection</link> are now distinct tools, that share the same bottom
+          pane.
+        </p></item>
+        <item><p>
+          The 'rotate' tool now supports any angle when rotating the selection,
+          and it handles horizontal or vertical flipping.
+        </p></item>
+        <item><p>
+          The numerous tools producing shapes (circle, rectangle, polygon, …),
+          have been merged into a single, more consistent 'shape' tool, along
+          with 'rounded rectangle' and 'ellipse'. Their filling options now
+          include various types of gradients.
+        </p></item>
+        <item><p>
+          The text tool can now write using most system fonts, thus allowing
+          more complex characters to be used (e.g. Asian characters).
+        </p></item>
+        <item><p>
+          The 'saturate' tool has been replaced by <link xref="tools_transform#filters">
+          'filters'</link>, a more powerful tool with several types of blur,
+          color inversion, pixelization, saturation and transparency.
+        </p></item>
+        <item><p>
+          Specialized types of pencils (eraser, highlighter) have been added, as
+          optional tools.
+        </p></item>
+        <item><p>
+          The "free selection" tool, as well as the "free shape" and "polygon"
+          shape, are easier to use thanks to an action to close the path,
+          available in the tool options menu.
+        </p></item>
+      </list>
+      <p>
+        Concerning common options, you can now disable anti-aliasing. Also, the
+        "color application mode" is now an option listed in the
+        <link xref="tools_classic_colors">colors menus and popovers</link>.
+      </p>
+    </subsection>
+
+    <subsection>
+      <title>Other features</title>
+      <p>
+        A <link xref="fullscreen">fullscreen mode</link> is now available.
+      </p>
+      <p>
+        The "windows" menu has been removed from the menubar.
+      </p>
+      <p>
+        The user should be warned when they try to save despite the current
+        operation not being applied.
+      </p>
+    </subsection>
+  </section>
+
+</page>
+

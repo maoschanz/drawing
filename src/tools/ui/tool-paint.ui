@@ -2,13 +2,21 @@
 <interface domain="drawing">
   <menu id="options-menu">
     <section>
+      <!-- Context: title for the list of the possible painting algorithms. -->
       <attribute name="label" translatable="yes">Behavior</attribute>
       <item>
+        <!-- Context: this is one of the possible painting algorithms. It -->
+        <!-- tries to draw a shape around the area to paint, and fill it -->
+        <!-- with the new color. The shape is approximative so it's not the -->
+        <!-- default behavior of the tool. -->
         <attribute name="label" translatable="yes">Encircle and fill</attribute>
         <attribute name="action">win.paint_algo</attribute>
         <attribute name="target">fill</attribute>
       </item>
       <item>
+        <!-- Context: this is one of the possible painting algorithms. It -->
+        <!-- erases the color the user clicked, and then replace transparent -->
+        <!-- pixels with the new color. -->
         <attribute name="label" translatable="yes">Erase and replace</attribute>
         <attribute name="action">win.paint_algo</attribute>
         <attribute name="target">replace</attribute>
@@ -16,10 +24,25 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Clipping</attribute>
+        <!-- Context: this is one of the possible painting algorithms. It -->
+        <!-- paints over the entire image, instead of following the shapes -->
+        <!-- already drawn. -->
+        <attribute name="label" translatable="yes">Entire image</attribute>
+        <attribute name="action">win.paint_algo</attribute>
+        <attribute name="target">whole</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <!-- Context: this is one of the possible painting algorithms. It -->
+        <!-- doesn't really paint, instead it erases the color the user -->
+        <!-- clicked. For example to cut out an object from its white -->
+        <!-- background. -->
+        <attribute name="label" translatable="yes">Remove color</attribute>
         <attribute name="action">win.paint_algo</attribute>
         <attribute name="target">clipping</attribute>
       </item>
     </section>
   </menu>
 </interface>
+

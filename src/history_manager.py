@@ -1,6 +1,6 @@
 # history_manager.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gdk, Gio, GdkPixbuf, GLib
+# from .abstract_tool import WrongToolIdException
 
 ################################################################################
 
@@ -28,8 +29,11 @@ class DrHistoryManager():
 		self._undo_history = []
 		self._redo_history = []
 		self._is_saved = True
+		self._waiting_for_rebuild = False
 
 	def get_saved(self):
+		# XXX undoing/redoing doesn't update the title so the "*" isn't visible
+		# in all situations around a saving
 		return self._is_saved
 
 	def empty_history(self):
@@ -57,23 +61,23 @@ class DrHistoryManager():
 		if len(self._undo_history) > 0:
 			last_op = self._undo_history.pop()
 			self._redo_history.append(last_op)
-		self._rebuild_from_history()
+		self._rebuild_from_history_async()
+		self._image.update_history_sensitivity()
 
 	def try_redo(self, *args):
 		operation = self._redo_history.pop()
 		if operation['tool_id'] is None:
 			self._undo_history.append(operation)
-			self._image.restore_first_pixbuf() # FIXME ça marche pô
+			self._image.restore_first_pixbuf()
 		else:
 			self._get_tool(operation['tool_id']).apply_operation(operation)
 
 	def can_undo(self):
-		# XXX incorrect si ya des states ???
+		# XXX incorrect si ya des states et qu'on redo
 		return (len(self._undo_history) > 0) or self._operation_is_ongoing()
-		# XXX never called while an operation is ongoing so that ^ is stupid
 
 	def can_redo(self):
-		# XXX incorrect si ya des states ???
+		# XXX incorrect si ya des states ?
 		return len(self._redo_history) > 0
 
 #	def update_history_actions_labels(self):
@@ -84,8 +88,8 @@ class DrHistoryManager():
 #		redoable_action = self._redo_history[-1:]
 #		undo_label = None
 #		redo_label = None
-#		# TODO store/get translatable labels instead of tool_ids (issue #42)
-#		# XXX doesn't work with pixbuf states anyway
+#		# TODO store/get translatable labels instead of tool_ids (issue #42),
+#		# but it'll doesn't work with pixbuf states anyway…
 #		if self._operation_is_ongoing():
 #			# XXX pointless: the method is called after applying the operation
 #			undo_label = self._image.active_tool().tool_id
@@ -111,9 +115,22 @@ class DrHistoryManager():
 	############################################################################
 	# Cached pixbufs ###########################################################
 
+	def set_initial_operation(self, rgba_array, pixbuf, width, height):
+		r = float(rgba_array[0])
+		g = float(rgba_array[1])
+		b = float(rgba_array[2])
+		a = float(rgba_array[3])
+		self.initial_operation = {
+			'tool_id': None,
+			'pixbuf': pixbuf,
+			'red': r, 'green': g, 'blue': b, 'alpha': a,
+			'width': width, 'height': height
+		}
+
 	def add_state(self, pixbuf):
 		if pixbuf is None:
-			raise Exception("Attempt to save an invalid state")
+			# Context: an error message
+			raise Exception(_("Attempt to save an invalid state"))
 		self._undo_history.append({
 			'tool_id': None,
 			'pixbuf': pixbuf,
@@ -132,7 +149,7 @@ class DrHistoryManager():
 		else:
 			return self._undo_history[index]
 
-	def _get_last_state_index(self, yeet_supernumerary_states):
+	def _get_last_state_index(self, allow_yeeting_states):
 		"""Return the index of the last "state" operation (dict whose 'tool_id'
 		value is None) in the undo-history. If there is no such operation, the
 		returned index is -1 which means the only known state is the
@@ -146,44 +163,44 @@ class DrHistoryManager():
 				returned_index = self._undo_history.index(op)
 				nbPixbufs += 1
 
-		# If there are too many pixbufs in the history, remove a few
-		if yeet_supernumerary_states and nbPixbufs > 10:
-			print("YEETING STATES : %s IS TOO MUCH!" % nbPixbufs)
-			# TODO tester cette merde là
-			nbPixbufs = 0
-			# for op in self._redo_history:
-			# 	pass # TODO ça aussi non ??
-			for op in self._undo_history:
-				if op['tool_id'] is None:
-					if nbPixbufs < 5:
-						nbPixbufs += 1
-					else:
-						op['pixbuf'] = None # XXX fuite ?
-						self._undo_history.remove(op)
-						op = {} # XXX fuite ?
-						return self._get_last_state_index(True)
+		# TODO if there are too many pixbufs in the history, remove a few ones
+		# Issue #200, needs more design because saving can change the data
 
-		print("returned_index : " + str(returned_index))
+		# print("returned_index : " + str(returned_index))
 		return returned_index
 
 	############################################################################
 	# Other private methods ####################################################
 
-	def _rebuild_from_history(self):
+	def _rebuild_from_history_async(self):
+		if not self._waiting_for_rebuild:
+			# No need to duplicate calls, it will be rebuilt soon anyway
+			self._waiting_for_rebuild = True
+			GLib.timeout_add(500, self._rebuild_from_history, {})
+		# This introduces an artificial delay of half a second, BUT in the case
+		# where an user undoes several operations, i expect between 2 and 4
+		# presses on ctrl+z during these 500ms, so there will be between 2 and 4
+		# times less recomputation.
+
+	def _rebuild_from_history(self, async_cb_data={}):
 		"""Rebuild the image according to the content of the current history."""
+		if not self._waiting_for_rebuild:
+			# It has already been rebuild by an other async call
+			return
+		self._waiting_for_rebuild = False
+
 		last_save_index = self._get_last_state_index(True)
 		self._image.restore_first_pixbuf()
 		history = self._undo_history.copy()
 		self._undo_history = []
 		for op in history:
 			if history.index(op) > last_save_index:
-				print("do", op['tool_id'])
+				# print("do", op['tool_id'])
 				self._get_tool(op['tool_id']).simple_apply_operation(op)
 			else:
-				print("skip", op['tool_id']) # TODO faire 2 boucles, avec ranges
+				# print("skip", op['tool_id'])
 				self._undo_history.append(op)
 		self._image.update()
-		self._image.update_history_sensitivity()
 
 	def _operation_is_ongoing(self):
 		return self._image.active_tool().has_ongoing_operation()
@@ -193,11 +210,10 @@ class DrHistoryManager():
 		if tool_id in all_tools:
 			return all_tools[tool_id]
 		else:
-			# XXX raise something instead
-			self._image.window.prompt_message(True, "Error: no tool " + tool_id)
+			self._image.window.reveal_action_report(_("Error: no tool '%s'" % tool_id))
+			# no raise: this may happen normally if last_save_index is incorrect
 
 	############################################################################
 ################################################################################
-
 
 

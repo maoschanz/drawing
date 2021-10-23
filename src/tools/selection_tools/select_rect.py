@@ -1,6 +1,6 @@
-# rect_select.py
+# select_rect.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,12 +27,16 @@ class ToolRectSelect(AbstractSelectionTool):
 	def press_define(self, event_x, event_y):
 		pass
 
-	def motion_define(self, event_x, event_y):
+	def motion_define(self, event_x, event_y, render):
+		if not render:
+			return
 		self._build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 		self.restore_pixbuf()
-		cairo_context = self.get_context()
-		utilities_show_overlay_on_context(cairo_context, \
-		                           self.get_selection().get_future_path(), True)
+		rect = self.get_selection().get_future_path()
+		if rect is not None:
+			ccontext = self.get_context()
+			thickness = self.get_overlay_thickness()
+			utilities_show_overlay_on_context(ccontext, rect, True, thickness)
 
 	def release_define(self, surface, event_x, event_y):
 		self._build_rectangle_path(self.x_press, self.y_press, event_x, event_y)

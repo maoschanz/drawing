@@ -13,7 +13,6 @@
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="spacing">6</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">document-new</property>
@@ -87,23 +86,6 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="hidable1">
-        <property name="visible">False</property>
-        <property name="action-name">win.properties</property>
-        <property name="relief">none</property>
-        <property name="valign">center</property>
-        <property name="tooltip-text" translatable="yes">Image properties</property>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">document-properties</property>
-            <property name="pixel-size">24</property>
-            <property name="visible">True</property>
-          </object>
-        </child>
-      </object>
-    </child>
-
-    <child>
       <object class="GtkMenuButton" id="main_menu_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -122,54 +104,29 @@
     </child>
 
     <child>
-      <object class="GtkBox" id="save_long">
-        <property name="visible">False</property>
-
+      <object class="GtkMenuButton" id="hidable1">
+        <property name="visible">True</property>
+        <property name="relief">none</property>
+        <property name="valign">center</property>
+        <property name="tooltip-text" translatable="yes">Save as…</property>
         <child>
-          <object class="GtkButton">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="relief">none</property>
-            <property name="action-name">win.save</property>
-            <property name="tooltip-text" translatable="yes">Save</property>
             <child>
               <object class="GtkImage">
-                <property name="icon-name">document-save</property>
+                <property name="icon-name">document-save-as</property>
                 <property name="pixel-size">24</property>
                 <property name="visible">True</property>
               </object>
             </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkMenuButton" id="save_as_menubtn">
-            <property name="visible">True</property>
-            <property name="relief">none</property>
-            <property name="valign">center</property>
-            <property name="tooltip-text" translatable="yes">Save as…</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkImage">
+                <property name="icon-name">pan-down</property>
                 <property name="visible">True</property>
-                <property name="spacing">6</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">document-save-as</property>
-                    <property name="pixel-size">24</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">pan-down</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
         </child>
-
       </object>
       <packing>
         <property name="pack-type">end</property>
@@ -177,6 +134,27 @@
     </child>
 
     <child>
+      <object class="GtkButton" id="save_long">
+        <property name="visible">False</property>
+        <property name="valign">center</property>
+        <property name="relief">none</property>
+        <property name="action-name">win.save</property>
+        <property name="tooltip-text" translatable="yes">Save</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">document-save</property>
+            <property name="pixel-size">24</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <!-- identical to save_long in this implementation of the headerbar -->
       <object class="GtkButton" id="save_short">
         <property name="visible">True</property>
         <property name="valign">center</property>
@@ -197,17 +175,27 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="hidable2">
-        <property name="visible">False</property>
-        <property name="action-name">win.fullscreen</property>
+      <object class="GtkMenuButton" id="hidable2">
+        <property name="visible">True</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
-        <property name="tooltip-text" translatable="yes">Fullscreen</property>
+        <property name="tooltip-text" translatable="yes">Share the image</property>
         <child>
-          <object class="GtkImage">
-            <property name="icon-name">view-fullscreen</property>
-            <property name="pixel-size">24</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">send-to</property>
+                <property name="pixel-size">24</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">pan-down</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>

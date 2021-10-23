@@ -1,51 +1,10 @@
 <?xml version="1.0"?>
 <interface domain="drawing">
 
-<!-- Application menu -->
-  <menu id="app-menu">
-    <section>
-      <item>
-        <attribute name="action">app.new_window</attribute>
-        <attribute name="label" translatable="yes">New Window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.settings</attribute>
-        <attribute name="label" translatable="yes">Preferences</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Report a bug</attribute>
-        <attribute name="action">app.report_bug</attribute>
-        <attribute name="hidden-when">action-missing</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.shortcuts</attribute>
-        <attribute name="label" translatable="yes">Shortcuts</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.help</attribute>
-        <attribute name="label" translatable="yes">Help</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">About</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.quit</attribute>
-        <attribute name="label" translatable="yes">Quit</attribute>
-      </item>
-    </section>
-  </menu>
-
 <!-- Menubar -->
   <menu id="menu-bar">
     <submenu>
-      <attribute name="label" translatable="yes">_File</attribute>
+      <attribute name="label" translatable="yes">File</attribute>
       <section>
         <item>
           <attribute name="label" translatable="yes">Open an image</attribute>
@@ -111,6 +70,10 @@
           <attribute name="verb-icon">document-save-symbolic</attribute>
         </item>
         <item>
+          <attribute name="action">win.save_alphaless</attribute>
+          <attribute name="label" translatable="yes">Save without transparency</attribute>
+        </item>
+        <item>
           <attribute name="label" translatable="yes">Save as…</attribute>
           <attribute name="action">win.save_as</attribute>
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
@@ -121,7 +84,11 @@
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
         </item>
       </section>
-      <section>
+      <section id="share-section">
+        <item>
+          <attribute name="action">win.to_clipboard</attribute>
+          <attribute name="label" translatable="yes">Copy to clipboard</attribute>
+        </item>
         <item>
           <attribute name="label" translatable="yes">Print</attribute>
           <attribute name="action">win.print</attribute>
@@ -148,7 +115,7 @@
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">_Edit</attribute>
+      <attribute name="label" translatable="yes">Edit</attribute>
       <section>
         <item>
           <attribute name="label" translatable="yes">Undo</attribute>
@@ -168,10 +135,6 @@
         </item>
       </section>
       <section>
-        <!-- <item> -->
-        <!--   <attribute name="label" translatable="yes">unselect</attribute> -->
-        <!--   <attribute name="action">win.unselect</attribute> -->
-        <!-- </item> -->
         <item>
           <attribute name="label" translatable="yes">Select all</attribute>
           <attribute name="action">win.select_all</attribute>
@@ -217,7 +180,7 @@
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">_View</attribute>
+      <attribute name="label" translatable="yes">View</attribute>
       <section>
         <item>
           <attribute name="label" translatable="yes">Show the preview</attribute>
@@ -252,23 +215,51 @@
           </section>
         </submenu>
         <submenu>
+          <!-- Context: this submenu is about moving the view to the -->
+          <!-- left/right/top/bottom -->
           <attribute name="label" translatable="yes">Position</attribute>
           <section>
             <item>
               <attribute name="label" translatable="yes">Go Left</attribute>
               <attribute name="action">win.go_left</attribute>
+              <attribute name="verb-icon">pan-start-symbolic</attribute>
             </item>
             <item>
               <attribute name="label" translatable="yes">Go Up</attribute>
               <attribute name="action">win.go_up</attribute>
+              <attribute name="verb-icon">pan-up-symbolic</attribute>
             </item>
             <item>
               <attribute name="label" translatable="yes">Go Down</attribute>
               <attribute name="action">win.go_down</attribute>
+              <attribute name="verb-icon">pan-down-symbolic</attribute>
             </item>
             <item>
               <attribute name="label" translatable="yes">Go Right</attribute>
               <attribute name="action">win.go_right</attribute>
+              <attribute name="verb-icon">pan-end-symbolic</attribute>
+            </item>
+          </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Go to the left end</attribute>
+              <attribute name="action">win.go_first</attribute>
+              <attribute name="verb-icon">go-first-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the top</attribute>
+              <attribute name="action">win.go_top</attribute>
+              <attribute name="verb-icon">go-top-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the bottom</attribute>
+              <attribute name="action">win.go_bottom</attribute>
+              <attribute name="verb-icon">go-bottom-symbolic</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Go to the right end</attribute>
+              <attribute name="action">win.go_last</attribute>
+              <attribute name="verb-icon">go-last-symbolic</attribute>
             </item>
           </section>
         </submenu>
@@ -293,27 +284,37 @@
           <attribute name="hidden-when">action-missing</attribute>
           <attribute name="verb-icon">view-refresh-symbolic</attribute>
         </item>
-      </section>
-      <section>
         <item>
-          <attribute name="label" translatable="yes">Show tools names</attribute>
-          <attribute name="action">win.show_labels</attribute>
+          <!-- Label shown only in developer mode -->
+          <attribute name="label" translatable="yes">Track framerate</attribute>
+          <attribute name="action">win.track_framerate</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
         </item>
       </section>
       <section>
+        <item>
+          <attribute name="label" translatable="yes">Dark theme variant</attribute>
+          <attribute name="action">win.dark-variant</attribute>
+          <attribute name="verb-icon">night-light-symbolic</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Show the menu-bar</attribute>
+          <attribute name="action">win.show-menubar</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Hide toolbars</attribute>
+          <attribute name="action">win.hide_controls</attribute>
+        </item>
         <item>
           <attribute name="label" translatable="yes">Fullscreen</attribute>
           <attribute name="action">win.fullscreen</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Exit fullscreen</attribute>
-          <attribute name="action">win.unfullscreen</attribute>
+          <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
         </item>
       </section>
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">_Colors</attribute>
+      <attribute name="label" translatable="yes">Colors</attribute>
       <section>
         <item>
           <attribute name="label" translatable="yes">Edit Main Color…</attribute>
@@ -345,36 +346,20 @@
           <attribute name="target">over</attribute>
         </item>
         <submenu>
-          <attribute name="label" translatable="yes">Other modes</attribute>
+          <attribute name="label" translatable="yes">Highlight</attribute>
           <item>
-            <attribute name="label" translatable="yes">Raw source color</attribute>
-            <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">source</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">Highlight</attribute>
+            <attribute name="label" translatable="yes">Dark text on light background</attribute>
             <attribute name="action">win.cairo_operator</attribute>
             <attribute name="target">multiply</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="label" translatable="yes">Light text on dark background</attribute>
             <attribute name="action">win.cairo_operator</attribute>
-            <attribute name="target">difference</attribute>
+            <attribute name="target">screen</attribute>
           </item>
-          <!-- TODO ? -->
-          <!-- <item> -->
-          <!--   <attribute name="label" translatable="yes">Lighten</attribute> -->
-          <!--   <attribute name="action">win.cairo_operator</attribute> -->
-          <!--   <attribute name="target">lighten</attribute> -->
-          <!-- </item> -->
-          <!-- <item> -->
-          <!--   <attribute name="label" translatable="yes">Darken</attribute> -->
-          <!--   <attribute name="action">win.cairo_operator</attribute> -->
-          <!--   <attribute name="target">darken</attribute> -->
-          <!-- </item> -->
         </submenu>
         <submenu>
-          <attribute name="label" translatable="yes">Photo-oriented modes</attribute>
+          <attribute name="label" translatable="yes">HSL modes</attribute>
           <item>
             <attribute name="label" translatable="yes">Hue only</attribute>
             <attribute name="action">win.cairo_operator</attribute>
@@ -396,14 +381,22 @@
             <attribute name="target">hsl-luminosity</attribute>
           </item>
         </submenu>
+        <submenu>
+          <attribute name="label" translatable="yes">Other modes</attribute>
+          <item>
+            <attribute name="label" translatable="yes">Raw source color</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">source</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Difference</attribute>
+            <attribute name="action">win.cairo_operator</attribute>
+            <attribute name="target">difference</attribute>
+          </item>
+        </submenu>
       </section>
       <section>
         <attribute name="label" translatable="yes">Don't use the colors but…</attribute>
-        <item>
-          <attribute name="label" translatable="yes">Blur</attribute>
-          <attribute name="action">win.cairo_operator</attribute>
-          <attribute name="target">dest-in</attribute>
-        </item>
         <item>
           <attribute name="label" translatable="yes">Erase</attribute>
           <attribute name="action">win.cairo_operator</attribute>
@@ -413,30 +406,70 @@
     </submenu>
 
     <submenu id="tools-menu">
-      <attribute name="label" translatable="yes">_Tools</attribute>
-      <section>
-        <!-- selection -->
-      </section>
-      <section>
-        <!-- classic -->
-      </section>
-      <section>
-        <!-- canvas -->
-      </section>
+      <attribute name="label" translatable="yes">Tools</attribute>
       <section>
         <item>
           <attribute name="label" translatable="yes">Previous tool</attribute>
           <attribute name="action">win.back_to_previous</attribute>
+          <attribute name="verb-icon">go-previous-symbolic</attribute>
+        </item>
+      </section>
+      <section>
+        <submenu>
+          <attribute name="label" translatable="yes">Active tool</attribute>
+          <section>
+            <!-- selection -->
+          </section>
+          <section>
+            <!-- classic -->
+          </section>
+          <section>
+            <!-- transform -->
+          </section>
+        </submenu>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Show tools names</attribute>
+          <attribute name="action">win.show_labels</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Bigger width</attribute>
+          <attribute name="action">win.size_more</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Smaller width</attribute>
+          <attribute name="action">win.size_less</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Troubleshoot selection</attribute>
+          <attribute name="action">win.get_values</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Cancel transformation</attribute>
+          <attribute name="action">win.cancel_transform</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">Apply transformation</attribute>
+          <attribute name="action">win.apply_transform</attribute>
+          <attribute name="verb-icon">emblem-ok-symbolic</attribute>
         </item>
       </section>
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">_Options</attribute>
+      <attribute name="label" translatable="yes">Options</attribute>
     </submenu>
 
     <submenu>
-      <attribute name="label" translatable="yes">_Help</attribute>
+      <attribute name="label" translatable="yes">Help</attribute>
       <section>
         <item>
           <attribute name="label" translatable="yes">Shortcuts</attribute>
@@ -448,34 +481,59 @@
         <item>
           <attribute name="label" translatable="yes">Report a bug</attribute>
           <attribute name="action">app.report_bug</attribute>
-          <attribute name="hidden-when">action-missing</attribute>
+          <attribute name="verb-icon">dialog-error-symbolic</attribute>
         </item>
       </section>
       <section>
         <item>
+          <!-- Context: open the index of all help pages -->
           <attribute name="label" translatable="yes">Index</attribute>
           <attribute name="action">app.help</attribute>
           <attribute name="verb-icon">help-faq-symbolic</attribute>
         </item>
+        <submenu>
+          <!-- Context: submenu listing individual help pages -->
+          <attribute name="label" translatable="yes">Individual pages</attribute>
+          <section>
+            <item>
+              <!-- Context: open the help page about general use of the app -->
+              <attribute name="label" translatable="yes">Basic help</attribute>
+              <attribute name="action">app.help_main</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about zooming</attribute>
+              <attribute name="action">app.help_zoom</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about the full-screen mode</attribute>
+              <attribute name="action">app.help_fullscreen</attribute>
+            </item>
+          </section>
+          <section>
+            <item>
+              <attribute name="label" translatable="yes">Help about classic tools</attribute>
+              <attribute name="action">app.help_tools</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about colors</attribute>
+              <attribute name="action">app.help_colors</attribute>
+            </item>
+            <item>
+              <!-- Context: open the help page about transformation tools (crop, -->
+              <!-- scale, rotate, filters, ... -->
+              <attribute name="label" translatable="yes">Help about transformation tools</attribute>
+              <attribute name="action">app.help_transform</attribute>
+            </item>
+            <item>
+              <attribute name="label" translatable="yes">Help about selection</attribute>
+              <attribute name="action">app.help_selection</attribute>
+            </item>
+          </section>
+        </submenu>
         <item>
-          <attribute name="label" translatable="yes">Basic help</attribute>
-          <attribute name="action">app.help_main</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Help about tools</attribute>
-          <attribute name="action">app.help_tools</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Canvas and selection</attribute>
-          <attribute name="action">app.help_canvas</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
-        </item>
-        <item>
-          <attribute name="label" translatable="yes">Help about selection</attribute>
-          <attribute name="action">app.help_selection</attribute>
-          <attribute name="verb-icon">help-faq-symbolic</attribute>
+          <attribute name="label" translatable="yes">What's new</attribute>
+          <attribute name="action">app.help_whats_new</attribute>
+          <attribute name="verb-icon">document-open-recent-symbolic</attribute>
         </item>
       </section>
       <section>
@@ -489,3 +547,4 @@
   </menu>
 
 </interface>
+

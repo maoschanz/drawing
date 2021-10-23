@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 <!-- Describe the issue, in english or in french -->
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!-- If it's useful, add screenshots to help explain your problem. -->
 
 
 
@@ -19,6 +19,5 @@ assignees: ''
 - Device (desktop computer/tablet/phone/...):
 - OS:
 - Desktop environment:
-- Package format (flatpak, native package, snap?):
+- Package format<!-- (flatpak, native package from the distribution repository, package from a 3rd party repository, snap?)-->:
 - App version:
-

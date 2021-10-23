@@ -7,13 +7,10 @@ assignees: ''
 
 ---
 
-<!-- IF YOU FEEL THAT THIS TEMPLATE DOESN'T FIT YOUR ISSUE, IT PROBABLY MEANS
-YOU'RE USING THE WRONG TEMPLATE -->
-
 ## Description
 
 <!-- Describe the bug: what doesn't work? -->
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!-- If it's useful, add screenshots to help explain your problem. -->
 
 
 
@@ -30,6 +27,5 @@ YOU'RE USING THE WRONG TEMPLATE -->
 - Device (desktop computer/tablet/phone/...):
 - OS:
 - Desktop environment:
-- Package format (flatpak, native package, snap?):
+- Package format<!-- (flatpak, native package from the distribution repository, package from a 3rd party repository, snap?)-->:
 - App version:
-

@@ -81,17 +81,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkToolButton">
-            <property name="action-name">win.properties</property>
-            <property name="icon-name">document-properties-symbolic</property>
-            <property name="tooltip-text" translatable="yes">Image properties</property>
-            <property name="label" translatable="yes">Image properties</property>
-          </object>
-          <packing>
-            <property name="homogeneous">False</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkSeparatorToolItem" />
         </child>
         <child>
@@ -111,10 +100,21 @@
         </child>
         <child>
           <object class="GtkToolButton">
-            <property name="action-name">win.fullscreen</property>
-            <property name="icon-name">view-fullscreen-symbolic</property>
-            <property name="tooltip-text" translatable="yes">Fullscreen</property>
-            <property name="label" translatable="yes">Fullscreen</property>
+            <property name="action-name">win.print</property>
+            <property name="icon-name">document-print-symbolic</property>
+            <property name="tooltip-text" translatable="yes">Print</property>
+            <property name="label" translatable="yes">Print</property>
+          </object>
+          <packing>
+            <property name="homogeneous">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolButton">
+            <property name="action-name">win.to_clipboard</property>
+            <property name="icon-name">send-to-symbolic</property>
+            <property name="tooltip-text" translatable="yes">Copy to clipboard</property>
+            <property name="label" translatable="yes">Copy to clipboard</property>
           </object>
           <packing>
             <property name="homogeneous">False</property>

@@ -1,6 +1,7 @@
 # tool_experiment.py
 
-import cairo, math
+import cairo, math, random
+from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_smooth_path
 
@@ -9,8 +10,11 @@ class ToolExperiment(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('experiment', _("Experiment"), 'applications-utilities-symbolic', window)
-		self.row.get_style_context().add_class('destructive-action')
-		self._path = None
+
+		# In order to draw pressure-sensitive lines, the path is collected as
+		# an array whose elements are dicts (keys are 'x', 'y', 'p'). An actual
+		# cairo path will be built from this data when necessary.
+		self._manual_path = []
 
 		self._use_antialias = True
 		self._operators_dict = {
@@ -46,11 +50,16 @@ class ToolExperiment(AbstractClassicTool):
 		}
 		self._operator_label = "OVER"
 		self.operator2 = cairo.Operator.OVER
-		self._selected_mode = 'dynamic2'
+		self._selected_mode = 'feather'
+		self._feather_dir = 'up'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
-		self.add_tool_action_simple('experiment_macro_scie', self._macro_scie)
+
+	def build_row(self):
+		super().build_row()
+		self.row.get_style_context().add_class('destructive-action')
+		return self.row
 
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."
@@ -76,59 +85,61 @@ class ToolExperiment(AbstractClassicTool):
 
 	############################################################################
 
-	def _macro_scie(self, *args):
-		cairo_context = self.get_context()
-		cairo_context.move_to(50, 50)
-		cairo_context.line_to(100, 150)
-		cairo_context.line_to(150, 50)
-		cairo_context.line_to(200, 150)
-		cairo_context.line_to(250, 50)
-		cairo_context.line_to(300, 150)
-		cairo_context.line_to(350, 50)
-		cairo_context.line_to(375, 100)
-		cairo_context.line_to(400, 50)
-		cairo_context.line_to(425, 100)
-		cairo_context.line_to(450, 50)
-		cairo_context.line_to(500, 150)
-		cairo_context.line_to(550, 50)
-		self._path = cairo_context.copy_path()
-		self._macros_common()
+	def on_press_on_area(self, event, surface, event_x, event_y):
+		self.get_options_label()
+		self.x_press = event_x
+		self.y_press = event_y
+		self.set_common_values(event.button, event_x, event_y)
+		self._manual_path = []
+		self._add_pressured_point(event_x, event_y, event)
 
-	def _macros_common(self):
-		self.set_common_values(1, 1, 1)
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		self._add_pressured_point(event_x, event_y, event)
+		if render:
+			operation = self.build_operation()
+			self.do_tool_operation(operation)
+
+	def on_release_on_area(self, event, surface, event_x, event_y):
+		self._add_pressured_point(event_x, event_y, event)
 		operation = self.build_operation()
+		operation['is_preview'] = False
 		self.apply_operation(operation)
 
 	############################################################################
 
-	def on_press_on_area(self, event, surface, event_x, event_y):
-		self._set_active_operator()
-		self._set_active_mode()
-		# self._set_antialias()
-		self.x_press = event_x
-		self.y_press = event_y
-		self.set_common_values(event.button, event_x, event_y)
-		self._path = None
+	def _add_pressured_point(self, event_x, event_y, event):
+		new_point = {
+			'x': event_x,
+			'y': event_y,
+			'p': self._get_pressure(event)
+		}
+		self._manual_path.append(new_point)
 
-	def _add_point(self, event_x, event_y):
-		cairo_context = self.get_context()
-		if self._path is None:
-			cairo_context.move_to(self.x_press, self.y_press)
-		else:
-			cairo_context.append_path(self._path)
-		cairo_context.line_to(event_x, event_y)
-		self._path = cairo_context.copy_path()
+	def _get_pressure(self, event):
+		device = event.get_source_device()
+		# print(device)
+		if device is None:
+			return None
+		source = device.get_source()
+		# print(source) # TODO ça peut être Gdk.InputSource.MOUSE, ou .TOUCHPAD,
+		# ou bien des trucs pertinents comme Gdk.InputSource.ERASER ou .PEN
+		# J'ignore s'il faut faire quelque chose de cette information ? Il y a
+		# ptêt des touchpads ou des touchscreens sensibles à la pression non ?
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
-		self._add_point(event_x, event_y)
-		operation = self.build_operation()
-		self.do_tool_operation(operation)
+		tool = event.get_device_tool()
+		# print(tool) # TODO ça indique qu'on a ici un appareil dédié au dessin
+		# (vaut `None` si c'est pas le cas). Autrement on peut avoir des valeurs
+		# comme Gdk.DeviceToolType.PEN, .ERASER, .BRUSH, .PENCIL, ou .AIRBRUSH,
+		# et aussi (même si jsuis pas sûr ce soit pertinent) .UNKNOWN, .MOUSE et
+		# .LENS (fuck ces bourgeois avec des tablettes haut de gamme au pire).
+		# On pourrait adapter le comportement (couleur/opérateur/aliasing/etc.)
+		# à cette information à l'avenir.
 
-	def on_release_on_area(self, event, surface, event_x, event_y):
-		self._add_point(event_x, event_y)
-		operation = self.build_operation()
-		operation['is_preview'] = False
-		self.apply_operation(operation)
+		pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
+		# print(pressure)
+		if pressure is None:
+			return None
+		return pressure
 
 	############################################################################
 
@@ -143,12 +154,12 @@ class ToolExperiment(AbstractClassicTool):
 			'line_join': cairo.LineJoin.ROUND,
 			'antialias': self._use_antialias,
 			'is_preview': True,
-			'path': self._path
+			'path': self._manual_path
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
-		if operation['path'] is None:
+		if operation['path'] is None or len(operation['path']) < 1:
 			return
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(operation['line_cap'])
@@ -156,149 +167,71 @@ class ToolExperiment(AbstractClassicTool):
 		rgba = operation['rgba']
 		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
 
-		if operation['is_preview']:
-			self.op_simple(operation, cairo_context)
-			return # Previewing helps performance and debug
-		if operation['mode'] == 'dynamic':
-			self.op_dynamic(operation, cairo_context)
-		elif operation['mode'] == 'dynamic2':
-			self.op_dynamic2(operation, cairo_context)
+		if operation['mode'] == 'pressure':
+			if operation['is_preview']: # Previewing helps performance & debug
+				operation['line_width'] = int(operation['line_width'] / 2)
+				return self.op_simple(operation, cairo_context)
+			self.op_pressure(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
-			self.op_simple(operation, cairo_context)
+			if operation['is_preview']: # Previewing helps performance & debug
+				return self.op_simple(operation, cairo_context)
 			self.op_smooth(operation, cairo_context)
+		elif operation['mode'] == 'macro-w':
+			self.op_macro_w(operation, cairo_context)
 		else:
 			self.op_simple(operation, cairo_context)
+
+	############################################################################
+
+	def op_macro_w(self, operation, cairo_context):
+		"""Trying to study whatever tf is the rendering issue #337"""
+		cairo_context.set_antialias(cairo.Antialias.DEFAULT)
+		cairo_context.set_operator(cairo.Operator.HSL_HUE)
+		cairo_context.set_line_width(operation['line_width'])
+		cairo_context.new_path()
+		cairo_context.line_to(50, 70)
+		cairo_context.line_to(70, 50)
+		cairo_context.line_to(90, 60)
+		cairo_context.line_to(110, 85)
+		cairo_context.line_to(130, 120)
+		cairo_context.line_to(150, 110)
+		cairo_context.line_to(170, 80)
+		cairo_context.line_to(190, 50)
+		cairo_context.line_to(210, 75)
+		cairo_context.line_to(230, 90)
+		cairo_context.line_to(250, 110)
+		cairo_context.line_to(270, 70)
+		cairo_context.line_to(290, 50)
+		cairo_context.line_to(310, 75)
+		cairo_context.line_to(330, 90)
+		cairo_context.stroke()
 
 	############################################################################
 
 	def op_simple(self, operation, cairo_context):
 		cairo_context.set_operator(operation['operator'])
 		cairo_context.set_line_width(operation['line_width'])
-		cairo_context.append_path(operation['path'])
+		cairo_context.new_path()
+		for pt in operation['path']:
+			cairo_context.line_to(pt['x'], pt['y'])
 		cairo_context.stroke()
 
 	def op_smooth(self, operation, cairo_context):
 		cairo_context.set_operator(cairo.Operator.OVER)
 		cairo_context.set_line_width(operation['line_width'])
-		utilities_smooth_path(cairo_context, operation['path'])
+
+		# Build a cairo path from the raw data
+		cairo_context.new_path()
+		for pt in operation['path']:
+			cairo_context.line_to(pt['x'], pt['y'])
+		path = cairo_context.copy_path()
+
+		# Smooth it
+		cairo_context.new_path()
+		utilities_smooth_path(cairo_context, path)
+
+		# Draw it
 		cairo_context.stroke()
-
-	############################################################################
-
-	def op_dynamic(self, operation, cairo_context):
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		SMOOTH = True
-		if SMOOTH:
-			utilities_smooth_path(cairo_context, operation['path'])
-			path = cairo_context.copy_path()
-		else:
-			path = operation['path']
-		line_width = 0
-		cairo_context.new_path()
-
-		for pts in path:
-			ok, future_x, future_y = self._future_point(pts)
-			if not ok:
-				continue
-			current_x, current_y = cairo_context.get_current_point()
-			dist = self._get_dist(current_x, current_y, future_x, future_y)
-			new_width = 1 + int( operation['line_width']/max(1, 0.05 * dist) )
-			if line_width == 0:
-				line_width = new_width
-			else:
-				line_width = (new_width + line_width) / 2
-			line_width = max(1, line_width)
-			cairo_context.set_line_width(line_width)
-			self._add_segment(cairo_context, pts)
-			cairo_context.stroke()
-			cairo_context.move_to(future_x, future_y)
-
-	def op_dynamic2(self, operation, cairo_context):
-		# cairo_context.set_operator(operation['operator'])
-		SMOOTH = True
-		if SMOOTH:
-			utilities_smooth_path(cairo_context, operation['path'])
-			path = cairo_context.copy_path()
-		else:
-			path = operation['path']
-		base_width = operation['line_width']
-		line_width = 0
-		cairo_context.new_path()
-
-		length = 1
-		for pts in path:
-			length += 1
-		widths = [base_width] * length
-
-		# Initializing widths (XXX faisable sans cairo_context) + factorisable
-		i = 0
-		for pts in path:
-			i += 1
-			ok, future_x, future_y = self._future_point(pts)
-			if not ok:
-				continue
-			current_x, current_y = cairo_context.get_current_point()
-			dist = self._get_dist(current_x, current_y, future_x, future_y)
-			new_width = 1 + int(base_width / max(1, 0.05 * dist))
-			if line_width == 0:
-				line_width = (new_width + base_width) / 2
-			else:
-				line_width = (new_width + line_width + line_width) / 3
-			widths[i] = max(1, int(line_width))
-			cairo_context.move_to(future_x, future_y)
-
-		# For each possible width, draw some portions of the path
-		line_width = base_width
-		cairo_context.new_path()
-		while line_width > 1:
-			cairo_context.set_line_width(line_width)
-			to_draw = [True] * length
-			for i in range(length):
-				to_draw[i] = widths[i] >= line_width
-			empty = True
-			i = 0
-			for pts in path:
-				i += 1
-				ok, future_x, future_y = self._future_point(pts)
-				if not ok:
-					# print("not ok", i)
-					continue
-				current_x, current_y = cairo_context.get_current_point()
-				if to_draw[i]:
-					empty = False
-					# print("draw", i, "with width", line_width)
-					self._add_segment(cairo_context, pts)
-				else:
-					if not empty:
-						cairo_context.stroke()
-						empty = True
-				cairo_context.move_to(future_x, future_y)
-			cairo_context.stroke()
-			cairo_context.new_path()
-			line_width = max(line_width - 1, 1)
-		# Would be needed if the while loop was less exhaustive
-		# cairo_context.set_line_width(line_width)
-		# cairo_context.append_path(path)
-		# cairo_context.stroke()
-
-	def _add_segment(self, cairo_context, pts):
-		if pts[0] == cairo.PathDataType.CURVE_TO:
-			cairo_context.curve_to(pts[1][0], pts[1][1], pts[1][2], pts[1][3], \
-			                                             pts[1][4], pts[1][5])
-		elif pts[0] == cairo.PathDataType.LINE_TO:
-			cairo_context.line_to(pts[1][0], pts[1][1])
-
-	def _future_point(self, pts):
-		if pts[0] == cairo.PathDataType.CURVE_TO:
-			return True, pts[1][4], pts[1][5]
-		elif pts[0] == cairo.PathDataType.LINE_TO:
-			return True, pts[1][0], pts[1][1]
-		else: # all paths start with a cairo.PathDataType.MOVE_TO
-			return False, 0, 0
-
-	def _get_dist(self, x1, y1, x2, y2):
-		dist2 = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
-		return math.sqrt(dist2)
 
 	############################################################################
 ################################################################################

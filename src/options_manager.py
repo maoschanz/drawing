@@ -1,6 +1,6 @@
 # options_manager.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,16 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 
 class DrOptionsManager():
 	__gtype_name__ = 'DrOptionsManager'
-	# TODO this class should raise/catch exceptions instead of trusting me
+	# XXX this class should raise/catch more exceptions
+
+	_tools_gsettings = Gio.Settings.new('com.github.maoschanz.drawing.tools-options')
 
 	def __init__(self, window):
 		self.window = window
 		self._bottom_panes_dict = {}
-		self._active_pane_id= None
+		self._active_pane_id = None
+		self._boolean_actions_from_gsetting = {}
+		self._string_actions_from_gsetting = {}
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -32,21 +36,33 @@ class DrOptionsManager():
 	############################################################################
 	# Gio.Action for tool options ##############################################
 
-	def add_tool_option_boolean(self, name, default):
+	def add_option_boolean(self, name, default):
 		if self._action_exists(name):
 			return
 		self.window.add_action_boolean(name, default, self._boolean_callback)
 
-	def add_tool_option_enum(self, name, default):
+	def add_option_enum(self, name, default):
 		if self._action_exists(name):
 			return
 		self.window.add_action_enum(name, default, self._enum_callback)
+
+	def add_option_from_bool_key(self, action_name, key_name):
+		default_value = self._tools_gsettings.get_boolean(key_name)
+		self.add_option_boolean(action_name, default_value)
+		self._boolean_actions_from_gsetting[action_name] = key_name
+		return default_value
+
+	def add_option_from_enum_key(self, action_name, key_name):
+		default_value = self._tools_gsettings.get_string(key_name)
+		self.add_option_enum(action_name, default_value)
+		self._string_actions_from_gsetting[action_name] = key_name
+		return default_value
 
 	def get_value(self, name):
 		if not self._action_exists(name):
 			return
 		action = self.window.lookup_action(name)
-		if action.get_state_type().dup_string() is 's':
+		if action.get_state_type().dup_string() == 's':
 			return action.get_state().get_string()
 		else:
 			return action.get_state()
@@ -77,23 +93,36 @@ class DrOptionsManager():
 
 	############################################################################
 
-	def remember_options(self, *args):
-		"""Called before closing to write the current values of a few options
-		into dconf."""
-		self.window._settings.set_int('last-size', self.get_tool_width())
+	def persist_tools_options(self, *args):
+		"""Called before closing to persist the current values of a few options
+		into gsettings (dconf or key-value file)."""
 
-		rgba = self.get_left_color()
+		# Panel-wide classic tools options (they are not Gio actions!)
+		self._tools_gsettings.set_int('last-size', self.get_tool_width())
+		self._persist_color(self.get_left_color(), 'last-left-rgba')
+		self._persist_color(self.get_right_color(), 'last-right-rgba')
+
+		# Tool-wide boolean actions
+		for action_name in self._boolean_actions_from_gsetting:
+			key_name = self._boolean_actions_from_gsetting[action_name]
+			self._persist_boolean(action_name, key_name)
+
+		# Tool-wide "enum" actions
+		for action_name in self._string_actions_from_gsetting:
+			key_name = self._string_actions_from_gsetting[action_name]
+			self._persist_string(action_name, key_name)
+
+	def _persist_string(self, action_name, key_name):
+		action_value = self.get_value(action_name)
+		self._tools_gsettings.set_string(key_name, action_value)
+
+	def _persist_boolean(self, action_name, key_name):
+		action_value = self.get_value(action_name)
+		self._tools_gsettings.set_boolean(key_name, action_value)
+
+	def _persist_color(self, rgba, key_name):
 		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self.window._settings.set_strv('last-left-rgba', rgba)
-
-		rgba = self.get_right_color()
-		rgba = [str(rgba.red), str(rgba.green), str(rgba.blue), str(rgba.alpha)]
-		self.window._settings.set_strv('last-right-rgba', rgba)
-
-		shape_name = self.get_value('shape_type')
-		self.window._settings.set_string('last-active-shape', shape_name)
-
-		# TODO more ?
+		self._tools_gsettings.set_strv(key_name, rgba)
 
 	############################################################################
 	# Bottom panes management ##################################################
@@ -125,6 +154,7 @@ class DrOptionsManager():
 	def get_active_pane(self):
 		if self._active_pane_id is None:
 			return None # XXX encore des exceptions manuelles...
+			# return self._bottom_panes_dict['classic']
 		return self._bottom_panes_dict[self._active_pane_id]
 
 	def update_pane(self, tool):
@@ -139,6 +169,13 @@ class DrOptionsManager():
 
 	def adapt_to_window_size(self, available_width):
 		self.get_active_pane().adapt_to_window_size(available_width)
+		# Because the animation to show a bottom pane takes some time, it's
+		# possible to change tool "too fast" (ctrl+b really quickly) and end up
+		# in a situation where no pane is visible.
+		# There is no easy fix for this as far as i know.
+		# The following instruction "fixes" the problem just enough so users,
+		# if they encounter it, will believe they dreamt the issue.
+		self.get_active_pane().action_bar.set_visible(True)
 
 	############################################################################
 
@@ -156,9 +193,6 @@ class DrOptionsManager():
 			self.window.minimap.set_relative_to(btn)
 		else:
 			self.window.minimap.set_relative_to(self.window.bottom_panes_box)
-
-	def on_middle_click(self):
-		self.get_active_pane().middle_click_action()
 
 	############################################################################
 	# Methods specific to the optionsbar for classic tools #####################
@@ -178,6 +212,10 @@ class DrOptionsManager():
 	def get_tool_width(self):
 		return int(self.get_classic_tools_pane().thickness_spinbtn.get_value())
 
+	def update_tool_width(self, delta):
+		width = self.get_tool_width() + delta
+		self.get_classic_tools_pane().thickness_spinbtn.set_value(width)
+
 	def set_right_color(self, color):
 		return self.right_color_btn().color_widget.set_rgba(color)
 
@@ -191,8 +229,11 @@ class DrOptionsManager():
 		return self.left_color_btn().color_widget.get_rgba()
 
 	def get_operator(self):
-		enum = self.get_classic_tools_pane()._operator_enum
-		label = self.get_classic_tools_pane()._operator_label
+		# XXX répugnant, on duplique la donnée dans les 2 popovers, puis on
+		# hardcode qu'on prendra la donnée uniquement dans celui de droite, et
+		# tout ça sans respecter l'encapsulation
+		enum = self.get_classic_tools_pane()._color_r._operator_enum
+		label = self.get_classic_tools_pane()._color_r._operator_label
 		return enum, label
 
 	############################################################################

@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 01:33+0200\n"
-"PO-Revision-Date: 2019-05-06 22:22+0300\n"
-"Last-Translator: Artem Polishchuk <ego.cordatus@gmail.com>\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-10-10 06:48+0200\n"
+"PO-Revision-Date: 2021-10-11 12:53+1000\n"
+"Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
@@ -23,23 +23,20 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr ""
+msgstr "Drawing"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
 msgstr "Простой инструмент для рисования"
 
-#. Icon name, do not translate
-#: data/com.github.maoschanz.drawing.desktop.in
-msgid "com.github.maoschanz.drawing"
-msgstr ""
-
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr ""
 
-#. Context: answer to "where do you want to open the image?"
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
@@ -47,107 +44,130 @@ msgstr "Новое окно"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/ui/window.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
 msgstr "Новое изображение"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr ""
+msgstr "Редактировать изображение в буфере обмена"
 
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A drawing application for the GNOME desktop"
-msgstr "Гафический редактор для рабочего стола GNOME"
+msgid "Edit screenshots or memes"
+msgstr "Редактировать скриншоты или мемы"
+
+#. IMPORTANT: complete description of the application (1/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
+msgstr ""
+"Этот базовый редактор изображений может изменять размер, обрезать или "
+"вращать изображение, применять простые фильтры, вставлять или подвергать "
+"цензуре текст, а также управлять выделенной частью изображения (вырезать/"
+"копировать/вставлять/перемещать/…)"
+
+#. IMPORTANT: complete description of the application (2/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
+msgstr ""
+"И, конечно же, ты можешь рисовать! Используя такие инструменты, как "
+"карандаш, прямая линия, кривая линия, множество фигур, несколько кистей, а "
+"также различные цвета и параметры."
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr "Поддерживаемые типы файлов включают PNG, JPEG и BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"\"Drawing\" is a basic image editor, supporting PNG, JPEG and BMP file types."
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
 msgstr ""
+"Версия 1.0.0 улучшает производительность рендеринга, что заметно при "
+"редактировании больших изображений на слабом процессоре."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"It allows you to draw or edit pictures with tools such as pencil, line or "
-"arc (with various options), selection (cut/copy/paste/drag/…), shapes "
-"(rectangle, circle, polygon, …), text insertion, resizing, cropping, "
-"rotating, …"
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
 msgstr ""
+"Теперь вы можете использовать новый инструмент \"Наклон\", чтобы наклонить "
+"изображение из прямоугольника в параллелограмм. Такое изменение можно "
+"проводить горизонтально или вертикально."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.6 is a major update, with various important changes. The app is "
-"more robust and has more tools:"
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
 msgstr ""
+"Используя инструмент «Масштаб», вы можете дополнительно устанавливать новый "
+"размер в процентах, а не только в виде абсолютных значений в пикселях."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Rectangle selection and freehand selection are now distinct tools, and the "
-"'rotate' tool now supports any angle and handles horizontal or vertical "
-"flipping."
+"If the names of the tools are visible, you can enable a specific tool with "
+"\"alt+[the underlined letter]\". This may not work yet with languages using "
+"a non-latin alphabet."
 msgstr ""
+"Если названия инструментов видны, вы можете включить определенный инструмент "
+"с помощью \"alt+[подчеркнутая буква]\". Это может еще не работать с языками, "
+"в которых используется нелатинский алфавит."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
-"been merged into a single, more consistent 'shape' tool, along with 'rounded "
-"rectangle' and 'ellipse'. Their filling options now include various types of "
-"gradients."
+"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
+"options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Нажатие \"ctrl\", \"shift\" или \"alt\" при использовании инструмента "
+"включает определенные параметры, как например, \"добавить к выделенному\" "
+"для инструментов выделения."
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"The 'saturate' tool has been replaced by 'filters', a more powerful tool "
-"with several types of blur, color inversion, pixelisation, saturation and "
-"transparency."
+"Version 0.8.2 features several minor bug fixes, and various new translations."
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "A fullscreen mode is now available."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"The most prominent new feature is the ability to zoom in (or out) on the "
-"image, using the minimap, the touchpad or the mouse wheel."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 0.4.8 features several minor bug fixes, and various new translations."
-msgstr ""
+"Версия 0.8.2 содержит несколько мелких исправлений и несколько новых "
+"переводов."
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Romain F. T."
-msgstr ""
+msgstr "Romain F. T."
 
-#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Preferences"
-msgstr "Параметры"
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The window and its primary menu"
+msgstr "Окно и его главное меню"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
-msgid "Report a bug"
-msgstr "Сообщить об ошибке"
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The selection and the actions associated with it"
+msgstr "Выделение и связанные с ним действия"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Shortcuts"
-msgstr "Комбинации клавиш"
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Zooming in various shapes"
+msgstr "Масштабирование различных форм"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-msgid "Help"
-msgstr "Справка"
-
-#: src/ui/app-menus.ui
-msgid "About"
-msgstr "О приложении"
-
-#: src/ui/app-menus.ui
-msgid "Quit"
-msgstr "Завершить"
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The \"new image\" menu opened"
+msgstr "Меню \"Новое изображение\" было открыто"
 
 #: src/ui/app-menus.ui
-msgid "_File"
-msgstr "_Файл\t"
+msgid "File"
+msgstr "Файл"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -155,42 +175,41 @@ msgid "Open an image"
 msgstr "Открыть изображение"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "New Blank Image"
-msgstr "Новое изображение"
+msgstr "Новое пустое изображение"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "Прямоугольное выделение"
+msgstr "Новое изображение с настройкой размера"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "New Image From Selection"
-msgstr "Прямоугольное выделение"
+msgstr "Новое изображение из выделенного"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
-msgstr ""
+msgstr "Новое изображение из буфера обмена"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Reload file"
-msgstr "Открыть файл"
+msgstr "Перезагрузить файл"
 
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui src/properties.py
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
 msgstr "Свойства изображения"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/window.py
+#: src/saving_manager.py
 msgid "Save"
 msgstr "Сохранить"
 
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Save without transparency"
+msgstr "Сохранить без прозрачности"
+
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
-#: src/utilities.py
+#: src/saving_manager.py
 msgid "Save as…"
 msgstr "Сохранить как…"
 
@@ -199,48 +218,52 @@ msgstr "Сохранить как…"
 msgid "Export as…"
 msgstr "Экспортировать как…"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr "Скопировать в буфер обмена"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
 msgid "Print"
 msgstr "Печать"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Close Image"
-msgstr "Новое изображение"
+msgstr "Закрыть изображение"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Close Window"
-msgstr "Новое окно"
+msgstr "Закрыть окно"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Quit all windows"
 msgstr "Закрыть все окна"
 
 #: src/ui/app-menus.ui
-msgid "_Edit"
-msgstr "_Правка"
+msgid "Edit"
+msgstr "Правка"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Undo"
 msgstr "Отменить"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
-#: src/ui/win-menus.ui src/deco_manager.py
+#: src/deco_manager.py
 msgid "Redo"
 msgstr "Вернуть"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Rebuild from history"
-msgstr ""
+msgstr "Восстановить из истории"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Select all"
-msgstr "Выбрать все"
+msgstr "Выделить все"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -269,9 +292,14 @@ msgstr "Вставить"
 msgid "Import"
 msgstr "Импортировать"
 
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "Параметры"
+
 #: src/ui/app-menus.ui
-msgid "_View"
-msgstr "_Вид"
+msgid "View"
+msgstr "Вид"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
@@ -279,94 +307,100 @@ msgstr "Предварительный просмотр"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr ""
+msgstr "Масштаб"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
-msgstr ""
+msgstr "Оптимальный размер"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Zoom Out"
-msgstr ""
+msgstr "Уменьшить"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Original Zoom"
-msgstr ""
+msgstr "Исходный размер"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
-#: src/ui/toolbar-symbolic.ui src/optionsbars/canvas/optionsbar-scale.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Zoom In"
-msgstr ""
+msgstr "Увеличить"
 
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Position"
-msgstr "Издание"
+msgstr "Положение"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Left"
-msgstr ""
+msgstr "Переместить влево"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Up"
-msgstr ""
+msgstr "Переместить вверх"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Down"
-msgstr ""
+msgstr "Переместить вниз"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
-msgstr ""
+msgstr "Переместить вправо"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the left"
-msgstr "Назад к палитре"
+msgstr "Перейти на вкладку слева"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the right"
-msgstr "Повернуть вправо"
+msgstr "Перейти на вкладку справа"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui
 msgid "Refresh"
 msgstr "Обновить"
 
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr "Отслеживать частоту кадров"
+
+#: src/ui/app-menus.ui
+msgid "Dark theme variant"
+msgstr "Темный вариант темы"
+
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
+msgstr "Показывать строку меню"
+
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "Скрыть панель инструментов"
+
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-#: src/preferences.py
-msgid "Show tools names"
-msgstr "Показать названия инструментов"
-
-#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/shortcuts.ui
-#: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Fullscreen"
-msgstr ""
+msgstr "Полноэкранный режим"
 
-#: src/ui/app-menus.ui src/ui/win-menus.ui
-msgid "Exit fullscreen"
-msgstr ""
-
-#: src/ui/app-menus.ui
-msgid "_Colors"
-msgstr "_Цвета\t"
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Colors"
+msgstr "Цвета"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "Основной цвет"
+msgstr "Изменить основной цвет…"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "Вторичный цвет"
+msgstr "Изменить дополнительный цвет…"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Use color editor by default"
-msgstr "Использовать этот редактор по умолчанию"
+msgstr "Использовать по умолчанию редактор цвета"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -374,126 +408,189 @@ msgid "Exchange colors"
 msgstr "Поменять цвета"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Color application mode"
-msgstr "Выбор цвета"
+msgstr "Режим наложения цвета"
 
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Normal"
-msgstr "Формат"
+msgstr "Обычный"
 
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Other modes"
-msgstr ""
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
-msgid "Raw source color"
-msgstr "Цвет источника"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Highlight"
-msgstr "Высота"
+msgstr "Выделять"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "Темный текст на светлом фоне"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "Светлый текст на темном фоне"
+
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "HSL modes"
+msgstr "HSL режимы"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Difference"
-msgstr "Различия"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue only"
+msgstr "Только оттенок"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Saturation only"
+msgstr "Только насыщенность"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue and saturation"
+msgstr "Оттенок и насыщенность"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Luminosity only"
+msgstr "Только освещенность"
 
 #. Context: possible ways to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Photo-oriented modes"
-msgstr ""
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Other modes"
+msgstr "Другие режимы"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
-msgid "Hue only"
-msgstr "Только панель меню"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Raw source color"
+msgstr "Raw источник цвета"
 
 #. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
-msgid "Saturation only"
-msgstr "Насыщенность (%)"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Difference"
+msgstr "Разница"
 
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
-msgid "Hue and saturation"
-msgstr "Насыщенность (%)"
-
-#. Context: a possible way to apply the color to the canvas
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Luminosity only"
-msgstr ""
-
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+#: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
-msgstr ""
+msgstr "Без использования цвета…"
 
-#. To translators: this is a verb
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Blur"
-msgstr ""
-
-#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_classic.py
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Erase"
 msgstr "Ластик"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Tools"
-msgstr "_Инструменты"
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "Инструменты"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
 msgstr "Предыдущий инструмент"
 
-#: src/ui/app-menus.ui src/window.py
-msgid "_Options"
-msgstr "_Опции"
+#: src/ui/app-menus.ui
+msgid "Active tool"
+msgstr "Активный инструмент"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Show tools names"
+msgstr "Показывать названия инструментов"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr "Увеличить размер"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Smaller width"
+msgstr "Уменьшить размер"
 
 #: src/ui/app-menus.ui
-msgid "_Help"
-msgstr "_Справка"
+msgid "Troubleshoot selection"
+msgstr "Устранение неполадок при выделении"
 
+#: src/ui/app-menus.ui
+msgid "Cancel transformation"
+msgstr "Отменить преобразование"
+
+#: src/ui/app-menus.ui
+msgid "Apply transformation"
+msgstr "Применить преобразование"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "Параметры"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "Справка"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "Комбинации клавиш"
+
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
+msgid "Report a bug"
+msgstr "Сообщить об ошибке"
+
+#. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr ""
+msgstr "Индекс"
 
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr "Отдельные страницы"
+
+#. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
-msgstr ""
+msgstr "Базовая справка"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui
+msgid "Help about zooming"
+msgstr "Справка по масштабированию"
 
 #: src/ui/app-menus.ui
-msgid "Help about tools"
-msgstr ""
+msgid "Help about the full-screen mode"
+msgstr "Справка по полноэкранному режиму"
 
 #: src/ui/app-menus.ui
-#, fuzzy
-msgid "Canvas and selection"
-msgstr "Масштабировать выделенное"
+msgid "Help about classic tools"
+msgstr "Справка по классическим инструментам"
 
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Help about colors"
+msgstr "Справка по цвету"
+
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
-#, fuzzy
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "Help about transformation tools"
+msgstr "Справка по инструментам преобразования"
+
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
-msgstr "Масштабировать выделенное"
+msgstr "Справка по выделению"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr "Что нового"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -504,32 +601,52 @@ msgstr "О Drawing"
 msgid "Open"
 msgstr "Открыть"
 
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr "Поделиться изображением"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "Изображение на диске было изменено, хотите его перезагрузить?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "Перезагрузить"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "100%"
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
-#: src/optionsbars/canvas/optionsbar-crop.ui
-#: src/optionsbars/canvas/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Width"
 msgstr "Ширина"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
-#: src/optionsbars/canvas/optionsbar-crop.ui
-#: src/optionsbars/canvas/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Height"
 msgstr "Высота"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Цвета"
+msgstr "Цвет"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Use these settings by default"
-msgstr "Использовать этот редактор по умолчанию"
+msgstr "Использовать эти настройки по умолчанию"
 
-#: src/ui/minimap.ui
-msgid "100%"
-msgstr ""
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "Изображение"
 
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "Окно"
+
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
 #: src/ui/properties.ui src/utilities.py
 msgid "pixels"
 msgstr "пиксели"
@@ -542,69 +659,66 @@ msgstr "сантиметры"
 msgid "inches"
 msgstr "дюймы"
 
-#: src/ui/preferences.ui
-#, fuzzy
-msgid "Images"
-msgstr "Изображение"
-
-#: src/ui/preferences.ui src/ui/shortcuts.ui
-#, fuzzy
-msgid "Tools"
-msgstr "_Инструменты"
-
-#: src/ui/preferences.ui
-#, fuzzy
-msgid "Window"
-msgstr "Новое окно"
-
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Close selection"
-msgstr "Выбор цвета"
+msgstr "Закрыть выделение"
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-msgid "Unselect"
+msgid "Deselect"
 msgstr "Снять выделение"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_crop.py
+#: src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "Обрезать"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_scale.py
+#: src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "Масштаб"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "Повернуть"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_skew.py
-msgid "Skew"
-msgstr ""
+#: src/tools/transform_tools/tool_filters.py
+msgid "Filters"
+msgstr "Фильтры"
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/canvas_tools/tool_filters.py
-msgid "Filters"
-msgstr ""
+msgid "More actions"
+msgstr "Больше действий"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
+msgid "Invert selection"
+msgstr "Инвертировать выделение"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "Определить как текущее изображение"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "Расширить изображение до подходящего размера"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
-msgstr "Новое изображение"
+msgstr "Открыть как новое изображение"
 
 #: src/ui/shortcuts.ui
-msgid "Keyboard"
-msgstr ""
+msgid "Keyboard Shortcuts"
+msgstr "Комбинации клавиш"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -615,51 +729,44 @@ msgid "Main menu"
 msgstr "Главное меню"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
-msgid "Editing"
-msgstr "Издание"
+msgid "Toggle the menu-bar"
+msgstr "Строка меню"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
 msgstr "Изображение"
 
-#: src/ui/shortcuts.ui
-msgid "Open a file"
-msgstr "Открыть файл"
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "Открыть изображение"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Повторно загрузить изображение с диска"
 
-#: src/ui/shortcuts.ui
-msgid "Save as"
-msgstr "Сохранить как"
+#: src/ui/shortcuts.ui src/saving_manager.py
+msgid "Save picture as…"
+msgstr "Сохранить изображение как…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "Закрыть активное изображение"
 
 #: src/ui/shortcuts.ui
-msgid "Options menu"
-msgstr "Меню параметров"
+msgid "Open the tool options menu"
+msgstr "Открыть меню параметров инструмента"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
 msgstr "Вернуться к предыдущему инструменту"
 
 #: src/ui/shortcuts.ui
-msgid "Colors"
-msgstr "Цвета"
+msgid "Apply a transformation"
+msgstr "Применить преобразование"
 
-#. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-msgid "Edit the main color (left click)"
-msgstr "Редактирование основного цвета (щелчок левой кнопкой мыши)"
-
-#. Label displayed in the keyboard shortcuts dialog
-#: src/ui/shortcuts.ui
-msgid "Edit the secondary color (right click)"
-msgstr "Редактирование вторичного цвета (щелчок правой кнопкой мыши)"
+msgid "History"
+msgstr "История"
 
 #: src/ui/shortcuts.ui
 msgid "Selection"
@@ -667,138 +774,173 @@ msgstr "Выделение"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Delete the selection"
-msgstr "Масштабировать выделенное"
+msgstr "Удалить выделенное"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Import a file as the selection"
-msgstr "Повернуть выделенное"
+msgstr "Импортировать файл как выделенное"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "Изменить основной цвет (левая кнопка мыши)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "Изменить дополнительный цвет (правая кнопка мыши)"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr ""
+msgstr "Вкладки"
 
-#: src/ui/shortcuts.ui
-msgid "Enter fullscreen mode"
-msgstr ""
-
-#: src/ui/shortcuts.ui
-msgid "Exit fullscreen mode"
-msgstr ""
-
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Навигация"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "Переключить предварительный просмотр"
+msgstr "Предварительный просмотр"
 
-#: src/ui/win-menus.ui
-#, fuzzy
-msgid "Troubleshoot selection"
-msgstr "Выбор цвета"
+#: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr "Полноэкранный режим"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "Отобразить панель инструментов"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr "Сенсорные жесты"
 
 #: src/ui/window.ui
-msgid "Error starting the application, please report this bug."
-msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
+msgid "Loading…"
+msgstr "Загрузка…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "Выход из полноэкранного режима"
 
 #: src/deco_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Undo %s"
-msgstr "Отменить"
+msgstr "Отменить %s"
 
 #: src/deco_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Redo %s"
-msgstr "Вернуть"
+msgstr "Вернуть %s"
 
+#. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr "Попытка сохранить недопустимое состояние"
+
+#: src/history_manager.py
+#, python-format
+msgid "Error: no tool '%s'"
+msgstr "Ошибка: нет инструмента '%s'"
+
+#. Context: an error message
 #: src/image.py
-msgid "Can't reload a never-saved file from the disk."
-msgstr ""
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr "Новый pixbuf пуст, не внесены изменения %s"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
 msgstr "Несохраненный файл"
 
-#: src/new_image_dialog.py src/utilities.py src/window.py
-#: src/tools/utilities_paths.py src/optionsbars/canvas/optionsbar-crop.ui
-#: src/optionsbars/canvas/optionsbar-filters.ui
-#: src/optionsbars/canvas/optionsbar-rotate.ui
-#: src/optionsbars/canvas/optionsbar-scale.ui
-#: src/optionsbars/canvas/optionsbar-skew.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
-#: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr "%s кадров в секунду"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Show the app version"
+msgstr "Показать версию приложения"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new window"
+msgstr "Открыть новое окно"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new tab"
+msgstr "Открыть новую вкладку"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Edit the clipboard content"
+msgstr "Редактировать содержимое буфера обмена"
+
+#: src/main.py
+msgid "This version isn't stable!"
+msgstr "Эта версия нестабильна!"
+
+#: src/main.py
+msgid "Report bugs or ideas"
+msgstr "Сообщить об ошибках или идеях"
+
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
+#: src/main.py
+msgid "translator-credits"
+msgstr ""
+"Ser82-png\n"
+"Artem Polishchuk"
+
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
+#: src/main.py
+msgid "GNOME's \"Art Libre\" icon set authors"
+msgstr "Авторы значков GNOME \"Art Libre\""
+
+#: src/main.py
+msgid "Simple image editor for Linux"
+msgstr "Простой редактор изображений для Linux"
+
+#: src/main.py
+msgid "Official webpage"
+msgstr "Официальная страница"
+
+#: src/main.py
+msgid "Error opening this file."
+msgstr "Ошибка при открытии файла."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr "Вы имели в виду %s?"
+
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
+#: src/minimap.py
+#, python-format
+msgid "%s%%"
+msgstr ""
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Отмена"
 
 #. Context: Create a new image
 #: src/new_image_dialog.py
 msgid "Create"
-msgstr ""
+msgstr "Создать"
 
-#: src/main.py
-#, fuzzy
-msgid "Show the app version"
-msgstr "Предварительный просмотр"
-
-#: src/main.py
-msgid "Open a new window"
-msgstr "Открыть новое окно"
-
-#: src/main.py
-msgid "Open a new tab"
-msgstr "Открыть новую вкладку"
-
-#: src/main.py
-msgid "Edit the clipboard content"
-msgstr ""
-
-#: src/main.py
-msgid "This version isn't stable!"
-msgstr ""
-
-#: src/main.py
-msgid "Report bugs or ideas"
-msgstr "Сообщить об ошибках или идеях"
-
-#. To tranlators: "translate" this by your name, it will be displayed
-#. in the "about" dialog
-#: src/main.py
-msgid "translator-credits"
-msgstr "Artem Polishchuk <ego.cordatus@gmail.com>, 2019."
-
-#: src/main.py
-msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
-
-#: src/main.py
-msgid "A drawing application for the GNOME desktop."
-msgstr "Гафический редактор для рабочего стола GNOME."
-
-#: src/main.py
-msgid "Official webpage"
-msgstr ""
-
-#: src/main.py
-#, fuzzy, python-format
-msgid "Error opening this file. Did you mean %s ?"
-msgstr ""
-"Ошибка при открытии файла. Вы имели в виду\n"
-"flatpak run --file-forwarding {0} @@ {1} @@\n"
-"?"
-
-#. This displays the zoom level, %s will be replaced with a number, while
-#. %% is just the symbol '%'
-#: src/minimap.py
-#, python-format
-msgid "%s%%"
-msgstr ""
-
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
 msgstr "Новые изображения"
@@ -811,150 +953,201 @@ msgstr "Ширина по умолчанию"
 msgid "Default height"
 msgstr "Высота по умолчанию"
 
-#: src/preferences.py
-#, fuzzy
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or
+#. saving the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
-msgstr "Фон по умолчанию"
+msgstr "Цвет по умолчанию"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
-#, fuzzy
 msgid "Images saving"
-msgstr "Изображение"
+msgstr "Сохранение изображений"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "Изображения JPEG и BMP не поддерживают прозрачность."
 
 #: src/preferences.py
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
+"Если вы сохраняете изображения в этих форматах, что будете использовать для "
+"замены прозрачных пикселей?"
 
-#: src/preferences.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "White"
-msgstr ""
+msgstr "Белый"
 
-#: src/preferences.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities.py
 msgid "Black"
-msgstr ""
+msgstr "Черный"
 
-#: src/preferences.py src/utilities.py
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
+#: src/preferences.py src/saving_manager.py
 msgid "Checkboard"
-msgstr ""
+msgstr "Шахматная доска"
 
-#: src/preferences.py src/utilities.py
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
+#: src/preferences.py src/saving_manager.py
 msgid "Nothing"
-msgstr ""
+msgstr "Ничего"
 
 #: src/preferences.py
 msgid "Ask before saving"
-msgstr ""
+msgstr "Спросить перед сохранением"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr ""
+"Вы можете масштабировать с помощью Ctrl+прокрутка или только прокруткой."
 
 #: src/preferences.py
-msgid "Using keyboard shortcuts or touch gestures is possible too."
-msgstr ""
+msgid "See the user help manual for explanations."
+msgstr "Смотри пояснения в справочном руководстве пользователя."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr ""
+msgstr "Использовать 'Ctrl' для масштабирования"
 
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
-msgstr ""
+msgstr "Внешний вид"
 
 #: src/preferences.py
 msgid "Use big icons"
-msgstr ""
+msgstr "Большие кнопки"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
-msgstr ""
+msgstr "Дополнительные инструменты"
 
 #: src/preferences.py
 msgid ""
 "These tools are not as reliable and useful as they should be, so they are "
 "not all enabled by default."
 msgstr ""
+"Эти инструменты не так надежны и полезны, как должны быть, поэтому не все "
+"они включены по умолчанию."
 
-#. In the meaning "a rubber eraser"
+#. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Ластик"
 
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr ""
+msgstr "Маркер"
 
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
+msgstr "Кисть"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
+msgid "Points"
+msgstr "Точки"
+
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
 msgstr "Свободное выделение"
 
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Выбор цвета"
+msgstr "Выделение цвета"
 
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
 #: src/preferences.py src/tools/classic_tools/tool_picker.py
 msgid "Color Picker"
-msgstr "Выбор цвета"
+msgstr "Получение цвета"
 
+#. Context: the name of a tool to fill an area of one color with an other
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
 msgstr "Заливка"
 
+#. Context: title of a section of the preferences
 #: src/preferences.py
-#, fuzzy
 msgid "Advanced options"
-msgstr "Варианты дуги"
+msgstr "Расширенные настройки"
 
 #: src/preferences.py
 msgid "Preview size"
-msgstr "Размер предварительного просмотра"
+msgstr "Размер окна предварительного просмотра"
 
+#. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
-msgstr ""
+msgstr "Экспериментальные возможности"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Background color"
-msgstr "Фон по умолчанию"
+msgstr "Цвет фона"
 
+#: src/preferences.py
+msgid "Prefer dark theme variant"
+msgstr "Предпочитаю темный вариант темы"
+
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
-msgstr "Раскладка"
+msgstr "Компоновка"
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "Рекомендуемое значение - «Автоматическая»."
 
+#. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
-msgstr "Автоматический"
+msgstr "Автоматическая"
 
 #: src/preferences.py
 msgid "Compact"
-msgstr "Компактный"
+msgstr "Компактная"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
 #: src/preferences.py
 msgid "Legacy"
-msgstr "Старый"
+msgstr "Традиционная"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
-#. can translate it like if it was "Traditional"
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
-msgstr ""
+msgstr "Традиционная (символьные значки)"
 
 #: src/preferences.py
 msgid "Menubar only"
@@ -964,121 +1157,201 @@ msgstr "Только панель меню"
 msgid "Toolbar only"
 msgstr "Только панель инструментов"
 
+#. Symbolic icons are monochrome icons.
 #: src/preferences.py
-#, fuzzy
 msgid "Toolbar only (symbolic icons)"
-msgstr "Только панель инструментов"
+msgstr "Только панель инструментов (символьные значки)"
 
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s пикс"
 
 #: src/properties.py
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s см"
 
 #: src/properties.py
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s дюйм"
 
+#. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
 msgstr "Путь"
 
+#. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
 msgstr "Формат"
 
 #: src/properties.py
-#, fuzzy
 msgid "Colorspace"
-msgstr "Цвета"
+msgstr "Цветовое пространство"
 
+#. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
 msgstr "Неверный формат"
 
-#: src/utilities.py
-#, fuzzy
-msgid "Transparent"
-msgstr "Добавить прозрачность"
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to save %s"
+msgstr "Ошибка сохранения %s"
+
+#. Context: Untitled(.png) is the default name of a newly saved file
+#: src/saving_manager.py
+msgid "Untitled"
+msgstr "Без названия"
+
+#. Context: the sentence "There are unsaved modifications to %s."
+#: src/saving_manager.py
+msgid "this picture"
+msgstr "этом рисунке"
+
+#: src/saving_manager.py
+msgid "Discard"
+msgstr "Не сохранять"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/saving_manager.py src/window.py
+#, python-format
+msgid "There are unsaved modifications to %s."
+msgstr "Имеются несохраненные изменения в %s."
+
+#: src/saving_manager.py
+msgid ""
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
+msgstr ""
+"Выделена часть изображения: пиксели под выделением будут сохранены с цветом, "
+"которого вы, возможно, не ожидали!"
+
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
+#: src/saving_manager.py
+msgid "Modifications from the current tool haven't been applied."
+msgstr "Изменения текущего инструмента не были применены."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "Применить и сохранить"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Deselect & save"
+msgstr "Снять выделение и сохранить"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "Все равно сохранить"
+
+#: src/saving_manager.py
+msgid "Do you want to save anyway?"
+msgstr "Вы все равно хотите сохранить?"
+
+#. Context: confirm replacing transparent pixels with the selected color
+#: src/saving_manager.py
+msgid "Replace"
+msgstr "Заменить"
+
+#: src/saving_manager.py
+msgid "This file format doesn't support transparent colors."
+msgstr "Этот формат файла не поддерживает прозрачные цвета."
+
+#: src/saving_manager.py
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
+"Вы можете сохранить изображение как PNG-файл или заменить прозрачность на:"
+
+#: src/saving_manager.py
+msgid "Replace transparency with:"
+msgstr "Заменить прозрачность на:"
+
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr "Выбранный Pixbuf пуст."
+
+#: src/selection_manager.py
+msgid "The selection path is empty."
+msgstr "Выбранный путь пуст."
 
 #: src/utilities.py
-#, fuzzy, python-format
+msgid "Transparent"
+msgstr "Прозрачный"
+
+#: src/utilities.py
+#, python-format
 msgid "%s%% transparent"
-msgstr "Добавить прозрачность"
+msgstr "%s%% прозрачность"
 
 #: src/utilities.py
 msgid "Grey"
-msgstr ""
+msgstr "Серый"
 
 #: src/utilities.py
 msgid "Orange"
-msgstr ""
+msgstr "Оранжевый"
 
 #: src/utilities.py
 msgid "Brown"
-msgstr ""
+msgstr "Коричневый"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
 #: src/utilities.py
 msgid "Probably brown"
-msgstr ""
+msgstr "Вероятно коричневый"
 
 #: src/utilities.py
-#, fuzzy
 msgid "Red"
-msgstr "Вернуть"
+msgstr "Красный"
 
 #: src/utilities.py
 msgid "Green"
-msgstr ""
+msgstr "Зеленый"
 
 #: src/utilities.py
 msgid "Blue"
-msgstr ""
+msgstr "Синий"
 
 #: src/utilities.py
 msgid "Yellow"
-msgstr ""
+msgstr "Желтый"
 
 #: src/utilities.py
 msgid "Magenta"
-msgstr ""
+msgstr "Маджента"
 
 #: src/utilities.py
 msgid "Purple"
-msgstr ""
+msgstr "Пурпурный"
 
 #: src/utilities.py
 msgid "Cyan"
-msgstr ""
+msgstr "Голубой"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
 #: src/utilities.py
-msgid "Probably turquoise"
-msgstr ""
+msgid "Probably teal"
+msgstr "Вероятно сине-зеленый (teal)"
 
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities.py
 msgid "Unknown color name"
-msgstr ""
-
-#: src/utilities.py
-msgid "Replace"
-msgstr ""
-
-#: src/utilities.py
-msgid "This file format doesn't support transparent colors."
-msgstr ""
-
-#: src/utilities.py
-msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr ""
-
-#: src/utilities.py
-msgid "Replace transparency with:"
-msgstr ""
+msgstr "Неизвестное название цвета"
 
 #: src/utilities.py
 msgid "All pictures"
@@ -1096,42 +1369,107 @@ msgstr "Изображения JPEG"
 msgid "BMP images"
 msgstr "Изображения BMP"
 
+#. To translators: it appears in tooltips over numerical inputs
 #: src/utilities.py
 msgid "percents"
-msgstr ""
+msgstr "проценты"
 
-#. To translators: it's the angle measure unit
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
 #: src/utilities.py
-#, fuzzy
 msgid "degrees"
-msgstr "Угол (градусы)"
+msgstr "градусы"
 
-#: src/window.py
+#: src/utilities.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s - не является изображением."
+
+#: src/utilities.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "Извините, WEBP изображение не может быть загружено этим приложением."
+
+#. Context: an error message, %s is a file path
+#: src/utilities.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Несмотря на название, %s - это файл WEBP."
+
+#. Context: an error message
+#: src/tools_initializer.py
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr ""
+msgstr "Не удалось загрузить инструмент: %s"
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
+
+#. Context: %s is the version number of the app
+#: src/window.py
+#, python-format
+msgid ""
+"It's the first time you use Drawing %s, would you like to read what's new?"
+msgstr "Вы впервые используете Drawing %s. Хотите узнать, что нового?"
+
+#: src/window.py
+msgid "No"
+msgstr "Нет"
+
+#: src/window.py
+msgid "Later"
+msgstr "Позже"
+
+#: src/window.py
+msgid "Yes"
+msgstr "Да"
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "В буфере обмена нет изображений."
+
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "Файл %s уже открыт"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr "Открыть заново"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr "Переключиться на это изображение"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Изменения вступят в силу в следующем новом окне."
 
-#: src/window.py src/tools/abstract_tool.py
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_highlight.py
-msgid "No options"
+#: src/window.py
+msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
 msgstr ""
+"Щелкните средней кнопкой мыши, коснитесь тремя пальцами или нажмите F8, "
+"чтобы отобразить/скрыть элементы управления."
 
 #: src/window.py
-msgid "Opened images"
-msgstr "Открытые изображения"
+msgid "Press F11 to exit fullscreen."
+msgstr "Нажмите F11 для выхода из полноэкранного режима."
+
+#: src/window.py
+#, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"Ошибка загрузки нижней панели для инструмента '%s', сообщите об этой ошибке."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
-#. Context: answer to "where do you want to open the image?"
 #: src/window.py
 msgid "New Tab"
 msgstr "Новая вкладка"
@@ -1140,55 +1478,28 @@ msgstr "Новая вкладка"
 msgid "Discard changes"
 msgstr "Отменить изменения"
 
-#: src/window.py
-#, python-format
-msgid "There are unsaved modifications to %s."
-msgstr "Несохраненные изменения в %s."
-
+#. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
 msgstr "Где вы хотите открыть %s?"
 
-#: src/window.py
-msgid "Open a picture"
-msgstr "Открыть изображение"
-
 #. Context for translation:
 #. "What do you want to do with *these files*?"
 #: src/window.py
-#, fuzzy
 msgid "these files"
-msgstr "Несохраненный файл"
+msgstr "этими файлами"
 
-#: src/window.py
-#, fuzzy, python-format
-msgid "What do you want to do with %s?"
-msgstr "Где вы хотите открыть %s?"
-
-#. else the exception was raised because an actual error occured, or
-#. the user clicked on "cancel"
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
-msgid "Failed to save %s"
-msgstr ""
+msgid "What do you want to do with %s?"
+msgstr "Что вы хотите сделать с %s?"
 
 #: src/window.py
-msgid "Untitled"
-msgstr "Без названия"
-
-#. Context: the sentence "There are unsaved modifications to %s."
-#: src/window.py
-msgid "this picture"
-msgstr "это изображение"
-
-#: src/window.py
-msgid "Discard"
-msgstr "Сбросить"
-
-#: src/window.py
-msgid "Save picture as…"
-msgstr "Сохранить изображение как…"
+msgid "Image copied to clipboard"
+msgstr "Изображение скопировано в буфер обмена"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1196,7 +1507,157 @@ msgstr "Импорт изображения"
 
 #: src/window.py
 msgid "Required tool is not available"
+msgstr "Требуемый инструмент недоступен"
+
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
+#: src/optionsbars/classic/optionsbar_color_popover.py
+msgid "Highlight (dark)"
+msgstr "Выделять (темный)"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
+msgid "Main color"
+msgstr "Основной цвет"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+msgid "Secondary color"
+msgstr "Дополнительный цвет"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Tool size"
+msgstr "Размер инструмента"
+
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "Без параметров"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "How the color will be applied to the existing pixels"
+msgstr "Как будет применяться цвет к существующим пикселям"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Back to the palette"
+msgstr "Вернуться к палитре"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Palette"
+msgstr "Палитра"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Use this editor by default"
+msgstr "Использовать этот редактор по умолчанию"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/tools/selection_tools/abstract_select.py
+msgid "Selection options"
+msgstr "Параметры выделения"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
+msgid "Replace with…"
+msgstr "Заменить…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "Прозрачность"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "Исключить из этого цвет"
+
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "Apply"
+msgstr "Применить"
+
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "More options"
+msgstr "Больше параметров"
+
+#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr "Расширить с…"
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Select a filter…"
+msgstr "Выбрать фильтр…"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle (degrees)"
+msgstr "Угол (градусы)"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle"
+msgstr "Угол"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate left"
+msgstr "Повернуть влево"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate right"
+msgstr "Повернуть вправо"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip horizontally"
+msgstr "Отразить по горизонтали"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip vertically"
+msgstr "Отразить по вертикали"
+
+#. Context: the title of a menu to chose how the image will be scaled
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Keep proportions"
+msgstr "Сохранять пропорции"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Always [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Always"
+msgstr "Всегда"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When scaling from corners"
+msgstr "При масштабировании от углов"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Never [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Never"
+msgstr "Никогда"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Horizontal deformation"
+msgstr "Горизонтальная деформация"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Vertical deformation"
+msgstr "Вертикальная деформация"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
+"Не удается начать операцию: неверный идентификатор инструмента (ожидалось "
+"{0}, получено {1})"
 
 #: src/tools/utilities_paths.py
 msgid "Continue"
@@ -1204,346 +1665,344 @@ msgstr "Продолжить"
 
 #: src/tools/utilities_paths.py
 msgid "The area seems poorly delimited, or is very complex."
-msgstr ""
+msgstr "Область кажется плохо разграниченной или очень сложной."
 
 #: src/tools/utilities_paths.py
 msgid "This algorithm may not be able to manage the wanted area."
-msgstr ""
+msgstr "Алгоритм может быть не в состоянии обработать желаемую область."
 
 #: src/tools/utilities_paths.py
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
+msgstr "Хотите прервать операцию или дать инструменту продолжить работу?"
 
-#: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Main color"
-msgstr "Основной цвет"
+#: src/tools/ui/selection.ui
+msgid "Transform"
+msgstr "Преобразование"
 
-#. if state_as_string == 'secondary':
-#: src/optionsbars/classic/optionsbar_color_popover.py
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Secondary color"
-msgstr "Вторичный цвет"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Line shape"
+msgstr "Форма линии"
 
-#: src/optionsbars/classic/optionsbar-classic.ui
-msgid "Tool size"
-msgstr "Размер инструмента"
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
+msgid "Round"
+msgstr "Круг"
 
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-#: src/tools/ui/tool-filters.ui
-msgid "Preview"
-msgstr "Предпросмотр"
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
+msgid "Square"
+msgstr "Квадрат"
 
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "How the color will be applied to the existing pixels"
-msgstr ""
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
+#: src/tools/classic_tools/tool_text.py
+msgid "Outline"
+msgstr "Контур"
 
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Back to the palette"
-msgstr "Назад к палитре"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "No dashes"
+msgstr "Непрерывная"
 
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Palette"
-msgstr ""
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Simple dashes"
+msgstr "Простые штрихи"
 
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Использовать этот редактор по умолчанию"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Long dashes"
+msgstr "Длинные штрихи"
 
-#: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/canvas/optionsbar-rotate.ui
-#, fuzzy
-msgid "More actions"
-msgstr "Варианты окружности"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Short dashes"
+msgstr "Короткие штрихи"
 
-#: src/optionsbars/canvas/optionsbar-crop.ui
-#: src/optionsbars/canvas/optionsbar-filters.ui
-#: src/optionsbars/canvas/optionsbar-rotate.ui
-#: src/optionsbars/canvas/optionsbar-scale.ui
-#: src/optionsbars/canvas/optionsbar-skew.ui src/tools/ui/tool-crop.ui
-#: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-msgid "Apply"
-msgstr "Применить"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Alternated dashes"
+msgstr "Чередующиеся штрихи"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
-msgid "Select a filter…"
-msgstr "Выбрать все"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "Без стрелки"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui
-#, fuzzy
-msgid "Saturation"
-msgstr "Насыщенность (%)"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "Простая стрелка"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui
-msgid "Blur radius"
-msgstr ""
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "Двойная стрелка"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui
-#, fuzzy
-msgid "Transparency"
-msgstr "Добавить прозрачность"
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui
+msgid "Antialiasing"
+msgstr "Сглаживание"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
+msgid "Simple brush"
+msgstr "Простая кисть"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Airbrush"
+msgstr "Аэрогрф"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
+msgid "Hairy brush"
+msgstr "Кисть с волосами"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
+msgid "Calligraphic nib"
+msgstr "Каллиграфическое перо"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Right-handed nib"
+msgstr "Перо для правой руки"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Vertical nib"
+msgstr "Вертикальное перо"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Left-handed nib"
+msgstr "Перо для левой руки"
+
+#: src/tools/ui/tool-brush.ui
+msgid "Horizontal nib"
+msgstr "Горизонтальное перо"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Карандаш"
+
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Прямоугольник"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Blur"
+msgstr "Размытие"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle pixels"
+msgstr "Перемешать пиксели"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Shuffle and blur"
+msgstr "Перемешать и размыть"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+msgid "Mosaic"
+msgstr "Мозаика"
+
+#: src/tools/ui/tool-eraser.ui
+msgid "Solid color"
+msgstr "Сплошной цвет"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
-msgstr "Насыщенность (%)"
+msgstr "Изменить насыщенность"
 
 #. Context: a filter adding like a light veil on the image
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Veil"
-msgstr ""
+msgstr "Пелена"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
 msgstr "Добавить прозрачность"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
-msgid "Invert colors"
-msgstr "Поменять цвета"
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr "Увеличить контраст"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
 msgid "Blurring"
-msgstr ""
+msgstr "Размытие"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Fast blur"
-msgstr ""
+msgstr "Быстрое размытие"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Slow blur"
-msgstr ""
+msgstr "Медленное размытие"
 
-#. Context: a filter that censors the image with some kind of tiles
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#: src/tools/canvas_tools/tool_filters.py
-#, fuzzy
-msgid "Pixelisation"
-msgstr "Издание"
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Pixelization"
+msgstr "Пикселизация"
 
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
+#: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
-msgstr "Выбор цвета"
+msgstr "Направленное размытие"
 
 #. Context: about the blur direction
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
+#: src/tools/ui/tool-filters.ui
 msgid "Horizontal"
-msgstr "Перевернуть по горизонтали"
+msgstr "Горизонтальное"
 
 #. Context: about the blur direction
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
+#: src/tools/ui/tool-filters.ui
 msgid "Vertical"
-msgstr "Выбор цвета"
+msgstr "Вертикальное"
 
 #. Context: about the blur direction
-#: src/optionsbars/canvas/optionsbar-filters.ui src/tools/ui/tool-filters.ui
-#, fuzzy
+#: src/tools/ui/tool-filters.ui
 msgid "No direction"
-msgstr "Выбор цвета"
+msgstr "Без направления"
 
-#: src/optionsbars/canvas/optionsbar-rotate.ui
-msgid "Angle (degrees)"
-msgstr "Угол (градусы)"
-
-#: src/optionsbars/canvas/optionsbar-rotate.ui
-msgid "Angle"
-msgstr ""
-
-#: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
-msgid "Rotate left"
-msgstr "Повернуть влево"
-
-#: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
-msgid "Rotate right"
-msgstr "Повернуть вправо"
-
-#: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
-msgid "Flip horizontally"
-msgstr "Перевернуть по горизонтали"
-
-#: src/optionsbars/canvas/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
-msgid "Flip vertically"
-msgstr "Перевернуть по вертикали"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui
-#, fuzzy
-msgid "More options"
-msgstr "Варианты окружности"
-
-#: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
-msgid "Keep proportions"
-msgstr "Сохранять пропорции"
-
-#. Context for translations: an item in a menu whose title is "Keep proportions"
-#. Context for translations: "Always [keep proportions]"
-#: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-msgid "Always"
-msgstr ""
-
-#. Context for translations: an item in a menu whose title is "Keep proportions"
-#. Context for translations: "[Keep proportions only] when scaling from corners"
-#: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-msgid "When scaling from corners"
-msgstr ""
-
-#. Context for translations: an item in a menu whose title is "Keep proportions"
-#. Context for translations: "Never [keep proportions]"
-#: src/optionsbars/canvas/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-msgid "Never"
-msgstr ""
-
-#: src/optionsbars/canvas/optionsbar-skew.ui
-#, fuzzy
-msgid "Horizontal deformation"
-msgstr "Перевернуть по горизонтали"
-
-#: src/optionsbars/canvas/optionsbar-skew.ui
-#, fuzzy
-msgid "Vertical deformation"
-msgstr "Выбор цвета"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui
-#, fuzzy
-msgid "Line shape"
-msgstr "Свободная форма"
-
-#. Default values
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
-msgid "Round"
-msgstr "Круглый"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
-msgid "Thin"
-msgstr "Тонкий"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_arc.py
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_pencil.py
-msgid "Square"
-msgstr "Квадратный"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui
-msgid "Use dashes"
-msgstr "Использовать тире"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
-msgid "Arrow"
-msgstr "Указатель"
-
-#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-shape.ui
-msgid "Antialiasing"
-msgstr ""
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "Инвертировать цвета"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Color gradient"
-msgstr "Выбор цвета"
+msgstr "Градиент цвета"
 
+#: src/tools/ui/tool-line.ui
+msgid "Locked direction"
+msgstr "Закрепленное направление"
+
+#. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
 msgid "Behavior"
-msgstr ""
+msgstr "Поведение"
 
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
 #: src/tools/ui/tool-paint.ui
 msgid "Encircle and fill"
-msgstr "Окружить и заполнить"
+msgstr "Обвести и заполнить"
 
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
 #: src/tools/ui/tool-paint.ui
 msgid "Erase and replace"
 msgstr "Стереть и заменить"
 
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
 #: src/tools/ui/tool-paint.ui
-msgid "Clipping"
-msgstr ""
+msgid "Entire image"
+msgstr "Изображение целиком"
+
+#. Context: this is one of the possible painting algorithms. It
+#. doesn't really paint, instead it erases the color the user
+#. clicked. For example to cut out an object from its white
+#. background.
+#: src/tools/ui/tool-paint.ui
+msgid "Remove color"
+msgstr "Удалить цвет"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr "Типы точек"
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "Круг"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr "Крест"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr "Х-образный крест"
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr "Включить нумерацию"
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr "Следующий порядковый номер"
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr "Сбросить нумерацию"
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr "Уменьшить порядковый номер"
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr "Увеличить порядковый номер"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
-msgstr ""
+msgstr "Сплошной контур"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Dashed outline"
-msgstr ""
+msgstr "Пунктирный контур"
 
-#. if state_as_string == 'none':
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
-msgstr ""
+msgstr "Без контура"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
-msgstr "Заполнение"
+msgstr "Заливка"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Пустой"
+msgstr "Пустая форма"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Horizontal gradient"
-msgstr "Перевернуть по горизонтали"
+msgstr "Горизонтальный градиент"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Vertical gradient"
-msgstr "Выбор цвета"
+msgstr "Вертикальный градиент"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Radial gradient"
-msgstr "Выбор цвета"
+msgstr "Радиальный градиент"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Прямоугольник"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Прямоугольник"
+msgstr "Прямоугольник со скругленными углами"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Oval"
-msgstr "Овальный"
+msgstr "Овал"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Polygon"
-msgstr "Полигон"
+msgstr "Многоугольник"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Free shape"
 msgstr "Свободная форма"
 
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-msgid "Circle"
-msgstr "Круг"
-
 #: src/tools/ui/tool-shape.ui
-#, fuzzy
 msgid "Close shape"
-msgstr "Новое изображение"
+msgstr "Зарытая форма"
 
 #: src/tools/ui/tool-text.ui
 msgid "Insert here"
@@ -1554,62 +2013,69 @@ msgid "Font"
 msgstr "Шрифт"
 
 #: src/tools/ui/tool-text.ui
+msgid "Select a font…"
+msgstr "Выбрать шрифт…"
+
+#: src/tools/ui/tool-text.ui
 msgid "Italic"
-msgstr ""
+msgstr "Курсив"
 
 #: src/tools/ui/tool-text.ui
 msgid "Bold"
-msgstr ""
+msgstr "Жирный"
 
-#. <submenu>
+#. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Background"
-msgstr "Фон по умолчанию"
+msgstr "Фон"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "No background"
-msgstr "Фон по умолчанию"
+msgstr "Без фона"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
-msgstr ""
+msgstr "Тень"
 
+#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-msgid "Outline"
-msgstr ""
-
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Фон по умолчанию"
-
-#: src/tools/ui/selection.ui
-msgid "Edit"
-msgstr "Правка"
-
-#: src/tools/ui/selection.ui
-msgid "Flip"
-msgstr "Перевернуть"
+msgstr "Прямоугольный фон"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
-msgstr ""
+msgstr "Кривая"
 
 #: src/tools/classic_tools/tool_arc.py
-#, fuzzy
 msgid "Curve options"
-msgstr "Варианты окружности"
+msgstr "Параметры кривой"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
-msgstr ""
+msgstr "Пунктирная стрелка"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Arrow"
+msgstr "Стрелка"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
-msgstr ""
+msgstr "Пунктирная"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush options"
+msgstr "Параметры кисти"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Eraser options"
+msgstr "Параметры ластика"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter options"
+msgstr "Параметры маркера"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -1617,100 +2083,171 @@ msgstr "Линия"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
-msgstr "Варианты линии"
+msgstr "Параметры линии"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Варианты рисования"
+msgstr "Параметры заливки"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
 msgstr "Щелкните на область, чтобы заменить ее цвет прозрачностью"
 
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Карандаш"
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr "Щелкните на холст, чтобы полностью его залить"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr "Варианты карандаша"
+msgstr "Параметры карандаша"
+
+#: src/tools/classic_tools/tool_points.py
+msgid "Points options"
+msgstr "Параметры точек"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr "Следующий номер: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
-msgstr "Фигура"
+msgstr "Форма"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
-msgstr "Фарианты формы"
+msgstr "Параметры формы"
+
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Заполнение основным цветом"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Заполнение дополнительным цветом"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Click on the shape's first point to close it."
-msgstr ""
+msgstr "Клик по первой точке формы, чтобы закрыть ее."
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
 msgstr "Текст"
 
 #: src/tools/classic_tools/tool_text.py
-#, fuzzy
-msgid "Font options"
-msgstr "Варианты линии"
+msgid "Text options"
+msgstr "Параметры текста"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the stylus pressure"
+msgstr "Плотность зависит от давления стилуса"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the mouse speed"
+msgstr "Плотность зависит от скорости движения мыши"
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nib.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr "Ширина зависит от давления стилуса"
+
+#: src/tools/classic_tools/brushes/brush_nib.py
+msgid "Width depends on the line orientation"
+msgstr "Ширина зависит от направления линии"
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr "Ширина зависит от скорости движения мыши"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Перетащите выделение или щелкните правой кнопкой мыши по холсту"
+msgstr ""
+"Перетащите выделенную область или щелкните правой кнопкой мыши по холсту"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Выберите область или щелкните правой кнопкой мыши на холсте"
+msgstr "Выделите область или щелкните правой кнопкой мыши на холсте"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
 msgstr "Прямоугольное выделение"
 
-#: src/tools/canvas_tools/abstract_canvas_tool.py
+#: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
-msgstr ""
+msgstr "Ошибка: недопустимые значения"
 
-#: src/tools/canvas_tools/tool_crop.py
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping options"
+msgstr "Параметры обрезки"
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Обрезать выделенное"
 
-#: src/tools/canvas_tools/tool_crop.py
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the canvas"
 msgstr "Обрезать холст"
 
-#: src/tools/canvas_tools/tool_filters.py
-msgid "Click on the image to preview the selected filter"
-msgstr ""
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr "Активный фильтр"
 
-#: src/tools/canvas_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_filters.py
+msgid "Click on the image to preview the selected filter"
+msgstr "Кликните изображение, чтобы просмотреть выбранный фильтр"
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "Тиснение"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating options"
+msgstr "Параметры поворота"
+
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
 msgstr "Повернуть выделенное"
 
-#: src/tools/canvas_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
 msgstr "Повернуть холст"
 
-#: src/tools/canvas_tools/tool_scale.py
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling options"
+msgstr "Параметры масштабирования"
+
+#: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
 msgstr "Масштабировать выделенное"
 
-#: src/tools/canvas_tools/tool_scale.py
+#: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Масштабировать холст"
 
-#~ msgid "Classic"
-#~ msgstr "Классический"
+#. In this context, "Skew" is the name of the tool changing rectangles
+#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
+#. "Stretch/Skew" dialog.
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Наклон"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "Радиус размытия"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "Насыщенность"
+
+#~ msgid "A drawing application for the GNOME desktop"
+#~ msgstr "Графический редактор для рабочего стола GNOME"
+
+#~ msgid "Quit"
+#~ msgstr "Завершить"
 
 #~ msgid "Close"
 #~ msgstr "Закрыть"
-
-#~ msgid "Freehand"
-#~ msgstr "Свободно"
-
-#~ msgid "Similar color"
-#~ msgstr "Подобный цвет"
-
-#~ msgid "Selection options"
-#~ msgstr "Варианты выделения"

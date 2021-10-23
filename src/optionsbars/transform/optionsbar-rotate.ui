@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+
+  <object class="GtkAdjustment" id="adj_angle">
+    <property name="lower">-360</property>
+    <property name="upper">360</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">90</property>
+    <property name="value">0</property>
+  </object>
+
+  <!-- -->
+
+  <object class="GtkBox" id="centered_box">
+    <property name="visible">True</property>
+    <property name="spacing">10</property>
+
+    <child>
+      <object class="GtkBox" id="angle_box">
+        <property name="visible">True</property>
+        <property name="spacing">10</property>
+        <property name="tooltip_text" translatable="yes">Angle (degrees)</property>
+        <child>
+          <object class="GtkLabel" id="angle_label">
+            <property name="label" translatable="yes">Angle</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="angle_btn">
+            <property name="visible">True</property>
+            <property name="wrap">True</property>
+            <property name="adjustment">adj_angle</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="rotate_box">
+        <property name="visible">True</property>
+        <style><class name="linked"/></style>
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Rotate left</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.rotate-counter-cw</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-rotate-left-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Rotate right</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.rotate-clockwise</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-rotate-right-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="flip_box">
+        <property name="visible">True</property>
+        <style><class name="linked"/></style>
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Flip horizontally</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.rotate-flip-h</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-flip-horizontal-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="tooltip_text" translatable="yes">Flip vertically</property>
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.rotate-flip-v</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">object-flip-vertical-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+  </object>
+
+  <!-- -->
+
+  <menu id="actions-menu">
+    <section>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <item>
+        <attribute name="label" translatable="yes">Rotate left</attribute>
+        <attribute name="action">win.rotate-counter-cw</attribute>
+        <attribute name="verb-icon">object-rotate-left-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rotate right</attribute>
+        <attribute name="action">win.rotate-clockwise</attribute>
+        <attribute name="verb-icon">object-rotate-right-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <!-- <attribute name="display-hint">horizontal-buttons</attribute> -->
+      <item>
+        <attribute name="label" translatable="yes">Flip horizontally</attribute>
+        <attribute name="action">win.rotate-flip-h</attribute>
+        <attribute name="verb-icon">object-flip-horizontal-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Flip vertically</attribute>
+        <attribute name="action">win.rotate-flip-v</attribute>
+        <attribute name="verb-icon">object-flip-vertical-symbolic</attribute>
+      </item>
+    </section>
+  </menu>
+
+</interface>

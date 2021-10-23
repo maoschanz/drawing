@@ -10,77 +10,118 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Change the app preferences</desc>
+    <desc>Understand and change the app preferences.</desc>
   </info>
 
   <title>Preferences</title>
 
-  <p>The preferences dialog is splitted into 3 tabs.</p>
+  <p>The preferences dialog is splitted into 3 parts.</p>
 
-  <section>
+  <section id="image">
     <title>Image</title>
-    <table rules="colgroups">
-      <tr>
-        <td>
-          <media type="image" mime="image/png" width="100%" its:translate="no"
-                 src="figures/screenshot_prefs_images.png" />
-        </td>
-        <td>
-          <p>Here you can choose the size and color of the default canvas used
-          when creating a new file.</p>
 
-          <p>When a file is saved to the JPEG or the BMP file format, the
-          transparency can't be kept. The application can replace the
-          transparent pixels with something else: it can be white, black, or a
-          checkboard of greys.</p>
-          <p>If the replacement you want depends on the image, it's also
-          possible to open a dialog every time you save an image to one of these
-          file formats: the choices available in that dialog will also be white,
-          black, or a checkboard of greys.</p>
+    <p>You can choose the size and color of the default canvas used when
+    creating a new file.</p>
 
-          <p>You can also set how you want to zoom on the image: it can be with
-          <key>Ctrl</key> and the mouse wheel, or only with the mouse wheel.</p>
-        </td>
-      </tr>
-    </table>
+    <p>When a file is saved to the JPEG or the BMP file format, the transparency
+    can't be kept. The application can replace the transparent pixels with
+    something else: it can be white, black, or a checkboard of greys.</p>
+    <p>The option "default color" corresponds to the initial color of the
+    canvas, which is usually the "default color" setting available in the
+    previous section.</p>
+    <p>If the replacement you want depends on the image, it's also possible to
+    open a dialog every time you save an image to one of these file formats: the
+    choices available in that dialog will also be white, black, or a checkboard
+    of greys.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_prefs_images.png" />
+
+    <p>You can also set how you want to zoom on the image: explanations about
+    this setting can be found in <link xref="zoom_preview#configuration">this
+    page about zooming</link>.</p>
   </section>
 
-  <section>
-    <title><link xref="tools_classic">Tools</link></title>
-    <table rules="colgroups">
-      <tr>
-        <td>
-          <p>You can set whether you prefer normal icons (16 pixels) or large
-          icons (24 pixels).</p>
-          <p>Choosing whether or not you want to display the names of the tools
-          next to their icons is possible here, and it's also available from the
-          <link xref="main_features#main-menu">primary menu</link> of the
-          window.</p>
+  <section id="tools">
+    <title>Tools</title>
 
-          <p>A few additional tools are also available. If they're not activated
-          by default, it's because they might be less reliable or useful.</p>
-        </td>
-        <td>
-          <media type="image" mime="image/png" width="100%" its:translate="no"
-                 src="figures/screenshot_prefs_tools.png" />
-                 <!-- TODO outdated -->
-        </td>
-      </tr>
-    </table>
+    <subsection>
+      <title>Appearance</title>
+      <p>You can set whether you prefer normal icons (16 pixels) or large icons
+      (24 pixels).</p>
+
+      <p>Choosing whether or not you want to display the names of the tools next
+      to their icons is possible here, but the <link xref="main_features#main-menu">
+      primary menu</link> of the window also provides this option.</p>
+    </subsection>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_prefs_tools.png" />
+
+    <subsection>
+      <title>Additional tools</title>
+      <p>Among the available tools, a few are optional. You can uncheck the
+      tools you don't need, or check the tools you need: the changes will be
+      applied in the next window you open.</p>
+      <note style="tip">
+        <p>If a tool isn't activated by default, it's because it might be less
+        reliable or useful than the enabled ones.</p>
+      </note>
+
+      <p>For example, the <gui style="menuitem">Paint</gui> bucket (which paints
+      an area of contiguous pixels of the same color into a new color), and the
+      <gui style="menuitem">Color selection</gui> (which creates a selection
+      from an area of same color), rely on code whose behavior is sometimes
+      unexpected: it might follow the edges of the area but paint the wrong side
+      of them, and at worst it may get stuck if the edges are too hard to
+      follow, thus crashing before being able to paint (if it happens to you,
+      try to redraw the shape without anti-aliasing).</p>
+
+      <p>On the other hand, "<gui style="menuitem">Brush</gui>" works fine, but
+      you may encounter performance issues if you press "undo" after it a few
+      times. If you enable it, it's advised to save your image regularly.</p>
+
+      <p>The <gui style="menuitem">Color picker</gui> tool, which picks a color
+      from the pixel you click, is disabled because it's a little redundant with
+      the color picker from <link xref="tools_classic_colors">the color edition
+      menu</link>. The one from the color edition menu can pick an RGB color
+      from any pixel of the display (yes, also from outside the window!), while
+      the tool is limited to pixels from the image but the colors it picks have
+      transparency (RGBA).</p>
+
+      <p>The <gui style="menuitem">Highlighter</gui> is a little redundant too,
+      since you can to the same with the pencil and <link xref="tools_classic_colors">
+      the adequate color application mode</link>.</p>
+
+      <p>The tool named "<gui style="menuitem">Points</gui>" works fine but it's
+      designed for a pretty specific captioning purpose that may not be useful
+      to everyone.</p>
+
+      <p>See <link xref="tools_classic">this page about tools</link> for more
+      information.</p>
+    </subsection>
   </section>
 
   <section>
     <title>Window</title>
 
-    <p>It's possible to choose the layout of the user interface: the
+    <p>Here you can set the size of the thumbnail preview, but using a bigger
+    preview is not recommended for technical reasons.</p>
+
+    <p>You can also set the color of the background "behind" the canvas.</p>
+
+    <p>The "theme variant" option can force the app to use the dark or light
+    variant of your current GTK theme.</p>
+
+    <p>Finally, it's possible to choose the layout of the user interface: the
     "Compact" layout, designed for the GNOME desktop, is well tested. Other
     options include the "elementary OS" layout, designed for the elementary OS
     desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
-    <p>"Symbolic icons" means that the icons are monochrome (black if you use a
-    light theme, or white if you use a dark theme.</p>
 
-    <p>You can also set the size of the thumbnail preview, but using a bigger
-    preview is not recommended for technical reasons.</p>
+    <p>In this context,"symbolic icons" means that the icons are monochrome
+    (black if you use a light theme, or white if you use a dark theme).
+    Otherwise they can be colorful (depending on your theme).</p>
   </section>
 
 </page>
+

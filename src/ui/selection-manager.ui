@@ -30,7 +30,7 @@
   <menu id="active-selection-menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">Unselect</attribute>
+        <attribute name="label" translatable="yes">Deselect</attribute>
         <attribute name="action">win.unselect</attribute>
       </item>
     </section>
@@ -74,8 +74,8 @@
       </item>
       <item>
         <attribute name="label" translatable="yes">Skew</attribute>
-        <attribute name="action">win.active_tool</attribute>
-        <attribute name="target">skew</attribute>
+        <attribute name="action">win.skew-exists</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
         <attribute name="verb-icon">tool-skew-symbolic</attribute>
       </item>
       <item>
@@ -86,14 +86,41 @@
       </item>
     </section>
     <section>
-      <item>
-        <attribute name="label" translatable="yes">Open As New Image</attribute>
-        <attribute name="action">win.new_tab_selection</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Export as…</attribute>
-        <attribute name="action">win.selection_export</attribute>
-      </item>
+      <submenu>
+        <attribute name="label" translatable="yes">More actions</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Invert selection</attribute>
+            <attribute name="action">win.selection_invert</attribute>
+            <attribute name="hidden-when">action-missing</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <!-- Define the image as being the currently selected area -->
+            <attribute name="label" translatable="yes">Define as current image</attribute>
+            <attribute name="action">win.selection-replace-canvas</attribute>
+            <attribute name="hidden-when">action-missing</attribute>
+          </item>
+          <item>
+            <!-- Expand the canvas of the current image to make the current selection fit in it. -->
+            <!-- Can be translated as "Expand to this size". -->
+            <attribute name="label" translatable="yes">Expand image to fit</attribute>
+            <attribute name="action">win.selection-expand-canvas</attribute>
+            <attribute name="hidden-when">action-missing</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">Open As New Image</attribute>
+            <attribute name="action">win.new_tab_selection</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Export as…</attribute>
+            <attribute name="action">win.selection_export</attribute>
+          </item>
+        </section>
+      </submenu>
     </section>
   </menu>
 

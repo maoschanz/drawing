@@ -1,6 +1,6 @@
 # tool_paint.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,17 +25,21 @@ class ToolPaint(AbstractClassicTool):
 	__gtype_name__ = 'ToolPaint'
 
 	def __init__(self, window, **kwargs):
+		# Context: the name of a tool to fill an area of one color with an other
 		super().__init__('paint', _("Paint"), 'tool-paint-symbolic', window)
-		self.magic_path = None
+		self._magic_path = None
 		self.use_size = False
-		self.add_tool_action_enum('paint_algo', 'fill')
+		self.add_tool_action_enum('paint_algo', 'replace')
 
 	def get_options_label(self):
 		return _("Painting options")
 
 	def get_edition_status(self):
-		if self.get_option_value('paint_algo') == 'clipping':
+		paint_algo = self.get_option_value('paint_algo')
+		if paint_algo == 'clipping':
 			return _("Click on an area to replace its color by transparency")
+		elif paint_algo == 'whole':
+			return _("Click on the canvas to entirely paint it")
 		else:
 			return self.label
 
@@ -52,11 +56,11 @@ class ToolPaint(AbstractClassicTool):
 		self.old_color = utilities_get_rgba_for_xy(surface, x, y)
 
 		if self.get_option_value('paint_algo') == 'fill':
-			self.magic_path = utilities_get_magic_path(surface, x, y, self.window, 1)
+			self._magic_path = utilities_get_magic_path(surface, x, y, self.window, 1)
 		elif self.get_option_value('paint_algo') == 'replace':
-			self.magic_path = utilities_get_magic_path(surface, x, y, self.window, 2)
+			self._magic_path = utilities_get_magic_path(surface, x, y, self.window, 2)
 		else:
-			pass # == 'clipping'
+			pass # == 'clipping' or == 'whole'
 
 		operation = self.build_operation(x, y)
 		self.apply_operation(operation)
@@ -72,15 +76,17 @@ class ToolPaint(AbstractClassicTool):
 			'rgba': self.main_color,
 			'antialias': self._use_antialias,
 			'old_rgba': self.old_color,
-			'path': self.magic_path
+			'path': self._magic_path
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
-		self.start_tool_operation(operation) # TODO antialiasing
+		self.start_tool_operation(operation) # XXX expose antialiasing option?
 
 		if operation['algo'] == 'replace':
 			self._op_replace(operation)
+		elif operation['algo'] == 'whole':
+			self._op_whole(operation)
 		elif operation['algo'] == 'fill':
 			self._op_fill(operation)
 		else: # == 'clipping'
@@ -88,52 +94,12 @@ class ToolPaint(AbstractClassicTool):
 
 	############################################################################
 
-	def _op_replace(self, operation):
-		"""Algorithmically less ugly than `_op_fill`, but doesn't handle (semi-)
-		transparent colors correctly, even outside of the targeted area."""
-		# FIXME
-		if operation['path'] is None:
-			return
-		surf = self.get_surface()
-		cairo_context = cairo.Context(surf)
+	def _op_whole(self, operation):
+		"""Paint the entire image regardless of existing pixels"""
+		cairo_context = self.get_context()
 		rgba = operation['rgba']
-		old_rgba = operation['old_rgba']
-		cairo_context.set_source_rgba(255, 255, 255, 1.0)
-		cairo_context.append_path(operation['path'])
-		cairo_context.set_operator(cairo.Operator.DEST_IN)
-		cairo_context.fill_preserve()
-
-		self.get_image().temp_pixbuf = Gdk.pixbuf_get_from_surface(surf, 0, 0, \
-		                                    surf.get_width(), surf.get_height())
-
-		tolerance = 10 # XXX
-		i = -1 * tolerance
-		while i < tolerance:
-			red = max(0, old_rgba[0]+i)
-			green = max(0, old_rgba[1]+i)
-			blue = max(0, old_rgba[2]+i)
-			red = int( min(255, red) )
-			green = int( min(255, green) )
-			blue = int( min(255, blue) )
-			self._replace_temp_with_alpha(red, green, blue)
-			i = i+1
-		self.restore_pixbuf()
-		cairo_context2 = self.get_context()
-
-		cairo_context2.append_path(operation['path'])
-		cairo_context2.set_operator(cairo.Operator.CLEAR)
-		cairo_context2.set_source_rgba(255, 255, 255, 1.0)
-		cairo_context2.fill()
-		cairo_context2.set_operator(cairo.Operator.OVER)
-
-		Gdk.cairo_set_source_pixbuf(cairo_context2, \
-		                                     self.get_image().temp_pixbuf, 0, 0)
-		cairo_context2.append_path(operation['path'])
-		cairo_context2.paint()
-		self.non_destructive_show_modif()
-		cairo_context2.set_operator(cairo.Operator.DEST_OVER)
-		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
-		cairo_context2.paint()
+		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.paint()
 
 	def _op_fill(self, operation):
 		"""Simple but ugly, and it's relying on the precision of the provided
@@ -151,17 +117,97 @@ class ToolPaint(AbstractClassicTool):
 		# 	XXX doesn't work as i expected
 		cairo_context.fill()
 
+	def _op_replace(self, operation):
+		"""Algorithmically less ugly than `_op_fill`, but the replacing strategy
+		itself doesn't handle (semi-) transparent colors correctly. Looks fine
+		when there is no alpha at all and the anti-aliasing is off."""
+		# In this example, the user paints in blue and clicks on X (red):
+		#
+		# rrrrrrrrrrrrrrrrrrrrrrrrr
+		# rrrgggggggggggggggggrrXrr
+		# rrrgaaaaaaaaaaaaaaagrrrrr
+		# rrrgaaaaaaaaaaaaaaagrrrrr
+		# rrrgggggggggggggggggrraaa
+		# rrrrrrrrrrrrrrrrrrrrrraaa
+		#
+		# All red pixels will be painted blue, but FIXME all the green ones too.
+		if operation['path'] is None:
+			return
+
+		# First, everything BUT the targeted area is erased
+		surface = self.get_surface()
+		cairo_context = cairo.Context(surface)
+		rgba = operation['rgba']
+		old_rgba = operation['old_rgba']
+		cairo_context.set_source_rgba(255, 255, 255, 1.0)
+		cairo_context.append_path(operation['path'])
+		cairo_context.set_operator(cairo.Operator.DEST_IN)
+		cairo_context.set_line_width(4) # ptêt too much mdr
+		cairo_context.set_antialias(cairo.Antialias.NONE)
+		cairo_context.stroke_preserve()
+		# cairo_context.fill_preserve()
+
+		# The result is loaded as the temp pixbuf…
+		self.get_image().set_temp_pixbuf(Gdk.pixbuf_get_from_surface(surface, \
+		                       0, 0, surface.get_width(), surface.get_height()))
+		# …where the targeted color is replaced by pure alpha
+		TOLERANCE = 10 # XXX uuugly
+		i = -1 * TOLERANCE
+		while i < TOLERANCE:
+			red = max(0, old_rgba[0]+i)
+			green = max(0, old_rgba[1]+i)
+			blue = max(0, old_rgba[2]+i)
+			red = int(min(255, red))
+			green = int(min(255, green))
+			blue = int(min(255, blue))
+			self._replace_temp_with_alpha(red, green, blue)
+			i = i+1
+
+		# The main pixbuf is restored, since its alterations were a side effect
+		# of this highly stupid algorithm
+		self.restore_pixbuf()
+		# We get a context from it again
+		cairo_context2 = self.get_context()
+
+		# The content of the path is cleared
+		cairo_context2.append_path(operation['path'])
+		cairo_context2.set_operator(cairo.Operator.CLEAR)
+		cairo_context2.set_source_rgba(255, 255, 255, 1.0)
+		cairo_context2.set_line_width(3) # ptêt too much mdr
+		cairo_context.set_antialias(cairo.Antialias.NONE)
+		cairo_context2.stroke_preserve()
+		cairo_context2.fill()
+
+		# The temp pixbuf (where "only" the pixels around the outline which are
+		# not in the targeted color still exist) is shown on top of the image
+		cairo_context2.set_operator(cairo.Operator.OVER)
+		Gdk.cairo_set_source_pixbuf(cairo_context2, \
+		                                     self.get_image().temp_pixbuf, 0, 0)
+		cairo_context2.paint()
+		self.non_destructive_show_modif()
+
+		# The transparent pixels within the path are painted with the new color
+		cairo_context2.set_operator(cairo.Operator.DEST_OVER)
+		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context2.append_path(operation['path'])
+		# cairo_context2.paint()
+		cairo_context2.set_line_width(3) # ptêt too much mdr
+		cairo_context2.stroke_preserve()
+		cairo_context2.fill()
+
 	def _op_clipping(self, operation):
 		"""Replace the color with transparency by adding an alpha channel."""
 		old_rgba = operation['old_rgba']
 		r0 = old_rgba[0]
 		g0 = old_rgba[1]
 		b0 = old_rgba[2]
-		# XXX and the alpha channel ? pas l'air possible en fait
-		margin = 0 # TODO as an option ? is not elegant but is powerful
+		# ^ it's not possible to take into account the alpha channel
+		margin = 0 # XXX as an option ? is not elegant but it's powerful
 		self._clip_red(margin, r0, g0, b0)
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
+
+	############################################################################
 
 	def _clip_red(self, margin, r0, g0, b0):
 		for i in range(-1 * margin, margin + 1):

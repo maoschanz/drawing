@@ -1,6 +1,6 @@
 # message_dialog.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ class DrMessageDialog(Gtk.MessageDialog):
 			# be used if it's not required
 			self.should_wrap = False
 
-	def set_action(self, label, style, is_default):
+	def set_action(self, label, style, is_default=False):
 		"""Add a button (with the specified style) to the message dialog and
 		returns the corresponding response id."""
 		self._min_action_index = self._min_action_index + 1

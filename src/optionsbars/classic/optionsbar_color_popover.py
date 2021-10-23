@@ -1,6 +1,6 @@
 # optionsbar_color_popover.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,9 +17,46 @@
 
 import cairo
 from gi.repository import Gtk, Gdk
-from .utilities import utilities_get_rgba_name
+from .utilities_colors import utilities_get_rgba_name
 
 PREFIX = '/com/github/maoschanz/drawing/'
+
+CAIRO_OP_VALUES = {
+	'over': cairo.Operator.OVER,
+	'clear': cairo.Operator.CLEAR,
+
+	'source': cairo.Operator.SOURCE,
+	'difference': cairo.Operator.DIFFERENCE,
+
+	# "Highlight" submenu
+	'multiply': cairo.Operator.MULTIPLY,
+	'screen': cairo.Operator.SCREEN,
+
+	'hsl-hue': cairo.Operator.HSL_HUE,
+	'hsl-saturation': cairo.Operator.HSL_SATURATION,
+	'hsl-color': cairo.Operator.HSL_COLOR,
+	'hsl-luminosity': cairo.Operator.HSL_LUMINOSITY,
+}
+
+CAIRO_OP_LABELS = {
+	'over': _("Normal"),
+	'clear': _("Erase"),
+
+	'source': _("Raw source color"),
+	'difference': _("Difference"),
+
+	'multiply': _("Highlight"),
+	# Context: this is equivalent to "Highlight: Light text on dark background"
+	# but it has to be FAR SHORTER so it fits in the color chooser
+	'screen': _("Highlight (dark)"),
+
+	'hsl-hue': _("Hue only"),
+	'hsl-saturation': _("Saturation only"),
+	'hsl-color': _("Hue and saturation"),
+	'hsl-luminosity': _("Luminosity only"),
+}
+
+################################################################################
 
 class OptionsBarClassicColorPopover(Gtk.Popover):
 	__gtype_name__ = 'OptionsBarClassicColorPopover'
@@ -37,6 +74,10 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._thumbnail_image = thumbn
 		self._parent_bar = cl_bar
 
+		# These attributes are the same in both oppovers, but this may evolve
+		self._operator_enum = cairo.Operator.OVER
+		self._operator_label = _("Normal")
+
 		########################################################################
 		# Box at the top #######################################################
 
@@ -49,7 +90,9 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 		self._operator_box_1 = builder.get_object('operator-box-start')
 		self._operator_box_2 = builder.get_object('operator-box-end')
-		self._operator_menubtn = builder.get_object('op-menubtn')
+
+		operators_radio_group = builder.get_object('op-group')
+		self._build_all_operators_groups(operators_radio_group)
 
 		########################################################################
 		# Color chooser widget #################################################
@@ -75,6 +118,64 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._update_nav_box()
 		self._on_color_changed()
 
+	def _build_all_operators_groups(self, radio_group):
+		self._operators_menus = []
+		self._operators_hideable_radiobtns = {
+			'over': None,
+			'erase': None,
+		}
+		suffix = 'optionsbars/classic/optionsbar-operator-menus.ui'
+		builder = Gtk.Builder.new_from_resource(PREFIX + suffix)
+
+		box = self._build_radios(radio_group, ['multiply', 'screen'])
+		menu_model = builder.get_object('highlight-operators-menu')
+		btn = self._build_op_menu(menu_model, 'tool-highlight-symbolic')
+		btn.set_tooltip_text(_("Highlight"))
+		box.add(btn)
+		self._operator_box_1.add(box)
+
+		box = self._build_radios(radio_group, ['hsl-hue', 'hsl-saturation',
+		                                       'hsl-color', 'hsl-luminosity'])
+		menu_model = builder.get_object('hsl-operators-menu')
+		btn = self._build_op_menu(menu_model, 'display-brightness-symbolic')
+		btn.set_tooltip_text(_("HSL modes"))
+		box.add(btn)
+		self._operator_box_1.add(box)
+
+		box = self._build_radios(radio_group, ['source', 'difference'])
+		menu_model = builder.get_object('other-operators-menu')
+		btn = self._build_op_menu(menu_model, 'view-more-symbolic')
+		btn.set_tooltip_text(_("Other modes"))
+		box.add(btn)
+		self._operator_box_1.add(box)
+
+	def _build_radios(self, radio_group, ops_list):
+		groupbox = Gtk.Box(visible=True)
+		groupbox.get_style_context().add_class('linked')
+		for operator_id in ops_list:
+			button = Gtk.RadioButton(visible=False, draw_indicator=False)
+			button.join_group(radio_group)
+			button.set_detailed_action_name ('win.cairo_op_mirror::' + operator_id)
+
+			# To avoid buttons bigger than the popover the label is ellipsized
+			button_label = CAIRO_OP_LABELS[operator_id]
+			if len(button_label) > 16:
+				button.set_tooltip_text(button_label)
+				button_label = button_label[:14] + "…"
+			button.set_label(button_label)
+
+			self._operators_hideable_radiobtns[operator_id] = button
+			groupbox.add(button)
+		return groupbox
+
+	def _build_op_menu(self, menu_model, icon_name):
+		menu_btn = Gtk.MenuButton(visible=True)
+		image = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.BUTTON)
+		menu_btn.set_image(image)
+		menu_btn.set_menu_model(menu_model)
+		self._operators_menus.append(menu_btn.get_popover())
+		return menu_btn
+
 	############################################################################
 
 	def set_operators_available(self, tool_use_operator, op_as_string):
@@ -85,12 +186,24 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self.adapt_to_operator(op_as_string)
 
 	def _operator_supports_color(self, op_as_string):
-		return not (op_as_string == 'clear' or op_as_string == 'dest-in')
+		return not op_as_string == 'clear'
 
 	def adapt_to_operator(self, op_as_string):
-		# print("adapt to operator :", op_as_string) # XXX est-ce trop appelé
+		self._operator_enum = CAIRO_OP_VALUES[op_as_string]
+		self._operator_label = CAIRO_OP_LABELS[op_as_string]
+		# print("adapt to operator :", op_as_string)
 		supports_colors = self._operator_supports_color(op_as_string)
-		self._operator_menubtn.get_popover().popdown()
+
+		# Close all little menus
+		for op_submenu in self._operators_menus:
+			op_submenu.popdown()
+
+		# Show only the radio button for the active operator
+		for operator_id in self._operators_hideable_radiobtns:
+			op_radiobtn = self._operators_hideable_radiobtns[operator_id]
+			if op_radiobtn is not None:
+				op_radiobtn.set_visible(operator_id == op_as_string)
+
 		self.color_widget.set_sensitive(supports_colors)
 		self._set_thumbnail_color(op_as_string)
 
@@ -115,9 +228,6 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		if op_as_string == 'clear':
 			self._thumbnail_image.set_from_icon_name('tool-eraser-symbolic', \
 			                                         Gtk.IconSize.SMALL_TOOLBAR)
-		elif op_as_string == 'dest-in': # blur
-			self._thumbnail_image.set_from_icon_name('mode-blur-symbolic', \
-			                                         Gtk.IconSize.SMALL_TOOLBAR)
 		else:
 			surface = cairo.ImageSurface(cairo.Format.ARGB32, 16, 16)
 			cairo_context = cairo.Context(surface)
@@ -129,13 +239,11 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		# Set the tooltip of the button
 		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
 		if not self._operator_supports_color(op_as_string):
-			# FIXME not if the tool is the eraser
-			tooltip_string = self._parent_bar._operator_label
+			tooltip_string = self._operator_label
 		elif op_as_string == 'over':
 			pass # Normal situation, no need to tell the user
 		else:
-			# XXX shouldn't fail but is ugly
-			tooltip_string = self._parent_bar._operator_label + ' — ' + tooltip_string
+			tooltip_string = self._operator_label + ' - ' + tooltip_string
 		self._button.set_tooltip_text(tooltip_string)
 
 	############################################################################

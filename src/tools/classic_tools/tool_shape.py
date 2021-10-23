@@ -1,6 +1,6 @@
 # tool_shape.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,22 +24,22 @@ class ToolShape(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('shape', _("Shape"), 'tool-freeshape-symbolic', window)
+		self.use_operator = True
+
 		self._reset_temp_points()
 
-		self._shape_id = self.get_settings().get_string('last-active-shape')
-		self.add_tool_action_enum('shape_type', self._shape_id)
-		self._set_active_shape()
+		self.add_tool_action_simple('shape_close', self._force_close_shape)
+		self.set_action_sensitivity('shape_close', False)
 
-		self._filling_id = 'empty'
-		self._filling_label = _("Empty shape")
-		self.add_tool_action_enum('shape_filling', self._filling_id)
+		self.load_tool_action_enum('shape_type', 'last-active-shape')
+		self._set_active_shape() # that's to initialize a consistent join_id too
+
+		self._filling_id = self.load_tool_action_enum('shape_filling', \
+		                                                   'last-shape-filling')
 
 		self._outline_id = 'solid'
 		self._outline_label = _("Solid outline")
 		self.add_tool_action_enum('shape_outline', self._outline_id)
-
-		self.add_tool_action_simple('shape_close', self._force_close_shape)
-		self.set_action_sensitivity('shape_close', False)
 
 	def _reset_temp_points(self):
 		self._path = None
@@ -49,50 +49,17 @@ class ToolShape(AbstractClassicTool):
 		self.initial_y = -1.0
 
 	def _set_filling_style(self):
-		state_as_string = self.get_option_value('shape_filling')
-		self._filling_id = state_as_string
-		if state_as_string == 'empty':
-			self._filling_label = _("Empty shape")
-		elif state_as_string == 'filled':
-			self._filling_label = _("Main color")
-		elif state_as_string == 'h-gradient':
-			self._filling_label = _("Horizontal gradient")
-		elif state_as_string == 'v-gradient':
-			self._filling_label = _("Vertical gradient")
-		elif state_as_string == 'r-gradient':
-			self._filling_label = _("Radial gradient")
-		else: # if state_as_string == 'secondary':
-			self._filling_label = _("Secondary color")
+		self._filling_id = self.get_option_value('shape_filling')
 
 	def _set_outline_style(self):
-		state_as_string = self.get_option_value('shape_outline')
-		self._outline_id = state_as_string
-		if state_as_string == 'solid':
-			self._outline_label = _("Solid outline")
-		elif state_as_string == 'dashed':
-			self._outline_label = _("Dashed outline")
-		else: # if state_as_string == 'none':
-			self._outline_label = _("No outline")
+		self._outline_id = self.get_option_value('shape_outline')
 
 	def _set_active_shape(self, *args):
 		self._shape_id = self.get_option_value('shape_type')
-		if self._shape_id == 'rectangle':
-			self._shape_label = _("Rectangle")
+		if self._shape_id == 'rectangle' or self._shape_id == 'polygon':
 			self._join_id = cairo.LineJoin.MITER
-		elif self._shape_id == 'roundedrect':
-			self._shape_label = _("Rounded rectangle")
-			self._join_id = cairo.LineJoin.ROUND
-		elif self._shape_id == 'oval':
-			self._shape_label = _("Oval")
-			self._join_id = cairo.LineJoin.ROUND
-		elif self._shape_id == 'circle':
-			self._shape_label = _("Circle")
-			self._join_id = cairo.LineJoin.ROUND
-		elif self._shape_id == 'polygon':
-			self._shape_label = _("Polygon")
-			self._join_id = cairo.LineJoin.MITER # BEVEL ?
+			# maybe BEVEL for polygon?
 		else:
-			self._shape_label = _("Free shape")
 			self._join_id = cairo.LineJoin.ROUND
 
 	def get_options_label(self):
@@ -103,11 +70,33 @@ class ToolShape(AbstractClassicTool):
 		self._set_outline_style()
 		self._set_active_shape()
 
-		label = self._shape_label
-		if self._filling_id != 'empty':
-			label += ' - ' + self._filling_label
+		label = {
+			'rectangle': _("Rectangle"),
+			'roundedrect': _("Rounded rectangle"),
+			'oval': _("Oval"),
+			'circle': _("Circle"),
+			'polygon': _("Polygon"),
+			'freeshape': _("Free shape"),
+		}[self._shape_id]
+
 		if self._outline_id != 'solid':
-			label += ' - ' + self._outline_label
+			label += ' - ' + {
+				'solid': _("Solid outline"),
+				'dashed': _("Dashed outline"),
+				'none': _("No outline"),
+			}[self._outline_id]
+
+		if self._filling_id != 'empty':
+			label += ' - ' + {
+				'empty': _("Empty shape"),
+				# Context: fill a shape with the color of the left click
+				'filled': _("Filled with main color"),
+				# Context: fill a shape with the color of the right click
+				'secondary': _("Filled with secondary color"),
+				'h-gradient': _("Horizontal gradient"),
+				'v-gradient': _("Vertical gradient"),
+				'r-gradient': _("Radial gradient"),
+			}[self._filling_id]
 
 		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
 			instruction = _("Click on the shape's first point to close it.")
@@ -127,7 +116,7 @@ class ToolShape(AbstractClassicTool):
 		self.last_mouse_btn = event.button
 		self.set_common_values(self.last_mouse_btn, event_x, event_y)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._shape_id == 'freeshape':
 			operation = self._add_point(event_x, event_y, True)
 		elif self._shape_id == 'polygon':
@@ -142,7 +131,8 @@ class ToolShape(AbstractClassicTool):
 			elif self._shape_id == 'circle':
 				self._draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
-		self.do_tool_operation(operation)
+		if render:
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape' or self._shape_id == 'polygon':
@@ -187,7 +177,6 @@ class ToolShape(AbstractClassicTool):
 		if not should_close:
 			# print('continue polygon')
 			cairo_context.line_to(event_x, event_y)
-			cairo_context.stroke_preserve()
 		if memorize:
 			# print('memorize polygon')
 			self._path = cairo_context.copy_path()
@@ -237,6 +226,9 @@ class ToolShape(AbstractClassicTool):
 		cairo_context.scale(halfw, halfh)
 		cairo_context.arc(0, 0, 1, 0, 2 * math.pi)
 		cairo_context.set_matrix(saved_matrix)
+		# FIXME
+		# cairo.Error: invalid matrix (not invertible)
+
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
@@ -256,7 +248,7 @@ class ToolShape(AbstractClassicTool):
 			'rgba_main': self.main_color,
 			'rgba_secd': self.secondary_color,
 			'antialias': self._use_antialias,
-			'operator': cairo.Operator.OVER, # self._operator, # XXX ne marche pas avec le blur
+			'operator': self._operator,
 			'line_join': self._join_id,
 			'line_width': self.tool_width,
 			'filling': self._filling_id,

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+
+  <object class="GtkAdjustment" id="adj_width">
+    <property name="lower">1</property>
+    <property name="upper">8127</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">20</property>
+    <property name="value">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adj_height">
+    <property name="lower">1</property>
+    <property name="upper">8127</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">20</property>
+    <property name="value">10</property>
+  </object>
+
+  <!-- -->
+
+  <object class="GtkBox" id="centered_box">
+    <property name="visible">True</property>
+    <property name="spacing">10</property>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="spacing">10</property>
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkLabel" id="width_label">
+            <property name="label" translatable="yes">Width</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="width_btn">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_width</property>
+            <property name="tooltip_text" translatable="yes">Width</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkSeparator" id="separator">
+        <property name="visible">True</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="spacing">10</property>
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkLabel" id="height_label">
+            <property name="label" translatable="yes">Height</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="height_btn">
+            <property name="visible">True</property>
+            <property name="adjustment">adj_height</property>
+            <property name="tooltip_text" translatable="yes">Height</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+  </object>
+
+  <!-- -->
+
+  <!-- Menu shown in the action bar (bottom-right) -->
+  <menu id="actions-menu">
+    <section>
+      <attribute name="label" translatable="yes">Expand with…</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Transparency</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">alpha</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Default color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">initial</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Secondary color</attribute>
+        <attribute name="action">win.crop-expand</attribute>
+        <attribute name="target">secondary</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Zoom Out</attribute>
+        <attribute name="action">win.zoom_out</attribute>
+        <attribute name="verb-icon">zoom-out-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Original Zoom</attribute>
+        <attribute name="action">win.zoom_100</attribute>
+        <attribute name="verb-icon">zoom-original-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Zoom In</attribute>
+        <attribute name="action">win.zoom_in</attribute>
+        <attribute name="verb-icon">zoom-in-symbolic</attribute>
+      </item>
+    </section>
+  </menu>
+
+</interface>

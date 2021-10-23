@@ -10,7 +10,7 @@
       <name>Romain F. T.</name>
       <email its:translate="no">rrroschan@gmail.com</email>
     </credit>
-    <desc>Select a part of the image</desc>
+    <desc>Select a part of the image.</desc>
   </info>
 
   <title>Selection</title>
@@ -19,12 +19,9 @@
     <title>Selecting an area</title>
 
     <p>Tools such as <gui style="button">Rectangle Selection</gui> or <gui
-    style="button">Free Selection</gui> which are available in the side bar
-    (along with <link xref="tools_classic">the other tools</link>), allow you to
-    define a part of the image for further manipulations.</p>
-    <p>A tool named <gui style="button">Color Selection</gui> also exists, and
-    tries to select an area according to its color, but it doesn't always work
-    as expected so this tool is disabled by default.</p>
+    style="button">Free Selection</gui> are available in the side bar, along
+    with <link xref="tools_classic">the other tools</link>. You can use them
+    to define a part of the image for further manipulations.</p>
 
     <p>Aside of defining the contour of an area with the mouse, the selection
     can also be created in various ways:</p>
@@ -39,38 +36,89 @@
         <p>Right-click, <gui style="menuitem">Select all</gui>.</p>
       </item>
     </list>
+
+    <note style="tip">
+      <p>A tool named <gui style="button">Color Selection</gui> also exists, and
+      tries to select an area according to its color, but it doesn't always work
+      as expected so this tool is <link xref="preferences#tools">disabled by
+      default</link>.</p>
+    </note>
+
+    <p>Before you start to define a selection, you may want to choose what color
+    will replace the selected pixels once they'll be moved or deleted:</p>
+    <list>
+      <item>
+        <p><gui style="menuitem">Transparency</gui>.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Default color</gui> (the color of your initial
+        canvas, as defined in <link xref="preferences#image">the app preferences
+        </link>).</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Secondary color</gui> (the color corresponding
+        to the right-click when you use a <link xref="tools_classic">classic
+        tool</link>).</p>
+      </item>
+    </list>
+    <p>The option "<gui style="menuitem">Extract from this color</gui>" means,
+    if it's checked, that the pixels corresponding to the replacement color will
+    not be included in the selection.</p>
+    <p>Example: if you replace the selected pixels with white, and you select a
+    figure on a white background, only the figure will be selected. If this
+    figure has been drawn without <link xref="tools_classic#basic-draw">
+    anti-aliasing</link>, it can easily be moved to a background of an other
+    color and it would look good.</p>
+  </section>
+
+  <section>
+    <title>Define an image from the selection</title>
+
+    <p>If the selected area interests you more than the rest of the image,
+    several actions — in the <gui style="menuitem">More actions</gui> submenu of
+    the right-click — may help you:</p>
+    <list>
+      <item>
+        <p>Define the selection as the current image.</p>
+      </item>
+      <item>
+        <p>Reshape the current image so its size should match the size of the
+        selection (for example if you import or paste a big image).</p>
+      </item>
+      <item>
+        <p>Open the selection as a new image.</p>
+      </item>
+      <item>
+        <p>Export the selection as a new file.</p>
+      </item>
+    </list>
   </section>
 
   <section>
     <title>Using the selection</title>
 
     <p>Once the selection is defined, you can then perform various actions with
-    this area:</p>
+    this selected area:</p>
     <list>
       <item>
         <p>Move it on the canvas.</p>
       </item>
       <item>
-        <p>Cut or copy it to the clipboard.</p>
+        <p>Transform it with tools. <link xref="tools_transform">The compatible
+        tools</link> can be accessed with a right-click on the selection.</p>
+        <media type="image" mime="image/png" width="80%" its:translate="no"
+               src="figures/screenshot_selection.png" />
       </item>
       <item>
-        <p>Edit it with <link xref="tools_canvas">tools</link>. You can access
-        the compatible tools with a right-click on the selection.</p>
-        <media type="image" mime="image/png" width="80%"
-               src="figures/screenshot_selection.png" its:translate="no"/>
+        <p>Copy it (or cut it) to the clipboard.</p>
       </item>
       <item>
         <p>Delete it.</p>
       </item>
-      <item>
-        <p>Open it as a new image.</p>
-      </item>
-      <item>
-        <p>Export it as a new file.</p>
-      </item>
     </list>
     <p>Click outside of the selected area to unselect, or use the <gui
-    style="menuitem">Unselect</gui> menu item.</p>
+    style="menuitem">Deselect</gui> menu item.</p>
   </section>
 
 </page>
+

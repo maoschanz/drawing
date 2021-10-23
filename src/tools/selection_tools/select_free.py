@@ -1,6 +1,6 @@
-# free_select.py
+# select_free.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@ class ToolFreeSelect(AbstractSelectionTool):
 	__gtype_name__ = 'ToolFreeSelect'
 
 	def __init__(self, window, **kwargs):
+		# Context: this is a tool to select an area according to a shape that
+		# can be freely defined by the user.
 		super().__init__('free_select', _("Free selection"), 'tool-select-free-symbolic', window)
 		self.closing_precision = 10
 		self.closing_x = 0.0
@@ -42,14 +44,13 @@ class ToolFreeSelect(AbstractSelectionTool):
 		self._draw_shape(event_x, event_y)
 		self.set_action_sensitivity('selection_close', True)
 
-	def motion_define(self, event_x, event_y):
-		self._draw_shape(event_x, event_y)
+	def motion_define(self, event_x, event_y, render):
+		self._draw_shape(event_x, event_y, render)
 
 	def release_define(self, surface, event_x, event_y):
 		if self._draw_shape(event_x, event_y):
 			self.restore_pixbuf()
 			self.operation_type = 'op-define'
-			self._set_future_coords_for_free_path()
 			operation = self.build_operation()
 			self.apply_operation(operation)
 			self.set_action_sensitivity('selection_close', False)
@@ -61,16 +62,19 @@ class ToolFreeSelect(AbstractSelectionTool):
 	def _force_close_shape(self, *args):
 		self.release_define(None, self.closing_x, self.closing_y)
 
-	def _draw_shape(self, event_x, event_y):
-		"""This method is specific to the 'free selection' mode."""
+	def _draw_shape(self, event_x, event_y, render=True):
+		"""This method is specific to the 'free selection' mode. It returns a
+		boolean, true if the shape should be closed."""
 		cairo_context = self.get_context()
 		cairo_context.set_source_rgba(0.5, 0.5, 0.5, 0.5)
-		cairo_context.set_dash([3, 3])
+		thickness = self.get_overlay_thickness()
+		cairo_context.set_dash([3 * thickness, 3 * thickness])
+		cairo_context.set_line_width(thickness)
 		if self.get_selection().get_future_path() is None:
 			self.closing_x = event_x
 			self.closing_y = event_y
 			cairo_context.move_to(event_x, event_y)
-			self.get_selection().set_future_path(cairo_context.copy_path())
+			self._pre_load_path(cairo_context.copy_path())
 			return False
 		delta_x = max(event_x, self.closing_x) - min(event_x, self.closing_x)
 		delta_y = max(event_y, self.closing_y) - min(event_y, self.closing_y)
@@ -78,13 +82,14 @@ class ToolFreeSelect(AbstractSelectionTool):
 		if (delta_x < self.closing_precision) and (delta_y < self.closing_precision):
 			cairo_context.close_path()
 			cairo_context.stroke_preserve()
-			self.get_selection().set_future_path(cairo_context.copy_path())
+			self._pre_load_path(cairo_context.copy_path())
 			return True
 		else:
 			cairo_context.line_to(int(event_x), int(event_y))
 			cairo_context.stroke_preserve() # draw the line without closing the path
-			self.get_selection().set_future_path(cairo_context.copy_path())
-			self.non_destructive_show_modif() # XXX
+			self._pre_load_path(cairo_context.copy_path())
+			if render:
+				self.non_destructive_show_modif()
 			return False
 
 	############################################################################

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="drawing">
+  <menu id="options-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Add transparency</attribute>
+        <attribute name="action">win.highlight-alpha</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Dark text on light background</attribute>
+        <attribute name="action">win.highlight-bg</attribute>
+        <attribute name="target">light</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Light text on dark background</attribute>
+        <attribute name="action">win.highlight-bg</attribute>
+        <attribute name="target">dark</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Antialiasing</attribute>
+        <attribute name="action">win.antialias</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
+

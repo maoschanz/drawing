@@ -18,7 +18,6 @@
 
     <!-- Icons for things that aren't tools -->
     <file>icons/exchange-colors-symbolic.svg</file>
-    <file>icons/mode-blur-symbolic.svg</file>
     <file>icons/size-1-symbolic.svg</file>
     <file>icons/size-3-symbolic.svg</file>
     <file>icons/size-5-symbolic.svg</file>
@@ -32,18 +31,24 @@
 
     <file>optionsbars/classic/optionsbar-classic.ui</file>
     <file>optionsbars/classic/optionsbar-color-popover.ui</file>
+    <file>optionsbars/classic/optionsbar-operator-menus.ui</file>
     <file>optionsbars/selection/optionsbar-selection.ui</file>
-    <file>optionsbars/canvas/optionsbar-crop.ui</file>
-    <file>optionsbars/canvas/optionsbar-filters.ui</file>
-    <file>optionsbars/canvas/optionsbar-rotate.ui</file>
-    <file>optionsbars/canvas/optionsbar-scale.ui</file>
-    <file>optionsbars/canvas/optionsbar-skew.ui</file>
+    <file>optionsbars/transform/abstract-optionsbar-transform.ui</file>
+    <file>optionsbars/transform/optionsbar-crop.ui</file>
+    <file>optionsbars/transform/optionsbar-filters.ui</file>
+    <file>optionsbars/transform/optionsbar-rotate.ui</file>
+    <file>optionsbars/transform/optionsbar-scale.ui</file>
+    <file>optionsbars/transform/optionsbar-skew.ui</file>
 
     <file>tools/ui/tool-arc.ui</file>
+    <file>tools/ui/tool-brush.ui</file>
+    <file>tools/ui/tool-eraser.ui</file>
     <file>tools/ui/tool-experiment.ui</file>
     <file>tools/ui/tool-line.ui</file>
+    <file>tools/ui/tool-highlight.ui</file>
     <file>tools/ui/tool-paint.ui</file>
     <file>tools/ui/tool-pencil.ui</file>
+    <file>tools/ui/tool-points.ui</file>
     <file>tools/ui/tool-shape.ui</file>
     <file>tools/ui/tool-text.ui</file>
 
@@ -67,8 +72,9 @@
     <file>tools/icons/tool-line-symbolic.svg</file>
     <file>tools/icons/tool-magic-symbolic.svg</file>
     <file>tools/icons/tool-oval-symbolic.svg</file>
-    <file>tools/icons/tool-pencil-symbolic.svg</file>
     <file>tools/icons/tool-paint-symbolic.svg</file>
+    <file>tools/icons/tool-pencil-symbolic.svg</file>
+    <file>tools/icons/tool-points-symbolic.svg</file>
     <file>tools/icons/tool-polygon-symbolic.svg</file>
     <file>tools/icons/tool-rectangle-symbolic.svg</file>
     <file>tools/icons/tool-roundedrect-symbolic.svg</file>
@@ -78,5 +84,16 @@
     <file>tools/icons/tool-select-rect-symbolic.svg</file>
     <file>tools/icons/tool-skew-symbolic.svg</file>
     <file>tools/icons/tool-text-symbolic.svg</file>
+
+    <file>tools/icons/brush-horizontal-symbolic.svg</file>
+    <file>tools/icons/brush-right-symbolic.svg</file>
+    <file>tools/icons/brush-vertical-symbolic.svg</file>
+    <file>tools/icons/brush-left-symbolic.svg</file>
+
+    <file>tools/icons/dash-none-symbolic.svg</file>
+    <file>tools/icons/dash-regular-symbolic.svg</file>
+    <file>tools/icons/dash-long-symbolic.svg</file>
+    <file>tools/icons/dash-dots-symbolic.svg</file>
+    <file>tools/icons/dash-alt-symbolic.svg</file>
   </gresource>
 </gresources>

@@ -5,4 +5,5 @@
 	dh $@ --buildsystem=meson
 
 override_dh_auto_test:
-	echo "Don't do tests"
+	echo "Tests are not performed here"
+

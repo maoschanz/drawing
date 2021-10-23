@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="drawing">
 
-  <schema id="com.github.maoschanz.drawing" path="/com/github/maoschanz/drawing/">
+  <schema id="com.github.maoschanz.drawing"
+          path="/com/github/maoschanz/drawing/">
+
     <!-- Actual options -->
     <key type="s" name="deco-type">
       <default>''</default>
@@ -26,29 +28,29 @@
       <description>User can zoom with scrolling or ctrl+scrolling.</description>
     </key>
     <key type="as" name="disabled-tools">
-      <default>['eraser', 'highlight', 'color_select', 'picker', 'paint']</default>
+      <default>['brush', 'highlight', 'color_select', 'points', 'picker', 'paint']</default>
       <summary>Optional tools to disable</summary>
       <description>A list of optional tools' id to disable.</description>
     </key>
     <key type="i" name="preview-size">
-      <default>330</default>
+      <default>320</default>
       <summary>Preview size</summary>
       <description>Size of the bigger dimension of the preview (px).</description>
     </key>
     <key type="s" name="replace-alpha">
-      <default>'white'</default>
+      <default>'ask'</default>
       <summary>What will replace transparent pixels if needed</summary>
       <description>
         What will replace transparent pixels when saving to a file format not
         supporting it, such as JPG or BMP. It can be 'white', 'black', 'ask'
         (the value isn't memorized and a dialog is prompted each time),
         'nothing' (the alpha channel is removed, which usually replace deleted
-        areas with black but preserves semi-transparent colors' saturation), or
-        'checkboard'.
+        areas with black but preserves semi-transparent colors' saturation),
+        'checkboard', or 'initial' (the initial color of an image).
       </description>
     </key>
     <key type="as" name="ui-background-rgba">
-      <default>['0.0', '0.0', '0.0', '0.0']</default>
+      <default>['0.0', '0.0', '0.0', '0.5']</default>
       <summary>Default UI background color</summary>
       <description>
         The color for the background of the user interface, behind the image.
@@ -59,7 +61,16 @@
       <summary>Experimental features</summary>
       <description>Turn on devel features (not recommended).</description>
     </key>
-
+    <key type="b" name="dark-theme-variant">
+      <default>false</default>
+      <summary>If the app prefers the dark theme variant</summary>
+      <description>
+        This setting impacts the related boolean setting from GTK, but doesn't
+        change the actual theme. So if the global theme is already dark, it has
+        no effect.
+      </description>
+    </key>
+    
     <!-- Default new canvas -->
     <key type="as" name="default-rgba">
       <default>['1.0', '1.0', '1.0', '1.0']</default>
@@ -97,8 +108,33 @@
       <description>The id of the last active tool, saved when closing a
       window.</description>
     </key>
+    <key type="b" name="direct-color-edit">
+      <default>false</default>
+      <summary>Don't use a color palette</summary>
+      <description>If a click on the color button should display directly
+      the complete color selector.</description>
+    </key>
+
+    <!-- Release notes handling -->
+    <key type="s" name="last-version">
+      <default>'0.0.0'</default>
+      <summary>Last used app version</summary>
+      <description>
+        The last version of the app that the user has started. If the string
+        doesn't correspond to the running version of the app, a dialog is shown
+        to tell the user to read the release notes.
+      </description>
+    </key>
 
     <!-- Tools options state -->
+    <child name="tools-options" schema="com.github.maoschanz.drawing.tools-options"/>
+  </schema>
+
+  <!-- ##################################################################### -->
+
+  <schema id="com.github.maoschanz.drawing.tools-options"
+          path="/com/github/maoschanz/drawing/tools-options/">
+
     <key type="as" name="last-right-rgba">
       <default>['1.0', '1.0', '0.0', '0.5']</default>
       <summary>Last right-click color</summary>
@@ -116,17 +152,48 @@
       <summary>Last tool size</summary>
       <description>The last tool size (px), saved when closing a window.</description>
     </key>
-    <key type="b" name="direct-color-edit">
-      <default>false</default>
-      <summary>Don't use a color palette</summary>
-      <description>If a click on the color button should display directly
-      the complete color selector.</description>
-    </key>
     <key type="s" name="last-active-shape">
       <default>'polygon'</default>
       <summary>Default active shape</summary>
       <description>The id of the last active shape from the "shape" tool, saved
       when closing a window.</description>
     </key>
+    <key type="s" name="last-shape-filling">
+      <default>'empty'</default>
+      <summary>Default shape filling style</summary>
+      <description>The name of the last active shape filling style from the
+      "shape" tool, saved when closing a window.</description>
+    </key>
+    <key type="s" name="last-font-name">
+      <default>'Sans'</default>
+      <summary>Default active font</summary>
+      <description>The name of the last active font family, from the "text"
+      tool, saved when closing a window.</description>
+    </key>
+    <key type="s" name="last-text-background">
+      <default>'outline'</default>
+      <summary>Text insertion background style</summary>
+      <description>The name of the last active background style, from the "text"
+      tool, saved when closing a window.</description>
+    </key>
+    <key type="b" name="use-antialiasing">
+      <default>true</default>
+      <summary>Use antialiasing or not</summary>
+      <description>The default value of the 'antialiasing' boolean option, for
+      any compatible tools.</description>
+    </key>
+    <key type="s" name="last-delete-replace">
+      <default>'alpha'</default>
+      <summary>Type of color left behind by a deletion</summary>
+      <description>A deletion is any use of the solid eraser, or any area under
+      a selection that will be moved, cut, or deleted. Values can be 'alpha'
+      (transparency), 'initial' (the initial color of the canvas), or
+      'secondary' (the color of the right-click).</description>
+    </key>
+
+    <!-- TODO persist also: active filter? active brush? -->
+    <!-- crop's "expand with"? color application mode?-->
   </schema>
+
 </schemalist>
+

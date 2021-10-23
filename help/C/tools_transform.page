@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="tools_transform">
+
+  <info>
+    <link type="guide" xref="index#tools"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name>Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Apply a transformation to the image or the current selection.</desc>
+  </info>
+
+  <title>Transform the image or the selection</title>
+
+  <p>These tools are available from the side bar (along with
+  <link xref="tools_classic">the other tools</link>), or from a right click on
+  a <link xref="tools_selection">selected area</link>.</p>
+
+  <note style="important">
+    <p>With these tools, once you have the transformation you want, you have to
+    apply the result with the <gui style="button">Apply</gui> button at the
+    right.</p>
+    <p>Otherwise you can cancel the transformation with the <gui style="button">
+    Cancel</gui> button at the left.</p>
+  </note>
+
+  <p>If a selection is defined, these tools will transform the selected area,
+  otherwise they will transform the picture as a whole.</p>
+
+  <note style="tip">
+    <p>If you switch to another tool without applying the transformation
+    explicitely, the transformation will be automatically applied if it concerns
+    the selection, but automatically cancelled if it concerns the whole image.</p>
+    <p>If you try to save without applying the transformation, a dialog will
+    remind you that you should apply it before saving.</p>
+  </note>
+
+  <section>
+    <title>Crop</title>
+
+    <p>Change the size of the image, by removing parts of it. The side you're
+    cropping is indicated by the mouse cursor: it changes depending on the
+    position of the mouse pointer on the canvas.</p>
+    <p>The exact size can be set using the values in the bottom bar.</p>
+    <p>If your increasing the size of the image instead of decreasing it, you
+    may need to change the zoom level to see what you're doing. The color of the
+    pixels you create when increasing the size is customizable.</p>
+  </section>
+
+  <section>
+    <title>Scale</title>
+
+    <p>Resize the image, using the mouse or the values in the bottom bar.</p>
+    <p>Proportions can be locked or not, using the menu at the bottom-right.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_scale.png" />
+  </section>
+
+  <section>
+    <title>Rotate</title>
+
+    <p>Change the orientation of the image, or flip it, using the buttons in the
+    bottom bar.</p>
+    <p>If a selection is defined, you can freely choose the precise angle of the
+    rotation. Otherwise, only rotations of 90°, 180° or 270° are possible.</p>
+  </section>
+
+  <section>
+    <title>Skew</title>
+
+    <p>This optional tool tilts the image horizontally, vertically, or in both
+    directions.</p>
+    <p>If you're skewing the canvas, the operation creates new pixels: their
+    color is customizable.</p>
+  </section>
+
+  <section id="filters">
+    <title>Filters</title>
+
+    <p>You can apply a filter to the image or the selection. Click on the
+    picture to preview the selected filter.</p>
+    <list>
+      <item>
+        <p>Change the <gui style="menuitem">Saturation</gui>: increase or
+        decrease the saturation of the image by modifying the number in the
+        bottom bar.</p>
+        <p>A saturation bigger than 100% boosts the colors, a saturation smaller
+        than 100% does a greyish image.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Veil</gui> will add a slightly desaturated veil
+        upon the image, with a thin grey pixelated pattern.</p>
+        <!-- une trame se dit "screentone" mais ici ça ne s'applique guère -->
+        <!-- puisque c'est gris -->
+      </item>
+      <item>
+        <p><gui style="menuitem">Add transparency</gui> can make the image
+        partly translucent, depending on the percentage you can set in the
+        bottom bar.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Increase contrast</gui> will increase the
+        contrast in the picture: dark areas will be darker, light areas will be
+        lighter, and color will be stronger. Using the option in the bottom bar,
+        you can choose how strong the effect will be.</p>
+      </item>
+      <!-- <item> -->
+      <!--   <p><gui style="menuitem">Emboss</gui>, disabled for now</p> -->
+      <!-- </item> -->
+      <item>
+        <p><gui style="menuitem">Blur</gui>, and several variations of it, will
+        blur the image using a parametrable radius.</p>
+        <note style="warning">
+          <p>Be careful, if the image is big, applying blur to the image can
+          take a few seconds.</p>
+        </note>
+      </item>
+      <item>
+        <p><gui style="menuitem">Invert colors</gui>.</p>
+      </item>
+    </list>
+
+    <p>Here is an example of filters applied on small areas of an image:</p>
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_filters.png" />
+  </section>
+
+</page>
+

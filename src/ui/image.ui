@@ -2,9 +2,46 @@
 <interface domain="drawing">
   <template class="DrImage" parent="GtkBox">
     <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+
+    <child>
+      <object class="GtkInfoBar" id="reload_info_bar">
+        <property name="visible">False</property>
+        <property name="show-close-button">True</property>
+        <property name="revealed">True</property>
+        <property name="message-type">question</property>
+        <child internal-child="content_area">
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkLabel" id="reload_label">
+                <property name="visible">True</property>
+                <property name="wrap">True</property>
+                <property name="label" translatable="yes">The image changed on the disk, do you want to reload it?</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkButton" id="reload_action">
+                <property name="visible">True</property>
+                <property name="action-name">win.reload_file</property>
+                <property name="label" translatable="yes">Reload</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <action-widgets>
+          <action-widget response="ok">reload_action</action-widget>
+        </action-widgets>
+      </object>
+    </child>
+
     <child>
       <object class="GtkBox">
-        <property name="orientation">vertical</property>
         <property name="visible">True</property>
         <property name="expand">True</property>
         <child>
@@ -15,14 +52,15 @@
           </object>
         </child>
         <child>
-          <object class="GtkHScrollbar" id="_h_scrollbar">
+          <object class="GtkVScrollbar" id="_v_scrollbar">
             <!-- <property name="visible">True</property> -->
           </object>
         </child>
       </object>
     </child>
+
     <child>
-      <object class="GtkVScrollbar" id="_v_scrollbar">
+      <object class="GtkHScrollbar" id="_h_scrollbar">
         <!-- <property name="visible">True</property> -->
       </object>
     </child>

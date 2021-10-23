@@ -1,6 +1,6 @@
 # optionsbar_classic.py
 #
-# Copyright 2018-2020 Romain F. T.
+# Copyright 2018-2021 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 import cairo
 from .abstract_optionsbar import AbstractOptionsBar
 from .optionsbar_color_popover import OptionsBarClassicColorPopover
-from .utilities import utilities_add_unit_to_spinbtn
+from .utilities_units import utilities_add_unit_to_spinbtn
 
 ################################################################################
 
@@ -28,10 +28,8 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def __init__(self, window):
 		super().__init__()
 		self.window = window
-		builder = self.build_ui('optionsbars/classic/optionsbar-classic.ui')
+		builder = self._build_ui('classic/optionsbar-classic.ui')
 
-		self._operator_enum = cairo.Operator.OVER
-		self._operator_label = _("Normal")
 		self.color_box = builder.get_object('color_box')
 		self.color_menu_btn_r = builder.get_object('color_menu_btn_r')
 		self.color_menu_btn_l = builder.get_object('color_menu_btn_l')
@@ -41,19 +39,22 @@ class OptionsBarClassic(AbstractOptionsBar):
 		window.add_action_enum('cairo_op_mirror', 'over', self._cairop_mirror)
 		self._cairo_operator_lock = False
 
-		self.options_btn = builder.get_object('options_btn')
 		self.options_label = builder.get_object('options_label')
 		self.options_long_box = builder.get_object('options_long_box')
 		self.options_short_box = builder.get_object('options_short_box')
 
 		self.thickness_scalebtn = builder.get_object('thickness_scalebtn')
 		self.thickness_spinbtn = builder.get_object('thickness_spinbtn')
-		self.thickness_spinbtn.set_value(window._settings.get_int('last-size'))
+		last_size = self._get_tool_options().get_int('last-size')
+		self.thickness_spinbtn.set_value(last_size)
 		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
 		self.minimap_arrow = builder.get_object('minimap_arrow')
+
+	def _get_tool_options(self):
+		return self.window.options_manager._tools_gsettings
 
 	def update_for_new_tool(self, tool):
 		self.color_box.set_sensitive(tool.use_color)
@@ -72,12 +73,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def set_minimap_label(self, label):
 		self.minimap_label.set_label(label)
 
-	def toggle_options_menu(self):
-		self.options_btn.set_active(not self.options_btn.get_active())
-
-	def hide_options_menu(self):
-		self.options_btn.set_active(False)
-
 	def build_options_menu(self, widget, model, label):
 		if widget is not None:
 			self.options_btn.set_popover(widget)
@@ -92,8 +87,9 @@ class OptionsBarClassic(AbstractOptionsBar):
 		temp_limit_size = self.color_box.get_preferred_width()[0] + \
 		          self.thickness_spinbtn.get_preferred_width()[0] + \
 		           self.options_long_box.get_preferred_width()[0] + \
-		                self.minimap_btn.get_preferred_width()[0]
-		self.set_limit_size(temp_limit_size)
+		                self.minimap_btn.get_preferred_width()[0] + 50
+		# assuming 50px is enough to compensate the length of the label
+		self._set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
 		super().set_compact(state)
@@ -111,50 +107,11 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._color_l.color_widget.set_rgba(self._color_r.color_widget.get_rgba())
 		self._color_r.color_widget.set_rgba(left_color)
 
-	def _set_active_operator(self, op_as_string):
-		"""Remember as attributes the value and the label of the operator which
-		is the current one according to the Gio.Action state value given as an
-		argument."""
-
-		if op_as_string == 'difference':
-			self._operator_enum = cairo.Operator.DIFFERENCE
-			self._operator_label = _("Difference")
-		elif op_as_string == 'multiply':
-			self._operator_enum = cairo.Operator.MULTIPLY
-			self._operator_label = _("Highlight")
-		elif op_as_string == 'source':
-			self._operator_enum = cairo.Operator.SOURCE
-			self._operator_label = _("Raw source color")
-
-		elif op_as_string == 'hsl-hue':
-			self._operator_enum = cairo.Operator.HSL_HUE
-			self._operator_label = _("Hue only")
-		elif op_as_string == 'hsl-saturation':
-			self._operator_enum = cairo.Operator.HSL_SATURATION
-			self._operator_label = _("Saturation only")
-		elif op_as_string == 'hsl-color':
-			self._operator_enum = cairo.Operator.HSL_COLOR
-			self._operator_label = _("Hue and saturation")
-		elif op_as_string == 'hsl-luminosity':
-			self._operator_enum = cairo.Operator.HSL_LUMINOSITY
-			self._operator_label = _("Luminosity only")
-
-		elif op_as_string == 'clear':
-			self._operator_enum = cairo.Operator.CLEAR
-			self._operator_label = _("Erase")
-		elif op_as_string == 'dest-in':
-			self._operator_enum = cairo.Operator.DEST_IN
-			self._operator_label = _("Blur")
-
-		else:
-			self._operator_enum = cairo.Operator.OVER
-			self._operator_label = _("Normal")
-
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
-		right_rgba = self.window._settings.get_strv('last-right-rgba')
-		left_rgba = self.window._settings.get_strv('last-left-rgba')
+		right_rgba = self._get_tool_options().get_strv('last-right-rgba')
+		left_rgba = self._get_tool_options().get_strv('last-left-rgba')
 		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
 		             builder.get_object('r_btn_image'), right_rgba, False, self)
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \
@@ -183,7 +140,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._update_popovers(args[1].get_string())
 
 	def _update_popovers(self, op_as_string):
-		self._set_active_operator(op_as_string)
 		self._color_r.adapt_to_operator(op_as_string)
 		self._color_l.adapt_to_operator(op_as_string)
 
