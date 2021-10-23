@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
-from .utilities import utilities_add_unit_to_spinbtn
+from .utilities_units import utilities_add_unit_to_spinbtn
 
 class OptionsBarSkew(AbstractOptionsBar):
 	__gtype_name__ = 'OptionsBarSkew'
@@ -41,6 +41,7 @@ class OptionsBarSkew(AbstractOptionsBar):
 		super().init_adaptability()
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
+		                   self.options_btn.get_preferred_width()[0] + \
 		                      self.help_btn.get_preferred_width()[0] + \
 		                     self.apply_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)

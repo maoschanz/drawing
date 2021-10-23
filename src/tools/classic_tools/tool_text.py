@@ -87,9 +87,13 @@ class ToolText(AbstractClassicTool):
 		bg_label = {
 			'none': _("No background"),
 			'shadow': _("Shadow"),
-			'outline': _("Outline"),
+			'thin-outline': _("Thin outline"),
+			'thick-outline': _("Thick outline"),
 			'rectangle': _("Rectangle background"),
 		}[self._background_id]
+
+		# The current method is likely called because an option changed
+		self._force_refresh()
 
 		return self.label + ' - ' + self._font_fam_name + ' - ' + bg_label
 
@@ -196,7 +200,7 @@ class ToolText(AbstractClassicTool):
 			'is_italic': self._is_italic,
 			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
-			# 'antialias': self._use_antialias, # XXX ne marche pas ??
+			'antialias': self._use_antialias,
 			'x': self.x_press,
 			'y': self.y_press,
 			'background': self._background_id,
@@ -222,8 +226,17 @@ class ToolText(AbstractClassicTool):
 			font_description_string += " Bold"
 		font_description_string += " " + str(font_size)
 		font = Pango.FontDescription(font_description_string)
-		layout = PangoCairo.create_layout(cairo_context)
+
+		p_context = PangoCairo.create_context(cairo_context)
+		layout = Pango.Layout(p_context)
 		layout.set_font_description(font)
+
+		if not operation['antialias']:
+			font_options = cairo.FontOptions()
+			font_options.set_antialias(cairo.Antialias.NONE)
+			font_options.set_hint_metrics(cairo.HintMetrics.OFF)
+			font_options.set_hint_style(cairo.HintStyle.FULL)
+			PangoCairo.context_set_font_options(p_context, font_options)
 
 		########################################################################
 		# Draw background ######################################################
@@ -239,7 +252,7 @@ class ToolText(AbstractClassicTool):
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
 			self._show_text_at_coords(cairo_context, layout, entire_text, \
 			                                       text_x + dist, text_y + dist)
-		elif operation['background'] == 'outline':
+		elif operation['background'] == 'thin-outline':
 			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
 			dist = min(int(font_size/16), 10)
 			dist = max(dist, 2)
@@ -250,6 +263,16 @@ class ToolText(AbstractClassicTool):
 						                  entire_text, text_x + dx, text_y + dy)
 			# these `for`s and this `if` should outline with an octogonal shape,
 			# which is close enough to a smooth round outline imho.
+		elif operation['background'] == 'thick-outline':
+			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			dist = int(font_size/10)
+			dist = max(dist, 2)
+			for dx in range(-dist, dist):
+				for dy in range(-dist, dist):
+					if abs(dx) + abs(dy) <= dist * 1.5:
+						self._show_text_at_coords(cairo_context, layout, \
+						                  entire_text, text_x + dx, text_y + dy)
+			# looks better, but so much computation for bullshit...
 
 		########################################################################
 		# Draw text ############################################################

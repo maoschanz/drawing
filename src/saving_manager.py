@@ -17,7 +17,8 @@
 
 from gi.repository import Gtk, GdkPixbuf, GLib
 from .message_dialog import DrMessageDialog
-from .utilities import utilities_add_filechooser_filters
+from .utilities_files import utilities_add_filechooser_filters
+from .utilities_colors import utilities_rgb_to_hexadecimal
 
 ALL_SUPPORTED_FORMAT = ['jpeg', 'jpg', 'jpe', 'png', 'tiff', 'ico', 'bmp']
 
@@ -271,8 +272,8 @@ class DrSavingManager():
 		width = pixbuf.get_width()
 		height = pixbuf.get_height()
 		if replacement == 'white':
-			pcolor1 = self._rgb_as_hexadecimal_int(255, 255, 255)
-			pcolor2 = self._rgb_as_hexadecimal_int(255, 255, 255)
+			pcolor1 = utilities_rgb_to_hexadecimal(255, 255, 255)
+			pcolor2 = utilities_rgb_to_hexadecimal(255, 255, 255)
 		elif replacement == 'initial':
 			initial_rgba = image.get_initial_rgba()
 			r = int(initial_rgba.red * 255)
@@ -280,22 +281,16 @@ class DrSavingManager():
 			b = int(initial_rgba.blue * 255)
 			# the initial color has an alpha channel but it's not pertinent, and
 			# not possible anyway.
-			pcolor1 = self._rgb_as_hexadecimal_int(r, g, b)
-			pcolor2 = self._rgb_as_hexadecimal_int(r, g, b)
+			pcolor1 = utilities_rgb_to_hexadecimal(r, g, b)
+			pcolor2 = utilities_rgb_to_hexadecimal(r, g, b)
 		elif replacement == 'checkboard':
-			pcolor1 = self._rgb_as_hexadecimal_int(85, 85, 85)
-			pcolor2 = self._rgb_as_hexadecimal_int(170, 170, 170)
+			pcolor1 = utilities_rgb_to_hexadecimal(85, 85, 85)
+			pcolor2 = utilities_rgb_to_hexadecimal(170, 170, 170)
 		else: # if replacement == 'black':
-			pcolor1 = self._rgb_as_hexadecimal_int(0, 0, 0)
-			pcolor2 = self._rgb_as_hexadecimal_int(0, 0, 0)
+			pcolor1 = utilities_rgb_to_hexadecimal(0, 0, 0)
+			pcolor2 = utilities_rgb_to_hexadecimal(0, 0, 0)
 		return pixbuf.composite_color_simple(width, height,
 		                   GdkPixbuf.InterpType.TILES, 255, 8, pcolor1, pcolor2)
-
-	def _rgb_as_hexadecimal_int(self, r, g, b):
-		"""The method `GdkPixbuf.Pixbuf.composite_color_simple` wants an
-		hexadecimal integer whose format is 0xaarrggbb so here are ugly binary
-		operators."""
-		return (r << 16) + (g << 8) + b
 
 	############################################################################
 ################################################################################

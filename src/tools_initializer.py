@@ -25,7 +25,7 @@ from .tool_crop import ToolCrop
 from .tool_filters import ToolFilters
 from .tool_rotate import ToolRotate
 from .tool_scale import ToolScale
-# from .tool_skew import ToolSkew
+from .tool_skew import ToolSkew
 
 ################################################################################
 
@@ -57,7 +57,7 @@ class DrToolsInitializer():
 		self._load_tool('crop', ToolCrop, disabled_tools, dev)
 		self._load_tool('scale', ToolScale, disabled_tools, dev)
 		self._load_tool('rotate', ToolRotate, disabled_tools, dev)
-		# self._load_tool('skew', ToolSkew, disabled_tools, dev)
+		self._load_tool('skew', ToolSkew, disabled_tools, dev)
 		self._load_tool('filters', ToolFilters, disabled_tools, dev)
 
 		self._add_auto_mnemonics()

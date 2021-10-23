@@ -100,7 +100,7 @@ class ToolFilters(AbstractCanvasTool):
 			self._active_filter = 'blur'
 		elif state_as_string == 'tiles':
 			self.blur_algo = BlurType.TILES
-			self.type_label = _("Pixelization")
+			self.type_label = _("Mosaic")
 			self._active_filter = 'blur'
 
 		elif state_as_string == 'saturation':

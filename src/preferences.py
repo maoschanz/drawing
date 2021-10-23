@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio, Gdk
-from .utilities import utilities_add_unit_to_spinbtn
+from .utilities_units import utilities_add_unit_to_spinbtn
 
 @Gtk.Template(resource_path='/com/github/maoschanz/drawing/ui/preferences.ui')
 class DrPrefsWindow(Gtk.Window):
@@ -147,7 +147,8 @@ class DrPrefsWindow(Gtk.Window):
 			'free_select': _("Free selection"),
 			'color_select': _("Color selection"),
 			'picker': _("Color Picker"),
-			'paint': _("Paint")
+			'paint': _("Paint"),
+			'skew': _("Skew"),
 		}
 		self.add_check_flowbox('disabled-tools', tools_dict)
 

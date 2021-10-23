@@ -20,7 +20,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, Pango, GLib
 from .history_manager import DrHistoryManager
 from .selection_manager import DrSelectionManager
 from .properties import DrPropertiesDialog
-from .utilities import InvalidFileFormatException
+from .utilities_files import InvalidFileFormatException
 from .utilities_overlay import utilities_generic_canvas_outline
 
 class DrMotionBehavior():
@@ -645,16 +645,16 @@ class DrImage(Gtk.Box):
 			x1 = 0
 			y1 = 0
 		# width_left, width_right, height_top, height_bottom
-		wl, wr, ht, hb = self.get_corrected_coords(x1, width, y1, height, \
-		                                               apply_to_selection, True)
-		# FIXME using local deltas this way "works" but isn't mathematically
+		wl, wr, ht, hb = self.get_corrected_coords(int(x1), width, int(y1), \
+		                                       height, apply_to_selection, True)
+		# XXX using local deltas this way "works" but isn't mathematically
 		# correct: scaled selections have a "null" and excentred central nineth
-		# ^ c'est vrai ça ??
+		# ^ c'est toujours vrai ça ??
 		wl += 0.4 * width * self.zoom_level
 		wr -= 0.4 * width * self.zoom_level
 		ht += 0.4 * height * self.zoom_level
 		hb -= 0.4 * height * self.zoom_level
-		return wl, wr, ht, hb
+		return {'wl': wl, 'wr': wr, 'ht': ht, 'hb': hb}
 
 	def on_scroll_on_area(self, area, event):
 		# TODO https://lazka.github.io/pgi-docs/index.html#Gdk-3.0/classes/EventScroll.html#Gdk.EventScroll
@@ -667,6 +667,24 @@ class DrImage(Gtk.Box):
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self._h_scrollbar.get_value(), self._v_scrollbar.get_value())
 		self.update() # allowing imperfect framerate would likely be useless
+
+	def reset_deltas(self, delta_x, delta_y):
+		if delta_x > 0:
+			wanted_x = self.get_pixbuf_width()
+		elif delta_x < 0:
+			wanted_x = 0
+		else:
+			wanted_x = self.scroll_x
+
+		if delta_y > 0:
+			wanted_y = self.get_pixbuf_height()
+		elif delta_y < 0:
+			wanted_y = 0
+		else:
+			wanted_y = self.scroll_y
+
+		self.correct_coords(wanted_x, wanted_y)
+		self.window.minimap.update_minimap(False)
 
 	def add_deltas(self, delta_x, delta_y, factor):
 		wanted_x = self.scroll_x + int(delta_x * factor)

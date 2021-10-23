@@ -26,8 +26,9 @@ class ToolScale(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'not-allowed'
-		self.keep_proportions = True
-		self.directions = ''
+		self._preserve_ratio = True
+		self._spinbtns_disabled = True
+		self._directions = ''
 		self._x = 0
 		self._y = 0
 		self._x2 = 0
@@ -35,7 +36,7 @@ class ToolScale(AbstractCanvasTool):
 		self.x_press = 0
 		self.y_press = 0
 		self.add_tool_action_enum('scale-proportions', 'corners')
-		# self.add_tool_action_enum('scale-unit', 'pixels') # TODO
+		self.add_tool_action_enum('scale-unit', 'pixels')
 
 	def try_build_pane(self):
 		self.pane_id = 'scale'
@@ -64,104 +65,129 @@ class ToolScale(AbstractCanvasTool):
 		super().on_tool_selected()
 		self._x = 0
 		self._y = 0
-		self.directions = ''
+		self._directions = ''
 		if self.apply_to_selection:
 			width = self.get_selection_pixbuf().get_width()
 			height = self.get_selection_pixbuf().get_height()
 		else:
 			width = self.get_image().get_pixbuf_width()
 			height = self.get_image().get_pixbuf_height()
-		self.set_keep_proportions()
-		self.proportion = width/height
+		self.set_preserve_ratio()
+		self._ratio = width / height
+		self._spinbtns_disabled = False
 		self.width_btn.set_value(width)
 		self.height_btn.set_value(height)
 		self.build_and_do_op()
 
 	############################################################################
 
-	def should_set_value(self, *args):
-		current_prop = self.get_width() / self.get_height()
-		return self.keep_proportions and self.proportion != current_prop
-
-	def set_keep_proportions(self, *args):
-		former_setting = self.keep_proportions
+	def set_preserve_ratio(self, *args):
+		"""Set whether or not `self._preserve_ratio` should be true. If it is,
+		and that wasn't the case before, it sets the `self._ratio` value too."""
+		former_setting = self._preserve_ratio
 		setting = self.get_option_value('scale-proportions')
 		if setting == 'corners':
-			self.keep_proportions = len(self.directions) != 1
+			self._preserve_ratio = len(self._directions) != 1
 		else:
-			self.keep_proportions = setting == 'always'
-		if self.keep_proportions == former_setting:
+			self._preserve_ratio = setting == 'always'
+		if self._preserve_ratio == former_setting:
 			return
-		if self.keep_proportions:
-			self.proportion = self.get_width() / self.get_height()
+		if self._preserve_ratio:
+			self._ratio = self._get_width() / self._get_height()
+
+	def _try_scale_dimensions(self, data_dict={}):
+		"""When the value in a spinbutton changes, adjust the values in the
+		spinbuttons if necessary, and build-and-do the corresponding tool
+		operation."""
+		if not self._preserve_ratio:
+			# Guard clause: if the ratio isn't locked, the dimension should be
+			# applied without any change. Calculations are only useful when
+			# trying to preserve the image proportions.
+			self.build_and_do_op()
+			return
+
+		pixbuf = self.get_image().temp_pixbuf
+		existing_width = pixbuf.get_width()
+		existing_height = pixbuf.get_height()
+
+		new_width = self._get_width()
+		new_height = self._get_height()
+		self._spinbtns_disabled = True
+
+		if existing_width != new_width:
+			new_height = new_width / self._ratio
+			self.height_btn.set_value(new_height)
+		if existing_height != new_height:
+			new_width = new_height * self._ratio
+			self.width_btn.set_value(new_width)
+
+		self._spinbtns_disabled = False
+		self.build_and_do_op()
 
 	############################################################################
 
 	def on_width_changed(self, *args):
-		if self.directions == '':
+		if self._spinbtns_disabled:
+			return
+		if self._directions == '':
 			# Means we use the spinbtn directly, instead of the surface signals
-			self.set_keep_proportions()
-		if self.should_set_value():
-			self.height_btn.set_value(self.get_width() / self.proportion)
-		self.build_and_do_op()
+			self.set_preserve_ratio()
+		self._try_scale_dimensions()
 
 	def on_height_changed(self, *args):
-		if self.directions == '':
+		if self._spinbtns_disabled:
+			return
+		if self._directions == '':
 			# Means we use the spinbtn directly, instead of the surface signals
-			self.set_keep_proportions()
-		if self.should_set_value():
-			self.width_btn.set_value(self.get_height() * self.proportion)
-		else:
-			self.build_and_do_op()
+			self.set_preserve_ratio()
+		self._try_scale_dimensions()
 
-	def get_width(self):
+	def _get_width(self):
 		return self.width_btn.get_value_as_int()
 
-	def get_height(self):
+	def _get_height(self):
 		return self.height_btn.get_value_as_int()
 
 	############################################################################
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		self.cursor_name = self.get_handle_cursor_name(event.x, event.y)
-		self.window.set_cursor(True)
+		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		self._x2 = self._x + self.get_width()
-		self._y2 = self._y + self.get_height()
-		self.directions = self.cursor_name.replace('-resize', '')
-		self.set_keep_proportions()
+		self._x2 = self._x + self._get_width()
+		self._y2 = self._y + self._get_height()
+		self.set_preserve_ratio()
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if self.cursor_name == 'not-allowed':
+		if self._directions == '':
 			return
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press
 		self.x_press = event_x
 		self.y_press = event_y
 
-		height = self.get_height()
-		width = self.get_width()
-		if 'n' in self.directions:
+		height = self._get_height()
+		width = self._get_width()
+		if 'n' in self._directions:
 			height -= delta_y
 			self._y = self._y + delta_y
-		if 's' in self.directions:
+		if 's' in self._directions:
 			height += delta_y
-		if 'w' in self.directions:
+		if 'w' in self._directions:
 			width -= delta_x
 			self._x = self._x + delta_x
-		if 'e' in self.directions:
+		if 'e' in self._directions:
 			width += delta_x
 
-		if self.apply_to_selection and self.keep_proportions:
-			if 'w' in self.directions:
+		if self.apply_to_selection and self._preserve_ratio:
+			if 'w' in self._directions:
 				self._x = self._x2 - width
-			if 'n' in self.directions:
+			if 'n' in self._directions:
 				self._y = self._y2 - height
 
-		if self.keep_proportions:
+		if self._preserve_ratio:
 			if abs(delta_y) > abs(delta_x):
 				self.height_btn.set_value(height)
 			else:
@@ -172,7 +198,7 @@ class ToolScale(AbstractCanvasTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
-		self.directions = ''
+		self._directions = ''
 		self.build_and_do_op() # technically already done
 
 	############################################################################
@@ -184,8 +210,8 @@ class ToolScale(AbstractCanvasTool):
 		else:
 			x1 = 0
 			y1 = 0
-		x2 = x1 + self.get_width()
-		y2 = y1 + self.get_height()
+		x2 = x1 + self._get_width()
+		y2 = y1 + self._get_height()
 		x1, x2, y1, y2 = self.get_image().get_corrected_coords(x1, x2, y1, y2, \
 		                                         self.apply_to_selection, False)
 		self._draw_temp_pixbuf(cairo_context, x1, y1)
@@ -201,8 +227,8 @@ class ToolScale(AbstractCanvasTool):
 			'is_preview': True,
 			'local_dx': int(self._x),
 			'local_dy': int(self._y),
-			'width': self.get_width(),
-			'height': self.get_height()
+			'width': self._get_width(),
+			'height': self._get_height()
 		}
 		return operation
 

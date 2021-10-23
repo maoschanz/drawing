@@ -105,11 +105,16 @@
         </item>
         <item>
           <!-- Context: a type of background behind the inserted text -->
-          <attribute name="label" translatable="yes">Outline</attribute>
+          <attribute name="label" translatable="yes">Thin outline</attribute>
           <attribute name="action">win.text-background</attribute>
-          <attribute name="target">outline</attribute>
+          <attribute name="target">thin-outline</attribute>
         </item>
-        <!-- TODO large vs thin outline -->
+        <item>
+          <!-- Context: a type of background behind the inserted text -->
+          <attribute name="label" translatable="yes">Thick outline</attribute>
+          <attribute name="action">win.text-background</attribute>
+          <attribute name="target">thick-outline</attribute>
+        </item>
         <item>
           <!-- Context: a type of background behind the inserted text -->
           <attribute name="label" translatable="yes">Rectangle background</attribute>
@@ -118,12 +123,12 @@
         </item>
       </section>
     </section>
-    <!-- <section> -->
-    <!--   <item> -->
-    <!--     <attribute name="label" translatable="yes">Antialiasing</attribute> -->
-    <!--     <attribute name="action">win.antialias</attribute> -->
-    <!--   </item> -->
-    <!-- </section> -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Antialiasing</attribute>
+        <attribute name="action">win.antialias</attribute>
+      </item>
+    </section>
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>

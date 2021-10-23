@@ -19,6 +19,7 @@ import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_tool import AbstractAbstractTool
+from .utilities_colors import utilities_gdk_rgba_to_color_array
 
 class AbstractCanvasTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractCanvasTool'
@@ -30,22 +31,30 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.needed_width_for_long = 0
 		self.accept_selection = True
 		self.apply_to_selection = False
+		self._directions = ''
+
+		# Gdk.RGBA
+		self._expansion_rgba = None
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.apply_to_selection = self.selection_is_active()
 
 	def update_actions_state(self, *args):
+		# Changing this in on_tool_selected would be overridden by image.py
 		super().update_actions_state()
-		# Changing that in on_tool_selected would be overridden by image.py
+
 		self.set_action_sensitivity('selection_delete', False)
 		self.set_action_sensitivity('selection_cut', False)
 		self.set_action_sensitivity('unselect', False)
 		self.set_action_sensitivity('select_all', False)
 
+		self.set_action_sensitivity('cancel_transform', True)
+		self.set_action_sensitivity('apply_transform', True)
+
 	def give_back_control(self, preserve_selection):
 		if not preserve_selection and self.selection_is_active():
-			self.on_apply_temp_pixbuf_tool_operation()
+			self.on_apply_transform_tool_operation()
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
 
@@ -79,10 +88,13 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 	############################################################################
 
-	def on_apply_temp_pixbuf_tool_operation(self, *args):
+	def on_apply_transform_tool_operation(self, *args):
 		self.restore_pixbuf()
 		operation = self.build_operation()
 		self.apply_operation(operation)
+		self.on_cancel_transform_tool_operation()
+
+	def on_cancel_transform_tool_operation(self, *args):
 		if self.apply_to_selection:
 			self.window.force_selection()
 		else:
@@ -108,32 +120,53 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			self.get_image().use_stable_pixbuf()
 
 	############################################################################
+	# Direction of the cursor depending on its position ########################
 
-	def get_handle_cursor_name(self, event_x, event_y):
-		"""Return the name of the accurate cursor for tools such as `scale` or
-		`crop`, with or without an active selection, depending on the size and
-		position of the resized/cropped area."""
-		w_left, w_right, h_top, h_bottom = self.get_image().get_nineths_sizes( \
-		                    self.apply_to_selection, int(self._x), int(self._y))
+	def _set_directions(self, event_x, event_y, n_sizes):
+		"""Set the directions of the user's future operation for tools such as
+		`scale` or `crop`.
+		It returns a boolean telling whether or not the directions changed since
+		the last call to this method."""
+		w_left = n_sizes['wl']
+		w_right = n_sizes['wr']
+		h_top = n_sizes['ht']
+		h_bottom = n_sizes['hb']
+		# print("set_directions", w_left, w_right, h_top, h_bottom)
+		directions = ''
+		if event_y < h_top:
+			directions += 'n'
+		elif event_y > h_bottom:
+			directions += 's'
+		if event_x < w_left:
+			directions += 'w'
+		elif event_x > w_right:
+			directions += 'e'
+
+		if self._directions == directions:
+			return False
+		else:
+			self._directions = directions
+			return True
+
+	def _set_cursor_name(self):
+		"""Set the cursor name, depending on the previously set directions."""
+		if self._directions == '':
+			self.cursor_name = 'not-allowed'
+		else:
+			self.cursor_name = self._directions + '-resize'
+
+	def set_directional_cursor(self, event_x, event_y):
+		"""Set the accurate cursor depending on the position of the pointer on
+		the canvas."""
+		n_sizes = self.get_image().get_nineths_sizes(self.apply_to_selection, \
+		                                                       self._x, self._y)
 		# if we're transforming the selection from its top and/or left, coords
 		# to decide the direction depend on local deltas (self._x and self._y)
+		if self._set_directions(event_x, event_y, n_sizes):
+			self._set_cursor_name()
+			self.window.set_cursor(True)
 
-		# print("get_handle_cursor_name", w_left, w_right, h_top, h_bottom)
-		cursor_name = ''
-		if event_y < h_top:
-			cursor_name = cursor_name + 'n'
-		elif event_y > h_bottom:
-			cursor_name = cursor_name + 's'
-		if event_x < w_left:
-			cursor_name = cursor_name + 'w'
-		elif event_x > w_right:
-			cursor_name = cursor_name + 'e'
-
-		if cursor_name == '':
-			cursor_name = 'not-allowed'
-		else:
-			cursor_name = cursor_name + '-resize'
-		return cursor_name
+	############################################################################
 
 	def on_draw_above(self, area, cairo_context):
 		pass
@@ -143,7 +176,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
 		cairo_context.paint()
 
-	def get_deformed_surface(self, source_surface, coefs):
+	def get_deformed_surface(self, source_surface, coefs, prefill=False):
 		"""Use cairo.Matrix to apply a transformation to `source_surface` using
 		the coefficients in `coefs` and return a new surface with the result."""
 		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
@@ -155,6 +188,16 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 		cairo_context = cairo.Context(new_surface)
+
+		if prefill:
+			# TODO this exists only for the "skew" tool, and it shouldn't be
+			# here nor do this.
+			# TODO it should paint *around* the deformed surface after it's
+			# returned by the current method
+			color_array = utilities_gdk_rgba_to_color_array(self._expansion_rgba)
+			cairo_context.set_source_rgba(*color_array)
+			cairo_context.paint()
+
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=p_xx, yx=p_yx, xy=p_xy, yy=p_yy, x0=p_x0, y0=p_y0)
 		try:
@@ -165,6 +208,21 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		cairo_context.set_source_surface(source_surface, 0, 0)
 		cairo_context.paint()
 		return new_surface
+
+	############################################################################
+
+	def _update_expansion_rgba(self, event_btn=1):
+		"""When the canvas grows, the color of the new pixels is parametrable"""
+		color_type = self.get_option_value('crop-expand')
+		if color_type == 'initial':
+			exp_rgba = self.get_image().get_initial_rgba()
+		elif color_type == 'secondary' and event_btn == 1:
+			exp_rgba = self.window.options_manager.get_right_color()
+		elif color_type == 'secondary' and event_btn == 3:
+			exp_rgba = self.window.options_manager.get_left_color()
+		else: # color_type == 'alpha':
+			exp_rgba = Gdk.RGBA(red=1.0, green=1.0, blue=1.0, alpha=0.0)
+		self._expansion_rgba = exp_rgba
 
 	############################################################################
 ################################################################################
