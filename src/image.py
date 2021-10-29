@@ -148,35 +148,41 @@ class DrImage(Gtk.Box):
 	def init_background(self, width, height, background_rgba):
 		self.init_image_common()
 		self._history.set_initial_operation(background_rgba, None, width, height)
-		self.restore_first_pixbuf()
+		self.restore_last_state()
 
 	def try_load_pixbuf(self, pixbuf):
 		self.init_image_common()
 		self._load_pixbuf_common(pixbuf)
-		self.restore_first_pixbuf()
+		self.restore_last_state()
 		self.update_title()
 
 	def _new_blank_pixbuf(self, w, h):
 		return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, w, h)
 
-	def restore_first_pixbuf(self):
+	def restore_last_state(self):
 		"""Set the last saved pixbuf from the history as the main_pixbuf. This
 		is used to rebuild the picture from its history."""
 		last_saved_pixbuf_op = self._history.get_last_saved_state()
+		self._apply_state(last_saved_pixbuf_op)
 
+	def reset_to_initial_pixbuf(self):
+		self._apply_state(self._history.initial_operation)
+		self._history.rewind_history()
+
+	def _apply_state(self, state_op):
 		# restore the state found in the history
-		pixbuf = last_saved_pixbuf_op['pixbuf']
-		width = last_saved_pixbuf_op['width']
-		height = last_saved_pixbuf_op['height']
+		pixbuf = state_op['pixbuf']
+		width = state_op['width']
+		height = state_op['height']
 		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.selection.init_pixbuf()
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
 			# no pixbuf in the operation: the restored state is a blank one
-			r = last_saved_pixbuf_op['red']
-			g = last_saved_pixbuf_op['green']
-			b = last_saved_pixbuf_op['blue']
-			a = last_saved_pixbuf_op['alpha']
+			r = state_op['red']
+			g = state_op['green']
+			b = state_op['blue']
+			a = state_op['alpha']
 			self.set_main_pixbuf(self._new_blank_pixbuf(width, height))
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
@@ -184,7 +190,7 @@ class DrImage(Gtk.Box):
 			self.update()
 			self.set_surface_as_stable_pixbuf()
 		else:
-			self.set_main_pixbuf(last_saved_pixbuf_op['pixbuf'].copy())
+			self.set_main_pixbuf(state_op['pixbuf'].copy())
 			self.use_stable_pixbuf()
 
 	############################################################################

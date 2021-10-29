@@ -10,6 +10,8 @@ drawing (1.0.0) unstable; urgency=low
   * suggest to "apply & unselect" when trying to save while the selection is active
   *
   * if "undo" is pressed several times in a short period, recompute only once (#425, #435, #282, #200)
+  * disable the 'reload image from the disk' action if it has never been saved
+  * new 'reset the canvas' action
   * warn the user if they're opening an already opened image
   * suggest to reload the picture if it has changed on the disk
   * artificially limited framerate to avoid overloading the CPU (#162)

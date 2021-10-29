@@ -494,6 +494,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('fullscreen', False, self.action_fullscreen)
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
+		self.add_action_simple('reset_canvas', self.action_reset, ['<Ctrl>BackSpace'])
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties)
 		self.add_action_simple('unfullscreen', self.action_unfullscreen)
@@ -959,6 +960,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			return self.notebook.get_nth_page(self.notebook.get_current_page())
 		else:
 			return self.pointer_to_current_page
+
+	def action_reset(self, *args):
+		self.get_active_image().reset_to_initial_pixbuf()
 
 	def action_reload(self, *args):
 		self.get_active_image().reload_from_disk()

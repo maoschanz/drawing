@@ -68,7 +68,7 @@ class DrHistoryManager():
 		operation = self._redo_history.pop()
 		if operation['tool_id'] is None:
 			self._undo_history.append(operation)
-			self._image.restore_first_pixbuf()
+			self._image.restore_last_state()
 		else:
 			self._get_tool(operation['tool_id']).apply_operation(operation)
 
@@ -98,6 +98,13 @@ class DrHistoryManager():
 #		if len(redoable_action) > 0:
 #			redo_label = redoable_action[0]['tool_id']
 #		self._image.window.update_history_actions_labels(undo_label, redo_label)
+
+	def rewind_history(self):
+		"""Put the entire 'undo' history into the 'redo' history, so the image
+		can be reset without losing any data."""
+		self._redo_history = self._undo_history[::-1] + self._redo_history
+		self._undo_history = []
+		self._image.update_history_sensitivity()
 
 	############################################################################
 	# Serialized operations ####################################################
@@ -190,7 +197,7 @@ class DrHistoryManager():
 		self._waiting_for_rebuild = False
 
 		last_save_index = self._get_last_state_index(True)
-		self._image.restore_first_pixbuf()
+		self._image.restore_last_state()
 		history = self._undo_history.copy()
 		self._undo_history = []
 		for op in history:
