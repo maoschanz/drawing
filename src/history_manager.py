@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gdk, Gio, GdkPixbuf
+from gi.repository import Gdk, Gio, GdkPixbuf, GLib
 # from .abstract_tool import WrongToolIdException
 
 ################################################################################
@@ -29,6 +29,7 @@ class DrHistoryManager():
 		self._undo_history = []
 		self._redo_history = []
 		self._is_saved = True
+		self._waiting_for_rebuild = False
 
 	def get_saved(self):
 		# XXX undoing/redoing doesn't update the title so the "*" isn't visible
@@ -60,13 +61,14 @@ class DrHistoryManager():
 		if len(self._undo_history) > 0:
 			last_op = self._undo_history.pop()
 			self._redo_history.append(last_op)
-		self._rebuild_from_history()
+		self._rebuild_from_history_async()
+		self._image.update_history_sensitivity()
 
 	def try_redo(self, *args):
 		operation = self._redo_history.pop()
 		if operation['tool_id'] is None:
 			self._undo_history.append(operation)
-			self._image.restore_first_pixbuf()
+			self._image.restore_last_state()
 		else:
 			self._get_tool(operation['tool_id']).apply_operation(operation)
 
@@ -171,10 +173,25 @@ class DrHistoryManager():
 	############################################################################
 	# Other private methods ####################################################
 
-	def _rebuild_from_history(self):
+	def _rebuild_from_history_async(self):
+		if not self._waiting_for_rebuild:
+			# No need to duplicate calls, it will be rebuilt soon anyway
+			self._waiting_for_rebuild = True
+			GLib.timeout_add(500, self._rebuild_from_history, {})
+		# This introduces an artificial delay of half a second, BUT in the case
+		# where an user undoes several operations, i expect between 2 and 4
+		# presses on ctrl+z during these 500ms, so there will be between 2 and 4
+		# times less recomputation.
+
+	def _rebuild_from_history(self, async_cb_data={}):
 		"""Rebuild the image according to the content of the current history."""
+		if not self._waiting_for_rebuild:
+			# It has already been rebuild by an other async call
+			return
+		self._waiting_for_rebuild = False
+
 		last_save_index = self._get_last_state_index(True)
-		self._image.restore_first_pixbuf()
+		self._image.restore_last_state()
 		history = self._undo_history.copy()
 		self._undo_history = []
 		for op in history:
@@ -185,7 +202,6 @@ class DrHistoryManager():
 				# print("skip", op['tool_id'])
 				self._undo_history.append(op)
 		self._image.update()
-		self._image.update_history_sensitivity()
 
 	def _operation_is_ongoing(self):
 		return self._image.active_tool().has_ongoing_operation()

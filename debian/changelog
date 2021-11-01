@@ -1,3 +1,12 @@
+drawing (0.8.4) unstable; urgency=low
+
+  * option to disable anti-aliasing with the text tool (#369)
+  * if "undo" is pressed several times in a short period, recompute only once (#425, #435, #282, #200)
+  * disable the 'reload image from the disk' action if it has never been saved
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 06 Nov 2021 13:12:00 +0100
+
 drawing (0.8.3) unstable; urgency=low
 
   * draw a wider outline to the free selection when the image is zoomed out

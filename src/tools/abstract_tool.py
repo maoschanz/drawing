@@ -46,7 +46,6 @@ class AbstractAbstractTool():
 		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
-		self._allow_imperfect = True
 		# Once everything is set, build the UI
 		self.build_row()
 		self.try_build_pane()
@@ -58,8 +57,8 @@ class AbstractAbstractTool():
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
-		# TODO allow to set shortcuts here
-		self.window.add_action_simple(action_name, callback, None)
+		# XXX allow to set shortcuts here?
+		self.window.add_action_simple(action_name, callback)
 
 	def add_tool_action_boolean(self, action_name, default):
 		self.window.options_manager.add_option_boolean(action_name, default)
@@ -218,9 +217,7 @@ class AbstractAbstractTool():
 	def simple_apply_operation(self, operation):
 		"""Simpler apply_operation, for the 'rebuild from history' method."""
 		try:
-			self._allow_imperfect = False
 			self.do_tool_operation(operation)
-			self._allow_imperfect = True
 			self.get_image().add_to_history(operation)
 		except Exception as e:
 			self.show_error(str(e))
@@ -264,7 +261,7 @@ class AbstractAbstractTool():
 		self.get_image().update()
 
 	def restore_pixbuf(self):
-		self.get_image().use_stable_pixbuf(self._allow_imperfect)
+		self.get_image().use_stable_pixbuf()
 
 	############################################################################
 	# Signals handling #########################################################

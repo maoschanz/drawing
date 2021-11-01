@@ -56,9 +56,9 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
-		self._fps_counter = 0
-		self.reset_fps_counter()
+
 		self._framerate_hint = 1.0
+		self._fps_counter = 0
 
 		self._init_drawing_area()
 
@@ -138,35 +138,35 @@ class DrImage(Gtk.Box):
 	def init_background(self, width, height, background_rgba):
 		self.init_image_common()
 		self._history.set_initial_operation(background_rgba, None, width, height)
-		self.restore_first_pixbuf()
+		self.restore_last_state()
 
 	def try_load_pixbuf(self, pixbuf):
 		self.init_image_common()
 		self._load_pixbuf_common(pixbuf)
-		self.restore_first_pixbuf()
+		self.restore_last_state()
 		self.update_title()
 
 	def _new_blank_pixbuf(self, w, h):
 		return GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, w, h)
 
-	def restore_first_pixbuf(self):
+	def restore_last_state(self):
 		"""Set the last saved pixbuf from the history as the main_pixbuf. This
 		is used to rebuild the picture from its history."""
-		last_saved_pixbuf_op = self._history.get_last_saved_state()
+		state_op = self._history.get_last_saved_state()
 
 		# restore the state found in the history
-		pixbuf = last_saved_pixbuf_op['pixbuf']
-		width = last_saved_pixbuf_op['width']
-		height = last_saved_pixbuf_op['height']
+		pixbuf = state_op['pixbuf']
+		width = state_op['width']
+		height = state_op['height']
 		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.selection.init_pixbuf()
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
 			# no pixbuf in the operation: the restored state is a blank one
-			r = last_saved_pixbuf_op['red']
-			g = last_saved_pixbuf_op['green']
-			b = last_saved_pixbuf_op['blue']
-			a = last_saved_pixbuf_op['alpha']
+			r = state_op['red']
+			g = state_op['green']
+			b = state_op['blue']
+			a = state_op['alpha']
 			self.set_main_pixbuf(self._new_blank_pixbuf(width, height))
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
@@ -174,10 +174,11 @@ class DrImage(Gtk.Box):
 			self.update()
 			self.set_surface_as_stable_pixbuf()
 		else:
-			self.set_main_pixbuf(last_saved_pixbuf_op['pixbuf'].copy())
+			self.set_main_pixbuf(state_op['pixbuf'].copy())
 			self.use_stable_pixbuf()
 
 	############################################################################
+	# (re)loading the pixbuf of a given file ###################################
 
 	def _load_pixbuf_common(self, pixbuf):
 		if not pixbuf.get_has_alpha():
@@ -218,6 +219,10 @@ class DrImage(Gtk.Box):
 			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
 			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
+		self._can_reload()
+
+	def _can_reload(self):
+		self.set_action_sensitivity('reload_file', self.gfile is not None)
 
 	############################################################################
 	# Image title and tab management ###########################################
@@ -291,6 +296,10 @@ class DrImage(Gtk.Box):
 	def show_properties(self):
 		DrPropertiesDialog(self.window, self)
 
+	def update_image_wide_actions(self):
+		self.update_history_sensitivity()
+		self._can_reload()
+
 	############################################################################
 	# History management #######################################################
 
@@ -353,21 +362,10 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
-	def reset_fps_counter(self, async_cb_data={}):
-		"""Development only: live-display the evolution of the framerate of the
-		drawing area. The max should be around 60, but many tools don't require
-		so many redraws."""
-		if self.window.should_track_framerate:
-			# Context: this is a debug information that users will never see
-			self.window.prompt_message(True, _("%s frames per second") % self._fps_counter)
-			self._fps_counter = 0
-			GLib.timeout_add(1000, self.reset_fps_counter, {})
-		else:
-			self.window.prompt_message(False, "")
-
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""
-		self._fps_counter += 1
+		if self.window.devel_mode:
+			self._fps_counter += 1
 
 		# Background color
 		cairo_context.set_source_rgba(*self._bg_rgba)
@@ -425,7 +423,7 @@ class DrImage(Gtk.Box):
 			# implicitely impossible if not self._is_pressed
 			event_x, event_y = self.get_event_coords(event)
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, event_y)
-			self.update(True)
+			self.update()
 
 		else: # self.motion_behavior == DrMotionBehavior.SLIP:
 			self.scroll_x = self._slip_init_x
@@ -456,12 +454,9 @@ class DrImage(Gtk.Box):
 		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
 		return mx or my
 
-	def update(self, allow_imperfect=False):
-		if allow_imperfect and random.random() > self._framerate_hint:
-			pass
-		else:
-			# print('image.py: _drawing_area.queue_draw')
-			self._drawing_area.queue_draw()
+	def update(self):
+		# print('image.py: _drawing_area.queue_draw')
+		self._drawing_area.queue_draw()
 
 	def get_surface(self):
 		return self.surface
@@ -483,13 +478,12 @@ class DrImage(Gtk.Box):
 		# self._framerate_hint = math.sqrt(500000 / (w * h))
 		# print("hint :", self._framerate_hint)
 
-	def use_stable_pixbuf(self, allow_imperfect=False):
-		if allow_imperfect and random.random() > self._framerate_hint:
-			pass
-		else:
-			# print('image.py: use_stable_pixbuf')
-			# maybe the "scale" parameter should be 1 instead of 0
-			self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+	def use_stable_pixbuf(self):
+		"""This is called by tools' `restore_pixbuf`, so at the beginning of
+		each operation (even unapplied)."""
+		# maybe the "scale" parameter should be 1 instead of 0
+		self.surface = Gdk.cairo_surface_create_from_pixbuf(self.main_pixbuf, 0, None)
+		# print('image.py: use_stable_pixbuf')
 		self.surface.set_device_scale(self.SCALE_FACTOR, self.SCALE_FACTOR)
 
 	def get_pixbuf_width(self):

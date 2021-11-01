@@ -162,7 +162,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.set_picture_title()
 		self._try_show_release_notes()
 
-		# has to return False to be removed from the mainloop immediatly
+		# has to return False to be removed from the mainloop immediately
 		return False
 
 	def _try_show_release_notes(self):
@@ -177,8 +177,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                   "would you like to read what's new?")
 		dialog.add_string(label % current_version)
 
-		no_id = dialog.set_action(_("No"), None, False)
-		later_id = dialog.set_action(_("Later"), None, False)
+		no_id = dialog.set_action(_("No"), None)
+		later_id = dialog.set_action(_("Later"), None)
 		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
 		result = dialog.run()
 		dialog.destroy()
@@ -350,9 +350,9 @@ class DrWindow(Gtk.ApplicationWindow):
 			new_image.try_load_file(gfile)
 		elif pixbuf is not None:
 			new_image.try_load_pixbuf(pixbuf)
-			# XXX dans l'idéal on devrait ne rien ouvrir non ? ou si besoin (si
-			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
-			# qu'un petit pixbuf rouge
+			# TODO dans l'idéal si on passe par les actions du clipboard, on
+			# devrait n'ouvrir que si il n'y a pas de fenêtre, et ouvrir un truc
+			# respectant les settings, plutôt qu'un petit pixbuf gris
 		else:
 			new_image.init_background(width, height, background_rgba)
 		self._update_tabs_visibility()
@@ -365,7 +365,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# print("changement d'image")
 		self.set_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
-		args[1].update_history_sensitivity()
+		args[1].update_image_wide_actions()
 		# On devrait être moins bourrin et conserver la sélection # TODO ?
 
 	def update_tabs_menu_section(self, *args):
@@ -432,8 +432,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def connect_signals(self):
 		# Closing the info bar
-		self.info_bar.connect('close', self.hide_message)
-		self.info_bar.connect('response', self.hide_message)
+		self.info_bar.connect('close', self._hide_message)
+		self.info_bar.connect('response', self._hide_message)
 
 		# Closing the window
 		self.connect('delete-event', self.on_close)
@@ -477,15 +477,14 @@ class DrWindow(Gtk.ApplicationWindow):
 			current_item = current_item.get_item_link(item[1], link_type)
 		return current_item
 
-	def add_action_simple(self, action_name, callback, shortcuts):
+	def add_action_simple(self, action_name, callback, shortcuts=[]):
 		"""Convenient wrapper method adding a stateless action to the window. It
 		will be named 'action_name' (string) and activating the action will
 		trigger the method 'callback'."""
 		action = Gio.SimpleAction.new(action_name, None)
 		action.connect('activate', callback)
 		self.add_action(action)
-		if shortcuts is not None:
-			self.app.set_accels_for_action('win.' + action_name, shortcuts)
+		self.app.set_accels_for_action('win.' + action_name, shortcuts)
 
 	def add_action_boolean(self, action_name, default, callback):
 		"""Convenient wrapper method adding a stateful action to the window. It
@@ -528,8 +527,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
-		self.add_action_simple('properties', self.action_properties, None)
-		self.add_action_simple('unfullscreen', self.action_unfullscreen, None)
+		self.add_action_simple('properties', self.action_properties)
+		self.add_action_simple('unfullscreen', self.action_unfullscreen)
 
 		self.add_action_simple('go_up', self.action_go_up, ['<Ctrl>Up'])
 		self.add_action_simple('go_down', self.action_go_down, ['<Ctrl>Down'])
@@ -542,7 +541,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
 
 		self.add_action_simple('new_tab', self.build_new_image, ['<Ctrl>t'])
-		self.add_action_simple('new_tab_custom', self.build_new_custom, None)
+		self.add_action_simple('new_tab_custom', self.build_new_custom)
 		self.add_action_simple('new_tab_selection', \
 		                    self.build_image_from_selection, ['<Ctrl><Shift>t'])
 		self.add_action_simple('new_tab_clipboard', \
@@ -551,35 +550,35 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
 		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
-		self.add_action_simple('close', self.action_close_window, None)
+		self.add_action_simple('close', self.action_close_window)
 
 		self.add_action_simple('undo', self.action_undo, ['<Ctrl>z'])
 		self.add_action_simple('redo', self.action_redo, ['<Ctrl><Shift>z'])
 
 		self.add_action_simple('save', self.action_save, ['<Ctrl>s'])
-		self.add_action_simple('save_alphaless', self.action_save_alphaless, None)
+		self.add_action_simple('save_alphaless', self.action_save_alphaless)
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
-		self.add_action_simple('export_as', self.action_export_as, None)
+		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
-		self.add_action_simple('print', self.action_print, None)
+		self.add_action_simple('print', self.action_print)
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
 		self.add_action_simple('select_all', self.action_select_all, ['<Ctrl>a'])
 		self.add_action_simple('unselect', self.action_unselect, ['<Ctrl><Shift>a'])
-		#self.add_action_simple('selection_invert', self.action_selection_invert, None)
+		#self.add_action_simple('selection_invert', self.action_selection_invert)
 		self.add_action_simple('selection_cut', self.action_cut, ['<Ctrl>x'])
 		self.add_action_simple('selection_copy', self.action_copy, ['<Ctrl>c'])
 		self.add_action_simple('selection_delete', self.action_delete, ['Delete'])
 
-		self.add_action_simple('selection_export', self.action_selection_export, None)
+		self.add_action_simple('selection_export', self.action_selection_export)
 		self.add_action_simple('selection-replace-canvas', \
-		                             self.action_selection_replace_canvas, None)
+		                                   self.action_selection_replace_canvas)
 		self.add_action_simple('selection-expand-canvas', \
-		                              self.action_selection_expand_canvas, None)
+		                                    self.action_selection_expand_canvas)
 
 		self.add_action_simple('back_to_previous', self.back_to_previous, ['<Ctrl>b'])
-		self.add_action_simple('force_selection', self.force_selection, None)
+		self.add_action_simple('force_selection', self.force_selection)
 		self.add_action_simple('apply_transform', self.action_apply_transform, ['<Ctrl>Return'])
 
 		self.add_action_enum('active_tool', DEFAULT_TOOL_ID, self.on_change_active_tool)
@@ -595,10 +594,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
 
 		if self.devel_mode:
-			self.add_action_simple('restore_pixbuf', self.action_restore, None)
-			self.add_action_simple('rebuild_from_histo', self.action_rebuild, None)
+			self.add_action_simple('restore_pixbuf', self.action_restore)
+			self.add_action_simple('rebuild_from_histo', self.action_rebuild)
 			self.add_action_simple('get_values', self.action_getvalues, ['<Ctrl>g'])
-			self.add_action_boolean('track_framerate', False, self.action_fsp)
 
 		action = Gio.PropertyAction.new('active_tab', self.notebook, 'page')
 		self.add_action(action)
@@ -726,7 +724,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# Check whether or not the scrollbars should now be displayed
 		self.get_active_image().fake_scrollbar_update()
 
-	def hide_message(self, *args):
+	def _hide_message(self, *args):
 		self.prompt_message(False, '')
 
 	def prompt_message(self, show, label):
@@ -915,8 +913,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
-		The first menu is the popover from the bottom bar. It can contain any
-		widget, or it can be build from a Gio.MenuModel
+		The first menu is the popover from the bottom bar. It can be built from
+		a Gio.MenuModel, or it can contain any widget.
 		The second menu is build from a Gio.MenuModel and is in the menubar (not
 		available with all layouts)."""
 		widget = self.active_tool().get_options_widget()
@@ -962,13 +960,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		done here but it's done in DrImage to have a satisfying UML diagram."""
 		self.get_active_image().show_properties()
 
-	def action_fsp(self, *args):
-		"""Development only: tracks and displays the framerate, thus it helps
-		debugging how Gdk/cairo draws on the widget."""
-		self.should_track_framerate = not self.should_track_framerate
-		for img in self.notebook.get_children():
-			img.reset_fps_counter()
-
 	def get_active_image(self):
 		if self.pointer_to_current_page is None:
 			return self.notebook.get_nth_page(self.notebook.get_current_page())
@@ -1012,7 +1003,7 @@ class DrWindow(Gtk.ApplicationWindow):
 				self.try_load_file(gfile)
 			elif result == new_window_id:
 				self.app.open_window_with_content(gfile, False)
-		self.hide_message()
+		self._hide_message()
 
 	def file_chooser_open(self, *args):
 		"""Opens an "open" file chooser dialog, and return a GioFile or None."""
@@ -1032,8 +1023,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		per image), or to import them (it will only import the first), or to
 		cancel (if the user dropped mistakenly)."""
 		dialog = DrMessageDialog(self)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
-		open_id = dialog.set_action(_("Open"), None, False)
+		cancel_id = dialog.set_action(_("Cancel"), None)
+		open_id = dialog.set_action(_("Open"), None)
 		import_id = dialog.set_action(_("Import"), None, True)
 
 		uris = data.get_uris()

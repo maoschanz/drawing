@@ -36,8 +36,9 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.apply_to_selection = self.selection_is_active()
 
 	def update_actions_state(self, *args):
+		# Changing this in on_tool_selected would be overridden by image.py
 		super().update_actions_state()
-		# Changing that in on_tool_selected would be overridden by image.py
+
 		self.set_action_sensitivity('selection_delete', False)
 		self.set_action_sensitivity('selection_cut', False)
 		self.set_action_sensitivity('unselect', False)

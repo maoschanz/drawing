@@ -107,8 +107,8 @@ class DrSavingManager():
 			unsaved_file_name = fn.split('/')[-1]
 			display_name = image.get_filename_for_display()
 		dialog = DrMessageDialog(self._window)
-		discard_id = dialog.set_action(_("Discard"), 'destructive-action', False)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		discard_id = dialog.set_action(_("Discard"), 'destructive-action')
+		cancel_id = dialog.set_action(_("Cancel"), None)
 		save_id = dialog.set_action(_("Save"), None, True)
 		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
 		self._window.minimap.update_minimap(True)
@@ -126,13 +126,15 @@ class DrSavingManager():
 			return False
 
 	def _confirm_despite_ongoing_operation(self):
-		"""Ask to the user whether or not the want to apply the operation of the
-		current tool (curve, shape, transform, selection) before saving."""
+		"""Ask to the user whether or not they want to apply the operation of
+		the current tool (curve, shape, transform, selection) before saving."""
 		msg = None
 		if self._window.get_selection_tool().selection_is_active():
 			msg = _("A part of the image is selected, and the pixels " + \
 			                                 "beneath the selection are blank.")
 		elif self._window.active_tool().has_ongoing_operation():
+			# Context: the user tries to save the image while previewing an
+			# unapplied "transform" operation (scaling, cropping, whatever)
 			msg = _("Modifications from the current tool haven't been applied.")
 		if msg is None:
 			return True
@@ -149,6 +151,7 @@ class DrSavingManager():
 		dialog.add_widget(frame)
 		result = dialog.run()
 		dialog.destroy()
+
 		if result == save_id:
 			return True
 		else: # cancel_id
@@ -193,9 +196,9 @@ class DrSavingManager():
 		BMP files, but it may quickly annoy users to see a dialog so it's an
 		option. Can be used on PNG files if 'allow_alpha' is false."""
 		dialog = DrMessageDialog(self._window)
-		cancel_id = dialog.set_action(_("Cancel"), None, False)
+		cancel_id = dialog.set_action(_("Cancel"), None)
 		if can_save_as:
-			save_as_id = dialog.set_action(_("Save as…"), None, False)
+			save_as_id = dialog.set_action(_("Save as…"), None)
 		# Context: confirm replacing transparent pixels with the selected color
 		replace_id = dialog.set_action(_("Replace"), None, True)
 
