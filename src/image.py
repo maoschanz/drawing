@@ -64,11 +64,15 @@ class DrImage(Gtk.Box):
 		self.reload_info_bar.connect('close', self.hide_reload_message)
 		self.reload_info_bar.connect('response', self.hide_reload_message)
 
-		self._fps_counter = 0
-		self._skipped_frames = 0
+		# Framerate limit
 		self._rendering_is_locked = False
 		self._framerate_hint = 0
-		self.reset_fps_counter()
+
+		if self.window.devel_mode:
+			# Framerate tracking (debug only)
+			self._skipped_frames = 0
+			self._fps_counter = 0
+			self.reset_fps_counter()
 
 		self._init_drawing_area()
 
@@ -397,24 +401,10 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
-	def reset_fps_counter(self, async_cb_data={}):
-		"""Development only: live-display the evolution of the framerate of the
-		drawing area. The max should be around 60, but many tools don't require
-		so many redraws."""
-		if self.window.should_track_framerate:
-			# Context: this is a debug information that users will never see
-			msg = _("%s frames per second") % self._fps_counter
-			msg += " (" + str(self._skipped_frames) + " motion inputs skipped)"
-			self.window.reveal_message(msg)
-			self._fps_counter = 0
-			self._skipped_frames = 0
-			GLib.timeout_add(1000, self.reset_fps_counter, {})
-		else:
-			self.window.hide_message()
-
 	def on_draw(self, area, cairo_context):
 		"""Signal callback. Executed when self._drawing_area is redrawn."""
-		self._fps_counter += 1
+		if self.window.devel_mode:
+			self._fps_counter += 1
 
 		# Background color
 		cairo_context.set_source_rgba(*self._bg_rgba)
@@ -474,7 +464,8 @@ class DrImage(Gtk.Box):
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, \
 			                                 event_y, self._rendering_is_locked)
 			if self._rendering_is_locked:
-				self._skipped_frames += 1
+				if self.window.devel_mode:
+					self._skipped_frames += 1
 				return
 			self._rendering_is_locked = True
 			self.update()
@@ -574,6 +565,24 @@ class DrImage(Gtk.Box):
 		self.set_temp_pixbuf(self._new_blank_pixbuf(1, 1))
 		self.use_stable_pixbuf()
 		self.update()
+
+	############################################################################
+	# Framerate tracking (debug only) ##########################################
+
+	def reset_fps_counter(self, async_cb_data={}):
+		"""Development only: live-display the evolution of the framerate of the
+		drawing area. The max should be around 60, but many tools don't require
+		so many redraws."""
+		if self.window.should_track_framerate:
+			# Context: this is a debug information that users will never see
+			msg = _("%s frames per second") % self._fps_counter
+			msg += " (" + str(self._skipped_frames) + " motion inputs skipped)"
+			self.window.reveal_message(msg)
+			self._fps_counter = 0
+			self._skipped_frames = 0
+			GLib.timeout_add(1000, self.reset_fps_counter, {})
+		elif self.window.info_bar.get_visible():
+			self.window.reveal_message("Tracking stopped.", True)
 
 	############################################################################
 	# Interaction with the minimap #############################################
