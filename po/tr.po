@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-18 05:21+0200\n"
+"POT-Creation-Date: 2021-11-01 22:05+0100\n"
 "PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -938,12 +938,6 @@ msgstr "Hiç kaydedilmemiş bir dosya diskten yeniden yüklenemiyor."
 msgid "Unsaved file"
 msgstr "Kaydedilmemiş dosya"
 
-#. Context: this is a debug information that users will never see
-#: src/image.py
-#, python-format
-msgid "%s frames per second"
-msgstr ""
-
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
@@ -1015,8 +1009,7 @@ msgstr "%s%%"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "İptal"
 
@@ -1314,6 +1307,8 @@ msgid ""
 "blank."
 msgstr "Görüntünün bir bölümü seçildi ve seçimin altındaki pikseller boş."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Mevcut araçtaki değişiklikler uygulanmadı."
@@ -1647,7 +1642,6 @@ msgstr "Bu renkten ayıkla"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
 #: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Onayla"
 
@@ -1710,14 +1704,6 @@ msgstr "Köşe ölçeği yaparken"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
 msgstr "Asla"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Horizontal deformation"
-msgstr "Yatay deformasyon"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Vertical deformation"
-msgstr "Dikey deformasyon"
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
@@ -2282,13 +2268,6 @@ msgstr "Seçimi ölçeklendir"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Tuvali ölçeklendir"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Eğrilik"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"

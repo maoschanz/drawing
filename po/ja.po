@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-18 05:21+0200\n"
+"POT-Creation-Date: 2021-11-01 22:05+0100\n"
 "PO-Revision-Date: 2021-06-03 01:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -935,12 +935,6 @@ msgstr "保存していないファイルをディスクから再読み込みす
 msgid "Unsaved file"
 msgstr "未保存のファイル"
 
-#. Context: this is a debug information that users will never see
-#: src/image.py
-#, python-format
-msgid "%s frames per second"
-msgstr ""
-
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
@@ -1010,8 +1004,7 @@ msgstr "%s%%"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1307,6 +1300,8 @@ msgid ""
 "blank."
 msgstr "画像の一部領域を選択中です。この部分のピクセルは空白になります。"
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "現在のツールで行った変更が適用されていません。"
@@ -1638,7 +1633,6 @@ msgstr "この色から抽出"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
 #: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "適用"
 
@@ -1701,14 +1695,6 @@ msgstr "四隅からの伸縮時のみ"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
 msgstr "常にしない"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Horizontal deformation"
-msgstr "水平に変形"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Vertical deformation"
-msgstr "垂直に変形"
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
@@ -2275,13 +2261,6 @@ msgstr "選択領域を伸縮します"
 msgid "Scaling the canvas"
 msgstr "キャンバスを伸縮します"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "傾斜"
-
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
 msgstr "ぼかしの半径"
@@ -2289,3 +2268,4 @@ msgstr "ぼかしの半径"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "輝度"
+

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-18 05:21+0200\n"
+"POT-Creation-Date: 2021-11-01 22:05+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -950,12 +950,6 @@ msgstr "Ezin da birkargatu diskoan inoiz gorde ez den fitxategia."
 msgid "Unsaved file"
 msgstr "Gorde gabeko fitxategia"
 
-#. Context: this is a debug information that users will never see
-#: src/image.py
-#, python-format
-msgid "%s frames per second"
-msgstr ""
-
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
@@ -1026,8 +1020,7 @@ msgstr "%s%%"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Utzi"
 
@@ -1326,6 +1319,8 @@ msgstr ""
 "Irudiaren zati bat hautatuta dago eta hautapenaren azpiko pixelak hutsik "
 "daude"
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Uneko tresnaren aldaketak ez dira aplikatu"
@@ -1664,7 +1659,6 @@ msgstr "Atera kolore horretatik"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
 #: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Aplikatu"
 
@@ -1727,14 +1721,6 @@ msgstr "Izkinatik eskalatzean"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
 msgstr "Inoiz ez"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Horizontal deformation"
-msgstr "Itxuraldaketa horizontala"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Vertical deformation"
-msgstr "Itxuraldaketa bertikala"
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
@@ -2325,13 +2311,6 @@ msgstr "Oihala biratzen"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Oihala eskalatzen"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Etzan"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"

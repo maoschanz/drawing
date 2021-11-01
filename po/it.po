@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-18 05:21+0200\n"
+"POT-Creation-Date: 2021-11-01 22:05+0100\n"
 "PO-Revision-Date: 2021-06-27 15:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -954,12 +954,6 @@ msgstr "Impossibile ricaricare un file mai salvato dal disco."
 msgid "Unsaved file"
 msgstr "File non salvato"
 
-#. Context: this is a debug information that users will never see
-#: src/image.py
-#, python-format
-msgid "%s frames per second"
-msgstr "%s fotogrammi al secondo"
-
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
@@ -1031,8 +1025,7 @@ msgstr "%s%%"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/utilities_paths.py src/tools/ui/tool-crop.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-rotate.ui
-#: src/tools/ui/tool-scale.ui src/tools/ui/tool-skew.ui
-#: src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-scale.ui src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1329,6 +1322,8 @@ msgid ""
 msgstr ""
 "Una parte dell'immagine è selezionata e i pixel sotto la selezione sonovuoti."
 
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
 msgstr "Le modifiche dallo strumento corrente non sono state applicate."
@@ -1658,7 +1653,6 @@ msgstr "Estratto da questo colore"
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
 #: src/tools/ui/tool-rotate.ui src/tools/ui/tool-scale.ui
-#: src/tools/ui/tool-skew.ui
 msgid "Apply"
 msgstr "Applica"
 
@@ -1721,14 +1715,6 @@ msgstr "Quando si esegue il ridimensionamento dagli angoli"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
 msgstr "Mai"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Horizontal deformation"
-msgstr "Deformazione orizzontale"
-
-#: src/optionsbars/transform/optionsbar-skew.ui
-msgid "Vertical deformation"
-msgstr "Deformazione verticale"
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
@@ -2295,13 +2281,6 @@ msgstr "Ridimensionamento della selezione"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
-
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
-#: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Storto"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
