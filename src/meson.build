@@ -61,7 +61,6 @@ drawing_sources = [
 	'optionsbars/transform/optionsbar_filters.py',
 	'optionsbars/transform/optionsbar_rotate.py',
 	'optionsbars/transform/optionsbar_scale.py',
-	'optionsbars/transform/optionsbar_skew.py',
 
 	'tools/abstract_tool.py',
 	'tools/utilities_blur.py',
@@ -98,7 +97,6 @@ drawing_sources = [
 	'tools/transform_tools/tool_filters.py',
 	'tools/transform_tools/tool_rotate.py',
 	'tools/transform_tools/tool_scale.py',
-	'tools/transform_tools/tool_skew.py',
 
 	'tools/transform_tools/filters/abstract_filter.py',
 	'tools/transform_tools/filters/filter_blur.py',
