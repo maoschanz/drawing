@@ -265,7 +265,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
-			self.reveal_message(_("The clipboard doesn't contain any image."))
+			self.reveal_message(_("The clipboard doesn't contain any image."), True)
 			self.build_blank_image()
 		else:
 			self._build_new_tab(pixbuf=pixbuf)
@@ -703,12 +703,19 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.info_action.set_visible(False)
 		self.info_label.set_label("")
 
-	def reveal_message(self, label):
+	def reveal_message(self, label, hide_afterwards=False):
 		"""Update the content and the visibility of the info bar."""
+		if hide_afterwards:
+			GLib.timeout_add(4000, self._hide_message_async, {'label': label})
 		self.info_bar.set_visible(True)
 		self.info_action.set_visible(False)
 		self.info_label.set_label(label)
 		self.log_message(label)
+
+	def _hide_message_async(self, async_cb_data):
+		if async_cb_data['label'] == self.info_label.get_label():
+			self.hide_message()
+		# else the message has changed so it shouldn't be hidden now
 
 	def log_message(self, message):
 		if self.devel_mode:
@@ -753,10 +760,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		shall_fullscreen = args[1]
 		if shall_fullscreen:
 			self.fullscreen()
-			self.reveal_message(_("Middle-click, tap with 3 fingers, " + \
-			                           "or press F8 to show/hide controls.") + \
-			                           " " + _("Press F11 to exit fullscreen."))
-			# TODO à confirmer que 3 doigts c'est réel ^
+			self.reveal_message(_("Middle-click or press F8 to show/hide controls.") + \
+			                     " " + _("Press F11 to exit fullscreen."), True)
 		else:
 			self.unfullscreen()
 		self._set_controls_hidden(shall_fullscreen)
@@ -1105,7 +1110,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_export_cb(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_active_image().main_pixbuf)
-		self.reveal_message(_("Image copied to clipboard"))
+		self.reveal_message(_("Image copied to clipboard"), True)
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
