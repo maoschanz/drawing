@@ -1696,10 +1696,8 @@ msgstr "Zakulacený"
 msgid "Square"
 msgstr "Rovný"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Obrys"
 
@@ -1743,7 +1741,7 @@ msgstr "Dvojitá šipka"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Uhladit"
 
@@ -1801,7 +1799,10 @@ msgstr "Promíchat pixely"
 msgid "Shuffle and blur"
 msgstr "Promíchat a rozmazat"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mozaika"
 

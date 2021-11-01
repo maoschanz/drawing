@@ -308,18 +308,21 @@ msgstr "İdeal Yakınlık"
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
 msgstr "Orijinal Yakınlık"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
 msgstr "Yakınlaştır"
 
@@ -640,7 +643,7 @@ msgstr "Pencere"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
-#: src/ui/properties.ui src/utilities.py
+#: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
 msgstr "piksel"
 
@@ -662,18 +665,15 @@ msgstr "Seçimi kapat"
 msgid "Deselect"
 msgstr "Seçimi kaldır"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_crop.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "Kırp"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_scale.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "Ölçek"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_rotate.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "Döndür"
 
@@ -924,8 +924,9 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "İptal"
 
@@ -953,7 +954,8 @@ msgstr "Öntanımlı yükseklik"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
@@ -976,11 +978,11 @@ msgstr ""
 "Resimlerinizi bu biçimlerde kaydederseniz, saydam pikselleri değiştirmek "
 "için ne kullanmak istersiniz?"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
 msgstr "Beyaz"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
 msgstr "Siyah"
 
