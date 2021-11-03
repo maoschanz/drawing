@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-10-10 06:48+0200\n"
+"POT-Creation-Date: 2021-11-03 03:14+0100\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -178,6 +178,10 @@ msgstr "重新載入檔案"
 msgid "Image properties"
 msgstr "影像屬性"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Reset canvas"
+msgstr ""
+
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/saving_manager.py
@@ -297,18 +301,21 @@ msgstr "最佳大小"
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
 msgstr "縮小"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
 msgstr "原始大小"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
 msgstr "放大"
 
@@ -333,6 +340,36 @@ msgstr "向下"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
 msgstr "向右"
+
+#. Context: this action scrolls to the left end of the
+#. canvas. The "go left" action only goes a few centimeters
+#. to the left, but this one goes all the way left.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the left end"
+msgstr "左側的分頁"
+
+#. Context: this action scrolls to the top of the canvas
+#. The "go up" action only goes a few centimeters up, but
+#. this one goes all the way to the top.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the top"
+msgstr ""
+
+#. Context: this action scrolls to the bottom of the canvas
+#. The "go down" action only goes a few centimeters down,
+#. but this one goes all the way to the bottom.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the bottom"
+msgstr ""
+
+#. Context: this action scrolls to the right end of the
+#. canvas. The "go right" action only goes a few centimeters
+#. to the right, but this one goes all the way right.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the right end"
+msgstr "右側的分頁"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -642,7 +679,7 @@ msgstr "視窗"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
-#: src/ui/properties.ui src/utilities.py
+#: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
 msgstr "像素"
 
@@ -664,23 +701,27 @@ msgstr "關閉選擇區域"
 msgid "Deselect"
 msgstr "取消選擇"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_crop.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "裁切"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_scale.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "縮放"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_rotate.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "旋轉"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_filters.py
+#. This is the name of the tool changing rectangles into parallelograms.
+#. It's synonymous with tilt, slant, bend. If you need a reference to
+#. translate it, this is named after MS Paint's "Stretch/Skew" dialog.
+#: src/ui/selection-manager.ui src/preferences.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "扭曲"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
 msgstr "濾鏡"
 
@@ -764,10 +805,14 @@ msgid "Apply a transformation"
 msgstr ""
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "歷史記錄"
+msgid "Tabs"
+msgstr "分頁"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "切換預覽"
+
+#: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
 msgstr "選擇區域"
 
@@ -792,18 +837,14 @@ msgid "Edit the secondary color (right click)"
 msgstr "編輯副色彩（右鍵點選）"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "分頁"
+msgid "History"
+msgstr "歷史記錄"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "導航"
-
-#: src/ui/shortcuts.ui
-msgid "Toggle the preview"
-msgstr "切換預覽"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -933,8 +974,9 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "取消"
 
@@ -962,7 +1004,8 @@ msgstr "預設高度"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
@@ -983,11 +1026,11 @@ msgid ""
 "transparent pixels?"
 msgstr "儲存為這些格式時，你想要用什麼取代透明的像素？"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
 msgstr "白色"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
 msgstr "黑色"
 
@@ -1280,120 +1323,6 @@ msgstr ""
 msgid "The selection path is empty."
 msgstr ""
 
-#: src/utilities.py
-msgid "Transparent"
-msgstr "透明"
-
-#: src/utilities.py
-#, python-format
-msgid "%s%% transparent"
-msgstr "%s%% 透明"
-
-#: src/utilities.py
-msgid "Grey"
-msgstr "灰色"
-
-#: src/utilities.py
-msgid "Orange"
-msgstr "橘色"
-
-#: src/utilities.py
-msgid "Brown"
-msgstr "棕色"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably brown.
-#: src/utilities.py
-msgid "Probably brown"
-msgstr "可能為棕色"
-
-#: src/utilities.py
-msgid "Red"
-msgstr "紅色"
-
-#: src/utilities.py
-msgid "Green"
-msgstr "綠色"
-
-#: src/utilities.py
-msgid "Blue"
-msgstr "藍色"
-
-#: src/utilities.py
-msgid "Yellow"
-msgstr "黃色"
-
-#: src/utilities.py
-msgid "Magenta"
-msgstr "品紅"
-
-#: src/utilities.py
-msgid "Purple"
-msgstr "紫色"
-
-#: src/utilities.py
-msgid "Cyan"
-msgstr "青色"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably teal.
-#. You can translate "teal" with the name of approaching color, like
-#. turquoise or green-blue.
-#: src/utilities.py
-msgid "Probably teal"
-msgstr "可能為綠松石色"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app can't find a corresponding color name.
-#: src/utilities.py
-msgid "Unknown color name"
-msgstr "未知色彩"
-
-#: src/utilities.py
-msgid "All pictures"
-msgstr "所有圖片"
-
-#: src/utilities.py
-msgid "PNG images"
-msgstr "PNG 影像"
-
-#: src/utilities.py
-msgid "JPEG images"
-msgstr "JPEG 影像"
-
-#: src/utilities.py
-msgid "BMP images"
-msgstr "BMP 影像"
-
-#. To translators: it appears in tooltips over numerical inputs
-#: src/utilities.py
-msgid "percents"
-msgstr "百分比"
-
-#. To translators: it's the angle measure unit, it appears in a tooltip
-#. over a numerical input
-#: src/utilities.py
-msgid "degrees"
-msgstr "度"
-
-#: src/utilities.py
-#, fuzzy, python-format
-msgid "%s isn't an image."
-msgstr "開啟影像"
-
-#: src/utilities.py
-msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
-
-#. Context: an error message, %s is a file path
-#: src/utilities.py
-#, python-format
-msgid "Despite its name, %s is a WEBP file."
-msgstr ""
-
 #. Context: an error message
 #: src/tools_initializer.py
 #, python-format
@@ -1449,7 +1378,7 @@ msgid "Modifications will take effect in the next new window."
 msgstr "修改將在下一個新視窗生效。"
 
 #: src/window.py
-msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
 
 #: src/window.py
@@ -1508,6 +1437,136 @@ msgstr "匯入圖片"
 msgid "Required tool is not available"
 msgstr "所需的工具不可用"
 
+#: src/utilities/utilities_colors.py
+msgid "Transparent"
+msgstr "透明"
+
+#: src/utilities/utilities_colors.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% 透明"
+
+#: src/utilities/utilities_colors.py
+msgid "Grey"
+msgstr "灰色"
+
+#: src/utilities/utilities_colors.py
+msgid "Orange"
+msgstr "橘色"
+
+#: src/utilities/utilities_colors.py
+msgid "Brown"
+msgstr "棕色"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities/utilities_colors.py
+msgid "Probably brown"
+msgstr "可能為棕色"
+
+#: src/utilities/utilities_colors.py
+msgid "Red"
+msgstr "紅色"
+
+#: src/utilities/utilities_colors.py
+msgid "Green"
+msgstr "綠色"
+
+#: src/utilities/utilities_colors.py
+msgid "Blue"
+msgstr "藍色"
+
+#: src/utilities/utilities_colors.py
+msgid "Yellow"
+msgstr "黃色"
+
+#: src/utilities/utilities_colors.py
+msgid "Magenta"
+msgstr "品紅"
+
+#: src/utilities/utilities_colors.py
+msgid "Purple"
+msgstr "紫色"
+
+#: src/utilities/utilities_colors.py
+msgid "Cyan"
+msgstr "青色"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities/utilities_colors.py
+msgid "Probably teal"
+msgstr "可能為綠松石色"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities/utilities_colors.py
+msgid "Unknown color name"
+msgstr "未知色彩"
+
+#: src/utilities/utilities_files.py
+msgid "All pictures"
+msgstr "所有圖片"
+
+#: src/utilities/utilities_files.py
+msgid "PNG images"
+msgstr "PNG 影像"
+
+#: src/utilities/utilities_files.py
+msgid "JPEG images"
+msgstr "JPEG 影像"
+
+#: src/utilities/utilities_files.py
+msgid "BMP images"
+msgstr "BMP 影像"
+
+#: src/utilities/utilities_files.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "開啟影像"
+
+#: src/utilities/utilities_files.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
+#: src/utilities/utilities_paths.py
+msgid "Continue"
+msgstr "繼續"
+
+#: src/utilities/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "該區域似乎很難劃定邊界，或者非常複雜。"
+
+#: src/utilities/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "該演算法可能無法處理所需區域。"
+
+#: src/utilities/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "您想要中止該操作嗎？"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities/utilities_units.py
+msgid "percents"
+msgstr "百分比"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities/utilities_units.py
+msgid "degrees"
+msgstr "度"
+
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1522,7 +1581,8 @@ msgstr "主色彩"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
@@ -1558,7 +1618,6 @@ msgid "Use this editor by default"
 msgstr "預設使用此編輯器"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "鉛筆選項"
@@ -1570,7 +1629,8 @@ msgid "Replace with…"
 msgstr "擴展使用…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
@@ -1589,7 +1649,8 @@ msgstr "套用"
 msgid "More options"
 msgstr "更多選項"
 
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "擴展使用…"
 
@@ -1645,6 +1706,16 @@ msgstr "從角落縮放時"
 msgid "Never"
 msgstr "從不"
 
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Pixels"
+msgstr "像素"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Percentage"
+msgstr "百分比"
+
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
 msgstr "水平變形"
@@ -1658,27 +1729,6 @@ msgstr "垂直變形"
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "繼續"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "該區域似乎很難劃定邊界，或者非常複雜。"
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "該演算法可能無法處理所需區域。"
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "您想要中止該操作嗎？"
-
-#: src/tools/ui/selection.ui
-#, fuzzy
-msgid "Transform"
-msgstr "透明"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1699,10 +1749,8 @@ msgstr "圓形"
 msgid "Square"
 msgstr "方形"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "邊框"
 
@@ -1752,7 +1800,7 @@ msgstr "虛線箭頭"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "反鋸齒"
 
@@ -1815,7 +1863,10 @@ msgstr "像素"
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr ""
 
@@ -1857,29 +1908,24 @@ msgstr "快速模糊"
 msgid "Slow blur"
 msgstr "慢速模糊"
 
-#. Context: a filter to censor the image with some little tiles
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "像素化"
-
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
 msgstr "模糊方向"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "水平"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "垂直"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
 msgid "No direction"
 msgstr "無方向"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur horizontally"
+msgstr "水平翻轉"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur vertically"
+msgstr "垂直翻轉"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2054,6 +2100,18 @@ msgstr "無背景"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "陰影"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "無輪廓"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "無輪廓"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2254,12 +2312,20 @@ msgstr "縮放選擇區域"
 msgid "Scaling the canvas"
 msgstr "縮放畫布"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "扭曲"
+#, fuzzy
+msgid "Skewing options"
+msgstr "繪畫選項"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the selection"
+msgstr "縮放選擇區域"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the canvas"
+msgstr "縮放畫布"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2268,6 +2334,19 @@ msgstr "模糊半徑"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "飽和度"
+
+#, fuzzy
+#~ msgid "Transform"
+#~ msgstr "透明"
+
+#~ msgid "Pixelization"
+#~ msgstr "像素化"
+
+#~ msgid "Horizontal"
+#~ msgstr "水平"
+
+#~ msgid "Vertical"
+#~ msgstr "垂直"
 
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "為 GNOME 桌面環境打造的繪圖應用程式"

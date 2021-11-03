@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-10-10 06:48+0200\n"
+"POT-Creation-Date: 2021-11-03 03:14+0100\n"
 "PO-Revision-Date: 2020-10-25 01:41+0700\n"
 "Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
 "Language-Team: Indonesian\n"
@@ -174,6 +174,10 @@ msgstr "Muat ulang berkas"
 msgid "Image properties"
 msgstr "Properti gambar"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Reset canvas"
+msgstr ""
+
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/saving_manager.py
@@ -292,18 +296,21 @@ msgstr "Zum Optimal"
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
 msgstr "Perkecil"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
 msgstr "Zum Asli"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
 msgstr "Perbesar"
 
@@ -328,6 +335,36 @@ msgstr ""
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
 msgstr ""
+
+#. Context: this action scrolls to the left end of the
+#. canvas. The "go left" action only goes a few centimeters
+#. to the left, but this one goes all the way left.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the left end"
+msgstr "Putar ke kiri"
+
+#. Context: this action scrolls to the top of the canvas
+#. The "go up" action only goes a few centimeters up, but
+#. this one goes all the way to the top.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the top"
+msgstr ""
+
+#. Context: this action scrolls to the bottom of the canvas
+#. The "go down" action only goes a few centimeters down,
+#. but this one goes all the way to the bottom.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the bottom"
+msgstr ""
+
+#. Context: this action scrolls to the right end of the
+#. canvas. The "go right" action only goes a few centimeters
+#. to the right, but this one goes all the way right.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the right end"
+msgstr "Putar ke kanan"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -634,7 +671,7 @@ msgstr "Jendela"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
-#: src/ui/properties.ui src/utilities.py
+#: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
 msgstr "piksel"
 
@@ -656,23 +693,27 @@ msgstr "Tutup seleksi"
 msgid "Deselect"
 msgstr "Nirpilih"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_crop.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "Pangkas"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_scale.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "Skalakan"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_rotate.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "Putar"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_filters.py
+#. This is the name of the tool changing rectangles into parallelograms.
+#. It's synonymous with tilt, slant, bend. If you need a reference to
+#. translate it, this is named after MS Paint's "Stretch/Skew" dialog.
+#: src/ui/selection-manager.ui src/preferences.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Condongkan"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
 msgstr "Penapis"
 
@@ -755,10 +796,14 @@ msgid "Apply a transformation"
 msgstr ""
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Riwayat"
+msgid "Tabs"
+msgstr ""
 
 #: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "Jungkitkan pratinjau"
+
+#: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
 msgstr "Seleksi"
 
@@ -783,18 +828,14 @@ msgid "Edit the secondary color (right click)"
 msgstr "Sunting warna sekunder (klik kanan)"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr ""
+msgid "History"
+msgstr "Riwayat"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigasi"
-
-#: src/ui/shortcuts.ui
-msgid "Toggle the preview"
-msgstr "Jungkitkan pratinjau"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -921,8 +962,9 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Batalkan"
 
@@ -950,7 +992,8 @@ msgstr "Tinggi bawaan"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
@@ -971,11 +1014,11 @@ msgid ""
 "transparent pixels?"
 msgstr ""
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
 msgstr "Putih"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
 msgstr "Hitam"
 
@@ -1268,120 +1311,6 @@ msgstr ""
 msgid "The selection path is empty."
 msgstr ""
 
-#: src/utilities.py
-msgid "Transparent"
-msgstr "Transparan"
-
-#: src/utilities.py
-#, python-format
-msgid "%s%% transparent"
-msgstr "%s%% transparan"
-
-#: src/utilities.py
-msgid "Grey"
-msgstr "Kelabu"
-
-#: src/utilities.py
-msgid "Orange"
-msgstr "Oranye"
-
-#: src/utilities.py
-msgid "Brown"
-msgstr "Coklat"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably brown.
-#: src/utilities.py
-msgid "Probably brown"
-msgstr ""
-
-#: src/utilities.py
-msgid "Red"
-msgstr "Merah"
-
-#: src/utilities.py
-msgid "Green"
-msgstr "Hijau"
-
-#: src/utilities.py
-msgid "Blue"
-msgstr "Biru"
-
-#: src/utilities.py
-msgid "Yellow"
-msgstr "Kuning"
-
-#: src/utilities.py
-msgid "Magenta"
-msgstr "Magenta"
-
-#: src/utilities.py
-msgid "Purple"
-msgstr "Ungu"
-
-#: src/utilities.py
-msgid "Cyan"
-msgstr "Cyan"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably teal.
-#. You can translate "teal" with the name of approaching color, like
-#. turquoise or green-blue.
-#: src/utilities.py
-msgid "Probably teal"
-msgstr ""
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app can't find a corresponding color name.
-#: src/utilities.py
-msgid "Unknown color name"
-msgstr "Nama warna tak diketahui"
-
-#: src/utilities.py
-msgid "All pictures"
-msgstr "Semua gambar"
-
-#: src/utilities.py
-msgid "PNG images"
-msgstr "Gambar PNG"
-
-#: src/utilities.py
-msgid "JPEG images"
-msgstr "Gambar JPEG"
-
-#: src/utilities.py
-msgid "BMP images"
-msgstr "Gambar BMP"
-
-#. To translators: it appears in tooltips over numerical inputs
-#: src/utilities.py
-msgid "percents"
-msgstr "persen"
-
-#. To translators: it's the angle measure unit, it appears in a tooltip
-#. over a numerical input
-#: src/utilities.py
-msgid "degrees"
-msgstr "derajat"
-
-#: src/utilities.py
-#, fuzzy, python-format
-msgid "%s isn't an image."
-msgstr "Buka gambar"
-
-#: src/utilities.py
-msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
-
-#. Context: an error message, %s is a file path
-#: src/utilities.py
-#, python-format
-msgid "Despite its name, %s is a WEBP file."
-msgstr ""
-
 #. Context: an error message
 #: src/tools_initializer.py
 #, python-format
@@ -1438,7 +1367,7 @@ msgid "Modifications will take effect in the next new window."
 msgstr ""
 
 #: src/window.py
-msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
 
 #: src/window.py
@@ -1496,6 +1425,136 @@ msgstr "Impor gambar"
 msgid "Required tool is not available"
 msgstr "Alat yang dibutuhkan tidak tersedia"
 
+#: src/utilities/utilities_colors.py
+msgid "Transparent"
+msgstr "Transparan"
+
+#: src/utilities/utilities_colors.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% transparan"
+
+#: src/utilities/utilities_colors.py
+msgid "Grey"
+msgstr "Kelabu"
+
+#: src/utilities/utilities_colors.py
+msgid "Orange"
+msgstr "Oranye"
+
+#: src/utilities/utilities_colors.py
+msgid "Brown"
+msgstr "Coklat"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities/utilities_colors.py
+msgid "Probably brown"
+msgstr ""
+
+#: src/utilities/utilities_colors.py
+msgid "Red"
+msgstr "Merah"
+
+#: src/utilities/utilities_colors.py
+msgid "Green"
+msgstr "Hijau"
+
+#: src/utilities/utilities_colors.py
+msgid "Blue"
+msgstr "Biru"
+
+#: src/utilities/utilities_colors.py
+msgid "Yellow"
+msgstr "Kuning"
+
+#: src/utilities/utilities_colors.py
+msgid "Magenta"
+msgstr "Magenta"
+
+#: src/utilities/utilities_colors.py
+msgid "Purple"
+msgstr "Ungu"
+
+#: src/utilities/utilities_colors.py
+msgid "Cyan"
+msgstr "Cyan"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities/utilities_colors.py
+msgid "Probably teal"
+msgstr ""
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities/utilities_colors.py
+msgid "Unknown color name"
+msgstr "Nama warna tak diketahui"
+
+#: src/utilities/utilities_files.py
+msgid "All pictures"
+msgstr "Semua gambar"
+
+#: src/utilities/utilities_files.py
+msgid "PNG images"
+msgstr "Gambar PNG"
+
+#: src/utilities/utilities_files.py
+msgid "JPEG images"
+msgstr "Gambar JPEG"
+
+#: src/utilities/utilities_files.py
+msgid "BMP images"
+msgstr "Gambar BMP"
+
+#: src/utilities/utilities_files.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "Buka gambar"
+
+#: src/utilities/utilities_files.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr ""
+
+#. Context: an error message, %s is a file path
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr ""
+
+#: src/utilities/utilities_paths.py
+msgid "Continue"
+msgstr "Lanjutkan"
+
+#: src/utilities/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr ""
+
+#: src/utilities/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Algoritma mungkin tidak dapat menangani area yang diinginkan."
+
+#: src/utilities/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities/utilities_units.py
+msgid "percents"
+msgstr "persen"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities/utilities_units.py
+msgid "degrees"
+msgstr "derajat"
+
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1510,7 +1569,8 @@ msgstr "Warna utama"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
@@ -1546,7 +1606,6 @@ msgid "Use this editor by default"
 msgstr "Gunakan penyunting ini secara bawaan"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Opsi pensil"
@@ -1558,7 +1617,8 @@ msgid "Replace with…"
 msgstr "Ganti"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
@@ -1577,7 +1637,8 @@ msgstr "Terapkan"
 msgid "More options"
 msgstr "Lebih banyak opsi"
 
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr ""
 
@@ -1633,6 +1694,16 @@ msgstr "Saat menskalakan dari pojok"
 msgid "Never"
 msgstr "Jangan pernah"
 
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Pixels"
+msgstr "piksel"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Percentage"
+msgstr "persen"
+
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
 msgstr "Deformasi horisontal"
@@ -1645,26 +1716,6 @@ msgstr "Deformasi vertikal"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "Lanjutkan"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr ""
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Algoritma mungkin tidak dapat menangani area yang diinginkan."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-
-#: src/tools/ui/selection.ui
-msgid "Transform"
 msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1686,10 +1737,8 @@ msgstr "Cembung"
 msgid "Square"
 msgstr "Persegi"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Garis luar"
 
@@ -1739,7 +1788,7 @@ msgstr "Panah putus-putus"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Antialias"
 
@@ -1802,7 +1851,10 @@ msgstr "piksel"
 msgid "Shuffle and blur"
 msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr ""
 
@@ -1844,29 +1896,24 @@ msgstr "Pengaburan cepat"
 msgid "Slow blur"
 msgstr "Pengaburan lamban"
 
-#. Context: a filter to censor the image with some little tiles
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pikselisasi"
-
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
 msgstr "Arah pengaburan"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "horisontal"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Vertikal"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
 msgid "No direction"
 msgstr "Tanpa arah"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur horizontally"
+msgstr "Balik secara horisontal"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur vertically"
+msgstr "Balik secara vertikal"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2039,6 +2086,18 @@ msgstr "Tanpa latar belakang"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Bayangan"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Tanpa garis luar"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Tanpa garis luar"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2237,12 +2296,20 @@ msgstr "Skalakan seleksi"
 msgid "Scaling the canvas"
 msgstr "Skalakan kanvas"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Condongkan"
+#, fuzzy
+msgid "Skewing options"
+msgstr "Opsi pengecatan"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the selection"
+msgstr "Skalakan seleksi"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the canvas"
+msgstr "Skalakan kanvas"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2251,6 +2318,15 @@ msgstr "Radius pengaburan"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Penjenuhan"
+
+#~ msgid "Pixelization"
+#~ msgstr "Pikselisasi"
+
+#~ msgid "Horizontal"
+#~ msgstr "horisontal"
+
+#~ msgid "Vertical"
+#~ msgstr "Vertikal"
 
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Aplikasi menggambar untuk destop GNOME"
