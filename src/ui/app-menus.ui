@@ -55,6 +55,11 @@
           <attribute name="action">win.properties</attribute>
           <attribute name="verb-icon">document-properties-symbolic</attribute>
         </item>
+        <item>
+          <attribute name="label" translatable="yes">Reset canvas</attribute>
+          <attribute name="action">win.reset_canvas</attribute>
+          <attribute name="verb-icon">edit-clear-symbolic</attribute>
+        </item>
       </section>
       <section>
         <item>
@@ -235,21 +240,33 @@
           </section>
           <section>
             <item>
+              <!-- Context: this action scrolls to the left end of the -->
+              <!-- canvas. The "go left" action only goes a few centimeters -->
+              <!-- to the left, but this one goes all the way left. -->
               <attribute name="label" translatable="yes">Go to the left end</attribute>
               <attribute name="action">win.go_first</attribute>
               <attribute name="verb-icon">go-first-symbolic</attribute>
             </item>
             <item>
+              <!-- Context: this action scrolls to the top of the canvas-->
+              <!-- The "go up" action only goes a few centimeters up, but -->
+              <!-- this one goes all the way to the top. -->
               <attribute name="label" translatable="yes">Go to the top</attribute>
               <attribute name="action">win.go_top</attribute>
               <attribute name="verb-icon">go-top-symbolic</attribute>
             </item>
             <item>
+              <!-- Context: this action scrolls to the bottom of the canvas-->
+              <!-- The "go down" action only goes a few centimeters down, -->
+              <!-- but this one goes all the way to the bottom. -->
               <attribute name="label" translatable="yes">Go to the bottom</attribute>
               <attribute name="action">win.go_bottom</attribute>
               <attribute name="verb-icon">go-bottom-symbolic</attribute>
             </item>
             <item>
+              <!-- Context: this action scrolls to the right end of the -->
+              <!-- canvas. The "go right" action only goes a few centimeters -->
+              <!-- to the right, but this one goes all the way right. -->
               <attribute name="label" translatable="yes">Go to the right end</attribute>
               <attribute name="action">win.go_last</attribute>
               <attribute name="verb-icon">go-last-symbolic</attribute>

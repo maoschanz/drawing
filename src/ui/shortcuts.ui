@@ -172,19 +172,19 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
-            <property name="title" translatable="yes">History</property>
+            <property name="title" translatable="yes">Tabs</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Undo</property>
-                <property name="accelerator">&lt;Primary&gt;z</property>
+                <property name="title" translatable="yes">Tab at the left</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Left</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Redo</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;z</property>
+                <property name="title" translatable="yes">Tab at the right</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Right</property>
               </object>
             </child>
           </object>
@@ -327,19 +327,26 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
-            <property name="title" translatable="yes">Tabs</property>
+            <property name="title" translatable="yes">History</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Tab at the left</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Left</property>
+                <property name="title" translatable="yes">Undo</property>
+                <property name="accelerator">&lt;Primary&gt;z</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Tab at the right</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Right</property>
+                <property name="title" translatable="yes">Redo</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;z</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Reset canvas</property>
+                <property name="accelerator">&lt;Primary&gt;BackSpace</property>
               </object>
             </child>
           </object>
