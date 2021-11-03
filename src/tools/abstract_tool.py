@@ -94,8 +94,7 @@ class AbstractAbstractTool():
 
 	def update_modifier_state(self, event_state):
 		modifier_keys = []
-		if (event_state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK:
-			modifier_keys.append("CTRL")
+		# CONTROL_MASK can't be used, because it already has an effect app-wide.
 		if (event_state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK:
 			modifier_keys.append("SHIFT")
 		if (event_state & Gdk.ModifierType.MOD1_MASK) == Gdk.ModifierType.MOD1_MASK:

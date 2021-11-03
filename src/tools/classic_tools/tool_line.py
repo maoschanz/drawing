@@ -78,7 +78,10 @@ class ToolLine(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 
 		self.update_modifier_state(event.state)
-		self._ortholock = self._ortholock or "SHIFT" in self._modifier_keys
+		if "SHIFT" in self._modifier_keys:
+			self._ortholock = not self._ortholock
+		if "ALT" in self._modifier_keys:
+			self._use_outline = not self._use_outline
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if render:
