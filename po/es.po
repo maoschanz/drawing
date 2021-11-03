@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 22:05+0100\n"
+"POT-Creation-Date: 2021-11-03 02:58+0100\n"
 "PO-Revision-Date: 2021-06-23 17:03+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
@@ -72,6 +72,27 @@ msgstr ""
 "arco (con varias opciones), selección (cortar/copiar/pegar/arrastrar/…), "
 "formas (rectángulo, círculo, polígono, …), inserción de texto, cambio de "
 "tamaño, recorte, rotación, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"La versión 0.8.4 presenta varias correcciones de errores menores y varias "
+"traducciones nuevas."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Undoing several operations one after another should be less slow."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's not possible anymore to reload the picture from the disk if it has "
+"never been saved on the disk to begin with."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The text tool gains an option to disable anti-aliasing."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1822,7 +1843,7 @@ msgstr "Doble flecha"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Antidistorsión"
 

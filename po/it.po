@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 22:05+0100\n"
+"POT-Creation-Date: 2021-11-03 02:58+0100\n"
 "PO-Revision-Date: 2021-06-27 15:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -69,6 +69,27 @@ msgstr ""
 "Ti permette di disegnare o modificare immagini con strumenti come matita, "
 "linea oarco (con varie opzioni), selezione (taglia/copia/incolla/trascina/"
 "…), forme, rotazione, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"La versione 0.8.4 presenta diverse correzioni di bug minori e varie nuove "
+"traduzioni. "
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Undoing several operations one after another should be less slow."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's not possible anymore to reload the picture from the disk if it has "
+"never been saved on the disk to begin with."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The text tool gains an option to disable anti-aliasing."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1811,7 +1832,7 @@ msgstr "Doppia freccia"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Antialiasing"
 

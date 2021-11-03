@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 22:05+0100\n"
+"POT-Creation-Date: 2021-11-03 02:58+0100\n"
 "PO-Revision-Date: 2021-09-24 06:29+0200\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -64,11 +64,31 @@ msgid ""
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
+msgid ""
+"Version 0.8.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"La versió 0.8.4 presenta diverses correccions d'errors menors i diverses "
+"traduccions noves."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Undoing several operations one after another should be less slow."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's not possible anymore to reload the picture from the disk if it has "
+"never been saved on the disk to begin with."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The text tool gains an option to disable anti-aliasing."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 0.8.3 features several minor bug fixes, and various new translations."
 msgstr ""
-"La versió 0.8.2 presenta diverses correccions d'errors menors i diverses "
+"La versió 0.8.3 presenta diverses correccions d'errors menors i diverses "
 "traduccions noves."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1782,7 +1802,7 @@ msgstr "Fletxa doble"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Antialiàsing"
 
@@ -2263,4 +2283,3 @@ msgstr "Radi del difuminat"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturació"
-

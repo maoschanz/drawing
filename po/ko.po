@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 22:05+0100\n"
+"POT-Creation-Date: 2021-11-03 02:58+0100\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -67,6 +67,26 @@ msgid ""
 msgstr ""
 "연필, 선 또는 호 (다양한 옵션 포함), 선택 (잘라 내기 / 복사 / 붙여 넣기 / 끌"
 "기 /…) , 도형 (사각형, 원, 다각형 등), 텍스트 삽입, 크기 조정, 자르기, 회전"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 0.8.4에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Undoing several operations one after another should be less slow."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's not possible anymore to reload the picture from the disk if it has "
+"never been saved on the disk to begin with."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The text tool gains an option to disable anti-aliasing."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1780,7 +1800,7 @@ msgstr "이중 화살표"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "안티 앨리어싱"
 
@@ -2258,4 +2278,3 @@ msgstr "흐림 반경"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "채도"
-

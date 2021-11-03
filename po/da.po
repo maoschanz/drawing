@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 22:05+0100\n"
+"POT-Creation-Date: 2021-11-03 02:58+0100\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -68,6 +68,27 @@ msgstr ""
 "blyant, linje eller bue (med diverse valgmuligheder), markering (klip/kopiér/"
 "indsæt/træk/ …), former (rektangel, cirkel, polygon …), indsættelse af "
 "tekst, tilpasning af størrelse, beskæring, drejning …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"Version 0.8.4 har adskillige mindre fejlrettelser og diverse nye "
+"oversættelser."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Undoing several operations one after another should be less slow."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's not possible anymore to reload the picture from the disk if it has "
+"never been saved on the disk to begin with."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The text tool gains an option to disable anti-aliasing."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1780,7 +1801,7 @@ msgstr "Dobbelt pil"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Antialiasing"
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-01 22:05+0100\n"
-"PO-Revision-Date: 2021-03-20 22:03+0100\n"
+"POT-Creation-Date: 2021-11-03 02:58+0100\n"
+"PO-Revision-Date: 2021-11-03 02:57+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 41.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -69,6 +69,30 @@ msgstr ""
 "crayon, trait ou arc (avec diverses options), sélection (couper/copier/"
 "coller/déplacer…), formes (rectangle, cercle, polygone, …), insertion de "
 "texte, redimensionnement, recadrage, rotation, …"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 0.8.4 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 0.8.4 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Undoing several operations one after another should be less slow."
+msgstr "Annuler plusieurs opérations à la suite devrait être moins lent."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"It's not possible anymore to reload the picture from the disk if it has "
+"never been saved on the disk to begin with."
+msgstr ""
+"Il n'est plus possible de recharger une image depuis le disque si elle n'a "
+"jamais été enregistrée à la base."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The text tool gains an option to disable anti-aliasing."
+msgstr ""
+"À l'outil \"texte\" s'ajoute une option pour y désactiver l'anti-aliasing."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -143,6 +167,9 @@ msgid ""
 "proportions of the image (unless the \"never keep proportions\" option is "
 "enabled)."
 msgstr ""
+"Mettre à l'échelle une image en utilisant les champs numériques préserve "
+"désormais les proportions originales (sauf si l'option \"ne jamais conserver "
+"les proportions\" est active)."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1823,7 +1850,7 @@ msgstr "Flèche double"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Anti-crénelage"
 
