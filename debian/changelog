@@ -4,13 +4,11 @@ drawing (1.0.0) unstable; urgency=low
   * new "skew" tool (#369)
   * dynamically change the label of the "options" submenu in the menu-bar, to increase its discoverability
   * suggest to "apply & save" when trying to save while an operation is unapplied
-  * option to disable anti-aliasing with the text tool (#369)
   * text tool option for a thicker outline (#369)
   *
   * suggest to "apply & unselect" when trying to save while the selection is active
   *
   * hide information messages after 4 seconds if they're not that useful
-  * if "undo" is pressed several times in a short period, recompute only once (#425, #435, #282, #200)
   * disable the 'reload image from the disk' action if it has never been saved
   * new 'reset the canvas' action
   * warn the user if they're opening an already opened image
@@ -22,7 +20,16 @@ drawing (1.0.0) unstable; urgency=low
   * shorter appdata summary, to comply with guidelines (#419)
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 12 Sep 2021 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 11 Dec 2021 13:12:00 +0100
+
+drawing (0.8.4) unstable; urgency=low
+
+  * option to disable anti-aliasing with the text tool (#369)
+  * if "undo" is pressed several times in a short period, recompute only once (#425, #435, #282, #200)
+  * disable the 'reload image from the disk' action if it has never been saved
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 06 Nov 2021 13:12:00 +0100
 
 drawing (0.8.3) unstable; urgency=low
 

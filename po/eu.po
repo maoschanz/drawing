@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-10-10 06:48+0200\n"
+"POT-Creation-Date: 2021-11-03 03:14+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -177,6 +177,10 @@ msgstr "Birkargatu fitxategia"
 msgid "Image properties"
 msgstr "Irudiaren propietateak"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Reset canvas"
+msgstr ""
+
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/saving_manager.py
@@ -296,18 +300,21 @@ msgstr "Zoomik egokiena"
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
 msgstr "Txikiagotu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
 msgstr "Jatorrizko tamaina"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
 msgstr "Handiagotu"
 
@@ -332,6 +339,36 @@ msgstr "Behera"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
 msgstr "Eskuinera"
+
+#. Context: this action scrolls to the left end of the
+#. canvas. The "go left" action only goes a few centimeters
+#. to the left, but this one goes all the way left.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the left end"
+msgstr "Ezkerreko fitxa"
+
+#. Context: this action scrolls to the top of the canvas
+#. The "go up" action only goes a few centimeters up, but
+#. this one goes all the way to the top.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the top"
+msgstr ""
+
+#. Context: this action scrolls to the bottom of the canvas
+#. The "go down" action only goes a few centimeters down,
+#. but this one goes all the way to the bottom.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the bottom"
+msgstr ""
+
+#. Context: this action scrolls to the right end of the
+#. canvas. The "go right" action only goes a few centimeters
+#. to the right, but this one goes all the way right.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the right end"
+msgstr "Eskuineko fitxa"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -641,7 +678,7 @@ msgstr "Leihoa"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
-#: src/ui/properties.ui src/utilities.py
+#: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
 msgstr "píxel"
 
@@ -663,23 +700,27 @@ msgstr "Itxi hautaketa"
 msgid "Deselect"
 msgstr "Desautatu"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_crop.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "Moztu"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_scale.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "Eskalatu"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_rotate.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "Biratu"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_filters.py
+#. This is the name of the tool changing rectangles into parallelograms.
+#. It's synonymous with tilt, slant, bend. If you need a reference to
+#. translate it, this is named after MS Paint's "Stretch/Skew" dialog.
+#: src/ui/selection-manager.ui src/preferences.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Etzan"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
 msgstr "Iragazkiak"
 
@@ -763,10 +804,14 @@ msgid "Apply a transformation"
 msgstr "Aplikatu eraldaketa"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historiala"
+msgid "Tabs"
+msgstr "Fitxak"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "Trukatu aurrebista"
+
+#: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
 msgstr "Hautapena"
 
@@ -791,18 +836,14 @@ msgid "Edit the secondary color (right click)"
 msgstr "Editatu bigarren kolorea (saguaren eskuin klika)"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Fitxak"
+msgid "History"
+msgstr "Historiala"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Nabigazioa"
-
-#: src/ui/shortcuts.ui
-msgid "Toggle the preview"
-msgstr "Trukatu aurrebista"
 
 #: src/ui/shortcuts.ui
 #, fuzzy
@@ -929,8 +970,9 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Utzi"
 
@@ -958,7 +1000,8 @@ msgstr "Altuera lehenetsia"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
@@ -981,11 +1024,11 @@ msgstr ""
 "Irudia formatu horietako batean gordetzen baduzu, zer erabili nahi duzu "
 "pixel gardenen ordez?"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
 msgstr "Zuria"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
 msgstr "Beltza"
 
@@ -1283,120 +1326,6 @@ msgstr "Pixbuf hautaketa hutsik dago"
 msgid "The selection path is empty."
 msgstr "Hautaketaren bidea hutsik dago"
 
-#: src/utilities.py
-msgid "Transparent"
-msgstr "Gardena"
-
-#: src/utilities.py
-#, python-format
-msgid "%s%% transparent"
-msgstr "%s %% garden"
-
-#: src/utilities.py
-msgid "Grey"
-msgstr "Grisa"
-
-#: src/utilities.py
-msgid "Orange"
-msgstr "Laranja"
-
-#: src/utilities.py
-msgid "Brown"
-msgstr "Marroia"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably brown.
-#: src/utilities.py
-msgid "Probably brown"
-msgstr "Marroia seguruenik"
-
-#: src/utilities.py
-msgid "Red"
-msgstr "Gorria"
-
-#: src/utilities.py
-msgid "Green"
-msgstr "Berdea"
-
-#: src/utilities.py
-msgid "Blue"
-msgstr "Urdina"
-
-#: src/utilities.py
-msgid "Yellow"
-msgstr "Horia"
-
-#: src/utilities.py
-msgid "Magenta"
-msgstr "Magenta"
-
-#: src/utilities.py
-msgid "Purple"
-msgstr "Morea"
-
-#: src/utilities.py
-msgid "Cyan"
-msgstr "Ziana"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably teal.
-#. You can translate "teal" with the name of approaching color, like
-#. turquoise or green-blue.
-#: src/utilities.py
-msgid "Probably teal"
-msgstr "Turkesa seguruenik"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app can't find a corresponding color name.
-#: src/utilities.py
-msgid "Unknown color name"
-msgstr "Kolore izen ezezaguna"
-
-#: src/utilities.py
-msgid "All pictures"
-msgstr "Irudi guztiak"
-
-#: src/utilities.py
-msgid "PNG images"
-msgstr "PNG irudiak"
-
-#: src/utilities.py
-msgid "JPEG images"
-msgstr "JPEG irudiak"
-
-#: src/utilities.py
-msgid "BMP images"
-msgstr "IBMP irudiak"
-
-#. To translators: it appears in tooltips over numerical inputs
-#: src/utilities.py
-msgid "percents"
-msgstr "ehunekoak"
-
-#. To translators: it's the angle measure unit, it appears in a tooltip
-#. over a numerical input
-#: src/utilities.py
-msgid "degrees"
-msgstr "graduak"
-
-#: src/utilities.py
-#, fuzzy, python-format
-msgid "%s isn't an image."
-msgstr "Ireki irudi bat"
-
-#: src/utilities.py
-msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr "Sentitzen dugu, aplikazio honek ezin ditu WEBP irudiak kargatu."
-
-#. Context: an error message, %s is a file path
-#: src/utilities.py
-#, python-format
-msgid "Despite its name, %s is a WEBP file."
-msgstr "Duen izena izan arren, %s WEBP fitxategia da."
-
 #. Context: an error message
 #: src/tools_initializer.py
 #, python-format
@@ -1455,7 +1384,8 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Aldaketok hurrengo leiho berrian gauzatuko dira."
 
 #: src/window.py
-msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+#, fuzzy
+msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
 "Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
 
@@ -1517,6 +1447,136 @@ msgstr "Inportatu irudi bat"
 msgid "Required tool is not available"
 msgstr "Eskatutako tresna ez dago erabilgarri"
 
+#: src/utilities/utilities_colors.py
+msgid "Transparent"
+msgstr "Gardena"
+
+#: src/utilities/utilities_colors.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s %% garden"
+
+#: src/utilities/utilities_colors.py
+msgid "Grey"
+msgstr "Grisa"
+
+#: src/utilities/utilities_colors.py
+msgid "Orange"
+msgstr "Laranja"
+
+#: src/utilities/utilities_colors.py
+msgid "Brown"
+msgstr "Marroia"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities/utilities_colors.py
+msgid "Probably brown"
+msgstr "Marroia seguruenik"
+
+#: src/utilities/utilities_colors.py
+msgid "Red"
+msgstr "Gorria"
+
+#: src/utilities/utilities_colors.py
+msgid "Green"
+msgstr "Berdea"
+
+#: src/utilities/utilities_colors.py
+msgid "Blue"
+msgstr "Urdina"
+
+#: src/utilities/utilities_colors.py
+msgid "Yellow"
+msgstr "Horia"
+
+#: src/utilities/utilities_colors.py
+msgid "Magenta"
+msgstr "Magenta"
+
+#: src/utilities/utilities_colors.py
+msgid "Purple"
+msgstr "Morea"
+
+#: src/utilities/utilities_colors.py
+msgid "Cyan"
+msgstr "Ziana"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities/utilities_colors.py
+msgid "Probably teal"
+msgstr "Turkesa seguruenik"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities/utilities_colors.py
+msgid "Unknown color name"
+msgstr "Kolore izen ezezaguna"
+
+#: src/utilities/utilities_files.py
+msgid "All pictures"
+msgstr "Irudi guztiak"
+
+#: src/utilities/utilities_files.py
+msgid "PNG images"
+msgstr "PNG irudiak"
+
+#: src/utilities/utilities_files.py
+msgid "JPEG images"
+msgstr "JPEG irudiak"
+
+#: src/utilities/utilities_files.py
+msgid "BMP images"
+msgstr "IBMP irudiak"
+
+#: src/utilities/utilities_files.py
+#, fuzzy, python-format
+msgid "%s isn't an image."
+msgstr "Ireki irudi bat"
+
+#: src/utilities/utilities_files.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "Sentitzen dugu, aplikazio honek ezin ditu WEBP irudiak kargatu."
+
+#. Context: an error message, %s is a file path
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Duen izena izan arren, %s WEBP fitxategia da."
+
+#: src/utilities/utilities_paths.py
+msgid "Continue"
+msgstr "Jarraitu"
+
+#: src/utilities/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Area hori ongi zehaztu gabe dago, edo oso konplexua da."
+
+#: src/utilities/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Algoritmo horrek agian ezin du eskatutako area kudeatu."
+
+#: src/utilities/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Nahi duzu ataza gelditu, edo tresna horrekin saiakera egin?"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities/utilities_units.py
+msgid "percents"
+msgstr "ehunekoak"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities/utilities_units.py
+msgid "degrees"
+msgstr "graduak"
+
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1531,7 +1591,8 @@ msgstr "Kolore nagusia"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
@@ -1567,7 +1628,6 @@ msgid "Use this editor by default"
 msgstr "Erabili editore hau lehenespenez"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/selection_tools/abstract_select.py
 #, fuzzy
 msgid "Selection options"
 msgstr "Hautatzeko aukerak"
@@ -1579,7 +1639,8 @@ msgid "Replace with…"
 msgstr "Ordeztu honekin…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
@@ -1598,7 +1659,8 @@ msgstr "Aplikatu"
 msgid "More options"
 msgstr "Aukera gehiago"
 
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Zabaldu honekin…"
 
@@ -1654,6 +1716,16 @@ msgstr "Izkinatik eskalatzean"
 msgid "Never"
 msgstr "Inoiz ez"
 
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Pixels"
+msgstr "píxel"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Percentage"
+msgstr "ehunekoak"
+
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
 msgstr "Itxuraldaketa horizontala"
@@ -1668,27 +1740,6 @@ msgstr "Itxuraldaketa bertikala"
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
 "Ezin izan da eragiketa hasi: ID trena okerra (espero zen {0}, {1} lortu da)"
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "Jarraitu"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Area hori ongi zehaztu gabe dago, edo oso konplexua da."
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Algoritmo horrek agian ezin du eskatutako area kudeatu."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Nahi duzu ataza gelditu, edo tresna horrekin saiakera egin?"
-
-#: src/tools/ui/selection.ui
-#, fuzzy
-msgid "Transform"
-msgstr "Eraldatu"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1709,10 +1760,8 @@ msgstr "Mutur borobilduak"
 msgid "Square"
 msgstr "Mutur karratuak"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Ertza"
 
@@ -1762,7 +1811,7 @@ msgstr "Puntukako gezia"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Antialiasing-a"
 
@@ -1825,7 +1874,10 @@ msgstr "Ausazko píxelak"
 msgid "Shuffle and blur"
 msgstr "Ausazkoak eta lausotu"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mosaikoa"
 
@@ -1867,29 +1919,24 @@ msgstr "Lausotze azkarra"
 msgid "Slow blur"
 msgstr "Lausotze motela"
 
-#. Context: a filter to censor the image with some little tiles
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelizazioa"
-
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
 msgstr "Lausotzearen norabidea"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Horizontala"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Bertikala"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
 msgid "No direction"
 msgstr "Norabiderik gabe"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur horizontally"
+msgstr "Irauli horizontalki"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur vertically"
+msgstr "Irauli bertikalki"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2064,6 +2111,18 @@ msgstr "Atzeko kolorerik gabe"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Itzala"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Ertzik gabe"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Ertzik gabe"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2267,12 +2326,20 @@ msgstr "Hautapena eskalatzen"
 msgid "Scaling the canvas"
 msgstr "Oihala eskalatzen"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Etzan"
+#, fuzzy
+msgid "Skewing options"
+msgstr "Betegarriaren aukerak"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the selection"
+msgstr "Hautapena eskalatzen"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the canvas"
+msgstr "Oihala eskalatzen"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2281,6 +2348,19 @@ msgstr "Lausotze erradioa"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturazioa"
+
+#, fuzzy
+#~ msgid "Transform"
+#~ msgstr "Eraldatu"
+
+#~ msgid "Pixelization"
+#~ msgstr "Pixelizazioa"
+
+#~ msgid "Horizontal"
+#~ msgstr "Horizontala"
+
+#~ msgid "Vertical"
+#~ msgstr "Bertikala"
 
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Marrazteko aplikazioa GNOME mahaigainerako"
