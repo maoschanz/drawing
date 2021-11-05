@@ -6,6 +6,8 @@
 
 from gi.repository import Gdk
 
+from .utilities_paths import utilities_get_rgba_for_xy
+
 ################################################################################
 
 def utilities_gdk_rgba_to_color_array(gdk_rgba):
@@ -45,9 +47,20 @@ def utilities_rgb_to_hexadecimal(r, g, b):
 
 ################################################################################
 
-def utilities_get_rgba_name(red, green, blue, alpha):
+def utilities_gdk_rgba_from_xy(surface, event_x, event_y):
+	rgba_vals = utilities_get_rgba_for_xy(surface, event_x, event_y)
+	if rgba_vals is None:
+		return # event outside of the surface
+	rgba_vals = [*rgba_vals]
+	rgba_vals[3] /= 255 # alpha has to be between 0 and 1
+	return utilities_color_array_to_gdk_rgba(*rgba_vals)
+
+################################################################################
+
+def utilities_get_rgba_name(gdk_rgba):
 	"""To improve accessibility, it is useful to display the name of the colors.
 	Sadly, it's a mess to implement, and it's quite approximative."""
+	[red, green, blue, alpha] = utilities_gdk_rgba_to_normalized_array(gdk_rgba)
 	color_string = ""
 	alpha_string = ""
 	if alpha == 0.0:

@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .abstract_select import AbstractSelectionTool
+from .utilities_colors import utilities_get_rgba_name, \
+                              utilities_gdk_rgba_from_xy
 from .utilities_paths import utilities_get_magic_path
 
 class ToolColorSelect(AbstractSelectionTool):
@@ -26,6 +28,12 @@ class ToolColorSelect(AbstractSelectionTool):
 		# color. For example clicking on a white pixel will select the
 		# surrounding area made of white pixels.
 		super().__init__('color_select', _("Color selection"), 'tool-magic-symbolic', window)
+
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		color = utilities_gdk_rgba_from_xy(self.get_surface(), event_x, event_y)
+		if color is None:
+			return None
+		return utilities_get_rgba_name(color)
 
 	def press_define(self, event_x, event_y):
 		pass
