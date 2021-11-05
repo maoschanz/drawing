@@ -478,6 +478,17 @@ class DrImage(Gtk.Box):
 			delta_y = self._slip_press_y - event.y
 			self.add_deltas(delta_x, delta_y, 1 / self.zoom_level)
 
+		# If <Ctrl> is pressed, a tooltip displaying contextual information is
+		# shown: by default, it contains at least the pointer coordinates.
+		if (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK:
+			full_tooltip_text = str(event_x) + ", " + str(event_y)
+			tool_tooltip = self._get_tool_tooltip(event_x, event_y)
+			if tool_tooltip is not None:
+				full_tooltip_text += "\n" + tool_tooltip
+			self._drawing_area.set_tooltip_text(full_tooltip_text)
+		else:
+			self._drawing_area.set_tooltip_text(None)
+
 	def on_release_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is released on
 		self._drawing_area, if the button is not the signal is transmitted to
@@ -499,6 +510,9 @@ class DrImage(Gtk.Box):
 		mx = abs(self._slip_init_x - self.scroll_x) > DrMotionBehavior._LIMIT
 		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
 		return mx or my
+
+	def _get_tool_tooltip(self, ev_x, ev_y):
+		return self.active_tool().get_tooltip(ev_x, ev_y ,self.motion_behavior)
 
 	def update(self):
 		# print('image.py: _drawing_area.queue_draw')

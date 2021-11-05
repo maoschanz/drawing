@@ -107,6 +107,9 @@ class AbstractAbstractTool():
 	def show_error(self, error_text):
 		self.window.reveal_message(error_text)
 
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		return None
+
 	############################################################################
 	# Bottom pane and menubar integration ######################################
 
