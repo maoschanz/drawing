@@ -130,7 +130,7 @@ class ToolText(AbstractClassicTool):
 		self._last_click_btn = event.button
 		self._should_cancel = True
 		self.set_common_values(self._last_click_btn, event_x, event_y)
-		self._open_popover_at(int(event.x), int(event.y))
+		self._open_popover_at(event.x, event.y)
 
 	# XXX could there be a better way to move the text ?
 	def _open_popover_at(self, x, y):
@@ -216,8 +216,8 @@ class ToolText(AbstractClassicTool):
 		entire_text = operation['text']
 		c1 = operation['rgba1']
 		c2 = operation['rgba2']
-		text_x = int(operation['x'])
-		text_y = int(operation['y'])
+		text_x = operation['x']
+		text_y = operation['y']
 
 		font_description_string = font_fam
 		if operation['is_italic']:

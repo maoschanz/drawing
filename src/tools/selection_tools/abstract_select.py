@@ -197,10 +197,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		is used in `self.select_all` (abstract, here), and in the "rectangle
 		selection" implementation."""
 		# XXX could be in the selection manager?
-		x0 = int( min(press_x, release_x) )
-		y0 = int( min(press_y, release_y) )
-		x1 = int( max(press_x, release_x) )
-		y1 = int( max(press_y, release_y) )
+		x0 = min(press_x, release_x)
+		y0 = min(press_y, release_y)
+		x1 = max(press_x, release_x)
+		y1 = max(press_y, release_y)
 		w = x1 - x0
 		h = y1 - y0
 		if w <= 0 or h <= 0:

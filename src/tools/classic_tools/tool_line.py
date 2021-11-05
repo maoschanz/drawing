@@ -128,8 +128,6 @@ class ToolLine(AbstractClassicTool):
 		y2 = operation['y_release']
 
 		if operation['ortholock']:
-			x1, y1 = int(x1), int(y1)
-			x2, y2 = int(x2), int(y2)
 			delta_x = abs(x1 - x2)
 			delta_y = abs(y1 - y2)
 			if delta_x > 2 * delta_y:

@@ -452,6 +452,7 @@ class DrImage(Gtk.Box):
 		If a button (not the mouse wheel) is pressed, the tool's method should
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
+		event_x, event_y = self.get_event_coords(event)
 
 		if self.motion_behavior == DrMotionBehavior.HOVER:
 			# Some tools need the coords in the image, others need the coords on
@@ -460,7 +461,6 @@ class DrImage(Gtk.Box):
 
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
-			event_x, event_y = self.get_event_coords(event)
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, \
 			                                 event_y, self._rendering_is_locked)
 			if self._rendering_is_locked:
@@ -629,7 +629,7 @@ class DrImage(Gtk.Box):
 	def get_event_coords(self, event):
 		event_x = self.scroll_x + (event.x / self.zoom_level)
 		event_y = self.scroll_y + (event.y / self.zoom_level)
-		return event_x, event_y
+		return int(event_x), int(event_y)
 
 	def get_corrected_coords(self, x1, x2, y1, y2, with_selection, with_zoom):
 		"""Do whatever coordinates conversions are needed by tools like `crop`

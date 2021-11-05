@@ -114,10 +114,10 @@ class ToolEraser(ToolPencil):
 
 	def _draw_rectangle(self, event_x, event_y):
 		cairo_context = self.get_context()
-		cairo_context.move_to(int(self.x_press), int(self.y_press))
-		cairo_context.line_to(int(self.x_press), int(event_y))
-		cairo_context.line_to(int(event_x), int(event_y))
-		cairo_context.line_to(int(event_x), int(self.y_press))
+		cairo_context.move_to(self.x_press, self.y_press)
+		cairo_context.line_to(self.x_press, event_y)
+		cairo_context.line_to(event_x, event_y)
+		cairo_context.line_to(event_x, self.y_press)
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 

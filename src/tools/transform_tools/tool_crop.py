@@ -124,8 +124,8 @@ class ToolCrop(AbstractCanvasTool):
 		self._update_expansion_rgba(event.button)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		delta_x = int(event_x - self.x_press)
-		delta_y = int(event_y - self.y_press)
+		delta_x = event_x - self.x_press
+		delta_y = event_y - self.y_press
 
 		if self._directions == '':
 			return
