@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
-"PO-Revision-Date: 2021-09-24 14:34+0200\n"
+"POT-Creation-Date: 2021-11-01 06:39+0100\n"
+"PO-Revision-Date: 2021-11-06 14:21+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -55,7 +55,7 @@ msgstr "Klembordafbeelding bewerken"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Bewerk schermfoto's en memes"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -64,6 +64,9 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Met deze afbeeldingsbewerker kun je afbeeldingen bijsnijden, draaien, de "
+"grootte aanpassen, filters toepassen, tekst invoegen of censureren en delen "
+"bewerken (knippen/kopiëren/plakken/verplaatsen…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -72,11 +75,13 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"En, niet te vergeten, tekenen! Dit kan onder meer met het potlood, rechte "
+"lijnen, curven, verschillende vormen en kwasten en verschillende kleuropties."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Ondersteunde bestandstypes: png, jpeg en bmp."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -191,7 +196,7 @@ msgstr "Eigenschappen"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Canvas herstellen"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -355,31 +360,29 @@ msgstr "Ga naar rechts"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Tabblad links"
+msgstr "Ga naar het linkeruiteinde"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Ga naar de bovenkant"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Ga naar de onderkant"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Tabblad rechts"
+msgstr "Ga naar het rechteruiteinde"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -1370,11 +1373,9 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Herstart om de wijzigingen toe te passen."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Druk op de middelste muisknop, F8 of tik met 3 vingers om de bediening te "
-"tonen/verbergen."
+"Druk op de middelste muisknop of F8 om de bediening te tonen/verbergen."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1700,14 +1701,12 @@ msgid "Never"
 msgstr "Nooit"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "pixels"
+msgstr "Pixels"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "procent"
+msgstr "Percentage"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1901,14 +1900,12 @@ msgid "No direction"
 msgstr "Geen richting"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Horizontaal spiegelen"
+msgstr "Horizontaal vervagen"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Verticaal spiegelen"
+msgstr "Verticaal vervagen"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2083,15 +2080,13 @@ msgstr "Kleurschaduw"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Geen randcontour"
+msgstr "Dunne randcontour"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Geen randcontour"
+msgstr "Dikke randcontour"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2283,19 +2278,16 @@ msgid "Scaling the canvas"
 msgstr "Bezig met wijzigen van canvasgrootte"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Schaalopties"
+msgstr "Scheeftrekopties"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Bezig met wijzigen van selectiegrootte"
+msgstr "Bezig met scheeftrekken van selectie"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Bezig met wijzigen van canvasgrootte"
+msgstr "Bezig met scheeftrekken van canvas"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
