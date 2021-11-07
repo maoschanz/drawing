@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-11-03 03:14+0100\n"
-"PO-Revision-Date: 2021-10-22 17:15+0100\n"
+"PO-Revision-Date: 2021-11-03 22:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -200,7 +200,7 @@ msgstr "Proprietà immagine"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Ripristina tela"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -364,31 +364,29 @@ msgstr "Sposta a destra"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Scheda a sinistra"
+msgstr "Vai all'estremità sinistra"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Vai in cima"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Vai in fondo"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Scheda a destra"
+msgstr "Vai all'estremità destra"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -1376,11 +1374,8 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Le modifiche avranno effetto dalla prossima nuova finestra."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
-msgstr ""
-"Fare clic con il pulsante centrale, toccare con 3 dita o premere F8 per "
-"mostrare/nascondere i controlli."
+msgstr "Fai clic con il tasto centrale o premi F8 per mostrare/nascondere i controlli."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1706,14 +1701,12 @@ msgid "Never"
 msgstr "Mai"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "pixel"
+msgstr "Pixel"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "percentuali"
+msgstr "Percentuale"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1907,14 +1900,12 @@ msgid "No direction"
 msgstr "Nessuna direzione"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Ribalta orizzontalmente"
+msgstr "Sfocatura orizzontalmente"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Ribalta verticalmente"
+msgstr "Sfocatura verticale"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2089,15 +2080,13 @@ msgstr "Ombra"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Nessun contorno"
+msgstr "Profilo sottile"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Nessun contorno"
+msgstr "Profilo spesso"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2289,19 +2278,16 @@ msgid "Scaling the canvas"
 msgstr "Ridimensionamento della tela"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Opzioni di ridimensionamento"
+msgstr "Opzioni di inclinazione"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Ridimensionamento della selezione"
+msgstr "Inclinare la selezione"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Ridimensionamento della tela"
+msgstr "Inclinare la tela"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
