@@ -24,6 +24,18 @@ class ToolRectSelect(AbstractSelectionTool):
 	def __init__(self, window, **kwargs):
 		super().__init__('rect_select', _("Rectangle selection"), 'tool-select-rect-symbolic', window)
 
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		if motion_behavior != 1:
+			return None # no line is being drawn
+
+		delta_x = abs(self.x_press - event_x)
+		delta_y = abs(self.y_press - event_y)
+		line1 = _("Width: %spx") % str(delta_x)
+		line2 = _("Height: %spx") % str(delta_y)
+		return line1 + "\n" + line2
+
+	############################################################################
+
 	def press_define(self, event_x, event_y):
 		pass
 

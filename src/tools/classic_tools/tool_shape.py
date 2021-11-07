@@ -48,6 +48,25 @@ class ToolShape(AbstractClassicTool):
 		self.initial_x = -1.0
 		self.initial_y = -1.0
 
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		if motion_behavior != 1:
+			return None # no line is being drawn
+		if self._shape_id in ['polygon', 'freeshpae']:
+			return None # no tooltip for these shapes
+
+		delta_x = abs(self.x_press - event_x)
+		delta_y = abs(self.y_press - event_y)
+
+		if self._shape_id == 'circle':
+			length = round(math.sqrt(delta_x * delta_x + delta_y * delta_y), 2)
+			return _("Radius: %spx") % length
+
+		line1 = _("Width: %spx") % str(delta_x)
+		line2 = _("Height: %spx") % str(delta_y)
+		return line1 + "\n" + line2
+
+	############################################################################
+
 	def _set_filling_style(self):
 		self._filling_id = self.get_option_value('shape_filling')
 
