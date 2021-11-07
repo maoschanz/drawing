@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-11-03 03:14+0100\n"
-"PO-Revision-Date: 2021-10-10 11:31+0200\n"
+"PO-Revision-Date: 2021-11-03 23:12+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -198,7 +198,7 @@ msgstr "Właściwości obrazu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Zresetuj płótno"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -362,31 +362,29 @@ msgstr "Do prawej"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Karta po lewej stronie"
+msgstr "Do lewego końca"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Do samej góry"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Do samego dołu"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Karta po prawej stronie"
+msgstr "Do prawego końca"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -1376,11 +1374,10 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Zmiany zaczną obowiązywać w kolejnym nowym oknie."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Kliknij środkowym przyciskiem, stuknij trzema palcami lub naciśnij klawisz "
-"F8, aby wyświetlić lub ukryć elementy sterujące."
+"Kliknij środkowym przyciskiem lub naciśnij klawisz F8, aby wyświetlić lub "
+"ukryć elementy sterujące."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1704,14 +1701,12 @@ msgid "Never"
 msgstr "Nigdy"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "piksele"
+msgstr "Piksele"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "procent"
+msgstr "Procent"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1905,14 +1900,12 @@ msgid "No direction"
 msgstr "Bez kierunku"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Odbij poziomo"
+msgstr "Rozmyj poziomo"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Odbij pionowo"
+msgstr "Rozmyj pionowo"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2087,15 +2080,13 @@ msgstr "Cień"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Bez konturu"
+msgstr "Cienki kontur"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Bez konturu"
+msgstr "Gruby kontur"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2286,19 +2277,16 @@ msgid "Scaling the canvas"
 msgstr "Skalowanie płótna"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Opcje skalowania"
+msgstr "Opcje zniekształcania"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Skalowanie zaznaczenia"
+msgstr "Zniekształcanie zaznaczenia"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Skalowanie płótna"
+msgstr "Zniekształcanie płótna"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
