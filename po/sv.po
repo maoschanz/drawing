@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-11-03 03:14+0100\n"
-"PO-Revision-Date: 2021-08-24 21:49+0200\n"
+"PO-Revision-Date: 2021-11-04 13:32+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -55,7 +55,7 @@ msgstr "Redigera bilden i urklipp"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Redigera skärmklipp eller memes"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -64,6 +64,9 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Den här grundläggande bildredigeraren kan ändra storlek, beskära eller "
+"rotera en bild, tillämpa enkla filter, infoga eller censurera text och ändra "
+"en markerad del av bilden (klipp ut/kopiera/klistra in/dra/...)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -72,17 +75,22 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"Och självklart kan du rita! Med hjälp av verktyg som pennan, den raka "
+"linjen, kurvverktyget, många former, flera penslar och deras olika färger "
+"och alternativ."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Filtyper som stöds är PNG, JPEG och BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Version 1.0.0 förbättrar renderingsprestandan, vilket är synligt när du "
+"redigerar stora bilder med en dålig CPU."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -90,12 +98,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Du kan nu använda det nya \"skevningsverktyget\" för att luta en bild från "
+"en rektangel till ett parallellogram. En sådan deformation kan appliceras "
+"horisontellt eller vertikalt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Med verktyget \"skala\" kan du välja att ställa in den nya storleken som en "
+"relativ procentandel i stället för ett absolut värde i pixlar."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -103,12 +116,18 @@ msgid ""
 "\"alt+[the underlined letter]\". This may not work yet with languages using "
 "a non-latin alphabet."
 msgstr ""
+"Om namnen på verktygen är synliga kan du aktivera ett visst verktyg med \"alt"
+"+[den understrukna bokstaven]\". Detta kanske inte fungerar ännu med språk "
+"som använder ett icke-latinskt alfabet."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
 "options, such as \"add to the selection\" for the selection tools."
 msgstr ""
+"Genom att trycka på Ctrl, \"skift\" eller \"alt\" när du använder ett "
+"verktyg kan du använda specifika alternativ, till exempel \"lägg till i "
+"markeringen\" för markeringsverktygen."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -179,7 +198,7 @@ msgstr "Bildegenskaper"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Återställ arbetsyta"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -343,31 +362,29 @@ msgstr "Gå åt höger"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Flik åt vänster"
+msgstr "Gå till vänster sida"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Gå till överkant"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Gå till underkant"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Flik åt höger"
+msgstr "Gå till höger sida"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -914,7 +931,7 @@ msgstr "Rapportera fel eller idéer"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Åke Engelbrektson"
+msgstr "Åke Engelbrektson <eson@svenskasprakfiler.se>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1354,11 +1371,8 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Ändringarna tillämpas i nästa nya fönster."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
-msgstr ""
-"Klicka på mushjulet, tryck med 3 fingrar eller tryck F8 för att visa/dölja "
-"kontroller."
+msgstr "Tryck på mushjulet eller F8 för att visa/dölja kontroller."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1683,14 +1697,12 @@ msgid "Never"
 msgstr "Aldrig"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "pixlar"
+msgstr "Pixlar"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "procent"
+msgstr "Procentvärde"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1882,14 +1894,12 @@ msgid "No direction"
 msgstr "Ingen riktning"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Vänd horisontellt"
+msgstr "Horisontell oskärpa"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Vänd vertikalt"
+msgstr "Vertikal oskärpa"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2064,15 +2074,13 @@ msgstr "Skugga"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Ingen kontur"
+msgstr "Tunn kontur"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Ingen kontur"
+msgstr "Tjock kontur"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2263,19 +2271,16 @@ msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Skalningsalternativ"
+msgstr "Skevningsalternativ"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Skalar markering"
+msgstr "Skevar markering"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Skalar arbetsytan"
+msgstr "Skevar arbetsytan"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
