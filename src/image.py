@@ -68,6 +68,8 @@ class DrImage(Gtk.Box):
 		self._rendering_is_locked = False
 		self._framerate_hint = 0
 
+		self._ctrl_pressed = False
+
 		if self.window.devel_mode:
 			# Framerate tracking (debug only)
 			self._skipped_frames = 0
@@ -481,6 +483,8 @@ class DrImage(Gtk.Box):
 		# If <Ctrl> is pressed, a tooltip displaying contextual information is
 		# shown: by default, it contains at least the pointer coordinates.
 		if (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK:
+			self._ctrl_pressed = True
+		if self._ctrl_pressed:
 			full_tooltip_text = str(event_x) + ", " + str(event_y)
 			tool_tooltip = self._get_tool_tooltip(event_x, event_y)
 			if tool_tooltip is not None:
@@ -498,6 +502,7 @@ class DrImage(Gtk.Box):
 				self.window.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return
+		self._ctrl_pressed = False
 		self.motion_behavior = DrMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
