@@ -200,7 +200,7 @@ class ToolText(AbstractClassicTool):
 			'is_italic': self._is_italic,
 			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
-			# 'antialias': self._use_antialias, # XXX ne marche pas ??
+			'antialias': self._use_antialias,
 			'x': self.x_press,
 			'y': self.y_press,
 			'background': self._background_id,
@@ -226,8 +226,17 @@ class ToolText(AbstractClassicTool):
 			font_description_string += " Bold"
 		font_description_string += " " + str(font_size)
 		font = Pango.FontDescription(font_description_string)
-		layout = PangoCairo.create_layout(cairo_context)
+
+		p_context = PangoCairo.create_context(cairo_context)
+		layout = Pango.Layout(p_context)
 		layout.set_font_description(font)
+
+		if not operation['antialias']:
+			font_options = cairo.FontOptions()
+			font_options.set_antialias(cairo.Antialias.NONE)
+			font_options.set_hint_metrics(cairo.HintMetrics.OFF)
+			font_options.set_hint_style(cairo.HintStyle.FULL)
+			PangoCairo.context_set_font_options(p_context, font_options)
 
 		########################################################################
 		# Draw background ######################################################

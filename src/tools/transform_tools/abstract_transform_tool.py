@@ -19,6 +19,7 @@ import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_tool import AbstractAbstractTool
+from .utilities_colors import utilities_gdk_rgba_to_color_array
 
 class AbstractCanvasTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractCanvasTool'
@@ -202,9 +203,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			# here nor do this.
 			# TODO it should paint *around* the deformed surface after it's
 			# returned by the current method
-			cairo_context.set_source_rgba(self._expansion_rgba.red * 255, \
-			                                 self._expansion_rgba.green * 255, \
-			        self._expansion_rgba.blue * 255, self._expansion_rgba.alpha)
+			color_array = utilities_gdk_rgba_to_color_array(self._expansion_rgba)
+			cairo_context.set_source_rgba(*color_array)
 			cairo_context.paint()
 
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)

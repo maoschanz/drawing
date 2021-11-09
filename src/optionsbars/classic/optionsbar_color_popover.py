@@ -17,7 +17,7 @@
 
 import cairo
 from gi.repository import Gtk, Gdk
-from .utilities import utilities_get_rgba_name
+from .utilities_colors import utilities_get_rgba_name
 
 PREFIX = '/com/github/maoschanz/drawing/'
 

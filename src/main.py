@@ -21,7 +21,7 @@ gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrWindow
 from .preferences import DrPrefsWindow
-from .utilities import utilities_gfile_is_image
+from .utilities_files import utilities_gfile_is_image
 
 APP_ID = 'com.github.maoschanz.drawing'
 APP_PATH = '/com/github/maoschanz/drawing'

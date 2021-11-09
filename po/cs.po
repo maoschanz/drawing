@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-10-10 06:48+0200\n"
+"POT-Creation-Date: 2021-11-03 03:14+0100\n"
 "PO-Revision-Date: 2021-08-09 22:47+0200\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -189,6 +189,10 @@ msgstr "Znovu načíst soubor"
 msgid "Image properties"
 msgstr "Vlastnosti obrázku"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Reset canvas"
+msgstr ""
+
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/saving_manager.py
@@ -307,18 +311,21 @@ msgstr "Optimální přiblížení"
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
 msgstr "Oddálit"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
 msgstr "Původní přiblížení"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
 msgstr "Přiblížit"
 
@@ -343,6 +350,36 @@ msgstr "Dolů"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
 msgstr "Vpravo"
+
+#. Context: this action scrolls to the left end of the
+#. canvas. The "go left" action only goes a few centimeters
+#. to the left, but this one goes all the way left.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the left end"
+msgstr "Záložka nalevo"
+
+#. Context: this action scrolls to the top of the canvas
+#. The "go up" action only goes a few centimeters up, but
+#. this one goes all the way to the top.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the top"
+msgstr ""
+
+#. Context: this action scrolls to the bottom of the canvas
+#. The "go down" action only goes a few centimeters down,
+#. but this one goes all the way to the bottom.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the bottom"
+msgstr ""
+
+#. Context: this action scrolls to the right end of the
+#. canvas. The "go right" action only goes a few centimeters
+#. to the right, but this one goes all the way right.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#, fuzzy
+msgid "Go to the right end"
+msgstr "Záložka napravo"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -639,7 +676,7 @@ msgstr "Okno"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
-#: src/ui/properties.ui src/utilities.py
+#: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
 msgstr "pixely"
 
@@ -661,23 +698,27 @@ msgstr "Zrušit výběr"
 msgid "Deselect"
 msgstr "Zrušit výběr"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_crop.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "Oříznout"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_scale.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "Změnit velikost"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_rotate.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "Otočit"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_filters.py
+#. This is the name of the tool changing rectangles into parallelograms.
+#. It's synonymous with tilt, slant, bend. If you need a reference to
+#. translate it, this is named after MS Paint's "Stretch/Skew" dialog.
+#: src/ui/selection-manager.ui src/preferences.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Zšikmit"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
 msgstr "Filtry"
 
@@ -757,10 +798,14 @@ msgid "Apply a transformation"
 msgstr "Použít transformaci"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historie"
+msgid "Tabs"
+msgstr "Záložky"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "Přepnout náhled"
+
+#: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
 msgstr "Výběr"
 
@@ -785,18 +830,14 @@ msgid "Edit the secondary color (right click)"
 msgstr "Upravit vedlejší barvu (kliknout pravým tlačítkem)"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Záložky"
+msgid "History"
+msgstr "Historie"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigace"
-
-#: src/ui/shortcuts.ui
-msgid "Toggle the preview"
-msgstr "Přepnout náhled"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"
@@ -920,8 +961,9 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -949,7 +991,8 @@ msgstr "Výchozí výška"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
@@ -972,11 +1015,11 @@ msgstr ""
 "Pokud ukládáte obrázky v těchto formátech, co chcete použít k nahrazení "
 "průhledných pixelů?"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
 msgstr "Bílá"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
 msgstr "Černá"
 
@@ -1269,120 +1312,6 @@ msgstr "Výběrový pixbuf je prázdný."
 msgid "The selection path is empty."
 msgstr "Výběrová cesta je prázdná."
 
-#: src/utilities.py
-msgid "Transparent"
-msgstr "Průhledný"
-
-#: src/utilities.py
-#, python-format
-msgid "%s%% transparent"
-msgstr "%s%% průhledný"
-
-#: src/utilities.py
-msgid "Grey"
-msgstr "Šedá"
-
-#: src/utilities.py
-msgid "Orange"
-msgstr "Oranžová"
-
-#: src/utilities.py
-msgid "Brown"
-msgstr "Hnědá"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably brown.
-#: src/utilities.py
-msgid "Probably brown"
-msgstr "Pravděpodobně hnědá"
-
-#: src/utilities.py
-msgid "Red"
-msgstr "Červená"
-
-#: src/utilities.py
-msgid "Green"
-msgstr "Zelená"
-
-#: src/utilities.py
-msgid "Blue"
-msgstr "Modrá"
-
-#: src/utilities.py
-msgid "Yellow"
-msgstr "Žlutá"
-
-#: src/utilities.py
-msgid "Magenta"
-msgstr "Purpurová"
-
-#: src/utilities.py
-msgid "Purple"
-msgstr "Fialová"
-
-#: src/utilities.py
-msgid "Cyan"
-msgstr "Tyrkysová"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably teal.
-#. You can translate "teal" with the name of approaching color, like
-#. turquoise or green-blue.
-#: src/utilities.py
-msgid "Probably teal"
-msgstr "Pravděpodobně zelenomodrá"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app can't find a corresponding color name.
-#: src/utilities.py
-msgid "Unknown color name"
-msgstr "Neznámý název barvy"
-
-#: src/utilities.py
-msgid "All pictures"
-msgstr "Všechny obrázky"
-
-#: src/utilities.py
-msgid "PNG images"
-msgstr "PNG obrázky"
-
-#: src/utilities.py
-msgid "JPEG images"
-msgstr "JPEG obrázky"
-
-#: src/utilities.py
-msgid "BMP images"
-msgstr "BMP obrázky"
-
-#. To translators: it appears in tooltips over numerical inputs
-#: src/utilities.py
-msgid "percents"
-msgstr "procenta"
-
-#. To translators: it's the angle measure unit, it appears in a tooltip
-#. over a numerical input
-#: src/utilities.py
-msgid "degrees"
-msgstr "stupně"
-
-#: src/utilities.py
-#, python-format
-msgid "%s isn't an image."
-msgstr "%s není obrázek."
-
-#: src/utilities.py
-msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr "Omlouváme se, ale tato aplikace nepodporuje obrázky WEBP."
-
-#. Context: an error message, %s is a file path
-#: src/utilities.py
-#, python-format
-msgid "Despite its name, %s is a WEBP file."
-msgstr "Navzdory své příponě je %s stále obrázek WEBP."
-
 #. Context: an error message
 #: src/tools_initializer.py
 #, python-format
@@ -1440,7 +1369,8 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Úpravy se projeví v dalším novém okně."
 
 #: src/window.py
-msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+#, fuzzy
+msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
 "Stisknutím prostředního tlačítka myši, tapnutím třemi prsty, nebo stisknutím "
 "klávesy F8 zobrazíte/skryjete panely nástrojů."
@@ -1501,6 +1431,136 @@ msgstr "Importovat obrázek"
 msgid "Required tool is not available"
 msgstr "Požadovaný nástroj není k dispozici"
 
+#: src/utilities/utilities_colors.py
+msgid "Transparent"
+msgstr "Průhledný"
+
+#: src/utilities/utilities_colors.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% průhledný"
+
+#: src/utilities/utilities_colors.py
+msgid "Grey"
+msgstr "Šedá"
+
+#: src/utilities/utilities_colors.py
+msgid "Orange"
+msgstr "Oranžová"
+
+#: src/utilities/utilities_colors.py
+msgid "Brown"
+msgstr "Hnědá"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities/utilities_colors.py
+msgid "Probably brown"
+msgstr "Pravděpodobně hnědá"
+
+#: src/utilities/utilities_colors.py
+msgid "Red"
+msgstr "Červená"
+
+#: src/utilities/utilities_colors.py
+msgid "Green"
+msgstr "Zelená"
+
+#: src/utilities/utilities_colors.py
+msgid "Blue"
+msgstr "Modrá"
+
+#: src/utilities/utilities_colors.py
+msgid "Yellow"
+msgstr "Žlutá"
+
+#: src/utilities/utilities_colors.py
+msgid "Magenta"
+msgstr "Purpurová"
+
+#: src/utilities/utilities_colors.py
+msgid "Purple"
+msgstr "Fialová"
+
+#: src/utilities/utilities_colors.py
+msgid "Cyan"
+msgstr "Tyrkysová"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities/utilities_colors.py
+msgid "Probably teal"
+msgstr "Pravděpodobně zelenomodrá"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities/utilities_colors.py
+msgid "Unknown color name"
+msgstr "Neznámý název barvy"
+
+#: src/utilities/utilities_files.py
+msgid "All pictures"
+msgstr "Všechny obrázky"
+
+#: src/utilities/utilities_files.py
+msgid "PNG images"
+msgstr "PNG obrázky"
+
+#: src/utilities/utilities_files.py
+msgid "JPEG images"
+msgstr "JPEG obrázky"
+
+#: src/utilities/utilities_files.py
+msgid "BMP images"
+msgstr "BMP obrázky"
+
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s není obrázek."
+
+#: src/utilities/utilities_files.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "Omlouváme se, ale tato aplikace nepodporuje obrázky WEBP."
+
+#. Context: an error message, %s is a file path
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Navzdory své příponě je %s stále obrázek WEBP."
+
+#: src/utilities/utilities_paths.py
+msgid "Continue"
+msgstr "Pokračovat"
+
+#: src/utilities/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Tato oblast se zdá být špatně vymezená nebo je velmi složitá."
+
+#: src/utilities/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Tento algoritmus nemusí být schopen spravovat požadovanou oblast."
+
+#: src/utilities/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "Chcete operaci přerušit nebo nechat nástroj se snažit?"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities/utilities_units.py
+msgid "percents"
+msgstr "procenta"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities/utilities_units.py
+msgid "degrees"
+msgstr "stupně"
+
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1514,7 +1574,8 @@ msgstr "Hlavní barva"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
@@ -1550,7 +1611,6 @@ msgid "Use this editor by default"
 msgstr "Použít tento editor jako výchozí"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Možnosti výběru"
 
@@ -1560,7 +1620,8 @@ msgid "Replace with…"
 msgstr "Nahradit s..."
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
@@ -1579,7 +1640,8 @@ msgstr "Použít"
 msgid "More options"
 msgstr "Více možností"
 
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Rozbalit pomocí..."
 
@@ -1635,6 +1697,16 @@ msgstr "Při změně velikosti z rohů"
 msgid "Never"
 msgstr "Nikdy"
 
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Pixels"
+msgstr "pixely"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+#, fuzzy
+msgid "Percentage"
+msgstr "procenta"
+
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
 msgstr "Horizontální deformace"
@@ -1649,26 +1721,6 @@ msgstr "Vertikální deformace"
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
 "Nelze spustit operaci: nesprávné ID nástroje (očekáváno {0}, získáno {1})"
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "Pokračovat"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Tato oblast se zdá být špatně vymezená nebo je velmi složitá."
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Tento algoritmus nemusí být schopen spravovat požadovanou oblast."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr "Chcete operaci přerušit nebo nechat nástroj se snažit?"
-
-#: src/tools/ui/selection.ui
-msgid "Transform"
-msgstr "Transormovat"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1689,10 +1741,8 @@ msgstr "Zakulacený"
 msgid "Square"
 msgstr "Rovný"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Obrys"
 
@@ -1736,7 +1786,7 @@ msgstr "Dvojitá šipka"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Uhladit"
 
@@ -1794,7 +1844,10 @@ msgstr "Promíchat pixely"
 msgid "Shuffle and blur"
 msgstr "Promíchat a rozmazat"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mozaika"
 
@@ -1835,29 +1888,24 @@ msgstr "Rychlé rozostření"
 msgid "Slow blur"
 msgstr "Pomalé rozostření"
 
-#. Context: a filter to censor the image with some little tiles
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pixelizace"
-
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
 msgstr "Směr rozostření"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Horizontální"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Vertikální"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
 msgid "No direction"
 msgstr "Žádný směr"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur horizontally"
+msgstr "Překlopit horizontálně"
+
+#: src/tools/ui/tool-filters.ui
+#, fuzzy
+msgid "Blur vertically"
+msgstr "Překlopit vertikálně"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2029,6 +2077,18 @@ msgstr "Žádné pozadí"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Stín"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Žádný obrys"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Žádný obrys"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2218,12 +2278,20 @@ msgstr "Změna velikosti výběru"
 msgid "Scaling the canvas"
 msgstr "Změna velikosti plátna"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Zšikmit"
+#, fuzzy
+msgid "Skewing options"
+msgstr "Možnosti změny velikosti"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the selection"
+msgstr "Změna velikosti výběru"
+
+#: src/tools/transform_tools/tool_skew.py
+#, fuzzy
+msgid "Skewing the canvas"
+msgstr "Změna velikosti plátna"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2232,6 +2300,18 @@ msgstr "Poloměr rozostření"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturace"
+
+#~ msgid "Transform"
+#~ msgstr "Transormovat"
+
+#~ msgid "Pixelization"
+#~ msgstr "Pixelizace"
+
+#~ msgid "Horizontal"
+#~ msgstr "Horizontální"
+
+#~ msgid "Vertical"
+#~ msgstr "Vertikální"
 
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Kreslicí aplikace pro prostředí GNOME"

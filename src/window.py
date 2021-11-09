@@ -33,8 +33,8 @@ from .printing_manager import DrPrintingManager
 from .tools_initializer import DrToolsInitializer
 
 # Import various functions
-from .utilities import utilities_add_filechooser_filters
-from .utilities import utilities_gfile_is_image
+from .utilities_files import utilities_add_filechooser_filters, \
+                             utilities_gfile_is_image
 
 UI_PATH = '/com/github/maoschanz/drawing/ui/'
 DEFAULT_TOOL_ID = 'pencil'
@@ -160,7 +160,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		dev = self.gsettings.get_boolean('devel-only')
 		self.tools = {}
 		self.log_message('window has started, now loading tools')
-		self.hide_message()
+		self._hide_message()
 
 		tools_initializer = DrToolsInitializer(self)
 		self.tools = tools_initializer.load_all_tools(dev, disabled_tools)
@@ -265,7 +265,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
-			self.reveal_message(_("The clipboard doesn't contain any image."))
+			self.reveal_message(_("The clipboard doesn't contain any image."), True)
 			self.build_blank_image()
 		else:
 			self._build_new_tab(pixbuf=pixbuf)
@@ -393,8 +393,8 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def connect_signals(self):
 		# Closing the info bar
-		self.info_bar.connect('close', self.hide_message)
-		self.info_bar.connect('response', self.hide_message)
+		self.info_bar.connect('close', self._hide_message)
+		self.info_bar.connect('response', self._hide_message)
 
 		# Closing the window
 		self.connect('delete-event', self.on_close)
@@ -494,6 +494,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('fullscreen', False, self.action_fullscreen)
 		self.app.set_accels_for_action('win.fullscreen', ['F11'])
 
+		self.add_action_simple('reset_canvas', self.action_reset, ['<Ctrl>BackSpace'])
 		self.add_action_simple('reload_file', self.action_reload, ['<Ctrl>r'])
 		self.add_action_simple('properties', self.action_properties)
 		self.add_action_simple('unfullscreen', self.action_unfullscreen)
@@ -697,30 +698,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		# Check whether or not the scrollbars should now be displayed
 		self.get_active_image().fake_scrollbar_update()
 
-	def hide_message(self, *args):
-		self.info_bar.set_visible(False)
-		self.info_action.set_visible(False)
-		self.info_label.set_label("")
-
-	def reveal_message(self, label):
-		"""Update the content and the visibility of the info bar."""
-		self.info_bar.set_visible(True)
-		self.info_action.set_visible(False)
-		self.info_label.set_label(label)
-		self.log_message(label)
-
-	def log_message(self, message):
-		if self.devel_mode:
-			print("Drawing: " + message)
-
-	def reveal_action_report(self, message):
-		self.info_bar.set_visible(True)
-		self.info_label.set_label(message)
-		self.info_action.set_action_name('app.report_bug')
-		self.info_action.set_label(_("Report a bug"))
-		self.info_action.set_visible(True)
-		self.log_message(message)
-
 	def _update_tabs_visibility(self):
 		controls_hidden = self.lookup_action('hide_controls').get_state()
 		should_show = (self.notebook.get_n_pages() > 1) and not controls_hidden
@@ -735,7 +712,43 @@ class DrWindow(Gtk.ApplicationWindow):
 		key = 'gtk-application-prefer-dark-theme';
 		use_dark_theme = self.gsettings.get_boolean('dark-theme-variant')
 		Gtk.Settings.get_default().set_property(key, use_dark_theme)
-		# XXX vraiment intriguant ce truc là ^
+
+	############################################################################
+	# INFORMATION MESSAGES #####################################################
+
+	def log_message(self, message):
+		if self.devel_mode:
+			print("Drawing: " + message)
+
+	def reveal_action_report(self, message):
+		"""Update the label and the visibility of the info bar. The 'report bug'
+		action is suggested."""
+		self.info_bar.set_visible(True)
+		self.info_label.set_label(message)
+		self.info_action.set_action_name('app.report_bug')
+		self.info_action.set_label(_("Report a bug"))
+		self.info_action.set_visible(True)
+		self.log_message(message)
+
+	def reveal_message(self, label, hide_afterwards=False):
+		"""Update the label and the visibility of the info bar. No action is
+		suggested, and the info bar may optionally be hidden after 4 seconds."""
+		if hide_afterwards:
+			GLib.timeout_add(4000, self.__hide_message_async, {'label': label})
+		self.info_bar.set_visible(True)
+		self.info_action.set_visible(False)
+		self.info_label.set_label(label)
+		self.log_message(label)
+
+	def __hide_message_async(self, async_cb_data):
+		if async_cb_data['label'] == self.info_label.get_label():
+			self._hide_message()
+		# else the message has changed so it shouldn't be hidden now
+
+	def _hide_message(self, *args):
+		self.info_bar.set_visible(False)
+		self.info_action.set_visible(False)
+		self.info_label.set_label("")
 
 	############################################################################
 	# FULLSCREEN ###############################################################
@@ -752,10 +765,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		shall_fullscreen = args[1]
 		if shall_fullscreen:
 			self.fullscreen()
-			self.reveal_message(_("Middle-click, tap with 3 fingers, " + \
-			                           "or press F8 to show/hide controls.") + \
-			                           " " + _("Press F11 to exit fullscreen."))
-			# TODO à confirmer que 3 doigts c'est réel ^
+			self.reveal_message(_("Middle-click or press F8 to show/hide controls.") + \
+			                     " " + _("Press F11 to exit fullscreen."), True)
 		else:
 			self.unfullscreen()
 		self._set_controls_hidden(shall_fullscreen)
@@ -960,6 +971,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			return self.pointer_to_current_page
 
+	def action_reset(self, *args):
+		self.get_active_image().reset_to_initial_pixbuf()
+
 	def action_reload(self, *args):
 		self.get_active_image().reload_from_disk()
 
@@ -983,7 +997,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
 			if duplicate is not None and not w.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
-				self.hide_message()
+				self._hide_message()
 				return
 
 			dialog = DrMessageDialog(self)
@@ -1004,7 +1018,7 @@ class DrWindow(Gtk.ApplicationWindow):
 				self._try_load_file(gfile, False)
 			elif result == new_window_id:
 				self.app.open_window_with_content(gfile, False, False)
-		self.hide_message()
+		self._hide_message()
 
 	def file_chooser_open(self, *args):
 		"""Opens an "open" file chooser dialog, and return a GioFile or None."""
@@ -1101,7 +1115,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_export_cb(self, *args):
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		cb.set_image(self.get_active_image().main_pixbuf)
-		self.reveal_message(_("Image copied to clipboard"))
+		self.reveal_message(_("Image copied to clipboard"), True)
 
 	############################################################################
 	# SELECTION MANAGEMENT #####################################################
@@ -1205,7 +1219,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# self.reveal_message(_("Undoing…"))
 		self.get_active_image().try_undo()
 		# self.log_message('finished undoing')
-		# self.hide_message()
+		# self._hide_message()
 
 	def action_redo(self, *args):
 		self.get_active_image().try_redo()

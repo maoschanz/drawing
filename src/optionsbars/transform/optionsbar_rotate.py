@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 from .abstract_optionsbar import AbstractOptionsBar
-from .utilities import utilities_add_unit_to_spinbtn
+from .utilities_units import utilities_add_unit_to_spinbtn
 
 class OptionsBarRotate(AbstractOptionsBar):
 	__gtype_name__ = 'OptionsBarRotate'

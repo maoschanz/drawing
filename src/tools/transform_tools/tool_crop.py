@@ -19,6 +19,8 @@ from gi.repository import Gdk, GdkPixbuf
 from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_crop import OptionsBarCrop
 from .utilities_overlay import utilities_show_handles_on_context
+from .utilities_colors import utilities_rgba_to_hexadecimal, \
+                              utilities_gdk_rgba_to_color_array
 
 class ToolCrop(AbstractCanvasTool):
 	__gtype_name__ = 'ToolCrop'
@@ -62,6 +64,7 @@ class ToolCrop(AbstractCanvasTool):
 			self._init_if_selection()
 		else:
 			self._init_if_main()
+		self._update_expansion_rgba()
 		self.width_btn.set_value(self._original_width)
 		self.height_btn.set_value(self._original_height)
 		self.set_action_sensitivity('crop-expand', not self.apply_to_selection)
@@ -223,21 +226,25 @@ class ToolCrop(AbstractCanvasTool):
 		y = operation['local_dy']
 		width = operation['width']
 		height = operation['height']
-		rgba = self._rgba_as_hexa_int(operation['rgba'])
+
+		rgba_array = utilities_gdk_rgba_to_color_array(operation['rgba'])
+		rgba_array[3] *= 255
+		hexa_rgba = utilities_rgba_to_hexadecimal(*rgba_array)
+
 		is_selection = operation['is_selection']
 		if is_selection:
 			source_pixbuf = self.get_selection_pixbuf()
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 		self.get_image().set_temp_pixbuf(source_pixbuf.copy())
-		self._crop_temp_pixbuf(x, y, width, height, is_selection, rgba)
+		self._crop_temp_pixbuf(x, y, width, height, is_selection, hexa_rgba)
 		if operation['is_etf']:
 			# Case of an "expand to fit" action
 			s_pixbuf = self.get_selection_pixbuf()
 			self.get_selection().update_from_transform_tool(s_pixbuf, -1 * x, -1 * y)
 		self.common_end_operation(operation)
 
-	def _crop_temp_pixbuf(self, x, y, width, height, is_selection, rgba):
+	def _crop_temp_pixbuf(self, x, y, width, height, is_selection, hexa_rgba):
 		"""Crop and/or expand the temp pixbuf according to given parameters."""
 
 		# Coordinates of the origin of the source pixbuf (temp_p)
@@ -281,7 +288,7 @@ class ToolCrop(AbstractCanvasTool):
 		# Initialisation of an EMPTY pixbuf with the wanted size and color
 		new_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, \
 		                                                          width, height)
-		new_pixbuf.fill(rgba)
+		new_pixbuf.fill(hexa_rgba)
 
 		temp_p = self.get_image().temp_pixbuf
 		# The width/height we want (mesured from the respective origins of the
@@ -294,15 +301,6 @@ class ToolCrop(AbstractCanvasTool):
 		# (`new_pixbuf`) starting at the coordinates `dest_*`.
 		temp_p.copy_area(src_x, src_y, min_w, min_h, new_pixbuf, dest_x, dest_y)
 		self.get_image().set_temp_pixbuf(new_pixbuf)
-
-	def _rgba_as_hexa_int(self, gdk_rgba):
-		"""The method GdkPixbuf.Pixbuf.fill wants an hexadecimal integer whose
-		format is 0xrrggbbaa so here are ugly binary operators."""
-		r = int(255 * gdk_rgba.red)
-		g = int(255 * gdk_rgba.green)
-		b = int(255 * gdk_rgba.blue)
-		a = int(255 * gdk_rgba.alpha)
-		return (((((r << 8) + g) << 8) + b) << 8) + a
 
 	############################################################################
 ################################################################################

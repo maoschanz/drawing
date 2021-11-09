@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-10-10 06:48+0200\n"
-"PO-Revision-Date: 2021-10-10 11:31+0200\n"
+"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"PO-Revision-Date: 2021-11-03 23:12+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -196,6 +196,10 @@ msgstr "Przeładuj plik"
 msgid "Image properties"
 msgstr "Właściwości obrazu"
 
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Reset canvas"
+msgstr "Zresetuj płótno"
+
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/saving_manager.py
@@ -314,18 +318,21 @@ msgstr "Optymalne powiększenie"
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
 msgstr "Oddal"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
 msgstr "Oryginalne powiększenie"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
 msgstr "Powiększ"
 
@@ -350,6 +357,34 @@ msgstr "Do dołu"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
 msgstr "Do prawej"
+
+#. Context: this action scrolls to the left end of the
+#. canvas. The "go left" action only goes a few centimeters
+#. to the left, but this one goes all the way left.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the left end"
+msgstr "Do lewego końca"
+
+#. Context: this action scrolls to the top of the canvas
+#. The "go up" action only goes a few centimeters up, but
+#. this one goes all the way to the top.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the top"
+msgstr "Do samej góry"
+
+#. Context: this action scrolls to the bottom of the canvas
+#. The "go down" action only goes a few centimeters down,
+#. but this one goes all the way to the bottom.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the bottom"
+msgstr "Do samego dołu"
+
+#. Context: this action scrolls to the right end of the
+#. canvas. The "go right" action only goes a few centimeters
+#. to the right, but this one goes all the way right.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the right end"
+msgstr "Do prawego końca"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -645,7 +680,7 @@ msgstr "Okno"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
-#: src/ui/properties.ui src/utilities.py
+#: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
 msgstr "piksele"
 
@@ -667,23 +702,27 @@ msgstr "Zakończ zaznaczanie"
 msgid "Deselect"
 msgstr "Odznacz"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_crop.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
 msgstr "Przycinanie"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_scale.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
 msgstr "Skalowanie"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_rotate.py
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
 msgstr "Obracanie"
 
-#: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#: src/tools/transform_tools/tool_filters.py
+#. This is the name of the tool changing rectangles into parallelograms.
+#. It's synonymous with tilt, slant, bend. If you need a reference to
+#. translate it, this is named after MS Paint's "Stretch/Skew" dialog.
+#: src/ui/selection-manager.ui src/preferences.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "Zniekształcacz"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
 msgstr "Filtry"
 
@@ -763,10 +802,14 @@ msgid "Apply a transformation"
 msgstr "Zastosuj przekształcenie"
 
 #: src/ui/shortcuts.ui
-msgid "History"
-msgstr "Historia"
+msgid "Tabs"
+msgstr "Karty"
 
 #: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "Przełącz podgląd"
+
+#: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
 msgstr "Zaznaczanie"
 
@@ -791,18 +834,14 @@ msgid "Edit the secondary color (right click)"
 msgstr "Edytuj kolor dodatkowy (prawy przycisk myszy)"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Karty"
+msgid "History"
+msgstr "Historia"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Nawigacja"
-
-#: src/ui/shortcuts.ui
-msgid "Toggle the preview"
-msgstr "Przełącz podgląd"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"
@@ -926,8 +965,9 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/utilities_paths.py src/tools/ui/tool-text.ui
+#: src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -955,7 +995,8 @@ msgstr "Domyślna wysokość"
 #. saving the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
@@ -978,11 +1019,11 @@ msgstr ""
 "Jeśli zapiszesz swój obraz w jednym z tych formatów, to co chcesz zrobić z "
 "przezroczystymi punktami obrazu?"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
 msgstr "Biały"
 
-#: src/preferences.py src/saving_manager.py src/utilities.py
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
 msgstr "Czarny"
 
@@ -1277,120 +1318,6 @@ msgstr "Wybór pixbuf jest pusty."
 msgid "The selection path is empty."
 msgstr "Ścieżka wyboru jest pusta."
 
-#: src/utilities.py
-msgid "Transparent"
-msgstr "Przezroczysty"
-
-#: src/utilities.py
-#, python-format
-msgid "%s%% transparent"
-msgstr "%s%% przezroczysty"
-
-#: src/utilities.py
-msgid "Grey"
-msgstr "Szary"
-
-#: src/utilities.py
-msgid "Orange"
-msgstr "Pomarańczowy"
-
-#: src/utilities.py
-msgid "Brown"
-msgstr "Brązowy"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably brown.
-#: src/utilities.py
-msgid "Probably brown"
-msgstr "Prawdopodobnie brązowy"
-
-#: src/utilities.py
-msgid "Red"
-msgstr "Czerwony"
-
-#: src/utilities.py
-msgid "Green"
-msgstr "Zielony"
-
-#: src/utilities.py
-msgid "Blue"
-msgstr "Niebieski"
-
-#: src/utilities.py
-msgid "Yellow"
-msgstr "Żółty"
-
-#: src/utilities.py
-msgid "Magenta"
-msgstr "Kolor czerwony o niebieskawym odcieniu"
-
-#: src/utilities.py
-msgid "Purple"
-msgstr "Purpurowy"
-
-#: src/utilities.py
-msgid "Cyan"
-msgstr "Cyjan"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app thinks it's probably teal.
-#. You can translate "teal" with the name of approaching color, like
-#. turquoise or green-blue.
-#: src/utilities.py
-msgid "Probably teal"
-msgstr "Prawdopodobnie turkusowy"
-
-#. Context: the name of the current color is provided as a tooltip to
-#. help users with color blindness, but some color names don't have a
-#. clear definition. Here, the app can't find a corresponding color name.
-#: src/utilities.py
-msgid "Unknown color name"
-msgstr "Nieznana nazwa koloru"
-
-#: src/utilities.py
-msgid "All pictures"
-msgstr "Wszystkie obrazy"
-
-#: src/utilities.py
-msgid "PNG images"
-msgstr "Obrazy PNG"
-
-#: src/utilities.py
-msgid "JPEG images"
-msgstr "Obrazy JPG"
-
-#: src/utilities.py
-msgid "BMP images"
-msgstr "Obrazy BMP"
-
-#. To translators: it appears in tooltips over numerical inputs
-#: src/utilities.py
-msgid "percents"
-msgstr "procent"
-
-#. To translators: it's the angle measure unit, it appears in a tooltip
-#. over a numerical input
-#: src/utilities.py
-msgid "degrees"
-msgstr "kąt (w stopniach)"
-
-#: src/utilities.py
-#, python-format
-msgid "%s isn't an image."
-msgstr "%s nie jest obrazem."
-
-#: src/utilities.py
-msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr "Przepraszamy, ta aplikacja nie może załadować obrazów WEBP."
-
-#. Context: an error message, %s is a file path
-#: src/utilities.py
-#, python-format
-msgid "Despite its name, %s is a WEBP file."
-msgstr "Pomimo swojej nazwy %s jest plikiem WEBP."
-
 #. Context: an error message
 #: src/tools_initializer.py
 #, python-format
@@ -1447,10 +1374,10 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Zmiany zaczną obowiązywać w kolejnym nowym oknie."
 
 #: src/window.py
-msgid "Middle-click, tap with 3 fingers, or press F8 to show/hide controls."
+msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Kliknij środkowym przyciskiem, stuknij trzema palcami lub naciśnij klawisz "
-"F8, aby wyświetlić lub ukryć elementy sterujące."
+"Kliknij środkowym przyciskiem lub naciśnij klawisz F8, aby wyświetlić lub "
+"ukryć elementy sterujące."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1506,6 +1433,137 @@ msgstr "Importuj obraz"
 msgid "Required tool is not available"
 msgstr "Wymagane narzędzie jest niedostępne"
 
+#: src/utilities/utilities_colors.py
+msgid "Transparent"
+msgstr "Przezroczysty"
+
+#: src/utilities/utilities_colors.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% przezroczysty"
+
+#: src/utilities/utilities_colors.py
+msgid "Grey"
+msgstr "Szary"
+
+#: src/utilities/utilities_colors.py
+msgid "Orange"
+msgstr "Pomarańczowy"
+
+#: src/utilities/utilities_colors.py
+msgid "Brown"
+msgstr "Brązowy"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities/utilities_colors.py
+msgid "Probably brown"
+msgstr "Prawdopodobnie brązowy"
+
+#: src/utilities/utilities_colors.py
+msgid "Red"
+msgstr "Czerwony"
+
+#: src/utilities/utilities_colors.py
+msgid "Green"
+msgstr "Zielony"
+
+#: src/utilities/utilities_colors.py
+msgid "Blue"
+msgstr "Niebieski"
+
+#: src/utilities/utilities_colors.py
+msgid "Yellow"
+msgstr "Żółty"
+
+#: src/utilities/utilities_colors.py
+msgid "Magenta"
+msgstr "Kolor czerwony o niebieskawym odcieniu"
+
+#: src/utilities/utilities_colors.py
+msgid "Purple"
+msgstr "Purpurowy"
+
+#: src/utilities/utilities_colors.py
+msgid "Cyan"
+msgstr "Cyjan"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities/utilities_colors.py
+msgid "Probably teal"
+msgstr "Prawdopodobnie turkusowy"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities/utilities_colors.py
+msgid "Unknown color name"
+msgstr "Nieznana nazwa koloru"
+
+#: src/utilities/utilities_files.py
+msgid "All pictures"
+msgstr "Wszystkie obrazy"
+
+#: src/utilities/utilities_files.py
+msgid "PNG images"
+msgstr "Obrazy PNG"
+
+#: src/utilities/utilities_files.py
+msgid "JPEG images"
+msgstr "Obrazy JPG"
+
+#: src/utilities/utilities_files.py
+msgid "BMP images"
+msgstr "Obrazy BMP"
+
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s nie jest obrazem."
+
+#: src/utilities/utilities_files.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "Przepraszamy, ta aplikacja nie może załadować obrazów WEBP."
+
+#. Context: an error message, %s is a file path
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "Pomimo swojej nazwy %s jest plikiem WEBP."
+
+#: src/utilities/utilities_paths.py
+msgid "Continue"
+msgstr "Kontynuuj"
+
+#: src/utilities/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "Obszar wydaje się źle wytyczony lub jest zbyt złożony."
+
+#: src/utilities/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "Ten algorytm może nie być w stanie poradzić sobie z tym obszarem."
+
+#: src/utilities/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr ""
+"Czy chcesz przerwać operację, czy pozwolić narzędziu się z tym zmierzyć?"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities/utilities_units.py
+msgid "percents"
+msgstr "procent"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities/utilities_units.py
+msgid "degrees"
+msgstr "kąt (w stopniach)"
+
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
@@ -1519,7 +1577,8 @@ msgstr "Kolor główny"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
@@ -1555,7 +1614,6 @@ msgid "Use this editor by default"
 msgstr "Używaj tego edytora domyślnie"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/tools/selection_tools/abstract_select.py
 msgid "Selection options"
 msgstr "Opcje zaznaczania"
 
@@ -1565,7 +1623,8 @@ msgid "Replace with…"
 msgstr "Zamień…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
@@ -1584,7 +1643,8 @@ msgstr "Zastosuj"
 msgid "More options"
 msgstr "Więcej opcji"
 
-#: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
 msgstr "Rozszerz za pomocą…"
 
@@ -1640,6 +1700,14 @@ msgstr "Podczas skalowania począwszy od narożników"
 msgid "Never"
 msgstr "Nigdy"
 
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Pixels"
+msgstr "Piksele"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Percentage"
+msgstr "Procent"
+
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
 msgstr "Pozioma deformacja"
@@ -1655,27 +1723,6 @@ msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
 "Nie można rozpocząć operacji: nieprawidłowy identyfikator narzędzia "
 "(oczekiwano {0}, uzyskano {1})"
-
-#: src/tools/utilities_paths.py
-msgid "Continue"
-msgstr "Kontynuuj"
-
-#: src/tools/utilities_paths.py
-msgid "The area seems poorly delimited, or is very complex."
-msgstr "Obszar wydaje się źle wytyczony lub jest zbyt złożony."
-
-#: src/tools/utilities_paths.py
-msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Ten algorytm może nie być w stanie poradzić sobie z tym obszarem."
-
-#: src/tools/utilities_paths.py
-msgid "Do you want to abort the operation, or to let the tool struggle ?"
-msgstr ""
-"Czy chcesz przerwać operację, czy pozwolić narzędziu się z tym zmierzyć?"
-
-#: src/tools/ui/selection.ui
-msgid "Transform"
-msgstr "Przekształć"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1696,10 +1743,8 @@ msgstr "Okrągły"
 msgid "Square"
 msgstr "Kwadratowy"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Kontur"
 
@@ -1743,7 +1788,7 @@ msgstr "Podwójna strzałka"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
-#: src/tools/ui/tool-shape.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
 msgstr "Wygładzanie krawędzi"
 
@@ -1801,7 +1846,10 @@ msgstr "Pomieszaj piksele"
 msgid "Shuffle and blur"
 msgstr "Pomieszaj i rozmyj"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mozaika"
 
@@ -1842,29 +1890,22 @@ msgstr "Szybkie rozmycie"
 msgid "Slow blur"
 msgstr "Powolne rozmycie"
 
-#. Context: a filter to censor the image with some little tiles
-#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-msgid "Pixelization"
-msgstr "Pikselizacja"
-
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
 msgstr "Kierunek rozmycia"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
-msgid "Horizontal"
-msgstr "Poziome"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
-msgid "Vertical"
-msgstr "Pionowe"
-
-#. Context: about the blur direction
-#: src/tools/ui/tool-filters.ui
 msgid "No direction"
 msgstr "Bez kierunku"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur horizontally"
+msgstr "Rozmyj poziomo"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur vertically"
+msgstr "Rozmyj pionowo"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2036,6 +2077,16 @@ msgstr "Brak tła"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Cień"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Thin outline"
+msgstr "Cienki kontur"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Thick outline"
+msgstr "Gruby kontur"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2225,12 +2276,17 @@ msgstr "Skalowanie zaznaczenia"
 msgid "Scaling the canvas"
 msgstr "Skalowanie płótna"
 
-#. In this context, "Skew" is the name of the tool changing rectangles
-#. into parallelograms (= tilt, slant, bend). Named after MS Paint's
-#. "Stretch/Skew" dialog.
 #: src/tools/transform_tools/tool_skew.py
-msgid "Skew"
-msgstr "Zniekształcacz"
+msgid "Skewing options"
+msgstr "Opcje zniekształcania"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skewing the selection"
+msgstr "Zniekształcanie zaznaczenia"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skewing the canvas"
+msgstr "Zniekształcanie płótna"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2239,3 +2295,15 @@ msgstr "Stopień rozmycia"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Nasycenie"
+
+#~ msgid "Transform"
+#~ msgstr "Przekształć"
+
+#~ msgid "Pixelization"
+#~ msgstr "Pikselizacja"
+
+#~ msgid "Horizontal"
+#~ msgstr "Poziome"
+
+#~ msgid "Vertical"
+#~ msgstr "Pionowe"
