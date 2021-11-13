@@ -30,12 +30,8 @@ class ToolSkew(AbstractCanvasTool):
 		super().__init__('skew', _("Skew"), 'tool-skew-symbolic', window)
 		self._x = 0
 		self._y = 0
-		self.add_tool_action_simple('skew-exists', self._enable)
+		self.add_tool_action_simple('skew-exists', self._self_activate)
 		self.add_tool_action_enum('crop-expand', 'initial')
-
-	def _enable(self, *args):
-		"""Ridiculous hack"""
-		pass # FIXME
 
 	def try_build_pane(self):
 		self.pane_id = 'skew'
