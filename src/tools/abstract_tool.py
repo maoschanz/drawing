@@ -161,7 +161,7 @@ class AbstractAbstractTool():
 		flowbox.add(self._label_box)
 		self.fb_child = self._label_box.get_parent()
 
-	def _self_activate(self, *args):
+	def select_flowbox_child(self, *args):
 		self.window.tools_flowbox.select_child(self.fb_child)
 
 	def set_show_label(self, label_visible):
