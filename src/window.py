@@ -169,7 +169,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		# Side pane items for tools
 		self.tools_flowbox.connect('selected-children-changed', \
-		                                        self.update_active_tool_from_fb)
+		                           self._update_active_tool_from_flowbox_signal)
 		for tool_id in self.tools:
 			self.tools[tool_id].build_flowbox_child(self.tools_flowbox)
 		self.on_show_labels_setting_changed()
@@ -188,13 +188,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		# the end of this process will happen later because it requires an
 		# active image, which doesn't exist at this point of the init process.
 
-	def update_active_tool_from_fb(self, *args):
-		selected_tool = self.get_active_tool_from_selected_fb_child()
+	def _update_active_tool_from_flowbox_signal(self, *args):
+		selected_tool = self._get_newly_selected_tool()
 		self.switch_to(selected_tool.id)
 
-	def get_active_tool_from_selected_fb_child(self):
+	def _get_newly_selected_tool(self):
 		for tool_id in self.tools:
-			if self.tools[tool_id].fb_child.is_selected():
+			if self.tools[tool_id].is_flowbox_child_selected():
 				return self.tools[tool_id]
 
 	def build_menubar_tools_menu(self):
@@ -838,7 +838,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
-		if self.tools[state_as_string].fb_child.is_selected():
+		if self.tools[state_as_string].is_flowbox_child_selected():
 			self.switch_to(state_as_string)
 		else:
 			self.tools[state_as_string].select_flowbox_child()

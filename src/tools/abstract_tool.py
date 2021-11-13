@@ -159,10 +159,13 @@ class AbstractAbstractTool():
 		self._label_box.add(label_widget)
 		self._label_box.show_all()
 		flowbox.add(self._label_box)
-		self.fb_child = self._label_box.get_parent()
+		self._fb_child = self._label_box.get_parent()
 
 	def select_flowbox_child(self, *args):
-		self.window.tools_flowbox.select_child(self.fb_child)
+		self.window.tools_flowbox.select_child(self._fb_child)
+
+	def is_flowbox_child_selected(self):
+		return self._fb_child.is_selected()
 
 	def set_show_label(self, label_visible):
 		label_widget = self._label_box.get_children()[1]
