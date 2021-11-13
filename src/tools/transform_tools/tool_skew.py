@@ -35,7 +35,7 @@ class ToolSkew(AbstractCanvasTool):
 
 	def _enable(self, *args):
 		"""Ridiculous hack"""
-		self.row.set_active(True)
+		pass # FIXME
 
 	def try_build_pane(self):
 		self.pane_id = 'skew'

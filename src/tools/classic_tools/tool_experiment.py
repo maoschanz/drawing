@@ -56,10 +56,6 @@ class ToolExperiment(AbstractClassicTool):
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
 
-	def build_row(self):
-		super().build_row()
-		self.row.get_style_context().add_class('destructive-action')
-		return self.row
 
 	def get_edition_status(self):
 		return "You're not supposed to use this tool (development only)."

@@ -114,7 +114,6 @@ class ToolText(AbstractClassicTool):
 			self._on_cancel()
 
 	def force_text_tool(self, string):
-		self.row.set_active(True)
 		self.set_common_values(self._last_click_btn, 100, 100)
 		self._open_popover_at(100, 100)
 		self._set_string(string)

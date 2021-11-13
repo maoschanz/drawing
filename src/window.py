@@ -190,21 +190,26 @@ class DrWindow(Gtk.ApplicationWindow):
 			# Special case of the "pencil" radio button, which is already active
 			self.enable_tool(self.active_tool_id)
 		else:
-			self.active_tool().row.set_active(True)
+			pass
 		self._is_tools_initialisation_finished = True
 
 	def _build_tool_rows(self):
 		"""Adds each tool's button to the side pane."""
-		group = None
+		self.tools_flowbox.connect('selected-children-changed', \
+		                                        self.update_active_tool_from_fb)
+
 		for tool_id in self.tools:
-			row = self.tools[tool_id].build_row()
-			if group is None:
-				group = row
-			else:
-				row.join_group(group)
-			self.tools_flowbox.add(row)
-			row.get_parent().set_can_focus(False)
+			self.tools[tool_id].build_flowbox_child(self.tools_flowbox)
 		self.on_show_labels_setting_changed()
+
+	def update_active_tool_from_fb(self, *args):
+		selected_tool = self.get_active_tool_from_selected_fb_child()
+		self.switch_to(selected_tool.id)
+
+	def get_active_tool_from_selected_fb_child(self):
+		for tool_id in self.tools:
+			if self.tools[tool_id].fb_child.is_selected():
+				return self.tools[tool_id]
 
 	def build_menubar_tools_menu(self):
 		sections = [None, None, None]
@@ -847,12 +852,12 @@ class DrWindow(Gtk.ApplicationWindow):
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
-		if self.tools[state_as_string].row.get_active():
-			self.switch_to(state_as_string, None)
+		if self.tools[state_as_string]._label_box.get_parent().is_selected():
+			self.switch_to(state_as_string)
 		else:
-			self.tools[state_as_string].row.set_active(True)
+			pass # FIXME ^
 
-	def switch_to(self, tool_id, image_pointer):
+	def switch_to(self, tool_id, image_pointer=None):
 		"""Switch from the current tool to `tool_id` and to the current image to
 		`image_pointer`, which can be `None` if the image is not changing."""
 		self.pointer_to_current_page = None
@@ -903,7 +908,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active
 		else:
-			self.tools[self.former_tool_id].row.set_active(True)
+			pass # FIXME ^
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
@@ -1204,7 +1209,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return self.active_tool()
 
 	def force_selection(self):
-		self.get_selection_tool().row.set_active(True)
+		pass # FIXME ^
 
 	def action_apply_transform(self, *args):
 		self.active_tool().on_apply_transform_tool_operation()
