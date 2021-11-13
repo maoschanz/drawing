@@ -90,7 +90,8 @@
                 <child>
                   <object class="GtkFlowBox" id="tools_flowbox">
                     <property name="visible">True</property>
-                    <property name="selection-mode">none</property>
+                    <property name="activate-on-single-click">True</property>
+                    <property name="selection-mode">single</property>
                     <property name="orientation">vertical</property>
                   </object>
                 </child>

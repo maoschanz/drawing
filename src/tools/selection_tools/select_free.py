@@ -31,9 +31,6 @@ class ToolFreeSelect(AbstractSelectionTool):
 		self.add_tool_action_simple('selection_close', self._force_close_shape)
 		self.set_action_sensitivity('selection_close', False)
 
-	def on_tool_selected(self, *args):
-		super().on_tool_selected()
-
 	def on_tool_unselected(self, *args):
 		super().on_tool_unselected()
 		self.set_action_sensitivity('selection_close', False)

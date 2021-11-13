@@ -155,39 +155,42 @@ class AbstractAbstractTool():
 	############################################################################
 	# Side pane ################################################################
 
-	def build_row(self):
-		"""Build the GtkRadioButton for the sidebar. This method stores it as
-		'self.row', but does not pack it in the bar, and does not return it."""
-		self.row = Gtk.RadioButton(
-			relief = Gtk.ReliefStyle.NONE, \
-			draw_indicator = False, \
-			valign = Gtk.Align.CENTER, \
-			tooltip_text = self.label, \
-		)
-
-		self.row.set_detailed_action_name('win.active_tool::' + self.id)
-		self._label_widget = Gtk.Label(use_underline=True, label=self.mnemolabel)
+	def build_flowbox_child(self, flowbox):
+		"""Build the icon and its label for the sidebar."""
+		label_widget = Gtk.Label(use_underline=True, label=self.mnemolabel)
 		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR
 		image = Gtk.Image().new_from_icon_name(self.icon_name, size)
-		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-		box.add(image)
-		box.add(self._label_widget)
-		self.row.add(box)
-		self.row.show_all()
-		return self.row
+		self._label_box = Gtk.Box( \
+			orientation=Gtk.Orientation.HORIZONTAL, \
+			spacing=8, \
+			margin=8 \
+		)
+		self._label_box.add(image)
+		self._label_box.add(label_widget)
+		self._label_box.show_all()
+		flowbox.add(self._label_box)
+		self._fb_child = self._label_box.get_parent()
+
+	def select_flowbox_child(self, *args):
+		self.window.tools_flowbox.select_child(self._fb_child)
+
+	def is_flowbox_child_selected(self):
+		return self._fb_child.is_selected()
 
 	def set_show_label(self, label_visible):
-		self._label_widget.set_visible(label_visible)
+		label_widget = self._label_box.get_children()[1]
+		label_widget.set_visible(label_visible)
+		icon = self._label_box.get_children()[0]
 		if label_visible:
-			self.row.get_children()[0].set_halign(Gtk.Align.START)
+			icon.set_halign(Gtk.Align.START)
 		else:
-			self.row.get_children()[0].set_halign(Gtk.Align.CENTER)
+			icon.set_halign(Gtk.Align.CENTER)
 
 	def update_icon_size(self):
-		image = self.row.get_children()[0].get_children()[0]
+		image = self._label_box.get_children()[0]
 		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:

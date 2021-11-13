@@ -122,7 +122,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		except Exception as excp:
 			self.reveal_message(str(excp))
 
-		self._enable_first_tool()
+		self.active_tool().select_flowbox_child()
+		self._is_tools_initialisation_finished = True
+
 		self.set_picture_title()
 		self._try_show_release_notes()
 
@@ -165,9 +167,15 @@ class DrWindow(Gtk.ApplicationWindow):
 		tools_initializer = DrToolsInitializer(self)
 		self.tools = tools_initializer.load_all_tools(dev, disabled_tools)
 
-		# Side pane buttons for tools, and their menubar items if they don't
-		# exist yet (they're defined on the application level)
-		self._build_tool_rows()
+		# Side pane items for tools
+		self.tools_flowbox.connect('selected-children-changed', \
+		                           self._update_active_tool_from_flowbox_signal)
+		for tool_id in self.tools:
+			self.tools[tool_id].build_flowbox_child(self.tools_flowbox)
+		self.on_show_labels_setting_changed()
+
+		# Tools's menubar items if they don't exist yet (they're defined on the
+		# application level, so they should only be built the first time)
 		if not self.app.has_tools_in_menubar:
 			self.build_menubar_tools_menu()
 
@@ -177,34 +185,17 @@ class DrWindow(Gtk.ApplicationWindow):
 			tool_id = DEFAULT_TOOL_ID
 		self.active_tool_id = tool_id
 		self.former_tool_id = tool_id
-		# the end of this process, implemented in the `_enable_first_tool`
-		# method, will be called later because it requires an active image,
-		# which doesn't exist yet at this point of the window init process.
+		# the end of this process will happen later because it requires an
+		# active image, which doesn't exist at this point of the init process.
 
-	def _enable_first_tool(self):
-		"""Near the end of the window initialisation process, this method is
-		called once to make sure all things related to the active tool, mostly
-		its options' values, and the visibility of its optionsbar, are all
-		correctly loaded."""
-		if self.active_tool_id == DEFAULT_TOOL_ID:
-			# Special case of the "pencil" radio button, which is already active
-			self.enable_tool(self.active_tool_id)
-		else:
-			self.active_tool().row.set_active(True)
-		self._is_tools_initialisation_finished = True
+	def _update_active_tool_from_flowbox_signal(self, *args):
+		selected_tool = self._get_newly_selected_tool()
+		self.switch_to(selected_tool.id)
 
-	def _build_tool_rows(self):
-		"""Adds each tool's button to the side pane."""
-		group = None
+	def _get_newly_selected_tool(self):
 		for tool_id in self.tools:
-			row = self.tools[tool_id].build_row()
-			if group is None:
-				group = row
-			else:
-				row.join_group(group)
-			self.tools_flowbox.add(row)
-			row.get_parent().set_can_focus(False)
-		self.on_show_labels_setting_changed()
+			if self.tools[tool_id].is_flowbox_child_selected():
+				return self.tools[tool_id]
 
 	def build_menubar_tools_menu(self):
 		sections = [None, None, None]
@@ -847,24 +838,29 @@ class DrWindow(Gtk.ApplicationWindow):
 		state_as_string = args[1].get_string()
 		if state_as_string == args[0].get_state().get_string():
 			return
-		if self.tools[state_as_string].row.get_active():
-			self.switch_to(state_as_string, None)
+		if self.tools[state_as_string].is_flowbox_child_selected():
+			self.switch_to(state_as_string)
 		else:
-			self.tools[state_as_string].row.set_active(True)
+			self.tools[state_as_string].select_flowbox_child()
 
-	def switch_to(self, tool_id, image_pointer):
-		"""Switch from the current tool to `tool_id` and to the current image to
-		`image_pointer`, which can be `None` if the image is not changing."""
+	def switch_to(self, new_tool_id, image_pointer=None):
+		"""Switch from the current tool to `new_tool_id` and to the current
+		image to `image_pointer` (`None` if the image is not changing)."""
 		self.pointer_to_current_page = None
+
 		action = self.lookup_action('active_tool')
-		action.set_state(GLib.Variant.new_string(tool_id))
-		self._disable_former_tool(tool_id)
-		self.pointer_to_current_page = image_pointer
-		self.enable_tool(tool_id)
-		self.pointer_to_current_page = None
+		action.set_state(GLib.Variant.new_string(new_tool_id))
 
-	def enable_tool(self, new_tool_id):
-		"""Activate the tool whose id is `new_tool_id`."""
+		# Disable the formerly active tool
+		self.former_tool_id = self.active_tool_id
+		should_preserve_selection = self.tools[new_tool_id].accept_selection
+		self.former_tool().give_back_control(should_preserve_selection)
+		self.former_tool().on_tool_unselected()
+		self.get_active_image().selection.hide_popovers()
+
+		self.pointer_to_current_page = image_pointer
+
+		# Enable the newly selected tool
 		self.get_active_image().update()
 		self.active_tool_id = new_tool_id
 		self.active_tool().on_tool_selected()
@@ -872,13 +868,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.get_active_image().update_actions_state()
 		self.set_picture_title()
 
-	def _disable_former_tool(self, future_tool_id):
-		"""Unactivate the active tool."""
-		self.former_tool_id = self.active_tool_id
-		should_preserve_selection = self.tools[future_tool_id].accept_selection
-		self.former_tool().give_back_control(should_preserve_selection)
-		self.former_tool().on_tool_unselected()
-		self.get_active_image().selection.hide_popovers()
+		self.pointer_to_current_page = None
 
 	def _update_bottom_pane(self):
 		"""Show the correct bottom pane, with the correct tool options menu."""
@@ -903,7 +893,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active
 		else:
-			self.tools[self.former_tool_id].row.set_active(True)
+			self.tools[self.former_tool_id].select_flowbox_child()
 
 	def _build_options_menu(self):
 		"""Build the active tool's option menus.
@@ -1204,7 +1194,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return self.active_tool()
 
 	def force_selection(self):
-		self.get_selection_tool().row.set_active(True)
+		self.get_selection_tool().select_flowbox_child()
 
 	def action_apply_transform(self, *args):
 		self.active_tool().on_apply_transform_tool_operation()
