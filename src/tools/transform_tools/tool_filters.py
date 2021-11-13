@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gdk, GdkPixbuf, Gio
+from gi.repository import Gdk, GdkPixbuf, Gio, GLib
 from .abstract_transform_tool import AbstractCanvasTool
 from .filter_blur import FilterBlur
 from .filter_colors import FilterColors
@@ -136,10 +136,13 @@ class ToolFilters(AbstractCanvasTool):
 		super().on_tool_selected()
 		self._set_active_type()
 		self._set_blur_direction()
-		self.bar.menu_btn.set_active(True)
+		GLib.timeout_add(100, self._async_open_menu, {})
 		if self.blur_algo == BlurType.INVALID:
 			self.on_filter_preview()
 			# XXX great optimization but it displays shit
+
+	def _async_open_menu(self, *args):
+		self.bar.menu_btn.set_active(True)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.on_filter_preview()

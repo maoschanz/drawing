@@ -220,15 +220,19 @@ class ToolShape(AbstractClassicTool):
 	def _draw_ellipse(self, event_x, event_y):
 		cairo_context = self.get_context()
 		saved_matrix = cairo_context.get_matrix()
-		halfw = (self.x_press - event_x) / 2
-		halfh = (self.y_press - event_y) / 2
+
+		halfw = int((self.x_press - event_x) / 2)
+		halfh = int((self.y_press - event_y) / 2)
+		# Ensure the matrix will be invertible
+		if halfw == 0:
+			halfw = 1
+		if halfh == 0:
+			halfh = 1
 		cairo_context.translate(event_x + halfw, event_y + halfh)
 		cairo_context.scale(halfw, halfh)
 		cairo_context.arc(0, 0, 1, 0, 2 * math.pi)
-		cairo_context.set_matrix(saved_matrix)
-		# FIXME
-		# cairo.Error: invalid matrix (not invertible)
 
+		cairo_context.set_matrix(saved_matrix)
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 
@@ -288,18 +292,21 @@ class ToolShape(AbstractClassicTool):
 
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
-		cairo_context.set_operator(operation['operator'])
+
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
 		cairo_context.set_line_join(operation['line_join'])
-		c1 = operation['rgba_main']
-		c2 = operation['rgba_secd']
+
 		if operation['smooth']:
 			utilities_smooth_path(cairo_context, operation['path'])
 		else:
 			cairo_context.append_path(operation['path'])
 		if operation['closed']:
 			cairo_context.close_path()
+
+		cairo_context.set_operator(operation['operator'])
+		c1 = operation['rgba_main']
+		c2 = operation['rgba_secd']
 
 		filling = operation['filling']
 		if filling == 'secondary':
