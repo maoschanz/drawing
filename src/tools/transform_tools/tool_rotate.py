@@ -70,12 +70,20 @@ class ToolRotate(AbstractCanvasTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		if not self.apply_to_selection:
+		self.update_modifier_state(event.state)
+		if 'SHIFT' in self._modifier_keys:
+			if event.button == 1:
+				self.on_horizontal_clicked()
+			elif event.button == 3:
+				self.on_vertical_clicked()
+			return
+		elif not self.apply_to_selection:
 			if event.button == 1:
 				self.on_left_clicked()
 			elif event.button == 3:
 				self.on_right_clicked()
 			return
+
 		center_x, center_y = self.get_selection().get_center_coords()
 		delta_x0 = center_x - event_x
 		delta_y0 = center_y - event_y
