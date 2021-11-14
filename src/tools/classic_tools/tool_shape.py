@@ -136,6 +136,14 @@ class ToolShape(AbstractClassicTool):
 		self.set_common_values(self.last_mouse_btn, event_x, event_y)
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		self.update_modifier_state(event.state)
+		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
+			self._filling_id = 'secondary'
+		elif 'SHIFT' in self._modifier_keys:
+			self._filling_id = 'empty'
+		elif 'ALT' in self._modifier_keys:
+			self._filling_id = 'filled'
+
 		if self._shape_id == 'freeshape':
 			operation = self._add_point(event_x, event_y, True)
 		elif self._shape_id == 'polygon':

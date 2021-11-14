@@ -214,6 +214,9 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def _update_expansion_rgba(self, event_btn=1):
 		"""When the canvas grows, the color of the new pixels is parametrable"""
 		color_type = self.get_option_value('crop-expand')
+		self._force_expansion_rgba(color_type, event_btn)
+
+	def _force_expansion_rgba(self, color_type, event_btn=1):
 		if color_type == 'initial':
 			exp_rgba = self.get_image().get_initial_rgba()
 		elif color_type == 'secondary' and event_btn == 1:
