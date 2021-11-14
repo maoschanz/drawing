@@ -108,8 +108,8 @@ class ToolPoints(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'point_type': self._points_type,
 			'number': number,
-			'x': int(event_x),
-			'y': int(event_y),
+			'x': event_x,
+			'y': event_y,
 		}
 		return operation
 

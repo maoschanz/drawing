@@ -237,7 +237,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 			self._thumbnail_image.set_from_surface(surface)
 
 		# Set the tooltip of the button
-		tooltip_string = utilities_get_rgba_name(red, green, blue, alpha)
+		tooltip_string = utilities_get_rgba_name(rgba)
 		if not self._operator_supports_color(op_as_string):
 			tooltip_string = self._operator_label
 		elif op_as_string == 'over':

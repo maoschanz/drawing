@@ -82,7 +82,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 			self._pre_load_path(cairo_context.copy_path())
 			return True
 		else:
-			cairo_context.line_to(int(event_x), int(event_y))
+			cairo_context.line_to(event_x, event_y)
 			cairo_context.stroke_preserve() # draw the line without closing the path
 			self._pre_load_path(cairo_context.copy_path())
 			if render:

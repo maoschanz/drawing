@@ -38,24 +38,10 @@ class ToolEraser(ToolPencil):
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
 	def get_edition_status(self):
-		self._eraser_type = self.get_option_value('eraser-type')
 		self._rgba_type = self.get_option_value('selection-color')
 		self._eraser_shape = self.get_option_value('eraser-shape')
 
-		can_blur = self._eraser_shape != 'pencil'
-		self.set_action_sensitivity('eraser-type', can_blur)
-		if not can_blur:
-			self._eraser_type = 'solid'
-
-		if 'solid' == self._eraser_type and 'secondary' == self._rgba_type:
-			self._fallback_operator = 'source'
-		else:
-			self._fallback_operator = 'clear'
-			# TODO en pratique non il y a des cas où on est plutôt en train de
-			# flouter, il faudrait un elif, et un autre système pour l'opérateur
-			# en fallback qui afficherait l'icône avec les gouttes.
-			# En fait on devrait yeet le délire du `_fallback_operator` ?
-		self.window.options_manager.update_pane(self)
+		self._apply_shape_constraints()
 
 		label = self.label
 		if self._eraser_shape == 'pencil':
@@ -80,6 +66,24 @@ class ToolEraser(ToolPencil):
 	def get_options_label(self):
 		return _("Eraser options")
 
+	def _apply_shape_constraints(self):
+		self._eraser_type = self.get_option_value('eraser-type')
+
+		can_blur = self._eraser_shape != 'pencil'
+		self.set_action_sensitivity('eraser-type', can_blur)
+		if not can_blur:
+			self._eraser_type = 'solid'
+
+		if 'solid' == self._eraser_type and 'secondary' == self._rgba_type:
+			self._fallback_operator = 'source'
+		else:
+			self._fallback_operator = 'clear'
+			# TODO en pratique non il y a des cas où on est plutôt en train de
+			# flouter, il faudrait un elif, et un autre système pour l'opérateur
+			# en fallback qui afficherait l'icône avec les gouttes.
+			# En fait on devrait yeet le délire du `_fallback_operator` ?
+		self.window.options_manager.update_pane(self)
+
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
@@ -93,6 +97,14 @@ class ToolEraser(ToolPencil):
 		elif self._rgba_type == 'secondary':
 			clr = self.secondary_color
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
+
+		self.update_modifier_state(event.state)
+		if "SHIFT" in self._modifier_keys:
+			if self._eraser_shape == 'rectangle':
+				self._eraser_shape = 'pencil'
+			else:
+				self._eraser_shape = 'rectangle'
+			self._apply_shape_constraints()
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._eraser_shape == 'rectangle':
@@ -114,10 +126,10 @@ class ToolEraser(ToolPencil):
 
 	def _draw_rectangle(self, event_x, event_y):
 		cairo_context = self.get_context()
-		cairo_context.move_to(int(self.x_press), int(self.y_press))
-		cairo_context.line_to(int(self.x_press), int(event_y))
-		cairo_context.line_to(int(event_x), int(event_y))
-		cairo_context.line_to(int(event_x), int(self.y_press))
+		cairo_context.move_to(self.x_press, self.y_press)
+		cairo_context.line_to(self.x_press, event_y)
+		cairo_context.line_to(event_x, event_y)
+		cairo_context.line_to(event_x, self.y_press)
 		cairo_context.close_path()
 		self._path = cairo_context.copy_path()
 

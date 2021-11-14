@@ -68,6 +68,8 @@ class DrImage(Gtk.Box):
 		self._rendering_is_locked = False
 		self._framerate_hint = 0
 
+		self._ctrl_pressed = False
+
 		if self.window.devel_mode:
 			# Framerate tracking (debug only)
 			self._skipped_frames = 0
@@ -452,6 +454,7 @@ class DrImage(Gtk.Box):
 		If a button (not the mouse wheel) is pressed, the tool's method should
 		have an effect on the image, otherwise it shouldn't change anything
 		except the mouse cursor icon for example."""
+		event_x, event_y = self.get_event_coords(event)
 
 		if self.motion_behavior == DrMotionBehavior.HOVER:
 			# Some tools need the coords in the image, others need the coords on
@@ -460,7 +463,6 @@ class DrImage(Gtk.Box):
 
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
 			# implicitely impossible if not self._is_pressed
-			event_x, event_y = self.get_event_coords(event)
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, \
 			                                 event_y, self._rendering_is_locked)
 			if self._rendering_is_locked:
@@ -478,6 +480,19 @@ class DrImage(Gtk.Box):
 			delta_y = self._slip_press_y - event.y
 			self.add_deltas(delta_x, delta_y, 1 / self.zoom_level)
 
+		# If <Ctrl> is pressed, a tooltip displaying contextual information is
+		# shown: by default, it contains at least the pointer coordinates.
+		if (event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK:
+			self._ctrl_pressed = True
+		if self._ctrl_pressed:
+			full_tooltip_text = str(event_x) + ", " + str(event_y)
+			tool_tooltip = self._get_tool_tooltip(event_x, event_y)
+			if tool_tooltip is not None:
+				full_tooltip_text += "\n" + tool_tooltip
+			self._drawing_area.set_tooltip_text(full_tooltip_text)
+		else:
+			self._drawing_area.set_tooltip_text(None)
+
 	def on_release_on_area(self, area, event):
 		"""Signal callback. Executed when a mouse button is released on
 		self._drawing_area, if the button is not the signal is transmitted to
@@ -487,6 +502,7 @@ class DrImage(Gtk.Box):
 				self.window.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return
+		self._ctrl_pressed = False
 		self.motion_behavior = DrMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
@@ -499,6 +515,9 @@ class DrImage(Gtk.Box):
 		mx = abs(self._slip_init_x - self.scroll_x) > DrMotionBehavior._LIMIT
 		my = abs(self._slip_init_y - self.scroll_y) > DrMotionBehavior._LIMIT
 		return mx or my
+
+	def _get_tool_tooltip(self, ev_x, ev_y):
+		return self.active_tool().get_tooltip(ev_x, ev_y ,self.motion_behavior)
 
 	def update(self):
 		# print('image.py: _drawing_area.queue_draw')
@@ -629,7 +648,7 @@ class DrImage(Gtk.Box):
 	def get_event_coords(self, event):
 		event_x = self.scroll_x + (event.x / self.zoom_level)
 		event_y = self.scroll_y + (event.y / self.zoom_level)
-		return event_x, event_y
+		return int(event_x), int(event_y)
 
 	def get_corrected_coords(self, x1, x2, y1, y2, with_selection, with_zoom):
 		"""Do whatever coordinates conversions are needed by tools like `crop`

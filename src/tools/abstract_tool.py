@@ -46,6 +46,7 @@ class AbstractAbstractTool():
 		# The tool's state
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
+		self._modifier_keys = []
 		# Once everything is set, build the UI
 		self.try_build_pane()
 
@@ -91,11 +92,23 @@ class AbstractAbstractTool():
 	def get_settings(self):
 		return self.window.options_manager._tools_gsettings
 
+	def update_modifier_state(self, event_state):
+		modifier_keys = []
+		# CONTROL_MASK can't be used, because it already has an effect app-wide.
+		if (event_state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK:
+			modifier_keys.append("SHIFT")
+		if (event_state & Gdk.ModifierType.MOD1_MASK) == Gdk.ModifierType.MOD1_MASK:
+			modifier_keys.append("ALT")
+		self._modifier_keys = modifier_keys
+
 	############################################################################
 	# Various utilities ########################################################
 
 	def show_error(self, error_text):
 		self.window.reveal_message(error_text)
+
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		return None
 
 	############################################################################
 	# Bottom pane and menubar integration ######################################

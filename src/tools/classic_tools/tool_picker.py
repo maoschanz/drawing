@@ -17,8 +17,9 @@
 
 from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_paths import utilities_get_rgba_for_xy
-from .utilities_colors import utilities_color_array_to_gdk_rgba
+from .utilities_colors import utilities_get_rgba_name, \
+                              utilities_gdk_rgba_from_xy, \
+                              utilities_gdk_rgba_to_hexadecimal
 
 class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'
@@ -32,13 +33,16 @@ class ToolPicker(AbstractClassicTool):
 	def get_options_model(self):
 		return None
 
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		color = utilities_gdk_rgba_from_xy(self.get_surface(), event_x, event_y)
+		if color is None:
+			return None
+		color_name = utilities_get_rgba_name(color)
+		color_code = utilities_gdk_rgba_to_hexadecimal(color)
+		return color_name + "\n" + color_code
+
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		rgba_vals = utilities_get_rgba_for_xy(surface, event_x, event_y)
-		if rgba_vals is None:
-			return # click outside of the surface
-		rgba_vals = [*rgba_vals]
-		rgba_vals[3] /= 255 # alpha has to be between 0 and 1
-		color = utilities_color_array_to_gdk_rgba(*rgba_vals)
+		color = utilities_gdk_rgba_from_xy(surface, event_x, event_y)
 		if event.button == 1:
 			self.window.options_manager.set_left_color(color)
 		elif event.button == 3:

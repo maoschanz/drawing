@@ -27,6 +27,7 @@ class ToolScale(AbstractCanvasTool):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'not-allowed'
 		self._preserve_ratio = True
+		self._ratio_is_inverted = False
 		self._spinbtns_disabled = True
 		self._directions = ''
 		self._x = 0
@@ -90,6 +91,8 @@ class ToolScale(AbstractCanvasTool):
 			self._preserve_ratio = len(self._directions) != 1
 		else:
 			self._preserve_ratio = setting == 'always'
+		if self._ratio_is_inverted:
+			self._preserve_ratio = not self._preserve_ratio
 		if self._preserve_ratio == former_setting:
 			return
 		if self._preserve_ratio:
@@ -154,6 +157,11 @@ class ToolScale(AbstractCanvasTool):
 		self.set_directional_cursor(event.x, event.y)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
+		self.update_modifier_state(event.state)
+		if 'SHIFT' in self._modifier_keys:
+			# The value will be restored later in `on_release_on_area`
+			self._ratio_is_inverted = True
+
 		self.x_press = event_x
 		self.y_press = event_y
 		self._x2 = self._x + self._get_width()
@@ -199,6 +207,7 @@ class ToolScale(AbstractCanvasTool):
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
 		self._directions = ''
+		self._ratio_is_inverted = False
 		self.build_and_do_op() # technically already done
 
 	############################################################################
