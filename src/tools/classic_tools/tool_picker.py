@@ -18,7 +18,8 @@
 from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_colors import utilities_get_rgba_name, \
-                              utilities_gdk_rgba_from_xy
+                              utilities_gdk_rgba_from_xy, \
+                              utilities_gdk_rgba_to_hexadecimal
 
 class ToolPicker(AbstractClassicTool):
 	__gtype_name__ = 'ToolPicker'
@@ -36,7 +37,9 @@ class ToolPicker(AbstractClassicTool):
 		color = utilities_gdk_rgba_from_xy(self.get_surface(), event_x, event_y)
 		if color is None:
 			return None
-		return utilities_get_rgba_name(color)
+		color_name = utilities_get_rgba_name(color)
+		color_code = utilities_gdk_rgba_to_hexadecimal(color)
+		return color_name + "\n" + color_code
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		color = utilities_gdk_rgba_from_xy(surface, event_x, event_y)

@@ -17,7 +17,8 @@
 
 from .abstract_select import AbstractSelectionTool
 from .utilities_colors import utilities_get_rgba_name, \
-                              utilities_gdk_rgba_from_xy
+                              utilities_gdk_rgba_from_xy, \
+                              utilities_gdk_rgba_to_hexadecimal
 from .utilities_paths import utilities_get_magic_path
 
 class ToolColorSelect(AbstractSelectionTool):
@@ -33,7 +34,9 @@ class ToolColorSelect(AbstractSelectionTool):
 		color = utilities_gdk_rgba_from_xy(self.get_surface(), event_x, event_y)
 		if color is None:
 			return None
-		return utilities_get_rgba_name(color)
+		color_name = utilities_get_rgba_name(color)
+		color_code = utilities_gdk_rgba_to_hexadecimal(color)
+		return color_name + "\n" + color_code
 
 	def press_define(self, event_x, event_y):
 		pass

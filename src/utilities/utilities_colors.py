@@ -45,6 +45,17 @@ def utilities_rgb_to_hexadecimal(r, g, b):
 	operators."""
 	return (r << 16) + (g << 8) + b
 
+def utilities_gdk_rgba_to_hexadecimal(gdk_rgba):
+	"""Returns a displayable string of the hexadecimal code corresponding to a
+	Gdk.RGBA object."""
+	r = int(255 * gdk_rgba.red)
+	g = int(255 * gdk_rgba.green)
+	b = int(255 * gdk_rgba.blue)
+	hexa_raw = hex(utilities_rgb_to_hexadecimal(r, g, b))
+	hexa_string = str(hexa_raw)[2:]
+	hexa_string = "0" * (6 - len(hexa_string)) + hexa_string
+	return "#" + hexa_string
+
 ################################################################################
 
 def utilities_gdk_rgba_from_xy(surface, event_x, event_y):
