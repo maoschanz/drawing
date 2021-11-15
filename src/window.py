@@ -406,6 +406,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
+		# Select tools using "alt" mnemonics
+		self.connect('key-press-event', self._check_for_alt_key)
+		self.connect('key-release-event', self._check_for_alt_key)
+
 		# Managing drag-and-drop
 		if self.app.runs_in_sandbox:
 			return # no dnd with actual file paths in the flatpak sandbox
@@ -827,6 +831,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		show_labels = not args[0].get_state()
 		self.gsettings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
+
+	def _check_for_alt_key(self, *args):
+		if not args[1].state | Gdk.ModifierType.MOD1_MASK == args[1].state:
+			return
+		is_press = args[1].type == Gdk.EventType.KEY_PRESS
+		for tool_id in self.tools:
+			self.tools[tool_id].show_only_mnemonics(is_press)
 
 	############################################################################
 	# TOOLS ####################################################################

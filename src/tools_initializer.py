@@ -125,9 +125,7 @@ class DrToolsInitializer():
 					letter_index = -1
 
 		for tool_id in underlined_chars:
-			c = underlined_chars[tool_id]
-			new_label = self._tools[tool_id].label.replace(c, "_" + c, 1)
-			self._tools[tool_id].mnemolabel = new_label
+			self._tools[tool_id].set_mnemonics(underlined_chars[tool_id])
 
 	############################################################################
 ################################################################################

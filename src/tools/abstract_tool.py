@@ -37,8 +37,9 @@ class AbstractAbstractTool():
 		# The tool's identity
 		self.id = tool_id
 		self.menu_id = 0
-		self.label = self.mnemolabel = label
-		self.icon_name = icon_name
+		self.label = self._mnemo_label = label
+		self._mnemo_char = ""
+		self._icon_name = icon_name
 		# The options it supports
 		self.accept_selection = False
 		self.use_color = False
@@ -132,7 +133,7 @@ class AbstractAbstractTool():
 		pass
 
 	def add_item_to_menu(self, tools_menu):
-		tools_menu.append(self.mnemolabel, 'win.active_tool::' + self.id)
+		tools_menu.append(self._mnemo_label, 'win.active_tool::' + self.id)
 
 	def get_options_model(self):
 		"""Returns a Gio.MenuModel corresponding to the tool's options. It'll be
@@ -155,24 +156,43 @@ class AbstractAbstractTool():
 	############################################################################
 	# Side pane ################################################################
 
+	def set_mnemonics(self, character):
+		self._mnemo_label = self.label.replace(character, "_" + character, 1)
+		self._mnemo_char = character.upper()
+
 	def build_flowbox_child(self, flowbox):
 		"""Build the icon and its label for the sidebar."""
-		label_widget = Gtk.Label(use_underline=True, label=self.mnemolabel)
+		# The icon
 		if self.window.gsettings.get_boolean('big-icons'):
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR
-		image = Gtk.Image().new_from_icon_name(self.icon_name, size)
+		image = Gtk.Image().new_from_icon_name(self._icon_name, size)
 		self._label_box = Gtk.Box( \
 			orientation=Gtk.Orientation.HORIZONTAL, \
 			spacing=8, \
 			margin=8 \
 		)
 		self._label_box.add(image)
+
+		# The readable label
+		label_widget = Gtk.Label(use_underline=True, label=self._mnemo_label)
 		self._label_box.add(label_widget)
 		self._label_box.show_all()
+
+		# The "mini-label" is shown only when pressing <Alt>
+		mini_label = Gtk.Label(use_underline=True, label="_" + self._mnemo_char)
+		self._label_box.add(mini_label)
+
 		flowbox.add(self._label_box)
 		self._fb_child = self._label_box.get_parent()
+
+		# The item's tooltip
+		if self._mnemo_char == "":
+			self._fb_child.set_tooltip_text(self.label)
+		else:
+			tooltip = self.label + " (Alt+" + self._mnemo_char + ")"
+			self._fb_child.set_tooltip_text(tooltip)
 
 	def select_flowbox_child(self, *args):
 		self.window.tools_flowbox.select_child(self._fb_child)
@@ -195,7 +215,19 @@ class AbstractAbstractTool():
 			size = Gtk.IconSize.LARGE_TOOLBAR
 		else:
 			size = Gtk.IconSize.SMALL_TOOLBAR
-		image.set_from_icon_name(self.icon_name, size)
+		image.set_from_icon_name(self._icon_name, size)
+
+	def show_only_mnemonics(self, should_show):
+		if self._mnemo_char == "":
+			return
+		label_widget = self._label_box.get_children()[1]
+		if label_widget.get_visible():
+			return
+		image = self._label_box.get_children()[0]
+		mini_label = self._label_box.get_children()[2]
+
+		image.set_visible(not should_show)
+		mini_label.set_visible(should_show)
 
 	############################################################################
 	# Activation or not ########################################################
