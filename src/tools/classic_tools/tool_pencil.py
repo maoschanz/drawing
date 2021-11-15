@@ -67,6 +67,10 @@ class ToolPencil(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 		self._path = None
 
+		self.update_modifier_state(event.state)
+		if "ALT" in self._modifier_keys:
+			self._use_outline = not self._use_outline
+
 	def _add_point(self, event_x, event_y):
 		cairo_context = self.get_context()
 		if self._path is None:

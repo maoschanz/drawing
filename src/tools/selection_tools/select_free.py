@@ -31,9 +31,6 @@ class ToolFreeSelect(AbstractSelectionTool):
 		self.add_tool_action_simple('selection_close', self._force_close_shape)
 		self.set_action_sensitivity('selection_close', False)
 
-	def on_tool_selected(self, *args):
-		super().on_tool_selected()
-
 	def on_tool_unselected(self, *args):
 		super().on_tool_unselected()
 		self.set_action_sensitivity('selection_close', False)
@@ -85,7 +82,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 			self._pre_load_path(cairo_context.copy_path())
 			return True
 		else:
-			cairo_context.line_to(int(event_x), int(event_y))
+			cairo_context.line_to(event_x, event_y)
 			cairo_context.stroke_preserve() # draw the line without closing the path
 			self._pre_load_path(cairo_context.copy_path())
 			if render:

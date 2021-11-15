@@ -52,17 +52,18 @@ class ToolPaint(AbstractClassicTool):
 		or event_y < 0 or event_y > surface.get_height():
 			return
 
-		(x, y) = (int(event_x), int(event_y))
-		self.old_color = utilities_get_rgba_for_xy(surface, x, y)
+		self.old_color = utilities_get_rgba_for_xy(surface, event_x, event_y)
 
 		if self.get_option_value('paint_algo') == 'fill':
-			self._magic_path = utilities_get_magic_path(surface, x, y, self.window, 1)
+			self._magic_path = utilities_get_magic_path(surface, event_x, \
+			                                            event_y, self.window, 1)
 		elif self.get_option_value('paint_algo') == 'replace':
-			self._magic_path = utilities_get_magic_path(surface, x, y, self.window, 2)
+			self._magic_path = utilities_get_magic_path(surface, event_x, \
+			                                            event_y, self.window, 2)
 		else:
 			pass # == 'clipping' or == 'whole'
 
-		operation = self.build_operation(x, y)
+		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
 
 	############################################################################

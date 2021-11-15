@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo
+import cairo, math
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_add_arrow_triangle
 
@@ -40,6 +40,19 @@ class ToolLine(AbstractClassicTool):
 		self.add_tool_action_boolean('pencil-outline', self._use_outline)
 		self.add_tool_action_boolean('line-ortholock', self._ortholock)
 		self._set_options_attributes() # Not optimal but more readable
+
+	def get_tooltip(self, event_x, event_y, motion_behavior):
+		if motion_behavior != 1:
+			return None # no line is being drawn
+
+		delta_x = abs(self.x_press - event_x)
+		delta_y = abs(self.y_press - event_y)
+		line1 = _("Width: %spx") % str(delta_x)
+		line2 = _("Height: %spx") % str(delta_y)
+		length = round(math.sqrt(delta_x * delta_x + delta_y * delta_y), 2)
+		return line1 + "\n" + line2 + "\n" + _("Length: %spx") % str(length)
+
+	############################################################################
 
 	def _set_active_shape(self):
 		state_as_string = self.get_option_value('line_shape')
@@ -76,6 +89,12 @@ class ToolLine(AbstractClassicTool):
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event.button, event_x, event_y)
+
+		self.update_modifier_state(event.state)
+		if "SHIFT" in self._modifier_keys:
+			self._ortholock = not self._ortholock
+		if "ALT" in self._modifier_keys:
+			self._use_outline = not self._use_outline
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if render:
@@ -122,8 +141,6 @@ class ToolLine(AbstractClassicTool):
 		y2 = operation['y_release']
 
 		if operation['ortholock']:
-			x1, y1 = int(x1), int(y1)
-			x2, y2 = int(x2), int(y2)
 			delta_x = abs(x1 - x2)
 			delta_y = abs(y1 - y2)
 			if delta_x > 2 * delta_y:

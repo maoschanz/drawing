@@ -30,12 +30,8 @@ class ToolSkew(AbstractCanvasTool):
 		super().__init__('skew', _("Skew"), 'tool-skew-symbolic', window)
 		self._x = 0
 		self._y = 0
-		self.add_tool_action_simple('skew-exists', self._enable)
+		self.add_tool_action_simple('skew-exists', self.select_flowbox_child)
 		self.add_tool_action_enum('crop-expand', 'initial')
-
-	def _enable(self, *args):
-		"""Ridiculous hack"""
-		self.row.set_active(True)
 
 	def try_build_pane(self):
 		self.pane_id = 'skew'
@@ -135,6 +131,17 @@ class ToolSkew(AbstractCanvasTool):
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._directions == '' or not render:
 			return
+
+		self.update_modifier_state(event.state)
+		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
+			self._force_expansion_rgba('secondary')
+			# XXX inconsistency: what if the user right-clicked
+		elif 'SHIFT' in self._modifier_keys:
+			self._force_expansion_rgba('alpha')
+		elif 'ALT' in self._modifier_keys:
+			self._force_expansion_rgba('initial')
+			# FIXME ne marche simplement pas
+
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press
 

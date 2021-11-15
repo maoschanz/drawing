@@ -51,9 +51,6 @@ class AbstractClassicTool(AbstractAbstractTool):
 	def build_bottom_pane(self):
 		return OptionsBarClassic(self.window)
 
-	def on_tool_selected(self):
-		pass
-
 	############################################################################
 	# Options ##################################################################
 
