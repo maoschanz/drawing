@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GLib, Gio
+from gi.repository import GLib, Gio, Gdk
 
 class DrOptionsManager():
 	__gtype_name__ = 'DrOptionsManager'
@@ -197,7 +197,7 @@ class DrOptionsManager():
 	############################################################################
 	# Methods specific to the optionsbar for classic tools #####################
 
-	def get_classic_tools_pane(self): # XXX hardcoded
+	def get_classic_tools_pane(self):
 		return self._bottom_panes_dict['classic']
 
 	def left_color_btn(self):
@@ -227,6 +227,17 @@ class DrOptionsManager():
 
 	def get_left_color(self):
 		return self.left_color_btn().color_widget.get_rgba()
+
+	def get_persisted_color(self, is_left_color):
+		if is_left_color:
+			color_array = self._tools_gsettings.get_strv('last-left-rgba')
+		else:
+			color_array = self._tools_gsettings.get_strv('last-right-rgba')
+		r = float(color_array[0])
+		g = float(color_array[1])
+		b = float(color_array[2])
+		a = float(color_array[3])
+		return Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 
 	def get_operator(self):
 		# XXX répugnant, on duplique la donnée dans les 2 popovers, puis on

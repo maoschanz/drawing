@@ -110,12 +110,15 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
-		right_rgba = self._get_tool_options().get_strv('last-right-rgba')
-		left_rgba = self._get_tool_options().get_strv('last-left-rgba')
+		options_manager = self.window.options_manager
+
+		thumbnail_r = builder.get_object('r_btn_image')
 		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
-		             builder.get_object('r_btn_image'), right_rgba, False, self)
+		                                    thumbnail_r, False, options_manager)
+
+		thumbnail_l = builder.get_object('l_btn_image')
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \
-		               builder.get_object('l_btn_image'), left_rgba, True, self)
+		                                     thumbnail_l, True, options_manager)
 
 	def set_palette_setting(self, show_editor):
 		self._color_r.editor_setting_changed(show_editor)

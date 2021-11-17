@@ -19,6 +19,7 @@ import cairo
 from gi.repository import Gtk
 from .abstract_tool import AbstractAbstractTool
 from .optionsbar_selection import OptionsBarSelection
+from .utilities_colors import utilities_gdk_rgba_to_normalized_array
 from .utilities_overlay import utilities_show_overlay_on_context
 from .selection_manager import NoSelectionPixbufException
 
@@ -304,10 +305,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 		# FIXME the result is questionable when there was alpha in the area...
 		if replacement_type == 'initial':
 			gdk_rgba = self.get_image().get_initial_rgba()
-			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]
+			color = utilities_gdk_rgba_to_normalized_array(gdk_rgba)
 		elif replacement_type == 'secondary':
 			gdk_rgba = self.window.options_manager.get_right_color()
-			color = [gdk_rgba.red, gdk_rgba.green, gdk_rgba.blue, gdk_rgba.alpha]
+			color = utilities_gdk_rgba_to_normalized_array(gdk_rgba)
 		else: # == 'alpha':
 			color = [1.0, 1.0, 1.0, 0.0]
 		# XXX the replacement is performed when the selection is defined, which
