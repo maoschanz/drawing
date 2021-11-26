@@ -269,7 +269,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def build_new_from_file(self, gfile, check_duplicates=True):
 		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not w.confirm_open_twice(gfile):
+			if duplicate is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return
 		self._build_new_tab(gfile=gfile)
@@ -996,7 +996,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# it makes more sense to ask *if* the user want to open it BEFORE
 			# asking *where* to open it
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not w.confirm_open_twice(gfile):
+			if duplicate is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				self._hide_message()
 				return
@@ -1082,7 +1082,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return
 		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if w is not None and not w.confirm_open_twice(gfile):
+			if w is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return
 
