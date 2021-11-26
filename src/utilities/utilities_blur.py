@@ -1,8 +1,4 @@
-# utilities_blur.py
-#
-# Copyright 2018-2021 Romain F. T.
-#
-# GPL 3
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 import cairo, threading
 # from datetime import datetime # Not actually needed, just to measure perfs
