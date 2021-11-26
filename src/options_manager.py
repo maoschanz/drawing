@@ -29,6 +29,7 @@ class DrOptionsManager():
 		self._active_pane_id = None
 		self._boolean_actions_from_gsetting = {}
 		self._string_actions_from_gsetting = {}
+		self._mirror_lock = False
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -90,6 +91,43 @@ class DrOptionsManager():
 		args[0].set_state(GLib.Variant.new_string(new_value))
 		self.window.set_picture_title()
 		self.get_active_pane().hide_options_menu()
+
+	############################################################################
+	# Special case: mirrorable actions are required when using radio-buttons ###
+
+	def mirrored_action_callback(self, mirror_action_name, *args):
+		"""Actions whose callbacks use this method can be used in menus. It sets
+		the lock required to avoid infinite recursion caused by the
+		synchronisation with a mirror action used on GtkRadioButtons."""
+		self._enum_callback(*args)
+		mirroring_action = self.window.lookup_action(mirror_action_name)
+		if args[1].get_string() == mirroring_action.get_state().get_string():
+			return False
+		self._mirror_lock = True
+		self._enum_callback(mirroring_action, args[1])
+		self._mirror_lock = False
+		return True
+
+	def mirroring_action_callback(self, mirrored_action_name, *args):
+		"""Actions whose callbacks use this method should NEVER be added to any
+		menu. Such an action should mirror the action provided as an argument
+		(which can be added to menus).
+		Those actions are intended to be used by GtkRadioButtons, whose weird
+		behaviors include sending a `change-state` signal when being unchecked,
+		thus triggering this callback twice. So a synchronisation mechanism is
+		needed, with a lock & an other "classic" action duplicating the data."""
+		if self._mirror_lock:
+			return False
+		if args[1].get_string() == args[0].get_state().get_string():
+			return False
+		mirrored_action = self.window.lookup_action(mirrored_action_name)
+		if args[1].get_string() == mirrored_action.get_state().get_string():
+			return False
+		self._enum_callback(*args)
+		self._mirror_lock = True
+		self._enum_callback(mirrored_action, args[1])
+		self._mirror_lock = False
+		return True
 
 	############################################################################
 

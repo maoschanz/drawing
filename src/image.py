@@ -718,13 +718,13 @@ class DrImage(Gtk.Box):
 			wanted_y = self.scroll_y
 
 		self.correct_coords(wanted_x, wanted_y)
-		self.window.minimap.update_minimap(False)
+		self.window.minimap.update_minimap()
 
 	def add_deltas(self, delta_x, delta_y, factor):
 		wanted_x = self.scroll_x + int(delta_x * factor)
 		wanted_y = self.scroll_y + int(delta_y * factor)
 		self.correct_coords(wanted_x, wanted_y)
-		self.window.minimap.update_minimap(False)
+		self.window.minimap.update_minimap()
 
 	def correct_coords(self, wanted_x, wanted_y):
 		available_w = self.get_widget_width()

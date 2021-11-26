@@ -35,48 +35,23 @@ class DrMinimap(Gtk.Popover):
 		self.connect('closed', self._on_popover_dismissed)
 		self.set_relative_to(minimap_btn)
 
+	def set_zoom_label(self, int_value):
+		# This string displays the zoom level: %s will be replaced with a
+		# number, while %% will be rendered as the symbol '%'
+		zoom_label = _("%s%%") % str(int(int_value))
+		self._window.options_manager.set_minimap_label(zoom_label)
+		self.update_minimap()
+
+	def update_zoom_scale(self, value):
+		self._zoom_scale.set_value(value * 100)
+
 	def _update_zoom_level(self, *args):
 		zoom_value = self._zoom_scale.get_value()
 		self._window.get_active_image().zoom_level = zoom_value/100
 		self._window.get_active_image().update() # XXX superflus ? <^
 		self.set_zoom_label(zoom_value)
 
-	def set_zoom_label(self, int_value):
-		# This string displays the zoom level: %s will be replaced with a
-		# number, while %% will be rendered as the symbol '%'
-		zoom_label = _("%s%%") % str(int(int_value))
-		self._window.options_manager.set_minimap_label(zoom_label)
-		self.update_minimap(False)
-
-	def update_zoom_scale(self, value):
-		self._zoom_scale.set_value(value * 100)
-
-	def _on_popover_dismissed(self, *args):
-		"""Callback of the 'closed' signal, updating the state of the action."""
-		try:
-			self.get_relative_to().set_active(False)
-		except:
-			pass
-
-	def _on_mm_draw(self, area, cairo_context):
-		"""Callback of the 'draw' signal, painting the area with the surface."""
-		cairo_context.set_source_surface(self._mini_surface, 0, 0)
-		cairo_context.paint()
-
-	def _on_mm_press(self, area, event):
-		"""Callback of the 'button-press-event' signal."""
-		self._old_x = event.x
-		self._old_y = event.y
-
-	def _on_mm_release(self, area, event):
-		"""Callback of the 'button-release-event' signal."""
-		image = self._window.get_active_image()
-		size_ratio = image.get_minimap_ratio(self.mini_pixbuf.get_width())
-		delta_x = int((event.x - self._old_x) / size_ratio)
-		delta_y = int((event.y - self._old_y) / size_ratio)
-		image.add_deltas(delta_x, delta_y, 1)
-
-	def update_minimap(self, force_update):
+	def update_minimap(self, force_update=False):
 		"""Update the overlay on the minimap, based on the scroll coordinates."""
 		if not self.get_visible() and not force_update:
 			return
@@ -110,6 +85,33 @@ class DrMinimap(Gtk.Popover):
 		# 	???
 		self._minimap_area.queue_draw()
 		image.update()
+
+	############################################################################
+
+	def _on_popover_dismissed(self, *args):
+		"""Callback of the 'closed' signal, updating the state of the action."""
+		try:
+			self.get_relative_to().set_active(False)
+		except:
+			pass
+
+	def _on_mm_draw(self, area, cairo_context):
+		"""Callback of the 'draw' signal, painting the area with the surface."""
+		cairo_context.set_source_surface(self._mini_surface, 0, 0)
+		cairo_context.paint()
+
+	def _on_mm_press(self, area, event):
+		"""Callback of the 'button-press-event' signal."""
+		self._old_x = event.x
+		self._old_y = event.y
+
+	def _on_mm_release(self, area, event):
+		"""Callback of the 'button-release-event' signal."""
+		image = self._window.get_active_image()
+		size_ratio = image.get_minimap_ratio(self.mini_pixbuf.get_width())
+		delta_x = int((event.x - self._old_x) / size_ratio)
+		delta_y = int((event.y - self._old_y) / size_ratio)
+		image.add_deltas(delta_x, delta_y, 1)
 
 	############################################################################
 ################################################################################
