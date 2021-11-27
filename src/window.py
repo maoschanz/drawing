@@ -1270,7 +1270,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		preview_visible = not args[0].get_state()
 		if preview_visible:
 			self.minimap.popup()
-			self.minimap.update_minimap(True)
+			self.minimap.update_content()
 		else:
 			self.minimap.popdown()
 		args[0].set_state(GLib.Variant.new_boolean(preview_visible))

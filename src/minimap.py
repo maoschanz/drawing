@@ -35,34 +35,37 @@ class DrMinimap(Gtk.Popover):
 		self.connect('closed', self._on_popover_dismissed)
 		self.set_relative_to(minimap_btn)
 
+	def update_zoom_scale(self, value):
+		self._zoom_scale.set_value(value * 100)
+
 	def set_zoom_label(self, int_value):
 		# This string displays the zoom level: %s will be replaced with a
 		# number, while %% will be rendered as the symbol '%'
 		zoom_label = _("%s%%") % str(int(int_value))
 		self._window.options_manager.set_minimap_label(zoom_label)
-		self.update_minimap()
+		self.update_overlay()
 
-	def update_zoom_scale(self, value):
-		self._zoom_scale.set_value(value * 100)
-
-
-	def update_minimap(self, force_update=False):
-		"""Update the overlay on the minimap, based on the scroll coordinates."""
-		if not self.get_visible() and not force_update:
-			return
+	def update_content(self):
+		"""Update the minimap's content."""
 		image = self._window.get_active_image()
 		self.mini_pixbuf = image.generate_mini_pixbuf(self._preview_size)
-		self._mini_surface = Gdk.cairo_surface_create_from_pixbuf( \
-		                                              self.mini_pixbuf, 0, None)
 		pix_width = self.mini_pixbuf.get_width()
 		pix_height = self.mini_pixbuf.get_height()
 		self._minimap_area.set_size_request(pix_width, pix_height)
 
-		# TODO if possible, updating the overlay should be doable without first
-		# rebuilding the pixbuf and the surface. It's not very useful however
-		# since the guard clause prevent the update in most cases anyway.
+		self.update_overlay(True)
+		image.update() # < utile ?? XXX
+
+	def update_overlay(self, force_update=False):
+		"""Update the overlay on the minimap, based on the zoom level and the
+		scroll coordinates."""
+		if not self.get_visible() and not force_update:
+			return
+		image = self._window.get_active_image()
+		self._mini_surface = Gdk.cairo_surface_create_from_pixbuf( \
+		                                              self.mini_pixbuf, 0, None)
 		if image.get_need_minimap_overlay():
-			size_ratio = image.get_minimap_ratio(pix_width)
+			size_ratio = image.get_minimap_ratio(self.mini_pixbuf.get_width())
 			mini_x = int(image.scroll_x * size_ratio)
 			mini_y = int(image.scroll_y * size_ratio)
 			visible_width, visible_height = image.get_visible_size()
@@ -76,10 +79,7 @@ class DrMinimap(Gtk.Popover):
 			mini_context.close_path()
 			mini_path = mini_context.copy_path()
 			utilities_show_overlay_on_context(mini_context, mini_path, False)
-		# else:
-		# 	???
 		self._minimap_area.queue_draw()
-		image.update()
 
 	############################################################################
 
