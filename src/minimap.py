@@ -6,7 +6,6 @@ from .utilities_overlay import utilities_show_overlay_on_context
 
 class DrMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrMinimap'
-	# TODO custom "move" cursor and "on_motion" method?
 
 	def __init__(self, window, minimap_btn, **kwargs):
 		super().__init__(**kwargs)
@@ -26,14 +25,20 @@ class DrMinimap(Gtk.Popover):
 		self._minimap_area = builder.get_object('_minimap_area')
 		self._minimap_area.set_size(200, 200)
 		self._minimap_area.add_events(Gdk.EventMask.BUTTON_PRESS_MASK | \
-		                                      Gdk.EventMask.BUTTON_RELEASE_MASK)
+		                              Gdk.EventMask.BUTTON_MOTION_MASK | \
+		                              Gdk.EventMask.BUTTON_RELEASE_MASK)
 		self._minimap_area.connect('draw', self._on_mm_draw)
 		self._minimap_area.connect('button-press-event', self._on_mm_press)
-		self._minimap_area.connect('button-release-event', self._on_mm_release)
+		self._minimap_area.connect('motion-notify-event', self._on_mm_motion)
+		self._minimap_area.connect('button-release-event', self._on_mm_motion)
 
 		self.add(box)
 		self.connect('closed', self._on_popover_dismissed)
 		self.set_relative_to(minimap_btn)
+
+		# TODO custom "moving hand" cursor?
+
+	############################################################################
 
 	def update_zoom_scale(self, value):
 		self._zoom_scale.set_value(value * 100)
@@ -54,7 +59,6 @@ class DrMinimap(Gtk.Popover):
 		self._minimap_area.set_size_request(pix_width, pix_height)
 
 		self.update_overlay(True)
-		image.update() # < utile ?? XXX
 
 	def update_overlay(self, force_update=False):
 		"""Update the overlay on the minimap, based on the zoom level and the
@@ -64,7 +68,7 @@ class DrMinimap(Gtk.Popover):
 		image = self._window.get_active_image()
 		self._mini_surface = Gdk.cairo_surface_create_from_pixbuf( \
 		                                              self.mini_pixbuf, 0, None)
-		if image.get_need_minimap_overlay():
+		if image.get_minimap_need_overlay():
 			size_ratio = image.get_minimap_ratio(self.mini_pixbuf.get_width())
 			mini_x = int(image.scroll_x * size_ratio)
 			mini_y = int(image.scroll_y * size_ratio)
@@ -104,15 +108,21 @@ class DrMinimap(Gtk.Popover):
 
 	def _on_mm_press(self, area, event):
 		"""Callback of the 'button-press-event' signal."""
-		self._old_x = event.x
-		self._old_y = event.y
-
-	def _on_mm_release(self, area, event):
-		"""Callback of the 'button-release-event' signal."""
+		self._press_x = event.x
+		self._press_y = event.y
 		image = self._window.get_active_image()
+		self._old_scroll_x = image.scroll_x
+		self._old_scroll_y = image.scroll_y
+
+	def _on_mm_motion(self, area, event):
+		"""Callback of the 'button-release-event' signal (and also the
+		'motion-notify-event' signal)."""
+		image = self._window.get_active_image()
+		image.scroll_x = self._old_scroll_x
+		image.scroll_y = self._old_scroll_y
 		size_ratio = image.get_minimap_ratio(self.mini_pixbuf.get_width())
-		delta_x = int((event.x - self._old_x) / size_ratio)
-		delta_y = int((event.y - self._old_y) / size_ratio)
+		delta_x = int((event.x - self._press_x) / size_ratio)
+		delta_y = int((event.y - self._press_y) / size_ratio)
 		image.add_deltas(delta_x, delta_y, 1)
 
 	############################################################################
