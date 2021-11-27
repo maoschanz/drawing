@@ -45,18 +45,13 @@ class DrMinimap(Gtk.Popover):
 	def update_zoom_scale(self, value):
 		self._zoom_scale.set_value(value * 100)
 
-	def _update_zoom_level(self, *args):
-		zoom_value = self._zoom_scale.get_value()
-		self._window.get_active_image().zoom_level = zoom_value/100
-		self._window.get_active_image().update() # XXX superflus ? <^
-		self.set_zoom_label(zoom_value)
 
 	def update_minimap(self, force_update=False):
 		"""Update the overlay on the minimap, based on the scroll coordinates."""
 		if not self.get_visible() and not force_update:
 			return
 		image = self._window.get_active_image()
-		self.mini_pixbuf = image.get_mini_pixbuf(self._preview_size)
+		self.mini_pixbuf = image.generate_mini_pixbuf(self._preview_size)
 		self._mini_surface = Gdk.cairo_surface_create_from_pixbuf( \
 		                                              self.mini_pixbuf, 0, None)
 		pix_width = self.mini_pixbuf.get_width()
@@ -66,7 +61,7 @@ class DrMinimap(Gtk.Popover):
 		# TODO if possible, updating the overlay should be doable without first
 		# rebuilding the pixbuf and the surface. It's not very useful however
 		# since the guard clause prevent the update in most cases anyway.
-		if image.get_show_overlay():
+		if image.get_need_minimap_overlay():
 			size_ratio = image.get_minimap_ratio(pix_width)
 			mini_x = int(image.scroll_x * size_ratio)
 			mini_y = int(image.scroll_y * size_ratio)
@@ -87,6 +82,13 @@ class DrMinimap(Gtk.Popover):
 		image.update()
 
 	############################################################################
+
+	def _update_zoom_level(self, *args):
+		zoom_value = self._zoom_scale.get_value()
+		if self._window.get_active_image().zoom_level != zoom_value/100:
+			self._window.get_active_image().zoom_level = zoom_value/100
+			self._window.get_active_image().update()
+		self.set_zoom_label(zoom_value)
 
 	def _on_popover_dismissed(self, *args):
 		"""Callback of the 'closed' signal, updating the state of the action."""
@@ -115,3 +117,4 @@ class DrMinimap(Gtk.Popover):
 
 	############################################################################
 ################################################################################
+

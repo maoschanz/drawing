@@ -612,7 +612,7 @@ class DrImage(Gtk.Box):
 	def get_widget_height(self):
 		return self._drawing_area.get_allocated_height()
 
-	def get_mini_pixbuf(self, preview_size):
+	def generate_mini_pixbuf(self, preview_size):
 		mpb_width = self.get_pixbuf_width()
 		mpb_height = self.get_pixbuf_height()
 		if mpb_height > mpb_width:
@@ -623,7 +623,7 @@ class DrImage(Gtk.Box):
 			mh = preview_size * (mpb_height/mpb_width)
 		return self.main_pixbuf.scale_simple(mw, mh, GdkPixbuf.InterpType.TILES)
 
-	def get_show_overlay(self):
+	def get_need_minimap_overlay(self):
 		mpb_width = self.get_pixbuf_width()
 		mpb_height = self.get_pixbuf_height()
 		show_x = self.get_widget_width() < mpb_width * self.zoom_level
