@@ -1,8 +1,4 @@
-# tools_initializer.py
-#
-# Copyright 2018-2021 Romain F. T.
-#
-# GPL 3
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 from .tool_arc import ToolArc
 from .tool_brush import ToolBrush
@@ -125,9 +121,7 @@ class DrToolsInitializer():
 					letter_index = -1
 
 		for tool_id in underlined_chars:
-			c = underlined_chars[tool_id]
-			new_label = self._tools[tool_id].label.replace(c, "_" + c, 1)
-			self._tools[tool_id].mnemolabel = new_label
+			self._tools[tool_id].set_mnemonics(underlined_chars[tool_id])
 
 	############################################################################
 ################################################################################

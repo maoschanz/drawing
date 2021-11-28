@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-01 06:39+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2021-11-01 21:07+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -105,18 +105,10 @@ msgstr ""
 "проводить горизонтально или вертикально."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
 msgid ""
-"Using the \"scale\" tool, you may optionally set the new size as a relative "
-"percentage rather than an absolute value in pixels."
-msgstr ""
-"Используя инструмент «Масштаб», вы можете дополнительно устанавливать новый "
-"размер в процентах, а не только в виде абсолютных значений в пикселях."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
 msgstr ""
 "Если названия инструментов видны, вы можете включить определенный инструмент "
 "с помощью \"alt+[подчеркнутая буква]\". Это может еще не работать с языками, "
@@ -124,20 +116,37 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
 msgstr ""
 "Нажатие \"ctrl\", \"shift\" или \"alt\" при использовании инструмента "
 "включает определенные параметры, как например, \"добавить к выделенному\" "
 "для инструментов выделения."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+"Используя инструмент «Масштаб», вы можете дополнительно устанавливать новый "
+"размер в процентах, а не только в виде абсолютных значений в пикселях."
+
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"Версия 0.8.2 содержит несколько мелких исправлений и несколько новых "
+"Версия 0.8.5 содержит несколько мелких исправлений и несколько новых "
 "переводов."
 
 #. This is just my name, do not translate it.
@@ -198,7 +207,7 @@ msgstr "Перезагрузить файл"
 msgid "Image properties"
 msgstr "Свойства изображения"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr "Сбросить холст"
 
@@ -2132,6 +2141,23 @@ msgstr "Параметры маркера"
 msgid "Line"
 msgstr "Линия"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "Ширина"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "Высота"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Параметры линии"
@@ -2164,6 +2190,11 @@ msgstr "Следующий номер: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Форма"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2020-08-29 14:15+0800\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: none\n"
@@ -96,29 +96,36 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
 msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
-msgstr "0.8.2 版修復了一些小的錯誤，增加了新的翻譯。"
+"Version 0.8.5 features several minor bug fixes, and various new translations."
+msgstr "0.8.5 版修復了一些小的錯誤，增加了新的翻譯。"
 
 #. This is just my name, do not translate it.
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -178,7 +185,7 @@ msgstr "重新載入檔案"
 msgid "Image properties"
 msgstr "影像屬性"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr ""
 
@@ -2158,6 +2165,23 @@ msgstr "螢光筆"
 msgid "Line"
 msgstr "直線"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "寬度"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "高度"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "直線選項"
@@ -2192,6 +2216,11 @@ msgstr ""
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "形狀"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2334,10 +2363,6 @@ msgstr "模糊半徑"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "飽和度"
-
-#, fuzzy
-#~ msgid "Transform"
-#~ msgstr "透明"
 
 #~ msgid "Pixelization"
 #~ msgstr "像素化"

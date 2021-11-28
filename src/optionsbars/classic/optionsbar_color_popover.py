@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 from .utilities_colors import utilities_get_rgba_name
 
 PREFIX = '/com/github/maoschanz/drawing/'
@@ -61,8 +61,8 @@ CAIRO_OP_LABELS = {
 class OptionsBarClassicColorPopover(Gtk.Popover):
 	__gtype_name__ = 'OptionsBarClassicColorPopover'
 
-	def __init__(self, btn, thumbn, initial_rgba, is_main_c, cl_bar, **kwargs):
-		super().__init__(**kwargs)
+	def __init__(self, btn, thumbn, is_left_color, options_manager):
+		super().__init__()
 
 		suffix = 'optionsbars/classic/optionsbar-color-popover.ui'
 		builder = Gtk.Builder.new_from_resource(PREFIX + suffix)
@@ -72,7 +72,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._button = btn
 		self._button.set_popover(self)
 		self._thumbnail_image = thumbn
-		self._parent_bar = cl_bar
+		self._options_manager = options_manager
 
 		# These attributes are the same in both oppovers, but this may evolve
 		self._operator_enum = cairo.Operator.OVER
@@ -81,7 +81,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		########################################################################
 		# Box at the top #######################################################
 
-		if is_main_c:
+		if is_left_color:
 			title_label = _("Main color")
 		else:
 			title_label = _("Secondary color")
@@ -97,13 +97,8 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		########################################################################
 		# Color chooser widget #################################################
 
-		r = float(initial_rgba[0])
-		g = float(initial_rgba[1])
-		b = float(initial_rgba[2])
-		a = float(initial_rgba[3])
-		initial_rgba = Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
-
 		self.color_widget = builder.get_object('color-widget')
+		initial_rgba = self._options_manager.get_persisted_color(is_left_color)
 		self.color_widget.set_rgba(initial_rgba)
 		self.color_widget.connect('notify::rgba', self._on_color_changed)
 		self.color_widget.connect('notify::show-editor', self._update_nav_box)
@@ -209,8 +204,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 
 	def _on_color_changed(self, *args):
 		"""When the use clicks on a color in the palette"""
-		op_as_string = self._parent_bar.window.options_manager.get_value( \
-		                                                       'cairo_operator')
+		op_as_string = self._options_manager.get_value('cairo_operator')
 		self._set_thumbnail_color(op_as_string)
 
 	def _set_thumbnail_color(self, op_as_string):

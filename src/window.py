@@ -269,7 +269,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def build_new_from_file(self, gfile, check_duplicates=True):
 		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not w.confirm_open_twice(gfile):
+			if duplicate is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return
 		self._build_new_tab(gfile=gfile)
@@ -405,6 +405,10 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
+
+		# Select tools using "alt" mnemonics
+		self.connect('key-press-event', self._check_for_alt_key)
+		self.connect('key-release-event', self._check_for_alt_key)
 
 		# Managing drag-and-drop
 		if self.app.runs_in_sandbox:
@@ -828,6 +832,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.gsettings.set_boolean('show-labels', show_labels)
 		args[0].set_state(GLib.Variant.new_boolean(show_labels))
 
+	def _check_for_alt_key(self, *args):
+		if not args[1].state | Gdk.ModifierType.MOD1_MASK == args[1].state:
+			return
+		is_press = args[1].type == Gdk.EventType.KEY_PRESS
+		for tool_id in self.tools:
+			self.tools[tool_id].show_only_mnemonics(is_press)
+
 	############################################################################
 	# TOOLS ####################################################################
 
@@ -985,7 +996,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# it makes more sense to ask *if* the user want to open it BEFORE
 			# asking *where* to open it
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not w.confirm_open_twice(gfile):
+			if duplicate is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				self._hide_message()
 				return
@@ -1071,7 +1082,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return
 		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if w is not None and not w.confirm_open_twice(gfile):
+			if w is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return
 
@@ -1259,7 +1270,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		preview_visible = not args[0].get_state()
 		if preview_visible:
 			self.minimap.popup()
-			self.minimap.update_minimap(True)
+			self.minimap.update_content()
 		else:
 			self.minimap.popdown()
 		args[0].set_state(GLib.Variant.new_boolean(preview_visible))

@@ -179,15 +179,16 @@ class ToolRotate(AbstractCanvasTool):
 		# print('angle:', angle)
 		# print('gdk_rotation:', gdk_rotation)
 		# print('cairo_rotation:', cairo_rotation)
-
-		# Image rotation, using the method from GdkPixbuf.Pixbuf
-		new_pixbuf = source_pixbuf.rotate_simple(gdk_rotation)
+		new_pixbuf = source_pixbuf
 
 		# Image flipping (horizontal or vertical "mirroring")
 		if flip_h:
 			new_pixbuf = new_pixbuf.flip(True)
 		if flip_v:
 			new_pixbuf = new_pixbuf.flip(False)
+
+		# Image rotation, using the method from GdkPixbuf.Pixbuf
+		new_pixbuf = new_pixbuf.rotate_simple(gdk_rotation)
 
 		# Image rotation, using methods from cairo.Context (only if needed)
 		if cairo_rotation != 0:

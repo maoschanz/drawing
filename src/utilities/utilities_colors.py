@@ -1,8 +1,4 @@
-# utilities_colors.py
-#
-# Copyright 2018-2021 Romain F. T.
-#
-# GPL 3
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 from gi.repository import Gdk
 

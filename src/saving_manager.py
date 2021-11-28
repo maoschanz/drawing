@@ -117,7 +117,7 @@ class DrSavingManager():
 		cancel_id = dialog.set_action(_("Cancel"), None)
 		save_id = dialog.set_action(_("Save"), None, True)
 		dialog.add_string( _("There are unsaved modifications to %s.") % display_name)
-		self._window.minimap.update_minimap(True)
+		self._window.minimap.update_content()
 		image = Gtk.Image().new_from_pixbuf(self._window.minimap.mini_pixbuf)
 		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
 		frame.add(image)
@@ -174,7 +174,7 @@ class DrSavingManager():
 
 		dialog.add_string(msg)
 		dialog.add_string(_("Do you want to save anyway?"))
-		self._window.minimap.update_minimap(True)
+		self._window.minimap.update_content()
 		image = Gtk.Image().new_from_pixbuf(self._window.minimap.mini_pixbuf)
 		frame = Gtk.Frame(valign=Gtk.Align.CENTER, halign=Gtk.Align.CENTER)
 		frame.add(image)
