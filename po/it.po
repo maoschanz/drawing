@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2021-11-03 22:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -104,6 +104,34 @@ msgstr ""
 "orizzontalmente o verticalmente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+"Se i nomi degli strumenti sono visibili, puoi abilitare uno strumento "
+"specifico con \"alt+[lettera sottolineata]\". Potrebbe non funzionare ancora "
+"con le lingue che utilizzano un alfabeto non latino."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+"Premendo \"ctrl\", \"shift\", o \"alt\" quando si utilizza uno strumento si "
+"attivano opzioni, come \"aggiungi alla selezione\" per gli strumenti di "
+"selezione."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
@@ -112,32 +140,13 @@ msgstr ""
 "dimensione con relativa percentuale piuttosto che un valore assoluto in "
 "pixel."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
-msgstr ""
-"Se i nomi degli strumenti sono visibili, puoi abilitare uno strumento "
-"specifico con \"alt+[lettera sottolineata]\". Potrebbe non funzionare ancora "
-"con le lingue che utilizzano un alfabeto non latino."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
-msgstr ""
-"Premendo \"ctrl\", \"shift\", o \"alt\" quando si utilizza uno strumento si "
-"attivano opzioni, come \"aggiungi alla selezione\" per gli strumenti di "
-"selezione."
-
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"La versione 0.8.2 presenta diverse correzioni di bug minori e varie nuove "
+"La versione 0.8.5 presenta diverse correzioni di bug minori e varie nuove "
 "traduzioni. "
 
 #. This is just my name, do not translate it.
@@ -198,7 +207,7 @@ msgstr "Ricarica file"
 msgid "Image properties"
 msgstr "Proprietà immagine"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr "Ripristina tela"
 
@@ -1375,7 +1384,9 @@ msgstr "Le modifiche avranno effetto dalla prossima nuova finestra."
 
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
-msgstr "Fai clic con il tasto centrale o premi F8 per mostrare/nascondere i controlli."
+msgstr ""
+"Fai clic con il tasto centrale o premi F8 per mostrare/nascondere i "
+"controlli."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -2130,6 +2141,23 @@ msgstr "Opzioni evidenziatore"
 msgid "Line"
 msgstr "Linea"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "Larghezza"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "Altezza"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Opzioni linea"
@@ -2162,6 +2190,11 @@ msgstr "Numero successivo: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"

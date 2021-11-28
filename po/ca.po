@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2021-09-24 06:29+0200\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -95,18 +95,10 @@ msgstr ""
 "horitzontalment o verticalment."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
 msgid ""
-"Using the \"scale\" tool, you may optionally set the new size as a relative "
-"percentage rather than an absolute value in pixels."
-msgstr ""
-"Utilitzant l'eina «Escalar», podeu establir opcionalment la mida nova com a "
-"percentatge relatiu en lloc d'un valor absolut en píxels."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
 msgstr ""
 "Si els noms de les eines són visibles, podeu habilitar una eina específica "
 "amb «alt+[la lletra subratllada]». Això pot no funcionar encara amb idiomes "
@@ -114,20 +106,37 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
 msgstr ""
 "En prémer «ctrl», «shift» o «alt» quan s'utilitza una eina s'habilitaran "
 "opcions específiques, com ara «afegeix a la selecció» per a les eines de "
 "selecció."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+"Utilitzant l'eina «Escalar», podeu establir opcionalment la mida nova com a "
+"percentatge relatiu en lloc d'un valor absolut en píxels."
+
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"La versió 0.8.2 presenta diverses correccions d'errors menors i diverses "
+"La versió 0.8.5 presenta diverses correccions d'errors menors i diverses "
 "traduccions noves."
 
 #. This is just my name, do not translate it.
@@ -188,7 +197,7 @@ msgstr "Torna a carregar el fitxer"
 msgid "Image properties"
 msgstr "Propietats de la imatge"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr ""
 
@@ -2134,6 +2143,23 @@ msgstr "Opcions del marcador"
 msgid "Line"
 msgstr "Línia"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "Amplada"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "Alçada"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Opcions de línia"
@@ -2167,6 +2193,11 @@ msgstr "Nombre següent: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
