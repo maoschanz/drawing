@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-11-28 01:21+0100\n"
-"PO-Revision-Date: 2021-11-03 23:12+0100\n"
+"PO-Revision-Date: 2021-11-28 18:53+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -104,14 +104,13 @@ msgstr ""
 "lub pionowo."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Jeśli nazwy narzędzi są widoczne, możesz włączyć określone narzędzie za "
-"pomocą „Alt+[podkreślona litera]”. Może to jeszcze nie działać w przypadku "
-"języków używających alfabetu innego niż łaciński."
+"Możesz wybierać narzędzia za pomocą akceleratorów klawiaturowych (Alt + "
+"litera). Mogą one jeszcze nie działać w przypadku języków używających "
+"alfabetu innego niż łaciński."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -119,17 +118,19 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Naciśnięcie „Ctrl” wyświetli współrzędne kursora w podpowiedzi. Jeśli "
+"zrobisz to podczas korzystania z narzędzia, może wyświetlić dodatkowe dane, "
+"na przykład wymiary rysowanego kształtu!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Naciśnięcie klawiszy „Ctrl”, „Shift” lub „Alt” podczas korzystania z "
-"narzędzia włącza określone opcje, takie jak „Dodaj do zaznaczenia” dla "
-"narzędzi zaznaczania."
+"Naciśnięcie klawisza „Shift” lub „Alt” podczas korzystania z narzędzia "
+"włącza określone opcje, takie jak blokowanie kierunku narzędzia „Linia” lub "
+"zmiana stylu wypełniania kształtu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -2141,20 +2142,20 @@ msgstr "Linia"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Szerokość"
+msgstr "Szerokość: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Wysokość"
+msgstr "Wysokość: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Długość: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2192,7 +2193,7 @@ msgstr "Kształt"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Promień: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
