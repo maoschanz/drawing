@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-11-28 01:21+0100\n"
-"PO-Revision-Date: 2021-11-04 13:32+0100\n"
+"PO-Revision-Date: 2021-11-28 19:33+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -103,14 +103,12 @@ msgstr ""
 "horisontellt eller vertikalt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Om namnen på verktygen är synliga kan du aktivera ett visst verktyg med \"alt"
-"+[den understrukna bokstaven]\". Detta kanske inte fungerar ännu med språk "
-"som använder ett icke-latinskt alfabet."
+"Du kan välja verktyg med tangentbordsacceleratorer (Alt+bokstav). Detta "
+"kanske inte fungerar ännu med språk som använder ett icke-latinskt alfabet."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -118,17 +116,19 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Om du trycker på \"Ctrl\" visas markörkoordinaterna i ett knappbeskrivning. "
+"Om du gör det när du använder ett verktyg kan det visa ytterligare data, "
+"till exempel dimensionerna på formen du ritar!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Genom att trycka på Ctrl, \"skift\" eller \"alt\" när du använder ett "
-"verktyg kan du använda specifika alternativ, till exempel \"lägg till i "
-"markeringen\" för markeringsverktygen."
+"Genom att trycka på \"Skift\" eller \"Alt\" när du använder ett verktyg "
+"aktiveras specifika alternativ, till exempel att låsa riktningen för "
+"\"linjeverktyget\" eller ändra fyllningsstilen för en form."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -2135,20 +2135,20 @@ msgstr "Linje"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Bredd"
+msgstr "Bredd: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Höjd"
+msgstr "Höjd: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Längd: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2186,7 +2186,7 @@ msgstr "Figur"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Radie: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
