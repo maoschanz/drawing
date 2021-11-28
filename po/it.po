@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-11-28 01:21+0100\n"
-"PO-Revision-Date: 2021-11-03 22:15+0100\n"
+"PO-Revision-Date: 2021-11-28 18:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -104,14 +104,12 @@ msgstr ""
 "orizzontalmente o verticalmente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Se i nomi degli strumenti sono visibili, puoi abilitare uno strumento "
-"specifico con \"alt+[lettera sottolineata]\". Potrebbe non funzionare ancora "
-"con le lingue che utilizzano un alfabeto non latino."
+"Puoi selezionare strumenti con acceleratori da tastiera (Alt+lettera). Questo potrebbe non "
+"funzionare ancora con le lingue usando un alfabeto non latino.
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -119,17 +117,19 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Premendo \"ctrl\" verranno visualizzate le coordinate del cursore in una descrizione del comando. Se "
+"lo fate durante l'utilizzo di uno strumento, potrebbe visualizzare dati aggiuntivi, ad esempio le "
+"dimensioni della forma che stai disegnando!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Premendo \"ctrl\", \"shift\", o \"alt\" quando si utilizza uno strumento si "
-"attivano opzioni, come \"aggiungi alla selezione\" per gli strumenti di "
-"selezione."
+"Premendo \"shift\" o \"alt\" quando si utilizza uno strumento si abilitano opzioni specifiche, "
+"come bloccare la direzione per lo strumento \"linea\" o cambiare il riempimento "
+"stile di una forma."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -2143,20 +2143,18 @@ msgstr "Linea"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
 msgid "Width: %spx"
-msgstr "Larghezza"
+msgstr "Larghezza: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
 msgid "Height: %spx"
-msgstr "Altezza"
+msgstr "Altezza: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Lunghezza: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2194,7 +2192,7 @@ msgstr "Forma"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Raggio: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
