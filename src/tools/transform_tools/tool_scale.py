@@ -168,7 +168,7 @@ class ToolScale(AbstractCanvasTool):
 		self._y2 = self._y + self._get_height()
 		self.set_preserve_ratio()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._directions == '':
 			return
 		delta_x = event_x - self.x_press

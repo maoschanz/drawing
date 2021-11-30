@@ -103,7 +103,7 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	def press_define(self, event_x, event_y):
 		pass # implemented by actual tools
 
-	def motion_define(self, event_x, event_y):
+	def motion_define(self, event_x, event_y, render):
 		pass # implemented by actual tools
 
 	def release_define(self, surface, event_x, event_y):
@@ -127,10 +127,10 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			self.restore_pixbuf()
 			self.non_destructive_show_modif()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self.behavior == 'define':
-			self.motion_define(event_x, event_y)
-		elif self.behavior == 'drag':
+			self.motion_define(event_x, event_y, render)
+		elif render and self.behavior == 'drag':
 			self._preview_drag_to(event_x, event_y)
 
 	def _preview_drag_to(self, event_x, event_y):

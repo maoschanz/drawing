@@ -135,7 +135,7 @@ class ToolShape(AbstractClassicTool):
 		self.last_mouse_btn = event.button
 		self.set_common_values(self.last_mouse_btn, event_x, event_y)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
 			self._filling_id = 'secondary'
@@ -158,8 +158,8 @@ class ToolShape(AbstractClassicTool):
 			elif self._shape_id == 'circle':
 				self._draw_circle(event_x, event_y)
 			operation = self.build_operation(self._path)
-
-		self.do_tool_operation(operation)
+		if render:
+			self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._shape_id == 'freeshape' or self._shape_id == 'polygon':

@@ -327,7 +327,7 @@ class AbstractAbstractTool():
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_motion_on_area(self, event, surface, event_x, event_y):
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		pass
 
 	def on_unclicked_motion_on_area(self, event, surface):
