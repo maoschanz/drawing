@@ -123,7 +123,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.unclicked = False
 		self._update_expansion_rgba(event.button)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
 			self._force_expansion_rgba('secondary')
@@ -158,7 +158,7 @@ class ToolCrop(AbstractCanvasTool):
 		self.x_press = event_x
 		self.y_press = event_y
 		# not adding the condition would be a better UX but slower to compute
-		if render and not self.apply_to_selection:
+		if not self.apply_to_selection:
 			self.build_and_do_op()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):

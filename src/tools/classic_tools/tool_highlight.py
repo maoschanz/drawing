@@ -50,7 +50,7 @@ class ToolHighlighter(ToolPencil):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		super().on_press_on_area(event, surface, event_x, event_y)
 
-		if "SHIFT" in self._modifier_keys:
+		if 'SHIFT' in self._modifier_keys:
 			if self._bg_type == 'light':
 				self._bg_type = 'dark'
 			else:

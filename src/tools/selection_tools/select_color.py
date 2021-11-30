@@ -41,7 +41,7 @@ class ToolColorSelect(AbstractSelectionTool):
 	def press_define(self, event_x, event_y):
 		pass
 
-	def motion_define(self, event_x, event_y, render):
+	def motion_define(self, event_x, event_y):
 		pass
 
 	def release_define(self, surfc, event_x, event_y):

@@ -128,8 +128,8 @@ class ToolSkew(AbstractCanvasTool):
 		# flamby dégueulasse lié aux arrondis ?
 		self._update_expansion_rgba(event.button)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if self._directions == '' or not render:
+	def on_motion_on_area(self, event, surface, event_x, event_y):
+		if self._directions == '':
 			return
 
 		self.update_modifier_state(event.state)

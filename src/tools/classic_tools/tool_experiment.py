@@ -92,11 +92,10 @@ class ToolExperiment(AbstractClassicTool):
 		self._manual_path = []
 		self._add_pressured_point(event_x, event_y, event)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self._add_pressured_point(event_x, event_y, event)
-		if render:
-			operation = self.build_operation()
-			self.do_tool_operation(operation)
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_pressured_point(event_x, event_y, event)

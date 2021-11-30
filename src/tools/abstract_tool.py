@@ -97,9 +97,9 @@ class AbstractAbstractTool():
 		modifier_keys = []
 		# CONTROL_MASK can't be used, because it already has an effect app-wide.
 		if (event_state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK:
-			modifier_keys.append("SHIFT")
+			modifier_keys.append('SHIFT')
 		if (event_state & Gdk.ModifierType.MOD1_MASK) == Gdk.ModifierType.MOD1_MASK:
-			modifier_keys.append("ALT")
+			modifier_keys.append('ALT')
 		self._modifier_keys = modifier_keys
 
 	############################################################################
@@ -327,7 +327,7 @@ class AbstractAbstractTool():
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		pass
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		pass
 
 	def on_unclicked_motion_on_area(self, event, surface):

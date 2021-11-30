@@ -39,9 +39,7 @@ class ToolRectSelect(AbstractSelectionTool):
 	def press_define(self, event_x, event_y):
 		pass
 
-	def motion_define(self, event_x, event_y, render):
-		if not render:
-			return
+	def motion_define(self, event_x, event_y):
 		self._build_rectangle_path(self.x_press, self.y_press, event_x, event_y)
 		self.restore_pixbuf()
 		rect = self.get_selection().get_future_path()

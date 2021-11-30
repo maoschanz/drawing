@@ -41,8 +41,8 @@ class ToolFreeSelect(AbstractSelectionTool):
 		self._draw_shape(event_x, event_y)
 		self.set_action_sensitivity('selection_close', True)
 
-	def motion_define(self, event_x, event_y, render):
-		self._draw_shape(event_x, event_y, render)
+	def motion_define(self, event_x, event_y):
+		self._draw_shape(event_x, event_y)
 
 	def release_define(self, surface, event_x, event_y):
 		if self._draw_shape(event_x, event_y):
@@ -59,7 +59,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 	def _force_close_shape(self, *args):
 		self.release_define(None, self.closing_x, self.closing_y)
 
-	def _draw_shape(self, event_x, event_y, render=True):
+	def _draw_shape(self, event_x, event_y):
 		"""This method is specific to the 'free selection' mode. It returns a
 		boolean, true if the shape should be closed."""
 		cairo_context = self.get_context()
@@ -85,8 +85,7 @@ class ToolFreeSelect(AbstractSelectionTool):
 			cairo_context.line_to(event_x, event_y)
 			cairo_context.stroke_preserve() # draw the line without closing the path
 			self._pre_load_path(cairo_context.copy_path())
-			if render:
-				self.non_destructive_show_modif()
+			self.non_destructive_show_modif()
 			return False
 
 	############################################################################

@@ -68,7 +68,7 @@ class ToolPencil(AbstractClassicTool):
 		self._path = None
 
 		self.update_modifier_state(event.state)
-		if "ALT" in self._modifier_keys:
+		if 'ALT' in self._modifier_keys:
 			self._use_outline = not self._use_outline
 
 	def _add_point(self, event_x, event_y):
@@ -80,11 +80,10 @@ class ToolPencil(AbstractClassicTool):
 		cairo_context.line_to(event_x, event_y)
 		self._path = cairo_context.copy_path()
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+	def on_motion_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
-		if render:
-			operation = self.build_operation()
-			self.do_tool_operation(operation)
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
