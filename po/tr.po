@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 02:58+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-12-04 20:56+0100\n"
 "PO-Revision-Date: 2021-03-31 20:57+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -478,7 +478,7 @@ msgstr "Yenile"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Kare hızını izle"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -789,23 +789,21 @@ msgstr "Daha fazla eylem"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Serbest seçim"
+msgstr "Zıt seçim"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Bir görüntü aç"
+msgstr "Geçerli görüntü olarak tanımla"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Görüntüyü sığacak şekilde genişlet"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -919,9 +917,8 @@ msgid "Touch gestures"
 msgstr "Dokunmatik hareketleri"
 
 #: src/ui/window.ui
-#, fuzzy
 msgid "Loading…"
-msgstr "Yükleniyor %s"
+msgstr "Yükleniyor…"
 
 #: src/deco_manager.py
 #, python-format
@@ -1207,9 +1204,8 @@ msgid "Background color"
 msgstr "Arkaplan rengi"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Öntanımlı genişlik"
+msgstr "Karanlık tema varyantını tercih edin"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -2116,6 +2112,18 @@ msgstr "Gölge"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Anahat yok"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Anahat yok"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "Dikdörtgen arka plan"
 
@@ -2299,12 +2307,6 @@ msgstr "Doygunluk"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Tam ekran kipinden çık"
-
-#~ msgid "Edit"
-#~ msgstr "Düzenle"
-
-#~ msgid "Open a file"
-#~ msgstr "Bir dosya aç"
 
 #~ msgid "Close"
 #~ msgstr "Kapat"

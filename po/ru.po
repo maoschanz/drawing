@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 02:58+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-12-04 20:56+0100\n"
 "PO-Revision-Date: 2021-06-28 08:07+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
@@ -330,7 +330,7 @@ msgstr "Новое изображение из буфера обмена"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr "Обновить файл"
+msgstr "Перезагрузить файл"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
@@ -477,19 +477,19 @@ msgstr "Положение"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Left"
-msgstr "Переместить влево"
+msgstr "Переместиться влево"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Up"
-msgstr "Переместить вверх"
+msgstr "Переместиться вверх"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Down"
-msgstr "Переместить вниз"
+msgstr "Переместиться вниз"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
-msgstr "Переместить вправо"
+msgstr "Переместиться вправо"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -534,7 +534,7 @@ msgstr "Изменить дополнительный цвет…"
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
-msgstr "Использовать редактор цвета по умолчанию"
+msgstr "Использовать по умолчанию редактор цвета"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -733,7 +733,7 @@ msgstr "Поделиться изображением"
 
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -884,7 +884,7 @@ msgstr "Вернуться к предыдущему инструменту"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr "Применить изменение"
+msgstr "Применить преобразование"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -1225,7 +1225,7 @@ msgstr "Размер окна предварительного просмотр�
 #. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
-msgstr "Особенности разработки"
+msgstr "Экспериментальные возможности"
 
 #: src/preferences.py
 msgid "Background color"
@@ -1287,7 +1287,7 @@ msgstr "Только панель инструментов (символьные
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr "%s px"
+msgstr "%s пикс"
 
 #: src/properties.py
 #, python-format
@@ -2136,6 +2136,16 @@ msgstr "Тень"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Thin outline"
+msgstr "Тонкий контур"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Thick outline"
+msgstr "Толстый контур"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "Прямоугольный фон"
 
@@ -2317,15 +2327,6 @@ msgstr "Насыщенность"
 
 #~ msgid "Quit"
 #~ msgstr "Завершить"
-
-#~ msgid "Edit"
-#~ msgstr "Правка"
-
-#~ msgid "Open a file"
-#~ msgstr "Открыть файл"
-
-#~ msgid "Save as"
-#~ msgstr "Сохранить как"
 
 #~ msgid "Close"
 #~ msgstr "Закрыть"

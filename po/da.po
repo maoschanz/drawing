@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 02:58+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-12-04 20:56+0100\n"
 "PO-Revision-Date: 2020-11-14 01:12+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -1137,7 +1137,7 @@ msgstr "Overstregningspen"
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Pensel"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1342,7 +1342,7 @@ msgstr "Erstat gennemsigtighed med:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "Markeringen pixbuf er tom"
 
 #: src/selection_manager.py
 #, fuzzy
@@ -1476,15 +1476,15 @@ msgstr ""
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Senere"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #. Context: an error message
 #: src/window.py
@@ -1639,7 +1639,7 @@ msgstr "Gennemsigtighed"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Uddrag fra denne farve"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
@@ -1808,7 +1808,7 @@ msgstr "Simpel stiplet"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
-msgstr ""
+msgstr "Airbrush"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
 #, fuzzy
@@ -1830,7 +1830,7 @@ msgstr "Lodret"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Venstrehåndet"
 
 #: src/tools/ui/tool-brush.ui
 #, fuzzy
@@ -1858,11 +1858,11 @@ msgstr "pixels"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Bland og slør"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mosaik"
 
 #: src/tools/ui/tool-eraser.ui
 #, fuzzy
@@ -1891,7 +1891,7 @@ msgstr "Tilføj gennemsigtighed"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Forøg kontrasten"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -2102,6 +2102,18 @@ msgstr "Ingen baggrund"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Skygge"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Intet omrids"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Intet omrids"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

@@ -1,12 +1,12 @@
 # Croatian translation of Drawing.
 # This file is distributed under the same license as the drawing package.
-# Milo Ivir <mail@milotype.de>, 2020.
+# Milo Ivir <mail@milotype.de>, 2020.,2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 02:58+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-12-04 20:56+0100\n"
 "PO-Revision-Date: 2020-05-17 14:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -239,22 +239,22 @@ msgstr ""
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Prozor i njegov glavni izbornik"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "Odabir i s njime povezane radnje"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Zumiranje u raznim oblicima"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "Izbornik „Nova slika” otvoren"
 
 #: src/ui/app-menus.ui
 msgid "_File"
@@ -263,7 +263,7 @@ msgstr "_Datoteka"
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Open an image"
-msgstr "Otvori sliku"
+msgstr "Otvori jednu sliku"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Blank Image"
@@ -296,9 +296,8 @@ msgid "Save"
 msgstr "Spremi"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Dodaj prozirnost"
+msgstr "Spremi bez prozirnosti"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -313,7 +312,7 @@ msgstr "Izvezi kao …"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiraj u međuspremnik"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -350,12 +349,12 @@ msgstr "Ponovi"
 
 #: src/ui/app-menus.ui
 msgid "Rebuild from history"
-msgstr "Izgradi ponovo iz kronologije"
+msgstr "Izgradi ponovo iz povijesti"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Select all"
-msgstr "Otvori sve"
+msgstr "Odaberi sve"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -395,39 +394,39 @@ msgstr "_Prikaz"
 
 #: src/ui/app-menus.ui
 msgid "Show the preview"
-msgstr "Prikaži pretprikaz"
+msgstr "Prikaži pregled"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Zumiranje"
+msgstr "Uvećanje"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
-msgstr "Optimalno zumiranje"
+msgstr "Optimalno uvećanje"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Zoom Out"
-msgstr "Smanji prikaz"
+msgstr "Umanji prikaz"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Original Zoom"
-msgstr "Izvorno zumiranje"
+msgstr "Izvorno uvećanje"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Zoom In"
-msgstr "Povećaj prikaz"
+msgstr "Uvećaj prikaz"
 
 #. Context: this submenu is about moving the view to the
 #. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
-msgstr "Pozicija"
+msgstr "Položaj"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Left"
@@ -460,7 +459,7 @@ msgstr "Aktualiziraj"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Prati brzinu kadrova"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -468,7 +467,7 @@ msgstr "Cjeloekranski prikaz"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Sakrij traku alata"
 
 #: src/ui/app-menus.ui src/ui/window.ui
 msgid "Exit fullscreen"
@@ -480,11 +479,11 @@ msgstr "_Boje"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Uredi glavnu boju …"
+msgstr "Uredi glavnu boju …"
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Uredi sporednu boju …"
+msgstr "Uredi sporednu boju …"
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
@@ -513,24 +512,22 @@ msgstr "Isticanje"
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Pravokutna pozadina"
+msgstr "Tamni tekst na svijetloj pozadini"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Svijetli tekst na tamnoj pozadini"
 
 #. Context: possible ways to apply the color to the canvas, using
 #. only some specific dimension(s) of the selected color in its
 #. hue-saturation-luminosity (HSL) representation
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "HSL modes"
-msgstr "Drugi modusi"
+msgstr "HLS modusi"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -592,9 +589,8 @@ msgid "Previous tool"
 msgstr "Prethodni alat"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Drugi modusi"
+msgstr "Aktivni alat"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -603,12 +599,11 @@ msgstr "Prikaži imena alata"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Veća širina"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Standardna širina"
+msgstr "Manja širina"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
@@ -638,7 +633,7 @@ msgstr "Indeks"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Individualne stranice"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -646,32 +641,27 @@ msgid "Basic help"
 msgstr "Osnovna pomoć"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Pomoć za alate"
+msgstr "Pomoć za uvećanje"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Otvori cjeloekranski prikaz"
+msgstr "Pomoć za cjeloekranski prikaz"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Pomoć za alate"
+msgstr "Pomoć za klasične alate"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Pomoć za alate"
+msgstr "Pomoć za boje"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Pomoć za alate"
+msgstr "Pomoć za alate transformacija"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -679,7 +669,7 @@ msgstr "Pomoć za odabir"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Novosti"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -711,9 +701,8 @@ msgid "Height"
 msgstr "Visina"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Boje"
+msgstr "Boja"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -735,11 +724,11 @@ msgstr "Prozor"
 #. numerical inputs
 #: src/ui/properties.ui src/utilities.py
 msgid "pixels"
-msgstr "pikslova"
+msgstr "piksela"
 
 #: src/ui/properties.ui
 msgid "centimeters"
-msgstr "centimetara"
+msgstr "centimetra"
 
 #: src/ui/properties.ui
 msgid "inches"
@@ -781,23 +770,21 @@ msgstr "Daljnje radnje"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Prostoručni odabir"
+msgstr "Preokreni odabir"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Otvori sliku"
+msgstr "Odredi kao trenutačnu sliku"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Prilagodi sliku na ovu širinu"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -805,9 +792,8 @@ msgid "Open As New Image"
 msgstr "Otvori kao novu sliku"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Prečaci"
+msgstr "Tipkovni prečaci"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -842,9 +828,8 @@ msgid "Close the active image"
 msgstr "Zatvori aktivnu sliku"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Izbornik opcija"
+msgstr "Otvori izbornik opcija alata"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -852,7 +837,7 @@ msgstr "Natrag na prethodni alat"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Primijeni jednu transformaciju"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -901,22 +886,20 @@ msgid "Toggle the preview"
 msgstr "Uključi/isključi pretprikaz"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Otvori cjeloekranski prikaz"
+msgstr "Uključi/isključi cjeloekranski prikaz"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Uključi/isključi vidljivost trake alata"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Dodirne geste"
 
 #: src/ui/window.ui
-#, fuzzy
 msgid "Loading…"
-msgstr "Učitava se %s"
+msgstr "Učitavanje …"
 
 #: src/deco_manager.py
 #, python-format
@@ -931,12 +914,12 @@ msgstr "Ponovi %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Pokušaj spremanja nevaljanog stanja"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Greška: ne postoji alat „%s”"
 
 #. Context: an error message
 #: src/image.py
@@ -986,7 +969,7 @@ msgstr "Prijavi greške ili ideje"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Milo Ivir <mail@milotype.de>, 2020."
+msgstr "Milo Ivir <mail@milotype.de>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1003,15 +986,14 @@ msgid "Official webpage"
 msgstr "Službena web-stranica"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Greška pri otvaranju datoteke. Možda misliš %s?"
+msgstr "Greška pri otvaranju datoteke."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Misliš li možda %s?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1055,9 +1037,8 @@ msgstr "Standardna visina"
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Default color"
-msgstr "Standardna pozadina"
+msgstr "Standardna boja"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1102,15 +1083,15 @@ msgstr "Pitaj prije spremanja"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Zumiraj pomoću Ctrl+klizanje ili samo klizanjem."
+msgstr "Uvećaj pomoću Ctrl+klizanje ili samo klizanjem."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "Za objašnjenja pogledaj priručnik za korisničku pomoć."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "Koristi „Ctrl” za zumiranje"
+msgstr "Koristi „Ctrl” za uvećvaanje"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1149,7 +1130,7 @@ msgstr "Isticanje"
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Kist"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1158,7 +1139,7 @@ msgstr ""
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr ""
+msgstr "Točke"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1171,7 +1152,7 @@ msgstr "Prostoručni odabir"
 #. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Odabir prema boji"
+msgstr "Biranje boje"
 
 #. Context: this is a tool to pick a RGBA color in the image in order to
 #. use it to draw with other tools
@@ -1191,7 +1172,7 @@ msgstr "Napredne opcije"
 
 #: src/preferences.py
 msgid "Preview size"
-msgstr "Veličina pretprikaza"
+msgstr "Veličina pregleda"
 
 #. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
@@ -1203,9 +1184,8 @@ msgid "Background color"
 msgstr "Boja pozadine"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Standardna širina"
+msgstr "Preferiraj varijantu tamne teme"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1224,7 +1204,7 @@ msgstr "Automatski"
 
 #: src/preferences.py
 msgid "Compact"
-msgstr "Kompaktni"
+msgstr "Kompaktno"
 
 #: src/preferences.py
 msgid "elementary OS"
@@ -1241,7 +1221,7 @@ msgstr "Stari"
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
-msgstr "Stari (ikone sa simbolima)"
+msgstr "Stari (simboličke ikone)"
 
 #: src/preferences.py
 msgid "Menubar only"
@@ -1254,7 +1234,7 @@ msgstr "Samo traka alata"
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
-msgstr "Samo traka alata (ikone sa simbolima)"
+msgstr "Samo traka alata (simboličke ikone)"
 
 #: src/properties.py
 #, python-format
@@ -1471,7 +1451,7 @@ msgstr ""
 #: src/utilities.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Unatoč imena, %s ipak je WEBP slika."
 
 #: src/window.py
 msgid "Error starting the application, please report this bug."
@@ -1587,9 +1567,8 @@ msgstr "Potrebni alat nije dostupan"
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Isticanje"
+msgstr "Isticanje (tamno)"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
@@ -1612,7 +1591,7 @@ msgstr "Veličina alata"
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-text.ui
 msgid "Preview"
-msgstr "Pretprikaz"
+msgstr "Pregled"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -1631,15 +1610,13 @@ msgid "Use this editor by default"
 msgstr "Standardno koristi ovaj uređivač"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
 msgid "Selection options"
-msgstr "Opcije za olovku"
+msgstr "Opcije za odbiranje"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Zamijeni"
+msgstr "Zamijeni sa …"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1651,7 +1628,7 @@ msgstr "Prozirnost"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Izdvoji iz ove boje"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-filters.ui
@@ -1665,7 +1642,7 @@ msgstr "Daljnje opcije"
 
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Proširi sa …"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1674,7 +1651,7 @@ msgstr "Odaberi filtar …"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
-msgstr "Kut (u stupnjevima)"
+msgstr "Kut (stupnjevi)"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
@@ -1757,7 +1734,7 @@ msgstr "Oblik crte"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Zaobljeno"
+msgstr "Obli"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1765,7 +1742,7 @@ msgstr "Zaobljeno"
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
-msgstr "Kvardatično"
+msgstr "Kvardatičan"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1774,46 +1751,40 @@ msgstr "Kontura"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Koristi crtice"
+msgstr "Bez crtica"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Koristi crtice"
+msgstr "Jednostavne crtice"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Koristi crtice"
+msgstr "Dugačke crtice"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Koristi crtice"
+msgstr "Kratke crtice"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Alternirajuće crtice"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Strelica"
+msgstr "Bez strelice"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Jednostavna strelica"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Iscrtkana strelica"
+msgstr "Dvostruka strelica"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -1823,40 +1794,36 @@ msgid "Antialiasing"
 msgstr "Zaglađivanje rubova"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
-#, fuzzy
 msgid "Simple brush"
-msgstr "Koristi crtice"
+msgstr "Jednostavni kist"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
-msgstr ""
+msgstr "Sprej"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Koristi crtice"
+msgstr "Dlakasti kist"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
-msgstr ""
+msgstr "Kaligrafsko pero"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Right-handed nib"
-msgstr ""
+msgstr "Pero za desnoruke"
 
 #: src/tools/ui/tool-brush.ui
-#, fuzzy
 msgid "Vertical nib"
-msgstr "Okomito"
+msgstr "Okomito pero"
 
 #: src/tools/ui/tool-brush.ui
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Pero za lijevoruke"
 
 #: src/tools/ui/tool-brush.ui
-#, fuzzy
 msgid "Horizontal nib"
-msgstr "Vodoravno"
+msgstr "Vodoravno pero"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #: src/tools/classic_tools/tool_pencil.py
@@ -1873,22 +1840,20 @@ msgid "Blur"
 msgstr "Zamuti"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "pikslova"
+msgstr "Promiješaj pikslove"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Promiješaj i zamuti"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Mosaic"
 msgstr ""
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Sporedna boja"
+msgstr "Čista boja"
 
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
@@ -1912,7 +1877,7 @@ msgstr "Dodaj prozirnost"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Povećaj kontrast"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -1958,12 +1923,11 @@ msgstr "Invertiraj boje"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
-msgstr "Gradijent u boji"
+msgstr "Gradijent boje"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Bez smjera"
+msgstr "Zaključani smjer"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -1976,7 +1940,7 @@ msgstr "Način rada"
 #. default behavior of the tool.
 #: src/tools/ui/tool-paint.ui
 msgid "Encircle and fill"
-msgstr "Okruži i ispuni"
+msgstr "Zaokruži i ispuni"
 
 #. Context: this is one of the possible painting algorithms. It
 #. erases the color the user clicked, and then replace transparent
@@ -1989,22 +1953,20 @@ msgstr "Izbriši i zamijeni"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Otvorene slike"
+msgstr "Cijela slika"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Neobrađena izvorna boja"
+msgstr "Ukloni boju"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Vrste točaka"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -2013,55 +1975,51 @@ msgstr "Krug"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Križ"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "Križ u obliku slova x"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Uključi broj"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Sljedeći broj"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Obnovi broj"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Smanji broj"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Povećaj broj"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Prazna kontura"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Dashed outline"
-msgstr "Iscrtkana strelica"
-
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "No outline"
 msgstr "Kontura"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr "Iscrtkana kontura"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "No outline"
+msgstr "Bez konture"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
-msgstr ""
+msgstr "Ispunjavanje"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Prazno"
+msgstr "Prazni oblik"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
@@ -2104,9 +2062,8 @@ msgid "Font"
 msgstr "Font"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "Odaberi filtar …"
+msgstr "Odaberi font …"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
@@ -2130,6 +2087,18 @@ msgstr "Bez pozadine"
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
 msgstr "Sjena"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Kontura"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Kontura"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py

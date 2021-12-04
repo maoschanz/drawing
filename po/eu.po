@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 02:58+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2021-12-04 20:56+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -1540,9 +1540,8 @@ msgstr ""
 "Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Irten pantaila osotik"
+msgstr "Sakatu F11 pantaila osotik irteteko"
 
 #: src/window.py
 #, fuzzy, python-format
@@ -1653,15 +1652,13 @@ msgid "Use this editor by default"
 msgstr "Erabili editore hau lehenespenez"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
 msgid "Selection options"
-msgstr "Arkatzaren aukerak"
+msgstr "Hautatzeko aukerak"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Zabaldu honekin…"
+msgstr "Ordeztu honekin…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui src/tools/ui/selection.ui
@@ -1894,7 +1891,6 @@ msgid "Blur"
 msgstr "Lausotu"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
 msgstr "Ausazko píxelak"
 
@@ -1907,9 +1903,8 @@ msgid "Mosaic"
 msgstr "Mosaikoa"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Bigarren kolorea"
+msgstr "Kolore solidoa"
 
 #: src/tools/ui/tool-filters.ui
 #, fuzzy
@@ -1982,9 +1977,8 @@ msgid "Color gradient"
 msgstr "Kolore gradientea"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Norabiderik gabe"
+msgstr "Blokeatutako norabidea"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2062,7 +2056,7 @@ msgstr "Aurrerako zenbakia"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
-msgstr "Ertz jarraia"
+msgstr "Ertz solidoa"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Dashed outline"
@@ -2149,6 +2143,18 @@ msgstr "Itzala"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thin outline"
+msgstr "Ertzik gabe"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+#, fuzzy
+msgid "Thick outline"
+msgstr "Ertzik gabe"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "Betegarri laukizuzena"
 
@@ -2198,7 +2204,7 @@ msgstr "Marraren aukerak"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Betegarriaren aukerak"
+msgstr "Margoaren aukerak"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
