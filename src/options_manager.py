@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import GLib, Gio
+from gi.repository import GLib, Gio, Gdk
 
 class DrOptionsManager():
 	__gtype_name__ = 'DrOptionsManager'
@@ -29,6 +29,7 @@ class DrOptionsManager():
 		self._active_pane_id = None
 		self._boolean_actions_from_gsetting = {}
 		self._string_actions_from_gsetting = {}
+		self._mirror_lock = False
 
 	def _action_exists(self, name):
 		return self.window.lookup_action(name) is not None
@@ -90,6 +91,43 @@ class DrOptionsManager():
 		args[0].set_state(GLib.Variant.new_string(new_value))
 		self.window.set_picture_title()
 		self.get_active_pane().hide_options_menu()
+
+	############################################################################
+	# Special case: mirrorable actions are required when using radio-buttons ###
+
+	def mirrored_action_callback(self, mirror_action_name, *args):
+		"""Actions whose callbacks use this method can be used in menus. It sets
+		the lock required to avoid infinite recursion caused by the
+		synchronisation with a mirror action used on GtkRadioButtons."""
+		self._enum_callback(*args)
+		mirroring_action = self.window.lookup_action(mirror_action_name)
+		if args[1].get_string() == mirroring_action.get_state().get_string():
+			return False
+		self._mirror_lock = True
+		self._enum_callback(mirroring_action, args[1])
+		self._mirror_lock = False
+		return True
+
+	def mirroring_action_callback(self, mirrored_action_name, *args):
+		"""Actions whose callbacks use this method should NEVER be added to any
+		menu. Such an action should mirror the action provided as an argument
+		(which can be added to menus).
+		Those actions are intended to be used by GtkRadioButtons, whose weird
+		behaviors include sending a `change-state` signal when being unchecked,
+		thus triggering this callback twice. So a synchronisation mechanism is
+		needed, with a lock & an other "classic" action duplicating the data."""
+		if self._mirror_lock:
+			return False
+		if args[1].get_string() == args[0].get_state().get_string():
+			return False
+		mirrored_action = self.window.lookup_action(mirrored_action_name)
+		if args[1].get_string() == mirrored_action.get_state().get_string():
+			return False
+		self._enum_callback(*args)
+		self._mirror_lock = True
+		self._enum_callback(mirrored_action, args[1])
+		self._mirror_lock = False
+		return True
 
 	############################################################################
 
@@ -197,7 +235,7 @@ class DrOptionsManager():
 	############################################################################
 	# Methods specific to the optionsbar for classic tools #####################
 
-	def get_classic_tools_pane(self): # XXX hardcoded
+	def get_classic_tools_pane(self):
 		return self._bottom_panes_dict['classic']
 
 	def left_color_btn(self):
@@ -227,6 +265,17 @@ class DrOptionsManager():
 
 	def get_left_color(self):
 		return self.left_color_btn().color_widget.get_rgba()
+
+	def get_persisted_color(self, is_left_color):
+		if is_left_color:
+			color_array = self._tools_gsettings.get_strv('last-left-rgba')
+		else:
+			color_array = self._tools_gsettings.get_strv('last-right-rgba')
+		r = float(color_array[0])
+		g = float(color_array[1])
+		b = float(color_array[2])
+		a = float(color_array[3])
+		return Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
 
 	def get_operator(self):
 		# XXX répugnant, on duplique la donnée dans les 2 popovers, puis on
