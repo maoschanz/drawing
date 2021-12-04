@@ -27,6 +27,8 @@ class DrDecoManagerMenubar():
 		self._main_menu_btn = None
 		if use_menubar:
 			window.set_titlebar(None) # that's an arbitrary restriction
+		self._main_title = _("Drawing")
+		self._subtitles = [_("Loading…")]
 
 	def remove_from_ui(self):
 		return False
@@ -34,7 +36,23 @@ class DrDecoManagerMenubar():
 	############################################################################
 
 	def set_titles(self, title_label, subtitle_label):
-		full_title = _("Drawing") + ' ~ ' + title_label + ' ~ ' + subtitle_label
+		self.set_title(title_label)
+		self.set_subtitles([subtitle_label])
+		self.update_titles()
+
+	def set_title(self, new_title_label):
+		self._main_title = new_title_label
+
+	def set_subtitles(self, subtitles_list):
+		self._subtitles = subtitles_list
+
+	def update_titles(self):
+		# full_title = _("Drawing") + ' ~ ' + self._main_title
+		full_title = self._main_title
+		if len(self._subtitles) > 1:
+			pass # TODO alterner
+		elif len(self._subtitles) == 1:
+			full_title = full_title + ' ~ ' + self._subtitles[0]
 		self._window.set_title(full_title)
 
 	def toggle_menu(self):
@@ -42,10 +60,10 @@ class DrDecoManagerMenubar():
 			self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
 
 	def set_undo_label(self, label):
-		pass # TODO update "undo" item in the menubar
+		pass # update "undo" item in the menubar ?
 
 	def set_redo_label(self, label):
-		pass # TODO update "redo" item in the menubar
+		pass # update "redo" item in the menubar ?
 
 	############################################################################
 	# Adaptability #############################################################
@@ -135,10 +153,12 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 
 	############################################################################
 
-	def set_titles(self, title_label, subtitle_label):
-		super().set_titles(title_label, subtitle_label)
-		self._widget.set_title(title_label)
-		self._widget.set_subtitle(subtitle_label)
+	def update_titles(self):
+		self._widget.set_title(self._main_title)
+		if len(self._subtitles) > 1:
+			pass # TODO alterner
+		elif len(self._subtitles) == 1:
+			self._widget.set_subtitle(self._subtitles[0])
 
 	def set_undo_label(self, label):
 		super().set_undo_label(label)

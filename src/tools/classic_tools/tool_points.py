@@ -57,15 +57,15 @@ class ToolPoints(AbstractClassicTool):
 
 	def _reset_number(self, *args):
 		self._next_number = 1
-		self.window.update_picture_title()
+		self.window.set_window_subtitles()
 
 	def _increment_number(self, *args):
 		self._next_number += 1
-		self.window.update_picture_title()
+		self.window.set_window_subtitles()
 
 	def _decrement_number(self, *args):
 		self._next_number -= 1
-		self.window.update_picture_title()
+		self.window.set_window_subtitles()
 
 	def get_options_label(self):
 		return _("Points options")
