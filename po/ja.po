@@ -28,7 +28,10 @@ msgstr "Drawing"
 msgid "Simple drawing utility"
 msgstr "シンプルな描画ユーティリティ"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Sketch;Pencil;ペイント;描画;スケッチ;ペンシル;鉛筆;"
@@ -250,11 +253,6 @@ msgid ""
 msgstr ""
 "\"ぼかし\" モードが削除されました。\"シェイプ\" と \"ブラシ\" ツールにぼかし"
 "効果を組み合わせることはできなくなります。"
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1763,10 +1761,8 @@ msgstr "丸"
 msgid "Square"
 msgstr "角"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "輪郭線"
 

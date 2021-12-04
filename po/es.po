@@ -30,7 +30,10 @@ msgstr "Dibujo"
 msgid "Simple drawing utility"
 msgstr "Utilidad de dibujo sencilla"
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr "Paint;Boceto;Lápiz;"
@@ -275,11 +278,6 @@ msgstr ""
 "Se ha eliminado el modo de \"desenfoque\", lo que ha simplificado la "
 "situación y ha permitido que varias herramientas (\"formas\" y \"pinceles\") "
 "sean compatibles con los modos de aplicación del color en general."
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1796,10 +1794,8 @@ msgstr "Extremos redondeados"
 msgid "Square"
 msgstr "Extremos cuadrados"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Contorno"
 

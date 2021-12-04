@@ -27,7 +27,10 @@ msgstr "Dessenh"
 msgid "Simple drawing utility"
 msgstr ""
 
-#. This is a list of keywords. "Paint" should not be translated, the others should. Don't forget the semicolons.
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
 msgstr ""
@@ -216,11 +219,6 @@ msgid ""
 "The \"blur\" mode has been removed, which simplified the situation and "
 "allowed several tools (\"shapes\" and \"brushes\") to get support for the "
 "color application modes in general."
-msgstr ""
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
 msgstr ""
 
 #. Caption of a screenshot, for appstores
@@ -1727,10 +1725,8 @@ msgstr "Arredondir"
 msgid "Square"
 msgstr "Carrat"
 
-#. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-text.ui
-#: src/tools/classic_tools/tool_text.py
+#: src/tools/ui/tool-pencil.ui
 msgid "Outline"
 msgstr "Contorn"
 
