@@ -123,16 +123,15 @@ class ToolCrop(AbstractCanvasTool):
 		self.unclicked = False
 		self._update_expansion_rgba(event.button)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
-			self._force_expansion_rgba('secondary')
-			# XXX inconsistency: what if the user right-clicked
+			self._force_expansion_rgba('secondary', event.button)
 		elif 'SHIFT' in self._modifier_keys:
 			self._force_expansion_rgba('alpha')
 		elif 'ALT' in self._modifier_keys:
 			self._force_expansion_rgba('initial')
 
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = event_x - self.x_press
 		delta_y = event_y - self.y_press
 

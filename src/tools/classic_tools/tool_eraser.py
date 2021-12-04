@@ -99,7 +99,7 @@ class ToolEraser(ToolPencil):
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
 
 		self.update_modifier_state(event.state)
-		if "SHIFT" in self._modifier_keys:
+		if 'SHIFT' in self._modifier_keys:
 			if self._eraser_shape == 'rectangle':
 				self._eraser_shape = 'pencil'
 			else:
@@ -111,9 +111,11 @@ class ToolEraser(ToolPencil):
 			self._draw_rectangle(event_x, event_y)
 		else:
 			self._add_point(event_x, event_y)
-		if render:
-			operation = self.build_operation(True)
-			self.do_tool_operation(operation)
+
+		if not render:
+			return
+		operation = self.build_operation(True)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._eraser_shape == 'rectangle':

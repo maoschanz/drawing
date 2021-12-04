@@ -77,7 +77,7 @@ class ToolArc(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 
 		self.update_modifier_state(event.state)
-		if "ALT" in self._modifier_keys:
+		if 'ALT' in self._modifier_keys:
 			self._use_outline = not self._use_outline
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
@@ -90,9 +90,11 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
-		if render:
-			operation = self.build_operation(event_x, event_y)
-			self.do_tool_operation(operation)
+
+		if not render:
+			return
+		operation = self.build_operation(event_x, event_y)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._1st_segment is None:

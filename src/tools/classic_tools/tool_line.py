@@ -97,9 +97,10 @@ class ToolLine(AbstractClassicTool):
 			self._use_outline = not self._use_outline
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if render:
-			operation = self.build_operation(event_x, event_y)
-			self.do_tool_operation(operation)
+		if not render:
+			return
+		operation = self.build_operation(event_x, event_y)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		operation = self.build_operation(event_x, event_y)
