@@ -1214,16 +1214,6 @@ class DrWindow(Gtk.ApplicationWindow):
 	############################################################################
 	# PREVIEW, NAVIGATION AND ZOOM ACTIONS #####################################
 
-	def action_toggle_preview(self, *args):
-		"""Action callback, showing or hiding the "minimap" preview popover."""
-		preview_visible = not args[0].get_state()
-		if preview_visible:
-			self.minimap.popup()
-			self.minimap.update_minimap(True)
-		else:
-			self.minimap.popdown()
-		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
-
 	def action_go_up(self, *args):
 		self.get_active_image().add_deltas(0, -1, 100)
 
@@ -1235,6 +1225,16 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_go_right(self, *args):
 		self.get_active_image().add_deltas(1, 0, 100)
+
+	def action_toggle_preview(self, *args):
+		"""Action callback, showing or hiding the "minimap" preview popover."""
+		preview_visible = not args[0].get_state()
+		if preview_visible:
+			self.minimap.popup()
+			self.minimap.update_content()
+		else:
+			self.minimap.popdown()
+		args[0].set_state(GLib.Variant.new_boolean(preview_visible))
 
 	def action_zoom_in(self, *args):
 		self.get_active_image().inc_zoom_level(25)
