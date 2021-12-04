@@ -506,7 +506,7 @@ class DrImage(Gtk.Box):
 		self.motion_behavior = DrMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
-		self.window.set_picture_title()
+		self.window.update_picture_title()
 		self._is_pressed = False
 
 	def _is_slip_moving(self):

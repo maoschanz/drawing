@@ -125,7 +125,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.active_tool().select_flowbox_child()
 		self._is_tools_initialisation_finished = True
 
-		self.set_picture_title()
+		self.update_picture_title()
 		self._try_show_release_notes()
 
 		# has to return False to be removed from the mainloop immediately
@@ -227,7 +227,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		height = self.gsettings.get_int('default-height')
 		rgba = self.gsettings.get_strv('default-rgba')
 		self._build_new_tab(width=width, height=height, background_rgba=rgba)
-		self.set_picture_title()
+		self.update_picture_title()
 
 	def build_new_custom(self, *args):
 		"""Open a new tab with a drawable blank image using the custom values
@@ -237,7 +237,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		if result == Gtk.ResponseType.OK:
 			width, height, rgba = dialog.get_values()
 			self._build_new_tab(width=width, height=height, background_rgba=rgba)
-			self.set_picture_title()
+			self.update_picture_title()
 		dialog.destroy()
 
 	def delayed_build_from_clipboard(self, *args):
@@ -596,7 +596,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			is_narrow = self._decorations.remove_from_ui()
 			self._set_ui_bars()
 			self._decorations.set_compact(is_narrow)
-			self.set_picture_title()
+			self.update_picture_title()
 		except:
 			pass # Closed windows are not actually deleted from the array kept
 			# in main.py, so this can be called even after the window lost its
@@ -607,14 +607,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		immediatly in the current window doesn't exist."""
 		self.reveal_message(_("Modifications will take effect in the next new window."))
 
-	def set_picture_title(self, *args):
+	def update_picture_title(self):
+		self.set_picture_title(self.get_active_image().update_title())
+
+	def set_picture_title(self, main_title):
 		"""Set the window's title and subtitle (regardless of the preferred UI
 		bars), and the active tab title. Tools have to be initialized before
 		calling this method, because they provide the subtitle."""
-		if len(args) == 1:
-			main_title = args[0]
-		else:
-			main_title = self.get_active_image().update_title()
 		subtitle = self.active_tool().get_edition_status()
 		self.update_tabs_menu_section()
 		self._decorations.set_titles(main_title, subtitle)
@@ -877,7 +876,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.active_tool().on_tool_selected()
 		self._update_bottom_pane()
 		self.get_active_image().update_actions_state()
-		self.set_picture_title()
+		self.update_picture_title()
 
 		self.pointer_to_current_page = None
 
@@ -1087,7 +1086,7 @@ class DrWindow(Gtk.ApplicationWindow):
 				return
 
 		self.get_active_image().try_load_file(gfile)
-		self.set_picture_title()
+		self.update_picture_title()
 
 	def has_image_opened(self, file_path):
 		for tab in self.notebook.get_children():

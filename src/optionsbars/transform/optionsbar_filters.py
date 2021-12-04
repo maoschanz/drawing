@@ -64,7 +64,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 
 	def on_filter_changed(self):
 		self.set_compact(self._is_narrow)
-		self.window.set_picture_title()
+		self.window.update_picture_title()
 		# self.menu_label.set_label(self.filters_tool.type_label) # XXX width???
 
 	def set_compact(self, state):
