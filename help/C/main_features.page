@@ -30,6 +30,7 @@
     <p>Open a picture file from your documents.</p>
     <p>If the window size is too small to display the <gui style="button">Open</gui>
     button, it's available in the primary menu.</p>
+
     <p>Supported file types include PNG, JPEG and BMP. The app could open any
     file format known by your version of the GdkPixbuf library (TIFF, XPM, etc.
     and maybe WebP if your distribution provide the related package), however
@@ -73,7 +74,9 @@
 
     <list>
       <item>
-        <p>Reload the picture from the disk.</p>
+        <p>Reload the picture from the disk. This will not be possible for a
+        new and never saved image. If the image changes on the disk and needs to
+        be reloaded, a warning message should tell you anyways.</p>
       </item>
       <item>
         <p>See the pictures properties, such as its size and colorspace.</p>

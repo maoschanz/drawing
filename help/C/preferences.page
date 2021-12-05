@@ -50,9 +50,10 @@
       <p>You can set whether you prefer normal icons (16 pixels) or large icons
       (24 pixels).</p>
 
-      <p>Choosing whether or not you want to display the names of the tools next
-      to their icons is possible here, but the <link xref="main_features#main-menu">
-      primary menu</link> of the window also provides this option.</p>
+      <p>Choosing if you want to display the names of the tools next to their
+      icons is possible here, but the <link xref="main_features#main-menu">
+      primary menu</link> of the window already provides this option. You can
+      also press <key>F9</key>.</p>
     </subsection>
 
     <media type="image" mime="image/png" width="80%" its:translate="no"
@@ -63,39 +64,41 @@
       <p>Among the available tools, a few are optional. You can uncheck the
       tools you don't need, or check the tools you need: the changes will be
       applied in the next window you open.</p>
+
       <note style="tip">
         <p>If a tool isn't activated by default, it's because it might be less
         reliable or useful than the enabled ones.</p>
+
+        <p>For example, the <gui style="menuitem">Paint</gui> bucket (which
+        paints an area of contiguous pixels of the same color into a new color),
+        and the <gui style="menuitem">Color selection</gui> (which creates a
+        <link xref="tools_selection">selection</link> from an area of same
+        color), rely on code whose behavior is sometimes unexpected: it might
+        follow the edges of the area but paint the wrong side of them, and at
+        worst it can even get stuck if the edges are too hard to follow, thus
+        crashing before being able to paint!</p>
+
+        <p>On the other hand, the <gui style="menuitem">Brush</gui> works fine,
+        but it has performance issues: if you press "undo" after having used the
+        brush a few times, it'll freeze for a second. If you enable this tool,
+        it's advised to save your image regularly to avoid problems.</p>
+
+        <p>The <gui style="menuitem">Color picker</gui> tool, which picks a color
+        from the pixel you click, is disabled because it's a little redundant with
+        the color picker from <link xref="tools_classic_colors">the color edition
+        menu</link>. The one from the color edition menu can pick an RGB color
+        from any pixel of the display (yes, also from outside the window!), while
+        the tool is limited to pixels from the image but the colors it picks have
+        transparency (RGBA).</p>
+
+        <p>The <gui style="menuitem">Highlighter</gui> is a little redundant too,
+        since you can to the same with the pencil and <link xref="tools_classic_colors">
+        the adequate color application mode</link>.</p>
+
+        <p>The tool named "<gui style="menuitem">Points</gui>" works fine but it's
+        designed for a pretty specific captioning purpose that may not be useful
+        to everyone.</p>
       </note>
-
-      <p>For example, the <gui style="menuitem">Paint</gui> bucket (which paints
-      an area of contiguous pixels of the same color into a new color), and the
-      <gui style="menuitem">Color selection</gui> (which creates a selection
-      from an area of same color), rely on code whose behavior is sometimes
-      unexpected: it might follow the edges of the area but paint the wrong side
-      of them, and at worst it may get stuck if the edges are too hard to
-      follow, thus crashing before being able to paint (if it happens to you,
-      try to redraw the shape without anti-aliasing).</p>
-
-      <p>On the other hand, "<gui style="menuitem">Brush</gui>" works fine, but
-      you may encounter performance issues if you press "undo" after it a few
-      times. If you enable it, it's advised to save your image regularly.</p>
-
-      <p>The <gui style="menuitem">Color picker</gui> tool, which picks a color
-      from the pixel you click, is disabled because it's a little redundant with
-      the color picker from <link xref="tools_classic_colors">the color edition
-      menu</link>. The one from the color edition menu can pick an RGB color
-      from any pixel of the display (yes, also from outside the window!), while
-      the tool is limited to pixels from the image but the colors it picks have
-      transparency (RGBA).</p>
-
-      <p>The <gui style="menuitem">Highlighter</gui> is a little redundant too,
-      since you can to the same with the pencil and <link xref="tools_classic_colors">
-      the adequate color application mode</link>.</p>
-
-      <p>The tool named "<gui style="menuitem">Points</gui>" works fine but it's
-      designed for a pretty specific captioning purpose that may not be useful
-      to everyone.</p>
 
       <p>See <link xref="tools_classic">this page about tools</link> for more
       information.</p>
@@ -118,9 +121,12 @@
     options include the "elementary OS" layout, designed for the elementary OS
     desktop, and the traditional layout, for MATE or Cinnamon desktop.</p>
 
-    <p>In this context,"symbolic icons" means that the icons are monochrome
-    (black if you use a light theme, or white if you use a dark theme).
-    Otherwise they can be colorful (depending on your theme).</p>
+    <note style="tip">
+      <p>In this context,"symbolic icons" means that the icons are monochrome
+      (black if you use a light theme, or white if you use a dark theme).
+      Otherwise they can be colorful (depending on your theme).</p>
+    </note>
+
   </section>
 
 </page>
