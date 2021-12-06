@@ -247,8 +247,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		GLib.timeout_add(500, self.async_build_from_clipboard, {})
 
 	def async_build_from_clipboard(self, content_params):
+		"""This is used as a GSourceFunc so it should return False."""
 		self.get_active_image().try_close_tab()
 		self.build_image_from_clipboard()
+		return False
 
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
@@ -736,9 +738,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.log_message(label)
 
 	def __hide_message_async(self, async_cb_data):
+		"""This is used as a GSourceFunc so it should return False."""
 		if async_cb_data['label'] == self.info_label.get_label():
 			self._hide_message()
 		# else the message has changed so it shouldn't be hidden now
+		return False
 
 	def _hide_message(self, *args):
 		self.info_bar.set_visible(False)
