@@ -84,7 +84,7 @@ class ToolShape(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Shape options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._set_filling_style()
 		self._set_outline_style()
 		self._set_active_shape()
@@ -99,14 +99,14 @@ class ToolShape(AbstractClassicTool):
 		}[self._shape_id]
 
 		if self._outline_id != 'solid':
-			label += ' - ' + {
+			label += " - " + {
 				'solid': _("Solid outline"),
 				'dashed': _("Dashed outline"),
 				'none': _("No outline"),
 			}[self._outline_id]
 
 		if self._filling_id != 'empty':
-			label += ' - ' + {
+			label += " - " + {
 				'empty': _("Empty shape"),
 				# Context: fill a shape with the color of the left click
 				'filled': _("Filled with main color"),
@@ -119,11 +119,11 @@ class ToolShape(AbstractClassicTool):
 
 		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
 			instruction = _("Click on the shape's first point to close it.")
-			label = label + ' - ' + instruction
+			label += " - " + instruction
 		else:
 			self.set_action_sensitivity('shape_close', False)
 
-		return label
+		return [label]
 
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()

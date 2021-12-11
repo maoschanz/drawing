@@ -48,11 +48,12 @@ class ToolRotate(AbstractCanvasTool):
 	def get_options_label(self):
 		return _("Rotating options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		if self.apply_to_selection:
-			return _("Rotating the selection")
+			label_action = _("Rotating the selection")
 		else:
-			return _("Rotating the canvas")
+			label_action = _("Rotating the canvas")
+		return [label_action]
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()

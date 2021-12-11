@@ -6,14 +6,13 @@ from .abstract_brush import AbstractBrush
 class BrushNib(AbstractBrush):
 	__gtype_name__ = 'BrushNib'
 
-	def _get_status(self, use_pressure, brush_direction):
-		label = _("Calligraphic nib") + " - "
+	def _get_tips(self, use_pressure, brush_direction):
+		label_width = _("Calligraphic nib") + " - "
 		if use_pressure:
-			label += _("Width depends on the stylus pressure")
+			label_width += _("Width depends on the stylus pressure")
 		else:
-			label += _("Width depends on the line orientation")
-		# XXX do something from the `brush_direction` data
-		return label
+			label_width += _("Width depends on the line orientation")
+		return [label_width]
 
 	def draw_preview(self, operation, cairo_context):
 		cairo_context.set_line_cap(cairo.LineCap.BUTT)

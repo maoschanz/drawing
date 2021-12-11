@@ -6,13 +6,13 @@ from .abstract_brush import AbstractBrush
 class BrushAirbrush(AbstractBrush):
 	__gtype_name__ = 'BrushAirbrush'
 
-	def _get_status(self, use_pressure, brush_direction):
+	def _get_tips(self, use_pressure, brush_direction):
 		label = _("Airbrush") + " - "
 		if use_pressure:
 			label += _("Density depends on the stylus pressure")
 		else:
 			label += _("Density depends on the mouse speed")
-		return label
+		return [label]
 
 	def do_brush_operation(self, cairo_context, operation):
 		"""Airbrush whose radius is the line width. The density of droplets is

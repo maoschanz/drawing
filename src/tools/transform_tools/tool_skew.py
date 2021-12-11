@@ -57,11 +57,12 @@ class ToolSkew(AbstractCanvasTool):
 		else:
 			return _("Skewing options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		if self.apply_to_selection:
-			return _("Skewing the selection")
+			label_action = _("Skewing the selection")
 		else:
-			return _("Skewing the canvas")
+			label_action = _("Skewing the canvas")
+		return [label_action]
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()

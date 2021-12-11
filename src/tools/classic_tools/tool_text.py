@@ -80,7 +80,7 @@ class ToolText(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Text options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._set_font_options()
 
 		self._set_background_style()
@@ -95,7 +95,8 @@ class ToolText(AbstractClassicTool):
 		# The current method is likely called because an option changed
 		self._force_refresh()
 
-		return self.label + ' - ' + self._font_fam_name + ' - ' + bg_label
+		label_options = self.label + " - " + self._font_fam_name + " - " + bg_label
+		return [label_options]
 
 	############################################################################
 

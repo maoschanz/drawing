@@ -48,11 +48,12 @@ class ToolCrop(AbstractCanvasTool):
 	def get_options_label(self):
 		return _("Cropping options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		if self.apply_to_selection:
-			return _("Cropping the selection")
+			label_action = _("Cropping the selection")
 		else:
-			return _("Cropping the canvas")
+			label_action = _("Cropping the canvas")
+		return [label_action]
 
 	############################################################################
 

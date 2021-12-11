@@ -37,31 +37,33 @@ class ToolEraser(ToolPencil):
 		self.add_tool_action_enum('eraser-shape', 'pencil')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._rgba_type = self.get_option_value('selection-color')
 		self._eraser_shape = self.get_option_value('eraser-shape')
-
 		self._apply_shape_constraints()
 
-		label = self.label
+		label_options = self.label
 		if self._eraser_shape == 'pencil':
-			label += ' - ' + _("Pencil")
+			label_options += " - " + _("Pencil")
 		else:
-			label += ' - ' + _("Rectangle")
+			label_options += " - " + _("Rectangle")
 		if self._eraser_type == 'solid':
-			label += ' - ' + {
+			label_options += " - " + {
 				'alpha': _("Transparency"),
 				'initial': _("Default color"),
 				'secondary': _("Secondary color")
 			}[self._rgba_type]
 		else:
-			label += ' - ' + {
+			label_options += " - " + {
 				'blur': _("Blur"),
 				'shuffle': _("Shuffle pixels"),
 				'mixed': _("Shuffle and blur"),
 				'mosaic': _("Mosaic")
 			}[self._eraser_type]
-		return label
+
+		label_modifier_shift = self.label + " - " + _("....,,,,.") # TODO
+
+		return [label_options, label_modifier_shift]
 
 	def get_options_label(self):
 		return _("Eraser options")

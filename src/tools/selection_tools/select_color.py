@@ -38,6 +38,8 @@ class ToolColorSelect(AbstractSelectionTool):
 		color_code = utilities_gdk_rgba_to_hexadecimal(color)
 		return color_name + "\n" + color_code
 
+	############################################################################
+
 	def press_define(self, event_x, event_y):
 		pass
 

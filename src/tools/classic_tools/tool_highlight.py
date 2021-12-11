@@ -32,15 +32,19 @@ class ToolHighlighter(ToolPencil):
 		self.add_tool_action_enum('highlight-bg', 'light')
 		self.add_tool_action_boolean('highlight-alpha', True)
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._bg_type = self.get_option_value('highlight-bg')
 		self._force_alpha = self.get_option_value('highlight-alpha')
-		statut = self.label + " - "
+
+		label_options = self.label + " - "
 		if self._bg_type == 'light':
-			statut += _("Dark text on light background")
+			label_options += _("Dark text on light background")
 		else:
-			statut += _("Light text on dark background")
-		return statut
+			label_options += _("Light text on dark background")
+
+		label_modifier_shift = self.label + " - " + _("....,,,,.") # TODO
+
+		return [label_options, label_modifier_shift]
 
 	def get_options_label(self):
 		return _("Highlighter options")

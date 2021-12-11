@@ -620,7 +620,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""Set the window's subtitles list (regardless of the current UI bars).
 		Tools have to be initialized before calling this method, for now."""
 		if subtitles_list is None:
-			subtitles_list = [self.active_tool().get_edition_status()]
+			subtitles_list = self.active_tool().get_editing_tips()
 		self._decorations.set_subtitles(subtitles_list)
 		self._decorations.update_titles()
 

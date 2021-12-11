@@ -5,14 +5,16 @@ from gi.repository import Gtk, GLib
 class DrDecoManagerMenubar():
 	__gtype_name__ = 'DrDecoManagerMenubar'
 	UI_PATH = '/com/github/maoschanz/drawing/ui/'
-	SUBTITLE_TIME = 5000
+	SUBTITLE_TIME = 3000
 
 	def __init__(self, window, use_menubar):
-		window.set_show_menubar(use_menubar)
 		self._window = window
 		self._main_menu_btn = None
+
+		window.set_show_menubar(use_menubar)
 		if use_menubar:
 			window.set_titlebar(None) # that's an arbitrary restriction
+
 		self._main_title = _("Drawing")
 		self._subtitles = [_("Loading…")]
 		self._subtitle_index = 0

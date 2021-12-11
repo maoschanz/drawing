@@ -51,15 +51,15 @@ class ToolPencil(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Pencil options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._dashes_type = self.get_option_value('dashes-type')
 		use_dashes = self._dashes_type != 'none'
 		self._use_outline = self.get_option_value('pencil-outline')
 		self._set_active_shape()
 		label = self.label
 		if use_dashes:
-			label = label + ' - ' + _("Dashed")
-		return label
+			label += " - " + _("Dashed")
+		return [label]
 
 	############################################################################
 

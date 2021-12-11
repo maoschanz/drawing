@@ -54,11 +54,12 @@ class ToolScale(AbstractCanvasTool):
 	def get_options_label(self):
 		return _("Scaling options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		if self.apply_to_selection:
-			return _("Scaling the selection")
+			label_action = _("Scaling the selection")
 		else:
-			return _("Scaling the canvas")
+			label_action = _("Scaling the canvas")
+		return [label_action]
 
 	############################################################################
 

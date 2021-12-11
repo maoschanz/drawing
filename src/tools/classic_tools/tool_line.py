@@ -72,18 +72,27 @@ class ToolLine(AbstractClassicTool):
 		self._ortholock = self.get_option_value('line-ortholock')
 		self._set_active_shape()
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._set_options_attributes()
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
-		label = self.label
+
+		label_options = self.label
 		if is_arrow and use_dashes:
-			label = label + ' - ' + _("Dashed arrow")
+			label_options += " - " + _("Dashed arrow")
 		elif is_arrow:
-			label = label + ' - ' + _("Arrow")
+			label_options += " - " + _("Arrow")
 		elif use_dashes:
-			label = label + ' - ' + _("Dashed")
-		return label
+			label_options += " - " + _("Dashed")
+		else:
+			label_options = None
+
+		label_modifier_shift = self.label + " - " + _("........") # TODO
+
+		label_modifier_alt = self.label + " - " + _("....,,,,.") # TODO
+
+		full_list = [label_options, label_modifier_shift, label_modifier_alt]
+		return list(filter(None, full_list))
 
 	############################################################################
 

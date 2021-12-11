@@ -150,8 +150,8 @@ class AbstractAbstractTool():
 		menu can't provide all the features."""
 		return None
 
-	def get_edition_status(self):
-		return self.label
+	def get_editing_tips(self):
+		return [self.label]
 
 	############################################################################
 	# Side pane ################################################################
