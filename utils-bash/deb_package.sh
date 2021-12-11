@@ -1,4 +1,5 @@
 #!/bin/bash
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing" # XXX ask it as an input maybe?

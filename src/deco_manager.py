@@ -1,25 +1,11 @@
-# deco_manager.py
-#
-# Copyright 2018-2021 Romain F. T.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 class DrDecoManagerMenubar():
 	__gtype_name__ = 'DrDecoManagerMenubar'
 	UI_PATH = '/com/github/maoschanz/drawing/ui/'
+	SUBTITLE_TIME = 5000
 
 	def __init__(self, window, use_menubar):
 		window.set_show_menubar(use_menubar)
@@ -29,16 +15,12 @@ class DrDecoManagerMenubar():
 			window.set_titlebar(None) # that's an arbitrary restriction
 		self._main_title = _("Drawing")
 		self._subtitles = [_("Loading…")]
+		self._subtitle_index = 0
 
 	def remove_from_ui(self):
 		return False
 
 	############################################################################
-
-	def set_titles(self, title_label, subtitle_label):
-		self.set_title(title_label)
-		self.set_subtitles([subtitle_label])
-		self.update_titles()
 
 	def set_title(self, new_title_label):
 		self._main_title = new_title_label
@@ -46,14 +28,18 @@ class DrDecoManagerMenubar():
 	def set_subtitles(self, subtitles_list):
 		self._subtitles = subtitles_list
 
-	def update_titles(self):
-		# full_title = _("Drawing") + ' ~ ' + self._main_title
+	def update_titles(self, *args):
 		full_title = self._main_title
 		if len(self._subtitles) > 1:
-			pass # TODO alterner
+			self._subtitle_index += 1
+			if self._subtitle_index >= len(self._subtitles):
+				self._subtitle_index = 0
+			full_title += ' ~ ' + self._subtitles[self._subtitle_index]
+			GLib.timeout_add(self.SUBTITLE_TIME, self.update_titles, {})
 		elif len(self._subtitles) == 1:
-			full_title = full_title + ' ~ ' + self._subtitles[0]
+			full_title += ' ~ ' + self._subtitles[0]
 		self._window.set_title(full_title)
+		return False
 
 	def toggle_menu(self):
 		if self._main_menu_btn is not None:
@@ -153,12 +139,17 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 
 	############################################################################
 
-	def update_titles(self):
+	def update_titles(self, *args):
 		self._widget.set_title(self._main_title)
 		if len(self._subtitles) > 1:
-			pass # TODO alterner
+			self._subtitle_index += 1
+			if self._subtitle_index >= len(self._subtitles):
+				self._subtitle_index = 0
+			self._widget.set_subtitle(self._subtitles[self._subtitle_index])
+			GLib.timeout_add(self.SUBTITLE_TIME, self.update_titles, {})
 		elif len(self._subtitles) == 1:
 			self._widget.set_subtitle(self._subtitles[0])
+		return False
 
 	def set_undo_label(self, label):
 		super().set_undo_label(label)
