@@ -27,16 +27,17 @@
     Cancel</gui> button at the left.</p>
   </note>
 
-  <p>If a selection is defined, these tools will transform the selected area,
+  <p>When a selection is defined, these tools will transform the selected area,
   otherwise they will transform the picture as a whole.</p>
 
   <note style="tip">
     <p>If you switch to another tool without applying the transformation
     explicitely, the transformation will be automatically applied if it concerns
     the selection, but automatically cancelled if it concerns the whole image.</p>
-    <p>If you try to save without applying the transformation, a dialog will
-    remind you that you should apply it before saving.</p>
   </note>
+
+  <p>If you try to save without applying the transformation, a dialog will
+  remind you that you should apply it before saving.</p>
 
   <section>
     <title>Crop</title>
@@ -45,16 +46,25 @@
     cropping is indicated by the mouse cursor: it changes depending on the
     position of the mouse pointer on the canvas.</p>
     <p>The exact size can be set using the values in the bottom bar.</p>
-    <p>If your increasing the size of the image instead of decreasing it, you
-    may need to change the zoom level to see what you're doing. The color of the
-    pixels you create when increasing the size is customizable.</p>
+
+    <note style="tip">
+      <p>If your increasing the size of the image instead of decreasing it, you
+      may need to change the zoom level to see what you're doing.</p>
+    </note>
+
+    <p>The color of the pixels you create when increasing the size is
+    customizable, using the menu at the bottom-right of the window, or by
+    pressing <key>Shift</key> and/or <key>Alt</key> when you click to resize.</p>
   </section>
 
   <section>
     <title>Scale</title>
 
     <p>Resize the image, using the mouse or the values in the bottom bar.</p>
-    <p>Proportions can be locked or not, using the menu at the bottom-right.</p>
+
+    <p>The proportions of the image can be locked or not, using the menu at the
+    bottom-right of the window, or by pressing <key>Shift</key> when you click
+    to resize.</p>
 
     <media type="image" mime="image/png" width="80%" its:translate="no"
            src="figures/screenshot_scale.png" />
@@ -75,7 +85,8 @@
     <p>This optional tool tilts the image horizontally, vertically, or in both
     directions.</p>
     <p>If you're skewing the canvas, the operation creates new pixels: their
-    color is customizable.</p>
+    color is customizable, using the menu at the bottom-right of the window, or
+    by pressing <key>Shift</key> and/or <key>Alt</key> when you click to skew.</p>
   </section>
 
   <section id="filters">

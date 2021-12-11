@@ -20,17 +20,17 @@ function src_all () {
 function src_pot () {
 	echo "Updating .pot file for src"
 	ninja -C _build drawing-pot
-
 	# xgettext --files-from=po/POTFILES --from-code=UTF-8 -c --add-location=file --output=po/drawing.pot
 }
 
 function help_all () {
-	echo "Updating .pot file for help"
+	echo "Updating .po files for help"
 	ninja -C _build help-drawing-update-po
 }
 
 function help_pot () {
 	ninja -C _build help-drawing-pot
+	echo "Updating .pot file for help"
 }
 
 if [ $# = 0 ]; then
