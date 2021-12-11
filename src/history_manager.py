@@ -175,10 +175,11 @@ class DrHistoryManager():
 		# times less recomputation.
 
 	def _rebuild_from_history(self, async_cb_data={}):
-		"""Rebuild the image according to the content of the current history."""
+		"""Rebuild the image according to the content of the current history.
+		This is used as a GSourceFunc so it should return False."""
 		if not self._waiting_for_rebuild:
 			# It has already been rebuild by an other async call
-			return
+			return False
 		self._waiting_for_rebuild = False
 
 		last_save_index = self._get_last_state_index(True)
@@ -193,6 +194,7 @@ class DrHistoryManager():
 				# print("skip", op['tool_id'])
 				self._undo_history.append(op)
 		self._image.update()
+		return False
 
 	def _operation_is_ongoing(self):
 		return self._image.active_tool().has_ongoing_operation()

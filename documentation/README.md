@@ -14,6 +14,7 @@ welcome.
 - Try to not write lines longer than 80 characters.
 - Use double quotes for strings the user might see, and single quotes otherwise
 (paths, constants, enumerations, dict keys, …)
+- Private or protected methods or attributes should start with an underscore.
 
 ----
 

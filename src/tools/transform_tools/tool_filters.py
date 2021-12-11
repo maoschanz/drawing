@@ -142,7 +142,9 @@ class ToolFilters(AbstractCanvasTool):
 			# XXX great optimization but it displays shit
 
 	def _async_open_menu(self, *args):
+		"""This is used as a GSourceFunc so it should return False."""
 		self.bar.menu_btn.set_active(True)
+		return False
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.on_filter_preview()

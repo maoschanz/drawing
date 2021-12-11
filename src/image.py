@@ -525,7 +525,9 @@ class DrImage(Gtk.Box):
 		self._drawing_area.queue_draw()
 
 	def _async_unlock(self, content_params={}):
+		"""This is used as a GSourceFunc so it should return False."""
 		self._rendering_is_locked = False
+		return False
 
 	def get_surface(self):
 		return self.surface
@@ -592,7 +594,8 @@ class DrImage(Gtk.Box):
 	def reset_fps_counter(self, async_cb_data={}):
 		"""Development only: live-display the evolution of the framerate of the
 		drawing area. The max should be around 60, but many tools don't require
-		so many redraws."""
+		so many redraws.
+		This is used as a GSourceFunc so it should return False."""
 		if self.window.should_track_framerate:
 			# Context: this is a debug information that users will never see
 			msg = _("%s frames per second") % self._fps_counter
@@ -603,6 +606,7 @@ class DrImage(Gtk.Box):
 			GLib.timeout_add(1000, self.reset_fps_counter, {})
 		elif self.window.info_bar.get_visible():
 			self.window.reveal_message("Tracking stopped.", True)
+		return False
 
 	############################################################################
 	# Interaction with the minimap #############################################

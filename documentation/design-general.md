@@ -32,13 +32,17 @@
 	It handles how widgets are shown or hidden depending on the size of the
 	window, and will display various menus depending on the visibility of the
 	buttons, to ensure all features are always available.
-- a window has several **tools**
+- a window has several **tools**. They're initialized in a dedicated class (see
+`tools_initializer.py`) for no good reason.
 - a window has several **images**
 - `minimap.py` for the minimap, which shows a thumbnail of the currently opened image.
 - each window has an **options_manager** (`options_manager.py`). It will display
 the correct bottom bar (= the one required by the current **tool**) and manage
 tools' options. All bottom options bars can be found in the sub-directories of
 `src/optionsbars/`, and are specialized from `src/optionsbars/abstract_optionsbar.py`
+- the **saving_manager** encapsulates all various methods to save or export a
+`Gdk.Pixbuf` as a file, with modal dialog windows to ask for confirmation, to
+replace transparency according to the settings, etc.
 
 ## Images
 
