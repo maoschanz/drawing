@@ -190,9 +190,6 @@ class DrOptionsManager():
 			self._bottom_panes_dict[each_id].action_bar.set_visible(is_active)
 
 	def get_active_pane(self):
-		if self._active_pane_id is None:
-			return None # XXX encore des exceptions manuelles...
-			# return self._bottom_panes_dict['classic']
 		return self._bottom_panes_dict[self._active_pane_id]
 
 	def update_pane(self, tool):
