@@ -217,7 +217,7 @@ class DrImage(Gtk.Box):
 			return
 		disk_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		self._load_pixbuf_common(disk_pixbuf)
-		self.window.set_picture_title(self.update_title())
+		self.window.update_picture_title()
 		self.use_stable_pixbuf()
 		self.update()
 		self.remember_current_state()
@@ -506,7 +506,7 @@ class DrImage(Gtk.Box):
 		self.motion_behavior = DrMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
-		self.window.set_picture_title() # just to add the star
+		self.window.update_picture_title() # just to add the star
 		self.window.set_window_subtitles() # the tool's state changed
 		self._is_pressed = False
 

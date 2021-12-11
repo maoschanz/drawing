@@ -226,7 +226,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		height = self.gsettings.get_int('default-height')
 		rgba = self.gsettings.get_strv('default-rgba')
 		self._build_new_tab(width=width, height=height, background_rgba=rgba)
-		self.set_picture_title()
+		self.update_picture_title()
 
 	def build_new_custom(self, *args):
 		"""Open a new tab with a drawable blank image using the custom values
@@ -236,7 +236,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		if result == Gtk.ResponseType.OK:
 			width, height, rgba = dialog.get_values()
 			self._build_new_tab(width=width, height=height, background_rgba=rgba)
-			self.set_picture_title()
+			self.update_picture_title()
 		dialog.destroy()
 
 	def delayed_build_from_clipboard(self, *args):
@@ -314,7 +314,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return
 		self.switch_to(self.active_tool_id, args[1])
 		# print("changement d'image")
-		self.set_picture_title(args[1].update_title())
+		self.update_picture_title(args[1].update_title())
 		self.minimap.set_zoom_label(args[1].zoom_level * 100)
 		args[1].update_image_wide_actions()
 		# On devrait être moins bourrin et conserver la sélection # TODO ?
@@ -595,7 +595,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			is_narrow = self._decorations.remove_from_ui()
 			self._set_ui_bars()
 			self._decorations.set_compact(is_narrow)
-			self.set_picture_title()
+			self.update_picture_title()
 			self.set_window_subtitles()
 		except:
 			pass # Closed windows are not actually deleted from the array kept
@@ -607,22 +607,22 @@ class DrWindow(Gtk.ApplicationWindow):
 		immediatly in the current window doesn't exist."""
 		self.reveal_message(_("Modifications will take effect in the next new window."))
 
-	def set_picture_title(self, main_title=None):
+	def update_picture_title(self, main_title=None):
 		"""Set the window's title (regardless of the current UI bars), and the
 		active tab title (indirectly)."""
 		if main_title is None:
 			main_title = self.get_active_image().update_title()
 		self.update_tabs_menu_section()
-		self._decorations.set_title(main_title)
-		self._decorations.update_titles()
+		if self._decorations.set_title(main_title):
+			self._decorations.force_update_titles()
 
 	def set_window_subtitles(self, subtitles_list=None):
 		"""Set the window's subtitles list (regardless of the current UI bars).
 		Tools have to be initialized before calling this method, for now."""
 		if subtitles_list is None:
 			subtitles_list = self.active_tool().get_editing_tips()
-		self._decorations.set_subtitles(subtitles_list)
-		self._decorations.update_titles()
+		if self._decorations.set_subtitles(subtitles_list):
+			self._decorations.force_update_titles()
 
 	def get_auto_decorations(self):
 		"""Return the decorations setting based on the XDG_CURRENT_DESKTOP
@@ -1092,7 +1092,7 @@ class DrWindow(Gtk.ApplicationWindow):
 				return
 
 		self.get_active_image().try_load_file(gfile)
-		self.set_picture_title()
+		self.update_picture_title()
 
 	def has_image_opened(self, file_path):
 		for tab in self.notebook.get_children():

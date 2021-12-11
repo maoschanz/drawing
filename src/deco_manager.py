@@ -18,30 +18,66 @@ class DrDecoManagerMenubar():
 		self._main_title = _("Drawing")
 		self._subtitles = [_("Loading…")]
 		self._subtitle_index = 0
+		self._is_forced = False
+		self._loop_is_ongoing = False
 
 	def remove_from_ui(self):
 		return False
 
 	############################################################################
+	# Management of the title/subtitle(s) ######################################
 
 	def set_title(self, new_title_label):
+		if new_title_label == self._main_title:
+			return False
 		self._main_title = new_title_label
+		return True
 
 	def set_subtitles(self, subtitles_list):
+		if len(subtitles_list) == len(self._subtitles):
+			list_is_similar = True
+			for index, subtitle in enumerate(subtitles_list):
+				if subtitle != self._subtitles[index]:
+					list_is_similar = False
+			if list_is_similar:
+				return False
 		self._subtitles = subtitles_list
+		return True
 
-	def update_titles(self, *args):
+	def force_update_titles(self):
+		if self._loop_is_ongoing:
+			self._is_forced = True
+		else:
+			# idiotic hack to start the infinite loop
+			self._loop_is_ongoing = True
+		self._subtitle_index -= 1
+		self._update_titles()
+
+	def _increment_subtitle_index(self):
+		"""Instructions needed each 3 seconds, to change the index of the
+		subtitle to display, and program the next subtitle change."""
+		self._subtitle_index += 1
+		if self._subtitle_index <= 0 or self._subtitle_index >= len(self._subtitles):
+			self._subtitle_index = 0
+
+		if self._is_forced:
+			self._is_forced = False
+		else:
+			GLib.timeout_add(self.SUBTITLE_TIME, self._update_titles, {})
+
+	def _update_titles(self, *args):
+		"""This is used as a GSourceFunc so it should return False."""
+		self._increment_subtitle_index()
+
 		full_title = self._main_title
 		if len(self._subtitles) > 1:
-			self._subtitle_index += 1
-			if self._subtitle_index >= len(self._subtitles):
-				self._subtitle_index = 0
 			full_title += ' ~ ' + self._subtitles[self._subtitle_index]
-			GLib.timeout_add(self.SUBTITLE_TIME, self.update_titles, {})
 		elif len(self._subtitles) == 1:
 			full_title += ' ~ ' + self._subtitles[0]
 		self._window.set_title(full_title)
 		return False
+
+	############################################################################
 
 	def toggle_menu(self):
 		if self._main_menu_btn is not None:
@@ -141,14 +177,12 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 
 	############################################################################
 
-	def update_titles(self, *args):
+	def _update_titles(self, *args):
+		self._increment_subtitle_index()
+
 		self._widget.set_title(self._main_title)
 		if len(self._subtitles) > 1:
-			self._subtitle_index += 1
-			if self._subtitle_index >= len(self._subtitles):
-				self._subtitle_index = 0
 			self._widget.set_subtitle(self._subtitles[self._subtitle_index])
-			GLib.timeout_add(self.SUBTITLE_TIME, self.update_titles, {})
 		elif len(self._subtitles) == 1:
 			self._widget.set_subtitle(self._subtitles[0])
 		return False
