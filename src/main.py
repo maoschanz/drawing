@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import sys, gi
+import sys, gi, datetime
 gi.require_version('Gtk', '3.0')
 gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
@@ -85,9 +85,10 @@ class Application(Gtk.Application):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
 		self.add_action_simple('settings', self.on_prefs)
-		self.add_action_simple('report_bug', self.on_report)
-		self.add_action_simple('shortcuts', self.on_shortcuts, \
-		                                         ['<Ctrl>question', '<Ctrl>F1'])
+
+		current_date = datetime.datetime.now()
+		if current_date.month == 4 and current_date.day == 1:
+			self.add_action_simple('april-fools', self.on_april_fools)
 
 		self.add_action_simple('help', self.on_help_index, ['F1'])
 		self.add_action_simple('help_main', self.on_help_main)
@@ -100,6 +101,9 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_prefs', self.on_help_prefs)
 		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
+		self.add_action_simple('report-issue', self.on_report)
+		self.add_action_simple('shortcuts', self.on_shortcuts, \
+		                                         ['<Ctrl>question', '<Ctrl>F1'])
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
@@ -240,6 +244,14 @@ class Application(Gtk.Application):
 		self.prefs_window = DrPrefsWindow(self.is_beta(), wants_csd, \
 		                                                       application=self)
 		self.prefs_window.present()
+
+	def on_april_fools(self, *args):
+		"""Action callback, rickrolling the user."""
+		Gtk.show_uri_on_window(
+			self.props.active_window, \
+			'https://www.youtube.com/watch?v=dQw4w9WgXcQ',\
+			Gdk.CURRENT_TIME \
+		)
 
 	def on_help_index(self, *args):
 		"""Action callback, showing the index of user help manual."""

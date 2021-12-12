@@ -730,7 +730,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		action is suggested."""
 		self.info_bar.set_visible(True)
 		self.info_label.set_label(message)
-		self.info_action.set_action_name('app.report_bug')
+		self.info_action.set_action_name('app.report-issue')
 		self.info_action.set_label(_("Report a bug"))
 		self.info_action.set_visible(True)
 		self.log_message(message)
