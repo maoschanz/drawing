@@ -85,11 +85,8 @@ class ToolShape(AbstractClassicTool):
 		return _("Shape options")
 
 	def get_editing_tips(self):
-		self._set_filling_style()
-		self._set_outline_style()
 		self._set_active_shape()
-
-		label = {
+		shape_name = {
 			'rectangle': _("Rectangle"),
 			'roundedrect': _("Rounded rectangle"),
 			'oval': _("Oval"),
@@ -98,15 +95,17 @@ class ToolShape(AbstractClassicTool):
 			'freeshape': _("Free shape"),
 		}[self._shape_id]
 
+		label_options = shape_name
+		self._set_filling_style()
+		self._set_outline_style()
 		if self._outline_id != 'solid':
-			label += " - " + {
+			label_options += " - " + {
 				'solid': _("Solid outline"),
 				'dashed': _("Dashed outline"),
 				'none': _("No outline"),
 			}[self._outline_id]
-
 		if self._filling_id != 'empty':
-			label += " - " + {
+			label_options += " - " + {
 				'empty': _("Empty shape"),
 				# Context: fill a shape with the color of the left click
 				'filled': _("Filled with main color"),
@@ -118,12 +117,17 @@ class ToolShape(AbstractClassicTool):
 			}[self._filling_id]
 
 		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
-			instruction = _("Click on the shape's first point to close it.")
-			label += " - " + instruction
+			label_instruction = shape_name + " - " + \
+			                  _("Click on the shape's first point to close it.")
 		else:
+			label_instruction = None
 			self.set_action_sensitivity('shape_close', False)
 
-		return [label]
+		label_modifiers = _("Press <Alt>, <Shift>, or both, to quickly " + \
+		                                          "change the 'filling' option")
+
+		full_list = [label_options, label_instruction, label_modifiers]
+		return list(filter(None, full_list))
 
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()

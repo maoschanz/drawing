@@ -56,10 +56,17 @@ class ToolPencil(AbstractClassicTool):
 		use_dashes = self._dashes_type != 'none'
 		self._use_outline = self.get_option_value('pencil-outline')
 		self._set_active_shape()
-		label = self.label
+
 		if use_dashes:
-			label += " - " + _("Dashed")
-		return [label]
+			label_options = self.label + " - " + _("Dashed")
+		else:
+			label_options = None
+
+		label_modifier_alt = self.label + " - " + \
+		                         _("Press <Alt> to toggle the 'outline' option")
+
+		full_list = [label_options, label_modifier_alt]
+		return list(filter(None, full_list))
 
 	############################################################################
 

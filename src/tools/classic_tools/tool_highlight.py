@@ -37,12 +37,13 @@ class ToolHighlighter(ToolPencil):
 		self._force_alpha = self.get_option_value('highlight-alpha')
 
 		label_options = self.label + " - "
+		label_modifier_shift = self.label + " - "
 		if self._bg_type == 'light':
 			label_options += _("Dark text on light background")
+			label_modifier_shift += _("Press <Shift> to .......") # TODO
 		else:
 			label_options += _("Light text on dark background")
-
-		label_modifier_shift = self.label + " - " + _("....,,,,.") # TODO
+			label_modifier_shift += _("Press <Shift> to .......") # TODO
 
 		return [label_options, label_modifier_shift]
 

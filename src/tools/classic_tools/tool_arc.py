@@ -63,23 +63,24 @@ class ToolArc(AbstractClassicTool):
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
 
-		label_segments = self.label
+		label_segments = self.label + " - "
 		if self._1st_segment is not None:
-			label_segments += _("........") # TODO
+			label_segments += _("Draw a second segment to complete the curve")
 		else:
 			label_segments = None
 
-		label_options = self.label
+		label_options = self.label + " - "
 		if is_arrow and use_dashes:
-			label_options += " - " + _("Dashed arrow")
+			label_options += _("Dashed arrow")
 		elif is_arrow:
-			label_options += " - " + _("Arrow")
+			label_options += _("Arrow")
 		elif use_dashes:
-			label_options += " - " + _("Dashed")
+			label_options += _("Dashed")
 		else:
 			label_options = None
 
-		label_modifier_alt = self.label + " - " + _("....,,,,.") # TODO
+		label_modifier_alt = self.label + " - " + \
+		                         _("Press <Alt> to toggle the 'outline' option")
 
 		full_list = [label_segments, label_options, label_modifier_alt]
 		return list(filter(None, full_list))

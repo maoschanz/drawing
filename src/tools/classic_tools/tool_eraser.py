@@ -61,7 +61,11 @@ class ToolEraser(ToolPencil):
 				'mosaic': _("Mosaic")
 			}[self._eraser_type]
 
-		label_modifier_shift = self.label + " - " + _("....,,,,.") # TODO
+		label_modifier_shift = self.label + " - "
+		if self._eraser_shape == 'pencil':
+			label_modifier_shift += _("Press <Shift> to erase a rectangle area instead")
+		else:
+			label_modifier_shift += _("Press <Shift> to erase a path instead")
 
 		return [label_options, label_modifier_shift]
 

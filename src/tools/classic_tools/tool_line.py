@@ -87,9 +87,14 @@ class ToolLine(AbstractClassicTool):
 		else:
 			label_options = None
 
-		label_modifier_shift = self.label + " - " + _("........") # TODO
+		label_modifier_shift = self.label + " - "
+		if self._ortholock:
+			label_modifier_shift += _("Press <Shift> to unlock the line direction")
+		else:
+			label_modifier_shift += _("Press <Shift> to lock the line direction")
 
-		label_modifier_alt = self.label + " - " + _("....,,,,.") # TODO
+		label_modifier_alt = self.label + " - " + \
+		                         _("Press <Alt> to toggle the 'outline' option")
 
 		full_list = [label_options, label_modifier_shift, label_modifier_alt]
 		return list(filter(None, full_list))
