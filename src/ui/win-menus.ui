@@ -62,6 +62,13 @@
         <attribute name="label" translatable="yes">Save without transparency</attribute>
       </item>
       <item>
+        <!-- This "feature" is only visible on April Fools' day, and it -->
+        <!-- will just rickroll the user. -->
+        <attribute name="label" translatable="yes">Prepare as NFT…</attribute>
+        <attribute name="action">app.april-fools</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
         <attribute name="action">win.save_as</attribute>
         <attribute name="label" translatable="yes">Save as…</attribute>
       </item>
@@ -138,6 +145,13 @@
       <item>
         <attribute name="action">win.save_alphaless</attribute>
         <attribute name="label" translatable="yes">Save without transparency</attribute>
+      </item>
+      <item>
+        <!-- This "feature" is only visible on April Fools' day, and it -->
+        <!-- will just rickroll the user. -->
+        <attribute name="label" translatable="yes">Prepare as NFT…</attribute>
+        <attribute name="action">app.april-fools</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
       </item>
       <item>
         <attribute name="action">win.save_as</attribute>

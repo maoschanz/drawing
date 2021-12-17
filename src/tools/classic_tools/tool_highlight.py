@@ -89,11 +89,10 @@ class ToolHighlighter(ToolPencil):
 			operator = cairo.Operator.SCREEN
 		ccontext.set_operator(operator)
 
-		rgba = operation['rgba']
+		main_color = operation['rgba']
 		if operation['halpha']:
-			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.5)
-		else:
-			ccontext.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+			main_color[3] = 0.5
+		ccontext.set_source_rgba(*main_color)
 
 		utilities_smooth_path(ccontext, operation['path'])
 		ccontext.stroke()

@@ -74,7 +74,8 @@ class DrImage(Gtk.Box):
 			# Framerate tracking (debug only)
 			self._skipped_frames = 0
 			self._fps_counter = 0
-			self.reset_fps_counter()
+			if self.window.should_track_framerate:
+				self.reset_fps_counter()
 
 		self._init_drawing_area()
 

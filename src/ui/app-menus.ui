@@ -72,6 +72,14 @@
           <attribute name="label" translatable="yes">Save without transparency</attribute>
         </item>
         <item>
+          <!-- This "feature" is only visible on April Fools' day, and it -->
+          <!-- will just rickroll the user. -->
+          <attribute name="label" translatable="yes">Prepare as NFT…</attribute>
+          <attribute name="action">app.april-fools</attribute>
+          <attribute name="verb-icon">face-monkey-symbolic</attribute>
+          <attribute name="hidden-when">action-missing</attribute>
+        </item>
+        <item>
           <attribute name="label" translatable="yes">Save as…</attribute>
           <attribute name="action">win.save_as</attribute>
           <attribute name="verb-icon">document-save-as-symbolic</attribute>
@@ -86,6 +94,7 @@
         <item>
           <attribute name="action">win.to_clipboard</attribute>
           <attribute name="label" translatable="yes">Copy to clipboard</attribute>
+          <attribute name="verb-icon">send-to-symbolic</attribute>
         </item>
         <item>
           <attribute name="label" translatable="yes">Print</attribute>
@@ -490,7 +499,7 @@
       <section>
         <item>
           <attribute name="label" translatable="yes">Report a bug</attribute>
-          <attribute name="action">app.report_bug</attribute>
+          <attribute name="action">app.report-issue</attribute>
           <attribute name="verb-icon">dialog-error-symbolic</attribute>
         </item>
       </section>

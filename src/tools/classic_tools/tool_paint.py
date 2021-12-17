@@ -76,7 +76,7 @@ class ToolPaint(AbstractClassicTool):
 			'algo': self.get_option_value('paint_algo'),
 			# 'x': x,
 			# 'y': y,
-			'rgba': self.main_color,
+			'new_rgba': self.main_color,
 			'antialias': self._use_antialias,
 			'old_rgba': self.old_color,
 			'path': self._magic_path
@@ -100,8 +100,7 @@ class ToolPaint(AbstractClassicTool):
 	def _op_whole(self, operation):
 		"""Paint the entire image regardless of existing pixels"""
 		cairo_context = self.get_context()
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['new_rgba'])
 		cairo_context.paint()
 
 	def _op_fill(self, operation):
@@ -110,8 +109,7 @@ class ToolPaint(AbstractClassicTool):
 		if operation['path'] is None:
 			return
 		cairo_context = self.get_context()
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['new_rgba'])
 		cairo_context.append_path(operation['path'])
 		# can_fill = cairo_context.in_fill(operation['x'], operation['y'])
 		# print(can_fill)
@@ -140,7 +138,6 @@ class ToolPaint(AbstractClassicTool):
 		# First, everything BUT the targeted area is erased
 		surface = self.get_surface()
 		cairo_context = cairo.Context(surface)
-		rgba = operation['rgba']
 		old_rgba = operation['old_rgba']
 		cairo_context.set_source_rgba(255, 255, 255, 1.0)
 		cairo_context.append_path(operation['path'])
@@ -191,7 +188,7 @@ class ToolPaint(AbstractClassicTool):
 
 		# The transparent pixels within the path are painted with the new color
 		cairo_context2.set_operator(cairo.Operator.DEST_OVER)
-		cairo_context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context2.set_source_rgba(*operation['new_rgba'])
 		cairo_context2.append_path(operation['path'])
 		# cairo_context2.paint()
 		cairo_context2.set_line_width(3) # ptêt too much mdr

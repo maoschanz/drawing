@@ -17,8 +17,7 @@ class BrushNib(AbstractBrush):
 	def draw_preview(self, operation, cairo_context):
 		cairo_context.set_line_cap(cairo.LineCap.BUTT)
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['rgba'])
 		super().draw_preview(operation, cairo_context)
 
 	############################################################################
