@@ -214,8 +214,7 @@ class ToolText(AbstractClassicTool):
 		font_fam = operation['font_fam']
 		font_size = operation['font_size'] * 2
 		entire_text = operation['text']
-		c1 = operation['rgba1']
-		c2 = operation['rgba2']
+		background_color = operation['rgba2']
 		text_x = operation['x']
 		text_y = operation['y']
 
@@ -245,15 +244,15 @@ class ToolText(AbstractClassicTool):
 			lines = entire_text.split('\n')
 			line_y = text_y
 			for line_text in lines:
-				line_y = self._op_bg_rectangle(cairo_context, layout, c2, \
-				                                      text_x, line_y, line_text)
+				line_y = self._op_bg_rectangle(cairo_context, layout, \
+				                    background_color, text_x, line_y, line_text)
 		elif operation['background'] == 'shadow':
 			dist = max(min(int(font_size/16), 4), 1)
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_source_rgba(*background_color)
 			self._show_text_at_coords(cairo_context, layout, entire_text, \
 			                                       text_x + dist, text_y + dist)
 		elif operation['background'] == 'thin-outline':
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_source_rgba(*background_color)
 			dist = min(int(font_size/16), 10)
 			dist = max(dist, 2)
 			for dx in range(-dist, dist):
@@ -264,7 +263,7 @@ class ToolText(AbstractClassicTool):
 			# these `for`s and this `if` should outline with an octogonal shape,
 			# which is close enough to a smooth round outline imho.
 		elif operation['background'] == 'thick-outline':
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_source_rgba(*background_color)
 			dist = int(font_size/10)
 			dist = max(dist, 2)
 			for dx in range(-dist, dist):
@@ -277,7 +276,7 @@ class ToolText(AbstractClassicTool):
 		########################################################################
 		# Draw text ############################################################
 
-		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+		cairo_context.set_source_rgba(*operation['rgba1'])
 		self._show_text_at_coords(cairo_context, layout, entire_text, \
 		                                                         text_x, text_y)
 
@@ -293,7 +292,7 @@ class ToolText(AbstractClassicTool):
 
 	def _op_bg_rectangle(self, context, layout, c2, text_x, line_y, line_text):
 		# The text is first "displayed" in a transparent color…
-		context.set_source_rgba(0.0, 0.0, 0.0, 0.50)
+		context.set_source_rgba(0.0, 0.0, 0.0, 0.0)
 		self._show_text_at_coords(context, layout, line_text, text_x, line_y)
 		# …so we can get the size of the displayed line…
 		ink_rect, logical_rect = layout.get_pixel_extents()
@@ -303,7 +302,7 @@ class ToolText(AbstractClassicTool):
 		context.rel_line_to(logical_rect.width, 0)
 		context.rel_line_to(0, -1 * delta_y)
 		context.close_path()
-		context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+		context.set_source_rgba(*c2)
 		context.fill()
 		context.stroke()
 		# The returned value will be used as the vertical coord of the next line

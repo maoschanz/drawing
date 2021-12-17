@@ -133,8 +133,6 @@ class ToolLine(AbstractClassicTool):
 		cairo_context.set_operator(operation['operator'])
 		line_width = operation['line_width']
 		cairo_context.set_line_width(line_width)
-		c1 = operation['rgba']
-		c2 = operation['rgba2']
 		x1 = operation['x_press']
 		y1 = operation['y_press']
 		x2 = operation['x_release']
@@ -170,17 +168,17 @@ class ToolLine(AbstractClassicTool):
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 		if operation['outline']:
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_source_rgba(*operation['rgba2'])
 			cairo_context.set_line_width(line_width * 1.2 + 2)
 			cairo_context.stroke_preserve()
 
 		if operation['gradient']:
 			pattern = cairo.LinearGradient(x1, y1, x2, y2)
-			pattern.add_color_stop_rgba(0.1, c1.red, c1.green, c1.blue, c1.alpha)
-			pattern.add_color_stop_rgba(0.9, c2.red, c2.green, c2.blue, c2.alpha)
+			pattern.add_color_stop_rgba(0.1, *operation['rgba'])
+			pattern.add_color_stop_rgba(0.9, *operation['rgba2'])
 			cairo_context.set_source(pattern)
 		else:
-			cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
+			cairo_context.set_source_rgba(*operation['rgba'])
 		cairo_context.set_line_width(line_width)
 		cairo_context.stroke()
 

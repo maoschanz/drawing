@@ -163,8 +163,7 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join'])
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['rgba'])
 
 		if operation['mode'] == 'pressure':
 			if operation['is_preview']: # Previewing helps performance & debug

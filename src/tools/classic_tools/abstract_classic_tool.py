@@ -18,7 +18,7 @@
 import cairo
 from .abstract_tool import AbstractAbstractTool
 from .optionsbar_classic import OptionsBarClassic
-from .utilities_blur import utilities_blur_surface
+from .utilities_colors import utilities_gdk_rgba_to_normalized_array
 
 class AbstractClassicTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractClassicTool'
@@ -57,12 +57,14 @@ class AbstractClassicTool(AbstractAbstractTool):
 	def set_common_values(self, event_btn, event_x, event_y):
 		self._use_antialias = self.get_option_value('antialias')
 		self.tool_width = self.window.options_manager.get_tool_width()
+		left_c = self.window.options_manager.get_left_color()
+		right_c = self.window.options_manager.get_right_color()
 		if event_btn == 1:
-			self.main_color = self.window.options_manager.get_left_color()
-			self.secondary_color = self.window.options_manager.get_right_color()
+			self.main_color = utilities_gdk_rgba_to_normalized_array(left_c)
+			self.secondary_color = utilities_gdk_rgba_to_normalized_array(right_c)
 		if event_btn == 3:
-			self.main_color = self.window.options_manager.get_right_color()
-			self.secondary_color = self.window.options_manager.get_left_color()
+			self.main_color = utilities_gdk_rgba_to_normalized_array(right_c)
+			self.secondary_color = utilities_gdk_rgba_to_normalized_array(left_c)
 		self.x_press = event_x
 		self.y_press = event_y
 		self._operator = self.window.options_manager.get_operator()[0]
