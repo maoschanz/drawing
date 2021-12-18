@@ -23,6 +23,9 @@ function src_pot () {
 	# xgettext --files-from=po/POTFILES --from-code=UTF-8 -c --add-location=file --output=po/drawing.pot
 }
 
+function help_new () {
+}
+
 function help_all () {
 	echo "Updating .po files for help"
 	ninja -C _build help-drawing-update-po

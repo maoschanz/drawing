@@ -40,8 +40,11 @@ class ToolPaint(AbstractClassicTool):
 			return [_("Click on an area to replace its color by transparency")]
 		elif paint_algo == 'whole':
 			return [_("Click on the canvas to entirely paint it")]
-		else:
-			return [self.label]
+
+		label_warning1 = self.label + " - " + _("May not work for complex shapes")
+		label_warning2 = self.label + " - " + _("It will not work well if " + \
+		                                          "the area's edges are blurry")
+		return [label_warning1, label_warning2]
 
 	############################################################################
 

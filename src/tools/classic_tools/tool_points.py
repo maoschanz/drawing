@@ -75,6 +75,7 @@ class ToolPoints(AbstractClassicTool):
 		label = self.label + " - " + self._shape_label
 		if self._use_number:
 			label += " - " + _("Next number: %s") % self._next_number
+		# A single label is returned so the next number is always visible
 		return [label]
 
 	############################################################################
