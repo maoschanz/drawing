@@ -82,20 +82,22 @@ class ToolText(AbstractClassicTool):
 
 	def get_editing_tips(self):
 		self._set_font_options()
-
 		self._set_background_style()
-		bg_label = {
-			'none': _("No background"),
-			'shadow': _("Shadow"),
-			'thin-outline': _("Thin outline"),
-			'thick-outline': _("Thick outline"),
-			'rectangle': _("Rectangle background"),
-		}[self._background_id]
 
-		# The current method is likely called because an option changed
+		# get_editing_tips is likely called because an option changed
 		self._force_refresh()
 
-		label_options = self.label + " - " + self._font_fam_name + " - " + bg_label
+		label_options = self.label + " - " + self._font_fam_name
+		if self._background_id != 'none':
+			bg_label = {
+				'none': _("No background"),
+				'shadow': _("Shadow"),
+				'thin-outline': _("Thin outline"),
+				'thick-outline': _("Thick outline"),
+				'rectangle': _("Rectangle background"),
+			}[self._background_id]
+			label_options += " - " + bg_label
+
 		return [label_options]
 
 	############################################################################
