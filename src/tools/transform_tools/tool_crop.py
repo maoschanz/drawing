@@ -49,11 +49,21 @@ class ToolCrop(AbstractCanvasTool):
 		return _("Cropping options")
 
 	def get_editing_tips(self):
+		label_direction = _("The side(s) you'll crop are hinted by the mouse pointer")
+
 		if self.apply_to_selection:
 			label_action = _("Cropping the selection")
+			label_confirm = None
+			label_modifiers = None
 		else:
-			label_action = _("Cropping the canvas")
-		return [label_action]
+			label_action = _("Cropping or expanding the canvas")
+			label_confirm = self.label + " - " + \
+			                         _("Don't forget to confirm the operation!")
+			label_modifiers = _("Press <Alt>, <Shift>, or both, to quickly " + \
+			                                  "change the 'expand with' option")
+
+		full_list = [label_action, label_direction, label_confirm, label_modifiers]
+		return list(filter(None, full_list))
 
 	############################################################################
 

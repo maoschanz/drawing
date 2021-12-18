@@ -51,9 +51,17 @@ class ToolRotate(AbstractCanvasTool):
 	def get_editing_tips(self):
 		if self.apply_to_selection:
 			label_action = _("Rotating the selection")
+			label_confirm = None
 		else:
 			label_action = _("Rotating the canvas")
-		return [label_action]
+			label_confirm = self.label + " - " + \
+			                         _("Don't forget to confirm the operation!")
+
+		# there is intentionally no `label_modifier_shift` because it would be
+		# too hard to explain the actions of each mouse button.
+
+		full_list = [label_action, label_confirm]
+		return list(filter(None, full_list))
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -63,7 +71,7 @@ class ToolRotate(AbstractCanvasTool):
 		self.build_and_do_op() # Show the temp_pixbuf before any event
 		if self.apply_to_selection:
 			self.cursor_name = 'move'
-			# not the ideal cursor, but their is no ideal cursor fo this
+			# not the ideal cursor, but their is no ideal cursor for this
 		else:
 			self.cursor_name = 'pointer'
 		# the pane is updated by the window according to self.apply_to_selection
