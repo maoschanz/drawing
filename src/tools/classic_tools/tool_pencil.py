@@ -123,13 +123,11 @@ class ToolPencil(AbstractClassicTool):
 		utilities_smooth_path(cairo_context, operation['path'])
 
 		if operation['outline']:
-			rgba = operation['rgba2']
-			cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+			cairo_context.set_source_rgba(*operation['rgba2'])
 			cairo_context.set_line_width(line_width * 1.2 + 2)
 			cairo_context.stroke_preserve()
 
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['rgba'])
 		cairo_context.set_line_width(line_width)
 		cairo_context.stroke()
 

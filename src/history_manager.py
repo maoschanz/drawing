@@ -1,19 +1,4 @@
-# history_manager.py
-#
-# Copyright 2018-2021 Romain F. T.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 from gi.repository import Gdk, Gio, GdkPixbuf, GLib
 # from .abstract_tool import WrongToolIdException
@@ -190,10 +175,11 @@ class DrHistoryManager():
 		# times less recomputation.
 
 	def _rebuild_from_history(self, async_cb_data={}):
-		"""Rebuild the image according to the content of the current history."""
+		"""Rebuild the image according to the content of the current history.
+		This is used as a GSourceFunc so it should return False."""
 		if not self._waiting_for_rebuild:
 			# It has already been rebuild by an other async call
-			return
+			return False
 		self._waiting_for_rebuild = False
 
 		last_save_index = self._get_last_state_index(True)
@@ -208,6 +194,7 @@ class DrHistoryManager():
 				# print("skip", op['tool_id'])
 				self._undo_history.append(op)
 		self._image.update()
+		return False
 
 	def _operation_is_ongoing(self):
 		return self._image.active_tool().has_ongoing_operation()

@@ -161,14 +161,12 @@ class ToolArc(AbstractClassicTool):
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 		if operation['outline']:
-			c2 = operation['rgba2']
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_source_rgba(*operation['rgba2'])
 			cairo_context.set_line_width(line_width * 1.2 + 2)
 			cairo_context.stroke_preserve()
 
 		cairo_context.set_line_width(line_width)
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['rgba'])
 		cairo_context.stroke()
 
 	############################################################################

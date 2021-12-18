@@ -1,19 +1,17 @@
 drawing (1.0.0) unstable; urgency=low
 
   * enable tools with "alt+letter" mnemonics (#300)
-  * bigger sidebar items, where the selected tool is easier to see (#441)
+  * larger sidebar items, where the selected tool is easier to see (#441)
   * new "skew" tool (#369)
   * possibility to enable specific tools options with the <shift> or <alt> keyboard modifiers (#46)
   * display cursor coordinates and other related data when pressing the <ctrl> keyboard modifier (#46, #439)
   * dynamically change the label of the "options" submenu in the menu-bar, to increase its discoverability
   * suggest to "apply & save" when trying to save while an operation is unapplied
-  * text tool option for a thicker outline (#369)
-  *
   * suggest to "apply & unselect" when trying to save while the selection is active
   *
   * hide information messages after 4 seconds if they're not that useful
   * disable the 'reload image from the disk' action if it has never been saved
-  * new 'reset the canvas' action
+  * new 'reset the canvas' action (ctrl+backspace)
   * warn the user if they're opening an already opened image
   * suggest to reload the picture if it has changed on the disk
   * artificially limited framerate to avoid overloading the CPU (#162)
@@ -23,7 +21,15 @@ drawing (1.0.0) unstable; urgency=low
   * shorter appdata summary, to comply with guidelines (#419)
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 11 Dec 2021 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 22 Jan 2022 13:12:00 +0100
+
+drawing (0.8.5) unstable; urgency=low
+
+  * text tool option for a thicker outline (#369)
+  * visual feedback when the user moves the minimap preview (#318)
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 04 Dec 2021 13:12:00 +0100
 
 drawing (0.8.4) unstable; urgency=low
 

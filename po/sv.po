@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
-"PO-Revision-Date: 2021-11-04 13:32+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
+"PO-Revision-Date: 2021-11-28 19:33+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
@@ -104,44 +104,48 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+"Du kan välja verktyg med tangentbordsacceleratorer (Alt+bokstav). Detta "
+"kanske inte fungerar ännu med språk som använder ett icke-latinskt alfabet."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+"Om du trycker på \"Ctrl\" visas markörkoordinaterna i ett knappbeskrivning. "
+"Om du gör det när du använder ett verktyg kan det visa ytterligare data, "
+"till exempel dimensionerna på formen du ritar!"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+"Genom att trycka på \"Skift\" eller \"Alt\" när du använder ett verktyg "
+"aktiveras specifika alternativ, till exempel att låsa riktningen för "
+"\"linjeverktyget\" eller ändra fyllningsstilen för en form."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
 "Med verktyget \"skala\" kan du välja att ställa in den nya storleken som en "
 "relativ procentandel i stället för ett absolut värde i pixlar."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
-msgstr ""
-"Om namnen på verktygen är synliga kan du aktivera ett visst verktyg med \"alt"
-"+[den understrukna bokstaven]\". Detta kanske inte fungerar ännu med språk "
-"som använder ett icke-latinskt alfabet."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
-msgstr ""
-"Genom att trycka på Ctrl, \"skift\" eller \"alt\" när du använder ett "
-"verktyg kan du använda specifika alternativ, till exempel \"lägg till i "
-"markeringen\" för markeringsverktygen."
-
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"Version 0.8.2 innehåller ett flertal mindre felkorrigeringar, och diverse "
+"Version 0.8.5 innehåller ett flertal mindre felkorrigeringar, och diverse "
 "nya översättningar."
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -196,7 +200,7 @@ msgstr "Uppdatera fil"
 msgid "Image properties"
 msgstr "Bildegenskaper"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr "Återställ arbetsyta"
 
@@ -2124,6 +2128,23 @@ msgstr "Markeringsalternativ"
 msgid "Line"
 msgstr "Linje"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Width: %spx"
+msgstr "Bredd: %spx"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Height: %spx"
+msgstr "Höjd: %spx"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr "Längd: %spx"
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Linjealternativ"
@@ -2156,6 +2177,11 @@ msgstr "Nästa nummer: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Figur"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr "Radie: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2293,9 +2319,6 @@ msgstr "Mättnad"
 #~ msgid "Transform"
 #~ msgstr "Omvandla"
 
-#~ msgid "Pixelization"
-#~ msgstr "Pixelisering"
-
 #~ msgid "Horizontal"
 #~ msgstr "Horisontellt"
 
@@ -2305,20 +2328,11 @@ msgstr "Mättnad"
 #~ msgid "A drawing application for the GNOME desktop"
 #~ msgstr "Ett ritprogram för GNOME skrivbordsmiljö"
 
-#~ msgid "About"
-#~ msgstr "Om"
-
 #~ msgid "Quit"
 #~ msgstr "Avsluta"
 
 #~ msgid "Exit fullscreen mode"
 #~ msgstr "Avsluta fullskärmsläget"
-
-#~ msgid "Other tools"
-#~ msgstr "Andra verktyg"
-
-#~ msgid "Keyboard"
-#~ msgstr "Tangentbord"
 
 #~ msgid "Close"
 #~ msgstr "Stäng"

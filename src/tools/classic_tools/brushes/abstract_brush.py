@@ -29,8 +29,7 @@ class AbstractBrush():
 			# surface, and actually we can't because using it as a mask would
 			# just erase the entire image.
 			original_context.set_operator(operation['operator'])
-			c = operation['rgba']
-			original_context.set_source_rgba(c.red, c.green, c.blue, c.alpha)
+			original_context.set_source_rgba(*operation['rgba'])
 			self.do_masked_brush_op(original_context, operation)
 			return
 
@@ -49,8 +48,7 @@ class AbstractBrush():
 		context2.set_antialias(antialias)
 
 		context2.set_operator(cairo.Operator.SOURCE)
-		rgba = operation['rgba']
-		context2.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		context2.set_source_rgba(*operation['rgba'])
 
 		self.do_masked_brush_op(context2, operation)
 

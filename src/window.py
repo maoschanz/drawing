@@ -247,19 +247,29 @@ class DrWindow(Gtk.ApplicationWindow):
 		GLib.timeout_add(500, self.async_build_from_clipboard, {})
 
 	def async_build_from_clipboard(self, content_params):
+		"""This is used as a GSourceFunc so it should return False."""
 		self.get_active_image().try_close_tab()
-		self.build_image_from_clipboard()
+		if self.build_image_from_clipboard():
+			self.switch_to(self.active_tool_id)
+		return False
 
 	def build_image_from_clipboard(self, *args):
 		"""Open a new tab with the image in the clipboard. If the clipboard is
-		empty, the new image will be blank."""
+		empty, and there is no existing tab, a new blank image will be created
+		to ensure the window can display the message.
+		It returns `True` if an image (blank or not idc) has been created."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()
 		if pixbuf is None:
 			self.reveal_message(_("The clipboard doesn't contain any image."), True)
-			self.build_blank_image()
+			if self.notebook.get_current_page() < 0:
+				# This condition means it's a new window.
+				self.build_blank_image()
+				return True
+			return False
 		else:
 			self._build_new_tab(pixbuf=pixbuf)
+			return True
 
 	def build_image_from_selection(self, *args):
 		"""Open a new tab with the image in the selection."""
@@ -269,7 +279,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def build_new_from_file(self, gfile, check_duplicates=True):
 		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not w.confirm_open_twice(gfile):
+			if duplicate is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return
 		self._build_new_tab(gfile=gfile)
@@ -720,7 +730,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		action is suggested."""
 		self.info_bar.set_visible(True)
 		self.info_label.set_label(message)
-		self.info_action.set_action_name('app.report_bug')
+		self.info_action.set_action_name('app.report-issue')
 		self.info_action.set_label(_("Report a bug"))
 		self.info_action.set_visible(True)
 		self.log_message(message)
@@ -736,9 +746,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.log_message(label)
 
 	def __hide_message_async(self, async_cb_data):
+		"""This is used as a GSourceFunc so it should return False."""
 		if async_cb_data['label'] == self.info_label.get_label():
 			self._hide_message()
 		# else the message has changed so it shouldn't be hidden now
+		return False
 
 	def _hide_message(self, *args):
 		self.info_bar.set_visible(False)
@@ -996,7 +1008,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			# it makes more sense to ask *if* the user want to open it BEFORE
 			# asking *where* to open it
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not w.confirm_open_twice(gfile):
+			if duplicate is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				self._hide_message()
 				return
@@ -1082,7 +1094,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			return
 		if check_duplicates:
 			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if w is not None and not w.confirm_open_twice(gfile):
+			if w is not None and not self.confirm_open_twice(gfile):
 				w.notebook.set_current_page(duplicate)
 				return
 
@@ -1270,7 +1282,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		preview_visible = not args[0].get_state()
 		if preview_visible:
 			self.minimap.popup()
-			self.minimap.update_minimap(True)
+			self.minimap.update_content()
 		else:
 			self.minimap.popdown()
 		args[0].set_state(GLib.Variant.new_boolean(preview_visible))

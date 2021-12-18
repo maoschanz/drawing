@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-01 06:39+0100\n"
-"PO-Revision-Date: 2021-10-31 04:17+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
+"PO-Revision-Date: 2021-11-28 01:53+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -103,6 +103,36 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+"Vous pouvez activer les outils avec des accélérateurs clavier (Alt+lettre). "
+"Cela pourrait ne pas encore fonctionner avec les langues utilisant un "
+"alphabet non-latin."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+"Presser \"ctrl\" affichera les coordonnées du curseur dans une info-bulle. "
+"Si vous le faites en utilisant un outil, ça pourrait afficher des données "
+"supplémentaires, comme par exemple les dimensions de la forme que vous "
+"dessinez !"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+"Presser \"maj\" ou \"alt\" en utilisant un outil activera désormais des "
+"options spécifiques, tel que verrouiller la direction pour l'outil \"ligne"
+"\", ou changer le style de remplissage d'une forme."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
@@ -110,38 +140,14 @@ msgstr ""
 "nouvelle taille sous la forme d'un pourcentage relatif, plutôt qu'une valeur "
 "absolue."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
-msgstr ""
-"Si les noms des outils sont visibles, vous pouvez activer un outil "
-"spécifique en pressant \"\". Cela pourrait ne pas encore fonctionner avec "
-"les langues utilisant un alphabet non-latin."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
-msgstr ""
-"Presser \"ctrl\", \"maj\", ou \"alt\" en utilisant un outil activera "
-"désormais des options spécifiques, tel que \"ajouter à la sélection\" dans "
-"le cas des outils de sélection."
-
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"La version 0.8.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"La version 0.8.5 comporte plusieurs correctifs de bugs mineurs, et diverses "
 "nouvelles traductions."
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -196,7 +202,7 @@ msgstr "Recharger le fichier"
 msgid "Image properties"
 msgstr "Propriétés de l'image"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr "Réinitialiser le canevas"
 
@@ -2132,6 +2138,23 @@ msgstr "Options du surligneur"
 msgid "Line"
 msgstr "Trait"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Width: %spx"
+msgstr "Largeur : %spx"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Height: %spx"
+msgstr "Hauteur : %spx"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr "Longueur : %spx"
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Options de la ligne"
@@ -2164,6 +2187,11 @@ msgstr "Prochain numéro : %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forme"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr "Rayon : %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2279,19 +2307,16 @@ msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Options de redimensionnement"
+msgstr "Options d'inclinement"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Redimensionner la sélection"
+msgstr "Incliner la sélection"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Redimensionner le canevas"
+msgstr "Incliner le canevas"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2300,15 +2325,3 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
-
-#~ msgid "Transform"
-#~ msgstr "Transformer"
-
-#~ msgid "Pixelization"
-#~ msgstr "Pixellisation"
-
-#~ msgid "Horizontal"
-#~ msgstr "Horizontale"
-
-#~ msgid "Vertical"
-#~ msgstr "Verticale"

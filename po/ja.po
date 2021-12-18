@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2021-09-08 01:23+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,18 +96,10 @@ msgstr ""
 "ができます。このような変形は水平・垂直の両方向に適用可能です。"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
 msgid ""
-"Using the \"scale\" tool, you may optionally set the new size as a relative "
-"percentage rather than an absolute value in pixels."
-msgstr ""
-"\"伸縮\" ツールを使うと、従来の直接的なピクセル指定に加え、相対的な比率で自由"
-"に画像サイズを変更できます。"
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
 msgstr ""
 "ツール名を表示している場合は \"Alt+[下線の文字]\" でそのツールに切り替えられ"
 "ます。ただし、ラテン文字のアルファベット表記を使用しない言語 (日本語など) で"
@@ -115,24 +107,36 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
 msgstr ""
 "ツールの使用中に \"Ctrl\", \"Shift\", または \"Alt\" を押すと、そのツール固有"
 "のオプション (選択ツールの \"選択に追加\" など) が発動します。"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+"\"伸縮\" ツールを使うと、従来の直接的なピクセル指定に加え、相対的な比率で自由"
+"に画像サイズを変更できます。"
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"バージョン 0.8.2 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
+"バージョン 0.8.5 では、いくつかのバグ修正と、新しい言語の追加が行われました。"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -187,7 +191,7 @@ msgstr "ファイルを再読み込み"
 msgid "Image properties"
 msgstr "画像のプロパティ"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr ""
 
@@ -2129,6 +2133,23 @@ msgstr "蛍光ペンのオプション"
 msgid "Line"
 msgstr "直線"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "幅"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "高さ"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "直線のオプション"
@@ -2161,6 +2182,11 @@ msgstr "次の番号: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "シェイプ"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2300,9 +2326,6 @@ msgstr "輝度"
 
 #~ msgid "Transform"
 #~ msgstr "変換"
-
-#~ msgid "Pixelization"
-#~ msgstr "ピクセル化"
 
 #~ msgid "Horizontal"
 #~ msgstr "水平"

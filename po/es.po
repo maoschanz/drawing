@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-01 06:39+0100\n"
-"PO-Revision-Date: 2021-10-31 14:42+0100\n"
+"POT-Creation-Date: 2021-12-04 16:15+0100\n"
+"PO-Revision-Date: 2021-12-04 16:15+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -106,44 +106,50 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+"Puede seleccionar herramientas con aceleradores de teclado (Alt+letra). Es "
+"posible que esto no funcione todavía con los idiomas que usan un alfabeto no "
+"latino."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+"Al pulsar \"ctrl\" se mostrarán las coordenadas del cursor en un consejo "
+"sobre la herramienta. Si lo hace mientras usa una herramienta, puede mostrar "
+"datos adicionales, por ejemplo, ¡las dimensiones de la forma que está "
+"dibujando!"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+"Al pulsar \"mayúsculas\" o \"alt\" cuando se usa una herramienta se activan "
+"opciones específicas, como bloquear la dirección de la herramienta \"línea\" "
+"o cambiar el estilo de relleno de una forma."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
 "Con la herramienta \"escala\", puede establecer opcionalmente el nuevo "
 "tamaño como un porcentaje relativo en lugar de un valor absoluto en píxeles."
 
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
-msgstr ""
-"Si los nombres de las herramientas son visibles, puedes activar una "
-"herramienta específica con \"alt+[la letra subrayada]\". Es posible que esto "
-"no funcione todavía con los idiomas que utilizan un alfabeto no latino."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
-msgstr ""
-"Al pulsar \"ctrl\", \"shift\" o \"alt\" cuando se utiliza una herramienta se "
-"activan opciones específicas, como \"añadir a la selección\" para las "
-"herramientas de selección."
-
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"La versión 0.8.2 presenta varias correcciones de errores menores y varias "
+"La versión 0.8.5 presenta varias correcciones de errores menores y varias "
 "traducciones nuevas."
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -198,7 +204,7 @@ msgstr "Recargar archivo"
 msgid "Image properties"
 msgstr "Propiedades de imagen"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr "Restablecer lienzo"
 
@@ -2135,6 +2141,23 @@ msgstr "Opciones del rotulador"
 msgid "Line"
 msgstr "Línea"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Width: %spx"
+msgstr "Anchura: %spx"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Height: %spx"
+msgstr "Altura: %spx"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr "Longitud: %spx"
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Opciones de línea"
@@ -2167,6 +2190,11 @@ msgstr "Siguiente número: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr "Radio: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"

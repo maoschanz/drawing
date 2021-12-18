@@ -19,8 +19,7 @@ class BrushAirbrush(AbstractBrush):
 		related to the stylus pressure."""
 
 		cairo_context.set_operator(operation['operator'])
-		rgba = operation['rgba']
-		cairo_context.set_source_rgba(rgba.red, rgba.green, rgba.blue, rgba.alpha)
+		cairo_context.set_source_rgba(*operation['rgba'])
 
 		# if operation['is_preview']: # Previewing helps performance & debug
 		# 	operation['line_width'] = int(operation['line_width'] / 2)

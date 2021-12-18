@@ -110,12 +110,15 @@ class OptionsBarClassic(AbstractOptionsBar):
 	def _build_color_buttons(self, builder):
 		"""Initialize the 2 color-buttons and popovers with the 2 previously
 		memorized RGBA values."""
-		right_rgba = self._get_tool_options().get_strv('last-right-rgba')
-		left_rgba = self._get_tool_options().get_strv('last-left-rgba')
+		options_manager = self.window.options_manager
+
+		thumbnail_r = builder.get_object('r_btn_image')
 		self._color_r = OptionsBarClassicColorPopover(self.color_menu_btn_r, \
-		             builder.get_object('r_btn_image'), right_rgba, False, self)
+		                                    thumbnail_r, False, options_manager)
+
+		thumbnail_l = builder.get_object('l_btn_image')
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \
-		               builder.get_object('l_btn_image'), left_rgba, True, self)
+		                                     thumbnail_l, True, options_manager)
 
 	def set_palette_setting(self, show_editor):
 		self._color_r.editor_setting_changed(show_editor)
@@ -125,44 +128,19 @@ class OptionsBarClassic(AbstractOptionsBar):
 	# Cairo operators ("color application modes") ##############################
 
 	def _cairo_op_changed(self, *args):
-		"""This action can be used in menus. It's a custom callback because it
-		has to set the lock required to be avoid infinite recursion caused by
-		the synchronisation with `win.cairo_op_mirror`"""
-		self.window.options_manager._enum_callback(*args)
-		# XXX appels au callback PRIVÉ de l'options_manager
+		"""This action can be used in menus. Is sync'd with `cairo_op_mirror`."""
+		if self.window.options_manager.mirrored_action_callback('cairo_op_mirror', *args):
+			self._update_popovers(args[1].get_string())
 
-		mirrored_action = self.window.lookup_action('cairo_op_mirror')
-		if args[1].get_string() == mirrored_action.get_state().get_string():
-			return
-		self._cairo_operator_lock = True
-		self.window.options_manager._enum_callback(mirrored_action, args[1])
-		self._cairo_operator_lock = False
-		self._update_popovers(args[1].get_string())
+	def _cairop_mirror(self, *args):
+		"""This action should NEVER be added to any menu (GtkRadioButtons only).
+		Is sync'd with `cairo_operator`."""
+		if self.window.options_manager.mirroring_action_callback('cairo_operator', *args):
+			self._update_popovers(args[1].get_string())
 
 	def _update_popovers(self, op_as_string):
 		self._color_r.adapt_to_operator(op_as_string)
 		self._color_l.adapt_to_operator(op_as_string)
-
-	def _cairop_mirror(self, *args):
-		"""This action should NEVER be added to any menu. It mirrors the action
-		`win.cairo_operator`, which can be added to menus. This action is
-		intended to be used by GtkRadioButtons, whose weird behaviors include
-		sending a `change-state` signal when being unchecked, thus triggering
-		this callback twice. So this synchronisation mechanism is needed, with
-		an other "classic" action duplicating the data, and a lock."""
-		if self._cairo_operator_lock:
-			return
-		if args[1].get_string() == args[0].get_state().get_string():
-			return
-		mirrored_action = self.window.lookup_action('cairo_operator')
-		if args[1].get_string() == mirrored_action.get_state().get_string():
-			return
-		self.window.options_manager._enum_callback(*args)
-		# XXX appels au callback PRIVÉ de l'options_manager
-		self._cairo_operator_lock = True
-		self.window.options_manager._enum_callback(mirrored_action, args[1])
-		self._cairo_operator_lock = False
-		self._update_popovers(args[1].get_string())
 
 	############################################################################
 ################################################################################

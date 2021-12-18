@@ -74,7 +74,8 @@ class DrImage(Gtk.Box):
 			# Framerate tracking (debug only)
 			self._skipped_frames = 0
 			self._fps_counter = 0
-			self.reset_fps_counter()
+			if self.window.should_track_framerate:
+				self.reset_fps_counter()
 
 		self._init_drawing_area()
 
@@ -525,7 +526,9 @@ class DrImage(Gtk.Box):
 		self._drawing_area.queue_draw()
 
 	def _async_unlock(self, content_params={}):
+		"""This is used as a GSourceFunc so it should return False."""
 		self._rendering_is_locked = False
+		return False
 
 	def get_surface(self):
 		return self.surface
@@ -592,7 +595,8 @@ class DrImage(Gtk.Box):
 	def reset_fps_counter(self, async_cb_data={}):
 		"""Development only: live-display the evolution of the framerate of the
 		drawing area. The max should be around 60, but many tools don't require
-		so many redraws."""
+		so many redraws.
+		This is used as a GSourceFunc so it should return False."""
 		if self.window.should_track_framerate:
 			# Context: this is a debug information that users will never see
 			msg = _("%s frames per second") % self._fps_counter
@@ -603,6 +607,7 @@ class DrImage(Gtk.Box):
 			GLib.timeout_add(1000, self.reset_fps_counter, {})
 		elif self.window.info_bar.get_visible():
 			self.window.reveal_message("Tracking stopped.", True)
+		return False
 
 	############################################################################
 	# Interaction with the minimap #############################################
@@ -613,7 +618,7 @@ class DrImage(Gtk.Box):
 	def get_widget_height(self):
 		return self._drawing_area.get_allocated_height()
 
-	def get_mini_pixbuf(self, preview_size):
+	def generate_mini_pixbuf(self, preview_size):
 		mpb_width = self.get_pixbuf_width()
 		mpb_height = self.get_pixbuf_height()
 		if mpb_height > mpb_width:
@@ -624,7 +629,7 @@ class DrImage(Gtk.Box):
 			mh = preview_size * (mpb_height/mpb_width)
 		return self.main_pixbuf.scale_simple(mw, mh, GdkPixbuf.InterpType.TILES)
 
-	def get_show_overlay(self):
+	def get_minimap_need_overlay(self):
 		mpb_width = self.get_pixbuf_width()
 		mpb_height = self.get_pixbuf_height()
 		show_x = self.get_widget_width() < mpb_width * self.zoom_level
@@ -733,13 +738,13 @@ class DrImage(Gtk.Box):
 			wanted_y = self.scroll_y
 
 		self.correct_coords(wanted_x, wanted_y)
-		self.window.minimap.update_minimap(False)
+		self.window.minimap.update_overlay()
 
 	def add_deltas(self, delta_x, delta_y, factor):
 		wanted_x = self.scroll_x + int(delta_x * factor)
 		wanted_y = self.scroll_y + int(delta_y * factor)
 		self.correct_coords(wanted_x, wanted_y)
-		self.window.minimap.update_minimap(False)
+		self.window.minimap.update_overlay()
 
 	def correct_coords(self, wanted_x, wanted_y):
 		available_w = self.get_widget_width()

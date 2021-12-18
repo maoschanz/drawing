@@ -5,16 +5,15 @@ on:
 name: CI
 jobs:
   flatpak-builder:
-    name: "Flatpak Builder"
-    runs-on: ubuntu-20.04
+    name: Flatpak Builder
+    runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-3.38
+      image: bilelmoussaoui/flatpak-github-actions:gnome-41
       options: --privileged
     steps:
-    - uses: actions/checkout@v2
-    - uses: bilelmoussaoui/flatpak-github-actions@v2
+    - uses: actions/checkout@v2.4.0
+    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
       with:
-        bundle: "drawing.flatpak"
-        manifest-path: "com.github.maoschanz.drawing.json"
-        run-tests: "true"
-
+        bundle: drawing.flatpak
+        manifest-path: com.github.maoschanz.drawing.json
+        run-tests: true

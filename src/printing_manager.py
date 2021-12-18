@@ -64,6 +64,8 @@ class DrPrintingManager():
 		res = print_op.run(action_type, self._window)
 		# I'll assume print_op continues to live enough to be used by signals.
 
+	############################################################################
+
 	def _do_draw_page(self, op, print_ctx, page_num, pixbuf):
 		self._show_pixbuf_on_page(print_ctx, pixbuf)
 

@@ -1,5 +1,4 @@
 # Basque translation of drawing.
-# Copyright (C) 2018-2020 Romain F. T.
 # This file is distributed under the same license as the drawing package.
 # Alexander Gabilondo <alexgabi@disroot.org>, 2021
 #
@@ -7,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -93,36 +92,38 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
-msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
 msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"0.8.2 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
+"0.8.5 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
 "ditu."
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -177,7 +178,7 @@ msgstr "Birkargatu fitxategia"
 msgid "Image properties"
 msgstr "Irudiaren propietateak"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr ""
 
@@ -1390,7 +1391,6 @@ msgstr ""
 "Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
 msgstr "Sakatu F11 pantaila osotik irteteko"
 
@@ -1628,13 +1628,11 @@ msgid "Use this editor by default"
 msgstr "Erabili editore hau lehenespenez"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
 msgid "Selection options"
 msgstr "Hautatzeko aukerak"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Replace with…"
 msgstr "Ordeztu honekin…"
 
@@ -1866,7 +1864,6 @@ msgid "Blur"
 msgstr "Lausotu"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
 msgstr "Ausazko píxelak"
 
@@ -1882,7 +1879,6 @@ msgid "Mosaic"
 msgstr "Mosaikoa"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
 msgstr "Kolore solidoa"
 
@@ -1947,7 +1943,6 @@ msgid "Color gradient"
 msgstr "Kolore gradientea"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
 msgstr "Blokeatutako norabidea"
 
@@ -2169,6 +2164,23 @@ msgstr "Nabarmentzailearen aukerak"
 msgid "Line"
 msgstr "Marra"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "Zabalera"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "Altuera"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Marraren aukerak"
@@ -2203,6 +2215,11 @@ msgstr "Hurrengo zenbakia: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2348,13 +2365,6 @@ msgstr "Lausotze erradioa"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturazioa"
-
-#, fuzzy
-#~ msgid "Transform"
-#~ msgstr "Eraldatu"
-
-#~ msgid "Pixelization"
-#~ msgstr "Pixelizazioa"
 
 #~ msgid "Horizontal"
 #~ msgstr "Horizontala"

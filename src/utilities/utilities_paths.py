@@ -1,8 +1,4 @@
-# utilities_paths.py
-#
-# Copyright 2018-2021 Romain F. T.
-#
-# GPL 3
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 import cairo, math
 from gi.repository import Gdk, GdkPixbuf

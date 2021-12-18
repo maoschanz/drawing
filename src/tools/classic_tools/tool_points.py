@@ -103,7 +103,7 @@ class ToolPoints(AbstractClassicTool):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
-			'rgba2': self.secondary_color,
+			'rgba2': self.secondary_color, # for the font of the number
 			'antialias': self._use_antialias,
 			'line_width': self.tool_width,
 			'point_type': self._points_type,
@@ -116,10 +116,7 @@ class ToolPoints(AbstractClassicTool):
 	def do_tool_operation(self, operation):
 		cairo_context = self.start_tool_operation(operation)
 		cairo_context.set_line_cap(cairo.LineCap.BUTT)
-
-		c1 = operation['rgba']
-		cairo_context.set_source_rgba(c1.red, c1.green, c1.blue, c1.alpha)
-		c2 = operation['rgba2'] # may be used for the font of the number
+		cairo_context.set_source_rgba(*operation['rgba'])
 
 		point_width = operation['line_width']
 		line_width = max(1, int(point_width / 4))
@@ -158,7 +155,7 @@ class ToolPoints(AbstractClassicTool):
 
 		if number is not None:
 			cairo_context.set_font_size(max(1, int(point_width * 0.8)))
-			cairo_context.set_source_rgba(c2.red, c2.green, c2.blue, c2.alpha)
+			cairo_context.set_source_rgba(*operation['rgba2'])
 			cairo_context.move_to(num_x, num_y)
 			cairo_context.show_text(str(number))
 

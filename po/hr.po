@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-03 03:14+0100\n"
+"POT-Creation-Date: 2021-11-28 01:21+0100\n"
 "PO-Revision-Date: 2021-10-10 22:41+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -102,18 +102,10 @@ msgstr ""
 "u paralelogram. Ta se deformacija može primijeniti vodoravno ili okomito."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
 msgid ""
-"Using the \"scale\" tool, you may optionally set the new size as a relative "
-"percentage rather than an absolute value in pixels."
-msgstr ""
-"Pomoću alata „Skaliraj” može se po želji postaviti nova veličina kao "
-"relativan postotak, umjesto kao apsolutna vrijednost u pikselima. "
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"If the names of the tools are visible, you can enable a specific tool with "
-"\"alt+[the underlined letter]\". This may not work yet with languages using "
-"a non-latin alphabet."
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
 msgstr ""
 "Ako su nazivi alata vidljivi, određeni alat se može aktivirati pomoću „alt"
 "+[podcrtano slovo]”. Ovo možda još neće raditi s jezicima koji ne koriste "
@@ -121,25 +113,37 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Pressing \"ctrl\", \"shift\", or \"alt\" when using a tool enables specific "
-"options, such as \"add to the selection\" for the selection tools."
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
 msgstr ""
 "Pritiskom tipki „ctrl”, „shift” ili „alt” tijekom korištenja alata "
 "omogućujuse određene opcije, kao što je „Dodaj u odabir” za alate za biranje."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+"Pomoću alata „Skaliraj” može se po želji postaviti nova veličina kao "
+"relativan postotak, umjesto kao apsolutna vrijednost u pikselima. "
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 0.8.2 features several minor bug fixes, and various new translations."
+"Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"Verzija 0.8.2 sadrži nekoliko ispravki manjih programskih grešaka i razne "
+"Verzija 0.8.5 sadrži nekoliko ispravki manjih programskih grešaka i razne "
 "nove prijevode."
-
-#. This is just my name, do not translate it.
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid "Romain F. T."
-msgstr "Romain F. T."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -194,7 +198,7 @@ msgstr "Ponovo učitaj datoteku"
 msgid "Image properties"
 msgstr "Svojstva slike"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
 msgstr ""
 
@@ -587,7 +591,7 @@ msgstr "Indeks"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr "individualne stranice"
+msgstr "Individualne stranice"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -2134,6 +2138,23 @@ msgstr "Opcije za isticanje"
 msgid "Line"
 msgstr "Crta"
 
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Width: %spx"
+msgstr "Širina"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, fuzzy, python-format
+msgid "Height: %spx"
+msgstr "Visina"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr ""
+
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
 msgstr "Opcije za crtu"
@@ -2166,6 +2187,11 @@ msgstr "Sljedeći broj: %s"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Oblik"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2305,9 +2331,6 @@ msgstr "Zasićenost"
 
 #~ msgid "Transform"
 #~ msgstr "Transformiraj"
-
-#~ msgid "Pixelization"
-#~ msgstr "Pikselizacija"
 
 #~ msgid "Horizontal"
 #~ msgstr "Vodoravno"
