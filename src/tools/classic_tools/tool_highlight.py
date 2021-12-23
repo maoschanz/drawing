@@ -45,8 +45,11 @@ class ToolHighlighter(ToolPencil):
 			label_options += _("Light text on dark background")
 			label_modifier_shift = _("Press <Shift> to temporarily highlight" + \
 			                                     " on light background instead")
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
 
-		return [label_options, label_modifier_shift]
+		full_list = [label_options, label_modifier_shift]
+		return list(filter(None, full_list))
 
 	def get_options_label(self):
 		return _("Highlighter options")

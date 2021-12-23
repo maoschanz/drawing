@@ -123,8 +123,11 @@ class ToolShape(AbstractClassicTool):
 			label_instruction = None
 			self.set_action_sensitivity('shape_close', False)
 
-		label_modifiers = _("Press <Alt>, <Shift>, or both, to quickly " + \
-		                                          "change the 'filling' option")
+		if self.get_image().get_mouse_is_pressed():
+			label_modifiers = None
+		else:
+			label_modifiers = _("Press <Alt>, <Shift>, or both, to quickly " + \
+			                                      "change the 'filling' option")
 
 		full_list = [label_options, label_instruction, label_modifiers]
 		return list(filter(None, full_list))

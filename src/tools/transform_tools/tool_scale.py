@@ -66,8 +66,11 @@ class ToolScale(AbstractCanvasTool):
 			label_confirm = self.label + " - " + \
 			                         _("Don't forget to confirm the operation!")
 
-		label_modifier_shift = _("Press <Shift> to quickly toggle the 'lock" + \
-		                                                 " proportions' option")
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
+		else:
+			label_modifier_shift = _("Press <Shift> to quickly toggle the " + \
+			                                        "'lock proportions' option")
 
 		full_list = [label_action, label_confirm, label_modifier_shift]
 		return list(filter(None, full_list))

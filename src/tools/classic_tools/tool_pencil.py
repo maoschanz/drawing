@@ -62,8 +62,13 @@ class ToolPencil(AbstractClassicTool):
 		else:
 			label_options = None
 
-		label_modifier_alt = self.label + " - " + \
-		                         _("Press <Alt> to toggle the 'outline' option")
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_alt = None
+			if label_options is None:
+				label_options = self.label
+		else:
+			label_modifier_alt = self.label + " - " + \
+			                     _("Press <Alt> to toggle the 'outline' option")
 
 		full_list = [label_options, label_modifier_alt]
 		return list(filter(None, full_list))

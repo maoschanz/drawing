@@ -60,16 +60,17 @@ class ToolSkew(AbstractCanvasTool):
 	def get_editing_tips(self):
 		label_direction = _("The direction(s) of the deformation are hinted by the mouse pointer")
 
+		label_modifiers = None
 		if self.apply_to_selection:
 			label_action = _("Skewing the selection")
 			label_confirm = None
-			label_modifiers = None
 		else:
 			label_action = _("Skewing the canvas")
 			label_confirm = self.label + " - " + \
 			                         _("Don't forget to confirm the operation!")
-			label_modifiers = _("Press <Alt>, <Shift>, or both, to quickly " + \
-			                                  "change the 'expand with' option")
+			if not self.get_image().get_mouse_is_pressed():
+				label_modifiers = _("Press <Alt>, <Shift>, or both, to " + \
+				                      "quickly change the 'expand with' option")
 
 		full_list = [label_action, label_direction, label_confirm, label_modifiers]
 		return list(filter(None, full_list))
