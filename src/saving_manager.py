@@ -80,7 +80,7 @@ class DrSavingManager():
 				image.connect_gfile_monitoring()
 				image.remember_current_state()
 				image.post_save()
-				self._window.set_picture_title()
+				self._window.update_picture_title()
 		except Exception as e:
 			if not is_export and str(e) == '2': # exception has been raised
 				# because the user wants to save the file under an other format

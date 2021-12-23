@@ -73,7 +73,7 @@ def utilities_get_rgba_name(gdk_rgba):
 	if alpha == 0.0:
 		return _("Transparent")
 	elif alpha < 1.0:
-		alpha_string = ' - ' + _("%s%% transparent") % int(100 - alpha * 100)
+		alpha_string = " - " + _("%s%% transparent") % int(100 - alpha * 100)
 
 	total = red + green + blue
 	orange_coef = 0.0

@@ -57,25 +57,26 @@ class ToolPoints(AbstractClassicTool):
 
 	def _reset_number(self, *args):
 		self._next_number = 1
-		self.window.set_picture_title()
+		self.window.set_window_subtitles()
 
 	def _increment_number(self, *args):
 		self._next_number += 1
-		self.window.set_picture_title()
+		self.window.set_window_subtitles()
 
 	def _decrement_number(self, *args):
 		self._next_number -= 1
-		self.window.set_picture_title()
+		self.window.set_window_subtitles()
 
 	def get_options_label(self):
 		return _("Points options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._set_active_type()
-		label = self.label + ' - ' + self._shape_label
+		label = self.label + " - " + self._shape_label
 		if self._use_number:
-			label = label + ' - ' + _("Next number: %s") % self._next_number
-		return label
+			label += " - " + _("Next number: %s") % self._next_number
+		# A single label is returned so the next number is always visible
+		return [label]
 
 	############################################################################
 

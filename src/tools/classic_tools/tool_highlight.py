@@ -32,15 +32,24 @@ class ToolHighlighter(ToolPencil):
 		self.add_tool_action_enum('highlight-bg', 'light')
 		self.add_tool_action_boolean('highlight-alpha', True)
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._bg_type = self.get_option_value('highlight-bg')
 		self._force_alpha = self.get_option_value('highlight-alpha')
-		statut = self.label + " - "
+
+		label_options = self.label + " - "
 		if self._bg_type == 'light':
-			statut += _("Dark text on light background")
+			label_options += _("Dark text on light background")
+			label_modifier_shift = _("Press <Shift> to temporarily highlight" + \
+			                                      " on dark background instead")
 		else:
-			statut += _("Light text on dark background")
-		return statut
+			label_options += _("Light text on dark background")
+			label_modifier_shift = _("Press <Shift> to temporarily highlight" + \
+			                                     " on light background instead")
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
+
+		full_list = [label_options, label_modifier_shift]
+		return list(filter(None, full_list))
 
 	def get_options_label(self):
 		return _("Highlighter options")
@@ -50,7 +59,7 @@ class ToolHighlighter(ToolPencil):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		super().on_press_on_area(event, surface, event_x, event_y)
 
-		if "SHIFT" in self._modifier_keys:
+		if 'SHIFT' in self._modifier_keys:
 			if self._bg_type == 'light':
 				self._bg_type = 'dark'
 			else:

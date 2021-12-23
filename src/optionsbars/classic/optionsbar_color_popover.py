@@ -237,7 +237,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		elif op_as_string == 'over':
 			pass # Normal situation, no need to tell the user
 		else:
-			tooltip_string = self._operator_label + ' - ' + tooltip_string
+			tooltip_string = self._operator_label + " - " + tooltip_string
 		self._button.set_tooltip_text(tooltip_string)
 
 	############################################################################

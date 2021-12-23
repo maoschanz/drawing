@@ -51,15 +51,27 @@ class ToolPencil(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Pencil options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._dashes_type = self.get_option_value('dashes-type')
 		use_dashes = self._dashes_type != 'none'
 		self._use_outline = self.get_option_value('pencil-outline')
 		self._set_active_shape()
-		label = self.label
+
 		if use_dashes:
-			label = label + ' - ' + _("Dashed")
-		return label
+			label_options = self.label + " - " + _("Dashed")
+		else:
+			label_options = None
+
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_alt = None
+			if label_options is None:
+				label_options = self.label
+		else:
+			label_modifier_alt = self.label + " - " + \
+			                     _("Press <Alt> to toggle the 'outline' option")
+
+		full_list = [label_options, label_modifier_alt]
+		return list(filter(None, full_list))
 
 	############################################################################
 
@@ -68,7 +80,7 @@ class ToolPencil(AbstractClassicTool):
 		self._path = None
 
 		self.update_modifier_state(event.state)
-		if "ALT" in self._modifier_keys:
+		if 'ALT' in self._modifier_keys:
 			self._use_outline = not self._use_outline
 
 	def _add_point(self, event_x, event_y):
@@ -82,9 +94,10 @@ class ToolPencil(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self._add_point(event_x, event_y)
-		if render:
-			operation = self.build_operation()
-			self.do_tool_operation(operation)
+		if not render:
+			return
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)

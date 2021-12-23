@@ -34,14 +34,19 @@ class ToolPaint(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Painting options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		paint_algo = self.get_option_value('paint_algo')
 		if paint_algo == 'clipping':
-			return _("Click on an area to replace its color by transparency")
+			return [_("Click on an area to replace its color by transparency")]
 		elif paint_algo == 'whole':
-			return _("Click on the canvas to entirely paint it")
-		else:
-			return self.label
+			return [_("Click on the canvas to entirely paint it")]
+
+		label_warning1 = self.label + " - " + _("May not work for complex shapes")
+		label_warning2 = self.label + " - " + _("It will not work well if " + \
+		                                          "the area's edges are blurry")
+		return [label_warning1, label_warning2]
+
+	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.set_common_values(event.button, event_x, event_y)

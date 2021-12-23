@@ -54,11 +54,26 @@ class ToolScale(AbstractCanvasTool):
 	def get_options_label(self):
 		return _("Scaling options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
+		# there is intentionally no `label_direction` because i expect the users
+		# to understand themselves how it works.
+
 		if self.apply_to_selection:
-			return _("Scaling the selection")
+			label_action = _("Scaling the selection")
+			label_confirm = None
 		else:
-			return _("Scaling the canvas")
+			label_action = _("Scaling the canvas")
+			label_confirm = self.label + " - " + \
+			                         _("Don't forget to confirm the operation!")
+
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
+		else:
+			label_modifier_shift = _("Press <Shift> to quickly toggle the " + \
+			                                        "'lock proportions' option")
+
+		full_list = [label_action, label_confirm, label_modifier_shift]
+		return list(filter(None, full_list))
 
 	############################################################################
 

@@ -3,14 +3,15 @@ drawing (1.0.0) unstable; urgency=low
   * enable tools with "alt+letter" mnemonics (#300)
   * larger sidebar items, where the selected tool is easier to see (#441)
   * new "skew" tool (#369)
-  * possibility to enable specific tools options with the <shift> or <alt> keyboard modifiers (#46)
+  * enable or disable specific tools options with the <shift> or <alt> keyboard modifiers (#46)
+  * show more numerous, more dynamic, more contextual help tips as the window's subtitle
   * display cursor coordinates and other related data when pressing the <ctrl> keyboard modifier (#46, #439)
   * dynamically change the label of the "options" submenu in the menu-bar, to increase its discoverability
   * suggest to "apply & save" when trying to save while an operation is unapplied
-  * suggest to "apply & unselect" when trying to save while the selection is active
+  * suggest to "apply & deselect" when trying to save while the selection is active
   *
   * hide information messages after 4 seconds if they're not that useful
-  * disable the 'reload image from the disk' action if it has never been saved
+  * disable the 'reload image from the disk' action if the image has never been saved
   * new 'reset the canvas' action (ctrl+backspace)
   * warn the user if they're opening an already opened image
   * suggest to reload the picture if it has changed on the disk
@@ -18,6 +19,7 @@ drawing (1.0.0) unstable; urgency=low
   * menu item and action to change the theme variant preference (#360)
   * toggle the menubar with ctrl+f2
   *
+  * update the user help manual
   * shorter appdata summary, to comply with guidelines (#419)
   * update several translations
 
@@ -95,7 +97,7 @@ drawing (0.8.0) unstable; urgency=low
   * new, richer, more readable bottom pane for the selection tool
   * deleting the selection can now leave something else than transparency #232
   * option to exclude the color left under the selection from the selection itself #232
-  * fix unexpected "jumps" when unselecting a selection that was defined by an undo
+  * fix unexpected "jumps" when deselecting a selection that was defined by an undo
   *
   * improve the fullscreen mode, with a way to toggle the tools list (#265, #189)
   * rewrite the UI for changing the color application mode (#329)

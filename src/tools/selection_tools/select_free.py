@@ -35,6 +35,15 @@ class ToolFreeSelect(AbstractSelectionTool):
 		super().on_tool_unselected()
 		self.set_action_sensitivity('selection_close', False)
 
+	def get_editing_tips(self):
+		tips = super().get_editing_tips()
+		future_path = self.get_selection().get_future_path()
+		if future_path is not None and not self.selection_is_active():
+			label_instruction = self.label + " - " + \
+			                  _("Click on the shape's first point to close it.")
+			tips.append(label_instruction)
+		return tips
+
 	############################################################################
 
 	def press_define(self, event_x, event_y):

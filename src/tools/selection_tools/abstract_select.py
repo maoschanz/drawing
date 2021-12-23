@@ -46,14 +46,13 @@ class AbstractSelectionTool(AbstractAbstractTool):
 
 	def get_options_label(self):
 		return _("Selection")
-		# not just options, but mostly actions
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		if self.selection_is_active():
-			label = _("Drag the selection or right-click on the canvas")
+			label_tip = _("Drag the selection or right-click on the canvas")
 		else:
-			label = _("Select an area or right-click on the canvas")
-		return label
+			label_tip = _("Select an area or right-click on the canvas")
+		return [label_tip]
 
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource(self.UI_PATH + 'selection.ui')

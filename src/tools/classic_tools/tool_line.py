@@ -72,18 +72,36 @@ class ToolLine(AbstractClassicTool):
 		self._ortholock = self.get_option_value('line-ortholock')
 		self._set_active_shape()
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._set_options_attributes()
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
-		label = self.label
+
+		label_options = self.label
 		if is_arrow and use_dashes:
-			label = label + ' - ' + _("Dashed arrow")
+			label_options += " - " + _("Dashed arrow")
 		elif is_arrow:
-			label = label + ' - ' + _("Arrow")
+			label_options += " - " + _("Arrow")
 		elif use_dashes:
-			label = label + ' - ' + _("Dashed")
-		return label
+			label_options += " - " + _("Dashed")
+		else:
+			label_options = None
+
+		label_modifier_shift = self.label + " - "
+		if self._ortholock:
+			label_modifier_shift += _("Press <Shift> to unlock the line direction")
+		else:
+			label_modifier_shift += _("Press <Shift> to lock the line direction")
+
+		label_modifier_alt = self.label + " - " + \
+		                         _("Press <Alt> to toggle the 'outline' option")
+
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
+			label_modifier_alt = None
+
+		full_list = [label_options, label_modifier_shift, label_modifier_alt]
+		return list(filter(None, full_list))
 
 	############################################################################
 
@@ -91,15 +109,16 @@ class ToolLine(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 
 		self.update_modifier_state(event.state)
-		if "SHIFT" in self._modifier_keys:
+		if 'SHIFT' in self._modifier_keys:
 			self._ortholock = not self._ortholock
-		if "ALT" in self._modifier_keys:
+		if 'ALT' in self._modifier_keys:
 			self._use_outline = not self._use_outline
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if render:
-			operation = self.build_operation(event_x, event_y)
-			self.do_tool_operation(operation)
+		if not render:
+			return
+		operation = self.build_operation(event_x, event_y)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		operation = self.build_operation(event_x, event_y)

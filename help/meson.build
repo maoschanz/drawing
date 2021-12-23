@@ -2,17 +2,17 @@
 gnome.yelp(
 	meson.project_name(),
 	sources: [
-		'index.page',
-		'main_features.page',
-		'zoom_preview.page',
 		'fullscreen.page',
+		'index.page',
+		'legal.xml',
+		'main_features.page',
 		'preferences.page',
 		'tools_classic.page',
 		'tools_classic_colors.page',
 		'tools_selection.page',
 		'tools_transform.page',
 		'whats_new.page',
-		'legal.xml'
+		'zoom_preview.page'
 	],
 	media: [
 		'figures/icon.png',
