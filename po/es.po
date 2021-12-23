@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-12-04 16:15+0100\n"
+"POT-Creation-Date: 2021-12-23 20:06+0100\n"
 "PO-Revision-Date: 2021-12-04 16:15+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
@@ -217,6 +217,12 @@ msgstr "Guardar"
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
 msgstr "Guardar sin transparencia"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -863,7 +869,7 @@ msgstr "Cambiar la visibilidad de las barras de herramientas"
 msgid "Touch gestures"
 msgstr "Gestos táctiles"
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 msgid "Loading…"
 msgstr "Cargando…"
 
@@ -1819,19 +1825,20 @@ msgstr "Pincel peludo"
 msgid "Calligraphic nib"
 msgstr "Punta caligráfica"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr "Punta para diestros"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Vertical nib"
 msgstr "Punta vertical"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr "Punta para zurdos"
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Horizontal nib"
 msgstr "Punta horizontal"
 
@@ -2112,6 +2119,10 @@ msgstr "Curva"
 msgid "Curve options"
 msgstr "Opciones de curva"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr ""
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "Flecha discontinua"
@@ -2125,13 +2136,34 @@ msgstr "Flecha"
 msgid "Dashed"
 msgstr "Discontinua"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr ""
+
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
 msgstr "Opciones de pincel"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "Opciones de borrado"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2162,6 +2194,14 @@ msgstr "Longitud: %spx"
 msgid "Line options"
 msgstr "Opciones de línea"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr ""
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr ""
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "Opciones de relleno"
@@ -2173,6 +2213,16 @@ msgstr "Pulse en un área para reemplazar su color por transparencia"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Pulse en el lienzo para pintarlo completamente"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr ""
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2211,8 +2261,13 @@ msgid "Filled with secondary color"
 msgstr "Relleno con el color secundario"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "Pulse en el primer punto de la forma para cerrarla."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2267,12 +2322,30 @@ msgid "Cropping options"
 msgstr "Opciones de recorte"
 
 #: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Recortando la selección"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
+#, fuzzy
+msgid "Cropping or expanding the canvas"
 msgstr "Recortando el lienzo"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2312,9 +2385,17 @@ msgstr "Escalando la selección"
 msgid "Scaling the canvas"
 msgstr "Escalando el lienzo"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
 msgstr "Opciones de sesgo"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"

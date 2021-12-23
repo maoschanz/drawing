@@ -58,7 +58,7 @@ class ToolSkew(AbstractCanvasTool):
 			return _("Skewing options")
 
 	def get_editing_tips(self):
-		label_direction = _("The direction(s) of the deformation are hinted by the mouse pointer")
+		label_direction = _("The directions of the deformation are hinted by the mouse pointer")
 
 		label_modifiers = None
 		if self.apply_to_selection:

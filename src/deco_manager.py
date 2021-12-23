@@ -13,7 +13,8 @@ class DrDecoManagerMenubar():
 
 		window.set_show_menubar(use_menubar)
 		if use_menubar:
-			window.set_titlebar(None) # that's an arbitrary restriction
+			# that's an arbitrary restriction
+			window.set_titlebar(None)
 
 		self._main_title = _("Drawing")
 		self._subtitles = [_("Loading…")]

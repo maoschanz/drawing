@@ -49,7 +49,7 @@ class ToolCrop(AbstractCanvasTool):
 		return _("Cropping options")
 
 	def get_editing_tips(self):
-		label_direction = _("The side(s) you'll crop are hinted by the mouse pointer")
+		label_direction = _("The sides you'll crop are hinted by the mouse pointer")
 
 		label_modifiers = None
 		if self.apply_to_selection:

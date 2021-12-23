@@ -32,8 +32,8 @@ function help_all () {
 }
 
 function help_pot () {
-	ninja -C _build help-drawing-pot
 	echo "Updating .pot file for help"
+	# ninja -C _build help-drawing-pot
 }
 
 if [ $# = 0 ]; then
