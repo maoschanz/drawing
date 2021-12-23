@@ -98,6 +98,8 @@ class ToolEraser(ToolPencil):
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		super().on_press_on_area(event, surface, event_x, event_y)
+		# TODO the eraser grew up to be too different from the pencil, it
+		# shouldn't extend it
 
 		if self._rgba_type == 'alpha':
 			self._rgba = [0.0, 0.0, 0.0, 0.0]

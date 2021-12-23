@@ -43,10 +43,10 @@ class ToolShape(AbstractClassicTool):
 
 	def _reset_temp_points(self):
 		self._path = None
-		self.x_press = -1.0
-		self.y_press = -1.0
-		self.initial_x = -1.0
-		self.initial_y = -1.0
+		self.x_press = None
+		self.y_press = None
+		self.initial_x = None
+		self.initial_y = None
 
 	def get_tooltip(self, event_x, event_y, motion_behavior):
 		if motion_behavior != 1:
@@ -116,7 +116,8 @@ class ToolShape(AbstractClassicTool):
 				'r-gradient': _("Radial gradient"),
 			}[self._filling_id]
 
-		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
+		if (self._shape_id == 'polygon' or self._shape_id == 'freeshape') and \
+		                                                 self._path is not None:
 			label_instruction = shape_name + " - " + \
 			                  _("Click on the shape's first point to close it.")
 		else:
@@ -147,8 +148,11 @@ class ToolShape(AbstractClassicTool):
 			self._filling_id = 'secondary'
 		elif 'SHIFT' in self._modifier_keys:
 			self._filling_id = 'empty'
+			if self._outline_id == 'none':
+				self._outline_id = 'solid'
 		elif 'ALT' in self._modifier_keys:
 			self._filling_id = 'filled'
+			self._outline_id = 'none'
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._shape_id == 'freeshape':
@@ -200,7 +204,7 @@ class ToolShape(AbstractClassicTool):
 	def _add_point(self, event_x, event_y, memorize):
 		"""Add a point to a shape (used by both freeshape and polygon)."""
 		cairo_context = self.get_context()
-		if self.initial_x == -1.0:
+		if self.initial_x is None:
 			# print('init polygon')
 			(self.initial_x, self.initial_y) = (self.x_press, self.y_press)
 			cairo_context.move_to(self.x_press, self.y_press)
@@ -219,7 +223,7 @@ class ToolShape(AbstractClassicTool):
 		return operation
 
 	def _should_close_shape(self, event_x, event_y):
-		if self.initial_x == -1.0 or self.initial_y == -1.0:
+		if self.initial_x is None or self.initial_y is None:
 			return False
 		delta_x = max(event_x, self.initial_x) - min(event_x, self.initial_x)
 		delta_y = max(event_y, self.initial_y) - min(event_y, self.initial_y)
