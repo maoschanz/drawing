@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-12-23 20:06+0100\n"
-"PO-Revision-Date: 2021-10-10 22:41+0200\n"
+"PO-Revision-Date: 2021-12-28 16:48+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
@@ -90,7 +90,7 @@ msgid ""
 "large images with a poor CPU."
 msgstr ""
 "Verzija 1.0.0 poboljšava performanse iscrtavanja, što je vidljivo pri "
-"uređivanju velikih slika sa slabim CPU-om"
+"uređivanju velikih slika sa slabim CPU-om."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -102,14 +102,12 @@ msgstr ""
 "u paralelogram. Ta se deformacija može primijeniti vodoravno ili okomito."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Ako su nazivi alata vidljivi, određeni alat se može aktivirati pomoću „alt"
-"+[podcrtano slovo]”. Ovo možda još neće raditi s jezicima koji ne koriste "
-"latiničnu abecedu."
+"Alati se mogu birati pomoću tipkovnih prečaca (Alt+slovo]. Ovo možda još "
+"neće raditi s jezicima koji ne koriste latiničnu abecedu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -117,16 +115,19 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Pritiskom tipke „ctrl” prikazat će se koordinate kursora u opisu alata. Ako "
+"to učiniš dok koristiš alat, prikazat će se dodatni podaci, na primjer "
+"dimenzije oblika koji crtaš!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Pritiskom tipki „ctrl”, „shift” ili „alt” tijekom korištenja alata "
-"omogućujuse određene opcije, kao što je „Dodaj u odabir” za alate za biranje."
+"Pritiskom tipke „shift” ili „alt” za vrijeme korištenja alata, omogućuju se "
+"određene opcije, kao što je zaključavanje smjera za alat „crta” ili "
+"mijenjanje stila ispunjavanja oblika."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -134,7 +135,7 @@ msgid ""
 "percentage rather than an absolute value in pixels."
 msgstr ""
 "Pomoću alata „Skaliraj” može se po želji postaviti nova veličina kao "
-"relativan postotak, umjesto kao apsolutna vrijednost u pikselima. "
+"relativan postotak, umjesto kao apsolutna vrijednost u pikselima."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -200,7 +201,7 @@ msgstr "Svojstva slike"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Obnovi platno"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -216,7 +217,7 @@ msgstr "Spremi bez prozirnosti"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Pripremi kao NFT …"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -370,31 +371,29 @@ msgstr "Idi desno"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Kartica lijevo"
+msgstr "Idi skroz lijevo"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Idi skroz gore"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Idi skroz dolje"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Kartica desno"
+msgstr "Idi skroz desno"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -776,7 +775,6 @@ msgid "Main menu"
 msgstr "Glavni izbornik"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
 msgstr "Uključi/isključi traku izbornika"
 
@@ -837,12 +835,12 @@ msgstr "Uvezi jednu datoteku kao odabir"
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
-msgstr "Uredi glavnu boju (lijevi klik)"
+msgstr "Uredi glavnu boju (pritisni lijevi gumb miša)"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the secondary color (right click)"
-msgstr "Uredi sporednu boju (desni klik)"
+msgstr "Uredi sporednu boju (pritisni desni gumb miša)"
 
 #: src/ui/shortcuts.ui
 msgid "History"
@@ -1274,8 +1272,8 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Odabran je dio slike: pikseli ispod odabira neće biti spremljene u boji koju "
-"možda ne očekuješ! "
+"Odabran je dio slike: pikseli ispod odabira će biti spremljeni u boji koju "
+"možda ne očekuješ!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1381,11 +1379,9 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša, dodirni s tri "
-"prsta ili pritisni F8"
+"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša ili pritisni F8"
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1530,7 +1526,7 @@ msgid "BMP images"
 msgstr "BMP slike"
 
 #: src/utilities/utilities_files.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
 msgstr "%s nije slika."
 
@@ -1710,14 +1706,12 @@ msgid "Never"
 msgstr "Nikada"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "piksela"
+msgstr "Pikseli"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "postoci"
+msgstr "Postotak"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1911,14 +1905,12 @@ msgid "No direction"
 msgstr "Bez smjera"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Preokreni vodoravno"
+msgstr "Zamuti vodoravno"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Preokreni okomito"
+msgstr "Zamuti okomito"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
@@ -2093,15 +2085,13 @@ msgstr "Sjena"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Bez konture"
+msgstr "Tanka kontura"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Bez konture"
+msgstr "Debela kontura"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2118,7 +2108,7 @@ msgstr "Opcije za krivulju"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Za dovršavanje krivulje nacrtaj još jedan drugi segment"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2136,7 +2126,7 @@ msgstr "Iscrtkano"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Za uključivanje/isključivanje opcije „Kontura”, pritisni <Alt>"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
@@ -2144,11 +2134,11 @@ msgstr "Opcije za kist"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Umjesto toga pritisni <Shift> za brisanje pravokutnog područja"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Umjesto toga pritisni <Shift> za brisanje staze"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2157,10 +2147,13 @@ msgstr "Opcije za gumicu"
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
 msgstr ""
+"Umjesto toga pritisni <Shift> za za privremeno isticanje na tamnoj pozadini"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
 msgstr ""
+"Umjesto toga pritisni <Shift> za za privremeno isticanje na svijetloj "
+"pozadini"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2172,20 +2165,20 @@ msgstr "Crta"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Širina"
+msgstr "Širina: %s px"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Visina"
+msgstr "Visina: %s px"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Duljina: %s px"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2193,11 +2186,11 @@ msgstr "Opcije za crtu"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Za otključavanje smjera crte pritisni <Shift>"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Za zaključavanje smjera crte pritisni <Shift>"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2205,21 +2198,21 @@ msgstr "Opcije za slikanje"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
-msgstr "Klikni na područje čiju boju želiš zamijeniti s prozirnošću"
+msgstr "Pritisni mišem na područje čiju boju želiš zamijeniti s prozirnošću"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
-msgstr "Za potpuno bojanje platna klikni na platno"
+msgstr "Za potpuno bojanje platna pritisni mišem na platno"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Možda ne radi s kompleksnim oblicima"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Neće dobro funkcionirati ako su rubovi područja zamućeni"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2241,7 +2234,7 @@ msgstr "Oblik"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Radijus: %s px"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2260,11 +2253,12 @@ msgstr "Ispunjeno sa sporednom bojom"
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
-msgstr "Za zatvaranje oblika, klikni na njegovu prvu točku."
+msgstr "Za zatvaranje oblika, pritisni njegovu prvu točku."
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Za brzo mijenjanje opcije „Ispunavanje”, pritisni <Alt>, <Shift> ili oboje"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2298,11 +2292,11 @@ msgstr "Širina ovisi o brzini miša"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Povuci odabir ili klikni desnom tipkom na platno"
+msgstr "Povuci odabir ili pritisni desnom tipkom na platno"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Odaberi područje ili klikni desnom tipkom na platno"
+msgstr "Odaberi područje ili pritisni desnom tipkom na platno"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
@@ -2318,29 +2312,29 @@ msgstr "Opcije za rezanje"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Strane koje se režu ovise o pokazivaču miša"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Rezanje odabira"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Rezanje platna"
+msgstr "Rezanje ili širenje platna"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Nemoj zaboraviti potvrditi operaciju!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Za brzo mijenjanje opcije „Proširi sa”, pritisni <Alt>, <Shift> ili oboje"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2348,7 +2342,7 @@ msgstr "Aktivni filtar"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
-msgstr "Klikni na sliku za pregled odabranog filtra"
+msgstr "Pritisni mišem na sliku za pregled odabranog filtra"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/transform_tools/tool_filters.py
@@ -2382,25 +2376,24 @@ msgstr "Skaliranje platna"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
+"Za brzo uključivanje/isključivanje opcije „Zaključaj proporcije”, pritisni "
+"<Shift>"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Opcije za skaliranje"
+msgstr "Opcije za ukosivanje"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "Smjerovi deformacije ovise o pokazivaču miša"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Skaliranje odabira"
+msgstr "Ukosivanje odabira"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Skaliranje platna"
+msgstr "Ukosivanje platna"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2409,12 +2402,3 @@ msgstr "Radijus mutnoće"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Zasićenost"
-
-#~ msgid "Transform"
-#~ msgstr "Transformiraj"
-
-#~ msgid "Horizontal"
-#~ msgstr "Vodoravno"
-
-#~ msgid "Vertical"
-#~ msgstr "Okomito"
