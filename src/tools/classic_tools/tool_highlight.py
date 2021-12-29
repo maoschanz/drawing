@@ -17,7 +17,7 @@
 
 import cairo
 from .tool_pencil import ToolPencil
-from .utilities_paths import utilities_smooth_path
+# from .utilities_paths import utilities_smooth_path
 from .abstract_classic_tool import AbstractClassicTool
 
 class ToolHighlighter(ToolPencil):
@@ -107,11 +107,10 @@ class ToolHighlighter(ToolPencil):
 		if not self._is_rigid:
 			return False
 
-		rigidity_h = min(self.tool_width, 10.0)
-		if abs(cairo_context.get_current_point()[0] - event_x) > rigidity_h:
+		rigidity = min(self.tool_width, 10.0)
+		if abs(cairo_context.get_current_point()[0] - event_x) > rigidity:
 			return False
-		rigidity_v = rigidity_h / 2
-		if abs(cairo_context.get_current_point()[1] - event_y) > rigidity_v:
+		if abs(cairo_context.get_current_point()[1] - event_y) > rigidity / 5:
 			return False
 
 		cairo_context.new_path()
@@ -162,7 +161,8 @@ class ToolHighlighter(ToolPencil):
 			main_color[3] = 0.5
 		ccontext.set_source_rgba(*main_color)
 
-		utilities_smooth_path(ccontext, operation['path'])
+		# utilities_smooth_path(ccontext, operation['path'])
+		ccontext.append_path(operation['path'])
 		ccontext.stroke()
 
 	############################################################################
