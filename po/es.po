@@ -570,10 +570,12 @@ msgid "Troubleshoot selection"
 msgstr "Solución de problemas de la selección"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Cancelar transformación"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Aplicar transformación"
 
@@ -982,9 +984,7 @@ msgid "%s%%"
 msgstr "%s %%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1653,10 +1653,6 @@ msgid "Extract from this color"
 msgstr "Extraer de este color"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Aplicar"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Más opciones"
 
@@ -1928,6 +1924,11 @@ msgstr "Desenfocar verticalmente"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Invertir colores"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Escalando la selección"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2317,9 +2318,12 @@ msgstr "Selección rectangular"
 msgid "Error: invalid values"
 msgstr "Error: valores no válidos"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Opciones de recorte"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Opciones de relleno"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"

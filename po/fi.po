@@ -559,11 +559,13 @@ msgid "Troubleshoot selection"
 msgstr "Vianmääritys"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Cancel transformation"
 msgstr "Ohje työkaluista"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Apply transformation"
 msgstr "Ohje työkaluista"
@@ -985,9 +987,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Peru"
 
@@ -1657,10 +1657,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Käytä"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Lisää vaihtoehtoja"
 
@@ -1946,6 +1942,11 @@ msgstr "Peilaa pystysuunnassa"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Käännä värit"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Valinnan skaalaaminen"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2350,10 +2351,12 @@ msgstr "Suorakulmion valinta"
 msgid "Error: invalid values"
 msgstr "Virhe: virheelliset arvot"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
 #, fuzzy
-msgid "Cropping options"
-msgstr "Fontin asetukset"
+msgid "Expanding options"
+msgstr "Maalauksen vaihtoehdot"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"

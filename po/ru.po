@@ -569,10 +569,12 @@ msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Отменить преобразование"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Применить преобразование"
 
@@ -980,9 +982,7 @@ msgid "%s%%"
 msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1649,10 +1649,6 @@ msgid "Extract from this color"
 msgstr "Исключить из этого цвет"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Применить"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Больше параметров"
 
@@ -1924,6 +1920,11 @@ msgstr "Вертикальное размытие"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Инвертировать цвета"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Масштабировать выделенное"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2314,9 +2315,12 @@ msgstr "Прямоугольное выделение"
 msgid "Error: invalid values"
 msgstr "Ошибка: недопустимые значения"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Параметры обрезки"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Параметры заливки"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"

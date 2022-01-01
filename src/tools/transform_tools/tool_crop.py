@@ -46,7 +46,9 @@ class ToolCrop(AbstractCanvasTool):
 		return bar
 
 	def get_options_label(self):
-		return _("Cropping options")
+		# The options of the "crop" tool are all about how to expand the canvas,
+		# hence this label.
+		return _("Expanding options")
 
 	def get_editing_tips(self):
 		label_direction = _("The sides you'll crop are hinted by the mouse pointer")
@@ -278,7 +280,7 @@ class ToolCrop(AbstractCanvasTool):
 			dest_x = max(-1 * x, 0)
 			dest_y = max(-1 * y, 0)
 
-		# Dotted lines == new sizes; plain line == old sizes.
+		# Dotted lines == new sizes; plain lines == old sizes.
 		#
 		# If the origin has been cropped, `src` == the new coordinates, and
 		# `dest` == 0 (in the considered direction x or y):

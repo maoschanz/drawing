@@ -585,11 +585,13 @@ msgid "Troubleshoot selection"
 msgstr "אפשרויות צבע"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Cancel transformation"
 msgstr "שינוי קנה מידה של הבחירה"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Apply transformation"
 msgstr "שינוי קנה מידה של הבחירה"
@@ -1025,9 +1027,7 @@ msgid "%s%%"
 msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -1700,10 +1700,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "יישום"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "More options"
 msgstr "אין אפשרויות"
@@ -1998,6 +1994,11 @@ msgstr "הפוך אנכית"
 #, fuzzy
 msgid "Invert colors"
 msgstr "החלף צבעים"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "שינוי קנה מידה של הבחירה"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
@@ -2411,10 +2412,12 @@ msgstr "בחירה מלבנית"
 msgid "Error: invalid values"
 msgstr ""
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
 #, fuzzy
-msgid "Cropping options"
-msgstr "אין אפשרויות"
+msgid "Expanding options"
+msgstr "אפשרויות צביעה"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"

@@ -570,10 +570,12 @@ msgid "Troubleshoot selection"
 msgstr "Risolvere i problemi di selezione"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Annulla trasformazione"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Applica trasformazione"
 
@@ -981,9 +983,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1650,10 +1650,6 @@ msgid "Extract from this color"
 msgstr "Estratto da questo colore"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Applica"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Più opzioni"
 
@@ -1926,6 +1922,11 @@ msgstr "Sfocatura verticale"
 msgid "Invert colors"
 msgstr "Inverti i colori"
 
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Ridimensionamento della selezione"
+
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Gradiente di colore"
@@ -2160,7 +2161,8 @@ msgstr "Premi <Shift> per evidenziare temporaneamente su uno sfondo scuro"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr "Premi invece <Shift> per evidenziare temporaneamente su uno sfondo chiaro"
+msgstr ""
+"Premi invece <Shift> per evidenziare temporaneamente su uno sfondo chiaro"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2264,7 +2266,9 @@ msgstr "Fai clic sul primo punto della forma per chiuderla."
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
-msgstr "Premi <Alt>, <Shift> o entrambi per cambiare rapidamente l'opzione 'riempimento'"
+msgstr ""
+"Premi <Alt>, <Shift> o entrambi per cambiare rapidamente l'opzione "
+"'riempimento'"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2312,9 +2316,12 @@ msgstr "Selezione rettangolare"
 msgid "Error: invalid values"
 msgstr "Errore: valori non validi"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Opzioni di ritaglio"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Opzioni pittura"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
@@ -2340,7 +2347,8 @@ msgstr "Non dimenticare di confermare l'operazione!"
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
-"Premi <Alt>, <Shift>, o entrambi, per cambiare rapidamente l'opzione 'espandi con'"
+"Premi <Alt>, <Shift>, o entrambi, per cambiare rapidamente l'opzione "
+"'espandi con'"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"

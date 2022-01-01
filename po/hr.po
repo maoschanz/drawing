@@ -565,10 +565,12 @@ msgid "Troubleshoot selection"
 msgstr "Ispravi problem s odabirom"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Prekini transformaciju"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Primijeni transformaciju"
 
@@ -974,9 +976,7 @@ msgid "%s%%"
 msgstr "%s %%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -1641,10 +1641,6 @@ msgid "Extract from this color"
 msgstr "Izdvoji iz ove boje"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Primijeni"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Daljnje opcije"
 
@@ -1915,6 +1911,11 @@ msgstr "Zamuti okomito"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Invertiraj boje"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Skaliranje odabira"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2306,9 +2307,12 @@ msgstr "Pravokutni odabir"
 msgid "Error: invalid values"
 msgstr "Greška: nevaljane vrijednosti"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Opcije za rezanje"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Opcije za slikanje"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"

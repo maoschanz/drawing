@@ -562,10 +562,12 @@ msgid "Troubleshoot selection"
 msgstr "Odstranit potíže s výběrem"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Zrušit transformaci"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Použít transformaci"
 
@@ -971,9 +973,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -1643,10 +1643,6 @@ msgid "Extract from this color"
 msgstr "Extraktovat z této barvy"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Použít"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Více možností"
 
@@ -1921,6 +1917,11 @@ msgstr "Překlopit vertikálně"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Invertovat barvy"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Změna velikosti výběru"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2310,9 +2311,12 @@ msgstr "Výběr obdélníku"
 msgid "Error: invalid values"
 msgstr "Chyba: neplatné hodnoty"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Možnosti oříznutí"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Možnosti výplně"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"

@@ -559,10 +559,12 @@ msgid "Troubleshoot selection"
 msgstr "選択領域のトラブルシューティング"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "変換をキャンセル"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "変換を適用"
 
@@ -968,9 +970,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1639,10 +1639,6 @@ msgid "Extract from this color"
 msgstr "この色から抽出"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "適用"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "他のオプション"
 
@@ -1918,6 +1914,11 @@ msgstr "垂直に裏返す"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "色を反転"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "選択領域を伸縮します"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2307,9 +2308,12 @@ msgstr "四辺形選択"
 msgid "Error: invalid values"
 msgstr "エラー: 無効な値です"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "トリミングのオプション"
+#, fuzzy
+msgid "Expanding options"
+msgstr "染色のオプション"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
